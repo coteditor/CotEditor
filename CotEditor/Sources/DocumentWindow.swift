@@ -177,7 +177,7 @@ final class DocumentWindow: NSWindow {
     
     // MARK: Private Methods
     
-    /// Wthether the window level is floating.
+    /// Whether the window level is floating.
     private var isFloating: Bool = false {
         
         didSet {
@@ -217,7 +217,7 @@ extension DocumentWindow {
             return tabbingPreference
         }
         
-        if let tabbingPreference = NSWindow.UserTabbingPreference(rawValue: UserDefaults.standard[.windowTabbing]), tabbingPreference.rawValue >= 0 {  // -1 obays system setting
+        if let tabbingPreference = NSWindow.UserTabbingPreference(rawValue: UserDefaults.standard[.windowTabbing]), tabbingPreference.rawValue >= 0 {  // -1 obeys system setting
             return tabbingPreference
         }
         

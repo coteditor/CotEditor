@@ -62,7 +62,7 @@ extension UserDefaults {
             let subscription = Subscription(subscriber: subscriber, userDefaults: self.userDefaults, key: self.key)
             
             subscriber.receive(subscription: subscription)
-            subscription.register(initial: self.initial)  // regsiter after assigning to subscriber to pass the initial emission
+            subscription.register(initial: self.initial)  // register after assigning to subscriber to pass the initial emission
         }
     }
 }

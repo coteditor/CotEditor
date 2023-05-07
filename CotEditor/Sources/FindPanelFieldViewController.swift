@@ -68,7 +68,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         self.findTextView?.action = #selector(performFind)
         self.findTextView?.target = self
         
-        // adjust clear button position according to the visiblity of scroller area
+        // adjust clear button position according to the visibility of scroller area
         let scroller = self.findTextView?.enclosingScrollView?.verticalScroller
         self.scrollerStyleObserver = scroller?.publisher(for: \.scrollerStyle, options: .initial)
             .sink { [weak self, weak scroller] (scrollerStyle) in
@@ -205,7 +205,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    /// show the regular expression refecence view as popover
+    /// show the regular expression reference view as popover
     @IBAction func showRegularExpressionReference(_ sender: NSButton) {
         
         if let viewController = self.presentedViewControllers?.first(where: { $0.view is NSHostingView<RegularExpressionReferenceView> }) {

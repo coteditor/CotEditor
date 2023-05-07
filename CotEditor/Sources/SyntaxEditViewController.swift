@@ -105,7 +105,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         super.prepare(for: segue, sender: sender)
         
-        // prepare embeded TabViewController
+        // prepare embedded TabViewController
         if let tabViewController = segue.destinationController as? NSTabViewController {
             let validationView = SyntaxValidationView(validator: self.validator)
             let validationTabItem = NSTabViewItem(viewController: NSHostingController(rootView: validationView))
@@ -241,7 +241,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             return
         }
         
-        // NSMutableDictonary to StyleDictionary
+        // NSMutableDictionary to StyleDictionary
         let styleDictionary: SyntaxManager.StyleDictionary = self.style.reduce(into: [:]) { (dictionary, item) in
             guard let key = item.key as? String else { return assertionFailure() }
             dictionary[key] = item.value

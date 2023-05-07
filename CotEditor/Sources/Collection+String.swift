@@ -42,7 +42,7 @@ extension MutableCollection where Self: RandomAccessCollection<String> {
     ///
     /// - Parameters:
     ///   - keyPath: The key path to the string to compare.
-    ///   - options: The storategy to compare strings.
+    ///   - options: The strategy to compare strings.
     mutating func sort(_ keyPath: KeyPath<Element, String> = \Element.self, options: StringComparisonOptions) {
         
         let compare = compareFunction(options: options)
@@ -54,11 +54,11 @@ extension MutableCollection where Self: RandomAccessCollection<String> {
 
 extension Sequence<String> {
     
-    /// Return the elements of the sequence, sorted using the string value that the given key path refers with the desired string comparison storategy.
+    /// Return the elements of the sequence, sorted using the string value that the given key path refers with the desired string comparison strategy.
     ///
     /// - Parameters:
     ///   - keyPath: The key path to the string to compare.
-    ///   - options: The storategy to compare strings.
+    ///   - options: The strategy to compare strings.
     /// - Returns: A sorted array of the sequence’s elements.
     func sorted(_ keyPath: KeyPath<Element, String> = \Element.self, options: StringComparisonOptions) -> [Element] {
         

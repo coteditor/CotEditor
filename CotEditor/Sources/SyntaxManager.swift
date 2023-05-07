@@ -137,11 +137,11 @@ final class SyntaxManager: SettingFileManaging {
             
             // check case-insensitively
             let lowerPathExtension = pathExtension.lowercased()
-            if let sttingName = extensionTable
+            if let settingName = extensionTable
                 .first(where: { $0.key.lowercased() == lowerPathExtension })?
                 .value.first
             {
-                return sttingName
+                return settingName
             }
         }
         
@@ -445,7 +445,7 @@ private extension SyntaxManager.StyleDictionary {
     }
     
     
-    /// Convert to YAML serialization comaptible colletion recursively.
+    /// Convert to YAML serialization compatible collection recursively.
     var yamlEncodable: Self {
         
         self.mapValues(Self.convertToYAMLEncodable)

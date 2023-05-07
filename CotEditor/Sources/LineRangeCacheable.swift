@@ -151,12 +151,12 @@ extension LineRangeCacheable {
         guard string.length > 0 else { return }
         
         let lowerParseBound = self.lineRangeCache.firstUncoundedIndex
-        let upperPasreBound = self.lineRangeCache.parsedIndexes.contains(endIndex)
+        let upperParseBound = self.lineRangeCache.parsedIndexes.contains(endIndex)
             ? self.lineRangeCache.parsedIndexes.rangeView(of: lowerParseBound...endIndex).last?.first ?? endIndex
             : endIndex
         
         var index = lowerParseBound
-        while index <= min(upperPasreBound, string.length - 1) {
+        while index <= min(upperParseBound, string.length - 1) {
             string.getLineStart(nil, end: &index, contentsEnd: nil, for: NSRange(location: index, length: 0))
             
             guard index != string.length || string.character(at: index - 1).isNewline else { break }

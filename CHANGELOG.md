@@ -2955,7 +2955,7 @@ no change.
 ### Improvements
 
 - Enable “shift right” and “shift left” commands to process multiple selections.
-- [beta] Swap actions for “shift right” and “shift left” in the RTL writing mode so that the indentation direction matchs to the command name.
+- [beta] Swap actions for “shift right” and “shift left” in the RTL writing mode so that the indentation direction matches to the command name.
 - [beta] Add “Keep the first line at the top” option to the pattern sort.
 - [beta] Add toolbar item toggling writing direction.
 - [beta] Update alignment icons in print pane.

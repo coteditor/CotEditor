@@ -177,12 +177,12 @@ final class EncodingDetectionTests: XCTestCase {
         let dosJapanese = CFStringEncoding(CFStringEncodings.dosJapanese.rawValue)
         
         // IANA charset name conversion
-        // CFStringEcoding -> IANA charset name
+        // CFStringEncoding -> IANA charset name
         XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(shiftJIS) as String, "shift_jis")
         XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(shiftJIS_X0213) as String, "Shift_JIS")
         
         XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(dosJapanese) as String, "cp932")
-        // IANA charset name -> CFStringEcoding
+        // IANA charset name -> CFStringEncoding
         XCTAssertEqual(CFStringConvertIANACharSetNameToEncoding("SHIFT_JIS" as CFString), shiftJIS)
         XCTAssertEqual(CFStringConvertIANACharSetNameToEncoding("shift_jis" as CFString), shiftJIS)
         XCTAssertEqual(CFStringConvertIANACharSetNameToEncoding("cp932" as CFString), dosJapanese)
@@ -212,7 +212,7 @@ final class EncodingDetectionTests: XCTestCase {
     }
     
     
-    func testYenConvertion() {
+    func testYenConversion() {
         
         XCTAssertTrue(String.Encoding.utf8.canConvertYenSign)
         XCTAssertTrue(String.Encoding(cfEncodings: .shiftJIS).canConvertYenSign)
@@ -273,10 +273,10 @@ final class EncodingDetectionTests: XCTestCase {
         let availableEncodings = DefaultSettings.encodings
             .filter { $0 != kCFStringEncodingInvalidId }
             .map(String.Encoding.init(cfEncoding:))
-        let yenIncompatibleEncodigs = availableEncodings
+        let yenIncompatibleEncodings = availableEncodings
             .filter { !"¥".canBeConverted(to: $0) }
         
-        for encoding in yenIncompatibleEncodigs {
+        for encoding in yenIncompatibleEncodings {
             XCTAssert(inHelpEncodings.contains(encoding), "\(String.localizedName(of: encoding))")
         }
         for encoding in inHelpEncodings {

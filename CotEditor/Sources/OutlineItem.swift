@@ -122,7 +122,7 @@ extension BidirectionalCollection<OutlineItem> {
     /// Filter matched outline items abbreviatedly.
     ///
     /// - Parameter searchString: The string to search.
-    /// - Returns: Mached items.
+    /// - Returns: Matched items.
     func filterItems(with searchString: String) -> [OutlineItem] {
         
         self.compactMap { (item) in

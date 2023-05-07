@@ -98,7 +98,7 @@ extension DefaultKeys {
     static let commentsAtLineHead = DefaultKey<Bool>("commentsAtLineHead")
     static let completesDocumentWords = DefaultKey<Bool>("completesDocumentWords")
     static let completesSyntaxWords = DefaultKey<Bool>("completesSyntaxWords")
-    static let completesStandartWords = DefaultKey<Bool>("completesStandardWords")
+    static let completesStandardWords = DefaultKey<Bool>("completesStandardWords")
     static let autoComplete = DefaultKey<Bool>("autoComplete")
     
     // Format

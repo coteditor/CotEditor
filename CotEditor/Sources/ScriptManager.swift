@@ -111,7 +111,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     // MARK: Public Methods
     
     /// Script menu for context menu.
-    @MainActor var contexualMenu: NSMenu? {
+    @MainActor var contextualMenu: NSMenu? {
         
         let items = self.scriptMenu!.items
             .filter { $0.action != #selector(openScriptFolder) }
@@ -134,7 +134,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         Task.detached {
             // -> The application scripts folder will be created automatically by the first launch.
-            //    In addition, individual applicaitons cannot create its script folder for in case
+            //    In addition, individual applications cannot create its script folder for in case
             //    when user explicitly delete the folder.
             //    cf. https://developer.apple.com/forums/thread/79384
             self.scriptsDirectoryURL = try? FileManager.default.url(for: .applicationScriptsDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
@@ -187,7 +187,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                         
                     case [.option, .shift]:  // reveal
                         guard script.url.isReachable else {
-                            throw ScriptFileError(kind: .existance, url: script.url)
+                            throw ScriptFileError(kind: .existence, url: script.url)
                         }
                         NSWorkspace.shared.activateFileViewerSelecting([script.url])
                         
@@ -209,9 +209,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// open Script menu folder in Finder
     @IBAction func openScriptFolder(_ sender: Any?) {
         
-        guard let dicrectoryURL = self.scriptsDirectoryURL else { return }
+        guard let directoryURL = self.scriptsDirectoryURL else { return }
         
-        NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: dicrectoryURL.path)
+        NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: directoryURL.path)
     }
     
     
@@ -247,7 +247,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Present the given error in the ordenery way by taking the error type in the concideration.
+    /// Present the given error in the ordinary way by taking the error type in the consideration.
     ///
     /// - Parameters:
     ///   - error: The error to present.
@@ -380,7 +380,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         // clear all shortcuts
         menu.items.forEach { $0.removeAllShortcuts() }
         
-        // apply shortcuts for priotarized domain
+        // apply shortcuts for prioritized domain
         let usedShortcuts: [Shortcut]
         if let context = self.currentContext, let submenu = menu.item(withTitle: context)?.submenu {
             usedShortcuts = submenu.items.flatMap { $0.applyShortcut(recursively: true) }

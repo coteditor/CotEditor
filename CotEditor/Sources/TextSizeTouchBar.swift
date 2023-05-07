@@ -133,7 +133,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     }
     
     
-    /// "Actaul Size" button was touched
+    /// "Actual Size" button was touched
     @IBAction func resetTextSize(_ sender: Any?) {
         
         self.textView?.setScaleKeepingVisibleArea(1.0)

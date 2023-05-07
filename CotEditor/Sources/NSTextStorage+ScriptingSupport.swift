@@ -40,7 +40,7 @@ extension NSTextStorage {
     ///
     /// - Parameters
     ///   - block: The block to be executed when the textStorage is edited.
-    ///   - editedString: The contents of the textStrage after the editing.
+    ///   - editedString: The contents of the textStorage after the editing.
     func observeDirectEditing(block: @escaping (_ editedString: String) -> Void) {
         
         weak var observer: (any NSObjectProtocol)?

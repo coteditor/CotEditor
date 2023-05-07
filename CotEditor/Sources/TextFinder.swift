@@ -510,7 +510,7 @@ final class TextFinder {
         let client = self.client!
         client.isEditable = false
         
-        let highlightColors = NSColor.textHighlighterColor.usingColorSpace(.genericRGB)!.decomposite(into: textFind.numberOfCaptureGroups + 1)
+        let highlightColors = NSColor.textHighlighterColor.usingColorSpace(.genericRGB)!.decompose(into: textFind.numberOfCaptureGroups + 1)
         let lineCounter = LineCounter(textFind.string as NSString)
         
         // setup progress sheet

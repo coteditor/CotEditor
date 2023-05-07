@@ -333,7 +333,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        let storategy: DocumentFile.EncodingStorategy = {
+        let strategy: DocumentFile.EncodingStrategy = {
             if let encoding = self.readingEncoding {
                 return .specific(encoding)
             }
@@ -350,7 +350,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // .readingEncoding is only valid once
         self.readingEncoding = nil
         
-        let file = try DocumentFile(fileURL: url, encodingStorategy: storategy)  // FILE_ACCESS
+        let file = try DocumentFile(fileURL: url, encodingStrategy: strategy)  // FILE_ACCESS
         
         // store file data in order to check the file content identity in `presentedItemDidChange()`
         self.fileData = file.data
@@ -535,7 +535,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // set once allowedContentTypes, so that the initial filename selection excludes the file extension
             savePanel.allowedContentTypes = [utType]
             
-            // disable it immediately in the next runloop to allow setting other extensions
+            // disable it immediately in the next run loop to allow setting other extensions
             Task.detached { @MainActor [weak savePanel] in
                 savePanel?.allowedContentTypes = []
             }
@@ -787,7 +787,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// Open existing document file (alternative methods for `init(contentsOf:ofType:)`).
-    func didMakeDocumentForExisitingFile(url: URL) {
+    func didMakeDocumentForExistingFile(url: URL) {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         // -> This method won't be invoked on Resume. (2015-01-26)

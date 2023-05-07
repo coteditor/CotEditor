@@ -154,7 +154,7 @@ struct HighlightParser {
         
         try Task.checkCancellation()
         
-        // find paires in the parse range
+        // find pairs in the parse range
         var highlights: [SyntaxType: [NSRange]] = [:]
         var seekLocation = parseRange.location
         var index = 0

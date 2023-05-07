@@ -25,7 +25,7 @@
 
 import AppKit
 
-/// Menu dinamically shows optional menu items by pressing the Option key.
+/// Menu dynamically shows optional menu items by pressing the Option key.
 ///
 /// Optional items should have an empty key equivalent and the Option key only modifier key.
 final class OptionalMenu: NSMenu, NSMenuDelegate {
@@ -81,7 +81,7 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
     }
     
     
-    /// Update the visivilisty of optional items.
+    /// Update the visibility of optional items.
     ///
     /// - Parameter shows: `true` to show optional items.
     private func updateOptionalItems(shows: Bool) {

@@ -152,7 +152,7 @@ extension InsetTextField {
     }
     
     
-    /// Modifiy the font to use fixed-width digits.
+    /// Modify the font to use fixed-width digits.
     func monospacedDigit() -> Self {
         
         var view = self

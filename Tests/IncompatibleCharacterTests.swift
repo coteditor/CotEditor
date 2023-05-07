@@ -50,7 +50,7 @@ final class IncompatibleCharacterTests: XCTestCase {
     }
     
     
-    func testSequencialIncompatibleCharactersScan() throws {
+    func testSequentialIncompatibleCharactersScan() throws {
         
         let string = "~~"
         let incompatibles = try string.scanIncompatibleCharacters(with: .plainShiftJIS)

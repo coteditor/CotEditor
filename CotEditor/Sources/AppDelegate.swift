@@ -338,7 +338,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// Show acknowlegements window.
+    /// Show acknowledgments window.
     @IBAction func showAcknowledgments(_ sender: Any?) {
         
         self.acknowledgmentsWindowController.showWindow(sender)
@@ -433,7 +433,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             try ThemeManager.shared.importSetting(fileURL: url)
             
         } catch {
-            // ask whether the old theme should be repleced with new one if the same name theme is already exists
+            // ask whether the old theme should be replaced with new one if the same name theme is already exists
             let success = NSApp.presentError(error)
             
             guard success else { return true }  // cancelled

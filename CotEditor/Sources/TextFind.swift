@@ -161,7 +161,7 @@ final class TextFind {
         get throws {
             var ranges: [NSRange] = []
             for range in self.scopeRanges {
-                self.enumerateMatchs(in: range) { (matchedRange, _, stop) in
+                self.enumerateMatches(in: range) { (matchedRange, _, stop) in
                     if Task.isCancelled {
                         stop = true
                         return
@@ -178,7 +178,7 @@ final class TextFind {
     ///
     /// - Parameters:
     ///   - matches: The matched ranges to find in.
-    ///   - forward: Whether searchs forward.
+    ///   - forward: Whether searches forward.
     ///   - includingCurrentSelection: Whether includes the current selection to search.
     ///   - wraps: Whether the search wraps around.
     /// - Returns: A character range and flag whether the search wrapped; or `nil` when not found.
@@ -254,7 +254,7 @@ final class TextFind {
     func findAll(using block: (_ matches: [NSRange], _ stop: inout Bool) -> Void) {
         
         for range in self.scopeRanges {
-            self.enumerateMatchs(in: range) { (matchedRange, match, stop) in
+            self.enumerateMatches(in: range) { (matchedRange, match, stop) in
                 let matches: [NSRange]
                 if let match {
                     matches = (0..<match.numberOfRanges).map(match.range(at:))
@@ -297,7 +297,7 @@ final class TextFind {
                     
                 default:
                     var offset = 0
-                    self.enumerateMatchs(in: scopeRange) { (matchedRange, match, stop) in
+                    self.enumerateMatches(in: scopeRange) { (matchedRange, match, stop) in
                         let replacedString: String = {
                             guard let match, let regex = match.regularExpression else { return replacementString }
                             
@@ -354,10 +354,10 @@ final class TextFind {
     }
     
     
-    /// Chack if the given range is a range of whole word.
+    /// Check if the given range is a range of whole word.
     ///
     /// - Parameters:
-    ///   - range: The charater range to test.
+    ///   - range: The character range to test.
     /// - Returns: Whether the substring of the given range is full word.
     private func isFullWord(range: NSRange) -> Bool {
         
@@ -365,28 +365,28 @@ final class TextFind {
     }
     
     
-    /// Enumerate matchs in string using current settings.
+    /// Enumerate matches in string using current settings.
     ///
     /// - Parameters:
     ///   - range: The range of the string to search.
     ///   - block: The block that enumerates the matches.
-    private func enumerateMatchs(in range: NSRange, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
+    private func enumerateMatches(in range: NSRange, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
         switch self.mode {
             case let .textual(options, fullWord):
-                self.enumerateTextualMatchs(in: range, options: options, fullWord: fullWord, using: block)
+                self.enumerateTextualMatches(in: range, options: options, fullWord: fullWord, using: block)
             case .regularExpression:
-                self.enumerateRegularExpressionMatchs(in: range, using: block)
+                self.enumerateRegularExpressionMatches(in: range, using: block)
         }
     }
     
     
-    /// Enumerate matchs in string using textual search
+    /// Enumerate matches in string using textual search
     ///
     /// - Parameters:
     ///   - range: The range of the string to search.
     ///   - block: The block that enumerates the matches.
-    private func enumerateTextualMatchs(in range: NSRange, options: String.CompareOptions, fullWord: Bool, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
+    private func enumerateTextualMatches(in range: NSRange, options: String.CompareOptions, fullWord: Bool, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
         guard !self.string.isEmpty else { return }
         
@@ -411,12 +411,12 @@ final class TextFind {
     }
     
     
-    /// Enumerate matchs in string using regular expression.
+    /// Enumerate matches in string using regular expression.
     ///
     /// - Parameters:
     ///   - range: The range of the string to search.
     ///   - block: The block that enumerates the matches.
-    private func enumerateRegularExpressionMatchs(in range: NSRange, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
+    private func enumerateRegularExpressionMatches(in range: NSRange, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
         let string = self.string
         let options: NSRegularExpression.MatchingOptions = [.withTransparentBounds, .withoutAnchoringBounds]

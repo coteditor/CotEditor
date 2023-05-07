@@ -96,7 +96,7 @@ struct DefaultSettings {
         .commentsAtLineHead: true,
         .completesDocumentWords: true,
         .completesSyntaxWords: true,
-        .completesStandartWords: false,
+        .completesStandardWords: false,
         .autoComplete: false,
         
         .lineEndCharCode: 0,

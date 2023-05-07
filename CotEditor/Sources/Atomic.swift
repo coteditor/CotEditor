@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ final class Atomic<T> {
     
     // MARK: Private Properties
     
-    private let queue = DispatchQueue(label: "com.coteditor.CotEdiotor.atomic." + String(describing: T.self))
+    private let queue = DispatchQueue(label: "com.coteditor.CotEditor.atomic." + String(describing: T.self))
     private var value: T
     
     
@@ -43,7 +43,7 @@ final class Atomic<T> {
     // MARK: -
     // MARK: Lifecycle
     
-    /// Initializer for proeprtyWrapper.
+    /// Initializer for propertyWrapper.
     init(wrappedValue: T) {
         
         self.value = wrappedValue

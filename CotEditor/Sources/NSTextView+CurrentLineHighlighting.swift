@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ extension CurrentLineHighlighting {
     func drawCurrentLine(in dirtyRect: NSRect) {
         
         if self.needsUpdateLineHighlight {
-            self.lineHighLightRects = self.calcurateLineHighLightRects()
+            self.lineHighLightRects = self.calculateLineHighLightRects()
             self.needsUpdateLineHighlight = false
         }
         
@@ -73,7 +73,7 @@ extension CurrentLineHighlighting {
     /// Calculate highlight rects for all insertion points.
     ///
     /// - Returns: Rects for current line highlight.
-    private func calcurateLineHighLightRects() -> [NSRect] {
+    private func calculateLineHighLightRects() -> [NSRect] {
         
         guard let editingRanges = self.rangesForUserTextChange else { return [] }
         

@@ -39,7 +39,7 @@ final class SplitViewController: NSSplitViewController {
     
     // MARK: Public Properties
     
-    private var focuedEditorObserver: AnyCancellable?
+    private var focusedEditorObserver: AnyCancellable?
     
     
     
@@ -54,7 +54,7 @@ final class SplitViewController: NSSplitViewController {
         self.isVertical = self.splitView.isVertical
         
         // observe focus change
-        self.focuedEditorObserver = NotificationCenter.default.publisher(for: EditorTextView.didBecomeFirstResponderNotification)
+        self.focusedEditorObserver = NotificationCenter.default.publisher(for: EditorTextView.didBecomeFirstResponderNotification)
             .map { $0.object as! EditorTextView }
             .compactMap { [weak self] textView in
                 self?.children.lazy

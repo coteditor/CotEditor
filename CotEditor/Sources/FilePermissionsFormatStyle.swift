@@ -29,7 +29,7 @@ struct FilePermissionsFormatStyle: Codable {
     
     enum Style: Codable {
         
-        /// Octal presentaion like `644`
+        /// Octal presentation like `644`
         case octal
         
         /// Symbolic presentation like `-rw-r--r-`

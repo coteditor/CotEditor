@@ -92,7 +92,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Remove all user costomization.
+    /// Remove all user customization.
     func restoreDefaults() throws {
         
         try self.removeSettingFile()
@@ -273,7 +273,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// The shorcut for the given menuItem was customized in the session.
+    /// The shortcut for the given menuItem was customized in the session.
     ///
     /// - Parameter menuItem: The menu item to check.
     /// - Returns: Whether the given menu item was modified by the user.

@@ -150,7 +150,7 @@ extension SyntaxParser {
         
         // in case that wholeRange length is changed from editedRange
         guard editedRange.flatMap({ $0.upperBound > self.textStorage.length }) != true else {
-            return debugPrint("⚠️ Invalid range \(editedRange?.description ?? "nil") for \(self.textStorage.length) lentgh textStorage is passed in to \(#function)")
+            return debugPrint("⚠️ Invalid range \(editedRange?.description ?? "nil") for \(self.textStorage.length) length textStorage is passed in to \(#function)")
         }
         
         let wholeRange = self.textStorage.range
@@ -274,7 +274,7 @@ extension NSLayoutManager {
     
     /// Apply highlights as temporary attributes.
     ///
-    /// - Note: Sanitize the `highlights` before so that the ranges do not overwrap each other.
+    /// - Note: Sanitize the `highlights` before so that the ranges do not overlap each other.
     ///
     /// - Parameters:
     ///   - highlights: The highlight definitions to apply.

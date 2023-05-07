@@ -32,7 +32,7 @@ extension Image {
         
         case none
         case unavailable
-        case particallyAvailable
+        case partiallyAvailable
         case available
     }
     
@@ -56,7 +56,7 @@ private extension Image.Status {
                 return NSImage.statusNoneName
             case .unavailable:
                 return NSImage.statusUnavailableName
-            case .particallyAvailable:
+            case .partiallyAvailable:
                 return NSImage.statusPartiallyAvailableName
             case .available:
                 return NSImage.statusAvailableName
@@ -74,7 +74,7 @@ struct StatusImage_Previews: PreviewProvider {
         VStack(alignment: .leading) {
             Label(title: { Text(verbatim: "none") }, icon: { Image(status: .none) })
             Label(title: { Text(verbatim: "available") }, icon: { Image(status: .available) })
-            Label(title: { Text(verbatim: "particallyAvailable") }, icon: { Image(status: .particallyAvailable) })
+            Label(title: { Text(verbatim: "partiallyAvailable") }, icon: { Image(status: .partiallyAvailable) })
             Label(title: { Text(verbatim: "unavailable") }, icon: { Image(status: .unavailable) })
         }.padding()
     }

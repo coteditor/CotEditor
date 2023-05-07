@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ final class RegularExpressionSyntaxTests: XCTestCase {
         XCTAssertEqual(character.ranges(in: "[^]a]"), [NSRange(location: 2, length: 2)])
         XCTAssertEqual(character.ranges(in: "[^a]b]"), [NSRange(location: 2, length: 1)])
         
-        // just containg ranges for `\[`
+        // just containing ranges for `\[`
         XCTAssertEqual(character.ranges(in: "(?<=\\[)a]"), [NSRange(location: 4, length: 2)])
         
         
@@ -78,7 +78,7 @@ final class RegularExpressionSyntaxTests: XCTestCase {
         XCTAssertEqual(symbol.ranges(in: "[^]a]"), [NSRange(location: 0, length: 5)])
         XCTAssertEqual(symbol.ranges(in: "[^a]b]"), [NSRange(location: 0, length: 4)])
         
-        // just containg ranges for `(?<=`, `(` and `)`
+        // just containing ranges for `(?<=`, `(` and `)`
         XCTAssertEqual(symbol.ranges(in: "(?<=\\[)a]"), [NSRange(location: 0, length: 4),
                                                          NSRange(location: 0, length: 1),
                                                          NSRange(location: 6, length: 1)])

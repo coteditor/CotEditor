@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -142,13 +142,13 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gi8-FU-veh">
-                                <rect key="frame" x="98" y="59" width="141" height="18"/>
-                                <buttonCell key="cell" type="check" title="In decending order" bezelStyle="regularSquare" imagePosition="left" inset="2" id="h1K-Og-3x3">
+                                <rect key="frame" x="98" y="59" width="147" height="18"/>
+                                <buttonCell key="cell" type="check" title="In descending order" bezelStyle="regularSquare" imagePosition="left" inset="2" id="h1K-Og-3x3">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="LBk-n2-xHt" name="value" keyPath="selection.decending" id="h5l-ye-F7k"/>
+                                    <binding destination="LBk-n2-xHt" name="value" keyPath="selection.descending" id="0Vy-dT-0yg"/>
                                 </connections>
                             </button>
                             <button identifier="howto_pattern_sort" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9k2-WT-LJk">
@@ -276,7 +276,7 @@ Gw
                         <string>numeric</string>
                         <string>localized</string>
                         <string>keepsFirstLine</string>
-                        <string>decending</string>
+                        <string>descending</string>
                     </declaredKeys>
                     <classReference key="objectClass" className="SortOptions" moduleName="CotEditor"/>
                     <connections>

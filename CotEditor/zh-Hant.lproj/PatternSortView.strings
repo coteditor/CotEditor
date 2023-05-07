@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@
 "yXD-KA-8KI.title" = "將陣列視為數值";
 /* Class = "NSButtonCell"; title = "Keep the first line at the top"; ObjectID = "uUe-tD-Z8s"; */
 "uUe-tD-Z8s.title" = "首行置頂";
-/* Class = "NSButtonCell"; title = "In decending order"; ObjectID = "h1K-Og-3x3"; */
+/* Class = "NSButtonCell"; title = "In descending order"; ObjectID = "h1K-Og-3x3"; */
 "h1K-Og-3x3.title" = "降序";
 
 

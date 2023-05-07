@@ -68,6 +68,6 @@ final class EditPaneController: NSViewController {
         
         (UserDefaults.standard[.completesDocumentWords] ||
          UserDefaults.standard[.completesSyntaxWords] ||
-         UserDefaults.standard[.completesStandartWords])
+         UserDefaults.standard[.completesStandardWords])
     }
 }

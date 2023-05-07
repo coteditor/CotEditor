@@ -78,7 +78,7 @@ final class LineEndingScanner {
     
     // MARK: Public Methods
     
-    /// The line endings mostly occurred in the stoage.
+    /// The line endings mostly occurred in the storage.
     var majorLineEnding: LineEnding? {
         
         Dictionary(grouping: self.lineEndings, by: \.value)

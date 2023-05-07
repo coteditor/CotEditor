@@ -60,7 +60,7 @@ extension NSString {
         
         guard location > 0 else { return 0 }
         
-        // avoid returing index between CRLF
+        // avoid returning index between CRLF
         let index = location - 1
         let offset = (self.character(at: index) == 0x000A && self.character(at: index - 1) == 0x000D) ? 1 : 0
         
@@ -78,7 +78,7 @@ extension NSString {
         
         guard location < self.length - 1 else { return self.length }
         
-        // avoid returing index between CRLF
+        // avoid returning index between CRLF
         let index = location
         let offset = (self.character(at: index) == 0x000D && self.character(at: index + 1) == 0x000A) ? 1 : 0
         
@@ -174,7 +174,7 @@ extension NSString {
     /// - Parameters:
     ///   - ranges: Ranges to include.
     ///   - includingLastEmptyLine: Whether the last empty line should be included; otherwise, return value can be empty.
-    /// - Returns: Array of ranges of each indivisual line.
+    /// - Returns: Array of ranges of each individual line.
     func lineRanges(for ranges: [NSRange], includingLastEmptyLine: Bool = false) -> [NSRange] {
         
         guard !ranges.isEmpty else { return [] }

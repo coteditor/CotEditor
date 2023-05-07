@@ -192,7 +192,7 @@ final class StringCommentingTests: XCTestCase {
     }
     
     
-    func testUncommentability() {
+    func testIncompatibility() {
         
         let textView = CommentingTextView()
         

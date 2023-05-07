@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
     // MARK: Private Properties
     
     private var clickedPoint: NSPoint = .zero
-    private var liveResigingEdge: Edge?
+    private var liveResizingEdge: Edge?
     
     
     
@@ -82,7 +82,7 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
         
         super.viewWillStartLiveResize()
         
-        self.liveResigingEdge = self.prefferedEdge
+        self.liveResizingEdge = self.preferredEdge
     }
     
     
@@ -90,7 +90,7 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
         
         super.viewDidEndLiveResize()
         
-        self.liveResigingEdge = nil
+        self.liveResizingEdge = nil
     }
     
     
@@ -101,10 +101,10 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
         guard let superview = self.superview else { return }
         
         // stick to the nearest edge
-        if (self.liveResigingEdge ?? self.prefferedEdge)?.horizontal == .right {
+        if (self.liveResizingEdge ?? self.preferredEdge)?.horizontal == .right {
             self.frame.origin.x += superview.frame.width - oldSize.width
         }
-        if (self.liveResigingEdge ?? self.prefferedEdge)?.vertical == .top {
+        if (self.liveResizingEdge ?? self.preferredEdge)?.vertical == .top {
             self.frame.origin.y += superview.frame.height - oldSize.height
         }
         
@@ -131,7 +131,7 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
     // MARK: Private Methods
     
     /// The area the receiver located in the superview.
-    @MainActor private var prefferedEdge: Edge? {
+    @MainActor private var preferredEdge: Edge? {
         
         self.superview.flatMap { (superview) in
             Edge(horizontal: superview.frame.width/2 < self.frame.midX ? .right : .left,

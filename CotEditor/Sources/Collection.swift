@@ -119,7 +119,7 @@ extension Dictionary {
     }
     
     
-    /// Syntax suger to use RawRepresentable keys in dictionaries whose key is the actual raw value.
+    /// Syntax sugar to use RawRepresentable keys in dictionaries whose key is the actual raw value.
     ///
     /// - Parameter key: The raw representable whose raw value is the one of the receiver's key.
     /// - Returns: The value corresponding to the given key.

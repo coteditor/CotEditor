@@ -383,7 +383,7 @@ extension Document {
     }
     
     
-    /// handle the Scroll AppleScript command by scrolling the text tiew to make selection visible
+    /// handle the Scroll AppleScript command by scrolling the text view to make selection visible
     @objc func handleScroll(_ command: NSScriptCommand) {
         
         self.textView?.centerSelectionInVisibleArea(nil)
@@ -427,7 +427,7 @@ extension Document {
             let rangeArray = arguments["range"] as? [Int], rangeArray.count == 2
         else {
             command.scriptErrorNumber = OSAParameterMismatch
-            command.scriptErrorString = "The range paramator must be a list of {location, length}."
+            command.scriptErrorString = "The range parameter must be a list of {location, length}."
             return nil
         }
         

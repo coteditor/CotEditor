@@ -42,7 +42,7 @@ enum FileExtendedAttributeName {
 
 struct DocumentFile {
     
-    enum EncodingStorategy {
+    enum EncodingStrategy {
         
         case automatic(priority: [CFStringEncoding], refersToTag: Bool)
         case specific(String.Encoding)
@@ -73,8 +73,8 @@ struct DocumentFile {
     ///
     /// - Parameters:
     ///   - fileURL: The location of the file to read.
-    ///   - encodingStorategy: The file encoding to read the file.
-    init(fileURL: URL, encodingStorategy: EncodingStorategy) throws {
+    ///   - encodingStrategy: The file encoding to read the file.
+    init(fileURL: URL, encodingStrategy: EncodingStrategy) throws {
         
         let data = try Data(contentsOf: fileURL, options: [.mappedIfSafe])  // FILE_READ
         let attributes = try FileManager.default.attributesOfItem(atPath: fileURL.path)  // FILE_READ
@@ -88,7 +88,7 @@ struct DocumentFile {
         // decode Data to String
         let content: String
         let encoding: String.Encoding
-        switch encodingStorategy {
+        switch encodingStrategy {
             case let .automatic(priority, refersToTag):
                 (content, encoding) = try Self.string(data: data, xattrEncoding: self.xattrEncoding,
                                                       suggestedCFEncodings: priority,

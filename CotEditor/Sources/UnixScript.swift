@@ -86,7 +86,7 @@ final class UnixScript: Script {
         
         // check script file
         guard self.url.isReachable else {
-            throw ScriptFileError(kind: .existance, url: self.url)
+            throw ScriptFileError(kind: .existence, url: self.url)
         }
         guard try self.url.resourceValues(forKeys: [.isExecutableKey]).isExecutable ?? false else {
             throw ScriptFileError(kind: .permission, url: self.url)

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import AppKit
 extension NSTextView {
     
     /// find the matching braces for the character before the cursors and highlight them
-    func highligtMatchingBrace(candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) {
+    func highlightMatchingBrace(candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) {
         
         guard
             !self.string.isEmpty,

@@ -149,7 +149,7 @@ final class TokenTextView: NSTextView {
         tokenizer.tokenize(self.string) { (token, range, keywordRange) in
             layoutManager.addTemporaryAttribute(.token, value: token, forCharacterRange: range)
             layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: NSColor.tokenBackgroundColor, forCharacterRange: range)
-            layoutManager.addTemporaryAttribute(.foregroundColor, value: NSColor.tokenBraketColor, forCharacterRange: range)
+            layoutManager.addTemporaryAttribute(.foregroundColor, value: NSColor.tokenBracketColor, forCharacterRange: range)
             layoutManager.addTemporaryAttribute(.foregroundColor, value: NSColor.tokenTextColor, forCharacterRange: keywordRange)
         }
     }
@@ -190,7 +190,7 @@ private extension NSColor {
         NSColor.selectedControlColor.blended(withFraction: 0.7, of: appearance.isDark ? .white : .black)!
     }
     
-    static let tokenBraketColor = NSColor(name: nil) { (appearance) in
+    static let tokenBracketColor = NSColor(name: nil) { (appearance) in
         NSColor.selectedControlColor.blended(withFraction: 0.3, of: appearance.isDark ? .white : .black)!
     }
     

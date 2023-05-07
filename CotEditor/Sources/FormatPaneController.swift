@@ -585,7 +585,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// Present the sytnax style edit sheet.
+    /// Present the syntax style edit sheet.
     ///
     /// - Parameter mode: The edit mode.
     private func presentStyleEditor(mode: SyntaxEditViewController.Mode) {

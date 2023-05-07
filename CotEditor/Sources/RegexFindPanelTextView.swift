@@ -90,7 +90,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
             !stillSelectingFlag
         else { return }
         
-        self.highligtMatchingBrace(candidates: [BracePair("(", ")"), BracePair("[", "]")], ignoring: BracePair("[", "]"))
+        self.highlightMatchingBrace(candidates: [BracePair("(", ")"), BracePair("[", "]")], ignoring: BracePair("[", "]"))
     }
     
     

@@ -162,7 +162,7 @@ extension SnippetManager: SettingManaging {
 
 private extension SnippetManager {
     
-    private struct OldkeyBinding: Decodable {
+    private struct OldKeyBinding: Decodable {
         
         var action: String
         var shortcut: Shortcut
@@ -180,7 +180,7 @@ private extension SnippetManager {
         let fileURL = self.userSettingDirectoryURL.appendingPathComponent("SnippetKeyBindings", conformingTo: .propertyList)
         if
             let data = try? Data(contentsOf: fileURL),
-            let keyBindings = try? PropertyListDecoder().decode([OldkeyBinding].self, from: data)
+            let keyBindings = try? PropertyListDecoder().decode([OldKeyBinding].self, from: data)
         {
             shortcuts = keyBindings.reduce(into: [:]) { (map, keyBinding) in
                 guard

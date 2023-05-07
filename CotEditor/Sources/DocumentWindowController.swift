@@ -284,7 +284,7 @@ private extension NSToolbarItem.Identifier {
     static let tabStyle = Self(Self.prefix + "tabStyle")
     static let invisibles = Self(Self.prefix + "invisibles")
     static let wrapLines = Self(Self.prefix + "wrapLines")
-    static let indentGuides = Self(Self.prefix + "indentGuildes")
+    static let indentGuides = Self(Self.prefix + "indentGuides")
     
     static let keepOnTop = Self(Self.prefix + "keepOnTop")
     static let opacity = Self(Self.prefix + "opacity")

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -118,10 +118,10 @@ final class LineSortTests: XCTestCase {
         options.numeric = true
         XCTAssertEqual(pattern.sort(numbers, options: options), "1\n3\n12")
         
-        options.decending = true
+        options.descending = true
         XCTAssertEqual(pattern.sort(numbers, options: options), "12\n3\n1")
         
-        options.decending = false
+        options.descending = false
         options.keepsFirstLine = true
         XCTAssertEqual(pattern.sort(numbers, options: options), "3\n1\n12")
     }

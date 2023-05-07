@@ -67,7 +67,7 @@ extension MultipleReplace {
     enum Status {
         
         case processed
-        case unitChagned
+        case unitChanged
     }
     
     

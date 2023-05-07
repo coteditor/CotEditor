@@ -222,7 +222,7 @@ final class LineNumberView: NSView {
     }
     
     
-    /// return foreground color by considering the current accesibility setting
+    /// return foreground color by considering the current accessibility setting
     private func foregroundColor(_ strength: ColorStrength = .normal) -> NSColor {
         
         let fraction = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
@@ -235,7 +235,7 @@ final class LineNumberView: NSView {
     }
     
     
-    /// return line number font for selected lines by considering the current accesibility setting
+    /// return line number font for selected lines by considering the current accessibility setting
     private var boldLineNumberFont: CGFont {
         
         NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast

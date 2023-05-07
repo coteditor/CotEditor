@@ -112,7 +112,7 @@ final class ThemeManager: SettingFileManaging {
         
         switch UserDefaults.standard[.documentAppearance] {
             case .default:
-                // -> NSApperance.current doesn't return the latest appearance when the system appearance
+                // -> NSAppearance.current doesn't return the latest appearance when the system appearance
                 //    was changed after the app launch (macOS 10.14).
                 return NSApp.effectiveAppearance.isDark
             case .light:

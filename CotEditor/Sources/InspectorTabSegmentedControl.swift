@@ -66,7 +66,7 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
     ///
     /// - Parameters:
     ///   - image: The image to apply to the segment or `nil` if you want to clear the existing image.
-    ///   - selectedImage: The image to applay to the segment with selected state or `nil` if you want to clear the existing image.
+    ///   - selectedImage: The image to apply to the segment with selected state or `nil` if you want to clear the existing image.
     ///   - segment: The index of the segment whose images you want to set.
     func setImage(_ image: NSImage?, selectedImage: NSImage?, forSegment segment: Int) {
         
@@ -90,7 +90,7 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
     
     // MARK: Private Methods
     
-    /// Return the image associated with the specified segment by taking the selection state into concideration.
+    /// Return the image associated with the specified segment by taking the selection state into consideration.
     ///
     /// - Parameters:
     ///   - segment: The index of the segment whose image you want to get.

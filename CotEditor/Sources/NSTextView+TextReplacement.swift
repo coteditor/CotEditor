@@ -65,7 +65,7 @@ extension NSTextView {
             // use ones when explicitly specified
             if let selectedRanges { return selectedRanges }
             
-            // let NSTextView culculate by single insertion editing
+            // let NSTextView calculate by single insertion editing
             guard
                 let insertionRanges = self.rangesForUserTextChange?.map(\.rangeValue),
                 insertionRanges.count > 1,

@@ -265,7 +265,7 @@ extension NSRange {
     
     /// Return a new range by assuming the indexes in the given ranges are removed.
     ///
-    /// - Parameter ranges: An array of NSRange where the indexes are emoved.
+    /// - Parameter ranges: An array of NSRange where the indexes are removed.
     /// - Returns: A new range that the receiver moved.
     func deleted(ranges: [NSRange]) -> NSRange {
         

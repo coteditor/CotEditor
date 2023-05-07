@@ -145,7 +145,7 @@ extension MultiCursorEditing {
     /// - Returns: Locations for all insertion points.
     func insertionLocations(from startPoint: NSPoint, candidates ranges: [NSValue]) -> [Int]? {
         
-        // perform only when normal recutangular selection was failed
+        // perform only when normal rectangular selection was failed
         guard
             ranges.count == 1,
             let range = ranges.first as? NSRange
@@ -173,7 +173,7 @@ extension MultiCursorEditing {
     
     /// Sanitize and divide selection ranges candidate to ones to set to the proper `selectionRanges` and `insertionLocations`.
     ///
-    /// - Parameter ranges: The selection ranges randidate.
+    /// - Parameter ranges: The selection ranges candidate.
     /// - Returns: Sanitized range set to set to `selectionRanges` and `insertionLocations`, or `nil` when invalid.
     func prepareForSelectionUpdate(_ ranges: [NSRange]) -> (selectedRanges: [NSValue], insertionLocations: [Int])? {
         
@@ -234,7 +234,7 @@ extension MultiCursorEditing {
         
         guard let set = self.prepareForSelectionUpdate(ranges) else { return assertionFailure() }
         
-        // manually set ranges and insertionLocations separatelly to inform `affinity` to the receiver
+        // manually set ranges and insertionLocations separately to inform `affinity` to the receiver
         self.setSelectedRanges(set.selectedRanges, affinity: affinity, stillSelecting: false)
         self.insertionLocations = set.insertionLocations
         
@@ -289,7 +289,7 @@ extension MultiCursorEditing {
         
         guard let set = self.prepareForSelectionUpdate(ranges) else { return assertionFailure() }
         
-        // manually set ranges and insertionLocations separatelly to inform `affinity` to the receiver
+        // manually set ranges and insertionLocations separately to inform `affinity` to the receiver
         self.setSelectedRanges(set.selectedRanges, affinity: affinity, stillSelecting: false)
         self.insertionLocations = set.insertionLocations
         self.selectionOrigins = newOrigins
@@ -326,7 +326,7 @@ extension MultiCursorEditing {
         var effectiveGlyphRange: NSRange = .notFound
         let lineFragmentUsedRects = layoutManager.lineFragmentUsedRects(inSelectedGlyphRanges: glyphRanges, effectiveRange: &effectiveGlyphRange)
         
-        // abort when one of the cusors already reached to the edge
+        // abort when one of the cursors already reached to the edge
         guard
             !(affinity == .downstream && effectiveGlyphRange.lowerBound == 0),
             !(affinity == .upstream && (
@@ -391,7 +391,7 @@ extension MultiCursorEditing {
 
 extension NSTextView {
     
-    /// Calculate rect for insartion point at `index`.
+    /// Calculate rect for insertion point at `index`.
     ///
     /// - Parameter index: The character index where the insertion point will locate.
     /// - Returns: Rect where insertion point filled.
@@ -477,7 +477,7 @@ private extension UserDefaults {
 
 private extension MultiCursorEditing {
     
-    /// Enable insertion point blink timer to draw insertion points forcely.
+    /// Enable insertion point blink timer to draw insertion points forcibly.
     private func enableOwnInsertionPointTimer() {
         
         guard self.insertionPointTimer?.isCancelled ?? true else { return }

@@ -72,7 +72,7 @@ extension SortPattern {
             }
             .map(\.line)
         
-        if options.decending {
+        if options.descending {
             lines.reverse()
         }
         
@@ -231,7 +231,7 @@ final class SortOptions: NSObject {
     
     @objc dynamic var isLocalized: Bool = true
     @objc dynamic var keepsFirstLine: Bool = false
-    @objc dynamic var decending: Bool = false
+    @objc dynamic var descending: Bool = false
     
     var locale: Locale = .current
     

@@ -75,7 +75,7 @@ final class StringExtensionsTests: XCTestCase {
     
     func testComposedCharactersCount() {
         
-        // make sure that `Stirng.count` counts characters as I want
+        // make sure that `String.count` counts characters as I want
         XCTAssertEqual("foo".count, 3)
         XCTAssertEqual("\r\n".count, 1)
         XCTAssertEqual("😀🇯🇵a".count, 3)
@@ -188,7 +188,7 @@ final class StringExtensionsTests: XCTestCase {
         options.unit = .utf16
         XCTAssertEqual(string.count(options: options), 13)
         
-        // test normailzation
+        // test normalization
         let aUmlaut = "Ä"
         options = .init()
         options.unit = .unicodeScalar
@@ -368,7 +368,7 @@ final class StringExtensionsTests: XCTestCase {
     }
     
     
-    func testWhitespaceTriming() throws {
+    func testWhitespaceTrimming() throws {
         
         let string = """
             

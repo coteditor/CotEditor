@@ -31,7 +31,7 @@ import UniformTypeIdentifiers
 
 protocol AdditionalDocumentPreparing: NSDocument {
     
-    func didMakeDocumentForExisitingFile(url: URL)
+    func didMakeDocumentForExistingFile(url: URL)
 }
 
 
@@ -169,7 +169,7 @@ final class DocumentController: NSDocumentController {
         
         let document = try super.makeDocument(withContentsOf: url, ofType: typeName)
         
-        (document as? any AdditionalDocumentPreparing)?.didMakeDocumentForExisitingFile(url: url)
+        (document as? any AdditionalDocumentPreparing)?.didMakeDocumentForExistingFile(url: url)
         
         return document
     }
@@ -341,7 +341,7 @@ final class DocumentController: NSDocumentController {
             throw DocumentReadError(kind: .binaryFile(type: type), url: url)
         }
         
-        // check if the file is enorm large
+        // check if the file is enormously large
         let fileSizeThreshold = UserDefaults.standard[.largeFileAlertThreshold]
         if fileSizeThreshold > 0,
            let fileSize = (try? url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize,

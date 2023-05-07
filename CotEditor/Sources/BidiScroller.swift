@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -97,7 +97,7 @@ final class BidiScroller: NSScroller {
     }
     
     
-    /// X-orign of the scroller considering the border and the visibility of another scrollres.
+    /// X-origin of the scroller considering the border and the visibility of another scrollers.
     private var originX: CGFloat {
         
         assert(self.scrollView?.scrollerDirection == .rightToLeft)
@@ -119,7 +119,7 @@ final class BidiScroller: NSScroller {
     }
     
     
-    /// Horizontally flip the drawing cordinate when the scroller direction is right-to-left.
+    /// Horizontally flip the drawing coordinate when the scroller direction is right-to-left.
     ///
     /// - Parameter part: The scroller part drawing in.
     private func flipHorizontalCoordinatesInRightToLeftLayout(for part: NSScroller.Part) {

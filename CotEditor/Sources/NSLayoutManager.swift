@@ -72,7 +72,7 @@ extension NSLayoutManager {
 
 
 
-// MARK: - Temporary Atttributes
+// MARK: - Temporary Attributes
 
 extension NSLayoutManager {
     

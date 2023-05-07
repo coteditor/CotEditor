@@ -77,7 +77,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
         
         self.snippets = SnippetManager.shared.snippets
         self.tableView?.reloadData()
-        self.selectiondDidChange()
+        self.selectionDidChange()
         self.warningMessage = nil
     }
     
@@ -218,7 +218,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     /// Change selection in the table.
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        self.selectiondDidChange()
+        self.selectionDidChange()
     }
     
     
@@ -349,7 +349,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     
     
     /// Update controls according to the state of selection in the table view.
-    private func selectiondDidChange() {
+    private func selectionDidChange() {
         
         guard
             let tableView = self.tableView,

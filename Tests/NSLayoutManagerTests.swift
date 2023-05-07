@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2022 1024jp
+//  © 2019-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import XCTest
 
 final class NSLayoutManagerTests: XCTestCase {
     
-    func testTemporaryAttributeExistance() {
+    func testTemporaryAttributeExistence() {
         
         let layoutManager = NSLayoutManager()
         let textStorage = NSTextStorage(string: "cat dog cow")

@@ -112,7 +112,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     private var needsRecompletion = false
     private var isShowingCompletion = false
-    private var particalCompletionWord: String?
+    private var partialCompletionWord: String?
     private lazy var completionDebouncer = Debouncer { [weak self] in self?.performCompletion() }
     
     private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in self?.trimTrailingWhitespace(ignoresEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines], keepingEditingPoint: true) }
@@ -1570,7 +1570,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
         
-        self.highligtMatchingBrace(candidates: bracePairs)
+        self.highlightMatchingBrace(candidates: bracePairs)
     }
     
     
@@ -1706,15 +1706,15 @@ extension EditorTextView {
         guard !charRange.isEmpty else { return nil }
         
         var candidateWords = OrderedSet<String>()
-        let particalWord = (self.string as NSString).substring(with: charRange)
+        let partialWord = (self.string as NSString).substring(with: charRange)
         
         // add words in document
         if UserDefaults.standard[.completesDocumentWords] {
             let documentWords: [String] = {
                 // do nothing if the particle word is a symbol
-                guard charRange.length > 1 || CharacterSet.alphanumerics.contains(particalWord.unicodeScalars.first!) else { return [] }
+                guard charRange.length > 1 || CharacterSet.alphanumerics.contains(partialWord.unicodeScalars.first!) else { return [] }
                 
-                let pattern = "(?:^|\\b|(?<=\\W))" + NSRegularExpression.escapedPattern(for: particalWord) + "\\w+?(?:$|\\b)"
+                let pattern = "(?:^|\\b|(?<=\\W))" + NSRegularExpression.escapedPattern(for: partialWord) + "\\w+?(?:$|\\b)"
                 let regex = try! NSRegularExpression(pattern: pattern)
                 
                 return regex.matches(in: self.string, range: self.string.nsRange).map { (self.string as NSString).substring(with: $0.range) }
@@ -1724,12 +1724,12 @@ extension EditorTextView {
         
         // add words defined in syntax style
         if UserDefaults.standard[.completesSyntaxWords] {
-            let syntaxWords = self.syntaxCompletionWords.filter { $0.range(of: particalWord, options: [.caseInsensitive, .anchored]) != nil }
+            let syntaxWords = self.syntaxCompletionWords.filter { $0.range(of: partialWord, options: [.caseInsensitive, .anchored]) != nil }
             candidateWords.append(contentsOf: syntaxWords)
         }
         
         // add the standard words from default completion words
-        if UserDefaults.standard[.completesStandartWords] {
+        if UserDefaults.standard[.completesStandardWords] {
             let words = super.completions(forPartialWordRange: charRange, indexOfSelectedItem: index) ?? []
             candidateWords.append(contentsOf: words)
         }
@@ -1737,7 +1737,7 @@ extension EditorTextView {
         // provide nothing if there is only a candidate which is same as input word
         if let word = candidateWords.first,
            candidateWords.count == 1,
-           word.caseInsensitiveCompare(particalWord) == .orderedSame
+           word.caseInsensitiveCompare(partialWord) == .orderedSame
         {
             return []
         }
@@ -1755,8 +1755,8 @@ extension EditorTextView {
         self.isShowingCompletion = !flag
         
         // store original string
-        if self.particalCompletionWord == nil {
-            self.particalCompletionWord = (self.string as NSString).substring(with: charRange)
+        if self.partialCompletionWord == nil {
+            self.partialCompletionWord = (self.string as NSString).substring(with: charRange)
         }
         
         // raise flag to proceed word completion again, if a normal key input is performed during displaying the completion list
@@ -1784,7 +1784,7 @@ extension EditorTextView {
                 case NSIllegalTextMovement, NSRightTextMovement:  // treat as cancelled
                     // restore original input
                     // -> In case if the letter case is changed from the original.
-                    if let originalWord = self.particalCompletionWord {
+                    if let originalWord = self.partialCompletionWord {
                         word = originalWord
                     }
                 default:
@@ -1792,7 +1792,7 @@ extension EditorTextView {
             }
             
             // discard stored original word
-            self.particalCompletionWord = nil
+            self.partialCompletionWord = nil
         }
         
         super.insertCompletion(word, forPartialWordRange: charRange, movement: movement, isFinal: flag)

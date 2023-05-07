@@ -44,7 +44,7 @@ extension NSRange {
     }
     
     
-    /// Check if the given index is in the receiver or touchs to one of the receiver's bounds.
+    /// Check if the given index is in the receiver or touches to one of the receiver's bounds.
     ///
     /// - Parameter index: The index to test.
     func touches(_ index: Int) -> Bool {

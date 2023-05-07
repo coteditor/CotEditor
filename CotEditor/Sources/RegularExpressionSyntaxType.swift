@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -175,7 +175,7 @@ private extension StringProtocol {
         assert(searchIndex == self.startIndex || self[self.index(before: searchIndex)] != "\\")
         
         var startIndex: Index?
-        var isFirst = false  // flag wtheter the index is just after the opening
+        var isFirst = false  // flag whether the index is just after the opening
         var isNegative = false
         var isEscaped = false
         

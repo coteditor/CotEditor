@@ -29,7 +29,7 @@ import Foundation
 ///
 ///  This function works just like `Swift.debugPrint()` function.
 ///  The advantage is you can know the thread and the function name that invoked this function easily at the same time.
-///  A 🐄 icon will be printed at the beginning of the message if it's invoked in a background thead, otherwise a 🐕.
+///  A 🐄 icon will be printed at the beginning of the message if it's invoked in a background thread, otherwise a 🐕.
 ///
 /// - Parameters:
 ///   - items: Zero or more items to print.

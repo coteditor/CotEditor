@@ -64,7 +64,7 @@ typealias EventScript = Script & AppleEventReceivable
 struct ScriptFileError: LocalizedError {
     
     enum ErrorKind {
-        case existance
+        case existence
         case read
         case open
         case permission
@@ -77,7 +77,7 @@ struct ScriptFileError: LocalizedError {
     var errorDescription: String? {
         
         switch self.kind {
-            case .existance:
+            case .existence:
                 return String(localized: "The script “\(self.url.lastPathComponent)” does not exist.")
             case .read:
                 return String(localized: "The script “\(self.url.lastPathComponent)” couldn’t be read.")

@@ -66,7 +66,7 @@ final class SyntaxStyleValidator {
     
     
     // MARK: -
-    // MARK: Lyfestyle
+    // MARK: Lifestyle
     
     init(style: NSMutableDictionary) {
         

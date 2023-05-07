@@ -1,5 +1,5 @@
 //
-//  Arithmetrics.swift
+//  Arithmetics.swift
 //
 //  CotEditor
 //  https://coteditor.com
