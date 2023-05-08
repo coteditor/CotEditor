@@ -41,6 +41,8 @@
 "3fg-x6-5T8.title" = "抗锯齿";
 /* Class = "NSButtonCell"; title = "Ligatures"; ObjectID = "AFh-3D-ZB2"; */
 "AFh-3D-ZB2.title" = "连字";
+/* Class = "NSButtonCell"; title = "Always use monospaced font"; ObjectID = "t8U-fh-Wkt"; */
+"t8U-fh-Wkt.title" = "Always use monospaced font";
 
 /* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
 "r1c-v3-qW1.title" = "行高：";

@@ -68,6 +68,7 @@ struct DefaultSettings {
         .monospacedFontSize: NSFont.systemFontSize,
         .monospacedShouldAntialias: true,
         .monospacedLigature: false,
+        .usesMonospacedFont: false,
         .lineHeight: 1.2,
         .highlightCurrentLine: false,
         .showInvisibles: false,

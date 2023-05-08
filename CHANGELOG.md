@@ -8,6 +8,7 @@ Change Log
 ### New Features
 
 - Support __macOS 14 Sonoma__.
+- Add feature to set the editor font depending of the syntax kind.
 - Add the monospaced font setting to the Appearance settings.
 - Add “Kind” option to syntax definitions.
 - Add Spanish localization (thanks to Agustin Borrego!).

@@ -11,13 +11,13 @@
             <objects>
                 <viewController id="WBM-EY-ENr" customClass="AppearancePaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="LgU-un-VaX">
-                        <rect key="frame" x="0.0" y="0.0" width="570" height="632"/>
+                        <rect key="frame" x="0.0" y="0.0" width="570" height="656"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="ADB-Wp-iDy">
-                                <rect key="frame" x="29" y="342" width="512" height="290"/>
+                                <rect key="frame" x="29" y="342" width="512" height="314"/>
                                 <subviews>
                                     <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="icl-ar-8yG">
-                                        <rect key="frame" x="18" y="254" width="114" height="16"/>
+                                        <rect key="frame" x="18" y="278" width="114" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Font:" usesSingleLineMode="YES" id="Z85-S9-uID">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -25,7 +25,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wT1-jD-6aC" customClass="AntialiasingTextField" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="138" y="251" width="260" height="22"/>
+                                        <rect key="frame" x="138" y="275" width="260" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="750" constant="260" id="Ssa-FC-qrT"/>
                                             <constraint firstAttribute="height" constant="22" id="iwx-p0-N12"/>
@@ -37,10 +37,15 @@
                                         </textFieldCell>
                                         <connections>
                                             <accessibilityConnection property="title" destination="icl-ar-8yG" id="JXg-bX-b1p"/>
+                                            <binding destination="IE5-39-jAY" name="enabled" keyPath="values.usesMonospacedFont" id="2sj-dZ-GEg">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                </dictionary>
+                                            </binding>
                                         </connections>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uMj-Iu-oCy">
-                                        <rect key="frame" x="416" y="245" width="83" height="32"/>
+                                        <rect key="frame" x="416" y="269" width="83" height="32"/>
                                         <buttonCell key="cell" type="push" title="Select…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3289">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -51,10 +56,15 @@
                                         <connections>
                                             <accessibilityConnection property="title" destination="icl-ar-8yG" id="Rpq-MG-HTP"/>
                                             <action selector="showFonts:" target="WBM-EY-ENr" id="80p-Ig-zIc"/>
+                                            <binding destination="IE5-39-jAY" name="enabled" keyPath="values.usesMonospacedFont" id="RG9-6u-cvo">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                </dictionary>
+                                            </binding>
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I9r-vj-2gy">
-                                        <rect key="frame" x="137" y="232" width="66" height="16"/>
+                                        <rect key="frame" x="137" y="256" width="66" height="16"/>
                                         <buttonCell key="cell" type="check" title="Antialias" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="3290">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -62,10 +72,15 @@
                                         <connections>
                                             <accessibilityConnection property="title" destination="icl-ar-8yG" id="akE-EA-zGb"/>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.shouldAntialias" id="WYd-vz-gCE"/>
+                                            <binding destination="IE5-39-jAY" name="enabled" keyPath="values.usesMonospacedFont" id="hE8-sB-jYa">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                </dictionary>
+                                            </binding>
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4cD-mR-vJc">
-                                        <rect key="frame" x="210" y="232" width="70" height="16"/>
+                                        <rect key="frame" x="210" y="256" width="70" height="16"/>
                                         <buttonCell key="cell" type="check" title="Ligatures" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="g3S-3v-6ZA">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -73,6 +88,11 @@
                                         <connections>
                                             <accessibilityConnection property="title" destination="icl-ar-8yG" id="yEn-NR-Avf"/>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.ligature" id="BcZ-Pb-BN1"/>
+                                            <binding destination="IE5-39-jAY" name="enabled" keyPath="values.usesMonospacedFont" id="LMW-jU-6N4">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                </dictionary>
+                                            </binding>
                                         </connections>
                                     </button>
                                     <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hws-J2-FDl">
@@ -261,15 +281,20 @@
                                         </connections>
                                     </button>
                                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wbx-s2-Xop">
-                                        <rect key="frame" x="399" y="248" width="19" height="28"/>
+                                        <rect key="frame" x="399" y="272" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="100" doubleValue="12" id="bmU-Q2-Kep"/>
                                         <connections>
                                             <accessibilityConnection property="title" destination="icl-ar-8yG" id="R9K-qZ-5od"/>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.fontSize" id="1q5-N1-Y58"/>
+                                            <binding destination="IE5-39-jAY" name="enabled" keyPath="values.usesMonospacedFont" id="qjc-hG-Xsw">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                </dictionary>
+                                            </binding>
                                         </connections>
                                     </stepper>
                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZHd-UF-pkx">
-                                        <rect key="frame" x="18" y="206" width="114" height="16"/>
+                                        <rect key="frame" x="18" y="230" width="114" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Monospaced font:" id="B8d-4v-fox">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -277,7 +302,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C0e-PH-i1L">
-                                        <rect key="frame" x="137" y="184" width="66" height="16"/>
+                                        <rect key="frame" x="137" y="208" width="66" height="16"/>
                                         <buttonCell key="cell" type="check" title="Antialias" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="3fg-x6-5T8">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -287,7 +312,7 @@
                                         </connections>
                                     </button>
                                     <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fcc-rL-m1T" customClass="AntialiasingTextField" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="138" y="203" width="260" height="22"/>
+                                        <rect key="frame" x="138" y="227" width="260" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="750" constant="260" id="1NH-gY-fav"/>
                                         </constraints>
@@ -301,7 +326,7 @@
                                         </connections>
                                     </textField>
                                     <button identifier="monospacedFontButton" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6lq-jQ-EgE">
-                                        <rect key="frame" x="416" y="197" width="83" height="32"/>
+                                        <rect key="frame" x="416" y="221" width="83" height="32"/>
                                         <buttonCell key="cell" type="push" title="Select…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DSX-09-54K">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -315,7 +340,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cfh-8I-pCg">
-                                        <rect key="frame" x="210" y="184" width="70" height="16"/>
+                                        <rect key="frame" x="210" y="208" width="70" height="16"/>
                                         <buttonCell key="cell" type="check" title="Ligatures" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="AFh-3D-ZB2">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -325,12 +350,22 @@
                                         </connections>
                                     </button>
                                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kND-Z5-gU8">
-                                        <rect key="frame" x="399" y="200" width="19" height="28"/>
+                                        <rect key="frame" x="399" y="224" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="100" doubleValue="12" id="lEH-LN-Gki"/>
                                         <connections>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.monospacedFontSize" id="3lJ-eA-twD"/>
                                         </connections>
                                     </stepper>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LCf-XZ-KEp">
+                                        <rect key="frame" x="136" y="184" width="203" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Always use monospaced font" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="t8U-fh-Wkt">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <binding destination="IE5-39-jAY" name="value" keyPath="values.usesMonospacedFont" id="uRY-uP-nct"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="hws-J2-FDl" firstAttribute="trailing" secondItem="icl-ar-8yG" secondAttribute="trailing" id="3ry-gB-SFR"/>
@@ -338,13 +373,13 @@
                                     <constraint firstItem="C0e-PH-i1L" firstAttribute="leading" secondItem="Fcc-rL-m1T" secondAttribute="leading" id="4SE-GD-EjV"/>
                                     <constraint firstItem="Wbx-s2-Xop" firstAttribute="centerY" secondItem="wT1-jD-6aC" secondAttribute="centerY" id="4rr-OH-4xo"/>
                                     <constraint firstItem="Tqw-t1-w9R" firstAttribute="leading" secondItem="rE0-DL-xRG" secondAttribute="trailing" constant="6" symbolic="YES" id="5TB-3p-oLc"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LCf-XZ-KEp" secondAttribute="trailing" constant="20" symbolic="YES" id="5YR-uu-ngV"/>
                                     <constraint firstItem="Tqw-t1-w9R" firstAttribute="top" secondItem="inR-04-6SZ" secondAttribute="bottom" constant="12" id="5wy-nu-DrM"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sbW-46-DFB" secondAttribute="trailing" constant="20" symbolic="YES" id="6eb-Fr-d6A"/>
                                     <constraint firstItem="MXi-ss-fox" firstAttribute="trailing" secondItem="icl-ar-8yG" secondAttribute="trailing" id="73v-qf-HHt"/>
                                     <constraint firstItem="6lq-jQ-EgE" firstAttribute="centerY" secondItem="Fcc-rL-m1T" secondAttribute="centerY" id="7VU-Np-lNe"/>
                                     <constraint firstAttribute="bottom" secondItem="Tqw-t1-w9R" secondAttribute="bottom" constant="10" id="AkQ-qI-suM"/>
                                     <constraint firstItem="icl-ar-8yG" firstAttribute="centerY" secondItem="wT1-jD-6aC" secondAttribute="centerY" id="Awy-Lh-dcc"/>
-                                    <constraint firstItem="5XW-Ju-Ix5" firstAttribute="top" secondItem="C0e-PH-i1L" secondAttribute="bottom" constant="8" symbolic="YES" id="BV0-Vw-jFg"/>
                                     <constraint firstItem="6lq-jQ-EgE" firstAttribute="leading" secondItem="kND-Z5-gU8" secondAttribute="trailing" constant="8" symbolic="YES" id="C67-Wd-Vd8"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xAb-JZ-6Pr" secondAttribute="trailing" constant="20" symbolic="YES" id="C8X-qZ-GqH"/>
                                     <constraint firstItem="4cD-mR-vJc" firstAttribute="leading" secondItem="I9r-vj-2gy" secondAttribute="trailing" constant="8" symbolic="YES" id="CAF-oR-p9c"/>
@@ -369,8 +404,10 @@
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="I05-Ks-5uR" secondAttribute="trailing" constant="20" symbolic="YES" id="Q4q-kp-wWO"/>
                                     <constraint firstItem="Fcc-rL-m1T" firstAttribute="centerY" secondItem="ZHd-UF-pkx" secondAttribute="centerY" id="RCo-rU-m4T"/>
                                     <constraint firstItem="uyp-Xk-mRF" firstAttribute="top" secondItem="Y0v-jK-SaN" secondAttribute="bottom" constant="6" symbolic="YES" id="S91-HD-2Hg"/>
+                                    <constraint firstItem="5XW-Ju-Ix5" firstAttribute="top" secondItem="LCf-XZ-KEp" secondAttribute="bottom" constant="8" symbolic="YES" id="SVZ-oV-anh"/>
                                     <constraint firstItem="uMj-Iu-oCy" firstAttribute="leading" secondItem="Wbx-s2-Xop" secondAttribute="trailing" constant="8" symbolic="YES" id="UfD-bc-ydD"/>
                                     <constraint firstItem="kND-Z5-gU8" firstAttribute="leading" secondItem="Fcc-rL-m1T" secondAttribute="trailing" constant="4" id="VrD-ZK-LBb"/>
+                                    <constraint firstItem="LCf-XZ-KEp" firstAttribute="top" secondItem="C0e-PH-i1L" secondAttribute="bottom" constant="8" symbolic="YES" id="VxN-mh-5QG"/>
                                     <constraint firstItem="uyp-Xk-mRF" firstAttribute="leading" secondItem="Y0v-jK-SaN" secondAttribute="leading" constant="20" id="VyE-p8-GOp"/>
                                     <constraint firstItem="Fcc-rL-m1T" firstAttribute="height" secondItem="wT1-jD-6aC" secondAttribute="height" id="Vzc-QN-svh"/>
                                     <constraint firstItem="ywA-ws-Ayf" firstAttribute="firstBaseline" secondItem="uyp-Xk-mRF" secondAttribute="firstBaseline" id="X6H-ZN-PXw"/>
@@ -382,6 +419,7 @@
                                     <constraint firstItem="iqn-kw-8py" firstAttribute="top" secondItem="uyp-Xk-mRF" secondAttribute="bottom" constant="6" symbolic="YES" id="aIq-eo-YRn"/>
                                     <constraint firstItem="I05-Ks-5uR" firstAttribute="firstBaseline" secondItem="iqn-kw-8py" secondAttribute="firstBaseline" id="aUa-nd-1Wb"/>
                                     <constraint firstItem="rE0-DL-xRG" firstAttribute="trailing" secondItem="icl-ar-8yG" secondAttribute="trailing" id="bcF-aH-RCz"/>
+                                    <constraint firstItem="LCf-XZ-KEp" firstAttribute="leading" secondItem="Fcc-rL-m1T" secondAttribute="leading" id="bsA-Mc-kGb"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xDf-ra-dem" secondAttribute="trailing" constant="20" symbolic="YES" id="dQb-HU-As6"/>
                                     <constraint firstItem="MXi-ss-fox" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ADB-Wp-iDy" secondAttribute="leading" constant="20" symbolic="YES" id="dl8-X1-Wba"/>
                                     <constraint firstItem="ZHd-UF-pkx" firstAttribute="trailing" secondItem="icl-ar-8yG" secondAttribute="trailing" id="dsb-lL-rDZ"/>
@@ -615,6 +653,7 @@
                                 </constraints>
                                 <color key="borderColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <font key="titleFont" metaFont="smallSystem"/>
                             </box>
                             <box autoresizesSubviews="NO" boxType="custom" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="nMR-L3-OOw">
                                 <rect key="frame" x="190" y="52" width="360" height="280"/>
@@ -627,6 +666,7 @@
                                 </constraints>
                                 <color key="borderColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <color key="fillColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <font key="titleFont" metaFont="smallSystem"/>
                             </box>
                             <button identifier="settings_appearance" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="19L-5s-cbB">
                                 <rect key="frame" x="527" y="16" width="25" height="25"/>

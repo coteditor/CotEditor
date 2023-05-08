@@ -69,6 +69,7 @@ extension DefaultKeys {
     static let monospacedFontSize = DefaultKey<Double>("monospacedFontSize")
     static let monospacedShouldAntialias = DefaultKey<Bool>("monospacedShouldAntialias")
     static let monospacedLigature = DefaultKey<Bool>("monospacedLigature")
+    static let usesMonospacedFont = DefaultKey<Bool>("usesMonospacedFont")
     static let lineHeight = DefaultKey<CGFloat>("lineHeight")
     static let highlightCurrentLine = DefaultKey<Bool>("highlightCurrentLine")
     static let showInvisibles = DefaultKey<Bool>("showInvisibles")

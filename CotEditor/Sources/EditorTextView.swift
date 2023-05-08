@@ -226,6 +226,12 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         // observe changes in defaults
         self.defaultsObservers = [
+            defaults.publisher(for: .usesMonospacedFont)
+                .sink { [unowned self] _ in
+                    self.invalidateFontSettings(for: self.syntaxKind)
+                    self.observeFontDefaults(for: self.syntaxKind)
+                 },
+            
             defaults.publisher(for: .balancesBrackets)
                 .sink { [unowned self] in self.balancesBrackets = $0 },
             defaults.publisher(for: .autoExpandTab)
@@ -1426,7 +1432,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     private func observeFontDefaults(for syntaxKind: Syntax.Kind) {
         
         let defaults = UserDefaults.standard
-        let type = syntaxKind.fontType
+        let type: FontType = defaults[.usesMonospacedFont] ? .monospaced : syntaxKind.fontType
         
         self.fontObservers = [
             Publishers.Merge(defaults.publisher(for: .fontName(for: type)).eraseToVoid(),
@@ -1447,7 +1453,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     private func invalidateFontSettings(for syntaxKind: Syntax.Kind) {
         
         let defaults = UserDefaults.standard
-        let type = syntaxKind.fontType
+        let type: FontType = defaults[.usesMonospacedFont] ? .monospaced : syntaxKind.fontType
         
         self.font = defaults.font(for: type)
         self.ligature = defaults[.ligature(for: type)] ? .standard : .none

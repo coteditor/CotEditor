@@ -41,6 +41,8 @@
 "3fg-x6-5T8.title" = "Antisserrilhado";
 /* Class = "NSButtonCell"; title = "Ligatures"; ObjectID = "AFh-3D-ZB2"; */
 "AFh-3D-ZB2.title" = "Ligadures";
+/* Class = "NSButtonCell"; title = "Always use monospaced font"; ObjectID = "t8U-fh-Wkt"; */
+"t8U-fh-Wkt.title" = "Always use monospaced font";  // FIXME: added
 
 /* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
 "r1c-v3-qW1.title" = "Altura da linha:";
