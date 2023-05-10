@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import Combine
 extension Publisher {
     
     /// Wraps this publisher with a type eraser.
-    func eraseToVoid() -> AnyPublisher<Void, Never> where Failure == Never {
+    func eraseToVoid() -> AnyPublisher<Void, Failure> {
         
         self.map { _ in () }.eraseToAnyPublisher()
     }

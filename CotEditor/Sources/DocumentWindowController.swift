@@ -103,10 +103,10 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             .assign(to: \.appearance, on: self.window!)
         
         //  observe for syntax style line-up change
-        self.styleListObserver = Publishers.Merge(SyntaxManager.shared.$settingNames.eraseToVoid(),
-                                                  UserDefaults.standard.publisher(for: .recentStyleNames).eraseToVoid())
+        self.styleListObserver = Publishers.Merge(SyntaxManager.shared.$settingNames,
+                                                  UserDefaults.standard.publisher(for: .recentStyleNames))
             .receive(on: RunLoop.main)
-            .sink { [weak self] in self?.buildSyntaxPopUpButton() }
+            .sink { [weak self] _ in self?.buildSyntaxPopUpButton() }
     }
     
     
@@ -126,11 +126,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                 self.window?.isOpaque = true
             }
             
-            self.window?.toolbar?.items.lazy.compactMap { $0 as? NSSharingServicePickerToolbarItem }.first?.delegate = document
-            self.selectSyntaxPopUpItem(with: document.syntaxParser.style.name)
-            
             // observe document's style change
             self.documentStyleObserver = document.didChangeSyntaxStyle
+                .merge(with: Just(document.syntaxParser.style.name))
                 .receive(on: RunLoop.main)
                 .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
         }
@@ -614,7 +612,7 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .share:
                 let item = NSSharingServicePickerToolbarItem(itemIdentifier: itemIdentifier)
                 item.toolTip = String(localized: "Share document file")
-                item.delegate = self.document as? any NSSharingServicePickerToolbarItemDelegate
+                item.delegate = self
                 return item
                 
             case .inspectorTrackingSeparator:
@@ -643,10 +641,12 @@ extension DocumentWindowController: NSToolbarItemValidation {
 }
 
 
-extension NSDocument: NSSharingServicePickerToolbarItemDelegate {
+extension DocumentWindowController: NSSharingServicePickerToolbarItemDelegate {
     
     public func items(for pickerToolbarItem: NSSharingServicePickerToolbarItem) -> [Any] {
         
-        [self]
+        guard let document = self.document else { return [] }
+        
+        return [document]
     }
 }
