@@ -191,10 +191,10 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
                 let allItem = menu.itemArray.first!
                 allItem.attributedTitle = NSAttributedString(string: allItem.title, attributes: allItem.attributedTitle!.attributes(at: 0, effectiveRange: nil))
                 
-                // add styles
-                for styleName in SyntaxManager.shared.settingNames {
-                    menu.addItem(withTitle: styleName)
-                    menu.lastItem!.representedObject = styleName
+                // add syntaxes
+                for settingName in SyntaxManager.shared.settingNames {
+                    menu.addItem(withTitle: settingName)
+                    menu.lastItem!.representedObject = settingName
                 }
                 
                 // select item
@@ -266,7 +266,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     }
     
     
-    @IBAction func didSelectSyntaxStyle(_ sender: NSPopUpButton) {
+    @IBAction func didSelectSyntax(_ sender: NSPopUpButton) {
         
         guard let tableView = self.tableView else { return assertionFailure() }
         

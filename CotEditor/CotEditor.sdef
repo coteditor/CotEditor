@@ -52,7 +52,7 @@
             <contents name="text" code="ctxt" type="attribute run" access="rw" description="The whole text of the document.">
                 <cocoa key="scriptTextStorage"/>
             </contents>
-            <property name="coloring style" code="cclr" type="text" access="rw" description="The current syntax style name.">
+            <property name="coloring style" code="cclr" type="text" access="rw" description="The current syntax name.">
                 <cocoa key="coloringStyle"/>
             </property>
             <property name="contents" code="PCnt" type="attribute run" access="rw" description="The contents of the document."/>

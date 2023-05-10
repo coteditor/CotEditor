@@ -68,7 +68,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @MainActor private lazy var acknowledgmentsWindowController = WebDocumentWindowController(fileURL: Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")!)
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
-    @IBOutlet private weak var syntaxStylesMenu: NSMenu?
+    @IBOutlet private weak var syntaxesMenu: NSMenu?
     @IBOutlet private weak var themesMenu: NSMenu?
     @IBOutlet private weak var normalizationMenu: NSMenu?
     @IBOutlet private weak var snippetMenu: NSMenu?
@@ -116,15 +116,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .store(in: &self.menuUpdateObservers)
         
         SyntaxManager.shared.$settingNames
-            .map { $0.map { NSMenuItem(title: $0, action: #selector((any SyntaxHolder).changeSyntaxStyle), keyEquivalent: "") } }
+            .map { $0.map { NSMenuItem(title: $0, action: #selector((any SyntaxHolder).changeSyntax), keyEquivalent: "") } }
             .receive(on: RunLoop.main)
             .sink { [weak self] (items) in
-                guard let menu = self?.syntaxStylesMenu else { return }
+                guard let menu = self?.syntaxesMenu else { return }
                 
                 let recolorItem = menu.items.first { $0.action == #selector((any SyntaxHolder).recolorAll) }
                 
                 menu.removeAllItems()
-                menu.addItem(withTitle: BundledStyleName.none, action: #selector((any SyntaxHolder).changeSyntaxStyle), keyEquivalent: "")
+                menu.addItem(withTitle: BundledSyntaxName.none, action: #selector((any SyntaxHolder).changeSyntax), keyEquivalent: "")
                 menu.addItem(.separator())
                 menu.items += items
                 menu.addItem(.separator())
@@ -388,7 +388,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // open as document
         do {
             let document = try (NSDocumentController.shared as! DocumentController).openUntitledDocument(content: report, title: title, display: true)
-            document.setSyntaxStyle(name: BundledStyleName.markdown)
+            document.setSyntax(name: BundledSyntaxName.markdown)
         } catch {
             NSApp.presentError(error)
         }

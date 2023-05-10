@@ -31,14 +31,14 @@ import Yams
 
 @objc protocol SyntaxHolder: AnyObject {
     
-    func changeSyntaxStyle(_ sender: AnyObject?)
+    func changeSyntax(_ sender: AnyObject?)
     func recolorAll(_ sender: Any?)
 }
 
 
-enum BundledStyleName {
+enum BundledSyntaxName {
     
-    static let none: SyntaxManager.SettingName = String(localized: "None", comment: "syntax style name")
+    static let none: SyntaxManager.SettingName = String(localized: "None", comment: "syntax name")
     static let xml: SyntaxManager.SettingName = "XML"
     static let markdown: SyntaxManager.SettingName = "Markdown"
 }
@@ -49,10 +49,10 @@ enum BundledStyleName {
 
 final class SyntaxManager: SettingFileManaging {
     
-    typealias Setting = SyntaxStyle
+    typealias Setting = Syntax
     
     typealias SettingName = String
-    typealias StyleDictionary = [String: Any]
+    typealias SyntaxDictionary = [String: Any]
     
     
     // MARK: Public Properties
@@ -88,7 +88,7 @@ final class SyntaxManager: SettingFileManaging {
     
     private init() {
         
-        // load bundled style list
+        // load bundled syntax list
         let url = Bundle.main.url(forResource: "SyntaxMap", withExtension: "json")!
         let data = try! Data(contentsOf: url)
         let map = try! JSONDecoder().decode([SettingName: [String: [String]]].self, from: data)
@@ -98,7 +98,7 @@ final class SyntaxManager: SettingFileManaging {
         // sanitize user setting file extensions
         try? self.sanitizeUserSettings()
         
-        // cache user styles
+        // cache user syntaxes
         self.loadUserSettings()
         
         // update also .mappingTables
@@ -110,16 +110,16 @@ final class SyntaxManager: SettingFileManaging {
     
     // MARK: Public Methods
     
-    /// return style name corresponding to given variables
+    /// return syntax name corresponding to given variables
     func settingName(documentFileName fileName: String, content: String) -> SettingName {
         
         self.settingName(documentFileName: fileName)
             ?? self.settingName(documentContent: content)
-            ?? BundledStyleName.none
+            ?? BundledSyntaxName.none
     }
     
     
-    /// return style name corresponding to file name
+    /// return syntax name corresponding to file name
     func settingName(documentFileName fileName: String) -> SettingName? {
         
         let mappingTables = self.mappingTables
@@ -149,7 +149,7 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// return style name scanning shebang in document content
+    /// return syntax name scanning shebang in document content
     func settingName(documentContent content: String) -> SettingName? {
         
         if let interpreter = content.scanInterpreterInShebang(),
@@ -159,17 +159,17 @@ final class SyntaxManager: SettingFileManaging {
         
         // check XML declaration
         if content.hasPrefix("<?xml ") {
-            return BundledStyleName.xml
+            return BundledSyntaxName.xml
         }
         
         return nil
     }
     
     
-    /// style dictionary list corresponding to style name
-    func settingDictionary(name: SettingName) -> StyleDictionary? {
+    /// syntax dictionary list corresponding to syntax name
+    func settingDictionary(name: SettingName) -> SyntaxDictionary? {
         
-        if name == BundledStyleName.none {
+        if name == BundledSyntaxName.none {
             return self.blankSettingDictionary
         }
         
@@ -182,8 +182,8 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// return bundled version style dictionary or nil if not exists
-    func bundledSettingDictionary(name: SettingName) -> StyleDictionary? {
+    /// return bundled version syntax dictionary or nil if not exists
+    func bundledSettingDictionary(name: SettingName) -> SyntaxDictionary? {
         
         guard
             let url = self.urlForBundledSetting(name: name),
@@ -195,7 +195,7 @@ final class SyntaxManager: SettingFileManaging {
     
     
     /// save setting file
-    func save(settingDictionary: StyleDictionary, name: SettingName, oldName: SettingName?) throws {
+    func save(settingDictionary: SyntaxDictionary, name: SettingName, oldName: SettingName?) throws {
         
         // sort items
         let beginStringSort = NSSortDescriptor(key: SyntaxDefinitionKey.beginString.rawValue, ascending: true,
@@ -212,12 +212,12 @@ final class SyntaxManager: SettingFileManaging {
         
         let fileURL = self.preparedURLForUserSetting(name: name)
         
-        // move old file to new place to overwrite when style name is also changed
+        // move old file to new place to overwrite when syntax name is also changed
         if let oldName, name != oldName {
             try self.renameSetting(name: oldName, to: name)
         }
         
-        // just remove the current custom setting file in the user domain if new style is just the same as bundled one
+        // just remove the current custom setting file in the user domain if new syntax is just the same as bundled one
         // so that application uses bundled one
         if self.isEqualToBundledSetting(settingDictionary, name: name) {
             if fileURL.isReachable {
@@ -253,8 +253,8 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// empty style dictionary
-    var blankSettingDictionary: StyleDictionary {
+    /// empty syntax dictionary
+    var blankSettingDictionary: SyntaxDictionary {
         
         [
             SyntaxKey.metadata.rawValue: NSMutableDictionary(),
@@ -284,8 +284,8 @@ final class SyntaxManager: SettingFileManaging {
     /// return setting instance corresponding to the given setting name
     func setting(name: SettingName) -> Setting? {
         
-        if name == BundledStyleName.none {
-            return SyntaxStyle()
+        if name == BundledSyntaxName.none {
+            return Syntax()
         }
         
         guard let setting: Setting = {
@@ -301,12 +301,12 @@ final class SyntaxManager: SettingFileManaging {
             return setting
         }() else { return nil }
         
-        // add to recent styles list
-        let maximumRecentStyleCount = max(0, UserDefaults.standard[.maximumRecentStyleCount])
-        var recentStyleNames = UserDefaults.standard[.recentStyleNames]
-        recentStyleNames.removeFirst(name)
-        recentStyleNames.insert(name, at: 0)
-        UserDefaults.standard[.recentStyleNames] = Array(recentStyleNames.prefix(maximumRecentStyleCount))
+        // add to recent syntaxes list
+        let maximumRecentSyntaxCount = max(0, UserDefaults.standard[.maximumRecentSyntaxCount])
+        var recentSyntaxNames = UserDefaults.standard[.recentSyntaxNames]
+        recentSyntaxNames.removeFirst(name)
+        recentSyntaxNames.insert(name, at: 0)
+        UserDefaults.standard[.recentSyntaxNames] = Array(recentSyntaxNames.prefix(maximumRecentSyntaxCount))
         
         return setting
     }
@@ -318,33 +318,33 @@ final class SyntaxManager: SettingFileManaging {
         let dictionary = try self.loadSettingDictionary(at: fileURL)
         let name = self.settingName(from: fileURL)
         
-        return SyntaxStyle(dictionary: dictionary, name: name)
+        return Syntax(dictionary: dictionary, name: name)
     }
     
     
     /// Load settings in the user domain.
     func loadUserSettings() {
         
-        // load mapping definitions from style files in user domain
+        // load mapping definitions from syntax files in user domain
         let mappingKeys = SyntaxKey.mappingKeys.map(\.rawValue)
         let userMap: [SettingName: [String: [String]]] = self.userSettingFileURLs.reduce(into: [:]) { (dict, url) in
-            guard let style = try? self.loadSettingDictionary(at: url) else { return }
+            guard let syntax = try? self.loadSettingDictionary(at: url) else { return }
             let settingName = self.settingName(from: url)
             
             // create file mapping data
-            dict[settingName] = style.filter { mappingKeys.contains($0.key) }
+            dict[settingName] = syntax.filter { mappingKeys.contains($0.key) }
                 .mapValues { $0 as? [[String: String]] ?? [] }
                 .mapValues { $0.compactMap { $0[SyntaxDefinitionKey.keyString] } }
         }
         let map = self.bundledMap.merging(userMap) { (_, new) in new }
         
-        // sort styles alphabetically
+        // sort syntaxes alphabetically
         self.settingNames = map.keys.sorted(options: [.localized, .caseInsensitive])
-        // remove styles not exist
-        UserDefaults.standard[.recentStyleNames].removeAll { !self.settingNames.contains($0) }
+        // remove syntaxes not exist
+        UserDefaults.standard[.recentSyntaxNames].removeAll { !self.settingNames.contains($0) }
         
         // update file mapping tables
-        let settingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled styles
+        let settingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled syntaxes
         self.mappingTables = SyntaxKey.mappingKeys.reduce(into: [:]) { (tables, key) in
             tables[key] = settingNames.reduce(into: [String: [SettingName]]()) { (table, settingName) in
                 guard let items = map[settingName]?[key.rawValue] else { return }
@@ -377,29 +377,29 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// Load StyleDictionary at file URL.
+    /// Load SyntaxDictionary at file URL.
     ///
     /// - Parameter fileURL: URL to a setting file.
     /// - Throws: `CocoaError`
-    private func loadSettingDictionary(at fileURL: URL) throws -> StyleDictionary {
+    private func loadSettingDictionary(at fileURL: URL) throws -> SyntaxDictionary {
         
         let string = try String(contentsOf: fileURL)
         let yaml = try Yams.load(yaml: string)
         
-        guard let styleDictionary = yaml as? StyleDictionary else {
+        guard let syntaxDictionary = yaml as? SyntaxDictionary else {
             throw CocoaError.error(.fileReadCorruptFile, url: fileURL)
         }
         
-        return styleDictionary
+        return syntaxDictionary
     }
     
     
     /// return whether contents of given highlight definition is the same as bundled one
-    private func isEqualToBundledSetting(_ style: StyleDictionary, name: SettingName) -> Bool {
+    private func isEqualToBundledSetting(_ syntax: SyntaxDictionary, name: SettingName) -> Bool {
         
-        guard let bundledStyle = self.bundledSettingDictionary(name: name) else { return false }
+        guard let bundledSyntax = self.bundledSettingDictionary(name: name) else { return false }
         
-        return style == bundledStyle
+        return syntax == bundledSyntax
     }
 }
 
@@ -436,7 +436,7 @@ private extension StringProtocol {
 
 // MARK: - Cocoa Bindings Support
 
-private extension SyntaxManager.StyleDictionary {
+private extension SyntaxManager.SyntaxDictionary {
     
     /// Convert to NSObject-based collection for Cocoa-Bindings recursively.
     var cocoaBindable: Self {
@@ -491,7 +491,7 @@ private extension SyntaxManager.StyleDictionary {
 
 // MARK: - Equitability Support
 
-private extension SyntaxManager.StyleDictionary {
+private extension SyntaxManager.SyntaxDictionary {
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         
@@ -503,7 +503,7 @@ private extension SyntaxManager.StyleDictionary {
     
     /// Check the equitability recursively.
     ///
-    /// This comparison is designed and valid only for StyleDictionary.
+    /// This comparison is designed and valid only for SyntaxDictionary.
     private static func areEqual(_ lhs: Any, _ rhs: Any) -> Bool {
         
         switch (lhs, rhs) {

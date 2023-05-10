@@ -38,7 +38,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         static let isVerticalText = "isVerticalText"
         static let isTransient = "isTransient"
         static let suppressesInconsistentLineEndingAlert = "suppressesInconsistentLineEndingAlert"
-        static let syntaxStyle = "syntaxStyle"
+        static let syntax = "syntax"
         static let originalContentString = "originalContentString"
     }
     
@@ -63,7 +63,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private(set) lazy var incompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
     let urlDetector: URLDetector
     
-    let didChangeSyntaxStyle = PassthroughSubject<String, Never>()
+    let didChangeSyntax = PassthroughSubject<String, Never>()
     
     
     // MARK: Private Properties
@@ -97,8 +97,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
         self.lineEnding = lineEnding
         
-        let style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]) ?? SyntaxStyle()
-        self.syntaxParser = SyntaxParser(textStorage: self.textStorage, style: style)
+        let syntax = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntax]) ?? Syntax()
+        self.syntaxParser = SyntaxParser(textStorage: self.textStorage, syntax: syntax)
         
         // use the encoding selected by the user in the open panel, if exists
         self.fileEncoding = EncodingManager.shared.defaultEncoding
@@ -117,10 +117,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         self.lineEndingScanner.observe(lineEnding: self.$lineEnding)
         
-        // observe syntax style update
+        // observe syntax update
         self.syntaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
-            .filter { [weak self] (change) in change.old == self?.syntaxParser.style.name }
-            .sink { [weak self] (change) in self?.setSyntaxStyle(name: change.new ?? BundledStyleName.none) }
+            .filter { [weak self] (change) in change.old == self?.syntaxParser.syntax.name }
+            .sink { [weak self] (change) in self?.setSyntax(name: change.new ?? BundledSyntaxName.none) }
     }
     
     
@@ -131,7 +131,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
         coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
         coder.encode(self.suppressesInconsistentLineEndingAlert, forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
-        coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
+        coder.encode(self.syntaxParser.syntax.name, forKey: SerializationKey.syntax)
         
         // store unencoded string but only when incompatible
         if !self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) {
@@ -153,10 +153,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if coder.containsValue(forKey: SerializationKey.suppressesInconsistentLineEndingAlert) {
             self.suppressesInconsistentLineEndingAlert = coder.decodeBool(forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
         }
-        if let styleName = coder.decodeObject(of: NSString.self, forKey: SerializationKey.syntaxStyle) as? String,
-           self.syntaxParser.style.name != styleName
+        if let syntaxName = coder.decodeObject(of: NSString.self, forKey: SerializationKey.syntax) as? String,
+           self.syntaxParser.syntax.name != syntaxName
         {
-            self.setSyntaxStyle(name: styleName)
+            self.setSyntax(name: syntaxName)
         }
         
         if let string = coder.decodeObject(of: NSString.self, forKey: SerializationKey.originalContentString) as? String {
@@ -268,7 +268,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             return pathExtension
         }
         
-        return self.syntaxParser.style.extensions.first
+        return self.syntaxParser.syntax.extensions.first
     }
     
     
@@ -319,7 +319,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let document = try super.duplicate() as! Document
         
-        document.setSyntaxStyle(name: self.syntaxParser.style.name)
+        document.setSyntax(name: self.syntaxParser.syntax.name)
         document.lineEnding = self.lineEnding
         document.fileEncoding = self.fileEncoding
         document.isVerticalText = self.isVerticalText
@@ -383,10 +383,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.fileEncoding = file.fileEncoding
         self.lineEnding = self.lineEndingScanner.majorLineEnding ?? self.lineEnding  // keep default if no line endings are found
         
-        // determine syntax style (only on the first file open)
+        // determine syntax (only on the first file open)
         if self.windowForSheet == nil {
-            let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent, content: file.string)
-            self.setSyntaxStyle(name: styleName, isInitial: true)
+            let syntaxName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent, content: file.string)
+            self.setSyntax(name: syntaxName, isInitial: true)
         }
     }
     
@@ -437,14 +437,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             }
             if error != nil { return }
             
-            // apply syntax style that is inferred from the file name or the shebang
+            // apply syntax that is inferred from the file name or the shebang
             if saveOperation == .saveAsOperation,
-               let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
+               let syntaxName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
                 ?? SyntaxManager.shared.settingName(documentContent: self.textStorage.string)
             {
                 // -> Due to the async-saving, self.textStorage can be changed from the actual saved contents.
                 //    But we don't care about that.
-                self.setSyntaxStyle(name: styleName)
+                self.setSyntax(name: syntaxName)
             }
             
             if !saveOperation.isAutosave {
@@ -585,7 +585,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let info = PrintTextView.DocumentInfo(name: self.displayName,
                                               fileURL: self.fileURL,
                                               lastModifiedDate: lastModifiedDate,
-                                              syntaxName: self.syntaxParser.style.name)
+                                              syntaxName: self.syntaxParser.syntax.name)
         let printView = PrintTextView(info: info)
         
         printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
@@ -748,8 +748,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             case #selector(changeLineEnding(_:)):
                 menuItem.state = (menuItem.tag == self.lineEnding.index) ? .on : .off
                 
-            case #selector(changeSyntaxStyle(_:)):
-                menuItem.state = (menuItem.title == self.syntaxParser.style.name) ? .on : .off
+            case #selector(changeSyntax(_:)):
+                menuItem.state = (menuItem.title == self.syntaxParser.syntax.name) ? .on : .off
                 
             default: break
         }
@@ -891,26 +891,26 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// Change the syntax style to one with the given style name.
+    /// Change the syntax to one with the given name.
     ///
     /// - Parameters:
-    ///   - name: The name of the style to change with.
+    ///   - name: The name of the syntax to change with.
     ///   - isInitial: Whether the setting is initial.
-    func setSyntaxStyle(name: String, isInitial: Bool = false) {
+    func setSyntax(name: String, isInitial: Bool = false) {
         
         guard
-            let syntaxStyle = SyntaxManager.shared.setting(name: name),
-            syntaxStyle != self.syntaxParser.style
+            let syntax = SyntaxManager.shared.setting(name: name),
+            syntax != self.syntaxParser.syntax
         else { return }
         
         // update
-        self.syntaxParser.style = syntaxStyle
+        self.syntaxParser.syntax = syntax
         
-        // skip notification when initial style was set on file open
+        // skip notification when initial syntax was set on file open
         // to avoid redundant highlight parse due to async notification.
         guard !isInitial else { return }
         
-        self.didChangeSyntaxStyle.send(name)
+        self.didChangeSyntax.send(name)
     }
     
     
@@ -1048,12 +1048,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// Change the syntax style.
-    @IBAction func changeSyntaxStyle(_ sender: AnyObject?) {
+    /// Change the syntax.
+    @IBAction func changeSyntax(_ sender: AnyObject?) {
         
         guard let name = sender?.title else { return assertionFailure() }
         
-        self.setSyntaxStyle(name: name)
+        self.setSyntax(name: name)
     }
     
     

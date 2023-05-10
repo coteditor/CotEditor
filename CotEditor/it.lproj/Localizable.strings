@@ -298,9 +298,9 @@
 
 
 /* MARK: Toolbar */
-"Syntax Style" = "Stile sintassi";
+"Syntax" = "Sintassi";
 // tooltip
-"Change syntax style" = "Modifica stile sintassi";
+"Change syntax" = "Modifica stile sintassi";  // FIXME: syntax style -> syntax
 // menu item title
 "Recently Used" = "Usati di recente";
 "Deleted" = "Eliminato";  // heading for deleted items
@@ -697,7 +697,7 @@
 "Outline" = "Outline";
 "Completion List" = "Completamento";
 "File Mapping" = "Mappatura file";
-"Style Info" = "Info. sullo stile";  // Informazioni sullo stile
+"Syntax Info" = "Info. sullo stile";  // Informazioni sullo stile  // FIXME: style -> syntax
 "Syntax Validation" = "Validazione sintassi";
 
 // Syntax style validation results
@@ -723,22 +723,22 @@
 
 
 /* MARK: SyntaxManager */
-// Style name
+// Syntax name
 "None" = "Nessuno";
 
-// Selected syntax style name was original
-"Bundled styles can’t be renamed." = "Gli stili inclusi nel programma non possono essere rinominati.";
+// Description for editing bundled syntax
+"Bundled syntaxes can’t be renamed." = "Gli stili inclusi nel programma non possono essere rinominati.";  // FIXME: style -> syntax
 
 // Suffix of copied syntax coloring style
 "copy" = "Copia";
 
-// Import syntax style file choose openPanel button
+// Import syntax file choose openPanel button
 "Import" = "Importa";
-// Importing same name style alert
-"A new style named “%@” will be installed, but a custom style with the same name already exists." = "Un nuovo stile dal nome “%@” sarà installato, ma esiste già un stile personalizzato con lo stesso nome.";
-"Do you want to replace it?\nReplaced style can’t be restored." = "Si desidera sostituirlo?\n\nGli stili sostituiti non potranno essere recuperati.";
+// Importing same name syntax alert
+"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "Un nuovo stile dal nome “%@” sarà installato, ma esiste già un stile personalizzato con lo stesso nome.";  // FIXME: style -> syntax
+"Do you want to replace it?\nReplaced syntax can’t be restored." = "Si desidera sostituirlo?\n\nGli stili sostituiti non potranno essere recuperati.";  // FIXME: style -> syntax
 
-// Export syntax style file savePanel label
+// Export syntax file savePanel label
 "Export As:" = "Esporta come:";
 
 // Syntax validation
@@ -861,14 +861,14 @@
 
 
 /* MARK: Syntax Mapping Conflicts View */
-"Syntax Style Mapping Conflicts" = "Mappatura dei conflitti di stile sintassi";
-"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "Le seguenti regole di mappatura del file sono registrate per più stili. CotEditor usa automaticamente il primo stile. Per risolvere eventuali conflitti, modificare ciascuno stile di sintassi";
+"Syntax Mapping Conflicts" = "Mappatura dei conflitti di stile sintassi";  // FIXME: syntax style -> syntax
+"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "Le seguenti regole di mappatura del file sono registrate per più stili. CotEditor usa automaticamente il primo stile. Per risolvere eventuali conflitti, modificare ciascuno stile di sintassi";  // FIXME: updated
 "Extension" = "Estensione";
 "Filename" = "Nome del file";
 "Interpreter" = "Interpreti";
 // table column headers
-"Used style" = "Stile utilizzato";
-"Duplicated styles" = "Stili duplicati";
+"Used syntax" = "Stile utilizzato";  // FIXME: updated
+"Duplicated syntaxes" = "Stili duplicati";  // FIXME: updated
 
 
 

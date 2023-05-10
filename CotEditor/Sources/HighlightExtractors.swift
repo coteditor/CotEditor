@@ -47,7 +47,7 @@ extension HighlightDefinition {
                     return BeginEndStringExtractor(beginString: self.beginString, endString: endString, ignoresCase: self.ignoreCase)
                     
                 case (false, .none):
-                    preconditionFailure("non-regex words should be preprocessed at SyntaxStyle.init()")
+                    preconditionFailure("non-regex words should be preprocessed at Syntax.init()")
             }
         }
     }

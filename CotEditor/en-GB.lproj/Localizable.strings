@@ -298,9 +298,9 @@
 
 
 /* MARK: Toolbar */
-"Syntax Style" = "Syntax Style";
+"Syntax" = "Syntax";
 // tooltip
-"Change syntax style" = "Change syntax style";
+"Change syntax" = "Change syntax";
 // menu item title
 "Recently Used" = "Recently Used";
 "Deleted" = "Deleted";
@@ -697,7 +697,7 @@
 "Outline" = "Outline";
 "Completion List" = "Completion List";
 "File Mapping" = "File Mapping";
-"Style Info" = "Style Info";
+"Syntax Info" = "Syntax Info";
 "Syntax Validation" = "Syntax Validation";
 
 // Syntax style validation results
@@ -723,22 +723,22 @@
 
 
 /* MARK: SyntaxManager */
-// Style name
+// Syntax name
 "None" = "None";
 
-// Selected syntax style name was original
-"Bundled styles can’t be renamed." = "Bundled styles can’t be renamed.";
+// Description for editing bundled syntax
+"Bundled syntaxes can’t be renamed." = "Bundled syntaxes can’t be renamed.";
 
 // Suffix of copied syntax coloring style
 "copy" = "copy";
 
-// Import syntax style file choose openPanel button
+// Import syntax file choose openPanel button
 "Import" = "Import";
-// Importing same name style alert
-"A new style named “%@” will be installed, but a custom style with the same name already exists." = "A new style named “%@” will be installed, but a custom style with the same name already exists.";
-"Do you want to replace it?\nReplaced style can’t be restored." = "Do you want to replace it?\nReplaced style can’t be restored.";
+// Importing same name syntax alert
+"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists.";
+"Do you want to replace it?\nReplaced syntax can’t be restored." = "Do you want to replace it?\nReplaced syntax can’t be restored.";
 
-// Export syntax style file savePanel label
+// Export syntax file savePanel label
 "Export As:" = "Export As:";
 
 // Syntax validation
@@ -861,14 +861,14 @@
 
 
 /* MARK: Syntax Mapping Conflicts View */
-"Syntax Style Mapping Conflicts" = "Syntax Style Mapping Conflicts";
-"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style.";
+"Syntax Mapping Conflicts" = "Syntax Mapping Conflicts";
+"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition.";
 "Extension" = "Extension";
 "Filename" = "Filename";
 "Interpreter" = "Interpreter";
 // table column headers
-"Used style" = "Used style";
-"Duplicated styles" = "Duplicated styles";
+"Used syntax" = "Used syntax";
+"Duplicated syntaxes" = "Duplicated syntaxes";
 
 
 

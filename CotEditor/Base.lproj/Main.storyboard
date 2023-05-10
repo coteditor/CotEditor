@@ -406,9 +406,9 @@ Gw
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="File Encoding" id="300"/>
                                         </menuItem>
-                                        <menuItem title="Syntax Style" id="302">
+                                        <menuItem title="Syntax" id="302">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Syntax Style" id="304">
+                                            <menu key="submenu" title="Syntax" id="304">
                                                 <items>
                                                     <menuItem isSeparatorItem="YES" id="kdb-Ik-s27"/>
                                                     <menuItem title="Recolor All" keyEquivalent="r" id="458">
@@ -1240,7 +1240,7 @@ CA
                         <outlet property="encodingsMenu" destination="300" id="Oy6-3l-RCI"/>
                         <outlet property="normalizationMenu" destination="600" id="Ned-B7-VAN"/>
                         <outlet property="snippetMenu" destination="dZy-7n-iCq" id="3hf-hr-ScA"/>
-                        <outlet property="syntaxStylesMenu" destination="304" id="kdn-rP-dcP"/>
+                        <outlet property="syntaxesMenu" destination="304" id="KxC-5F-otD"/>
                         <outlet property="themesMenu" destination="165-HJ-Xty" id="R7w-wo-SVO"/>
                     </connections>
                 </customObject>

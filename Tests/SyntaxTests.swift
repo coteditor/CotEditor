@@ -31,11 +31,10 @@ import Yams
 
 final class SyntaxTests: XCTestCase {
     
-    private let styleDirectoryName = "Syntaxes"
-    private let styleExtension = "yaml"
+    private let syntaxDirectoryName = "Syntaxes"
     
-    private var styleDicts: [String: SyntaxManager.StyleDictionary] = [:]
-    private var htmlStyle: SyntaxStyle?
+    private var syntaxDicts: [String: SyntaxManager.SyntaxDictionary] = [:]
+    private var htmlSyntax: Syntax?
     private var htmlSource: String?
     
     private var outlineParseCancellable: AnyCancellable?
@@ -48,20 +47,20 @@ final class SyntaxTests: XCTestCase {
         
         let bundle = Bundle(for: type(of: self))
         
-        // load styles
-        let urls = try XCTUnwrap(bundle.urls(forResourcesWithExtension: "yml", subdirectory: styleDirectoryName))
-        self.styleDicts = try urls.reduce(into: [:]) { (dict, url) in
+        // load syntaxes
+        let urls = try XCTUnwrap(bundle.urls(forResourcesWithExtension: "yml", subdirectory: syntaxDirectoryName))
+        self.syntaxDicts = try urls.reduce(into: [:]) { (dict, url) in
             let string = try String(contentsOf: url)
             let name = url.deletingPathExtension().lastPathComponent
             
             dict[name] = try XCTUnwrap(Yams.load(yaml: string) as? [String: Any])
         }
         
-        // create HTML style
-        let htmlDict = try XCTUnwrap(self.styleDicts["HTML"])
-        self.htmlStyle = SyntaxStyle(dictionary: htmlDict, name: "HTML")
+        // create HTML syntax
+        let htmlDict = try XCTUnwrap(self.syntaxDicts["HTML"])
+        self.htmlSyntax = Syntax(dictionary: htmlDict, name: "HTML")
         
-        XCTAssertNotNil(self.htmlStyle)
+        XCTAssertNotNil(self.htmlSyntax)
         
         // load test file
         let sourceURL = try XCTUnwrap(bundle.url(forResource: "sample", withExtension: "html"))
@@ -71,10 +70,10 @@ final class SyntaxTests: XCTestCase {
     }
     
     
-    func testAllSyntaxStyles() {
+    func testAllSyntaxes() {
         
-        for (name, dict) in self.styleDicts {
-            let validator = SyntaxStyleValidator(style: .init(dictionary: dict))
+        for (name, dict) in self.syntaxDicts {
+            let validator = SyntaxValidator(syntax: .init(dictionary: dict))
             XCTAssert(validator.validate())
             
             for error in validator.errors {
@@ -86,40 +85,40 @@ final class SyntaxTests: XCTestCase {
     
     func testEquality() {
         
-        XCTAssertEqual(self.htmlStyle, self.htmlStyle)
+        XCTAssertEqual(self.htmlSyntax, self.htmlSyntax)
     }
     
     
-    func testNoneStyle() {
+    func testNoneSyntax() {
         
-        let style = SyntaxStyle()
+        let syntax = Syntax()
         
-        XCTAssertEqual(style.name, "None")
-        XCTAssert(style.highlightParser.isEmpty)
-        XCTAssertNil(style.inlineCommentDelimiter)
-        XCTAssertNil(style.blockCommentDelimiters)
+        XCTAssertEqual(syntax.name, "None")
+        XCTAssert(syntax.highlightParser.isEmpty)
+        XCTAssertNil(syntax.inlineCommentDelimiter)
+        XCTAssertNil(syntax.blockCommentDelimiters)
     }
     
     
-    func testXMLSytle() throws {
+    func testXMLSyntax() throws {
         
-        let style = try XCTUnwrap(self.htmlStyle)
+        let syntax = try XCTUnwrap(self.htmlSyntax)
         
-        XCTAssertEqual(style.name, "HTML")
-        XCTAssertFalse(style.highlightParser.isEmpty)
-        XCTAssertNil(style.inlineCommentDelimiter)
-        XCTAssertEqual(style.blockCommentDelimiters?.begin, "<!--")
-        XCTAssertEqual(style.blockCommentDelimiters?.end, "-->")
+        XCTAssertEqual(syntax.name, "HTML")
+        XCTAssertFalse(syntax.highlightParser.isEmpty)
+        XCTAssertNil(syntax.inlineCommentDelimiter)
+        XCTAssertEqual(syntax.blockCommentDelimiters?.begin, "<!--")
+        XCTAssertEqual(syntax.blockCommentDelimiters?.end, "-->")
     }
     
     
     func testOutlineParse() throws {
         
-        let style = try XCTUnwrap(self.htmlStyle)
+        let syntax = try XCTUnwrap(self.htmlSyntax)
         let source = try XCTUnwrap(self.htmlSource)
         
         let textStorage = NSTextStorage(string: source)
-        let parser = SyntaxParser(textStorage: textStorage, style: style)
+        let parser = SyntaxParser(textStorage: textStorage, syntax: syntax)
         
         // test outline parsing with publisher
         let outlineParseExpectation = self.expectation(description: "didParseOutline")

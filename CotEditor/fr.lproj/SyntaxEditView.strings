@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 CotEditor Project
+//  © 2015-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,10 +24,8 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "Style Name:"; ObjectID = "987"; */
-"987.title" = "Nom de la syntaxe :";
-/* Class = "NSTextFieldCell"; placeholderString = "Style Name"; ObjectID = "988"; */
-"988.placeholderString" = "Nom de la syntaxe";
+/* Class = "NSTextFieldCell"; title = "Syntax Name:"; ObjectID = "987"; */
+"987.title" = "Nom de la syntaxe :";  // FIXME: style -> syntax
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "1020"; */
 "1020.title" = "Réglages par défaut";

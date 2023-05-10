@@ -34,11 +34,11 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     // MARK: Private Properties
     
-    private var styleNames: [String] = []
+    private var syntaxNames: [String] = []
     @objc private dynamic var isBundled = false  // bound to remove button
     
     private var encodingChangeObserver: AnyCancellable?
-    private var syntaxStyleChangeObserver: AnyCancellable?
+    private var syntaxChangeObserver: AnyCancellable?
     private lazy var filePromiseQueue = OperationQueue()
     
     @IBOutlet private weak var encodingPopUpButton: NSPopUpButton?
@@ -46,7 +46,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     @IBOutlet private var syntaxTableMenu: NSMenu?
     @IBOutlet private weak var syntaxTableView: NSTableView?
     @IBOutlet private weak var syntaxTableActionButton: NSButton?
-    @IBOutlet private weak var syntaxStylesDefaultPopup: NSPopUpButton?
+    @IBOutlet private weak var syntaxDefaultPopUpButton: NSPopUpButton?
     
     
     
@@ -57,7 +57,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         super.viewDidLoad()
         
-        self.syntaxTableView?.doubleAction = #selector(editSyntaxStyle)
+        self.syntaxTableView?.doubleAction = #selector(editSyntax)
         self.syntaxTableView?.target = self
         
         // register drag & drop types
@@ -75,10 +75,10 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in self?.setupEncodingMenu() }
         
-        self.syntaxStyleChangeObserver = Publishers.Merge(SyntaxManager.shared.$settingNames.eraseToVoid(),
-                                                          SyntaxManager.shared.didUpdateSetting.eraseToVoid())
-            .debounce(for: 0, scheduler: RunLoop.main)
-            .sink { [weak self] _ in self?.setupSyntaxStyleMenus() }
+        self.syntaxChangeObserver = Publishers.Merge(SyntaxManager.shared.$settingNames.eraseToVoid(),
+                                                     SyntaxManager.shared.didUpdateSetting.eraseToVoid())
+        .debounce(for: 0, scheduler: RunLoop.main)
+            .sink { [weak self] _ in self?.setupSyntaxMenus() }
     }
     
     
@@ -88,7 +88,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         // stop observations for UI update
         self.encodingChangeObserver = nil
-        self.syntaxStyleChangeObserver = nil
+        self.syntaxChangeObserver = nil
     }
     
     
@@ -101,7 +101,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         let isContextualMenu = (menuItem.menu == self.syntaxTableMenu)
         let representedSettingName = self.representedSettingName(for: menuItem.menu)
         
-        // set style name as representedObject to menu items whose action is related to syntax style
+        // set syntax name as representedObject to menu items whose action is related to syntax
         if NSStringFromSelector(menuItem.action!).contains("Syntax") {
             menuItem.representedObject = representedSettingName
         }
@@ -114,23 +114,23 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             case #selector(openSyntaxMappingConflictSheet(_:)):
                 return !SyntaxManager.shared.mappingConflicts.isEmpty
                 
-            case #selector(duplicateSyntaxStyle(_:)):
+            case #selector(duplicateSyntax(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Duplicate “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
                 
-            case #selector(deleteSyntaxStyle(_:)):
+            case #selector(deleteSyntax(_:)):
                 menuItem.isHidden = (state?.isBundled == true || !itemSelected)
                 
-            case #selector(restoreSyntaxStyle(_:)):
+            case #selector(restoreSyntax(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Restore “\(name)”")
                 }
                 menuItem.isHidden = (state?.isBundled == false || !itemSelected)
                 return state?.isRestorable ?? false
                 
-            case #selector(exportSyntaxStyle(_:)):
+            case #selector(exportSyntax(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Export “\(name)”…")
                 }
@@ -141,7 +141,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
                 menuItem.isHidden = state?.isCustomized != true
                 return state?.isCustomized == true
                 
-            case #selector(revealSyntaxStyleInFinder(_:)):
+            case #selector(revealSyntaxInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Reveal “\(name)” in Finder")
                 }
@@ -161,10 +161,10 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     // MARK: Delegate & Data Source
     
-    /// number of styles
+    /// number of syntaxes
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        self.styleNames.count
+        self.syntaxNames.count
     }
     
     
@@ -172,7 +172,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
         guard
-            let name = self.styleNames[safe: row],
+            let name = self.syntaxNames[safe: row],
             let state = SyntaxManager.shared.state(of: name)
         else { return nil }
         
@@ -182,31 +182,31 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     
     
-    /// selected syntax style in "Installed styles" list table did change
+    /// selected syntax in "Installed syntaxes" list table did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         guard notification.object as? NSTableView == self.syntaxTableView else { return }
         
-        self.isBundled = SyntaxManager.shared.state(of: self.selectedStyleName)?.isBundled == true
+        self.isBundled = SyntaxManager.shared.state(of: self.selectedSyntaxName)?.isBundled == true
     }
     
     
-    /// set action on swiping style name
+    /// set action on swiping syntax name
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }
         
-        // get swiped style
-        let styleName = self.styleNames[row]
+        // get swiped syntax
+        let syntaxName = self.syntaxNames[row]
         
-        // do nothing on undeletable style
-        guard let state = SyntaxManager.shared.state(of: styleName), state.isCustomized else { return [] }
+        // do nothing on undeletable syntax
+        guard let state = SyntaxManager.shared.state(of: syntaxName), state.isCustomized else { return [] }
         
         if state.isBundled {
             return [NSTableViewRowAction(style: .regular,
                                          title: String(localized: "Restore"),
                                          handler: { [weak self] (_, _) in
-                                            self?.restoreSyntaxStyle(name: styleName)
+                                            self?.restoreSyntax(name: syntaxName)
                                             
                                             // finish swiped mode anyway
                                             tableView.rowActionsVisible = false
@@ -215,7 +215,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             return [NSTableViewRowAction(style: .destructive,
                                          title: String(localized: "Delete"),
                                          handler: { [weak self] (_, _) in
-                                            self?.deleteSyntaxStyle(name: styleName)
+                                            self?.deleteSyntax(name: syntaxName)
                                          })]
         }
     }
@@ -252,13 +252,13 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
                         self?.presentError(error)
                         return
                     }
-                    self?.importSyntaxStyle(fileURL: fileURL)
+                    self?.importSyntax(fileURL: fileURL)
                 }
             }
             
         } else if let fileURLs = info.fileURLs(with: .yaml, for: tableView) {
             for fileURL in fileURLs {
-                self.importSyntaxStyle(fileURL: fileURL)
+                self.importSyntax(fileURL: fileURL)
             }
             
         } else {
@@ -273,7 +273,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> (any NSPasteboardWriting)? {
         
-        guard let settingName = self.styleNames[safe: row] else { return nil }
+        guard let settingName = self.syntaxNames[safe: row] else { return nil }
         
         let provider = NSFilePromiseProvider(fileType: UTType.yaml.identifier, delegate: self)
         provider.userInfo = settingName
@@ -337,54 +337,54 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// show syntax style edit sheet
-    @IBAction func editSyntaxStyle(_ sender: Any?) {
+    /// show syntax edit sheet
+    @IBAction func editSyntax(_ sender: Any?) {
         
-        let styleName = self.targetStyleName(for: sender)
-        let state = SyntaxManager.shared.state(of: styleName)!
+        let syntaxName = self.targetSyntaxName(for: sender)
+        let state = SyntaxManager.shared.state(of: syntaxName)!
         
-        self.presentStyleEditor(mode: .edit(state))
+        self.presentSyntaxEditor(mode: .edit(state))
     }
     
     
-    /// show syntax style edit sheet in copy mode
-    @IBAction func duplicateSyntaxStyle(_ sender: Any?) {
+    /// show syntax edit sheet in copy mode
+    @IBAction func duplicateSyntax(_ sender: Any?) {
         
-        let styleName = self.targetStyleName(for: sender)
-        let state = SyntaxManager.shared.state(of: styleName)!
+        let syntaxName = self.targetSyntaxName(for: sender)
+        let state = SyntaxManager.shared.state(of: syntaxName)!
         
-        self.presentStyleEditor(mode: .copy(state))
+        self.presentSyntaxEditor(mode: .copy(state))
     }
     
     
-    /// show syntax style edit sheet in new mode
-    @IBAction func createSyntaxStyle(_ sender: Any?) {
+    /// show syntax edit sheet in new mode
+    @IBAction func createSyntax(_ sender: Any?) {
         
-        self.presentStyleEditor(mode: .new)
+        self.presentSyntaxEditor(mode: .new)
     }
     
-    /// delete selected syntax style
-    @IBAction func deleteSyntaxStyle(_ sender: Any?) {
+    /// delete selected syntax
+    @IBAction func deleteSyntax(_ sender: Any?) {
         
-        let styleName = self.targetStyleName(for: sender)
+        let syntaxName = self.targetSyntaxName(for: sender)
         
-        self.deleteSyntaxStyle(name: styleName)
-    }
-    
-    
-    /// restore selected syntax style to original bundled one
-    @IBAction func restoreSyntaxStyle(_ sender: Any?) {
-        
-        let styleName = self.targetStyleName(for: sender)
-        
-        self.restoreSyntaxStyle(name: styleName)
+        self.deleteSyntax(name: syntaxName)
     }
     
     
-    /// export selected syntax style
-    @IBAction func exportSyntaxStyle(_ sender: Any?) {
+    /// restore selected syntax to original bundled one
+    @IBAction func restoreSyntax(_ sender: Any?) {
         
-        let settingName = self.targetStyleName(for: sender)
+        let syntaxName = self.targetSyntaxName(for: sender)
+        
+        self.restoreSyntax(name: syntaxName)
+    }
+    
+    
+    /// export selected syntax
+    @IBAction func exportSyntax(_ sender: Any?) {
+        
+        let settingName = self.targetSyntaxName(for: sender)
         
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
@@ -406,8 +406,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// import syntax style file via open panel
-    @IBAction func importSyntaxStyle(_ sender: Any?) {
+    /// import syntax file via open panel
+    @IBAction func importSyntax(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
         openPanel.prompt = String(localized: "Import")
@@ -420,7 +420,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }
             
             for url in openPanel.urls {
-                self.importSyntaxStyle(fileURL: url)
+                self.importSyntax(fileURL: url)
             }
         }
     }
@@ -428,7 +428,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     @IBAction func shareStyle(_ sender: NSMenuItem) {
         
-        let styleName = self.targetStyleName(for: sender)
+        let styleName = self.targetSyntaxName(for: sender)
         
         guard let url = SyntaxManager.shared.urlForUserSetting(name: styleName) else { return }
         
@@ -443,18 +443,18 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// open directory in Application Support in Finder where the selected style exists
-    @IBAction func revealSyntaxStyleInFinder(_ sender: Any?) {
+    /// open directory in Application Support in Finder where the selected syntax exists
+    @IBAction func revealSyntaxInFinder(_ sender: Any?) {
         
-        let styleName = self.targetStyleName(for: sender)
+        let syntaxName = self.targetSyntaxName(for: sender)
         
-        guard let url = SyntaxManager.shared.urlForUserSetting(name: styleName) else { return }
+        guard let url = SyntaxManager.shared.urlForUserSetting(name: syntaxName) else { return }
         
         NSWorkspace.shared.activateFileViewerSelecting([url])
     }
     
     
-    @IBAction func reloadAllStyles(_ sender: Any?) {
+    @IBAction func reloadAllSyntaxes(_ sender: Any?) {
         
         Task.detached(priority: .utility) {
             SyntaxManager.shared.loadUserSettings()
@@ -478,70 +478,70 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// build syntax style menus
-    private func setupSyntaxStyleMenus() {
+    /// build syntax menus
+    private func setupSyntaxMenus() {
         
-        let styleNames = SyntaxManager.shared.settingNames
+        let syntaxNames = SyntaxManager.shared.settingNames
         
-        // update installed style list table
-        let selectedStyleName = self.selectedStyleName
-        self.styleNames = styleNames
+        // update installed syntax list table
+        let selectedSyntaxName = self.selectedSyntaxName
+        self.syntaxNames = syntaxNames
         self.syntaxTableView?.reloadData()
-        if let index = styleNames.firstIndex(of: selectedStyleName) {
+        if let index = syntaxNames.firstIndex(of: selectedSyntaxName) {
             self.syntaxTableView?.selectRowIndexes([index], byExtendingSelection: false)
         }
         
-        // update default style popup menu
-        if let popUpButton = self.syntaxStylesDefaultPopup {
+        // update default syntax popup menu
+        if let popUpButton = self.syntaxDefaultPopUpButton {
             popUpButton.removeAllItems()
-            popUpButton.addItem(withTitle: BundledStyleName.none)
+            popUpButton.addItem(withTitle: BundledSyntaxName.none)
             popUpButton.menu?.addItem(.separator())
-            popUpButton.addItems(withTitles: styleNames)
+            popUpButton.addItems(withTitles: syntaxNames)
             
             // select menu item for the current setting manually although Cocoa-Bindings are used on this menu
             // -> Because items were actually added after Cocoa-Binding selected the item.
-            let defaultStyle = UserDefaults.standard[.syntaxStyle]
-            let selectedStyle = styleNames.contains(defaultStyle) ? defaultStyle : BundledStyleName.none
+            let defaultSyntax = UserDefaults.standard[.syntax]
+            let selectedSyntax = syntaxNames.contains(defaultSyntax) ? defaultSyntax : BundledSyntaxName.none
             
-            popUpButton.selectItem(withTitle: selectedStyle)
+            popUpButton.selectItem(withTitle: selectedSyntax)
         }
     }
     
     
-    /// syntax style name which is currently selected in the list table
-    private var selectedStyleName: String {
+    /// syntax name which is currently selected in the list table
+    private var selectedSyntaxName: String {
         
         guard let tableView = self.syntaxTableView, tableView.selectedRow >= 0 else {
-            return UserDefaults.standard[.syntaxStyle]
+            return UserDefaults.standard[.syntax]
         }
-        return self.styleNames[tableView.selectedRow]
+        return self.syntaxNames[tableView.selectedRow]
     }
     
     
     /// return representedObject if sender is menu item, otherwise selection in the list table
-    private func targetStyleName(for sender: Any?) -> String {
+    private func targetSyntaxName(for sender: Any?) -> String {
         
         if let menuItem = sender as? NSMenuItem {
             return menuItem.representedObject as! String
         }
-        return self.selectedStyleName
+        return self.selectedSyntaxName
     }
     
     
     private func representedSettingName(for menu: NSMenu?) -> String? {
         
         guard self.syntaxTableView?.menu == menu else {
-            return self.selectedStyleName
+            return self.selectedSyntaxName
         }
         
         guard let clickedRow = self.syntaxTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
         
-        return self.styleNames[safe: clickedRow]
+        return self.syntaxNames[safe: clickedRow]
     }
     
     
-    /// try to delete given syntax style
-    private func deleteSyntaxStyle(name: String) {
+    /// try to delete given syntax
+    private func deleteSyntax(name: String) {
         
         let alert = NSAlert()
         alert.messageText = String(localized: "Are you sure you want to delete “\(name)”?")
@@ -553,7 +553,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         let window = self.view.window!
         Task {
             guard await alert.beginSheetModal(for: window) == .alertSecondButtonReturn else {  // cancelled
-                // flush swipe action for in case if this deletion was invoked by swiping the style name
+                // flush swipe action for in case if this deletion was invoked by swiping the syntax name
                 self.syntaxTableView?.rowActionsVisible = false
                 return
             }
@@ -573,8 +573,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// try to restore given syntax style
-    private func restoreSyntaxStyle(name: String) {
+    /// try to restore given syntax
+    private func restoreSyntax(name: String) {
         
         do {
             try SyntaxManager.shared.restoreSetting(name: name)
@@ -584,8 +584,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// try to import syntax style file at given URL
-    private func importSyntaxStyle(fileURL: URL) {
+    /// try to import syntax file at given URL
+    private func importSyntax(fileURL: URL) {
         
         do {
             try SyntaxManager.shared.importSetting(fileURL: fileURL)
@@ -596,10 +596,10 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// Present the syntax style edit sheet.
+    /// Present the sytnax edit sheet.
     ///
     /// - Parameter mode: The edit mode.
-    private func presentStyleEditor(mode: SyntaxEditViewController.Mode) {
+    private func presentSyntaxEditor(mode: SyntaxEditViewController.Mode) {
         
         let viewController = NSStoryboard(name: "SyntaxEditView").instantiateInitialController { (coder) in
             SyntaxEditViewController(coder: coder, mode: mode)

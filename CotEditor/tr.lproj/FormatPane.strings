@@ -45,21 +45,21 @@
 "3280.title" = "Belgedeki kodlama beyanına başvur";
 
 
-/* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
-"3329.title" = "Öntanımlı sözdizim biçemi:";
+/* Class = "NSTextFieldCell"; title = "Default syntax:"; ObjectID = "3329"; */
+"3329.title" = "Öntanımlı sözdizim biçemi:";  // FIXME: syntax style -> syntax
 
-/* Class = "NSTextFieldCell"; title = "Available syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
-"vlw-Tc-sLl.title" = "Kullanılabilir sözdizim biçemleri:";
+/* Class = "NSTextFieldCell"; title = "Available syntaxes:"; ObjectID = "vlw-Tc-sLl"; */
+"vlw-Tc-sLl.title" = "Kullanılabilir sözdizim biçemleri:";  // FIXME: syntax style -> syntax
 
-/* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
-"cbJ-XK-bnG.ibShadowedToolTip" = "Bu biçem özelleştirilmiş.";
+/* Class = "NSView"; ibShadowedToolTip = "This syntax is customized."; ObjectID = "cbJ-XK-bnG"; */
+"cbJ-XK-bnG.ibShadowedToolTip" = "Bu biçem özelleştirilmiş.";  // FIXME: style -> syntax
 
-/* Class = "NSButton"; ibShadowedToolTip = "Remove selected style"; ObjectID = "dI1-Dk-Mce"; */
-"dI1-Dk-Mce.ibShadowedToolTip" = "Seçili biçemi kaldır";
-/* Class = "NSButton"; ibShadowedToolTip = "Add empty style"; ObjectID = "Hma-8v-2gu"; */
-"Hma-8v-2gu.ibShadowedToolTip" = "Boş biçem ekle";
-/* Class = "NSButton"; ibShadowedToolTip = "Edit selected style"; ObjectID = "Q0c-oI-um3"; */
-"Q0c-oI-um3.ibShadowedToolTip" = "Seçili biçemi düzenle";
+/* Class = "NSButton"; ibShadowedToolTip = "Remove selected syntax"; ObjectID = "dI1-Dk-Mce"; */
+"dI1-Dk-Mce.ibShadowedToolTip" = "Seçili biçemi kaldır";  // FIXME: style -> syntax
+/* Class = "NSButton"; ibShadowedToolTip = "Add empty syntax"; ObjectID = "Hma-8v-2gu"; */
+"Hma-8v-2gu.ibShadowedToolTip" = "Boş biçem ekle";  // FIXME: style -> syntax
+/* Class = "NSButton"; ibShadowedToolTip = "Edit selected syntax"; ObjectID = "Q0c-oI-um3"; */
+"Q0c-oI-um3.ibShadowedToolTip" = "Seçili biçemi düzenle";  // FIXME: style -> syntax
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Edit"; ObjectID = "Q0c-oI-um3"; */
 "Q0c-oI-um3.ibExternalAccessibilityDescription" = "Düzenle";
 
@@ -67,8 +67,8 @@
 "1lj-x8-ouD.title" = "İçe Aktar…";
 /* Class = "NSMenuItem"; title = "Share…"; ObjectID = "xRA-ND-YIE"; */
 "xRA-ND-YIE.title" = "Paylaş…";
-/* Class = "NSMenuItem"; title = "Reload All Styles"; ObjectID = "FhP-Hj-cWE"; */
-"FhP-Hj-cWE.title" = "Tüm Biçemleri Yeniden Yükle";
+/* Class = "NSMenuItem"; title = "Reload All Syntaxes"; ObjectID = "FhP-Hj-cWE"; */
+"FhP-Hj-cWE.title" = "Tüm Biçemleri Yeniden Yükle";  // FIXME: style -> syntax
 /* Class = "NSMenuItem"; title = "Show File Mapping Conflicts"; ObjectID = "hyN-4W-57i"; */
 "hyN-4W-57i.title" = "Dosya Eşlemleme Çakışmalarını Göster";
 

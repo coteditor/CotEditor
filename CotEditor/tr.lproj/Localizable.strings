@@ -298,9 +298,9 @@
 
 
 /* MARK: Toolbar */
-"Syntax Style" = "Sözdizim Biçemi";
+"Syntax" = "Sözdizim";
 // tooltip
-"Change syntax style" = "Sözdizim biçemini değiştir";
+"Change syntax" = "Sözdizim biçemini değiştir";  // FIXME: syntax style -> syntax
 // menu item title
 "Recently Used" = "Son Kullanılan";
 "Deleted" = "Silinen";
@@ -697,7 +697,7 @@
 "Outline" = "Ana Hat";
 "Completion List" = "Tamamlama Listesi";
 "File Mapping" = "Dosya Eşlemleme";
-"Style Info" = "Biçem Bilgisi";
+"Syntax Info" = "Biçem Bilgisi";  // FIXME: style -> syntax
 "Syntax Validation" = "Sözdizim Doğrulama";
 
 // Syntax style validation results
@@ -723,22 +723,22 @@
 
 
 /* MARK: SyntaxManager */
-// Style name
+// Syntax name
 "None" = "Hiçbiri";
 
-// Selected syntax style name was original
-"Bundled styles can’t be renamed." = "Uygulama ile gelen biçemler yeniden adlandırılamaz.";
+// Description for editing bundled syntax
+"Bundled syntaxes can’t be renamed." = "Uygulama ile gelen biçemler yeniden adlandırılamaz.";  // FIXME: style -> syntax
 
 // Suffix of copied syntax coloring style
 "copy" = "kopyası";
 
-// Import syntax style file choose openPanel button
+// Import syntax file choose openPanel button
 "Import" = "İçe Aktar";
-// Importing same name style alert
-"A new style named “%@” will be installed, but a custom style with the same name already exists." = "“%@” adlı yeni bir biçem yüklenecek; ancak aynı adlı başka bir biçem halihazırda var.";
-"Do you want to replace it?\nReplaced style can’t be restored." = "Yeni biçemle değiştirmek istiyor musunuz?\nDeğiştirilen biçem geri yüklenemez.";
+// Importing same name syntax alert
+"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "“%@” adlı yeni bir biçem yüklenecek; ancak aynı adlı başka bir biçem halihazırda var.";  // FIXME: style -> syntax
+"Do you want to replace it?\nReplaced syntax can’t be restored." = "Yeni biçemle değiştirmek istiyor musunuz?\nDeğiştirilen biçem geri yüklenemez.";  // FIXME: style -> syntax
 
-// Export syntax style file savePanel label
+// Export syntax file savePanel label
 "Export As:" = "Farklı Dışa Aktar:";
 
 // Syntax validation
@@ -861,14 +861,14 @@
 
 
 /* MARK: Syntax Mapping Conflicts View */
-"Syntax Style Mapping Conflicts" = "Sözdizim Biçemli Eşlemleme Çakışmaları";
-"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "Aşağıdaki dosya eşlemleme kuralları birden çok biçemde kayıtlıdır. CotEditor, kendiliğinden ilk biçemi kullanır. Çakışmaları çözmek için her bir sözdizim biçemini düzenleyin.";
+"Syntax Mapping Conflicts" = "Sözdizim Biçemli Eşlemleme Çakışmaları";  // FIXME: syntax style -> syntax
+"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "Aşağıdaki dosya eşlemleme kuralları birden çok biçemde kayıtlıdır. CotEditor, kendiliğinden ilk biçemi kullanır. Çakışmaları çözmek için her bir sözdizim biçemini düzenleyin.";  // FIXME: updated
 "Extension" = "Uzantı";
 "Filename" = "Dosya Adı";
 "Interpreter" = "Yorumlayıcı";
 // table column headers
-"Used style" = "Kullanılan Biçem";
-"Duplicated styles" = "Yinelenmiş Biçemler";
+"Used syntax" = "Kullanılan Biçem";  // FIXME: updated
+"Duplicated syntaxes" = "Yinelenmiş Biçemler";  // FIXME: updated
 
 
 

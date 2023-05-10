@@ -298,9 +298,9 @@
 
 
 /* MARK: Toolbar */
-"Syntax Style" = "Syntaxstil";
+"Syntax" = "Syntax";
 // tooltip
-"Change syntax style" = "Syntaxstil ändern";
+"Change syntax" = "Syntax ändern";
 // menu item title
 "Recently Used" = "Zuletzt benutzt";
 "Deleted" = "Gelöscht";
@@ -697,7 +697,7 @@
 "Outline" = "Gliederung";
 "Completion List" = "Vervollständigung";
 "File Mapping" = "Dateizuordnung";
-"Style Info" = "Stil-Info";
+"Syntax Info" = "Syntax-Info";
 "Syntax Validation" = "Syntaxvalidierung";
 
 // Syntax style validation results
@@ -723,22 +723,22 @@
 
 
 /* MARK: SyntaxManager */
-// Style name
+// Syntax name
 "None" = "Ohne";
 
-// Selected syntax style name was original
-"Bundled styles can’t be renamed." = "Integrierte Stile können nicht umbenannt werden.";
+// Description for editing bundled syntax
+"Bundled syntaxes can’t be renamed." = "Integrierte Syntaxen können nicht umbenannt werden.";
 
 // Suffix of copied syntax coloring style
 "copy" = "Kopie";
 
-// Import syntax style file choose openPanel button
+// Import syntax file choose openPanel button
 "Import" = "Importieren";
-// Importing same name style alert
-"A new style named “%@” will be installed, but a custom style with the same name already exists." = "Ein neuer Stil mit dem Namen „%@“ wird installiert, doch ein benutzerdefinierter Stil mit demselben Namen existiert bereits.";
-"Do you want to replace it?\nReplaced style can’t be restored." = "Möchtest du ihn ersetzen?\nErsetzter Stil kann nicht wiederhergestellt werden.";
+// Importing same name syntax alert
+"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "Eine neue Syntax mit dem Namen „%@“ wird installiert, doch ein benutzerdefinierte Syntax mit demselben Namen existiert bereits.";
+"Do you want to replace it?\nReplaced syntax can’t be restored." = "Möchtest du sie ersetzen?\nErsetzte Syntax kann nicht wiederhergestellt werden.";
 
-// Export syntax style file savePanel label
+// Export syntax file savePanel label
 "Export As:" = "Exportieren als:";
 
 // Syntax validation
@@ -861,14 +861,14 @@
 
 
 /* MARK: Syntax Mapping Conflicts View */
-"Syntax Style Mapping Conflicts" = "Dateizuordnungskonflikte";
-"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "Die folgenden Dateizuordnungsregeln sind in mehreren Stilen registriert.CotEditor verwendet den ersten Stil automatisch. Um Konflikte zu beheben, bearbeite jeden Syntaxstil.";
+"Syntax Mapping Conflicts" = "Dateizuordnungskonflikte";
+"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "Die folgenden Dateizuordnungsregeln sind in mehreren Syntaxen registriert.CotEditor verwendet die erste Syntax automatisch. Um Konflikte zu beheben, bearbeite jede Syntax.";
 "Extension" = "Suffix";
 "Filename" = "Dateiname";
 "Interpreter" = "Interpreter";
 // table column headers
-"Used style" = "Angewandter Stil";
-"Duplicated styles" = "Duplizierte Stile";
+"Used syntax" = "Angewandte Syntax";
+"Duplicated syntaxes" = "Duplizierte Syntaxen";
 
 
 

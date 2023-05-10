@@ -60,7 +60,7 @@ final class SnippetManager {
         
         self.migrateIfNeeded()
         
-        self.scopeObserver = (DocumentController.shared as! DocumentController).$currentStyleName
+        self.scopeObserver = (DocumentController.shared as! DocumentController).$currentSyntaxName
             .removeDuplicates()
             .sink { [unowned self] in self.scope = $0 }
     }
@@ -83,7 +83,7 @@ final class SnippetManager {
     ///
     /// - Parameters:
     ///   - shortcut: The shortcut.
-    ///   - scope: The syntax style scope.
+    ///   - scope: The syntax scope.
     /// - Returns: The corresponded snippet or nil.
     func snippet(for shortcut: Shortcut, scope: String) -> Snippet? {
         

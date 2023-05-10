@@ -298,9 +298,9 @@
 
 
 /* MARK: Toolbar */
-"Syntax Style" = "语法样式";
+"Syntax" = "语法";
 // tooltip
-"Change syntax style" = "改变语法样式";
+"Change syntax" = "改变语法样式";  // FIXME: syntax style -> syntax
 // menu item title
 "Recently Used" = "最近使用";
 "Deleted" = "已删除";  // heading for deleted items
@@ -697,7 +697,7 @@
 "Outline" = "大纲";
 "Completion List" = "补全列表";
 "File Mapping" = "文件关联";
-"Style Info" = "样式信息";
+"Syntax Info" = "样式信息";  // FIXME: style -> syntax
 "Syntax Validation" = "语法验证";
 
 // Syntax style validation results
@@ -723,22 +723,22 @@
 
 
 /* MARK: SyntaxManager */
-// Style name
+// Syntax name
 "None" = "无";
 
-// Selected syntax style name was original
-"Bundled styles can’t be renamed." = "内置样式的名称不能改变。";
+// Description for editing bundled syntax
+"Bundled syntaxes can’t be renamed." = "内置样式的名称不能改变。";  // FIXME: style -> syntax
 
 // Suffix of copied syntax coloring style
 "copy" = "拷贝";
 
-// Import syntax style file choose openPanel button
+// Import syntax file choose openPanel button
 "Import" = "导入";
-// Importing same name style alert
-"A new style named “%@” will be installed, but a custom style with the same name already exists." = "将要安装名为“%@”的新样式，但是已经存在同名的自定义样式。";
-"Do you want to replace it?\nReplaced style can’t be restored." = "要替换样式吗？\n被替换的样式无法将恢复。";
+// Importing same name syntax alert
+"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "将要安装名为“%@”的新样式，但是已经存在同名的自定义样式。";  // FIXME: style -> syntax
+"Do you want to replace it?\nReplaced syntax can’t be restored." = "要替换样式吗？\n被替换的样式无法将恢复。";  // FIXME: style -> syntax
 
-// Export syntax style file savePanel label
+// Export syntax file savePanel label
 "Export As:" = "导出为：";
 
 // Syntax validation
@@ -861,14 +861,14 @@
 
 
 /* MARK: Syntax Mapping Conflicts View */
-"Syntax Style Mapping Conflicts" = "语法样式映射冲突";
-"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "下列文件映射规则被注册了多种格式。CotEditor自动使用第一个格式。可以通过编辑每个语法格式来解决冲突。";
+"Syntax Mapping Conflicts" = "语法样式映射冲突";  // FIXME: syntax style -> syntax
+"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "下列文件映射规则被注册了多种格式。CotEditor自动使用第一个格式。可以通过编辑每个语法格式来解决冲突。";  // FIXME: updated
 "Extension" = "扩展名";
 "Filename" = "檔案名稱";
 "Interpreter" = "解释器";
 // table column headers
-"Used style" = "已使用样式";
-"Duplicated styles" = "重复的样式";
+"Used syntax" = "已使用样式";  // FIXME: updated
+"Duplicated syntaxes" = "重复的样式";  // FIXME: updated
 
 
 

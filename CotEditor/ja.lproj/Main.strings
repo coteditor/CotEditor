@@ -218,10 +218,10 @@
 /* Class = "NSMenu"; title = "File Encoding"; ObjectID = "300"; */
 "300.title" = "エンコーディング";
 
-/* Class = "NSMenuItem"; title = "Syntax Style"; ObjectID = "302"; */
-"302.title" = "シンタックススタイル";
-/* Class = "NSMenu"; title = "Syntax Style"; ObjectID = "304"; */
-"304.title" = "シンタックススタイル";
+/* Class = "NSMenuItem"; title = "Syntax"; ObjectID = "302"; */
+"302.title" = "シンタックス";
+/* Class = "NSMenu"; title = "Syntax"; ObjectID = "304"; */
+"304.title" = "シンタックス";
 /* Class = "NSMenuItem"; title = "Recolor All"; ObjectID = 458; */
 "458.title" = "再カラーリング";
 

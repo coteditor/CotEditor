@@ -76,15 +76,15 @@ Currently, we already have maintainers for:
 CotEditor project is also asking for localization of description on the Mac App Store. We have a separate repository for it at [coteditor/Documents-for-AppStore](https://github.com/coteditor/Documents-for-AppStore).
 
 
-### Syntax Styles
+### Syntaxes
 
-#### Adding a new bundled syntax style
+#### Adding a new bundled syntax
 
-Put just your new syntax style into `/CotEditor/syntaxes/` directory. You don't need to modify `SyntaxMap.json` file. It's generated automatically on the build.
+Put just your new syntax into `/CotEditor/syntaxes/` directory. You don't need to modify `SyntaxMap.json` file. It's generated automatically on the build.
 
-The license for the bundled syntax styles must be "Same as CotEditor".
+The license for the bundled syntaxes must be "Same as CotEditor".
 
-If the syntax language is relatively minor, we recommend you not to bundle it to CotEditor but to distribute it as an additional syntax style in your own way, and just add a link to our [wiki page](https://github.com/coteditor/CotEditor/wiki/Additional-Syntax-Styles).
+If the syntax language is relatively minor, we recommend you not to bundle it to CotEditor but to distribute it as an additional syntax in your own way, and just add a link to our [wiki page](https://github.com/coteditor/CotEditor/wiki/Additional-Syntax-Styles).
 
 
 ### Themes

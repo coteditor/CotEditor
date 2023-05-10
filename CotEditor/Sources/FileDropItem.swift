@@ -48,7 +48,7 @@ struct FileDropItem {
     ///
     /// - Parameters:
     ///   - pathExtension: The file extension.
-    ///   - scope: The syntax style scope.
+    ///   - scope: The syntax scope.
     /// - Returns: `True` if the given values supported.
     func supports(extension pathExtension: String?, scope: String?) -> Bool {
         

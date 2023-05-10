@@ -27,9 +27,9 @@ import SwiftUI
 
 struct SyntaxValidationView: View {
     
-    let validator: SyntaxStyleValidator
+    let validator: SyntaxValidator
     
-    @State private var errors: [SyntaxStyleValidator.StyleError] = []
+    @State private var errors: [SyntaxValidator.Error] = []
     
     
     // MARK: View
@@ -85,7 +85,7 @@ struct SyntaxValidationView: View {
     
     private struct ErrorView: View {
         
-        @Binding var error: SyntaxStyleValidator.StyleError
+        @Binding var error: SyntaxValidator.Error
         
         
         var body: some View {
@@ -135,9 +135,9 @@ struct SyntaxValidationView_Previews: PreviewProvider {
             "commands": [["beginString": "Lorem ipsum dolor sit amet, consectetur[",
                           "regularExpression": true]],
         ]
-        let style = NSMutableDictionary(dictionary: dictionary)
+        let syntax = NSMutableDictionary(dictionary: dictionary)
         
-        SyntaxValidationView(validator: .init(style: style))
+        SyntaxValidationView(validator: .init(syntax: syntax))
             .frame(width: 400)
     }
 }

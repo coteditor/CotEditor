@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 CotEditor Project
+//  © 2014-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -85,8 +85,8 @@
 "dLj-Kh-KtX.title" = "入力補完候補リストに含む単語:";
 /* Class = "NSButtonCell"; title = "Words in document"; ObjectID = "EJZ-N6-54G"; */
 "EJZ-N6-54G.title" = "書類に含まれる単語";
-/* Class = "NSButtonCell"; title = "Words defined in syntax style"; ObjectID = "1v9-7i-9RL"; */
-"1v9-7i-9RL.title" = "シンタックススタイルで定義された単語";
+/* Class = "NSButtonCell"; title = "Words defined in syntax"; ObjectID = "1v9-7i-9RL"; */
+"1v9-7i-9RL.title" = "シンタックスで定義された単語";
 /* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */
 "c5j-0N-f2R.title" = "一般単語";
 

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,10 +24,8 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "Style Name:"; ObjectID = "987"; */
-"987.title" = "Biçem Adı:";
-/* Class = "NSTextFieldCell"; placeholderString = "Style Name"; ObjectID = "988"; */
-"988.placeholderString" = "Biçem Adı";
+/* Class = "NSTextFieldCell"; title = "Syntax Name:"; ObjectID = "987"; */
+"987.title" = "Biçem Adı:";  // FIXME: style -> syntax
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "1020"; */
 "1020.title" = "Saptanmışlara Dön";

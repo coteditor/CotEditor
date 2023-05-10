@@ -28,7 +28,7 @@ import UniformTypeIdentifiers
 import ArgumentParser
 import Yams
 
-private struct SyntaxStyle: Codable {
+private struct Syntax: Codable {
     
     struct StringItem: Codable {
         
@@ -59,21 +59,21 @@ struct Command: ParsableCommand {
 
 func buildSyntaxMap(directoryURL: URL) throws -> String {
     
-    // find syntax style files
+    // find syntax files
     let urls = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: [.contentTypeKey])
         .filter { try $0.resourceValues(forKeys: [.contentTypeKey]).contentType?.conforms(to: .yaml) == true }
     
-    // build syntaxMap from syntax style files
+    // build syntaxMap from syntax files
     let decoder = YAMLDecoder()
     let syntaxMap: [String: [String: [String]]] = try urls.reduce(into: [:]) { (map, url) in
-        let styleName = url.deletingPathExtension().lastPathComponent
+        let syntaxName = url.deletingPathExtension().lastPathComponent
         let yaml = try String(contentsOf: url)
-        let style = try decoder.decode(SyntaxStyle.self, from: yaml)
+        let syntax = try decoder.decode(Syntax.self, from: yaml)
         
-        map[styleName] = [
-            "extensions": style.extensions,
-            "filenames": style.filenames,
-            "interpreters": style.interpreters,
+        map[syntaxName] = [
+            "extensions": syntax.extensions,
+            "filenames": syntax.filenames,
+            "interpreters": syntax.interpreters,
         ]
             .mapValues { $0?.map(\.keyString) ?? [] }
     }

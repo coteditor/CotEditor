@@ -104,7 +104,7 @@ struct DefaultSettings {
         .encodingInNew: String.Encoding.utf8.rawValue,
         .saveUTF8BOM: false,
         .referToEncodingTag: true,
-        .syntaxStyle: "Plain Text",
+        .syntax: "Plain Text",
         
         .fileDropArray: [
             FileDropItem(format: "![<<<FILENAME-NOSUFFIX>>>](<<<RELATIVE-PATH>>>)",
@@ -162,7 +162,7 @@ struct DefaultSettings {
         .pinsThemeAppearance: false,
         .colorCodeType: 1,
         .sidebarWidth: 220,
-        .recentStyleNames: [String](),
+        .recentSyntaxNames: [String](),
         .showStatusBar: true,
         .selectedInspectorPaneIndex: 0,
         .consoleFontSize: NSFont.smallSystemFontSize,
@@ -175,7 +175,7 @@ struct DefaultSettings {
         .coloringRangeBufferLength: 5000,
         .largeFileAlertThreshold: 200 * pow(1024, 2),  // 200 MB
         .savesTextOrientation: true,
-        .maximumRecentStyleCount: 6,
+        .maximumRecentSyntaxCount: 6,
         .minimumLengthForNonContiguousLayout: 5_000_000,
         .suppressesInconsistentLineEndingAlert: false,
     ]

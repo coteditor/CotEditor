@@ -174,15 +174,15 @@ extension Document {
     }
     
     
-    /// syntax style name (Unicode text)
+    /// syntax name (Unicode text)
     @objc var coloringStyle: String {
         
         get {
-            self.syntaxParser.style.name
+            self.syntaxParser.syntax.name
         }
         
         set {
-            self.setSyntaxStyle(name: newValue)
+            self.setSyntax(name: newValue)
         }
     }
     

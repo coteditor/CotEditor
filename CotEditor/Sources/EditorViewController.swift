@@ -144,16 +144,16 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
-    /// Apply syntax style to the inner text view.
+    /// Apply syntax to the inner text view.
     ///
-    /// - Parameter style: The syntax style to apply.
-    func apply(style: SyntaxStyle) {
+    /// - Parameter syntax: The syntax to apply.
+    func apply(syntax: Syntax) {
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        textView.inlineCommentDelimiter = style.inlineCommentDelimiter
-        textView.blockCommentDelimiters = style.blockCommentDelimiters
-        textView.syntaxCompletionWords = style.completionWords
+        textView.inlineCommentDelimiter = syntax.inlineCommentDelimiter
+        textView.blockCommentDelimiters = syntax.blockCommentDelimiters
+        textView.syntaxCompletionWords = syntax.completionWords
     }
     
     

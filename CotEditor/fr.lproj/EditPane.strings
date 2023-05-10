@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 CotEditor Project
+//  © 2015-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -85,7 +85,7 @@
 "dLj-Kh-KtX.title" = "La liste de complétion inclue :";
 /* Class = "NSButtonCell"; title = "Words in document"; ObjectID = "EJZ-N6-54G"; */
 "EJZ-N6-54G.title" = "Mots du document";
-/* Class = "NSButtonCell"; title = "Words defined in syntax style"; ObjectID = "1v9-7i-9RL"; */
+/* Class = "NSButtonCell"; title = "Words defined in syntax"; ObjectID = "1v9-7i-9RL"; */
 "1v9-7i-9RL.title" = "Mots définis dans la syntaxe";
 /* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */
 "c5j-0N-f2R.title" = "Mots courants";

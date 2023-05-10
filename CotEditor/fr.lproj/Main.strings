@@ -218,9 +218,9 @@
 /* Class = "NSMenu"; title = "File Encoding"; ObjectID = "300"; */
 "300.title" = "Encodage du fichier";
 
-/* Class = "NSMenuItem"; title = "Syntax Style"; ObjectID = "302"; */
+/* Class = "NSMenuItem"; title = "Syntax"; ObjectID = "302"; */
 "302.title" = "Syntaxe";
-/* Class = "NSMenu"; title = "Syntax Style"; ObjectID = "304"; */
+/* Class = "NSMenu"; title = "Syntax"; ObjectID = "304"; */
 "304.title" = "Syntaxe";
 /* Class = "NSMenuItem"; title = "Recolor All"; ObjectID = 458; */
 "458.title" = "Tout recolorer";

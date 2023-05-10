@@ -1,5 +1,5 @@
 //
-//  Theme+SyntaxStyle.swift
+//  Theme+Syntax.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2021 1024jp
+//  © 2021-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@
 
 extension Theme {
     
-    /// Return the theme style correspondent to the syntax style type.
+    /// Return the theme style correspondent to the syntax type.
     ///
-    /// - Parameter type: The syntax style type.
+    /// - Parameter type: The syntax type.
     /// - Returns: A theme style.
     func style(for type: SyntaxType) -> Style? {
         

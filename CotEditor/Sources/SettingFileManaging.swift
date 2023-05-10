@@ -515,7 +515,7 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
         
         switch self.type {
             case .yaml:
-                return String(localized: "A new style named “\(self.name)” will be installed, but a custom style with the same name already exists.")
+                return String(localized: "A new syntax named “\(self.name)” will be installed, but a custom syntax with the same name already exists.")
             case .cotTheme:
                 return String(localized: "A new theme named “\(self.name)” will be installed, but a custom theme with the same name already exists.")
             case .cotReplacement:
@@ -530,7 +530,7 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
         
         switch self.type {
             case .yaml:
-                return String(localized: "Do you want to replace it?\nReplaced style can’t be restored.")
+                return String(localized: "Do you want to replace it?\nReplaced syntax can’t be restored.")
             case .cotTheme:
                 return String(localized: "Do you want to replace it?\nReplaced theme can’t be restored.")
             case .cotReplacement:

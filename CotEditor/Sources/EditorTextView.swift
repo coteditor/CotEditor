@@ -432,7 +432,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         if !self.hasMarkedText(),
            let shortcut = Shortcut(keyDownEvent: event),
            let document = self.document,
-           let snippet = SnippetManager.shared.snippet(for: shortcut, scope: document.syntaxParser.style.name)
+           let snippet = SnippetManager.shared.snippet(for: shortcut, scope: document.syntaxParser.syntax.name)
         {
             return self.insert(snippet: snippet)
         }
@@ -1468,7 +1468,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         let fileDropItems = UserDefaults.standard[.fileDropArray].map(FileDropItem.init(dictionary:))
         let documentURL = self.document?.fileURL
-        let syntaxStyle = self.document?.syntaxParser.style.name
+        let syntax = self.document?.syntaxParser.syntax.name
         
         let replacementString = urls.reduce(into: "") { (string, url) in
             if url.pathExtension == "textClipping", let textClipping = try? TextClipping(url: url) {
@@ -1476,7 +1476,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 return
             }
             
-            if let fileDropItem = fileDropItems.first(where: { $0.supports(extension: url.pathExtension, scope: syntaxStyle) }) {
+            if let fileDropItem = fileDropItems.first(where: { $0.supports(extension: url.pathExtension, scope: syntax) }) {
                 string += fileDropItem.dropText(forFileURL: url, documentURL: documentURL)
                 return
             }
@@ -1703,7 +1703,7 @@ extension EditorTextView {
             candidateWords.append(contentsOf: documentWords)
         }
         
-        // add words defined in syntax style
+        // add words defined in syntax
         if UserDefaults.standard[.completesSyntaxWords] {
             let syntaxWords = self.syntaxCompletionWords.filter { $0.range(of: partialWord, options: [.caseInsensitive, .anchored]) != nil }
             candidateWords.append(contentsOf: syntaxWords)

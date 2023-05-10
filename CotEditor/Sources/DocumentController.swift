@@ -39,7 +39,7 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Public Properties
     
-    @Published private(set) var currentStyleName: String?
+    @Published private(set) var currentSyntaxName: String?
     private(set) var accessorySelectedEncoding: String.Encoding?
     
     
@@ -65,9 +65,9 @@ final class DocumentController: NSDocumentController {
         self.mainWindowObserver = NSApp.publisher(for: \.mainWindow)
             .map { $0?.windowController?.document as? Document }
             .sink { [unowned self] in
-                self.currentStyleName = $0?.syntaxParser.style.name
-                self.syntaxObserver = $0?.didChangeSyntaxStyle
-                    .sink { self.currentStyleName = $0 }
+                self.currentSyntaxName = $0?.syntaxParser.syntax.name
+                self.syntaxObserver = $0?.didChangeSyntax
+                    .sink { self.currentSyntaxName = $0 }
             }
     }
     

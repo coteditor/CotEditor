@@ -89,7 +89,7 @@
                         <tabViewItem label="Completion List" id="hkH-bj-kzN"/>
                         <tabViewItem label="File Mapping" id="zFQ-sy-EQR"/>
                         <tabViewItem label="-" id="cmd-Pi-Czf"/>
-                        <tabViewItem label="Style Info" id="ijG-Rs-ukM"/>
+                        <tabViewItem label="Syntax Info" id="ijG-Rs-ukM"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" type="noTabsBezelBorder" id="Xkl-Ua-3Wq">
@@ -132,8 +132,8 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FtY-5J-Kkn">
-                                <rect key="frame" x="104" y="412" width="78" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Style Name:" usesSingleLineMode="YES" id="987">
+                                <rect key="frame" x="94" y="412" width="88" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Syntax Name:" usesSingleLineMode="YES" id="987">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -144,7 +144,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" priority="750" constant="280" id="SzE-BJ-isn"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="Style Name" drawsBackground="YES" usesSingleLineMode="YES" id="988">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" usesSingleLineMode="YES" id="988">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -251,7 +251,7 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="setToFactoryDefaults:" target="8Mx-zQ-ItP" id="b5I-xl-dUQ"/>
-                                    <binding destination="8Mx-zQ-ItP" name="hidden" keyPath="isBundledStyle" id="qs6-2z-iwf">
+                                    <binding destination="8Mx-zQ-ItP" name="hidden" keyPath="isBundledSyntax" id="Wtu-mr-qig">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
@@ -348,7 +348,7 @@ DQ
                     </view>
                     <connections>
                         <outlet property="menuTableView" destination="1Wa-et-npE" id="kZV-nR-kgY"/>
-                        <outlet property="styleNameField" destination="N84-W6-0ZN" id="ipa-3o-olJ"/>
+                        <outlet property="syntaxNameField" destination="N84-W6-0ZN" id="ocj-4i-S0J"/>
                     </connections>
                 </viewController>
                 <customObject id="6nz-MY-aFy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

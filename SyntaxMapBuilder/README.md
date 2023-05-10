@@ -1,8 +1,8 @@
 # Syntax Map Builder
 
-The command-line helper application for CotEditor development to build SyntaxMap.json from the bundled syntax styles.
+The command-line helper application for CotEditor development to build SyntaxMap.json from the bundled syntaxes.
 
-SyntaxMap.json gathers the file mapping information of all bundled syntax styles into a single JSON file in advance to prevent parsing each bundled YAML file on every application launch that may take time.
+SyntaxMap.json gathers the file mapping information of all bundled syntaxes into a single JSON file in advance to prevent parsing each bundled YAML file on every application launch that may take time.
 
 This program is aimed to be used only locally in the CotEditor.app's build phase.
 

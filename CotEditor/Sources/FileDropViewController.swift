@@ -124,10 +124,10 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
         let allItem = menu.itemArray.first!
         allItem.attributedTitle = NSAttributedString(string: allItem.title, attributes: allItem.attributedTitle!.attributes(at: 0, effectiveRange: nil))
         
-        // add styles
-        for styleName in SyntaxManager.shared.settingNames {
-            menu.addItem(withTitle: styleName)
-            menu.lastItem!.representedObject = styleName
+        // add syntaxes
+        for settingName in SyntaxManager.shared.settingNames {
+            menu.addItem(withTitle: settingName)
+            menu.lastItem!.representedObject = settingName
         }
         
         // select item

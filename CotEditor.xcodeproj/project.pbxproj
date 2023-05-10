@@ -353,8 +353,8 @@
 		2A6FD9EE1D3A85D700A59784 /* NSString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9EC1D3A85D700A59784 /* NSString.swift */; };
 		2A6FD9F31D3ACEB500A59784 /* DefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */; };
 		2A6FD9F41D3ACEB500A59784 /* DefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */; };
-		2A6FD9F61D3AE29E00A59784 /* SyntaxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9F51D3AE29E00A59784 /* SyntaxStyle.swift */; };
-		2A6FD9F71D3AE29E00A59784 /* SyntaxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9F51D3AE29E00A59784 /* SyntaxStyle.swift */; };
+		2A6FD9F61D3AE29E00A59784 /* Syntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9F51D3AE29E00A59784 /* Syntax.swift */; };
+		2A6FD9F71D3AE29E00A59784 /* Syntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9F51D3AE29E00A59784 /* Syntax.swift */; };
 		2A7135831CFFDC6600ADA555 /* FilePermissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7135821CFFDC6600ADA555 /* FilePermissionTests.swift */; };
 		2A719F6623CD92370026F877 /* FuzzyRangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A719F6523CD92370026F877 /* FuzzyRangeTests.swift */; };
 		2A71BC7B1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A71BC7A1DDC50530085AE1C /* DocumentViewController+TouchBar.swift */; };
@@ -374,8 +374,8 @@
 		2A7646E81D48EAF200350674 /* SettingManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E61D48EAF200350674 /* SettingManaging.swift */; };
 		2A7646EC1D49035500350674 /* SettingFileManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E91D48ECD100350674 /* SettingFileManaging.swift */; };
 		2A7646ED1D49035500350674 /* SettingFileManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E91D48ECD100350674 /* SettingFileManaging.swift */; };
-		2A7725641D50401300A53C09 /* SyntaxStyleValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7725631D50401300A53C09 /* SyntaxStyleValidator.swift */; };
-		2A7725651D50401300A53C09 /* SyntaxStyleValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7725631D50401300A53C09 /* SyntaxStyleValidator.swift */; };
+		2A7725641D50401300A53C09 /* SyntaxValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7725631D50401300A53C09 /* SyntaxValidator.swift */; };
+		2A7725651D50401300A53C09 /* SyntaxValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7725631D50401300A53C09 /* SyntaxValidator.swift */; };
 		2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */; };
 		2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */; };
 		2A78BFA71D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */; };
@@ -647,8 +647,8 @@
 		2ACDE2B32406B9C000FC31EC /* SyntaxOutlineEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2243321A7D78400F6201F /* SyntaxOutlineEditView.storyboard */; };
 		2ACDE2B42406B9C000FC31EC /* SyntaxTermsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2244821A7DB9B00F6201F /* SyntaxTermsEditView.storyboard */; };
 		2ACDE2B82406B9C000FC31EC /* WindowPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1031E7088B00027192A /* WindowPane.storyboard */; };
-		2ACF23AE26302A4C002B5E10 /* Theme+SyntaxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF23AD26302A4C002B5E10 /* Theme+SyntaxStyle.swift */; };
-		2ACF23AF26302A4C002B5E10 /* Theme+SyntaxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF23AD26302A4C002B5E10 /* Theme+SyntaxStyle.swift */; };
+		2ACF23AE26302A4C002B5E10 /* Theme+Syntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF23AD26302A4C002B5E10 /* Theme+Syntax.swift */; };
+		2ACF23AF26302A4C002B5E10 /* Theme+Syntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF23AD26302A4C002B5E10 /* Theme+Syntax.swift */; };
 		2ACFE5871D2037800005233A /* DetachablePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */; };
 		2ACFE5881D2037800005233A /* DetachablePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */; };
 		2ACFE58B1D20730B0005233A /* FindPanelContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */; };
@@ -1128,7 +1128,7 @@
 		2A6FD9E91D3A819500A59784 /* EditorTextView+Commenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Commenting.swift"; sourceTree = "<group>"; };
 		2A6FD9EC1D3A85D700A59784 /* NSString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSString.swift; sourceTree = "<group>"; };
 		2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultKey.swift; sourceTree = "<group>"; };
-		2A6FD9F51D3AE29E00A59784 /* SyntaxStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxStyle.swift; sourceTree = "<group>"; };
+		2A6FD9F51D3AE29E00A59784 /* Syntax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Syntax.swift; sourceTree = "<group>"; };
 		2A7135821CFFDC6600ADA555 /* FilePermissionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePermissionTests.swift; sourceTree = "<group>"; };
 		2A715E21261AC5960060CF84 /* CotEditor-Sparkle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CotEditor-Sparkle.entitlements"; sourceTree = "<group>"; };
 		2A719F6523CD92370026F877 /* FuzzyRangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuzzyRangeTests.swift; sourceTree = "<group>"; };
@@ -1141,7 +1141,7 @@
 		2A75ACCA19E86DDB00444894 /* CotEditor.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CotEditor.sdef; sourceTree = "<group>"; };
 		2A7646E61D48EAF200350674 /* SettingManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingManaging.swift; sourceTree = "<group>"; };
 		2A7646E91D48ECD100350674 /* SettingFileManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingFileManaging.swift; sourceTree = "<group>"; };
-		2A7725631D50401300A53C09 /* SyntaxStyleValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxStyleValidator.swift; sourceTree = "<group>"; };
+		2A7725631D50401300A53C09 /* SyntaxValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxValidator.swift; sourceTree = "<group>"; };
 		2A7846DA18FE035E006BDF00 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
 		2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowPaneController.swift; sourceTree = "<group>"; };
 		2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPaneController.swift; sourceTree = "<group>"; };
@@ -1338,7 +1338,7 @@
 		2ACDC0991D172CDE009B72D6 /* AntialiasingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntialiasingTextField.swift; sourceTree = "<group>"; };
 		2ACDC0A21D173250009B72D6 /* InspectorTabSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorTabSegmentedControl.swift; sourceTree = "<group>"; };
 		2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorTabView.swift; sourceTree = "<group>"; };
-		2ACF23AD26302A4C002B5E10 /* Theme+SyntaxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Theme+SyntaxStyle.swift"; sourceTree = "<group>"; };
+		2ACF23AD26302A4C002B5E10 /* Theme+Syntax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Theme+Syntax.swift"; sourceTree = "<group>"; };
 		2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetachablePopoverViewController.swift; sourceTree = "<group>"; };
 		2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelContentViewController.swift; sourceTree = "<group>"; };
 		2AD21FCB1D2E3BE80018C8D1 /* StatusBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
@@ -2136,7 +2136,7 @@
 				2AAD61EF1D2B0856008FE772 /* FuzzyRange.swift */,
 				2A4257BB1D239F850086DAAD /* Invisible.swift */,
 				2AF073E21D33C3AB00770BA6 /* Theme.swift */,
-				2ACF23AD26302A4C002B5E10 /* Theme+SyntaxStyle.swift */,
+				2ACF23AD26302A4C002B5E10 /* Theme+Syntax.swift */,
 				2A9C370A1D66E99400774BA4 /* Pair.swift */,
 				2A7FCC45280A367C0070EAB3 /* ValueRange.swift */,
 				2ABF49E2221A54AD00239278 /* TextClipping.swift */,
@@ -2247,7 +2247,7 @@
 		2A89847C1C3CE1CE006290FF /* Syntax */ = {
 			isa = PBXGroup;
 			children = (
-				2A6FD9F51D3AE29E00A59784 /* SyntaxStyle.swift */,
+				2A6FD9F51D3AE29E00A59784 /* Syntax.swift */,
 				2A8458922A073C5F0056B1EA /* HighlightDefinition.swift */,
 				2A8458952A073C830056B1EA /* OutlineDefinition.swift */,
 				2A4714E22093A2D40093E27F /* SyntaxParser.swift */,
@@ -2256,7 +2256,7 @@
 				2AEAA8222096380C001A175C /* HighlightExtractors.swift */,
 				2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */,
 				2A33D0861D1C9148005977B9 /* SyntaxDictionary.swift */,
-				2A7725631D50401300A53C09 /* SyntaxStyleValidator.swift */,
+				2A7725631D50401300A53C09 /* SyntaxValidator.swift */,
 			);
 			name = Syntax;
 			sourceTree = "<group>";
@@ -3189,16 +3189,16 @@
 				2A10D1491E7477D30027192A /* StyledButton.swift in Sources */,
 				2A2615892977FCF6008C2240 /* SubmitButtonGroup.swift in Sources */,
 				2A1B7E76216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */,
+				2A6FD9F71D3AE29E00A59784 /* Syntax.swift in Sources */,
 				2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2AB2243221A7D67E00F6201F /* SyntaxEditChildViewController.swift in Sources */,
 				2A33D0851D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
 				2AC434F31D494EA700980E66 /* SyntaxManager.swift in Sources */,
 				2A5DCE871D1888D800D5D74C /* SyntaxMappingConflictsView.swift in Sources */,
 				2A4714E42093A2D40093E27F /* SyntaxParser.swift in Sources */,
-				2A6FD9F71D3AE29E00A59784 /* SyntaxStyle.swift in Sources */,
-				2A7725651D50401300A53C09 /* SyntaxStyleValidator.swift in Sources */,
 				2A33D0821D1C7935005977B9 /* SyntaxTermsEditViewController.swift in Sources */,
 				2A33D07F1D1C75B8005977B9 /* SyntaxValidationView.swift in Sources */,
+				2A7725651D50401300A53C09 /* SyntaxValidator.swift in Sources */,
 				2ABF49E4221A54AD00239278 /* TextClipping.swift in Sources */,
 				2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */,
 				2AED46711E425CD200751C45 /* TextFind.swift in Sources */,
@@ -3207,7 +3207,7 @@
 				2AD69B861D3E42F700FBD998 /* TextSelection.swift in Sources */,
 				2A0BF8A91DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */,
 				2AF073E41D33C3AB00770BA6 /* Theme.swift in Sources */,
-				2ACF23AE26302A4C002B5E10 /* Theme+SyntaxStyle.swift in Sources */,
+				2ACF23AE26302A4C002B5E10 /* Theme+Syntax.swift in Sources */,
 				2A63FBE41D1D90E70081C84E /* ThemeDetailView.swift in Sources */,
 				2A9082F31D32A9B500228F50 /* ThemeManager.swift in Sources */,
 				2A0F3EC027A26D1200FB27A3 /* TokenFormatter.swift in Sources */,
@@ -3547,16 +3547,16 @@
 				2A10D1481E7477D30027192A /* StyledButton.swift in Sources */,
 				2A26158A2977FCF6008C2240 /* SubmitButtonGroup.swift in Sources */,
 				2A1B7E75216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */,
+				2A6FD9F61D3AE29E00A59784 /* Syntax.swift in Sources */,
 				2A33D0871D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2AB2243121A7D67E00F6201F /* SyntaxEditChildViewController.swift in Sources */,
 				2A33D0841D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
 				2AC434F41D494EA800980E66 /* SyntaxManager.swift in Sources */,
 				2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictsView.swift in Sources */,
 				2A4714E32093A2D40093E27F /* SyntaxParser.swift in Sources */,
-				2A6FD9F61D3AE29E00A59784 /* SyntaxStyle.swift in Sources */,
-				2A7725641D50401300A53C09 /* SyntaxStyleValidator.swift in Sources */,
 				2A33D0811D1C7935005977B9 /* SyntaxTermsEditViewController.swift in Sources */,
 				2A33D07E1D1C75B8005977B9 /* SyntaxValidationView.swift in Sources */,
+				2A7725641D50401300A53C09 /* SyntaxValidator.swift in Sources */,
 				2ABF49E3221A54AD00239278 /* TextClipping.swift in Sources */,
 				2AFE848622AE71130001C4ED /* TextContainer.swift in Sources */,
 				2AED46701E425CD200751C45 /* TextFind.swift in Sources */,
@@ -3565,7 +3565,7 @@
 				2AD69B851D3E42F700FBD998 /* TextSelection.swift in Sources */,
 				2A0BF8A81DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */,
 				2AF073E31D33C3AB00770BA6 /* Theme.swift in Sources */,
-				2ACF23AF26302A4C002B5E10 /* Theme+SyntaxStyle.swift in Sources */,
+				2ACF23AF26302A4C002B5E10 /* Theme+Syntax.swift in Sources */,
 				2A63FBE31D1D90E70081C84E /* ThemeDetailView.swift in Sources */,
 				2A9082F21D32A9B500228F50 /* ThemeManager.swift in Sources */,
 				2A0F3EC127A26D1200FB27A3 /* TokenFormatter.swift in Sources */,

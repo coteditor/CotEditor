@@ -53,7 +53,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         #keyPath(isAutoTabExpandEnabled),
     ]
     
-    private var documentStyleObserver: AnyCancellable?
+    private var documentSyntaxObserver: AnyCancellable?
     private var outlineObserver: AnyCancellable?
     private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: Set<AnyCancellable> = []
@@ -180,7 +180,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     override var representedObject: Any? {
         
         willSet {
-            self.documentStyleObserver = nil
+            self.documentSyntaxObserver = nil
             self.outlineObserver = nil
         }
         
@@ -220,9 +220,9 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             self.view.window?.makeFirstResponder(editorViewController.textView)
             
             // observe syntax change
-            self.documentStyleObserver = document.didChangeSyntaxStyle
+            self.documentSyntaxObserver = document.didChangeSyntax
                 .receive(on: RunLoop.main)
-                .sink { [weak self] _ in self?.didChangeSyntaxStyle() }
+                .sink { [weak self] _ in self?.didChangeSyntax() }
             
             // observe syntaxParser for outline update
             self.outlineObserver = document.syntaxParser.$outlineItems
@@ -395,13 +395,13 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// document updated syntax style
-    private func didChangeSyntaxStyle() {
+    /// document updated syntax
+    private func didChangeSyntax() {
         
         guard let syntaxParser = self.syntaxParser else { return assertionFailure() }
         
         for viewController in self.editorViewControllers {
-            viewController.apply(style: syntaxParser.style)
+            viewController.apply(syntax: syntaxParser.syntax)
         }
         
         self.outlineParseDebouncer.perform()
@@ -839,7 +839,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         editorViewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
         
         if let syntaxParser = self.syntaxParser {
-            editorViewController.apply(style: syntaxParser.style)
+            editorViewController.apply(syntax: syntaxParser.syntax)
         }
         
         // copy textView states

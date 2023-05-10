@@ -107,7 +107,7 @@ extension DefaultKeys {
     static let encodingInNew = DefaultKey<UInt>("encodingInNew")
     static let saveUTF8BOM = DefaultKey<Bool>("saveUTF8BOM")
     static let referToEncodingTag = DefaultKey<Bool>("referToEncodingTag")
-    static let syntaxStyle = DefaultKey<String>("defaultColoringStyleName")
+    static let syntax = DefaultKey<String>("defaultColoringStyleName")
     
     // Snippets
     static let snippets = DefaultKey<[[String: String]]>("snippets")
@@ -155,7 +155,7 @@ extension DefaultKeys {
     static let lastSettingsPaneIdentifier = DefaultKey<String?>("lastPreferencesPaneIdentifier")
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
     static let sidebarWidth = DefaultKey<CGFloat>("sidebarWidth")
-    static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")
+    static let recentSyntaxNames = DefaultKey<[String]>("recentStyleNames")
     static let showStatusBar = DefaultKey<Bool>("showStatusArea")
     static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
     static let consoleFontSize = DefaultKey<CGFloat>("consoleFontSize")
@@ -171,7 +171,7 @@ extension DefaultKeys {
     static let coloringRangeBufferLength = DefaultKey<Int>("coloringRangeBufferLength")
     static let largeFileAlertThreshold = DefaultKey<Int>("largeFileAlertThreshold")
     static let savesTextOrientation = DefaultKey<Bool>("savesTextOrientation")
-    static let maximumRecentStyleCount = DefaultKey<Int>("maximumRecentStyleCount")
+    static let maximumRecentSyntaxCount = DefaultKey<Int>("maximumRecentSyntaxCount")
     static let minimumLengthForNonContiguousLayout = DefaultKey<Int>("minimumLengthForNonContiguousLayout")
     static let suppressesInconsistentLineEndingAlert = DefaultKey<Bool>("suppressesInconsistentLineEndingAlert")
     

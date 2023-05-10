@@ -45,21 +45,21 @@
 "3280.title" = "書類中のエンコーディング宣言を参照";
 
 
-/* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
-"3329.title" = "デフォルトスタイル:";
+/* Class = "NSTextFieldCell"; title = "Default syntax:"; ObjectID = "3329"; */
+"3329.title" = "デフォルトシンタックス:";
 
-/* Class = "NSTextFieldCell"; title = "Available syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
-"vlw-Tc-sLl.title" = "利用可能なスタイル:";
+/* Class = "NSTextFieldCell"; title = "Available syntaxes:"; ObjectID = "vlw-Tc-sLl"; */
+"vlw-Tc-sLl.title" = "利用可能なシンタックス:";
 
-/* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
-"cbJ-XK-bnG.ibShadowedToolTip" = "このスタイルはカスタマイズされています。";
+/* Class = "NSView"; ibShadowedToolTip = "This syntax is customized."; ObjectID = "cbJ-XK-bnG"; */
+"cbJ-XK-bnG.ibShadowedToolTip" = "このシンタックスはカスタマイズされています。";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Remove selected style"; ObjectID = "dI1-Dk-Mce"; */
-"dI1-Dk-Mce.ibShadowedToolTip" = "選択したスタイルを削除";
-/* Class = "NSButton"; ibShadowedToolTip = "Add empty style"; ObjectID = "Hma-8v-2gu"; */
-"Hma-8v-2gu.ibShadowedToolTip" = "新規スタイルを追加";
-/* Class = "NSButton"; ibShadowedToolTip = "Edit selected style"; ObjectID = "Q0c-oI-um3"; */
-"Q0c-oI-um3.ibShadowedToolTip" = "選択したスタイルを編集";
+/* Class = "NSButton"; ibShadowedToolTip = "Remove selected syntax"; ObjectID = "dI1-Dk-Mce"; */
+"dI1-Dk-Mce.ibShadowedToolTip" = "選択したシンタックスを削除";
+/* Class = "NSButton"; ibShadowedToolTip = "Add empty syntax"; ObjectID = "Hma-8v-2gu"; */
+"Hma-8v-2gu.ibShadowedToolTip" = "新規シンタックスを追加";
+/* Class = "NSButton"; ibShadowedToolTip = "Edit selected syntax"; ObjectID = "Q0c-oI-um3"; */
+"Q0c-oI-um3.ibShadowedToolTip" = "選択したシンタックスを編集";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Edit"; ObjectID = "Q0c-oI-um3"; */
 "Q0c-oI-um3.ibExternalAccessibilityDescription" = "編集";
 
@@ -68,8 +68,8 @@
 "1lj-x8-ouD.title" = "読み込む…";
 /* Class = "NSMenuItem"; title = "Share…"; ObjectID = "xRA-ND-YIE"; */
 "xRA-ND-YIE.title" = "共有…";
-/* Class = "NSButtonCell"; title = "Reload All Styles"; ObjectID = "FhP-Hj-cWE"; */
-"FhP-Hj-cWE.title" = "すべてのスタイルを再読み込み";
+/* Class = "NSButtonCell"; title = "Reload All Syntaxes"; ObjectID = "FhP-Hj-cWE"; */
+"FhP-Hj-cWE.title" = "すべてのシンタックスを再読み込み";
 /* Class = "NSMenuItem"; title = "Show File Mapping Conflicts"; ObjectID = "hyN-4W-57i"; */
 "hyN-4W-57i.title" = "ファイル関連付けのコンフリクトを表示";
 

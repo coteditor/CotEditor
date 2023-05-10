@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -85,8 +85,8 @@
 "dLj-Kh-KtX.title" = "Vervollständigungsliste enthält:";
 /* Class = "NSButtonCell"; title = "Words in document"; ObjectID = "EJZ-N6-54G"; */
 "EJZ-N6-54G.title" = "Wörter im Dokument";
-/* Class = "NSButtonCell"; title = "Words defined in syntax style"; ObjectID = "1v9-7i-9RL"; */
-"1v9-7i-9RL.title" = "Wörter, die im Syntaxstil definiert sind";
+/* Class = "NSButtonCell"; title = "Words defined in syntax"; ObjectID = "1v9-7i-9RL"; */
+"1v9-7i-9RL.title" = "Wörter, die in der Syntax definiert sind";
 /* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */
 "c5j-0N-f2R.title" = "Normale Wörter";
 

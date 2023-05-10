@@ -41,13 +41,15 @@ final class SyntaxParser {
     
     // MARK: Public Properties
     
-    var style: SyntaxStyle {
+    var syntax: Syntax {
         
-        didSet {
+        willSet {
             self.outlineParseTask?.cancel()
             self.highlightParseTask?.cancel()
-            self.outlineExtractors = style.outlineExtractors
-            self.highlightParser = style.highlightParser
+        }
+        didSet {
+            self.outlineExtractors = syntax.outlineExtractors
+            self.highlightParser = syntax.highlightParser
         }
     }
     
@@ -58,8 +60,8 @@ final class SyntaxParser {
     
     private let textStorage: NSTextStorage
     
-    private lazy var outlineExtractors: [OutlineExtractor] = self.style.outlineExtractors
-    private lazy var highlightParser: HighlightParser = self.style.highlightParser
+    private lazy var outlineExtractors: [OutlineExtractor] = self.syntax.outlineExtractors
+    private lazy var highlightParser: HighlightParser = self.syntax.highlightParser
     
     private var outlineParseTask: Task<Void, any Error>?
     private var highlightParseTask: Task<Void, any Error>?
@@ -72,10 +74,10 @@ final class SyntaxParser {
     // MARK: -
     // MARK: Lifecycle
     
-    init(textStorage: NSTextStorage, style: SyntaxStyle) {
+    init(textStorage: NSTextStorage, syntax: Syntax) {
         
         self.textStorage = textStorage
-        self.style = style
+        self.syntax = syntax
         
         // give up if the string is changed while parsing
         self.textEditingObserver = NotificationCenter.default.publisher(for: NSTextStorage.willProcessEditingNotification, object: textStorage)

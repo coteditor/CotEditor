@@ -30,15 +30,15 @@ private struct FileMappingConflict: Identifiable {
     let id = UUID()
     
     var name: String
-    var primaryStyle: String
-    var duplicatedStyles: [String]
+    var primarySyntax: String
+    var duplicatedSyntaxes: [String]
     
     
-    init(name: String, styles: [String]) {
+    init(name: String, syntaxes: [String]) {
         
         self.name = name
-        self.primaryStyle = styles[0]
-        self.duplicatedStyles = Array(styles[1...])
+        self.primarySyntax = syntaxes[0]
+        self.duplicatedSyntaxes = Array(syntaxes[1...])
     }
 }
 
@@ -57,18 +57,18 @@ struct SyntaxMappingConflictsView: View {
     
     init(dictionary: [SyntaxKey: [String: [SyntaxManager.SettingName]]]) {
         
-        self.extensionConflicts = dictionary[.extensions]?.map { .init(name: $0.key, styles: $0.value) } ?? []
-        self.filenameConflicts = dictionary[.filenames]?.map { .init(name: $0.key, styles: $0.value) } ?? []
-        self.interpreterConflicts = dictionary[.interpreters]?.map { .init(name: $0.key, styles: $0.value) } ?? []
+        self.extensionConflicts = dictionary[.extensions]?.map { .init(name: $0.key, syntaxes: $0.value) } ?? []
+        self.filenameConflicts = dictionary[.filenames]?.map { .init(name: $0.key, syntaxes: $0.value) } ?? []
+        self.interpreterConflicts = dictionary[.interpreters]?.map { .init(name: $0.key, syntaxes: $0.value) } ?? []
     }
     
     
     var body: some View {
         
         VStack(alignment: .leading, spacing: 10) {
-            Text("Syntax Style Mapping Conflicts")
+            Text("Syntax Mapping Conflicts")
                 .font(.headline)
-            Text("The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style.")
+            Text("The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition.")
                 .controlSize(.small)
             
             if !self.extensionConflicts.isEmpty {
@@ -102,8 +102,8 @@ struct SyntaxMappingConflictsView: View {
         Section {
             Table(conflicts) {
                 TableColumn(name, value: \.name)
-                TableColumn("Used style") { Text($0.primaryStyle).fontWeight(.semibold) }
-                TableColumn("Duplicated styles") { Text($0.duplicatedStyles.joined(separator: " ,")) }
+                TableColumn("Used syntax") { Text($0.primarySyntax).fontWeight(.semibold) }
+                TableColumn("Duplicated syntaxes") { Text($0.duplicatedSyntaxes.joined(separator: " ,")) }
             }.tableStyle(.bordered)
             
         } header: {

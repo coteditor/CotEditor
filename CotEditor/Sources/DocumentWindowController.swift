@@ -56,8 +56,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private var opacityObserver: AnyCancellable?
     private var appearanceModeObserver: AnyCancellable?
     
-    private var documentStyleObserver: AnyCancellable?
-    private var styleListObserver: AnyCancellable?
+    private var documentSyntaxObserver: AnyCancellable?
+    private var syntaxListObserver: AnyCancellable?
     private weak var syntaxPopUpButton: NSPopUpButton?
     
     
@@ -102,9 +102,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             }
             .assign(to: \.appearance, on: self.window!)
         
-        //  observe for syntax style line-up change
-        self.styleListObserver = Publishers.Merge(SyntaxManager.shared.$settingNames,
-                                                  UserDefaults.standard.publisher(for: .recentStyleNames))
+        //  observe for syntax line-up change
+        self.syntaxListObserver = Publishers.Merge(SyntaxManager.shared.$settingNames,
+                                                   UserDefaults.standard.publisher(for: .recentSyntaxNames))
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in self?.buildSyntaxPopUpButton() }
     }
@@ -113,7 +113,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     override unowned(unsafe) var document: AnyObject? {
         
         willSet {
-            self.documentStyleObserver = nil
+            self.documentSyntaxObserver = nil
         }
         
         didSet {
@@ -129,9 +129,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                 self.window?.isOpaque = true
             }
             
-            // observe document's style change
-            self.documentStyleObserver = document.didChangeSyntaxStyle
-                .merge(with: Just(document.syntaxParser.style.name))
+            // observe document's syntax change
+            self.documentSyntaxObserver = document.didChangeSyntax
+                .merge(with: Just(document.syntaxParser.syntax.name))
                 .receive(on: RunLoop.main)
                 .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
         }
@@ -191,37 +191,37 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
-    /// Build syntax style popup menu in toolbar.
+    /// Build syntax popup menu in toolbar.
     private func buildSyntaxPopUpButton() {
         
         guard let menu = self.syntaxPopUpButton?.menu else { return }
         
-        let styleNames = SyntaxManager.shared.settingNames
-        let recentStyleNames = UserDefaults.standard[.recentStyleNames]
-        let action = #selector(Document.changeSyntaxStyle)
+        let syntaxNames = SyntaxManager.shared.settingNames
+        let recentSyntaxNames = UserDefaults.standard[.recentSyntaxNames]
+        let action = #selector(Document.changeSyntax)
         
         menu.removeAllItems()
         
-        menu.addItem(withTitle: BundledStyleName.none, action: action, keyEquivalent: "")
+        menu.addItem(withTitle: BundledSyntaxName.none, action: action, keyEquivalent: "")
         menu.addItem(.separator())
         
-        if !recentStyleNames.isEmpty {
-            let title = String(localized: "Recently Used", comment: "menu heading in syntax style list on toolbar popup")
+        if !recentSyntaxNames.isEmpty {
+            let title = String(localized: "Recently Used", comment: "menu heading in syntax list on toolbar popup")
             menu.addItem(HeadingMenuItem(title: title))
             
-            menu.items += recentStyleNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
+            menu.items += recentSyntaxNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
             menu.addItem(.separator())
         }
         
-        menu.items += styleNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
+        menu.items += syntaxNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
         
-        if let styleName = (self.document as? Document)?.syntaxParser.style.name {
-            self.selectSyntaxPopUpItem(with: styleName)
+        if let syntaxName = (self.document as? Document)?.syntaxParser.syntax.name {
+            self.selectSyntaxPopUpItem(with: syntaxName)
         }
     }
     
     
-    private func selectSyntaxPopUpItem(with styleName: String) {
+    private func selectSyntaxPopUpItem(with syntaxName: String) {
         
         guard
             let popUpButton = self.syntaxPopUpButton,
@@ -236,12 +236,12 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         // deselect current one
         popUpButton.selectItem(at: -1)
         
-        if let item = popUpButton.item(withTitle: styleName) {
+        if let item = popUpButton.item(withTitle: syntaxName) {
             popUpButton.select(item)
             
         } else {
             // insert item by adding Deleted item section
-            menu.insertItem(NSMenuItem(title: styleName, action: nil, keyEquivalent: ""), at: 1)
+            menu.insertItem(NSMenuItem(title: syntaxName, action: nil, keyEquivalent: ""), at: 1)
             menu.item(at: 1)?.tag = deletedTag
             popUpButton.selectItem(at: 1)
             
@@ -263,7 +263,7 @@ private extension NSToolbarItem.Identifier {
     private static let prefix = "com.coteditor.CotEditor.ToolbarItem."
     
     
-    static let syntaxStyle = Self(Self.prefix + "syntaxStyle")
+    static let syntax = Self(Self.prefix + "syntaxStyle")
     static let inspector = Self(Self.prefix + "inspector")
     
     static let textSize = Self(Self.prefix + "textSize")
@@ -307,7 +307,7 @@ extension DocumentWindowController: NSToolbarDelegate {
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
         [
-            .syntaxStyle,
+            .syntax,
             .inspectorTrackingSeparator,
             .inspector,
         ]
@@ -317,7 +317,7 @@ extension DocumentWindowController: NSToolbarDelegate {
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
         [
-            .syntaxStyle,
+            .syntax,
             .inspector,
             .textSize,
             .writingDirection,
@@ -346,7 +346,7 @@ extension DocumentWindowController: NSToolbarDelegate {
     func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
         
         switch itemIdentifier {
-            case .syntaxStyle:
+            case .syntax:
                 let popUpButton = NSPopUpButton()
                 popUpButton.bezelStyle = .texturedRounded
                 popUpButton.menu?.autoenablesItems = false
@@ -354,8 +354,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 self.buildSyntaxPopUpButton()
                 
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
-                item.label = String(localized: "Syntax Style")
-                item.toolTip = String(localized: "Change syntax style")
+                item.label = String(localized: "Syntax")
+                item.toolTip = String(localized: "Change syntax")
                 item.view = popUpButton
                 item.visibilityPriority = .high
                 

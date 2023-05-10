@@ -41,10 +41,10 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     // MARK: Private Properties
     
     private let mode: Mode
-    private let style: NSMutableDictionary
-    private let validator: SyntaxStyleValidator
+    private let syntax: NSMutableDictionary
+    private let validator: SyntaxValidator
     @objc private let isRestorable: Bool
-    @objc private let isBundledStyle: Bool
+    @objc private let isBundledSyntax: Bool
     
     @objc private dynamic var menuTitles: [String] = []  // for binding
     @objc private dynamic var message: String?
@@ -52,7 +52,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     private var tabViewController: NSTabViewController?
     
     @IBOutlet private weak var menuTableView: NSTableView?
-    @IBOutlet private weak var styleNameField: NSTextField?
+    @IBOutlet private weak var syntaxNameField: NSTextField?
     
     
     
@@ -70,7 +70,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         let manager = SyntaxManager.shared
         
-        let style: SyntaxManager.StyleDictionary = {
+        let syntax: SyntaxManager.SyntaxDictionary = {
             switch mode {
                 case .edit(let state), .copy(let state):
                     return manager.settingDictionary(name: state.name) ?? manager.blankSettingDictionary
@@ -78,18 +78,18 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
                     return manager.blankSettingDictionary
             }
         }()
-        self.style = NSMutableDictionary(dictionary: style)
+        self.syntax = NSMutableDictionary(dictionary: syntax)
         
         switch mode {
             case .edit(let state):
-                self.isBundledStyle = state.isBundled
+                self.isBundledSyntax = state.isBundled
                 self.isRestorable = state.isRestorable
             case .copy, .new:
-                self.isBundledStyle = false
+                self.isBundledSyntax = false
                 self.isRestorable = false
         }
         
-        self.validator = SyntaxStyleValidator(style: self.style)
+        self.validator = SyntaxValidator(syntax: self.syntax)
         
         super.init(coder: coder)
     }
@@ -116,7 +116,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             self.tabViewController = tabViewController
             self.menuTitles = tabViewController.tabViewItems.map(\.label)
                 .map { String(localized: String.LocalizationValue($0)) }
-            tabViewController.children.forEach { $0.representedObject = self.style }
+            tabViewController.children.forEach { $0.representedObject = self.syntax }
         }
     }
     
@@ -125,22 +125,22 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         super.viewDidLoad()
         
-        let styleNameField = self.styleNameField!
+        let syntaxNameField = self.syntaxNameField!
         
-        // setup style name field
-        styleNameField.stringValue = {
+        // setup syntax name field
+        syntaxNameField.stringValue = {
             switch self.mode {
                 case .edit(let state): return state.name
                 case .copy(let state): return SyntaxManager.shared.savableSettingName(for: state.name, appendingCopySuffix: true)
                 case .new: return ""
             }
         }()
-        if self.isBundledStyle {
-            styleNameField.isBezeled = false
-            styleNameField.isSelectable = false
-            styleNameField.isEditable = false
-            styleNameField.isBordered = true
-            styleNameField.toolTip = String(localized: "Bundled styles can’t be renamed.")
+        if self.isBundledSyntax {
+            syntaxNameField.isBezeled = false
+            syntaxNameField.isSelectable = false
+            syntaxNameField.isEditable = false
+            syntaxNameField.isBordered = true
+            syntaxNameField.toolTip = String(localized: "Bundled syntaxes can’t be renamed.")
         }
     }
     
@@ -148,17 +148,17 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     // MARK: Delegate
     
-    // NSTextFieldDelegate  < styleNameField
+    // NSTextFieldDelegate  < syntaxNameField
     
-    /// style name did change
+    /// syntax name did change
     func controlTextDidChange(_ obj: Notification) {
         
-        guard let field = obj.object as? NSTextField, field == self.styleNameField else { return }
+        guard let field = obj.object as? NSTextField, field == self.syntaxNameField else { return }
         
         // validate newly input name
-        let styleName = field.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        let syntaxName = field.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        self.validate(styleName: styleName)
+        self.validate(syntaxName: syntaxName)
     }
     
     
@@ -191,21 +191,21 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         guard
             case .edit(let state) = self.mode,
-            let style = SyntaxManager.shared.bundledSettingDictionary(name: state.name)
+            let syntax = SyntaxManager.shared.bundledSettingDictionary(name: state.name)
         else { return }
         
-        self.style.setDictionary(style)
+        self.syntax.setDictionary(syntax)
         
         // update validation result if displayed
         self.validator.validate()
     }
     
     
-    /// jump to style's distribution URL
+    /// jump to syntax's distribution URL
     @IBAction func jumpToURL(_ sender: Any?) {
         
         guard
-            let metadata = self.style[SyntaxKey.metadata] as? [String: Any],
+            let metadata = self.syntax[SyntaxKey.metadata] as? [String: Any],
             let urlString = metadata[MetadataKey.distributionURL] as? String,
             let url = URL(string: urlString)
         else { return NSSound.beep() }
@@ -220,14 +220,14 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         // fix current input
         self.endEditing()
         
-        // trim spaces/tab/newlines in style name
-        let styleName = self.styleNameField?.stringValue.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        // trim spaces/tab/newlines in syntax name
+        let syntaxName = self.syntaxNameField?.stringValue.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         
-        self.styleNameField?.stringValue = styleName
+        self.syntaxNameField?.stringValue = syntaxName
         
-        // style name validation
-        guard self.validate(styleName: styleName) else {
-            self.view.window?.makeFirstResponder(self.styleNameField)
+        // syntax name validation
+        guard self.validate(syntaxName: syntaxName) else {
+            self.view.window?.makeFirstResponder(self.syntaxNameField)
             NSSound.beep()
             return
         }
@@ -241,8 +241,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             return
         }
         
-        // NSMutableDictionary to StyleDictionary
-        let styleDictionary: SyntaxManager.StyleDictionary = self.style.reduce(into: [:]) { (dictionary, item) in
+        // NSMutableDictonary to SyntaxDictionary
+        let syntaxDictionary: SyntaxManager.SyntaxDictionary = self.syntax.reduce(into: [:]) { (dictionary, item) in
             guard let key = item.key as? String else { return assertionFailure() }
             dictionary[key] = item.value
         }
@@ -253,7 +253,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         }()
         
         do {
-            try SyntaxManager.shared.save(settingDictionary: styleDictionary, name: styleName, oldName: oldName)
+            try SyntaxManager.shared.save(settingDictionary: syntaxDictionary, name: syntaxName, oldName: oldName)
         } catch {
             print(error)
         }
@@ -265,14 +265,14 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     // MARK: Private Methods
     
-    /// Validate the passed-in style name.
+    /// Validate the passed-in syntax name.
     ///
-    /// - Parameter styleName: The style name to test.
-    /// - Returns: `true` if the style name is valid.
+    /// - Parameter syntaxName: The syntax name to test.
+    /// - Returns: `true` if the syntax name is valid.
     @discardableResult
-    private func validate(styleName: String) -> Bool {
+    private func validate(syntaxName: String) -> Bool {
         
-        if case .edit = self.mode, self.isBundledStyle { return true }  // cannot edit style name
+        if case .edit = self.mode, self.isBundledSyntax { return true }  // cannot edit syntax name
         
         self.message = nil
         
@@ -282,7 +282,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         }()
         
         do {
-            try SyntaxManager.shared.validate(settingName: styleName, originalName: originalName)
+            try SyntaxManager.shared.validate(settingName: syntaxName, originalName: originalName)
         } catch {
             self.message = error.localizedDescription
             return false

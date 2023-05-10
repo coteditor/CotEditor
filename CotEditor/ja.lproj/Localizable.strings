@@ -298,9 +298,9 @@
 
 
 /* MARK: Toolbar */
-"Syntax Style" = "シンタックス";
+"Syntax" = "シンタックス";
 // tooltip
-"Change syntax style" = "シンタックススタイルを変更";
+"Change syntax" = "シンタックスを変更";
 // menu item title
 "Recently Used" = "最近使った項目";
 "Deleted" = " 削除された項目";
@@ -697,7 +697,7 @@
 "Outline" = "アウトライン";
 "Completion List" = "入力補完リスト";
 "File Mapping" = "ファイル関連付け";
-"Style Info" = "スタイル情報";
+"Syntax Info" = "シンタックス情報";
 "Syntax Validation" = "シンタックスの検証";
 
 // Syntax style validation results
@@ -723,22 +723,22 @@
 
 
 /* MARK: SyntaxManager */
-// Style name
+// Syntax name
 "None" = "なし";
 
-// Selected syntax style name was original
-"Bundled styles can’t be renamed." = "バンドルされているスタイルの名前は変更できません。";
+// Description for editing bundled syntax
+"Bundled syntaxes can’t be renamed." = "バンドルされているシンタックスの名前は変更できません。";
 
 // Suffix of copied syntax coloring style
 "copy" = "コピー";
 
-// Import syntax style file choose openPanel button
+// Import syntax file choose openPanel button
 "Import" = "読み込む";
-// Importing same name style alert
-"A new style named “%@” will be installed, but a custom style with the same name already exists." = "新しいスタイル“%@”のインストールを試みましたが、同名のカスタムスタイルがすでに存在しています。";
-"Do you want to replace it?\nReplaced style can’t be restored." = "スタイルを置き換えますか?\n置き換えたスタイルは元に戻せません。";
+// Importing same name syntax alert
+"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "新しいシンタックス“%@”のインストールを試みましたが、同名のカスタムシンタックスがすでに存在しています。";
+"Do you want to replace it?\nReplaced syntax can’t be restored." = "シンタックスを置き換えますか?\n置き換えたシンタックスは元に戻せません。";
 
-// Export syntax style file savePanel label
+// Export syntax file savePanel label
 "Export As:" = "名前:";
 
 // Syntax validation
@@ -861,14 +861,14 @@
 
 
 /* MARK: Syntax Mapping Conflicts View */
-"Syntax Style Mapping Conflicts" = "ファイル関連付けのコンフリクト";
-"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "以下のファイル関連付けルールはいくつかのスタイルで重複して登録されています。CotEditorは自動的に最初のスタイルを使用します。解決するには、それぞれのシンタックススタイルを編集してください。";
+"Syntax Mapping Conflicts" = "ファイル関連付けのコンフリクト";
+"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "以下のファイル関連付けルールはいくつかのシンタックスで重複して登録されています。CotEditorは自動的に最初のシンタックスを使用します。解決するには、それぞれのシンタックス定義を編集してください。";
 "Extension" = "拡張子";
 "Filename" = "ファイル名";
 "Interpreter" = "インタープリタ";
 // table column headers
-"Used style" = "使用するスタイル";
-"Duplicated styles" = "重複しているスタイル";
+"Used syntax" = "使用するシンタックス";
+"Duplicated syntaxes" = "重複しているシンタックス";
 
 
 

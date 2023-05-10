@@ -52,7 +52,7 @@ final class OutlineViewController: NSViewController {
     @objc dynamic var filteringMessage: String?
     
     private var documentObserver: AnyCancellable?
-    private var syntaxStyleObserver: AnyCancellable?
+    private var syntaxObserver: AnyCancellable?
     private var selectionObserver: AnyCancellable?
     private var fontSizeObserver: AnyCancellable?
     private var isOwnSelectionChange = false
@@ -72,7 +72,7 @@ final class OutlineViewController: NSViewController {
                    "representedObject of \(self.className) must be an instance of \(Document.className())")
             
             self.observeDocument()
-            self.observeSyntaxStyle()
+            self.observeSyntax()
         }
     }
     
@@ -191,19 +191,19 @@ final class OutlineViewController: NSViewController {
     }
     
     
-    /// Update document observation for syntax style.
+    /// Update document observation for syntax.
     private func observeDocument() {
         
-        self.documentObserver = self.document?.didChangeSyntaxStyle
+        self.documentObserver = self.document?.didChangeSyntax
             .receive(on: RunLoop.main)
-            .sink { [weak self] _ in self?.observeSyntaxStyle() }
+            .sink { [weak self] _ in self?.observeSyntax() }
     }
     
     
-    /// Update syntax style observation for outline.
-    private func observeSyntaxStyle() {
+    /// Update syntax observation for outline.
+    private func observeSyntax() {
         
-        self.syntaxStyleObserver = self.document?.syntaxParser.$outlineItems
+        self.syntaxObserver = self.document?.syntaxParser.$outlineItems
             .compactMap { $0 }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in self?.outlineItems = $0 }
