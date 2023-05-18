@@ -257,7 +257,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
         switch error {
             case is ScriptError:
                 let log = Console.Log(message: error.localizedDescription, title: scriptName)
-                Console.shared.show(log: log)
+                ConsolePanelController.shared.append(log: log)
+                ConsolePanelController.shared.showWindow(nil)
             default:
                 NSApp.presentError(error)
         }

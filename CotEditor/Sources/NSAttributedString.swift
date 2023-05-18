@@ -27,14 +27,14 @@ import Foundation.NSAttributedString
 
 extension NSAttributedString {
     
-    /// whole range
+    /// Whole range.
     var range: NSRange {
         
         NSRange(location: 0, length: self.length)
     }
     
     
-    /// concatenate attributed strings
+    /// Concatenate attributed strings.
     static func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
         
         let result = NSMutableAttributedString(attributedString: lhs)
@@ -44,7 +44,7 @@ extension NSAttributedString {
     }
     
     
-    /// concatenate attributed strings
+    /// Append another attributed string.
     static func += (lhs: inout NSAttributedString, rhs: NSAttributedString) {
         
         let result = NSMutableAttributedString(attributedString: lhs)
@@ -78,6 +78,13 @@ extension NSAttributedString {
 
 
 extension NSMutableAttributedString {
+    
+    /// Append another attributed string.
+    static func += (lhs: inout NSMutableAttributedString, rhs: NSAttributedString) {
+        
+        lhs.append(rhs)
+    }
+    
     
     /// Truncate head with an ellipsis symbol until the specific `location` if the length before the location is the longer than the `maxOffset`.
     ///

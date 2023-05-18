@@ -31,9 +31,10 @@ final class WriteToConsoleCommand: NSScriptCommand {
         
         guard let message = self.directParameter as? String else { return false }
         
-        Task {
-            let name = await ScriptManager.shared.currentScriptName
-            await Console.shared.show(log: Console.Log(message: message, title: name))
+        Task { @MainActor in
+            let log = Console.Log(message: message, title: ScriptManager.shared.currentScriptName)
+            ConsolePanelController.shared.append(log: log)
+            ConsolePanelController.shared.showWindow(self)
         }
         
         return true

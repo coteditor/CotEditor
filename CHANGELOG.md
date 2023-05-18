@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Enable changing text size in Console.
 - Rename “Protocol Buffer” style with “Protocol Buffers.”
 
 

@@ -128,7 +128,8 @@ final class UnixScript: Script {
                 try await self.applyOutput(output, type: outputType, editor: document?.textView)
             } catch {
                 let log = Console.Log(message: error.localizedDescription, title: self.name)
-                await Console.shared.show(log: log)
+                await ConsolePanelController.shared.append(log: log)
+                await ConsolePanelController.shared.showWindow(nil)
             }
         }
         

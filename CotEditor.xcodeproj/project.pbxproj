@@ -260,8 +260,8 @@
 		2A5ADE891D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */; };
 		2A5C00342814698000700CAE /* Collection+BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5C00332814698000700CAE /* Collection+BinarySearch.swift */; };
 		2A5C00352814698000700CAE /* Collection+BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5C00332814698000700CAE /* Collection+BinarySearch.swift */; };
-		2A5D130A1D1ED10400D38E6A /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13091D1ED10400D38E6A /* Console.swift */; };
-		2A5D130B1D1ED10400D38E6A /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13091D1ED10400D38E6A /* Console.swift */; };
+		2A5D130A1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */; };
+		2A5D130B1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */; };
 		2A5D13101D1EE66500D38E6A /* FindProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D130F1D1EE66500D38E6A /* FindProgressView.swift */; };
 		2A5D13111D1EE66500D38E6A /* FindProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D130F1D1EE66500D38E6A /* FindProgressView.swift */; };
 		2A5D13131D1EE8FF00D38E6A /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13121D1EE8FF00D38E6A /* HUDView.swift */; };
@@ -1066,7 +1066,7 @@
 		2A5ADE831D2168FC00F6CE26 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+NamedColors.swift"; sourceTree = "<group>"; };
 		2A5C00332814698000700CAE /* Collection+BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+BinarySearch.swift"; sourceTree = "<group>"; };
-		2A5D13091D1ED10400D38E6A /* Console.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
+		2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsolePanelController.swift; sourceTree = "<group>"; };
 		2A5D130F1D1EE66500D38E6A /* FindProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindProgressView.swift; sourceTree = "<group>"; };
 		2A5D13121D1EE8FF00D38E6A /* HUDView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
 		2A5D13151D1EF5AA00D38E6A /* GoToLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToLineView.swift; sourceTree = "<group>"; };
@@ -2539,7 +2539,7 @@
 		2AFFB72E18D8E87900118477 /* Panels */ = {
 			isa = PBXGroup;
 			children = (
-				2A5D13091D1ED10400D38E6A /* Console.swift */,
+				2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */,
 				2A4257AF1D22FD490086DAAD /* ColorCodePanelController.swift */,
 			);
 			name = Panels;
@@ -2983,7 +2983,7 @@
 				2A1A4EB024FB9D9300B50AA0 /* Combine.swift in Sources */,
 				2AC13A0924F112D800799A93 /* CommandLineToolManager.swift in Sources */,
 				2A885E341D5C3A1B00288723 /* Comparable.swift in Sources */,
-				2A5D130B1D1ED10400D38E6A /* Console.swift in Sources */,
+				2A5D130B1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
 				2AE12E081E7DDF0700681F72 /* CustomSurroundStringView.swift in Sources */,
 				2A25C52920F06BE80003AE1A /* CustomTabWidthView.swift in Sources */,
 				2AFB30E01E4B8F5B00BFAEF3 /* Debouncer.swift in Sources */,
@@ -3343,7 +3343,7 @@
 				2A1A4EB124FB9D9300B50AA0 /* Combine.swift in Sources */,
 				2AC13A0A24F112D800799A93 /* CommandLineToolManager.swift in Sources */,
 				2A885E331D5C3A1B00288723 /* Comparable.swift in Sources */,
-				2A5D130A1D1ED10400D38E6A /* Console.swift in Sources */,
+				2A5D130A1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
 				2AE12E071E7DDF0700681F72 /* CustomSurroundStringView.swift in Sources */,
 				2A25C52820F06BE80003AE1A /* CustomTabWidthView.swift in Sources */,
 				2AFB30DF1E4B8F5B00BFAEF3 /* Debouncer.swift in Sources */,

@@ -334,7 +334,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// Show console panel.
     @IBAction func showConsolePanel(_ sender: Any?) {
         
-        Console.shared.panelController.showWindow(sender)
+        ConsolePanelController.shared.showWindow(sender)
     }
     
     

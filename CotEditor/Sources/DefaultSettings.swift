@@ -167,6 +167,7 @@ struct DefaultSettings {
         .recentStyleNames: [String](),
         .showStatusBar: true,
         .selectedInspectorPaneIndex: 0,
+        .consoleFontSize: NSFont.smallSystemFontSize,
         .outlineViewFontSize: NSFont.smallSystemFontSize,
         .findResultViewFontSize: NSFont.smallSystemFontSize,
         

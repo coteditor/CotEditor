@@ -25,36 +25,13 @@
 
 import AppKit
 
-final class Console {
+struct Console {
     
     struct Log {
         
         var message: String
         var title: String?
         var date: Date = .now
-    }
-    
-    
-    
-    // MARK: Public Properties
-    
-    static let shared = Console()
-    
-    private(set) lazy var panelController = ConsolePanelController()
-    
-    
-    
-    // MARK: -
-    // MARK: Public Methods
-    
-    /// Append given message to the console.
-    ///
-    /// - Parameters:
-    ///   - log: The console log to show.
-    @MainActor func show(log: Log) {
-        
-        self.panelController.showWindow(nil)
-        (self.panelController.contentViewController as? ConsoleViewController)?.append(log: log)
     }
 }
 
@@ -64,9 +41,14 @@ final class Console {
 
 final class ConsolePanelController: NSWindowController {
     
+    // MARK: Public Properties
+    
+    static let shared = ConsolePanelController()
+    
+    
     // MARK: Lifecycle
     
-    convenience init() {
+    init() {
         
         let viewController = ConsoleViewController()
         let panel = NSPanel(contentViewController: viewController)
@@ -75,7 +57,7 @@ final class ConsolePanelController: NSWindowController {
         panel.title = String(localized: "Console")
         panel.setContentSize(NSSize(width: 360, height: 200))
         
-        self.init(window: panel)
+        super.init(window: panel)
         
         self.windowFrameAutosaveName = "Console"
         
@@ -85,6 +67,22 @@ final class ConsolePanelController: NSWindowController {
         toolbar.displayMode = .iconOnly
         panel.toolbar = toolbar
         panel.toolbarStyle = .unifiedCompact
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    /// Append given message to the console.
+    ///
+    /// - Parameters:
+    ///   - log: The console log to show.
+    func append(log: Console.Log) {
+        
+        (self.contentViewController as! ConsoleViewController).append(log: log)
     }
 }
 
@@ -121,7 +119,7 @@ extension ConsolePanelController: NSToolbarDelegate {
                 item.label = String(localized: "Clear Log")
                 item.toolTip = String(localized: "Clear error log")
                 item.image = NSImage(systemSymbolName: "trash", accessibilityDescription: item.label)
-                item.action = #selector(ConsoleViewController.clear)
+                item.action = #selector(ConsoleViewController.clearAll)
                 return item
                 
             default:
@@ -139,6 +137,14 @@ private final class ConsoleViewController: NSViewController {
     // MARK: Private Properties
     
     private weak var textView: NSTextView?
+    
+    private var fontSize: Double = max(UserDefaults.standard[.consoleFontSize], NSFont.smallSystemFontSize) {
+        
+        didSet {
+            UserDefaults.standard[.consoleFontSize] = fontSize
+            self.changeFontSize(fontSize)
+        }
+    }
     
     
     // MARK: Lifecycle
@@ -165,67 +171,148 @@ private final class ConsoleViewController: NSViewController {
         guard let textView = self.textView else { return assertionFailure() }
         
         let lastLocation = textView.string.length
-        let attributedString = NSAttributedString(log.attributedString)
+        let attributedString = log.attributedString(fontSize: self.fontSize)
+        let range = NSRange(location: lastLocation, length: attributedString.length)
         
         textView.textStorage?.append(attributedString)
         NSAccessibility.post(element: textView, notification: .valueChanged)
         
         // scroll to make the message visible
-        textView.scrollRangeToVisible(NSRange(location: lastLocation, length: attributedString.length))
+        textView.scrollRangeToVisible(range)
     }
     
     
+    // MARK: Actions
+    
     /// Flush existing log.
-    @IBAction func clear(_ sender: Any?) {
+    @IBAction func clearAll(_ sender: Any?) {
         
         guard let textView = self.textView else { return assertionFailure() }
         
         textView.string = ""
         NSAccessibility.post(element: textView, notification: .valueChanged)
     }
+    
+    
+    /// Increase content font size.
+    @IBAction func biggerFont(_ sender: Any?) {
+        
+        self.fontSize += 1
+    }
+    
+    
+    /// Decrease content font size.
+    @IBAction func smallerFont(_ sender: Any?) {
+        
+        guard UserDefaults.standard[.consoleFontSize] > NSFont.smallSystemFontSize else { return }
+        
+        self.fontSize -= 1
+    }
+    
+    
+    /// Restore content font size to the default.
+    @IBAction func resetFont(_ sender: Any?) {
+        
+        UserDefaults.standard.restore(key: .consoleFontSize)
+        self.fontSize = UserDefaults.standard[.consoleFontSize]
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Change font size of the text view.
+    ///
+    /// - Parameter fontSize: The new font size.
+    private func changeFontSize(_ fontSize: Double) {
+        
+        guard let storage = self.textView?.textStorage else { return }
+        
+        storage.beginEditing()
+        storage.enumerateAttribute(.consolePart, in: storage.range) { (part, range, _) in
+            guard let part = part as? Console.Log.Part else { return }
+            
+            storage.addAttributes(part.attributes(fontSize: fontSize), range: range)
+        }
+        storage.endEditing()
+    }
 }
 
 
 
+// MARK: -
+
+private extension NSAttributedString.Key {
+    
+    static let consolePart = Self("consolePart")
+}
+
+
 private extension Console.Log {
     
-    private static let fontSize: Double = 11
-    
-    private static let paragraphStyle: NSParagraphStyle = {
+    enum Part {
         
-        let paragraphStyle = NSParagraphStyle.default.mutable
-        paragraphStyle.headIndent = Self.fontSize
-        paragraphStyle.firstLineHeadIndent = Self.fontSize
-        
-        return paragraphStyle
-    }()
+        case timestamp
+        case title
+        case message
+    }
     
     
-    var attributedString: AttributedString {
+    func attributedString(fontSize: Double) -> NSAttributedString {
         
+        var string = NSMutableAttributedString()
+        
+        // header
         let dateFormat = Date.ISO8601FormatStyle(timeZone: .current)
             .year()
             .month()
             .day()
             .dateTimeSeparator(.space)
             .time(includingFractionalSeconds: false)
-        var string = AttributedString("[\(self.date.formatted(dateFormat))]")
-        
-        // append bold title
+        string += NSAttributedString(string: "[\(self.date.formatted(dateFormat))]",
+                                     attributes: Part.timestamp.attributes(fontSize: fontSize))
         if let title = self.title {
-            var attrTitle = AttributedString(title)
-            attrTitle.font = .systemFont(ofSize: 0, weight: .semibold)
-            string += " " + attrTitle
+            string += NSAttributedString(string: " " + title, attributes: Part.title.attributes(fontSize: fontSize))
         }
+        string += NSAttributedString(string: "\n")
         
-        // append indented message
-        var message = AttributedString(self.message)
-        message.font = .monospacedSystemFont(ofSize: Self.fontSize, weight: .regular)
-        message.paragraphStyle = Self.paragraphStyle
-        string += "\n" + message + "\n"
+        // body
+        string += NSAttributedString(string: self.message + "\n", attributes: Part.message.attributes(fontSize: fontSize))
         
-        string.foregroundColor = .labelColor
+        // style
+        string.addAttribute(.foregroundColor, value: NSColor.labelColor, range: string.range)
         
         return string
+    }
+}
+
+
+private extension Console.Log.Part {
+    
+    func attributes(fontSize: Double) -> [NSAttributedString.Key: Any] {
+        
+        switch self {
+            case .timestamp:
+                return [
+                    .consolePart: self,
+                    .font: NSFont.systemFont(ofSize: fontSize),
+                ]
+                
+            case .title:
+                return [
+                    .consolePart: self,
+                    .font: NSFont.systemFont(ofSize: fontSize, weight: .semibold),
+                ]
+                
+            case .message:
+                let paragraphStyle = NSParagraphStyle.default.mutable
+                paragraphStyle.headIndent = fontSize
+                paragraphStyle.firstLineHeadIndent = fontSize
+                
+                return [
+                    .consolePart: self,
+                    .font: NSFont.monospacedSystemFont(ofSize: fontSize, weight: .regular),
+                    .paragraphStyle: paragraphStyle,
+                ]
+        }
     }
 }
