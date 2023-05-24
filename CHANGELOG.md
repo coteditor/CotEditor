@@ -14,7 +14,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the script console just displayed “CotEditor.ScriptError error 0.” instead of the actual message of the standard error.
-- Fix an issue that the Scripts menu listed the files without extension up as scripts.
+- Fix an issue that the Scripts menu listed the files without extension as scripts.
 - Fix an issue that the size of line numbers did not update even when the editor’s font size was changed.
 
 
@@ -129,7 +129,7 @@ Change Log
 - Change counting characters/lines/words to count all elements in multiple selections.
 - Change the threshold to trigger the automatic completion to 3 letters to optimize calculation time by large documents.
 - Allow `_` as a character for completion candidates.
-- Synchronize the visibility of all navigation/status bars in the application. 
+- Synchronize the visibility of all navigation/status bars in the application.
 
 
 ### Fixes
