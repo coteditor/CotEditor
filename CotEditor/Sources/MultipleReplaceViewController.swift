@@ -456,7 +456,7 @@ extension MultipleReplaceViewController: NSTableViewDelegate {
                 do {
                     try replacement.validate(regexOptions: self.definition.settings.regexOptions)
                 } catch {
-                    guard let suggestion = (error as? LocalizedError)?.recoverySuggestion else { return error.localizedDescription }
+                    guard let suggestion = (error as? any LocalizedError)?.recoverySuggestion else { return error.localizedDescription }
                     
                     return "[" + error.localizedDescription + "] " + suggestion
                 }

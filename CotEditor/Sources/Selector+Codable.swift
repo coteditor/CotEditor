@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import Foundation.NSObjCRuntime
 
 extension Selector: Codable {
     
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         
         let container = try decoder.singleValueContainer()
         
@@ -35,7 +35,7 @@ extension Selector: Codable {
     }
     
     
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         
         var container = encoder.singleValueContainer()
         

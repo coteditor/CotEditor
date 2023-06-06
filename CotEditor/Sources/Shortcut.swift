@@ -363,7 +363,7 @@ extension Shortcut: Hashable {
 
 extension Shortcut: Codable {
     
-    init(from decoder: Decoder) throws {
+    init(from decoder: any Decoder) throws {
         
         let container = try decoder.singleValueContainer()
         let string = try container.decode(String.self)
@@ -376,7 +376,7 @@ extension Shortcut: Codable {
     }
     
     
-    func encode(to encoder: Encoder) throws {
+    func encode(to encoder: any Encoder) throws {
         
         var container = encoder.singleValueContainer()
         

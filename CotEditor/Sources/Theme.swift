@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -169,7 +169,7 @@ extension Theme.Style: Codable {
     }
     
     
-    init(from decoder: Decoder) throws {
+    init(from decoder: any Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -180,7 +180,7 @@ extension Theme.Style: Codable {
     }
     
     
-    func encode(to encoder: Encoder) throws {
+    func encode(to encoder: any Encoder) throws {
         
         guard let color = self.color.usingColorSpace(.genericRGB) else { throw CocoaError(.coderInvalidValue) }
         
@@ -201,7 +201,7 @@ extension Theme.SelectionStyle: Codable {
     }
     
     
-    init(from decoder: Decoder) throws {
+    init(from decoder: any Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -214,7 +214,7 @@ extension Theme.SelectionStyle: Codable {
     }
     
     
-    func encode(to encoder: Encoder) throws {
+    func encode(to encoder: any Encoder) throws {
         
         guard let color = self.color.usingColorSpace(.genericRGB) else { throw CocoaError(.coderInvalidValue) }
         
