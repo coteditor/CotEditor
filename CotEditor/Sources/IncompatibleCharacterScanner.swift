@@ -81,7 +81,7 @@ final class IncompatibleCharacterScanner {
             defer { self.isScanning = false }
             try await Task.sleep(nanoseconds: 400 * 1_000_000)  // debounce
             
-            let string = document.textStorage.string.immutable
+            let string = await MainActor.run { document.textStorage.string.immutable }
             let incompatibleCharacters = try string.scanIncompatibleCharacters(with: encoding)
             self.incompatibleCharacters = incompatibleCharacters
         }
