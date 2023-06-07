@@ -73,7 +73,7 @@ extension UserDefaults {
 
 private extension UserDefaults.Publisher {
     
-    final class Subscription<Value: Equatable, S: Subscriber>: NSObject, Combine.Subscription where S.Input == Value {
+    final class Subscription<S: Subscriber>: NSObject, Combine.Subscription where S.Input == Value {
         
         // MARK: Private Properties
         
