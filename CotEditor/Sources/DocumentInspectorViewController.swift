@@ -137,7 +137,9 @@ final class DocumentInspectorViewController: NSViewController {
         
         document.$fileAttributes
             .receive(on: DispatchQueue.main)
-            .sink { [info = self.fileInfo] (attributes) in
+            .sink { [weak self] (attributes) in
+                guard let info = self?.fileInfo else { return }
+                
                 let dateFormat = Date.FormatStyle(date: .abbreviated, time: .shortened)
                 
                 info.creationDate = (attributes?[.creationDate] as? Date)?.formatted(dateFormat)
