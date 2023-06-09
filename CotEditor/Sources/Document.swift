@@ -542,10 +542,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
-        if UserDefaults.standard.bool(forKey: "disableClosingEmptyDocument") {
-            return super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
-        }
-        
         // suppress save dialog if content is empty and not saved explicitly
         if (self.isDraft || self.fileURL == nil), self.textStorage.string.isEmpty {
             self.updateChangeCount(.changeCleared)
