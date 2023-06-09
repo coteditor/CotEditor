@@ -524,25 +524,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     override func prepareSavePanel(_ savePanel: NSSavePanel) -> Bool {
         
-        // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 12)
         savePanel.allowsOtherFileTypes = true
-        savePanel.allowedContentTypes = []  // empty array allows setting any extension
-        
-        if let fileType = self.fileType,
-           let filenameExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation),
-           let type = UTType(filenameExtension: filenameExtension)
-        {
-            // set once allowedContentTypes, so that the initial filename selection excludes the file extension
-            savePanel.allowedContentTypes = [type]
-            
-            // disable it immediately in the next run loop to allow setting other extensions
-            Task.detached { @MainActor [weak savePanel] in
-                savePanel?.allowedContentTypes = []
-            }
-        } else {
-            // just keep no extension
-            savePanel.allowedContentTypes = []
-        }
+        savePanel.allowedContentTypes = self.fileType
+            .flatMap { self.fileNameExtension(forType: $0, saveOperation: .saveOperation) }
+            .flatMap { UTType(filenameExtension: $0) }
+            .flatMap { [$0] } ?? []
         
         // set accessory view
         let accessory = SavePanelAccessory(options: self.saveOptions)
