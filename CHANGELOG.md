@@ -5,6 +5,10 @@ Change Log
 4.5.7 (unreleased)
 --------------------------
 
+### Improvements
+
+- Improve the stability on document saving and deletion.
+
 
 
 4.5.6 (571)
