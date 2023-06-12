@@ -1165,10 +1165,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         switch item.action {
             case #selector(performTextFinderAction):
-                if let action = TextFinder.Action(rawValue: item.tag) {
-                    return self.textFinder.validateAction(action)
-                }
-                return false
+                guard let action = TextFinder.Action(rawValue: item.tag) else { return false }
+                return self.textFinder.validateAction(action)
                 
             case #selector(copyWithStyle):
                 return !self.selectedRange.isEmpty

@@ -74,7 +74,7 @@ extension NSTouchBar {
 
 // MARK: -
 
-private final class TouchBarValidator {
+@MainActor private final class TouchBarValidator {
     
     // MARK: Public Properties
     

@@ -30,7 +30,7 @@ protocol Validatable: AnyObject { }
 
 extension Validatable where Self: NSToolbarItem {
     
-    func validate() -> Bool {
+    @MainActor func validate() -> Bool {
         
         guard
             let validator = self.target

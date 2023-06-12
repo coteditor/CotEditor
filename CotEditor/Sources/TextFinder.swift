@@ -129,7 +129,7 @@ final class TextFinder {
     static let didFindNotification = Notification.Name("didFindNotification")
     static let didFindAllNotification = Notification.Name("didFindAllNotification")
     
-    weak var client: NSTextView!
+    @MainActor weak var client: NSTextView!
     
     private(set) var findResult: TextFindResult?
     private(set) var findAllResult: TextFindAllResult?
@@ -170,7 +170,7 @@ final class TextFinder {
     ///
     /// - Parameter action: The sender’s tag.
     /// - Returns: `true` if the operation is valid; otherwise `false`.
-    func validateAction(_ action: Action) -> Bool {
+    @MainActor func validateAction(_ action: Action) -> Bool {
         
         switch action {
             case .showFindInterface,
@@ -646,7 +646,7 @@ final class TextFinder {
     ///
     /// - Parameters:
     ///   - result: The result of the process.
-    private func notify(result: TextFindResult) {
+    @MainActor private func notify(result: TextFindResult) {
         
         self.findResult = result
         NotificationCenter.default.post(name: TextFinder.didFindNotification, object: self)

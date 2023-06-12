@@ -93,9 +93,9 @@ final actor UserUnixTask {
         get async {
             guard let buffer = self.buffer else { return nil }
             
-            let data = await buffer.reduce(into: Data()) { $0 += $1 }
+            async let data = buffer.reduce(into: Data()) { $0 += $1 }
             
-            return String(data: data, encoding: .utf8)
+            return String(data: await data, encoding: .utf8)
         }
     }
     

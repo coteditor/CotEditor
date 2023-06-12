@@ -99,6 +99,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 
             } else {
                 for await _ in await NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification) {
+                    guard !Task.isCancelled else { return }
                     await self?.buildScriptMenu()
                     return
                 }
