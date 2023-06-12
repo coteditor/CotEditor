@@ -543,29 +543,21 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
         // suppress save dialog if content is empty and not saved explicitly
-        if (self.isDraft || self.fileURL == nil), self.textStorage.string.isEmpty {
-            self.updateChangeCount(.changeCleared)
-            
+        suppression: if (self.isDraft || self.fileURL == nil), self.textStorage.string.isEmpty {
             // delete autosaved file if exists
+            // -> An engineer at Apple told there is no need to wrap the file access here with NSFileCoordinator (2023-06).
             if let fileURL = self.fileURL {
-                if !UserDefaults.standard.bool(forKey: "disableExplicitRecentDocumentRemoval") {
-                    NSDocumentController.shared.removeRecentDocument(url: fileURL)
-                }
-                
-                var deletionError: NSError?
-                NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .forDeleting, error: &deletionError) { (newURL) in  // FILE_ACCESS
-                    do {
-                        try FileManager.default.removeItem(at: newURL)
-                    } catch {
-                        // do nothing and let super's `.canClose(withDelegate:shouldClose:contextInfo:)` handle the stuff
-                        Swift.print("Failed empty file deletion: \(error)")
-                        return
-                    }
-                    
-                    self.fileURL = nil
-                    self.isDraft = false
+                do {
+                    try FileManager.default.removeItem(at: fileURL)  // FILE_ACCESS
+                } catch {
+                    Swift.print("Failed empty file deletion: \(error)")
+                    break suppression
                 }
             }
+            
+            // tell the document can be closed; then, no need to invoke super anymore
+            DelegateContext(delegate: delegate, selector: shouldCloseSelector, contextInfo: contextInfo).perform(from: self, flag: true)
+            return
         }
         
         super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
