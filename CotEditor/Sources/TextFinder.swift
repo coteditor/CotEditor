@@ -579,7 +579,7 @@ final class TextFinder {
             NSSound.beep()
         }
         
-        progress.isFinished = true
+        progress.finish()
         
         self.notify(result: .found(matches.map(\.range)))
         
@@ -635,7 +635,7 @@ final class TextFinder {
             NSSound.beep()
         }
         
-        progress.isFinished = true
+        progress.finish()
         
         self.notify(result: .replaced(progress.count))
         TextFinderSettings.shared.noteReplaceHistory()

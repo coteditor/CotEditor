@@ -31,8 +31,8 @@ final class FindProgress: ObservableObject {
     var completedUnit = 0
     var count = 0
     
-    @Published var isCancelled = false
-    @Published var isFinished = false
+    @Published private(set) var isCancelled = false
+    @Published private(set) var isFinished = false
     
     
     /// Instantiate a progress.
@@ -55,5 +55,19 @@ final class FindProgress: ObservableObject {
         } else {
             return Double(self.completedUnit) / Double(self.scope.count)
         }
+    }
+    
+    
+    /// Raise `isCancelled` flag.
+    func cancel() {
+        
+        self.isCancelled = true
+    }
+    
+    
+    /// Raise `isFinished` flag.
+    func finish() {
+        
+        self.isFinished = true
     }
 }

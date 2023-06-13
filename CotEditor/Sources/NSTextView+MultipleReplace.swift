@@ -73,7 +73,7 @@ extension NSTextView {
             NSSound.beep()
         }
         
-        progress.isFinished = true
+        progress.finish()
         
         let message = (progress.count == 0)
             ? String(localized: "Not found")
@@ -121,7 +121,7 @@ extension NSTextView {
             NSSound.beep()
         }
         
-        progress.isFinished = true
+        progress.finish()
         
         let message = (progress.count == 0)
             ? String(localized: "Not replaced")

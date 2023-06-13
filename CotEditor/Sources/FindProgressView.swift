@@ -74,7 +74,7 @@ struct FindProgressView: View {
                     .progressViewStyle(.linear)
                 
                 Button(role: .cancel) {
-                    self.progress.isCancelled = true
+                    self.progress.cancel()
                 } label: {
                     Image(systemName: "xmark")
                         .symbolVariant(.circle)
