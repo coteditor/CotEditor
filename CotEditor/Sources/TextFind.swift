@@ -25,7 +25,7 @@
 
 import Foundation
 
-final class TextFind {
+struct TextFind {
     
     typealias ReplacementItem = ValueRange<String>
     
@@ -85,9 +85,8 @@ final class TextFind {
     // MARK: Private Properties
     
     private let regex: NSRegularExpression?
+    private let fullWordChecker: NSRegularExpression?
     private let scopeRanges: [NSRange]
-    
-    private lazy var fullWordChecker = try! NSRegularExpression(pattern: "^\\b.+\\b$")
     
     
     
@@ -116,16 +115,18 @@ final class TextFind {
         }
         
         switch mode {
-            case .textual(let options, _):
+            case let .textual(options, isFullWord):
                 assert(!options.contains(.backwards))
                 self.regex = nil
+                self.fullWordChecker = isFullWord ? try! NSRegularExpression(pattern: "^\\b.+\\b$") : nil
                 
-            case .regularExpression(let options, _):
+            case let .regularExpression(options, _):
                 do {
                     self.regex = try NSRegularExpression(pattern: findString, options: options)
                 } catch {
                     throw TextFind.Error.regularExpression(reason: error.localizedDescription)
                 }
+                self.fullWordChecker = nil
         }
         
         self.findString = findString
@@ -226,10 +227,10 @@ final class TextFind {
         let selectedRange = self.selectedRanges.first!
         
         switch self.mode {
-            case let .textual(options, fullWord):
+            case let .textual(options, _):
                 let matchedRange = (string as NSString).range(of: self.findString, options: options, range: selectedRange)
                 guard matchedRange.location != NSNotFound else { return nil }
-                guard !fullWord || self.isFullWord(range: matchedRange) else { return nil }
+                guard self.checkFullWord(in: matchedRange) else { return nil }
                 
                 return ReplacementItem(value: replacementString, range: matchedRange)
                 
@@ -359,9 +360,11 @@ final class TextFind {
     /// - Parameters:
     ///   - range: The character range to test.
     /// - Returns: Whether the substring of the given range is full word.
-    private func isFullWord(range: NSRange) -> Bool {
+    private func checkFullWord(in range: NSRange) -> Bool {
         
-        self.fullWordChecker.firstMatch(in: self.string, options: .withTransparentBounds, range: range) != nil
+        guard let fullWordChecker else { return true }
+        
+        return fullWordChecker.firstMatch(in: self.string, options: .withTransparentBounds, range: range) != nil
     }
     
     
@@ -401,7 +404,7 @@ final class TextFind {
             
             searchRange.location = foundRange.upperBound
             
-            guard !fullWord || self.isFullWord(range: foundRange) else { continue }
+            guard self.checkFullWord(in: foundRange) else { continue }
             
             var stop = false
             block(foundRange, nil, &stop)
