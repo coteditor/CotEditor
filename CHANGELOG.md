@@ -8,6 +8,8 @@ Change Log
 ### Improvements
 
 - Improve the stability on document saving and deletion.
+- [non-AppStore ver.] Update Sparkle from 2.4.1 to 2.4.2.
+- [dev] Update Yams from 5.0.5 to 5.0.6.
 
 
 
