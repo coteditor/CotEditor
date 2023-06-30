@@ -554,7 +554,7 @@ final class TextFinder {
                 }
                 
                 progress.completedUnit = matches[0].upperBound
-                progress.count += 1
+                progress.increment()
             }
             
             return (highlights, resultMatches)
@@ -617,7 +617,7 @@ final class TextFinder {
                 }
                 
                 progress.completedUnit = range.upperBound
-                progress.count += count
+                progress.increment(by: count)
             }
         }.value
         

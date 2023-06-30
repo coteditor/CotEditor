@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,8 +28,8 @@ import Foundation
 final class FindProgress: ObservableObject {
     
     let scope: Range<Int>
+    private(set) var count = 0
     var completedUnit = 0
-    var count = 0
     
     @Published private(set) var isCancelled = false
     @Published private(set) var isFinished = false
@@ -38,23 +38,29 @@ final class FindProgress: ObservableObject {
     /// Instantiate a progress.
     ///
     /// - Parameter scope: The range of progress unit to work with.
-    init(scope: Range<Int>, completedUnit: Int = 0) {
+    init(scope: Range<Int>) {
         
         self.scope = scope
-        self.completedUnit = completedUnit
     }
     
     
     /// The fraction of task completed in between 0...1.0.
     var fractionCompleted: Double {
         
-        if self.isFinished {
+        if self.isFinished || self.scope.isEmpty {
             return 1
-        } else if self.scope.isEmpty {
-            return 0
         } else {
             return Double(self.completedUnit) / Double(self.scope.count)
         }
+    }
+    
+    
+    /// Increment count.
+    ///
+    /// - Parameter count: The amount to increment.
+    func increment(by count: Int = 1) {
+        
+        self.count += count
     }
     
     

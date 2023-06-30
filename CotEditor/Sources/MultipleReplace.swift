@@ -100,7 +100,7 @@ extension MultipleReplace {
                 }
                 
                 result.append(ranges.first!)
-                progress?.count += 1
+                progress?.increment()
             }
             
             // finish if cancelled
@@ -141,7 +141,7 @@ extension MultipleReplace {
                     return
                 }
                 
-                progress?.count += count
+                progress?.increment(by: count)
             }
             
             // finish if cancelled

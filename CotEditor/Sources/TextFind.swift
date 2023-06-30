@@ -384,10 +384,12 @@ struct TextFind {
     }
     
     
-    /// Enumerate matches in string using textual search
+    /// Enumerate matches in string using textual search.
     ///
     /// - Parameters:
     ///   - range: The range of the string to search.
+    ///   - options: The search options.
+    ///   - fullWord: When `true`, only full words are matched.
     ///   - block: The block that enumerates the matches.
     private func enumerateTextualMatches(in range: NSRange, options: String.CompareOptions, fullWord: Bool, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
