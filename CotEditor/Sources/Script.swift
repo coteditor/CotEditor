@@ -55,6 +55,16 @@ protocol AppleEventReceivable {
     func run(withAppleEvent event: NSAppleEventDescriptor?) async throws
 }
 
+
+extension AppleEventReceivable {
+    
+    func run() async throws {
+        
+        try await self.run(withAppleEvent: nil)
+    }
+}
+
+
 typealias EventScript = Script & AppleEventReceivable
 
 

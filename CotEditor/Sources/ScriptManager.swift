@@ -201,7 +201,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 }
                 
             } catch {
-                self.presentError(error, scriptName: script.name)
+                Self.presentError(error, scriptName: script.name)
             }
         }
     }
@@ -227,24 +227,21 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     /// Build the Script menu and scan script handlers.
-    private func buildScriptMenu() async {
-        
-        assert(!Thread.isMainThread)
+    @MainActor private func buildScriptMenu() async {
         
         self.debounceTask?.cancel()
         self.scriptHandlersTable.removeAll()
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
         
+        let menuItems = await Task.detached { self.scriptMenuItems(in: directoryURL) }.value
+        
         let openMenuItem = NSMenuItem(title: String(localized: "Open Scripts Folder"),
                                       action: #selector(self.openScriptFolder), keyEquivalent: "")
         openMenuItem.target = self
-        let menuItems = self.scriptMenuItems(in: directoryURL) + [.separator(), openMenuItem]
         
-        await MainActor.run {
-            self.scriptMenu?.items = menuItems
-            self.applyShortcuts()
-        }
+        self.scriptMenu?.items = menuItems + [.separator(), openMenuItem]
+        self.applyShortcuts()
     }
     
     
@@ -253,7 +250,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// - Parameters:
     ///   - error: The error to present.
     ///   - scriptName: The name of script.
-    @MainActor private func presentError(_ error: any Error, scriptName: String) {
+    @MainActor private static func presentError(_ error: any Error, scriptName: String) {
         
         switch error {
             case is ScriptError:
@@ -307,7 +304,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                     do {
                         try await script.run(withAppleEvent: event)
                     } catch {
-                        await self.presentError(error, scriptName: script.name)
+                        await Self.presentError(error, scriptName: script.name)
                     }
                 }
             }
@@ -321,6 +318,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
     ///   - directoryURL: The directory where to find files recursively.
     /// - Returns: Menu items represents scripts.
     private func scriptMenuItems(in directoryURL: URL) -> [NSMenuItem] {
+        
+        assert(!Thread.isMainThread)
         
         guard let urls = try? FileManager.default
             .contentsOfDirectory(at: directoryURL,

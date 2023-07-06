@@ -58,24 +58,6 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
     
     // MARK: Script Methods
     
-    /// Execute the script.
-    ///
-    /// - Throws: `ScriptError` by the script,`ScriptFileError`, or any errors on script loading.
-    func run() async throws {
-        
-        guard self.url.isReachable else {
-            throw ScriptFileError(kind: .existence, url: self.url)
-        }
-        
-        var errorInfo: NSDictionary? = NSDictionary()
-        self.script.executeAndReturnError(&errorInfo)
-        
-        if let errorDescription = errorInfo?[NSLocalizedDescriptionKey] as? String {
-            throw ScriptError.standardError(errorDescription)
-        }
-    }
-    
-    
     /// Execute the script by sending it the given Apple event.
     ///
     /// - Parameters:
@@ -83,16 +65,12 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
     /// - Throws: `ScriptError` by the script, `ScriptFileError`, or any errors on `NSUserAppleScriptTask.init(url:)`
     func run(withAppleEvent event: NSAppleEventDescriptor?) async throws {
         
-        guard let event else {
-            return try await self.run()
+        var errorInfo: NSDictionary? = NSDictionary()
+        if let event {
+            self.script.executeAppleEvent(event, error: &errorInfo)
+        } else {
+            self.script.executeAndReturnError(&errorInfo)
         }
-        
-        guard self.url.isReachable else {
-            throw ScriptFileError(kind: .existence, url: self.url)
-        }
-        
-        var errorInfo: NSDictionary?
-        self.script.executeAppleEvent(event, error: &errorInfo)
         
         if let errorDescription = errorInfo?[NSLocalizedDescriptionKey] as? String {
             throw ScriptError.standardError(errorDescription)

@@ -47,15 +47,6 @@ final class AppleScript: Script, AppleEventReceivable, Sendable {
     
     // MARK: Script Methods
     
-    /// Execute the script.
-    ///
-    /// - Throws: `ScriptError` by the script,`ScriptFileError`, or any errors on script loading.
-    func run() async throws {
-        
-        try await self.run(withAppleEvent: nil)
-    }
-    
-    
     /// Execute the script by sending it the given Apple event.
     ///
     /// - Parameters:

@@ -31,6 +31,7 @@ enum ScriptingFileType: CaseIterable {
     case appleScript
     case unixScript
     
+    
     var fileTypes: [UTType] {
         
         switch self {
@@ -100,9 +101,13 @@ struct ScriptDescriptor {
     
     let url: URL
     let name: String
-    let type: ScriptingFileType
-    let executionModel: ScriptingExecutionModel
     let eventTypes: [ScriptingEventType]
+    
+    
+    // MARK: Private Properties
+    
+    private let type: ScriptingFileType
+    private let executionModel: ScriptingExecutionModel
     
     
     

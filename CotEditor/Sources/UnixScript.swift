@@ -27,17 +27,12 @@
 import Foundation
 import AppKit.NSDocument
 
-final class UnixScript: Script {
+final class UnixScript: Script, Sendable {
     
     // MARK: Script Properties
     
     let url: URL
     let name: String
-    
-    
-    // MARK: Private Properties
-    
-    private lazy var content: String? = try? String(contentsOf: self.url)
     
     
     
@@ -91,7 +86,7 @@ final class UnixScript: Script {
         guard try self.url.resourceValues(forKeys: [.isExecutableKey]).isExecutable ?? false else {
             throw ScriptFileError(kind: .permission, url: self.url)
         }
-        guard let script = self.content, !script.isEmpty else {
+        guard let script = try? String(contentsOf: self.url), !script.isEmpty else {
             throw ScriptFileError(kind: .read, url: self.url)
         }
         
