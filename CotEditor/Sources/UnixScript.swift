@@ -56,7 +56,7 @@ final class UnixScript: Script, Sendable {
         case insertAfterSelection = "InsertAfterSelection"
         case appendToAllText = "AppendToAllText"
         case newDocument = "NewDocument"
-        case pasteBoard = "Pasteboard"
+        case pasteboard = "Pasteboard"
         
         static var token = "CotEditorXOutput"
     }
@@ -79,7 +79,6 @@ final class UnixScript: Script, Sendable {
     /// - Throws: `ScriptError` by the script,`ScriptFileError`, or any errors on script loading.
     func run() async throws {
         
-        // check script file
         guard self.url.isReachable else {
             throw ScriptFileError(kind: .existence, url: self.url)
         }
@@ -90,10 +89,8 @@ final class UnixScript: Script, Sendable {
             throw ScriptFileError(kind: .read, url: self.url)
         }
         
-        // fetch target document
         weak var document = await NSDocumentController.shared.currentDocument as? Document
         
-        // read input
         let input: String?
         if let inputType = InputType(scanning: script) {
             input = try await self.readInput(type: inputType, editor: document?.textView)
@@ -101,36 +98,20 @@ final class UnixScript: Script, Sendable {
             input = nil
         }
         
-        // get output type
         let outputType = OutputType(scanning: script)
-        
-        // prepare file path as argument if available
         let arguments: [String] = [document?.fileURL?.path].compactMap { $0 }
-        
-        // create task
         let task = try UserUnixTask(url: self.url)
         
         if let input {
             await task.pipe(input: input)
         }
         
-        // execute
         try await task.execute(arguments: arguments)
         
-        // apply output
         if let outputType, let output = await task.output {
-            do {
-                try await self.applyOutput(output, type: outputType, editor: document?.textView)
-            } catch {
-                let log = Console.Log(message: error.localizedDescription, title: self.name)
-                await MainActor.run {
-                    ConsolePanelController.shared.append(log: log)
-                    ConsolePanelController.shared.showWindow(nil)
-                }
-            }
+            try await self.applyOutput(output, type: outputType, editor: document?.textView)
         }
         
-        // obtain standard error
         if let error = await task.error {
             throw ScriptError.standardError(error)
         }
@@ -189,7 +170,7 @@ final class UnixScript: Script, Sendable {
             case .newDocument:
                 try (DocumentController.shared as! DocumentController).openUntitledDocument(content: output, display: true)
                 
-            case .pasteBoard:
+            case .pasteboard:
                 NSPasteboard.general.clearContents()
                 NSPasteboard.general.setString(output, forType: .string)
         }
