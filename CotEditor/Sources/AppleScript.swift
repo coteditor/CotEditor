@@ -25,7 +25,7 @@
 
 import Foundation
 
-final class AppleScript: Script, AppleEventReceivable, Sendable {
+struct AppleScript: Script, AppleEventReceivable {
     
     // MARK: Script Properties
     

@@ -25,7 +25,7 @@
 
 import Foundation
 
-protocol Script: AnyObject {
+protocol Script: Sendable {
     
     // MARK: Properties
     

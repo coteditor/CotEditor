@@ -27,7 +27,7 @@
 import Foundation
 import AppKit.NSDocument
 
-final class UnixScript: Script, Sendable {
+struct UnixScript: Script {
     
     // MARK: Script Properties
     

@@ -343,7 +343,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 if name == .separator {  // separator
                     return .separator()
                     
-                } else if let descriptor = ScriptDescriptor(at: url, name: name),
+                } else if let descriptor = ScriptDescriptor(contentsOf: url, name: name),
                           let script = try? descriptor.makeScript()
                 {  // scripts
                     // -> Check script possibility before folder because a script can be a directory, e.g. .scptd.

@@ -119,7 +119,7 @@ struct ScriptDescriptor {
     /// `Contents/Info.plist` in the script at `url` will be read if they exist.
     ///
     /// - Parameter url: The location of a user script.
-    init?(at url: URL, name: String) {
+    init?(contentsOf url: URL, name: String) {
         
         guard
             let contentType = try? url.resourceValues(forKeys: [.contentTypeKey]).contentType,

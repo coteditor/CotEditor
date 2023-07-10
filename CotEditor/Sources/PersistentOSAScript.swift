@@ -26,7 +26,7 @@
 import Foundation
 import OSAKit
 
-final class PersistentOSAScript: Script, AppleEventReceivable {
+struct PersistentOSAScript: Script, AppleEventReceivable {
     
     // MARK: Script Properties
     
@@ -36,7 +36,7 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
     
     // MARK: Private Properties
     
-    private let script: OSAScript
+    private let compiledData: Data
     
     
     
@@ -45,13 +45,14 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
     
     init(url: URL, name: String) throws {
         
-        guard let script = OSAScript(contentsOf: url, error: nil) else {
-            throw ScriptFileError(kind: .read, url: url)
-        }
+        guard
+            let script = OSAScript(contentsOf: url, error: nil),
+            let data = script.compiledData(forType: url.pathExtension, error: nil)
+        else { throw ScriptFileError(kind: .read, url: url) }
         
         self.url = url
         self.name = name
-        self.script = script
+        self.compiledData = data
     }
     
     
@@ -65,11 +66,13 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
     /// - Throws: `ScriptError` by the script, `ScriptFileError`, or any errors on `NSUserAppleScriptTask.init(url:)`
     func run(withAppleEvent event: NSAppleEventDescriptor?) async throws {
         
-        var errorInfo: NSDictionary? = NSDictionary()
+        let script = try OSAScript(compiledData: self.compiledData, from: self.url)
+        
+        var errorInfo: NSDictionary?
         if let event {
-            self.script.executeAppleEvent(event, error: &errorInfo)
+            script.executeAppleEvent(event, error: &errorInfo)
         } else {
-            self.script.executeAndReturnError(&errorInfo)
+            script.executeAndReturnError(&errorInfo)
         }
         
         if let errorDescription = errorInfo?[NSLocalizedDescriptionKey] as? String {
