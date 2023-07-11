@@ -51,7 +51,7 @@ enum ScriptingExecutionModel: String, Decodable {
 
 
 
-enum ScriptingEventType: String, Decodable {
+enum ScriptingEventType: String, CaseIterable, Decodable {
     
     case documentOpened = "document opened"
     case documentSaved = "document saved"
@@ -81,7 +81,9 @@ private struct ScriptInfo: Decodable {
     }
     
     
-    /// Load from Info.plist in script bundle.
+    /// Load from Info.plist in the script bundle.
+    ///
+    /// - Parameter bundleURL: The URL to the script bundle.
     init(scriptBundle bundleURL: URL) throws {
         
         let plistURL = bundleURL.appendingPathComponent("Contents/Info.plist")
@@ -101,6 +103,7 @@ struct ScriptDescriptor {
     
     let url: URL
     let name: String
+    let shortcut: Shortcut?
     let eventTypes: [ScriptingEventType]
     
     
@@ -114,11 +117,13 @@ struct ScriptDescriptor {
     // MARK: -
     // MARK: Lifecycle
     
-    /// Create a descriptor that represents a user script at given URL.
+    /// Create a descriptor that represents a user script at the given URL.
     ///
     /// `Contents/Info.plist` in the script at `url` will be read if they exist.
     ///
-    /// - Parameter url: The location of a user script.
+    /// - Parameters:
+    ///   - url: The location of a user script.
+    ///   - name: The name of the script file.
     init?(contentsOf url: URL, name: String) {
         
         guard
@@ -126,8 +131,16 @@ struct ScriptDescriptor {
             let type = ScriptingFileType.allCases.first(where: { $0.fileTypes.contains { contentType.conforms(to: $0) } })
         else { return nil }
         
+        var name = name
+        var shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
+        shortcut = (shortcut?.isValid == true) ? shortcut : nil
+        if shortcut != nil {
+            name = name.replacingOccurrences(of: "\\..+$", with: "", options: .regularExpression)
+        }
+        
         self.url = url
         self.name = name
+        self.shortcut = shortcut
         self.type = type
         
         // load some settings Info.plist if exists
@@ -143,10 +156,16 @@ struct ScriptDescriptor {
     /// Create and return a user script instance.
     ///
     /// - Returns: An instance of `Script` created by the receiver.
-    ///            Returns `nil` if the script type is unsupported.
     func makeScript() throws -> any Script {
         
-        try self.scriptType.init(url: self.url, name: self.name)
+        let script = try self.scriptType.init(url: self.url, name: self.name, shortcut: self.shortcut)
+        
+        if var script = script as? any EventScript {
+            script.eventTypes = self.eventTypes
+            return script
+        } else {
+            return script
+        }
     }
     
     

@@ -33,13 +33,6 @@ import Combine
 extension NSAppleEventDescriptor: @unchecked Sendable { }
 
 
-private struct ScriptItem {
-    
-    var script: any Script
-    var shortcut: Shortcut?
-}
-
-
 final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Public Properties
@@ -69,7 +62,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         self.syntaxObserver = (DocumentController.shared as! DocumentController).$currentStyleName
             .removeDuplicates()
-            .sink { [unowned self] in self.currentContext = $0 }
+            .sink { [unowned self] (styleName) in Task { @MainActor in self.currentContext = styleName } }
     }
     
     
@@ -172,10 +165,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Action Message
     
-    /// launch script (invoked by menu item)
+    /// launch script (invoked by menu item).
     @IBAction func launchScript(_ sender: NSMenuItem) {
         
-        guard let script = (sender.representedObject as? ScriptItem)?.script else { return assertionFailure() }
+        guard let script = sender.representedObject as? any Script else { return assertionFailure() }
         
         Task {
             do {
@@ -207,12 +200,12 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// open Script menu folder in Finder
+    /// Open Script menu folder in the Finder.
     @IBAction func openScriptFolder(_ sender: Any?) {
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
         
-        NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: directoryURL.path)
+        NSWorkspace.shared.activateFileViewerSelecting([directoryURL])
     }
     
     
@@ -234,10 +227,19 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
         
-        let menuItems = await Task.detached { self.scriptMenuItems(in: directoryURL) }.value
+        let scriptMenuItems = await Task.detached { Self.scriptMenuItems(at: directoryURL) }
+            .value
+        
+        let eventScripts = scriptMenuItems.flatMap(\.scripts)
+            .compactMap { $0 as? any EventScript }
+        for type in ScriptingEventType.allCases {
+            self.scriptHandlersTable[type] = eventScripts.filter { $0.eventTypes.contains(type) }
+        }
+        
+        let menuItems = scriptMenuItems.map { $0.menuItem(action: #selector(launchScript), target: self) }
         
         let openMenuItem = NSMenuItem(title: String(localized: "Open Scripts Folder"),
-                                      action: #selector(self.openScriptFolder), keyEquivalent: "")
+                                      action: #selector(openScriptFolder), keyEquivalent: "")
         openMenuItem.target = self
         
         self.scriptMenu?.items = menuItems + [.separator(), openMenuItem]
@@ -316,10 +318,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
     ///
     /// - Parameters:
     ///   - directoryURL: The directory where to find files recursively.
-    /// - Returns: Menu items represents scripts.
-    private func scriptMenuItems(in directoryURL: URL) -> [NSMenuItem] {
-        
-        assert(!Thread.isMainThread)
+    /// - Returns: An array of `ScriptMenuItem` that represents scripts.
+    private static func scriptMenuItems(at directoryURL: URL) -> [ScriptMenuItem] {
         
         guard let urls = try? FileManager.default
             .contentsOfDirectory(at: directoryURL,
@@ -331,41 +331,21 @@ final class ScriptManager: NSObject, NSFilePresenter {
             .filter { !$0.lastPathComponent.hasPrefix("_") }  // ignore files/folders of which name starts with "_"
             .sorted(\.lastPathComponent)
             .compactMap { url in
-                var name = url.deletingPathExtension().lastPathComponent
+                let name = url.deletingPathExtension().lastPathComponent
                     .replacingOccurrences(of: "^[0-9]+\\)", with: "", options: .regularExpression)  // remove ordering prefix
                 
-                var shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
-                shortcut = (shortcut?.isValid == true) ? shortcut : nil
-                if shortcut != nil {
-                    name = name.replacingOccurrences(of: "\\..+$", with: "", options: .regularExpression)
-                }
-                
-                if name == .separator {  // separator
-                    return .separator()
+                if name == .separator {
+                    return .separator
                     
                 } else if let descriptor = ScriptDescriptor(contentsOf: url, name: name),
                           let script = try? descriptor.makeScript()
-                {  // scripts
+                {
                     // -> Check script possibility before folder because a script can be a directory, e.g. .scptd.
-                    if let script = script as? any EventScript {
-                        for eventType in descriptor.eventTypes {
-                            self.scriptHandlersTable[eventType, default: []].append(script)
-                        }
-                    }
+                    return .script(script.name, script)
                     
-                    let item = NSMenuItem(title: script.name, action: #selector(launchScript), keyEquivalent: "")
-                    // -> Shortcut will be applied later in `applyShortcuts()`.
-                    item.representedObject = ScriptItem(script: script, shortcut: shortcut)
-                    item.target = self
-                    item.toolTip = String(localized: "Option-click to open script in editor.")
-                    
-                    return item
-                    
-                } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {  // folder
-                    let item = NSMenuItem(title: name, action: nil, keyEquivalent: "")
-                    item.submenu = NSMenu(title: name)
-                    item.submenu!.items = self.scriptMenuItems(in: url)
-                    return item
+                } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {
+                    let items = Self.scriptMenuItems(at: url)
+                    return .folder(name, items)
                 }
                 
                 return nil
@@ -406,7 +386,7 @@ private extension NSMenuItem {
     }
     
     
-    /// Apply the keyboard shortcut determined in `ScriptItem` struct stored in the receiver's `.representedObject`.
+    /// Apply the keyboard shortcut determined in `Script` struct stored in the receiver's `.representedObject`.
     ///
     /// - Parameters:
     ///   - recursively: When `true`, apply shortcuts also to the menu items in the `submenu` recursively.
@@ -417,9 +397,9 @@ private extension NSMenuItem {
         
         guard self.keyEquivalent.isEmpty else { return [] }
         
-        if let scriptItem = self.representedObject as? ScriptItem {
+        if let script = self.representedObject as? any Script {
             guard
-                let shortcut = scriptItem.shortcut,
+                let shortcut = script.shortcut,
                 !exclude.contains(shortcut)
             else { return [] }
             
@@ -432,6 +412,60 @@ private extension NSMenuItem {
             
         } else {
             return []
+        }
+    }
+}
+
+
+private enum ScriptMenuItem: Sendable {
+    
+    case script(_ name: String, _ script: any Script)
+    case folder(_ name: String, _ items: [ScriptMenuItem])
+    case separator
+    
+    
+    /// Create NSMenuItem instance from ScriptMenuItem.
+    ///
+    /// - Parameters:
+    ///   - action: The action selector to launch the script.
+    ///   - target: The action target to launch the script.
+    /// - Returns: An NSMenuItem.
+    func menuItem(action: Selector, target: AnyObject?) -> NSMenuItem {
+        
+        switch self {
+            case let .script(name, script):
+                let item = NSMenuItem(title: name, action: action, keyEquivalent: "")
+                // -> Shortcut will be applied later in `applyShortcuts()`.
+                item.representedObject = script
+                item.target = target
+                item.toolTip = String(localized: "Option-click to open script in editor.")
+                return item
+                
+            case let .folder(name, items):
+                let menu = NSMenu(title: name)
+                menu.items = items.map { $0.menuItem(action: action, target: target) }
+                let item = NSMenuItem(title: name, action: nil, keyEquivalent: "")
+                item.submenu = menu
+                return item
+                
+            case .separator:
+                return .separator()
+        }
+    }
+    
+    
+    /// All scripts including the scripts in the child folders.
+    var scripts: [any Script] {
+        
+        switch self {
+            case let .script(_, script):
+                return [script]
+                
+            case let .folder(_, items):
+                return items.flatMap(\.scripts)
+                
+            case .separator:
+                return []
         }
     }
 }

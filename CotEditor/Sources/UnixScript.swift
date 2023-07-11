@@ -33,16 +33,18 @@ struct UnixScript: Script {
     
     let url: URL
     let name: String
+    let shortcut: Shortcut?
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    init(url: URL, name: String) throws {
+    init(url: URL, name: String, shortcut: Shortcut?) throws {
         
         self.url = url
         self.name = name
+        self.shortcut = shortcut
     }
     
     

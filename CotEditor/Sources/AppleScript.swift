@@ -25,22 +25,25 @@
 
 import Foundation
 
-struct AppleScript: Script, AppleEventReceivable {
+struct AppleScript: EventScript {
     
     // MARK: Script Properties
     
     let url: URL
     let name: String
+    let shortcut: Shortcut?
+    var eventTypes: [ScriptingEventType] = []
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    init(url: URL, name: String) throws {
+    init(url: URL, name: String, shortcut: Shortcut?) throws {
         
         self.url = url
         self.name = name
+        self.shortcut = shortcut
     }
     
     

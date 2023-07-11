@@ -26,12 +26,14 @@
 import Foundation
 import OSAKit
 
-struct PersistentOSAScript: Script, AppleEventReceivable {
+struct PersistentOSAScript: EventScript {
     
     // MARK: Script Properties
     
     let url: URL
     let name: String
+    let shortcut: Shortcut?
+    var eventTypes: [ScriptingEventType] = []
     
     
     // MARK: Private Properties
@@ -43,7 +45,7 @@ struct PersistentOSAScript: Script, AppleEventReceivable {
     // MARK: -
     // MARK: Lifecycle
     
-    init(url: URL, name: String) throws {
+    init(url: URL, name: String, shortcut: Shortcut?) throws {
         
         guard
             let script = OSAScript(contentsOf: url, error: nil),
@@ -52,6 +54,7 @@ struct PersistentOSAScript: Script, AppleEventReceivable {
         
         self.url = url
         self.name = name
+        self.shortcut = shortcut
         self.compiledData = data
     }
     

@@ -31,11 +31,12 @@ protocol Script: Sendable {
     
     var url: URL { get }
     var name: String { get }
+    var shortcut: Shortcut? { get }
     
     
     // MARK: Methods
     
-    init(url: URL, name: String) throws
+    init(url: URL, name: String, shortcut: Shortcut?) throws
     
     
     /// Execute the script.
@@ -45,7 +46,10 @@ protocol Script: Sendable {
 }
 
 
-protocol AppleEventReceivable {
+protocol EventScript: Script {
+    
+    var eventTypes: [ScriptingEventType] { get set }
+    
     
     /// Execute the script by sending it the given Apple event.
     ///
@@ -56,16 +60,13 @@ protocol AppleEventReceivable {
 }
 
 
-extension AppleEventReceivable {
+extension EventScript {
     
     func run() async throws {
         
         try await self.run(withAppleEvent: nil)
     }
 }
-
-
-typealias EventScript = Script & AppleEventReceivable
 
 
 
