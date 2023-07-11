@@ -64,8 +64,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
-    private lazy var settingsWindowController = SettingsWindowController()
-    private lazy var acknowledgmentsWindowController = WebDocumentWindowController(fileURL: Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")!)
+    @MainActor private lazy var settingsWindowController = SettingsWindowController()
+    @MainActor private lazy var acknowledgmentsWindowController = WebDocumentWindowController(fileURL: Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")!)
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxStylesMenu: NSMenu?
@@ -75,7 +75,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     #if DEBUG
-    private let textKitObserver = NotificationCenter.default.publisher(for: NSTextView.didSwitchToNSLayoutManagerNotification)
+    @MainActor private let textKitObserver = NotificationCenter.default
+        .publisher(for: NSTextView.didSwitchToNSLayoutManagerNotification)
         .compactMap { $0.object as? NSTextView }
         .sink { print("⚠️ \($0.className) did switch to NSLayoutManager.") }
     #endif
@@ -95,7 +96,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         ProcessInfo.processInfo.automaticTerminationSupportEnabled = true
         
         // instantiate shared instances
-        _ = DocumentController.shared
+        Task { @MainActor in
+            _ = DocumentController.shared
+        }
     }
     
     
@@ -413,7 +416,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     ///
     /// - Parameter url: The file URL to a theme file.
     /// - Returns: Whether the given file was handled as a theme file.
-    private func askThemeInstallation(fileURL url: URL) -> Bool {
+    @MainActor private func askThemeInstallation(fileURL url: URL) -> Bool {
         
         assert(url.conforms(to: .cotTheme))
         
