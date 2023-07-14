@@ -148,8 +148,8 @@ struct ThemeDetailView: View {
             HStack(alignment: .firstTextBaseline) {
                 VStack(alignment: .trailing, spacing: 3) {
                     ColorPicker("Text:", selection: $theme.text, supportsOpacity: false)
-                    ColorPicker("Cursor:", selection: $theme.insertionPoint, supportsOpacity: false)
                     ColorPicker("Invisibles:", selection: $theme.invisibles, supportsOpacity: false)
+                    ColorPicker("Cursor:", selection: $theme.insertionPoint, supportsOpacity: false)
                 }
                 .background(WidthGetter(key: WidthKey.self))
                 .frame(width: self.columnWidth, alignment: .trailing)
