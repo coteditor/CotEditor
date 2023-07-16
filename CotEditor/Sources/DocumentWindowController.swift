@@ -110,16 +110,19 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
-    /// apply passed-in document instance to window
     override unowned(unsafe) var document: AnyObject? {
         
+        willSet {
+            self.documentStyleObserver = nil
+        }
+        
         didSet {
-            guard let document = document as? Document else { return }
-            
             // deliver represented object to child view controllers
             for child in self.contentViewController!.children {
                 child.representedObject = document
             }
+            
+            guard let document = document as? Document else { return }
             
             // -> In case when the window was created as a restored window (the right side ones in the browsing mode).
             if document.isInViewingMode {

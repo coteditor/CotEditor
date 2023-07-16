@@ -101,10 +101,8 @@ final class IncompatibleCharactersViewController: NSViewController {
         willSet {
             self.scannerObservers.removeAll()
             
-            guard newValue is Document else {
-                assertionFailure("representedObject of \(self.className) must be an instance of \(Document.self)")
-                return
-            }
+            assert(newValue == nil || newValue is Document,
+                   "representedObject of \(self.className) must be an instance of \(Document.self)")
         }
         
         didSet {

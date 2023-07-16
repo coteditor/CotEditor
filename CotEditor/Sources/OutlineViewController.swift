@@ -191,27 +191,19 @@ final class OutlineViewController: NSViewController {
     }
     
     
-    /// Update document observation for syntax style
+    /// Update document observation for syntax style.
     private func observeDocument() {
         
-        self.documentObserver = nil
-        
-        guard let document = self.document else { return assertionFailure() }
-        
-        self.documentObserver = document.didChangeSyntaxStyle
+        self.documentObserver = self.document?.didChangeSyntaxStyle
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in self?.observeSyntaxStyle() }
     }
     
     
-    /// Update syntax style observation for outline
+    /// Update syntax style observation for outline.
     private func observeSyntaxStyle() {
         
-        self.syntaxStyleObserver = nil
-        
-        guard let syntaxParser = self.document?.syntaxParser else { return assertionFailure() }
-        
-        self.syntaxStyleObserver = syntaxParser.$outlineItems
+        self.syntaxStyleObserver = self.document?.syntaxParser.$outlineItems
             .compactMap { $0 }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in self?.outlineItems = $0 }
