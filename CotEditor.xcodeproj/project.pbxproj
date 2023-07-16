@@ -535,8 +535,8 @@
 		2AAB4BFA1D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */; };
 		2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */; };
 		2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */; };
-		2AAB4BFF1D2444930049A68B /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */; };
-		2AAB4C001D2444930049A68B /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */; };
+		2AAB4BFF1D2444930049A68B /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFE1D2444930049A68B /* InspectorViewController.swift */; };
+		2AAB4C001D2444930049A68B /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFE1D2444930049A68B /* InspectorViewController.swift */; };
 		2AACB1CD1D195ABD0073775B /* ShortcutField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutField.swift */; };
 		2AACB1CE1D195ABD0073775B /* ShortcutField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutField.swift */; };
 		2AAD61EC1D2A4CE5008FE772 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */; };
@@ -1251,7 +1251,7 @@
 		2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSplitView+Autosave.swift"; sourceTree = "<group>"; };
 		2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentInspectorViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharactersViewController.swift; sourceTree = "<group>"; };
-		2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
+		2AAB4BFE1D2444930049A68B /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
 		2AACB1CC1D195ABD0073775B /* ShortcutField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutField.swift; sourceTree = "<group>"; };
 		2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
 		2AAD61EF1D2B0856008FE772 /* FuzzyRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuzzyRange.swift; sourceTree = "<group>"; };
@@ -2116,7 +2116,7 @@
 				2A17A3121D2D16F1001DD717 /* WindowContentViewController.swift */,
 				2A2184121D0426E800522EF5 /* Window */,
 				2A62D48D1CF73693002ADBE1 /* Toolbar */,
-				2ADD36941CFCAD4200F3175D /* Sidebar */,
+				2ADD36941CFCAD4200F3175D /* Inspector */,
 				2A2184221D043D7E00522EF5 /* Document View */,
 				2AD2861919856F3100C9342F /* Editor Controller */,
 				2A6602EB1D05E04E003E8D87 /* Accessory Views */,
@@ -2470,17 +2470,17 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
-		2ADD36941CFCAD4200F3175D /* Sidebar */ = {
+		2ADD36941CFCAD4200F3175D /* Inspector */ = {
 			isa = PBXGroup;
 			children = (
-				2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */,
+				2AAB4BFE1D2444930049A68B /* InspectorViewController.swift */,
 				2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */,
 				2AE7A8D820450FE600830830 /* OutlineViewController.swift */,
 				2A2B085F28046E3B0028D733 /* WarningsViewController.swift */,
 				2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */,
 				2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */,
 			);
-			name = Sidebar;
+			name = Inspector;
 			sourceTree = "<group>";
 		};
 		2ADD36991CFCADAD00F3175D /* Inspector Tab View */ = {
@@ -3067,6 +3067,7 @@
 				2A1083F02944837E00751DAE /* InsetTextField.swift in Sources */,
 				2ACDC0A41D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
 				2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */,
+				2AAB4C001D2444930049A68B /* InspectorViewController.swift in Sources */,
 				2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */,
 				2A10C5F81FD19237002AB5AE /* KeyBinding.swift in Sources */,
 				2A64F24C1D26615A001B229F /* KeyBindingItem.swift in Sources */,
@@ -3187,7 +3188,6 @@
 				2AACB1CE1D195ABD0073775B /* ShortcutField.swift in Sources */,
 				2A505C052988D44E002080AA /* ShortcutFormatter.swift in Sources */,
 				2A2391E52907B03800BCFEC9 /* ShrinkPopUpButton.swift in Sources */,
-				2AAB4C001D2444930049A68B /* SidebarViewController.swift in Sources */,
 				2AB1BD1F287D747200C6FEAF /* SizeGetter.swift in Sources */,
 				2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A64F2461D259E49001B229F /* SnippetManager.swift in Sources */,
@@ -3426,6 +3426,7 @@
 				2A1083F12944837E00751DAE /* InsetTextField.swift in Sources */,
 				2ACDC0A31D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
 				2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */,
+				2AAB4BFF1D2444930049A68B /* InspectorViewController.swift in Sources */,
 				2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */,
 				2A10C5F71FD19237002AB5AE /* KeyBinding.swift in Sources */,
 				2A64F24B1D26615A001B229F /* KeyBindingItem.swift in Sources */,
@@ -3546,7 +3547,6 @@
 				2A64F2481D26327C001B229F /* Shortcut+Error.swift in Sources */,
 				2A505C062988D44E002080AA /* ShortcutFormatter.swift in Sources */,
 				2A2391E62907B03800BCFEC9 /* ShrinkPopUpButton.swift in Sources */,
-				2AAB4BFF1D2444930049A68B /* SidebarViewController.swift in Sources */,
 				2AB1BD20287D747200C6FEAF /* SizeGetter.swift in Sources */,
 				2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A64F2451D259E49001B229F /* SnippetManager.swift in Sources */,

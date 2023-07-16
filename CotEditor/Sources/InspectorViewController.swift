@@ -1,5 +1,5 @@
 //
-//  SidebarViewController.swift
+//  InspectorViewController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,19 +26,19 @@
 import AppKit
 import Combine
 
-final class SidebarViewController: NSTabViewController {
+enum InspectorPane: Int {
     
-    enum TabIndex: Int {
-        
-        case documentInspector
-        case outline
-        case warnings
-    }
-    
+    case document
+    case outline
+    case warnings
+}
+
+
+final class InspectorViewController: NSTabViewController {
     
     // MARK: Public Properties
     
-    var selectedTabIndex: TabIndex { TabIndex(rawValue: self.selectedTabViewItemIndex) ?? .documentInspector }
+    var selectedPane: InspectorPane { InspectorPane(rawValue: self.selectedTabViewItemIndex) ?? .document }
     
     
     // MARK: Private Properties
@@ -61,9 +61,9 @@ final class SidebarViewController: NSTabViewController {
         (self.tabView as! InspectorTabView).segmentedControl.bind(.selectedIndex, to: self, withKeyPath: #keyPath(selectedTabViewItemIndex))
         
         // restore thickness first when the view is loaded
-        let sidebarWidth = UserDefaults.standard[.sidebarWidth]
-        if sidebarWidth > 0 {
-            self.view.frame.size.width = sidebarWidth
+        let width = UserDefaults.standard[.sidebarWidth]
+        if width > 0 {
+            self.view.frame.size.width = width
             // apply also to .tabView that is the only child of .view
             self.view.layoutSubtreeIfNeeded()
         }
@@ -127,14 +127,14 @@ final class SidebarViewController: NSTabViewController {
 
 
 
-extension SidebarViewController: InspectorTabViewDelegate {
+extension InspectorViewController: InspectorTabViewDelegate {
     
     func tabView(_ tabView: NSTabView, selectedImageForItem tabViewItem: NSTabViewItem) -> NSImage? {
         
         let index = tabView.indexOfTabViewItem(tabViewItem)
         
-        switch TabIndex(rawValue: index) {
-            case .documentInspector:
+        switch InspectorPane(rawValue: index) {
+            case .document:
                 return NSImage(systemSymbolName: "doc.fill", accessibilityDescription: nil)?
                     .withSymbolConfiguration(.init(pointSize: 0, weight: .semibold))
                 

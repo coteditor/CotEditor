@@ -30,11 +30,11 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Private Properties
     
-    private var sidebarObserver: AnyCancellable?
-    private var sidebarSelectionObserver: AnyCancellable?
+    private var inspectorObserver: AnyCancellable?
+    private var inspectorSelectionObserver: AnyCancellable?
     
     @IBOutlet private weak var documentViewItem: NSSplitViewItem?
-    @IBOutlet private weak var sidebarViewItem: NSSplitViewItem?
+    @IBOutlet private weak var inspectorViewItem: NSSplitViewItem?
     
     
     
@@ -47,16 +47,16 @@ final class WindowContentViewController: NSSplitViewController {
         
         self.restoreAutosavingState()
         
-        // set behavior to glow window size on sidebar toggling rather than opening sidebar inward
-        self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
-        self.sidebarObserver = self.sidebarViewItem?.publisher(for: \.isCollapsed, options: .initial)
+        // set behavior to glow window size on inspector toggling rather than opening inspector inward
+        self.inspectorViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
+        self.inspectorObserver = self.inspectorViewItem?.publisher(for: \.isCollapsed, options: .initial)
             .sink { [weak self] _ in self?.invalidateRestorableState() }
         
-        // synchronize sidebar pane among window tabs
-        self.sidebarSelectionObserver = self.sidebarViewController?.publisher(for: \.selectedTabViewItemIndex)
+        // synchronize inspector pane among window tabs
+        self.inspectorSelectionObserver = self.inspectorViewController?.publisher(for: \.selectedTabViewItemIndex)
             .sink { [weak self] (tabViewIndex) in
                 self?.siblings.filter { $0 != self }
-                    .forEach { $0.sidebarViewController?.selectedTabViewItemIndex = tabViewIndex }
+                    .forEach { $0.inspectorViewController?.selectedTabViewItemIndex = tabViewIndex }
             }
     }
     
@@ -67,34 +67,34 @@ final class WindowContentViewController: NSSplitViewController {
         
         super.viewDidAppear()
         
-        // adjust sidebar visibility if this new window was just added to an existing window
-        if let other = self.siblings.first(where: { $0 != self }), other.isSidebarShown {
-            self.sidebarThickness = other.sidebarThickness
-            self.setSidebarShown(other.isSidebarShown, index: other.sidebarViewController!.selectedTabIndex)
+        // adjust inspector visibility if this new window was just added to an existing window
+        if let other = self.siblings.first(where: { $0 != self }), other.isInspectorShown {
+            self.inspectorThickness = other.inspectorThickness
+            self.setInspectorShown(other.isInspectorShown, pane: other.inspectorViewController!.selectedPane)
         }
     }
     
     
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
-        // disable toggling sidebar in the tab overview mode
+        // disable toggling inspector in the tab overview mode
         switch item.action {
             case #selector(toggleInspector):
-                (item as? NSMenuItem)?.title = self.isSidebarShown
+                (item as? NSMenuItem)?.title = self.isInspectorShown
                     ? String(localized: "Hide Inspector")
                     : String(localized: "Show Inspector")
                 
             case #selector(getInfo):
-                (item as? NSMenuItem)?.state = self.isSidebarShown(index: .documentInspector) ? .on : .off
-                return self.canToggleSidebar
+                (item as? NSMenuItem)?.state = self.isInspectorShown(pane: .document) ? .on : .off
+                return self.canToggleInspector
                 
             case #selector(toggleOutlineMenu):
-                (item as? NSMenuItem)?.state = self.isSidebarShown(index: .outline) ? .on : .off
-                return self.canToggleSidebar
+                (item as? NSMenuItem)?.state = self.isInspectorShown(pane: .outline) ? .on : .off
+                return self.canToggleInspector
                 
             case #selector(toggleWarningsPane):
-                (item as? NSMenuItem)?.state = self.isSidebarShown(index: .warnings) ? .on : .off
-                return self.canToggleSidebar
+                (item as? NSMenuItem)?.state = self.isInspectorShown(pane: .warnings) ? .on : .off
+                return self.canToggleInspector
                 
             default: break
         }
@@ -113,43 +113,45 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
-    /// display desired sidebar pane
-    func showSidebarPane(index: SidebarViewController.TabIndex) {
+    /// Open the desired inspector pane.
+    ///
+    /// - Parameter pane: The inspector pane to open.
+    func showInspector(pane: InspectorPane) {
         
-        self.setSidebarShown(true, index: index, animate: true)
+        self.setInspectorShown(true, pane: pane, animate: true)
     }
     
     
     
     // MARK: Action Messages
     
-    /// toggle visibility of inspector
+    /// Toggle visibility of the inspector.
     @IBAction func toggleInspector(_ sender: Any?) {
         
         NSAnimationContext.current.withAnimation {
-            self.isSidebarShown.toggle()
+            self.isInspectorShown.toggle()
         }
     }
     
     
-    /// toggle visibility of document inspector
+    /// Toggle visibility of the document inspector pane.
     @IBAction func getInfo(_ sender: Any?) {
         
-        self.toggleVisibilityOfSidebarTabItem(index: .documentInspector)
+        self.toggleVisibilityOfInspector(pane: .document)
     }
     
     
-    /// toggle visibility of outline menu view
+    /// Toggle visibility of the outline pane.
     @IBAction func toggleOutlineMenu(_ sender: Any?) {
         
-        self.toggleVisibilityOfSidebarTabItem(index: .outline)
+        self.toggleVisibilityOfInspector(pane: .outline)
     }
     
     
-    /// toggle visibility of incompatible characters list view
+    /// Toggle visibility of warnings pane.
     @IBAction func toggleWarningsPane(_ sender: Any?) {
         
-        self.toggleVisibilityOfSidebarTabItem(index: .warnings)
+        self.toggleVisibilityOfInspector(pane: .warnings)
     }
     
     
@@ -157,31 +159,31 @@ final class WindowContentViewController: NSSplitViewController {
     // MARK: Private Methods
     
     /// split view item to view controller
-    private var sidebarViewController: SidebarViewController? {
+    private var inspectorViewController: InspectorViewController? {
         
-        self.sidebarViewItem?.viewController as? SidebarViewController
+        self.inspectorViewItem?.viewController as? InspectorViewController
     }
     
     
-    /// sidebar thickness
-    private var sidebarThickness: CGFloat {
+    /// inspector thickness
+    private var inspectorThickness: CGFloat {
         
-        get { self.sidebarViewController?.view.frame.width ?? 0 }
-        set { self.sidebarViewController?.view.frame.size.width = max(newValue, 0) }
+        get { self.inspectorViewController?.view.frame.width ?? 0 }
+        set { self.inspectorViewController?.view.frame.size.width = max(newValue, 0) }
     }
     
     
-    /// whether sidebar is opened
-    private var isSidebarShown: Bool {
+    /// whether inspector is opened
+    private var isInspectorShown: Bool {
         
         get {
-            self.sidebarViewItem?.isCollapsed == false
+            self.inspectorViewItem?.isCollapsed == false
         }
         
         set {
-            guard newValue != self.isSidebarShown else { return }
+            guard newValue != self.isInspectorShown else { return }
             
-            // close sidebar inward if it opened so (because of insufficient space to open outward)
+            // close inspector inward if it opened so (because of insufficient space to open outward)
             let currentWidth = self.splitView.frame.width
             NSAnimationContext.current.completionHandler = { [weak self] in
                 guard let self else { return }
@@ -189,61 +191,61 @@ final class WindowContentViewController: NSSplitViewController {
                 if newValue {
                     if self.splitView.frame.width == currentWidth {  // opened inward
                         self.siblings.forEach {
-                            $0.sidebarViewItem?.collapseBehavior = .preferResizingSiblingsWithFixedSplitView
+                            $0.inspectorViewItem?.collapseBehavior = .preferResizingSiblingsWithFixedSplitView
                         }
                     }
                 } else {
-                    // reset sidebar collapse behavior anyway
+                    // reset inspector collapse behavior anyway
                     self.siblings.forEach {
-                        $0.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
+                        $0.inspectorViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
                     }
                 }
                 
-                // sync sidebar thickness among tabbed windows
+                // sync inspector thickness among tabbed windows
                 self.siblings.filter { $0 != self }
-                    .forEach { $0.sidebarThickness = self.sidebarThickness }
+                    .forEach { $0.inspectorThickness = self.inspectorThickness }
             }
             
             // update current tab possibly with an animation
-            self.sidebarViewItem?.isCollapsed = !newValue
+            self.inspectorViewItem?.isCollapsed = !newValue
             // and then update background tabs
             self.siblings.filter { $0 != self }
-                .forEach { $0.sidebarViewItem?.isCollapsed = !newValue }
+                .forEach { $0.inspectorViewItem?.isCollapsed = !newValue }
         }
     }
     
     
-    /// set visibility and tab of sidebar
-    private func setSidebarShown(_ shown: Bool, index: SidebarViewController.TabIndex? = nil, animate: Bool = false) {
+    /// set visibility of the inspector and switch pane
+    private func setInspectorShown(_ shown: Bool, pane: InspectorPane? = nil, animate: Bool = false) {
         
         NSAnimationContext.current.withAnimation(animate) {
-            self.isSidebarShown = shown
+            self.isInspectorShown = shown
         }
         
-        if let index {
+        if let pane {
             self.siblings.forEach { sibling in
-                sibling.sidebarViewController!.selectedTabViewItemIndex = index.rawValue
+                sibling.inspectorViewController!.selectedTabViewItemIndex = pane.rawValue
             }
         }
     }
     
     
-    /// whether the given pane in the sidebar is currently shown
-    private func isSidebarShown(index: SidebarViewController.TabIndex) -> Bool {
+    /// whether the given pane in the inspector is currently shown
+    private func isInspectorShown(pane: InspectorPane) -> Bool {
         
-        self.isSidebarShown && (self.sidebarViewController?.selectedTabViewItemIndex == index.rawValue)
+        self.isInspectorShown && (self.inspectorViewController?.selectedPane == pane)
     }
     
     
-    /// toggle visibility of pane in sidebar
-    private func toggleVisibilityOfSidebarTabItem(index: SidebarViewController.TabIndex) {
+    /// toggle visibility of pane in the inspector
+    private func toggleVisibilityOfInspector(pane: InspectorPane) {
         
-        self.setSidebarShown(!self.isSidebarShown(index: index), index: index, animate: true)
+        self.setInspectorShown(!self.isInspectorShown(pane: pane), pane: pane, animate: true)
     }
     
     
-    /// whether sidebar state can be toggled
-    private var canToggleSidebar: Bool {
+    /// whether inspector state can be toggled
+    private var canToggleInspector: Bool {
         
         guard self.isViewLoaded else { return false }
         

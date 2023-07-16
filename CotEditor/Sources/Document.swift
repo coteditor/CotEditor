@@ -1166,7 +1166,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                     self.changeLineEnding(to: self.lineEnding)
                 case .alertSecondButtonReturn:  // == Review
                     (self.windowControllers.first?.contentViewController as? WindowContentViewController)?
-                        .showSidebarPane(index: .warnings)
+                        .showInspector(pane: .warnings)
                 case .alertThirdButtonReturn:  // == Ignore
                     break
                 default:
@@ -1348,7 +1348,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
         
         weak var windowContentController = self.attempter.windowControllers.first?.contentViewController as? WindowContentViewController
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            windowContentController?.showSidebarPane(index: .warnings)
+            windowContentController?.showInspector(pane: .warnings)
         }
     }
 }

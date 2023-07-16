@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -57,7 +57,7 @@
                     </splitView>
                     <connections>
                         <outlet property="documentViewItem" destination="NAv-oU-Mey" id="lPe-qQ-5LB"/>
-                        <outlet property="sidebarViewItem" destination="faM-S9-Ldc" id="txW-VA-3vb"/>
+                        <outlet property="inspectorViewItem" destination="faM-S9-Ldc" id="4y8-nX-sip"/>
                         <segue destination="2gA-dj-5gh" kind="relationship" relationship="splitItems" id="49u-wK-kqV"/>
                         <segue destination="7te-2x-zAq" kind="relationship" relationship="splitItems" id="sB5-Yd-23U"/>
                     </connections>
@@ -66,10 +66,10 @@
             </objects>
             <point key="canvasLocation" x="540" y="292"/>
         </scene>
-        <!--Sidebar View Controller-->
+        <!--Inspector View Controller-->
         <scene sceneID="Z70-6I-Rpr">
             <objects>
-                <tabViewController showSeguePresentationStyle="single" tabStyle="unspecified" id="7te-2x-zAq" customClass="SidebarViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController showSeguePresentationStyle="single" tabStyle="unspecified" id="7te-2x-zAq" customClass="InspectorViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="Document Inspector" identifier="DocumentInspector" image="doc" catalog="system" id="Kfj-q6-61N"/>
                         <tabViewItem label="Outline" identifier="Outline" image="list.bullet.indent" catalog="system" id="hyM-2j-hen"/>
