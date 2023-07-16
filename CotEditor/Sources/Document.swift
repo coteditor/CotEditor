@@ -242,8 +242,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func makeWindowControllers() {
         
         if self.windowControllers.isEmpty {  // -> A transient document already has one.
-            let windowController = NSStoryboard(name: "DocumentWindow").instantiateInitialController() as! DocumentWindowController
-            
+            let windowController = DocumentWindowController(document: self)
             self.addWindowController(windowController)
             
             // avoid showing "edited" indicator in the close button when the content is empty

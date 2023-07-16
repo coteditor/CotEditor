@@ -44,6 +44,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Private Properties
     
+    private static let windowFrameName = NSWindow.FrameAutosaveName("Document")
+    
     private lazy var editedIndicator: NSView = {
         
         let dotView = DotView()
@@ -63,22 +65,16 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     
     // MARK: -
-    // MARK: Window Controller Methods
+    // MARK: Lifecycle
     
-    override func windowDidLoad() {
+    convenience init(document: Document) {
         
-        super.windowDidLoad()
-        
-        self.shouldCascadeWindows = true
-        self.windowFrameAutosaveName = "Document"
-        
-        let window = self.window as! DocumentWindow
-        
-        // set window frame manually to workaround the issue that
-        // the window cascading randomly fails with window frame autosave. (2022-08, macOS 12.5)
-        window.setFrameUsingName(self.windowFrameAutosaveName)
+        let viewController: NSViewController? = NSStoryboard(name: "DocumentWindow")
+            .instantiateInitialController()
+        let window = DocumentWindow(contentViewController: viewController!)
         
         // set window size
+        window.setFrameUsingName(Self.windowFrameName)
         let width = UserDefaults.standard[.windowWidth]
         let height = UserDefaults.standard[.windowHeight]
         if width > 0 || height > 0 {
@@ -87,9 +83,32 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             window.setFrame(.init(origin: window.frame.origin, size: frameSize), display: false)
         }
         
+        self.init(window: window)
+        
+        self.windowFrameAutosaveName = Self.windowFrameName
+        
+        window.delegate = self
+        
+        // setup toolbar
+        let toolbar = NSToolbar(identifier: .document)
+        toolbar.displayMode = .iconOnly
+        toolbar.allowsUserCustomization = true
+        toolbar.autosavesConfiguration = true
+        toolbar.delegate = self
+        window.toolbarStyle = .unified
+        window.toolbar = toolbar
+        
+        // cascade window position
+        // -> Perform after setting the toolbar.
+        let cascadingPoint = NSApp.mainWindow?.cascadeTopLeft(from: .zero) ?? .zero
+        window.cascadeTopLeft(from: cascadingPoint)
+        
         // observe opacity setting change
-        self.opacityObserver = UserDefaults.standard.publisher(for: .windowAlpha, initial: true)
-            .assign(to: \.backgroundAlpha, on: window)
+        // -> Keep opaque when the window was created as a browsing window (the right side ones in the browsing mode).
+        if !document.isInViewingMode {
+            self.opacityObserver = UserDefaults.standard.publisher(for: .windowAlpha, initial: true)
+                .assign(to: \.backgroundAlpha, on: window)
+        }
         
         // observe appearance setting change
         self.appearanceModeObserver = UserDefaults.standard.publisher(for: .documentAppearance, initial: true)
@@ -100,7 +119,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                     case .dark:    NSAppearance(named: .darkAqua)
                 }
             }
-            .assign(to: \.appearance, on: self.window!)
+            .assign(to: \.appearance, on: window)
         
         //  observe for syntax line-up change
         self.syntaxListObserver = Publishers.Merge(SyntaxManager.shared.$settingNames,
@@ -109,6 +128,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             .sink { [weak self] _ in self?.buildSyntaxPopUpButton() }
     }
     
+    
+    
+    // MARK: Window Controller Methods
     
     override unowned(unsafe) var document: AnyObject? {
         
@@ -123,11 +145,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             }
             
             guard let document = document as? Document else { return }
-            
-            // -> In case when the window was created as a restored window (the right side ones in the browsing mode).
-            if document.isInViewingMode {
-                self.window?.isOpaque = true
-            }
             
             // observe document's syntax change
             self.documentSyntaxObserver = document.didChangeSyntax
@@ -257,6 +274,12 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
 
 
 // MARK: - Toolbar
+
+private extension NSToolbar.Identifier {
+    
+    static let document = Self("7E7590E9-43BC-40F7-B967-07FA2780E47B")
+}
+
 
 private extension NSToolbarItem.Identifier {
     
@@ -620,7 +643,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .inspectorTrackingSeparator:
-                guard let splitView = (self.contentViewController as? NSSplitViewController)?.splitView else { return nil }
+                let splitView = (self.contentViewController as! NSSplitViewController).splitView
                 let item = NSTrackingSeparatorToolbarItem(identifier: itemIdentifier, splitView: splitView, dividerIndex: 0)
                 return item
                 

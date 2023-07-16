@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="O3C-zL-JF9">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
@@ -7,38 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Window Controller-->
-        <scene sceneID="sAX-Gn-44h">
-            <objects>
-                <windowController id="0UB-Lz-R6c" customClass="DocumentWindowController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Untitled" separatorStyle="line" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" toolbarStyle="unified" id="gE4-1J-3li" userLabel="Window" customClass="DocumentWindow" customModule="CotEditor" customModuleProvider="target">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
-                        <rect key="contentRect" x="10" y="280" width="600" height="660"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-                        <toolbar key="toolbar" implicitIdentifier="7E7590E9-43BC-40F7-B967-07FA2780E47B" displayMode="iconOnly" sizeMode="regular" id="sSX-oQ-RNS">
-                            <allowedToolbarItems/>
-                            <defaultToolbarItems/>
-                            <connections>
-                                <outlet property="delegate" destination="0UB-Lz-R6c" id="yOb-od-ptM"/>
-                            </connections>
-                        </toolbar>
-                        <connections>
-                            <outlet property="delegate" destination="0UB-Lz-R6c" id="COX-Xt-aCO"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="O3C-zL-JF9" kind="relationship" relationship="window.shadowedContentViewController" id="ZEk-vy-cPA"/>
-                    </connections>
-                </windowController>
-                <customObject id="klO-m3-n5X" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-172" y="292"/>
-        </scene>
         <!--Window Content View Controller-->
         <scene sceneID="94T-c2-g8E">
             <objects>
-                <splitViewController showSeguePresentationStyle="single" id="O3C-zL-JF9" customClass="WindowContentViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController id="O3C-zL-JF9" customClass="WindowContentViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="NAv-oU-Mey"/>
                         <splitViewItem canCollapse="YES" collapsed="YES" holdingPriority="260" id="faM-S9-Ldc"/>
@@ -191,12 +163,12 @@
                             </textField>
                             <popUpButton toolTip="Line Endings" translatesAutoresizingMaskIntoConstraints="NO" id="FNE-H9-iZR">
                                 <rect key="frame" x="507" y="0.0" width="89" height="21"/>
-                                <popUpButtonCell key="cell" type="smallSquare" title="Line Endings" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" tag="-1" inset="2" autoenablesItems="NO" selectedItem="mS8-3F-93y" id="uXq-8L-T6d">
+                                <popUpButtonCell key="cell" type="smallSquare" title="Line Endings" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" tag="-1" inset="2" autoenablesItems="NO" selectedItem="mS8-3F-93y" id="uXq-8L-T6d">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                     <menu key="menu" autoenablesItems="NO" id="2cU-Cq-rxZ" customClass="OptionalMenu" customModule="CotEditor" customModuleProvider="target">
                                         <items>
-                                            <menuItem title="Line Endings" tag="-1" enabled="NO" id="mS8-3F-93y" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
+                                            <menuItem title="Line Endings" state="on" tag="-1" enabled="NO" id="mS8-3F-93y" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                         </items>
