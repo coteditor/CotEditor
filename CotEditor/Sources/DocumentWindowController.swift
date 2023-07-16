@@ -220,12 +220,15 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     private func selectSyntaxPopUpItem(with styleName: String) {
         
-        guard let popUpButton = self.syntaxPopUpButton else { return }
+        guard
+            let popUpButton = self.syntaxPopUpButton,
+            let menu = popUpButton.menu
+        else { return }
         
         let deletedTag = -1
         
         // remove deleted items
-        popUpButton.menu?.items.removeAll { $0.tag == deletedTag }
+        menu.items.removeAll { $0.tag == deletedTag }
         
         // deselect current one
         popUpButton.selectItem(at: -1)
@@ -234,17 +237,16 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             popUpButton.select(item)
             
         } else {
-            // insert item by adding deleted item section
-            popUpButton.insertItem(withTitle: styleName, at: 1)
-            popUpButton.item(at: 1)?.tag = deletedTag
+            // insert item by adding Deleted item section
+            menu.insertItem(NSMenuItem(title: styleName, action: nil, keyEquivalent: ""), at: 1)
+            menu.item(at: 1)?.tag = deletedTag
             popUpButton.selectItem(at: 1)
             
-            popUpButton.insertItem(withTitle: String(localized: "Deleted"), at: 1)
-            popUpButton.item(at: 1)?.tag = deletedTag
-            popUpButton.item(at: 1)?.isEnabled = false
+            menu.insertItem(HeadingMenuItem(title: String(localized: "Deleted")), at: 1)
+            menu.item(at: 1)?.tag = deletedTag
             
-            popUpButton.menu?.insertItem(.separator(), at: 1)
-            popUpButton.item(at: 1)?.tag = deletedTag
+            menu.insertItem(.separator(), at: 1)
+            menu.item(at: 1)?.tag = deletedTag
         }
     }
 }
