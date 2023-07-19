@@ -81,15 +81,13 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Document Controller Methods
     
-    /// automatically inserts Share menu
     override var allowsAutomaticShareMenu: Bool {
         
         true
     }
     
     
-    /// open document
-    @MainActor override func openDocument(withContentsOf url: URL, display displayDocument: Bool) async throws -> (NSDocument, Bool) {
+    override func openDocument(withContentsOf url: URL, display displayDocument: Bool) async throws -> (NSDocument, Bool) {
         
         // obtain transient document if exists
         let transientDocument: Document? = self.transientDocumentLock.withLock { [unowned self] in
@@ -137,7 +135,6 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// open untitled document
     override func openUntitledDocumentAndDisplay(_ displayDocument: Bool) throws -> NSDocument {
         
         let document = try super.openUntitledDocumentAndDisplay(displayDocument)
@@ -151,7 +148,6 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// instantiates a document located by a URL, of a specified type, and returns it if successful
     override func makeDocument(withContentsOf url: URL, ofType typeName: String) throws -> NSDocument {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
@@ -175,7 +171,6 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// add document to documentController's list
     override func addDocument(_ document: NSDocument) {
         
         // clear the first document's transient status when a second document is added
@@ -186,8 +181,7 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// add encoding menu to open panel
-    @MainActor override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?) async -> Int {
+    override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?) async -> Int {
         
         let options = OpenOptions()
         let accessory = OpenPanelAccessory(options: options, openPanel: openPanel, encodings: EncodingManager.shared.encodings)
