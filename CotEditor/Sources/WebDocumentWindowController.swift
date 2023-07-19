@@ -106,15 +106,15 @@ extension WebDocumentViewController: WKNavigationDelegate {
     }
     
     
-    /// Open external link in default browser.
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
         
+        // open external link in default browser
         guard
             navigationAction.navigationType == .linkActivated,
             let url = navigationAction.request.url, url.host != nil,
             NSWorkspace.shared.open(url)
-        else { return decisionHandler(.allow) }
+        else { return .allow }
         
-        decisionHandler(.cancel)
+        return .cancel
     }
 }
