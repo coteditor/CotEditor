@@ -54,9 +54,23 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
     case nfd = "cNfd"
     case nfkc = "cNkc"
     case nfkd = "cNkd"
-    case nfkcCF = "cNcf"
+    case nfkcCasefold = "cNcf"
     case modifiedNFC = "cNmc"
     case modifiedNFD = "cNfm"
+    
+    
+    var form: UnicodeNormalizationForm {
+        
+        switch self {
+            case .nfc: return .nfc
+            case .nfd: return .nfd
+            case .nfkc: return .nfkc
+            case .nfkd: return .nfkd
+            case .nfkcCasefold: return .nfkcCasefold
+            case .modifiedNFC: return .modifiedNFC
+            case .modifiedNFD: return .modifiedNFD
+        }
+    }
 }
 
 
@@ -333,22 +347,7 @@ final class TextSelection: NSObject {
             let textView = self.textView
         else { return }
         
-        switch type {
-            case .nfc:
-                textView.normalizeUnicodeWithNFC(command)
-            case .nfd:
-                textView.normalizeUnicodeWithNFD(command)
-            case .nfkc:
-                textView.normalizeUnicodeWithNFKC(command)
-            case .nfkd:
-                textView.normalizeUnicodeWithNFKD(command)
-            case .nfkcCF:
-                textView.normalizeUnicodeWithNFKCCF(command)
-            case .modifiedNFC:
-                textView.normalizeUnicodeWithModifiedNFC(command)
-            case .modifiedNFD:
-                textView.normalizeUnicodeWithModifiedNFD(command)
-        }
+        textView.normalizeUnicode(form: type.form)
     }
     
     

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -152,72 +152,25 @@ extension EditorTextView {
     
     
     
-    // MARK: Action Messages (Unicode Normalizations)
+    // MARK: Action Messages (Unicode Normalization)
     
-    /// Unicode normalization (NFD)
-    @IBAction func normalizeUnicodeWithNFD(_ sender: Any?) {
+    /// Normalize Unicode in selection.
+    @IBAction func normalizeUnicode(_ sender: NSMenuItem) {
         
-        let form: UnicodeNormalizationForm = .nfd
-        self.transformSelection(actionName: form.localizedName) {
-            $0.normalize(in: form)
-        }
+        guard
+            let tag = sender.representedObject as? String,
+            let form = UnicodeNormalizationForm(rawValue: tag)
+        else { return assertionFailure() }
+        
+        self.normalizeUnicode(form: form)
     }
     
     
-    /// Unicode normalization (NFC)
-    @IBAction func normalizeUnicodeWithNFC(_ sender: Any?) {
+    /// Normalize Unicode in selection.
+    ///
+    /// - Parameter form: The Unicode normalization form.
+    func normalizeUnicode(form: UnicodeNormalizationForm) {
         
-        let form: UnicodeNormalizationForm = .nfc
-        self.transformSelection(actionName: form.localizedName) {
-            $0.normalize(in: form)
-        }
-    }
-    
-    
-    /// Unicode normalization (NFKD)
-    @IBAction func normalizeUnicodeWithNFKD(_ sender: Any?) {
-        
-        let form: UnicodeNormalizationForm = .nfkd
-        self.transformSelection(actionName: form.localizedName) {
-            $0.normalize(in: form)
-        }
-    }
-    
-    
-    /// Unicode normalization (NFKC)
-    @IBAction func normalizeUnicodeWithNFKC(_ sender: Any?) {
-        
-        let form: UnicodeNormalizationForm = .nfkc
-        self.transformSelection(actionName: form.localizedName) {
-            $0.normalize(in: form)
-        }
-    }
-    
-    
-    /// Unicode normalization (NFKC_Casefold)
-    @IBAction func normalizeUnicodeWithNFKCCF(_ sender: Any?) {
-        
-        let form: UnicodeNormalizationForm = .nfkcCasefold
-        self.transformSelection(actionName: form.localizedName) {
-            $0.normalize(in: form)
-        }
-    }
-    
-    
-    /// Unicode normalization (Modified NFC)
-    @IBAction func normalizeUnicodeWithModifiedNFC(_ sender: Any?) {
-        
-        let form: UnicodeNormalizationForm = .modifiedNFC
-        self.transformSelection(actionName: form.localizedName) {
-            $0.normalize(in: form)
-        }
-    }
-    
-    
-    /// Unicode normalization (Modified NFD)
-    @IBAction func normalizeUnicodeWithModifiedNFD(_ sender: Any?) {
-        
-        let form: UnicodeNormalizationForm = .modifiedNFD
         self.transformSelection(actionName: form.localizedName) {
             $0.normalize(in: form)
         }

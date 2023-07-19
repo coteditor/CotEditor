@@ -25,7 +25,7 @@
 
 import Foundation
 
-enum UnicodeNormalizationForm: String {
+enum UnicodeNormalizationForm: String, CaseIterable {
     
     case nfd
     case nfc
@@ -87,6 +87,13 @@ enum UnicodeNormalizationForm: String {
                 return String(localized: "Unofficial NFC-based normalization form corresponding to Modified NFD",
                               table: "UnicodeNormalization", comment: "description for Modified NFC")
         }
+    }
+    
+    
+    /// Unique identifier for menu item.
+    var tag: Int {
+        
+        Self.allCases.enumerated().first { $0.element == self }!.offset
     }
 }
 

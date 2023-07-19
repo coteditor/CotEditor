@@ -148,25 +148,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .map { (form) in
                 guard let form else { return .separator() }
                 
-                let action: Selector
-                switch form {
-                    case .nfd:
-                        action = #selector(EditorTextView.normalizeUnicodeWithNFD)
-                    case .nfc:
-                        action = #selector(EditorTextView.normalizeUnicodeWithNFC)
-                    case .nfkd:
-                        action = #selector(EditorTextView.normalizeUnicodeWithNFKD)
-                    case .nfkc:
-                        action = #selector(EditorTextView.normalizeUnicodeWithNFKC)
-                    case .nfkcCasefold:
-                        action = #selector(EditorTextView.normalizeUnicodeWithNFKCCF)
-                    case .modifiedNFD:
-                        action = #selector(EditorTextView.normalizeUnicodeWithModifiedNFD)
-                    case .modifiedNFC:
-                        action = #selector(EditorTextView.normalizeUnicodeWithModifiedNFC)
-                }
-                
-                let item = NSMenuItem(title: form.localizedName, action: action, keyEquivalent: "")
+                let item = NSMenuItem()
+                item.title = form.localizedName
+                item.action = #selector(EditorTextView.normalizeUnicode(_:))
+                item.representedObject = form.rawValue
+                item.tag = form.tag  // for the shortcut customization
                 item.toolTip = form.localizedDescription
                 return item
             }
