@@ -82,7 +82,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the application crashed by typing the ¨ key with a Norwegian keyboard.
-- Fix an issue that menu command shortcuts could be unwantedly localized according to the user's keyboard layout.
+- Fix an issue that menu command shortcuts could be unwontedly localized according to the user's keyboard layout.
 - Fix an issue that the editor font did not apply to documents created via Services.
 - Fix an issue that the application could crash by opening the About window in some specific conditions.
 
@@ -1348,7 +1348,7 @@ Change Log
 - Fix an issue in theme editing that the values in the theme editor were not updated when the bundled theme currently edited is restored.
 - Fix an issue in the dialog for the pattern line sort that the sample line could indicate a wrong sort key scope when the sort key type is “column.”
 - Fix the feedback animation when dragging and dropping items in a table.
-- [trivial] Fix an issue that the menus in toolbar expended unwantedly after customizing toolbar.
+- [trivial] Fix an issue that the menus in toolbar expended unwontedly after customizing toolbar.
 - [trivial] Fix some layout corruptions under macOS 11 Big Sur (beta).
 
 
@@ -1843,7 +1843,7 @@ no change.
 
 ### Fixes
 
-- Fix an issue where find result was unwantedly collapsed when resizing the find panel.
+- Fix an issue where find result was unwontedly collapsed when resizing the find panel.
 - Fix an issue where hanging indent was not applied to the printed document.
 - Workaround the issue where an editor resizing required a too long time.
 - Fix a possible crash in the Appearance preferences pane.
@@ -2379,7 +2379,7 @@ no change.
 ### Fixes
 
 - Fix an issue where selected inspector pane was not stored.
-- Fix an issue where initial display area shifted unwantedly if line numbers are displayed lines are unwrapped.
+- Fix an issue where initial display area shifted unwontedly if line numbers are displayed lines are unwrapped.
 - Fix an issue where script name was not displayed in Console.
 - Fix an issue where the writing direction (RtL) was not delivered to printing.
 - Fix layout in some localized environment.
@@ -2406,7 +2406,7 @@ no change.
 ### Fixes
 
 - Fix an issue where the cursor position did not restore correctly after repeatedly undoing & redoing bracket insertion with the “Automatically insert closing brackets and quotes” option enabled.
-- Fix an issue where editor scrolled unwantedly after pasting something at a latter half part of the document with “Link URLs in document” option enabled.
+- Fix an issue where editor scrolled unwontedly after pasting something at a latter half part of the document with “Link URLs in document” option enabled.
 - Fix an issue where URL link ranges expanded even if non-URL-related lines is pasted just after an URL.
 - Fix an issue where the application could rarely crash under specific conditions.
 
@@ -2770,7 +2770,7 @@ no change.
 
 - Fix an issue where the sidebar inspector did close inward when the pane was switched after opening the sidebar outward.
 - Fix an issue where snippet key bindings could not be restored to the default correctly.
-- Fix an issue where progress spinner for outline menu displayed unwantedly on document opening.
+- Fix an issue where progress spinner for outline menu displayed unwontedly on document opening.
 - [beta] Fix an issue where deletion of replacement set items was not saved.
 - [beta] Fix a possible crash on window closing.
 - [beta][non-AppStore ver.] Fix an issue where options for the application update check in General preferences pane disappeared.
@@ -2904,7 +2904,7 @@ no change.
 - Fix an issue where key-binding setting field sometimes ignored user input.
 - Fix an issue where wrong file creation date and file permission could be displayed in the document inspector.
 - Fix an issue where document files did not forget vertical orientation state when once set before.
-- Fix an issue where the encoding selected in the open dialog last time was unwantedly applied to the newly opened document when a document opened with the open dialog previously had already opened.
+- Fix an issue where the encoding selected in the open dialog last time was unwontedly applied to the newly opened document when a document opened with the open dialog previously had already opened.
 - Fix an issue where menu item title for “Horizontal” (in Format > Writing Direction) was displayed as “Vertical” in Japanese localization.
 
 
@@ -4935,7 +4935,7 @@ no change.
 
 ### Improvements
 
-- Rename “Spelling” menu item to “Spelling and Grammer” in Edit menu, and also add “Substitutions” and “Transformations” items
+- Rename “Spelling” menu item to “Spelling and Grammar” in Edit menu, and also add “Substitutions” and “Transformations” items
     - From this, remove “Uppercase”, “Lowercase” and “Capitalize” in “Utility” menu.
 - Update “Apache” syntax style:
     - Indent outline items.
@@ -4980,7 +4980,7 @@ no change.
 - Improve background drawing:
     - On Mountain Lion and later, scrolling performance on semi-transparent views has been improved.
     - On Mountain Lion and later, text view gets no drop-shadow by texts on semi-transparent.
-- Avoid the move to previous outline item button to select the first “<Outilne Menu>” item.
+- Avoid the move to previous outline item button to select the first “<Outline Menu>” item.
 - Deprecate text color setting for line number view which is hidden setting.
 - Remove the output type keyword `Pasteboard puts` for CotEditor script, that was deprecated on CotEditor 0.7.2 and had remained for backwards compatibility.
 - [beta] Display migration panel on the first launch.

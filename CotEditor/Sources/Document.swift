@@ -367,7 +367,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.shouldSaveEncodingXattr = (file.xattrEncoding != nil)
         
         // set text orientation state
-        // -> Ignore if no metadata found to avoid restoring to the horizontal layout while editing unwantedly.
+        // -> Ignore if no metadata found to avoid restoring to the horizontal layout while editing unwontedly.
         if UserDefaults.standard[.savesTextOrientation], file.isVerticalText {
             self.isVerticalText = true
         }

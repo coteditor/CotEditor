@@ -228,7 +228,7 @@ extension String {
             return self
         }
         
-        // replace Yen signs to backslashs if encoding cannot convert Yen sign
+        // replace Yen signs to backslashes if encoding cannot convert Yen sign
         return self.replacingOccurrences(of: "¥", with: "\\")
     }
 }

@@ -33,7 +33,7 @@ extension NSDraggingInfo {
     /// - Parameters:
     ///   - type: The UTType to restrict the results.
     ///   - view: The view used as the base coordinate system for the NSDraggingItem instances.
-    /// - Returns: An array fo NSFilePromiseReceiver.
+    /// - Returns: An array of NSFilePromiseReceiver.
     func filePromiseReceivers(with type: UTType, for view: NSView? = nil) -> [NSFilePromiseReceiver]? {
         
         var receivers: [NSFilePromiseReceiver] = []
@@ -56,7 +56,7 @@ extension NSDraggingInfo {
     /// - Parameters:
     ///   - type: The UTType to restrict the results.
     ///   - view: The view used as the base coordinate system for the NSDraggingItem instances.
-    /// - Returns: An array fo file URLs.
+    /// - Returns: An array of file URLs.
     func fileURLs(with type: UTType, for view: NSView? = nil) -> [URL]? {
         
         var urls: [URL] = []

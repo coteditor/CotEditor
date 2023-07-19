@@ -90,7 +90,7 @@ final class SyntaxTests: XCTestCase {
     }
     
     
-    func testNoneSytle() {
+    func testNoneStyle() {
         
         let style = SyntaxStyle()
         
