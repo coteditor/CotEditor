@@ -12,6 +12,11 @@ Change Log
 - [dev] Update Yams from 5.0.5 to 5.0.6.
 
 
+### Fixes
+
+- Fix an issue that the Script menu in the contextual menu was unwontedly labelled “NSMenuItem.”
+
+
 
 4.5.6 (571)
 --------------------------
