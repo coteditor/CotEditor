@@ -42,7 +42,6 @@ final class InspectorTabView: NSTabView {
     // MARK: Private Properties
     
     private let segmentedControl = InspectorTabSegmentedControl()
-    private let separator = NSBox()
     private let controlOffset: CGFloat = 2
     private let segmentWidth: CGFloat = 30
     
@@ -56,8 +55,6 @@ final class InspectorTabView: NSTabView {
         super.init(coder: coder)
         
         self.tabViewType = .noTabsNoBorder
-        
-        self.separator.boxType = .separator
         
         // setup the private tab control
         self.segmentedControl.cell?.isBordered = false
@@ -77,8 +74,25 @@ final class InspectorTabView: NSTabView {
         ])
         
         // add control parts
+        self.segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.segmentedControl)
-        self.addSubview(self.separator)
+        NSLayoutConstraint.activate([
+            self.segmentedControl.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: self.controlOffset),
+            self.segmentedControl.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            self.segmentedControl.leadingAnchor.constraint(greaterThanOrEqualToSystemSpacingAfter: self.safeAreaLayoutGuide.leadingAnchor, multiplier: 1),
+            self.segmentedControl.trailingAnchor.constraint(lessThanOrEqualToSystemSpacingAfter: self.safeAreaLayoutGuide.trailingAnchor, multiplier: 1),
+        ])
+        
+        let separator = NSBox()
+        separator.boxType = .separator
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(separator)
+        NSLayoutConstraint.activate([
+            separator.heightAnchor.constraint(equalToConstant: 1),
+            separator.topAnchor.constraint(equalTo: self.segmentedControl.bottomAnchor, constant: self.controlOffset),
+            separator.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            separator.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+        ])
     }
     
     
@@ -88,27 +102,14 @@ final class InspectorTabView: NSTabView {
     override var contentRect: NSRect {
         
         // take off control space
-        let offset = self.safeAreaInsets.top + self.controlHeight + 1  // +1 for border
+        let controlHeight = self.segmentedControl.frame.height + self.controlOffset * 2
+        let offset = self.safeAreaInsets.top + controlHeight + 1  // +1 for border
         
         var rect = self.bounds
         rect.origin.y = offset
         rect.size.height -= offset
         
         return rect
-    }
-    
-    
-    /// update private control position
-    override func layout() {
-        
-        self.segmentedControl.frame.origin = NSPoint(
-            x: ((self.frame.width - self.segmentedControl.frame.width) / 2).rounded(.down),
-            y: self.controlOffset + self.safeAreaInsets.top
-        )
-        
-        self.separator.frame = NSRect(x: 0, y: self.safeAreaInsets.top + self.controlHeight, width: self.frame.width, height: 1)
-        
-        super.layout()
     }
     
     
@@ -147,13 +148,6 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Private Methods
     
-    /// The height of the control pane.
-    private var controlHeight: CGFloat {
-        
-        self.segmentedControl.frame.height + self.controlOffset * 2
-    }
-    
-    
     /// The private control was pressed.
     @objc private func didPressControl(_ sender: NSSegmentedControl) {
         
@@ -174,7 +168,5 @@ final class InspectorTabView: NSTabView {
                 .tabView(self, selectedImageForItem: item)
             self.segmentedControl.setImage(item.image, selectedImage: selectedImage, forSegment: segment)
         }
-        
-        self.segmentedControl.sizeToFit()
     }
 }
