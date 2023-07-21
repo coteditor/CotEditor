@@ -57,9 +57,6 @@ final class InspectorViewController: NSTabViewController {
         // select last used pane
         self.selectedTabViewItemIndex = UserDefaults.standard[.selectedInspectorPaneIndex]
         
-        // bind segmentedControl manually  (2016-09 on macOS 10.12)
-        (self.tabView as! InspectorTabView).segmentedControl.bind(.selectedIndex, to: self, withKeyPath: #keyPath(selectedTabViewItemIndex))
-        
         // restore thickness first when the view is loaded
         let width = UserDefaults.standard[.sidebarWidth]
         if width > 0 {
@@ -139,7 +136,7 @@ extension InspectorViewController: InspectorTabViewDelegate {
                     .withSymbolConfiguration(.init(pointSize: 0, weight: .semibold))
                 
             case .outline:
-                return nil  // -> bold version
+                return tabViewItem.image?.withSymbolConfiguration(.init(pointSize: 0, weight: .bold))
                 
             case .warnings:
                 return NSImage(systemSymbolName: "exclamationmark.triangle.fill", accessibilityDescription: nil)?

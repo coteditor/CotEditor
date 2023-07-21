@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2021 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,23 +31,19 @@ protocol InspectorTabViewDelegate: NSTabViewDelegate {
     ///
     /// - Parameters:
     ///   - tabView: The tab view that sent the request.
-    ///   - selectedImageForItem: The tab view item that requests selected image.
+    ///   - tabViewItem: The tab view item that requests selected image.
     /// - Returns: An image for selected tab, or `nil` for default behavior.
-    func tabView(_ tabView: NSTabView, selectedImageForItem: NSTabViewItem) -> NSImage?
+    func tabView(_ tabView: NSTabView, selectedImageForItem tabViewItem: NSTabViewItem) -> NSImage?
 }
 
 
 final class InspectorTabView: NSTabView {
     
-    // MARK: Public Properties
-    
-    let segmentedControl: NSSegmentedControl
-    
-    
     // MARK: Private Properties
     
-    private let separator: NSBox
-    private let controlHeight: CGFloat = 28
+    private let segmentedControl = InspectorTabSegmentedControl()
+    private let separator = NSBox()
+    private let controlOffset: CGFloat = 2
     private let segmentWidth: CGFloat = 30
     
     
@@ -57,15 +53,16 @@ final class InspectorTabView: NSTabView {
     
     required init?(coder: NSCoder) {
         
-        self.segmentedControl = InspectorTabSegmentedControl()
-        self.segmentedControl.segmentStyle = .texturedSquare
-        
-        self.separator = NSBox()
-        self.separator.boxType = .separator
-        
         super.init(coder: coder)
         
         self.tabViewType = .noTabsNoBorder
+        
+        self.separator.boxType = .separator
+        
+        // setup the private tab control
+        self.segmentedControl.cell?.isBordered = false
+        self.segmentedControl.target = self
+        self.segmentedControl.action = #selector(didPressControl)
         
         // cover the entire area with an NSVisualEffectView as background
         let backgroundView = NSVisualEffectView()
@@ -73,10 +70,10 @@ final class InspectorTabView: NSTabView {
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(backgroundView)
         NSLayoutConstraint.activate([
-            self.topAnchor.constraint(equalTo: backgroundView.topAnchor),
-            self.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
-            self.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
-            self.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+            backgroundView.topAnchor.constraint(equalTo: self.topAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
         ])
         
         // add control parts
@@ -88,9 +85,9 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Tab View Methods
     
-    /// take off control space
     override var contentRect: NSRect {
         
+        // take off control space
         let offset = self.safeAreaInsets.top + self.controlHeight + 1  // +1 for border
         
         var rect = self.bounds
@@ -106,7 +103,7 @@ final class InspectorTabView: NSTabView {
         
         self.segmentedControl.frame.origin = NSPoint(
             x: ((self.frame.width - self.segmentedControl.frame.width) / 2).rounded(.down),
-            y: ((self.controlHeight - self.segmentedControl.intrinsicContentSize.height) / 2).rounded(.down) + self.safeAreaInsets.top
+            y: self.controlOffset + self.safeAreaInsets.top
         )
         
         self.separator.frame = NSRect(x: 0, y: self.safeAreaInsets.top + self.controlHeight, width: self.frame.width, height: 1)
@@ -115,34 +112,34 @@ final class InspectorTabView: NSTabView {
     }
     
     
-    /// select also the private control
     override func selectTabViewItem(at index: Int) {
         
         super.selectTabViewItem(at: index)
-        self.invalidateControlSelection()
+        
+        self.segmentedControl.selectedSegment = index
     }
     
     
-    /// select also the private control
     override func addTabViewItem(_ tabViewItem: NSTabViewItem) {
         
         super.addTabViewItem(tabViewItem)
-        self.invalidateControlSelection()
-    }
-    
-    
-    /// update the private control
-    override func insertTabViewItem(_ tabViewItem: NSTabViewItem, at index: Int) {
         
-        super.insertTabViewItem(tabViewItem, at: index)
         self.rebuildSegmentedControl()
     }
     
     
-    /// update the private control
+    override func insertTabViewItem(_ tabViewItem: NSTabViewItem, at index: Int) {
+        
+        super.insertTabViewItem(tabViewItem, at: index)
+        
+        self.rebuildSegmentedControl()
+    }
+    
+    
     override func removeTabViewItem(_ tabViewItem: NSTabViewItem) {
         
         super.removeTabViewItem(tabViewItem)
+        
         self.rebuildSegmentedControl()
     }
     
@@ -150,49 +147,34 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Private Methods
     
-    /// update selection of the private control
-    private func invalidateControlSelection() {
+    /// The height of the control pane.
+    private var controlHeight: CGFloat {
         
-        guard let selectedItem = self.selectedTabViewItem else { return }
-        
-        let index = self.indexOfTabViewItem(selectedItem)
-        
-        guard index != NSNotFound else { return }
-        
-        guard self.numberOfTabViewItems == self.segmentedControl.segmentCount else {
-            return self.rebuildSegmentedControl()  // This method will be invoked again in `rebuildSegmentedControl`.
-        }
-        
-        self.segmentedControl.selectedSegment = index
+        self.segmentedControl.frame.height + self.controlOffset * 2
     }
     
     
-    /// update the private control every time when tab item line-up changed
+    /// The private control was pressed.
+    @objc private func didPressControl(_ sender: NSSegmentedControl) {
+        
+        self.selectTabViewItem(at: sender.indexOfSelectedItem)
+    }
+    
+    
+    /// Update the private control every time when the line-up of  tab items changed.
     private func rebuildSegmentedControl() {
         
         self.segmentedControl.segmentCount = self.numberOfTabViewItems
         
-        // set tabViewItem values to control buttons
         for (segment, item) in self.tabViewItems.enumerated() {
             self.segmentedControl.setWidth(self.segmentWidth, forSegment: segment)
             self.segmentedControl.setToolTip(item.label, forSegment: segment)
             
-            let selectedImage = (self.delegate as? any InspectorTabViewDelegate)?.tabView(self, selectedImageForItem: item)
-                ?? item.selectedImage
-            (self.segmentedControl as? InspectorTabSegmentedControl)?
-                .setImage(item.image, selectedImage: selectedImage, forSegment: segment)
+            let selectedImage = (self.delegate as? any InspectorTabViewDelegate)?
+                .tabView(self, selectedImageForItem: item)
+            self.segmentedControl.setImage(item.image, selectedImage: selectedImage, forSegment: segment)
         }
         
         self.segmentedControl.sizeToFit()
-        self.invalidateControlSelection()
-    }
-}
-
-
-private extension NSTabViewItem {
-    
-    var selectedImage: NSImage? {
-        
-        self.image?.withSymbolConfiguration(.init(pointSize: 0, weight: .bold))
     }
 }
