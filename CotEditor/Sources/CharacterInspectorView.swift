@@ -53,7 +53,7 @@ private struct CharacterDetailView: View {
         VStack(alignment: .leading, spacing: 0) {
             Text(self.info.localizedDescription ?? "Unknown")
                 .fontWeight(self.info.isComplex ? .regular : .semibold)
-                .foregroundColor(.label)  // Workaround to keep text color when selected (2022-12, macOS 13, FB10747746).
+                .foregroundColor(.label)  // Workaround to keep text color when selected (2022-12, macOS 13, FB10747746, fixed on macOS 14).
                 .textSelection(.enabled)
             
             if !self.info.isComplex {

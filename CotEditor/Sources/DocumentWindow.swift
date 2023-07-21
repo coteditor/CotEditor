@@ -130,8 +130,8 @@ final class DocumentWindow: NSWindow {
         
         super.miniaturize(sender)
         
-        // workaround an issue with Stage Manager (2023-04 macOS 13, FB12129976)
-        if self.isFloating {
+        // workaround an issue with Stage Manager (2023-04 macOS 13, FB12129976, fixed on macOS 14)
+        if self.isFloating, ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 14 {
             self.level = .normal
         }
     }
@@ -141,8 +141,8 @@ final class DocumentWindow: NSWindow {
         
         super.makeKey()
         
-        // workaround an issue with Stage Manager (2023-04 macOS 13, FB12129976)
-        if self.isFloating {
+        // workaround an issue with Stage Manager (2023-04 macOS 13, FB12129976, fixed on macOS 14)
+        if self.isFloating, ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 14 {
             self.level = .floating
         }
     }
