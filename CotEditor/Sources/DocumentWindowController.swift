@@ -318,17 +318,39 @@ private extension NSToolbarItem.Identifier {
     static let find = Self(Self.prefix + "find")
     static let print = Self(Self.prefix + "print")
     static let share = Self(Self.prefix + "share")
-    static let inspectorTrackingSeparator = Self(Self.prefix + "inspectorTrackingSeparator")
+    
+    @available(macOS, deprecated: 14, message: "Use `.inspectorTrackingSeparator`")
+    static let legacyInspectorTrackingSeparator = Self(Self.prefix + "inspectorTrackingSeparator")
 }
 
 
 extension DocumentWindowController: NSToolbarDelegate {
     
+    func toolbarImmovableItemIdentifiers(_ toolbar: NSToolbar) -> Set<NSToolbarItem.Identifier> {
+        
+        guard #available(macOS 14, *) else { return [] }
+        
+        return [
+            .flexibleSpace,
+            .inspectorTrackingSeparator,
+        ]
+    }
+    
+    
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
-        [
+        guard #available(macOS 14, *) else {
+            return [
+                .syntax,
+                .legacyInspectorTrackingSeparator,
+                .inspector,
+            ]
+        }
+        
+        return [
             .syntax,
             .inspectorTrackingSeparator,
+            .flexibleSpace,
             .inspector,
         ]
     }
@@ -652,7 +674,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.delegate = self
                 return item
                 
-            case .inspectorTrackingSeparator:
+            case .legacyInspectorTrackingSeparator:
                 let splitView = (self.contentViewController as! NSSplitViewController).splitView
                 let item = NSTrackingSeparatorToolbarItem(identifier: itemIdentifier, splitView: splitView, dividerIndex: 0)
                 return item
