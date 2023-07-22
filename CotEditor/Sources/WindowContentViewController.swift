@@ -49,6 +49,7 @@ final class WindowContentViewController: NSSplitViewController {
         
         // set behavior to glow window size on inspector toggling rather than opening inspector inward
         self.inspectorViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
+        
         self.inspectorObserver = self.inspectorViewItem?.publisher(for: \.isCollapsed, options: .initial)
             .sink { [weak self] _ in self?.invalidateRestorableState() }
         
@@ -263,6 +264,6 @@ final class WindowContentViewController: NSSplitViewController {
         
         guard self.isViewLoaded else { return [] }
         
-        return self.view.window?.tabbedWindows?.compactMap { ($0.windowController?.contentViewController as? WindowContentViewController) } ?? [self]
+        return self.view.window?.tabbedWindows?.compactMap { $0.windowController?.contentViewController as? WindowContentViewController } ?? [self]
     }
 }
