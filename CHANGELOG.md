@@ -5,6 +5,10 @@ Change Log
 4.6.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- Change the system requirement to __macOS 13 Ventura and later__.
+
 
 
 4.5.7 (573)
