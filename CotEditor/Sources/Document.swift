@@ -533,7 +533,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // set accessory view
         let accessory = SavePanelAccessory(options: self.saveOptions)
         let accessoryView = NSHostingView(rootView: accessory)
-        accessoryView.ensureFrameSize()
+        accessoryView.sizingOptions = .intrinsicContentSize
         savePanel.accessoryView = accessoryView
         
         return true

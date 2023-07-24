@@ -186,7 +186,7 @@ final class DocumentController: NSDocumentController {
         let options = OpenOptions()
         let accessory = OpenPanelAccessory(options: options, openPanel: openPanel, encodings: EncodingManager.shared.encodings)
         let accessoryView = NSHostingView(rootView: accessory)
-        accessoryView.ensureFrameSize()
+        accessoryView.sizingOptions = .intrinsicContentSize
         
         openPanel.accessoryView = accessoryView
         openPanel.isAccessoryViewDisclosed = true

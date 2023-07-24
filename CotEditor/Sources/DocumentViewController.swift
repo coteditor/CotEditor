@@ -743,7 +743,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         let opacityView = OpacityView(window: self.view.window as? DocumentWindow)
         let viewController = NSHostingController(rootView: opacityView)
-        viewController.ensureFrameSize()
+        viewController.sizingOptions = .preferredContentSize
         
         self.present(viewController, asPopoverRelativeTo: .zero, of: self.view,
                      preferredEdge: .maxY, behavior: .transient)

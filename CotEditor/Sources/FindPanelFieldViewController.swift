@@ -227,7 +227,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         }
         
         let viewController = NSHostingController(rootView: FindSettingsView())
-        viewController.ensureFrameSize()
         
         self.present(viewController, asPopoverRelativeTo: sender.bounds, of: sender, preferredEdge: .maxX, behavior: .transient)
     }

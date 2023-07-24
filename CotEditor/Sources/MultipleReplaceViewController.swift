@@ -146,7 +146,6 @@ final class MultipleReplaceViewController: NSViewController {
             self.updateNotificationDebouncer.schedule()
         }
         let viewController = NSHostingController(rootView: view)
-        viewController.ensureFrameSize()
         
         self.present(viewController, asPopoverRelativeTo: sender.bounds, of: sender, preferredEdge: .maxX, behavior: .transient)
     }
