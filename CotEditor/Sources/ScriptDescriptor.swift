@@ -86,7 +86,7 @@ private struct ScriptInfo: Decodable {
     /// - Parameter bundleURL: The URL to the script bundle.
     init(scriptBundle bundleURL: URL) throws {
         
-        let plistURL = bundleURL.appendingPathComponent("Contents/Info.plist")
+        let plistURL = bundleURL.appending(components: "Contents", "Info.plist")
         let data = try Data(contentsOf: plistURL)
         
         self = try PropertyListDecoder().decode(ScriptInfo.self, from: data)

@@ -131,7 +131,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             //    In addition, individual applications cannot create its script folder for in case
             //    when user explicitly delete the folder.
             //    cf. https://developer.apple.com/forums/thread/79384
-            self.scriptsDirectoryURL = try? FileManager.default.url(for: .applicationScriptsDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            self.scriptsDirectoryURL = try? URL(for: .applicationScriptsDirectory, in: .userDomainMask)
             
             // observe script folder change if it exists
             if self.presentedItemURL != nil {

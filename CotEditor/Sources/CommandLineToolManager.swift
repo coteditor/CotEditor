@@ -59,9 +59,8 @@ final class CommandLineToolManager: Sendable {
     init(bundle: Bundle) {
         
         self.bundledCommandURL = bundle.cotURL!
-        self.preferredLinkURL = URL(fileURLWithPath: "/usr/local/bin/cot")
-        self.preferredApplicationURL = try! FileManager.default
-            .url(for: .applicationDirectory, in: .localDomainMask, appropriateFor: nil, create: false)
+        self.preferredLinkURL = URL(filePath: "/usr/local/bin/cot")
+        self.preferredApplicationURL = URL.applicationDirectory
             .appendingPathComponent(bundle.bundleName, conformingTo: .application)
         
         // check only preferred link location
@@ -108,6 +107,6 @@ private extension Bundle {
     
     var cotURL: URL? {
         
-        self.sharedSupportURL?.appendingPathComponent("bin/cot").standardizedFileURL
+        self.sharedSupportURL?.appending(components: "bin", "cot").standardizedFileURL
     }
 }

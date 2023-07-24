@@ -38,7 +38,7 @@ extension SettingManaging {
     /// user setting directory URL in Application Support
     var userSettingDirectoryURL: URL {
         
-        supportDirectoryURL.appendingPathComponent(Self.directoryName)
+        supportDirectoryURL.appending(component: Self.directoryName, directoryHint: .isDirectory)
     }
     
     
@@ -47,10 +47,10 @@ extension SettingManaging {
     var itemReplacementDirectoryURL: URL {
         
         guard
-            let url = try? FileManager.default.url(for: .itemReplacementDirectory, in: .userDomainMask, appropriateFor: supportDirectoryURL, create: true)
+            let url = try? URL(for: .itemReplacementDirectory, in: .userDomainMask, appropriateFor: supportDirectoryURL, create: true)
         else {
             assertionFailure("failed directory creation")
-            return FileManager.default.temporaryDirectory
+            return .temporaryDirectory
         }
         
         return url
@@ -69,6 +69,4 @@ extension SettingManaging {
 // MARK: Private Property
 
 /// application's support directory in user's `Application Support/`
-private let supportDirectoryURL: URL = try! FileManager.default
-    .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-    .appendingPathComponent("CotEditor")
+private let supportDirectoryURL: URL = .applicationSupportDirectory.appending(component: "CotEditor", directoryHint: .isDirectory)
