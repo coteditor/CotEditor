@@ -41,7 +41,7 @@
 /* Class = "NSMenuItem"; title = "About CotEditor"; ObjectID = "58"; */
 "58.title" = "Über CotEditor";
 
-/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "129"; */
+/* Class = "NSMenuItem"; title = "Settings…"; ObjectID = "129"; */
 "129.title" = "Einstellungen …";
 
 /* Class = "NSMenu"; title = "Services"; ObjectID = "130"; */

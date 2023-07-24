@@ -21,7 +21,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="202"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="129">
+                                        <menuItem title="Settings…" keyEquivalent="," id="129">
                                             <connections>
                                                 <action selector="showPreferences:" target="Ady-hI-5gd" id="7er-hU-Wel"/>
                                             </connections>
