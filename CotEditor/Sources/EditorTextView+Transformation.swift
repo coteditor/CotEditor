@@ -184,8 +184,8 @@ extension EditorTextView {
     @IBAction func straightenQuotesInSelection(_ sender: Any?) {
         
         self.transformSelection {
-            $0.replacingOccurrences(of: "[“”‟„]", with: "\"", options: .regularExpression)
-              .replacingOccurrences(of: "[‘’‛‚]", with: "'", options: .regularExpression)
+            $0.replacing(/[“”‟„]/, with: "\"")
+              .replacing(/[‘’‛‚]/, with: "'")
         }
     }
 }

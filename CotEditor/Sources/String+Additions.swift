@@ -52,23 +52,17 @@ extension String {
         
         return entities.reduce(self) { $0.replacingOccurrences(of: #"(?<!\\)((?:\\\\)*)\\"# + $1.value, with: "$1" + $1.key, options: .regularExpression) }
     }
-}
-
-
-
-extension StringProtocol {
+    
     
     /// The first appeared line ending character.
     var firstLineEnding: Character? {
         
-        guard
-            !self.isEmpty,
-            let range = self.range(of: "\\R", options: .regularExpression)
-        else { return nil }
-        
-        return self[range.lowerBound]
+        self.firstMatch(of: /\R/)?.output.first
     }
-    
+}
+
+
+extension StringProtocol {
     
     /// Range of the line containing a given index.
     ///

@@ -201,14 +201,14 @@ extension String {
         var string = self
         
         if options.ignoresNewlines {
-            string = string.replacingOccurrences(of: "\\R", with: "", options: .regularExpression)
+            string.replace(/\R/, with: "")
         }
         if options.ignoresWhitespaces {
-            string = string.replacingOccurrences(of: "[\\t\\p{Zs}]", with: "", options: .regularExpression)
+            string.replace(/[\t\p{Zs}]/, with: "")
         }
         if options.treatsConsecutiveWhitespaceAsSingle, (!options.ignoresNewlines || !options.ignoresWhitespaces) {
             // \s = [\t\n\f\r\p{Z}]
-            string = string.replacingOccurrences(of: "\\s{2,}", with: " ", options: .regularExpression)
+            string.replace(/\s{2,}/, with: " ")
         }
         
         if let normalizationForm = options.normalizationForm {

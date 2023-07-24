@@ -332,7 +332,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             .sorted(\.lastPathComponent)
             .compactMap { url in
                 let name = url.deletingPathExtension().lastPathComponent
-                    .replacingOccurrences(of: "^[0-9]+\\)", with: "", options: .regularExpression)  // remove ordering prefix
+                    .replacing(/^[0-9]+\)/, with: "")  // remove ordering prefix
                 
                 if name == .separator {
                     return .separator

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -124,9 +124,9 @@ extension String {
         }
         .reduce(into: []) { (encodings, encoding) in
             if let last = encodings.last as? String.Encoding,
-               let nameRangeLast = String.localizedName(of: last).range(of: "^\\w+", options: .regularExpression),
-               let nameRange = String.localizedName(of: encoding).range(of: "^\\w+", options: .regularExpression),
-               String.localizedName(of: last)[nameRangeLast] != String.localizedName(of: encoding)[nameRange]
+               let lastName = String.localizedName(of: last).prefixMatch(of: /\w+/),
+               let name = String.localizedName(of: encoding).prefixMatch(of: /\w+/),
+               lastName.output != name.output
             {
                 encodings.append(nil)
             }
@@ -229,7 +229,7 @@ extension String {
         }
         
         // replace Yen signs to backslashes if encoding cannot convert Yen sign
-        return self.replacingOccurrences(of: "¥", with: "\\")
+        return self.replacing("¥", with: "\\")
     }
 }
 

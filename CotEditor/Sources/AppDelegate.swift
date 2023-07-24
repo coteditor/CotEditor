@@ -381,9 +381,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // fill template with user environment info
         let title = String(localized: "Issue Report", comment: "document title")
         let report = template
-            .replacingOccurrences(of: "%BUNDLE_VERSION%", with: Bundle.main.bundleVersion)
-            .replacingOccurrences(of: "%SHORT_VERSION%", with: Bundle.main.shortVersion)
-            .replacingOccurrences(of: "%SYSTEM_VERSION%", with: ProcessInfo.processInfo.operatingSystemVersionString)
+            .replacing("%BUNDLE_VERSION%", with: Bundle.main.bundleVersion)
+            .replacing("%SHORT_VERSION%", with: Bundle.main.shortVersion)
+            .replacing("%SYSTEM_VERSION%", with: ProcessInfo.processInfo.operatingSystemVersionString)
         
         // open as document
         do {

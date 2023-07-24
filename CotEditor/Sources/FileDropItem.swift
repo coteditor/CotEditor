@@ -175,14 +175,14 @@ extension FileDropItem {
         
         // replace template
         var dropText = self.format
-            .replacingOccurrences(of: Variable.absolutePath.token, with: droppedFileURL.path)
-            .replacingOccurrences(of: Variable.relativePath.token, with: droppedFileURL.path(relativeTo: documentURL) ?? droppedFileURL.path)
-            .replacingOccurrences(of: Variable.filename.token, with: droppedFileURL.lastPathComponent)
-            .replacingOccurrences(of: Variable.filenameWithoutExtension.token, with: droppedFileURL.deletingPathExtension().lastPathComponent)
-            .replacingOccurrences(of: Variable.fileExtension.token, with: droppedFileURL.pathExtension)
-            .replacingOccurrences(of: Variable.fileExtensionLowercase.token, with: droppedFileURL.pathExtension.lowercased())
-            .replacingOccurrences(of: Variable.fileExtensionUppercase.token, with: droppedFileURL.pathExtension.uppercased())
-            .replacingOccurrences(of: Variable.directory.token, with: droppedFileURL.deletingLastPathComponent().lastPathComponent)
+            .replacing(Variable.absolutePath.token, with: droppedFileURL.path)
+            .replacing(Variable.relativePath.token, with: droppedFileURL.path(relativeTo: documentURL) ?? droppedFileURL.path)
+            .replacing(Variable.filename.token, with: droppedFileURL.lastPathComponent)
+            .replacing(Variable.filenameWithoutExtension.token, with: droppedFileURL.deletingPathExtension().lastPathComponent)
+            .replacing(Variable.fileExtension.token, with: droppedFileURL.pathExtension)
+            .replacing(Variable.fileExtensionLowercase.token, with: droppedFileURL.pathExtension.lowercased())
+            .replacing(Variable.fileExtensionUppercase.token, with: droppedFileURL.pathExtension.uppercased())
+            .replacing(Variable.directory.token, with: droppedFileURL.deletingLastPathComponent().lastPathComponent)
         
         // get image dimension if needed
         // -> Use NSImageRep because NSImage's `size` returns a DPI applied size.
@@ -193,8 +193,8 @@ extension FileDropItem {
             }
             if let imageRep {
                 dropText = dropText
-                    .replacingOccurrences(of: Variable.imageWidth.token, with: String(imageRep.pixelsWide))
-                    .replacingOccurrences(of: Variable.imageHeight.token, with: String(imageRep.pixelsHigh))
+                    .replacing(Variable.imageWidth.token, with: String(imageRep.pixelsWide))
+                    .replacing(Variable.imageHeight.token, with: String(imageRep.pixelsHigh))
             }
         }
         
@@ -202,7 +202,7 @@ extension FileDropItem {
         // -> Replace this at last because the file content can contain other tokens.
         if self.format.contains(Variable.fileContent.token) {
             let content = try? String(contentsOf: droppedFileURL)
-            dropText = dropText.replacingOccurrences(of: Variable.fileContent.token, with: content ?? "")
+            dropText = dropText.replacing(Variable.fileContent.token, with: content ?? "")
         }
         
         return dropText

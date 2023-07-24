@@ -555,8 +555,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             let lineRange = self.string.lineRange(at: insertionIndex)
             
             // decrease indent level if the line is consists of only whitespaces
-            if self.string.range(of: "^[ \\t]+\\R?$", options: .regularExpression, range: lineRange) != nil,
-               let precedingIndex = self.string.indexOfBracePair(endIndex: insertionIndex, pair: BracePair("{", "}")) {
+            if self.string[lineRange].starts(with: /[ \t]+\R?$/),
+               let precedingIndex = self.string.indexOfBracePair(endIndex: insertionIndex, pair: BracePair("{", "}"))
+            {
                 let desiredLevel = self.string.indentLevel(at: precedingIndex, tabWidth: self.tabWidth)
                 let currentLevel = self.string.indentLevel(at: insertionIndex, tabWidth: self.tabWidth)
                 let levelToReduce = currentLevel - desiredLevel

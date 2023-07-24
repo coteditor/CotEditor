@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ extension NSControl {
             let keyPath = bindingInfo[.observedKeyPath] as? String
         else { return assertionFailure() }
         
-        let key = keyPath.replacingOccurrences(of: #keyPath(NSUserDefaultsController.values) + ".", with: "")
+        let key = keyPath.replacing(#keyPath(NSUserDefaultsController.values) + ".", with: "")
         
         guard let initialValue = object.initialValues?[key] else { return assertionFailure() }
         

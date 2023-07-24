@@ -73,8 +73,8 @@ extension Unicode.Scalar {
         // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
         //    Otherwise, we cannot localize block names correctly. (2015-11)
         let key = blockName
-            .replacingOccurrences(of: " ([A-Z])$", with: "-$1", options: .regularExpression)
-            .replacingOccurrences(of: "Description", with: "Desc.")
+            .replacing(/\ ([A-Z])$/) { "-\($0.1)" }
+            .replacing("Description", with: "Desc.")
         
         return String(localized: String.LocalizationValue(key), table: "Unicode")
     }

@@ -184,9 +184,10 @@ private extension SnippetManager {
         {
             shortcuts = keyBindings.reduce(into: [:]) { (map, keyBinding) in
                 guard
-                    let range = keyBinding.action.range(of: "(?<=^insertCustomText_)[0-9]{2}(?=:$)", options: .regularExpression),
-                    let index = Int(keyBinding.action[range])
+                    let match = keyBinding.action.wholeMatch(of: /insertCustomText_([0-9]{2}):/)?.1,
+                    let index = Int(match)
                 else { return }
+                
                 map[index] = keyBinding.shortcut
             }
             

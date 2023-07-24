@@ -142,9 +142,7 @@ private extension UTF32.CodeUnit {
     /// Initialize from a possible Unicode code point representation, such as `U+1F600`, `1f600`, and `0x1F600`.
     init?(codePoint: String) {
         
-        guard let range = codePoint.range(of: "(?<=^(U\\+|0x|\\\\u)?)[0-9a-f]{1,5}$",
-                                          options: [.regularExpression, .caseInsensitive]) else { return nil }
-        let hexString = codePoint[range]
+        guard let hexString = codePoint.wholeMatch(of: /(U\\+|0x|\\\\u)?(?<number>[0-9a-f]{1,5})/.ignoresCase())?.number else { return nil }
         
         self.init(hexString, radix: 16)
     }

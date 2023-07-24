@@ -135,7 +135,7 @@ struct ScriptDescriptor {
         var shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
         shortcut = (shortcut?.isValid == true) ? shortcut : nil
         if shortcut != nil {
-            name = name.replacingOccurrences(of: "\\..+$", with: "", options: .regularExpression)
+            name.replace(/\..+$/, with: "")
         }
         
         self.url = url

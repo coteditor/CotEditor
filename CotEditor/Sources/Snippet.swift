@@ -131,7 +131,7 @@ extension Snippet {
         
         let format = self.format
             .replacingOccurrences(of: "(?<=\\R)", with: indent, options: .regularExpression)  // indent
-            .replacingOccurrences(of: Variable.selection.token, with: selectedString)  // selection
+            .replacing(Variable.selection.token, with: selectedString)  // selection
         
         let cursors = (format as NSString).ranges(of: Variable.cursor.token)
         let ranges = cursors
@@ -139,7 +139,7 @@ extension Snippet {
             .map { $0.element.location - $0.offset * $0.element.length }
             .map { NSRange(location: $0, length: 0) }
         
-        let text = format.replacingOccurrences(of: Variable.cursor.token, with: "")
+        let text = format.replacing(Variable.cursor.token, with: "")
         
         return (text, ranges)
     }
