@@ -83,7 +83,7 @@
                                             <font key="font" metaFont="system"/>
                                             <segments>
                                                 <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
-                                                <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
+                                                <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
                                                 <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22"/>
                                             </segments>
                                         </segmentedCell>
@@ -122,7 +122,7 @@
                                             <font key="font" metaFont="system"/>
                                             <segments>
                                                 <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
-                                                <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
+                                                <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
                                                 <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22">
                                                     <nil key="label"/>
                                                 </segment>
@@ -230,7 +230,7 @@
                                             <font key="font" metaFont="system"/>
                                             <segments>
                                                 <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
-                                                <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
+                                                <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
                                                 <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22">
                                                     <nil key="label"/>
                                                 </segment>
@@ -307,7 +307,7 @@
                                             <font key="font" metaFont="system"/>
                                             <segments>
                                                 <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
-                                                <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
+                                                <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
                                                 <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22">
                                                     <nil key="label"/>
                                                 </segment>
@@ -515,6 +515,6 @@
     <resources>
         <image name="arrow.backward.to.line" catalog="system" width="17" height="12"/>
         <image name="arrow.forward.to.line" catalog="system" width="17" height="12"/>
-        <image name="arrow.right.and.line.vertical.and.arrow.left" width="16" height="10"/>
+        <image name="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="23" height="15"/>
     </resources>
 </document>

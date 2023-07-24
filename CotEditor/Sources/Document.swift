@@ -68,7 +68,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Private Properties
     
-    private lazy var printPanelAccessoryController: PrintPanelAccessoryController = NSStoryboard(name: ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 13 ? "PrintPanelAccessoryVentura" : "PrintPanelAccessory").instantiateInitialController()!
+    private lazy var printPanelAccessoryController: PrintPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory").instantiateInitialController()!
     
     private var readingEncoding: String.Encoding?  // encoding to read document file
     private var suppressesInconsistentLineEndingAlert = false

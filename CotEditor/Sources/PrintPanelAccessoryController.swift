@@ -173,67 +173,37 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
              .itemDescription: self.theme]
         ]
         
-        if #available(macOS 13, *) {
-            if self.printsBackground {
-                items += [[.itemName: String(localized: "Print Background"),
-                           .itemDescription: String(localized: "On")]]
-            }
-            if self.printsLineNumbers {
-                items += [[.itemName: String(localized: "Line Number"),
-                           .itemDescription: String(localized: "On")]]
-            }
-            if self.printsInvisibles {
-                items += [[.itemName: String(localized: "Invisibles"),
-                           .itemDescription: String(localized: "On")]]
-            }
-            if self.printsHeader, self.primaryHeaderContent != .none {
-                items += [[.itemName: String(localized: "Primary Header"),
-                           .itemDescription: self.primaryHeaderContent.localizedDescription
-                           + String(localized: " (\(self.primaryHeaderAlignment.localizedDescription))")]]
-            }
-            if self.printsHeader, self.secondaryHeaderContent != .none {
-                items += [[.itemName: String(localized: "Secondary Header"),
-                           .itemDescription: self.secondaryHeaderContent.localizedDescription
-                           + String(localized: " (\(self.secondaryHeaderAlignment.localizedDescription))")]]
-            }
-            if self.printsFooter, self.primaryFooterContent != .none {
-                items += [[.itemName: String(localized: "Primary Footer"),
-                           .itemDescription: self.primaryFooterContent.localizedDescription
-                           + String(localized: " (\(self.primaryFooterAlignment.localizedDescription))")]]
-            }
-            if self.printsFooter, self.secondaryFooterContent != .none {
-                items += [[.itemName: String(localized: "Secondary Footer"),
-                           .itemDescription: self.secondaryFooterContent.localizedDescription
-                           + String(localized: " (\(self.secondaryFooterAlignment.localizedDescription))")]]
-            }
-            
-        } else {
-            items += [
-                [.itemName: String(localized: "Print Background"),
-                 .itemDescription: self.printsBackground ? String(localized: "On") : String(localized: "Off")],
-                [.itemName: String(localized: "Line Number"),
-                 .itemDescription: self.printsLineNumbers ? String(localized: "On") : String(localized: "Off")],
-                [.itemName: String(localized: "Invisibles"),
-                 .itemDescription: self.printsInvisibles ? String(localized: "On") : String(localized: "Off")],
-                
-                [.itemName: String(localized: "Print Header"),
-                 .itemDescription: self.printsHeader ? String(localized: "On") : String(localized: "Off")],
-                [.itemName: String(localized: "Primary Header"),
-                 .itemDescription: self.primaryHeaderContent.localizedDescription
-                 + String(localized: " (\(self.primaryHeaderAlignment.localizedDescription))")],
-                [.itemName: String(localized: "Secondary Header"),
-                 .itemDescription: self.secondaryHeaderContent.localizedDescription
-                 + String(localized: " (\(self.secondaryHeaderAlignment.localizedDescription))")],
-                
-                [.itemName: String(localized: "Print Footer"),
-                 .itemDescription: self.printsFooter ? String(localized: "On") : String(localized: "Off")],
-                [.itemName: String(localized: "Primary Footer"),
-                 .itemDescription: self.primaryFooterContent.localizedDescription
-                 + String(localized: " (\(self.primaryFooterAlignment.localizedDescription))")],
-                [.itemName: String(localized: "Secondary Footer"),
-                 .itemDescription: self.secondaryFooterContent.localizedDescription
-                 + String(localized: " (\(self.secondaryFooterAlignment.localizedDescription))")],
-            ]
+        if self.printsBackground {
+            items += [[.itemName: String(localized: "Print Background"),
+                       .itemDescription: String(localized: "On")]]
+        }
+        if self.printsLineNumbers {
+            items += [[.itemName: String(localized: "Line Number"),
+                       .itemDescription: String(localized: "On")]]
+        }
+        if self.printsInvisibles {
+            items += [[.itemName: String(localized: "Invisibles"),
+                       .itemDescription: String(localized: "On")]]
+        }
+        if self.printsHeader, self.primaryHeaderContent != .none {
+            items += [[.itemName: String(localized: "Primary Header"),
+                       .itemDescription: self.primaryHeaderContent.localizedDescription
+                       + String(localized: " (\(self.primaryHeaderAlignment.localizedDescription))")]]
+        }
+        if self.printsHeader, self.secondaryHeaderContent != .none {
+            items += [[.itemName: String(localized: "Secondary Header"),
+                       .itemDescription: self.secondaryHeaderContent.localizedDescription
+                       + String(localized: " (\(self.secondaryHeaderAlignment.localizedDescription))")]]
+        }
+        if self.printsFooter, self.primaryFooterContent != .none {
+            items += [[.itemName: String(localized: "Primary Footer"),
+                       .itemDescription: self.primaryFooterContent.localizedDescription
+                       + String(localized: " (\(self.primaryFooterAlignment.localizedDescription))")]]
+        }
+        if self.printsFooter, self.secondaryFooterContent != .none {
+            items += [[.itemName: String(localized: "Secondary Footer"),
+                       .itemDescription: self.secondaryFooterContent.localizedDescription
+                       + String(localized: " (\(self.secondaryFooterAlignment.localizedDescription))")]]
         }
         
         return items
