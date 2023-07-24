@@ -742,7 +742,7 @@
 		2AF45E1E1E6C0D920030CD60 /* EditorCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorCounter.swift */; };
 		2AF45E1F1E6C0D920030CD60 /* EditorCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorCounter.swift */; };
 		2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
-		2AF5D0E5286D9AB3000BE826 /* ArithmetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5D0E4286D9AB3000BE826 /* ArithmetricsTests.swift */; };
+		2AF5D0E5286D9AB3000BE826 /* ArithmeticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5D0E4286D9AB3000BE826 /* ArithmeticsTests.swift */; };
 		2AF6A5C728053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */; };
 		2AF6A5C828053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */; };
 		2AF98CAB294B9488009AD47F /* FindSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF98CAA294B9488009AD47F /* FindSettingsView.swift */; };
@@ -1418,7 +1418,7 @@
 		2AF4F57F1DE60B4200703525 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.html"; sourceTree = "<group>"; };
 		2AF5C3BD1A55072E00C972B5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2AF5C3BF1A5510F600C972B5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		2AF5D0E4286D9AB3000BE826 /* ArithmetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArithmetricsTests.swift; sourceTree = "<group>"; };
+		2AF5D0E4286D9AB3000BE826 /* ArithmeticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArithmeticsTests.swift; sourceTree = "<group>"; };
 		2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InconsistentLineEndingsViewController.swift; sourceTree = "<group>"; };
 		2AF98CAA294B9488009AD47F /* FindSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindSettingsView.swift; sourceTree = "<group>"; };
 		2AF98CAE294C0670009AD47F /* MultipleReplaceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleReplaceSettingsView.swift; sourceTree = "<group>"; };
@@ -2360,7 +2360,7 @@
 		2ACC652F1C9802CB000574DC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2AF5D0E4286D9AB3000BE826 /* ArithmetricsTests.swift */,
+				2AF5D0E4286D9AB3000BE826 /* ArithmeticsTests.swift */,
 				2A9082EE1D325ED900228F50 /* GeometryTests.swift */,
 				2AC39F721E8AC80E009F97D5 /* CollectionTests.swift */,
 				2AE12DFD1E7DB7D200681F72 /* StringCollectionTests.swift */,
@@ -3241,7 +3241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AF5D0E5286D9AB3000BE826 /* ArithmetricsTests.swift in Sources */,
+				2AF5D0E5286D9AB3000BE826 /* ArithmeticsTests.swift in Sources */,
 				2A9C370E1D672A1F00774BA4 /* BracePairTests.swift in Sources */,
 				2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */,
 				2AC39F731E8AC80E009F97D5 /* CollectionTests.swift in Sources */,

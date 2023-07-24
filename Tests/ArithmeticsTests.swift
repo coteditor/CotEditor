@@ -1,5 +1,5 @@
 //
-//  ArithmetricsTests.swift
+//  ArithmeticsTests.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,7 @@
 import XCTest
 @testable import CotEditor
 
-final class ArithmetricsTests: XCTestCase {
+final class ArithmeticsTests: XCTestCase {
     
     func testDigits() {
         
