@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -79,7 +79,7 @@ final class IncompatibleCharacterScanner {
         self.isScanning = true
         self.task = Task {
             defer { self.isScanning = false }
-            try await Task.sleep(nanoseconds: 400 * 1_000_000)  // debounce
+            try await Task.sleep(for: .milliseconds(400))  // debounce
             
             let string = await MainActor.run { document.textStorage.string.immutable }
             let incompatibleCharacters = try string.scanIncompatibleCharacters(with: encoding)

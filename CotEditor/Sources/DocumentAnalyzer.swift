@@ -87,11 +87,11 @@ final class DocumentAnalyzer {
             return
         }
         
-        let delay: UInt64 = self.needsCountWholeText ? 10 : 200  // in milliseconds
+        let delay = self.needsCountWholeText ? 10 : 200  // in milliseconds
         
         self.task?.cancel()
         self.task = Task {
-            try await Task.sleep(nanoseconds: delay * 1_000_000)  // debounce
+            try await Task.sleep(for: .milliseconds(delay))  // debounce
             
             let string = await textView.string.immutable
             let selectedRanges = await textView.selectedRanges
