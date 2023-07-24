@@ -44,26 +44,18 @@ struct FindPanelButtonView: View {
     var body: some View {
         
         HStack(alignment: .bottom) {
-            if #available(macOS 13, *) {
-                Menu("Find All") {
-                    Button("Highlight All") {
-                        self.performAction(.highlight)
-                    }
-                    Button("Select All") {
-                        self.performAction(.selectAll)
-                    }
-                } primaryAction: {
-                    self.performAction(.findAll)
+            Menu("Find All") {
+                Button("Highlight All") {
+                    self.performAction(.highlight)
                 }
-                .help("Find and list all matches up.")
-                .fixedSize()
-            } else {
-                Button("Find All") {
-                    self.performAction(.findAll)
+                Button("Select All") {
+                    self.performAction(.selectAll)
                 }
-                .help("Find and list all matches up.")
-                .fixedSize()
+            } primaryAction: {
+                self.performAction(.findAll)
             }
+            .help("Find and list all matches up.")
+            .fixedSize()
             
             Button("Replace All") {
                 self.performAction(.replaceAll)

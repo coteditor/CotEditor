@@ -283,7 +283,7 @@ private struct ThemeMetadataView: View {
             .frame(width: self.columnWidth, alignment: .trailing)
         
         if self.isEditable {
-            if let lineLimit, #available(macOS 13, *) {
+            if let lineLimit {
                 TextField(title, text: text, prompt: Text("Not defined"), axis: .vertical)
                     .lineLimit(lineLimit)
             } else {

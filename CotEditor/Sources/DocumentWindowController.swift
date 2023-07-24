@@ -431,7 +431,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let verticalItem = NSToolbarItem(itemIdentifier: .verticalText)
                 verticalItem.label = String(localized: "Vertical")
                 verticalItem.toolTip = String(localized: "Vertical")
-                verticalItem.image = NSImage(named: "text.verticalorientation")
+                verticalItem.image = NSImage(systemSymbolName: "text.verticalorientation", accessibilityDescription: verticalItem.label)
                 verticalItem.action = #selector(DocumentViewController.makeLayoutOrientationVertical)
                 
                 let item = ToolbarItemGroup(itemIdentifier: itemIdentifier)
@@ -503,10 +503,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = String(localized: "Wrap Lines")
-                if #available(macOS 13, *) {
-                    item.possibleLabels = [String(localized: "Wrap Lines"),
-                                           String(localized: "Unwrap Lines")]
-                }
+                item.possibleLabels = [String(localized: "Wrap Lines"),
+                                       String(localized: "Unwrap Lines")]
                 item.toolTip = String(localized: "Wrap lines")
                 item.stateImages[.on] = NSImage(named: "text.wrap.slash")
                 item.stateImages[.off] = NSImage(named: "text.wrap")

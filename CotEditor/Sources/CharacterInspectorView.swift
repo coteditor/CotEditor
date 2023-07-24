@@ -179,7 +179,6 @@ private struct CharacterView: NSViewRepresentable {
     }
     
     
-    @available(macOS 13, *)
     func sizeThatFits(_ proposal: ProposedViewSize, nsView: NSTextField, context: Context) -> CGSize? {
         
         nsView.intrinsicContentSize

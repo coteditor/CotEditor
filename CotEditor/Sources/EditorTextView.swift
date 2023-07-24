@@ -384,24 +384,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// update cursor (invoked when cursor needs to update without moving mouse)
-    override func cursorUpdate(with event: NSEvent) {
-        
-        super.cursorUpdate(with: event)
-        
-        NSCursor.current.fixIBeam()
-    }
-    
-    
-    /// mouse is moved (the cursor updates also here)
-    override func mouseMoved(with event: NSEvent) {
-        
-        super.mouseMoved(with: event)
-        
-        NSCursor.current.fixIBeam()
-    }
-    
-    
     /// the left mouse button is pressed
     override func mouseDown(with event: NSEvent) {
         

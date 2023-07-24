@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,9 +36,7 @@ extension NSTextView {
     @discardableResult
     @MainActor func highlightAsRegularExpressionPattern(mode: RegularExpressionParseMode, enabled: Bool = true) -> Bool {
         
-        // avoid using TextKit 2 on macOS 12 because it does actually not work (2022-07).
         guard
-            #available(macOS 13, *),
             let layoutManager = self.textLayoutManager
         else { return self.highlightAsRegularExpressionPatternWithLegacyTextKit(mode: mode, enabled: enabled) }
         
