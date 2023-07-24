@@ -129,7 +129,7 @@ struct EncodingListView: View {
     /// Whether the selection contains separators.
     private var canDeleteSeparators: Bool {
         
-        self.encodingItems.filter(\.isSeparator).map(\.id).contains(where: self.selectedItems.contains)  // macOS 13 contains(collection)
+        self.encodingItems.filter(\.isSeparator).map(\.id).contains(self.selectedItems)
     }
     
     
