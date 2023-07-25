@@ -37,6 +37,8 @@
 "cZ9-i9-VsM.title" = "Rinomina";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "fN1-Tr-8T8"; */
 "fN1-Tr-8T8.title" = "Esporta…";
+/* Class = "NSMenuItem"; title = "Share…"; ObjectID = "XIe-MY-JEs"; */
+"XIe-MY-JEs.title" = "Condividi…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "tLz-9S-3we"; */
 "tLz-9S-3we.title" = "Mostra nel Finder";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "iZn-Pw-tgJ"; */
@@ -54,6 +56,8 @@
 "M9A-ds-FNR.title" = "Elimina";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "5mf-DX-YT5"; */
 "5mf-DX-YT5.title" = "Esporta…";
+/* Class = "NSMenuItem"; title = "Share…"; ObjectID = "3hj-yI-UYg"; */
+"3hj-yI-UYg.title" = "Condividi…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "sYx-dd-JiV"; */
 "sYx-dd-JiV.title" = "Mostra nel Finder";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "8TG-QH-hxz"; */

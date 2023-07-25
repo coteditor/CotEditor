@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -305,8 +304,11 @@
                                                                         <action selector="revealSyntaxStyleInFinder:" target="Lgm-sL-YIF" id="0r0-qp-Y6s"/>
                                                                     </connections>
                                                                 </menuItem>
-                                                                <menuItem title="Share" id="xRA-ND-YIE" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
+                                                                <menuItem title="Share…" id="xRA-ND-YIE">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="shareStyle:" target="Lgm-sL-YIF" id="yw0-Bi-He7"/>
+                                                                    </connections>
                                                                 </menuItem>
                                                                 <menuItem title="Import…" id="1lj-x8-ouD">
                                                                     <connections>
@@ -326,9 +328,6 @@
                                                                     </connections>
                                                                 </menuItem>
                                                             </items>
-                                                            <connections>
-                                                                <outlet property="delegate" destination="Lgm-sL-YIF" id="pWm-jF-wC4"/>
-                                                            </connections>
                                                         </menu>
                                                     </popUpButtonCell>
                                                 </popUpButton>
@@ -455,6 +454,7 @@
                     <connections>
                         <outlet property="encodingPopUpButton" destination="Lt0-OL-jLy" id="P7f-U4-aIl"/>
                         <outlet property="syntaxStylesDefaultPopup" destination="1qJ-mx-epO" id="mfw-hS-uEE"/>
+                        <outlet property="syntaxTableActionButton" destination="gNn-jg-1Xr" id="4dh-yT-4oa"/>
                         <outlet property="syntaxTableMenu" destination="enl-Xp-NM4" id="go1-Qs-mtH"/>
                         <outlet property="syntaxTableView" destination="UvE-MV-Lh2" id="NeY-XD-uTY"/>
                     </connections>
@@ -494,13 +494,13 @@
                                 <action selector="revealSyntaxStyleInFinder:" target="Lgm-sL-YIF" id="yFD-Gf-IK0"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Share" id="Rh3-kc-Gte" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
+                        <menuItem title="Share…" id="Rh3-kc-Gte">
                             <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="shareStyle:" target="Lgm-sL-YIF" id="sfE-wd-X27"/>
+                            </connections>
                         </menuItem>
                     </items>
-                    <connections>
-                        <outlet property="delegate" destination="Lgm-sL-YIF" id="4LL-Ec-6zf"/>
-                    </connections>
                 </menu>
             </objects>
             <point key="canvasLocation" x="-76" y="62.5"/>

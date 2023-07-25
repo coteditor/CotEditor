@@ -58,8 +58,6 @@
 // Main menu item titles
 "Check for Updates…" = "Güncellemeleri Denetle…";
 
-"Share" = "Paylaş";
-
 
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "“%@” silmek istediğinize emin misiniz?";

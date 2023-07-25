@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 CotEditor Project
+//  © 2018-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -85,6 +85,8 @@
 "4B4-mq-8Fs.title" = "Exportar…";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "gcs-B8-kPL"; */
 "gcs-B8-kPL.title" = "Importar…";
+/* Class = "NSMenuItem"; title = "Share…"; ObjectID = "w4F-0P-Rgk"; */
+"w4F-0P-Rgk.title" = "Compartillhar…";
 /* Class = "NSMenuItem"; title = "Reload All Themes"; ObjectID = "7Yp-bg-3l6"; */
 "7Yp-bg-3l6.title" = "Recarregar Todos os Temas";
 
@@ -102,6 +104,8 @@
 "WNG-Ai-RdG.title" = "Apagar";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "ueG-D7-DSV"; */
 "ueG-D7-DSV.title" = "Exportar…";
+/* Class = "NSMenuItem"; title = "Share…"; ObjectID = "pTV-O2-2db"; */
+"pTV-O2-2db.title" = "Compartillhar…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "UMs-gY-YHE"; */
 "UMs-gY-YHE.title" = "Mostrar no Finder";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "52n-xG-4ZL"; */

@@ -58,8 +58,6 @@
 // Main menu item titles
 "Check for Updates…" = "Controlla aggiornamenti…";
 
-"Share" = "Condividi";
-
 
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "Si è sicuri di voler cancellare “%@”?";

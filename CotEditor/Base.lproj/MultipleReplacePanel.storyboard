@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -100,11 +99,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Rqz-SK-mda">
-                                                            <rect key="frame" x="29" y="1" width="103" height="16"/>
+                                                            <rect key="frame" x="29" y="1" width="104" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iAj-ma-bo2">
-                                                                    <rect key="frame" x="85" y="-2.5" width="16.5" height="22"/>
+                                                                    <rect key="frame" x="86" y="-2.5" width="16.5" height="22"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="16" id="MKU-qq-mme"/>
                                                                         <constraint firstAttribute="width" secondItem="iAj-ma-bo2" secondAttribute="height" multiplier="1:1" id="bPQ-kY-hnR"/>
@@ -114,7 +113,7 @@
                                                                     </imageCell>
                                                                 </imageView>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34g-xE-Dei" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="103" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="104" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="dog" id="dIq-un-bYZ">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -158,7 +157,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="M9b-zX-U8A">
-                                                            <rect key="frame" x="135" y="1" width="103" height="16"/>
+                                                            <rect key="frame" x="136" y="1" width="103" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXD-LW-TDg" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
@@ -278,11 +277,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="rOM-3j-LP8">
-                                                            <rect key="frame" x="304" y="1" width="71" height="16"/>
+                                                            <rect key="frame" x="304" y="1" width="72" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DzM-r8-scw">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="71" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Lorem" id="gsY-y4-MMs">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -640,8 +639,11 @@
                                                     <action selector="revealSettingInFinder:" target="y8N-kI-aI7" id="dJi-7f-h6N"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Share" id="XIe-MY-JEs" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
+                                            <menuItem title="Share…" id="XIe-MY-JEs">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                                <connections>
+                                                    <action selector="shareSetting:" target="y8N-kI-aI7" id="mHs-0D-ETd"/>
+                                                </connections>
                                             </menuItem>
                                             <menuItem isSeparatorItem="YES" id="jIk-dY-Dto"/>
                                             <menuItem title="Import…" id="iZn-Pw-tgJ">
@@ -657,9 +659,6 @@
                                                 </connections>
                                             </menuItem>
                                         </items>
-                                        <connections>
-                                            <outlet property="delegate" destination="y8N-kI-aI7" id="JDX-8i-2Hp"/>
-                                        </connections>
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
@@ -684,6 +683,7 @@
                         <viewLayoutGuide key="layoutMargins" id="nSZ-og-SL6"/>
                     </visualEffectView>
                     <connections>
+                        <outlet property="actionButton" destination="O7q-NN-KLS" id="E2D-P0-73n"/>
                         <outlet property="tableView" destination="XJK-Ch-OtB" id="Ewq-nZ-Vod"/>
                     </connections>
                 </viewController>
@@ -726,8 +726,11 @@
                                 <action selector="revealSettingInFinder:" target="y8N-kI-aI7" id="q39-5a-B8m"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Share" id="3hj-yI-UYg" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
+                        <menuItem title="Share…" id="3hj-yI-UYg">
                             <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="shareSetting:" target="y8N-kI-aI7" id="FY7-au-g1j"/>
+                            </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="xX2-1H-iy6"/>
                         <menuItem title="Import…" id="8TG-QH-hxz">
@@ -737,9 +740,6 @@
                             </connections>
                         </menuItem>
                     </items>
-                    <connections>
-                        <outlet property="delegate" destination="y8N-kI-aI7" id="OGj-TH-DyN"/>
-                    </connections>
                 </menu>
             </objects>
             <point key="canvasLocation" x="-79.5" y="734"/>

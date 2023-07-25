@@ -30,7 +30,7 @@ import Combine
 import SwiftUI
 import UniformTypeIdentifiers
 
-final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSMenuDelegate, EncodingHolder {
+final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, EncodingHolder {
     
     // MARK: Private Properties
     
@@ -45,6 +45,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     @IBOutlet private var syntaxTableMenu: NSMenu?
     @IBOutlet private weak var syntaxTableView: NSTableView?
+    @IBOutlet private weak var syntaxTableActionButton: NSButton?
     @IBOutlet private weak var syntaxStylesDefaultPopup: NSPopUpButton?
     
     
@@ -135,6 +136,10 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
                 }
                 menuItem.isHidden = !itemSelected
                 return state?.isCustomized ?? false
+                
+            case #selector(shareStyle(_:)):
+                menuItem.isHidden = state?.isCustomized != true
+                return state?.isCustomized == true
                 
             case #selector(revealSyntaxStyleInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
@@ -300,17 +305,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    func menuWillOpen(_ menu: NSMenu) {
-        
-        // create share menu dynamically
-        if let shareMenuItem = menu.items.compactMap({ $0 as? ShareMenuItem }).first {
-            let settingName = self.representedSettingName(for: menu) ?? self.selectedStyleName
-            
-            shareMenuItem.sharingItems = SyntaxManager.shared.urlForUserSetting(name: settingName).flatMap { [$0] }
-        }
-    }
-    
-    
     
     // MARK: Action Messages
     
@@ -428,6 +422,23 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             for url in openPanel.urls {
                 self.importSyntaxStyle(fileURL: url)
             }
+        }
+    }
+    
+    
+    @IBAction func shareStyle(_ sender: NSMenuItem) {
+        
+        let styleName = self.targetStyleName(for: sender)
+        
+        guard let url = SyntaxManager.shared.urlForUserSetting(name: styleName) else { return }
+        
+        let picker = NSSharingServicePicker(items: [url])
+        
+        if let view = self.syntaxTableView?.clickedRowView {  // context menu
+            picker.show(relativeTo: .zero, of: view, preferredEdge: .minX)
+            
+        } else if let view = self.syntaxTableActionButton {  // action menu
+            picker.show(relativeTo: .zero, of: view, preferredEdge: .minY)
         }
     }
     

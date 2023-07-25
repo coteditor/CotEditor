@@ -30,7 +30,7 @@ import Combine
 import SwiftUI
 import UniformTypeIdentifiers
 
-final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSTextFieldDelegate, NSMenuDelegate {
+final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSTextFieldDelegate {
     
     // MARK: Private Properties
     
@@ -53,6 +53,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @IBOutlet private weak var darkAppearanceButton: NSButton?
     
     @IBOutlet private weak var themeTableView: NSTableView?
+    @IBOutlet private var themeTableActionButton: NSButton?
     @IBOutlet private var themeTableMenu: NSMenu?
     @IBOutlet private var themeViewContainer: NSBox?
     
@@ -183,6 +184,10 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                     menuItem.title = String(localized: "Export “\(name)”…")
                 }
                 menuItem.isHidden = !itemSelected
+                return state?.isCustomized == true
+                
+            case #selector(shareTheme(_:)):
+                menuItem.isHidden = true
                 return state?.isCustomized == true
                 
             case #selector(revealThemeInFinder(_:)):
@@ -395,19 +400,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    // NSMenuDelegate
-    
-    func menuWillOpen(_ menu: NSMenu) {
-        
-        // create share menu dynamically
-        if let shareMenuItem = menu.items.compactMap({ $0 as? ShareMenuItem }).first {
-            let settingName = self.representedSettingName(for: menu) ?? self.selectedThemeName
-            
-            shareMenuItem.sharingItems = ThemeManager.shared.urlForUserSetting(name: settingName).flatMap { [$0] }
-        }
-    }
-    
-    
     
     // MARK: Action Messages
     
@@ -530,6 +522,23 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             for url in openPanel.urls {
                 self.importTheme(fileURL: url)
             }
+        }
+    }
+    
+    
+    @IBAction func shareTheme(_ sender: NSMenuItem) {
+        
+        let themeName = self.targetThemeName(for: sender)
+        
+        guard let url = ThemeManager.shared.urlForUserSetting(name: themeName) else { return }
+        
+        let picker = NSSharingServicePicker(items: [url])
+        
+        if let view = self.themeTableView?.clickedRowView {  // context menu
+            picker.show(relativeTo: .zero, of: view, preferredEdge: .minX)
+            
+        } else if let view = self.themeTableActionButton {  // action menu
+            picker.show(relativeTo: .zero, of: view, preferredEdge: .minY)
         }
     }
     

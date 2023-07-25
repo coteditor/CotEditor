@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 CotEditor Project
+//  © 2014-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -86,6 +86,8 @@
 "gcs-B8-kPL.title" = "匯入…";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "4B4-mq-8Fs"; */
 "4B4-mq-8Fs.title" = "匯出…";
+/* Class = "NSMenuItem"; title = "Share…"; ObjectID = "w4F-0P-Rgk"; */
+"w4F-0P-Rgk.title" = "分享…";
 /* Class = "NSButtonCell"; title = "Reload All Themes"; ObjectID = "7Yp-bg-3l6"; */
 "7Yp-bg-3l6.title" = "過載所有主題";
 
@@ -103,6 +105,8 @@
 "WNG-Ai-RdG.title" = "刪除";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "ueG-D7-DSV"; */
 "ueG-D7-DSV.title" = "匯入…";
+/* Class = "NSMenuItem"; title = "Share…"; ObjectID = "pTV-O2-2db"; */
+"pTV-O2-2db.title" = "分享…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "UMs-gY-YHE"; */
 "UMs-gY-YHE.title" = "在訪達中顯示";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "52n-xG-4ZL"; */

@@ -58,8 +58,6 @@
 // Main menu item titles
 "Check for Updates…" = "アップデートを確認…";
 
-"Share" = "共有";
-
 
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "“%@”を削除してもよろしいですか?";

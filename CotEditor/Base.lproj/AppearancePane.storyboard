@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -541,8 +540,11 @@
                                                                 <action selector="exportTheme:" target="WBM-EY-ENr" id="TXi-66-Pnk"/>
                                                             </connections>
                                                         </menuItem>
-                                                        <menuItem title="Share" id="w4F-0P-Rgk" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
+                                                        <menuItem title="Share…" id="w4F-0P-Rgk">
                                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                                            <connections>
+                                                                <action selector="shareTheme:" target="WBM-EY-ENr" id="q7F-W6-i6I"/>
+                                                            </connections>
                                                         </menuItem>
                                                         <menuItem title="Reveal in Finder" alternate="YES" id="Qmf-WU-xe8">
                                                             <modifierMask key="keyEquivalentModifierMask" option="YES"/>
@@ -563,9 +565,6 @@
                                                             </connections>
                                                         </menuItem>
                                                     </items>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="WBM-EY-ENr" id="ZpF-j0-Jgn"/>
-                                                    </connections>
                                                 </menu>
                                             </popUpButtonCell>
                                         </popUpButton>
@@ -644,6 +643,7 @@
                         <outlet property="fontField" destination="wT1-jD-6aC" id="bP0-VX-1Yp"/>
                         <outlet property="lightAppearanceButton" destination="2y3-Ti-pue" id="IX9-V1-jjs"/>
                         <outlet property="lineHeightField" destination="5XW-Ju-Ix5" id="hEH-sP-bVE"/>
+                        <outlet property="themeTableActionButton" destination="IcH-In-axb" id="C7J-hZ-38T"/>
                         <outlet property="themeTableMenu" destination="M4k-Ev-Myg" id="fHl-oM-EJc"/>
                         <outlet property="themeTableView" destination="8ed-Dt-hO9" id="00r-aw-jk5"/>
                         <outlet property="themeViewContainer" destination="nMR-L3-OOw" id="6zc-c1-iFP"/>
@@ -689,9 +689,11 @@
                                 <action selector="exportTheme:" target="WBM-EY-ENr" id="Ioz-ZQ-bfh"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Share" id="pTV-O2-2db" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
+                        <menuItem title="Share…" id="pTV-O2-2db">
                             <modifierMask key="keyEquivalentModifierMask"/>
-                            <menu key="submenu" title="Share" id="pVE-Of-yX6"/>
+                            <connections>
+                                <action selector="shareTheme:" target="WBM-EY-ENr" id="Ijb-ce-jZ5"/>
+                            </connections>
                         </menuItem>
                         <menuItem title="Reveal in Finder" alternate="YES" id="UMs-gY-YHE">
                             <modifierMask key="keyEquivalentModifierMask" option="YES"/>
@@ -706,9 +708,6 @@
                             </connections>
                         </menuItem>
                     </items>
-                    <connections>
-                        <outlet property="delegate" destination="WBM-EY-ENr" id="ZxS-y0-EGn"/>
-                    </connections>
                 </menu>
                 <userDefaultsController representsSharedInstance="YES" id="IE5-39-jAY" userLabel="Shared User Defaults Controller"/>
             </objects>

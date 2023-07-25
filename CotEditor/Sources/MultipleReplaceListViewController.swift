@@ -39,6 +39,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     private lazy var filePromiseQueue = OperationQueue()
     
     @IBOutlet private weak var tableView: NSTableView?
+    @IBOutlet private weak var actionButton: NSButton?
     
     
     
@@ -239,6 +240,24 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         }
     }
     
+    
+    /// Show the sharing interface for the selected setting.
+    @IBAction func shareSetting(_ sender: Any?) {
+        
+        guard
+            let settingName = self.targetSettingName(for: sender),
+            let url = ReplacementManager.shared.urlForUserSetting(name: settingName)
+        else { return }
+        
+        let picker = NSSharingServicePicker(items: [url])
+        
+        if let view = self.tableView?.clickedRowView {  // context menu
+            picker.show(relativeTo: .zero, of: view, preferredEdge: .minX)
+            
+        } else if let view = self.actionButton {  // action menu
+            picker.show(relativeTo: .zero, of: view, preferredEdge: .minY)
+        }
+    }
     
     /// Open the directory in Application Support in the Finder where the selected setting exists.
     @IBAction func revealSettingInFinder(_ sender: Any?) {
@@ -557,22 +576,5 @@ extension MultipleReplaceListViewController: NSTextFieldDelegate {
         }
         
         return true
-    }
-}
-
-
-
-// MARK: - Menu Delegate
-
-extension MultipleReplaceListViewController: NSMenuDelegate {
-    
-    func menuWillOpen(_ menu: NSMenu) {
-        
-        // create share menu dynamically
-        if let shareMenuItem = menu.items.compactMap({ $0 as? ShareMenuItem }).first,
-           let settingName = self.representedSettingName(for: menu) ?? self.selectedSettingName
-        {
-            shareMenuItem.sharingItems = ReplacementManager.shared.urlForUserSetting(name: settingName).flatMap { [$0] }
-        }
     }
 }

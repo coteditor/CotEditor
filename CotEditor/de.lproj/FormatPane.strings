@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -66,6 +66,8 @@
 
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */
 "1lj-x8-ouD.title" = "Importieren …";
+/* Class = "NSMenuItem"; title = "Share…"; ObjectID = "xRA-ND-YIE"; */
+"xRA-ND-YIE.title" = "Teilen …";
 /* Class = "NSButtonCell"; title = "Reload All Styles"; ObjectID = "FhP-Hj-cWE"; */
 "FhP-Hj-cWE.title" = "Alle Stile neu laden";
 /* Class = "NSMenuItem"; title = "Show File Mapping Conflicts"; ObjectID = "hyN-4W-57i"; */
@@ -83,5 +85,7 @@
 "NDE-r5-xAF.title" = "Löschen";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "Qwp-u8-Urf"; */
 "Qwp-u8-Urf.title" = "Exportieren …";
+/* Class = "NSMenuItem"; title = "Share…"; ObjectID = "Rh3-kc-Gte"; */
+"Rh3-kc-Gte.title" = "Teilen …";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "AkE-0P-0FC"; */
 "AkE-0P-0FC.title" = "Im Finder anzeigen";
