@@ -90,6 +90,9 @@
 /* Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "112"; */
 "112.title" = "Zurück zur letzten Version";
 
+/* Class = "NSMenuItem"; title = "Share…"; ObjectID = "TNF-pL-CAZ"; */
+"TNF-pL-CAZ.title" = "Teilen …";
+
 /* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "77"; */
 "77.title" = "Papierformat …";
 /* Class = "NSMenuItem"; title = "Print…"; ObjectID = "78"; */

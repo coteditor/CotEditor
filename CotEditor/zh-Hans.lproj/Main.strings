@@ -90,6 +90,9 @@
 /* Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "112"; */
 "112.title" = "复原到已存储版本";
 
+/* Class = "NSMenuItem"; title = "Share…"; ObjectID = "TNF-pL-CAZ"; */
+"TNF-pL-CAZ.title" = "共享…";
+
 /* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "77"; */
 "77.title" = "页面设置…";
 /* Class = "NSMenuItem"; title = "Print…"; ObjectID = "78"; */

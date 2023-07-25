@@ -950,6 +950,16 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
+    /// Show the sharing picker interface.
+    @IBAction func shareDocument(_ sender: Any?) {
+        
+        guard let view = self.viewController?.view else { return assertionFailure() }
+        
+         NSSharingServicePicker(items: [self])
+            .show(relativeTo: .zero, of: view, preferredEdge: .minY)
+    }
+    
+    
     /// Change the document file encoding.
     @IBAction func changeEncoding(_ sender: NSMenuItem) {
         

@@ -81,12 +81,6 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Document Controller Methods
     
-    override var allowsAutomaticShareMenu: Bool {
-        
-        true
-    }
-    
-    
     override func openDocument(withContentsOf url: URL, display displayDocument: Bool) async throws -> (NSDocument, Bool) {
         
         // obtain transient document if exists

@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Change the system requirement to __macOS 13 Ventura and later__.
+- Migrate the document sharing interface from the Share command in the menu to the modern version.
 
 
 
