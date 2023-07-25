@@ -127,7 +127,7 @@ final class WindowContentViewController: NSSplitViewController {
     // MARK: Action Messages
     
     /// Toggle visibility of the inspector.
-    @IBAction override func toggleInspector(_ sender: Any?) {
+    @IBAction func toggleInspector(_ sender: Any?) {
         
         NSAnimationContext.current.withAnimation {
             self.isInspectorShown.toggle()
