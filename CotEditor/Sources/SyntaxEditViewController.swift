@@ -43,6 +43,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     @IBOutlet private weak var menuTableView: NSTableView?
     @IBOutlet private weak var syntaxNameField: NSTextField?
+    @IBOutlet private weak var kindPopUpButton: NSPopUpButton?
     
     
     
@@ -105,6 +106,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         super.viewDidLoad()
         
         let syntaxNameField = self.syntaxNameField!
+        let kindPopUpButton = self.kindPopUpButton!
         
         // setup syntax name field
         syntaxNameField.stringValue = self.originalName ?? ""
@@ -115,6 +117,12 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             syntaxNameField.isEditable = false
             syntaxNameField.isBordered = true
             syntaxNameField.toolTip = String(localized: "Bundled syntaxes can’t be renamed.")
+        }
+        
+        if let kind = self.syntax[SyntaxKey.kind.rawValue] as? String,
+           let index = kindPopUpButton.itemArray.map(\.identifier?.rawValue).firstIndex(of: kind)
+        {
+            kindPopUpButton.selectItem(at: index)
         }
     }
     
@@ -159,6 +167,15 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     
     // MARK: Action Messages
+    
+    /// update style kind
+    @IBAction func setKind(_ sender: NSPopUpButton) {
+        
+        guard let identifier = sender.selectedItem?.identifier?.rawValue else { return assertionFailure() }
+        
+        self.syntax[SyntaxKey.kind.rawValue] = identifier
+    }
+    
     
     /// restore current settings in editor to default
     @IBAction func setToFactoryDefaults(_ sender: Any?) {

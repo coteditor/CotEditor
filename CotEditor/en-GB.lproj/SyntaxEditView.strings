@@ -24,8 +24,15 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "Syntax Name:"; ObjectID = "987"; */
-"987.title" = "Syntax Name:";
+/* Class = "NSTextFieldCell"; title = "Name:"; ObjectID = "987"; */
+"987.title" = "Name:";
+
+/* Class = "NSTextFieldCell"; title = "Kind:"; ObjectID = "7gP-yr-id8"; */
+"7gP-yr-id8.title" = "Kind:";
+/* Class = "NSMenuItem"; title = "General"; ObjectID = "7Go-V4-3gr"; */
+"7Go-V4-3gr.title" = "General";
+/* Class = "NSMenuItem"; title = "Code"; ObjectID = "rIw-Nl-f4X"; */
+"rIw-Nl-f4X.title" = "Code";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "1020"; */
 "1020.title" = "Restore Defaults";

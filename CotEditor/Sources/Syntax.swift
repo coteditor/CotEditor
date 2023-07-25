@@ -28,9 +28,17 @@ import Foundation
 
 struct Syntax: Equatable {
     
+    enum Kind: String {
+        
+        case general
+        case code
+    }
+    
+    
     // MARK: Public Properties
     
     var name: String
+    var kind: Kind
     var extensions: [String] = []
     
     var inlineCommentDelimiter: String?
@@ -51,13 +59,14 @@ struct Syntax: Equatable {
     init() {
         
         self.name = BundledSyntaxName.none
+        self.kind = .code
     }
     
     
     init(dictionary: [String: Any], name: String) {
         
         self.name = name
-        
+        self.kind = (dictionary[SyntaxKey.kind] as? String).flatMap(Kind.init(rawValue:)) ?? .general
         self.extensions = (dictionary[SyntaxKey.extensions] as? [[String: String]])?
             .compactMap { $0[SyntaxDefinitionKey.keyString] } ?? []
         
@@ -78,8 +87,9 @@ struct Syntax: Equatable {
         self.inlineCommentDelimiter = inlineCommentDelimiter
         self.blockCommentDelimiters = blockCommentDelimiters
         
+        // parse highlight definitions
         self.highlightDefinitions = SyntaxType.allCases.reduce(into: [:]) { (dict, type) in
-            guard let wordDicts = dictionary[type.rawValue] as? [[String: Any]] else { return }
+            guard let wordDicts = dictionary[type] as? [[String: Any]] else { return }
             
             dict[type] = wordDicts.compactMap { try? HighlightDefinition(dictionary: $0) }
         }

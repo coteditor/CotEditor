@@ -24,8 +24,15 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "Syntax Name:"; ObjectID = "987"; */
-"987.title" = "语法名：";  // FIXME: style -> syntax
+/* Class = "NSTextFieldCell"; title = "Name:"; ObjectID = "987"; */
+"987.title" = "名称：";
+
+/* Class = "NSTextFieldCell"; title = "Kind:"; ObjectID = "7gP-yr-id8"; */
+"7gP-yr-id8.title" = "Kind:";  // FIXME: added
+/* Class = "NSMenuItem"; title = "General"; ObjectID = "7Go-V4-3gr"; */
+"7Go-V4-3gr.title" = "General";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Code"; ObjectID = "rIw-Nl-f4X"; */
+"rIw-Nl-f4X.title" = "Code";  // FIXME: added
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "1020"; */
 "1020.title" = "恢复默认";

@@ -40,6 +40,7 @@ enum SyntaxType: String, CaseIterable {
 
 enum SyntaxKey: String {
     
+    case kind
     case metadata
     case extensions
     case filenames
