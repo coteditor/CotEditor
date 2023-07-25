@@ -62,16 +62,19 @@ struct CustomSurroundStringView: View {
                 .fontWeight(.semibold)
             
             HStack(alignment: .firstTextBaseline) {
-                Text("Begin:")
-                TextField("", text: $pair.begin)
-                    .onSubmit(self.submit)
-                    .frame(width: 48)
-                    .padding(.trailing)
+                LabeledContent("Begin:") {
+                    TextField("", text: $pair.begin)
+                        .onSubmit(self.submit)
+                        .labelsHidden()
+                        .frame(width: 48)
+                }.padding(.trailing)
                 
-                Text("End:")
-                TextField("", text: $pair.end, prompt: Text(verbatim: self.pair.begin))
-                    .onSubmit(self.submit)
-                    .frame(width: 48)
+                LabeledContent("End:") {
+                    TextField("", text: $pair.end, prompt: Text(verbatim: self.pair.begin))
+                        .onSubmit(self.submit)
+                        .labelsHidden()
+                        .frame(width: 48)
+                }
             }
             
             HStack {
