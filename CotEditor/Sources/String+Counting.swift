@@ -212,7 +212,7 @@ extension String {
         }
         
         if let normalizationForm = options.normalizationForm {
-            string = string.normalize(in: normalizationForm)
+            string = string.normalizing(in: normalizationForm)
         }
         
         switch options.unit {

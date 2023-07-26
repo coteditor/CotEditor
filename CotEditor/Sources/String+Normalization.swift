@@ -100,7 +100,11 @@ enum UnicodeNormalizationForm: String, CaseIterable {
 
 extension StringProtocol {
     
-    func normalize(in form: UnicodeNormalizationForm) -> String {
+    /// A string created by normalizing the string’s contents using the specified form.
+    ///
+    /// - Parameter form: The Unicode normalization form.
+    /// - Returns: A normalized string.
+    func normalizing(in form: UnicodeNormalizationForm) -> String {
         
         switch form {
             case .nfd:

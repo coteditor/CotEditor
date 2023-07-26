@@ -172,7 +172,7 @@ extension EditorTextView {
     func normalizeUnicode(form: UnicodeNormalizationForm) {
         
         self.transformSelection(actionName: form.localizedName) {
-            $0.normalize(in: form)
+            $0.normalizing(in: form)
         }
     }
     
