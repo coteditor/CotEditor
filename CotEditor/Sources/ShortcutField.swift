@@ -27,7 +27,7 @@
 import AppKit
 import Combine
 
-final class ShortcutField: NSTextField {
+final class ShortcutField: NSTextField, NSTextViewDelegate {
     
     // MARK: Private Properties
     
@@ -44,8 +44,11 @@ final class ShortcutField: NSTextField {
         
         guard super.becomeFirstResponder() else { return false }
         
-        // hide insertion point
-        (self.currentEditor() as? NSTextView)?.insertionPointColor = .clear
+        if let fieldEditor = self.currentEditor() as? NSTextView {
+            // hide insertion point
+            fieldEditor.insertionPointColor = .clear
+            fieldEditor.delegate = self
+        }
         
         self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [unowned self] (event) -> NSEvent? in
             guard let shortcut = Shortcut(keyDownEvent: event) else { return event }
@@ -77,8 +80,11 @@ final class ShortcutField: NSTextField {
     /// end editing
     override func textDidEndEditing(_ notification: Notification) {
         
-        // restore insertion point
-        (self.currentEditor() as? NSTextView)?.insertionPointColor = .controlTextColor
+        // restore field editor
+        if let fieldEditor = self.currentEditor() as? NSTextView {
+            fieldEditor.insertionPointColor = .controlTextColor
+            fieldEditor.delegate = nil
+        }
         
         // end monitoring key down event
         if let monitor = self.keyDownMonitor {
@@ -88,5 +94,15 @@ final class ShortcutField: NSTextField {
         self.windowObserver = nil
         
         super.textDidEndEditing(notification)
+    }
+    
+    
+    
+    // MARK: Text View Delegate
+    
+    func textView(_ view: NSTextView, menu: NSMenu, for event: NSEvent, at charIndex: Int) -> NSMenu? {
+        
+        // disable contextual menu for field editor
+        nil
     }
 }

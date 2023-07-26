@@ -11,6 +11,7 @@ Change Log
 - Add a font size field to the print dialog.
 - Deprecate print font setting in the Print settings.
 - Migrate the sharing interface to the modern version.
+- Disable the contextual menu for shortcut fields.
 - [trivial] Rename “syntax style” with just “syntax.”
 
 
