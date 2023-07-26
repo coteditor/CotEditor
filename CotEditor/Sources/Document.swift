@@ -221,7 +221,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 }
                 
                 let baseFileName = fileURL.deletingPathExtension().lastPathComponent
-                    .replacing(/^./, with: "")  // avoid file to be hidden
+                    .replacing(/^\./, with: "", maxReplacements: 1)  // avoid file to be hidden
                 
                 // append an unique string to avoid overwriting another backup file with the same file name.
                 let maxIdentifierLength = Int(NAME_MAX) - (baseFileName + " ()." + fileURL.pathExtension).length
