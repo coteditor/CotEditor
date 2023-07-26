@@ -161,7 +161,7 @@ final class ThemeManager: SettingFileManaging {
     /// return whether given setting name is dark theme
     func isDark(name: String) -> Bool {
         
-        name.range(of: "(Dark)", options: [.anchored, .backwards]) != nil
+        name.contains(/(Dark)$/)
     }
     
     
