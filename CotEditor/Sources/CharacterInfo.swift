@@ -45,23 +45,23 @@ private extension Unicode.Scalar {
         
         switch self {
             case EmojiVariationSelector.emoji:
-                return String(localized: "Emoji Style", table: "Unicode")
+                String(localized: "Emoji Style", table: "Unicode")
             case EmojiVariationSelector.text:
-                return String(localized: "Text Style", table: "Unicode")
+                String(localized: "Text Style", table: "Unicode")
             case SkinToneModifier.type12:
-                return String(localized: "Skin Tone I-II", table: "Unicode")
+                String(localized: "Skin Tone I-II", table: "Unicode")
             case SkinToneModifier.type3:
-                return String(localized: "Skin Tone III", table: "Unicode")
+                String(localized: "Skin Tone III", table: "Unicode")
             case SkinToneModifier.type4:
-                return String(localized: "Skin Tone IV", table: "Unicode")
+                String(localized: "Skin Tone IV", table: "Unicode")
             case SkinToneModifier.type5:
-                return String(localized: "Skin Tone V", table: "Unicode")
+                String(localized: "Skin Tone V", table: "Unicode")
             case SkinToneModifier.type6:
-                return String(localized: "Skin Tone VI", table: "Unicode")
+                String(localized: "Skin Tone VI", table: "Unicode")
             case _ where self.properties.isVariationSelector:
-                return String(localized: "Variant", table: "Unicode")
+                String(localized: "Variant", table: "Unicode")
             default:
-                return nil
+                nil
         }
     }
 }

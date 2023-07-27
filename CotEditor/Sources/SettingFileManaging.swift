@@ -39,9 +39,9 @@ enum SettingChange {
         
         switch self {
             case .removed(let name), .updated(from: let name, to: _):
-                return name
+                name
             case .added:
-                return nil
+                nil
         }
     }
     
@@ -50,9 +50,9 @@ enum SettingChange {
         
         switch self {
             case .added(let name), .updated(from: _, to: let name):
-                return name
+                name
             case .removed:
-                return nil
+                nil
         }
     }
 }
@@ -450,13 +450,13 @@ enum InvalidNameError: LocalizedError {
         
         switch self {
             case .empty:
-                return String(localized: "Name can’t be empty.")
+                String(localized: "Name can’t be empty.")
             case .containSlash:
-                return String(localized: "You can’t use a name that contains “/”.")
+                String(localized: "You can’t use a name that contains “/”.")
             case .startWithDot:
-                return String(localized: "You can’t use a name that begins with a dot “.”.")
+                String(localized: "You can’t use a name that begins with a dot “.”.")
             case .duplicated(let name):
-                return String(localized: "The name “\(name)” is already taken.")
+                String(localized: "The name “\(name)” is already taken.")
         }
     }
     
@@ -487,11 +487,11 @@ struct SettingFileError: LocalizedError {
         
         switch self.kind {
             case .deletionFailed:
-                return String(localized: "“\(self.name)” couldn’t be deleted.")
+                String(localized: "“\(self.name)” couldn’t be deleted.")
             case .importFailed:
-                return String(localized: "“\(self.name)” couldn’t be imported.")
+                String(localized: "“\(self.name)” couldn’t be imported.")
             case .noSourceFile:
-                return String(localized: "No original file for “\(self.name)” was found.")
+                String(localized: "No original file for “\(self.name)” was found.")
         }
     }
     
@@ -515,11 +515,11 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
         
         switch self.type {
             case .yaml:
-                return String(localized: "A new syntax named “\(self.name)” will be installed, but a custom syntax with the same name already exists.")
+                String(localized: "A new syntax named “\(self.name)” will be installed, but a custom syntax with the same name already exists.")
             case .cotTheme:
-                return String(localized: "A new theme named “\(self.name)” will be installed, but a custom theme with the same name already exists.")
+                String(localized: "A new theme named “\(self.name)” will be installed, but a custom theme with the same name already exists.")
             case .cotReplacement:
-                return String(localized: "A new replacement definition named “\(self.name)” will be installed, but a definition with the same name already exists.")
+                String(localized: "A new replacement definition named “\(self.name)” will be installed, but a definition with the same name already exists.")
             default:
                 fatalError()
         }
@@ -530,11 +530,11 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
         
         switch self.type {
             case .yaml:
-                return String(localized: "Do you want to replace it?\nReplaced syntax can’t be restored.")
+                String(localized: "Do you want to replace it?\nReplaced syntax can’t be restored.")
             case .cotTheme:
-                return String(localized: "Do you want to replace it?\nReplaced theme can’t be restored.")
+                String(localized: "Do you want to replace it?\nReplaced theme can’t be restored.")
             case .cotReplacement:
-                return String(localized: "Do you want to replace it?\nReplaced definition can’t be restored.")
+                String(localized: "Do you want to replace it?\nReplaced definition can’t be restored.")
             default:
                 fatalError()
         }

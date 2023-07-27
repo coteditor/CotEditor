@@ -194,13 +194,11 @@ extension SyntaxValidator.Error {
         
         switch self.kind {
             case .duplicated:
-                return String(localized: "The same word is registered multiple times.")
-                
+                String(localized: "The same word is registered multiple times.")
             case .regularExpression:
-                return String(localized: "Invalid regular expression.")
-                
+                String(localized: "Invalid regular expression.")
             case .blockComment:
-                return String(localized: "Block comment needs both begin delimiter and end delimiter.")
+                String(localized: "Block comment needs both begin delimiter and end delimiter.")
         }
     }
     
@@ -214,14 +212,9 @@ extension SyntaxValidator.Error {
     var localizedRole: String? {
         
         switch self.role {
-            case .begin:
-                return String(localized: "Begin string")
-                
-            case .end:
-                return String(localized: "End string")
-                
-            case .none:
-                return nil
+            case .begin: String(localized: "Begin string")
+            case .end:   String(localized: "End string")
+            case .none: nil
         }
     }
 }

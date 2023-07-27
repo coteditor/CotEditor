@@ -95,9 +95,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         self.appearanceModeObserver = UserDefaults.standard.publisher(for: .documentAppearance, initial: true)
             .map { (value) in
                 switch value {
-                    case .default: return nil
-                    case .light:   return NSAppearance(named: .aqua)
-                    case .dark:    return NSAppearance(named: .darkAqua)
+                    case .default: nil
+                    case .light:   NSAppearance(named: .aqua)
+                    case .dark:    NSAppearance(named: .darkAqua)
                 }
             }
             .assign(to: \.appearance, on: self.window!)

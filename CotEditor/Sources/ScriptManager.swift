@@ -459,13 +459,13 @@ private enum ScriptMenuItem: Sendable {
         
         switch self {
             case let .script(_, script):
-                return [script]
+                [script]
                 
             case let .folder(_, items):
-                return items.flatMap(\.scripts)
+                items.flatMap(\.scripts)
                 
             case .separator:
-                return []
+                []
         }
     }
 }

@@ -141,11 +141,11 @@ private extension NSBorderType {
     var width: CGFloat {
         
         switch self {
-            case .noBorder:     return 0
-            case .lineBorder:   return 1
-            case .bezelBorder:  return 1
-            case .grooveBorder: return 2
-            @unknown default: return 0
+            case .noBorder: 0
+            case .lineBorder: 1
+            case .bezelBorder: 1
+            case .grooveBorder: 2
+            @unknown default: 0
         }
     }
 }

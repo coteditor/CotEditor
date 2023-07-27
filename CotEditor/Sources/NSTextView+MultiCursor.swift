@@ -238,13 +238,11 @@ extension MultiCursorEditing {
         self.setSelectedRanges(set.selectedRanges, affinity: affinity, stillSelecting: false)
         self.insertionLocations = set.insertionLocations
         
-        let rangeToVisible: NSRange = {
-            switch affinity {
-                case .downstream: return ranges.first!
-                case .upstream:   return ranges.last!
-                @unknown default: fatalError()
-            }
-        }()
+        let rangeToVisible: NSRange = switch affinity {
+            case .downstream: ranges.first!
+            case .upstream:   ranges.last!
+            @unknown default: fatalError()
+        }
         self.scrollRangeToVisible(rangeToVisible)
     }
     
@@ -265,14 +263,12 @@ extension MultiCursorEditing {
                 .firstIndex { range.upperBound == $0 || range.lowerBound == $0 }
                 .flatMap { origins.remove(at: $0) }
             
-            let (cursor, newOrigin): (Int, Int) = {
-                switch (forward, origin) {
-                    case (false, range.lowerBound): return (range.upperBound, range.lowerBound)
-                    case (false, _):                return (range.lowerBound, range.upperBound)
-                    case (true, range.upperBound):  return (range.lowerBound, range.upperBound)
-                    case (true, _):                 return (range.upperBound, range.lowerBound)
-                }
-            }()
+            let (cursor, newOrigin): (Int, Int) = switch (forward, origin) {
+                case (false, range.lowerBound): (range.upperBound, range.lowerBound)
+                case (false, _):                (range.lowerBound, range.upperBound)
+                case (true, range.upperBound):  (range.lowerBound, range.upperBound)
+                case (true, _):                 (range.upperBound, range.lowerBound)
+            }
             
             let newCursor = block(cursor)
             
@@ -336,17 +332,15 @@ extension MultiCursorEditing {
         
         // get new visual line to append
         // -> Use line fragment to allow placing insertion points even when the line is shorter than the origin insertion columns.
-        let newLineRect: CGRect = {
-            switch affinity {
-                case .downstream:
-                    return layoutManager.lineFragmentRect(forGlyphAt: effectiveGlyphRange.lowerBound - 1, effectiveRange: nil, withoutAdditionalLayout: true)
-                case .upstream where layoutManager.isValidGlyphIndex(effectiveGlyphRange.upperBound):
-                    return layoutManager.lineFragmentRect(forGlyphAt: effectiveGlyphRange.upperBound, effectiveRange: nil, withoutAdditionalLayout: true)
-                case .upstream:
-                    return layoutManager.extraLineFragmentRect
-                @unknown default: fatalError()
-            }
-        }()
+        let newLineRect: CGRect = switch affinity {
+            case .downstream:
+                layoutManager.lineFragmentRect(forGlyphAt: effectiveGlyphRange.lowerBound - 1, effectiveRange: nil, withoutAdditionalLayout: true)
+            case .upstream where layoutManager.isValidGlyphIndex(effectiveGlyphRange.upperBound):
+                layoutManager.lineFragmentRect(forGlyphAt: effectiveGlyphRange.upperBound, effectiveRange: nil, withoutAdditionalLayout: true)
+            case .upstream:
+                layoutManager.extraLineFragmentRect
+            @unknown default: fatalError()
+        }
         
         // get base selection rects in the origin line
         let baseIndex = (affinity == .downstream) ? glyphRanges.last!.lowerBound : glyphRanges.first!.upperBound

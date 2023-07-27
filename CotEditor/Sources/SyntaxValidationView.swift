@@ -72,12 +72,9 @@ struct SyntaxValidationView: View {
         private var message: LocalizedStringKey {
             
             switch self.count {
-                case 0:
-                    return "No error found."
-                case 1:
-                    return "An error found."
-                default:
-                    return "\(self.count) errors found."
+                case 0: "No error found."
+                case 1: "An error found."
+                default: "\(self.count) errors found."
             }
         }
     }

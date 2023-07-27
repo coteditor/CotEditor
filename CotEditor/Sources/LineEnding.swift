@@ -58,18 +58,12 @@ enum LineEnding: Character, CaseIterable {
     var name: String {
         
         switch self {
-            case .lf:
-                return "LF"
-            case .cr:
-                return "CR"
-            case .crlf:
-                return "CRLF"
-            case .nel:
-                return "NEL"
-            case .lineSeparator:
-                return "LS"
-            case .paragraphSeparator:
-                return "PS"
+            case .lf: "LF"
+            case .cr: "CR"
+            case .crlf: "CRLF"
+            case .nel: "NEL"
+            case .lineSeparator: "LS"
+            case .paragraphSeparator: "PS"
         }
     }
 }
@@ -83,12 +77,9 @@ private extension LineEnding {
     var regexPattern: String {
         
         switch self {
-            case .lf:
-                return "(?<!\r)\n"
-            case .cr:
-                return "\r(?!\n)"
-            default:
-                return self.string
+            case .lf: "(?<!\r)\n"
+            case .cr: "\r(?!\n)"
+            default: self.string
         }
     }
 }

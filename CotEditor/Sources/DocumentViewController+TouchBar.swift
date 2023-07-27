@@ -146,16 +146,10 @@ extension DocumentViewController: TouchBarItemValidations {
         
         guard let isEnabled: Bool = {
             switch item.identifier {
-                case .invisibles:
-                    return self.showsInvisibles
-                    
-                case .indentGuides:
-                    return self.showsIndentGuides
-                    
-                case .wrapLines:
-                    return self.wrapsLines
-                    
-                default: return nil
+                case .invisibles: self.showsInvisibles
+                case .indentGuides: self.showsIndentGuides
+                case .wrapLines: self.wrapsLines
+                default: nil
             }
         }() else { return true }
         

@@ -476,13 +476,13 @@ private extension SyntaxManager.SyntaxDictionary {
         
         switch item {
             case let dictionary as [String: Any]:
-                return NSMutableDictionary(dictionary: dictionary.mapValues(Self.convertToCocoaBindable))
+                NSMutableDictionary(dictionary: dictionary.mapValues(Self.convertToCocoaBindable))
             case let array as [Any]:
-                return NSMutableArray(array: array.map(Self.convertToCocoaBindable))
+                NSMutableArray(array: array.map(Self.convertToCocoaBindable))
             case let date as Date:
-                return date.formatted(.iso8601.year().month().day())
+                date.formatted(.iso8601.year().month().day())
             default:
-                return item
+                item
         }
     }
 }

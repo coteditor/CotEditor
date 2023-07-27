@@ -1253,10 +1253,10 @@ private enum ReinterpretationError: LocalizedError {
         
         switch self {
             case .noFile:
-                return String(localized: "The document doesn’t have a file to reinterpret.")
+                String(localized: "The document doesn’t have a file to reinterpret.")
                 
             case let .reinterpretationFailed(fileURL, encoding):
-                return String(localized: "The file “\(fileURL.lastPathComponent)” couldn’t be reinterpreted using text encoding “\(String.localizedName(of: encoding)).”")
+                String(localized: "The file “\(fileURL.lastPathComponent)” couldn’t be reinterpreted using text encoding “\(String.localizedName(of: encoding)).”")
         }
     }
     
@@ -1265,10 +1265,10 @@ private enum ReinterpretationError: LocalizedError {
         
         switch self {
             case .noFile:
-                return nil
+                nil
                 
             case .reinterpretationFailed:
-                return String(localized: "The file may have been saved using a different text encoding, or it may not be a text file.")
+                String(localized: "The file may have been saved using a different text encoding, or it may not be a text file.")
         }
     }
 }
@@ -1298,10 +1298,10 @@ private struct EncodingError: LocalizedError, RecoverableError {
         
         switch self.kind {
             case .lossySaving:
-                return String(localized: "Do you want to continue processing?")
+                String(localized: "Do you want to continue processing?")
                 
             case .lossyConversion:
-                return String(localized: "Do you want to change encoding and show incompatible characters?")
+                String(localized: "Do you want to change encoding and show incompatible characters?")
         }
     }
     
@@ -1310,13 +1310,13 @@ private struct EncodingError: LocalizedError, RecoverableError {
         
         switch self.kind {
             case .lossySaving:
-                return [String(localized: "Show Incompatible Characters"),
-                        String(localized: "Save Available Text"),
-                        String(localized: "Cancel")]
+                [String(localized: "Show Incompatible Characters"),
+                 String(localized: "Save Available Text"),
+                 String(localized: "Cancel")]
                 
             case .lossyConversion:
-                return [String(localized: "Change Encoding"),
-                        String(localized: "Cancel")]
+                [String(localized: "Change Encoding"),
+                 String(localized: "Cancel")]
         }
     }
     

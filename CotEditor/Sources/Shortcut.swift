@@ -47,10 +47,10 @@ enum ModifierKey: CaseIterable {
     var mask: NSEvent.ModifierFlags {
         
         switch self {
-            case .control: return .control
-            case .option:  return .option
-            case .shift:   return .shift
-            case .command: return .command
+            case .control: .control
+            case .option:  .option
+            case .shift:   .shift
+            case .command: .command
         }
     }
     
@@ -59,10 +59,10 @@ enum ModifierKey: CaseIterable {
     var symbol: String {
         
         switch self {
-            case .control: return "^"
-            case .option:  return "⌥"
-            case .shift:   return "⇧"
-            case .command: return "⌘"
+            case .control: "^"
+            case .option:  "⌥"
+            case .shift:   "⇧"
+            case .command: "⌘"
         }
     }
     
@@ -71,10 +71,10 @@ enum ModifierKey: CaseIterable {
     var keySpecChar: String {
         
         switch self {
-            case .control: return "^"
-            case .option:  return "~"
-            case .shift:   return "$"
-            case .command: return "@"
+            case .control: "^"
+            case .option:  "~"
+            case .shift:   "$"
+            case .command: "@"
         }
     }
 }
@@ -155,14 +155,10 @@ struct Shortcut {
         //  -> Backspace:      The key above the Return.
         //     Forward Delete: The key with printed "Delete" where next to the ten key pad.
         // cf. https://developer.apple.com/documentation/appkit/nsmenuitem/1514842-keyequivalent
-        let keyEquivalent: String
-        switch event.specialKey {
-            case NSEvent.SpecialKey.delete:
-                keyEquivalent = String(NSEvent.SpecialKey.backspace.unicodeScalar)
-            case NSEvent.SpecialKey.deleteForward:
-                keyEquivalent = String(NSEvent.SpecialKey.delete.unicodeScalar)
-            default:
-                keyEquivalent = charactersIgnoringModifiers
+        let keyEquivalent: String = switch event.specialKey {
+            case NSEvent.SpecialKey.delete:        String(NSEvent.SpecialKey.backspace.unicodeScalar)
+            case NSEvent.SpecialKey.deleteForward: String(NSEvent.SpecialKey.delete.unicodeScalar)
+            default: charactersIgnoringModifiers
         }
         
         // remove unwanted Shift

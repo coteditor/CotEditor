@@ -426,19 +426,19 @@ extension MultipleReplaceViewController: NSTableViewDelegate {
             let cellView = tableView.makeView(withIdentifier: identifier, owner: nil) as? NSTableCellView
         else { return nil }
         
-        switch identifier {
+        cellView.objectValue = switch identifier {
             case .isEnabled:
-                cellView.objectValue = replacement.isEnabled
+                replacement.isEnabled
             case .findString:
-                cellView.objectValue = replacement.findString
+                replacement.findString
             case .replacementString:
-                cellView.objectValue = replacement.replacementString
+                replacement.replacementString
             case .ignoresCase:
-                cellView.objectValue = replacement.ignoresCase
+                replacement.ignoresCase
             case .usesRegularExpression:
-                cellView.objectValue = replacement.usesRegularExpression
+                replacement.usesRegularExpression
             case .description:
-                cellView.objectValue = replacement.description
+                replacement.description
             default:
                 preconditionFailure()
         }

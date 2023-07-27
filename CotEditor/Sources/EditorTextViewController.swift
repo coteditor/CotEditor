@@ -69,13 +69,11 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             .sink { [weak self] (orientation) in
                 guard let self else { return assertionFailure() }
                 
-                self.stackView?.orientation = {
-                    switch orientation {
-                        case .horizontal: return .horizontal
-                        case .vertical: return .vertical
-                        @unknown default: fatalError()
-                    }
-                }()
+                self.stackView?.orientation = switch orientation {
+                    case .horizontal: .horizontal
+                    case .vertical: .vertical
+                    @unknown default: fatalError()
+                }
                 
                 self.lineNumberView?.orientation = orientation
             }

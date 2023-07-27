@@ -40,18 +40,16 @@ extension NSTextView {
     /// Insert string at desired location and select inserted range.
     func insert(string: String, at location: InsertionLocation) {
         
-        let replacementRange: NSRange = {
-            switch location {
-                case .replaceSelection:
-                    return self.selectedRange
-                case .afterSelection:
-                    return NSRange(location: self.selectedRange.upperBound, length: 0)
-                case .replaceAll:
-                    return self.string.nsRange
-                case .afterAll:
-                    return NSRange(location: (self.string as NSString).length, length: 0)
-            }
-        }()
+        let replacementRange: NSRange = switch location {
+            case .replaceSelection:
+                self.selectedRange
+            case .afterSelection:
+                NSRange(location: self.selectedRange.upperBound, length: 0)
+            case .replaceAll:
+                self.string.nsRange
+            case .afterAll:
+                NSRange(location: (self.string as NSString).length, length: 0)
+        }
         
         let selectedRange = NSRange(location: replacementRange.location, length: (string as NSString).length)
         

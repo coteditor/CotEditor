@@ -33,16 +33,16 @@ extension Theme {
         
         // The syntax keys and theme keys must be the same.
         switch type {
-            case .keywords: return self.keywords
-            case .commands: return self.commands
-            case .types: return self.types
-            case .attributes: return self.attributes
-            case .variables: return self.variables
-            case .values: return self.values
-            case .numbers: return self.numbers
-            case .strings: return self.strings
-            case .characters: return self.characters
-            case .comments: return self.comments
+            case .keywords: self.keywords
+            case .commands: self.commands
+            case .types: self.types
+            case .attributes: self.attributes
+            case .variables: self.variables
+            case .values: self.values
+            case .numbers: self.numbers
+            case .strings: self.strings
+            case .characters: self.characters
+            case .comments: self.comments
         }
     }
 }

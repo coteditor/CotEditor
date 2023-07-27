@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -80,14 +80,12 @@ extension NSTextView {
         let rects = self.boundingRects(for: range).map(self.centerScanRect)
         
         return rects.map { rect in
-            let corners: RectCorner = {
-                switch rect {
-                    case _ where rects.count == 1: return .allCorners
-                    case rects.first:              return [.topLeft, .bottomLeft]
-                    case rects.last:               return [.topRight, .bottomRight]
-                    default:                       return []
-                }
-            }()
+            let corners: RectCorner = switch rect {
+                case _ where rects.count == 1: .allCorners
+                case rects.first:              [.topLeft, .bottomLeft]
+                case rects.last:               [.topRight, .bottomRight]
+                default:                       []
+            }
             let radius = rect.height / 4
             
             return NSBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadius: radius)

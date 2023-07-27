@@ -47,9 +47,9 @@ enum TextFindResult {
         
         switch self {
             case .found(let ranges):
-                return ranges.count
+                ranges.count
             case .replaced(let count):
-                return count
+                count
         }
     }
     
@@ -61,17 +61,17 @@ enum TextFindResult {
             case .found:
                 switch self.count {
                     case ...0:
-                        return String(localized: "Not found")
+                        String(localized: "Not found")
                     default:
-                        return String(localized: "\(self.count) found", comment: "%lld is number of founds")
+                        String(localized: "\(self.count) found", comment: "%lld is number of founds")
                 }
                 
             case .replaced:
                 switch self.count {
                     case ...0:
-                        return String(localized: "Not replaced")
+                        String(localized: "Not replaced")
                     default:
-                        return String(localized: "\(self.count) replaced", comment: "%lld is number of replaced")
+                        String(localized: "\(self.count) replaced", comment: "%lld is number of replaced")
                 }
         }
     }
@@ -175,7 +175,7 @@ final class TextFinder {
         switch action {
             case .showFindInterface,
                  .showMultipleReplaceInterface:
-                return true
+                true
                 
             case .nextMatch,
                  .previousMatch,
@@ -183,16 +183,16 @@ final class TextFinder {
                  .selectAll,
                  .findAll,
                  .setReplaceString:
-                return self.client.isSelectable
+                self.client.isSelectable
                 
             case .replaceAll,
                  .replace,
                  .replaceAndFind:
-                return self.client.isEditable
+                self.client.isEditable
                 
             case .highlight,
                  .unhighlight:
-                return true
+                true
                 
             case .selectAllInSelection,
                  .replaceAllInSelection,
@@ -200,7 +200,7 @@ final class TextFinder {
                  .showReplaceInterface,
                  .hideReplaceInterface:
                 // not supported in TextFinder
-                return false
+                false
         }
     }
     

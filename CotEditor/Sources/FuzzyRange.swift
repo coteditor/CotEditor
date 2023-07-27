@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -117,16 +117,11 @@ extension String {
         guard lineRange.location <= count else { return NSRange(location: self.length, length: 0) }
         
         let newLocation = (lineRange.location > 0) ? lineRange.location - 1 : (count + lineRange.location)  // 1-based to 0-based
-        let newLength: Int = {
-            switch lineRange.length {
-                case ..<0:
-                    return count - newLocation + lineRange.length - 1
-                case 0:
-                    return 0
-                default:
-                    return lineRange.length - 1
-            }
-        }()
+        let newLength: Int = switch lineRange.length {
+            case ..<0: count - newLocation + lineRange.length - 1
+            case 0: 0
+            default: lineRange.length - 1
+        }
         
         guard
             let firstLineRange = lineRanges[safe: newLocation],
@@ -175,9 +170,9 @@ enum FuzzyLocationError: Error {
         
         switch self {
             case .invalidLine(let line):
-                return "The line number \(line) is out of the range."
+                "The line number \(line) is out of the range."
             case .invalidColumn(let column):
-                return "The column number \(column) is out of the range."
+                "The column number \(column) is out of the range."
         }
     }
 }

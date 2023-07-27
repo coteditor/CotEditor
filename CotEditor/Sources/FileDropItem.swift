@@ -136,27 +136,27 @@ extension FileDropItem {
             
             switch self {
                 case .absolutePath:
-                    return String(localized: "The dropped file absolute path.")
+                    String(localized: "The dropped file absolute path.")
                 case .relativePath:
-                    return String(localized: "The relative path between the dropped file and the document.")
+                    String(localized: "The relative path between the dropped file and the document.")
                 case .filename:
-                    return String(localized: "The dropped file’s name including extension (if exists).")
+                    String(localized: "The dropped file’s name including extension (if exists).")
                 case .filenameWithoutExtension:
-                    return String(localized: "The dropped file’s name without extension.")
+                    String(localized: "The dropped file’s name without extension.")
                 case .fileExtension:
-                    return String(localized: "The dropped file’s extension.")
+                    String(localized: "The dropped file’s extension.")
                 case .fileExtensionLowercase:
-                    return String(localized: "The dropped file’s extension (converted to lowercase).")
+                    String(localized: "The dropped file’s extension (converted to lowercase).")
                 case .fileExtensionUppercase:
-                    return String(localized: "The dropped file’s extension (converted to uppercase).")
+                    String(localized: "The dropped file’s extension (converted to uppercase).")
                 case .directory:
-                    return String(localized: "The parent directory name of dropped file.")
+                    String(localized: "The parent directory name of dropped file.")
                 case .fileContent:
-                    return String(localized: "(If the dropped file is a text file) file content.")
+                    String(localized: "(If the dropped file is a text file) file content.")
                 case .imageWidth:
-                    return String(localized: "(If the dropped file is an image) image width.")
+                    String(localized: "(If the dropped file is an image) image width.")
                 case .imageHeight:
-                    return String(localized: "(If the dropped file is an image) image height.")
+                    String(localized: "(If the dropped file is an image) image height.")
             }
         }
     }

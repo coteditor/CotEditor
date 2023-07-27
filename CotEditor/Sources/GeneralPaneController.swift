@@ -143,18 +143,12 @@ final class GeneralPaneController: NSViewController {
         
         let status = CommandLineToolManager.shared.validateSymlink()
         
-        let imageName: NSImage.Name = {
-            switch status {
-                case .none:
-                    return NSImage.statusNoneName
-                case .validTarget:
-                    return NSImage.statusAvailableName
-                case .differentTarget:
-                    return NSImage.statusPartiallyAvailableName
-                case .invalidTarget:
-                    return NSImage.statusUnavailableName
-            }
-        }()
+        let imageName: NSImage.Name = switch status {
+            case .none:            NSImage.statusNoneName
+            case .validTarget:     NSImage.statusAvailableName
+            case .differentTarget: NSImage.statusPartiallyAvailableName
+            case .invalidTarget:   NSImage.statusUnavailableName
+        }
         self.cltStatusView?.image = NSImage(named: imageName)
         self.cltStatusView?.isHidden = !status.installed
         self.cltStatusView?.toolTip = status.message

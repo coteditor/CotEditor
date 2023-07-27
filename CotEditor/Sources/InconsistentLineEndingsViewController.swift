@@ -104,15 +104,13 @@ final class InconsistentLineEndingsViewController: NSViewController {
         guard let messageField = self.messageField else { return assertionFailure() }
         
         messageField.textColor = self.lineEndings.isEmpty ? .secondaryLabelColor : .labelColor
-        messageField.stringValue = {
-            switch self.lineEndings.count {
-                case 0:  return String(localized: "No issues found.")
-                case 1:  return String(localized: "Found a line ending other than \(self.documentLineEnding.name).",
-                                       comment: "%@ is a line ending type, such as LF")
-                default: return String(localized: "Found \(self.lineEndings.count) line endings other than \(self.documentLineEnding.name).",
-                                       comment: "%lld is the number of inconsistent line endings and %@ is a line ending type, such as LF")
-            }
-        }()
+        messageField.stringValue = switch self.lineEndings.count {
+            case 0: String(localized: "No issues found.")
+            case 1: String(localized: "Found a line ending other than \(self.documentLineEnding.name).",
+                           comment: "%@ is a line ending type, such as LF")
+            default: String(localized: "Found \(self.lineEndings.count) line endings other than \(self.documentLineEnding.name).",
+                            comment: "%lld is the number of inconsistent line endings and %@ is a line ending type, such as LF")
+        }
     }
     
     

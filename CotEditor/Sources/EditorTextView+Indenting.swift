@@ -148,12 +148,9 @@ extension Indenting {
         let lines = lineRanges.map { string.substring(with: $0) }
         let dropCounts = lines.map { line -> Int in
             switch line.first {
-                case "\t":
-                    return 1
-                case " ":
-                    return line.prefix(self.tabWidth).countPrefix { $0 == " " }
-                default:
-                    return 0
+                case "\t": 1
+                case " ": line.prefix(self.tabWidth).countPrefix { $0 == " " }
+                default: 0
             }
         }
         

@@ -35,8 +35,8 @@ enum ScriptingFileType: CaseIterable {
     var fileTypes: [UTType] {
         
         switch self {
-            case .appleScript: return [.appleScript, .osaScript, .osaScriptBundle]  // .applescript, .scpt, .scptd
-            case .unixScript: return [.shellScript, .perlScript, .phpScript, .rubyScript, .pythonScript, .javaScript, .swiftSource]
+            case .appleScript: [.appleScript, .osaScript, .osaScriptBundle]  // .applescript, .scpt, .scptd
+            case .unixScript: [.shellScript, .perlScript, .phpScript, .rubyScript, .pythonScript, .javaScript, .swiftSource]
         }
     }
 }
@@ -60,8 +60,8 @@ enum ScriptingEventType: String, CaseIterable, Decodable {
     var eventID: AEEventID {
         
         switch self {
-            case .documentOpened: return "edod"
-            case .documentSaved: return "edsd"
+            case .documentOpened: "edod"
+            case .documentSaved: "edsd"
         }
     }
 }
@@ -177,10 +177,10 @@ struct ScriptDescriptor {
         switch self.type {
             case .appleScript:
                 switch self.executionModel {
-                    case .unrestricted: return AppleScript.self
-                    case .persistent: return PersistentOSAScript.self
+                    case .unrestricted: AppleScript.self
+                    case .persistent: PersistentOSAScript.self
                 }
-            case .unixScript: return UnixScript.self
+            case .unixScript: UnixScript.self
         }
     }
 }

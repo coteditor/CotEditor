@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -68,8 +68,9 @@ private extension CollectionDifference.Change {
     var offset: Int {
         
         switch self {
-            case .insert(let offset, _, _), .remove(let offset, _, _):
-                return offset
+            case .insert(let offset, _, _),
+                 .remove(let offset, _, _):
+                offset
         }
     }
 }

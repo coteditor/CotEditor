@@ -142,10 +142,8 @@ final class LineNumberView: NSView {
     override var intrinsicContentSize: NSSize {
         
         switch self.orientation {
-            case .horizontal:
-                return NSSize(width: self.thickness, height: NSView.noIntrinsicMetric)
-            case .vertical:
-                return NSSize(width: NSView.noIntrinsicMetric, height: self.thickness)
+            case .horizontal: NSSize(width: self.thickness, height: NSView.noIntrinsicMetric)
+            case .vertical:   NSSize(width: NSView.noIntrinsicMetric, height: self.thickness)
             @unknown default: fatalError()
         }
     }
@@ -186,14 +184,10 @@ final class LineNumberView: NSView {
         
         // draw separator
         if self.drawsSeparator {
-            let lineRect: NSRect
-            switch (self.orientation, self.textView?.baseWritingDirection) {
-                case (.vertical, _):
-                    lineRect = NSRect(x: 0, y: 0, width: self.frame.width, height: 1)
-                case (_, .rightToLeft):
-                    lineRect = NSRect(x: 0, y: 0, width: 1, height: self.frame.height)
-                default:
-                    lineRect = NSRect(x: self.frame.width - 1, y: 0, width: 1, height: self.frame.height)
+            let lineRect: NSRect = switch (self.orientation, self.textView?.baseWritingDirection) {
+                case (.vertical, _):    NSRect(x: 0, y: 0, width: self.frame.width, height: 1)
+                case (_, .rightToLeft): NSRect(x: 0, y: 0, width: 1, height: self.frame.height)
+                default:                NSRect(x: self.frame.width - 1, y: 0, width: 1, height: self.frame.height)
             }
             
             NSGraphicsContext.saveGraphicsState()

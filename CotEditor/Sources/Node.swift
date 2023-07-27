@@ -42,9 +42,9 @@ extension Node {
         
         switch self.item {
             case .value:
-                return nil
+                nil
             case .children(let children):
-                return children
+                children
         }
     }
     
@@ -53,9 +53,9 @@ extension Node {
         
         switch self.item {
             case .value(let value):
-                return value
+                value
             case .children:
-                return nil
+                nil
         }
     }
     
@@ -65,9 +65,9 @@ extension Node {
         
         switch self.item {
             case .value(let value):
-                return [value]
+                [value]
             case .children(let nodes):
-                return nodes.flatMap(\.flatValues)
+                nodes.flatMap(\.flatValues)
         }
     }
 }

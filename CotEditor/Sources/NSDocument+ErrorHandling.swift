@@ -31,9 +31,9 @@ extension NSDocument.SaveOperationType {
         
         switch self {
             case .autosaveElsewhereOperation, .autosaveInPlaceOperation, .autosaveAsOperation:
-                return true
+                true
             case .saveOperation, .saveAsOperation, .saveToOperation:
-                return false
+                false
             @unknown default:
                 fatalError()
         }

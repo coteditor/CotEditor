@@ -229,20 +229,13 @@ private extension ColorCodeType {
     var label: LocalizedStringKey {
         
         switch self {
-            case .hex:
-                return "Hexadecimal"
-            case .shortHex:
-                return "Hexadecimal (Short)"
-            case .cssRGB:
-                return "CSS RGB"
-            case .cssRGBa:
-                return "CSS RGBa"
-            case .cssHSL:
-                return "CSS HSL"
-            case .cssHSLa:
-                return "CSS HSLa"
-            case .cssKeyword:
-                return "CSS Keyword"
+            case .hex: "Hexadecimal"
+            case .shortHex: "Hexadecimal (Short)"
+            case .cssRGB: "CSS RGB"
+            case .cssRGBa: "CSS RGBa"
+            case .cssHSL: "CSS HSL"
+            case .cssHSLa: "CSS HSLa"
+            case .cssKeyword: "CSS Keyword"
         }
     }
 }

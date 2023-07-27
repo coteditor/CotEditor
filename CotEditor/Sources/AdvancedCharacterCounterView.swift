@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2021-2022 1024jp
+//  © 2021-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,12 +37,10 @@ struct AdvancedCharacterCounterView: View {
         
         HStack(alignment: .firstTextBaseline) {
             if let count = self.count {
-                let key: String.LocalizationValue = {
-                    switch self.counter.setting.unit {
-                        case .byte: return "*\(count)* byte(s)"
-                        default: return "*\(count)* character(s)"
-                    }
-                }()
+            let key: String.LocalizationValue = switch self.counter.setting.unit {
+                    case .byte: "*\(count)* byte(s)"
+                    default:    "*\(count)* character(s)"
+                }
                 let attributes = AttributeContainer
                     .font(.body.monospacedDigit().weight(.medium))
                     .foregroundColor(.label)

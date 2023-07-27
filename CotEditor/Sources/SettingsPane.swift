@@ -39,22 +39,14 @@ enum SettingsPane: String, CaseIterable {
     var label: String {
         
         switch self {
-            case .general:
-                return String(localized: "General")
-            case .window:
-                return String(localized: "Window")
-            case .appearance:
-                return String(localized: "Appearance")
-            case .edit:
-                return String(localized: "Edit")
-            case .format:
-                return String(localized: "Format")
-            case .snippets:
-                return String(localized: "Snippets")
-            case .keyBindings:
-                return String(localized: "Key Bindings")
-            case .print:
-                return String(localized: "Print")
+            case .general: String(localized: "General")
+            case .window: String(localized: "Window")
+            case .appearance: String(localized: "Appearance")
+            case .edit: String(localized: "Edit")
+            case .format: String(localized: "Format")
+            case .snippets: String(localized: "Snippets")
+            case .keyBindings: String(localized: "Key Bindings")
+            case .print: String(localized: "Print")
         }
     }
     
@@ -63,22 +55,14 @@ enum SettingsPane: String, CaseIterable {
     var symbolName: String {
         
         switch self {
-            case .general:
-                return "gearshape"
-            case .window:
-                return "uiwindow.split.2x1"
-            case .appearance:
-                return "eyeglasses"
-            case .edit:
-                return "square.and.pencil"
-            case .format:
-                return "doc.text"
-            case .snippets:
-                return "note.text"
-            case .keyBindings:
-                return "keyboard"
-            case .print:
-                return "printer"
+            case .general: "gearshape"
+            case .window: "uiwindow.split.2x1"
+            case .appearance: "eyeglasses"
+            case .edit: "square.and.pencil"
+            case .format: "doc.text"
+            case .snippets: "note.text"
+            case .keyBindings: "keyboard"
+            case .print: "printer"
         }
     }
 }

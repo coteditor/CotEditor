@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -79,13 +79,13 @@ enum Invisible {
     var symbol: Character {
         
         switch self {
-            case .newLine: return "↩"
-            case .tab: return "→"
-            case .space: return "·"
-            case .noBreakSpace: return "·̂"
-            case .fullwidthSpace: return "□"
-            case .otherWhitespace: return "⹀"
-            case .otherControl: return "�"
+            case .newLine: "↩"
+            case .tab: "→"
+            case .space: "·"
+            case .noBreakSpace: "·̂"
+            case .fullwidthSpace: "□"
+            case .otherWhitespace: "⹀"
+            case .otherControl: "�"
         }
     }
 }
@@ -99,13 +99,13 @@ extension Invisible: CaseIterable {
     var visibilityDefaultKey: DefaultKey<Bool> {
         
         switch self {
-            case .newLine: return .showInvisibleNewLine
-            case .tab: return .showInvisibleTab
-            case .space: return .showInvisibleSpace
-            case .noBreakSpace: return .showInvisibleWhitespaces
-            case .fullwidthSpace: return .showInvisibleWhitespaces
-            case .otherWhitespace: return .showInvisibleWhitespaces
-            case .otherControl: return .showInvisibleControl
+            case .newLine: .showInvisibleNewLine
+            case .tab: .showInvisibleTab
+            case .space: .showInvisibleSpace
+            case .noBreakSpace: .showInvisibleWhitespaces
+            case .fullwidthSpace: .showInvisibleWhitespaces
+            case .otherWhitespace: .showInvisibleWhitespaces
+            case .otherControl: .showInvisibleControl
         }
     }
 }

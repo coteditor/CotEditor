@@ -89,14 +89,10 @@ extension String {
         
         let spaces = String(repeating: " ", count: tabWidth)
         
-        let indent: (before: String, after: String) = {
-            switch indentStyle {
-                case .space:
-                    return (before: "\t", after: spaces)
-                case .tab:
-                    return (before: spaces, after: "\t")
-            }
-        }()
+        let indent: (before: String, after: String) = switch indentStyle {
+            case .space: (before: "\t", after: spaces)
+            case .tab:   (before: spaces, after: "\t")
+        }
         
         let regex = try! Regex("(^|\\G)" + indent.before).anchorsMatchLineEndings()
         

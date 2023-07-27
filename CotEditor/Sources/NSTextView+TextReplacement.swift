@@ -169,13 +169,10 @@ extension String {
     /// - Parameter anyString: String or NSAttributedString.
     init(anyString: Any) {
         
-        switch anyString {
-            case let string as String:
-                self = string
-            case let attributedString as NSAttributedString:
-                self = attributedString.string
-            default:
-                preconditionFailure()
+        self = switch anyString {
+            case let string as String: string
+            case let attributedString as NSAttributedString: attributedString.string
+            default: preconditionFailure()
         }
     }
 }

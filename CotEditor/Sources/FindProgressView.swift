@@ -127,20 +127,20 @@ private extension FindProgressView.Unit {
         
         switch count {
             case 0:
-                return "Searching in text…"
+                "Searching in text…"
             case 1:
                 switch self {
                     case .find:
-                        return "\(count) string found."
+                        "\(count) string found."
                     case .replacement:
-                        return "\(count) string replaced."
+                        "\(count) string replaced."
                 }
             default:
                 switch self {
                     case .find:
-                        return "\(count) strings found."
+                        "\(count) strings found."
                     case .replacement:
-                        return "\(count) strings replaced."
+                        "\(count) strings replaced."
                 }
         }
     }
