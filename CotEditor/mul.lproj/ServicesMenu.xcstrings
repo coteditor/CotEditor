@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "New CotEditor Document with Selection" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -61,7 +61,7 @@
       }
     },
     "Open File in CotEditor" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
