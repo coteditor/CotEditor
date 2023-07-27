@@ -88,7 +88,7 @@ final class NavigationBarController: NSViewController {
         self.viewObservers.removeAll()
         
         splitViewController.$isVertical
-            .map { NSImage(named: $0 ? "split.add-vertical" : "split.add") }
+            .map { NSImage(resource: $0 ? .splitAddVertical : .splitAdd) }
             .assign(to: \.image, on: self.openSplitButton!)
             .store(in: &self.viewObservers)
         splitViewController.$canCloseSplitItem

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,21 +29,21 @@ extension RegularExpressionSyntaxType {
     
     var color: NSColor {
         
-        NSColor(named: "RegexColor/" + self.colorName)!
+        NSColor(resource: self.colorResource)
     }
     
     
     
     // MARK: Private Methods
     
-    private var colorName: NSColor.Name {
+    private var colorResource: ColorResource {
         
         switch self {
-            case .character: return "Character"
-            case .backReference: return "BackReference"
-            case .symbol: return "Symbol"
-            case .quantifier: return "Quantifier"
-            case .anchor: return "Anchor"
+            case .character: .Regex.character
+            case .backReference: .Regex.backReference
+            case .symbol: .Regex.symbol
+            case .quantifier: .Regex.quantifier
+            case .anchor: .Regex.anchor
         }
     }
 }

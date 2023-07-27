@@ -471,7 +471,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = String(localized: "Comment")
                 item.toolTip = String(localized: "Comment-out or uncomment selection")
-                item.image = NSImage(named: "text.commentout")
+                item.image = NSImage(resource: .textCommentout)
                 item.action = #selector(EditorTextView.toggleComment)
                 return item
                 
@@ -491,8 +491,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = String(localized: "Tab Style")
                 item.toolTip = String(localized: "Expand tabs to spaces automatically")
-                item.stateImages[.on] = NSImage(named: "tab.right.split")
-                item.stateImages[.off] = NSImage(named: "tab.right")
+                item.stateImages[.on] = NSImage(resource: .tabRightSplit)
+                item.stateImages[.off] = NSImage(resource: .tabRight)
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
                 item.menu = menu
                 item.menuFormRepresentation = NSMenuItem(title: item.label, action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
@@ -506,8 +506,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.possibleLabels = [String(localized: "Wrap Lines"),
                                        String(localized: "Unwrap Lines")]
                 item.toolTip = String(localized: "Wrap lines")
-                item.stateImages[.on] = NSImage(named: "text.wrap.slash")
-                item.stateImages[.off] = NSImage(named: "text.wrap")
+                item.stateImages[.on] = NSImage(resource: .textWrapSlash)
+                item.stateImages[.off] = NSImage(resource: .textWrap)
                 item.action = #selector(DocumentViewController.toggleLineWrap)
                 item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
                 return item
@@ -517,7 +517,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = String(localized: "Invisibles")
                 item.toolTip = String(localized: "Show invisible characters")
-                item.stateImages[.on] = NSImage(named: "paragraphsign.slash")
+                item.stateImages[.on] = NSImage(resource: .paragraphsignSlash)
                 item.stateImages[.off] = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: item.label)
                 item.action = #selector(DocumentViewController.toggleInvisibleChars)
                 item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
@@ -528,8 +528,9 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = String(localized: "Indent Guides")
                 item.toolTip = String(localized: "Hide indent guide lines")
-                item.stateImages[.on] = NSImage(named: "text.indentguides.hide")
-                item.stateImages[.off] = NSImage(named: "text.indentguides")
+                item.stateImages[.on] = NSImage(resource: .textIndentguidesHide)
+                
+                item.stateImages[.off] = NSImage(resource: .textIndentguides)
                 item.action = #selector(DocumentViewController.toggleIndentGuides)
                 item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
                 return item
@@ -550,7 +551,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = MenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = String(localized: "Opacity")
                 item.toolTip = String(localized: "Change editor’s opacity")
-                item.image = NSImage(named: "uiwindow.opacity")
+                item.image = NSImage(resource: .uiwindowOpacity)
                 item.target = self
                 item.showsIndicator = false
                 item.menu = NSMenu()
@@ -562,7 +563,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = String(localized: "Spell Check")
                 item.toolTip = String(localized: "Show spelling and grammar")
-                item.image = NSImage(named: "abc.checkmark")
+                item.image = NSImage(resource: .abcCheckmark)
                 item.action = #selector(NSTextView.showGuessPanel)
                 return item
                 
@@ -580,7 +581,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = String(localized: "Emoji & Symbols")
                 item.toolTip = String(localized: "Show Emoji & Symbols palette")
-                item.image = NSImage(named: "emoji")
+                item.image = NSImage(resource: .emoji)
                 item.action = #selector(NSApplication.orderFrontCharacterPalette)
                 return item
                 

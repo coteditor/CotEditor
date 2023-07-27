@@ -76,14 +76,14 @@ extension DocumentViewController: NSTouchBarDelegate {
             case .indentGuides:
                 let item = NSCustomTouchBarItem(identifier: identifier)
                 item.customizationLabel = String(localized: "Indent Guides", comment: "touch bar item")
-                let image = NSImage(named: "text.indentguides")!
+                let image = NSImage(resource: .textIndentguides)
                 item.view = NSButton(image: image, target: self, action: #selector(toggleIndentGuidesViaTouchBar))
                 return item
                 
             case .wrapLines:
                 let item = NSCustomTouchBarItem(identifier: identifier)
                 item.customizationLabel = String(localized: "Wrap Lines", comment: "touch bar item")
-                let image = NSImage(named: "text.wrap")!
+                let image = NSImage(resource: .textWrap)
                 item.view = NSButton(image: image, target: self, action: #selector(toggleLineWrapViaTouchBar))
                 return item
                 
