@@ -1,0 +1,66 @@
+
+/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "1an-HZ-pD7"; */
+"1an-HZ-pD7.headerCell.title" = "Begin String";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "4qu-tU-wgL"; */
+"4qu-tU-wgL.placeholderString" = "Not defined";
+
+/* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "508-hG-5PG"; */
+"508-hG-5PG.title" = "Begin with:";
+
+/* Class = "NSTextFieldCell"; title = "End with:"; ObjectID = "5bm-Fa-IZj"; */
+"5bm-Fa-IZj.title" = "End with:";
+
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "Bla-xg-t6E"; */
+"Bla-xg-t6E.headerCell.title" = "Description";
+
+/* Class = "NSTextFieldCell"; title = "note"; ObjectID = "CWN-H0-LVV"; */
+"CWN-H0-LVV.title" = "note";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "Pcv-9r-6km"; */
+"Pcv-9r-6km.ibShadowedIsNilPlaceholder" = "Not defined";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "TSS-rl-L2D"; */
+"TSS-rl-L2D.placeholderString" = "Not defined";
+
+/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "XJa-sc-hM6"; */
+"XJa-sc-hM6.headerCell.title" = "End String";
+
+/* Class = "NSTableColumn"; headerCell.title = "RE"; ObjectID = "XJj-U2-0se"; */
+"XJj-U2-0se.headerCell.title" = "RE";
+
+/* Class = "NSTableColumn"; headerToolTip = "Regular Expression"; ObjectID = "XJj-U2-0se"; */
+"XJj-U2-0se.headerToolTip" = "Regular Expression";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "a3u-7k-1dd"; */
+"a3u-7k-1dd.ibShadowedIsNilPlaceholder" = "Not defined";
+
+/* Class = "NSTextFieldCell"; title = "Inline comment:"; ObjectID = "b3O-ZW-iIp"; */
+"b3O-ZW-iIp.title" = "Inline comment:";
+
+/* Class = "NSTextFieldCell"; title = "Block comment:"; ObjectID = "bUT-iW-c0x"; */
+"bUT-iW-c0x.title" = "Block comment:";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "dwo-oN-tBR"; */
+"dwo-oN-tBR.ibShadowedIsNilPlaceholder" = "Not defined";
+
+/* Class = "NSTextFieldCell"; title = "end"; ObjectID = "ike-P3-f5j"; */
+"ike-P3-f5j.title" = "end";
+
+/* Class = "NSTextFieldCell"; title = "begin"; ObjectID = "kSc-q8-TSC"; */
+"kSc-q8-TSC.title" = "begin";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "lMx-HP-1U1"; */
+"lMx-HP-1U1.placeholderString" = "Not defined";
+
+/* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "oI5-31-pDw"; */
+"oI5-31-pDw.headerCell.title" = "IC";
+
+/* Class = "NSTableColumn"; headerToolTip = "Ignore Case (case-insensitive)"; ObjectID = "oI5-31-pDw"; */
+"oI5-31-pDw.headerToolTip" = "Ignore Case (case-insensitive)";
+
+/* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "xWF-yX-yz5"; */
+"xWF-yX-yz5.title" = "Begin with:";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "xae-A2-skh"; */
+"xae-A2-skh.title" = "Text Cell";

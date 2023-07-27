@@ -1,0 +1,27 @@
+
+/* Class = "NSTextFieldCell"; title = "Action Name"; ObjectID = "0Uo-2F-m2T"; */
+"0Uo-2F-m2T.title" = "Nombre de la acción";
+
+/* Class = "NSTableColumn"; headerCell.title = "Menu"; ObjectID = "597-z1-wgd"; */
+"597-z1-wgd.headerCell.title" = "Menu";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "CyK-OL-qHa"; */
+"CyK-OL-qHa.title" = "Restaurar valores predeterminados";
+
+/* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "Hue-bU-8wr"; */
+"Hue-bU-8wr.title" = "Para cambiar un atajo, haga clic en la columna teclas del atajo a editar y, a continuación, introduzca la nueva combinación.";
+
+/* Class = "NSTextFieldCell"; title = "CotEditor"; ObjectID = "JTc-Rw-7wQ"; */
+"JTc-Rw-7wQ.title" = "CotEditor";
+
+/* Class = "NSTextFieldCell"; title = "WARNING MESSAGE"; ObjectID = "PAH-9l-L5p"; */
+"PAH-9l-L5p.title" = "MENSAJE DE ADVERTENCIA";
+
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "PSD-Um-TfH"; */
+"PSD-Um-TfH.headerCell.title" = "Teclas";
+
+/* Class = "NSTextFieldCell"; placeholderString = "⌘ A"; ObjectID = "T1C-pj-eFu"; */
+"T1C-pj-eFu.placeholderString" = "⌘ A";
+
+/* Class = "NSTableColumn"; headerCell.title = "Command"; ObjectID = "jNh-nd-VRd"; */
+"jNh-nd-VRd.headerCell.title" = "Comando";
