@@ -589,7 +589,7 @@
 
 
 
-/* MARK: Unicode Input View Controller */
+/* MARK: Unicode Input View */
 "Recents" = "最近の項目";
 "Clear Recents" = "履歴を消去";
 "Invalid code" = "無効なコード";
@@ -872,8 +872,18 @@
 
 
 
-/* MARK: Unicode Input View */
-"Invalid code" = "無効なコード";
+/* MARK: Character Info */
+"<a letter consisting of %lld characters>" = "<%lld字から成る文字>";
+
+// Variation selectors
+"Emoji Style" = "絵文字スタイル";
+"Text Style" = "テキストスタイル";
+"Skin Tone I-II" = "スキントーンI-II";
+"Skin Tone III" = "スキントーンIII";
+"Skin Tone IV" = "スキントーンIV";
+"Skin Tone V" = "スキントーンV";
+"Skin Tone VI" = "スキントーンVI";
+"Variant" = "異体字";
 
 
 

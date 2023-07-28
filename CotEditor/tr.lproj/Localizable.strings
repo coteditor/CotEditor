@@ -589,7 +589,7 @@
 
 
 
-/* MARK: Unicode Input View Controller */
+/* MARK: Unicode Input View */
 "Recents" = "Son Kullanılanlar";
 "Clear Recents" = "Son Kullanılanları Sil";
 "Invalid code" = "Geçersiz Kod";
@@ -872,8 +872,18 @@
 
 
 
-/* MARK: Unicode Input View */
-"Invalid code" = "Geçersiz Kod";
+/* MARK: Character Info */
+"<a letter consisting of %lld characters>" = "%lld karakterden oluşan bir harf";
+
+// Variation selectors
+"Emoji Style" = "Emoji Biçemi";
+"Text Style" = "Metin Biçemi";
+"Skin Tone I-II" = "Deri Tonu I-II";
+"Skin Tone III" = "Deri Tonu III";
+"Skin Tone IV" = "Deri Tonu IV";
+"Skin Tone V" = "Deri Tonu V";
+"Skin Tone VI" = "Deri Tonu VI";
+"Variant" = "Varyant";
 
 
 

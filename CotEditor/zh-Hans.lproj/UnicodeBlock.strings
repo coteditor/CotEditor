@@ -1,5 +1,5 @@
 //
-//  Unicode.strings (Simplified Chinese)
+//  UnicodeBlock.strings (Simplified Chinese)
 //
 //  CotEditor
 //  https://coteditor.com
@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,22 +24,9 @@
 //  limitations under the License.
 //
 
-"<a letter consisting of %lld characters>" = "<包含有%lld个字符>";
-
-// Variation selectors
-"Emoji Style" = "表情文字格式";
-"Text Style" = "文本文字格式";
-"Skin Tone I-II" = "色调I-II";
-"Skin Tone III" = "色调III";
-"Skin Tone IV" = "色调IV";
-"Skin Tone V" = "色 V";
-"Skin Tone VI" = "色调VI";
-"Variant" = "异体字";
-
-
-// Unicode block names
 // -> auto-generated from CharacterPaletteIM.lg in Apple's glossaries
 // cf. <https://developer.apple.com/download/all/?q=glossaries>
+
 "Cuneiform" = "楔形文字";
 "Variation Selectors" = "变体选择器";
 "Latin Extended-B" = "拉丁文扩展-B";

@@ -589,7 +589,7 @@
 
 
 
-/* MARK: Unicode Input View Controller */
+/* MARK: Unicode Input View */
 "Recents" = "最近";
 "Clear Recents" = "清除最近使用的项目";
 "Invalid code" = "无效的代码";
@@ -872,8 +872,18 @@
 
 
 
-/* MARK: Unicode Input View */
-"Invalid code" = "无效的代码";
+/* MARK: Character Info */
+"<a letter consisting of %lld characters>" = "<包含有%lld个字符>";
+
+// Variation selectors
+"Emoji Style" = "表情文字格式";
+"Text Style" = "文本文字格式";
+"Skin Tone I-II" = "色调I-II";
+"Skin Tone III" = "色调III";
+"Skin Tone IV" = "色调IV";
+"Skin Tone V" = "色 V";
+"Skin Tone VI" = "色调VI";
+"Variant" = "异体字";
 
 
 

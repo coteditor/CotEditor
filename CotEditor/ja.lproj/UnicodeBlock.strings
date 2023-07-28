@@ -1,5 +1,5 @@
 //
-//  Unicode.strings (Japanese)
+//  UnicodeBlock.strings (Japanese)
 //
 //  CotEditor
 //  https://coteditor.com
@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,23 +24,10 @@
 //  limitations under the License.
 //
 
-"<a letter consisting of %lld characters>" = "<%lld字から成る文字>";
-
-// Variation selectors
-"Emoji Style" = "絵文字スタイル";
-"Text Style" = "テキストスタイル";
-"Skin Tone I-II" = "スキントーンI-II";
-"Skin Tone III" = "スキントーンIII";
-"Skin Tone IV" = "スキントーンIV";
-"Skin Tone V" = "スキントーンV";
-"Skin Tone VI" = "スキントーンVI";
-"Variant" = "異体字";
-
-
-// Unicode block names
 // -> auto-generated from CharacterPaletteIM.lg in Apple's glossaries
 //    release date of the used grossary: 2020-01-15
 // cf. <https://developer.apple.com/download/all/?q=glossaries>
+
 "Cuneiform" = "楔形文字";
 "Variation Selectors" = "異体字選択符号";
 "Latin Extended-B" = "ラテン文字拡張B";

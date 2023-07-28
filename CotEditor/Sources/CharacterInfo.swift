@@ -45,21 +45,21 @@ private extension Unicode.Scalar {
         
         switch self {
             case EmojiVariationSelector.emoji:
-                String(localized: "Emoji Style", table: "Unicode")
+                String(localized: "Emoji Style")
             case EmojiVariationSelector.text:
-                String(localized: "Text Style", table: "Unicode")
+                String(localized: "Text Style")
             case SkinToneModifier.type12:
-                String(localized: "Skin Tone I-II", table: "Unicode")
+                String(localized: "Skin Tone I-II")
             case SkinToneModifier.type3:
-                String(localized: "Skin Tone III", table: "Unicode")
+                String(localized: "Skin Tone III")
             case SkinToneModifier.type4:
-                String(localized: "Skin Tone IV", table: "Unicode")
+                String(localized: "Skin Tone IV")
             case SkinToneModifier.type5:
-                String(localized: "Skin Tone V", table: "Unicode")
+                String(localized: "Skin Tone V")
             case SkinToneModifier.type6:
-                String(localized: "Skin Tone VI", table: "Unicode")
+                String(localized: "Skin Tone VI")
             case _ where self.properties.isVariationSelector:
-                String(localized: "Variant", table: "Unicode")
+                String(localized: "Variant")
             default:
                 nil
         }
@@ -83,7 +83,7 @@ struct CharacterInfo {
         
         let unicodes = self.character.unicodeScalars
         if self.isComplex {
-            return String(localized: "<a letter consisting of \(unicodes.count) characters>", table: "Unicode")
+            return String(localized: "<a letter consisting of \(unicodes.count) characters>")
         }
         
         guard var unicodeName = unicodes.first?.name else { return nil }

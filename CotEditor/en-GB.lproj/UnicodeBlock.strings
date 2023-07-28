@@ -1,5 +1,5 @@
 //
-//  Unicode.strings (English (UK))
+//  UnicodeBlock.strings (English (UK))
 //
 //  CotEditor
 //  https://coteditor.com
@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,23 +24,10 @@
 //  limitations under the License.
 //
 
-"<a letter consisting of %lld characters>" = "<a letter consisting of %lld characters>";
-
-// Variation selectors
-"Emoji Style" = "Emoji Style";
-"Text Style" = "Text Style";
-"Skin Tone I-II" = "Skin Tone I-II";
-"Skin Tone III" = "Skin Tone III";
-"Skin Tone IV" = "Skin Tone IV";
-"Skin Tone V" = "Skin Tone V";
-"Skin Tone VI" = "Skin Tone VI";
-"Variant" = "Variant";
-
-
-// Unicode block names
 // -> auto-generated from CharacterPaletteIM.lg in Apple's glossaries
 //    release date of the used grossary: 2020-01-15
 // cf. <https://developer.apple.com/download/all/?q=glossaries>
+
 "Cuneiform" = "Cuneiform";
 "Variation Selectors" = "Variation Selectors";
 "Latin Extended-B" = "Latin Extended-B";

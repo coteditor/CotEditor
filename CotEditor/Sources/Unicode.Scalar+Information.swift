@@ -76,7 +76,7 @@ extension Unicode.Scalar {
             .replacing(/\ ([A-Z])$/) { "-\($0.1)" }
             .replacing("Description", with: "Desc.")
         
-        return String(localized: String.LocalizationValue(key), table: "Unicode")
+        return String(localized: String.LocalizationValue(key), table: "UnicodeBlock")
     }
 }
 
