@@ -393,7 +393,7 @@
 "EYa-d3-sUR.title" = "Comentario";
 
 /* Class = "NSMenuItem"; title = "Make Snake Case"; ObjectID = "F0I-F4-srF"; */
-"F0I-F4-srF.title" = "Poner en Snake Case";
+"F0I-F4-srF.title" = "Todo en Snake Case";
 
 /* Class = "NSMenuItem"; title = "Inline Comment"; ObjectID = "F6P-7N-LSf"; */
 "F6P-7N-LSf.title" = "Comentario en línea";
@@ -432,7 +432,7 @@
 "KrV-3z-r5B.title" = "Buscar y reemplazar siguiente";
 
 /* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "LC4-lg-eO0"; */
-"LC4-lg-eO0.title" = "Capitalize";
+"LC4-lg-eO0.title" = "Mayúsculas iniciales";
 
 /* Class = "NSMenuItem"; title = "Toggle Comment"; ObjectID = "LLy-Yx-tXI"; */
 "LLy-Yx-tXI.title" = "Cambiar comentario";
@@ -480,7 +480,7 @@
 "Qqu-pI-Xz6.title" = "Mostar guias de sangria";
 
 /* Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "RX2-gg-n33"; */
-"RX2-gg-n33.title" = "Poner en mayúsculas";
+"RX2-gg-n33.title" = "Todo en mayúsculas";
 
 /* Class = "NSMenuItem"; title = "Advanced Character Count…"; ObjectID = "SPF-Mw-eZP"; */
 "SPF-Mw-eZP.title" = "Cuenta avanzada de carácteres…";
@@ -513,7 +513,7 @@
 "YOd-Hk-eIa.title" = "Sangria";
 
 /* Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "ZrR-aL-1eB"; */
-"ZrR-aL-1eB.title" = "Poner en minúsculas";
+"ZrR-aL-1eB.title" = "Todo en minúsculas";
 
 /* Class = "NSMenuItem"; title = "Unicode Paragraph Separator (PS)"; ObjectID = "Zz9-5c-bS1"; Note = "Unlike other line endings, this item is preferably as-is because of the unfamiliarity."; */
 "Zz9-5c-bS1.title" = "Separador de párrafos Unicode (PS)";
@@ -627,7 +627,7 @@
 "mEh-BD-ZlV.title" = "Dirección de escritura";
 
 /* Class = "NSMenuItem"; title = "Make Camel Case"; ObjectID = "nlp-Gj-W9G"; */
-"nlp-Gj-W9G.title" = "Poner en Camel Case";
+"nlp-Gj-W9G.title" = "Todo en Camel Case";
 
 /* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
 "o7K-sI-KJA.title" = "Reemplazo múltiple…";
@@ -681,7 +681,7 @@
 "wiV-Hh-7xU.title" = "Buscar anterior";
 
 /* Class = "NSMenuItem"; title = "Make Pascal Case"; ObjectID = "x1F-KX-2de"; */
-"x1F-KX-2de.title" = "Poner en Pascal Case";
+"x1F-KX-2de.title" = "Todo en Pascal Case";
 
 /* Class = "NSMenu"; title = "Tab Width"; ObjectID = "xAm-b4-9CY"; */
 "xAm-b4-9CY.title" = "Anchura tabulación";
