@@ -33,7 +33,7 @@ import SwiftUI
         
         self.init(rootView: OpacityView(window: window))
         
-        self.ensureFrameSize()
+        self.frame.size = self.intrinsicContentSize
     }
     
     
@@ -46,7 +46,7 @@ import SwiftUI
         
         super.init(rootView: OpacityView(window: window))
         
-        self.ensureFrameSize()
+        self.frame.size = self.intrinsicContentSize
     }
     
     
@@ -86,6 +86,7 @@ struct OpacityView: View {
             }
         }
         .padding(10)
+        .fixedSize()
     }
 }
 

@@ -75,13 +75,14 @@ final class ColorCodePanelController: NSObject, NSWindowDelegate {
         
         let accessory = ColorCodePanelAccessory(colorCode: colorCode, panel: panel)
         let view = NSHostingView(rootView: accessory)
-        view.ensureFrameSize()
         panel.accessoryView = view
         
         // make position of accessory view center
         view.translatesAutoresizingMaskIntoConstraints = false
         if let superview = view.superview {
             NSLayoutConstraint.activate([
+                superview.topAnchor.constraint(equalTo: view.topAnchor),
+                superview.bottomAnchor.constraint(equalTo: view.bottomAnchor),
                 superview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 superview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             ])
