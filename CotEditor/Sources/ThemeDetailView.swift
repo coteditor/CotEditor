@@ -302,25 +302,23 @@ private struct ThemeMetadataView: View {
 
 // MARK: - Preview
 
-struct ThemeDetailView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        ThemeDetailView(ThemeManager.shared.setting(name: "Anura")!, isBundled: false) { _ in }
-            .frame(width: 360, height: 280)
-        
-        ThemeMetadataView(author: .constant("Clarus"),
-                          distributionURL: .constant("https://coteditor.com"),
-                          license: .constant(""),
-                          description: .constant(""),
-                          isEditable: true)
-        .previewDisplayName("Metadata (editable)")
-        
-        ThemeMetadataView(author: .constant(""),
-                          distributionURL: .constant(""),
-                          license: .constant(""),
-                          description: .constant(""),
-                          isEditable: false)
-        .previewDisplayName("Metadata (fixed)")
-    }
+#Preview {
+    ThemeDetailView(ThemeManager.shared.setting(name: "Anura")!, isBundled: false) { _ in }
+        .frame(width: 360, height: 280)
+}
+
+#Preview("Metadata (editable)") {
+    ThemeMetadataView(author: .constant("Clarus"),
+                      distributionURL: .constant("https://coteditor.com"),
+                      license: .constant(""),
+                      description: .constant(""),
+                      isEditable: true)
+}
+
+#Preview("Metadata (fixed)") {
+    ThemeMetadataView(author: .constant(""),
+                      distributionURL: .constant(""),
+                      license: .constant(""),
+                      description: .constant(""),
+                      isEditable: false)
 }

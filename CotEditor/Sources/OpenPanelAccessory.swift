@@ -78,10 +78,6 @@ struct OpenPanelAccessory: View {
 
 // MARK: - Preview
 
-struct OpenPanelAccessory_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        OpenPanelAccessory(options: .init(), encodings: [.utf8])
-    }
+#Preview {
+    OpenPanelAccessory(options: .init(), encodings: [.utf8])
 }

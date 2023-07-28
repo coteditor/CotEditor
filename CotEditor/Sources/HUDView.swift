@@ -123,10 +123,6 @@ private extension HUDView.Symbol {
 
 // MARK: - Preview
 
-struct HUDView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        HUDView(symbol: .wrap())
-    }
+#Preview {
+    HUDView(symbol: .wrap())
 }

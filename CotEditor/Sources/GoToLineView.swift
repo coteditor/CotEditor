@@ -90,10 +90,6 @@ struct GoToLineView: View {
 
 // MARK: - Preview
 
-struct GoToLineView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        GoToLineView(lineRange: FuzzyRange(location: 1, length: 1)) { _ in true }
-    }
+#Preview {
+    GoToLineView(lineRange: FuzzyRange(location: 1, length: 1)) { _ in true }
 }

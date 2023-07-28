@@ -67,15 +67,11 @@ private extension Image.Status {
 
 // MARK: - Preview
 
-struct StatusImage_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        VStack(alignment: .leading) {
-            Label(title: { Text(verbatim: "none") }, icon: { Image(status: .none) })
-            Label(title: { Text(verbatim: "available") }, icon: { Image(status: .available) })
-            Label(title: { Text(verbatim: "partiallyAvailable") }, icon: { Image(status: .partiallyAvailable) })
-            Label(title: { Text(verbatim: "unavailable") }, icon: { Image(status: .unavailable) })
-        }.padding()
-    }
+#Preview {
+    VStack(alignment: .leading) {
+        Label(title: { Text(verbatim: "none") }, icon: { Image(status: .none) })
+        Label(title: { Text(verbatim: "available") }, icon: { Image(status: .available) })
+        Label(title: { Text(verbatim: "partiallyAvailable") }, icon: { Image(status: .partiallyAvailable) })
+        Label(title: { Text(verbatim: "unavailable") }, icon: { Image(status: .unavailable) })
+    }.padding()
 }

@@ -177,13 +177,11 @@ private struct OpacitySample: View {
 
 // MARK: - Preview
 
-struct OpacityView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        OpacityView()
-        
-        OpacitySample(opacity: 0.5)
-            .frame(width: 16, height: 16)
-    }
+#Preview {
+    OpacityView()
+}
+
+#Preview("OpacitySample") {
+    OpacitySample(opacity: 0.5)
+        .frame(width: 16, height: 16)
 }

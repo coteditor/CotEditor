@@ -61,10 +61,6 @@ struct CharacterCountOptionsSheetView: View {
 
 // MARK: - Preview
 
-struct CharacterCountOptionsSheetView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        CharacterCountOptionsSheetView { }
-    }
+#Preview {
+    CharacterCountOptionsSheetView { }
 }

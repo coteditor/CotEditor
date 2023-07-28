@@ -189,12 +189,8 @@ final class PaddingTextField: NSTextField {
 
 // MARK: - Preview
 
-struct InsetTextField_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        InsetTextField(text: .constant(""), prompt: "Prompt")
-            .inset(.leading, 20)
-            .frame(width: 160)
-    }
+#Preview {
+    InsetTextField(text: .constant(""), prompt: "Prompt")
+        .inset(.leading, 20)
+        .frame(width: 160)
 }

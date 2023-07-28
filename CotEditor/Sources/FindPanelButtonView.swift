@@ -106,10 +106,6 @@ struct FindPanelButtonView: View {
 
 // MARK: - Preview
 
-struct FindPanelButtonView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        FindPanelButtonView()
-    }
+#Preview {
+    FindPanelButtonView()
 }

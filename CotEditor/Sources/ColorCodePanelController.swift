@@ -244,11 +244,7 @@ private extension ColorCodeType {
 
 // MARK: - Preview
 
-struct ColorCodePanelAccessory_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        ColorCodePanelAccessory(colorCode: "#006699", panel: .shared)
-            .frame(width: 240)
-    }
+#Preview {
+    ColorCodePanelAccessory(colorCode: "#006699", panel: .shared)
+        .frame(width: 240)
 }

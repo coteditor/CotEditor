@@ -146,10 +146,6 @@ struct FindRegularExpressionOptionsView: View {
 
 // MARK: - Preview
 
-struct FindSettingsView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        FindSettingsView()
-    }
+#Preview {
+    FindSettingsView()
 }

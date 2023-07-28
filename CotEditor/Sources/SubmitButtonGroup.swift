@@ -75,10 +75,6 @@ struct SubmitButtonGroup: View {
 
 // MARK: - Preview
 
-struct SubmitButtonGroup_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        SubmitButtonGroup(action: {}, cancelAction: {})
-    }
+#Preview {
+    SubmitButtonGroup(action: {}, cancelAction: {})
 }

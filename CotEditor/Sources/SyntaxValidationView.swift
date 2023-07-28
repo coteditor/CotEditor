@@ -122,19 +122,15 @@ struct SyntaxValidationView: View {
 
 // MARK: - Preview
 
-struct SyntaxValidationView_Previews: PreviewProvider {
+#Preview {
+    let dictionary: [String: [[String: Any]]] = [
+        "keywords": [["beginString": "abc"],
+                     ["beginString": "abc"]],
+        "commands": [["beginString": "Lorem ipsum dolor sit amet, consectetur[",
+                      "regularExpression": true]],
+    ]
+    let syntax = NSMutableDictionary(dictionary: dictionary)
     
-    static var previews: some View {
-        
-        let dictionary: [String: [[String: Any]]] = [
-            "keywords": [["beginString": "abc"],
-                         ["beginString": "abc"]],
-            "commands": [["beginString": "Lorem ipsum dolor sit amet, consectetur[",
-                          "regularExpression": true]],
-        ]
-        let syntax = NSMutableDictionary(dictionary: dictionary)
-        
-        SyntaxValidationView(validator: .init(syntax: syntax))
-            .frame(width: 400)
-    }
+    return SyntaxValidationView(validator: .init(syntax: syntax))
+        .frame(width: 400)
 }

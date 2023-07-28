@@ -148,10 +148,6 @@ private extension CharacterCountOptions.CharacterUnit {
 
 // MARK: - Preview
 
-struct CharacterCountOptionsView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        CharacterCountOptionsView()
-    }
+#Preview {
+    CharacterCountOptionsView()
 }

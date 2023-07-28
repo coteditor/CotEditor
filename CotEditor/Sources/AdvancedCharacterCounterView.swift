@@ -108,10 +108,6 @@ struct AdvancedCharacterCounterView: View {
 
 // MARK: - Preview
 
-struct AdvancedCharacterCounterView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        AdvancedCharacterCounterView(counter: .init(textView: .init())) { }
-    }
+#Preview {
+    AdvancedCharacterCounterView(counter: .init(textView: .init())) { }
 }

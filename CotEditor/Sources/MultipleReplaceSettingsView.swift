@@ -78,10 +78,6 @@ struct MultipleReplaceSettingsView: View {
 
 // MARK: - Preview
 
-struct MultipleReplaceSettingsView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        MultipleReplaceSettingsView(settings: .init()) { _ in }
-    }
+#Preview {
+    MultipleReplaceSettingsView(settings: .init()) { _ in }
 }
