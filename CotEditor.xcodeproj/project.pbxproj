@@ -767,6 +767,32 @@
 		2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE848522AE71130001C4ED /* TextContainer.swift */; };
 		2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
 		2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
+		99D7DAD72A73386500B61AB2 /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DAD62A73386500B61AB2 /* es.lproj */; };
+		99D7DB152A73388400B61AB2 /* KeyBindingsPane.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DAD92A73387E00B61AB2 /* KeyBindingsPane.strings */; };
+		99D7DB162A73388400B61AB2 /* AppearancePane.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DADB2A73387E00B61AB2 /* AppearancePane.strings */; };
+		99D7DB172A73388400B61AB2 /* FindPanel.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DADD2A73387E00B61AB2 /* FindPanel.strings */; };
+		99D7DB182A73388400B61AB2 /* WarningsView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DADF2A73387E00B61AB2 /* WarningsView.strings */; };
+		99D7DB192A73388400B61AB2 /* WindowPane.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DAE12A73387F00B61AB2 /* WindowPane.strings */; };
+		99D7DB1A2A73388400B61AB2 /* OutlineView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DAE42A73387F00B61AB2 /* OutlineView.strings */; };
+		99D7DB1B2A73388400B61AB2 /* SyntaxFileMappingEditView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DAE62A73387F00B61AB2 /* SyntaxFileMappingEditView.strings */; };
+		99D7DB1C2A73388400B61AB2 /* EditPane.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DAE82A73387F00B61AB2 /* EditPane.strings */; };
+		99D7DB1D2A73388400B61AB2 /* SnippetsPane.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DAEB2A73388000B61AB2 /* SnippetsPane.strings */; };
+		99D7DB1E2A73388400B61AB2 /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DAED2A73388000B61AB2 /* Main.strings */; };
+		99D7DB1F2A73388400B61AB2 /* FormatPane.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DAF12A73388000B61AB2 /* FormatPane.strings */; };
+		99D7DB202A73388400B61AB2 /* SyntaxCommentsEditView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DAF32A73388000B61AB2 /* SyntaxCommentsEditView.strings */; };
+		99D7DB212A73388400B61AB2 /* EditorView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DAF62A73388100B61AB2 /* EditorView.strings */; };
+		99D7DB222A73388400B61AB2 /* PrintPanelAccessory.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DAF82A73388100B61AB2 /* PrintPanelAccessory.strings */; };
+		99D7DB232A73388400B61AB2 /* PrintPanelAccessoryVentura.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DAFA2A73388100B61AB2 /* PrintPanelAccessoryVentura.strings */; };
+		99D7DB242A73388400B61AB2 /* MultipleReplacePanel.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DAFD2A73388100B61AB2 /* MultipleReplacePanel.strings */; };
+		99D7DB252A73388400B61AB2 /* SyntaxInfoEditView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DAFF2A73388200B61AB2 /* SyntaxInfoEditView.strings */; };
+		99D7DB262A73388400B61AB2 /* SyntaxTermsEditView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DB012A73388200B61AB2 /* SyntaxTermsEditView.strings */; };
+		99D7DB272A73388400B61AB2 /* SyntaxCompletionsEditView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DB032A73388200B61AB2 /* SyntaxCompletionsEditView.strings */; };
+		99D7DB282A73388400B61AB2 /* DocumentWindow.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DB082A73388200B61AB2 /* DocumentWindow.strings */; };
+		99D7DB292A73388400B61AB2 /* SyntaxEditView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DB0B2A73388300B61AB2 /* SyntaxEditView.strings */; };
+		99D7DB2A2A73388400B61AB2 /* PrintPane.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DB0D2A73388300B61AB2 /* PrintPane.strings */; };
+		99D7DB2B2A73388400B61AB2 /* GeneralPane.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DB0F2A73388300B61AB2 /* GeneralPane.strings */; };
+		99D7DB2C2A73388400B61AB2 /* PatternSortView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DB112A73388300B61AB2 /* PatternSortView.strings */; };
+		99D7DB2D2A73388400B61AB2 /* SyntaxOutlineEditView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99D7DB132A73388300B61AB2 /* SyntaxOutlineEditView.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1522,6 +1548,43 @@
 		98EAE83B27A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "en-GB"; path = "en-GB.lproj/Credits.html"; sourceTree = "<group>"; };
 		98EAE83C27A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "en-GB"; path = "en-GB.lproj/Acknowledgments.html"; sourceTree = "<group>"; };
 		98EAE83D27A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "en-GB"; path = "en-GB.lproj/ReportTemplate.md"; sourceTree = "<group>"; };
+		99D7DAD62A73386500B61AB2 /* es.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = es.lproj; sourceTree = "<group>"; };
+		99D7DAD82A73387E00B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
+		99D7DADA2A73387E00B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/KeyBindingsPane.strings; sourceTree = "<group>"; };
+		99D7DADC2A73387E00B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AppearancePane.strings; sourceTree = "<group>"; };
+		99D7DADE2A73387E00B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/FindPanel.strings; sourceTree = "<group>"; };
+		99D7DAE02A73387E00B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/WarningsView.strings; sourceTree = "<group>"; };
+		99D7DAE22A73387F00B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/WindowPane.strings; sourceTree = "<group>"; };
+		99D7DAE32A73387F00B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = es.lproj/Acknowledgments.html; sourceTree = "<group>"; };
+		99D7DAE52A73387F00B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/OutlineView.strings; sourceTree = "<group>"; };
+		99D7DAE72A73387F00B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SyntaxFileMappingEditView.strings; sourceTree = "<group>"; };
+		99D7DAE92A73387F00B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/EditPane.strings; sourceTree = "<group>"; };
+		99D7DAEA2A73388000B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		99D7DAEC2A73388000B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SnippetsPane.strings; sourceTree = "<group>"; };
+		99D7DAEE2A73388000B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		99D7DAEF2A73388000B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		99D7DAF02A73388000B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		99D7DAF22A73388000B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/FormatPane.strings; sourceTree = "<group>"; };
+		99D7DAF42A73388000B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
+		99D7DAF52A73388100B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Unicode.strings; sourceTree = "<group>"; };
+		99D7DAF72A73388100B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/EditorView.strings; sourceTree = "<group>"; };
+		99D7DAF92A73388100B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
+		99D7DAFB2A73388100B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PrintPanelAccessoryVentura.strings; sourceTree = "<group>"; };
+		99D7DAFC2A73388100B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/UnicodeNormalization.strings; sourceTree = "<group>"; };
+		99D7DAFE2A73388100B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MultipleReplacePanel.strings; sourceTree = "<group>"; };
+		99D7DB002A73388200B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SyntaxInfoEditView.strings; sourceTree = "<group>"; };
+		99D7DB022A73388200B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
+		99D7DB042A73388200B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
+		99D7DB052A73388200B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = es; path = es.lproj/ReportTemplate.md; sourceTree = "<group>"; };
+		99D7DB062A73388200B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = es; path = es.lproj/Acknowledgments.css; sourceTree = "<group>"; };
+		99D7DB072A73388200B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = es; path = es.lproj/Credits.css; sourceTree = "<group>"; };
+		99D7DB092A73388200B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
+		99D7DB0A2A73388300B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = es.lproj/Credits.html; sourceTree = "<group>"; };
+		99D7DB0C2A73388300B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
+		99D7DB0E2A73388300B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PrintPane.strings; sourceTree = "<group>"; };
+		99D7DB102A73388300B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/GeneralPane.strings; sourceTree = "<group>"; };
+		99D7DB122A73388300B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PatternSortView.strings; sourceTree = "<group>"; };
+		99D7DB142A73388300B61AB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1984,9 +2047,35 @@
 				2A149DC91902BC3900A9D6EF /* Storyboards */,
 				2A68721D2887F0D8006D6B41 /* Localizable.stringsdict */,
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
+				99D7DAF12A73388000B61AB2 /* FormatPane.strings */,
+				99D7DB0F2A73388300B61AB2 /* GeneralPane.strings */,
 				2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */,
+				99D7DADB2A73387E00B61AB2 /* AppearancePane.strings */,
+				99D7DB082A73388200B61AB2 /* DocumentWindow.strings */,
+				99D7DAF62A73388100B61AB2 /* EditorView.strings */,
+				99D7DAE82A73387F00B61AB2 /* EditPane.strings */,
+				99D7DADD2A73387E00B61AB2 /* FindPanel.strings */,
+				99D7DAD92A73387E00B61AB2 /* KeyBindingsPane.strings */,
+				99D7DAED2A73388000B61AB2 /* Main.strings */,
+				99D7DAFD2A73388100B61AB2 /* MultipleReplacePanel.strings */,
+				99D7DAE42A73387F00B61AB2 /* OutlineView.strings */,
+				99D7DB112A73388300B61AB2 /* PatternSortView.strings */,
+				99D7DB0D2A73388300B61AB2 /* PrintPane.strings */,
+				99D7DAF82A73388100B61AB2 /* PrintPanelAccessory.strings */,
+				99D7DAFA2A73388100B61AB2 /* PrintPanelAccessoryVentura.strings */,
 				2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */,
+				99D7DAFF2A73388200B61AB2 /* SyntaxInfoEditView.strings */,
+				99D7DB132A73388300B61AB2 /* SyntaxOutlineEditView.strings */,
+				99D7DB012A73388200B61AB2 /* SyntaxTermsEditView.strings */,
 				2AA2E0111BFE12620087BDD6 /* Unicode.strings */,
+				99D7DAEB2A73388000B61AB2 /* SnippetsPane.strings */,
+				99D7DAF32A73388000B61AB2 /* SyntaxCommentsEditView.strings */,
+				99D7DB032A73388200B61AB2 /* SyntaxCompletionsEditView.strings */,
+				99D7DB0B2A73388300B61AB2 /* SyntaxEditView.strings */,
+				99D7DAE62A73387F00B61AB2 /* SyntaxFileMappingEditView.strings */,
+				99D7DADF2A73387E00B61AB2 /* WarningsView.strings */,
+				99D7DAE12A73387F00B61AB2 /* WindowPane.strings */,
+				99D7DAD62A73386500B61AB2 /* es.lproj */,
 				2AF0A4732890BA48003B2148 /* UnicodeNormalization.strings */,
 				2A80C65C1CEE33C100AA664D /* Credits.html */,
 				2A80C6661CEE540F00AA664D /* Acknowledgments.html */,
@@ -2698,6 +2787,7 @@
 				it,
 				pt,
 				tr,
+				es,
 			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* CotEditor */;
 			packageReferences = (
@@ -2726,43 +2816,69 @@
 				2A6F0D561B5500E100C2D03C /* Syntaxes in Resources */,
 				2A6F0D571B5500E100C2D03C /* Themes in Resources */,
 				2A6F0D5A1B5500E100C2D03C /* CotEditor.help in Resources */,
+				99D7DB212A73388400B61AB2 /* EditorView.strings in Resources */,
 				2A6F0D591B5500E100C2D03C /* CotEditor.sdef in Resources */,
+				99D7DB252A73388400B61AB2 /* SyntaxInfoEditView.strings in Resources */,
 				2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */,
+				99D7DB272A73388400B61AB2 /* SyntaxCompletionsEditView.strings in Resources */,
+				99D7DB2C2A73388400B61AB2 /* PatternSortView.strings in Resources */,
+				99D7DB192A73388400B61AB2 /* WindowPane.strings in Resources */,
+				99D7DB162A73388400B61AB2 /* AppearancePane.strings in Resources */,
 				2A80C65F1CEE33C100AA664D /* Credits.html in Resources */,
+				99D7DB2D2A73388400B61AB2 /* SyntaxOutlineEditView.strings in Resources */,
 				2AE73ECD2035223100D8903B /* Credits.css in Resources */,
 				2A80C6691CEE540F00AA664D /* Acknowledgments.html in Resources */,
 				2AE73EC9203520E100D8903B /* Acknowledgments.css in Resources */,
+				99D7DB262A73388400B61AB2 /* SyntaxTermsEditView.strings in Resources */,
 				2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */,
 				2A68721F2887F0D8006D6B41 /* Localizable.stringsdict in Resources */,
 				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
+				99D7DB232A73388400B61AB2 /* PrintPanelAccessoryVentura.strings in Resources */,
 				2A6F0D691B5500E100C2D03C /* InfoPlist.strings in Resources */,
+				99D7DB1C2A73388400B61AB2 /* EditPane.strings in Resources */,
+				99D7DB1F2A73388400B61AB2 /* FormatPane.strings in Resources */,
 				2A6F0D811B5500E100C2D03C /* ServicesMenu.strings in Resources */,
 				2AA2E0141BFE12620087BDD6 /* Unicode.strings in Resources */,
 				2AF0A4702890BA48003B2148 /* UnicodeNormalization.strings in Resources */,
+				99D7DB242A73388400B61AB2 /* MultipleReplacePanel.strings in Resources */,
 				2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */,
 				2ACDE28D2406B9C000FC31EC /* AppearancePane.storyboard in Resources */,
+				99D7DB2B2A73388400B61AB2 /* GeneralPane.strings in Resources */,
 				2ACDE2942406B9C000FC31EC /* DocumentInspectorView.storyboard in Resources */,
 				2ACDE2952406B9C000FC31EC /* DocumentWindow.storyboard in Resources */,
 				2ACDE2962406B9C000FC31EC /* EditorView.storyboard in Resources */,
+				99D7DB152A73388400B61AB2 /* KeyBindingsPane.strings in Resources */,
+				99D7DB222A73388400B61AB2 /* PrintPanelAccessory.strings in Resources */,
 				2ACDE2972406B9C000FC31EC /* EditPane.storyboard in Resources */,
 				2ACDE29A2406B9C000FC31EC /* FindPanel.storyboard in Resources */,
 				2ACDE29C2406B9C000FC31EC /* FormatPane.storyboard in Resources */,
 				2ACDE29D2406B9C000FC31EC /* GeneralPane.storyboard in Resources */,
+				99D7DB282A73388400B61AB2 /* DocumentWindow.strings in Resources */,
+				99D7DB1D2A73388400B61AB2 /* SnippetsPane.strings in Resources */,
 				2ACDE2A22406B9C000FC31EC /* KeyBindingsPane.storyboard in Resources */,
 				2ACDE2A32406B9C000FC31EC /* MultipleReplacePanel.storyboard in Resources */,
+				99D7DB1B2A73388400B61AB2 /* SyntaxFileMappingEditView.strings in Resources */,
+				99D7DB2A2A73388400B61AB2 /* PrintPane.strings in Resources */,
 				2ACDE2A52406B9C000FC31EC /* OutlineView.storyboard in Resources */,
 				2ACDE2A62406B9C000FC31EC /* PatternSortView.storyboard in Resources */,
 				2ACDE2A72406B9C000FC31EC /* PrintPane.storyboard in Resources */,
+				99D7DB1E2A73388400B61AB2 /* Main.strings in Resources */,
 				2A7F4DFF2871F46D0029CE66 /* PrintPanelAccessory.storyboard in Resources */,
 				2ACDE2992406B9C000FC31EC /* SnippetsPane.storyboard in Resources */,
 				2ACDE2AD2406B9C000FC31EC /* SyntaxCommentsEditView.storyboard in Resources */,
+				99D7DB182A73388400B61AB2 /* WarningsView.strings in Resources */,
 				2ACDE2AE2406B9C000FC31EC /* SyntaxCompletionsEditView.storyboard in Resources */,
+				99D7DAD72A73386500B61AB2 /* es.lproj in Resources */,
 				2ACDE2AF2406B9C000FC31EC /* SyntaxEditView.storyboard in Resources */,
+				99D7DB292A73388400B61AB2 /* SyntaxEditView.strings in Resources */,
 				2ACDE2B02406B9C000FC31EC /* SyntaxFileMappingEditView.storyboard in Resources */,
 				2ACDE2B12406B9C000FC31EC /* SyntaxInfoEditView.storyboard in Resources */,
 				2ACDE2B32406B9C000FC31EC /* SyntaxOutlineEditView.storyboard in Resources */,
+				99D7DB1A2A73388400B61AB2 /* OutlineView.strings in Resources */,
 				2ACDE2B42406B9C000FC31EC /* SyntaxTermsEditView.storyboard in Resources */,
 				2ACDE2A02406B9C000FC31EC /* WarningsView.storyboard in Resources */,
+				99D7DB172A73388400B61AB2 /* FindPanel.strings in Resources */,
+				99D7DB202A73388400B61AB2 /* SyntaxCommentsEditView.strings in Resources */,
 				2ACDE2B82406B9C000FC31EC /* WindowPane.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3632,6 +3748,7 @@
 				2A401FE71D9AF0A300ACE036 /* it */,
 				57ED31711FFD892900F16CAD /* pt */,
 				08C28FAF279CBE440016693E /* tr */,
+				99D7DAEF2A73388000B61AB2 /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3819,6 +3936,7 @@
 				2A401FE41D9AED8200ACE036 /* it */,
 				57ED31771FFD892A00F16CAD /* pt */,
 				08C28FAC279CBE300016693E /* tr */,
+				99D7DB052A73388200B61AB2 /* es */,
 			);
 			name = ReportTemplate.md;
 			sourceTree = "<group>";
@@ -3852,6 +3970,7 @@
 				2A401FE51D9AEE4500ACE036 /* it */,
 				57ED31731FFD892900F16CAD /* pt */,
 				08C28FB1279CBE4F0016693E /* tr */,
+				99D7DAD82A73387E00B61AB2 /* es */,
 			);
 			name = ServicesMenu.strings;
 			sourceTree = "<group>";
@@ -3903,6 +4022,7 @@
 				2A687225288834EF006D6B41 /* it */,
 				2A687226288834F1006D6B41 /* pt */,
 				2A687228288834F6006D6B41 /* tr */,
+				99D7DAEA2A73388000B61AB2 /* es */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -3937,6 +4057,7 @@
 				2A401FE21D9AD77400ACE036 /* it */,
 				57ED31751FFD892900F16CAD /* pt */,
 				08C28FAA279CBE300016693E /* tr */,
+				99D7DB0A2A73388300B61AB2 /* es */,
 			);
 			name = Credits.html;
 			sourceTree = "<group>";
@@ -3951,6 +4072,7 @@
 				5B08851128296B61003D4C2D /* zh-Hant */,
 				57ED31761FFD892900F16CAD /* pt */,
 				08C28FAB279CBE300016693E /* tr */,
+				99D7DAE32A73387F00B61AB2 /* es */,
 			);
 			name = Acknowledgments.html;
 			sourceTree = "<group>";
@@ -3984,6 +4106,7 @@
 				2A401FE81D9AF7CA00ACE036 /* it */,
 				57ED31741FFD892900F16CAD /* pt */,
 				08C28FB2279CBE530016693E /* tr */,
+				99D7DAF52A73388100B61AB2 /* es */,
 			);
 			name = Unicode.strings;
 			sourceTree = "<group>";
@@ -4145,6 +4268,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AE73EC7203520E000D8903B /* Base */,
+				99D7DB062A73388200B61AB2 /* es */,
 			);
 			name = Acknowledgments.css;
 			sourceTree = "<group>";
@@ -4153,6 +4277,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AE73ECB2035223100D8903B /* Base */,
+				99D7DB072A73388200B61AB2 /* es */,
 			);
 			name = Credits.css;
 			sourceTree = "<group>";
@@ -4186,6 +4311,7 @@
 				2AF0A4762890BAB0003B2148 /* it */,
 				2AF0A4772890BAB2003B2148 /* pt */,
 				2AF0A4792890BAB8003B2148 /* tr */,
+				99D7DAFC2A73388100B61AB2 /* es */,
 			);
 			name = UnicodeNormalization.strings;
 			sourceTree = "<group>";
@@ -4202,8 +4328,209 @@
 				2A401FE61D9AEEB700ACE036 /* it */,
 				57ED31721FFD892900F16CAD /* pt */,
 				08C28FB0279CBE4C0016693E /* tr */,
+				99D7DAF02A73388000B61AB2 /* es */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		99D7DAD92A73387E00B61AB2 /* KeyBindingsPane.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DADA2A73387E00B61AB2 /* es */,
+			);
+			name = KeyBindingsPane.strings;
+			sourceTree = "<group>";
+		};
+		99D7DADB2A73387E00B61AB2 /* AppearancePane.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DADC2A73387E00B61AB2 /* es */,
+			);
+			name = AppearancePane.strings;
+			sourceTree = "<group>";
+		};
+		99D7DADD2A73387E00B61AB2 /* FindPanel.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DADE2A73387E00B61AB2 /* es */,
+			);
+			name = FindPanel.strings;
+			sourceTree = "<group>";
+		};
+		99D7DADF2A73387E00B61AB2 /* WarningsView.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DAE02A73387E00B61AB2 /* es */,
+			);
+			name = WarningsView.strings;
+			sourceTree = "<group>";
+		};
+		99D7DAE12A73387F00B61AB2 /* WindowPane.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DAE22A73387F00B61AB2 /* es */,
+			);
+			name = WindowPane.strings;
+			sourceTree = "<group>";
+		};
+		99D7DAE42A73387F00B61AB2 /* OutlineView.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DAE52A73387F00B61AB2 /* es */,
+			);
+			name = OutlineView.strings;
+			sourceTree = "<group>";
+		};
+		99D7DAE62A73387F00B61AB2 /* SyntaxFileMappingEditView.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DAE72A73387F00B61AB2 /* es */,
+			);
+			name = SyntaxFileMappingEditView.strings;
+			sourceTree = "<group>";
+		};
+		99D7DAE82A73387F00B61AB2 /* EditPane.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DAE92A73387F00B61AB2 /* es */,
+			);
+			name = EditPane.strings;
+			sourceTree = "<group>";
+		};
+		99D7DAEB2A73388000B61AB2 /* SnippetsPane.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DAEC2A73388000B61AB2 /* es */,
+			);
+			name = SnippetsPane.strings;
+			sourceTree = "<group>";
+		};
+		99D7DAED2A73388000B61AB2 /* Main.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DAEE2A73388000B61AB2 /* es */,
+			);
+			name = Main.strings;
+			sourceTree = "<group>";
+		};
+		99D7DAF12A73388000B61AB2 /* FormatPane.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DAF22A73388000B61AB2 /* es */,
+			);
+			name = FormatPane.strings;
+			sourceTree = "<group>";
+		};
+		99D7DAF32A73388000B61AB2 /* SyntaxCommentsEditView.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DAF42A73388000B61AB2 /* es */,
+			);
+			name = SyntaxCommentsEditView.strings;
+			sourceTree = "<group>";
+		};
+		99D7DAF62A73388100B61AB2 /* EditorView.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DAF72A73388100B61AB2 /* es */,
+			);
+			name = EditorView.strings;
+			sourceTree = "<group>";
+		};
+		99D7DAF82A73388100B61AB2 /* PrintPanelAccessory.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DAF92A73388100B61AB2 /* es */,
+			);
+			name = PrintPanelAccessory.strings;
+			sourceTree = "<group>";
+		};
+		99D7DAFA2A73388100B61AB2 /* PrintPanelAccessoryVentura.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DAFB2A73388100B61AB2 /* es */,
+			);
+			name = PrintPanelAccessoryVentura.strings;
+			sourceTree = "<group>";
+		};
+		99D7DAFD2A73388100B61AB2 /* MultipleReplacePanel.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DAFE2A73388100B61AB2 /* es */,
+			);
+			name = MultipleReplacePanel.strings;
+			sourceTree = "<group>";
+		};
+		99D7DAFF2A73388200B61AB2 /* SyntaxInfoEditView.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DB002A73388200B61AB2 /* es */,
+			);
+			name = SyntaxInfoEditView.strings;
+			sourceTree = "<group>";
+		};
+		99D7DB012A73388200B61AB2 /* SyntaxTermsEditView.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DB022A73388200B61AB2 /* es */,
+			);
+			name = SyntaxTermsEditView.strings;
+			sourceTree = "<group>";
+		};
+		99D7DB032A73388200B61AB2 /* SyntaxCompletionsEditView.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DB042A73388200B61AB2 /* es */,
+			);
+			name = SyntaxCompletionsEditView.strings;
+			sourceTree = "<group>";
+		};
+		99D7DB082A73388200B61AB2 /* DocumentWindow.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DB092A73388200B61AB2 /* es */,
+			);
+			name = DocumentWindow.strings;
+			sourceTree = "<group>";
+		};
+		99D7DB0B2A73388300B61AB2 /* SyntaxEditView.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DB0C2A73388300B61AB2 /* es */,
+			);
+			name = SyntaxEditView.strings;
+			sourceTree = "<group>";
+		};
+		99D7DB0D2A73388300B61AB2 /* PrintPane.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DB0E2A73388300B61AB2 /* es */,
+			);
+			name = PrintPane.strings;
+			sourceTree = "<group>";
+		};
+		99D7DB0F2A73388300B61AB2 /* GeneralPane.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DB102A73388300B61AB2 /* es */,
+			);
+			name = GeneralPane.strings;
+			sourceTree = "<group>";
+		};
+		99D7DB112A73388300B61AB2 /* PatternSortView.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DB122A73388300B61AB2 /* es */,
+			);
+			name = PatternSortView.strings;
+			sourceTree = "<group>";
+		};
+		99D7DB132A73388300B61AB2 /* SyntaxOutlineEditView.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99D7DB142A73388300B61AB2 /* es */,
+			);
+			name = SyntaxOutlineEditView.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
