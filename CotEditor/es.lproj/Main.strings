@@ -32,6 +32,9 @@
 /* Class = "NSMenuItem"; title = "Save"; ObjectID = "75"; */
 "75.title" = "Guardar";
 
+/* Class = "NSMenuItem"; title = "Share…"; ObjectID = "TNF-pL-CAZ"; */
+"TNF-pL-CAZ.title" = "Compartir…";
+
 /* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "77"; */
 "77.title" = "Ajustar página…";
 

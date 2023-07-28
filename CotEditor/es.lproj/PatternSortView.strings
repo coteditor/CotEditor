@@ -39,7 +39,7 @@
 "Un0-F8-2q0.ibShadowedIsNilPlaceholder" = "Expresión regular";
 
 /* Class = "NSTextField"; ibShadowedToolTip = "Sample line to check which part in a line will be used for sort comparison."; ObjectID = "W2m-Jf-7Yj"; */
-"W2m-Jf-7Yj.ibShadowedToolTip" = "Línea de muestra para comprobar qué parte de una línea se utilizará para la comparación de clasificación". ; ObjectID = "W2m-Jf-7Yj";
+"W2m-Jf-7Yj.ibShadowedToolTip" = "Línea de muestra para comprobar qué parte de una línea se utilizará para la comparación de clasificación.";
 
 /* Class = "NSTextFieldCell"; title = "Invalid pattern"; ObjectID = "aoG-Ov-SSQ"; */
 "aoG-Ov-SSQ.title" = "Patrón no válido";
