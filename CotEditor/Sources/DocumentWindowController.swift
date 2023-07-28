@@ -583,6 +583,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                     return item
                 }
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
+                item.isBordered = true
                 item.label = String(localized: "Opacity")
                 item.toolTip = String(localized: "Change editor’s opacity")
                 item.image = NSImage(resource: .uiwindowOpacity)

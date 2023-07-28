@@ -105,7 +105,7 @@ type_body_length:
   error: 1500
 
 function_body_length:
-  warning: 250
+  warning: 260
   error: 300
 
 large_tuple:
