@@ -12,6 +12,7 @@ Change Log
 - Add a font size field to the print dialog.
 - Deprecate the print font setting in the Print settings.
 - Migrate the sharing interface to the modern version.
+- [trivial] Migrate the Opacity toolbar item to popover in macOS 14.
 - [trivial] Disable the contextual menu for shortcut fields.
 - [trivial] Rename “syntax style” with just “syntax.”
 

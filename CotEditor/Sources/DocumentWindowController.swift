@@ -569,16 +569,24 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .opacity:
-                let menuItem = NSMenuItem()
-                menuItem.view = OpacityHostingView(window: self.window as? DocumentWindow)
-                let item = MenuToolbarItem(itemIdentifier: itemIdentifier)
+                guard #available(macOS 14, *) else {
+                    let menuItem = NSMenuItem()
+                    menuItem.view = OpacityHostingView(window: self.window as? DocumentWindow)
+                    let item = MenuToolbarItem(itemIdentifier: itemIdentifier)
+                    item.label = String(localized: "Opacity")
+                    item.toolTip = String(localized: "Change editor’s opacity")
+                    item.image = NSImage(resource: .uiwindowOpacity)
+                    item.target = self
+                    item.showsIndicator = false
+                    item.menu = NSMenu()
+                    item.menu.items = [menuItem]
+                    return item
+                }
+                let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = String(localized: "Opacity")
                 item.toolTip = String(localized: "Change editor’s opacity")
                 item.image = NSImage(resource: .uiwindowOpacity)
-                item.target = self
-                item.showsIndicator = false
-                item.menu = NSMenu()
-                item.menu.items = [menuItem]
+                item.action = #selector(DocumentViewController.showOpacitySlider)
                 return item
                 
             case .spellCheck:

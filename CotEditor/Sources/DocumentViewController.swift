@@ -737,10 +737,18 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         let opacityView = OpacityView(window: self.view.window as? DocumentWindow)
         let viewController = NSHostingController(rootView: opacityView)
-        viewController.sizingOptions = .preferredContentSize
         
-        self.present(viewController, asPopoverRelativeTo: .zero, of: self.view,
-                     preferredEdge: .maxY, behavior: .transient)
+        if #available(macOS 14, *), let toolbarItem = sender as? NSToolbarItem {
+            let popover = NSPopover()
+            popover.behavior = .semitransient
+            popover.contentViewController = viewController
+            popover.show(relativeTo: toolbarItem)
+            
+        } else {
+            viewController.sizingOptions = .preferredContentSize
+            self.present(viewController, asPopoverRelativeTo: .zero, of: self.view,
+                         preferredEdge: .maxY, behavior: .transient)
+        }
     }
     
     
