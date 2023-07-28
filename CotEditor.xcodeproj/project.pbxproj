@@ -822,12 +822,6 @@
 		08C28F88279CBE2D0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/KeyBindingsPane.strings; sourceTree = "<group>"; };
 		08C28F89279CBE2D0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/PrintPane.strings; sourceTree = "<group>"; };
 		08C28F8A279CBE2D0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
-		08C28F8B279CBE2D0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
-		08C28F8C279CBE2E0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
-		08C28F8D279CBE2E0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
-		08C28F8E279CBE2E0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
-		08C28F8F279CBE2E0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/SyntaxFileMappingEditView.strings; sourceTree = "<group>"; };
-		08C28F90279CBE2E0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/SyntaxInfoEditView.strings; sourceTree = "<group>"; };
 		08C28F94279CBE2E0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/FindPanel.strings; sourceTree = "<group>"; };
 		08C28F96279CBE2E0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/MultipleReplacePanel.strings; sourceTree = "<group>"; };
 		08C28F97279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
@@ -859,12 +853,6 @@
 		0D51D5802274EAE100A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/KeyBindingsPane.strings; sourceTree = "<group>"; };
 		0D51D5812274EAE100A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PrintPane.strings; sourceTree = "<group>"; };
 		0D51D5832274EAE200A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
-		0D51D5842274EAE200A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
-		0D51D5852274EAE200A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
-		0D51D5862274EAE300A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
-		0D51D5872274EAE300A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
-		0D51D5882274EAE300A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SyntaxFileMappingEditView.strings; sourceTree = "<group>"; };
-		0D51D5892274EAE400A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SyntaxInfoEditView.strings; sourceTree = "<group>"; };
 		0D51D58F2274EE6F00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0D51D5922274EF5300A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UnicodeBlock.strings; sourceTree = "<group>"; };
 		2A03E699201457570093FDF1 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/PatternSortView.strings; sourceTree = "<group>"; };
@@ -1071,6 +1059,12 @@
 		2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = UnicodeNormalization.xcstrings; path = mul.lproj/UnicodeNormalization.xcstrings; sourceTree = "<group>"; };
 		2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = InfoPlist.xcstrings; path = mul.lproj/InfoPlist.xcstrings; sourceTree = "<group>"; };
 		2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = ServicesMenu.xcstrings; path = mul.lproj/ServicesMenu.xcstrings; sourceTree = "<group>"; };
+		2A5E6FCC2A73415000E33EA7 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SyntaxInfoEditView.xcstrings; sourceTree = "<group>"; };
+		2A5E6FE72A73420900E33EA7 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SyntaxFileMappingEditView.xcstrings; sourceTree = "<group>"; };
+		2A5E6FE82A73430900E33EA7 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SyntaxCompletionsEditView.xcstrings; sourceTree = "<group>"; };
+		2A5E6FE92A7343A800E33EA7 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SyntaxOutlineEditView.xcstrings; sourceTree = "<group>"; };
+		2A5E6FEA2A73452100E33EA7 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SyntaxCommentsEditView.xcstrings; sourceTree = "<group>"; };
+		2A5E6FEB2A73469400E33EA7 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SyntaxTermsEditView.xcstrings; sourceTree = "<group>"; };
 		2A5EDDBA241B649C00A07810 /* moof.textClipping */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = moof.textClipping; path = TestFiles/moof.textClipping; sourceTree = "<group>"; };
 		2A5EDDBC241B64EB00A07810 /* TextClippingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextClippingTests.swift; sourceTree = "<group>"; };
 		2A5F7CA41D152589001D83BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditorView.storyboard; sourceTree = "<group>"; };
@@ -1252,42 +1246,12 @@
 		2AB1BD1E287D747200C6FEAF /* SizeGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeGetter.swift; sourceTree = "<group>"; };
 		2AB1BD23287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCountOptionsSheetView.swift; sourceTree = "<group>"; };
 		2AB2241321A7CDEF00F6201F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SyntaxInfoEditView.storyboard; sourceTree = "<group>"; };
-		2AB2241621A7CF3400F6201F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxInfoEditView.strings; sourceTree = "<group>"; };
-		2AB2241721A7CF3500F6201F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxInfoEditView.strings"; sourceTree = "<group>"; };
-		2AB2241821A7CF3600F6201F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxInfoEditView.strings; sourceTree = "<group>"; };
-		2AB2241921A7CF3700F6201F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxInfoEditView.strings; sourceTree = "<group>"; };
-		2AB2241A21A7CF3800F6201F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxInfoEditView.strings; sourceTree = "<group>"; };
 		2AB2241C21A7CFC900F6201F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SyntaxFileMappingEditView.storyboard; sourceTree = "<group>"; };
-		2AB2241F21A7D0CC00F6201F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxFileMappingEditView.strings; sourceTree = "<group>"; };
-		2AB2242021A7D0CE00F6201F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxFileMappingEditView.strings"; sourceTree = "<group>"; };
-		2AB2242121A7D0CF00F6201F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxFileMappingEditView.strings; sourceTree = "<group>"; };
-		2AB2242221A7D0D100F6201F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxFileMappingEditView.strings; sourceTree = "<group>"; };
-		2AB2242321A7D0D200F6201F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxFileMappingEditView.strings; sourceTree = "<group>"; };
 		2AB2242821A7D51800F6201F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SyntaxCompletionsEditView.storyboard; sourceTree = "<group>"; };
-		2AB2242B21A7D5E900F6201F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
-		2AB2242C21A7D5EA00F6201F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxCompletionsEditView.strings"; sourceTree = "<group>"; };
-		2AB2242D21A7D5EA00F6201F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
-		2AB2242E21A7D5EB00F6201F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
-		2AB2242F21A7D5EC00F6201F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
 		2AB2243021A7D67E00F6201F /* SyntaxEditChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxEditChildViewController.swift; sourceTree = "<group>"; };
 		2AB2243421A7D78400F6201F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SyntaxOutlineEditView.storyboard; sourceTree = "<group>"; };
-		2AB2243721A7D86100F6201F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
-		2AB2243821A7D86100F6201F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxOutlineEditView.strings"; sourceTree = "<group>"; };
-		2AB2243921A7D86200F6201F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
-		2AB2243A21A7D86400F6201F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
-		2AB2243B21A7D86500F6201F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
 		2AB2243D21A7D8DF00F6201F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SyntaxCommentsEditView.storyboard; sourceTree = "<group>"; };
-		2AB2244021A7D9D400F6201F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
-		2AB2244121A7D9D500F6201F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxCommentsEditView.strings"; sourceTree = "<group>"; };
-		2AB2244221A7D9D600F6201F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
-		2AB2244321A7D9D700F6201F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
-		2AB2244421A7D9D800F6201F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
 		2AB2244921A7DB9B00F6201F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SyntaxTermsEditView.storyboard; sourceTree = "<group>"; };
-		2AB2244C21A7DCA000F6201F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
-		2AB2244D21A7DCA100F6201F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxTermsEditView.strings"; sourceTree = "<group>"; };
-		2AB2244E21A7DCA200F6201F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
-		2AB2244F21A7DCA300F6201F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
-		2AB2245021A7DCA400F6201F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
 		2AB2245321A809A000F6201F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SyntaxEditView.storyboard; sourceTree = "<group>"; };
 		2AB2245621A809B200F6201F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
 		2AB2245721A809B500F6201F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxEditView.strings"; sourceTree = "<group>"; };
@@ -1449,12 +1413,6 @@
 		5B0884F028296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/KeyBindingsPane.strings"; sourceTree = "<group>"; };
 		5B0884F128296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/PrintPane.strings"; sourceTree = "<group>"; };
 		5B0884F228296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxEditView.strings"; sourceTree = "<group>"; };
-		5B0884F328296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxTermsEditView.strings"; sourceTree = "<group>"; };
-		5B0884F428296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxCommentsEditView.strings"; sourceTree = "<group>"; };
-		5B0884F528296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxOutlineEditView.strings"; sourceTree = "<group>"; };
-		5B0884F628296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxCompletionsEditView.strings"; sourceTree = "<group>"; };
-		5B0884F728296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxFileMappingEditView.strings"; sourceTree = "<group>"; };
-		5B0884F828296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxInfoEditView.strings"; sourceTree = "<group>"; };
 		5B0884FB28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/FindPanel.strings"; sourceTree = "<group>"; };
 		5B0884FD28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/MultipleReplacePanel.strings"; sourceTree = "<group>"; };
 		5B0884FE28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DocumentWindow.strings"; sourceTree = "<group>"; };
@@ -1481,12 +1439,6 @@
 		98EAE81927A5D7D700C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/KeyBindingsPane.strings"; sourceTree = "<group>"; };
 		98EAE81A27A5D7D700C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/PrintPane.strings"; sourceTree = "<group>"; };
 		98EAE81B27A5D7D800C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/SyntaxEditView.strings"; sourceTree = "<group>"; };
-		98EAE81C27A5D7D800C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/SyntaxTermsEditView.strings"; sourceTree = "<group>"; };
-		98EAE81D27A5D7D800C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/SyntaxCommentsEditView.strings"; sourceTree = "<group>"; };
-		98EAE81E27A5D7D800C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/SyntaxOutlineEditView.strings"; sourceTree = "<group>"; };
-		98EAE81F27A5D7D800C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/SyntaxCompletionsEditView.strings"; sourceTree = "<group>"; };
-		98EAE82027A5D7D800C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/SyntaxFileMappingEditView.strings"; sourceTree = "<group>"; };
-		98EAE82127A5D7D800C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/SyntaxInfoEditView.strings"; sourceTree = "<group>"; };
 		98EAE82527A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/FindPanel.strings"; sourceTree = "<group>"; };
 		98EAE82727A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/MultipleReplacePanel.strings"; sourceTree = "<group>"; };
 		98EAE82827A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/DocumentWindow.strings"; sourceTree = "<group>"; };
@@ -3952,15 +3904,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AB2241321A7CDEF00F6201F /* Base */,
-				98EAE82127A5D7D800C6D571 /* en-GB */,
-				2AB2241621A7CF3400F6201F /* ja */,
-				2AB2241721A7CF3500F6201F /* zh-Hans */,
-				5B0884F828296B60003D4C2D /* zh-Hant */,
-				0D51D5892274EAE400A5D747 /* fr */,
-				2AB2241821A7CF3600F6201F /* de */,
-				2AB2241921A7CF3700F6201F /* it */,
-				2AB2241A21A7CF3800F6201F /* pt */,
-				08C28F90279CBE2E0016693E /* tr */,
+				2A5E6FCC2A73415000E33EA7 /* mul */,
 			);
 			name = SyntaxInfoEditView.storyboard;
 			sourceTree = "<group>";
@@ -3969,15 +3913,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AB2241C21A7CFC900F6201F /* Base */,
-				98EAE82027A5D7D800C6D571 /* en-GB */,
-				2AB2241F21A7D0CC00F6201F /* ja */,
-				2AB2242021A7D0CE00F6201F /* zh-Hans */,
-				5B0884F728296B60003D4C2D /* zh-Hant */,
-				0D51D5882274EAE300A5D747 /* fr */,
-				2AB2242121A7D0CF00F6201F /* de */,
-				2AB2242221A7D0D100F6201F /* it */,
-				2AB2242321A7D0D200F6201F /* pt */,
-				08C28F8F279CBE2E0016693E /* tr */,
+				2A5E6FE72A73420900E33EA7 /* mul */,
 			);
 			name = SyntaxFileMappingEditView.storyboard;
 			sourceTree = "<group>";
@@ -3986,15 +3922,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AB2242821A7D51800F6201F /* Base */,
-				98EAE81F27A5D7D800C6D571 /* en-GB */,
-				2AB2242B21A7D5E900F6201F /* ja */,
-				2AB2242C21A7D5EA00F6201F /* zh-Hans */,
-				5B0884F628296B60003D4C2D /* zh-Hant */,
-				0D51D5872274EAE300A5D747 /* fr */,
-				2AB2242D21A7D5EA00F6201F /* de */,
-				2AB2242E21A7D5EB00F6201F /* it */,
-				2AB2242F21A7D5EC00F6201F /* pt */,
-				08C28F8E279CBE2E0016693E /* tr */,
+				2A5E6FE82A73430900E33EA7 /* mul */,
 			);
 			name = SyntaxCompletionsEditView.storyboard;
 			sourceTree = "<group>";
@@ -4003,15 +3931,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AB2243421A7D78400F6201F /* Base */,
-				98EAE81E27A5D7D800C6D571 /* en-GB */,
-				2AB2243721A7D86100F6201F /* ja */,
-				2AB2243821A7D86100F6201F /* zh-Hans */,
-				5B0884F528296B60003D4C2D /* zh-Hant */,
-				0D51D5862274EAE300A5D747 /* fr */,
-				2AB2243921A7D86200F6201F /* de */,
-				2AB2243A21A7D86400F6201F /* it */,
-				2AB2243B21A7D86500F6201F /* pt */,
-				08C28F8D279CBE2E0016693E /* tr */,
+				2A5E6FE92A7343A800E33EA7 /* mul */,
 			);
 			name = SyntaxOutlineEditView.storyboard;
 			sourceTree = "<group>";
@@ -4020,15 +3940,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AB2243D21A7D8DF00F6201F /* Base */,
-				98EAE81D27A5D7D800C6D571 /* en-GB */,
-				2AB2244021A7D9D400F6201F /* ja */,
-				2AB2244121A7D9D500F6201F /* zh-Hans */,
-				5B0884F428296B60003D4C2D /* zh-Hant */,
-				0D51D5852274EAE200A5D747 /* fr */,
-				2AB2244221A7D9D600F6201F /* de */,
-				2AB2244321A7D9D700F6201F /* it */,
-				2AB2244421A7D9D800F6201F /* pt */,
-				08C28F8C279CBE2E0016693E /* tr */,
+				2A5E6FEA2A73452100E33EA7 /* mul */,
 			);
 			name = SyntaxCommentsEditView.storyboard;
 			sourceTree = "<group>";
@@ -4037,15 +3949,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AB2244921A7DB9B00F6201F /* Base */,
-				98EAE81C27A5D7D800C6D571 /* en-GB */,
-				2AB2244C21A7DCA000F6201F /* ja */,
-				2AB2244D21A7DCA100F6201F /* zh-Hans */,
-				5B0884F328296B60003D4C2D /* zh-Hant */,
-				0D51D5842274EAE200A5D747 /* fr */,
-				2AB2244E21A7DCA200F6201F /* de */,
-				2AB2244F21A7DCA300F6201F /* it */,
-				2AB2245021A7DCA400F6201F /* pt */,
-				08C28F8B279CBE2D0016693E /* tr */,
+				2A5E6FEB2A73469400E33EA7 /* mul */,
 			);
 			name = SyntaxTermsEditView.storyboard;
 			sourceTree = "<group>";
