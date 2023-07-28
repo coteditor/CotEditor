@@ -105,13 +105,13 @@
 "160.title" = "Cortar";
 
 /* Class = "NSMenuItem"; title = "Edit"; ObjectID = "163"; */
-"163.title" = "Editar";
+"163.title" = "Edición";
 
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "Borrar";
 
 /* Class = "NSMenu"; title = "Edit"; ObjectID = "169"; */
-"169.title" = "Editar";
+"169.title" = "Edición";
 
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
 "171.title" = "Pegar";
@@ -162,13 +162,13 @@
 "304.title" = "Estilo Sintaxis";
 
 /* Class = "NSMenuItem"; title = "View"; ObjectID = "322"; */
-"322.title" = "Ver";
+"322.title" = "Visualización";
 
 /* Class = "NSMenuItem"; title = "Show Line Numbers"; ObjectID = "323"; */
 "323.title" = "Mostrar números de línea";
 
 /* Class = "NSMenu"; title = "View"; ObjectID = "324"; */
-"324.title" = "Ver";
+"324.title" = "Visualización";
 
 /* Class = "NSMenuItem"; title = "Show Status Bar"; ObjectID = "325"; */
 "325.title" = "Mostrar barra de estado";
