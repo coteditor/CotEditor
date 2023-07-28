@@ -465,7 +465,7 @@
 "PSn-PG-o9k.title" = "Reemplazar texto";
 
 /* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */
-"PWZ-Om-OhX.title" = "Select Next Outline Item";
+"PWZ-Om-OhX.title" = "Seleccionar elemento siguiente del esquema";
 
 /* Class = "NSMenuItem"; title = "Open Outline Menu"; ObjectID = "PmT-ho-UU7"; */
 "PmT-ho-UU7.title" = "Abrir menu del esquema";
