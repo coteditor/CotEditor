@@ -67,7 +67,9 @@ struct CustomSurroundStringView: View {
                         .onSubmit(self.submit)
                         .labelsHidden()
                         .frame(width: 48)
-                }.padding(.trailing)
+                }
+                .fixedSize()
+                .padding(.trailing)
                 
                 LabeledContent("End:") {
                     TextField("", text: $pair.end, prompt: Text(verbatim: self.pair.begin))
@@ -75,6 +77,7 @@ struct CustomSurroundStringView: View {
                         .labelsHidden()
                         .frame(width: 48)
                 }
+                .fixedSize()
             }
             
             HStack {
