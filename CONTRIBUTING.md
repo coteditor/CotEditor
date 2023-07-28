@@ -57,7 +57,7 @@ You also need to take care of how Apple treats punctuation characters and symbol
 #### Submitting a new localization
 
 Copy one of a whole .lproj directory and use it as a template. We recommend using `CotEditor/en-GB.lproj/` directory because they are always up-to-date.
-Note that you don't need to localize the Unicode block names in the `Unicode.strings` file.
+Note that you don't need to localize the Unicode block names in the `UnicodeUnicode.strings` file.
 
 Continuous maintenance of the localization is highly recommended when providing a new localization. Please tell us if you also intend to be a localization maintainer when submitting a new localization. When we have new strings to be localized, we call the localization maintainers by creating an issue with the `@` mention on GitHub so that they can keep all their localized strings up to date.
 Currently, we already have maintainers for:

@@ -70,14 +70,12 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         let manager = SyntaxManager.shared
         
-        let syntax: SyntaxManager.SyntaxDictionary = {
-            switch mode {
-                case .edit(let state), .copy(let state):
-                    return manager.settingDictionary(name: state.name) ?? manager.blankSettingDictionary
-                case .new:
-                    return manager.blankSettingDictionary
-            }
-        }()
+        let syntax: SyntaxManager.SyntaxDictionary = switch mode {
+            case .edit(let state), .copy(let state):
+                manager.settingDictionary(name: state.name) ?? manager.blankSettingDictionary
+            case .new:
+                manager.blankSettingDictionary
+        }
         self.syntax = NSMutableDictionary(dictionary: syntax)
         
         switch mode {
@@ -128,13 +126,11 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         let syntaxNameField = self.syntaxNameField!
         
         // setup syntax name field
-        syntaxNameField.stringValue = {
-            switch self.mode {
-                case .edit(let state): return state.name
-                case .copy(let state): return SyntaxManager.shared.savableSettingName(for: state.name, appendingCopySuffix: true)
-                case .new: return ""
-            }
-        }()
+        syntaxNameField.stringValue = switch self.mode {
+            case .edit(let state): state.name
+            case .copy(let state): SyntaxManager.shared.savableSettingName(for: state.name, appendingCopySuffix: true)
+            case .new: ""
+        }
         if self.isBundledSyntax {
             syntaxNameField.isBezeled = false
             syntaxNameField.isSelectable = false

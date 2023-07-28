@@ -44,6 +44,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Private Properties
     
+    private static let windowFrameName = NSWindow.FrameAutosaveName("Document")
+    
     private lazy var editedIndicator: NSView = {
         
         let dotView = DotView()
@@ -63,22 +65,16 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     
     // MARK: -
-    // MARK: Window Controller Methods
+    // MARK: Lifecycle
     
-    override func windowDidLoad() {
+    convenience init(document: Document) {
         
-        super.windowDidLoad()
-        
-        self.shouldCascadeWindows = true
-        self.windowFrameAutosaveName = "Document"
-        
-        let window = self.window as! DocumentWindow
-        
-        // set window frame manually to workaround the issue that
-        // the window cascading randomly fails with window frame autosave. (2022-08, macOS 12.5)
-        window.setFrameUsingName(self.windowFrameAutosaveName)
+        let viewController: NSViewController? = NSStoryboard(name: "DocumentWindow")
+            .instantiateInitialController()
+        let window = DocumentWindow(contentViewController: viewController!)
         
         // set window size
+        window.setFrameUsingName(Self.windowFrameName)
         let width = UserDefaults.standard[.windowWidth]
         let height = UserDefaults.standard[.windowHeight]
         if width > 0 || height > 0 {
@@ -87,20 +83,43 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             window.setFrame(.init(origin: window.frame.origin, size: frameSize), display: false)
         }
         
+        self.init(window: window)
+        
+        self.windowFrameAutosaveName = Self.windowFrameName
+        
+        window.delegate = self
+        
+        // setup toolbar
+        let toolbar = NSToolbar(identifier: .document)
+        toolbar.displayMode = .iconOnly
+        toolbar.allowsUserCustomization = true
+        toolbar.autosavesConfiguration = true
+        toolbar.delegate = self
+        window.toolbarStyle = .unified
+        window.toolbar = toolbar
+        
+        // cascade window position
+        // -> Perform after setting the toolbar.
+        let cascadingPoint = NSApp.mainWindow?.cascadeTopLeft(from: .zero) ?? .zero
+        window.cascadeTopLeft(from: cascadingPoint)
+        
         // observe opacity setting change
-        self.opacityObserver = UserDefaults.standard.publisher(for: .windowAlpha, initial: true)
-            .assign(to: \.backgroundAlpha, on: window)
+        // -> Keep opaque when the window was created as a browsing window (the right side ones in the browsing mode).
+        if !document.isInViewingMode {
+            self.opacityObserver = UserDefaults.standard.publisher(for: .windowAlpha, initial: true)
+                .assign(to: \.backgroundAlpha, on: window)
+        }
         
         // observe appearance setting change
         self.appearanceModeObserver = UserDefaults.standard.publisher(for: .documentAppearance, initial: true)
             .map { (value) in
                 switch value {
-                    case .default: return nil
-                    case .light:   return NSAppearance(named: .aqua)
-                    case .dark:    return NSAppearance(named: .darkAqua)
+                    case .default: nil
+                    case .light:   NSAppearance(named: .aqua)
+                    case .dark:    NSAppearance(named: .darkAqua)
                 }
             }
-            .assign(to: \.appearance, on: self.window!)
+            .assign(to: \.appearance, on: window)
         
         //  observe for syntax line-up change
         self.syntaxListObserver = Publishers.Merge(SyntaxManager.shared.$settingNames,
@@ -109,6 +128,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             .sink { [weak self] _ in self?.buildSyntaxPopUpButton() }
     }
     
+    
+    
+    // MARK: Window Controller Methods
     
     override unowned(unsafe) var document: AnyObject? {
         
@@ -123,11 +145,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             }
             
             guard let document = document as? Document else { return }
-            
-            // -> In case when the window was created as a restored window (the right side ones in the browsing mode).
-            if document.isInViewingMode {
-                self.window?.isOpaque = true
-            }
             
             // observe document's syntax change
             self.documentSyntaxObserver = document.didChangeSyntax
@@ -207,7 +224,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         if !recentSyntaxNames.isEmpty {
             let title = String(localized: "Recently Used", comment: "menu heading in syntax list on toolbar popup")
-            menu.addItem(HeadingMenuItem(title: title))
+            menu.addItem(.sectionHeader(title: title))
             
             menu.items += recentSyntaxNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
             menu.addItem(.separator())
@@ -245,7 +262,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             menu.item(at: 1)?.tag = deletedTag
             popUpButton.selectItem(at: 1)
             
-            menu.insertItem(HeadingMenuItem(title: String(localized: "Deleted")), at: 1)
+            menu.insertItem(.sectionHeader(title: String(localized: "Deleted")), at: 1)
             menu.item(at: 1)?.tag = deletedTag
             
             menu.insertItem(.separator(), at: 1)
@@ -257,6 +274,12 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
 
 
 // MARK: - Toolbar
+
+private extension NSToolbar.Identifier {
+    
+    static let document = Self("7E7590E9-43BC-40F7-B967-07FA2780E47B")
+}
+
 
 private extension NSToolbarItem.Identifier {
     
@@ -471,13 +494,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = String(localized: "Comment")
                 item.toolTip = String(localized: "Comment-out or uncomment selection")
-                item.image = NSImage(named: "text.commentout")
+                item.image = NSImage(resource: .textCommentout)
                 item.action = #selector(EditorTextView.toggleComment)
                 return item
                 
             case .tabStyle:
                 let menu = NSMenu()
-                menu.addItem(HeadingMenuItem(title: String(localized: "Tab Width")))
+                menu.addItem(.sectionHeader(title: String(localized: "Tab Width")))
                 menu.items += [2, 3, 4, 8]
                     .map { (width) in
                         let item = NSMenuItem(title: width.formatted(), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
@@ -491,8 +514,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = String(localized: "Tab Style")
                 item.toolTip = String(localized: "Expand tabs to spaces automatically")
-                item.stateImages[.on] = NSImage(named: "tab.right.split")
-                item.stateImages[.off] = NSImage(named: "tab.right")
+                item.stateImages[.on] = NSImage(resource: .tabRightSplit)
+                item.stateImages[.off] = NSImage(resource: .tabRight)
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
                 item.menu = menu
                 item.menuFormRepresentation = NSMenuItem(title: item.label, action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
@@ -506,8 +529,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.possibleLabels = [String(localized: "Wrap Lines"),
                                        String(localized: "Unwrap Lines")]
                 item.toolTip = String(localized: "Wrap lines")
-                item.stateImages[.on] = NSImage(named: "text.wrap.slash")
-                item.stateImages[.off] = NSImage(named: "text.wrap")
+                item.stateImages[.on] = NSImage(resource: .textWrapSlash)
+                item.stateImages[.off] = NSImage(resource: .textWrap)
                 item.action = #selector(DocumentViewController.toggleLineWrap)
                 item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
                 return item
@@ -517,7 +540,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = String(localized: "Invisibles")
                 item.toolTip = String(localized: "Show invisible characters")
-                item.stateImages[.on] = NSImage(named: "paragraphsign.slash")
+                item.stateImages[.on] = NSImage(resource: .paragraphsignSlash)
                 item.stateImages[.off] = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: item.label)
                 item.action = #selector(DocumentViewController.toggleInvisibleChars)
                 item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
@@ -528,8 +551,9 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = String(localized: "Indent Guides")
                 item.toolTip = String(localized: "Hide indent guide lines")
-                item.stateImages[.on] = NSImage(named: "text.indentguides.hide")
-                item.stateImages[.off] = NSImage(named: "text.indentguides")
+                item.stateImages[.on] = NSImage(resource: .textIndentguidesHide)
+                
+                item.stateImages[.off] = NSImage(resource: .textIndentguides)
                 item.action = #selector(DocumentViewController.toggleIndentGuides)
                 item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
                 return item
@@ -545,16 +569,25 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .opacity:
-                let menuItem = NSMenuItem()
-                menuItem.view = OpacityHostingView(window: self.window as? DocumentWindow)
-                let item = MenuToolbarItem(itemIdentifier: itemIdentifier)
+                guard #available(macOS 14, *) else {
+                    let menuItem = NSMenuItem()
+                    menuItem.view = OpacityHostingView(window: self.window as? DocumentWindow)
+                    let item = MenuToolbarItem(itemIdentifier: itemIdentifier)
+                    item.label = String(localized: "Opacity")
+                    item.toolTip = String(localized: "Change editor’s opacity")
+                    item.image = NSImage(resource: .uiwindowOpacity)
+                    item.target = self
+                    item.showsIndicator = false
+                    item.menu = NSMenu()
+                    item.menu.items = [menuItem]
+                    return item
+                }
+                let item = NSToolbarItem(itemIdentifier: itemIdentifier)
+                item.isBordered = true
                 item.label = String(localized: "Opacity")
                 item.toolTip = String(localized: "Change editor’s opacity")
-                item.image = NSImage(named: "uiwindow.opacity")
-                item.target = self
-                item.showsIndicator = false
-                item.menu = NSMenu()
-                item.menu.items = [menuItem]
+                item.image = NSImage(resource: .uiwindowOpacity)
+                item.action = #selector(DocumentViewController.showOpacitySlider)
                 return item
                 
             case .spellCheck:
@@ -562,7 +595,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = String(localized: "Spell Check")
                 item.toolTip = String(localized: "Show spelling and grammar")
-                item.image = NSImage(named: "abc.checkmark")
+                item.image = NSImage(resource: .abcCheckmark)
                 item.action = #selector(NSTextView.showGuessPanel)
                 return item
                 
@@ -580,7 +613,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = String(localized: "Emoji & Symbols")
                 item.toolTip = String(localized: "Show Emoji & Symbols palette")
-                item.image = NSImage(named: "emoji")
+                item.image = NSImage(resource: .emoji)
                 item.action = #selector(NSApplication.orderFrontCharacterPalette)
                 return item
                 
@@ -619,7 +652,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .inspectorTrackingSeparator:
-                guard let splitView = (self.contentViewController as? NSSplitViewController)?.splitView else { return nil }
+                let splitView = (self.contentViewController as! NSSplitViewController).splitView
                 let item = NSTrackingSeparatorToolbarItem(identifier: itemIdentifier, splitView: splitView, dividerIndex: 0)
                 return item
                 

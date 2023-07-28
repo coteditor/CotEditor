@@ -75,7 +75,7 @@ struct CustomSurroundStringView: View {
                         .labelsHidden()
                         .frame(width: 48)
                 }
-            }
+            }.fixedSize()
             
             HStack {
                 Spacer()
@@ -115,10 +115,6 @@ struct CustomSurroundStringView: View {
 
 // MARK: - Preview
 
-struct CustomSurroundStringView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        CustomSurroundStringView(pair: nil) { _ in }
-    }
+#Preview {
+    CustomSurroundStringView(pair: nil) { _ in }
 }

@@ -111,14 +111,9 @@ final class ThemeManager: SettingFileManaging {
     var usesDarkAppearance: Bool {
         
         switch UserDefaults.standard[.documentAppearance] {
-            case .default:
-                // -> NSAppearance.current doesn't return the latest appearance when the system appearance
-                //    was changed after the app launch (macOS 10.14).
-                return NSApp.effectiveAppearance.isDark
-            case .light:
-                return false
-            case .dark:
-                return true
+            case .default: NSApp.effectiveAppearance.isDark
+            case .light: false
+            case .dark: true
         }
     }
     

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Q3W-uz-AWE">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Q3W-uz-AWE">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +14,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="340"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="LkV-qO-uNb">
+                            <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="LkV-qO-uNb">
                                 <rect key="frame" x="60" y="314" width="53" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Version:" usesSingleLineMode="YES" id="7gc-K7-WrS">
                                     <font key="font" metaFont="system"/>
@@ -22,7 +22,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yqJ-k5-0CH">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yqJ-k5-0CH">
                                 <rect key="frame" x="119" y="311" width="100" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="iiP-ev-FYk"/>
@@ -40,7 +40,7 @@
                                     <binding destination="YVG-yW-9Ua" name="value" keyPath="selection.version" id="8nB-bQ-W9H"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="teT-gX-wAf">
+                            <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="teT-gX-wAf">
                                 <rect key="frame" x="23" y="283" width="90" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Last modified:" usesSingleLineMode="YES" id="wrI-z3-8T0">
                                     <font key="font" metaFont="system"/>
@@ -48,7 +48,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7aU-lg-CUg">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7aU-lg-CUg">
                                 <rect key="frame" x="119" y="280" width="100" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="htL-Ri-5TS"/>
@@ -66,7 +66,7 @@
                                     <binding destination="YVG-yW-9Ua" name="value" keyPath="selection.lastModified" id="L71-Yr-RrH"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="751" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OBM-Yh-gb9">
+                            <textField focusRingType="none" horizontalHuggingPriority="751" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OBM-Yh-gb9">
                                 <rect key="frame" x="6" y="252" width="107" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Distribution URL:" usesSingleLineMode="YES" id="vOw-3n-nuT">
                                     <font key="font" metaFont="system"/>
@@ -74,7 +74,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BI9-H4-gcs">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BI9-H4-gcs">
                                 <rect key="frame" x="119" y="249" width="323" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="6qB-ld-faJ" customClass="PaddingTextFieldCell" customModule="CotEditor" customModuleProvider="target">
                                     <font key="font" metaFont="system"/>
@@ -91,7 +91,7 @@
                                     <binding destination="YVG-yW-9Ua" name="value" keyPath="selection.distributionURL" id="EWJ-Nd-TE2"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="2Ku-D2-K5S">
+                            <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="2Ku-D2-K5S">
                                 <rect key="frame" x="64" y="221" width="49" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Author:" usesSingleLineMode="YES" id="aL3-Pf-XDB">
                                     <font key="font" metaFont="system"/>
@@ -99,7 +99,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="93A-h6-vCG">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="93A-h6-vCG">
                                 <rect key="frame" x="119" y="218" width="323" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="98i-Ri-u4C">
                                     <font key="font" metaFont="system"/>
@@ -111,7 +111,7 @@
                                     <binding destination="YVG-yW-9Ua" name="value" keyPath="selection.author" id="5Hw-2j-v3B"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="QlB-f2-NG3">
+                            <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="QlB-f2-NG3">
                                 <rect key="frame" x="58" y="190" width="55" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="License:" usesSingleLineMode="YES" id="qBg-TV-NzD">
                                     <font key="font" metaFont="system"/>
@@ -119,7 +119,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o0U-5A-8FS">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o0U-5A-8FS">
                                 <rect key="frame" x="119" y="187" width="323" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="AIV-PE-1n6">
                                     <font key="font" metaFont="system"/>
@@ -134,7 +134,7 @@
                                     <binding destination="YVG-yW-9Ua" name="value" keyPath="selection.license" id="sYa-5D-BaH"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="lhp-Zr-mnv">
+                            <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="lhp-Zr-mnv">
                                 <rect key="frame" x="35" y="161" width="78" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Description:" usesSingleLineMode="YES" id="4bM-8L-klg">
                                     <font key="font" metaFont="system"/>
@@ -142,7 +142,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="sNf-iG-xYO">
+                            <textField focusRingType="none" verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="sNf-iG-xYO">
                                 <rect key="frame" x="119" y="36" width="323" height="141"/>
                                 <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="bnJ-UO-5HV">
                                     <font key="font" metaFont="system"/>
@@ -156,14 +156,14 @@
                             </textField>
                             <button toolTip="Jump to URL" translatesAutoresizingMaskIntoConstraints="NO" id="KlI-NS-4x6">
                                 <rect key="frame" x="424" y="250" width="14" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="20u-k0-WXh"/>
-                                    <constraint firstAttribute="width" secondItem="KlI-NS-4x6" secondAttribute="height" multiplier="1:1" id="Dk1-k8-S3t"/>
-                                </constraints>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFollowLinkFreestandingTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Dd9-LH-biq">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="20u-k0-WXh"/>
+                                    <constraint firstAttribute="width" secondItem="KlI-NS-4x6" secondAttribute="height" multiplier="1:1" id="Dk1-k8-S3t"/>
+                                </constraints>
                                 <connections>
                                     <action selector="jumpToURL:" target="QOX-2V-Izf" id="pmk-dq-5Vq"/>
                                     <binding destination="YVG-yW-9Ua" name="hidden" keyPath="selection.distributionURL" id="Ivb-vo-aHM">

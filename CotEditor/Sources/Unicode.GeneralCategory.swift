@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,77 +29,45 @@ extension Unicode.GeneralCategory {
     var longName: String {
         
         switch self {
-            case .uppercaseLetter:
-                return "Uppercase Letter"
-            case .lowercaseLetter:
-                return "Lowercase Letter"
-            case .titlecaseLetter:
-                return "Titlecase Letter"
+            case .uppercaseLetter: "Uppercase Letter"
+            case .lowercaseLetter: "Lowercase Letter"
+            case .titlecaseLetter: "Titlecase Letter"
                 
-            case .modifierLetter:
-                return "Modifier Letter"
-            case .otherLetter:
-                return "Other Letter"
+            case .modifierLetter: "Modifier Letter"
+            case .otherLetter: "Other Letter"
                 
-            case .nonspacingMark:
-                return "Nonspacing Mark"
-            case .spacingMark:
-                return "Spacing Mark"
-            case .enclosingMark:
-                return "Enclosing Mark"
+            case .nonspacingMark: "Nonspacing Mark"
+            case .spacingMark: "Spacing Mark"
+            case .enclosingMark: "Enclosing Mark"
                 
-            case .decimalNumber:
-                return "Decimal Number"
-            case .letterNumber:
-                return "Letter Number"
-            case .otherNumber:
-                return "Other Number"
+            case .decimalNumber: "Decimal Number"
+            case .letterNumber: "Letter Number"
+            case .otherNumber: "Other Number"
                 
-            case .connectorPunctuation:
-                return "Connector Punctuation"
-            case .dashPunctuation:
-                return "Dash Punctuation"
-            case .openPunctuation:
-                return "Open Punctuation"
-            case .closePunctuation:
-                return "Close Punctuation"
-            case .initialPunctuation:
-                return "Initial Punctuation"
-            case .finalPunctuation:
-                return "Final Punctuation"
-            case .otherPunctuation:
-                return "Other Punctuation"
+            case .connectorPunctuation: "Connector Punctuation"
+            case .dashPunctuation: "Dash Punctuation"
+            case .openPunctuation: "Open Punctuation"
+            case .closePunctuation: "Close Punctuation"
+            case .initialPunctuation: "Initial Punctuation"
+            case .finalPunctuation: "Final Punctuation"
+            case .otherPunctuation: "Other Punctuation"
                 
-            case .mathSymbol:
-                return "Math Symbol"
-            case .currencySymbol:
-                return "Currency Symbol"
-            case .modifierSymbol:
-                return "Modifier Symbol"
-            case .otherSymbol:
-                return "Other Symbol"
+            case .mathSymbol: "Math Symbol"
+            case .currencySymbol: "Currency Symbol"
+            case .modifierSymbol: "Modifier Symbol"
+            case .otherSymbol: "Other Symbol"
                 
-            case .spaceSeparator:
-                return "Space Separator"
-            case .lineSeparator:
-                return "Line Separator"
-            case .paragraphSeparator:
-                return "Paragraph Separator"
+            case .spaceSeparator: "Space Separator"
+            case .lineSeparator: "Line Separator"
+            case .paragraphSeparator: "Paragraph Separator"
                 
-            case .control:
-                return "Control"
-            case .format:
-                return "Format"
-            case .surrogate:
-                return "Surrogate"
-            case .privateUse:
-                return "Private Use"
-            case .unassigned:
-                return "Unassigned"
+            case .control: "Control"
+            case .format: "Format"
+            case .surrogate: "Surrogate"
+            case .privateUse: "Private Use"
+            case .unassigned: "Unassigned"
                 
-            @unknown default:
-                assertionFailure()
-                return "(UNKNOWN)"
+            @unknown default: "(UNKNOWN)"
         }
     }
     
@@ -108,77 +76,45 @@ extension Unicode.GeneralCategory {
     var shortName: String {
         
         switch self {
-            case .uppercaseLetter:
-                return "Lu"
-            case .lowercaseLetter:
-                return "Ll"
-            case .titlecaseLetter:
-                return "Lt"
+            case .uppercaseLetter: "Lu"
+            case .lowercaseLetter: "Ll"
+            case .titlecaseLetter: "Lt"
                 
-            case .modifierLetter:
-                return "Lm"
-            case .otherLetter:
-                return "Lo"
+            case .modifierLetter: "Lm"
+            case .otherLetter: "Lo"
                 
-            case .nonspacingMark:
-                return "Mn"
-            case .spacingMark:
-                return "Mc"
-            case .enclosingMark:
-                return "Me"
+            case .nonspacingMark: "Mn"
+            case .spacingMark: "Mc"
+            case .enclosingMark: "Me"
                 
-            case .decimalNumber:
-                return "Nd"
-            case .letterNumber:
-                return "Nl"
-            case .otherNumber:
-                return "No"
+            case .decimalNumber: "Nd"
+            case .letterNumber: "Nl"
+            case .otherNumber: "No"
                 
-            case .connectorPunctuation:
-                return "Pc"
-            case .dashPunctuation:
-                return "Pd"
-            case .openPunctuation:
-                return "Ps"
-            case .closePunctuation:
-                return "Pe"
-            case .initialPunctuation:
-                return "Pi"
-            case .finalPunctuation:
-                return "Pf"
-            case .otherPunctuation:
-                return "Po"
+            case .connectorPunctuation: "Pc"
+            case .dashPunctuation: "Pd"
+            case .openPunctuation: "Ps"
+            case .closePunctuation: "Pe"
+            case .initialPunctuation: "Pi"
+            case .finalPunctuation: "Pf"
+            case .otherPunctuation: "Po"
                 
-            case .mathSymbol:
-                return "Sm"
-            case .currencySymbol:
-                return "sc"
-            case .modifierSymbol:
-                return "Sk"
-            case .otherSymbol:
-                return "So"
+            case .mathSymbol: "Sm"
+            case .currencySymbol: "sc"
+            case .modifierSymbol: "Sk"
+            case .otherSymbol: "So"
                 
-            case .spaceSeparator:
-                return "Zs"
-            case .lineSeparator:
-                return "Zl"
-            case .paragraphSeparator:
-                return "Zp"
+            case .spaceSeparator: "Zs"
+            case .lineSeparator: "Zl"
+            case .paragraphSeparator: "Zp"
                 
-            case .control:
-                return "Cc"
-            case .format:
-                return "Cf"
-            case .surrogate:
-                return "Cs"
-            case .privateUse:
-                return "Co"
-            case .unassigned:
-                return "Cn"
+            case .control: "Cc"
+            case .format: "Cf"
+            case .surrogate: "Cs"
+            case .privateUse: "Co"
+            case .unassigned: "Cn"
                 
-            @unknown default:
-                assertionFailure()
-                return "?"
+            @unknown default: "?"
         }
     }
 }

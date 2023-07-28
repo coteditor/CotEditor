@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -75,20 +75,20 @@ private extension NSFont.Name {
         switch self {
             case .menlo:
                 switch weight {
-                    case .regular: return "Regular"
-                    case .bold: return "Bold"
-                    default: return nil
+                    case .regular: "Regular"
+                    case .bold: "Bold"
+                    default: nil
                 }
                 
             case .avenirNextCondensed:
                 switch weight {
-                    case .ultraLight: return "UltraLight"
-                    case .regular: return "Regular"
-                    case .medium: return "Medium"
-                    case .semibold: return "DemiBold"
-                    case .bold: return "Bold"
-                    case .heavy: return "Heavy"
-                    default: return nil
+                    case .ultraLight: "UltraLight"
+                    case .regular: "Regular"
+                    case .medium: "Medium"
+                    case .semibold: "DemiBold"
+                    case .bold: "Bold"
+                    case .heavy: "Heavy"
+                    default: nil
                 }
         }
     }

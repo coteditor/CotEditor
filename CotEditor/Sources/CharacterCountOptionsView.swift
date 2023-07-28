@@ -121,14 +121,10 @@ private extension CharacterCountOptions.CharacterUnit {
     var label: LocalizedStringKey {
         
         switch self {
-            case .graphemeCluster:
-                return "Grapheme cluster"
-            case .unicodeScalar:
-                return "Unicode scalar"
-            case .utf16:
-                return "UTF-16"
-            case .byte:
-                return "Byte"
+            case .graphemeCluster: "Grapheme cluster"
+            case .unicodeScalar: "Unicode scalar"
+            case .utf16: "UTF-16"
+            case .byte: "Byte"
         }
     }
     
@@ -137,13 +133,13 @@ private extension CharacterCountOptions.CharacterUnit {
         
         switch self {
             case .graphemeCluster:
-                return "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character."
+                "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character."
             case .unicodeScalar:
-                return "Count Unicode code points. Same as counting UTF-32."
+                "Count Unicode code points. Same as counting UTF-32."
             case .utf16:
-                return "Count Unicode code points but a surrogate pair as two characters."
+                "Count Unicode code points but a surrogate pair as two characters."
             case .byte:
-                return "Count bytes of the text encoded with the specified encoding."
+                "Count bytes of the text encoded with the specified encoding."
         }
     }
 }
@@ -152,10 +148,6 @@ private extension CharacterCountOptions.CharacterUnit {
 
 // MARK: - Preview
 
-struct CharacterCountOptionsView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        CharacterCountOptionsView()
-    }
+#Preview {
+    CharacterCountOptionsView()
 }

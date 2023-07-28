@@ -41,11 +41,11 @@ extension Unicode {
         var sequence: [UInt8] {
             
             switch self {
-                case .utf8: return [0xEF, 0xBB, 0xBF]
-                case .utf32BigEndian: return [0x00, 0x00, 0xFE, 0xFF]
-                case .utf32LittleEndian: return [0xFF, 0xFE, 0x00, 0x00]
-                case .utf16BigEndian: return [0xFE, 0xFF]
-                case .utf16LittleEndian: return [0xFF, 0xFE]
+                case .utf8: [0xEF, 0xBB, 0xBF]
+                case .utf32BigEndian: [0x00, 0x00, 0xFE, 0xFF]
+                case .utf32LittleEndian: [0xFF, 0xFE, 0x00, 0x00]
+                case .utf16BigEndian: [0xFE, 0xFF]
+                case .utf16LittleEndian: [0xFF, 0xFE]
             }
         }
         
@@ -53,12 +53,9 @@ extension Unicode {
         var encoding: String.Encoding {
             
             switch self {
-                case .utf8:
-                    return .utf8
-                case .utf32BigEndian, .utf32LittleEndian:
-                    return .utf32
-                case .utf16BigEndian, .utf16LittleEndian:
-                    return .utf16
+                case .utf8: .utf8
+                case .utf32BigEndian, .utf32LittleEndian: .utf32
+                case .utf16BigEndian, .utf16LittleEndian: .utf16
             }
         }
     }

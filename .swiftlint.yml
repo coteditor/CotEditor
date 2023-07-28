@@ -11,7 +11,6 @@ analyzer_rules:
 
 opt_in_rules:
   - array_init
-  - attributes
   - closure_end_indentation
   - closure_spacing
   - collection_alignment
@@ -70,6 +69,7 @@ disabled_rules:
   - force_cast
   - force_try
   - opening_brace
+  - switch_case_alignment
   - trailing_comma
 
 private_outlet:
@@ -77,12 +77,6 @@ private_outlet:
 
 trailing_whitespace:
   ignores_empty_lines: true
-
-switch_case_alignment:
-  indented_cases: true
-
-attributes:
-  always_on_same_line: ["@IBAction", "@objc"]
 
 function_parameter_count:
   warning: 6
@@ -111,7 +105,7 @@ type_body_length:
   error: 1500
 
 function_body_length:
-  warning: 250
+  warning: 260
   error: 300
 
 large_tuple:

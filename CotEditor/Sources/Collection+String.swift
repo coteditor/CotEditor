@@ -73,13 +73,13 @@ private func compareFunction(options: StringComparisonOptions) -> (String, Strin
     
     switch options {
         case [.localized, .caseInsensitive]:
-            return { $0.localizedCaseInsensitiveCompare($1) }
+            { $0.localizedCaseInsensitiveCompare($1) }
         case [.localized]:
-            return { $0.localizedCompare($1) }
+            { $0.localizedCompare($1) }
         case [.caseInsensitive]:
-            return { $0.caseInsensitiveCompare($1) }
+            { $0.caseInsensitiveCompare($1) }
         case []:
-            return { $0.compare($1) }
+            { $0.compare($1) }
         default:
             fatalError()
     }

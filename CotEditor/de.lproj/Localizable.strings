@@ -589,7 +589,7 @@
 
 
 
-/* MARK: Unicode Input View Controller */
+/* MARK: Unicode Input View */
 "Recents" = "Zuletzt benutzt";
 "Clear Recents" = "Verlauf löschen";
 "Invalid code" = "Ungültiger Code";
@@ -872,8 +872,18 @@
 
 
 
-/* MARK: Unicode Input View */
-"Invalid code" = "Ungültiger Code";
+/* MARK: Character Info */
+"<a letter consisting of %lld characters>" = "<ein aus %lld Zeichen bestehender Buchstabe>";
+
+// Variation selectors
+"Emoji Style" = "Emoji-Stil";
+"Text Style" = "Text-Stil";
+"Skin Tone I-II" = "Hautfarbe I-II";
+"Skin Tone III" = "Hautfarbe III";
+"Skin Tone IV" = "Hautfarbe IV";
+"Skin Tone V" = "Hautfarbe V";
+"Skin Tone VI" = "Hautfarbe VI";
+"Variant" = "Variante";
 
 
 

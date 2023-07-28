@@ -43,16 +43,16 @@ struct InvalidShortcutError: LocalizedError {
         
         switch self.kind {
             case .singleType:
-                return String(localized: "Single type is invalid for a shortcut.")
+                String(localized: "Single type is invalid for a shortcut.")
                 
             case let .alreadyTaken(name):
-                return String(localized: "“\(self.shortcut.symbol)” is already taken by the “\(name)” command.")
+                String(localized: "“\(self.shortcut.symbol)” is already taken by the “\(name)” command.")
                 
             case .shiftOnlyModifier:
-                return String(localized: "The Shift key can be used only with another modifier key.")
+                String(localized: "The Shift key can be used only with another modifier key.")
                 
             case .unsupported:
-                return String(localized: "The combination “\(self.shortcut.symbol)” is not supported for the shortcut customization.")
+                String(localized: "The combination “\(self.shortcut.symbol)” is not supported for the shortcut customization.")
         }
     }
 }

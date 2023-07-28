@@ -33,7 +33,7 @@ import SwiftUI
         
         self.init(rootView: OpacityView(window: window))
         
-        self.ensureFrameSize()
+        self.frame.size = self.intrinsicContentSize
     }
     
     
@@ -46,7 +46,7 @@ import SwiftUI
         
         super.init(rootView: OpacityView(window: window))
         
-        self.ensureFrameSize()
+        self.frame.size = self.intrinsicContentSize
     }
     
     
@@ -86,6 +86,7 @@ struct OpacityView: View {
             }
         }
         .padding(10)
+        .fixedSize()
     }
 }
 
@@ -177,13 +178,11 @@ private struct OpacitySample: View {
 
 // MARK: - Preview
 
-struct OpacityView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        OpacityView()
-        
-        OpacitySample(opacity: 0.5)
-            .frame(width: 16, height: 16)
-    }
+#Preview {
+    OpacityView()
+}
+
+#Preview("OpacitySample") {
+    OpacitySample(opacity: 0.5)
+        .frame(width: 16, height: 16)
 }

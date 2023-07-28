@@ -393,21 +393,21 @@ final class PrintTextView: NSTextView, Themable {
         
         switch type {
             case .documentName:
-                return self.documentInfo.name
+                self.documentInfo.name
             case .syntaxName:
-                return self.documentInfo.syntaxName
+                self.documentInfo.syntaxName
             case .filePath:
-                return self.documentInfo.fileURL?.pathAbbreviatingWithTilde ?? self.documentInfo.name
+                self.documentInfo.fileURL?.pathAbbreviatingWithTilde ?? self.documentInfo.name
             case .printDate:
-                return String(localized: "Printed on \(.now, format: .dateTime)", comment: "%@ is date")
+                String(localized: "Printed on \(.now, format: .dateTime)", comment: "%@ is date")
             case .lastModifiedDate:
-                return self.documentInfo.lastModifiedDate
+                self.documentInfo.lastModifiedDate
                     .flatMap { String(localized: "Last modified on \($0, format: .dateTime)", comment: "%@ is date") }
                     ?? "–"
             case .pageNumber:
-                return NSPrintOperation.current.flatMap { String($0.currentPage) }
+                NSPrintOperation.current.flatMap { String($0.currentPage) }
             case .none:
-                return nil
+                nil
         }
     }
 }
@@ -510,18 +510,18 @@ private enum HeaderFooterLocation {
         
         switch self {
             case .header:
-                return Keys(needsDraw: .printsHeader,
-                            primaryContent: .primaryHeaderContent,
-                            primaryAlignment: .primaryHeaderAlignment,
-                            secondaryContent: .secondaryHeaderContent,
-                            secondaryAlignment: .secondaryHeaderAlignment)
+                Keys(needsDraw: .printsHeader,
+                     primaryContent: .primaryHeaderContent,
+                     primaryAlignment: .primaryHeaderAlignment,
+                     secondaryContent: .secondaryHeaderContent,
+                     secondaryAlignment: .secondaryHeaderAlignment)
                 
             case .footer:
-                return Keys(needsDraw: .printsFooter,
-                            primaryContent: .primaryFooterContent,
-                            primaryAlignment: .primaryFooterAlignment,
-                            secondaryContent: .secondaryFooterContent,
-                            secondaryAlignment: .secondaryFooterAlignment)
+                Keys(needsDraw: .printsFooter,
+                     primaryContent: .primaryFooterContent,
+                     primaryAlignment: .primaryFooterAlignment,
+                     secondaryContent: .secondaryFooterContent,
+                     secondaryAlignment: .secondaryFooterAlignment)
         }
     }
 }
@@ -533,12 +533,9 @@ private extension AlignmentType {
     var textAlignment: NSTextAlignment {
         
         switch self {
-            case .left:
-                return .left
-            case .center:
-                return .center
-            case .right:
-                return .right
+            case .left: .left
+            case .center: .center
+            case .right: .right
         }
     }
 }

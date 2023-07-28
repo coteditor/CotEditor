@@ -136,7 +136,7 @@ final class SnippetManager {
         
         // add snippets for the current scope
         if !scopeSnippets.isEmpty, let scope {
-            menu.items.append(HeadingMenuItem(title: scope))
+            menu.items.append(.sectionHeader(title: scope))
             menu.items += scopeSnippets.map { snippet in
                 let item = NSMenuItem(title: snippet.name, action: action, keyEquivalent: "")
                 item.shortcut = snippet.shortcut

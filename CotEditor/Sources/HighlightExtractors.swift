@@ -38,13 +38,13 @@ extension HighlightDefinition {
         get throws {
             switch (self.isRegularExpression, self.endString) {
                 case (true, .some(let endString)):
-                    return try BeginEndRegularExpressionExtractor(beginPattern: self.beginString, endPattern: endString, ignoresCase: self.ignoreCase)
+                    try BeginEndRegularExpressionExtractor(beginPattern: self.beginString, endPattern: endString, ignoresCase: self.ignoreCase)
                     
                 case (true, .none):
-                    return try RegularExpressionExtractor(pattern: self.beginString, ignoresCase: self.ignoreCase)
+                    try RegularExpressionExtractor(pattern: self.beginString, ignoresCase: self.ignoreCase)
                     
                 case (false, .some(let endString)):
-                    return BeginEndStringExtractor(beginString: self.beginString, endString: endString, ignoresCase: self.ignoreCase)
+                    BeginEndStringExtractor(beginString: self.beginString, endString: endString, ignoresCase: self.ignoreCase)
                     
                 case (false, .none):
                     preconditionFailure("non-regex words should be preprocessed at Syntax.init()")

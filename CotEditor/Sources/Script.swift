@@ -89,13 +89,13 @@ struct ScriptFileError: LocalizedError {
         
         switch self.kind {
             case .existence:
-                return String(localized: "The script “\(self.url.lastPathComponent)” does not exist.")
+                String(localized: "The script “\(self.url.lastPathComponent)” does not exist.")
             case .read:
-                return String(localized: "The script “\(self.url.lastPathComponent)” couldn’t be read.")
+                String(localized: "The script “\(self.url.lastPathComponent)” couldn’t be read.")
             case .open:
-                return String(localized: "The script file “\(self.url.path)” couldn’t be opened.")
+                String(localized: "The script file “\(self.url.path)” couldn’t be opened.")
             case .permission:
-                return String(localized: "The script “\(self.url.lastPathComponent)” can’t be executed because you don’t have the execute permission.")
+                String(localized: "The script “\(self.url.lastPathComponent)” can’t be executed because you don’t have the execute permission.")
         }
     }
     
@@ -104,9 +104,9 @@ struct ScriptFileError: LocalizedError {
         
         switch self.kind {
             case .permission:
-                return String(localized: "Check the permission of the script file.")
+                String(localized: "Check the permission of the script file.")
             default:
-                return String(localized: "Check the script file.")
+                String(localized: "Check the script file.")
         }
     }
 }
@@ -124,11 +124,11 @@ enum ScriptError: LocalizedError {
         
         switch self {
             case .standardError(let string):
-                return string
+                string
             case .noInputTarget:
-                return String(localized: "No document to get input.")
+                String(localized: "No document to get input.")
             case .noOutputTarget:
-                return String(localized: "No document to put output.")
+                String(localized: "No document to put output.")
         }
     }
 }

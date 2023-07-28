@@ -85,39 +85,24 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
             
             self.fontSize = defaults[.printFontSize]
             
-            self.theme = {
-                switch PrintColorMode(rawValue: defaults[.printColorIndex]) {
-                    case .blackAndWhite:
-                        return ThemeName.blackAndWhite
-                    case .sameAsDocument:
-                        return ThemeManager.shared.userDefaultSettingName
-                    default:
-                        return defaults[.printTheme] ?? ThemeName.blackAndWhite
-                }
-            }()
+            self.theme = switch PrintColorMode(rawValue: defaults[.printColorIndex]) {
+                case .blackAndWhite: ThemeName.blackAndWhite
+                case .sameAsDocument: ThemeManager.shared.userDefaultSettingName
+                default: defaults[.printTheme] ?? ThemeName.blackAndWhite
+            }
             self.printsBackground = defaults[.printBackground]
             
-            self.printsLineNumbers = {
-                switch defaults[.printLineNumIndex] {
-                    case .no:
-                        return false
-                    case .sameAsDocument:
-                        return self.documentShowsLineNumber
-                    case .yes:
-                        return true
-                }
-            }()
+            self.printsLineNumbers = switch defaults[.printLineNumIndex] {
+                case .no: false
+                case .sameAsDocument: self.documentShowsLineNumber
+                case .yes: true
+            }
             
-            self.printsInvisibles = {
-                switch defaults[.printInvisibleCharIndex] {
-                    case .no:
-                        return false
-                    case .sameAsDocument:
-                        return self.documentShowsInvisibles
-                    case .yes:
-                        return true
-                }
-            }()
+            self.printsInvisibles = switch defaults[.printInvisibleCharIndex] {
+                case .no: false
+                case .sameAsDocument: self.documentShowsInvisibles
+                case .yes: true
+            }
             
             self.printsHeader = defaults[.printHeader]
             self.primaryHeaderContent = defaults[.primaryHeaderContent]
@@ -240,7 +225,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         popUpButton.addItem(withTitle: ThemeName.blackAndWhite)
         
         popUpButton.menu?.addItem(.separator())
-        popUpButton.menu?.addItem(HeadingMenuItem(title: String(localized: "Theme")))
+        popUpButton.menu?.addItem(.sectionHeader(title: String(localized: "Theme")))
         
         for themeName in themeNames {
             popUpButton.addItem(withTitle: themeName)
@@ -383,20 +368,13 @@ private extension PrintInfoType {
     var localizedDescription: String {
         
         switch self {
-            case .none:
-                return String(localized: "None")
-            case .syntaxName:
-                return String(localized: "Syntax Name")
-            case .documentName:
-                return String(localized: "Document Name")
-            case .filePath:
-                return String(localized: "File Path")
-            case .printDate:
-                return String(localized: "Print Date")
-            case .lastModifiedDate:
-                return String(localized: "Last Modified Date")
-            case .pageNumber:
-                return String(localized: "Page Number")
+            case .none: String(localized: "None")
+            case .syntaxName: String(localized: "Syntax Name")
+            case .documentName: String(localized: "Document Name")
+            case .filePath: String(localized: "File Path")
+            case .printDate: String(localized: "Print Date")
+            case .lastModifiedDate: String(localized: "Last Modified Date")
+            case .pageNumber: String(localized: "Page Number")
         }
     }
 }
@@ -407,12 +385,9 @@ private extension AlignmentType {
     var localizedDescription: String {
         
         switch self {
-            case .left:
-                return String(localized: "Left")
-            case .center:
-                return String(localized: "Center")
-            case .right:
-                return String(localized: "Right")
+            case .left:   String(localized: "Left")
+            case .center: String(localized: "Center")
+            case .right:  String(localized: "Right")
         }
     }
 }

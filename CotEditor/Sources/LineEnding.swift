@@ -34,8 +34,6 @@ enum LineEnding: Character, CaseIterable {
     case lineSeparator = "\u{2028}"
     case paragraphSeparator = "\u{2029}"
     
-    static let basicCases: [LineEnding] = [.lf, .cr, .crlf]
-    
     
     var string: String {
         
@@ -55,21 +53,46 @@ enum LineEnding: Character, CaseIterable {
     }
     
     
+    var isBasic: Bool {
+        
+        switch self {
+            case .lf, .cr, .crlf: true
+            case .nel, .lineSeparator, .paragraphSeparator: false
+        }
+    }
+    
+    
     var name: String {
         
         switch self {
+            case .lf: "LF"
+            case .cr: "CR"
+            case .crlf: "CRLF"
+            case .nel: "NEL"
+            case .lineSeparator: "LS"
+            case .paragraphSeparator: "PS"
+        }
+    }
+    
+    
+    var longName: String {
+        
+        switch self {
             case .lf:
-                return "LF"
+                String(localized: "macOS / Unix", table: "LineEnding")
             case .cr:
-                return "CR"
+                String(localized: "Classic Mac OS", table: "LineEnding")
             case .crlf:
-                return "CRLF"
+                String(localized: "Windows", table: "LineEnding")
             case .nel:
-                return "NEL"
+                String(localized: "Unix Next Line", table: "LineEnding",
+                       comment: "This item is preferably as-is because of the unfamiliarity.")
             case .lineSeparator:
-                return "LS"
+                String(localized: "Unix Line Separator", table: "LineEnding",
+                       comment: "This item is preferably as-is because of the unfamiliarity.")
             case .paragraphSeparator:
-                return "PS"
+                String(localized: "Unix Paragraph Separator", table: "LineEnding",
+                       comment: "This item is preferably as-is because of the unfamiliarity.")
         }
     }
 }
@@ -83,12 +106,9 @@ private extension LineEnding {
     var regexPattern: String {
         
         switch self {
-            case .lf:
-                return "(?<!\r)\n"
-            case .cr:
-                return "\r(?!\n)"
-            default:
-                return self.string
+            case .lf: "(?<!\r)\n"
+            case .cr: "\r(?!\n)"
+            default: self.string
         }
     }
 }

@@ -75,13 +75,14 @@ final class ColorCodePanelController: NSObject, NSWindowDelegate {
         
         let accessory = ColorCodePanelAccessory(colorCode: colorCode, panel: panel)
         let view = NSHostingView(rootView: accessory)
-        view.ensureFrameSize()
         panel.accessoryView = view
         
         // make position of accessory view center
         view.translatesAutoresizingMaskIntoConstraints = false
         if let superview = view.superview {
             NSLayoutConstraint.activate([
+                superview.topAnchor.constraint(equalTo: view.topAnchor),
+                superview.bottomAnchor.constraint(equalTo: view.bottomAnchor),
                 superview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 superview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             ])
@@ -229,20 +230,13 @@ private extension ColorCodeType {
     var label: LocalizedStringKey {
         
         switch self {
-            case .hex:
-                return "Hexadecimal"
-            case .shortHex:
-                return "Hexadecimal (Short)"
-            case .cssRGB:
-                return "CSS RGB"
-            case .cssRGBa:
-                return "CSS RGBa"
-            case .cssHSL:
-                return "CSS HSL"
-            case .cssHSLa:
-                return "CSS HSLa"
-            case .cssKeyword:
-                return "CSS Keyword"
+            case .hex: "Hexadecimal"
+            case .shortHex: "Hexadecimal (Short)"
+            case .cssRGB: "CSS RGB"
+            case .cssRGBa: "CSS RGBa"
+            case .cssHSL: "CSS HSL"
+            case .cssHSLa: "CSS HSLa"
+            case .cssKeyword: "CSS Keyword"
         }
     }
 }
@@ -251,11 +245,7 @@ private extension ColorCodeType {
 
 // MARK: - Preview
 
-struct ColorCodePanelAccessory_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        ColorCodePanelAccessory(colorCode: "#006699", panel: .shared)
-            .frame(width: 240)
-    }
+#Preview {
+    ColorCodePanelAccessory(colorCode: "#006699", panel: .shared)
+        .frame(width: 240)
 }

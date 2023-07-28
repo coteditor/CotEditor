@@ -203,15 +203,13 @@ final class IncompatibleCharactersViewController: NSViewController {
     @MainActor private func updateMessage(isScanning: Bool) {
         
         self.messageField?.textColor = self.incompatibleCharacters.isEmpty ? .secondaryLabelColor : .labelColor
-        self.messageField?.stringValue = {
-            switch self.incompatibleCharacters.count {
-                case _ where isScanning: return String(localized: "Scanning incompatible characters…")
-                case 0:  return String(localized: "No issues found.")
-                case 1:  return String(localized: "Found an incompatible character.")
-                default: return String(localized: "Found \(self.incompatibleCharacters.count) incompatible characters.",
-                                       comment: "%lld is the number of characters.")
-            }
-        }()
+        self.messageField?.stringValue = switch self.incompatibleCharacters.count {
+            case _ where isScanning: String(localized: "Scanning incompatible characters…")
+            case 0:  String(localized: "No issues found.")
+            case 1:  String(localized: "Found an incompatible character.")
+            default: String(localized: "Found \(self.incompatibleCharacters.count) incompatible characters.",
+                            comment: "%lld is the number of characters.")
+        }
     }
     
     

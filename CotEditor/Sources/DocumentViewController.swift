@@ -206,14 +206,10 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             if UserDefaults.standard[.detectsIndentStyle],
                let indentStyle = document.textStorage.string.detectedIndentStyle
             {
-                self.isAutoTabExpandEnabled = {
-                    switch indentStyle {
-                        case .tab:
-                            return false
-                        case .space:
-                            return true
-                    }
-                }()
+                self.isAutoTabExpandEnabled = switch indentStyle {
+                    case .tab: false
+                    case .space: true
+                }
             }
             
             // focus text view
@@ -339,13 +335,11 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                 (item as? any StatableItem)?.state = (self.writingDirection == .rightToLeft) ? .on : .off
                 
             case #selector(changeWritingDirection):
-                (item as? NSToolbarItemGroup)?.selectedIndex = {
-                    switch self.writingDirection {
-                        case _ where self.verticalLayoutOrientation: return -1
-                        case .rightToLeft: return 1
-                        default: return 0
-                    }
-                }()
+                (item as? NSToolbarItemGroup)?.selectedIndex = switch self.writingDirection {
+                    case _ where self.verticalLayoutOrientation: -1
+                    case .rightToLeft: 1
+                    default: 0
+                }
                 
             case #selector(changeOrientation):
                 (item as? NSToolbarItemGroup)?.selectedIndex = self.verticalLayoutOrientation ? 1 : 0
@@ -743,10 +737,18 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         let opacityView = OpacityView(window: self.view.window as? DocumentWindow)
         let viewController = NSHostingController(rootView: opacityView)
-        viewController.sizingOptions = .preferredContentSize
         
-        self.present(viewController, asPopoverRelativeTo: .zero, of: self.view,
-                     preferredEdge: .maxY, behavior: .transient)
+        if #available(macOS 14, *), let toolbarItem = sender as? NSToolbarItem {
+            let popover = NSPopover()
+            popover.behavior = .semitransient
+            popover.contentViewController = viewController
+            popover.show(relativeTo: toolbarItem)
+            
+        } else {
+            viewController.sizingOptions = .preferredContentSize
+            self.present(viewController, asPopoverRelativeTo: .zero, of: self.view,
+                         preferredEdge: .maxY, behavior: .transient)
+        }
     }
     
     

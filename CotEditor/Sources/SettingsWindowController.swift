@@ -78,22 +78,14 @@ private extension SettingsPane {
     private var storyboardName: NSStoryboard.Name {
         
         switch self {
-            case .general:
-                return "GeneralPane"
-            case .window:
-                return "WindowPane"
-            case .appearance:
-                return "AppearancePane"
-            case .edit:
-                return "EditPane"
-            case .format:
-                return "FormatPane"
-            case .snippets:
-                return "SnippetsPane"
-            case .keyBindings:
-                return "KeyBindingsPane"
-            case .print:
-                return "PrintPane"
+            case .general: "GeneralPane"
+            case .window: "WindowPane"
+            case .appearance: "AppearancePane"
+            case .edit: "EditPane"
+            case .format: "FormatPane"
+            case .snippets: "SnippetsPane"
+            case .keyBindings: "KeyBindingsPane"
+            case .print: "PrintPane"
         }
     }
 }

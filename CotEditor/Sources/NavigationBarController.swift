@@ -88,7 +88,7 @@ final class NavigationBarController: NSViewController {
         self.viewObservers.removeAll()
         
         splitViewController.$isVertical
-            .map { NSImage(named: $0 ? "split.add-vertical" : "split.add") }
+            .map { NSImage(resource: $0 ? .splitAddVertical : .splitAdd) }
             .assign(to: \.image, on: self.openSplitButton!)
             .store(in: &self.viewObservers)
         splitViewController.$canCloseSplitItem
@@ -272,17 +272,15 @@ final class NavigationBarController: NSViewController {
             let nextButton = self.nextButton
         else { return assertionFailure() }
         
-        let prevSymbol: NSImage.Name
-        let nextSymbol: NSImage.Name
-        switch orientation {
-            case .horizontal:
-                prevSymbol = "chevron.up"
-                nextSymbol = "chevron.down"
-            case .vertical:
-                prevSymbol = "chevron.right"
-                nextSymbol = "chevron.left"
-            @unknown default:
-                fatalError()
+        let prevSymbol: NSImage.Name = switch orientation {
+            case .horizontal: "chevron.up"
+            case .vertical: "chevron.right"
+            @unknown default: fatalError()
+        }
+        let nextSymbol: NSImage.Name = switch orientation {
+            case .horizontal: "chevron.down"
+            case .vertical: "chevron.left"
+            @unknown default: fatalError()
         }
         
         prevButton.image = NSImage(systemSymbolName: prevSymbol,

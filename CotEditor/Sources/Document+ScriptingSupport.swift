@@ -39,37 +39,25 @@ private enum OSALineEnding: FourCharCode {
     var lineEnding: LineEnding {
         
         switch self {
-            case .lf:
-                return .lf
-            case .cr:
-                return .cr
-            case .crlf:
-                return .crlf
-            case .nel:
-                return .nel
-            case .ls:
-                return .lineSeparator
-            case .ps:
-                return .paragraphSeparator
+            case .lf: .lf
+            case .cr: .cr
+            case .crlf: .crlf
+            case .nel: .nel
+            case .ls: .lineSeparator
+            case .ps: .paragraphSeparator
         }
     }
     
     
     init?(lineEnding: LineEnding) {
         
-        switch lineEnding {
-            case .lf:
-                self = .lf
-            case .cr:
-                self = .cr
-            case .crlf:
-                self = .crlf
-            case .nel:
-                self = .nel
-            case .lineSeparator:
-                self = .ls
-            case .paragraphSeparator:
-                self = .ps
+        self = switch lineEnding {
+            case .lf: .lf
+            case .cr: .cr
+            case .crlf: .crlf
+            case .nel: .nel
+            case .lineSeparator: .ls
+            case .paragraphSeparator: .ps
         }
     }
 }

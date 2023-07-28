@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,11 +25,25 @@
 
 import AppKit
 
-final class HeadingMenuItem: NSMenuItem {
+public extension NSMenuItem {
+    
+    /// A back deployed version of the NSMenuItem.sectionHeader(title:) method.
+    ///
+    /// - Parameter title: The title to display.
+    /// - Returns: A menu item.
+    @backDeployed(before: macOS 14)
+    static func sectionHeader(title: String) -> NSMenuItem {
+        
+        HeadingMenuItem(title: title)
+    }
+}
+
+
+public final class HeadingMenuItem: NSMenuItem {
     
     // MARK: Lifecycle
     
-    convenience init(title: String) {
+    public convenience init(title: String) {
         
         self.init(title: title, action: nil, keyEquivalent: "")
         self.isEnabled = false
@@ -38,7 +52,7 @@ final class HeadingMenuItem: NSMenuItem {
     }
     
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         
         super.awakeFromNib()
         

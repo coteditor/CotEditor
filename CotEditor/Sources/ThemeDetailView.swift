@@ -31,12 +31,13 @@ import AppKit.NSColor
     private let name: String?
     
     @Published var text: Color
-    @Published var insertionPoint: Color
     @Published var invisibles: Color
+    @Published var insertionPoint: Color
+    @Published var usesInsertionPointSystemSetting: Bool
     @Published var background: Color
     @Published var lineHighlight: Color
     @Published var selection: Color
-    @Published var usesSystemSetting: Bool
+    @Published var usesSelectionSystemSetting: Bool
     
     @Published var keywords: Color
     @Published var commands: Color
@@ -60,12 +61,13 @@ import AppKit.NSColor
         self.name = theme.name
         
         self._text = .init(initialValue: Color(nsColor: theme.text.color))
-        self._insertionPoint = .init(initialValue: Color(nsColor: theme.insertionPoint.color))
         self._invisibles = .init(initialValue: Color(nsColor: theme.invisibles.color))
+        self._insertionPoint = .init(initialValue: Color(nsColor: theme.insertionPoint.color))
+        self._usesInsertionPointSystemSetting = .init(initialValue: theme.insertionPoint.usesSystemSetting)
         self._background = .init(initialValue: Color(nsColor: theme.background.color))
         self._lineHighlight = .init(initialValue: Color(nsColor: theme.lineHighlight.color))
         self._selection = .init(initialValue: Color(nsColor: theme.selection.color))
-        self._usesSystemSetting = .init(initialValue: theme.selection.usesSystemSetting)
+        self._usesSelectionSystemSetting = .init(initialValue: theme.selection.usesSystemSetting)
         
         self._keywords = .init(initialValue: Color(nsColor: theme.keywords.color))
         self._commands = .init(initialValue: Color(nsColor: theme.commands.color))
@@ -89,12 +91,12 @@ import AppKit.NSColor
         
         var theme = Theme(name: self.name)
         theme.text.color = NSColor(self.text)
-        theme.insertionPoint.color = NSColor(self.insertionPoint)
         theme.invisibles.color = NSColor(self.invisibles)
+        theme.insertionPoint.color = NSColor(self.insertionPoint)
         theme.background.color = NSColor(self.background)
         theme.lineHighlight.color = NSColor(self.lineHighlight)
         theme.selection.color = NSColor(self.selection)
-        theme.selection.usesSystemSetting = self.usesSystemSetting
+        theme.selection.usesSystemSetting = self.usesSelectionSystemSetting
         
         theme.keywords.color = NSColor(self.keywords)
         theme.commands.color = NSColor(self.commands)
@@ -149,7 +151,11 @@ struct ThemeDetailView: View {
                 VStack(alignment: .trailing, spacing: 3) {
                     ColorPicker("Text:", selection: $theme.text, supportsOpacity: false)
                     ColorPicker("Invisibles:", selection: $theme.invisibles, supportsOpacity: false)
-                    ColorPicker("Cursor:", selection: $theme.insertionPoint, supportsOpacity: false)
+                    if #available(macOS 14, *) {
+                        SystemColorPicker("Cursor:", selection: $theme.insertionPoint, usesSystemSetting: $theme.usesInsertionPointSystemSetting, systemColor: Color(nsColor: .textInsertionPointColor))
+                    } else {
+                        ColorPicker("Cursor:", selection: $theme.insertionPoint, supportsOpacity: false)
+                    }
                 }
                 .background(WidthGetter(key: WidthKey.self))
                 .frame(width: self.columnWidth, alignment: .trailing)
@@ -159,10 +165,7 @@ struct ThemeDetailView: View {
                 VStack(alignment: .trailing, spacing: 3) {
                     ColorPicker("Background:", selection: $theme.background, supportsOpacity: false)
                     ColorPicker("Current Line:", selection: $theme.lineHighlight, supportsOpacity: false)
-                    ColorPicker("Selection:", selection: self.theme.usesSystemSetting ? .constant(Color(nsColor: .selectedTextBackgroundColor)) : $theme.selection, supportsOpacity: false)
-                        .disabled(self.theme.usesSystemSetting)
-                    Toggle("Use system color", isOn: $theme.usesSystemSetting)
-                        .controlSize(.small)
+                    SystemColorPicker("Selection:", selection: $theme.selection, usesSystemSetting: $theme.usesSelectionSystemSetting, systemColor: Color(nsColor: .selectedTextBackgroundColor))
                 }
             }
             
@@ -230,6 +233,34 @@ struct ThemeDetailView: View {
     }
 }
 
+
+private struct SystemColorPicker: View {
+    
+    let label: LocalizedStringKey
+    @Binding var selection: Color
+    @Binding var usesSystemSetting: Bool
+    var systemColor: Color
+    
+    
+    init(_ label: LocalizedStringKey, selection: Binding<Color>, usesSystemSetting: Binding<Bool>, systemColor: Color) {
+        
+        self.label = label
+        self._selection = selection
+        self._usesSystemSetting = usesSystemSetting
+        self.systemColor = systemColor
+    }
+    
+    
+    var body: some View {
+        
+        ColorPicker(self.label,
+                    selection: self.usesSystemSetting ? .constant(self.systemColor) : $selection,
+                    supportsOpacity: false)
+        .disabled(self.usesSystemSetting)
+        Toggle("Use system color", isOn: $usesSystemSetting)
+            .controlSize(.small)
+    }
+}
 
 
 private struct ThemeMetadataView: View {
@@ -302,25 +333,23 @@ private struct ThemeMetadataView: View {
 
 // MARK: - Preview
 
-struct ThemeDetailView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        ThemeDetailView(ThemeManager.shared.setting(name: "Anura")!, isBundled: false) { _ in }
-            .frame(width: 360, height: 280)
-        
-        ThemeMetadataView(author: .constant("Clarus"),
-                          distributionURL: .constant("https://coteditor.com"),
-                          license: .constant(""),
-                          description: .constant(""),
-                          isEditable: true)
-        .previewDisplayName("Metadata (editable)")
-        
-        ThemeMetadataView(author: .constant(""),
-                          distributionURL: .constant(""),
-                          license: .constant(""),
-                          description: .constant(""),
-                          isEditable: false)
-        .previewDisplayName("Metadata (fixed)")
-    }
+#Preview {
+    ThemeDetailView(ThemeManager.shared.setting(name: "Anura")!, isBundled: false) { _ in }
+        .frame(width: 360, height: 280)
+}
+
+#Preview("Metadata (editable)") {
+    ThemeMetadataView(author: .constant("Clarus"),
+                      distributionURL: .constant("https://coteditor.com"),
+                      license: .constant(""),
+                      description: .constant(""),
+                      isEditable: true)
+}
+
+#Preview("Metadata (fixed)") {
+    ThemeMetadataView(author: .constant(""),
+                      distributionURL: .constant(""),
+                      license: .constant(""),
+                      description: .constant(""),
+                      isEditable: false)
 }

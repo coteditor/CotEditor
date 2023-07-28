@@ -8,10 +8,12 @@ Change Log
 ### Improvements
 
 - Change the system requirement to __macOS 13 Ventura and later__.
+- Add “Use system color” option to insertion point color in the theme setting view.
 - Add a font size field to the print dialog.
-- Deprecate print font setting in the Print settings.
+- Deprecate the print font setting in the Print settings.
 - Migrate the sharing interface to the modern version.
-- Disable the contextual menu for shortcut fields.
+- [trivial] Migrate the Opacity toolbar item to popover in macOS 14.
+- [trivial] Disable the contextual menu for shortcut fields.
 - [trivial] Rename “syntax style” with just “syntax.”
 
 

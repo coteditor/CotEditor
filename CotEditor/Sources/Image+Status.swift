@@ -53,13 +53,13 @@ private extension Image.Status {
         
         switch self {
             case .none:
-                return NSImage.statusNoneName
+                NSImage.statusNoneName
             case .unavailable:
-                return NSImage.statusUnavailableName
+                NSImage.statusUnavailableName
             case .partiallyAvailable:
-                return NSImage.statusPartiallyAvailableName
+                NSImage.statusPartiallyAvailableName
             case .available:
-                return NSImage.statusAvailableName
+                NSImage.statusAvailableName
         }
     }
 }
@@ -67,15 +67,11 @@ private extension Image.Status {
 
 // MARK: - Preview
 
-struct StatusImage_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        VStack(alignment: .leading) {
-            Label(title: { Text(verbatim: "none") }, icon: { Image(status: .none) })
-            Label(title: { Text(verbatim: "available") }, icon: { Image(status: .available) })
-            Label(title: { Text(verbatim: "partiallyAvailable") }, icon: { Image(status: .partiallyAvailable) })
-            Label(title: { Text(verbatim: "unavailable") }, icon: { Image(status: .unavailable) })
-        }.padding()
-    }
+#Preview {
+    VStack(alignment: .leading) {
+        Label(title: { Text(verbatim: "none") }, icon: { Image(status: .none) })
+        Label(title: { Text(verbatim: "available") }, icon: { Image(status: .available) })
+        Label(title: { Text(verbatim: "partiallyAvailable") }, icon: { Image(status: .partiallyAvailable) })
+        Label(title: { Text(verbatim: "unavailable") }, icon: { Image(status: .unavailable) })
+    }.padding()
 }

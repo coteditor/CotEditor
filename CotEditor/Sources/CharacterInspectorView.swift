@@ -189,21 +189,26 @@ private struct CharacterView: NSViewRepresentable {
 
 // MARK: - Preview
 
-struct CharacterInspectorView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        CharacterInspectorView(info: CharacterInfo(character: "𓆏"))
-            .previewDisplayName("𓆏")
-        CharacterInspectorView(info: CharacterInfo(character: "\n"))
-            .previewDisplayName("\\n")
-        CharacterInspectorView(info: CharacterInfo(character: "ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡"))
-            .previewDisplayName("ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡")
-        CharacterInspectorView(info: CharacterInfo(character: "🏴‍☠️"))
-            .previewDisplayName("🏴‍☠️")
-        CharacterInspectorView(info: CharacterInfo(character: "🇦🇦"))
-            .previewDisplayName("🇦🇦")
+#Preview("𓆏") {
+    CharacterInspectorView(info: CharacterInfo(character: "𓆏"))
+}
+
+#Preview("\\n") {
+    CharacterInspectorView(info: CharacterInfo(character: "\n"))
+}
+
+#Preview("ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡") {
+    CharacterInspectorView(info: CharacterInfo(character: "ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡"))
+}
+
+#Preview("🏴‍☠️") {
+    CharacterInspectorView(info: CharacterInfo(character: "🏴‍☠️"))
+}
+
+#Preview("🇦🇦") {
+    CharacterInspectorView(info: CharacterInfo(character: "🇦🇦"))
+}
+
+    #Preview("deprecated") {
         CharacterInspectorView(info: CharacterInfo(character: "ឣ"))
-            .previewDisplayName("deprecated")
-    }
 }

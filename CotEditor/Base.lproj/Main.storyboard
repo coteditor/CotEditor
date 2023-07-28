@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -352,55 +353,7 @@ Gw
                                     <items>
                                         <menuItem title="Line Endings" tag="100" id="294">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Line Endings" id="296" customClass="OptionalMenu" customModule="CotEditor" customModuleProvider="target">
-                                                <items>
-                                                    <menuItem title="macOS / Unix (LF)" id="295">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="changeLineEnding:" target="Ady-hI-5gd" id="aRB-qc-Kfq"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Classic Mac OS (CR)" tag="1" id="297">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="changeLineEnding:" target="Ady-hI-5gd" id="9Kc-CI-vbM"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Windows (CRLF)" tag="2" id="298">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="changeLineEnding:" target="Ady-hI-5gd" id="qZo-Oc-YV1"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Next Line (NEL)" tag="3" hidden="YES" id="pUE-eY-9RI">
-                                                        <modifierMask key="keyEquivalentModifierMask" option="YES"/>
-                                                        <attributedString key="userComments">
-                                                            <fragment content="Unlike other line endings, this item is preferably as-is because of the unfamiliarity."/>
-                                                        </attributedString>
-                                                        <connections>
-                                                            <action selector="changeLineEnding:" target="Ady-hI-5gd" id="kMb-3e-oqh"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Unicode Line Separator (LS)" tag="4" hidden="YES" id="ins-89-nu3">
-                                                        <modifierMask key="keyEquivalentModifierMask" option="YES"/>
-                                                        <attributedString key="userComments">
-                                                            <fragment content="Unlike other line endings, this item is preferably as-is because of the unfamiliarity."/>
-                                                        </attributedString>
-                                                        <connections>
-                                                            <action selector="changeLineEnding:" target="Ady-hI-5gd" id="WJR-XT-Mtc"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Unicode Paragraph Separator (PS)" tag="5" hidden="YES" id="Zz9-5c-bS1">
-                                                        <modifierMask key="keyEquivalentModifierMask" option="YES"/>
-                                                        <attributedString key="userComments">
-                                                            <fragment content="Unlike other line endings, this item is preferably as-is because of the unfamiliarity."/>
-                                                        </attributedString>
-                                                        <connections>
-                                                            <action selector="changeLineEnding:" target="Ady-hI-5gd" id="p4p-VS-YXM"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                </items>
-                                            </menu>
+                                            <menu key="submenu" title="Line Endings" id="296" customClass="OptionalMenu" customModule="CotEditor" customModuleProvider="target"/>
                                         </menuItem>
                                         <menuItem title="File Encoding" id="299">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -1238,6 +1191,7 @@ CA
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="CotEditor" customModuleProvider="target">
                     <connections>
                         <outlet property="encodingsMenu" destination="300" id="Oy6-3l-RCI"/>
+                        <outlet property="lineEndingsMenu" destination="296" id="U4V-rN-Wn0"/>
                         <outlet property="normalizationMenu" destination="600" id="Ned-B7-VAN"/>
                         <outlet property="snippetMenu" destination="dZy-7n-iCq" id="3hf-hr-ScA"/>
                         <outlet property="syntaxesMenu" destination="304" id="KxC-5F-otD"/>

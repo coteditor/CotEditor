@@ -99,11 +99,11 @@ private extension HUDView.Symbol {
         
         switch self {
             case .wrap:
-                return "arrow.triangle.capsulepath"
+                "arrow.triangle.capsulepath"
             case .reachTop:
-                return "arrow.up.to.line"
+                "arrow.up.to.line"
             case .reachBottom:
-                return "arrow.down.to.line"
+                "arrow.down.to.line"
         }
     }
     
@@ -112,9 +112,9 @@ private extension HUDView.Symbol {
         
         switch self {
             case .wrap(let flipped):
-                return flipped
+                flipped
             default:
-                return false
+                false
         }
     }
 }
@@ -123,10 +123,6 @@ private extension HUDView.Symbol {
 
 // MARK: - Preview
 
-struct HUDView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        HUDView(symbol: .wrap())
-    }
+#Preview {
+    HUDView(symbol: .wrap())
 }

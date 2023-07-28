@@ -87,10 +87,6 @@ struct CustomTabWidthView: View {
 
 // MARK: - Preview
 
-struct CustomTabWidthView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        CustomTabWidthView(tabWidth: 4) { _ in }
-    }
+#Preview {
+    CustomTabWidthView(tabWidth: 4) { _ in }
 }

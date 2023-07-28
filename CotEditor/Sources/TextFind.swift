@@ -48,11 +48,11 @@ struct TextFind {
             
             switch self {
                 case .regularExpression:
-                    return String(localized: "Invalid regular expression")
+                    String(localized: "Invalid regular expression")
                 case .emptyFindString:
-                    return String(localized: "Empty find string")
+                    String(localized: "Empty find string")
                 case .emptyInSelectionSearch:
-                    return String(localized: "The option “in selection” is selected, although nothing is selected.")
+                    String(localized: "The option “in selection” is selected, although nothing is selected.")
             }
         }
         
@@ -61,11 +61,11 @@ struct TextFind {
             
             switch self {
                 case .regularExpression(let reason):
-                    return reason
+                    reason
                 case .emptyFindString:
-                    return String(localized: "Input text to find.")
+                    String(localized: "Input text to find.")
                 case .emptyInSelectionSearch:
-                    return String(localized: "Select the search scope in the document or turn off the “in selection” option.")
+                    String(localized: "Select the search scope in the document or turn off the “in selection” option.")
             }
         }
     }
@@ -348,9 +348,9 @@ struct TextFind {
         
         switch self.mode {
             case .regularExpression(_, let unescapes) where unescapes:
-                return string.unescaped
+                string.unescaped
             case .regularExpression, .textual:
-                return string
+                string
         }
     }
     

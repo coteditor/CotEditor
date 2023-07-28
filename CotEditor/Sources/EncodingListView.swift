@@ -207,10 +207,6 @@ private extension CFStringEncoding {
 
 // MARK: - Preview
 
-struct EncodingListView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        EncodingListView()
-    }
+#Preview {
+    EncodingListView()
 }

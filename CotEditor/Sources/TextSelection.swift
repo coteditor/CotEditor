@@ -62,13 +62,13 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
     var form: UnicodeNormalizationForm {
         
         switch self {
-            case .nfc: return .nfc
-            case .nfd: return .nfd
-            case .nfkc: return .nfkc
-            case .nfkd: return .nfkd
-            case .nfkcCasefold: return .nfkcCasefold
-            case .modifiedNFC: return .modifiedNFC
-            case .modifiedNFD: return .modifiedNFD
+            case .nfc: .nfc
+            case .nfd: .nfd
+            case .nfkc: .nfkc
+            case .nfkd: .nfkd
+            case .nfkcCasefold: .nfkcCasefold
+            case .modifiedNFC: .modifiedNFC
+            case .modifiedNFD: .modifiedNFD
         }
     }
 }
@@ -128,11 +128,9 @@ final class TextSelection: NSObject {
         set {
             guard let string: String = {
                 switch newValue {
-                    case let storage as NSTextStorage:
-                        return storage.string
-                    case let string as String:
-                        return string
-                    default: return nil
+                    case let storage as NSTextStorage: storage.string
+                    case let string as String: string
+                    default: nil
                 }
             }() else { return }
             

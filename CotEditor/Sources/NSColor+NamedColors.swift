@@ -28,7 +28,7 @@ import AppKit.NSColor
 
 extension NSColor {
     
-    static let textHighlighterColor = NSColor(named: "Accent Color")!.withAlphaComponent(0.4)
+    static let textHighlighterColor = NSColor(resource: .accent).withAlphaComponent(0.4)
 }
 
 

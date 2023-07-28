@@ -69,6 +69,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxesMenu: NSMenu?
+    @IBOutlet private weak var lineEndingsMenu: NSMenu?
     @IBOutlet private weak var themesMenu: NSMenu?
     @IBOutlet private weak var normalizationMenu: NSMenu?
     @IBOutlet private weak var snippetMenu: NSMenu?
@@ -114,6 +115,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 EncodingManager.shared.updateChangeEncodingMenu(menu)
             }
             .store(in: &self.menuUpdateObservers)
+        
+        self.lineEndingsMenu?.items = LineEnding.allCases.map { lineEnding in
+            let item = NSMenuItem()
+            item.title = String(localized: "\(lineEnding.longName) (\(lineEnding.name))")
+            item.tag = lineEnding.index
+            item.action = #selector(Document.changeLineEnding(_:))
+            item.isHidden = !lineEnding.isBasic
+            item.keyEquivalentModifierMask = lineEnding.isBasic ? [] : [.option]
+            
+            return item
+        }
         
         SyntaxManager.shared.$settingNames
             .map { $0.map { NSMenuItem(title: $0, action: #selector((any SyntaxHolder).changeSyntax), keyEquivalent: "") } }

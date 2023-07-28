@@ -69,13 +69,11 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             .sink { [weak self] (orientation) in
                 guard let self else { return assertionFailure() }
                 
-                self.stackView?.orientation = {
-                    switch orientation {
-                        case .horizontal: return .horizontal
-                        case .vertical: return .vertical
-                        @unknown default: fatalError()
-                    }
-                }()
+                self.stackView?.orientation = switch orientation {
+                    case .horizontal: .horizontal
+                    case .vertical: .vertical
+                    @unknown default: fatalError()
+                }
                 
                 self.lineNumberView?.orientation = orientation
             }
@@ -217,7 +215,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         }
         let viewController = NSHostingController(rootView: view)
         viewController.rootView.parent = viewController
-        viewController.ensureFrameSize()
         
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -1, dy: -1) ?? .zero
         let edge: NSRectEdge = (textView.layoutOrientation == .vertical) ? .maxX : .minY
@@ -240,6 +237,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         }
         let optionViewController = NSHostingController(rootView: sheetView)
         optionViewController.rootView.parent = optionViewController
+        
         self.presentAsSheet(optionViewController)
     }
     
@@ -255,9 +253,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         let characterInfo = CharacterInfo(character: character)
         let popoverController = DetachablePopoverViewController()
-        let hostingView = NSHostingView(rootView: CharacterInspectorView(info: characterInfo))
-        hostingView.ensureFrameSize()
-        popoverController.view = hostingView
+        popoverController.view = NSHostingView(rootView: CharacterInspectorView(info: characterInfo))
         
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -4, dy: -4) ?? .zero
         

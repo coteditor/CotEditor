@@ -163,14 +163,10 @@ private extension UnicodeInputView {
 }
 
 
-struct UnicodeInputView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        UnicodeInputView(codePoint: "")
-            .previewDisplayName("Empty")
-        
-        UnicodeInputView(codePoint: "U+1318F")
-            .previewDisplayName("𓆏")
-    }
+#Preview("Empty") {
+    UnicodeInputView(codePoint: "")
+}
+
+#Preview("𓆏") {
+    UnicodeInputView(codePoint: "U+1318F")
 }

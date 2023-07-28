@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,11 +41,11 @@ extension NSValidatedUserInterfaceItem {
         get {
             switch self {
                 case let item as NSMenuItem:
-                    return item.toolTip
+                    item.toolTip
                 case let item as NSToolbarItem:
-                    return item.toolTip
+                    item.toolTip
                 case let item as NSCustomTouchBarItem:
-                    return item.toolTip
+                    item.toolTip
                 default:
                     // -> Only NSMenuItem and NSToolbarItem inherit NSValidatedUserInterfaceItem.
                     preconditionFailure()
