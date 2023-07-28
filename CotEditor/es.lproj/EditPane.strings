@@ -12,7 +12,7 @@
 "3287.title" = "Ancho de sangría:";
 
 /* Class = "NSButtonCell"; title = "Smart copy/paste"; ObjectID = "3302"; */
-"3302.title" = "Copiar/pegar inteligente";
+"3302.title" = "Copiado/pegado inteligente";
 
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "Intercambia las teclas “¥” y “\\”";
