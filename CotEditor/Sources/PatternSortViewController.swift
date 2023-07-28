@@ -245,7 +245,7 @@ final class RegularExpressionSortPatternViewController: SortPatternViewControlle
         
         menu.items.removeAll()
         menu.addItem(.init())  // dummy item
-        menu.addItem(HeadingMenuItem(title: String(localized: "Recents")))
+        menu.addItem(.sectionHeader(title: String(localized: "Recents")))
         
         guard !UserDefaults.standard[.regexPatternSortHistory].isEmpty else { return }
         

@@ -207,7 +207,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         if !recentSyntaxNames.isEmpty {
             let title = String(localized: "Recently Used", comment: "menu heading in syntax list on toolbar popup")
-            menu.addItem(HeadingMenuItem(title: title))
+            menu.addItem(.sectionHeader(title: title))
             
             menu.items += recentSyntaxNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
             menu.addItem(.separator())
@@ -245,7 +245,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             menu.item(at: 1)?.tag = deletedTag
             popUpButton.selectItem(at: 1)
             
-            menu.insertItem(HeadingMenuItem(title: String(localized: "Deleted")), at: 1)
+            menu.insertItem(.sectionHeader(title: String(localized: "Deleted")), at: 1)
             menu.item(at: 1)?.tag = deletedTag
             
             menu.insertItem(.separator(), at: 1)
@@ -477,7 +477,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             case .tabStyle:
                 let menu = NSMenu()
-                menu.addItem(HeadingMenuItem(title: String(localized: "Tab Width")))
+                menu.addItem(.sectionHeader(title: String(localized: "Tab Width")))
                 menu.items += [2, 3, 4, 8]
                     .map { (width) in
                         let item = NSMenuItem(title: width.formatted(), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")

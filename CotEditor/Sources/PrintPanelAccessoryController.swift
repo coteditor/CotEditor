@@ -225,7 +225,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         popUpButton.addItem(withTitle: ThemeName.blackAndWhite)
         
         popUpButton.menu?.addItem(.separator())
-        popUpButton.menu?.addItem(HeadingMenuItem(title: String(localized: "Theme")))
+        popUpButton.menu?.addItem(.sectionHeader(title: String(localized: "Theme")))
         
         for themeName in themeNames {
             popUpButton.addItem(withTitle: themeName)
