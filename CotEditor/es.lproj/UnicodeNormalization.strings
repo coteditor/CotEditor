@@ -29,9 +29,9 @@
 "NFC" = "NFC";
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
-"NFKC Casefold" = "NFKC Casefold";
-"Modified NFC" = "Modified NFC";
-"Modified NFD" = "Modified NFD";
+"NFKC Casefold" = "NFKC plegado";
+"Modified NFC" = "NFC modificado";
+"Modified NFD" = "NFD modificado";
 
 
 // description for NFD
@@ -43,7 +43,7 @@
 // description for NFKC
 "Compatibility Decomposition, followed by Canonical Composition" = "Descomposición de compatibilidad, seguida de la composición canónica";
 // description for NFKC Casefold
-"Applying NFKC, CaseFolding, and removal of default-ignorable code points" = "Aplicación de NFKC, CaseFolding y eliminación de puntos de código ignorables por defecto";
+"Applying NFKC, CaseFolding, and removal of default-ignorable code points" = "Aplicación de NFKC, plegado y eliminación de puntos de código ignorables por defecto";
 // description for Modified NFC
 "Unofficial NFD-based normalization form used in HFS+" = "Formulario de normalización no oficial basado en NFD utilizado en HFS+";
 // description for Modified NFD

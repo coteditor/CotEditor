@@ -339,7 +339,7 @@
 "5eg-wx-S4p.title" = "Comprobar gramática y ortografía";
 
 /* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
-"5is-7G-OVT.title" = "Desresaltar";
+"5is-7G-OVT.title" = "Quitar resalte";
 
 /* Class = "NSMenuItem"; title = "Orientation"; ObjectID = "6eV-nI-heo"; */
 "6eV-nI-heo.title" = "Orientation";
