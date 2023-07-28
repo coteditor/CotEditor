@@ -61,6 +61,9 @@ import Combine
         
         super.viewDidLoad()
         
+        // build line endings pop-up
+        self.buildLineEndingPopUpButton()
+        
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
@@ -198,7 +201,7 @@ import Combine
     }
     
     
-    /// build encoding pop-up item
+    /// Build encoding pop-up button.
     @MainActor private func buildEncodingPopUpButton() {
         
         guard
@@ -210,6 +213,25 @@ import Combine
         
         if let fileEncoding = self.document?.fileEncoding {
             popUpButton.selectItem(withTag: fileEncoding.tag)
+        }
+    }
+    
+    
+    /// Build line ending pop-up menu.
+    @MainActor private func buildLineEndingPopUpButton() {
+        
+        guard let menu = self.lineEndingPopUpButton?.menu else { return assertionFailure() }
+        
+        menu.items += LineEnding.allCases.map { lineEnding in
+            let item = NSMenuItem()
+            item.title = lineEnding.name
+            item.tag = lineEnding.index
+            item.toolTip = lineEnding.longName
+            item.action = #selector(Document.changeLineEnding(_:))
+            item.isHidden = !lineEnding.isBasic
+            item.keyEquivalentModifierMask = lineEnding.isBasic ? [] : [.option]
+            
+            return item
         }
     }
 }

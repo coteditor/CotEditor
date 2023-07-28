@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -178,7 +178,7 @@
                     <visualEffectView key="view" wantsLayer="YES" blendingMode="withinWindow" material="titlebar" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="JZo-9i-3gf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="21"/>
                         <subviews>
-                            <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v28-4g-3Pc" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                            <textField wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v28-4g-3Pc" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="8" y="4" width="33" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="0nP-0Q-Mgz">
                                     <font key="font" metaFont="smallSystem"/>
@@ -190,12 +190,8 @@
                                 </connections>
                             </textField>
                             <popUpButton toolTip="Line Endings" translatesAutoresizingMaskIntoConstraints="NO" id="FNE-H9-iZR">
-                                <rect key="frame" x="543" y="0.0" width="53" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="Fo4-PE-eBJ"/>
-                                    <constraint firstAttribute="height" constant="21" id="i5y-f9-wPx"/>
-                                </constraints>
-                                <popUpButtonCell key="cell" type="smallSquare" title="LF" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" autoenablesItems="NO" selectedItem="YT7-vd-3ih" id="uXq-8L-T6d">
+                                <rect key="frame" x="507" y="0.0" width="89" height="21"/>
+                                <popUpButtonCell key="cell" type="smallSquare" title="Line Endings" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" tag="-1" inset="2" autoenablesItems="NO" selectedItem="mS8-3F-93y" id="uXq-8L-T6d">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                     <menu key="menu" autoenablesItems="NO" id="2cU-Cq-rxZ" customClass="OptionalMenu" customModule="CotEditor" customModuleProvider="target">
@@ -203,51 +199,16 @@
                                             <menuItem title="Line Endings" tag="-1" enabled="NO" id="mS8-3F-93y" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="LF" state="on" toolTip="macOS / Unix" id="YT7-vd-3ih">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                                <connections>
-                                                    <action selector="changeLineEnding:" target="wKh-dn-8NK" id="7EH-WW-zdr"/>
-                                                </connections>
-                                            </menuItem>
-                                            <menuItem title="CR" tag="1" toolTip="Classic Mac OS" id="J48-tF-WBo">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                                <connections>
-                                                    <action selector="changeLineEnding:" target="wKh-dn-8NK" id="7Dk-av-Fn2"/>
-                                                </connections>
-                                            </menuItem>
-                                            <menuItem title="CRLF" tag="2" toolTip="Windows" id="Zo1-Cc-YBm">
-                                                <modifierMask key="keyEquivalentModifierMask"/>
-                                                <connections>
-                                                    <action selector="changeLineEnding:" target="wKh-dn-8NK" id="2Dg-7M-9om"/>
-                                                </connections>
-                                            </menuItem>
-                                            <menuItem title="NEL" tag="3" hidden="YES" toolTip="Next Line" id="T5S-w3-Q1V">
-                                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
-                                                <connections>
-                                                    <action selector="changeLineEnding:" target="wKh-dn-8NK" id="hf0-6P-3AG"/>
-                                                </connections>
-                                            </menuItem>
-                                            <menuItem title="LS" tag="4" hidden="YES" toolTip="Unicode Line Separator" id="ayd-8d-C4Y">
-                                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
-                                                <connections>
-                                                    <action selector="changeLineEnding:" target="wKh-dn-8NK" id="1mF-QW-VLp"/>
-                                                </connections>
-                                            </menuItem>
-                                            <menuItem title="PS" tag="5" hidden="YES" toolTip="Unicode Paragraph Separator" id="YIk-KP-44u">
-                                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
-                                                <connections>
-                                                    <action selector="changeLineEnding:" target="wKh-dn-8NK" id="Yap-e1-wvR"/>
-                                                </connections>
-                                            </menuItem>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="Fo4-PE-eBJ"/>
+                                    <constraint firstAttribute="height" constant="21" id="i5y-f9-wPx"/>
+                                </constraints>
                             </popUpButton>
                             <popUpButton toolTip="File Encoding" translatesAutoresizingMaskIntoConstraints="NO" id="CUv-So-9Og">
-                                <rect key="frame" x="410" y="0.0" width="133" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="128" id="gE6-7r-AUt"/>
-                                </constraints>
+                                <rect key="frame" x="374" y="0.0" width="133" height="21"/>
                                 <popUpButtonCell key="cell" type="smallSquare" title="Unicode (UTF-8)" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" autoenablesItems="NO" selectedItem="fc5-iy-HpH" id="2gs-WJ-6IP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -264,15 +225,18 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="128" id="gE6-7r-AUt"/>
+                                </constraints>
                             </popUpButton>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="DDY-i5-DV6">
-                                <rect key="frame" x="545" y="4" width="5" height="13"/>
+                                <rect key="frame" x="509" y="4" width="5" height="13"/>
                             </box>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="7Sd-lb-J3U">
-                                <rect key="frame" x="412" y="4" width="5" height="13"/>
+                                <rect key="frame" x="376" y="4" width="5" height="13"/>
                             </box>
-                            <textField toolTip="File Size" wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-9e-uCA" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="369" y="4" width="39" height="14"/>
+                            <textField toolTip="File Size" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-9e-uCA" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="333" y="4" width="39" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="64 MB" usesSingleLineMode="YES" id="t1c-ZE-w5H">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

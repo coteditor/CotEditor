@@ -34,8 +34,6 @@ enum LineEnding: Character, CaseIterable {
     case lineSeparator = "\u{2028}"
     case paragraphSeparator = "\u{2029}"
     
-    static let basicCases: [LineEnding] = [.lf, .cr, .crlf]
-    
     
     var string: String {
         
@@ -55,6 +53,15 @@ enum LineEnding: Character, CaseIterable {
     }
     
     
+    var isBasic: Bool {
+        
+        switch self {
+            case .lf, .cr, .crlf: true
+            case .nel, .lineSeparator, .paragraphSeparator: false
+        }
+    }
+    
+    
     var name: String {
         
         switch self {
@@ -64,6 +71,28 @@ enum LineEnding: Character, CaseIterable {
             case .nel: "NEL"
             case .lineSeparator: "LS"
             case .paragraphSeparator: "PS"
+        }
+    }
+    
+    
+    var longName: String {
+        
+        switch self {
+            case .lf:
+                String(localized: "macOS / Unix", table: "LineEnding")
+            case .cr:
+                String(localized: "Classic Mac OS", table: "LineEnding")
+            case .crlf:
+                String(localized: "Windows", table: "LineEnding")
+            case .nel:
+                String(localized: "Unix Next Line", table: "LineEnding",
+                       comment: "This item is preferably as-is because of the unfamiliarity.")
+            case .lineSeparator:
+                String(localized: "Unix Line Separator", table: "LineEnding",
+                       comment: "This item is preferably as-is because of the unfamiliarity.")
+            case .paragraphSeparator:
+                String(localized: "Unix Paragraph Separator", table: "LineEnding",
+                       comment: "This item is preferably as-is because of the unfamiliarity.")
         }
     }
 }

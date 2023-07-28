@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 CotEditor Project
+//  © 2014-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,40 +32,15 @@
 "JZo-ok-Dks.label" = "警告";
 
 
-/* Class = "NSPopUpButton"; title = "File encoding"; ObjectID = "CUv-So-9Og"; */
-"CUv-So-9Og.ibShadowedToolTip" = "檔案編碼";
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "mS8-3F-93y"; */
 "q4F-Uw-VL4.title" = "檔案編碼";
+/* Class = "NSPopUpButton"; title = "File encoding"; ObjectID = "CUv-So-9Og"; */
+"CUv-So-9Og.ibShadowedToolTip" = "檔案編碼";
 
 /* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "mS8-3F-93y"; */
 "mS8-3F-93y.title" = "行尾";
-/* Class = "NSMenuItem"; title = "LF"; ObjectID = "YT7-vd-3ih"; */
-"YT7-vd-3ih.title" = "LF";
-/* Class = "NSMenuItem"; title = "CR"; ObjectID = "J48-tF-WBo"; */
-"J48-tF-WBo.title" = "CR";
-/* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
-"Zo1-Cc-YBm.title" = "CRLF";
-/* Class = "NSMenuItem"; title = "NEL"; ObjectID = "T5S-w3-Q1V"; */
-"T5S-w3-Q1V.title" = "NEL";
-/* Class = "NSMenuItem"; title = "LS"; ObjectID = "ayd-8d-C4Y"; */
-"ayd-8d-C4Y.title" = "LS";
-/* Class = "NSMenuItem"; title = "PS"; ObjectID = "YIk-KP-44u"; */
-"YIk-KP-44u.title" = "PS";
-
+/* Class = "NSPopUpButton"; title = "Line endings"; ObjectID = "FNE-H9-iZR"; */
+"FNE-H9-iZR.ibShadowedToolTip" = "行尾";
 
 /* Class = "NSTextField"; title = "File Size"; ObjectID = "EJU-9e-uCA"; */
 "EJU-9e-uCA.ibShadowedToolTip" = "檔案尺寸";
-/* Class = "NSPopUpButton"; title = "Line endings"; ObjectID = "FNE-H9-iZR"; */
-"FNE-H9-iZR.ibShadowedToolTip" = "行尾";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */
-"YT7-vd-3ih.ibShadowedToolTip" = "macOS / Unix";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
-"J48-tF-WBo.ibShadowedToolTip" = "Classic Mac OS";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
-"Zo1-Cc-YBm.ibShadowedToolTip" = "Windows";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix Next Line"; ObjectID = "T5S-w3-Q1V"; */
-"T5S-w3-Q1V.ibShadowedToolTip" = "Unix Next Line";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix Line Separator"; ObjectID = "ayd-8d-C4Y"; */
-"ayd-8d-C4Y.ibShadowedToolTip" = "Unix Line Separator";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix Paragraph Separator"; ObjectID = "YIk-KP-44u"; */
-"YIk-KP-44u.ibShadowedToolTip" = "Unix Paragraph Separator";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.

@@ -200,18 +200,6 @@
 "294.title" = "Line Endings";
 /* Class = "NSMenu"; title = "Line Endings"; ObjectID = "296"; */
 "296.title" = "Line Endings";
-/* Class = "NSMenuItem"; title = "macOS / Unix (LF)"; ObjectID = "295"; */
-"295.title" = "macOS / Unix (LF)";
-/* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "297"; */
-"297.title" = "Classic Mac OS (CR)";
-/* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "298"; */
-"298.title" = "Windows (CRLF)";
-/* Class = "NSMenuItem"; title = "Next Line (NEL)"; ObjectID = "pUE-eY-9RI"; */
-"pUE-eY-9RI.title" = "Next Line (NEL)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
-/* Class = "NSMenuItem"; title = "Unicode Line Separator (LS)"; ObjectID = "ins-89-nu3"; */
-"ins-89-nu3.title" = "Unicode Line Separator (LS)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
-/* Class = "NSMenuItem"; title = "Unicode Paragraph Separator (PS)"; ObjectID = "Zz9-5c-bS1"; */
-"Zz9-5c-bS1.title" = "Unicode Paragraph Separator (PS)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
 
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "299"; */
 "299.title" = "File Encoding";
