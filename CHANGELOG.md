@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Change the system requirement to __macOS 13 Ventura and later__.
+- Add “Use system color” option to insertion point color in the theme setting view.
 - Add a font size field to the print dialog.
 - Deprecate print font setting in the Print settings.
 - Migrate the sharing interface to the modern version.

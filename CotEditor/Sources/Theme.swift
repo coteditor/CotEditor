@@ -71,7 +71,7 @@ struct Theme {
     var background: Style
     var invisibles: Style
     var selection: SelectionStyle
-    var insertionPoint: Style
+    var insertionPoint: SelectionStyle
     var lineHighlight: Style
     
     var keywords: Style
@@ -100,7 +100,7 @@ struct Theme {
         self.background = Style(color: .textBackgroundColor)
         self.invisibles = Style(color: .init(white: 0.7, alpha: 1))
         self.selection = SelectionStyle(color: .selectedTextBackgroundColor, usesSystemSetting: true)
-        self.insertionPoint = Style(color: .textColor)
+        self.insertionPoint = SelectionStyle(color: .textColor, usesSystemSetting: true)
         self.lineHighlight = Style(color: .init(white: 0.95, alpha: 1))
         
         self.keywords = Style(color: .gray)
@@ -150,6 +150,17 @@ struct Theme {
         else { return nil }
         
         return NSColor(calibratedWhite: color.lightnessComponent, alpha: 1.0)
+    }
+    
+    
+    /// Insertion point color to use.
+    var effectiveInsertionPointColor: NSColor {
+        
+        if #available(macOS 14, *) {
+            self.insertionPoint.usesSystemSetting ? .textInsertionPointColor : self.insertionPoint.color
+        } else {
+            self.insertionPoint.color
+        }
     }
 }
 
