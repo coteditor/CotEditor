@@ -18,7 +18,7 @@
 "NIK-yi-b5J.title" = "nota";
 
 /* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline items"; ObjectID = "cBA-MO-VzQ"; */
-"cBA-MO-VzQ.title" = "Expresiones regulares para extraer elementos de la estructura";
+"cBA-MO-VzQ.title" = "Expresiones regulares para extraer elementos del esquema";
 
 /* Class = "NSButtonCell"; title = "Italic"; ObjectID = "fUz-0u-0D4"; */
 "fUz-0u-0D4.title" = "Italic";

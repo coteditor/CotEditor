@@ -405,7 +405,7 @@
 "GXo-ds-ygp.title" = "Transformaciones";
 
 /* Class = "NSMenuItem"; title = "Outline"; ObjectID = "Gch-XD-tRl"; */
-"Gch-XD-tRl.title" = "Estructura";
+"Gch-XD-tRl.title" = "Esquema";
 
 /* Class = "NSMenu"; title = "Speech"; ObjectID = "HZ8-G2-f8d"; */
 "HZ8-G2-f8d.title" = "Habla";
@@ -468,7 +468,7 @@
 "PWZ-Om-OhX.title" = "Select Next Outline Item";
 
 /* Class = "NSMenuItem"; title = "Open Outline Menu"; ObjectID = "PmT-ho-UU7"; */
-"PmT-ho-UU7.title" = "Abrir menu de estructura";
+"PmT-ho-UU7.title" = "Abrir menu del esquema";
 
 /* Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "QKD-ue-EQp"; */
 "QKD-ue-EQp.title" = "Copia/Pega inteligente";
