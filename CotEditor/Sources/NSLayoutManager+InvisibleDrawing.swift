@@ -115,7 +115,7 @@ extension InvisibleDrawing {
                 
                 let size = CGSize(width: glyphWidth, height: glyphHeight)
                 let cgPath = invisible.path(in: size, lineWidth: lineWidth, isRTL: isRTL)
-                path = NSBezierPath(path: cgPath)
+                path = NSBezierPath(cgPath: cgPath)
                 
                 if cacheableInvisibles.contains(invisible) {
                     pathCache[codeUnit] = path

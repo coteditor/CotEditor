@@ -25,13 +25,17 @@
 
 import AppKit.NSBezierPath
 
-extension NSBezierPath {
+public extension NSBezierPath {
     
-    convenience init(path: CGPath, transform: AffineTransform? = nil) {
+    /// A back deployed version of the NSBezierPath creation from a CGPath.
+    ///
+    /// - Parameter cgPath: A CGPath to convert to NSBezierPath.
+    @backDeployed(before: macOS 14)
+    convenience init(cgPath: CGPath) {
         
         self.init()
         
-        path.applyWithBlock { (pointer) in
+        cgPath.applyWithBlock { (pointer) in
             let element = pointer.pointee
             
             switch element.type {
@@ -57,10 +61,6 @@ extension NSBezierPath {
                 @unknown default:
                     assertionFailure()
             }
-        }
-        
-        if let transform {
-            self.transform(using: transform)
         }
     }
 }
