@@ -1,0 +1,96 @@
+
+/* Class = "NSButtonCell"; title = "Wrap lines to editor width"; ObjectID = "3274"; */
+"3274.title" = "Ajustar líneas al ancho del editor";
+
+/* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
+"3283.title" = "Expandir tabulaciones a espacios";
+
+/* Class = "NSButtonCell"; title = "Automatic indent"; ObjectID = "3285"; */
+"3285.title" = "Sangría automática";
+
+/* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
+"3287.title" = "Ancho de sangría:";
+
+/* Class = "NSButtonCell"; title = "Smart copy/paste"; ObjectID = "3302"; */
+"3302.title" = "Copiado/pegado inteligente";
+
+/* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
+"3303.title" = "Intercambia las teclas “¥” y “\\”";
+
+/* Class = "NSButtonCell"; title = "Words defined in syntax style"; ObjectID = "1v9-7i-9RL"; */
+"1v9-7i-9RL.title" = "Palabras definidas en estilo de sintaxis";
+
+/* Class = "NSButtonCell"; title = "Append a space to comment delimiter"; ObjectID = "6Dw-5M-Gv0"; */
+"6Dw-5M-Gv0.title" = "Añadir un espacio en el delimitador de comentario";
+
+/* Class = "NSTextFieldCell"; title = "Smart"; ObjectID = "6I3-dM-2QV"; */
+"6I3-dM-2QV.title" = "Inteligente:";
+
+/* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
+"9bX-ei-1x8.title" = "Sangría:";
+
+/* Class = "NSButtonCell"; title = "Quotes"; ObjectID = "Abx-fM-gyc"; */
+"Abx-fM-gyc.title" = "Comillas";
+
+/* Class = "NSButtonCell"; title = "Always from line head"; ObjectID = "Byi-E9-owf"; */
+"Byi-E9-owf.title" = "Siempre desde el inicio de la línea";
+
+/* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
+"Cte-hW-0M3.title" = "Detectar el estilo de sangría al abrir el documento";
+
+/* Class = "NSTextFieldCell"; title = "Comment:"; ObjectID = "EDl-AJ-1dK"; */
+"EDl-AJ-1dK.title" = "Comentario:";
+
+/* Class = "NSButtonCell"; title = "Words in document"; ObjectID = "EJZ-N6-54G"; */
+"EJZ-N6-54G.title" = "Palabras en el documento";
+
+/* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
+"GRh-V2-hmW.title" = "Inserte automáticamente los corchetes de cierre y las comillas";
+
+/* Class = "NSTextFieldCell"; title = "4"; ObjectID = "Hjz-Hk-xNk"; */
+"Hjz-Hk-xNk.title" = "4";
+
+/* Class = "NSButtonCell"; title = "Suggest completions while typing"; ObjectID = "J1B-wA-rdr"; */
+"J1B-wA-rdr.title" = "Sugerir autocompletar mientras se escribe";
+
+/* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
+"P1I-gs-RgX.title" = "Ajuste de líneas:";
+
+/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
+"P9V-pV-PAX.title" = "espacios";
+
+/* Class = "NSTextFieldCell"; title = "Substitution:"; ObjectID = "SqI-BC-ar9"; */
+"SqI-BC-ar9.title" = "Sustitución:";
+
+/* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
+"Tma-Oh-F7v.title" = "Incluyendo líneas con solo espacios en blanco";
+
+/* Class = "NSButtonCell"; title = "Indent selection with Tab key"; ObjectID = "aVn-PD-hen"; */
+"aVn-PD-hen.title" = "Selección de sangría con la tecla tabulación";
+
+/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */
+"as9-us-CuG.title" = "espacios";
+
+/* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */
+"c5j-0N-f2R.title" = "Palabras estándar";
+
+/* Class = "NSTextFieldCell"; title = "Completion list includes:"; ObjectID = "dLj-Kh-KtX"; */
+"dLj-Kh-KtX.title" = "La lista de autocompletado incluye:";
+
+/* Class = "NSTextFieldCell"; title = "Select at least one item to enable completion."; ObjectID = "dmb-pc-4M5"; */
+"dmb-pc-4M5.title" = "Seleccione al menos un elemento para permitir el completado.";
+
+/* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */
+"gDN-SU-sZH.title" = "Autocompletado:";
+
+/* Class = "NSTextFieldCell"; title = "4"; ObjectID = "i5d-VJ-TOP"; */
+"i5d-VJ-TOP.title" = "4";
+
+/* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
+"mCq-92-2sT.title" = "Líneas ajustadas con:";
+
+/* Class = "NSButtonCell"; title = "Automatically trim trailing whitespace"; ObjectID = "noP-hx-YeQ"; */
+"noP-hx-YeQ.title" = "Recortar automáticamente los espacios en blanco finales";
+
+/* Class = "NSButtonCell"; title = "Dashes"; ObjectID = "nr1-0X-aBY"; */
+"nr1-0X-aBY.title" = "Guiones";

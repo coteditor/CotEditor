@@ -1,0 +1,108 @@
+
+/* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "12"; */
+"12.title" = "Windows (CRLF)";
+
+/* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "14"; */
+"14.title" = "Mac OS clásico (CR)";
+
+/* Class = "NSMenuItem"; title = "macOS / Unix (LF)"; ObjectID = "15"; */
+"15.title" = "macOS / Unix (LF)";
+
+/* Class = "NSTextFieldCell"; title = "Default line endings:"; ObjectID = "3273"; */
+"3273.title" = "Finales de línea predeterminados:";
+
+/* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
+"3275.title" = "Editar lista…";
+
+/* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
+"3277.title" = "Prioridad de las codificaciones:";
+
+/* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
+"3278.title" = "Codificación de texto predeterminada:";
+
+/* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
+"3280.title" = "Consulte codificación hecha en el documento";
+
+/* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
+"3329.title" = "Estilo de sintaxis predeterminado:";
+
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */
+"1lj-x8-ouD.title" = "Importar…";
+
+/* Class = "NSMenuItem"; title = "Edit…"; ObjectID = "371-P0-KPK"; */
+"371-P0-KPK.title" = "Editar…";
+
+/* Class = "NSMenuItem"; title = "Restore"; ObjectID = "3aD-Fv-G8H"; */
+"3aD-Fv-G8H.title" = "Restaurar";
+
+/* Class = "NSMenuItem"; title = "Duplicate…"; ObjectID = "5oN-VC-ot9"; */
+"5oN-VC-ot9.title" = "Duplicar…";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "7hV-jt-xSx"; */
+"7hV-jt-xSx.title" = "Vista de tabla con celdas";
+
+/* Class = "NSMenuItem"; title = "Duplicate…"; ObjectID = "A7t-Ca-nZi"; */
+"A7t-Ca-nZi.title" = "Duplicar…";
+
+/* Class = "NSMenuItem"; title = " "; ObjectID = "ALs-fV-C5A"; */
+"ALs-fV-C5A.title" = " ";
+
+/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "AkE-0P-0FC"; */
+"AkE-0P-0FC.title" = "Mostrar en Finder";
+
+/* Class = "NSMenuItem"; title = "Reload All Styles"; ObjectID = "FhP-Hj-cWE"; */
+"FhP-Hj-cWE.title" = "Recargar todos los estilos";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "FjK-rw-YKz"; */
+"FjK-rw-YKz.title" = "Caja";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Add empty style"; ObjectID = "Hma-8v-2gu"; */
+"Hma-8v-2gu.ibShadowedToolTip" = "Añadir estilo vacío";
+
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "IDp-GN-Aet"; */
+"IDp-GN-Aet.title" = "Exportar…";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "NDE-r5-xAF"; */
+"NDE-r5-xAF.title" = "Borrar";
+
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Edit"; ObjectID = "Q0c-oI-um3"; */
+"Q0c-oI-um3.ibExternalAccessibilityDescription" = "Editar";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Edit selected style"; ObjectID = "Q0c-oI-um3"; */
+"Q0c-oI-um3.ibShadowedToolTip" = "Editar el estilo seleccionado";
+
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "Qwp-u8-Urf"; */
+"Qwp-u8-Urf.title" = "Exportar…";
+
+/* Class = "NSMenuItem"; title = "Share"; ObjectID = "Rh3-kc-Gte"; */
+"Rh3-kc-Gte.title" = "Compartir";
+
+/* Class = "NSTableColumn"; headerCell.title = "Style Name"; ObjectID = "Tsu-pA-ACl"; */
+"Tsu-pA-ACl.headerCell.title" = "Nombre del estilo";
+
+/* Class = "NSMenuItem"; title = "Restore"; ObjectID = "Zox-Ve-mru"; */
+"Zox-Ve-mru.title" = "Restaurar";
+
+/* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
+"cbJ-XK-bnG.ibShadowedToolTip" = "Este estilo está personalizado.";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Remove selected style"; ObjectID = "dI1-Dk-Mce"; */
+"dI1-Dk-Mce.ibShadowedToolTip" = "Eliminar el estilo seleccionado";
+
+/* Class = "NSMenuItem"; title = "Show File Mapping Conflicts"; ObjectID = "hyN-4W-57i"; */
+"hyN-4W-57i.title" = "Mostrar conflictos de mapeo de archivos";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "oKF-f1-aVQ"; */
+"oKF-f1-aVQ.title" = "Celda de texto";
+
+/* Class = "NSMenuItem"; title = "Syntax Action"; ObjectID = "sRJ-x0-fo7"; */
+"sRJ-x0-fo7.title" = "Acción de sintaxis";
+
+/* Class = "NSTextFieldCell"; title = "Available syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
+"vlw-Tc-sLl.title" = "Estilos de sintaxis disponibles:";
+
+/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "vs5-Ck-0Cf"; */
+"vs5-Ck-0Cf.title" = "Mostrar en Finder";
+
+/* Class = "NSMenuItem"; title = "Share"; ObjectID = "xRA-ND-YIE"; */
+"xRA-ND-YIE.title" = "Compartir";

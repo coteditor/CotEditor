@@ -1,0 +1,9 @@
+
+/* Class = "NSTextFieldCell"; title = "string"; ObjectID = "1Xc-SV-RAk"; */
+"1Xc-SV-RAk.title" = "cadena";
+
+/* Class = "NSTextFieldCell"; title = "If no word, the completion list will be generated from coloring settings."; ObjectID = "fJg-PK-TBB"; */
+"fJg-PK-TBB.title" = "Si no se encuentra la palabra, la lista final se generará de los ajustes de coloración.";
+
+/* Class = "NSTableColumn"; headerCell.title = "Completions"; ObjectID = "uGV-wD-V9T"; */
+"uGV-wD-V9T.headerCell.title" = "Finalización";
