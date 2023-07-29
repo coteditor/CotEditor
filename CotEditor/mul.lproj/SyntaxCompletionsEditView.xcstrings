@@ -23,6 +23,12 @@
             "value" : ""
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cadena"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -89,6 +95,12 @@
             "value" : "If no word, the completion list will be generated from colouring settings."
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si no se encuentra la palabra, la lista final se generará de los ajustes de coloración."
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -153,6 +165,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Completions"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autocompletados"
           }
         },
         "fr" : {

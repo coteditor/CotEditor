@@ -15,6 +15,12 @@
             "value" : "BibTeX bibliography"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bibliografía de BibTeX"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -71,6 +77,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "C header"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encabezado de C"
           }
         },
         "fr" : {
@@ -131,6 +143,12 @@
             "value" : "C source"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuente de C"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -187,6 +205,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "C# source"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuente de C#"
           }
         },
         "fr" : {
@@ -247,6 +271,12 @@
             "value" : "C++ header"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encabezado de C++"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -305,6 +335,12 @@
             "value" : "C++ source"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "fuente de C++"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -361,6 +397,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cascading Style Sheet"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoja de estilo en cascada (CSS)"
           }
         },
         "fr" : {
@@ -429,6 +471,12 @@
             "value" : "CotEditor"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -485,6 +533,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Configuration"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuración"
           }
         },
         "fr" : {
@@ -545,6 +599,12 @@
             "value" : "CotEditor Replacement Definition"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Definición de reemplazo de CotEditor"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -601,6 +661,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor Theme"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema CotEditor"
           }
         },
         "fr" : {
@@ -661,6 +727,12 @@
             "value" : "D source"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuente de D"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -719,6 +791,12 @@
             "value" : "Dart script"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Dart"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -772,6 +850,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diff"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diff"
@@ -835,6 +919,12 @@
             "value" : "Fortran source"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuente de Fortran"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -891,6 +981,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Go script"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Go"
           }
         },
         "fr" : {
@@ -951,6 +1047,12 @@
             "value" : "Haskell script"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Haskell"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1009,6 +1111,12 @@
             "value" : "HTML document"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Documento HTML"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1062,6 +1170,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INI"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "INI"
@@ -1125,6 +1239,12 @@
             "value" : "Java source"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuente de Java"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1181,6 +1301,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "JavaScript"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Javascript"
           }
         },
         "fr" : {
@@ -1241,6 +1367,12 @@
             "value" : "JSON document"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Documento JSON"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1297,6 +1429,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Julia script"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Julia"
           }
         },
         "fr" : {
@@ -1357,6 +1495,12 @@
             "value" : "Kotlin script"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Kotlin"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1413,6 +1557,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lisp script"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Lisp"
           }
         },
         "fr" : {
@@ -1473,6 +1623,12 @@
             "value" : "Lua script"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Lua"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1531,6 +1687,12 @@
             "value" : "Markdown document"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Documento Markdown"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1587,6 +1749,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mojo script"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Mojo"
           }
         },
         "fr" : {
@@ -1655,6 +1823,12 @@
             "value" : "CotEditor needs user approval to control other applications with AppleScript."
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor necesita la aprobación del usuario para controlar otras aplicaciones con AppleScript"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1721,6 +1895,12 @@
             "value" : "© 2005-2009 nakamuxu\n© 2011, 2014 usami-k\n© 2013-2023 1024jp"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "© 2005-2009 nakamuxu\n© 2011, 2014 usami-k\n© 2013-2023 1024jp"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1777,6 +1957,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Perl script"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Perl"
           }
         },
         "fr" : {
@@ -1837,6 +2023,12 @@
             "value" : "PHP script"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script PHP"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1893,6 +2085,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Plain text"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto plana"
           }
         },
         "fr" : {
@@ -1953,6 +2151,12 @@
             "value" : "Python script"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Puthon"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2009,6 +2213,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "reStructured Text document"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Documento de texto reestructurado"
           }
         },
         "fr" : {
@@ -2069,6 +2279,12 @@
             "value" : "Ruby script"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Ruby"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2125,6 +2341,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rust script"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Rust"
           }
         },
         "fr" : {
@@ -2185,6 +2407,12 @@
             "value" : "Scala source"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuente de Scala"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2241,6 +2469,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scalable Vector Graphics"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gráficos vectoriales escalables\""
           }
         },
         "fr" : {
@@ -2301,6 +2535,12 @@
             "value" : "Scheme script"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script Scheme"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2357,6 +2597,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shell script"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script shell"
           }
         },
         "fr" : {
@@ -2417,6 +2663,12 @@
             "value" : "SQL source"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuente SQL"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2475,6 +2727,12 @@
             "value" : "Swift source"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuente de Swift"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2531,6 +2789,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "TeX document"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Documento TeX"
           }
         },
         "fr" : {
@@ -2592,6 +2856,12 @@
             "value" : "Text document"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Documento de texto"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2648,6 +2918,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Textile document"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dcumento Textile"
           }
         },
         "fr" : {
@@ -2708,6 +2984,12 @@
             "value" : "TOML document"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Documento TOML"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2764,6 +3046,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verilog source"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuente de Verilog"
           }
         },
         "fr" : {
@@ -2824,6 +3112,12 @@
             "value" : "VHDL source"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuente de VHDL"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2882,6 +3176,12 @@
             "value" : "XML document"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Documento XML"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2938,6 +3238,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "YAML document"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Documento YAML"
           }
         },
         "fr" : {

@@ -16,6 +16,12 @@
             "value" : "Applying NFKC, CaseFolding, and removal of default-ignorable code points"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aplicación de NFKC, plegado y eliminación de puntos de código ignorables por defecto"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -73,6 +79,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Canonical Decomposition"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descomposición canónica"
           }
         },
         "fr" : {
@@ -134,6 +146,12 @@
             "value" : "Canonical Decomposition, followed by Canonical Composition"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descomposición canónica, seguida de composición canónica"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -191,6 +209,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Compatibility Decomposition"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descomposición de compatibilidad"
           }
         },
         "fr" : {
@@ -252,6 +276,12 @@
             "value" : "Compatibility Decomposition, followed by Canonical Composition"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descomposición de compatibilidad, seguida de la composición canónica"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -308,6 +338,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modified NFC"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFD modificado"
           }
         },
         "fr" : {
@@ -368,6 +404,12 @@
             "value" : "Modified NFD"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFC modificado"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -421,6 +463,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFC"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFC"
@@ -484,6 +532,12 @@
             "value" : "NFD"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFD"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -537,6 +591,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC"
@@ -600,6 +660,12 @@
             "value" : "NFKC Casefold"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC plegado"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -653,6 +719,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKD"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKD"
@@ -717,6 +789,12 @@
             "value" : "Unofficial NFC-based normalisation form corresponding to Modified NFD"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Formulario de normalización no oficial basado en NFC correspondiente a NFD modificado"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -774,6 +852,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unofficial NFD-based normalisation form used in HFS+"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Formulario de normalización no oficial basado en NFD utilizado en HFS+"
           }
         },
         "fr" : {

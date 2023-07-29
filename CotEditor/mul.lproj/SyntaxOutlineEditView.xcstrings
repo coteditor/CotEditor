@@ -23,6 +23,12 @@
             "value" : "Underline"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subrayado"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -84,6 +90,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IC"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IC"
@@ -155,6 +167,12 @@
             "value" : "Ignore Case (case-insensitive)"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorar mayúsculas y minúsculas"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -219,6 +237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Description"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descripción"
           }
         },
         "fr" : {
@@ -287,6 +311,12 @@
             "value" : "Regular expressions to extract outline items"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expresiones regulares para extraer elementos del esquema"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -351,6 +381,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Italic"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cursiva"
           }
         },
         "fr" : {
@@ -419,6 +455,12 @@
             "value" : "Bold"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Negrita"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -483,6 +525,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Title pattern"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patrón del título"
           }
         },
         "fr" : {
@@ -551,6 +599,12 @@
             "value" : "(blank matches the whole string)"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(En blanco coincide con toda la cadena)"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -615,6 +669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Regular Expression String"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cadena de la expresión regula"
           }
         },
         "fr" : {

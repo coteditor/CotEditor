@@ -23,6 +23,12 @@
             "value" : "Description"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descripción"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -84,6 +90,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RE"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "RE"
@@ -155,6 +167,12 @@
             "value" : "Regular Expression"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expresión regular"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -219,6 +237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "End String"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Final de la cadena"
           }
         },
         "fr" : {
@@ -287,6 +311,12 @@
             "value" : "Begin String"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicio de la cadena"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -348,6 +378,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IC"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IC"
@@ -417,6 +453,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignore Case (case-insensitive)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorar mayúsculas y minúsculas"
           }
         },
         "fr" : {

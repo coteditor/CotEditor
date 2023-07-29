@@ -162,7 +162,7 @@
                                 </connections>
                             </textField>
                             <popUpButton toolTip="Line Endings" translatesAutoresizingMaskIntoConstraints="NO" id="FNE-H9-iZR">
-                                <rect key="frame" x="507" y="0.0" width="89" height="21"/>
+                                <rect key="frame" x="511" y="0.0" width="85" height="21"/>
                                 <popUpButtonCell key="cell" type="smallSquare" title="Line Endings" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" tag="-1" inset="2" autoenablesItems="NO" selectedItem="mS8-3F-93y" id="uXq-8L-T6d">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -180,7 +180,7 @@
                                 </constraints>
                             </popUpButton>
                             <popUpButton toolTip="File Encoding" translatesAutoresizingMaskIntoConstraints="NO" id="CUv-So-9Og">
-                                <rect key="frame" x="374" y="0.0" width="133" height="21"/>
+                                <rect key="frame" x="378" y="0.0" width="133" height="21"/>
                                 <popUpButtonCell key="cell" type="smallSquare" title="Unicode (UTF-8)" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" autoenablesItems="NO" selectedItem="fc5-iy-HpH" id="2gs-WJ-6IP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -202,13 +202,13 @@
                                 </constraints>
                             </popUpButton>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="DDY-i5-DV6">
-                                <rect key="frame" x="509" y="4" width="5" height="13"/>
+                                <rect key="frame" x="513" y="4" width="5" height="13"/>
                             </box>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="7Sd-lb-J3U">
-                                <rect key="frame" x="376" y="4" width="5" height="13"/>
+                                <rect key="frame" x="380" y="4" width="5" height="13"/>
                             </box>
                             <textField toolTip="File Size" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-9e-uCA" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="333" y="4" width="39" height="14"/>
+                                <rect key="frame" x="337" y="4" width="39" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="64 MB" usesSingleLineMode="YES" id="t1c-ZE-w5H">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -263,9 +263,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="doc" catalog="system" width="14" height="16"/>
-        <image name="exclamationmark.triangle" catalog="system" width="17" height="15"/>
-        <image name="list.bullet.indent" catalog="system" width="19" height="12"/>
+        <image name="doc" catalog="system" width="15" height="16"/>
+        <image name="exclamationmark.triangle" catalog="system" width="16" height="15"/>
+        <image name="list.bullet.indent" catalog="system" width="20" height="12"/>
         <namedColor name="DividerColor">
             <color white="0.85000002384185791" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>

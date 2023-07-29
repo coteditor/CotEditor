@@ -267,7 +267,7 @@
 "681.title" = "Mostrar Barra de Navegación";
 
 /* Class = "NSMenuItem"; title = "Antialias"; ObjectID = "745"; */
-"745.title" = "Antialias";
+"745.title" = "Antialiasing";
 
 /* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
 "749.title" = "Mostrar guia página";
@@ -471,7 +471,7 @@
 "PmT-ho-UU7.title" = "Abrir menu del esquema";
 
 /* Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "QKD-ue-EQp"; */
-"QKD-ue-EQp.title" = "Copia/Pega inteligente";
+"QKD-ue-EQp.title" = "Copiado/pegado inteligente";
 
 /* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */
 "Qa9-dA-CF1.title" = "Completar";
@@ -501,10 +501,10 @@
 "ULf-cT-Xvb.title" = "Seleccionar todos los patrones encontrados";
 
 /* Class = "NSMenuItem"; title = "New Tab"; ObjectID = "WCp-4v-OPR"; */
-"WCp-4v-OPR.title" = "Nueva Pestaña";
+"WCp-4v-OPR.title" = "Nueva pestaña";
 
 /* Class = "NSMenuItem"; title = "Japanese Text"; ObjectID = "XWV-by-mnw"; */
-"XWV-by-mnw.title" = "Texto Japonés";
+"XWV-by-mnw.title" = "Texto japonés";
 
 /* Class = "NSMenuItem"; title = "Braces"; ObjectID = "Xoq-43-C1z"; */
 "Xoq-43-C1z.title" = "Llaves";
@@ -591,7 +591,7 @@
 "hTx-ef-3T2.title" = "Usar selección para buscar";
 
 /* Class = "NSMenuItem"; title = "Expand Tabs Automatically"; ObjectID = "hsG-8k-OKX"; */
-"hsG-8k-OKX.title" = "Expande Tabulaciones autoáticamente";
+"hsG-8k-OKX.title" = "Expande tabulaciones autoáticamente";
 
 /* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "hxr-2A-KYT"; */
 "hxr-2A-KYT.title" = "Dirección de escritura";

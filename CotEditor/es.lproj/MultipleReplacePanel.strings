@@ -21,7 +21,7 @@
 "8TG-QH-hxz.title" = "Importar…";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches of the replacement rules."; ObjectID = "99C-Bz-ySi"; */
-"99C-Bz-ySi.ibShadowedToolTip" = "Highlight all matches of the replacement rules.";
+"99C-Bz-ySi.ibShadowedToolTip" = "Resalte todas las coincidencias de las reglas de reemplazo.";
 
 /* Class = "NSTextFieldCell"; title = "cow"; ObjectID = "DD9-M3-I3n"; */
 "DD9-M3-I3n.title" = "vaca";

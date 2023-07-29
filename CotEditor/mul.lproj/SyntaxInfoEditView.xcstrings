@@ -23,6 +23,12 @@
             "value" : "Description:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descripción:"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -87,6 +93,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Version:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versión:"
           }
         },
         "fr" : {
@@ -155,6 +167,12 @@
             "value" : "Author:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autor:"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -219,6 +237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jump to URL"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ir a la URL"
           }
         },
         "fr" : {
@@ -287,6 +311,12 @@
             "value" : "Licence:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licencia:"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -353,6 +383,12 @@
             "value" : "Distribution URL:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distribuir URL:"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -417,6 +453,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Last modified:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Última modificación:"
           }
         },
         "fr" : {
