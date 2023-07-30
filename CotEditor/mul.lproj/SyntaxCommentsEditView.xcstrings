@@ -23,6 +23,12 @@
             "value" : "Begin String"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicio de la cadena"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -87,6 +93,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Not defined"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No definido"
           }
         },
         "fr" : {
@@ -155,6 +167,12 @@
             "value" : "End with:"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finalizar con:"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -219,6 +237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Begin with:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empezar con:"
           }
         },
         "fr" : {
@@ -287,6 +311,12 @@
             "value" : "Not defined"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No definido"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -351,6 +381,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inline comment:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comentario de línea:"
           }
         },
         "fr" : {
@@ -419,6 +455,12 @@
             "value" : "Description"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descripción"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -483,6 +525,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Block comment:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comentario de bloque:"
           }
         },
         "fr" : {
@@ -551,6 +599,12 @@
             "value" : "Not defined"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No definido"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -617,6 +671,12 @@
             "value" : "Not defined"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No definido"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -678,6 +738,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IC"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IC"
@@ -749,6 +815,12 @@
             "value" : "Ignore Case (case-insensitive)"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorar mayúsculas y minúsculas"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -813,6 +885,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Not defined"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No definido"
           }
         },
         "fr" : {
@@ -881,6 +959,12 @@
             "value" : "Not defined"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No definido"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -947,6 +1031,12 @@
             "value" : "End String"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Final de la cadena"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1008,6 +1098,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RE"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "RE"
@@ -1079,6 +1175,12 @@
             "value" : "Regular Expression"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expresión regular"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1143,6 +1245,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Begin with:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empezar con:"
           }
         },
         "fr" : {

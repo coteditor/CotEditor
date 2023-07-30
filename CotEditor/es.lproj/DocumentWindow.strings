@@ -1,0 +1,75 @@
+
+/* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "0nP-0Q-Mgz"; */
+"0nP-0Q-Mgz.title" = "Etiqueta";
+
+/* Class = "NSPopUpButton"; ibShadowedToolTip = "File Encoding"; ObjectID = "CUv-So-9Og"; */
+"CUv-So-9Og.ibShadowedToolTip" = "Codificación de archivos";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "File Size"; ObjectID = "EJU-9e-uCA"; */
+"EJU-9e-uCA.ibShadowedToolTip" = "Tamaño del archivo";
+
+/* Class = "NSPopUpButton"; ibShadowedToolTip = "Line Endings"; ObjectID = "FNE-H9-iZR"; */
+"FNE-H9-iZR.ibShadowedToolTip" = "Finales de línea";
+
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.ibShadowedToolTip" = "Mac OS clásico";
+
+/* Class = "NSMenuItem"; title = "CR"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.title" = "CR";
+
+/* Class = "NSTabViewItem"; label = "Warnings"; ObjectID = "JZo-ok-Dks"; */
+"JZo-ok-Dks.label" = "Avisos";
+
+/* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
+"Kfj-q6-61N.label" = "Inspector de documento";
+
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Next Line"; ObjectID = "T5S-w3-Q1V"; */
+"T5S-w3-Q1V.ibShadowedToolTip" = "Nueva línea";
+
+/* Class = "NSMenuItem"; title = "NEL"; ObjectID = "T5S-w3-Q1V"; */
+"T5S-w3-Q1V.title" = "NEL";
+
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Unicode Paragraph Separator"; ObjectID = "YIk-KP-44u"; */
+"YIk-KP-44u.ibShadowedToolTip" = "Separador de párrafos unicode";
+
+/* Class = "NSMenuItem"; title = "PS"; ObjectID = "YIk-KP-44u"; */
+"YIk-KP-44u.title" = "PS";
+
+/* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.ibShadowedToolTip" = "macOS / Unix";
+
+/* Class = "NSMenuItem"; title = "LF"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.title" = "LF";
+
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.ibShadowedToolTip" = "Windows";
+
+/* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.title" = "CRLF";
+
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Unicode Line Separator"; ObjectID = "ayd-8d-C4Y"; */
+"ayd-8d-C4Y.ibShadowedToolTip" = "Separador de línea unicode";
+
+/* Class = "NSMenuItem"; title = "LS"; ObjectID = "ayd-8d-C4Y"; */
+"ayd-8d-C4Y.title" = "LS";
+
+/* Class = "NSMenuItem"; title = "Unicode (UTF-8)"; ObjectID = "fc5-iy-HpH"; */
+"fc5-iy-HpH.title" = "Unicode (UTF-8)";
+
+/* Class = "NSWindow"; title = "Untitled"; ObjectID = "gE4-1J-3li"; */
+"gE4-1J-3li.title" = "Sin título";
+
+/* Class = "NSTabViewItem"; label = "Outline"; ObjectID = "hyM-2j-hen"; */
+"hyM-2j-hen.label" = "Esquema";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "-"; ObjectID = "mFj-hu-2co"; */
+"mFj-hu-2co.ibShadowedIsNilPlaceholder" = "-";
+
+/* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "mS8-3F-93y"; */
+"mS8-3F-93y.title" = "Finales de línea";
+
+/* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "q4F-Uw-VL4"; */
+"q4F-Uw-VL4.title" = "Codificación de archivos";
+
+/* Class = "NSTextFieldCell"; title = "64 MB"; ObjectID = "t1c-ZE-w5H"; */
+"t1c-ZE-w5H.title" = "64 MB";

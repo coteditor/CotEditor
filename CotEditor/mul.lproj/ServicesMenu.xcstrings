@@ -16,6 +16,12 @@
             "value" : "New CotEditor Document with Selection"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir fichero en CotEditor"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -73,6 +79,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open File in CotEditor"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir fichero en CotEdiotr"
           }
         },
         "fr" : {

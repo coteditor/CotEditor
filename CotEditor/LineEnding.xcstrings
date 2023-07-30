@@ -15,6 +15,12 @@
             "value" : "Classic Mac OS"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac OS clásico"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -71,6 +77,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "macOS / Unix"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS/Unix"
           }
         },
         "fr" : {
@@ -132,6 +144,12 @@
             "value" : "Unix Line Separator"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Separador línea Unix"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -189,6 +207,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unix Next Line"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nueva línea Unix"
           }
         },
         "fr" : {
@@ -250,6 +274,12 @@
             "value" : "Unix Paragraph Separator"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Separador párrafo Unix"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -303,6 +333,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Windows"

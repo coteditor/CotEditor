@@ -23,6 +23,12 @@
             "value" : "Extensions"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensiones"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -87,6 +93,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Interpreters"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intérpretes"
           }
         },
         "fr" : {
@@ -155,6 +167,12 @@
             "value" : "The interpreters are used to determine the syntax from the shebang in the document."
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los intérpretes se utilizan para determinar el estilo de sintaxis a partir del shebang en el documento"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -219,6 +237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Interpreter"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intérprete"
           }
         },
         "fr" : {
@@ -287,6 +311,12 @@
             "value" : "Filenames"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombres de los archivos"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -351,6 +381,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extension"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensión"
           }
         },
         "fr" : {
@@ -419,6 +455,12 @@
             "value" : "Filename"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre del archivo"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -483,6 +525,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ".ArchivoOculto"
           }
         },
         "fr" : {
@@ -551,6 +599,12 @@
             "value" : "(without dots)"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(sin puntos)"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -617,6 +671,12 @@
             "value" : ""
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "txt"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -681,6 +741,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "txt"
           }
         },
         "fr" : {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -177,13 +177,13 @@
                             </button>
                             <button toolTip="Show advanced options" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ESq-ws-6H3">
                                 <rect key="frame" x="406" y="0.0" width="40" height="27"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="YHA-bW-KOd"/>
-                                </constraints>
                                 <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSActionTemplate" imagePosition="overlaps" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nWb-Mt-Pka">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="YHA-bW-KOd"/>
+                                </constraints>
                                 <accessibility description="Advanced options"/>
                                 <connections>
                                     <action selector="showFindSettings:" target="fdE-8e-ywb" id="ayV-P6-9Y8"/>
@@ -201,10 +201,6 @@
                             </button>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="3ZH-bg-rl5" userLabel="Recent Searches">
                                 <rect key="frame" x="14" y="109" width="39" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="Bpd-iM-B9o"/>
-                                    <constraint firstAttribute="width" constant="34" id="a1V-ce-Ane"/>
-                                </constraints>
                                 <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" refusesFirstResponder="YES" inset="2" pullsDown="YES" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="vE8-oK-xlC" id="Jj5-Gl-NDD" userLabel="Recent Searches">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -225,6 +221,10 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="Bpd-iM-B9o"/>
+                                    <constraint firstAttribute="width" constant="34" id="a1V-ce-Ane"/>
+                                </constraints>
                                 <accessibility description="Recent Searches"/>
                             </popUpButton>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="Hw7-zz-RG8" userLabel="Recent Replacements">
@@ -251,7 +251,7 @@
                                 </popUpButtonCell>
                                 <accessibility description="Recent Replacements"/>
                             </popUpButton>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-6q-C63">
+                            <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-6q-C63">
                                 <rect key="frame" x="358" y="109" width="59" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Not Found" drawsBackground="YES" usesSingleLineMode="YES" id="Ghf-cy-qgo">
                                     <font key="font" metaFont="smallSystem"/>
@@ -259,7 +259,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SSP-y6-YxI">
+                            <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SSP-y6-YxI">
                                 <rect key="frame" x="342" y="55" width="75" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Not Replaced" drawsBackground="YES" usesSingleLineMode="YES" id="2sg-74-GwO">
                                     <font key="font" metaFont="smallSystem"/>
@@ -269,14 +269,14 @@
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="ObJ-nS-x0g">
                                 <rect key="frame" x="421" y="106" width="14" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="9ek-RA-xWp"/>
-                                    <constraint firstAttribute="width" secondItem="ObJ-nS-x0g" secondAttribute="height" multiplier="1:1" id="T9W-SF-Lok"/>
-                                </constraints>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressFreestandingTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="jxx-at-moE">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="9ek-RA-xWp"/>
+                                    <constraint firstAttribute="width" secondItem="ObJ-nS-x0g" secondAttribute="height" multiplier="1:1" id="T9W-SF-Lok"/>
+                                </constraints>
                                 <accessibility description="Clear"/>
                                 <connections>
                                     <action selector="clear:" target="hxw-DS-gxQ" id="ioP-wf-gEs"/>
@@ -285,14 +285,15 @@
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Y5M-CG-n0V">
                                 <rect key="frame" x="421" y="52" width="14" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Y5M-CG-n0V" secondAttribute="height" multiplier="1:1" id="YC9-gF-7eS"/>
-                                    <constraint firstAttribute="height" constant="14" id="e2p-u6-YCM"/>
-                                </constraints>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressFreestandingTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="zCK-87-9kX">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Y5M-CG-n0V" secondAttribute="height" multiplier="1:1" id="Hbf-qa-X0F"/>
+                                    <constraint firstAttribute="width" secondItem="Y5M-CG-n0V" secondAttribute="height" multiplier="1:1" id="YC9-gF-7eS"/>
+                                    <constraint firstAttribute="height" constant="14" id="e2p-u6-YCM"/>
+                                </constraints>
                                 <accessibility description="Clear"/>
                                 <connections>
                                     <action selector="clear:" target="qiQ-tb-XCa" id="iuI-2d-soX"/>
@@ -315,7 +316,6 @@
                             <constraint firstItem="8My-G5-daT" firstAttribute="leading" secondItem="D8F-V7-fpC" secondAttribute="leading" constant="20" symbolic="YES" id="Ofl-kG-Dd7"/>
                             <constraint firstItem="SSP-y6-YxI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hw7-zz-RG8" secondAttribute="trailing" constant="8" symbolic="YES" id="RjK-9l-DGD"/>
                             <constraint firstItem="Kkq-6q-C63" firstAttribute="top" secondItem="8gM-hc-HhV" secondAttribute="top" constant="5" id="S0M-8m-gfu"/>
-                            <constraint firstItem="Y5M-CG-n0V" firstAttribute="width" secondItem="Y5M-CG-n0V" secondAttribute="height" multiplier="1:1" id="Snu-wu-u8U"/>
                             <constraint firstItem="Y5M-CG-n0V" firstAttribute="leading" secondItem="SSP-y6-YxI" secondAttribute="trailing" constant="4" id="VMH-bk-5b1"/>
                             <constraint firstItem="ESq-ws-6H3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tu7-IT-dA3" secondAttribute="trailing" constant="8" symbolic="YES" id="XM6-Xe-TDn"/>
                             <constraint firstItem="Hw7-zz-RG8" firstAttribute="height" secondItem="3ZH-bg-rl5" secondAttribute="height" id="XXG-jG-4mZ"/>
@@ -391,7 +391,7 @@
                                                         <tableCellView horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="vg5-xP-Hs5">
                                                             <rect key="frame" x="1" y="1" width="55" height="14"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rO3-nU-MWf" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rO3-nU-MWf" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="55" height="14"/>
                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="right" title="16" usesSingleLineMode="YES" id="8w9-f5-haz">
                                                                         <font key="font" metaFont="smallSystem"/>
@@ -431,7 +431,7 @@
                                                         <tableCellView horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ORp-qn-1S4">
                                                             <rect key="frame" x="59" y="1" width="361" height="14"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7JA-yX-ldU">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7JA-yX-ldU">
                                                                     <rect key="frame" x="0.0" y="0.0" width="361" height="14"/>
                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Clarus says moof!" usesSingleLineMode="YES" id="RSI-QP-jZ1">
                                                                         <font key="font" metaFont="smallSystem"/>
@@ -487,7 +487,7 @@
                                     <action selector="closeResultView:" target="1A4-z5-xxx" id="Uj3-wZ-7gq"/>
                                 </connections>
                             </button>
-                            <textField horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="nBv-lc-1x1">
+                            <textField focusRingType="none" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="nBv-lc-1x1">
                                 <rect key="frame" x="42" y="156" width="199" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" selectable="YES" sendsActionOnEndEditing="YES" title="Found 4 strings in “Document.txt”." usesSingleLineMode="YES" id="WJu-qO-b0n">
                                     <font key="font" metaFont="smallSystemBold"/>
@@ -498,7 +498,7 @@
                                     <binding destination="2MH-SD-abc" name="value" keyPath="resultMessage" id="LjY-os-9o7"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="t8U-kV-AgP">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="t8U-kV-AgP">
                                 <rect key="frame" x="18" y="138" width="386" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Find string: Clarus" placeholderString="" id="t1S-wd-olE">
                                     <font key="font" metaFont="smallSystem"/>
@@ -549,9 +549,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSActionTemplate" width="20" height="20"/>
-        <image name="NSStopProgressFreestandingTemplate" width="20" height="20"/>
-        <image name="magnifyingglass" catalog="system" width="16" height="15"/>
-        <image name="pencil" catalog="system" width="14" height="13"/>
+        <image name="NSActionTemplate" width="19" height="19"/>
+        <image name="NSStopProgressFreestandingTemplate" width="19" height="19"/>
+        <image name="magnifyingglass" catalog="system" width="15" height="15"/>
+        <image name="pencil" catalog="system" width="13" height="13"/>
     </resources>
 </document>

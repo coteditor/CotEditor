@@ -247,6 +247,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSFollowLinkFreestandingTemplate" width="20" height="20"/>
+        <image name="NSFollowLinkFreestandingTemplate" width="19" height="19"/>
     </resources>
 </document>
