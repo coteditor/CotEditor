@@ -14,6 +14,7 @@ Change Log
 
 - Change the system requirement to __macOS 13 Ventura and later__.
 - Add “Use system color” option to insertion point color in the theme setting view.
+- Change the inspector behavior to open inward.
 - Add a font size field to the print dialog.
 - Deprecate the print font setting in the Print settings.
 - Deprecate the cursor type option.

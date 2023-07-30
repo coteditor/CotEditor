@@ -31,7 +31,6 @@ final class WindowContentViewController: NSSplitViewController {
     // MARK: Private Properties
     
     private var inspectorObserver: AnyCancellable?
-    private var inspectorSelectionObserver: AnyCancellable?
     
     @IBOutlet private weak var documentViewItem: NSSplitViewItem?
     @IBOutlet private weak var inspectorViewItem: NSSplitViewItem?
@@ -47,32 +46,8 @@ final class WindowContentViewController: NSSplitViewController {
         
         self.restoreAutosavingState()
         
-        // set behavior to glow window size on inspector toggling rather than opening inspector inward
-        self.inspectorViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
-        
         self.inspectorObserver = self.inspectorViewItem?.publisher(for: \.isCollapsed, options: .initial)
             .sink { [weak self] _ in self?.invalidateRestorableState() }
-        
-        // synchronize inspector pane among window tabs
-        self.inspectorSelectionObserver = self.inspectorViewController?.publisher(for: \.selectedTabViewItemIndex)
-            .sink { [weak self] (tabViewIndex) in
-                self?.siblings.filter { $0 != self }
-                    .forEach { $0.inspectorViewController?.selectedTabViewItemIndex = tabViewIndex }
-            }
-    }
-    
-    
-    override func viewDidAppear() {
-        
-        // note: This method will not be invoked on window tab change.
-        
-        super.viewDidAppear()
-        
-        // adjust inspector visibility if this new window was just added to an existing window
-        if let other = self.siblings.first(where: { $0 != self }), other.isInspectorShown {
-            self.inspectorThickness = other.inspectorThickness
-            self.setInspectorShown(other.isInspectorShown, pane: other.inspectorViewController!.selectedPane)
-        }
     }
     
     
@@ -162,53 +137,11 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
-    /// inspector thickness
-    private var inspectorThickness: CGFloat {
-        
-        get { self.inspectorViewController?.view.frame.width ?? 0 }
-        set { self.inspectorViewController?.view.frame.size.width = max(newValue, 0) }
-    }
-    
-    
     /// whether inspector is opened
     private var isInspectorShown: Bool {
         
-        get {
-            self.inspectorViewItem?.isCollapsed == false
-        }
-        
-        set {
-            guard newValue != self.isInspectorShown else { return }
-            
-            // close inspector inward if it opened so (because of insufficient space to open outward)
-            let currentWidth = self.splitView.frame.width
-            NSAnimationContext.current.completionHandler = { [weak self] in
-                guard let self else { return }
-                
-                if newValue {
-                    if self.splitView.frame.width == currentWidth {  // opened inward
-                        self.siblings.forEach {
-                            $0.inspectorViewItem?.collapseBehavior = .preferResizingSiblingsWithFixedSplitView
-                        }
-                    }
-                } else {
-                    // reset inspector collapse behavior anyway
-                    self.siblings.forEach {
-                        $0.inspectorViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
-                    }
-                }
-                
-                // sync inspector thickness among tabbed windows
-                self.siblings.filter { $0 != self }
-                    .forEach { $0.inspectorThickness = self.inspectorThickness }
-            }
-            
-            // update current tab possibly with an animation
-            self.inspectorViewItem?.isCollapsed = !newValue
-            // and then update background tabs
-            self.siblings.filter { $0 != self }
-                .forEach { $0.inspectorViewItem?.isCollapsed = !newValue }
-        }
+        get { self.inspectorViewItem?.isCollapsed == false }
+        set { self.inspectorViewItem?.isCollapsed = !newValue }
     }
     
     
@@ -217,12 +150,6 @@ final class WindowContentViewController: NSSplitViewController {
         
         NSAnimationContext.current.withAnimation(animate) {
             self.isInspectorShown = shown
-        }
-        
-        if let pane {
-            self.siblings.forEach { sibling in
-                sibling.inspectorViewController!.selectedTabViewItemIndex = pane.rawValue
-            }
         }
     }
     
@@ -238,14 +165,5 @@ final class WindowContentViewController: NSSplitViewController {
     private func toggleVisibilityOfInspector(pane: InspectorPane) {
         
         self.setInspectorShown(!self.isInspectorShown(pane: pane), pane: pane, animate: true)
-    }
-    
-    
-    /// window content view controllers in all tabs in the same window
-    private var siblings: [WindowContentViewController] {
-        
-        guard self.isViewLoaded else { return [] }
-        
-        return self.view.window?.tabbedWindows?.compactMap { $0.windowController?.contentViewController as? WindowContentViewController } ?? [self]
     }
 }
