@@ -12,10 +12,12 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>lld</string>
+			<key>zero</key>
+			<string>*%lld* octeto</string>
 			<key>one</key>
-			<string>*%lld* byte</string>
+			<string>*%lld* octeto</string>
 			<key>other</key>
-			<string>*%lld* bytes</string>
+			<string>*%lld* octetos</string>
 		</dict>
 	</dict>
 	<key>*%lld* character(s)</key>
@@ -29,9 +31,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>lld</string>
 			<key>one</key>
-			<string>*%lld* character</string>
+			<string>*%lld* carácter</string>
 			<key>other</key>
-			<string>*%lld* characters</string>
+			<string>*%lld* caracteres</string>
 		</dict>
 	</dict>
 	<key>%lld found</key>
@@ -44,8 +46,10 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>lld</string>
+			<key>one</key>
+			<string>%lld encontrado</string>
 			<key>other</key>
-			<string>%lld found</string>
+			<string>%lld encontrados</string>
 		</dict>
 	</dict>
 	<key>%lld replaced</key>
@@ -58,8 +62,10 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>lld</string>
+			<key>one</key>
+			<string>%lld reemplazado</string>
 			<key>other</key>
-			<string>%lld replaced</string>
+			<string>%lld reemplazados</string>
 		</dict>
 	</dict>
 </dict>
