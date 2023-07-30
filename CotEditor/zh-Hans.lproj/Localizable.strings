@@ -660,7 +660,7 @@
 
 
 // Format pane
-// Installed syntax styles action menu items
+// Installed syntaxes action menu items
 "Duplicate “%@”…" = "拷贝“%@”…";
 "Export “%@”…" = "导出“%@”…";
 "Reveal “%@” in Finder" = "在访达中显示“%@”";
@@ -729,7 +729,7 @@
 // Description for editing bundled syntax
 "Bundled syntaxes can’t be renamed." = "内置样式的名称不能改变。";  // FIXME: style -> syntax
 
-// Suffix of copied syntax coloring style
+// Suffix of copied syntax
 "copy" = "拷贝";
 
 // Import syntax file choose openPanel button

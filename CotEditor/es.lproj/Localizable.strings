@@ -701,7 +701,7 @@
 "Style Info" = "Información de estilo";
 "Syntax Validation" = "Validación de sintaxis";
 
-// Syntax style validation results
+// Syntax validation results
 "No error found." = "No se encontró ningún error.";
 "An error found." = "Se encontró un error.";
 "%lld errors found." = "%lld errores encontrados.";

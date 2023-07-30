@@ -660,7 +660,7 @@
 
 
 // Format pane
-// Installed syntax styles action menu items
+// Installed syntaxes action menu items
 "Duplicate “%@”…" = "„%@“ duplizieren …";
 "Export “%@”…" = "„%@“ exportieren …";
 "Reveal “%@” in Finder" = "„%@“ im Finder anzeigen";
@@ -700,7 +700,7 @@
 "Syntax Info" = "Syntax-Info";
 "Syntax Validation" = "Syntaxvalidierung";
 
-// Syntax style validation results
+// Syntax validation results
 "No error found." = "Kein Fehler wurde gefunden.";
 "An error found." = "Ein Fehler wurde gefunden.";
 "%lld errors found." = "%lld Fehler wurden gefunden.";
@@ -729,7 +729,7 @@
 // Description for editing bundled syntax
 "Bundled syntaxes can’t be renamed." = "Integrierte Syntaxen können nicht umbenannt werden.";
 
-// Suffix of copied syntax coloring style
+// Suffix of copied syntax
 "copy" = "Kopie";
 
 // Import syntax file choose openPanel button

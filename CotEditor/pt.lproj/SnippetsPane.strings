@@ -87,5 +87,5 @@
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "541"; */
 "541.title" = "Inserir Variável";
 
-/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select a snippet to edit."; ObjectID = "K7h-ZH-zco"; */
-"K7h-ZH-zco.ibShadowedNoSelectionPlaceholder" = "Selecione um snippet para editar.";
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select a snippet to edit."; ObjectID = "EZ8-ej-Fvr"; */
+"EZ8-ej-Fvr.ibShadowedNoSelectionPlaceholder" = "Selecione um snippet para editar.";

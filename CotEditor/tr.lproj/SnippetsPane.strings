@@ -31,7 +31,7 @@
 
 
 
-/* Class = "NSTextFieldCell"; title = "Text to be inserted by a command in the menu or by keyboard shortcut."; ObjectID = "o3A-71-iGh"; */
+/* Class = "NSTextFieldCell"; title = "Text to be inserted by a command in the menu or by keyboard shortcut:"; ObjectID = "o3A-71-iGh"; */
 "o3A-71-iGh.title" = "Menüdeki bir komut veya klavye kestirmesi ile eklenecek metin:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax"; ObjectID = "pbJ-4Q-CE2"; */
@@ -89,5 +89,5 @@
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "541"; */
 "541.title" = "Değişken Ekle";
 
-/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select a snippet to edit."; ObjectID = "K7h-ZH-zco"; */
-"K7h-ZH-zco.ibShadowedNoSelectionPlaceholder" = "Düzenlenecek bir kod parçacığı seçin.";
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select a snippet to edit."; ObjectID = "EZ8-ej-Fvr"; */
+"EZ8-ej-Fvr.ibShadowedNoSelectionPlaceholder" = "Düzenlenecek bir kod parçacığı seçin.";

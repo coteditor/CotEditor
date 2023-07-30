@@ -660,7 +660,7 @@
 
 
 // Format pane
-// Installed syntax styles action menu items
+// Installed syntaxes action menu items
 "Duplicate “%@”…" = "“%@”を複製…";
 "Export “%@”…" = "“%@”を書き出す…";
 "Reveal “%@” in Finder" = "“%@”をFinderに表示";
@@ -700,7 +700,7 @@
 "Syntax Info" = "シンタックス情報";
 "Syntax Validation" = "シンタックスの検証";
 
-// Syntax style validation results
+// Syntax validation results
 "No error found." = "エラーはありません。";
 "An error found." = "1個のエラーがあります。";
 "%lld errors found." = "%lld個のエラーがあります。";
@@ -729,7 +729,7 @@
 // Description for editing bundled syntax
 "Bundled syntaxes can’t be renamed." = "バンドルされているシンタックスの名前は変更できません。";
 
-// Suffix of copied syntax coloring style
+// Suffix of copied syntax
 "copy" = "コピー";
 
 // Import syntax file choose openPanel button

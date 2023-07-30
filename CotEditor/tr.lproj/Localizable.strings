@@ -660,7 +660,7 @@
 
 
 // Format pane
-// Installed syntax styles action menu items
+// Installed syntaxes action menu items
 "Duplicate “%@”…" = "“%@” Ögesini Çoğalt";
 "Export “%@”…" = "“%@” Ögesini Dışa Aktar";
 "Reveal “%@” in Finder" = "“%@” Ögesini Finder’da Göster";
@@ -700,7 +700,7 @@
 "Syntax Info" = "Biçem Bilgisi";  // FIXME: style -> syntax
 "Syntax Validation" = "Sözdizim Doğrulama";
 
-// Syntax style validation results
+// Syntax validation results
 "No error found." = "Hata bulunamadı.";
 "An error found." = "Bir hata bulundu.";
 "%lld errors found." = "%lld hata bulundu.";
@@ -729,7 +729,7 @@
 // Description for editing bundled syntax
 "Bundled syntaxes can’t be renamed." = "Uygulama ile gelen biçemler yeniden adlandırılamaz.";  // FIXME: style -> syntax
 
-// Suffix of copied syntax coloring style
+// Suffix of copied syntax
 "copy" = "kopyası";
 
 // Import syntax file choose openPanel button

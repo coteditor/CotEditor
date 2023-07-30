@@ -660,7 +660,7 @@
 
 
 // Format pane
-// Installed syntax styles action menu items
+// Installed syntaxes action menu items
 "Duplicate “%@”…" = "拷貝「%@」…";
 "Export “%@”…" = "導出「%@」…";
 "Reveal “%@” in Finder" = "在訪達中顯示「%@」";
@@ -700,7 +700,7 @@
 "Syntax Info" = "樣式資訊";  // FIXME: style -> syntax
 "Syntax Validation" = "文法驗證";
 
-// Syntax style validation results
+// Syntax validation results
 "No error found." = "沒有發現錯誤。";
 "An error found." = "發現1個錯誤。";
 "%lld errors found." = "發現%lld個錯誤。";
@@ -729,7 +729,7 @@
 // Description for editing bundled syntax
 "Bundled syntaxes can’t be renamed." = "內置樣式的名稱不能改變。";  // FIXME: style -> syntax
 
-// Suffix of copied syntax coloring style
+// Suffix of copied syntax
 "copy" = "拷貝";
 
 // Import syntax file choose openPanel button
