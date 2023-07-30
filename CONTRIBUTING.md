@@ -68,6 +68,7 @@ Currently, we already have maintainers for:
 - Italian
 - French
 - Portuguese
+- Spanish
 - Turkish
 - English (UK)
 

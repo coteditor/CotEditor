@@ -5,6 +5,11 @@ Change Log
 4.6.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Add Spanish localization (thanks to Agustin Borrego!).
+
+
 ### Improvements
 
 - Change the system requirement to __macOS 13 Ventura and later__.
