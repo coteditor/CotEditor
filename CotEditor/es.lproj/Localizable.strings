@@ -28,7 +28,7 @@
 "OK" = "OK";
 "Cancel" = "Cancelar";
 "Start" = "Iniciar";
-"Restore Defaults" = "Restaurar valores predeterminados";
+"Restore Defaults" = "Restaurar valores por omisión";
 "Delete" = "Borrar";
 "Restore" = "Restaurar";
 
@@ -301,9 +301,9 @@
 
 
 /* MARK: Toolbar */
-"Syntax Style" = "Estilo de sintaxis";
+"Syntax" = "Estilo de sintaxis";  // FIXME: syntax style -> syntax
 // tooltip
-"Change syntax style" = "Cambiar el estilo de sintaxis";
+"Change syntax" = "Cambiar el estilo de sintaxis";  // FIXME: syntax style -> syntax
 // menu item title
 "Recently Used" = "Usado recientemente";
 "Deleted" = "Eliminado";
@@ -661,7 +661,7 @@
 
 
 // Format pane
-// Installed syntax styles action menu items
+// Installed syntaxes action menu items
 "Duplicate “%@”…" = "Duplicar “%@”…";
 "Export “%@”…" = "Exportar “%@”…";
 "Reveal “%@” in Finder" = "Mostrar “%@” en el Finder";
@@ -698,7 +698,7 @@
 "Outline" = "Esquema";
 "Completion List" = "Lista de autocompletado";
 "File Mapping" = "Mapeo de archivos";
-"Style Info" = "Información de estilo";
+"Syntax Info" = "Información de estilo";  // FIXME: style -> syntax
 "Syntax Validation" = "Validación de sintaxis";
 
 // Syntax validation results
@@ -724,22 +724,22 @@
 
 
 /* MARK: SyntaxManager */
-// Style name
+// Syntax name
 "None" = "Nada";
 
-// Selected syntax style name was original
-"Bundled styles can’t be renamed." = "Los estilos incluidos no se pueden cambiar de nombre.";
+// Description for editing bundled syntax
+"Bundled syntaxes can’t be renamed." = "Los estilos incluidos no se pueden cambiar de nombre.";  // FIXME: style -> syntax
 
-// Suffix of copied syntax coloring style
+// Suffix of copied syntax
 "copy" = "copiar";
 
-// Import syntax style file choose openPanel button
+// Import syntax file choose openPanel button
 "Import" = "Importar";
-// Importing same name style alert
-"A new style named “%@” will be installed, but a custom style with the same name already exists." = "Un nuevo estilo llamado “%@” se instalará, pero ya existe un estilo personalizado con el mismo nombre.";
-"Do you want to replace it?\nReplaced style can’t be restored." = "¿Quieres reemplazarlo?\nEl estilo reemplazado no se puede restaurar.";
+// Importing same name syntax alert
+"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "Un nuevo estilo llamado “%@” se instalará, pero ya existe un estilo personalizado con el mismo nombre.";  // FIXME: style -> syntax
+"Do you want to replace it?\nReplaced syntax can’t be restored." = "¿Quieres reemplazarlo?\nEl estilo reemplazado no se puede restaurar.";  // FIXME: style -> syntax
 
-// Export syntax style file savePanel label
+// Export syntax file savePanel label
 "Export As:" = "Exportar como:";
 
 // Syntax validation
@@ -862,14 +862,14 @@
 
 
 /* MARK: Syntax Mapping Conflicts View */
-"Syntax Style Mapping Conflicts" = "Conflictos de mapeo de estilo de sintaxis";
-"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "Las siguientes reglas de asignación de archivos se registran en varios estilos. CotEditor utiliza el primer estilo automáticamente. Para resolver conflictos, edite cada estilo de sintaxis.";
+"Syntax Mapping Conflicts" = "Conflictos de mapeo de estilo de sintaxis";  // FIXME: syntax style -> syntax
+"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "Las siguientes reglas de asignación de archivos se registran en varios estilos. CotEditor utiliza el primer estilo automáticamente. Para resolver conflictos, edite cada estilo de sintaxis.";  // FIXME: updated
 "Extension" = "Extensión";
 "Filename" = "Nombre del archivo";
 "Interpreter" = "Intérprete";
 // table column headers
-"Used style" = "Estilo usado";
-"Duplicated styles" = "Estilos duplicados";
+"Used syntax" = "Estilo usado";  // FIXME: updated
+"Duplicated syntaxes" = "Estilos duplicados";  // FIXME: updated
 
 
 

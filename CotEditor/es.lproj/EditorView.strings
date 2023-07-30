@@ -24,17 +24,10 @@
 //  limitations under the License.
 //
 
-/* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
-"Bmo-XE-CCn.ibShadowedToolTip" = "Cerrar Editor dividido";
-
-/* Class = "NSMenuItem"; title = "Stack Editors Vertically"; ObjectID = "IhS-iT-L1i"; */
-"IhS-iT-L1i.title" = "Apilar editores verticalmente";
-
 /* Class = "NSTextFieldCell"; title = "Extracting Outline…"; ObjectID = "aUE-uy-XLQ"; */
 "aUE-uy-XLQ.title" = "Extraer esquema…";
 
-/* Class = "NSMenuItem"; title = "<Outline Item>"; ObjectID = "fgm-Hv-H3C"; */
-"fgm-Hv-H3C.title" = "<Elemento del esquema>";
-
+/* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
+"Bmo-XE-CCn.ibShadowedToolTip" = "Cerrar Editor dividido";
 /* Class = "NSButton"; ibShadowedToolTip = "Split editor"; ObjectID = "syK-XU-x2I"; */
 "syK-XU-x2I.ibShadowedToolTip" = "Dividir editor";

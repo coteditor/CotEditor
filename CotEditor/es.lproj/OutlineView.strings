@@ -24,20 +24,11 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "No Filter Results"; ObjectID = "98k-V7-rfu"; */
-"98k-V7-rfu.title" = "No filtrar resultados";
-
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "CSX-H0-nFf"; */
 "CSX-H0-nFf.headerCell.title" = "Título";
-
-/* Class = "NSSearchFieldCell"; placeholderString = "Filter"; ObjectID = "GmM-uR-pQ8"; */
-"GmM-uR-pQ8.placeholderString" = "Filtro";
 
 /* Class = "NSTextFieldCell"; title = "Outline"; ObjectID = "RyV-wo-tpY"; */
 "RyV-wo-tpY.title" = "Esquema";
 
-/* Class = "NSTextFieldCell"; title = "Item Title"; ObjectID = "opH-Sc-iu8"; */
-"opH-Sc-iu8.title" = "Título del artículo";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "rwF-t2-tPJ"; */
-"rwF-t2-tPJ.title" = "Celula de texto";
+/* Class = "NSSearchFieldCell"; placeholderString = "Filter"; ObjectID = "GmM-uR-pQ8"; */
+"GmM-uR-pQ8.placeholderString" = "Filtro";

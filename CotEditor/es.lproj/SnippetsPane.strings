@@ -24,95 +24,69 @@
 //  limitations under the License.
 //
 
-/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "541"; */
-"541.title" = "Insertar variable";
-
-/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "3332"; */
-"3332.title" = "Insertar Formato:";
-
-/* Class = "NSTextFieldCell"; title = "Insert Text 0"; ObjectID = "4d2-ZY-6Rc"; */
-"4d2-ZY-6Rc.title" = "Insertar texto 0";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select a snippet to edit."; ObjectID = "EZ8-ej-Fvr"; */
-"EZ8-ej-Fvr.ibShadowedNoSelectionPlaceholder" = "Selecciona un fragmento para editar.";
-
-/* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
-"FAF-cL-AAk.headerCell.title" = "Extensiones";
-
-/* Class = "NSTableColumn"; headerToolTip = "Filename extensions of dropped file (comma separated)."; ObjectID = "FAF-cL-AAk"; */
-"FAF-cL-AAk.headerToolTip" = "Extensiones de nombre de archivo del archivo eliminado (separado de comas).";
-
-/* Class = "NSTextFieldCell"; title = "Text to be inserted by dropping files to the editor:"; ObjectID = "JRQ-2g-t49"; */
-"JRQ-2g-t49.title" = "Texto que se insertará soltando archivos en el editor:";
-
 /* Class = "NSViewController"; title = "Command"; ObjectID = "Jku-3h-OhR"; */
 "Jku-3h-OhR.title" = "Comando";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "KE5-on-7Qz"; */
-"KE5-on-7Qz.title" = "Celda de texto";
-
-/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "PaR-eN-FFs"; */
-"PaR-eN-FFs.title" = "Insertar Formato:";
-
-/* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "RqT-x4-YbN"; */
-"RqT-x4-YbN.headerCell.title" = "Estilo de sintaxis";
-
-/* Class = "NSTableColumn"; headerToolTip = "Syntax style in which this file drop setting is used."; ObjectID = "RqT-x4-YbN"; */
-"RqT-x4-YbN.headerToolTip" = "Estilo de sintaxis utilizada si se utiliza soltar archivos.";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "S3y-Nq-mzn"; */
-"S3y-Nq-mzn.title" = "Celda de texto";
-
 /* Class = "NSViewController"; title = "File Drop"; ObjectID = "UtY-fi-jOg"; */
 "UtY-fi-jOg.title" = "Entrega de archivos";
 
-/* Class = "NSMenuItem"; title = "All"; ObjectID = "W3Z-PB-IUJ"; */
-"W3Z-PB-IUJ.title" = "Todo";
-
-/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "cMF-G3-bl6"; */
-"cMF-G3-bl6.headerCell.title" = "Nombre";
-
-/* Class = "NSTextFieldCell"; title = "png, jpg, gif"; ObjectID = "caT-Gh-1x2"; */
-"caT-Gh-1x2.title" = "png, jpg, gif";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "All"; ObjectID = "hY5-0z-qN6"; */
-"hY5-0z-qN6.ibShadowedIsNilPlaceholder" = "Todo";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "i45-l2-hfd"; */
-"i45-l2-hfd.title" = "Celda de texto";
 
 /* Class = "NSTextFieldCell"; title = "Text to be inserted by a command in the menu or by keyboard shortcut:"; ObjectID = "o3A-71-iGh"; */
 "o3A-71-iGh.title" = "Texto que se insertará mediante un comando en el menú o mediante un atajo de teclado:";
 
-/* Class = "NSSegmentedCell"; oXA-8G-UhH.ibShadowedToolTips[0] = "Add"; ObjectID = "oXA-8G-UhH"; */
-"oXA-8G-UhH.ibShadowedToolTips[0]" = "Añadir";
-
-/* Class = "NSSegmentedCell"; oXA-8G-UhH.ibShadowedToolTips[1] = "Delete"; ObjectID = "oXA-8G-UhH"; */
-"oXA-8G-UhH.ibShadowedToolTips[1]" = "Borrar";
-
-/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "p2m-Qi-6k3"; */
-"p2m-Qi-6k3.headerCell.title" = "Descripción";
-
-/* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "pbJ-4Q-CE2"; */
-"pbJ-4Q-CE2.headerCell.title" = "Estilo de sintaxis";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "q2i-OB-HQc"; */
-"q2i-OB-HQc.title" = "Celda de texto";
-
-/* Class = "NSTextFieldCell"; title = "SHORTCUT WARNING MESSAGE"; ObjectID = "rUw-Mw-hR2"; */
-"rUw-Mw-hR2.title" = "MENSAJE DE ADVERTENCIA DE ATAJO";
-
-/* Class = "NSSegmentedCell"; t2r-oN-Xpf.ibShadowedToolTips[0] = "Add"; ObjectID = "t2r-oN-Xpf"; */
-"t2r-oN-Xpf.ibShadowedToolTips[0]" = "Añadir";
-
-/* Class = "NSSegmentedCell"; t2r-oN-Xpf.ibShadowedToolTips[1] = "Delete"; ObjectID = "t2r-oN-Xpf"; */
-"t2r-oN-Xpf.ibShadowedToolTips[1]" = "Borrar";
-
-/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "vOg-Tt-3ZZ"; */
-"vOg-Tt-3ZZ.title" = "Insertar variable";
+/* Class = "NSTableColumn"; headerCell.title = "Syntax"; ObjectID = "pbJ-4Q-CE2"; */
+"pbJ-4Q-CE2.headerCell.title" = "Estilo de sintaxis";  // FIXME: syntax Style -> Syntax
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "cMF-G3-bl6"; */
+"cMF-G3-bl6.headerCell.title" = "Nombre";
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "wer-OB-X46"; */
+"wer-OB-X46.headerCell.title" = "Teclas";
 
 /* Class = "NSMenuItem"; title = "All"; ObjectID = "vXM-oG-cI7"; */
 "vXM-oG-cI7.title" = "Todo";
 
-/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "wer-OB-X46"; */
-"wer-OB-X46.headerCell.title" = "Teclas";
+/* Class = "NSSegmentedCell"; t2r-oN-Xpf.ibShadowedToolTips[0] = "Add"; ObjectID = "t2r-oN-Xpf"; */
+"t2r-oN-Xpf.ibShadowedToolTips[0]" = "Añadir";
+/* Class = "NSSegmentedCell"; t2r-oN-Xpf.ibShadowedToolTips[1] = "Delete"; ObjectID = "t2r-oN-Xpf"; */
+"t2r-oN-Xpf.ibShadowedToolTips[1]" = "Borrar";
+
+/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "PaR-eN-FFs"; */
+"PaR-eN-FFs.title" = "Insertar Formato:";
+/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "vOg-Tt-3ZZ"; */
+"vOg-Tt-3ZZ.title" = "Insertar variable";
+
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Syntax"; ObjectID = "RqT-x4-YbN"; */
+"RqT-x4-YbN.headerCell.title" = "Estilo de sintaxis";  // FIXME: syntax style -> syntax
+/* Class = "NSTableColumn"; headerToolTip = "Syntax in which this file drop setting is used."; ObjectID = "RqT-x4-YbN"; */
+"RqT-x4-YbN.headerToolTip" = "Estilo de sintaxis utilizada si se utiliza soltar archivos.";  // FIXME: syntax style -> syntax
+
+/* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
+"FAF-cL-AAk.headerCell.title" = "Extensiones";
+/* Class = "NSTableColumn"; headerToolTip = "Filename extensions of dropped file (comma separated)."; ObjectID = "FAF-cL-AAk"; */
+"FAF-cL-AAk.headerToolTip" = "Extensiones de nombre de archivo del archivo eliminado (separado de comas).";
+
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "p2m-Qi-6k3"; */
+"p2m-Qi-6k3.headerCell.title" = "Descripción";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "All"; ObjectID = "hY5-0z-qN6"; */
+"hY5-0z-qN6.ibShadowedIsNilPlaceholder" = "Todo";  // displays if no scope extension is specified
+/* Class = "NSMenuItem"; title = "All"; ObjectID = "W3Z-PB-IUJ"; */
+"W3Z-PB-IUJ.title" = "Todo";  // displays if no scope syntax is specified
+
+/* Class = "NSSegmentedCell"; oXA-8G-UhH.ibShadowedToolTips[0] = "Add"; ObjectID = "oXA-8G-UhH"; */
+"oXA-8G-UhH.ibShadowedToolTips[0]" = "Añadir";
+/* Class = "NSSegmentedCell"; oXA-8G-UhH.ibShadowedToolTips[1] = "Delete"; ObjectID = "oXA-8G-UhH"; */
+"oXA-8G-UhH.ibShadowedToolTips[1]" = "Borrar";
+
+
+/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "3332"; */
+"3332.title" = "Insertar Formato:";
+
+/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "541"; */
+"541.title" = "Insertar variable";
+
+/* Class = "NSTextFieldCell"; title = "Text to be inserted by dropping files to the editor:"; ObjectID = "JRQ-2g-t49"; */
+"JRQ-2g-t49.title" = "Texto que se insertará soltando archivos en el editor:";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select a snippet to edit."; ObjectID = "EZ8-ej-Fvr"; */
+"EZ8-ej-Fvr.ibShadowedNoSelectionPlaceholder" = "Selecciona un fragmento para editar.";

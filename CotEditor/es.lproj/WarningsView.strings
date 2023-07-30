@@ -24,47 +24,22 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "2AE-nU-rdc"; */
-"2AE-nU-rdc.headerCell.title" = "Convertida";
-
-/* Class = "NSTextFieldCell"; title = "CRLF"; ObjectID = "7rM-6b-Aju"; */
-"7rM-6b-Aju.title" = "CRLF";
-
-/* Class = "NSTableColumn"; headerCell.title = "Line Ending"; ObjectID = "Miu-uX-2tM"; */
-"Miu-uX-2tM.headerCell.title" = "Final de línea";
-
-/* Class = "NSTextFieldCell"; title = "Found a line ending other than LF."; ObjectID = "NDC-bR-4cy"; */
-"NDC-bR-4cy.title" = "Encontré una línea que termina que no es LF";
-
-/* Class = "NSTableColumn"; headerCell.title = "Character"; ObjectID = "Nhb-U5-BOF"; */
-"Nhb-U5-BOF.headerCell.title" = "Carácter";
-
-/* Class = "NSTextFieldCell"; title = "bar"; ObjectID = "Ntt-M1-b4I"; */
-"Ntt-M1-b4I.title" = "barra";
-
 /* Class = "NSTextFieldCell"; title = "Incompatible Characters"; ObjectID = "W1c-aP-XZa"; */
 "W1c-aP-XZa.title" = "Caracteres incompatibles";
 
-/* Class = "NSTextFieldCell"; title = "12"; ObjectID = "W8e-Hk-116"; */
-"W8e-Hk-116.title" = "12";
+/* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "2AE-nU-rdc"; */
+"2AE-nU-rdc.headerCell.title" = "Convertida";
+/* Class = "NSTableColumn"; headerCell.title = "Character"; ObjectID = "Nhb-U5-BOF"; */
+"Nhb-U5-BOF.headerCell.title" = "Carácter";
+/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
+"weY-lf-jGz.headerCell.title" = "Línea";
+
+
 
 /* Class = "NSTextFieldCell"; title = "Inconsistent Line Endings"; ObjectID = "Yi4-Vk-FCZ"; */
 "Yi4-Vk-FCZ.title" = "Finales de línea inconsistentes";
 
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "nvM-Mq-maK"; */
-"nvM-Mq-maK.title" = "Celda de texto";
-
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "o1z-QY-xMY"; */
 "o1z-QY-xMY.headerCell.title" = "Línea";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "psz-YY-ahv"; */
-"psz-YY-ahv.title" = "Celda de texto";
-
-/* Class = "NSTextFieldCell"; title = "128"; ObjectID = "v00-eq-cAi"; */
-"v00-eq-cAi.title" = "128";
-
-/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
-"weY-lf-jGz.headerCell.title" = "Línea";
-
-/* Class = "NSTextFieldCell"; title = "Found an incompatible character."; ObjectID = "wsL-BG-Ii8"; */
-"wsL-BG-Ii8.title" = "Encontré un carácter incompatible.";
+/* Class = "NSTableColumn"; headerCell.title = "Line Ending"; ObjectID = "Miu-uX-2tM"; */
+"Miu-uX-2tM.headerCell.title" = "Final de línea";

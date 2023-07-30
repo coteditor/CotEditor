@@ -24,95 +24,53 @@
 //  limitations under the License.
 //
 
-/* Class = "NSButtonCell"; title = "Regular expression"; ObjectID = "Ase-N7-QHB"; */
-"Ase-N7-QHB.title" = "Expresión regular";
-
-/* Class = "NSTextFieldCell"; title = "Delimiter:"; ObjectID = "CLj-6v-R1R"; */
-"CLj-6v-R1R.title" = "Delimitador:";
-
-/* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "GS5-w5-IIt"; */
-"GS5-w5-IIt.title" = "Ignorar capitalización";
-
-/* Class = "NSTextFieldCell"; title = "Position:"; ObjectID = "HE1-PS-8J3"; */
-"HE1-PS-8J3.title" = "Posición:";
-
 /* Class = "NSTextFieldCell"; title = "Sample:"; ObjectID = "I06-xc-WQt"; */
 "I06-xc-WQt.title" = "Ejemplo:";
-
-/* Class = "NSMenuItem"; title = "Recents"; ObjectID = "I0Y-TM-dfb"; */
-"I0Y-TM-dfb.title" = "Recientes";
-
-/* Class = "NSTextFieldCell"; placeholderString = "    Regular Expression"; ObjectID = "Ia7-Mb-FNn"; */
-"Ia7-Mb-FNn.placeholderString" = "    Expresión regular";
-
-/* Class = "NSMenuItem"; title = "DUMMY"; ObjectID = "KUj-jq-0yX"; */
-"KUj-jq-0yX.title" = "DUMMY";
-
-/* Class = "NSButtonCell"; title = "Ignore case"; ObjectID = "Lr8-mD-svg"; */
-"Lr8-mD-svg.title" = "Ignorar capitalización";
-
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "Lw7-xg-639"; */
-"Lw7-xg-639.title" = "Cancelar";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = ","; ObjectID = "OTK-ZM-0gt"; */
-"OTK-ZM-0gt.ibShadowedIsNilPlaceholder" = ",";
-
-/* Class = "NSTextFieldCell"; title = "Dog, 🐕, 1"; ObjectID = "UjO-61-yKu"; */
-"UjO-61-yKu.title" = "Perro, 🐕, 1";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Regular Expression"; ObjectID = "Un0-F8-2q0"; */
-"Un0-F8-2q0.ibShadowedIsNilPlaceholder" = "Expresión regular";
-
 /* Class = "NSTextField"; ibShadowedToolTip = "Sample line to check which part in a line will be used for sort comparison."; ObjectID = "W2m-Jf-7Yj"; */
 "W2m-Jf-7Yj.ibShadowedToolTip" = "Línea de muestra para comprobar qué parte de una línea se utilizará para la comparación de clasificación.";
-
-/* Class = "NSTextFieldCell"; title = "Invalid pattern"; ObjectID = "aoG-Ov-SSQ"; */
-"aoG-Ov-SSQ.title" = "Patrón no válido";
-
-/* Class = "NSButtonCell"; title = "Sort"; ObjectID = "ara-FL-nKk"; */
-"ara-FL-nKk.title" = "Ordenar";
 
 /* Class = "NSTextFieldCell"; title = "Sort key:"; ObjectID = "bKb-oj-ekR"; */
 "bKb-oj-ekR.title" = "Ordenar clave:";
 
-/* Class = "NSTextFieldCell"; placeholderString = "1"; ObjectID = "ctG-i5-ZyH"; */
-"ctG-i5-ZyH.placeholderString" = "1";
+/* Class = "NSButtonCell"; title = "Entire line"; ObjectID = "roe-rP-gfg"; */
+"roe-rP-gfg.title" = "Toda la línea";
+/* Class = "NSButtonCell"; title = "Column"; ObjectID = "pKE-GY-bD6"; */
+"pKE-GY-bD6.title" = "Columna";
+/* Class = "NSButtonCell"; title = "Regular expression"; ObjectID = "Ase-N7-QHB"; */
+"Ase-N7-QHB.title" = "Expresión regular";
 
-/* Class = "NSTextFieldCell"; title = "1"; ObjectID = "ctG-i5-ZyH"; */
-"ctG-i5-ZyH.title" = "1";
-
-/* Class = "NSTextFieldCell"; title = "Pattern:"; ObjectID = "d12-uy-VE0"; */
-"d12-uy-VE0.title" = "Patrón:";
 
 /* Class = "NSTextFieldCell"; title = "Sort option:"; ObjectID = "eio-Wb-V6q"; */
 "eio-Wb-V6q.title" = "Ordenar opción:";
-
-/* Class = "NSButtonCell"; title = "Use captured group:"; ObjectID = "eys-fy-HVq"; */
-"eys-fy-HVq.title" = "Usar grupo capturado:";
-
+/* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "GS5-w5-IIt"; */
+"GS5-w5-IIt.title" = "Ignorar capitalización";
+/* Class = "NSButtonCell"; title = "Respect language rules"; ObjectID = "x72-Sd-pMB"; */
+"x72-Sd-pMB.title" = "Respeta las reglas del lenguaje";
+/* Class = "NSButtonCell"; title = "Treat numbers as numeric value"; ObjectID = "yXD-KA-8KI"; */
+"yXD-KA-8KI.title" = "Tratar los números como valor numérico";
+/* Class = "NSButtonCell"; title = "Keep the first line at the top"; ObjectID = "uUe-tD-Z8s"; */
+"uUe-tD-Z8s.title" = "Mantén la primera línea en la parte superior";
 /* Class = "NSButtonCell"; title = "In descending order"; ObjectID = "h1K-Og-3x3"; */
 "h1K-Og-3x3.title" = "En orden descendente";
 
-/* Class = "NSTextFieldCell"; title = "1"; ObjectID = "mgE-cD-Ufj"; */
-"mgE-cD-Ufj.title" = "1";
 
-/* Class = "NSTextFieldCell"; placeholderString = ","; ObjectID = "nM6-5J-N8Z"; */
-"nM6-5J-N8Z.placeholderString" = ",";
+/* Class = "NSTextFieldCell"; title = "Delimiter:"; ObjectID = "CLj-6v-R1R"; */
+"CLj-6v-R1R.title" = "Delimitador:";
+/* Class = "NSTextFieldCell"; title = "Position:"; ObjectID = "HE1-PS-8J3"; */
+"HE1-PS-8J3.title" = "Posición:";
 
-/* Class = "NSTextFieldCell"; title = ","; ObjectID = "nM6-5J-N8Z"; */
-"nM6-5J-N8Z.title" = ",";
 
-/* Class = "NSButtonCell"; title = "Column"; ObjectID = "pKE-GY-bD6"; */
-"pKE-GY-bD6.title" = "Columna";
+/* Class = "NSTextFieldCell"; title = "Pattern:"; ObjectID = "d12-uy-VE0"; */
+"d12-uy-VE0.title" = "Patrón:";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Regular Expression"; ObjectID = "Un0-F8-2q0"; */
+"Un0-F8-2q0.ibShadowedIsNilPlaceholder" = "Expresión regular";
+/* Class = "NSButtonCell"; title = "Ignore case"; ObjectID = "Lr8-mD-svg"; */
+"Lr8-mD-svg.title" = "Ignorar capitalización";
+/* Class = "NSButtonCell"; title = "Use captured group:"; ObjectID = "eys-fy-HVq"; */
+"eys-fy-HVq.title" = "Usar grupo capturado:";
 
-/* Class = "NSButtonCell"; title = "Entire line"; ObjectID = "roe-rP-gfg"; */
-"roe-rP-gfg.title" = "Toda la línea";
 
-/* Class = "NSButtonCell"; title = "Keep the first line at the top"; ObjectID = "uUe-tD-Z8s"; */
-"uUe-tD-Z8s.title" = "Mantén la primera línea en la parte superior";
-
-/* Class = "NSButtonCell"; title = "Respect language rules"; ObjectID = "x72-Sd-pMB"; */
-"x72-Sd-pMB.title" = "Respeta las reglas del lenguaje";
-
-/* Class = "NSButtonCell"; title = "Treat numbers as numeric value"; ObjectID = "yXD-KA-8KI"; */
-"yXD-KA-8KI.title" = "Tratar los números como valor numérico";
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "Lw7-xg-639"; */
+"Lw7-xg-639.title" = "Cancelar";
+/* Class = "NSButtonCell"; title = "Sort"; ObjectID = "ara-FL-nKk"; */
+"ara-FL-nKk.title" = "Ordenar";
