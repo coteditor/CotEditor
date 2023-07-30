@@ -78,7 +78,6 @@ final class WindowContentViewController: NSSplitViewController {
     
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
-        // disable toggling inspector in the tab overview mode
         switch item.action {
             case #selector(toggleInspector):
                 (item as? NSMenuItem)?.title = self.isInspectorShown
@@ -87,15 +86,12 @@ final class WindowContentViewController: NSSplitViewController {
                 
             case #selector(getInfo):
                 (item as? NSMenuItem)?.state = self.isInspectorShown(pane: .document) ? .on : .off
-                return self.canToggleInspector
                 
             case #selector(toggleOutlineMenu):
                 (item as? NSMenuItem)?.state = self.isInspectorShown(pane: .outline) ? .on : .off
-                return self.canToggleInspector
                 
             case #selector(toggleWarningsPane):
                 (item as? NSMenuItem)?.state = self.isInspectorShown(pane: .warnings) ? .on : .off
-                return self.canToggleInspector
                 
             default: break
         }
@@ -242,20 +238,6 @@ final class WindowContentViewController: NSSplitViewController {
     private func toggleVisibilityOfInspector(pane: InspectorPane) {
         
         self.setInspectorShown(!self.isInspectorShown(pane: pane), pane: pane, animate: true)
-    }
-    
-    
-    /// whether inspector state can be toggled
-    private var canToggleInspector: Bool {
-        
-        guard self.isViewLoaded else { return false }
-        
-        // cannot toggle in the tab overview mode
-        if let tabGroup = self.view.window?.tabGroup {
-            return !tabGroup.isOverviewVisible
-        }
-        
-        return true
     }
     
     
