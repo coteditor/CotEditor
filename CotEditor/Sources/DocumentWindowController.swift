@@ -72,9 +72,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         let viewController: NSViewController? = NSStoryboard(name: "DocumentWindow")
             .instantiateInitialController()
         let window = DocumentWindow(contentViewController: viewController!)
+        window.setFrameAutosaveName(Self.windowFrameName)
         
         // set window size
-        window.setFrameUsingName(Self.windowFrameName)
         let width = UserDefaults.standard[.windowWidth]
         let height = UserDefaults.standard[.windowHeight]
         if width > 0 || height > 0 {
@@ -84,8 +84,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         }
         
         self.init(window: window)
-        
-        self.windowFrameAutosaveName = Self.windowFrameName
         
         window.delegate = self
         
@@ -171,7 +169,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         guard self.isWindowLoaded, let window = self.window else { return }
         
         // workaround issue that window frame is not saved automatically (2022-08 macOS 12.5, FB11082729)
-        window.saveFrame(usingName: self.windowFrameAutosaveName)
+        window.saveFrame(usingName: Self.windowFrameName)
     }
     
     
