@@ -79,7 +79,7 @@ final class WindowContentViewController: NSSplitViewController {
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-            case #selector(toggleInspector):
+            case #selector(toggleInspector_):
                 (item as? NSMenuItem)?.title = self.isInspectorShown
                     ? String(localized: "Hide Inspector")
                     : String(localized: "Show Inspector")
@@ -123,7 +123,7 @@ final class WindowContentViewController: NSSplitViewController {
     // MARK: Action Messages
     
     /// Toggle visibility of the inspector.
-    @IBAction override func toggleInspector(_ sender: Any?) {
+    @IBAction func toggleInspector_(_ sender: Any?) {  // FIXME: Restore action name
         
         NSAnimationContext.current.withAnimation {
             self.isInspectorShown.toggle()

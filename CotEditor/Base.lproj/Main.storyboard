@@ -572,7 +572,7 @@ Gw
                                                     <menuItem isSeparatorItem="YES" id="XF7-Qo-Y5g"/>
                                                     <menuItem title="Show Inspector" keyEquivalent="i" id="I2p-KB-gxR">
                                                         <connections>
-                                                            <action selector="toggleInspector:" target="Ady-hI-5gd" id="To3-Cv-XPF"/>
+                                                            <action selector="toggleInspector_:" target="Ady-hI-5gd" id="Xmb-c9-cWL"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
