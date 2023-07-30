@@ -60,7 +60,7 @@
 "RSI-QP-jZ1.title" = "¡Clarus dice moof!";
 
 /* Class = "NSTextFieldCell"; title = "Found 4 strings in “Document.txt”."; ObjectID = "WJu-qO-b0n"; */
-"WJu-qO-b0n.title" = "Se han encontrado 4 cadenas en "Document.txt".";
+"WJu-qO-b0n.title" = "Se han encontrado 4 cadenas en “Document.txt”.";
 
 /* Class = "NSWindow"; title = "Find & Replace"; ObjectID = "Wal-Sg-6d6"; */
 "Wal-Sg-6d6.title" = "Buscar y reemplazar";
