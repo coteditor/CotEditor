@@ -500,7 +500,7 @@
 "Delete Duplicate Lines" = "Eliminar líneas repetidas";
 "Duplicate Line" = "Duplicar línea";
 "Delete Line" = "Eliminar línea";
-"Trim Trailing Whitespace" = "Recortar el espacio en blanco final";
+"Trim Trailing Whitespace" = "Recortar espacios en blanco finales";
 
 // Contextual menu items
 "Text" = "Texto";
