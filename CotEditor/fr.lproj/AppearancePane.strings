@@ -43,15 +43,6 @@
 /* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
 "ba7-dE-zXz.title" = "Changer la couleur de fond";
 
-/* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "NIq-Tj-KWB"; */
-"NIq-Tj-KWB.title" = "Curseur :";
-/* Class = "NSButtonCell"; title = "Bar"; ObjectID = "cnD-9F-CR4"; */
-"cnD-9F-CR4.title" = "Trait";
-/* Class = "NSButtonCell"; title = "Thick bar"; ObjectID = "rM6-JW-wau"; */
-"rM6-JW-wau.title" = "Trait épais";
-/* Class = "NSButtonCell"; title = "Block"; ObjectID = "YG7-Y7-xzs"; */
-"YG7-Y7-xzs.title" = "Bloc";
-
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
 "oAZ-6U-Ba8.title" = "Invisibles :";

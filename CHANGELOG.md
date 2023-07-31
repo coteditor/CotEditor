@@ -16,6 +16,7 @@ Change Log
 - Add “Use system color” option to insertion point color in the theme setting view.
 - Add a font size field to the print dialog.
 - Deprecate the print font setting in the Print settings.
+- Deprecate the cursor type option.
 - Migrate the sharing interface to the modern version.
 - Disable the beep sound at the end of successful replacement.
 - [trivial] Migrate the Opacity toolbar item to popover in macOS 14.

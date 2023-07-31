@@ -44,10 +44,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @IBOutlet private weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var lineHeightField: NSTextField?
     
-    @IBOutlet private weak var barCursorButton: NSButton?
-    @IBOutlet private weak var thickBarCursorButton: NSButton?
-    @IBOutlet private weak var blockCursorButton: NSButton?
-    
     @IBOutlet private weak var defaultAppearanceButton: NSButton?
     @IBOutlet private weak var lightAppearanceButton: NSButton?
     @IBOutlet private weak var darkAppearanceButton: NSButton?
@@ -84,16 +80,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         self.fontObserver = UserDefaults.standard.publisher(for: .fontSize, initial: true)
             .sink { [weak self] _ in self?.setupFontFamilyNameAndSize() }
-        
-        // select one of cursor type radio buttons
-        switch UserDefaults.standard[.cursorType] {
-            case .bar:
-                self.barCursorButton?.state = .on
-            case .thickBar:
-                self.thickBarCursorButton?.state = .on
-            case .block:
-                self.blockCursorButton?.state = .on
-        }
         
         // select one of appearance radio buttons
         switch UserDefaults.standard[.documentAppearance] {
@@ -402,13 +388,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     // MARK: Action Messages
-    
-    /// A radio button of documentConflictOption was clicked
-    @IBAction func updateCursorTypeSetting(_ sender: NSButton) {
-        
-        UserDefaults.standard[.cursorType] = CursorType(rawValue: sender.tag)!
-    }
-    
     
     /// A radio button of documentAppearance was clicked
     @IBAction func updateAppearanceSetting(_ sender: NSButton) {
