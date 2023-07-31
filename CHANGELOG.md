@@ -5,6 +5,11 @@ Change Log
 4.5.8 (574)
 --------------------------
 
+### Improvements
+
+- Disable the beep sound at the end of successful replacement.
+
+
 ### Fixes
 
 - Fix an issue that the rectangular selection could not add an insertion point at the empty last line.
