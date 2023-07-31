@@ -29,7 +29,7 @@
 "Cancel" = "Cancelar";
 "Start" = "Iniciar";
 "Restore Defaults" = "Restaurar valores por omisión";
-"Delete" = "Borrar";
+"Delete" = "Eliminar";
 "Restore" = "Restaurar";
 
 
@@ -52,7 +52,7 @@
 "Navigation Bar" = "Barra de navegación";
 "Line Numbers" = "Números de línea";
 "Find Result" = "Buscar resultado";
-"Use print font" = "Usar fuente de impresión";
+"Use print font" = "Usar tipo de letra de impresión";
 
 
 // Main menu item titles
@@ -62,7 +62,7 @@
 
 
 // warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "¿Estas seguro de que quiere borrar “%@”?";
+"Are you sure you want to delete “%@”?" = "¿Estas seguro de que quiere eliminar “%@”?";
 "This action cannot be undone." = "Esta acción no se puede deshacer.";
 
 
@@ -320,11 +320,11 @@
 "Decrease text size" = "Disminuir el tamaño del texto";
 "Increase text size" = "Aumentar el tamaño del texto";
 
-"Writing Direction" = "Dirección de escritura";
+"Writing Direction" = "Sentido de la escritura";
 "Left to Right" = "De izquierda a derecha";
 "Right to Left" = "De derecha a izquierda";
 // tooltip
-"Change writing direction" = "Cambiar la dirección de escritura";
+"Change writing direction" = "Cambiar el sentido de la escritura";
 "Left to right" = "De izquierda a derecha";
 "Right to left" = "De derecha a izquierda";
 
@@ -362,7 +362,7 @@
 "Unwrap lines" = "Desajustar líneas";
 "Wrap lines" = "Ajustar líneas";
 
-"Invisibles" = "Invisibles";
+"Invisibles" = "Caracteres invisibles";
 // tooltip
 "Hide invisible characters" = "Ocultar caracteres invisibles";
 "Show invisible characters" = "Mostrar caracteres invisibles";
@@ -374,7 +374,7 @@
 
 "Keep on Top" = "Mantener en primer plano";
 // tooltip
-"Keep the window always on top" = "Mantén la ventana siempre encima";
+"Keep the window always on top" = "Mantener la ventana siempre en primer plano";
 
 "Opacity" = "Opacidad";
 // tooltip
@@ -404,9 +404,9 @@
 // -> The toolbar label for "Share" is set automatically.
 "Share document file" = "Compartir archivo de documento";
 
-"Fonts" = "Fuentes";
+"Fonts" = "Tipos de letra";
 // tooltip
-"Show Fonts" = "Mostrar fuentes";
+"Show Fonts" = "Mostrar tipos de letra";
 
 
 
@@ -492,15 +492,15 @@
 "Convert Indentation" = "Convertir sangría";
 "Comment Out" = "Comentar";
 "Uncomment" = "Descomentar";
-"Inspect Character" = "Inspeccione el carácter";
+"Inspect Character" = "Inspeccionar carácter";
 "Move Line" = "Mover línea";
 "Sort Lines" = "Ordenar líneas";
 "Reverse Lines" = "Ivertir líneas";
 "Shuffle Lines" = "Barajar líneas";
-"Delete Duplicate Lines" = "Borrar líneas repetidas";
+"Delete Duplicate Lines" = "Eliminar líneas repetidas";
 "Duplicate Line" = "Duplicar línea";
-"Delete Line" = "Borrar línea";
-"Trim Trailing Whitespace" = "Recortar el espacio en blanco final";
+"Delete Line" = "Eliminar línea";
+"Trim Trailing Whitespace" = "Recortar espacios en blanco finales";
 
 // Contextual menu items
 "Text" = "Texto";
@@ -521,10 +521,10 @@
 "Show Status Bar" = "Mostrar barra de estado";
 "Hide Navigation Bar" = "Ocultar barra de navegación";
 "Show Navigation Bar" = "Mostrar barra de navegación";
-"Hide Invisibles" = "Ocultar Invisibles";
-"Show Invisibles" = "Mostrar invisibles";
+"Hide Invisibles" = "Ocultar caracteres invisibles";
+"Show Invisibles" = "Mostrar caracteres invisibles";
 "Hide Page Guide" = "Ocultar guía de página";
-"Show Page Guide" = "Mostrar guía de la página";
+"Show Page Guide" = "Mostrar guía de página";
 "Hide Indent Guides" = "Ocultar guías de sangría";
 "Show Indent Guides" = "Mostrar guías de sangría";
 "Unwrap Lines" = "No ajustar líneas";
@@ -857,7 +857,7 @@
 "Drag encodings to change the order:" = "Arrastra las codificaciones para cambiar el orden:";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Este orden es para el menú de codificación y la detección de codificación al abrir el archivo. Según la detección, los elementos más altos tienen más prioridad.";
 "Add Separator" = "Añadir separador";
-"Delete Separator" = "Borrar separador";
+"Delete Separator" = "Eliminar separador";
 
 
 
@@ -886,7 +886,7 @@
 
 
 /* MARK: Custom Tab Width View */
-"Tab width:" = "Anchura tabulación:";  // label
+"Tab width:" = "Anchura del tabulador:";  // label
 
 
 
