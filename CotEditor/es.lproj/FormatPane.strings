@@ -84,7 +84,7 @@
 /* Class = "NSMenuItem"; title = "Restore"; ObjectID = "3aD-Fv-G8H"; */
 "3aD-Fv-G8H.title" = "Restaurar";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "NDE-r5-xAF"; */
-"NDE-r5-xAF.title" = "Borrar";
+"NDE-r5-xAF.title" = "Eliminar";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "IDp-GN-Aet"; */
 "IDp-GN-Aet.title" = "Exportar…";
 /* Class = "NSMenuItem"; title = "Share…"; ObjectID = "Rh3-kc-Gte"; */
