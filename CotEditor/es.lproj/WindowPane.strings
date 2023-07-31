@@ -48,7 +48,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Writing direction:"; ObjectID = "RwN-73-I8c"; */
-"RwN-73-I8c.title" = "Dirección de escritura:";
+"RwN-73-I8c.title" = "Sentido de la escritura:";
 /* Class = "NSButtonCell"; title = "Left to right"; ObjectID = "3Kb-bF-CW0"; */
 "3Kb-bF-CW0.title" = "De izquierda a derecha";
 /* Class = "NSButtonCell"; title = "Right to left"; ObjectID = "USo-8p-Edc"; */

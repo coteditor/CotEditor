@@ -320,11 +320,11 @@
 "Decrease text size" = "Disminuir el tamaño del texto";
 "Increase text size" = "Aumentar el tamaño del texto";
 
-"Writing Direction" = "Dirección de escritura";
+"Writing Direction" = "Sentido de la escritura";
 "Left to Right" = "De izquierda a derecha";
 "Right to Left" = "De derecha a izquierda";
 // tooltip
-"Change writing direction" = "Cambiar la dirección de escritura";
+"Change writing direction" = "Cambiar el sentido de la escritura";
 "Left to right" = "De izquierda a derecha";
 "Right to left" = "De derecha a izquierda";
 
