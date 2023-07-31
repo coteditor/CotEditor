@@ -1,31 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="YRm-Np-TJD">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22152"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Window Controller-->
-        <scene sceneID="lwx-CG-VEr">
-            <objects>
-                <windowController showSeguePresentationStyle="single" id="2Yd-sK-nho" customClass="FindPanelController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="findPanel" title="Find &amp; Replace" separatorStyle="line" allowsToolTipsWhenApplicationIsInactive="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Wal-Sg-6d6" customClass="NSPanel">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
-                        <rect key="contentRect" x="425" y="461" width="460" height="197"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-                        <connections>
-                            <outlet property="delegate" destination="2Yd-sK-nho" id="Za5-Cf-pKn"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="YRm-Np-TJD" kind="relationship" relationship="window.shadowedContentViewController" id="YKf-sy-HA5"/>
-                    </connections>
-                </windowController>
-                <customObject id="kPu-9e-gED" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="198" y="347"/>
-        </scene>
         <!--Content View Controller-->
         <scene sceneID="7vp-sv-2MQ">
             <objects>
@@ -77,6 +57,9 @@
                                             <size key="minSize" width="418" height="42"/>
                                             <size key="maxSize" width="10000000" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="performsActionOnEnter" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                             <accessibility description="Find"/>
                                             <connections>
                                                 <binding destination="fdE-8e-ywb" name="value" keyPath="settings.findString" id="ISG-Ev-a6H">

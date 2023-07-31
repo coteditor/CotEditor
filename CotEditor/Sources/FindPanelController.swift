@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,20 +27,27 @@ import AppKit
 
 final class FindPanelController: NSWindowController {
     
-    static let shared: FindPanelController = NSStoryboard(name: "FindPanel").instantiateInitialController()!
+    // MARK: Public Properties
+    
+    static let shared = FindPanelController()
     
     
-    // MARK: Window Controller Methods
+    // MARK: Lifecycle
     
-    override func windowDidLoad() {
+    convenience init() {
         
-        super.windowDidLoad()
+        let viewController: NSViewController = NSStoryboard(name: "FindPanel", bundle: nil).instantiateInitialController()!
+        let window = NSPanel(contentViewController: viewController)
+        window.styleMask = [.titled, .closable, .resizable, .utilityWindow]
+        window.level = .floating
+        window.autorecalculatesKeyViewLoop = true
+        window.title = String(localized: "Find & Replace")
+        window.setFrameAutosaveName("Find Panel")
         
-        self.windowFrameAutosaveName = NSWindow.FrameAutosaveName("findPanel")
+        self.init(window: window)
     }
     
     
-    /// activate find panel
     @IBAction override func showWindow(_ sender: Any?) {
         
         super.showWindow(sender)

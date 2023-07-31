@@ -93,7 +93,11 @@
 
 
 
-/* MARK: FindPanelController */
+/* MARK: Find Panel */
+// window title
+"Find & Replace" = "Trova e sostituisci";
+
+// find results in input fields
 "Not found" = "Non trovato";
 "Not replaced" = "Non sostituiti";
 

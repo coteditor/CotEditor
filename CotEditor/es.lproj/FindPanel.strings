@@ -24,10 +24,6 @@
 //  limitations under the License.
 //
 
-/* Class = "NSWindow"; title = "Find & Replace"; ObjectID = "Wal-Sg-6d6"; */
-"Wal-Sg-6d6.title" = "Buscar y reemplazar";
-
-
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "ISG-Ev-a6H"; */
 "ISG-Ev-a6H.ibShadowedIsNilPlaceholder" = "Buscar";
 /* Class = "NSTextView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */

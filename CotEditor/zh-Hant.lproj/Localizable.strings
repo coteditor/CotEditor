@@ -93,7 +93,11 @@
 
 
 
-/* MARK: FindPanelController */
+/* MARK: Find Panel */
+// window title
+"Find & Replace" = "檢索與取代";
+
+// find results in input fields
 "Not found" = "未找到";
 "Not replaced" = "沒有進行取代";
 

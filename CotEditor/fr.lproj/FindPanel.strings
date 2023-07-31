@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 CotEditor Project
+//  © 2015-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,10 +23,6 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
-/* Class = "NSPanel"; title = "Find & Replace"; ObjectID = "Wal-Sg-6d6"; */
-"Wal-Sg-6d6.title" = "Rechercher et Remplacer";
-
 
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "ISG-Ev-a6H"; */
 "ISG-Ev-a6H.ibShadowedIsNilPlaceholder" = "Rechercher";

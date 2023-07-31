@@ -93,7 +93,11 @@
 
 
 
-/* MARK: FindPanelController */
+/* MARK: Find Panel */
+// window title
+"Find & Replace" = "検索と置換";
+
+// find results in input fields
 "Not found" = "見つかりません";
 "Not replaced" = "見つかりません";
 
