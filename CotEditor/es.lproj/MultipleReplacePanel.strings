@@ -53,7 +53,7 @@
 /* Class = "NSMenuItem"; title = "Rename"; ObjectID = "KGb-Yh-gXR"; */
 "KGb-Yh-gXR.title" = "Renombrar";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "M9A-ds-FNR"; */
-"M9A-ds-FNR.title" = "Borrar";
+"M9A-ds-FNR.title" = "Eliminar";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "5mf-DX-YT5"; */
 "5mf-DX-YT5.title" = "Exportar…";
 /* Class = "NSMenuItem"; title = "Share"; ObjectID = "3hj-yI-UYg"; */
