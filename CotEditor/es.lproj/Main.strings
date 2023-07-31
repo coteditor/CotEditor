@@ -79,7 +79,7 @@
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "124"; */
 "124.title" = "Abrir recientes";
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */
-"125.title" = "Abrir recientes";
+"125.title" = "Abrir reciente";
 
 /* Class = "NSMenuItem"; title = "Close"; ObjectID = "73"; */
 "73.title" = "Cerrar";
@@ -123,7 +123,7 @@
 /* Class = "NSMenuItem"; title = "Paste Exactly"; ObjectID = "MTm-Qg-WjY"; */
 "MTm-Qg-WjY.title" = "Pegar exactamente";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
-"164.title" = "Borrar";
+"164.title" = "Eliminar";
 /* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */
 "Qa9-dA-CF1.title" = "Completar";
 /* Class = "NSMenuItem"; title = "Select All"; ObjectID = "172"; */
@@ -411,11 +411,11 @@
 /* Class = "NSMenuItem"; title = "Shuffle"; ObjectID = "M8V-zi-g4l"; */
 "M8V-zi-g4l.title" = "Orden aleatorio";
 /* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
-"bjv-m0-tZq.title" = "Borrar duplicados";
+"bjv-m0-tZq.title" = "Eliminar duplicados";
 /* Class = "NSMenuItem"; title = "Duplicate Line"; ObjectID = "m48-5E-yia"; */
 "m48-5E-yia.title" = "Duplicar línea";
 /* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
-"sFn-3j-pY5.title" = "Borrar línea";
+"sFn-3j-pY5.title" = "Eliminar línea";
 
 /* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "GXo-ds-ygp"; */
 "GXo-ds-ygp.title" = "Transformaciones";
