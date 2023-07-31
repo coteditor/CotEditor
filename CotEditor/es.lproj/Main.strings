@@ -508,7 +508,7 @@
 /* Class = "NSMenuItem"; title = "Highlight All"; ObjectID = "JAO-3o-fRo"; */
 "JAO-3o-fRo.title" = "Resaltar todo";
 /* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
-"5is-7G-OVT.title" = "Quitar resalte";
+"5is-7G-OVT.title" = "No resaltado";
 
 /* Class = "NSMenuItem"; title = "Open Outline Menu"; ObjectID = "PmT-ho-UU7"; */
 "PmT-ho-UU7.title" = "Abrir menu del esquema";
