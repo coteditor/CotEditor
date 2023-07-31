@@ -1,12 +1,13 @@
+kind: "code"
 extensions:
 - keyString: "lua"
 filenames: []
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.0.2"
+  version: "1.1.0"
   license: "Same as CotEditor"
-  lastModified: "2021-05-08"
+  lastModified: "2023-05-05"
 completions: []
 outlineMenu:
 - beginString: "([\\t ]*)(function +.+\\(.*?\\))"

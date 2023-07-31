@@ -1,12 +1,13 @@
+kind: "code"
 extensions:
 - keyString: "svg"
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.2.6"
+  version: "1.3.0"
   description: "Based on SVG 1.1 (Second Edition)"
   license: "Same as CotEditor"
-  lastModified: "2022-02-24"
+  lastModified: "2023-05-05"
 outlineMenu:
 - beginString: "(?<= )id=\"([^\"]+?)\""
   description: "id"

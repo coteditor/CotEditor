@@ -101,13 +101,14 @@ keywords:
 - beginString: digraph
 - beginString: subgraph
 - beginString: strict
+kind: "code"
 metadata:
   author: usr-sse2
   description: Graphviz DOT language, based on https://github.com/textmate/graphviz.tmbundle
   distributionURL: https://coteditor.com
-  lastModified: 2022-09-28
+  lastModified: '2023-05-05'
   license: Same as CotEditor
-  version: 3.0.0
+  version: '3.1.0'
 numbers: []
 outlineMenu:
 - beginString: \bsubgraph\s+([^\s]+)

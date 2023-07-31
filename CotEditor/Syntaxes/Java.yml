@@ -1,13 +1,14 @@
+kind: "code"
 extensions:
 - keyString: "java"
 - keyString: "jav"
 metadata:
   author: "nakamuxu"
   distributionURL: "https://coteditor.com"
-  version: "2.1.0"
+  version: "2.2.0"
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
-  lastModified: "2022-03-23"
+  lastModified: "2023-05-05"
 outlineMenu:
 - keyString: "$1$2 : $3"
   beginString: "^([\\t ]*)(class)(.*?)(?=(\\{|$))"

@@ -1,10 +1,11 @@
+kind: "code"
 extensions:
 - keyString: "properties"
 interpreters: []
 filenames: []
 metadata:
-  version: "1.0.0"
-  lastModified: "2018-10-02"
+  version: "1.1.0"
+  lastModified: "2023-05-05"
   author: "1024jp"
   license: "Same as CotEditor"
   distributionURL: "https://coteditor.com"

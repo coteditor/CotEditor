@@ -1,3 +1,4 @@
+kind: "code"
 extensions:
 - keyString: "ts"
 - keyString: "tsx"
@@ -8,9 +9,9 @@ interpreters: []
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.0.0"
+  version: "1.1.0"
   license: "Same as CotEditor"
-  lastModified: "2022-07-17"
+  lastModified: "2023-05-05"
 keywords:
 - beginString: "__dirname"
 - beginString: "__filename"

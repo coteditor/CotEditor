@@ -904,6 +904,7 @@ keywords:
   ignoreCase: true
 - beginString: xor
   ignoreCase: true
+kind: "code"
 metadata:
   author: cbnbg
   description: 'Pascal/Object Pascal
@@ -917,9 +918,9 @@ metadata:
 
     '
   distributionURL: https://coteditor.com
-  lastModified: '2020-10-18'
+  lastModified: '2023-05-05'
   license: Same as CotEditor
-  version: '1.1.0'
+  version: '1.2.0'
 numbers:
 - beginString: \b(\d+\.?\d*|\.\d+)(e[-+]\d+)?[dfm]?\b
   ignoreCase: true

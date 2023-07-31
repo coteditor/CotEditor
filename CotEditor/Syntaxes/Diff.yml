@@ -1,3 +1,4 @@
+kind: "code"
 extensions:
 - keyString: "diff"
 - keyString: "patch"
@@ -5,9 +6,9 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.1.2"
+  version: "1.2.0"
   license: "Same as CotEditor"
-  lastModified: "2022-02-26"
+  lastModified: "2023-05-05"
 outlineMenu:
 - beginString: "(.+)(?=\\R\\=+[\\t ]*$)"
   description: "header"

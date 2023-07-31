@@ -1,3 +1,4 @@
+kind: "code"
 extensions:
 - keyString: "applescript"
 filenames: []
@@ -5,8 +6,8 @@ metadata:
   distributionURL: "https://coteditor.com"
   author: "1024jp"
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
-  version: "1.0.1"
+  lastModified: "2023-05-05"
+  version: "1.1.0"
 outlineMenu:
 - beginString: "^([\\t ]*)on[\\t ]+(\\S+\\(.*\\))"
   description: "handler"

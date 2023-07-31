@@ -1,13 +1,14 @@
+kind: "code"
 extensions:
 - keyString: "css"
 filenames: []
 metadata:
   author: "CotEditor Project"
   distributionURL: "https://coteditor.com"
-  version: "2.2.1"
+  version: "2.3.0"
   description: "Support CSS3 partly."
   license: "Same as CotEditor"
-  lastModified: "2022-04-26"
+  lastModified: "2023-05-05"
 completions: []
 outlineMenu:
 - beginString: "\\@(media|page)\\b(.+?)(?=($|\\{))"

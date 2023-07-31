@@ -1,3 +1,4 @@
+kind: "code"
 extensions:
 - keyString: "scm"
 - keyString: "ss"
@@ -7,10 +8,10 @@ interpreters:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.1.1"
+  version: "1.2.0"
   description: "support R5RS and R6RS"
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2023-05-05"
 completions: []
 outlineMenu:
 - beginString: "^([\\t ]*)\\(define-library[[:space:]\\(\\[]+(\\S+)"

@@ -385,13 +385,14 @@ keywords:
 - beginString: while
 - beginString: with
 - beginString: yield
+kind: "code"
 metadata:
   author: 1024jp
   description: Based on the official Mojo programming manual on 2023-05-03
   distributionURL: https://coteditor.com
-  lastModified: '2023-05-03'
+  lastModified: '2023-05-05'
   license: Same as CotEditor
-  version: 1.0.0
+  version: 1.1.0
 numbers:
 - beginString: ((?<!\w)|[-+])(?:\.[0-9][0-9_]*|[0-9][0-9_]*\.|[0-9]+\.[0-9][0-9_]*|[0-9][0-9_]*)(e[+-]?[0-9][0-9_]*)?[jl]?
   description: decimal

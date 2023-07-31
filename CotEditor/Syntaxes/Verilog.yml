@@ -1,13 +1,14 @@
+kind: "code"
 extensions:
 - keyString: "v"
 filenames: []
 interpreters: []
 metadata:
   distributionURL: "https://coteditor.com"
-  lastModified: "2016-06-19"
+  lastModified: "2023-05-05"
   author: "1024jp"
   license: "Same as CotEditor"
-  version: "1.0.1"
+  version: "1.1.0"
 keywords:
 - beginString: "always"
 - beginString: "and"

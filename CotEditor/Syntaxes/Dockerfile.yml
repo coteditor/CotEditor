@@ -1,12 +1,13 @@
+kind: "code"
 filenames:
 - keyString: Dockerfile
 interpreters: []
 metadata:
   author: 1024jp
   distributionURL: https://coteditor.com
-  lastModified: '2020-09-14'
+  lastModified: "2023-05-05"
   license: Same as CotEditor
-  version: 1.0.0
+  version: '1.1.0'
 attributes: []
 characters:
 - beginString: \

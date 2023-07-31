@@ -1,12 +1,13 @@
+kind: "code"
 extensions:
 - keyString: "awk"
 filenames: []
 interpreters:
 - keyString: "awk"
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
   author: "1024jp"
-  lastModified: "2015-12-25"
+  lastModified: "2023-05-05"
   license: "Same as CotEditor"
   description: "posix-awk"
   distributionURL: "https://coteditor.com"

@@ -1,3 +1,4 @@
+kind: "code"
 extensions:
 - keyString: "c"
 - keyString: "h"
@@ -5,9 +6,9 @@ metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
   license: "Same as CotEditor"
-  lastModified: "2016-05-17"
+  lastModified: "2023-05-05"
   description: "based on C99"
-  version: "1.0.0"
+  version: "1.1.0"
 keywords:
 - beginString: "auto"
 - beginString: "break"

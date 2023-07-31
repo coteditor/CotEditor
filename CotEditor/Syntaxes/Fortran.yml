@@ -1,3 +1,4 @@
+kind: "code"
 extensions:
 - keyString: "f"
 - keyString: "f08"
@@ -8,8 +9,8 @@ extensions:
 filenames: []
 interpreters: []
 metadata:
-  version: "1.0.0"
-  lastModified: "2017-05-06"
+  version: "1.1.0"
+  lastModified: "2023-05-05"
   author: "1024jp"
   license: "Same as CotEditor"
   description: "Support from Fortran 90 to Fortran 2008"

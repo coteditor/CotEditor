@@ -1,12 +1,13 @@
+kind: "code"
 extensions:
 - keyString: "conf"
 filenames:
 - keyString: ".htaccess"
 metadata:
-  version: "2.0.1"
+  version: "2.1.0"
   author: "1024jp"
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2023-05-05"
   distributionURL: "https://coteditor.com"
 outlineMenu:
 - beginString: "^([\\t ]*)<Directory(?:Match)?[\\t ]+\"?(.*?)\"?>"

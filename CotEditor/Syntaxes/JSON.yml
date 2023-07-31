@@ -1,3 +1,4 @@
+kind: "code"
 extensions:
 - keyString: "json"
 - keyString: "geojson"
@@ -10,9 +11,9 @@ commands: []
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.3.4"
+  version: "1.4.0"
   license: "Same as CotEditor"
-  lastModified: "2022-06-01"
+  lastModified: "2023-05-05"
 characters:
 - beginString: "\"[^\\r\\n\"]++\"\\s*+(?=:)"
   regularExpression: true

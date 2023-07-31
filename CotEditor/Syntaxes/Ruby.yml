@@ -1,3 +1,4 @@
+kind: "code"
 extensions:
 - keyString: "rb"
 - keyString: "erb"
@@ -8,10 +9,10 @@ interpreters:
 metadata:
   author: "Y.Tokutomi"
   distributionURL: "https://coteditor.com"
-  version: "2.4.2"
+  version: "2.5.0"
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
-  lastModified: "2022-06-01"
+  lastModified: "2023-05-05"
 outlineMenu:
 - beginString: "(^[\\t ]*class)[\\t ]+(\\w*)"
   keyString: "$1 $2"

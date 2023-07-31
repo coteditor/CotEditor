@@ -1,3 +1,4 @@
+kind: "code"
 extensions:
 - keyString: "sql"
 - keyString: "mysql"
@@ -10,9 +11,9 @@ attributes: []
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.2.0"
+  version: "1.3.0"
   license: "Same as CotEditor"
-  lastModified: "2022-05-30"
+  lastModified: "2023-05-05"
 characters:
 - beginString: "\\\\u[0-9a-f]{4}\\b"
   regularExpression: true

@@ -1,3 +1,4 @@
+kind: "code"
 extensions:
 - keyString: "php"
 - keyString: "php3"
@@ -10,10 +11,10 @@ interpreters:
 metadata:
   author: "kaz"
   distributionURL: "https://coteditor.com"
-  version: "2.5.5"
+  version: "2.6.0"
   description: "Support PHP4 - PHP5.6.\n\nMaintained by 1024jp since 2013."
   license: "Same as CotEditor"
-  lastModified: "2022-06-01"
+  lastModified: "2023-05-05"
 outlineMenu:
 - beginString: "^([\\t ]*)(((?:(?:final|static|public|protected|private)[\\t ]+)+)function)\\s*([^{;]*)(?=[{;])"
   description: "function"

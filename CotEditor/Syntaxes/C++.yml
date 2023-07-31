@@ -1,3 +1,4 @@
+kind: "code"
 extensions:
 - keyString: "c++"
 - keyString: "cpp"
@@ -13,10 +14,10 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.1.0"
+  version: "1.2.0"
   description: ""
   license: "Same as CotEditor"
-lastModified: "2021-11-29"
+  lastModified: "2023-05-05"
 keywords:
 - beginString: "alignas"
 - beginString: "alignof"

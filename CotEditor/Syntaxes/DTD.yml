@@ -1,3 +1,4 @@
+kind: "code"
 extensions:
 - keyString: "dtd"
 outlineMenu: []
@@ -13,9 +14,9 @@ attributes:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.0.3"
+  version: "1.1.0"
   license: "Same as CotEditor"
-  lastModified: "2022-03-01"
+  lastModified: "2023-05-05"
 characters:
 - beginString: "%[^&%\"]+;(?=[^<>]*[\\[>])"
   regularExpression: true

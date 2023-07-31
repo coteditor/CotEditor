@@ -1,3 +1,4 @@
+kind: "code"
 extensions:
 - keyString: proto
 filenames: []
@@ -6,9 +7,9 @@ interpreters:
 metadata:
   author: 1024jp
   distributionURL: https://coteditor.com
-  lastModified: '2022-02-02'
+  lastModified: '2023-05-05'
   license: Same as CotEditor
-  version: 1.0.0
+  version: 1.1.0
 outlineMenu:
 - beginString: ^([\t ]*)(message|enum|service)[\t ]+(\w+)
   keyString: $1$2 $3

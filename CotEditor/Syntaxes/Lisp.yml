@@ -1,3 +1,4 @@
+kind: "code"
 extensions:
 - keyString: "lisp"
 - keyString: "lsp"
@@ -10,10 +11,10 @@ interpreters:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.1.1"
+  version: "1.2.0"
   description: "general Lisp syntax for common Lisp and other Lisp dialects"
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2023-05-05"
 completions: []
 outlineMenu:
 - beginString: "([\\t ]*)\\(defmacro\\S+(\\S+)"

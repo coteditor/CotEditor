@@ -1,10 +1,11 @@
+kind: "code"
 extensions: []
 filenames:
 - keyString: ".gitignore"
 interpreters: []
 metadata:
-  version: "1.0.0"
-  lastModified: "2015-12-01"
+  version: "1.1.0"
+  lastModified: "2023-05-05"
   distributionURL: "https://coteditor.com"
   author: "1024jp"
   license: "Same as CotEditor"

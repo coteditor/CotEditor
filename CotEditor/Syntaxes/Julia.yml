@@ -1,11 +1,12 @@
+kind: "code"
 extensions:
 - keyString: "jl"
 filenames: []
 interpreters:
 - keyString: "julia"
 metadata:
-  version: "1.2.2"
-  lastModified: "2019-11-11"
+  version: "1.3.0"
+  lastModified: "2023-05-05"
   author: "1024jp"
   license: "Same as CotEditor"
   description: "Based on Julia 0.4.5"
