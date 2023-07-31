@@ -50,7 +50,7 @@
 "131.title" = "Servicios";
 
 /* Class = "NSMenuItem"; title = "Hide CotEditor"; ObjectID = "134"; */
-"134.title" = "Ocultar CotEditor";
+"134.title" = "Ocultar cotEditor";
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
 "145.title" = "Ocultar otros";
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
@@ -249,7 +249,7 @@
 "hsG-8k-OKX.title" = "Expande tabulaciones autoáticamente";
 
 /* Class = "NSMenuItem"; title = "Show Invisibles"; ObjectID = "788"; */
-"788.title" = "Mostrar Invisibles";
+"788.title" = "Mostrar caracteres invisibles";
 /* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
 "Qqu-pI-Xz6.title" = "Mostar guias de sangria";
 /* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
@@ -290,9 +290,9 @@
 "324.title" = "Visualización";
 
 /* Class = "NSMenuItem"; title = "Hide Toolbar"; ObjectID = "612"; */
-"612.title" = "Ocultar barra de Herramientas";
+"612.title" = "Ocultar barra de herramientas";
 /* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "613"; */
-"613.title" = "Personalizar barra de Herraminetas…";
+"613.title" = "Personalizar barra de herramientas…";
 
 /* Class = "NSMenuItem"; title = "Inspector"; ObjectID = "sYa-2o-iPk"; */
 "sYa-2o-iPk.title" = "Inspector";
@@ -305,10 +305,10 @@
 /* Class = "NSMenuItem"; title = "Warnings"; ObjectID = "679"; */
 "679.title" = "Avisos";
 /* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
-"I2p-KB-gxR.title" = "Mostrar Inspector";
+"I2p-KB-gxR.title" = "Mostrar inspector";
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
-"681.title" = "Mostrar Barra de Navegación";
+"681.title" = "Mostrar barra de navegación";
 /* Class = "NSMenuItem"; title = "Show Line Numbers"; ObjectID = "323"; */
 "323.title" = "Mostrar números de línea";
 /* Class = "NSMenuItem"; title = "Show Status Bar"; ObjectID = "325"; */
@@ -321,7 +321,7 @@
 /* Class = "NSMenuItem"; title = "Focus on Previous Split Editor"; ObjectID = "795"; */
 "795.title" = "Foco en anterior editor dividido";
 /* Class = "NSMenuItem"; title = "Stack Editors Vertically"; ObjectID = "u46-te-4c4"; */
-"u46-te-4c4.title" = "Pila de editores vertical";
+"u46-te-4c4.title" = "Apilar editores verticalmente";
 /* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
 "796.title" = "Cerrar editor dividido";
 
@@ -341,7 +341,7 @@
 "579.title" = "Texto";
 
 /* Class = "NSMenuItem"; title = "Insert Snippet"; ObjectID = "15m-xz-4oB"; */
-"15m-xz-4oB.title" = "Insertar Fragmento";
+"15m-xz-4oB.title" = "Insertar fragmento";
 /* Class = "NSMenu"; title = "Insert Snippet"; ObjectID = "dZy-7n-iCq"; */
 "dZy-7n-iCq.title" = "Insertar fragmento";
 /* Class = "NSMenuItem"; title = "Edit Snippets…"; ObjectID = "OmB-Ve-DEy"; */
@@ -377,7 +377,7 @@
 /* Class = "NSMenuItem"; title = "Surround Selection With"; ObjectID = "9dv-Zb-W60"; */
 "9dv-Zb-W60.title" = "Rodear selección con";
 /* Class = "NSMenu"; title = "Surround Selection With"; ObjectID = "AUq-CT-rPl"; */
-"AUq-CT-rPl.title" = "Surround Selection With";
+"AUq-CT-rPl.title" = "Rodear selección con";
 /* Class = "NSMenuItem"; title = "Single Quotes"; ObjectID = "Srp-eD-10Q"; */
 "Srp-eD-10Q.title" = "Comillas simples";
 /* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
@@ -430,11 +430,11 @@
 "LC4-lg-eO0.title" = "Mayúsculas iniciales";
 
 /* Class = "NSMenuItem"; title = "Make Snake Case"; ObjectID = "F0I-F4-srF"; */
-"F0I-F4-srF.title" = "Todo en Snake Case";
+"F0I-F4-srF.title" = "Aplicar Snake Case";
 /* Class = "NSMenuItem"; title = "Make Camel Case"; ObjectID = "nlp-Gj-W9G"; */
-"nlp-Gj-W9G.title" = "Todo en Camel Case";
+"nlp-Gj-W9G.title" = "Aplicar Camel Case";
 /* Class = "NSMenuItem"; title = "Make Pascal Case"; ObjectID = "x1F-KX-2de"; */
-"x1F-KX-2de.title" = "Todo en Pascal Case";
+"x1F-KX-2de.title" = "Aplicar Pascal Case";
 
 /* Class = "NSMenuItem"; title = "URL Encode"; ObjectID = "xxp-UD-STx"; */
 "xxp-UD-STx.title" = "Codificar URL";
