@@ -3,7 +3,8 @@
     "color" : "#e6e6e6"
   },
   "insertionPoint" : {
-    "color" : "#e6e6e6"
+    "color" : "#e6e6e6",
+    "usesSystemSetting" : true
   },
   "invisibles" : {
     "color" : "#404040"
