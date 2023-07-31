@@ -565,9 +565,9 @@
 "111.title" = "Ayuda de CotEditor";
 
 /* Class = "NSMenuItem"; title = "CotEditor Scripting Guide"; ObjectID = "M1N-Fg-Bo4"; */
-"M1N-Fg-Bo4.title" = "Guia para hacer scripts en CotEditor";
+"M1N-Fg-Bo4.title" = "Guia de scripts en CotEditor";
 /* Class = "NSMenu"; title = "CotEditor Scripting Guide"; ObjectID = "OLa-Mb-rXS"; */
-"OLa-Mb-rXS.title" = "Guia para hacer scripts en CotEditor";
+"OLa-Mb-rXS.title" = "Guia de scripts en CotEditor";
 /* Class = "NSMenuItem"; title = "About Scripting"; ObjectID = "u2o-8v-WPL"; */
 "u2o-8v-WPL.title" = "Acerca de hacer scripts";
 /* Class = "NSMenuItem"; title = "AppleScript Dictionary"; ObjectID = "620"; */
