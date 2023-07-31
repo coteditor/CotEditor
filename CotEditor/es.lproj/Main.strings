@@ -256,9 +256,9 @@
 "749.title" = "Mostrar guia página";
 
 /* Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "mEh-BD-ZlV"; */
-"mEh-BD-ZlV.title" = "Dirección de escritura";
+"mEh-BD-ZlV.title" = "Sentido de la escritura";
 /* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "hxr-2A-KYT"; */
-"hxr-2A-KYT.title" = "Dirección de escritura";
+"hxr-2A-KYT.title" = "Sentido de la escritura";
 /* Class = "NSMenuItem"; title = "Orientation"; ObjectID = "6eV-nI-heo"; */
 "6eV-nI-heo.title" = "Orientation";
 /* Class = "NSMenuItem"; title = "Horizontal"; ObjectID = "jQ7-hG-AjA"; */
@@ -266,7 +266,7 @@
 /* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "bTd-nG-jjc"; */
 "bTd-nG-jjc.title" = "Vertical";
 /* Class = "NSMenuItem"; title = "Direction"; ObjectID = "ICu-yD-nVi"; */
-"ICu-yD-nVi.title" = "Dirección";
+"ICu-yD-nVi.title" = "Sentido";
 /* Class = "NSMenuItem"; title = "Left to Right"; ObjectID = "7pw-5S-ekC"; */
 "7pw-5S-ekC.title" = "Izquierda a Derecha";
 /* Class = "NSMenuItem"; title = "Right to Left"; ObjectID = "clG-Ph-Iyz"; */
