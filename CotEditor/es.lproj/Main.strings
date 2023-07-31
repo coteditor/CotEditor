@@ -463,7 +463,7 @@
 "599.title" = "Normalizaciones Unicode";
 
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
-"ToR-yH-ahH.title" = "Inspeccione el carácter";
+"ToR-yH-ahH.title" = "Inspeccionar carácter";
 /* Class = "NSMenuItem"; title = "Advanced Character Count…"; ObjectID = "SPF-Mw-eZP"; */
 "SPF-Mw-eZP.title" = "Cuenta avanzada de carácteres…";
 /* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
