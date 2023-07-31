@@ -102,7 +102,7 @@
 /* Class = "NSMenuItem"; title = "Restore"; ObjectID = "vTP-Fc-iBF"; */
 "vTP-Fc-iBF.title" = "Restaurar";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "WNG-Ai-RdG"; */
-"WNG-Ai-RdG.title" = "Borrar";
+"WNG-Ai-RdG.title" = "Eliminar";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "ueG-D7-DSV"; */
 "ueG-D7-DSV.title" = "Exportar…";
 /* Class = "NSMenuItem"; title = "Share…"; ObjectID = "pTV-O2-2db"; */
