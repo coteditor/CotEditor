@@ -629,9 +629,7 @@ final class TextFinder {
             // apply found strings to the text view
             client.replace(with: replacementItems.map(\.value), ranges: replacementItems.map(\.range), selectedRanges: selectedRanges,
                            actionName: String(localized: "Replace All"))
-        }
-        
-        if progress.count > 0 {
+        } else {
             NSSound.beep()
         }
         
