@@ -52,7 +52,7 @@
 "Navigation Bar" = "Barra de navegación";
 "Line Numbers" = "Números de línea";
 "Find Result" = "Buscar resultado";
-"Use print font" = "Usar fuente de impresión";
+"Use print font" = "Usar tipo de letra de impresión";
 
 
 // Main menu item titles
@@ -404,9 +404,9 @@
 // -> The toolbar label for "Share" is set automatically.
 "Share document file" = "Compartir archivo de documento";
 
-"Fonts" = "Fuentes";
+"Fonts" = "Tipos de letra";
 // tooltip
-"Show Fonts" = "Mostrar fuentes";
+"Show Fonts" = "Mostrar tipos de letra";
 
 
 

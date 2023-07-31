@@ -25,7 +25,7 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Z85-S9-uID"; */
-"Z85-S9-uID.title" = "Fuente:";
+"Z85-S9-uID.title" = "Tipo de letra:";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
 "3289.title" = "Seleccionar…";
 /* Class = "NSButtonCell"; title = "Antialias"; ObjectID = "3290"; */
