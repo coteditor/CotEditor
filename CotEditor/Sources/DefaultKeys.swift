@@ -67,7 +67,6 @@ extension DefaultKeys {
     static let ligature = DefaultKey<Bool>("ligature")
     static let lineHeight = DefaultKey<CGFloat>("lineHeight")
     static let highlightCurrentLine = DefaultKey<Bool>("highlightCurrentLine")
-    static let cursorType = RawRepresentableDefaultKey<CursorType>("cursorType")
     static let showInvisibles = DefaultKey<Bool>("showInvisibles")
     static let showInvisibleNewLine = DefaultKey<Bool>("showInvisibleNewLine")
     static let showInvisibleTab = DefaultKey<Bool>("showInvisibleTab")

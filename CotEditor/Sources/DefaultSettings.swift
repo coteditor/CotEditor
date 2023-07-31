@@ -66,7 +66,6 @@ struct DefaultSettings {
         .ligature: true,
         .lineHeight: 1.2,
         .highlightCurrentLine: false,
-        .cursorType: CursorType.bar.rawValue,
         .showInvisibles: false,
         .showInvisibleNewLine: true,
         .showInvisibleTab: true,

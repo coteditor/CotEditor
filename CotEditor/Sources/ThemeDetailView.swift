@@ -93,6 +93,7 @@ import AppKit.NSColor
         theme.text.color = NSColor(self.text)
         theme.invisibles.color = NSColor(self.invisibles)
         theme.insertionPoint.color = NSColor(self.insertionPoint)
+        theme.insertionPoint.usesSystemSetting = self.usesInsertionPointSystemSetting
         theme.background.color = NSColor(self.background)
         theme.lineHighlight.color = NSColor(self.lineHighlight)
         theme.selection.color = NSColor(self.selection)

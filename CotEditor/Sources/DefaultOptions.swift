@@ -49,14 +49,6 @@ enum WritingDirection: Int {
 }
 
 
-enum CursorType: Int {
-    
-    case bar
-    case thickBar
-    case block
-}
-
-
 enum AppearanceMode: Int {
     
     case `default`

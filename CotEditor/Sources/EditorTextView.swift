@@ -99,7 +99,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private lazy var braceHighlightDebouncer = Debouncer { [weak self] in self?.highlightMatchingBrace() }
     private var isTypingPairedQuotes = false
     
-    private var cursorType: CursorType = .bar
     private var balancesBrackets = false
     private var isAutomaticIndentEnabled = false
     
@@ -129,7 +128,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         let defaults = UserDefaults.standard
         
-        self.cursorType = defaults[.cursorType]
         self.balancesBrackets = defaults[.balancesBrackets]
         self.isAutomaticTabExpansionEnabled = defaults[.autoExpandTab]
         self.isAutomaticIndentEnabled = defaults[.autoIndent]
@@ -193,11 +191,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // observe change in defaults
         self.defaultsObservers = [
-            defaults.publisher(for: .cursorType)
-                .sink { [unowned self] (value) in
-                    self.cursorType = value
-                    self.insertionPointColor = self.insertionPointColor.withAlphaComponent(value == .block ? 0.5 : 1)
-                },
             defaults.publisher(for: .balancesBrackets)
                 .sink { [unowned self] in self.balancesBrackets = $0 },
             defaults.publisher(for: .autoExpandTab)
@@ -938,8 +931,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     ///
     override func setNeedsDisplay(_ invalidRect: NSRect) {
         
-        // expand rect as a workaround for thick or multiple cursors (2018-11 macOS 10.14)
-        if self.cursorType != .bar || self.hasMultipleInsertions {
+        // expand rect as a workaround for multiple cursors (2018-11 macOS 10.14)
+        if self.hasMultipleInsertions {
             super.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
         }
         
@@ -964,14 +957,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// draw insertion point
     override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
         
-        let rect = self.insertionPointRect(in: rect, for: self.cursorType)
-        
         super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
         
         // draw sub insertion rects
         self.insertionLocations
             .flatMap { self.insertionPointRects(at: $0) }
-            .map { self.insertionPointRect(in: $0, for: self.cursorType) }
             .forEach { super.drawInsertionPoint(in: $0, color: color, turnedOn: flag) }
     }
     
@@ -1013,7 +1003,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.insertionRanges
                 .filter(\.isEmpty)
                 .flatMap { self.insertionPointRects(at: $0.location) }
-                .map { self.insertionPointRect(in: $0, for: self.cursorType) }
                 .filter { $0.intersects(dirtyRect) }
                 .forEach { super.drawInsertionPoint(in: $0, color: self.insertionPointColor, turnedOn: self.insertionPointOn) }
         }
@@ -1360,9 +1349,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.lineHighLightColor = self.isOpaque
             ? theme.lineHighlight.color
             : theme.lineHighlight.color.withAlphaComponent(0.7)
-        self.insertionPointColor = (self.cursorType == .block)
-            ? theme.insertionPoint.color.withAlphaComponent(0.5)
-            : theme.insertionPoint.color
+        if #available(macOS 14, *) {
+            self.insertionPointColor = theme.insertionPoint.usesSystemSetting
+                ? .textInsertionPointColor
+                : theme.insertionPoint.color
+        } else {
+            self.insertionPointColor = theme.insertionPoint.color
+        }
         self.selectedTextAttributes[.backgroundColor] = theme.selection.usesSystemSetting
             ? .selectedTextBackgroundColor
             : theme.selection.color
@@ -1497,52 +1490,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.didChangeText()
         
         return true
-    }
-    
-    
-    /// Return the rect to draw insertion point by taking cursor type setting into the consideration.
-    ///
-    /// - Parameters:
-    ///   - rect: The proposed insertion point rect.
-    ///   - cursorType: The cursor type.
-    /// - Returns: Rect to draw insertion point.
-    private func insertionPointRect(in rect: NSRect, for cursorType: CursorType) -> NSRect {
-        
-        var rect = rect
-        
-        switch cursorType {
-            case .bar:
-                break
-            case .thickBar:
-                rect.size.width *= 2
-            case .block:
-                let index = self.characterIndexForInsertion(at: rect.mid)
-                rect.size.width = self.insertionBlockWidth(at: index)
-        }
-        
-        return rect
-    }
-    
-    
-    /// Return the width of the insertion point to be drawn at the `index`.
-    ///
-    /// - Parameter index: The character index of the insertion point.
-    /// - Returns: The width of insertion point rect.
-    private func insertionBlockWidth(at index: Int) -> CGFloat {
-        
-        guard
-            let layoutManager = self.layoutManager as? LayoutManager,
-            let textContainer = self.textContainer
-        else { assertionFailure(); return 1 }
-        
-        let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
-        
-        guard
-            layoutManager.isValidGlyphIndex(glyphIndex),
-            layoutManager.propertyForGlyph(at: glyphIndex) != .controlCharacter
-        else { return layoutManager.spaceWidth }
-        
-        return layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 1), in: textContainer).width
     }
     
     
