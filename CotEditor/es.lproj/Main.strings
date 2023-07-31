@@ -487,7 +487,7 @@
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
 "HgR-ke-6gq.title" = "Buscar todo";
 /* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */
-"ULf-cT-Xvb.title" = "Seleccionar todos los patrones encontrados";
+"ULf-cT-Xvb.title" = "Seleccionar todas las coincidencias encontradas";
 
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
 "hTx-ef-3T2.title" = "Usar selección para buscar";
