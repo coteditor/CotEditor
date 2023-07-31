@@ -362,7 +362,7 @@
 "Unwrap lines" = "Desajustar líneas";
 "Wrap lines" = "Ajustar líneas";
 
-"Invisibles" = "Invisibles";
+"Invisibles" = "Caracteres invisibles";
 // tooltip
 "Hide invisible characters" = "Ocultar caracteres invisibles";
 "Show invisible characters" = "Mostrar caracteres invisibles";
@@ -521,8 +521,8 @@
 "Show Status Bar" = "Mostrar barra de estado";
 "Hide Navigation Bar" = "Ocultar barra de navegación";
 "Show Navigation Bar" = "Mostrar barra de navegación";
-"Hide Invisibles" = "Ocultar Invisibles";
-"Show Invisibles" = "Mostrar invisibles";
+"Hide Invisibles" = "Ocultar caracteres invisibles";
+"Show Invisibles" = "Mostrar caracteres invisibles";
 "Hide Page Guide" = "Ocultar guía de página";
 "Show Page Guide" = "Mostrar guía de la página";
 "Hide Indent Guides" = "Ocultar guías de sangría";
