@@ -513,9 +513,9 @@
 /* Class = "NSMenuItem"; title = "Open Outline Menu"; ObjectID = "PmT-ho-UU7"; */
 "PmT-ho-UU7.title" = "Abrir menu del esquema";
 /* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
-"9Lf-39-x5S.title" = "Seleccionar elemento anterior del esquema";
+"9Lf-39-x5S.title" = "Seleccionar anterior elemento del esquema";
 /* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */
-"PWZ-Om-OhX.title" = "Seleccionar elemento siguiente del esquema";
+"PWZ-Om-OhX.title" = "Seleccionar siguiente elemento del esquema";
 
 /* Class = "NSMenuItem"; title = "Go to Line…"; ObjectID = "eIc-Sj-2mO"; */
 "eIc-Sj-2mO.title" = "Ir a la línea…";
