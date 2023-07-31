@@ -392,7 +392,7 @@
 "3VX-DL-PgT.title" = "Personalizar…";
 
 /* Class = "NSMenuItem"; title = "Trim Trailing Whitespace"; ObjectID = "hBJ-Ge-278"; */
-"hBJ-Ge-278.title" = "Recortar espacio en blanco final";
+"hBJ-Ge-278.title" = "Recortar espacios en blanco finales";
 
 /* Class = "NSMenuItem"; title = "Lines"; ObjectID = "Kb8-QD-tYZ"; */
 "Kb8-QD-tYZ.title" = "Líneas";
