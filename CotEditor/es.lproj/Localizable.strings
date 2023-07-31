@@ -29,7 +29,7 @@
 "Cancel" = "Cancelar";
 "Start" = "Iniciar";
 "Restore Defaults" = "Restaurar valores por omisión";
-"Delete" = "Borrar";
+"Delete" = "Eliminar";
 "Restore" = "Restaurar";
 
 
@@ -62,7 +62,7 @@
 
 
 // warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "¿Estas seguro de que quiere borrar “%@”?";
+"Are you sure you want to delete “%@”?" = "¿Estas seguro de que quiere eliminar “%@”?";
 "This action cannot be undone." = "Esta acción no se puede deshacer.";
 
 
@@ -497,9 +497,9 @@
 "Sort Lines" = "Ordenar líneas";
 "Reverse Lines" = "Ivertir líneas";
 "Shuffle Lines" = "Barajar líneas";
-"Delete Duplicate Lines" = "Borrar líneas repetidas";
+"Delete Duplicate Lines" = "Eliminar líneas repetidas";
 "Duplicate Line" = "Duplicar línea";
-"Delete Line" = "Borrar línea";
+"Delete Line" = "Eliminar línea";
 "Trim Trailing Whitespace" = "Recortar el espacio en blanco final";
 
 // Contextual menu items
@@ -857,7 +857,7 @@
 "Drag encodings to change the order:" = "Arrastra las codificaciones para cambiar el orden:";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Este orden es para el menú de codificación y la detección de codificación al abrir el archivo. Según la detección, los elementos más altos tienen más prioridad.";
 "Add Separator" = "Añadir separador";
-"Delete Separator" = "Borrar separador";
+"Delete Separator" = "Eliminar separador";
 
 
 
