@@ -44,7 +44,7 @@ struct UnicodeInputView: View {
                     .font(.system(size: 26))
                     .frame(minWidth: 30, minHeight: 30)
                 
-                Text(self.unicodeName ?? "Invalid code")
+                Text(self.unicodeName ?? String(localized: "Invalid code"))
                     .help(self.unicodeName ?? "")
                     .controlSize(.small)
                     .textSelection(.enabled)
