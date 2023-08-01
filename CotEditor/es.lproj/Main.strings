@@ -50,7 +50,7 @@
 "131.title" = "Servicios";
 
 /* Class = "NSMenuItem"; title = "Hide CotEditor"; ObjectID = "134"; */
-"134.title" = "Ocultar cotEditor";
+"134.title" = "Ocultar CotEditor";
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
 "145.title" = "Ocultar otros";
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
@@ -207,9 +207,9 @@
 "300.title" = "Codificación de archivos";
 
 /* Class = "NSMenuItem"; title = "Syntax"; ObjectID = "302"; */
-"302.title" = "Sintaxis";  // FIXME: Syntax style -> Syntax
+"302.title" = "Sintaxis";
 /* Class = "NSMenu"; title = "Syntax"; ObjectID = "304"; */
-"304.title" = "Sintaxis";  // FIXME: Syntax style -> Syntax
+"304.title" = "Sintaxis";
 /* Class = "NSMenuItem"; title = "Recolor All"; ObjectID = "458"; */
 "458.title" = "Colorear todo";
 
