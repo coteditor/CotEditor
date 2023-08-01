@@ -529,8 +529,8 @@
 "Unwrap Lines" = "Zeilen nicht umbrechen";
 "Wrap Lines" = "Zeilen umbrechen";
 
-// Tooltip for "Show Invisibles" menu item and toolbar item
-"To show invisible characters, set them in Settings" = "Um Steuerzeichen anzuzeigen, setze sie in den Einstellungen";
+// Tooltip for “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled
+"To show invisible characters, set them in the Appearance settings" = "Um Steuerzeichen anzuzeigen, setze sie in den Einstellungen „Asssehen“";
 
 
 
@@ -840,7 +840,7 @@
 
 
 /* MARK: String extension */
-// Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
+// Encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "%@ mit BOM";
 
 

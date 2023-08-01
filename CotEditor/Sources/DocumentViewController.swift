@@ -299,7 +299,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                 let canActivateShowInvisibles = !UserDefaults.standard.showsInvisible.isEmpty
                 item.toolTip = canActivateShowInvisibles
                     ? nil
-                    : String(localized: "To show invisible characters, set them in Settings")
+                    : String(localized: "To show invisible characters, set them in the Appearance settings",
+                             comment: "Tooltip for “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled")
                 if canActivateShowInvisibles {
                     (item as? NSToolbarItem)?.toolTip = self.showsInvisibles
                         ? String(localized: "Hide invisible characters")

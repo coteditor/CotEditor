@@ -529,8 +529,8 @@
 "Unwrap Lines" = "不换行";
 "Wrap Lines" = "换行";
 
-// Tooltip for "Show Invisibles" menu item and toolbar item
-"To show invisible characters, set them in Settings" = "要显示不可见元素，请在设置中进行设定";
+// Tooltip for “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled
+"To show invisible characters, set them in the Appearance settings" = "要显示不可见元素，请在设置中进行设定";  // FIXME: Setting -> the Appearance Settings
 
 
 
@@ -840,8 +840,8 @@
 
 
 /* MARK: String extension */
-// Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
-"%@ with BOM" = "%@ with BOM";  // No need to be tranlated because "UTF-8 with BOM" is acceptable in zh-Hans.
+// Encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
+"%@ with BOM" = "%@ with BOM";  // No need to be translated because "UTF-8 with BOM" is acceptable in zh-Hans.
 
 
 

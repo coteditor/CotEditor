@@ -24,8 +24,9 @@
 //  limitations under the License.
 //
 
-// -> auto-generated from CharacterPaletteIM.lg in Apple's glossaries
-//    release date of the used grossary: 2020-01-15
+// -> You don't need to translate the terms in this file
+//    since they are auto-generated from CharacterPaletteIM.lg in the Apple's glossaries.
+//    release date of the used glossary: 2020-01-15
 // cf. <https://developer.apple.com/download/all/?q=glossaries>
 
 "Cuneiform" = "Cuneiforme";

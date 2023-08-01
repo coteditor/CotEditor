@@ -529,8 +529,8 @@
 "Unwrap Lines" = "Rimuovi a capo automatico";
 "Wrap Lines" = "A capo automatico";
 
-// Tooltip for "Show Invisibles" menu item and toolbar item
-"To show invisible characters, set them in Settings" = "Per visualizzare i caratteri invisibili, impostarli nelle Impostazioni";
+// Tooltip for “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled
+"To show invisible characters, set them in the Appearance settings" = "Per visualizzare i caratteri invisibili, impostarli nelle Impostazioni";  // FIXME: Setting -> the Appearance Settings
 
 
 
@@ -840,7 +840,7 @@
 
 
 /* MARK: String extension */
-// Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
+// Encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "%@ con BOM";
 
 

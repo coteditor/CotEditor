@@ -36,6 +36,8 @@ By adding code, please follow our coding style guide below.
 
 ### Localization
 
+_2023-08-01: CotEditor project now gradually migrates the localization format to the strings catalog that is newly introduced in Xcode 15. We will update the localization policy when the migration has completely done._
+ 
 Fixing/updating existing localizations is always welcome. The project team adds `FIXME:` tag as a comment in the localized strings files if there are updated strings to be localized.
 
 If your localization makes the Autolayout destroy, try first making the sentence shorter. However, if it's impossible, then just tell us about it with a screenshot when you make a pull-request. We'll update the storyboard file to layout your localized terms correctly.
@@ -53,11 +55,10 @@ Especially, follow the terms of the following applications.
 We recommend to utilize [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kishikawa Katsumi to find macOS-friendly expressions. This service enables us to search in the texts localized by Apple for macOS applications and frameworks.
 You also need to take care of how Apple treats punctuation characters and symbols. For example, regarding quotation marks, they normally prefer the typographer's ones.
 
-
 #### Submitting a new localization
 
 Copy one of a whole .lproj directory and use it as a template. We recommend using `CotEditor/en-GB.lproj/` directory because they are always up-to-date.
-Note that you don't need to localize the Unicode block names in the `UnicodeUnicode.strings` file.
+Note that you don't need to localize the Unicode block names in the `UnicodeBlock.strings` file.
 
 Continuous maintenance of the localization is highly recommended when providing a new localization. Please tell us if you also intend to be a localization maintainer when submitting a new localization. When we have new strings to be localized, we call the localization maintainers by creating an issue with the `@` mention on GitHub so that they can keep all their localized strings up to date.
 Currently, we already have maintainers for:
@@ -96,6 +97,7 @@ We don't accept pull requests adding bundled themes at the moment. You can distr
 ### Graphics Resources
 
 We don't accept pull requests for image resources. [1024jp](https://github.com/1024jp) enjoys creating and brushing up the graphics ;). Please just point out on the Issues page if a graphic resource has some kind of mistake to be fixed.
+
 
 
 Coding Style Guide

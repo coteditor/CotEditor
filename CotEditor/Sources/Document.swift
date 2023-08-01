@@ -1014,7 +1014,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                         if self.isDocumentEdited {
                             let alert = NSAlert()
                             alert.messageText = String(localized: "The document has unsaved changes.")
-                            alert.informativeText = String(localized: "Do you want to discard the changes and reopen the document using “\(fileEncoding.localizedName)”?")
+                            alert.informativeText = String(localized: "Do you want to discard the changes and reopen the document using “\(fileEncoding.localizedName)”?",
+                                                           comment: "%@ is an encoding name")
                             alert.addButton(withTitle: String(localized: "Cancel"))
                             alert.addButton(withTitle: String(localized: "Discard Changes"))
                             alert.buttons.last?.hasDestructiveAction = true

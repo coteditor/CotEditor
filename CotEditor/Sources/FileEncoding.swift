@@ -37,7 +37,7 @@ struct FileEncoding: Equatable {
         let localizedName = String.localizedName(of: self.encoding)
         
         return (self.encoding == .utf8 && self.withUTF8BOM)
-            ? String(localized: "\(localizedName) with BOM", comment: "Unicode (UTF-8) with BOM")
+            ? String(localized: "\(localizedName) with BOM", comment: "Encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)")
             : localizedName
     }
 }
