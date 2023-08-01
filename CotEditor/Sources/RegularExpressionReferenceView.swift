@@ -125,8 +125,6 @@ struct RegularExpressionReferenceView: View {
         @State private var title: LocalizedStringKey
         @State private var definitions: [Definition]
         
-        @State private var width: CGFloat?
-        
         
         init(_ definitions: [Definition], title: LocalizedStringKey) {
             
@@ -138,19 +136,15 @@ struct RegularExpressionReferenceView: View {
         var body: some View {
             
             Section {
-                VStack(alignment: .leading, spacing: 1) {
+                Grid(alignment: .leading, verticalSpacing: 1) {
                     ForEach(self.definitions) { definition in
-                        HStack(alignment: .firstTextBaseline) {
+                        GridRow {
                             Text(verbatim: definition.term)
                                 .fontWeight(.medium)
-                                .frame(width: self.width, alignment: .leading)
-                                .background(WidthGetter(key: WidthKey.self))
                             Text(definition.description)
                         }
-                        .fixedSize()
                     }
                 }
-                .onPreferenceChange(WidthKey.self) { self.width = $0 }
                 
             } header: {
                 Text(self.title)

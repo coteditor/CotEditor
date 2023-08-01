@@ -34,9 +34,10 @@ struct CharacterCountOptionsView: View {
     
     var body: some View {
         
-        VStack(alignment: .column) {
-            HStack(alignment: .firstTextBaseline) {
+        Grid(alignment: .topLeading) {
+            GridRow {
                 Text("Whitespace:")
+                    .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading, spacing: 6) {
                     Toggle("Ignore line endings", isOn: $setting.ignoresNewlines)
@@ -44,13 +45,10 @@ struct CharacterCountOptionsView: View {
                     Toggle("Treat consecutive whitespace as one space", isOn: $setting.treatsConsecutiveWhitespaceAsSingle)
                         .disabled(self.setting.ignoresNewlines && self.setting.ignoresWhitespaces)
                 }
-                .alignmentGuide(.column) { $0[.leading] }
-                .background(WidthGetter(key: WidthKey.self))
             }.fixedSize()
             
-            HStack(alignment: .firstTextBaseline) {
+            GridRow {
                 Text("Unit:")
-                    .fixedSize()
                 
                 VStack(alignment: .leading) {
                     Picker("Unit:", selection: $setting.unit) {
@@ -103,8 +101,6 @@ struct CharacterCountOptionsView: View {
                         }.fixedSize()
                     }
                 }
-                .background(WidthGetter(key: WidthKey.self))
-                .alignmentGuide(.column) { $0[.leading] }
             }
         }
         .onPreferenceChange(WidthKey.self) { self.contentWidth = $0 }

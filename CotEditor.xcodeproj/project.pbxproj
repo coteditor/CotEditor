@@ -23,8 +23,6 @@
 /* Begin PBXBuildFile section */
 		259C2318077678DE00BA61C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
 		2A04E9BB27FD6911008C82D8 /* SnippetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A04E9BA27FD6911008C82D8 /* SnippetTests.swift */; };
-		2A04E9C027FEF72E008C82D8 /* Alignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A04E9BE27FEF72E008C82D8 /* Alignments.swift */; };
-		2A04E9C227FEFA2B008C82D8 /* Alignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A04E9BE27FEF72E008C82D8 /* Alignments.swift */; };
 		2A04E9C327FEFA86008C82D8 /* AdvancedCharacterCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE56CC6265F2F4C00B8A278 /* AdvancedCharacterCounterView.swift */; };
 		2A04E9C427FEFA87008C82D8 /* AdvancedCharacterCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE56CC6265F2F4C00B8A278 /* AdvancedCharacterCounterView.swift */; };
 		2A05081323D6B9E900602F5E /* NSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A05081223D6B9E900602F5E /* NSViewController.swift */; };
@@ -856,7 +854,6 @@
 		0D51D5922274EF5300A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UnicodeBlock.strings; sourceTree = "<group>"; };
 		2A03E699201457570093FDF1 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/PatternSortView.strings; sourceTree = "<group>"; };
 		2A04E9BA27FD6911008C82D8 /* SnippetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetTests.swift; sourceTree = "<group>"; };
-		2A04E9BE27FEF72E008C82D8 /* Alignments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alignments.swift; sourceTree = "<group>"; };
 		2A05081223D6B9E900602F5E /* NSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewController.swift; sourceTree = "<group>"; };
 		2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionSyntaxType.swift; sourceTree = "<group>"; };
 		2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTouchBar+Validation.swift"; sourceTree = "<group>"; };
@@ -1524,7 +1521,6 @@
 		2A04E9C127FEF737008C82D8 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				2A04E9BE27FEF72E008C82D8 /* Alignments.swift */,
 				2AFD328829482D53000ED1C5 /* Color.swift */,
 				2A8321732980C41600F87D35 /* Image+Status.swift */,
 			);
@@ -2886,7 +2882,6 @@
 				2A39F15726F74C2500B52876 /* AccessibleStepper.swift in Sources */,
 				2AF29EC42882EE7700DF31D2 /* AdvancedCharacterCounter.swift in Sources */,
 				2A04E9C327FEFA86008C82D8 /* AdvancedCharacterCounterView.swift in Sources */,
-				2A04E9C227FEFA2B008C82D8 /* Alignments.swift in Sources */,
 				2ACDC09B1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
 				2AC2462F1D1BC70C00E46CFA /* AppDelegate.swift in Sources */,
 				2A2792931D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
@@ -3242,7 +3237,6 @@
 				2A39F15826F74C2500B52876 /* AccessibleStepper.swift in Sources */,
 				2AF29EC52882EE7700DF31D2 /* AdvancedCharacterCounter.swift in Sources */,
 				2A04E9C427FEFA87008C82D8 /* AdvancedCharacterCounterView.swift in Sources */,
-				2A04E9C027FEF72E008C82D8 /* Alignments.swift in Sources */,
 				2ACDC09A1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
 				2AC2462E1D1BC70C00E46CFA /* AppDelegate.swift in Sources */,
 				2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,

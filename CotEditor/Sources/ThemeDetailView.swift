@@ -132,7 +132,6 @@ struct ThemeDetailView: View {
     
     @State private var isMetadataPresenting = false
     @State private var needsNotify = false
-    @State private var columnWidth: CGFloat?
     
     
     // MARK: View
@@ -147,8 +146,8 @@ struct ThemeDetailView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 4) {
-            HStack(alignment: .firstTextBaseline) {
+        Grid(alignment: .trailingFirstTextBaseline, verticalSpacing: 4) {
+            GridRow {
                 VStack(alignment: .trailing, spacing: 3) {
                     ColorPicker("Text:", selection: $theme.text, supportsOpacity: false)
                     ColorPicker("Invisibles:", selection: $theme.invisibles, supportsOpacity: false)
@@ -158,10 +157,6 @@ struct ThemeDetailView: View {
                         ColorPicker("Cursor:", selection: $theme.insertionPoint, supportsOpacity: false)
                     }
                 }
-                .background(WidthGetter(key: WidthKey.self))
-                .frame(width: self.columnWidth, alignment: .trailing)
-                
-                Spacer()
                 
                 VStack(alignment: .trailing, spacing: 3) {
                     ColorPicker("Background:", selection: $theme.background, supportsOpacity: false)
@@ -170,9 +165,14 @@ struct ThemeDetailView: View {
                 }
             }
             
-            Text("Syntax")
-                .fontWeight(.bold)
-            HStack(alignment: .firstTextBaseline) {
+            GridRow {
+                Text("Syntax")
+                    .fontWeight(.bold)
+                    .gridCellColumns(2)
+                    .gridCellAnchor(.leading)
+            }
+            
+            GridRow {
                 VStack(alignment: .trailing, spacing: 3) {
                     ColorPicker("Keywords:", selection: $theme.keywords, supportsOpacity: false)
                     ColorPicker("Commands:", selection: $theme.commands, supportsOpacity: false)
@@ -180,10 +180,6 @@ struct ThemeDetailView: View {
                     ColorPicker("Attributes:", selection: $theme.attributes, supportsOpacity: false)
                     ColorPicker("Variables:", selection: $theme.variables, supportsOpacity: false)
                 }
-                .background(WidthGetter(key: WidthKey.self))
-                .frame(width: self.columnWidth, alignment: .trailing)
-                
-                Spacer()
                 
                 VStack(alignment: .trailing, spacing: 3) {
                     ColorPicker("Values:", selection: $theme.values, supportsOpacity: false)
@@ -193,6 +189,7 @@ struct ThemeDetailView: View {
                     ColorPicker("Comments:", selection: $theme.comments, supportsOpacity: false)
                 }
             }
+            
             HStack {
                 Spacer()
                 Button {
@@ -213,7 +210,6 @@ struct ThemeDetailView: View {
                 .buttonStyle(.borderless)
             }
         }
-        .onPreferenceChange(WidthKey.self) { self.columnWidth = $0 }
         // use DispatchQueue.main instead of RunLoop.main to update continuously
         .onReceive(self.theme.objectWillChange .throttle(for: .seconds(0.1), scheduler: DispatchQueue.main, latest: true)) { _ in
             if self.isMetadataPresenting {
@@ -272,55 +268,42 @@ private struct ThemeMetadataView: View {
     @Binding var description: String
     let isEditable: Bool
     
-    @State private var columnWidth: CGFloat?
-    
-    @Environment(\.openURL) private var openURL
-    
     
     // MARK: View
     
     var body: some View {
         
-        VStack(spacing: 4) {
-            HStack(alignment: .firstTextBaseline) {
+        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 4) {
+            GridRow {
                 self.itemView("Author:", text: $author)
             }
-            
-            HStack(alignment: .firstTextBaseline) {
+            GridRow {
                 self.itemView("URL:", text: $distributionURL)
                 LinkButton(url: self.distributionURL)
             }
-            
-            HStack(alignment: .firstTextBaseline) {
+            GridRow {
                 self.itemView("License:", text: $license)
             }
-            
-            HStack(alignment: .firstTextBaseline) {
-                self.itemView("Description:", text: $description, lineLimit: ...5)
+            GridRow {
+                self.itemView("Description:", text: $description, lineLimit: 2...5)
             }
         }
-        .onPreferenceChange(WidthKey.self) { self.columnWidth = $0 }
-        .textFieldStyle(.plain)
         .controlSize(.small)
         .padding(10)
         .frame(width: 300)
     }
     
     
-    @ViewBuilder private func itemView(_ title: LocalizedStringKey, text: Binding<String>, lineLimit: PartialRangeThrough<Int>? = nil) -> some View {
+    @ViewBuilder private func itemView(_ title: LocalizedStringKey, text: Binding<String>, lineLimit: ClosedRange<Int> = 1...1) -> some View {
         
         Text(title)
             .fontWeight(.bold)
-            .background(WidthGetter(key: WidthKey.self))
-            .frame(width: self.columnWidth, alignment: .trailing)
+            .gridColumnAlignment(.trailing)
         
         if self.isEditable {
-            if let lineLimit {
-                TextField(title, text: text, prompt: Text("Not defined"), axis: .vertical)
-                    .lineLimit(lineLimit)
-            } else {
-                TextField(title, text: text, prompt: Text("Not defined"))
-            }
+            TextField(title, text: text, prompt: Text("Not defined"), axis: .vertical)
+                .lineLimit(lineLimit)
+                .textFieldStyle(.plain)
         } else {
             Text(text.wrappedValue)
                 .foregroundColor(.label)
@@ -348,7 +331,7 @@ private struct ThemeMetadataView: View {
 }
 
 #Preview("Metadata (fixed)") {
-    ThemeMetadataView(author: .constant(""),
+    ThemeMetadataView(author: .constant("Claus"),
                       distributionURL: .constant(""),
                       license: .constant(""),
                       description: .constant(""),
