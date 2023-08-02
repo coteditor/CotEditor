@@ -40,11 +40,11 @@ struct Theme {
         
         var color: NSColor
         
-        fileprivate static let invalidColor = NSColor.gray.usingColorSpace(.genericRGB)!
+        fileprivate static let invalidColor: NSColor = .gray
     }
     
     
-    struct SelectionStyle {
+    struct SystemDefaultStyle {
         
         var color: NSColor
         var usesSystemSetting: Bool
@@ -70,8 +70,8 @@ struct Theme {
     var text: Style
     var background: Style
     var invisibles: Style
-    var selection: SelectionStyle
-    var insertionPoint: SelectionStyle
+    var selection: SystemDefaultStyle
+    var insertionPoint: SystemDefaultStyle
     var lineHighlight: Style
     
     var keywords: Style
@@ -99,8 +99,8 @@ struct Theme {
         self.text = Style(color: .textColor)
         self.background = Style(color: .textBackgroundColor)
         self.invisibles = Style(color: .init(white: 0.7, alpha: 1))
-        self.selection = SelectionStyle(color: .selectedTextBackgroundColor, usesSystemSetting: true)
-        self.insertionPoint = SelectionStyle(color: .textColor, usesSystemSetting: true)
+        self.selection = SystemDefaultStyle(color: .selectedTextBackgroundColor, usesSystemSetting: true)
+        self.insertionPoint = SystemDefaultStyle(color: .textColor, usesSystemSetting: true)
         self.lineHighlight = Style(color: .init(white: 0.95, alpha: 1))
         
         self.keywords = Style(color: .gray)
@@ -203,7 +203,7 @@ extension Theme.Style: Codable {
 
 
 
-extension Theme.SelectionStyle: Codable {
+extension Theme.SystemDefaultStyle: Codable {
     
     private enum CodingKeys: String, CodingKey {
         
