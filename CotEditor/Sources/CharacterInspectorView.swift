@@ -51,10 +51,15 @@ private struct CharacterDetailView: View {
     var body: some View {
         
         VStack(alignment: .leading, spacing: 0) {
-            Text(self.info.localizedDescription ?? "Unknown")
-                .fontWeight(self.info.isComplex ? .regular : .semibold)
-                .foregroundColor(.label)  // Workaround to keep text color when selected (2022-12, macOS 13, FB10747746, fixed on macOS 14).
-                .textSelection(.enabled)
+            if let description = self.info.localizedDescription {
+                Text(description)
+                    .fontWeight(self.info.isComplex ? .regular : .semibold)
+                    .foregroundColor(.label)  // Workaround to keep text color when selected (2022-12, macOS 13, FB10747746, fixed on macOS 14).
+                    .textSelection(.enabled)
+            } else {
+                Text("Unknown")
+                    .foregroundColor(.secondaryLabel)
+            }
             
             if !self.info.isComplex {
                 ScalarDetailView(scalar: self.info.character.unicodeScalars.first!)
