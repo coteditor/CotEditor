@@ -36,7 +36,6 @@
 // words with symbols
 " (%@)" = " (%@)";
 "(%@)" = "(%@)";
-"(%@):" = "(%@) :";
 "%@:" = "%@ :";
 
 
@@ -300,7 +299,7 @@
 /* MARK: Toolbar */
 "Syntax" = "Syntaxe";
 // tooltip
-"Change syntax style" = "Changer la syntaxe";
+"Change syntax" = "Changer la syntaxe";
 // item in the menu
 "Recently Used" = "Récemment utilisés";
 "Deleted" = "Supprimés";  // heading for deleted items
@@ -347,12 +346,10 @@
 // tooltip
 "Turn off expanding tabs to spaces" = "Désactiver l’utilisation d’espaces comme tabulation";
 "Expand tabs to spaces automatically" = "Utiliser des espaces comme tabulation";
-"Change tab width" = "Changer la largeur de tabulation";
 // menu
 "Tab Width" = "Largeur de tabulation";
 "Custom…" = "Personnalisé…";
 "Expand to Spaces Automatically" = "Convertir automatiquement les tabulations";
-"Auto-Expand Tabs" = "Convertir automatiquement les tabulations";
 
 "Wrap Lines" = "Renv. à la ligne";
 // tooltip
@@ -435,17 +432,14 @@
 "Print Backgrounds" = "Imprimer l’arrière-plan";
 "Line Number" = "Numéro de ligne";
 "Invisibles" = "Caractères invisibles";
-"Print Header" = "Imprimer l’en-tête";
 "Primary Header" = "En-tête principal";
 "Secondary Header" = "En-tête secondaire";
-"Print Footer" = "Imprimer le pied de page";
 "Primary Footer" = "Pied de page principal";
 "Secondary Footer" = "Pied de page secondaire";
 
 // Summary item values
 "%@ pt" = "%@ pt";
 "On" = "Oui";
-"Off" = "Non";
 "Same as Document’s Setting" = "Identique aux paramètres du document";
 "Black and White" = "Noir et Blanc";
 "Syntax Name" = "Nom de la syntaxe";
@@ -483,7 +477,6 @@
 
 /* MARK: EditorTextView */
 // Undo action names
-"Replace Text" = "Remplacer du Texte";
 "Insert Text" = "Insérer du Texte";
 "Insert Snippet" = "Insérer un Snippet";
 "Shift Right" = "Décaler à Droite";
@@ -502,7 +495,6 @@
 "Trim Trailing Whitespace" = "Rogner les espaces aux extrémités";
 
 // Contextual menu items
-"Text" = "Texte";
 "Copy as Rich Text" = "Copier en tant que texte riche";
 "Select All" = "Tout sélectionner";
 "Straighten Quotes" = "Redresser les guillemets";
@@ -544,7 +536,6 @@
 /* MARK: StatusBarController */
 "Lines: " = "Lignes : ";
 "Characters: " = "Caractères : ";
-"Length: " = "Longueur : ";
 "Words: " = "Mots : ";
 "Location: " = "Position : ";
 "Line: " = "Ligne : ";
@@ -704,7 +695,6 @@
 "No error found." = "Aucune erreur trouvée.";
 "An error found." = "Une erreur trouvée .";
 "%lld errors found." = "%lld erreurs trouvées .";
-"outline" = "structure";
 
 
 
@@ -753,7 +743,6 @@
 /* MARK: ThemeManager */
 // Theme names
 "Untitled" = "Sans titre";
-"Customized Theme" = "Thème personnalisé";
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Un nouveau thème nommé « %@ » va être installé, mais un thème personnalisé avec le même nom existe déjà.";

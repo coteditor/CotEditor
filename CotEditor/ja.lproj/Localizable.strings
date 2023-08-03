@@ -36,7 +36,6 @@
 // words with symbols
 " (%@)" = "（%@）";
 "(%@)" = "（%@）";
-"(%@):" = "（%@）:";
 "%@:" = "%@:";
 
 
@@ -347,12 +346,10 @@
 // tooltip
 "Turn off expanding tabs to spaces" = "自動タブ展開を無効に";
 "Expand tabs to spaces automatically" = "自動でタブをスペースに展開";
-"Change tab width" = "タブ幅を変更";
 // menu
 "Tab Width" = "タブ幅";
 "Custom…" = "カスタム…";
 "Expand to Spaces Automatically" = "自動でスペースに展開";
-"Auto-Expand Tabs" = "タブを自動でスペースに展開";
 
 "Wrap Lines" = "行を折り返す";
 // tooltip
@@ -435,17 +432,14 @@
 "Print Backgrounds" = "背景をプリント";
 "Line Number" = "行番号";
 "Invisibles" = "不可視文字";
-"Print Header" = "ヘッダをプリント";
 "Primary Header" = "主ヘッダ";
 "Secondary Header" = "副ヘッダ";
-"Print Footer" = "フッタをプリント";
 "Primary Footer" = "主フッタ";
 "Secondary Footer" = "副フッタ";
 
 // Summary item values
 "%@ pt" = "%@ pt";
 "On" = "オン";
-"Off" = "オフ";
 "Same as Document’s Setting" = "書類の設定と同じ";
 "Black and White" = "白黒";
 "Syntax Name" = "シンタックス名";
@@ -483,7 +477,6 @@
 
 /* MARK: EditorTextView */
 // Undo action names
-"Replace Text" = "テキストを置換";
 "Insert Text" = "テキストを挿入";
 "Insert Snippet" = "スニペットを挿入";
 "Shift Right" = "右へシフト";
@@ -502,7 +495,6 @@
 "Trim Trailing Whitespace" = "行末の空白を削除";
 
 // Contextual menu items
-"Text" = "テキスト";
 "Copy as Rich Text" = "リッチテキストとしてコピー";
 "Select All" = "すべてを選択";
 "Straighten Quotes" = "引用符をまっすぐにする";
@@ -544,7 +536,6 @@
 /* MARK: StatusBarController */
 "Lines: " = "行数: ";
 "Characters: " = "文字数: ";
-"Length: " = "文字長: ";
 "Words: " = "単語数: ";
 "Location: " = "位置: ";
 "Line: " = "行: ";
@@ -704,7 +695,6 @@
 "No error found." = "エラーはありません。";
 "An error found." = "1個のエラーがあります。";
 "%lld errors found." = "%lld個のエラーがあります。";
-"outline" = "アウトライン";
 
 
 
@@ -753,7 +743,6 @@
 /* MARK: ThemeManager */
 // Theme names
 "Untitled" = "名称未設定";
-"Customized Theme" = "カスタムテーマ";
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";

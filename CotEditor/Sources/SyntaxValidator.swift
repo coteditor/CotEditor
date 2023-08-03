@@ -205,7 +205,7 @@ extension SyntaxValidator.Error {
     
     var localizedType: String {
         
-        String(localized: String.LocalizationValue(self.type))
+        String(localized: String.LocalizationValue(self.type.capitalized))
     }
     
     

@@ -36,7 +36,6 @@
 // words with symbols
 " (%@)" = " (%@)";
 "(%@)" = " (%@)";
-"(%@):" = "(%@):";
 "%@:" = "%@:";
 
 
@@ -347,12 +346,10 @@
 // tooltip
 "Turn off expanding tabs to spaces" = "Turn off expanding tabs to spaces";
 "Expand tabs to spaces automatically" = "Expand tabs to spaces automatically";
-"Change tab width" = "Change tab width";
 // menu
 "Tab Width" = "Tab Width";
 "Custom…" = "Custom…";
 "Expand to Spaces Automatically" = "Expand to Spaces Automatically";
-"Auto-Expand Tabs" = "Auto-Expand Tabs";
 
 "Wrap Lines" = "Wrap Lines";
 // tooltip
@@ -435,17 +432,14 @@
 "Print Backgrounds" = "Print Backgrounds";
 "Line Number" = "Line Number";
 "Invisibles" = "Invisibles";
-"Print Header" = "Print Header";
 "Primary Header" = "Primary Header";
 "Secondary Header" = "Secondary Header";
-"Print Footer" = "Print Footer";
 "Primary Footer" = "Primary Footer";
 "Secondary Footer" = "Secondary Footer";
 
 // Summary item values
 "%@ pt" = "%@ pt";
 "On" = "On";
-"Off" = "Off";
 "Same as Document’s Setting" = "Same as Document’s Setting";
 "Black and White" = "Black and White";
 "Syntax Name" = "Syntax Name";
@@ -483,7 +477,6 @@
 
 /* MARK: EditorTextView */
 // Undo action names
-"Replace Text" = "Replace Text";
 "Insert Text" = "Insert Text";
 "Insert Snippet" = "Insert Snippet";
 "Shift Right" = "Shift Right";
@@ -502,7 +495,6 @@
 "Trim Trailing Whitespace" = "Trim Trailing Whitespace";
 
 // Contextual menu items
-"Text" = "Text";
 "Copy as Rich Text" = "Copy as Rich Text";
 "Select All" = "Select All";
 "Straighten Quotes" = "Straighten Quotes";
@@ -544,7 +536,6 @@
 /* MARK: StatusBarController */
 "Lines: " = "Lines: ";
 "Characters: " = "Characters: ";
-"Length: " = "Length: ";
 "Words: " = "Words: ";
 "Location: " = "Location: ";
 "Line: " = "Line: ";
@@ -704,7 +695,6 @@
 "No error found." = "No error found.";
 "An error found." = "An error found.";
 "%lld errors found." = "%lld errors found.";
-"outline" = "outline";
 
 
 
@@ -753,7 +743,6 @@
 /* MARK: ThemeManager */
 // Theme names
 "Untitled" = "Untitled";
-"Customized Theme" = "Customised Theme";
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "A new theme named “%@” will be installed, but a custom theme with the same name already exists.";

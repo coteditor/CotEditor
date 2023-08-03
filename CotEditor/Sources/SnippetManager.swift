@@ -197,7 +197,10 @@ private extension SnippetManager {
         
         let snippets = texts.enumerated()
             .filter { !$0.element.isEmpty }
-            .compactMap { Snippet(name: String(localized: "Insert Text \($0.offset)"), shortcut: shortcuts[$0.offset], format: $0.element) }
+            .compactMap {
+                Snippet(name: String(localized: "Insert Text \($0.offset)", comment: "label for snippet commands (deprecated)"),
+                        shortcut: shortcuts[$0.offset], format: $0.element)
+            }
         
         // save new format
         self.save(self.snippets + snippets)

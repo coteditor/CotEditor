@@ -36,7 +36,6 @@
 // words with symbols
 " (%@)" = "（%@）";
 "(%@)" = "（%@）";
-"(%@):" = "（%@）：";
 "%@:" = "%@：";
 
 
@@ -347,12 +346,10 @@
 // tooltip
 "Turn off expanding tabs to spaces" = "禁止将tab扩展为空格";
 "Expand tabs to spaces automatically" = "自动将tab扩展为空格";
-"Change tab width" = "更改Tab宽度";
 // menu
 "Tab Width" = "Tab宽度";
 "Custom…" = "自定义…";
 "Expand to Spaces Automatically" = "Tab转为空格";
-"Auto-Expand Tabs" = "Tab转为空格";
 
 "Wrap Lines" = "换行";
 // tooltip
@@ -435,17 +432,14 @@
 "Print Backgrounds" = "打印背景";
 "Line Number" = "行号";
 "Invisibles" = "不可见元素";
-"Print Header" = "打印页眉";
 "Primary Header" = "主页眉";
 "Secondary Header" = "次页眉";
-"Print Footer" = "打印页脚";
 "Primary Footer" = "主页脚";
 "Secondary Footer" = "次页脚";
 
 // Summary item values
 "%@ pt" = "%@点";
 "On" = "开";
-"Off" = "关";
 "Same as Document’s Setting" = "同文档设置一致";
 "Black and White" = "黑白";
 "Syntax Name" = "语法名";
@@ -483,7 +477,6 @@
 
 /* MARK: EditorTextView */
 // Undo action names
-"Replace Text" = "替换文本";
 "Insert Text" = "插入文本";
 "Insert Snippet" = "插入片段";
 "Shift Right" = "右移";
@@ -502,7 +495,6 @@
 "Trim Trailing Whitespace" = "移除行尾空白";
 
 // Contextual menu items
-"Text" = "文本";
 "Copy as Rich Text" = "以富文本拷贝";
 "Select All" = "全部选择";
 "Straighten Quotes" = "直引号";
@@ -544,7 +536,6 @@
 /* MARK: StatusBarController */
 "Lines: " = "行数：";
 "Characters: " = "字符数：";
-"Length: " = "长度：";
 "Words: " = "字数：";
 "Location: " = "位置：";
 "Line: " = "行：";
@@ -704,7 +695,6 @@
 "No error found." = "没有发现错误。";
 "An error found." = "发现1个错误。";
 "%lld errors found." = "发现%lld个错误。";
-"outline" = "大纲";
 
 
 
@@ -753,7 +743,6 @@
 /* MARK: ThemeManager */
 // Theme names
 "Untitled" = "未命名";
-"Customized Theme" = "自定义主题";
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "将要安装名为“%@”的新主题，但是已经存在同名的自定义主题。";

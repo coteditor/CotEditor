@@ -36,7 +36,6 @@
 // words with symbols
 " (%@)" = " (%@)";
 "(%@)" = "(%@)";
-"(%@):" = "(%@):";
 "%@:" = "%@:";
 
 
@@ -347,12 +346,10 @@
 // tooltip
 "Turn off expanding tabs to spaces" = "Tabulatorexpandierung deaktivieren";
 "Expand tabs to spaces automatically" = "Tabulator zu Leerzeichen automatisch expandieren";
-"Change tab width" = "Tabulatorbreite wechseln";
 // menu
 "Tab Width" = "Tabulatorbreite";
 "Custom…" = "Konfigurieren …";
 "Expand to Spaces Automatically" = "Tabulatoren automatisch expandieren";
-"Auto-Expand Tabs" = "Tabulatoren automatisch expandieren";
 
 "Wrap Lines" = "Zeilen umbrechen";
 // tooltip
@@ -435,17 +432,14 @@
 "Print Backgrounds" = "Hintergrund drucken";
 "Line Number" = "Zeilennummern";
 "Invisibles" = "Steuerzeichen";
-"Print Header" = "Kopfzeilen drucken";
 "Primary Header" = "Primäre Kopfzeile";
 "Secondary Header" = "Sekundäre Kopfzeile";
-"Print Footer" = "Fußzeilen drucken";
 "Primary Footer" = "Primäre Fußzeile";
 "Secondary Footer" = "Sekundäre Fußzeile";
 
 // Summary item values
 "%@ pt" = "%@ pt";
 "On" = "Ein";
-"Off" = "Aus";
 "Same as Document’s Setting" = "Wie Dokument";
 "Black and White" = "Schwarzweiß";
 "Syntax Name" = "Syntaxname";
@@ -483,7 +477,6 @@
 
 /* MARK: EditorTextView */
 // Undo action names
-"Replace Text" = "Text ersetzen";
 "Insert Text" = "Text hinzufügen";
 "Insert Snippet" = "Snippet hinzufügen";
 "Shift Right" = "Einrücken";
@@ -502,7 +495,6 @@
 "Trim Trailing Whitespace" = "Leerzeichen am Zeilenende entfernen";
 
 // Contextual menu items
-"Text" = "Text";
 "Copy as Rich Text" = "Als formatierten Text kopieren";
 "Select All" = "Alles auswählen";
 "Straighten Quotes" = "Anführungszeichen glätten";
@@ -544,7 +536,6 @@
 /* MARK: StatusBarController */
 "Lines: " = "Zeilen: ";
 "Characters: " = "Zeichen: ";
-"Length: " = "Länge: ";
 "Words: " = "Wörter: ";
 "Location: " = "Position: ";
 "Line: " = "Zeile: ";
@@ -704,7 +695,6 @@
 "No error found." = "Kein Fehler wurde gefunden.";
 "An error found." = "Ein Fehler wurde gefunden.";
 "%lld errors found." = "%lld Fehler wurden gefunden.";
-"outline" = "Gliederung";
 
 
 
@@ -753,7 +743,6 @@
 /* MARK: ThemeManager */
 // Theme names
 "Untitled" = "Ohne Titel";
-"Customized Theme" = "Benutzerdefiniertes Thema";
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Ein neues Thema mit dem Namen „%@“ wird installiert, doch ein benutzerdefiniertes Thema mit dem selben Namen existiert bereits.";

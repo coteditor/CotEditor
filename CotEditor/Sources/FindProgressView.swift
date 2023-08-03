@@ -41,7 +41,7 @@ struct FindProgressView: View {
     private let label: LocalizedStringKey
     
     private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-    @State private var description: LocalizedStringKey = ""
+    @State private var description: String = ""
     
     
     // MARK: View
@@ -116,14 +116,14 @@ struct FindProgressView: View {
     /// Update the progress description.
     private func updateDescription() {
         
-        self.description = self.unit.format(self.progress.count)
+        self.description = String(localized: self.unit.format(self.progress.count))
     }
 }
 
 
 private extension FindProgressView.Unit {
     
-    func format(_ count: Int) -> LocalizedStringKey {
+    func format(_ count: Int) -> String.LocalizationValue {
         
         switch count {
             case 0:

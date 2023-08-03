@@ -401,13 +401,13 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .textSize:
                 let smallerItem = NSToolbarItem(itemIdentifier: .smaller)
                 smallerItem.label = String(localized: "Smaller")
-                smallerItem.toolTip = String(localized: "Smaller")
+                smallerItem.toolTip = String(localized: "Decrease text size")
                 smallerItem.image = NSImage(systemSymbolName: "textformat.size.smaller", accessibilityDescription: smallerItem.label)!
                 smallerItem.action = #selector(EditorTextView.smallerFont)
                 
                 let biggerItem = NSToolbarItem(itemIdentifier: .bigger)
                 biggerItem.label = String(localized: "Bigger")
-                biggerItem.toolTip = String(localized: "Bigger")
+                biggerItem.toolTip = String(localized: "Increase text size")
                 biggerItem.image = NSImage(systemSymbolName: "textformat.size.larger", accessibilityDescription: biggerItem.label)!
                 biggerItem.action = #selector(EditorTextView.biggerFont)
                 
@@ -423,13 +423,13 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .writingDirection:
                 let ltrItem = NSToolbarItem(itemIdentifier: .leftToRight)
                 ltrItem.label = String(localized: "Left to Right")
-                ltrItem.toolTip = String(localized: "Left to Right")
+                ltrItem.toolTip = String(localized: "Left to right")
                 ltrItem.image = NSImage(systemSymbolName: "text.alignleft", accessibilityDescription: ltrItem.label)
                 ltrItem.action = #selector(DocumentViewController.makeWritingDirectionLeftToRight)
                 
                 let rtlItem = NSToolbarItem(itemIdentifier: .rightToLeft)
                 rtlItem.label = String(localized: "Right to Left")
-                rtlItem.toolTip = String(localized: "Right to Left")
+                rtlItem.toolTip = String(localized: "Right to left")
                 rtlItem.image = NSImage(systemSymbolName: "text.alignright", accessibilityDescription: rtlItem.label)
                 rtlItem.action = #selector(DocumentViewController.makeWritingDirectionRightToLeft)
                 
@@ -639,7 +639,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = String(localized: "Print")
-                item.toolTip = String(localized: "Print")
+                item.toolTip = String(localized: "Print document")
                 item.image = NSImage(systemSymbolName: "printer", accessibilityDescription: item.label)
                 item.action = #selector(NSDocument.printDocument)
                 return item

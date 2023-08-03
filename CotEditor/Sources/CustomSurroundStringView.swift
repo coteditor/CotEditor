@@ -63,16 +63,14 @@ struct CustomSurroundStringView: View {
             
             HStack(alignment: .firstTextBaseline) {
                 LabeledContent("Begin:") {
-                    TextField("", text: $pair.begin)
+                    TextField(text: $pair.begin, label: EmptyView.init)
                         .onSubmit(self.submit)
-                        .labelsHidden()
                         .frame(width: 48)
                 }.padding(.trailing)
                 
                 LabeledContent("End:") {
-                    TextField("", text: $pair.end, prompt: Text(verbatim: self.pair.begin))
+                    TextField(text: $pair.end, prompt: Text(verbatim: self.pair.begin), label: EmptyView.init)
                         .onSubmit(self.submit)
-                        .labelsHidden()
                         .frame(width: 48)
                 }
             }.fixedSize()

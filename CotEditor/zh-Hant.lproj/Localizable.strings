@@ -36,7 +36,6 @@
 // words with symbols
 " (%@)" = "（%@）";
 "(%@)" = "（%@）";
-"(%@):" = "（%@）：";
 "%@:" = "%@：";
 
 
@@ -300,7 +299,7 @@
 /* MARK: Toolbar */
 "Syntax" = "文法";
 // tooltip
-"Change syntax style" = "改變文法樣式";  // FIXME: syntax style -> syntax
+"Change syntax" = "改變文法";
 // menu item title
 "Recently Used" = "最近使用";
 "Deleted" = "已刪除";  // heading for deleted items
@@ -347,12 +346,10 @@
 // tooltip
 "Turn off expanding tabs to spaces" = "禁止將tab擴展為空格";
 "Expand tabs to spaces automatically" = "自動將tab擴展為空格";
-"Change tab width" = "更改Tab寬度";
 // menu
 "Tab Width" = "Tab寬度";
 "Custom…" = "自訂…";
 "Expand to Spaces Automatically" = "Tab轉為空格";
-"Auto-Expand Tabs" = "Tab轉為空格";
 
 "Wrap Lines" = "換行";
 // tooltip
@@ -435,17 +432,14 @@
 "Print Backgrounds" = "列印背景";
 "Line Number" = "行號";
 "Invisibles" = "不可見元素";
-"Print Header" = "列印頁眉";
 "Primary Header" = "主頁眉";
 "Secondary Header" = "次頁眉";
-"Print Footer" = "列印頁腳";
 "Primary Footer" = "主頁腳";
 "Secondary Footer" = "次頁腳";
 
 // Summary item values
 "%@ pt" = "%@點";
 "On" = "開";
-"Off" = "關";
 "Same as Document’s Setting" = "同文件設置一致";
 "Black and White" = "黑白";
 "Syntax Name" = "文法名";
@@ -483,7 +477,6 @@
 
 /* MARK: EditorTextView */
 // Undo action names
-"Replace Text" = "取代文字";
 "Insert Text" = "插入文字";
 "Insert Snippet" = "插入片段";
 "Shift Right" = "右移";
@@ -502,7 +495,6 @@
 "Trim Trailing Whitespace" = "移除行尾空白";
 
 // Contextual menu items
-"Text" = "文字";
 "Copy as Rich Text" = "以富文字拷貝";
 "Select All" = "全部選擇";
 "Straighten Quotes" = "直引號";
@@ -544,7 +536,6 @@
 /* MARK: StatusBarController */
 "Lines: " = "行數：";
 "Characters: " = "字元數：";
-"Length: " = "長度：";
 "Words: " = "字數：";
 "Location: " = "位置：";
 "Line: " = "行：";
@@ -704,7 +695,6 @@
 "No error found." = "沒有發現錯誤。";
 "An error found." = "發現1個錯誤。";
 "%lld errors found." = "發現%lld個錯誤。";
-"outline" = "大綱";
 
 
 
@@ -753,7 +743,6 @@
 /* MARK: ThemeManager */
 // Theme names
 "Untitled" = "未命名";
-"Customized Theme" = "自訂主題";
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "將要安裝名為「%@」的新主題，但是已經存在同名的自訂主題。";

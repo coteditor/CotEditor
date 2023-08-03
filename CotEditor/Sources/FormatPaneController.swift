@@ -116,7 +116,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
                 
             case #selector(duplicateSyntax(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Duplicate “\(name)”")
+                    menuItem.title = String(localized: "Duplicate “\(name)”…")
                 }
                 menuItem.isHidden = !itemSelected
                 

@@ -36,7 +36,6 @@
 // words with symbols
 " (%@)" = " (%@)";
 "(%@)" = "(%@)";
-"(%@):" = "(%@):";
 "%@:" = "%@:";
 
 
@@ -263,11 +262,11 @@
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "Il documento non ha un file da reinterpretare.";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "Non è stato possibile reinterpretare il file “%@” con la nuova codifica “%@”.";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "Non è stato possibile reinterpretare il file “%@” con la nuova codifica “%@”.";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "Il file potrebbe essere stato salvato usando una codifica di testo diversa, o potrebbe non essere un file di testo.";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "Alcuni caratteri dovranno essere cambiati o eliminati nel salvataggio come “%@”.";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "Alcuni caratteri dovranno essere cambiati o eliminati nel salvataggio come “%@”.";
 "Do you want to change encoding and show incompatible characters?" = "Si desidera cambiare codifica e mostrare i caratteri incompatibili?";
 "Change Encoding" = "Cambia modifica";
 
@@ -347,12 +346,10 @@
 // tooltip
 "Turn off expanding tabs to spaces" = "Disabilita l’espansione automatica dei Tab";
 "Expand tabs to spaces automatically" = "Abilita l’espansione automatica dei Tab";
-"Change tab width" = "Cambia larghezza pannello";
 // menu
 "Tab Width" = "Larghezza Tab";
 "Custom…" = "Personalizzato…";
 "Expand to Spaces Automatically" = "Espandi Tab automaticamente";
-"Auto-Expand Tabs" = "Espandi Tab automaticamente";
 
 "Wrap Lines" = "A capo automatico";
 // tooltip
@@ -435,17 +432,14 @@
 "Print Backgrounds" = "Stampa sfondi";
 "Line Number" = "Numero riga";
 "Invisibles" = "Caratteri invisibili";
-"Print Header" = "Stampa intestazione";
 "Primary Header" = "Intestazione primaria";
 "Secondary Header" = "Intestazione secondaria";
-"Print Footer" = "Stampa pie’ di pagina";
 "Primary Footer" = "Pie’ di pagina primario";
 "Secondary Footer" = "Pie’ di pagina secondario";
 
 // Summary item values
 "%@ pt" = "%@ pt";
 "On" = "Acceso";
-"Off" = "Spento";
 "Same as Document’s Setting" = "Come da documento";
 "Black and White" = "Bianco e nero";
 "Syntax Name" = "Nome sintassi";
@@ -483,7 +477,6 @@
 
 /* MARK: EditorTextView */
 // Undo action names
-"Replace Text" = "Sostituisci testo";
 "Insert Text" = "Inserisci testo";
 "Insert Snippet" = "Inserisci snippet";
 "Shift Right" = "Scorri a destra";
@@ -502,7 +495,6 @@
 "Trim Trailing Whitespace" = "Rimuovi spazi bianchi a fine riga";
 
 // Contextual menu items
-"Text" = "Testo";
 "Copy as Rich Text" = "Copia come Rich Text";
 "Select All" = "Seleziona tutto";
 "Straighten Quotes" = "Raddrizza virgolette";
@@ -544,7 +536,6 @@
 /* MARK: StatusBarController */
 "Lines: " = "Righe: ";
 "Characters: " = "Caratteri: ";
-"Length: " = "Lunghezza: ";
 "Words: " = "Parole: ";
 "Location: " = "Posizione: ";
 "Line: " = "Riga: ";
@@ -704,7 +695,6 @@
 "No error found." = "Nessun errore rilevato.";
 "An error found." = "Trovato un errore.";
 "%lld errors found." = "Trovati %lld errori.";
-"outline" = "outline";
 
 
 
@@ -753,7 +743,6 @@
 /* MARK: ThemeManager */
 // Theme names
 "Untitled" = "Senza titolo";
-"Customized Theme" = "Tema personalizzato";
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Un nuovo tema dal nome “%@” sarà installato, ma esiste già un tema personalizzato con lo stesso nome.";

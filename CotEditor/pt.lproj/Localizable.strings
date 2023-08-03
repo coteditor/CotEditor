@@ -36,7 +36,6 @@
 // words with symbols
 " (%@)" = " (%@)";
 "(%@)" = "(%@)";
-"(%@):" = "(%@):";
 "%@:" = "%@:";
 
 
@@ -347,12 +346,10 @@
 // tooltip
 "Turn off expanding tabs to spaces" = "Desative a expansão de tabulações automática";
 "Expand tabs to spaces automatically" = "Ative a expansão de tabulações automática";
-"Change tab width" = "Altere a largura da tabulação";
 // menu
 "Tab Width" = "Largura da Tabulação";
 "Custom…" = "Personalizar…";
 "Expand to Spaces Automatically" = "Expandir Tabulações Automaticamente";
-"Auto-Expand Tabs" = "Expandir Tabulações Automaticamente";
 
 "Wrap Lines" = "Ajustar Linhas";
 // tooltip
@@ -435,17 +432,14 @@
 "Print Backgrounds" = "Imprimir Fundos";
 "Line Number" = "Número da Linha";
 "Invisibles" = "Invisíveis";
-"Print Header" = "Imprimir Cabeçalho";
 "Primary Header" = "Cabeçalho Primário";
 "Secondary Header" = "Cabeçalho Secundário";
-"Print Footer" = "Imprimir Rodapé";
 "Primary Footer" = "Rodapé Primário";
 "Secondary Footer" = "Rodapé Secundário";
 
 // Summary item values
 "%@ pt" = "%@ pt";
 "On" = "Ativo";
-"Off" = "Inativo";
 "Same as Document’s Setting" = "Usar Ajustes do Documento";
 "Black and White" = "Preto e Branco";
 "Syntax Name" = "Nome da Sintaxe";
@@ -483,7 +477,6 @@
 
 /* MARK: EditorTextView */
 // Undo action names
-"Replace Text" = "Substituir Texto";
 "Insert Text" = "Inserir Texto";
 "Insert Snippet" = "Inserir Fragmento";
 "Shift Right" = "Deslocar à Direita";
@@ -502,7 +495,6 @@
 "Trim Trailing Whitespace" = "Aparar Espaço em Branco à Direita";
 
 // Contextual menu items
-"Text" = "Texto";
 "Copy as Rich Text" = "Copiar como Texto com Formatação";
 "Select All" = "Selecionar Tudo";
 "Straighten Quotes" = "Straighten Quotes";
@@ -544,7 +536,6 @@
 /* MARK: StatusBarController */
 "Lines: " = "Linhas: ";
 "Characters: " = "Caracteres: ";
-"Length: " = "Comprimento: ";
 "Words: " = "Palavras: ";
 "Location: " = "Localização: ";
 "Line: " = "Linha: ";
@@ -704,7 +695,6 @@
 "No error found." = "Nenhum erro encontrado.";
 "An error found." = "1 erro encontrado.";
 "%lld errors found." = "%lld erros encontrados.";
-"outline" = "plano";
 
 
 
@@ -753,7 +743,6 @@
 /* MARK: ThemeManager */
 // Theme names
 "Untitled" = "Sem Título";
-"Customized Theme" = "Tema Personalizado";
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Um novo tema chamado “%@” será instalado, mas já existe um tema personalizado com o mesmo nome.";

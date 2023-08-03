@@ -36,7 +36,6 @@
 // words with symbols
 " (%@)" = " (%@)";
 "(%@)" = "(%@)";
-"(%@):" = "(%@):";
 "%@:" = "%@:";
 
 
@@ -347,12 +346,10 @@
 // tooltip
 "Turn off expanding tabs to spaces" = "Sekmeleri boşluklara dönüştürmeyi devre dışı bırak";
 "Expand tabs to spaces automatically" = "Sekmeleri kendiliğinden boşluklara dönüştür";
-"Change tab width" = "Sekme genişliğini değiştir";
 // menu
 "Tab Width" = "Sekme Genişliği";
 "Custom…" = "Özel…";
 "Expand to Spaces Automatically" = "Sekmeleri Kendiliğinden Genişlet";
-"Auto-Expand Tabs" = "Sekmeleri Kendiliğinden Genişlet";
 
 "Wrap Lines" = "Satırları Kaydır";
 // tooltip
@@ -435,17 +432,14 @@
 "Print Backgrounds" = "Arka Planları Yazdır";
 "Line Number" = "Satır Numarası";
 "Invisibles" = "Görünmez Karakterler";
-"Print Header" = "Üstbilgiyi Yazdır";
 "Primary Header" = "Birincil Üstbilgi";
 "Secondary Header" = "İkincil Üstbilgi";
-"Print Footer" = "Altbilgiyi Yazdır";
 "Primary Footer" = "Birincil Altbilgi";
 "Secondary Footer" = "İkincil Altbilgi";
 
 // Summary item values
 "%@ pt" = "%@ punto";
 "On" = "Açık";
-"Off" = "Kapalı";
 "Same as Document’s Setting" = "Belge Ayarlarıyla Aynı";
 "Black and White" = "Siyah - Beyaz";
 "Syntax Name" = "Sözdizim Adı";
@@ -483,7 +477,6 @@
 
 /* MARK: EditorTextView */
 // Undo action names
-"Replace Text" = "Metin Değiştir";
 "Insert Text" = "Metin Ekle";
 "Insert Snippet" = "Kırpıntı Ekle";
 "Shift Right" = "Sağa Kaydır";
@@ -502,7 +495,6 @@
 "Trim Trailing Whitespace" = "İzleyen Boşluğu Kırp";
 
 // Contextual menu items
-"Text" = "Metin";
 "Copy as Rich Text" = "Zengin Metin Olarak Kopyala";
 "Select All" = "Tümünü Seç";
 "Straighten Quotes" = "Tırnakları Düzleştir";
@@ -544,7 +536,6 @@
 /* MARK: StatusBarController */
 "Lines: " = "Satır: ";
 "Characters: " = "Karakter: ";
-"Length: " = "Uzunluk: ";
 "Words: " = "Sözcük: ";
 "Location: " = "Konum: ";
 "Line: " = "Satır: ";
@@ -704,7 +695,6 @@
 "No error found." = "Hata bulunamadı.";
 "An error found." = "Bir hata bulundu.";
 "%lld errors found." = "%lld hata bulundu.";
-"outline" = "ana hat";
 
 
 
@@ -753,7 +743,6 @@
 /* MARK: ThemeManager */
 // Theme names
 "Untitled" = "Adsız";
-"Customized Theme" = "Özelleştirilmiş Tema";
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "“%@” adlı yeni bir tema yüklenecek; ancak aynı adlı başka bir tema halihazırda var.";

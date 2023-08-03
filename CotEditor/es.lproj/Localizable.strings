@@ -36,7 +36,6 @@
 // words with symbols
 " (%@)" = " (%@)";
 "(%@)" = " (%@)";
-"(%@):" = "(%@):";
 "%@:" = "%@:";
 
 
@@ -347,12 +346,10 @@
 // tooltip
 "Turn off expanding tabs to spaces" = "Desactivar la expansión de tabulaciones a espacios";
 "Expand tabs to spaces automatically" = "Expandir tabulaciones a espacios automáticamente";
-"Change tab width" = "Cambiar el ancho de la tabulación";
 // menu
 "Tab Width" = "Ancho de la tabulación";
 "Custom…" = "Personalizar…";
 "Expand to Spaces Automatically" = "Expandir a espacios automáticamente";
-"Auto-Expand Tabs" = "Autoexpandir Tabulaciones";
 
 "Wrap Lines" = "Ajustar líneas";
 // tooltip
@@ -432,20 +429,17 @@
 // Summary item names
 "Font Size" = "Font Size";  // FIXME: added
 "Color" = "Color";
-"Print Background" = "Imprimir fondo";
+"Print Backgrounds" = "Imprimir fondo";
 "Line Number" = "Número de línea";
 "Invisibles" = "Invisibles";
-"Print Header" = "Imprimir encabezado";
 "Primary Header" = "Encabezado principal";
 "Secondary Header" = "Encabezado secundario";
-"Print Footer" = "Imprimir pie de página";
 "Primary Footer" = "Pie de página principal";
 "Secondary Footer" = "Pie de página secundario";
 
 // Summary item values
 "%@ pt" = "%@ pt";  // FIXME: added
 "On" = "Encendido";
-"Off" = "Apagado";
 "Same as Document’s Setting" = "Igual que la configuración del documento";
 "Black and White" = "Blanco y negro";
 "Syntax Name" = "Nombre de la sintaxis";
@@ -483,7 +477,6 @@
 
 /* MARK: EditorTextView */
 // Undo action names
-"Replace Text" = "Reemplazar texto";
 "Insert Text" = "Insertar texto";
 "Insert Snippet" = "Insertar fragmento";
 "Shift Right" = "Desplazar a la derecha";
@@ -502,7 +495,6 @@
 "Trim Trailing Whitespace" = "Recortar espacios en blanco finales";
 
 // Contextual menu items
-"Text" = "Texto";
 "Copy as Rich Text" = "Copiar como texto enriquecido";
 "Select All" = "Seleccionar todo";
 "Straighten Quotes" = "Enderezar comillas";
@@ -544,7 +536,6 @@
 /* MARK: StatusBarController */
 "Lines: " = "Líneas: ";
 "Characters: " = "Caracteres: ";
-"Length: " = "Longitud: ";
 "Words: " = "Palabras: ";
 "Location: " = "Posición: ";
 "Line: " = "Línea: ";
@@ -704,7 +695,6 @@
 "No error found." = "No se encontró ningún error.";
 "An error found." = "Se encontró un error.";
 "%lld errors found." = "%lld errores encontrados.";
-"outline" = "Esquema";
 
 
 
@@ -753,7 +743,6 @@
 /* MARK: ThemeManager */
 // Theme names
 "Untitled" = "Sin título";
-"Customized Theme" = "Tema personalizado";
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Un nuevo tema llamado “%@” se instalará, pero ya existe un tema personalizado con el mismo nombre.";
