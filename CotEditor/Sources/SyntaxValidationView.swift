@@ -38,8 +38,8 @@ struct SyntaxValidationView: View {
         
         VStack(alignment: .leading) {
             MessageView(count: self.errors.count)
-            List(Array($errors.enumerated()), id: \.offset) { (_, $error) in
-                ErrorView(error: $error)
+            List(Array(self.errors.enumerated()), id: \.offset) { (_, error) in
+                ErrorView(error: error)
             }
         }
         .onReceive(self.validator.$errors) { errors in
@@ -82,7 +82,7 @@ struct SyntaxValidationView: View {
     
     private struct ErrorView: View {
         
-        @Binding var error: SyntaxValidator.Error
+        var error: SyntaxValidator.Error
         
         
         var body: some View {
@@ -93,8 +93,6 @@ struct SyntaxValidationView: View {
                         Text("\(self.error.localizedType):")
                             .fontWeight(.semibold)
                         Text(self.error.string)
-                            .foregroundColor(.label)
-                            .textSelection(.enabled)
                             .help(self.error.string)
                             .lineLimit(1)
                         if let role = self.error.localizedRole {
@@ -105,10 +103,10 @@ struct SyntaxValidationView: View {
                     if let failureReason = self.error.failureReason {
                         Text(failureReason)
                             .controlSize(.small)
-                            .foregroundColor(.label)
-                            .textSelection(.enabled)
                     }
                 }
+                .foregroundColor(.label)
+                .textSelection(.enabled)
             } icon: {
                 Image(systemName: "exclamationmark.triangle")
                     .symbolVariant(.fill)
