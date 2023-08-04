@@ -2059,10 +2059,10 @@
 			isa = PBXGroup;
 			children = (
 				2A8A96912A7C93A9000AEDCB /* Inspector.storyboard */,
-				2A6602CE1D05BD72003E8D87 /* StatusBar.storyboard */,
 				2A4144BA201397D70061F653 /* DocumentInspectorView.storyboard */,
 				2AE7A8D420450C0000830830 /* OutlineView.storyboard */,
 				2A4144B6201397150061F653 /* WarningsView.storyboard */,
+				2A6602CE1D05BD72003E8D87 /* StatusBar.storyboard */,
 				2A5F7CA31D152589001D83BC /* NavigationBar.storyboard */,
 				2A172E2A2A7C9BD00085CC06 /* EditorTextView.storyboard */,
 			);
