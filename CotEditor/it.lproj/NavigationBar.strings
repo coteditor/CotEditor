@@ -1,15 +1,15 @@
 //
-//  EditorView.strings (Japanese)
+//  NavigationBar.strings (Italian)
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2014-11-04.
-//  Localized by 1024jp
+//  Created by 1024jp on 2016-09-28.
+//  Localized by Agostino Maiello
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 CotEditor Project
+//  © 2016-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "Extracting Outline…"; ObjectID = "aUE-uy-XLQ"; */
-"aUE-uy-XLQ.title" = "アウトラインを抽出中…";
+"aUE-uy-XLQ.title" = "Estrazione Outline…";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
-"Bmo-XE-CCn.ibShadowedToolTip" = "分割されたエディタを閉じる";
+"Bmo-XE-CCn.ibShadowedToolTip" = "Chiudi l’editor diviso";
 /* Class = "NSButton"; ibShadowedToolTip = "Split editor"; ObjectID = "syK-XU-x2I"; */
-"syK-XU-x2I.ibShadowedToolTip" = "エディタを分割";
+"syK-XU-x2I.ibShadowedToolTip" = "Dividi Editor";

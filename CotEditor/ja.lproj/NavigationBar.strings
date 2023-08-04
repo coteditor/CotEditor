@@ -1,11 +1,11 @@
 //
-//  EditorView.strings (Traditional Chinese)
+//  NavigationBar.strings (Japanese)
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2014-12-12.
-//  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
+//  Created by 1024jp on 2014-11-04.
+//  Localized by 1024jp
 //
 //  ---------------------------------------------------------------------------
 //
@@ -25,9 +25,9 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "Extracting Outline…"; ObjectID = "aUE-uy-XLQ"; */
-"aUE-uy-XLQ.title" = "提取提綱…";
+"aUE-uy-XLQ.title" = "アウトラインを抽出中…";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
-"Bmo-XE-CCn.ibShadowedToolTip" = "關閉分欄編輯器";
+"Bmo-XE-CCn.ibShadowedToolTip" = "分割されたエディタを閉じる";
 /* Class = "NSButton"; ibShadowedToolTip = "Split editor"; ObjectID = "syK-XU-x2I"; */
-"syK-XU-x2I.ibShadowedToolTip" = "分欄顯示";
+"syK-XU-x2I.ibShadowedToolTip" = "エディタを分割";

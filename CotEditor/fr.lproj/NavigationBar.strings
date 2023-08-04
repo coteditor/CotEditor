@@ -1,15 +1,15 @@
 //
-//  EditorView.strings (German)
+//  NavigationBar.strings (French)
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2015-08-19.
-//  Localized by 1024jp
+//  Created by Aurélien Roy on 2019-04-26.
+//  Localized by Aurélien Roy
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 1024jp
+//  © 2015-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "Extracting Outline…"; ObjectID = "aUE-uy-XLQ"; */
-"aUE-uy-XLQ.title" = "Gliederung extrahieren …";
+"aUE-uy-XLQ.title" = "Récupération de la structure…";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
-"Bmo-XE-CCn.ibShadowedToolTip" = "Geteilten Editor schließen";
+"Bmo-XE-CCn.ibShadowedToolTip" = "Fermer l’éditeur divisé";
 /* Class = "NSButton"; ibShadowedToolTip = "Split editor"; ObjectID = "syK-XU-x2I"; */
-"syK-XU-x2I.ibShadowedToolTip" = "Editor teilen";
+"syK-XU-x2I.ibShadowedToolTip" = "Diviser l’éditeur";

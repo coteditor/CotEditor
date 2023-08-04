@@ -75,6 +75,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         self.splitView.isVertical = false
         self.addChild(self.splitViewController)
+        self.splitViewController.addChild(EditorViewController())
         
         // set status bar
         let storyboard = NSStoryboard(name: "StatusBar", bundle: nil)
@@ -775,7 +776,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         // end current editing
         NSTextInputContext.current?.discardMarkedText()
         
-        let newEditorViewController = NSStoryboard(name: "EditorView").instantiateInitialController() as! EditorViewController
+        let newEditorViewController = EditorViewController()
         self.splitViewController.addChild(newEditorViewController, relativeTo: currentEditorViewController)
         self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
         

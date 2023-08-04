@@ -51,10 +51,6 @@ final class SplitViewController: NSSplitViewController {
         
         self.splitView.isVertical = UserDefaults.standard[.splitViewVertical]
         
-        // add initial editor view
-        let storyboard = NSStoryboard(name: "EditorView", bundle: nil)
-        self.addChild(storyboard.instantiateInitialController()!)
-        
         // observe focus change
         self.focusedEditorObserver = NotificationCenter.default.publisher(for: EditorTextView.didBecomeFirstResponderNotification)
             .map { $0.object as! EditorTextView }

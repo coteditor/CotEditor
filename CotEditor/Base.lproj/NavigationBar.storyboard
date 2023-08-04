@@ -1,44 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="KjS-UJ-AjC">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Editor View Controller-->
-        <scene sceneID="2xt-bf-vnD">
-            <objects>
-                <splitViewController id="sY9-RN-jMg" customClass="EditorViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <splitViewItems>
-                        <splitViewItem holdingPriority="750" separatorStyle="line" id="1jV-uy-ka5"/>
-                        <splitViewItem id="Z56-OS-hF0"/>
-                    </splitViewItems>
-                    <splitView key="splitView" misplaced="YES" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="Kyz-NV-ro4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="640"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
-                                <color key="value" name="DividerColor"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                        <connections>
-                            <outlet property="delegate" destination="sY9-RN-jMg" id="75b-iN-Dc5"/>
-                        </connections>
-                    </splitView>
-                    <connections>
-                        <outlet property="navigationBarItem" destination="1jV-uy-ka5" id="zJG-DA-wzB"/>
-                        <outlet property="textViewItem" destination="Z56-OS-hF0" id="VpW-uJ-gc9"/>
-                        <segue destination="KjS-UJ-AjC" kind="relationship" relationship="splitItems" id="Nqj-N0-7ZS"/>
-                        <segue destination="u5I-Fh-D97" kind="relationship" relationship="splitItems" id="eh9-vi-q1P"/>
-                    </connections>
-                </splitViewController>
-                <customObject id="ciY-UL-XS6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="753" y="-75"/>
-        </scene>
         <!--Navigation Bar Controller-->
         <scene sceneID="JxK-9F-xcJ">
             <objects>
@@ -214,80 +182,11 @@
             </objects>
             <point key="canvasLocation" x="1469" y="-429"/>
         </scene>
-        <!--Editor Text View Controller-->
-        <scene sceneID="F5v-F6-xnV">
-            <objects>
-                <viewController id="u5I-Fh-D97" customClass="EditorTextViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <stackView key="view" distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Val-Qg-Ge8">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="665"/>
-                        <subviews>
-                            <customView horizontalHuggingPriority="750" verticalHuggingPriority="750" placeholderIntrinsicWidth="32" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="UmS-Jr-jkg" customClass="LineNumberView" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="32" height="665"/>
-                                <connections>
-                                    <outlet property="textView" destination="aeT-4W-UoJ" id="RbK-q6-Dw1"/>
-                                </connections>
-                            </customView>
-                            <scrollView identifier="editorScrollView" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UU-Ev-81X" customClass="BidiScrollView" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="32" y="0.0" width="568" height="665"/>
-                                <clipView key="contentView" drawsBackground="NO" id="BHe-gR-oOG">
-                                    <rect key="frame" x="0.0" y="0.0" width="568" height="665"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textView identifier="coreTextView" importsGraphics="NO" richText="NO" verticallyResizable="YES" baseWritingDirection="leftToRight" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" allowsNonContiguousLayout="YES" id="aeT-4W-UoJ" customClass="EditorTextView" customModule="CotEditor" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="568" height="665"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="568" height="665"/>
-                                            <size key="maxSize" width="732" height="10000000"/>
-                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="u5I-Fh-D97" id="PIc-cS-58P"/>
-                                            </connections>
-                                        </textView>
-                                    </subviews>
-                                </clipView>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="tYZ-qV-kf6"/>
-                                </constraints>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1uy-9I-jAW" customClass="BidiScroller" customModule="CotEditor" customModuleProvider="target">
-                                    <rect key="frame" x="-100" y="-100" width="568" height="16"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="pXl-He-aXd" customClass="BidiScroller" customModule="CotEditor" customModuleProvider="target">
-                                    <rect key="frame" x="552" y="0.0" width="16" height="665"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="rqf-ft-yx4"/>
-                        <viewLayoutGuide key="layoutMargins" id="Ogh-MF-aCB"/>
-                        <visibilityPriorities>
-                            <integer value="1000"/>
-                            <integer value="1000"/>
-                        </visibilityPriorities>
-                        <customSpacing>
-                            <real value="3.4028234663852886e+38"/>
-                            <real value="3.4028234663852886e+38"/>
-                        </customSpacing>
-                    </stackView>
-                    <connections>
-                        <outlet property="lineNumberView" destination="UmS-Jr-jkg" id="YvN-sD-I3x"/>
-                        <outlet property="textView" destination="aeT-4W-UoJ" id="qMv-kT-S59"/>
-                    </connections>
-                </viewController>
-                <customObject id="Yzz-IO-9Qh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1469" y="6.5"/>
-        </scene>
     </scenes>
     <resources>
         <image name="chevron.down" catalog="system" width="15" height="9"/>
         <image name="chevron.up" catalog="system" width="15" height="9"/>
         <image name="split.add" width="11" height="11"/>
         <image name="xmark" catalog="system" width="14" height="13"/>
-        <namedColor name="DividerColor">
-            <color white="0.85000002384185791" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </namedColor>
     </resources>
 </document>

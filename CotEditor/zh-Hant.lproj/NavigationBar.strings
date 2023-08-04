@@ -1,15 +1,15 @@
 //
-//  EditorView.strings (Portuguese)
+//  NavigationBar.strings (Traditional Chinese)
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by BR Lingo on 2018-01-15.
-//  Localized by BR Lingo
+//  Created by 1024jp on 2014-12-12.
+//  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 CotEditor Project
+//  © 2014-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "Extracting Outline…"; ObjectID = "aUE-uy-XLQ"; */
-"aUE-uy-XLQ.title" = "Extraindo Plano…";
+"aUE-uy-XLQ.title" = "提取提綱…";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
-"Bmo-XE-CCn.ibShadowedToolTip" = "Feche o editor dividido";
+"Bmo-XE-CCn.ibShadowedToolTip" = "關閉分欄編輯器";
 /* Class = "NSButton"; ibShadowedToolTip = "Split editor"; ObjectID = "syK-XU-x2I"; */
-"syK-XU-x2I.ibShadowedToolTip" = "Editor dividido";
+"syK-XU-x2I.ibShadowedToolTip" = "分欄顯示";

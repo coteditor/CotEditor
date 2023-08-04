@@ -1,15 +1,15 @@
 //
-//  EditorView.strings (Turkish)
+//  NavigationBar.strings (Spanish)
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by Emir SARI on 2022-01-28.
-//  Localized by Emir SARI
+//  Created by Agustin Borrego on 2023-07-30.
+//  Localized by Agustin Borrego
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "Extracting Outline…"; ObjectID = "aUE-uy-XLQ"; */
-"aUE-uy-XLQ.title" = "Ana hat çıkarılıyor…";
+"aUE-uy-XLQ.title" = "Extraer esquema…";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
-"Bmo-XE-CCn.ibShadowedToolTip" = "Bölünmüş düzenleyiciyi kapat";
+"Bmo-XE-CCn.ibShadowedToolTip" = "Cerrar Editor dividido";
 /* Class = "NSButton"; ibShadowedToolTip = "Split editor"; ObjectID = "syK-XU-x2I"; */
-"syK-XU-x2I.ibShadowedToolTip" = "Düzenleyiciyi böl";
+"syK-XU-x2I.ibShadowedToolTip" = "Dividir editor";

@@ -31,25 +31,22 @@ final class EditorViewController: NSSplitViewController {
     
     // MARK: Public Properties
     
-    var textView: EditorTextView? {
-        
-        self.textViewController?.textView
-    }
+    var textView: EditorTextView?  { self.textViewController.textView }
     
     var outlineItems: [OutlineItem]? {
         
         didSet {
-            self.navigationBarController?.outlineItems = outlineItems
+            self.navigationBarController.outlineItems = outlineItems
         }
     }
     
     
     // MARK: Private Properties
     
-    private var defaultObservers: [AnyCancellable] = []
+    private lazy var navigationBarController: NavigationBarController = NSStoryboard(name: "NavigationBar").instantiateInitialController()!
+    private lazy var textViewController: EditorTextViewController = NSStoryboard(name: "EditorTextView").instantiateInitialController()!
     
-    @IBOutlet private weak var navigationBarItem: NSSplitViewItem?
-    @IBOutlet private weak var textViewItem: NSSplitViewItem?
+    private var defaultObservers: [AnyCancellable] = []
     
     
     
@@ -71,7 +68,11 @@ final class EditorViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
-        self.navigationBarController?.textView = self.textView
+        self.splitView.isVertical = false
+        self.addChild(self.navigationBarController)
+        self.addChild(self.textViewController)
+        
+        self.navigationBarController.textView = self.textView
         
         // set user defaults
         self.navigationBarItem!.isCollapsed = !UserDefaults.standard[.showNavigationBar]
@@ -128,8 +129,8 @@ final class EditorViewController: NSSplitViewController {
     /// Whether line number view is visible.
     var showsLineNumber: Bool {
         
-        get { self.textViewController?.showsLineNumber ?? false }
-        set { self.textViewController?.showsLineNumber = newValue }
+        get { self.textViewController.showsLineNumber }
+        set { self.textViewController.showsLineNumber = newValue }
     }
     
     
@@ -171,7 +172,7 @@ final class EditorViewController: NSSplitViewController {
     @IBAction func openOutlineMenu(_ sender: Any) {
         
         self.navigationBarItem?.isCollapsed = false
-        self.navigationBarController?.openOutlineMenu()
+        self.navigationBarController.openOutlineMenu()
     }
     
     
@@ -202,14 +203,8 @@ final class EditorViewController: NSSplitViewController {
     
     // MARK: Private Methods
     
-    private var navigationBarController: NavigationBarController? {
+    private var navigationBarItem: NSSplitViewItem? {
         
-        self.navigationBarItem?.viewController as? NavigationBarController
-    }
-    
-    
-    private var textViewController: EditorTextViewController? {
-        
-        self.textViewItem?.viewController as? EditorTextViewController
+        self.splitViewItem(for: self.navigationBarController)
     }
 }
