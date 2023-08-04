@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4if-cg-44c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4if-cg-44c">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +14,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="570" height="370"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="wGW-VF-jXB">
-                                <rect key="frame" x="103" y="20" width="365" height="350"/>
+                                <rect key="frame" x="115" y="20" width="341" height="350"/>
                                 <subviews>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jB6-pW-rzu">
                                         <rect key="frame" x="111" y="189" width="214" height="25"/>
@@ -63,7 +63,7 @@
                                         </connections>
                                     </button>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fiR-qP-3Z4">
-                                        <rect key="frame" x="267" y="135" width="80" height="24"/>
+                                        <rect key="frame" x="220" y="135" width="103" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Jap-f3-ehL">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -85,7 +85,7 @@
                                             <binding destination="qsh-ze-KuJ" name="enabled" keyPath="values.printHeader" id="2Sc-hC-g5F"/>
                                         </connections>
                                     </segmentedControl>
-                                    <textField horizontalHuggingPriority="751" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eCM-3I-GbW">
+                                    <textField focusRingType="none" horizontalHuggingPriority="751" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eCM-3I-GbW">
                                         <rect key="frame" x="18" y="225" width="90" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Line numbers:" usesSingleLineMode="YES" id="3380">
                                             <font key="font" metaFont="system"/>
@@ -93,7 +93,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oq9-0A-awj">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oq9-0A-awj">
                                         <rect key="frame" x="45" y="314" width="63" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Font size:" usesSingleLineMode="YES" id="C9y-bs-mE1">
                                             <font key="font" metaFont="system"/>
@@ -102,7 +102,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kOZ-e4-wvP">
-                                        <rect key="frame" x="267" y="105" width="80" height="24"/>
+                                        <rect key="frame" x="220" y="105" width="80" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="90p-SJ-bXq">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -146,7 +146,7 @@
                                             <binding destination="qsh-ze-KuJ" name="selectedIndex" keyPath="values.printColorIndex" id="q9v-9j-5y1"/>
                                         </connections>
                                     </popUpButton>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hng-Zz-bj4">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hng-Zz-bj4">
                                         <rect key="frame" x="44" y="195" width="64" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Invisibles:" usesSingleLineMode="YES" id="3382">
                                             <font key="font" metaFont="system"/>
@@ -155,36 +155,25 @@
                                         </textFieldCell>
                                     </textField>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Bt-cy-Umw">
-                                        <rect key="frame" x="111" y="133" width="154" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="G8K-i7-Dee"/>
-                                        </constraints>
-                                        <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="895" id="Sos-1f-I2b">
+                                        <rect key="frame" x="111" y="133" width="107" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" title="DUMMY" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="895" id="Sos-1f-I2b">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="RW9-bJ-NPD">
                                                 <items>
-                                                    <menuItem title="None" state="on" id="895"/>
-                                                    <menuItem isSeparatorItem="YES" id="8eh-Hv-vJ9">
-                                                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                                    </menuItem>
-                                                    <menuItem title="Syntax Name" tag="1" id="uuc-7D-Iot"/>
-                                                    <menuItem title="Document Name" tag="2" id="896"/>
-                                                    <menuItem title="File Path" tag="3" id="897"/>
-                                                    <menuItem title="Print Date" tag="4" id="898"/>
-                                                    <menuItem title="Last Modified Date" tag="6" id="10r-6b-mkA">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                    </menuItem>
-                                                    <menuItem title="Page Number" tag="5" id="893"/>
+                                                    <menuItem title="DUMMY" state="on" id="895"/>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="G8K-i7-Dee"/>
+                                        </constraints>
                                         <connections>
                                             <binding destination="qsh-ze-KuJ" name="selectedTag" keyPath="values.headerOneStringIndex" id="hSY-NT-BnU"/>
                                             <binding destination="qsh-ze-KuJ" name="enabled" keyPath="values.printHeader" id="dYe-fb-X6b"/>
                                         </connections>
                                     </popUpButton>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zj5-Gl-MJM">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zj5-Gl-MJM">
                                         <rect key="frame" x="67" y="281" width="41" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Color:" usesSingleLineMode="YES" id="3388">
                                             <font key="font" metaFont="system"/>
@@ -193,7 +182,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ili-wb-NLt">
-                                        <rect key="frame" x="267" y="18" width="80" height="24"/>
+                                        <rect key="frame" x="220" y="18" width="80" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Pjk-d8-E4v">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -218,24 +207,13 @@
                                         </connections>
                                     </segmentedControl>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zgD-wy-VQk">
-                                        <rect key="frame" x="111" y="46" width="154" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="941" id="tRU-Ql-e0X">
+                                        <rect key="frame" x="111" y="46" width="107" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" title="DUMMY" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="941" id="tRU-Ql-e0X">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="KMp-3h-V8O">
                                                 <items>
-                                                    <menuItem title="None" state="on" id="941"/>
-                                                    <menuItem isSeparatorItem="YES" id="SnE-gM-Z3z">
-                                                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                                    </menuItem>
-                                                    <menuItem title="Syntax Name" tag="1" id="Mvg-wT-FTM"/>
-                                                    <menuItem title="Document Name" tag="2" id="937"/>
-                                                    <menuItem title="File Path" tag="3" id="938"/>
-                                                    <menuItem title="Print Date" tag="4" id="939"/>
-                                                    <menuItem title="Last Modified Date" tag="6" id="mgU-MY-7x3">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                    </menuItem>
-                                                    <menuItem title="Page Number" tag="5" id="940"/>
+                                                    <menuItem title="DUMMY" state="on" id="941"/>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
@@ -245,7 +223,7 @@
                                         </connections>
                                     </popUpButton>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WDk-Zl-PJd">
-                                        <rect key="frame" x="267" y="48" width="80" height="24"/>
+                                        <rect key="frame" x="220" y="48" width="80" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Zgh-yF-xd2">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -270,24 +248,13 @@
                                         </connections>
                                     </segmentedControl>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8BQ-TU-mOj">
-                                        <rect key="frame" x="111" y="103" width="154" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="906" id="cUP-ax-qGf">
+                                        <rect key="frame" x="111" y="103" width="107" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" title="DUMMY" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="906" id="cUP-ax-qGf">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="Pj9-MO-pKh">
                                                 <items>
-                                                    <menuItem title="None" state="on" id="906"/>
-                                                    <menuItem isSeparatorItem="YES" id="g6g-YF-fyF">
-                                                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                                    </menuItem>
-                                                    <menuItem title="Syntax Name" tag="1" id="plk-U5-NGA"/>
-                                                    <menuItem title="Document Name" tag="2" id="902"/>
-                                                    <menuItem title="File Path" tag="3" id="903"/>
-                                                    <menuItem title="Print Date" tag="4" id="904"/>
-                                                    <menuItem title="Last Modified Date" tag="6" id="kqU-Qs-8oe">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                    </menuItem>
-                                                    <menuItem title="Page Number" tag="5" id="905"/>
+                                                    <menuItem title="DUMMY" state="on" id="906"/>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
@@ -297,24 +264,13 @@
                                         </connections>
                                     </popUpButton>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nPF-cF-nDP">
-                                        <rect key="frame" x="111" y="16" width="154" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="927" id="dc6-yt-bjo">
+                                        <rect key="frame" x="111" y="16" width="107" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" title="DUMMY" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="927" id="dc6-yt-bjo">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="cgU-bb-y52">
                                                 <items>
-                                                    <menuItem title="None" state="on" id="927"/>
-                                                    <menuItem isSeparatorItem="YES" id="3bY-VC-rYe">
-                                                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                                    </menuItem>
-                                                    <menuItem title="Syntax Name" tag="1" id="ckJ-Cw-ccE"/>
-                                                    <menuItem title="Document Name" tag="2" id="929"/>
-                                                    <menuItem title="File Path" tag="3" id="930"/>
-                                                    <menuItem title="Print Date" tag="4" id="931"/>
-                                                    <menuItem title="Last Modified Date" tag="6" id="QjN-Pm-wiz">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                    </menuItem>
-                                                    <menuItem title="Page Number" tag="5" id="932"/>
+                                                    <menuItem title="DUMMY" state="on" id="927"/>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
@@ -343,7 +299,7 @@
                                             <binding destination="qsh-ze-KuJ" name="value" keyPath="values.printFooter" id="ln6-EB-ouh"/>
                                         </connections>
                                     </button>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nTz-9X-jTg" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nTz-9X-jTg" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                         <rect key="frame" x="114" y="311" width="40" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="V7e-UB-OVV"/>
@@ -369,7 +325,7 @@
                                             <binding destination="qsh-ze-KuJ" name="value" keyPath="values.printFontSize" id="C8K-Mf-Whm"/>
                                         </connections>
                                     </stepper>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gnD-Yx-C3A">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gnD-Yx-C3A">
                                         <rect key="frame" x="173" y="314" width="17" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="pt" id="jUN-Ue-xrO">
                                             <font key="font" metaFont="system"/>
@@ -465,6 +421,10 @@
                     </view>
                     <connections>
                         <outlet property="colorPopUpButton" destination="ito-FV-Lxm" id="TmH-AS-ZMV"/>
+                        <outlet property="primaryFooterPopUpButton" destination="zgD-wy-VQk" id="jld-k6-Hov"/>
+                        <outlet property="primaryHeaderPopUpButton" destination="5Bt-cy-Umw" id="QNX-kM-tiv"/>
+                        <outlet property="secondaryFooterPopUpButton" destination="nPF-cF-nDP" id="lQL-DV-jUw"/>
+                        <outlet property="secondaryHeaderPopUpButton" destination="8BQ-TU-mOj" id="Ssi-Nc-spn"/>
                     </connections>
                 </viewController>
                 <customObject id="fQ8-xT-vOj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

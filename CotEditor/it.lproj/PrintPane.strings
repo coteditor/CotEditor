@@ -57,45 +57,13 @@
 "954.title" = "Stampare";
 
 
-
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
 "3368.title" = "Intestazione stampa";
-
-/* Class = "NSMenuItem"; title = "None"; ObjectID = "895"; */
-"895.title" = "Nessuna";
-/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "uuc-7D-Iot"; */
-"uuc-7D-Iot.title" = "Nome della sintassi";
-/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "896"; */
-"896.title" = "Nome documento";
-/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "897"; */
-"897.title" = "Percorso file";
-/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "898"; */
-"898.title" = "Data di stampa";
-/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "10r-6b-mkA"; */
-"10r-6b-mkA.title" = "Data ultima modifica";
-/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "893"; */
-"893.title" = "Numero pagina";
 
 /* Class = "NSSegmentedCell"; ObjectID = "Jap-f3-ehL"; */
 "Jap-f3-ehL.ibShadowedToolTips[0]" = "Allinea a sinistra";  /* Align Left */
 "Jap-f3-ehL.ibShadowedToolTips[1]" = "Centra";  /* Center */
 "Jap-f3-ehL.ibShadowedToolTips[2]" = "Allinea a destra";  /* Align Right */
-
-
-/* Class = "NSMenuItem"; title = "None"; ObjectID = "906"; */
-"906.title" = "Nessuna";
-/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "plk-U5-NGA"; */
-"plk-U5-NGA.title" = "Nome della sintassi";
-/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "902"; */
-"902.title" = "Nome documento";
-/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "903"; */
-"903.title" = "Percorso file";
-/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "904"; */
-"904.title" = "Data di stampa";
-/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "kqU-Qs-8oe"; */
-"kqU-Qs-8oe.title" = "Data ultima modifica";
-/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "905"; */
-"905.title" = "Numero pagina";
 
 /* Class = "NSSegmentedCell"; ObjectID = "90p-SJ-bXq"; */
 "90p-SJ-bXq.ibShadowedToolTips[0]" = "Allinea a sinistra";  /* Align Left */
@@ -103,48 +71,13 @@
 "90p-SJ-bXq.ibShadowedToolTips[2]" = "Allinea a destra";  /* Align Right */
 
 
-
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
 "3375.title" = "Stampa pie’ di pagina";
-
-/* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
-"941.title" = "Nessuna";
-/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Mvg-wT-FTM"; */
-"Mvg-wT-FTM.title" = "Nome della sintassi";
-/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "937"; */
-"937.title" = "Nome documento";
-/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "938"; */
-"938.title" = "Percorso file";
-/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "939"; */
-"939.title" = "Data di stampa";
-/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "mgU-MY-7x3"; */
-"mgU-MY-7x3.title" = "Data ultima modifica";
-/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "940"; */
-"940.title" = "Numero pagina";
 
 /* Class = "NSSegmentedCell"; ObjectID = "Zgh-yF-xd2"; */
 "Zgh-yF-xd2.ibShadowedToolTips[0]" = "Allinea a sinistra";  /* Align Left */
 "Zgh-yF-xd2.ibShadowedToolTips[1]" = "Centra";  /* Center */
 "Zgh-yF-xd2.ibShadowedToolTips[2]" = "Allinea a destra";  /* Align Right */
-
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3377"; */
-"3377.title" = "Secondaria:";
-
-/* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
-"927.title" = "Nessuna";
-/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "ckJ-Cw-ccE"; */
-"ckJ-Cw-ccE.title" = "Nome della sintassi";
-/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "929"; */
-"929.title" = "Nome documento";
-/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "930"; */
-"930.title" = "Percorso file";
-/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "931"; */
-"931.title" = "Data di stampa";
-/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "QjN-Pm-wiz"; */
-"QjN-Pm-wiz.title" = "Data ultima modifica";
-/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "932"; */
-"932.title" = "Numero pagina";
 
 /* Class = "NSSegmentedCell"; ObjectID = "Pjk-d8-E4v"; */
 "Pjk-d8-E4v.ibShadowedToolTips[0]" = "Allinea a sinistra";  /* Align Left */

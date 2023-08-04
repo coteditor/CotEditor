@@ -385,6 +385,8 @@
 		2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */; };
 		2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
 		2A78BFBD1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
+		2A7B22F72A7D2C2200AE10A5 /* PrintInfoType+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B22F62A7D2C2200AE10A5 /* PrintInfoType+UI.swift */; };
+		2A7B22F82A7D2C2200AE10A5 /* PrintInfoType+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B22F62A7D2C2200AE10A5 /* PrintInfoType+UI.swift */; };
 		2A7B279924E435FE00F02304 /* OutlineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B279824E435FE00F02304 /* OutlineTests.swift */; };
 		2A7F4DFF2871F46D0029CE66 /* PrintPanelAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F4E022871F46D0029CE66 /* PrintPanelAccessory.storyboard */; };
 		2A7F4E002871F46D0029CE66 /* PrintPanelAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F4E022871F46D0029CE66 /* PrintPanelAccessory.storyboard */; };
@@ -1129,6 +1131,7 @@
 		2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebDocumentWindowController.swift; sourceTree = "<group>"; };
 		2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdaterManager.swift; sourceTree = "<group>"; };
 		2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesProvider.swift; sourceTree = "<group>"; };
+		2A7B22F62A7D2C2200AE10A5 /* PrintInfoType+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrintInfoType+UI.swift"; sourceTree = "<group>"; };
 		2A7B279824E435FE00F02304 /* OutlineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTests.swift; sourceTree = "<group>"; };
 		2A7F4E012871F46D0029CE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PrintPanelAccessory.storyboard; sourceTree = "<group>"; };
 		2A7F4E042871F47A0029CE66 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
@@ -2090,6 +2093,7 @@
 				2A1893A91FFF422D00AD244F /* LineSort.swift */,
 				2A86C47A20371DBE00B9357C /* FilePermissions.swift */,
 				2A341D19281EE23C00B85CB6 /* UserActivity.swift */,
+				2A7B22F62A7D2C2200AE10A5 /* PrintInfoType+UI.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -3084,6 +3088,7 @@
 				2A1893A81FFF16A400AD244F /* PatternSortViewController.swift in Sources */,
 				2AA14D031FA4999200EAF586 /* PersistentOSAScript.swift in Sources */,
 				2A11F2141E669BFA005E1675 /* PointerBridge.swift in Sources */,
+				2A7B22F72A7D2C2200AE10A5 /* PrintInfoType+UI.swift in Sources */,
 				2A91C31F1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
 				2A1856131D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */,
@@ -3439,6 +3444,7 @@
 				2A1893A71FFF16A400AD244F /* PatternSortViewController.swift in Sources */,
 				2AA14D021FA4999200EAF586 /* PersistentOSAScript.swift in Sources */,
 				2A11F2131E669BFA005E1675 /* PointerBridge.swift in Sources */,
+				2A7B22F82A7D2C2200AE10A5 /* PrintInfoType+UI.swift in Sources */,
 				2A91C31E1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
 				2A1856121D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */,

@@ -57,45 +57,13 @@
 "954.title" = "Drucken";
 
 
-
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
 "3368.title" = "Kopfzeilen drucken";
-
-/* Class = "NSMenuItem"; title = "None"; ObjectID = "895"; */
-"895.title" = "Ohne";
-/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "uuc-7D-Iot"; */
-"uuc-7D-Iot.title" = "Syntaxname";
-/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "896"; */
-"896.title" = "Dokumentenname";
-/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "897"; */
-"897.title" = "Dateipfad";
-/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "898"; */
-"898.title" = "Druckdatum";
-/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "10r-6b-mkA"; */
-"10r-6b-mkA.title" = "Zuletzt geändertes Datum";
-/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "893"; */
-"893.title" = "Seitenzahl";
 
 /* Class = "NSSegmentedCell"; ObjectID = "Jap-f3-ehL"; */
 "Jap-f3-ehL.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */
 "Jap-f3-ehL.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
 "Jap-f3-ehL.ibShadowedToolTips[2]" = "Rechtsbündig ausrichten";  /* Align Right */
-
-
-/* Class = "NSMenuItem"; title = "None"; ObjectID = "906"; */
-"906.title" = "Ohne";
-/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "plk-U5-NGA"; */
-"plk-U5-NGA.title" = "Syntaxname";
-/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "902"; */
-"902.title" = "Dokumentenname";
-/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "903"; */
-"903.title" = "Dateipfad";
-/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "904"; */
-"904.title" = "Druckdatum";
-/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "kqU-Qs-8oe"; */
-"kqU-Qs-8oe.title" = "Zuletzt geändertes Datum";
-/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "905"; */
-"905.title" = "Seitenzahl";
 
 /* Class = "NSSegmentedCell"; ObjectID = "90p-SJ-bXq"; */
 "90p-SJ-bXq.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */
@@ -103,45 +71,13 @@
 "90p-SJ-bXq.ibShadowedToolTips[2]" = "Rechtsbündig ausrichten";  /* Align Right */
 
 
-
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
 "3375.title" = "Fußzeilen drucken";
-
-/* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
-"941.title" = "Ohne";
-/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Mvg-wT-FTM"; */
-"Mvg-wT-FTM.title" = "Syntaxname";
-/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "937"; */
-"937.title" = "Dokumentenname";
-/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "938"; */
-"938.title" = "Dateipfad";
-/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "939"; */
-"939.title" = "Druckdatum";
-/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "mgU-MY-7x3"; */
-"mgU-MY-7x3.title" = "Zuletzt geändertes Datum";
-/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "940"; */
-"940.title" = "Seitenzahl";
 
 /* Class = "NSSegmentedCell"; ObjectID = "Zgh-yF-xd2"; */
 "Zgh-yF-xd2.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */
 "Zgh-yF-xd2.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
 "Zgh-yF-xd2.ibShadowedToolTips[2]" = "Rechtsbündig ausrichten";  /* Align Right */
-
-
-/* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
-"927.title" = "Ohne";
-/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "ckJ-Cw-ccE"; */
-"ckJ-Cw-ccE.title" = "Syntaxname";
-/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "929"; */
-"929.title" = "Dokumentenname";
-/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "930"; */
-"930.title" = "Dateipfad";
-/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "931"; */
-"931.title" = "Druckdatum";
-/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "QjN-Pm-wiz"; */
-"QjN-Pm-wiz.title" = "Zuletzt geändertes Datum";
-/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "932"; */
-"932.title" = "Seitenzahl";
 
 /* Class = "NSSegmentedCell"; ObjectID = "Pjk-d8-E4v"; */
 "Pjk-d8-E4v.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */

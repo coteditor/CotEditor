@@ -32,10 +32,29 @@ final class PrintPaneController: NSViewController {
     
     @IBOutlet private weak var colorPopUpButton: NSPopUpButton?
     
+    @IBOutlet private weak var primaryHeaderPopUpButton: NSPopUpButton?
+    @IBOutlet private weak var secondaryHeaderPopUpButton: NSPopUpButton?
+    @IBOutlet private weak var primaryFooterPopUpButton: NSPopUpButton?
+    @IBOutlet private weak var secondaryFooterPopUpButton: NSPopUpButton?
+    
     
     
     // MARK: -
     // MARK: View Controller Methods
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.setup(popUpButton: self.primaryHeaderPopUpButton!,
+                   contentKey: .primaryHeaderContent, enablingKey: .printHeader)
+        self.setup(popUpButton: self.secondaryHeaderPopUpButton!,
+                   contentKey: .secondaryHeaderContent, enablingKey: .printHeader)
+        self.setup(popUpButton: self.primaryFooterPopUpButton!,
+                   contentKey: .primaryFooterContent, enablingKey: .printFooter)
+        self.setup(popUpButton: self.secondaryFooterPopUpButton!,
+                   contentKey: .secondaryFooterContent, enablingKey: .printFooter)
+    }
     
     override func viewWillAppear() {
         
@@ -93,5 +112,20 @@ final class PrintPaneController: NSViewController {
                 popUpButton.selectItem(at: 1)  // same as document
             }
         }
+    }
+    
+    
+    /// Set up pop-up button for header/footer print info.
+    /// - Parameters:
+    ///   - popUpButton: The pop-up button to set up.
+    ///   - contentKey: The default key for binding to set the option.
+    ///   - enablingKey: The default key for binding to enable the button.
+    private func setup(popUpButton: NSPopUpButton, contentKey: DefaultKey<PrintInfoType>, enablingKey: DefaultKey<Bool>) {
+        
+        let defaults = NSUserDefaultsController.shared
+        
+        popUpButton.menu?.items = PrintInfoType.menuItems
+        popUpButton.bind(.selectedTag, to: defaults, withKeyPath: "values.\(contentKey.rawValue)")
+        popUpButton.bind(.enabled, to: defaults, withKeyPath: "values.\(enablingKey.rawValue)")
     }
 }

@@ -74,7 +74,7 @@ enum AppearanceMode: Int {
 }
 
 
-@objc enum PrintInfoType: Int, DefaultInitializable {
+@objc enum PrintInfoType: Int, CaseIterable, DefaultInitializable {
     
     static let defaultValue: Self = .none
     
@@ -85,6 +85,20 @@ enum AppearanceMode: Int {
     case printDate
     case pageNumber
     case lastModifiedDate
+    
+    
+    var label: String {
+        
+        switch self {
+            case .none: String(localized: "None")
+            case .syntaxName: String(localized: "Syntax Name")
+            case .documentName: String(localized: "Document Name")
+            case .filePath: String(localized: "File Path")
+            case .printDate: String(localized: "Print Date")
+            case .lastModifiedDate: String(localized: "Last Modified Date")
+            case .pageNumber: String(localized: "Page Number")
+        }
+    }
 }
 
 
@@ -95,4 +109,14 @@ enum AppearanceMode: Int {
     case left
     case center
     case right
+    
+    
+    var label: String {
+        
+        switch self {
+            case .left:   String(localized: "Left")
+            case .center: String(localized: "Center")
+            case .right:  String(localized: "Right")
+        }
+    }
 }

@@ -66,10 +66,26 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     @IBOutlet private weak var colorPopUpButton: NSPopUpButton?
     
+    @IBOutlet private weak var primaryHeaderPopUpButton: NSPopUpButton?
+    @IBOutlet private weak var secondaryHeaderPopUpButton: NSPopUpButton?
+    @IBOutlet private weak var primaryFooterPopUpButton: NSPopUpButton?
+    @IBOutlet private weak var secondaryFooterPopUpButton: NSPopUpButton?
+    
     
     
     // MARK: -
     // MARK: View Controller Method
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.setup(popUpButton: self.primaryHeaderPopUpButton!, contentKey: #keyPath(primaryHeaderContent), enablingKey: #keyPath(printsHeader))
+        self.setup(popUpButton: self.secondaryHeaderPopUpButton!, contentKey: #keyPath(secondaryHeaderContent), enablingKey: #keyPath(printsHeader))
+        self.setup(popUpButton: self.primaryFooterPopUpButton!, contentKey: #keyPath(primaryFooterContent), enablingKey: #keyPath(printsFooter))
+        self.setup(popUpButton: self.secondaryFooterPopUpButton!, contentKey: #keyPath(secondaryFooterContent), enablingKey: #keyPath(printsFooter))
+    }
+    
     
     /// printInfo did set (new print sheet will be displayed)
     override var representedObject: Any? {
@@ -179,23 +195,23 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         }
         if self.printsHeader, self.primaryHeaderContent != .none {
             items += [[.itemName: String(localized: "Primary Header"),
-                       .itemDescription: self.primaryHeaderContent.localizedDescription
-                       + String(localized: " (\(self.primaryHeaderAlignment.localizedDescription))")]]
+                       .itemDescription: self.primaryHeaderContent.label
+                       + String(localized: " (\(self.primaryHeaderAlignment.label))")]]
         }
         if self.printsHeader, self.secondaryHeaderContent != .none {
             items += [[.itemName: String(localized: "Secondary Header"),
-                       .itemDescription: self.secondaryHeaderContent.localizedDescription
-                       + String(localized: " (\(self.secondaryHeaderAlignment.localizedDescription))")]]
+                       .itemDescription: self.secondaryHeaderContent.label
+                       + String(localized: " (\(self.secondaryHeaderAlignment.label))")]]
         }
         if self.printsFooter, self.primaryFooterContent != .none {
             items += [[.itemName: String(localized: "Primary Footer"),
-                       .itemDescription: self.primaryFooterContent.localizedDescription
-                       + String(localized: " (\(self.primaryFooterAlignment.localizedDescription))")]]
+                       .itemDescription: self.primaryFooterContent.label
+                       + String(localized: " (\(self.primaryFooterAlignment.label))")]]
         }
         if self.printsFooter, self.secondaryFooterContent != .none {
             items += [[.itemName: String(localized: "Secondary Footer"),
-                       .itemDescription: self.secondaryFooterContent.localizedDescription
-                       + String(localized: " (\(self.secondaryFooterAlignment.localizedDescription))")]]
+                       .itemDescription: self.secondaryFooterContent.label
+                       + String(localized: " (\(self.secondaryFooterAlignment.label))")]]
         }
         
         return items
@@ -237,6 +253,19 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         } else {
             popUpButton.selectItem(at: 0)  // -> select "Black and White"
         }
+    }
+    
+    
+    /// Set up pop-up button for header/footer print info.
+    /// - Parameters:
+    ///   - popUpButton: The pop-up button to set up.
+    ///   - contentKey: The default key for binding to set the option.
+    ///   - enablingKey: The default key for binding to enable the button.
+    private func setup(popUpButton: NSPopUpButton, contentKey: String, enablingKey: String) {
+        
+        popUpButton.menu?.items = PrintInfoType.menuItems
+        popUpButton.bind(.selectedTag, to: self, withKeyPath: contentKey)
+        popUpButton.bind(.enabled, to: self, withKeyPath: enablingKey)
     }
     
     
@@ -359,35 +388,5 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         
         get { AlignmentType(self.printInfo?[.secondaryFooterAlignment]) }
         set { self.printInfo?[.secondaryFooterAlignment] = newValue.rawValue }
-    }
-}
-
-
-private extension PrintInfoType {
-    
-    var localizedDescription: String {
-        
-        switch self {
-            case .none: String(localized: "None")
-            case .syntaxName: String(localized: "Syntax Name")
-            case .documentName: String(localized: "Document Name")
-            case .filePath: String(localized: "File Path")
-            case .printDate: String(localized: "Print Date")
-            case .lastModifiedDate: String(localized: "Last Modified Date")
-            case .pageNumber: String(localized: "Page Number")
-        }
-    }
-}
-
-
-private extension AlignmentType {
-    
-    var localizedDescription: String {
-        
-        switch self {
-            case .left:   String(localized: "Left")
-            case .center: String(localized: "Center")
-            case .right:  String(localized: "Right")
-        }
     }
 }
