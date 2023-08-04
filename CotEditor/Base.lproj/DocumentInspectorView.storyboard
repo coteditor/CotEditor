@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="NoI-km-aN6">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="NoI-km-aN6">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,7 +22,7 @@
                                 <view verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ebD-7V-XD9">
                                     <rect key="frame" x="0.0" y="13" width="220" height="440"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fer-mi-39p">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fer-mi-39p">
                                             <rect key="frame" x="10" y="417" width="91" height="15"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Document File" usesSingleLineMode="YES" id="5tP-OA-Ujw">
                                                 <font key="font" metaFont="systemBold" size="12"/>
@@ -30,7 +30,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4A-Kf-QiB">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4A-Kf-QiB">
                                             <rect key="frame" x="10" y="261" width="84" height="15"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Text Settings" usesSingleLineMode="YES" id="8KW-Mc-cRX">
                                                 <font key="font" metaFont="systemBold" size="12"/>
@@ -38,7 +38,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YBj-Er-Jws">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YBj-Er-Jws">
                                             <rect key="frame" x="10" y="26" width="65" height="15"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Character" usesSingleLineMode="YES" id="H2Z-jU-biZ">
                                                 <font key="font" metaFont="systemBold" size="12"/>
@@ -46,7 +46,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2qt-uc-lXS">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2qt-uc-lXS">
                                             <rect key="frame" x="10" y="191" width="41" height="15"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Count" usesSingleLineMode="YES" id="cbf-0f-9rd">
                                                 <font key="font" metaFont="systemBold" size="12"/>
@@ -54,7 +54,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cy5-Cu-gLS">
+                                        <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cy5-Cu-gLS">
                                             <rect key="frame" x="35" y="399" width="46" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Created" usesSingleLineMode="YES" id="hgp-Cc-KHJ">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -62,7 +62,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bEi-F4-zHE">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bEi-F4-zHE">
                                             <rect key="frame" x="85" y="399" width="103" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="2005-03-19 00:00" usesSingleLineMode="YES" id="7Y5-hb-5v0">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -78,7 +78,7 @@
                                                 </binding>
                                             </connections>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQ8-0n-hOa">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQ8-0n-hOa">
                                             <rect key="frame" x="85" y="381" width="102" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="2014-03-19 00:00" usesSingleLineMode="YES" id="XZn-I3-FkB">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -94,7 +94,7 @@
                                                 </binding>
                                             </connections>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V9i-j2-0Gw">
+                                        <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V9i-j2-0Gw">
                                             <rect key="frame" x="31" y="381" width="50" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Modified" usesSingleLineMode="YES" id="BtZ-Pl-H7s">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -102,7 +102,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z96-M8-Jf1">
+                                        <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z96-M8-Jf1">
                                             <rect key="frame" x="42" y="345" width="39" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Owner" usesSingleLineMode="YES" id="AjV-U0-lC7">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -110,7 +110,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdU-1f-Hg8">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdU-1f-Hg8">
                                             <rect key="frame" x="85" y="345" width="58" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="nakamuxu" id="RR6-YZ-uWg">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -126,7 +126,7 @@
                                                 </binding>
                                             </connections>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R97-6F-fhj">
+                                        <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R97-6F-fhj">
                                             <rect key="frame" x="54" y="363" width="27" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Size" usesSingleLineMode="YES" id="uZa-Q9-nHs">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -134,7 +134,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OFu-Dq-jhr">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OFu-Dq-jhr">
                                             <rect key="frame" x="85" y="363" width="106" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="7.1 KB (7,128 bytes)" id="2Xc-ac-rUb">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -152,7 +152,7 @@
                                                 </binding>
                                             </connections>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xjf-Nk-bVc">
+                                        <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xjf-Nk-bVc">
                                             <rect key="frame" x="13" y="327" width="68" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Permissions" usesSingleLineMode="YES" id="N0Y-nO-k3L">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -160,7 +160,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OOh-17-2jn">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OOh-17-2jn">
                                             <rect key="frame" x="85" y="327" width="89" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="420 (-rw-r--r--)" id="GuE-7g-f3W">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -188,7 +188,7 @@
                                             <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="fillColor" name="separatorColor" catalog="System" colorSpace="catalog"/>
                                         </box>
-                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eds-vr-C30">
+                                        <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eds-vr-C30">
                                             <rect key="frame" x="28" y="243" width="53" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Encoding" usesSingleLineMode="YES" id="B5F-j1-X4E">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -196,7 +196,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ms-66-Fiu">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ms-66-Fiu">
                                             <rect key="frame" x="85" y="243" width="93" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Unicode (UTF-8)" usesSingleLineMode="YES" id="ebe-II-qO1">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -208,7 +208,7 @@
                                                 <binding destination="NoI-km-aN6" name="value" keyPath="encoding" id="jjk-QT-KDQ"/>
                                             </connections>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D7w-Hl-QZ3">
+                                        <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D7w-Hl-QZ3">
                                             <rect key="frame" x="10" y="225" width="71" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Line Endings" usesSingleLineMode="YES" id="XBS-xa-s3p">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -216,7 +216,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="smf-F0-DUO">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="smf-F0-DUO">
                                             <rect key="frame" x="85" y="225" width="17" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="LF" id="VRc-cm-IAI">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -252,7 +252,7 @@
                                             <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="fillColor" name="separatorColor" catalog="System" colorSpace="catalog"/>
                                         </box>
-                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FtE-QH-05o">
+                                        <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FtE-QH-05o">
                                             <rect key="frame" x="49" y="173" width="32" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Lines" usesSingleLineMode="YES" id="yRM-Y0-4Oq">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -260,7 +260,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MGD-DK-HNE" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MGD-DK-HNE" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="85" y="173" width="18" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="57" id="KLW-KC-WGQ">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -276,7 +276,7 @@
                                                 </binding>
                                             </connections>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zO6-zt-3hX">
+                                        <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zO6-zt-3hX">
                                             <rect key="frame" x="19" y="155" width="62" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Characters" usesSingleLineMode="YES" id="e1m-Uo-4UK">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -284,7 +284,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSC-S9-Eve" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSC-S9-Eve" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="85" y="155" width="61" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="1024 (512)" id="bLv-xG-Hgy">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -300,7 +300,7 @@
                                                 </binding>
                                             </connections>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lx4-8L-owE">
+                                        <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lx4-8L-owE">
                                             <rect key="frame" x="43" y="137" width="38" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Words" usesSingleLineMode="YES" id="tZ6-05-eKf">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -308,7 +308,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y3u-xW-uIQ" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y3u-xW-uIQ" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="85" y="137" width="44" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="64 (32)" id="EPU-Cz-L7h">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -324,7 +324,7 @@
                                                 </binding>
                                             </connections>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w9a-lK-7bb">
+                                        <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w9a-lK-7bb">
                                             <rect key="frame" x="32" y="96" width="49" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Location" usesSingleLineMode="YES" id="ERr-yA-dIa">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -332,7 +332,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p4S-io-CcI" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p4S-io-CcI" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="85" y="96" width="23" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="512" id="3Eh-MY-jdJ">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -348,7 +348,7 @@
                                                 </binding>
                                             </connections>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ANk-BC-fJD">
+                                        <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ANk-BC-fJD">
                                             <rect key="frame" x="12" y="78" width="69" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Current Line" usesSingleLineMode="YES" id="f9g-dQ-g3K">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -356,7 +356,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FUY-AP-tJb" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FUY-AP-tJb" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="85" y="78" width="18" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="28" id="S9r-8W-Va2">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -372,7 +372,7 @@
                                                 </binding>
                                             </connections>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UJf-4P-eSh">
+                                        <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UJf-4P-eSh">
                                             <rect key="frame" x="13" y="8" width="68" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Code Points" usesSingleLineMode="YES" id="kna-yU-liB">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -380,7 +380,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField toolTip="Select a single character to show Unicode information." verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ZU-Mi-aJz" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                                        <textField toolTip="Select a single character to show Unicode information." focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ZU-Mi-aJz" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="85" y="8" width="45" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="0x0058" id="wUt-u0-fsr">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -397,7 +397,7 @@
                                                 <outlet property="formatter" destination="Pa0-sr-GTs" id="Vm5-oG-cFU"/>
                                             </connections>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="paK-hv-1d8">
+                                        <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="paK-hv-1d8">
                                             <rect key="frame" x="37" y="60" width="44" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Column" usesSingleLineMode="YES" id="Wwr-gI-HPc">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -405,7 +405,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dIx-ui-Hhh" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dIx-ui-Hhh" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="85" y="60" width="12" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="8" id="aT9-Qs-HXT">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -421,7 +421,7 @@
                                                 </binding>
                                             </connections>
                                         </textField>
-                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6WF-i2-FuC">
+                                        <textField focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6WF-i2-FuC">
                                             <rect key="frame" x="31" y="309" width="50" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="justified" title="Full Path" usesSingleLineMode="YES" id="zwU-xo-iZu">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -429,7 +429,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Y4-fp-7X1">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Y4-fp-7X1">
                                             <rect key="frame" x="85" y="295" width="129" height="28"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="128" id="KAP-Yv-CDT"/>
@@ -448,7 +448,7 @@
                                                 </binding>
                                             </connections>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iDC-JM-uBc">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iDC-JM-uBc">
                                             <rect key="frame" x="10" y="114" width="56" height="15"/>
                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Location" usesSingleLineMode="YES" id="nXT-Oq-0l6">
                                                 <font key="font" metaFont="systemBold" size="12"/>

@@ -1,15 +1,15 @@
 //
-//  DocumentWindow.strings (Italian)
+//  StatusBar.strings (Simplified Chinese)
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2016-09-28.
-//  Localized by Agostino Maiello
+//  Created by 1024jp on 2014-12-12.
+//  Localized by onevcat
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 CotEditor Project
+//  © 2014-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,23 +24,15 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
-"Kfj-q6-61N.label" = "Ispettore del documento";
-/* Class = "NSTabViewItem"; label = "Outline"; ObjectID = "hyM-2j-hen"; */
-"hyM-2j-hen.label" = "Outline";
-/* Class = "NSTabViewItem"; label = "Warnings"; ObjectID = "JZo-ok-Dks"; */
-"JZo-ok-Dks.label" = "Avvisi";
-
-
-/* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "mS8-3F-93y"; */
-"q4F-Uw-VL4.title" = "Codifica file";
 /* Class = "NSPopUpButton"; title = "File encoding"; ObjectID = "CUv-So-9Og"; */
-"CUv-So-9Og.ibShadowedToolTip" = "Codifica file";
+"CUv-So-9Og.ibShadowedToolTip" = "文件编码";
+/* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "mS8-3F-93y"; */
+"q4F-Uw-VL4.title" = "文件编码";
 
 /* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "mS8-3F-93y"; */
-"mS8-3F-93y.title" = "Fine riga";
+"mS8-3F-93y.title" = "行尾";
 /* Class = "NSPopUpButton"; title = "Line endings"; ObjectID = "FNE-H9-iZR"; */
-"FNE-H9-iZR.ibShadowedToolTip" = "Fine riga";
+"FNE-H9-iZR.ibShadowedToolTip" = "行尾";
 
 /* Class = "NSTextField"; title = "File Size"; ObjectID = "EJU-9e-uCA"; */
-"EJU-9e-uCA.ibShadowedToolTip" = "Dimensione file";
+"EJU-9e-uCA.ibShadowedToolTip" = "文件尺寸";

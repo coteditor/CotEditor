@@ -1,15 +1,15 @@
 //
-//  DocumentWindow.strings (Japanese)
+//  StatusBar.strings (German)
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2014-11-04.
+//  Created by 1024jp on 2015-08-19.
 //  Localized by 1024jp
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 CotEditor Project
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,23 +24,15 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
-"Kfj-q6-61N.label" = "書類情報";
-/* Class = "NSTabViewItem"; label = "Outline"; ObjectID = "hyM-2j-hen"; */
-"hyM-2j-hen.label" = "アウトライン";
-/* Class = "NSTabViewItem"; label = "Warnings"; ObjectID = "JZo-ok-Dks"; */
-"JZo-ok-Dks.label" = "警告";
-
-
-/* Class = "NSPopUpButton"; title = "File encoding"; ObjectID = "CUv-So-9Og"; */
-"CUv-So-9Og.ibShadowedToolTip" = "ファイルエンコーディング";
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "mS8-3F-93y"; */
-"q4F-Uw-VL4.title" = "ファイルエンコーディング";
+"q4F-Uw-VL4.title" = "Codierung";
+/* Class = "NSPopUpButton"; title = "File encoding"; ObjectID = "CUv-So-9Og"; */
+"CUv-So-9Og.ibShadowedToolTip" = "Codierung";
 
-/* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "mS8-3F-93y"; */
-"mS8-3F-93y.title" = "改行コード";
 /* Class = "NSPopUpButton"; title = "Line endings"; ObjectID = "FNE-H9-iZR"; */
-"FNE-H9-iZR.ibShadowedToolTip" = "改行コード";
+"FNE-H9-iZR.ibShadowedToolTip" = "Zeilenenden";
+/* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "mS8-3F-93y"; */
+"mS8-3F-93y.title" = "Zeilenenden";
 
 /* Class = "NSTextField"; title = "File Size"; ObjectID = "EJU-9e-uCA"; */
-"EJU-9e-uCA.ibShadowedToolTip" = "ファイルサイズ";
+"EJU-9e-uCA.ibShadowedToolTip" = "Dateigröße";

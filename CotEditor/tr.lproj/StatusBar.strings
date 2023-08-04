@@ -1,5 +1,5 @@
 //
-//  DocumentWindow.strings (Turkish)
+//  StatusBar.strings (Turkish)
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,14 +23,6 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
-/* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
-"Kfj-q6-61N.label" = "Belge Denetçisi";
-/* Class = "NSTabViewItem"; label = "Outline"; ObjectID = "hyM-2j-hen"; */
-"hyM-2j-hen.label" = "Ana hat";
-/* Class = "NSTabViewItem"; label = "Warnings"; ObjectID = "JZo-ok-Dks"; */
-"JZo-ok-Dks.label" = "Uyarılar";
-
 
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "q4F-Uw-VL4"; */
 "q4F-Uw-VL4.title" = "Dosya Kodlaması";

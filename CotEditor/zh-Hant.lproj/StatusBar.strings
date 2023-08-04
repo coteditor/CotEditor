@@ -1,5 +1,5 @@
 //
-//  DocumentWindow.strings (Traditional Chinese)
+//  StatusBar.strings (Traditional Chinese)
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,14 +23,6 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
-/* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
-"Kfj-q6-61N.label" = "文件檢閱器";
-/* Class = "NSTabViewItem"; label = "Outline"; ObjectID = "hyM-2j-hen"; */
-"hyM-2j-hen.label" = "大綱";
-/* Class = "NSTabViewItem"; label = "Warnings"; ObjectID = "JZo-ok-Dks"; */
-"JZo-ok-Dks.label" = "警告";
-
 
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "mS8-3F-93y"; */
 "q4F-Uw-VL4.title" = "檔案編碼";

@@ -1,15 +1,15 @@
 //
-//  DocumentWindow.strings (Spanish)
+//  StatusBar.strings (English (UK))
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by Agustin Borrego on 2023-07-30.
-//  Localized by Agustin Borrego
+//  Created by Alex Newson on 2022-01-30.
+//  Localized by 1024jp
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,23 +24,15 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
-"Kfj-q6-61N.label" = "Inspector de documento";
-/* Class = "NSTabViewItem"; label = "Outline"; ObjectID = "hyM-2j-hen"; */
-"hyM-2j-hen.label" = "Esquema";
-/* Class = "NSTabViewItem"; label = "Warnings"; ObjectID = "JZo-ok-Dks"; */
-"JZo-ok-Dks.label" = "Avisos";
-
-
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "q4F-Uw-VL4"; */
-"q4F-Uw-VL4.title" = "Codificación de archivos";
+"q4F-Uw-VL4.title" = "File Encoding";
 /* Class = "NSPopUpButton"; ibShadowedToolTip = "File Encoding"; ObjectID = "CUv-So-9Og"; */
-"CUv-So-9Og.ibShadowedToolTip" = "Codificación de archivos";
+"CUv-So-9Og.ibShadowedToolTip" = "File Encoding";
 
 /* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "mS8-3F-93y"; */
-"mS8-3F-93y.title" = "Finales de línea";
+"mS8-3F-93y.title" = "Line Endings";
 /* Class = "NSPopUpButton"; ibShadowedToolTip = "Line Endings"; ObjectID = "FNE-H9-iZR"; */
-"FNE-H9-iZR.ibShadowedToolTip" = "Finales de línea";
+"FNE-H9-iZR.ibShadowedToolTip" = "Line Endings";
 
-/* Class = "NSTextField"; ibShadowedToolTip = "File Size"; ObjectID = "EJU-9e-uCA"; */
-"EJU-9e-uCA.ibShadowedToolTip" = "Tamaño del archivo";
+/* Class = "NSTextField"; title = "File Size"; ObjectID = "EJU-9e-uCA"; */
+"EJU-9e-uCA.ibShadowedToolTip" = "File Size";

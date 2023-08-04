@@ -29,7 +29,7 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Public  Properties
     
-    private(set) weak var documentViewController: DocumentViewController?
+    private(set) lazy var documentViewController = DocumentViewController()
     
     
     // MARK: Private Properties
@@ -49,14 +49,10 @@ final class WindowContentViewController: NSSplitViewController {
         self.splitView.identifier = NSUserInterfaceItemIdentifier("windowContentSplitView")
         self.splitView.autosaveName = "windowContentSplitView"
         
-        let storyboard = NSStoryboard(name: "DocumentWindow", bundle: nil)
+        self.addChild(self.documentViewController)
         
-        let documentViewController: DocumentViewController = storyboard.instantiateInitialController()!
-        let documentViewItem = NSSplitViewItem(viewController: documentViewController)
-        self.addSplitViewItem(documentViewItem)
-        self.documentViewController = documentViewController
-        
-        let inspectorViewController: NSViewController = storyboard.instantiateController(withIdentifier: "Inspector View") as! NSViewController
+        let storyboard = NSStoryboard(name: "Inspector", bundle: nil)
+        let inspectorViewController: NSViewController = storyboard.instantiateInitialController()!
         let inspectorViewItem = NSSplitViewItem(viewController: inspectorViewController)
         inspectorViewItem.holdingPriority = .init(261)
         inspectorViewItem.canCollapse = true

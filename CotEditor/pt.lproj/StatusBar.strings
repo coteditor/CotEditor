@@ -1,15 +1,15 @@
 //
-//  DocumentWindow.strings (French)
+//  StatusBar.strings (Portuguese)
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by Aurélien Roy on 2019-04-26.
-//  Localized by Aurélien Roy
+//  Created by BR Lingo on 2018-01-15.
+//  Localized by BR Lingo
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 CotEditor Project
+//  © 2018-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,23 +24,15 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
-"Kfj-q6-61N.label" = "Inspecteur de document";
-/* Class = "NSTabViewItem"; label = "Outline"; ObjectID = "hyM-2j-hen"; */
-"hyM-2j-hen.label" = "Structure";
-/* Class = "NSTabViewItem"; label = "Warnings"; ObjectID = "JZo-ok-Dks"; */
-"JZo-ok-Dks.label" = "Avertissements";
-
-
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "mS8-3F-93y"; */
-"q4F-Uw-VL4.title" = "Encodage";
+"q4F-Uw-VL4.title" = "Codificação do Arquivo";
 /* Class = "NSPopUpButton"; title = "File encoding"; ObjectID = "CUv-So-9Og"; */
-"CUv-So-9Og.ibShadowedToolTip" = "Encodage";
+"CUv-So-9Og.ibShadowedToolTip" = "Codificação do arquivo";
 
 /* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "mS8-3F-93y"; */
-"mS8-3F-93y.title" = "Fins de ligne";
+"mS8-3F-93y.title" = "Finais de Linha";
 /* Class = "NSPopUpButton"; title = "Line endings"; ObjectID = "FNE-H9-iZR"; */
-"FNE-H9-iZR.ibShadowedToolTip" = "Fins de ligne";
+"FNE-H9-iZR.ibShadowedToolTip" = "Finais de linha";
 
 /* Class = "NSTextField"; title = "File Size"; ObjectID = "EJU-9e-uCA"; */
-"EJU-9e-uCA.ibShadowedToolTip" = "Taille du fichier";
+"EJU-9e-uCA.ibShadowedToolTip" = "Tamanho do arquivo";

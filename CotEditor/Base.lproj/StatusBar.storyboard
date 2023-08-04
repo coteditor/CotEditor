@@ -1,117 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2gA-dj-5gh">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="NBJ-8W-V9X">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Inspector View Controller-->
-        <scene sceneID="Z70-6I-Rpr">
-            <objects>
-                <tabViewController storyboardIdentifier="Inspector View" showSeguePresentationStyle="single" tabStyle="unspecified" id="7te-2x-zAq" customClass="InspectorViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabViewItems>
-                        <tabViewItem label="Document Inspector" identifier="DocumentInspector" image="doc" catalog="system" id="Kfj-q6-61N"/>
-                        <tabViewItem label="Outline" identifier="Outline" image="list.bullet.indent" catalog="system" id="hyM-2j-hen"/>
-                        <tabViewItem label="Warnings" identifier="Warnings" image="exclamationmark.triangle" catalog="system" id="JZo-ok-Dks"/>
-                    </tabViewItems>
-                    <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
-                    <tabView key="tabView" misplaced="YES" type="noTabsNoBorder" id="wzn-c5-29x" customClass="InspectorTabView" customModule="CotEditor" customModuleProvider="target">
-                        <rect key="frame" x="252" y="0.0" width="200" height="660"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <font key="font" metaFont="system"/>
-                        <connections>
-                            <outlet property="delegate" destination="7te-2x-zAq" id="As3-Gf-aa6"/>
-                        </connections>
-                    </tabView>
-                    <connections>
-                        <segue destination="2Hh-Pq-vvo" kind="relationship" relationship="tabItems" id="dgq-BX-Slv"/>
-                        <segue destination="US1-1U-VH8" kind="relationship" relationship="tabItems" id="4Zo-YO-63m"/>
-                        <segue destination="ry4-rh-ZBT" kind="relationship" relationship="tabItems" id="XUT-Cm-0nR"/>
-                    </connections>
-                </tabViewController>
-                <customObject id="u7b-LP-b38" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="740" y="1142"/>
-        </scene>
-        <!--Document Inspector View Controller-->
-        <scene sceneID="eSh-Om-8dn">
-            <objects>
-                <controllerPlaceholder storyboardName="DocumentInspectorView" id="2Hh-Pq-vvo" userLabel="Document Inspector View Controller" sceneMemberID="viewController"/>
-                <customObject id="Eo9-v0-LrD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1082" y="1067"/>
-        </scene>
-        <!--Warnings View Controller-->
-        <scene sceneID="Wud-vX-9dR">
-            <objects>
-                <controllerPlaceholder storyboardName="WarningsView" id="ry4-rh-ZBT" userLabel="Warnings View Controller" sceneMemberID="viewController"/>
-                <customObject id="fzj-JB-SfU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1049" y="1218"/>
-        </scene>
-        <!--Outline View Controller-->
-        <scene sceneID="0hV-Dj-Fqy">
-            <objects>
-                <controllerPlaceholder storyboardName="OutlineView" id="US1-1U-VH8" userLabel="Outline View Controller" sceneMemberID="viewController"/>
-                <customObject id="muC-U5-1Gw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1043" y="1142"/>
-        </scene>
-        <!--Document View Controller-->
-        <scene sceneID="og9-Gf-wXr">
-            <objects>
-                <splitViewController id="2gA-dj-5gh" customClass="DocumentViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <splitViewItems>
-                        <splitViewItem id="tZe-bg-feG"/>
-                        <splitViewItem holdingPriority="751" id="lfq-9K-fZM"/>
-                    </splitViewItems>
-                    <splitView key="splitView" misplaced="YES" dividerStyle="thin" id="0PU-mC-e2a">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="660"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
-                                <color key="value" name="DividerColor"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                        <connections>
-                            <outlet property="delegate" destination="2gA-dj-5gh" id="J8h-h6-rqd"/>
-                        </connections>
-                    </splitView>
-                    <connections>
-                        <outlet property="splitViewItem" destination="tZe-bg-feG" id="WmM-B8-IB0"/>
-                        <outlet property="statusBarItem" destination="lfq-9K-fZM" id="qBF-wb-f69"/>
-                        <segue destination="vcx-nD-eDH" kind="relationship" relationship="splitItems" id="cYB-og-7Al"/>
-                        <segue destination="NBJ-8W-V9X" kind="relationship" relationship="splitItems" id="eHg-OY-YEn"/>
-                    </connections>
-                </splitViewController>
-                <customObject id="2dq-fC-hEQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="301" y="1142"/>
-        </scene>
-        <!--Split View Controller-->
-        <scene sceneID="37M-iF-P9Z">
-            <objects>
-                <splitViewController showSeguePresentationStyle="single" id="vcx-nD-eDH" customClass="SplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <splitViewItems>
-                        <splitViewItem holdingPriority="251" id="gyL-KP-Ao2"/>
-                    </splitViewItems>
-                    <splitView key="splitView" misplaced="YES" dividerStyle="thin" id="erk-uh-Ad4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="640"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <connections>
-                            <outlet property="delegate" destination="vcx-nD-eDH" id="iQE-L1-593"/>
-                        </connections>
-                    </splitView>
-                    <connections>
-                        <segue destination="o9O-dN-yRS" kind="relationship" relationship="splitItems" id="umm-gh-Z4n"/>
-                    </connections>
-                </splitViewController>
-                <customObject id="BD5-7O-H8g" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="301" y="1983"/>
-        </scene>
         <!--Status Bar Controller-->
         <scene sceneID="uT8-5A-k2A">
             <objects>
@@ -222,21 +116,5 @@
             </objects>
             <point key="canvasLocation" x="940" y="1672.5"/>
         </scene>
-        <!--Editor View Controller-->
-        <scene sceneID="Nwn-QI-YAx">
-            <objects>
-                <controllerPlaceholder storyboardName="EditorView" id="o9O-dN-yRS" userLabel="Editor View Controller" sceneMemberID="viewController"/>
-                <customObject id="OXS-9n-Oj5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="723" y="1983"/>
-        </scene>
     </scenes>
-    <resources>
-        <image name="doc" catalog="system" width="14" height="16"/>
-        <image name="exclamationmark.triangle" catalog="system" width="17" height="15"/>
-        <image name="list.bullet.indent" catalog="system" width="19" height="12"/>
-        <namedColor name="DividerColor">
-            <color white="0.85000002384185791" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </namedColor>
-    </resources>
 </document>

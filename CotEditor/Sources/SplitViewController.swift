@@ -33,7 +33,6 @@ final class SplitViewController: NSSplitViewController {
     
     private(set) weak var focusedChild: EditorViewController?
     
-    @Published private(set) var isVertical = false
     @Published private(set) var canCloseSplitItem = false
     
     
@@ -51,7 +50,10 @@ final class SplitViewController: NSSplitViewController {
         super.viewDidLoad()
         
         self.splitView.isVertical = UserDefaults.standard[.splitViewVertical]
-        self.isVertical = self.splitView.isVertical
+        
+        // add initial editor view
+        let storyboard = NSStoryboard(name: "EditorView", bundle: nil)
+        self.addChild(storyboard.instantiateInitialController()!)
         
         // observe focus change
         self.focusedEditorObserver = NotificationCenter.default.publisher(for: EditorTextView.didBecomeFirstResponderNotification)
@@ -122,8 +124,6 @@ final class SplitViewController: NSSplitViewController {
     @IBAction func toggleSplitOrientation(_ sender: Any?) {
         
         self.splitView.isVertical.toggle()
-        
-        self.isVertical = self.splitView.isVertical
     }
     
     

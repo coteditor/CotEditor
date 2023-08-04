@@ -42,6 +42,9 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     
     // MARK: Private Properties
     
+    private lazy var splitViewController = SplitViewController()
+    private weak var statusBarItem: NSSplitViewItem?
+    
     /// keys for bool values to be restored from the last session
     private var restorableBoolStateKeyPaths: [String] = [
         #keyPath(showsLineNumber),
@@ -61,9 +64,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     
     private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.syntaxParser?.invalidateOutline() }
     
-    @IBOutlet private weak var splitViewItem: NSSplitViewItem?
-    @IBOutlet private weak var statusBarItem: NSSplitViewItem?
-    
     
     
     // MARK: -
@@ -72,6 +72,16 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        self.splitView.isVertical = false
+        self.addChild(self.splitViewController)
+        
+        // set status bar
+        let storyboard = NSStoryboard(name: "StatusBar", bundle: nil)
+        let statusBarViewController: NSViewController = storyboard.instantiateInitialController()!
+        let statusBarItem = NSSplitViewItem(viewController: statusBarViewController)
+        self.addSplitViewItem(statusBarItem)
+        self.statusBarItem = statusBarItem
         
         // set user defaults
         let defaults = UserDefaults.standard
@@ -83,7 +93,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             case .vertical:
                 self.verticalLayoutOrientation = true
         }
-        self.statusBarItem?.isCollapsed = !defaults[.showStatusBar]
+        statusBarItem.isCollapsed = !defaults[.showStatusBar]
         self.setTheme(name: ThemeManager.shared.userDefaultSettingName)
         self.defaultsObservers = [
             defaults.publisher(for: .showStatusBar, initial: false)
@@ -349,7 +359,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                 return self.view.window?.styleMask.contains(.fullScreen) == false
                 
             case #selector(closeSplitTextView):
-                return (self.splitViewController?.splitViewItems.count ?? 0) > 1
+                return self.splitViewController.splitViewItems.count > 1
                 
             default: break
         }
@@ -417,7 +427,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// return textView focused on
     var focusedTextView: EditorTextView? {
         
-        self.splitViewController?.focusedChild?.textView ?? self.editorViewControllers.first?.textView
+        self.splitViewController.focusedChild?.textView ?? self.editorViewControllers.first?.textView
     }
     
     
@@ -757,17 +767,16 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     @IBAction func openSplitTextView(_ sender: Any?) {
         
         guard
-            let splitViewController = self.splitViewController,
             let currentEditorViewController = self.baseEditorViewController(for: sender)
         else { return assertionFailure() }
         
-        guard splitViewController.splitViewItems.count < maximumNumberOfSplitEditors else { return NSSound.beep() }
+        guard self.splitViewController.splitViewItems.count < maximumNumberOfSplitEditors else { return NSSound.beep() }
         
         // end current editing
         NSTextInputContext.current?.discardMarkedText()
         
         let newEditorViewController = NSStoryboard(name: "EditorView").instantiateInitialController() as! EditorViewController
-        splitViewController.addChild(newEditorViewController, relativeTo: currentEditorViewController)
+        self.splitViewController.addChild(newEditorViewController, relativeTo: currentEditorViewController)
         self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
         
         newEditorViewController.outlineItems = self.syntaxParser?.outlineItems ?? []
@@ -792,12 +801,11 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// close one of split views
     @IBAction func closeSplitTextView(_ sender: Any?) {
         
-        assert(self.splitViewController!.splitViewItems.count > 1)
+        assert(self.splitViewController.splitViewItems.count > 1)
         
         guard
-            let splitViewController = self.splitViewController,
             let currentEditorViewController = self.baseEditorViewController(for: sender),
-            let splitViewItem = splitViewController.splitViewItem(for: currentEditorViewController)
+            let splitViewItem = self.splitViewController.splitViewItem(for: currentEditorViewController)
         else { return }
         
         if let textView = currentEditorViewController.textView {
@@ -808,7 +816,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         NSTextInputContext.current?.discardMarkedText()
         
         // move focus to the next text view if the view to close has a focus
-        if splitViewController.focusedChild == currentEditorViewController {
+        if self.splitViewController.focusedChild == currentEditorViewController {
             let children = self.editorViewControllers
             let deleteIndex = children.firstIndex(of: currentEditorViewController) ?? 0
             let newFocusEditorViewController = children[safe: deleteIndex - 1] ?? children.last!
@@ -817,7 +825,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         }
         
         // close
-        splitViewController.removeSplitViewItem(splitViewItem)
+        self.splitViewController.removeSplitViewItem(splitViewItem)
     }
     
     
@@ -861,13 +869,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// split view controller
-    private var splitViewController: SplitViewController? {
-        
-        self.splitViewItem?.viewController as? SplitViewController
-    }
-    
-    
     /// text storage
     private var textStorage: NSTextStorage? {
         
@@ -885,7 +886,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// child editor view controllers
     private var editorViewControllers: [EditorViewController] {
         
-        self.splitViewController?.children.compactMap { $0 as? EditorViewController } ?? []
+        self.splitViewController.children.compactMap { $0 as? EditorViewController }
     }
     
     
@@ -912,12 +913,12 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     private func baseEditorViewController(for sender: Any?) -> EditorViewController? {
         
         if let view = sender as? NSView,
-           let controller = self.splitViewController?.children
+           let controller = self.splitViewController.children
             .first(where: { view.isDescendant(of: $0.view) }) as? EditorViewController
         {
             return controller
         }
         
-        return self.splitViewController?.focusedChild
+        return self.splitViewController.focusedChild
     }
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="GbA-Ns-Sra">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Inspector View Controller-->
+        <scene sceneID="B5X-ld-TFq">
+            <objects>
+                <tabViewController selectedTabViewItemIndex="2" tabStyle="unspecified" id="GbA-Ns-Sra" customClass="InspectorViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem label="Document Inspector" identifier="DocumentInspector" image="doc" catalog="system" id="zfR-ik-0SA"/>
+                        <tabViewItem label="Outline" identifier="Outline" image="list.bullet.indent" catalog="system" id="O4D-IX-tki"/>
+                        <tabViewItem label="Warnings" identifier="Warnings" image="exclamationmark.triangle" catalog="system" id="gpS-xn-YnI"/>
+                    </tabViewItems>
+                    <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
+                    <tabView key="tabView" misplaced="YES" type="noTabsNoBorder" id="Kfd-Tj-ta3" customClass="InspectorTabView" customModule="CotEditor" customModuleProvider="target">
+                        <rect key="frame" x="252" y="0.0" width="200" height="660"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="system"/>
+                        <connections>
+                            <outlet property="delegate" destination="GbA-Ns-Sra" id="1ZQ-rI-PmD"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <segue destination="dFW-6g-aj3" kind="relationship" relationship="tabItems" id="y54-am-fEK"/>
+                        <segue destination="2KA-tb-CPe" kind="relationship" relationship="tabItems" id="fpL-p5-bYP"/>
+                        <segue destination="H3L-Lc-p6Q" kind="relationship" relationship="tabItems" id="jXN-Ib-uuI"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="eVX-kn-IQo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="740" y="1142"/>
+        </scene>
+        <!--Document Inspector View Controller-->
+        <scene sceneID="2KD-Io-4nq">
+            <objects>
+                <controllerPlaceholder storyboardName="DocumentInspectorView" id="dFW-6g-aj3" userLabel="Document Inspector View Controller" sceneMemberID="viewController"/>
+                <customObject id="38V-yd-YQh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1082" y="1067"/>
+        </scene>
+        <!--Warnings View Controller-->
+        <scene sceneID="1v7-5m-OQN">
+            <objects>
+                <controllerPlaceholder storyboardName="WarningsView" id="H3L-Lc-p6Q" userLabel="Warnings View Controller" sceneMemberID="viewController"/>
+                <customObject id="sse-1V-IBD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1049" y="1218"/>
+        </scene>
+        <!--Outline View Controller-->
+        <scene sceneID="sAq-2s-0bC">
+            <objects>
+                <controllerPlaceholder storyboardName="OutlineView" id="2KA-tb-CPe" userLabel="Outline View Controller" sceneMemberID="viewController"/>
+                <customObject id="Z4N-V1-0qh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1043" y="1142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="doc" catalog="system" width="14" height="16"/>
+        <image name="exclamationmark.triangle" catalog="system" width="17" height="15"/>
+        <image name="list.bullet.indent" catalog="system" width="19" height="12"/>
+    </resources>
+</document>
