@@ -61,8 +61,6 @@ final class InspectorViewController: NSTabViewController {
         let width = UserDefaults.standard[.sidebarWidth]
         if width > 0 {
             self.view.frame.size.width = width
-            // apply also to .tabView that is the only child of .view
-            self.view.layoutSubtreeIfNeeded()
         }
         self.frameObserver = self.view.publisher(for: \.frame)
             .debounce(for: .seconds(0.1), scheduler: DispatchQueue.main)

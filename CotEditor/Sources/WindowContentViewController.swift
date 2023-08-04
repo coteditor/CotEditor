@@ -24,13 +24,10 @@
 //
 
 import AppKit
-import Combine
 
 final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Private Properties
-    
-    private var inspectorObserver: AnyCancellable?
     
     @IBOutlet private weak var documentViewItem: NSSplitViewItem?
     @IBOutlet private weak var inspectorViewItem: NSSplitViewItem?
@@ -39,17 +36,6 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: -
     // MARK: Split View Controller Methods
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        self.restoreAutosavingState()
-        
-        self.inspectorObserver = self.inspectorViewItem?.publisher(for: \.isCollapsed, options: .initial)
-            .sink { [weak self] _ in self?.invalidateRestorableState() }
-    }
-    
     
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
@@ -78,7 +64,7 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Public Methods
     
-    /// deliver editor to outer view controllers
+    /// The view controller of the main pane that containing the editor.
     var documentViewController: DocumentViewController? {
         
         self.documentViewItem?.viewController as? DocumentViewController

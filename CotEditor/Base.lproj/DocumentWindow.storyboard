@@ -13,7 +13,7 @@
                 <splitViewController id="O3C-zL-JF9" customClass="WindowContentViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="NAv-oU-Mey"/>
-                        <splitViewItem canCollapse="YES" collapsed="YES" holdingPriority="260" id="faM-S9-Ldc"/>
+                        <splitViewItem canCollapse="YES" collapsed="YES" holdingPriority="261" id="faM-S9-Ldc"/>
                     </splitViewItems>
                     <splitView key="splitView" misplaced="YES" autosaveName="windowContentSplitView" dividerStyle="thin" vertical="YES" id="Xj1-1i-hd5">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="660"/>
