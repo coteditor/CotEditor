@@ -27,15 +27,44 @@ import AppKit
 
 final class WindowContentViewController: NSSplitViewController {
     
+    // MARK: Public  Properties
+    
+    private(set) weak var documentViewController: DocumentViewController?
+    
+    
     // MARK: Private Properties
     
-    @IBOutlet private weak var documentViewItem: NSSplitViewItem?
-    @IBOutlet private weak var inspectorViewItem: NSSplitViewItem?
+    private weak var inspectorViewItem: NSSplitViewItem?
     
     
     
     // MARK: -
     // MARK: Split View Controller Methods
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // -> Need to set *both* identifier and autosaveName to make autosaving work.
+        self.splitView.identifier = NSUserInterfaceItemIdentifier("windowContentSplitView")
+        self.splitView.autosaveName = "windowContentSplitView"
+        
+        let storyboard = NSStoryboard(name: "DocumentWindow", bundle: nil)
+        
+        let documentViewController: DocumentViewController = storyboard.instantiateInitialController()!
+        let documentViewItem = NSSplitViewItem(viewController: documentViewController)
+        self.addSplitViewItem(documentViewItem)
+        self.documentViewController = documentViewController
+        
+        let inspectorViewController: NSViewController = storyboard.instantiateController(withIdentifier: "Inspector View") as! NSViewController
+        let inspectorViewItem = NSSplitViewItem(viewController: inspectorViewController)
+        inspectorViewItem.holdingPriority = .init(261)
+        inspectorViewItem.canCollapse = true
+        inspectorViewItem.isCollapsed = true
+        self.addSplitViewItem(inspectorViewItem)
+        self.inspectorViewItem = inspectorViewItem
+    }
+    
     
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
@@ -63,13 +92,6 @@ final class WindowContentViewController: NSSplitViewController {
     
     
     // MARK: Public Methods
-    
-    /// The view controller of the main pane that containing the editor.
-    var documentViewController: DocumentViewController? {
-        
-        self.documentViewItem?.viewController as? DocumentViewController
-    }
-    
     
     /// Open the desired inspector pane.
     ///

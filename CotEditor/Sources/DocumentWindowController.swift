@@ -70,9 +70,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     convenience init(document: Document) {
         
-        let viewController: NSViewController? = NSStoryboard(name: "DocumentWindow")
-            .instantiateInitialController()
-        let window = DocumentWindow(contentViewController: viewController!)
+        let window = DocumentWindow(contentViewController: WindowContentViewController())
         window.setFrameAutosaveName(Self.windowFrameName)
         
         // set window size
