@@ -94,7 +94,7 @@ final class WindowContentViewController: NSSplitViewController {
     /// - Parameter pane: The inspector pane to open.
     func showInspector(pane: InspectorPane) {
         
-        self.setInspectorShown(true, pane: pane, animate: true)
+        self.setInspectorShown(true, pane: pane)
     }
     
     
@@ -107,9 +107,7 @@ final class WindowContentViewController: NSSplitViewController {
         if #available(macOS 14, *) {
             super.toggleInspector(sender)
         } else {
-            NSAnimationContext.current.withAnimation {
-                self.isInspectorShown.toggle()
-            }
+            self.inspectorViewItem?.animator().isCollapsed.toggle()
         }
     }
     
@@ -138,27 +136,25 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Private Methods
     
-    /// split view item to view controller
+    /// The view controller for the inspector.
     private var inspectorViewController: InspectorViewController? {
         
         self.inspectorViewItem?.viewController as? InspectorViewController
     }
     
     
-    /// whether inspector is opened
+    /// Whether the inspector is opened.
     private var isInspectorShown: Bool {
         
-        get { self.inspectorViewItem?.isCollapsed == false }
-        set { self.inspectorViewItem?.isCollapsed = !newValue }
+        self.inspectorViewItem?.isCollapsed == false
     }
     
     
-    /// set visibility of the inspector and switch pane
-    private func setInspectorShown(_ shown: Bool, pane: InspectorPane? = nil, animate: Bool = false) {
+    /// Set the visibility of the inspector and switch pane with animation.
+    private func setInspectorShown(_ shown: Bool, pane: InspectorPane) {
         
-        NSAnimationContext.current.withAnimation(animate) {
-            self.isInspectorShown = shown
-        }
+        self.inspectorViewItem!.animator().isCollapsed = !shown
+        self.inspectorViewController!.selectedTabViewItemIndex = pane.rawValue
     }
     
     
@@ -172,6 +168,6 @@ final class WindowContentViewController: NSSplitViewController {
     /// toggle visibility of pane in the inspector
     private func toggleVisibilityOfInspector(pane: InspectorPane) {
         
-        self.setInspectorShown(!self.isInspectorShown(pane: pane), pane: pane, animate: true)
+        self.setInspectorShown(!self.isInspectorShown(pane: pane), pane: pane)
     }
 }
