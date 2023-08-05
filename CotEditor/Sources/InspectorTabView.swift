@@ -88,10 +88,9 @@ final class InspectorTabView: NSTabView {
         separator.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(separator)
         NSLayoutConstraint.activate([
-            separator.heightAnchor.constraint(equalToConstant: 1),
             separator.topAnchor.constraint(equalTo: self.segmentedControl.bottomAnchor, constant: self.controlOffset),
-            separator.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            separator.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            separator.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            separator.trailingAnchor.constraint(equalTo: self.trailingAnchor),
         ])
     }
     
