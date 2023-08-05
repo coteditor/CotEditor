@@ -34,7 +34,7 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Private Properties
     
-    private lazy var inspectorViewController: InspectorViewController = NSStoryboard(name: "Inspector").instantiateInitialController()!
+    private lazy var inspectorViewController = InspectorViewController()
     private weak var inspectorViewItem: NSSplitViewItem?
     
     

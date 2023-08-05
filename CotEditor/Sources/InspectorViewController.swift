@@ -44,6 +44,28 @@ final class InspectorViewController: NSTabViewController {
     // MARK: -
     // MARK: Lifecycle
     
+    override func loadView() {
+        
+        let tabView = InspectorTabView()
+        
+        // cover the entire area with an NSVisualEffectView
+        let view = NSVisualEffectView()
+        view.material = .windowBackground
+        view.addSubview(tabView)
+        
+        tabView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            view.topAnchor.constraint(equalTo: tabView.topAnchor),
+            view.bottomAnchor.constraint(equalTo: tabView.bottomAnchor),
+            view.leadingAnchor.constraint(equalTo: tabView.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: tabView.trailingAnchor),
+        ])
+        
+        self.tabView = tabView
+        self.view = view
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -57,7 +79,10 @@ final class InspectorViewController: NSTabViewController {
         }
         
         // select last used pane
-        self.selectedTabViewItemIndex = UserDefaults.standard[.selectedInspectorPaneIndex]
+        // -> Select tab in a later run loop to let view layout first.
+        Task {
+            self.selectedTabViewItemIndex = UserDefaults.standard[.selectedInspectorPaneIndex]
+        }
         
         // restore thickness first when the view is loaded
         let width = UserDefaults.standard[.sidebarWidth]
@@ -88,7 +113,8 @@ final class InspectorViewController: NSTabViewController {
     override var selectedTabViewItemIndex: Int {
         
         didSet {
-            guard selectedTabViewItemIndex != oldValue else { return }
+            // -> Ignore initial setting that select 0
+            guard selectedTabViewItemIndex != oldValue, oldValue != -1 else { return }
             
             UserDefaults.standard[.selectedInspectorPaneIndex] = selectedTabViewItemIndex
             self.invalidateRestorableState()
@@ -118,7 +144,7 @@ final class InspectorViewController: NSTabViewController {
         
         super.viewDidLayout()
         
-        if !self.view.inLiveResize {
+        if !self.view.inLiveResize, self.view.frame.width > 0 {
             UserDefaults.standard[.sidebarWidth] = self.view.frame.width
         }
     }

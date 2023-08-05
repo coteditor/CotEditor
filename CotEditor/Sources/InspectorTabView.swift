@@ -50,9 +50,9 @@ final class InspectorTabView: NSTabView {
     // MARK: -
     // MARK: Lifecycle
     
-    required init?(coder: NSCoder) {
+    override init(frame frameRect: NSRect) {
         
-        super.init(coder: coder)
+        super.init(frame: frameRect)
         
         self.tabViewType = .noTabsNoBorder
         
@@ -60,18 +60,6 @@ final class InspectorTabView: NSTabView {
         self.segmentedControl.cell?.isBordered = false
         self.segmentedControl.target = self
         self.segmentedControl.action = #selector(takeSelectedTabViewItemFromSender)
-        
-        // cover the entire area with an NSVisualEffectView as background
-        let backgroundView = NSVisualEffectView()
-        backgroundView.material = .windowBackground
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(backgroundView)
-        NSLayoutConstraint.activate([
-            backgroundView.topAnchor.constraint(equalTo: self.topAnchor),
-            backgroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            backgroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-        ])
         
         // add control parts
         self.segmentedControl.translatesAutoresizingMaskIntoConstraints = false
@@ -92,6 +80,12 @@ final class InspectorTabView: NSTabView {
             separator.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             separator.trailingAnchor.constraint(equalTo: self.trailingAnchor),
         ])
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
     }
     
     
