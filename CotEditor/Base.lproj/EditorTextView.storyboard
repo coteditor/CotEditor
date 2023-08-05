@@ -27,14 +27,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="568" height="665"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView identifier="coreTextView" importsGraphics="NO" richText="NO" verticallyResizable="YES" baseWritingDirection="leftToRight" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" spellingCorrection="YES" id="cwy-av-RZ3" customClass="EditorTextView" customModule="CotEditor" customModuleProvider="target">
+                                        <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" baseWritingDirection="leftToRight" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" spellingCorrection="YES" layoutManager="textKit1" id="cwy-av-RZ3" customClass="EditorTextView" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="568" height="665"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <size key="minSize" width="568" height="665"/>
                                             <size key="maxSize" width="732" height="10000000"/>
-                                            <color key="insertionPointColor" name="textInsertionPointColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <connections>
                                                 <outlet property="delegate" destination="DD5-rg-Mbm" id="x2a-uN-FZy"/>
                                             </connections>
@@ -72,7 +72,7 @@
                 </viewController>
                 <customObject id="hmw-hS-KeU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1469" y="6.5"/>
+            <point key="canvasLocation" x="0" y="0"/>
         </scene>
     </scenes>
 </document>
