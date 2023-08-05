@@ -59,7 +59,7 @@ final class InspectorTabView: NSTabView {
         // setup the private tab control
         self.segmentedControl.cell?.isBordered = false
         self.segmentedControl.target = self
-        self.segmentedControl.action = #selector(didPressControl)
+        self.segmentedControl.action = #selector(takeSelectedTabViewItemFromSender)
         
         // cover the entire area with an NSVisualEffectView as background
         let backgroundView = NSVisualEffectView()
@@ -146,13 +146,6 @@ final class InspectorTabView: NSTabView {
     
     
     // MARK: Private Methods
-    
-    /// The private control was pressed.
-    @objc private func didPressControl(_ sender: NSSegmentedControl) {
-        
-        self.selectTabViewItem(at: sender.indexOfSelectedItem)
-    }
-    
     
     /// Update the private control every time when the line-up of  tab items changed.
     private func rebuildSegmentedControl() {

@@ -67,13 +67,15 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
         assert(image?.isTemplate != false)
         assert(selectedImage?.isTemplate != false)
         
+        let selectedImage = selectedImage?.tinted(with: .controlAccentColor)
+        
         image?.accessibilityDescription = self.label(forSegment: segment)
         selectedImage?.accessibilityDescription = self.label(forSegment: segment)
         
-        super.setImage(image, forSegment: segment)
+        super.setImage((segment == self.selectedSegment) ? selectedImage : image, forSegment: segment)
         
         self.images[segment] = image
-        self.selectedImages[segment] = selectedImage?.tinted(with: .controlAccentColor)
+        self.selectedImages[segment] = selectedImage
     }
     
     
