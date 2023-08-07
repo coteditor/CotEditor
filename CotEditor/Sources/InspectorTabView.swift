@@ -120,14 +120,6 @@ final class InspectorTabView: NSTabView {
     }
     
     
-    override func addTabViewItem(_ tabViewItem: NSTabViewItem) {
-        
-        super.addTabViewItem(tabViewItem)
-        
-        self.rebuildSegmentedControl()
-    }
-    
-    
     override func insertTabViewItem(_ tabViewItem: NSTabViewItem, at index: Int) {
         
         super.insertTabViewItem(tabViewItem, at: index)
@@ -153,12 +145,11 @@ final class InspectorTabView: NSTabView {
         self.segmentedControl.segmentCount = self.numberOfTabViewItems
         
         for (segment, item) in self.tabViewItems.enumerated() {
-            self.segmentedControl.setWidth(self.segmentWidth, forSegment: segment)
-            self.segmentedControl.setToolTip(item.label, forSegment: segment)
-            
             let selectedImage = (self.delegate as? any InspectorTabViewDelegate)?
                 .tabView(self, selectedImageForItem: item)
             self.segmentedControl.setImage(item.image, selectedImage: selectedImage, forSegment: segment)
+            self.segmentedControl.setToolTip(item.label, forSegment: segment)
+            self.segmentedControl.setWidth(self.segmentWidth, forSegment: segment)
         }
     }
 }
