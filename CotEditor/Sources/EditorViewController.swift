@@ -44,7 +44,7 @@ final class EditorViewController: NSSplitViewController {
     // MARK: Private Properties
     
     private lazy var navigationBarController: NavigationBarController = NSStoryboard(name: "NavigationBar").instantiateInitialController()!
-    private lazy var textViewController: EditorTextViewController = NSStoryboard(name: "EditorTextView").instantiateInitialController()!
+    private lazy var textViewController = EditorTextViewController()
     
     private var defaultObservers: [AnyCancellable] = []
     

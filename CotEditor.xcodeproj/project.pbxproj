@@ -78,8 +78,6 @@
 		2A158C232945F54B000A4EC1 /* OpacityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A158C212945F54B000A4EC1 /* OpacityView.swift */; };
 		2A1679E61D3CE07100E8261D /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1679E51D3CE07100E8261D /* Document.swift */; };
 		2A1679E71D3CE07100E8261D /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1679E51D3CE07100E8261D /* Document.swift */; };
-		2A172E2C2A7C9BD00085CC06 /* EditorTextView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A172E2A2A7C9BD00085CC06 /* EditorTextView.storyboard */; };
-		2A172E2D2A7C9BD00085CC06 /* EditorTextView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A172E2A2A7C9BD00085CC06 /* EditorTextView.storyboard */; };
 		2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17A3121D2D16F1001DD717 /* WindowContentViewController.swift */; };
 		2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17A3121D2D16F1001DD717 /* WindowContentViewController.swift */; };
 		2A17A3161D2D4319001DD717 /* DocumentWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17A3151D2D4319001DD717 /* DocumentWindow.swift */; };
@@ -918,7 +916,6 @@
 		2A158C1E2945E423000A4EC1 /* SavePanelAccessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePanelAccessory.swift; sourceTree = "<group>"; };
 		2A158C212945F54B000A4EC1 /* OpacityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacityView.swift; sourceTree = "<group>"; };
 		2A1679E51D3CE07100E8261D /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		2A172E2B2A7C9BD00085CC06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditorTextView.storyboard; sourceTree = "<group>"; };
 		2A17A3121D2D16F1001DD717 /* WindowContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowContentViewController.swift; sourceTree = "<group>"; };
 		2A17A3151D2D4319001DD717 /* DocumentWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindow.swift; sourceTree = "<group>"; };
 		2A180F4A2854E71800EBAF66 /* NSTextSelectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextSelectionDataSource.swift; sourceTree = "<group>"; };
@@ -2060,7 +2057,6 @@
 				2A4144B6201397150061F653 /* WarningsView.storyboard */,
 				2A6602CE1D05BD72003E8D87 /* StatusBar.storyboard */,
 				2A5F7CA31D152589001D83BC /* NavigationBar.storyboard */,
-				2A172E2A2A7C9BD00085CC06 /* EditorTextView.storyboard */,
 			);
 			name = "Document Window";
 			sourceTree = "<group>";
@@ -2687,7 +2683,6 @@
 				2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */,
 				2ACDE28D2406B9C000FC31EC /* AppearancePane.storyboard in Resources */,
 				2ACDE2942406B9C000FC31EC /* DocumentInspectorView.storyboard in Resources */,
-				2A172E2C2A7C9BD00085CC06 /* EditorTextView.storyboard in Resources */,
 				2ACDE2972406B9C000FC31EC /* EditPane.storyboard in Resources */,
 				2ACDE29A2406B9C000FC31EC /* FindPanel.storyboard in Resources */,
 				2ACDE29C2406B9C000FC31EC /* FormatPane.storyboard in Resources */,
@@ -2751,7 +2746,6 @@
 				2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */,
 				2A10D1281E714D230027192A /* AppearancePane.storyboard in Resources */,
 				2A4144BC201397D70061F653 /* DocumentInspectorView.storyboard in Resources */,
-				2A172E2D2A7C9BD00085CC06 /* EditorTextView.storyboard in Resources */,
 				2A10D1301E7152F30027192A /* EditPane.storyboard in Resources */,
 				2A5D13421D1FE34F00D38E6A /* FindPanel.storyboard in Resources */,
 				2A10D1381E715E5B0027192A /* FormatPane.storyboard in Resources */,
@@ -3686,14 +3680,6 @@
 				08C28F86279CBE2D0016693E /* tr */,
 			);
 			name = FormatPane.storyboard;
-			sourceTree = "<group>";
-		};
-		2A172E2A2A7C9BD00085CC06 /* EditorTextView.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A172E2B2A7C9BD00085CC06 /* Base */,
-			);
-			name = EditorTextView.storyboard;
 			sourceTree = "<group>";
 		};
 		2A1893A21FFF15E000AD244F /* PatternSortView.storyboard */ = {

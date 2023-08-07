@@ -36,7 +36,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     
     var ignoresDisplayValidation = false
     
-    var string: NSString  { self.attributedString().string as NSString }
+    var string: NSString  { self.textStorage?.string as? NSString ?? "" }
     var lineRangeCache = LineRangeCache()
     
     

@@ -96,6 +96,8 @@ final class LineNumberView: NSView {
     
     // MARK: Private Properties
     
+    private let textView: NSTextView
+    
     private var drawingInfo: DrawingInfo?
     private var thickness = 32.0
     
@@ -109,19 +111,29 @@ final class LineNumberView: NSView {
     
     private var draggingInfo: DraggingInfo?
     
-    @IBOutlet private weak var textView: NSTextView? {
+    
+    
+    // MARK: -
+    // MARK: Lifecycle
+    
+    init(textView: NSTextView) {
         
-        didSet {
-            guard let textView else { return }
-            
-            self.observeTextView(textView)
-            self.invalidateDrawingInfo()
-        }
+        self.textView = textView
+        
+        super.init(frame: .zero)
+        
+        self.observeTextView(textView)
+        self.invalidateDrawingInfo()
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
     }
     
     
     
-    // MARK: -
     // MARK: View Methods
     
     /// view name for VoiceOver
@@ -134,7 +146,7 @@ final class LineNumberView: NSView {
     /// make background transparent
     override var isOpaque: Bool {
         
-        self.textView?.isOpaque ?? true
+        self.textView.isOpaque
     }
     
     
@@ -156,7 +168,7 @@ final class LineNumberView: NSView {
         
         // remove observations before all observed objects are deallocated
         if newWindow == nil {
-            assert(self.textView?.enclosingScrollView?.contentView != nil)
+            assert(self.textView.enclosingScrollView?.contentView != nil)
             
             self.textViewSubscriptions.removeAll()
         }
@@ -184,7 +196,7 @@ final class LineNumberView: NSView {
         
         // draw separator
         if self.drawsSeparator {
-            let lineRect: NSRect = switch (self.orientation, self.textView?.baseWritingDirection) {
+            let lineRect: NSRect = switch (self.orientation, self.textView.baseWritingDirection) {
                 case (.vertical, _):    NSRect(x: 0, y: 0, width: self.frame.width, height: 1)
                 case (_, .rightToLeft): NSRect(x: 0, y: 0, width: 1, height: self.frame.height)
                 default:                NSRect(x: self.frame.width - 1, y: 0, width: 1, height: self.frame.height)
@@ -208,11 +220,9 @@ final class LineNumberView: NSView {
     /// total number of lines in the text view
     private var numberOfLines: Int {
         
-        guard let textView = self.textView else { return 1 }
+        assert(self.textView.layoutManager is any LineRangeCacheable)
         
-        assert(textView.layoutManager is any LineRangeCacheable)
-        
-        return textView.lineNumber(at: textView.string.length)
+        return self.textView.lineNumber(at: self.textView.string.length)
     }
     
     
@@ -243,8 +253,7 @@ final class LineNumberView: NSView {
         
         guard
             let drawingInfo = self.drawingInfo,
-            let textView = self.textView,
-            let layoutManager = textView.layoutManager as? LayoutManager,
+            let layoutManager = self.textView.layoutManager as? LayoutManager,
             let context = NSGraphicsContext.current?.cgContext
         else { return assertionFailure() }
         
@@ -255,6 +264,7 @@ final class LineNumberView: NSView {
         context.setFillColor(self.foregroundColor().cgColor)
         context.setStrokeColor(self.foregroundColor(.stroke).cgColor)
         
+        let textView = self.textView
         let isVerticalText = textView.layoutOrientation == .vertical
         let scale = textView.scale
         
@@ -324,12 +334,9 @@ final class LineNumberView: NSView {
     /// Update parameters related to drawing and layout based on textView's status.
     private func invalidateDrawingInfo() {
         
-        guard
-            let textView = self.textView,
-            let textFont = textView.font
-        else { return assertionFailure() }
+        guard let textFont = self.textView.font else { return assertionFailure() }
         
-        self.drawingInfo = DrawingInfo(fontSize: textFont.pointSize, scale: textView.scale)
+        self.drawingInfo = DrawingInfo(fontSize: textFont.pointSize, scale: self.textView.scale)
         
         self.invalidateThickness()
         self.needsDisplay = true
@@ -371,11 +378,12 @@ final class LineNumberView: NSView {
         self.textViewSubscriptions.removeAll()
         
         // observe content change
+        // -> The textStorage of the textView can be changed.
         NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: nil)
             .compactMap { $0.object as? NSTextStorage }
             .filter { $0.editedMask.contains(.editedCharacters) }
             .receive(on: RunLoop.main)  // touch textView on main thread
-            .filter { [weak self] in $0 == self?.textView?.textStorage }
+            .filter { [weak self] in $0 == self?.textView.textStorage }
             .sink { [weak self] _ in
                 // -> The digit of the line numbers affect thickness.
                 if self?.orientation == .horizontal {
@@ -439,23 +447,20 @@ extension LineNumberView {
     /// scroll parent textView with scroll event
     override func scrollWheel(with event: NSEvent) {
         
-        self.textView?.scrollWheel(with: event)
+        self.textView.scrollWheel(with: event)
     }
     
     
     /// start selecting correspondent lines in text view with drag / click event
     override func mouseDown(with event: NSEvent) {
         
-        guard
-            let window = self.window,
-            let textView = self.textView
-        else { return assertionFailure() }
+        guard let window = self.window else { return assertionFailure() }
         
         // get start point
         let point = window.convertPoint(toScreen: event.locationInWindow)
-        let index = textView.characterIndex(for: point)
+        let index = self.textView.characterIndex(for: point)
         
-        let selectedRanges = textView.selectedRanges.map(\.rangeValue)
+        let selectedRanges = self.textView.selectedRanges.map(\.rangeValue)
         
         self.draggingInfo = DraggingInfo(index: index, selectedRanges: selectedRanges)
         
@@ -486,9 +491,10 @@ extension LineNumberView {
         
         guard
             let window = self.window,
-            let textView = self.textView,
             let draggingInfo = self.draggingInfo
         else { return assertionFailure() }
+        
+        let textView = self.textView
         
         // scroll text view if needed
         let point = textView.convert(event.locationInWindow, from: nil)  // textView-based

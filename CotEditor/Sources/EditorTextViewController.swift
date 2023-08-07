@@ -40,10 +40,13 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Public Properties
     
-    @IBOutlet private(set) weak var textView: EditorTextView?
+    private(set) weak var textView: EditorTextView?
     
     
     // MARK: Private Properties
+    
+    private var stackView: NSStackView?  { self.view as? NSStackView }
+    private weak var lineNumberView: LineNumberView?
     
     private weak var advancedCounterView: NSView?
     private weak var horizontalCounterConstraint: NSLayoutConstraint?
@@ -51,14 +54,33 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     private var orientationObserver: AnyCancellable?
     private var writingDirectionObserver: AnyCancellable?
     
-    private var stackView: NSStackView?  { self.view as? NSStackView }
-    
-    @IBOutlet private weak var lineNumberView: LineNumberView?
-    
     
     
     // MARK: -
     // MARK: Lifecycle
+    
+    override func loadView() {
+        
+        let textView = EditorTextView()
+        textView.delegate = self
+        
+        let scrollView = BidiScrollView()
+        scrollView.verticalScroller = BidiScroller()
+        scrollView.horizontalScroller = BidiScroller()
+        scrollView.hasVerticalScroller = true
+        scrollView.documentView = textView
+        
+        let lineNumberView = LineNumberView(textView: textView)
+        
+        let stackView = NSStackView(views: [lineNumberView, scrollView])
+        stackView.spacing = 0
+        stackView.distribution = .fill
+        
+        self.view = stackView
+        self.lineNumberView = lineNumberView
+        self.textView = textView
+    }
+    
     
     override func viewDidLoad() {
         
@@ -81,17 +103,18 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // let line number view position follow writing direction
         self.writingDirectionObserver = self.textView!.publisher(for: \.baseWritingDirection)
             .removeDuplicates()
-            .sink { [weak self] (writingDirection) in
+            .map { $0 == .rightToLeft }
+            .sink { [weak self] (isRTL) in
                 guard
                     let stackView = self?.stackView,
                     let lineNumberView = self?.lineNumberView
                 else { return assertionFailure() }
                 
                 // set scroller location
-                (self?.textView?.enclosingScrollView as? BidiScrollView)?.scrollerDirection = (writingDirection == .rightToLeft) ? .rightToLeft : .leftToRight
+                (self?.textView?.enclosingScrollView as? BidiScrollView)?.scrollerDirection = isRTL ? .rightToLeft : .leftToRight
                 
                 // set line number view location
-                let index = writingDirection == .rightToLeft ? stackView.arrangedSubviews.count - 1 : 0
+                let index = isRTL ? stackView.arrangedSubviews.count - 1 : 0
                 
                 guard stackView.arrangedSubviews[safe: index] != lineNumberView else { return }
                 

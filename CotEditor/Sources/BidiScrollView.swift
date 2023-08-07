@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,17 +37,6 @@ final class BidiScrollView: NSScrollView {
     
     
     // MARK: View Methods
-    
-    override func awakeFromNib() {
-        
-        assert(self.verticalScroller is BidiScroller)
-        assert(self.horizontalScroller is BidiScroller)
-        assert(self.userInterfaceLayoutDirection == .leftToRight,
-               "Consider if the UI direction is RTL and the scroller direction is LTR.")
-        
-        super.awakeFromNib()
-    }
-    
     
     override func tile() {
         

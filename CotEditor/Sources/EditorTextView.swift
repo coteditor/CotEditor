@@ -124,7 +124,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     // MARK: -
     // MARK: Lifecycle
     
-    required init?(coder: NSCoder) {
+    convenience init() {
+        
+        self.init(frame: .zero, textContainer: nil)
+    }
+    
+    
+    required override init(frame: NSRect, textContainer: NSTextContainer?) {
+        
+        assert(textContainer == nil)
         
         let defaults = UserDefaults.standard
         
@@ -136,20 +144,19 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.lineHeight = defaults[.lineHeight]
         self.tabWidth = defaults[.tabWidth]
         
-        super.init(coder: coder)
-        
-        self.textFinder.client = self
-        
-        // setup layoutManager and textContainer
+        // setup textContainer and layoutManager
         let textContainer = TextContainer()
         textContainer.widthTracksTextView = true
         textContainer.isHangingIndentEnabled = defaults[.enablesHangingIndent]
         textContainer.hangingIndentWidth = defaults[.hangingIndentWidth]
-        self.replaceTextContainer(textContainer)
         
         let layoutManager = LayoutManager()
         layoutManager.tabWidth = self.tabWidth
-        self.textContainer!.replaceLayoutManager(layoutManager)
+        layoutManager.addTextContainer(textContainer)
+        
+        super.init(frame: frame, textContainer: textContainer)
+        
+        self.textFinder.client = self
         
         // set layout values (wraps lines)
         self.minSize = self.frame.size
@@ -243,6 +250,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 .filter { !$0 }
                 .sink { [unowned self] _ in self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange) },
         ]
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
     }
     
     
