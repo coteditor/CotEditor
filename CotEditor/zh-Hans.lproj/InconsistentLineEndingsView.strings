@@ -1,11 +1,11 @@
 //
-//  WarningsView.strings (Traditional Chinese)
+//  InconsistentLineEndingsView.strings (Simplified Chinese)
 //
 //  CotEditor
 //  https://coteditor.com
 //
 //  Created by 1024jp on 2014-12-18.
-//  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
+//  Localized by onevcat
 //
 //  ---------------------------------------------------------------------------
 //
@@ -24,22 +24,10 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "Incompatible Characters"; ObjectID = "W1c-aP-XZa"; */
-"W1c-aP-XZa.title" = "不相容字元";
-
-/* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "2AE-nU-rdc"; */
-"2AE-nU-rdc.headerCell.title" = "轉換後";
-/* Class = "NSTableColumn"; headerCell.title = "Character"; ObjectID = "Nhb-U5-BOF"; */
-"Nhb-U5-BOF.headerCell.title" = "字元";
-/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
-"weY-lf-jGz.headerCell.title" = "行";
-
-
-
 /* Class = "NSTextFieldCell"; title = "Inconsistent Line Endings"; ObjectID = "Yi4-Vk-FCZ"; */
-"Yi4-Vk-FCZ.title" = "換行符不一致";
+"Yi4-Vk-FCZ.title" = "换行符不一致";
 
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "o1z-QY-xMY"; */
 "o1z-QY-xMY.headerCell.title" = "行";
 /* Class = "NSTableColumn"; headerCell.title = "Line Ending"; ObjectID = "Miu-uX-2tM"; */
-"Miu-uX-2tM.headerCell.title" = "換行";
+"Miu-uX-2tM.headerCell.title" = "换行";

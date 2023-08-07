@@ -33,6 +33,12 @@ final class WarningsViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
+        self.splitView.isVertical = false
+        
+        self.addChild(NSStoryboard(name: "IncompatibleCharactersView").instantiateInitialController()!)
+        self.addChild(NSStoryboard(name: "InconsistentLineEndingsView").instantiateInitialController()!)
+        self.updateRepresentedObject()
+        
         // set accessibility
         self.view.setAccessibilityLabel(String(localized: "Warnings"))
     }
@@ -42,9 +48,18 @@ final class WarningsViewController: NSSplitViewController {
     override var representedObject: Any? {
         
         didSet {
-            for item in self.splitViewItems {
-                item.viewController.representedObject = representedObject
-            }
+            self.updateRepresentedObject()
+        }
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Update representedObjects in the child views.
+    private func updateRepresentedObject() {
+        
+        for item in self.splitViewItems {
+            item.viewController.representedObject = representedObject
         }
     }
 }

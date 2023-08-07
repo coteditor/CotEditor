@@ -186,7 +186,7 @@ private extension InspectorPane {
             case .outline:
                 NSStoryboard(name: "OutlineView").instantiateInitialController()!
             case .warnings:
-                NSStoryboard(name: "WarningsView").instantiateInitialController()!
+                WarningsViewController()
         }
     }
     

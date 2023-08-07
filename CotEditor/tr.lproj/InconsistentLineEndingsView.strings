@@ -1,15 +1,15 @@
 //
-//  WarningsView.strings (German)
+//  InconsistentLineEndingsView.strings (Turkish)
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2015-08-19.
-//  Localized by 1024jp
+//  Created by Emir SARI on 2022-01-28.
+//  Localized by Emir SARI
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,22 +24,10 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "Incompatible Characters"; ObjectID = "W1c-aP-XZa"; */
-"W1c-aP-XZa.title" = "Inkompatible Zeichen";
-
-/* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "2AE-nU-rdc"; */
-"2AE-nU-rdc.headerCell.title" = "Umgewandelt";
-/* Class = "NSTableColumn"; headerCell.title = "Character"; ObjectID = "Nhb-U5-BOF"; */
-"Nhb-U5-BOF.headerCell.title" = "Zeichen";
-/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
-"weY-lf-jGz.headerCell.title" = "Zeile";
-
-
-
 /* Class = "NSTextFieldCell"; title = "Inconsistent Line Endings"; ObjectID = "Yi4-Vk-FCZ"; */
-"Yi4-Vk-FCZ.title" = "Inkonsistente Zeilenenden";
+"Yi4-Vk-FCZ.title" = "Tutarsız Satır Sonları";
 
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "o1z-QY-xMY"; */
-"o1z-QY-xMY.headerCell.title" = "Zeile";
+"o1z-QY-xMY.headerCell.title" = "Satır";
 /* Class = "NSTableColumn"; headerCell.title = "Line Ending"; ObjectID = "Miu-uX-2tM"; */
-"Miu-uX-2tM.headerCell.title" = "Zeilenende";
+"Miu-uX-2tM.headerCell.title" = "Satır Sonu";

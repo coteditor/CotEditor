@@ -1,15 +1,15 @@
 //
-//  WarningsView.strings (French)
+//  InconsistentLineEndingsView.strings (Traditional Chinese)
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by Aurélien Roy on 2019-04-26.
-//  Localized by Aurélien Roy
+//  Created by 1024jp on 2014-12-18.
+//  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 CotEditor Project
+//  © 2014-2022 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,22 +24,10 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "Incompatible Characters"; ObjectID = "W1c-aP-XZa"; */
-"W1c-aP-XZa.title" = "Caractères incompatibles";
-
-/* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "2AE-nU-rdc"; */
-"2AE-nU-rdc.headerCell.title" = "Converti";
-/* Class = "NSTableColumn"; headerCell.title = "Character"; ObjectID = "Nhb-U5-BOF"; */
-"Nhb-U5-BOF.headerCell.title" = "Caractère";
-/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
-"weY-lf-jGz.headerCell.title" = "Ligne";
-
-
-
 /* Class = "NSTextFieldCell"; title = "Inconsistent Line Endings"; ObjectID = "Yi4-Vk-FCZ"; */
-"Yi4-Vk-FCZ.title" = "Fins de ligne inconsistantes";
+"Yi4-Vk-FCZ.title" = "換行符不一致";
 
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "o1z-QY-xMY"; */
-"o1z-QY-xMY.headerCell.title" = "Ligne";
+"o1z-QY-xMY.headerCell.title" = "行";
 /* Class = "NSTableColumn"; headerCell.title = "Line Ending"; ObjectID = "Miu-uX-2tM"; */
-"Miu-uX-2tM.headerCell.title" = "Fin de ligne";
+"Miu-uX-2tM.headerCell.title" = "換行";
