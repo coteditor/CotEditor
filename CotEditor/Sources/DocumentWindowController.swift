@@ -274,7 +274,11 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
 
 private extension NSToolbar.Identifier {
     
-    static let document = Self("7E7590E9-43BC-40F7-B967-07FA2780E47B")
+    static let document = if #available(macOS 14, *) {
+        Self("Document")
+    } else {
+        Self("7E7590E9-43BC-40F7-B967-07FA2780E47B")
+    }
 }
 
 
