@@ -6,6 +6,7 @@
 ### New Features
 
 - Support the alpha channel in theme settings (Custom themes using alpha channel are not compatible with CotEditor prior 4.7.4).
+- Make sections in the document inspector collapsable.
 - Add Czech localization (Thanks to Martin Růžička!).
 
 
