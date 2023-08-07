@@ -34,6 +34,7 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Private Properties
     
+    private lazy var inspectorViewController: InspectorViewController = NSStoryboard(name: "Inspector").instantiateInitialController()!
     private weak var inspectorViewItem: NSSplitViewItem?
     
     
@@ -51,15 +52,13 @@ final class WindowContentViewController: NSSplitViewController {
         
         self.addChild(self.documentViewController)
         
-        let storyboard = NSStoryboard(name: "Inspector", bundle: nil)
-        let inspectorViewController: NSViewController = storyboard.instantiateInitialController()!
         let inspectorViewItem: NSSplitViewItem
         if #available(macOS 14, *) {
-            inspectorViewItem = NSSplitViewItem(inspectorWithViewController: inspectorViewController)
+            inspectorViewItem = NSSplitViewItem(inspectorWithViewController: self.inspectorViewController)
             inspectorViewItem.minimumThickness = NSSplitViewItem.unspecifiedDimension
             inspectorViewItem.maximumThickness = NSSplitViewItem.unspecifiedDimension
         } else {
-            inspectorViewItem = NSSplitViewItem(viewController: inspectorViewController)
+            inspectorViewItem = NSSplitViewItem(viewController: self.inspectorViewController)
             inspectorViewItem.holdingPriority = .init(261)
             inspectorViewItem.canCollapse = true
         }
@@ -143,13 +142,6 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Private Methods
     
-    /// The view controller for the inspector.
-    private var inspectorViewController: InspectorViewController? {
-        
-        self.inspectorViewItem?.viewController as? InspectorViewController
-    }
-    
-    
     /// Whether the inspector is opened.
     private var isInspectorShown: Bool {
         
@@ -161,14 +153,14 @@ final class WindowContentViewController: NSSplitViewController {
     private func setInspectorShown(_ shown: Bool, pane: InspectorPane) {
         
         self.inspectorViewItem!.animator().isCollapsed = !shown
-        self.inspectorViewController!.selectedTabViewItemIndex = pane.rawValue
+        self.inspectorViewController.selectedTabViewItemIndex = pane.rawValue
     }
     
     
     /// whether the given pane in the inspector is currently shown
     private func isInspectorShown(pane: InspectorPane) -> Bool {
         
-        self.isInspectorShown && (self.inspectorViewController?.selectedPane == pane)
+        self.isInspectorShown && (self.inspectorViewController.selectedPane == pane)
     }
     
     
