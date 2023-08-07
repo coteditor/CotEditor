@@ -92,7 +92,7 @@ struct SyntaxMappingConflictsView: View {
         .onExitCommand {
             self.parent?.dismiss(nil)
         }
-        .padding()
+        .scenePadding()
         .frame(width: 400, height: 500, alignment: .trailing)
     }
     

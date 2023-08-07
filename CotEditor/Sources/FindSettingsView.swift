@@ -80,7 +80,7 @@ struct FindSettingsView: View {
             }.controlSize(.small)
         }
         .fixedSize()
-        .padding()
+        .scenePadding()
     }
 }
 

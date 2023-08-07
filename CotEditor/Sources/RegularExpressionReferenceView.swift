@@ -116,7 +116,7 @@ struct RegularExpressionReferenceView: View {
                 .multilineTextAlignment(.leading)
         }
         .fixedSize(horizontal: true, vertical: false)
-        .padding()
+        .scenePadding()
     }
     
     

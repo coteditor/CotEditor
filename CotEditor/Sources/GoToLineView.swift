@@ -68,7 +68,7 @@ struct GoToLineView: View {
             }
         }
         .fixedSize()
-        .padding()
+        .scenePadding()
     }
     
     

@@ -106,7 +106,7 @@ struct FindProgressView: View {
                 self.parent?.dismiss(nil)
             }
         }
-        .padding()
+        .scenePadding()
         .frame(width: 260)
     }
     

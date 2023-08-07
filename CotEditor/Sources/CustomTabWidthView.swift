@@ -69,7 +69,7 @@ struct CustomTabWidthView: View {
             }
         }
         .fixedSize()
-        .padding()
+        .scenePadding()
     }
     
     

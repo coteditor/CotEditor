@@ -111,7 +111,7 @@ struct EncodingListView: View {
                 }
             }
         }
-        .padding()
+        .scenePadding()
         .frame(minWidth: 420)
     }
     

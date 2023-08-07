@@ -53,7 +53,7 @@ struct CharacterCountOptionsSheetView: View {
             }
         }
         .fixedSize()
-        .padding()
+        .scenePadding()
     }
 }
 

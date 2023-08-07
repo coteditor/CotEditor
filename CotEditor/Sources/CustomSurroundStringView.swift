@@ -83,7 +83,7 @@ struct CustomSurroundStringView: View {
             }
         }
         .fixedSize()
-        .padding()
+        .scenePadding()
     }
     
     

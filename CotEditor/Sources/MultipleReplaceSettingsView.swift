@@ -70,7 +70,7 @@ struct MultipleReplaceSettingsView: View {
             self.completionHandler(self.options.settings)
         }
         .fixedSize()
-        .padding()
+        .scenePadding()
     }
 }
 
