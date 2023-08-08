@@ -612,7 +612,7 @@
                 </objectController>
                 <customFormatter id="Pa0-sr-GTs" customClass="TokenFormatter" customModule="CotEditor" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="45" y="131.5"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
 </document>

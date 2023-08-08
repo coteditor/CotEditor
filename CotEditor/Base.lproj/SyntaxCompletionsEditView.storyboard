@@ -150,7 +150,7 @@
                 </arrayController>
                 <customObject id="i4g-IP-54D" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="99" y="-56"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
     <resources>

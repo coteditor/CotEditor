@@ -243,10 +243,10 @@
                     </connections>
                 </objectController>
             </objects>
-            <point key="canvasLocation" x="249" y="-39"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
     <resources>
-        <image name="NSFollowLinkFreestandingTemplate" width="19" height="19"/>
+        <image name="NSFollowLinkFreestandingTemplate" width="20" height="20"/>
     </resources>
 </document>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -112,7 +113,7 @@
                                                                         <imageReference key="image" image="exclamationmark.triangle.fill" catalog="system" symbolScale="default" renderingMode="original"/>
                                                                     </imageCell>
                                                                 </imageView>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34g-xE-Dei" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34g-xE-Dei" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="104" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="dog" id="dIq-un-bYZ">
                                                                         <font key="font" metaFont="system"/>
@@ -157,10 +158,10 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="M9b-zX-U8A">
-                                                            <rect key="frame" x="136" y="1" width="103" height="16"/>
+                                                            <rect key="frame" x="135.5" y="1" width="103" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXD-LW-TDg" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXD-LW-TDg" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="103" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="cow" id="DD9-M3-I3n">
                                                                         <font key="font" metaFont="system"/>
@@ -280,7 +281,7 @@
                                                             <rect key="frame" x="304" y="1" width="72" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DzM-r8-scw">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DzM-r8-scw">
                                                                     <rect key="frame" x="0.0" y="0.0" width="72" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Lorem" id="gsY-y4-MMs">
                                                                         <font key="font" metaFont="system"/>
@@ -331,13 +332,13 @@
                             </scrollView>
                             <button toolTip="Show advanced options" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i8z-Xa-PxI">
                                 <rect key="frame" x="370" y="62" width="45" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="HVo-mZ-xtQ"/>
-                                </constraints>
                                 <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSActionTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HTi-4p-qxi">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="HVo-mZ-xtQ"/>
+                                </constraints>
                                 <accessibility description="Advanced options"/>
                                 <connections>
                                     <action selector="showOptions:" target="uzB-9o-Idl" id="VQg-ur-bGe"/>
@@ -376,7 +377,7 @@
                                     <action selector="openHelpAnchor:" target="4B0-TX-5FP" id="Rt0-s9-mJn"/>
                                 </connections>
                             </button>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dhM-uH-4uq">
+                            <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dhM-uH-4uq">
                                 <rect key="frame" x="220" y="72" width="151" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Invalid rules will be skipped." id="gRf-KM-GZo">
                                     <font key="font" metaFont="menu" size="11"/>
@@ -408,7 +409,7 @@
                                     </binding>
                                 </connections>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Tz-Kb-8Ck">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Tz-Kb-8Ck">
                                 <rect key="frame" x="59" y="23" width="60" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="5 replaced" id="HU0-YI-OIX">
                                     <font key="font" metaFont="menu" size="11"/>
@@ -429,7 +430,7 @@
                                     <action selector="highlight:" target="uzB-9o-Idl" id="aJI-eX-MJi"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-UY-MQC">
+                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-UY-MQC">
                                 <rect key="frame" x="18" y="206" width="392" height="32"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Perform replacement using these rules in succession from the top down:" id="5Ey-vx-5Sm">
                                     <font key="font" metaFont="system"/>
@@ -534,7 +535,7 @@
                                                             <rect key="frame" x="11" y="3" width="116" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="wai-xU-XpG">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="wai-xU-XpG">
                                                                     <rect key="frame" x="0.0" y="0.0" width="116" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Setting Name" id="cXu-L5-hWg">
                                                                         <font key="font" metaFont="system"/>
@@ -580,14 +581,14 @@
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tHD-Pj-dFD">
                                 <rect key="frame" x="4" y="2.5" width="23.5" height="27"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="23" id="AAD-Tr-DF1"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="23" id="U5t-Wj-CoE"/>
-                                </constraints>
                                 <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="NSAddTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="w9h-jo-vVD">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="AAD-Tr-DF1"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="23" id="U5t-Wj-CoE"/>
+                                </constraints>
                                 <connections>
                                     <action selector="addSetting:" target="y8N-kI-aI7" id="UW1-rt-Sof"/>
                                 </connections>
@@ -604,9 +605,6 @@
                             </button>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="O7q-NN-KLS">
                                 <rect key="frame" x="90" y="4" width="43" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="38" id="SjX-xT-GVD"/>
-                                </constraints>
                                 <popUpButtonCell key="cell" type="bevel" title="Action" bezelStyle="rounded" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="IwC-Jx-M4D">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -661,6 +659,9 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38" id="SjX-xT-GVD"/>
+                                </constraints>
                             </popUpButton>
                         </subviews>
                         <constraints>

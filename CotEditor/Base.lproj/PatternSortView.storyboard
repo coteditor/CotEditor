@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,9 +52,6 @@
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yq3-Cq-5Km">
                                 <rect key="frame" x="401" y="13" width="78" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="sWn-Qf-20l"/>
-                                </constraints>
                                 <buttonCell key="cell" type="push" title="Sort" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ara-FL-nKk">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -62,6 +59,9 @@
 DQ
 </string>
                                 </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="sWn-Qf-20l"/>
+                                </constraints>
                                 <connections>
                                     <action selector="apply:" target="uia-jw-3Md" id="9hu-Gr-1Bj"/>
                                 </connections>
@@ -89,7 +89,7 @@ Gw
                                     <binding destination="LBk-n2-xHt" name="value" keyPath="selection.ignoresCase" id="JQu-rc-5T7"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="751" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CQO-oZ-nKa">
+                            <textField focusRingType="none" horizontalHuggingPriority="751" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CQO-oZ-nKa">
                                 <rect key="frame" x="18" y="148" width="76" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Sort option:" usesSingleLineMode="YES" id="eio-Wb-V6q">
                                     <font key="font" metaFont="system"/>
@@ -113,7 +113,7 @@ Gw
                                     <segue destination="UQP-be-J0h" kind="embed" id="Jqt-CD-otV"/>
                                 </connections>
                             </containerView>
-                            <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="dx8-zl-dSu">
+                            <button tag="1" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dx8-zl-dSu">
                                 <rect key="frame" x="188" y="268" width="73" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Column" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="pKE-GY-bD6">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -123,7 +123,7 @@ Gw
                                     <action selector="changeSortPattern:" target="uia-jw-3Md" id="qNB-Em-TEs"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="bN6-xc-HWj">
+                            <button tag="2" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bN6-xc-HWj">
                                 <rect key="frame" x="271" y="268" width="142" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Regular expression" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Ase-N7-QHB">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -133,7 +133,7 @@ Gw
                                     <action selector="changeSortPattern:" target="uia-jw-3Md" id="Bcj-Ib-hs8"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="oqP-25-2rA">
+                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="oqP-25-2rA">
                                 <rect key="frame" x="36" y="269" width="58" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Sort key:" usesSingleLineMode="YES" id="bKb-oj-ekR">
                                     <font key="font" metaFont="system"/>
@@ -161,7 +161,7 @@ Gw
                                     <action selector="openHelpAnchor:" target="WLR-aL-uPL" id="h7L-Iw-Jhp"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XDJ-2v-jYy">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XDJ-2v-jYy">
                                 <rect key="frame" x="18" y="339" width="53" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Sample:" id="I06-xc-WQt">
                                     <font key="font" metaFont="system"/>
@@ -169,7 +169,7 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField toolTip="Sample line to check which part in a line will be used for sort comparison." horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="W2m-Jf-7Yj">
+                            <textField toolTip="Sample line to check which part in a line will be used for sort comparison." focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="W2m-Jf-7Yj">
                                 <rect key="frame" x="20" y="310" width="452" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" title="Dog, 🐕, 1" drawsBackground="YES" usesSingleLineMode="YES" id="UjO-61-yKu">
                                     <font key="font" metaFont="system"/>
@@ -321,7 +321,7 @@ Gw
                         <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WfQ-XO-PFW">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WfQ-XO-PFW">
                                 <rect key="frame" x="-2" y="11" width="62" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Delimiter:" id="CLj-6v-R1R">
                                     <font key="font" metaFont="system"/>
@@ -329,7 +329,7 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RfX-SH-kDN">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RfX-SH-kDN">
                                 <rect key="frame" x="66" y="8" width="56" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="56" id="GY1-jg-Kce"/>
@@ -350,7 +350,7 @@ Gw
                                     <outlet property="delegate" destination="SbM-Fx-692" id="xL4-Ji-dva"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ikb-3W-LqX">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ikb-3W-LqX">
                                 <rect key="frame" x="136" y="11" width="57" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Position:" id="HE1-PS-8J3">
                                     <font key="font" metaFont="system"/>
@@ -366,7 +366,7 @@ Gw
                                     <binding destination="dZu-1R-AIV" name="value" keyPath="selection.column" id="2ml-ZO-Kio"/>
                                 </connections>
                             </stepper>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0pT-9w-gVH" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0pT-9w-gVH" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="199" y="8" width="32" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="AKY-UZ-q58"/>
@@ -425,7 +425,7 @@ Gw
                         <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kD8-MY-cO8" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kD8-MY-cO8" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="56" y="54" width="264" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="    Regular Expression" drawsBackground="YES" usesSingleLineMode="YES" id="Ia7-Mb-FNn" customClass="PaddingTextFieldCell" customModule="CotEditor" customModuleProvider="target">
                                     <font key="font" metaFont="system"/>
@@ -459,7 +459,7 @@ Gw
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.ignoresCase" id="SqJ-6q-PcH"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vol-xC-ylG" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vol-xC-ylG" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="157" y="5" width="32" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="iIX-ng-qKl"/>
@@ -507,7 +507,7 @@ Gw
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.usesCaptureGroup" id="Arh-JX-gAV"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AxG-SI-oKl">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AxG-SI-oKl">
                                 <rect key="frame" x="-2" y="57" width="52" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Pattern:" id="d12-uy-VE0">
                                     <font key="font" metaFont="system"/>
@@ -515,7 +515,7 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="fb7-9T-3g2">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="fb7-9T-3g2">
                                 <rect key="frame" x="243" y="32" width="79" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Invalid pattern" id="aoG-Ov-SSQ">
                                     <font key="font" metaFont="smallSystem"/>
@@ -546,9 +546,6 @@ Gw
                             </imageView>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="zQG-S0-r5G">
                                 <rect key="frame" x="53" y="52" width="20" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="kq6-Bs-B0p"/>
-                                </constraints>
                                 <popUpButtonCell key="cell" type="bevel" title="DUMMY" bezelStyle="rounded" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="KUj-jq-0yX" id="tof-rQ-mTe">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -566,6 +563,9 @@ Gw
                                         </connections>
                                     </menu>
                                 </popUpButtonCell>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="kq6-Bs-B0p"/>
+                                </constraints>
                             </popUpButton>
                         </subviews>
                         <constraints>

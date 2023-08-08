@@ -670,7 +670,7 @@
                 <customObject id="Vhg-R8-9Sf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="NU0-2h-SUe" userLabel="Shared User Defaults Controller"/>
             </objects>
-            <point key="canvasLocation" x="458" y="289.5"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
 </document>

@@ -411,7 +411,7 @@
                 </arrayController>
                 <customObject id="Mps-4k-Noo" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="330" y="-162"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
     <resources>

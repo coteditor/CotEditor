@@ -652,7 +652,7 @@
                 </menu>
                 <userDefaultsController representsSharedInstance="YES" id="IE5-39-jAY" userLabel="Shared User Defaults Controller"/>
             </objects>
-            <point key="canvasLocation" x="362" y="113"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
     <resources>

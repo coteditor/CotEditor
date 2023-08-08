@@ -1176,11 +1176,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="bjH-aA-F7G">
-                                                            <rect key="frame" x="319" y="0.0" width="178" height="21"/>
+                                                            <rect key="frame" x="319" y="0.0" width="179" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField identifier="description" focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="RRF-15-RQ7">
-                                                                    <rect key="frame" x="0.0" y="3" width="178" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="3" width="179" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" usesSingleLineMode="YES" id="25Y-1h-PMq">
                                                                         <font key="font" metaFont="system"/>

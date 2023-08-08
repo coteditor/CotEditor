@@ -143,7 +143,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="buA-mv-fq0">
-                                                            <rect key="frame" x="254.5" y="1" width="95" height="16"/>
+                                                            <rect key="frame" x="255" y="1" width="95" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="r8I-3F-SPz" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
@@ -282,7 +282,7 @@
                 </arrayController>
                 <customObject id="Dlt-nc-ate" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="331" y="-197.5"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
     <resources>

@@ -393,7 +393,7 @@
                 </arrayController>
                 <customObject id="d7s-my-ran" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="147" y="95"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
     <resources>

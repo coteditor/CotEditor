@@ -549,9 +549,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSActionTemplate" width="19" height="19"/>
-        <image name="NSStopProgressFreestandingTemplate" width="19" height="19"/>
-        <image name="magnifyingglass" catalog="system" width="15" height="15"/>
-        <image name="pencil" catalog="system" width="13" height="13"/>
+        <image name="NSActionTemplate" width="20" height="20"/>
+        <image name="NSStopProgressFreestandingTemplate" width="20" height="20"/>
+        <image name="magnifyingglass" catalog="system" width="16" height="15"/>
+        <image name="pencil" catalog="system" width="14" height="13"/>
     </resources>
 </document>

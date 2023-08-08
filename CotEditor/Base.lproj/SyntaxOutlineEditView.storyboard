@@ -304,7 +304,7 @@
                 </arrayController>
                 <customObject id="6W8-jL-KBe" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="298" y="-173"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
     <resources>

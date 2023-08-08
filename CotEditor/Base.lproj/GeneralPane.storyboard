@@ -246,7 +246,7 @@
                                 </connections>
                             </textField>
                             <button identifier="about_cot" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cC7-Cz-i6v">
-                                <rect key="frame" x="141" y="77" width="104" height="32"/>
+                                <rect key="frame" x="141" y="77" width="103" height="32"/>
                                 <buttonCell key="cell" type="push" title="Learn More" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ltN-wn-m8M">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -265,7 +265,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b87-JB-xzy">
-                                <rect key="frame" x="264" y="87" width="175" height="16"/>
+                                <rect key="frame" x="263" y="87" width="175" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Installed at /usr/local/bin/cot" id="cQh-Do-xZd">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -273,7 +273,7 @@
                                 </textFieldCell>
                             </textField>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XmC-zd-Mge">
-                                <rect key="frame" x="246" y="86" width="16" height="16"/>
+                                <rect key="frame" x="245" y="86" width="16" height="16"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="5Z5-hk-d4q"/>
                             </imageView>
                             <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qM1-WW-xuQ">
@@ -388,14 +388,14 @@
                 <customObject id="70K-YY-h4D" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="ttU-LH-46v"/>
             </objects>
-            <point key="canvasLocation" x="174" y="311"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
         <!--Updates View Controller-->
         <scene sceneID="Daa-Pr-HcD">
             <objects>
                 <viewController id="q0M-8Q-aM1" customClass="UpdatesViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="LLa-wu-mor">
-                        <rect key="frame" x="0.0" y="0.0" width="580" height="103"/>
+                        <rect key="frame" x="0.0" y="0.0" width="570" height="103"/>
                         <subviews>
                             <button tag="-1" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="eh0-fN-8C5">
                                 <rect key="frame" x="130" y="61" width="222" height="18"/>
@@ -426,7 +426,7 @@
                                 </connections>
                             </button>
                             <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" tag="-2" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dyM-Pb-Ay4">
-                                <rect key="frame" x="150" y="8" width="412" height="28"/>
+                                <rect key="frame" x="150" y="8" width="402" height="28"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Regardless of this setting, new pre-releases are always included while using a pre-release." id="chR-VY-cuI">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -434,7 +434,7 @@
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="9j3-BL-0Mu">
-                                <rect key="frame" x="20" y="90" width="540" height="5"/>
+                                <rect key="frame" x="20" y="90" width="530" height="5"/>
                             </box>
                         </subviews>
                         <constraints>
@@ -459,7 +459,7 @@
                 <customObject id="VdO-pU-lPQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="pZi-vk-ErT"/>
             </objects>
-            <point key="canvasLocation" x="174" y="765.5"/>
+            <point key="canvasLocation" x="0.0" y="440"/>
         </scene>
     </scenes>
     <resources>
