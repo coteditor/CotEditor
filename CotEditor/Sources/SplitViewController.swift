@@ -36,7 +36,7 @@ final class SplitViewController: NSSplitViewController {
     @Published private(set) var canCloseSplitItem = false
     
     
-    // MARK: Public Properties
+    // MARK: Private Properties
     
     private var focusedEditorObserver: AnyCancellable?
     
@@ -63,9 +63,17 @@ final class SplitViewController: NSSplitViewController {
     }
     
     
-    override func removeSplitViewItem(_ splitViewItem: NSSplitViewItem) {
+    override func insertSplitViewItem(_ splitViewItem: NSSplitViewItem, at index: Int) {
         
-        super.removeSplitViewItem(splitViewItem)
+        super.insertSplitViewItem(splitViewItem, at: index)
+        
+        self.canCloseSplitItem = self.splitViewItems.count > 1
+    }
+    
+    
+    override func removeChild(at index: Int) {
+        
+        super.removeChild(at: index)
         
         self.canCloseSplitItem = self.splitViewItems.count > 1
     }
@@ -90,47 +98,23 @@ final class SplitViewController: NSSplitViewController {
     
     
     
-    // MARK: Public Methods
-    
-    /// add subview for given viewController at desired position
-    func addChild(_ editorViewController: EditorViewController, relativeTo otherEditorViewController: EditorViewController?) {
-        
-        let splitViewItem = NSSplitViewItem(viewController: editorViewController)
-        splitViewItem.holdingPriority = NSLayoutConstraint.Priority(251)
-        
-        if let otherEditorViewController {
-            guard let baseIndex = self.children.firstIndex(of: otherEditorViewController) else {
-                return assertionFailure("The base editor view is not belong to the same window.")
-            }
-            
-            self.insertSplitViewItem(splitViewItem, at: baseIndex + 1)
-            
-        } else {
-            self.addSplitViewItem(splitViewItem)
-        }
-        
-        self.canCloseSplitItem = true
-    }
-    
-    
-    
     // MARK: Action Messages
     
-    /// toggle divider orientation
+    /// Toggle divider orientation.
     @IBAction func toggleSplitOrientation(_ sender: Any?) {
         
         self.splitView.isVertical.toggle()
     }
     
     
-    /// move focus to next text view
+    /// Move focus to the next text view.
     @IBAction func focusNextSplitTextView(_ sender: Any?) {
         
         self.focusSplitTextView(onNext: true)
     }
     
     
-    /// move focus to previous text view
+    /// Move focus to the previous text view.
     @IBAction func focusPrevSplitTextView(_ sender: Any?) {
         
         self.focusSplitTextView(onNext: false)

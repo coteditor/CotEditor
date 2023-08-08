@@ -43,6 +43,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     // MARK: Private Properties
     
     private lazy var splitViewController = SplitViewController()
+    private lazy var statusBarViewController: StatusBarController = NSStoryboard(name: "StatusBar", bundle: nil).instantiateInitialController()!
     private weak var statusBarItem: NSSplitViewItem?
     
     /// keys for bool values to be restored from the last session
@@ -75,14 +76,14 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         self.splitView.isVertical = false
         self.addChild(self.splitViewController)
-        self.splitViewController.addChild(EditorViewController())
         
         // set status bar
-        let storyboard = NSStoryboard(name: "StatusBar", bundle: nil)
-        let statusBarViewController: NSViewController = storyboard.instantiateInitialController()!
-        let statusBarItem = NSSplitViewItem(viewController: statusBarViewController)
+        let statusBarItem = NSSplitViewItem(viewController: self.statusBarViewController)
         self.addSplitViewItem(statusBarItem)
         self.statusBarItem = statusBarItem
+        
+        // set first editor view
+        self.addEditorView()
         
         // set user defaults
         let defaults = UserDefaults.standard
@@ -120,11 +121,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             .throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true)
             .sink { [weak self] in self?.setTheme(name: $0) }
         
-        // observe cursor
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidLiveChangeSelection),
-                                               name: EditorTextView.didLiveChangeSelectionNotification,
-                                               object: self.editorViewControllers.first!.textView!)
-        
         // observe appearance change for theme toggle
         self.appearanceObserver = self.view.publisher(for: \.effectiveAppearance)
             .sink { [weak self] (appearance) in
@@ -139,6 +135,15 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                 
                 self.setTheme(name: themeName)
             }
+    }
+    
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        // focus text view
+        self.view.window?.makeFirstResponder(self.focusedTextView)
     }
     
     
@@ -199,45 +204,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             guard let document = representedObject as? Document else { return }
             
             // This setter can be invoked twice if the view was initially made for a transient document.
-            
-            (self.statusBarItem?.viewController as? StatusBarController)?.document = document
-            
-            NotificationCenter.default.addObserver(self, selector: #selector(textStorageDidProcessEditing),
-                                                   name: NSTextStorage.didProcessEditingNotification,
-                                                   object: document.textStorage)
-            
-            let editorViewController = self.editorViewControllers.first!
-            self.setup(editorViewController: editorViewController, baseViewController: nil)
-            
-            // start parsing syntax for highlighting and outlines
-            self.outlineParseDebouncer.perform()
-            document.syntaxParser.highlight()
-            
-            // detect indent style
-            if UserDefaults.standard[.detectsIndentStyle],
-               let indentStyle = document.textStorage.string.detectedIndentStyle
-            {
-                self.isAutoTabExpandEnabled = switch indentStyle {
-                    case .tab: false
-                    case .space: true
-                }
-            }
-            
-            // focus text view
-            self.view.window?.makeFirstResponder(editorViewController.textView)
-            
-            // observe syntax change
-            self.documentSyntaxObserver = document.didChangeSyntax
-                .receive(on: RunLoop.main)
-                .sink { [weak self] _ in self?.didChangeSyntax() }
-            
-            // observe syntaxParser for outline update
-            self.outlineObserver = document.syntaxParser.$outlineItems
-                .removeDuplicates()
-                .receive(on: RunLoop.main)
-                .sink { [weak self] (outlineItems) in
-                    self?.editorViewControllers.forEach { $0.outlineItems = outlineItems }
-                }
+            self.replace(document: document)
         }
     }
     
@@ -254,7 +221,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         // manually pass toolbar items to `validateUserInterfaceItem(_:)`,
         // because they actually doesn't use it for validation (2020-08 on macOS 10.15)
-        return self.validateUserInterfaceItem(item)
+        self.validateUserInterfaceItem(item)
     }
     
     
@@ -418,14 +385,14 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     
     // MARK: Public Methods
     
-    /// setup document
+    /// document
     var document: Document? {
         
         self.representedObject as? Document
     }
     
     
-    /// return textView focused on
+    /// textView focused on
     var focusedTextView: EditorTextView? {
         
         self.splitViewController.focusedChild?.textView ?? self.editorViewControllers.first?.textView
@@ -439,7 +406,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// body font
+    /// editor's font
     var font: NSFont? {
         
         self.focusedTextView?.font
@@ -458,7 +425,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// if lines soft-wrap at window edge
+    /// whether lines soft-wrap at window edge
     @objc var wrapsLines = false {
         
         didSet {
@@ -506,21 +473,13 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// if text orientation is vertical
-    @objc var verticalLayoutOrientation: Bool {
+    /// whether text orientation is vertical
+    @objc var verticalLayoutOrientation: Bool = false {
         
-        get {
-            guard let textView = self.focusedTextView else {
-                return UserDefaults.standard[.writingDirection] == .vertical
-            }
+        didSet {
+            self.document?.isVerticalText = verticalLayoutOrientation
             
-            return textView.layoutOrientation == .vertical
-        }
-        
-        set {
-            self.document?.isVerticalText = newValue
-            
-            let orientation: NSLayoutManager.TextLayoutOrientation = newValue ? .vertical : .horizontal
+            let orientation: NSLayoutManager.TextLayoutOrientation = verticalLayoutOrientation ? .vertical : .horizontal
             
             for textView in self.editorViewControllers.compactMap(\.textView) {
                 textView.setLayoutOrientation(orientation)
@@ -530,15 +489,12 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    var writingDirection: NSWritingDirection {
+    /// the writing direction of the editor
+    var writingDirection: NSWritingDirection = .leftToRight {
         
-        get {
-            self.focusedTextView?.baseWritingDirection ?? .leftToRight
-        }
-        
-        set {
-            for textView in self.editorViewControllers.compactMap(\.textView) where textView.baseWritingDirection != newValue {
-                textView.baseWritingDirection = newValue
+        didSet {
+            for textView in self.editorViewControllers.compactMap(\.textView) where textView.baseWritingDirection != writingDirection {
+                textView.baseWritingDirection = writingDirection
             }
             self.invalidateRestorableState()
         }
@@ -576,7 +532,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// apply text styles from text view
+    /// Apply editor styles to the text storage and update editor views.
     func invalidateStyleInTextStorage() {
         
         assert(Thread.isMainThread)
@@ -585,6 +541,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             let textView = self.focusedTextView,
             let textStorage = textView.textStorage
         else { return assertionFailure() }
+        
         guard textStorage.length > 0 else { return }
         
         textStorage.addAttributes(textView.typingAttributes, range: textStorage.range)
@@ -764,23 +721,28 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// split editor view
+    /// Split editor view.
     @IBAction func openSplitTextView(_ sender: Any?) {
+        
+        guard self.splitViewController.splitViewItems.count < maximumNumberOfSplitEditors else { return NSSound.beep() }
         
         guard
             let currentEditorViewController = self.baseEditorViewController(for: sender)
         else { return assertionFailure() }
         
-        guard self.splitViewController.splitViewItems.count < maximumNumberOfSplitEditors else { return NSSound.beep() }
-        
         // end current editing
         NSTextInputContext.current?.discardMarkedText()
         
-        let newEditorViewController = EditorViewController()
-        self.splitViewController.addChild(newEditorViewController, relativeTo: currentEditorViewController)
-        self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
+        let newEditorViewController = self.addEditorView(below: currentEditorViewController)
+        self.replace(document: self.document!, in: newEditorViewController)
         
-        newEditorViewController.outlineItems = self.syntaxParser?.outlineItems ?? []
+        // copy parsed syntax highlight
+        if let textView = newEditorViewController.textView,
+           let highlights = currentEditorViewController.textView?.layoutManager?.syntaxHighlights(),
+            !highlights.isEmpty
+        {
+            textView.layoutManager?.apply(highlights: highlights, range: textView.string.range)
+        }
         
         // adjust visible areas
         if let selectedRange = currentEditorViewController.textView?.selectedRange {
@@ -789,25 +751,17 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             newEditorViewController.textView?.scrollRangeToVisible(selectedRange)
         }
         
-        // observe cursor
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidLiveChangeSelection),
-                                               name: EditorTextView.didLiveChangeSelectionNotification,
-                                               object: newEditorViewController.textView)
-        
         // move focus to the new editor
         self.view.window?.makeFirstResponder(newEditorViewController.textView)
     }
     
     
-    /// close one of split views
+    /// Close one of the split editors.
     @IBAction func closeSplitTextView(_ sender: Any?) {
         
         assert(self.splitViewController.splitViewItems.count > 1)
         
-        guard
-            let currentEditorViewController = self.baseEditorViewController(for: sender),
-            let splitViewItem = self.splitViewController.splitViewItem(for: currentEditorViewController)
-        else { return }
+        guard let currentEditorViewController = self.baseEditorViewController(for: sender) else { return }
         
         if let textView = currentEditorViewController.textView {
             NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
@@ -826,72 +780,135 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         }
         
         // close
-        self.splitViewController.removeSplitViewItem(splitViewItem)
+        currentEditorViewController.removeFromParent()
     }
     
     
     
     // MARK: Private Methods
     
-    /// create and set-up new (split) editor view
-    private func setup(editorViewController: EditorViewController, baseViewController: EditorViewController?) {
-        
-        editorViewController.setTextStorage(self.textStorage!)
-        
-        guard let textView = editorViewController.textView else { return assertionFailure() }
-        
-        textView.wrapsLines = self.wrapsLines
-        textView.showsInvisibles = self.showsInvisibles
-        textView.setLayoutOrientation(self.verticalLayoutOrientation ? .vertical : .horizontal)
-        if textView.baseWritingDirection != self.writingDirection {
-            textView.baseWritingDirection = self.writingDirection
-        }
-        textView.showsPageGuide = self.showsPageGuide
-        textView.showsIndentGuides = self.showsIndentGuides
-        editorViewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
-        
-        if let syntaxParser = self.syntaxParser {
-            editorViewController.apply(syntax: syntaxParser.syntax)
-        }
-        
-        // copy textView states
-        if let baseTextView = baseViewController?.textView {
-            textView.font = baseTextView.font
-            textView.usesAntialias = baseTextView.usesAntialias
-            textView.ligature = baseTextView.ligature
-            textView.theme = baseTextView.theme
-            textView.tabWidth = baseTextView.tabWidth
-            textView.isAutomaticTabExpansionEnabled = baseTextView.isAutomaticTabExpansionEnabled
-            
-            if let highlights = baseTextView.layoutManager?.syntaxHighlights(), !highlights.isEmpty {
-                textView.layoutManager?.apply(highlights: highlights, range: textView.string.range)
-            }
-        }
-    }
-    
-    
-    /// text storage
-    private var textStorage: NSTextStorage? {
-        
-        self.document?.textStorage
-    }
-    
-    
-    /// document's syntax parser
+    /// The document's syntax parser.
     private var syntaxParser: SyntaxParser? {
         
         self.document?.syntaxParser
     }
     
     
-    /// child editor view controllers
+    /// The array of all child editor view controllers.
     private var editorViewControllers: [EditorViewController] {
         
         self.splitViewController.children.compactMap { $0 as? EditorViewController }
     }
     
     
-    /// apply theme
+    /// Setup the receiver and its children with the given document.
+    ///
+    /// - Parameter document: The new document.
+    private func replace(document: Document) {
+        
+        self.statusBarViewController.document = document
+        
+        for editorViewController in self.editorViewControllers {
+            self.replace(document: document, in: editorViewController)
+        }
+        
+        // detect indent style
+        if UserDefaults.standard[.detectsIndentStyle],
+           let indentStyle = document.textStorage.string.detectedIndentStyle
+        {
+            self.isAutoTabExpandEnabled = switch indentStyle {
+                case .tab: false
+                case .space: true
+            }
+        }
+        
+        // start parsing syntax for highlighting and outlines
+        self.outlineParseDebouncer.perform()
+        document.syntaxParser.highlight()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(textStorageDidProcessEditing),
+                                               name: NSTextStorage.didProcessEditingNotification,
+                                               object: document.textStorage)
+        
+        // observe syntax change
+        self.documentSyntaxObserver = document.didChangeSyntax
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.didChangeSyntax() }
+        
+        // observe syntaxParser for outline update
+        self.outlineObserver = document.syntaxParser.$outlineItems
+            .removeDuplicates()
+            .receive(on: RunLoop.main)
+            .sink { [weak self] (outlineItems) in
+                self?.editorViewControllers.forEach { $0.outlineItems = outlineItems }
+            }
+    }
+    
+    
+    /// Create a new split editor.
+    ///
+    /// - Parameter otherViewController: The view controller of the reference editor located above the editor to add.
+    /// - Returns: The editor view controller created.
+    @discardableResult
+    private func addEditorView(below otherViewController: EditorViewController? = nil) -> EditorViewController {
+        
+        let viewController = EditorViewController()
+        
+        // set the priority to 251 so that split editors are sized evenly
+        let splitViewItem = NSSplitViewItem(viewController: viewController)
+        splitViewItem.holdingPriority = NSLayoutConstraint.Priority(251)
+        
+        // add to the split view
+        let index = otherViewController
+            .flatMap { self.splitViewController.children.firstIndex(of: $0) }?
+            .advanced(by: 1) ?? 0
+        self.splitViewController.insertSplitViewItem(splitViewItem, at: index)
+        
+        // observe cursor
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidLiveChangeSelection),
+                                               name: EditorTextView.didLiveChangeSelectionNotification,
+                                               object: viewController.textView)
+        
+        // setup textView
+        let textView = viewController.textView!
+        textView.wrapsLines = self.wrapsLines
+        textView.showsInvisibles = self.showsInvisibles
+        textView.setLayoutOrientation(self.verticalLayoutOrientation ? .vertical : .horizontal)
+        textView.baseWritingDirection = self.writingDirection
+        textView.showsPageGuide = self.showsPageGuide
+        textView.showsIndentGuides = self.showsIndentGuides
+        viewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
+        
+        // copy base textView states
+        if let baseTextView = otherViewController?.textView {
+            textView.font = baseTextView.font
+            textView.usesAntialias = baseTextView.usesAntialias
+            textView.ligature = baseTextView.ligature
+            textView.theme = baseTextView.theme
+            textView.tabWidth = baseTextView.tabWidth
+            textView.isAutomaticTabExpansionEnabled = baseTextView.isAutomaticTabExpansionEnabled
+        }
+        
+        return viewController
+    }
+    
+    
+    /// Replace the document in the editorViewController with the given document.
+    /// 
+    /// - Parameters:
+    ///   - document: The new document to be replaced with.
+    ///   - editorViewController: The editor view controller of which document is replaced.
+    private func replace(document: Document, in editorViewController: EditorViewController) {
+        
+        editorViewController.setTextStorage(document.textStorage)
+        editorViewController.apply(syntax: document.syntaxParser.syntax)
+        editorViewController.outlineItems = document.syntaxParser.outlineItems
+    }
+    
+    
+    /// Apply the given theme to child text views.
+    ///
+    /// - Parameter name: The name of the theme to apply.
     private func setTheme(name: String) {
         
         assert(Thread.isMainThread)
