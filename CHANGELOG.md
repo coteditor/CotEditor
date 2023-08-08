@@ -22,6 +22,7 @@ Change Log
 - Disable the beep sound at the end of successful replacement.
 - [trivial] Migrate the Opacity toolbar item to popover in macOS 14.
 - [trivial] Disable the contextual menu for shortcut fields.
+- [trivial] Reduce the maximum number to split editor.
 - [trivial] Rename “syntax style” with just “syntax.”
 
 

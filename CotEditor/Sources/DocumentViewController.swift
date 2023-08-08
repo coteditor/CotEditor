@@ -28,7 +28,7 @@ import AppKit
 import Combine
 import SwiftUI
 
-private let maximumNumberOfSplitEditors = 8
+private let maximumNumberOfSplitEditors = 4
 
 
 final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolbarItemValidation {
