@@ -72,6 +72,8 @@ final class LineNumberView: NSView {
         }
     }
     
+    @Invalidating(.display) var drawsSeparator = false
+    
     
     // MARK: Constants
     
@@ -103,9 +105,7 @@ final class LineNumberView: NSView {
     
     @Invalidating(.display) private var textColor: NSColor = .textColor
     @Invalidating(.display) private var backgroundColor: NSColor = .textBackgroundColor
-    @Invalidating(.display) private var drawsSeparator = false
     
-    private var settingObserver: AnyCancellable?
     private var opacityObserver: AnyCancellable?
     private var textViewSubscriptions: Set<AnyCancellable> = []
     
@@ -176,10 +176,6 @@ final class LineNumberView: NSView {
         // redraw on window opacity change
         self.opacityObserver = newWindow?.publisher(for: \.isOpaque)
             .sink { [weak self] _ in self?.needsDisplay = true }
-        
-        // redraw on setting change
-        self.settingObserver = UserDefaults.standard.publisher(for: .showLineNumberSeparator, initial: true)
-            .sink { [weak self] in self?.drawsSeparator = $0 }
     }
     
     

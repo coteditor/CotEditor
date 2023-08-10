@@ -53,6 +53,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     private var orientationObserver: AnyCancellable?
     private var writingDirectionObserver: AnyCancellable?
+    private var defaultsObserver: Set<AnyCancellable> = []
     
     
     
@@ -123,6 +124,11 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 stackView.needsLayout = true
                 stackView.layoutSubtreeIfNeeded()
             }
+        
+        // toggle visibility of the separator of the line number view
+        UserDefaults.standard.publisher(for: .showLineNumberSeparator, initial: true)
+            .assign(to: \.drawsSeparator, on: self.lineNumberView!)
+            .store(in: &self.defaultsObserver)
     }
     
     
