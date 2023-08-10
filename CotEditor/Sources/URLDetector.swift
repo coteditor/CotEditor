@@ -32,7 +32,7 @@ final class URLDetector {
     
     private let textStorage: NSTextStorage
     private var editedRanges = EditedRangeSet()
-    private let delay: TimeInterval = 0.5
+    private let delay: Duration = .seconds(0.5)
     
     private var textEditingObserver: AnyCancellable?
     private var task: Task<Void, any Error>?
@@ -95,10 +95,10 @@ final class URLDetector {
     
     /// Update URLs around the edited ranges.
     ///
-    /// - Parameter delay: The debounce delay in seconds.
-    @MainActor private func detectInvalidRanges(after delay: Double = 0) async throws {
+    /// - Parameter delay: The debounce delay.
+    @MainActor private func detectInvalidRanges(after delay: Duration = .zero) async throws {
         
-        try await Task.sleep(nanoseconds: UInt64(delay * 1_000_000_000))
+        try await Task.sleep(for: delay, tolerance: delay * 0.5)
         
         guard let invalidRange = self.editedRanges.ranges.union else { return }
         

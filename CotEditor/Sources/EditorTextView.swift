@@ -814,7 +814,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 if let layoutManager = self.layoutManager, layoutManager.hasTemporaryAttribute(.roundedBackgroundColor) {
                     layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
                 }
-                self.highlightInstances(delay: UserDefaults.standard[.selectionInstanceHighlightDelay])
+                self.highlightInstances(after: .seconds(UserDefaults.standard[.selectionInstanceHighlightDelay]))
             }
         }
         
@@ -1515,12 +1515,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     /// Highlight all instances of the selection.
     ///
-    /// - Parameter delay: The delay time to start instance highlight in seconds.
-    private func highlightInstances(delay: TimeInterval) {
+    /// - Parameter delay: The delay time to start highlighting instance.
+    private func highlightInstances(after delay: Duration) {
         
         self.instanceHighlightTask?.cancel()
         self.instanceHighlightTask = Task.detached { [weak self] in
-            try await Task.sleep(nanoseconds: UInt64(delay * 1_000_000_000))  // debounce
+            try await Task.sleep(for: delay, tolerance: delay * 0.2)  // debounce
             
             guard let self else { return }
             

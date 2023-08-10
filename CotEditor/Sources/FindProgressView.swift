@@ -40,7 +40,7 @@ struct FindProgressView: View {
     private let unit: Unit
     private let label: LocalizedStringKey
     
-    private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    private let timer = Timer.publish(every: 0.1, tolerance: 0.1, on: .main, in: .common).autoconnect()
     @State private var description: String = ""
     
     

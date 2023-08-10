@@ -87,7 +87,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         self.debounceTask?.cancel()
         self.debounceTask = .detached { [weak self] in
             if await NSApp.isActive {
-                try await Task.sleep(for: .milliseconds(200))
+                try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.1))
                 await self?.buildScriptMenu()
                 
             } else {
