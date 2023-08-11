@@ -80,6 +80,18 @@ final class InspectorTabView: NSTabView {
             separator.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             separator.trailingAnchor.constraint(equalTo: self.trailingAnchor),
         ])
+        
+        if #available(macOS 14, *) {
+            let windowSeparator = NSBox()
+            windowSeparator.boxType = .separator
+            windowSeparator.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview(windowSeparator)
+            NSLayoutConstraint.activate([
+                windowSeparator.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+                windowSeparator.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                windowSeparator.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            ])
+        }
     }
     
     

@@ -71,6 +71,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     convenience init(document: Document) {
         
         let window = DocumentWindow(contentViewController: WindowContentViewController())
+        window.styleMask.update(with: .fullSizeContentView)
         window.setFrameAutosaveName(Self.windowFrameName)
         
         // set window size
