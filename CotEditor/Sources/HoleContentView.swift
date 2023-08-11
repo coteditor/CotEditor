@@ -28,11 +28,16 @@ import Combine
 
 final class HoleContentView: NSView {
     
+    // MARK: Private Properties
+    
     @Invalidating(.display) private var holes: [NSRect] = []
     
     private var windowOpacityObserver: AnyCancellable?
     private var holeViewObserver: AnyCancellable?
     
+    
+    
+    // MARK: View Methods
     
     override func viewWillMove(toWindow newWindow: NSWindow?) {
         
@@ -57,7 +62,6 @@ final class HoleContentView: NSView {
     
     
     override func draw(_ dirtyRect: NSRect) {
-        
         
         guard self.window?.isOpaque == false else { return super.draw(dirtyRect) }
         
