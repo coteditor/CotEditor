@@ -1626,6 +1626,7 @@
 			children = (
 				2ADD36991CFCADAD00F3175D /* Inspector Tab View */,
 				2A1ABCA327F0785B0054795D /* Bidi Scroll View */,
+				2AE95A192A86270000E85CF5 /* HoleContentView.swift */,
 				2A68722E288A5C44006D6B41 /* DraggableHostingView.swift */,
 				2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */,
 				2ACDC0901D1726BD009B72D6 /* DotView.swift */,
@@ -1650,7 +1651,6 @@
 				2A158C1B2945A6B1000A4EC1 /* HeadingMenuItem.swift */,
 				2A3E61BE27C3795B00C6E5B6 /* OptionalMenu.swift */,
 				2A39F15626F74C2500B52876 /* AccessibleStepper.swift */,
-				2AE95A192A86270000E85CF5 /* HoleContentView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
