@@ -35,23 +35,6 @@ extension NSColor {
 
 extension NSColor {
     
-    /// Return CGColor of the receiver by converting system color correctly for the specific appearance.
-    ///
-    /// - Parameter appearance: The appearance to get the corresponding system color.
-    /// - Returns: A CGColor instance.
-    func cgColor(for appearance: NSAppearance) -> CGColor {
-        
-        guard NSAppearance.currentDrawing() != appearance else { return self.cgColor }
-        
-        var cgColor: CGColor = .clear
-        appearance.performAsCurrentDrawingAppearance {
-            cgColor = self.cgColor
-        }
-        
-        return cgColor
-    }
-    
-    
     /// Create desired number of well distributed colors from the receiver.
     ///
     /// - Parameter number: The required number of colors.

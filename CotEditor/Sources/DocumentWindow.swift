@@ -24,7 +24,6 @@
 //
 
 import AppKit
-import Combine
 
 final class DocumentWindow: NSWindow {
     
@@ -57,11 +56,6 @@ final class DocumentWindow: NSWindow {
             self.invalidateRestorableState()
         }
     }
-    
-    
-    // MARK: Private Properties
-    
-    private var appearanceObserver: AnyCancellable?
     
     
     
@@ -98,17 +92,6 @@ final class DocumentWindow: NSWindow {
         
         didSet {
             self.didChangeValue(for: \.isOpaque)
-            
-            guard isOpaque != oldValue else { return }
-            
-            self.invalidateTitlebarOpacity()
-            
-            if isOpaque {
-                self.appearanceObserver = nil
-            } else if self.appearanceObserver == nil {
-                self.appearanceObserver = self.publisher(for: \.effectiveAppearance)
-                    .sink { [weak self] _ in self?.invalidateTitlebarOpacity() }
-            }
         }
     }
     
@@ -171,17 +154,6 @@ final class DocumentWindow: NSWindow {
             self.level = isFloating ? .floating : .normal
             self.invalidateRestorableState()
         }
-    }
-    
-    
-    /// Make sure window title bar (incl. toolbar) is opaque.
-    private func invalidateTitlebarOpacity() {
-        
-        guard let titlebarView = self.standardWindowButton(.closeButton)?.superview else { return }
-        
-        // dirty manipulation to avoid the title bar being dyed in the window background color (2016-01).
-        titlebarView.wantsLayer = !self.isOpaque
-        titlebarView.layer?.backgroundColor = self.isOpaque ? nil : NSColor.windowBackgroundColor.cgColor(for: self.effectiveAppearance)
     }
 }
 
