@@ -165,6 +165,10 @@ final class WindowContentViewController: NSSplitViewController {
     
     
     /// Set the visibility of the inspector and switch pane with animation.
+    ///
+    /// - Parameters:
+    ///   - shown: The boolean flag whether to open or close the pane.
+    ///   - pane: The inspector pane to change visibility.
     private func setInspectorShown(_ shown: Bool, pane: InspectorPane) {
         
         self.inspectorViewItem!.animator().isCollapsed = !shown
@@ -172,14 +176,19 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
-    /// whether the given pane in the inspector is currently shown
+    /// Whether the given pane in the inspector is currently shown.
+    ///
+    /// - Parameter pane: The inspector pane to check.
+    /// - Returns: `true` when the pane is currently visible.
     private func isInspectorShown(pane: InspectorPane) -> Bool {
         
         self.isInspectorShown && (self.inspectorViewController.selectedPane == pane)
     }
     
     
-    /// toggle visibility of pane in the inspector
+    /// Toggle visibility of pane in the inspector.
+    ///
+    /// - Parameter pane: The inspector pane to toggle visibility.
     private func toggleVisibilityOfInspector(pane: InspectorPane) {
         
         self.setInspectorShown(!self.isInspectorShown(pane: pane), pane: pane)

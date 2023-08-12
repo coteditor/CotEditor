@@ -160,7 +160,12 @@ import Combine
     }
     
     
-    /// update left side text
+    /// Build the left side text.
+    ///
+    /// - Parameters:
+    ///   - result: The editor count result.
+    ///   - types: The editor info types to display.
+    /// - Returns: An attributed string to display.
     @MainActor private func statusAttributedString(result: EditorCountResult, types: EditorInfoTypes) -> NSAttributedString {
         
         var status: [NSAttributedString] = []
@@ -201,7 +206,7 @@ import Combine
     }
     
     
-    /// Build encoding pop-up button.
+    /// Build the encoding pop-up button.
     @MainActor private func buildEncodingPopUpButton() {
         
         guard
@@ -217,7 +222,7 @@ import Combine
     }
     
     
-    /// Build line ending pop-up menu.
+    /// Build the line ending pop-up menu.
     @MainActor private func buildLineEndingPopUpButton() {
         
         guard let menu = self.lineEndingPopUpButton?.menu else { return assertionFailure() }
@@ -242,7 +247,7 @@ import Combine
 
 private extension UserDefaults {
     
-    /// info types needed to be calculated
+    /// The info types needed to be calculated.
     var statusBarEditorInfo: EditorInfoTypes {
         
         EditorInfoTypes()

@@ -30,7 +30,7 @@ import UniformTypeIdentifiers
 
 @objc protocol ThemeHolder: AnyObject {
     
-    func changeTheme(_ sender: AnyObject?)
+    func changeTheme(_ sender: NSMenuItem)
 }
 
 

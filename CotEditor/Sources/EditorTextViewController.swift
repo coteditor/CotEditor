@@ -155,7 +155,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Text View Delegate
     
-    /// text will be edited
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         
         if textView.undoManager?.isUndoing == true { return true }  // = undo
@@ -176,7 +175,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    /// add script menu to context menu
     func textView(_ view: NSTextView, menu: NSMenu, for event: NSEvent, at charIndex: Int) -> NSMenu? {
         
         // append Script menu
@@ -206,7 +204,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Action Messages
     
-    /// show Go To sheet
+    /// Show the Go To sheet.
     @IBAction func gotoLocation(_ sender: Any?) {
         
         guard let textView = self.textView else { return assertionFailure() }
@@ -230,7 +228,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    /// show Unicode input view
+    /// Show the Unicode input view.
     @IBAction func showUnicodeInputPanel(_ sender: Any?) {
         
         guard let textView = self.textView else { return assertionFailure() }
@@ -253,6 +251,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
+    /// Show the advanced counter.
     @IBAction func toggleAdvancedCounter(_ sender: Any?) {
         
         // hide counter
@@ -271,7 +270,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    /// display character information by popover
+    /// Show the character information by popover.
     @IBAction func showSelectionInfo(_ sender: Any?) {
         
         guard
@@ -295,6 +294,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Public Methods
     
+    /// The visibility of the line number view.
     var showsLineNumber: Bool {
         
         get { self.lineNumberView?.isHidden == false }
@@ -306,6 +306,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     // MARK: Private Methods
     
     /// Hide existing advanced character counter.
+    ///
     /// - Parameter counterView: The advanced character counter to dismiss.
     private func dismissAdvancedCharacterCounter() {
         
@@ -375,7 +376,7 @@ extension EditorTextViewController: NSFontChanging {
     
     // MARK: Font Changing Methods
     
-    /// restrict items in the font panel toolbar
+    /// Restrict items in the font panel toolbar.
     func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
         
         [.collection, .face, .size]

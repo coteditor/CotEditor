@@ -99,7 +99,7 @@ extension DocumentViewController: NSTouchBarDelegate {
     }
     
     
-    /// toggle visibility of invisible characters in text view
+    /// Toggle the visibility of invisible characters in the text views.
     @IBAction private func toggleInvisibleCharsViaTouchBar(_ sender: NSButton) {
         
         self.toggleInvisibleChars(sender)
@@ -107,7 +107,7 @@ extension DocumentViewController: NSTouchBarDelegate {
     }
     
     
-    /// toggle visibility of invisible characters in text view
+    /// Toggle the visibility of invisible characters in the text views.
     @IBAction private func toggleIndentGuidesViaTouchBar(_ sender: NSButton) {
         
         self.toggleIndentGuides(sender)
@@ -115,7 +115,7 @@ extension DocumentViewController: NSTouchBarDelegate {
     }
     
     
-    /// toggle if lines wrap at window edge
+    /// Toggle if lines wrap at the window edge.
     @IBAction private func toggleLineWrapViaTouchBar(_ sender: NSButton) {
         
         self.toggleLineWrap(sender)

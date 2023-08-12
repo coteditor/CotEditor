@@ -209,9 +209,9 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// avoid showing draggable cursor for the status bar boundary
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
+        // avoid showing draggable cursor for the status bar boundary
         .zero
     }
     
@@ -339,7 +339,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     
     // MARK: Notifications
     
-    /// text was edited (invoked right **before** notifying layout managers)
+    /// Text was edited (invoked right **before** notifying layout managers).
     override func textStorageDidProcessEditing(_ notification: Notification) {
         
         let textStorage = notification.object as! NSTextStorage
@@ -361,14 +361,14 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// selection did change
+    /// The selection did change.
     @objc private func textViewDidLiveChangeSelection(_ notification: Notification) {
         
         self.document?.analyzer.invalidate(onlySelection: true)
     }
     
     
-    /// document updated syntax
+    /// The document updated its syntax.
     private func didChangeSyntax() {
         
         guard let syntaxParser = self.syntaxParser else { return assertionFailure() }
@@ -385,35 +385,35 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     
     // MARK: Public Methods
     
-    /// document
+    /// The represented document.
     var document: Document? {
         
         self.representedObject as? Document
     }
     
     
-    /// textView focused on
+    /// The text view currently focused on.
     var focusedTextView: EditorTextView? {
         
         self.splitViewController.focusedChild?.textView ?? self.editorViewControllers.first?.textView
     }
     
     
-    /// coloring theme
+    /// The coloring theme.
     var theme: Theme? {
         
         self.focusedTextView?.theme
     }
     
     
-    /// editor's font
+    /// The editor's font.
     var font: NSFont? {
         
         self.focusedTextView?.font
     }
     
     
-    /// visibility of line numbers view
+    /// The visibility of line numbers views.
     @objc var showsLineNumber = false {
         
         didSet {
@@ -425,7 +425,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// whether lines soft-wrap at window edge
+    /// Whether lines soft-wrap at the window edge.
     @objc var wrapsLines = false {
         
         didSet {
@@ -437,7 +437,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// visibility of page guide lines in text view
+    /// The visibility of page guide lines in text views.
     @objc var showsPageGuide = false {
         
         didSet {
@@ -449,7 +449,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// visibility of indent guides in text view
+    /// The visibility of indent guides in the text views.
     @objc var showsIndentGuides = false {
         
         didSet {
@@ -461,7 +461,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// visibility of invisible characters
+    /// The visibility of invisible characters.
     @objc var showsInvisibles = false {
         
         didSet {
@@ -473,7 +473,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// whether text orientation is vertical
+    /// Whether the text orientation in the text views is vertical.
     @objc var verticalLayoutOrientation: Bool = false {
         
         didSet {
@@ -489,7 +489,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// the writing direction of the editor
+    /// The writing direction of the text views.
     var writingDirection: NSWritingDirection = .leftToRight {
         
         didSet {
@@ -501,7 +501,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// textView's tab width
+    /// The tab width of the text views.
     var tabWidth: Int {
         
         get {
@@ -516,7 +516,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// whether replace tab with spaces
+    /// Whether tabs are replaced with spaces.
     @objc var isAutoTabExpandEnabled: Bool {
         
         get {
@@ -555,65 +555,63 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     
     // MARK: Action Messages
     
-    /// recolor whole document
+    /// Recolor whole document.
     @IBAction func recolorAll(_ sender: Any?) {
         
         self.syntaxParser?.highlight()
     }
     
     
-    /// set new theme from menu item
-    @IBAction func changeTheme(_ sender: AnyObject?) {
+    /// Set new theme from a menu item.
+    @IBAction func changeTheme(_ sender: NSMenuItem) {
         
-        guard let name = sender?.title else { return assertionFailure() }
-        
-        self.setTheme(name: name)
+        self.setTheme(name: sender.title)
     }
     
     
-    /// toggle visibility of line number view
+    /// Toggle the visibility of the line number views.
     @IBAction func toggleLineNumber(_ sender: Any?) {
         
         self.showsLineNumber.toggle()
     }
     
     
-    /// toggle visibility of status bar with fancy animation (sync all documents)
+    /// Toggle the visibility of status bar with fancy animation (sync all documents).
     @IBAction func toggleStatusBar(_ sender: Any?) {
         
         UserDefaults.standard[.showStatusBar].toggle()
     }
     
     
-    /// toggle visibility of page guide line in text view
+    /// Toggle the visibility of page guide line in the text views.
     @IBAction func togglePageGuide(_ sender: Any?) {
         
         self.showsPageGuide.toggle()
     }
     
     
-    /// toggle if shows indent guides in text view
+    /// Toggle the visibility of indent guides in the text views.
     @IBAction func toggleIndentGuides(_ sender: Any?) {
         
         self.showsIndentGuides.toggle()
     }
     
     
-    /// toggle if lines wrap at window edge
+    /// Toggle if lines wrap at the window edge.
     @IBAction func toggleLineWrap(_ sender: Any?) {
         
         self.wrapsLines.toggle()
     }
     
     
-    /// toggle visibility of invisible characters in text view
+    /// Toggle the visibility of invisible characters in the text views.
     @IBAction func toggleInvisibleChars(_ sender: Any?) {
         
         self.showsInvisibles.toggle()
     }
     
     
-    /// toggle if antialias text in text view
+    /// Toggle if antialias text in the text views.
     @IBAction func toggleAntialias(_ sender: Any?) {
         
         for textView in self.editorViewControllers.compactMap(\.textView) {
@@ -622,7 +620,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// toggle ligature mode in text view
+    /// Toggle the ligature mode in the text views.
     @IBAction func toggleLigatures(_ sender: Any?) {
         
         for textView in self.editorViewControllers.compactMap(\.textView) {
@@ -631,21 +629,21 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// toggle if text view expands tab input
+    /// Toggle if the text views expand tab input.
     @IBAction func toggleAutoTabExpand(_ sender: Any?) {
         
         self.isAutoTabExpandEnabled.toggle()
     }
     
     
-    /// change tab width from the main menu
+    /// Change the tab width from a menu item.
     @IBAction func changeTabWidth(_ sender: NSMenuItem) {
         
         self.tabWidth = sender.tag
     }
     
     
-    /// change tab width to desired number through a sheet
+    /// Change the tab width to desired number through a sheet.
     @IBAction func customizeTabWidth(_ sender: Any?) {
         
         let view = CustomTabWidthView(tabWidth: self.tabWidth) { [weak self] (tabWidth) in
@@ -658,28 +656,28 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// make text layout orientation horizontal
+    /// Make text layout orientation horizontal.
     @IBAction func makeLayoutOrientationHorizontal(_ sender: Any?) {
         
         self.verticalLayoutOrientation = false
     }
     
     
-    /// make text layout orientation vertical
+    /// Make the text layout orientation vertical.
     @IBAction func makeLayoutOrientationVertical(_ sender: Any?) {
         
         self.verticalLayoutOrientation = true
     }
     
     
-    /// make entire writing direction LTR
+    /// Make the entire writing direction left-to-right.
     @IBAction func makeWritingDirectionLeftToRight(_ sender: Any?) {
         
         self.writingDirection = .leftToRight
     }
     
     
-    /// make entire writing direction RTL
+    /// Make the entire writing direction right-to-left.
     @IBAction func makeWritingDirectionRightToLeft(_ sender: Any?) {
         
         self.verticalLayoutOrientation = false
@@ -687,21 +685,21 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// change writing direction by a grouped toolbar item
+    /// Change writing direction by a grouped toolbar item.
     @IBAction func changeWritingDirection(_ sender: NSToolbarItemGroup) {
         
         assertionFailure("This is a dummy action designed to be used just for the segmentation selection validation.")
     }
     
     
-    /// change layout orientation by a grouped toolbar item
+    /// Change layout orientation by a grouped toolbar item.
     @IBAction func changeOrientation(_ sender: NSToolbarItemGroup) {
         
         assertionFailure("This is a dummy action designed to be used just for the segmentation selection validation.")
     }
     
     
-    /// show editor opacity slider as popover
+    /// Show the editor opacity slider as popover.
     @IBAction func showOpacitySlider(_ sender: Any?) {
         
         let opacityView = OpacityView(window: self.view.window as? DocumentWindow)
@@ -894,7 +892,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     
     
     /// Replace the document in the editorViewController with the given document.
-    /// 
+    ///
     /// - Parameters:
     ///   - document: The new document to be replaced with.
     ///   - editorViewController: The editor view controller of which document is replaced.

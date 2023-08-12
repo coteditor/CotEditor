@@ -170,6 +170,7 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Private Methods
     
+    /// The paragraph style for outline menu item
     private lazy var menuItemParagraphStyle: NSParagraphStyle = {
         
         let paragraphStyle = NSParagraphStyle.default.mutable
@@ -192,12 +193,14 @@ final class NavigationBarController: NSViewController {
     }
     
     
+    /// The button to move to the previous outline item.
     private var prevButton: NSButton? {
         
         (self.textView?.layoutOrientation == .vertical) ? self.rightButton : self.leftButton
     }
     
     
+    /// The button to move to the next outline item.
     private var nextButton: NSButton? {
         
         (self.textView?.layoutOrientation == .vertical) ? self.leftButton : self.rightButton
@@ -277,12 +280,6 @@ final class NavigationBarController: NSViewController {
             case .vertical: "chevron.right"
             @unknown default: fatalError()
         }
-        let nextSymbol: NSImage.Name = switch orientation {
-            case .horizontal: "chevron.down"
-            case .vertical: "chevron.left"
-            @unknown default: fatalError()
-        }
-        
         prevButton.image = NSImage(systemSymbolName: prevSymbol,
                                    accessibilityDescription: String(localized: "Previous"))!
         prevButton.toolTip = String(localized: "Jump to previous outline item")
@@ -290,6 +287,11 @@ final class NavigationBarController: NSViewController {
         prevButton.target = self.parent
         prevButton.isEnabled = self.canSelectPrevItem
         
+        let nextSymbol: NSImage.Name = switch orientation {
+            case .horizontal: "chevron.down"
+            case .vertical: "chevron.left"
+            @unknown default: fatalError()
+        }
         nextButton.image = NSImage(systemSymbolName: nextSymbol,
                                    accessibilityDescription: String(localized: "Next"))!
         nextButton.toolTip = String(localized: "Jump to next outline item")
