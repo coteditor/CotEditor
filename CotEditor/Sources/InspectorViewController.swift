@@ -47,6 +47,10 @@ final class InspectorViewController: NSTabViewController {
     override func loadView() {
         
         let tabView = InspectorTabView()
+        tabView.wantsLayer = true
+        
+        // set identifier for pane restoration
+        tabView.identifier = NSUserInterfaceItemIdentifier("InspectorTabView")
         
         // cover the entire area with an NSVisualEffectView
         let view = NSVisualEffectView()
@@ -79,10 +83,7 @@ final class InspectorViewController: NSTabViewController {
         }
         
         // select last used pane
-        // -> Select tab in a later run loop to let view layout first.
-        Task {
-            self.selectedTabViewItemIndex = UserDefaults.standard[.selectedInspectorPaneIndex]
-        }
+        self.selectedTabViewItemIndex = UserDefaults.standard[.selectedInspectorPaneIndex]
         
         // restore thickness first when the view is loaded
         let width = UserDefaults.standard[.sidebarWidth]
@@ -95,6 +96,7 @@ final class InspectorViewController: NSTabViewController {
         self.view.setAccessibilityRole(.group)
         self.view.setAccessibilityLabel(String(localized: "Inspector"))
     }
+    
     
     
     // MARK: Tab View Controller Methods
@@ -113,29 +115,10 @@ final class InspectorViewController: NSTabViewController {
     override var selectedTabViewItemIndex: Int {
         
         didSet {
-            // -> Ignore initial setting that select 0
-            guard selectedTabViewItemIndex != oldValue, oldValue != -1 else { return }
+            // ignore initial setting that select 0
+            guard oldValue != -1 else { return }
             
             UserDefaults.standard[.selectedInspectorPaneIndex] = selectedTabViewItemIndex
-            self.invalidateRestorableState()
-        }
-    }
-    
-    
-    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
-        
-        super.encodeRestorableState(with: coder, backgroundQueue: queue)
-        
-        coder.encode(self.selectedTabViewItemIndex, forKey: #keyPath(selectedTabViewItemIndex))
-    }
-    
-    
-    override func restoreState(with coder: NSCoder) {
-        
-        super.restoreState(with: coder)
-        
-        if coder.containsValue(forKey: #keyPath(selectedTabViewItemIndex)) {
-            self.selectedTabViewItemIndex = coder.decodeInteger(forKey: #keyPath(selectedTabViewItemIndex))
         }
     }
     
@@ -168,12 +151,9 @@ private extension InspectorPane {
     var name: String {
         
         switch self {
-            case .document:
-                String(localized: "Document Inspector")
-            case .outline:
-                String(localized: "Outline")
-            case .warnings:
-                String(localized: "Warnings")
+            case .document: String(localized: "Document Inspector")
+            case .outline: String(localized: "Outline")
+            case .warnings: String(localized: "Warnings")
         }
     }
     

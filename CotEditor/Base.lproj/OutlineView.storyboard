@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Wry-M9-Gep">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Wry-M9-Gep">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22152"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -85,9 +85,6 @@
                                         </outlineView>
                                     </subviews>
                                 </clipView>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="xqb-BN-UYB"/>
-                                </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Vh9-uN-jKp">
                                     <rect key="frame" x="1" y="181" width="194" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
@@ -133,7 +130,7 @@
                             <constraint firstItem="JmM-qV-6D4" firstAttribute="bottom" secondItem="nSM-iY-aHb" secondAttribute="bottom" constant="12" id="3Vr-Q0-dd1"/>
                             <constraint firstItem="nSM-iY-aHb" firstAttribute="leading" secondItem="JmM-qV-6D4" secondAttribute="leading" constant="12" id="AQQ-wK-57x"/>
                             <constraint firstItem="JmM-qV-6D4" firstAttribute="trailing" secondItem="nSM-iY-aHb" secondAttribute="trailing" constant="12" id="KAC-my-FkO"/>
-                            <constraint firstItem="nSM-iY-aHb" firstAttribute="top" secondItem="sdS-LF-zK0" secondAttribute="bottom" constant="8" symbolic="YES" id="NEG-gA-yN8"/>
+                            <constraint firstItem="nSM-iY-aHb" firstAttribute="top" secondItem="sdS-LF-zK0" secondAttribute="bottom" priority="750" constant="8" symbolic="YES" id="NEG-gA-yN8"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="moj-vY-NGR" secondAttribute="trailing" constant="12" id="Nql-WG-YyB"/>
                             <constraint firstItem="moj-vY-NGR" firstAttribute="centerX" secondItem="sdS-LF-zK0" secondAttribute="centerX" id="VEd-oO-190"/>
                             <constraint firstItem="w9Z-gJ-Amp" firstAttribute="top" secondItem="JmM-qV-6D4" secondAttribute="top" constant="8" id="XMM-ho-3L6"/>

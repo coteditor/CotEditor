@@ -27,7 +27,7 @@ import AppKit
 
 final class WindowContentViewController: NSSplitViewController {
     
-    // MARK: Public  Properties
+    // MARK: Public Properties
     
     private(set) lazy var documentViewController = DocumentViewController()
     
@@ -35,7 +35,6 @@ final class WindowContentViewController: NSSplitViewController {
     // MARK: Private Properties
     
     private lazy var inspectorViewController = InspectorViewController()
-    private weak var inspectorViewItem: NSSplitViewItem?
     
     
     
@@ -79,7 +78,6 @@ final class WindowContentViewController: NSSplitViewController {
         }
         inspectorViewItem.isCollapsed = true
         self.addSplitViewItem(inspectorViewItem)
-        self.inspectorViewItem = inspectorViewItem
     }
     
     
@@ -156,6 +154,13 @@ final class WindowContentViewController: NSSplitViewController {
     
     
     // MARK: Private Methods
+    
+    /// The split view item for the inspector.
+    private var inspectorViewItem: NSSplitViewItem? {
+        
+        self.splitViewItem(for: self.inspectorViewController)
+    }
+    
     
     /// Whether the inspector is opened.
     private var isInspectorShown: Bool {
