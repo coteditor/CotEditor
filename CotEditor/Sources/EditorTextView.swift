@@ -156,6 +156,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         super.init(frame: frame, textContainer: textContainer)
         
+        self.identifier = NSUserInterfaceItemIdentifier("EditorTextView")
+        
         self.textFinder.client = self
         
         // set layout values (wraps lines)

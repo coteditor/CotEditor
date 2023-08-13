@@ -87,6 +87,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         super.viewDidLoad()
         
+        // set identifier for state restoration
+        self.identifier = NSUserInterfaceItemIdentifier("EditorTextViewController")
+        
         // observe text orientation for line number view
         self.orientationObserver = self.textView!.publisher(for: \.layoutOrientation, options: .initial)
             .sink { [weak self] (orientation) in

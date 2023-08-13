@@ -40,7 +40,7 @@ final class DocumentWindow: NSWindow {
         }
     }
     
-    @objc var backgroundAlpha: CGFloat = 1.0 {
+    @objc dynamic var backgroundAlpha: CGFloat = 1.0 {
         
         didSet {
             backgroundAlpha = backgroundAlpha.clamped(to: 0.2...1.0)
@@ -53,7 +53,6 @@ final class DocumentWindow: NSWindow {
             
             self.invalidateShadow()
             self.contentView?.needsDisplay = true
-            self.invalidateRestorableState()
         }
     }
     
@@ -62,24 +61,19 @@ final class DocumentWindow: NSWindow {
     // MARK: -
     // MARK: Window Methods
     
-    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
+    override class var restorableStateKeyPaths: [String] {
         
-        super.encodeRestorableState(with: coder, backgroundQueue: queue)
-        
-        coder.encode(self.backgroundAlpha, forKey: #keyPath(backgroundAlpha))
-        coder.encode(self.level, forKey: #keyPath(level))
+        super.restorableStateKeyPaths + [#keyPath(backgroundAlpha), #keyPath(level)]
     }
     
     
-    override func restoreState(with coder: NSCoder) {
-        
-        super.restoreState(with: coder)
-        
-        if let alpha = coder.decodeObject(of: NSNumber.self, forKey: #keyPath(backgroundAlpha)) as? CGFloat, alpha != 1 {
-            self.backgroundAlpha = alpha
-        }
-        if let level = coder.decodeObject(of: NSNumber.self, forKey: #keyPath(level)) as? NSWindow.Level, level == .floating {
-            self.isFloating = true
+    override class func allowedClasses(forRestorableStateKeyPath keyPath: String) -> [AnyClass] {
+    
+        switch keyPath {
+            case #keyPath(backgroundAlpha), #keyPath(level):
+                [NSNumber.self]
+            default:
+                super.allowedClasses(forRestorableStateKeyPath: keyPath)
         }
     }
     
@@ -148,11 +142,10 @@ final class DocumentWindow: NSWindow {
     // MARK: Private Methods
     
     /// Whether the window level is floating.
-    private var isFloating: Bool = false {
+    @objc dynamic var isFloating: Bool = false {
         
         didSet {
             self.level = isFloating ? .floating : .normal
-            self.invalidateRestorableState()
         }
     }
 }

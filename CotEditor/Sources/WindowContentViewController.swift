@@ -61,8 +61,8 @@ final class WindowContentViewController: NSSplitViewController {
         super.viewDidLoad()
         
         // -> Need to set *both* identifier and autosaveName to make autosaving work.
-        self.splitView.identifier = NSUserInterfaceItemIdentifier("windowContentSplitView")
-        self.splitView.autosaveName = "windowContentSplitView"
+        self.splitView.identifier = NSUserInterfaceItemIdentifier("WindowContentSplitView")
+        self.splitView.autosaveName = "WindowContentSplitView"
         
         self.addChild(self.documentViewController)
         

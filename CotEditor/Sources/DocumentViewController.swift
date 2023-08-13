@@ -42,12 +42,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     
     // MARK: Private Properties
     
-    private lazy var splitViewController = SplitViewController()
-    private lazy var statusBarViewController: StatusBarController = NSStoryboard(name: "StatusBar", bundle: nil).instantiateInitialController()!
-    private weak var statusBarItem: NSSplitViewItem?
-    
-    /// keys for bool values to be restored from the last session
-    private var restorableBoolStateKeyPaths: [String] = [
+    /// Keys for NSNumber values to be restored from the last session (Bool is also an NSNumber).
+    private static var restorableNumberStateKeyPaths: [String] = [
         #keyPath(showsLineNumber),
         #keyPath(showsPageGuide),
         #keyPath(showsIndentGuides),
@@ -55,7 +51,12 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         #keyPath(wrapsLines),
         #keyPath(verticalLayoutOrientation),
         #keyPath(isAutoTabExpandEnabled),
+        #keyPath(writingDirection),
     ]
+    
+    private lazy var splitViewController = SplitViewController()
+    private lazy var statusBarViewController: StatusBarController = NSStoryboard(name: "StatusBar", bundle: nil).instantiateInitialController()!
+    private weak var statusBarItem: NSSplitViewItem?
     
     private var documentSyntaxObserver: AnyCancellable?
     private var outlineObserver: AnyCancellable?
@@ -68,11 +69,14 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     
     
     // MARK: -
-    // MARK: Split View Controller Methods
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // set identifier for state restoration
+        self.identifier = NSUserInterfaceItemIdentifier("DocumentViewController")
         
         self.splitView.isVertical = false
         self.addChild(self.splitViewController)
@@ -147,19 +151,28 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
+    override class var restorableStateKeyPaths: [String] {
+        
+        super.restorableStateKeyPaths + self.restorableNumberStateKeyPaths
+    }
+    
+    
+    override class func allowedClasses(forRestorableStateKeyPath keyPath: String) -> [AnyClass] {
+        
+        if self.restorableNumberStateKeyPaths.contains(keyPath) {
+            [NSNumber.self]
+        } else {
+            super.allowedClasses(forRestorableStateKeyPath: keyPath)
+        }
+    }
+    
+    
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
         
         if let themeName = self.theme?.name {
             coder.encode(themeName, forKey: SerializationKey.theme)
-        }
-        
-        coder.encode(self.writingDirection.rawValue, forKey: SerializationKey.writingDirection)
-        
-        // manually encode `restorableStateKeyPaths` for secure state restoration
-        for keyPath in self.restorableBoolStateKeyPaths {
-            coder.encode(self.value(forKeyPath: keyPath), forKey: keyPath)
         }
     }
     
@@ -177,20 +190,11 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                 self.setTheme(name: themeName)
             }
         }
-        
-        if coder.containsValue(forKey: SerializationKey.writingDirection),
-           let direction = NSWritingDirection(rawValue: coder.decodeInteger(forKey: SerializationKey.writingDirection))
-        {
-            self.writingDirection = direction
-        }
-        
-        // manually decode `restorableStateKeyPaths` for secure state restoration
-        for keyPath in self.restorableBoolStateKeyPaths where coder.containsValue(forKey: keyPath) {
-            let value = coder.decodeObject(of: NSNumber.self, forKey: keyPath)
-            self.setValue(value, forKeyPath: keyPath)
-        }
     }
     
+    
+    
+    // MARK: Split View Controller Methods
     
     /// deliver document to child view controllers
     override var representedObject: Any? {
@@ -414,67 +418,62 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     
     
     /// The visibility of line numbers views.
-    @objc var showsLineNumber = false {
+    @objc dynamic var showsLineNumber = false {
         
         didSet {
             for viewController in self.editorViewControllers {
                 viewController.showsLineNumber = showsLineNumber
             }
-            self.invalidateRestorableState()
         }
     }
     
     
     /// Whether lines soft-wrap at the window edge.
-    @objc var wrapsLines = false {
+    @objc dynamic var wrapsLines = false {
         
         didSet {
             for textView in self.editorViewControllers.compactMap(\.textView) {
                 textView.wrapsLines = wrapsLines
             }
-            self.invalidateRestorableState()
         }
     }
     
     
     /// The visibility of page guide lines in text views.
-    @objc var showsPageGuide = false {
+    @objc dynamic var showsPageGuide = false {
         
         didSet {
             for textView in self.editorViewControllers.compactMap(\.textView) {
                 textView.showsPageGuide = showsPageGuide
             }
-            self.invalidateRestorableState()
         }
     }
     
     
     /// The visibility of indent guides in the text views.
-    @objc var showsIndentGuides = false {
+    @objc dynamic var showsIndentGuides = false {
         
         didSet {
             for textView in self.editorViewControllers.compactMap(\.textView) {
                 textView.showsIndentGuides = showsIndentGuides
             }
-            self.invalidateRestorableState()
         }
     }
     
     
     /// The visibility of invisible characters.
-    @objc var showsInvisibles = false {
+    @objc dynamic var showsInvisibles = false {
         
         didSet {
             for textView in self.editorViewControllers.compactMap(\.textView) {
                 textView.showsInvisibles = showsInvisibles
             }
-            self.invalidateRestorableState()
         }
     }
     
     
     /// Whether the text orientation in the text views is vertical.
-    @objc var verticalLayoutOrientation: Bool = false {
+    @objc dynamic var verticalLayoutOrientation: Bool = false {
         
         didSet {
             self.document?.isVerticalText = verticalLayoutOrientation
@@ -484,19 +483,17 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             for textView in self.editorViewControllers.compactMap(\.textView) {
                 textView.setLayoutOrientation(orientation)
             }
-            self.invalidateRestorableState()
         }
     }
     
     
     /// The writing direction of the text views.
-    var writingDirection: NSWritingDirection = .leftToRight {
+    @objc dynamic var writingDirection: NSWritingDirection = .leftToRight {
         
         didSet {
             for textView in self.editorViewControllers.compactMap(\.textView) where textView.baseWritingDirection != writingDirection {
                 textView.baseWritingDirection = writingDirection
             }
-            self.invalidateRestorableState()
         }
     }
     
@@ -517,7 +514,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     
     
     /// Whether tabs are replaced with spaces.
-    @objc var isAutoTabExpandEnabled: Bool {
+    @objc dynamic var isAutoTabExpandEnabled: Bool {
         
         get {
             self.focusedTextView?.isAutomaticTabExpansionEnabled ?? UserDefaults.standard[.autoExpandTab]
@@ -527,7 +524,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             for textView in self.editorViewControllers.compactMap(\.textView) {
                 textView.isAutomaticTabExpansionEnabled = newValue
             }
-            self.invalidateRestorableState()
         }
     }
     
