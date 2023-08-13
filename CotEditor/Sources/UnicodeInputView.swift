@@ -40,7 +40,7 @@ struct UnicodeInputView: View {
         
         VStack(alignment: .leading) {
             HStack(alignment: .center) {
-                Text((self.character?.isNewline == true) ? " " : self.character.map(String.init) ?? "⬚")
+                Text(self.pictureString ?? "⬚")
                     .font(.system(size: 26))
                     .frame(minWidth: 30, minHeight: 30)
                 
@@ -103,7 +103,7 @@ struct UnicodeInputView: View {
     
     private var pictureString: String? {
         
-        (self.character?.isNewline == true) ? " " : self.character.map(String.init) ?? ""
+        (self.character?.isNewline == true) ? " " : self.character.map(String.init)
     }
     
     
