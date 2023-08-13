@@ -852,9 +852,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         let viewController = EditorViewController()
         
-        // set the priority to 251 so that split editors are sized evenly
         let splitViewItem = NSSplitViewItem(viewController: viewController)
-        splitViewItem.holdingPriority = NSLayoutConstraint.Priority(251)
+        splitViewItem.minimumThickness = 100
         
         // add to the split view
         let index = otherViewController

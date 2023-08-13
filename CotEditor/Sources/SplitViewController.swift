@@ -129,7 +129,7 @@ final class SplitViewController: NSSplitViewController {
     /// - Parameter onNext: Move to the next if `true`, otherwise previous.
     private func focusSplitTextView(onNext: Bool) {
         
-        let children = self.children.compactMap { $0 as? EditorViewController }
+        let children = self.splitViewItems.compactMap { $0.viewController as? EditorViewController }
         
         guard children.count > 1 else { return }
         guard let focusedChild = self.focusedChild,
