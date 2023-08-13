@@ -244,7 +244,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             textView.replace(with: String(character), range: textView.rangeForUserTextChange, selectedRange: nil)
         }
         let viewController = NSHostingController(rootView: view)
-        viewController.rootView.parent = viewController
         
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -1, dy: -1) ?? .zero
         let edge: NSRectEdge = (textView.layoutOrientation == .vertical) ? .maxX : .minY
