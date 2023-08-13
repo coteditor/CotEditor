@@ -53,10 +53,6 @@
 "Find Result" = "查找结果";
 
 
-// Main menu item titles
-"Check for Updates…" = "检查更新…";
-
-
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "确认删除“%@”？";
 "This action cannot be undone." = "此操作不能撤销。";
@@ -464,7 +460,6 @@
 "Recent Filters" = "最近的过滤";
 "Clear Recent Filters" = "清除最近记录";
 "No Recent Filter" = "没有最近的过滤";
-"No Filter Results" = "无过滤结果";
 
 // Warnings
 "No issues found." = "没有发现问题。";

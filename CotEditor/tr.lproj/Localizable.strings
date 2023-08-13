@@ -53,10 +53,6 @@
 "Find Result" = "Arama Sonucu";
 
 
-// Main menu item titles
-"Check for Updates…" = "Güncellemeleri Denetle…";
-
-
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "“%@” silmek istediğinize emin misiniz?";
 "This action cannot be undone." = "Bu eylem geri alınamaz.";
@@ -262,7 +258,7 @@
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "Belgede yeniden yorumlanacak bir dosya yok.";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "“%1@” dosyası, “%2@” metin kodlaması kullanarak yeniden yorumlanamadı.";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "“%1$@” dosyası, “%2$@” metin kodlaması kullanarak yeniden yorumlanamadı.";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "Dosya, başka bir metin kodlaması kullanarak kaydedilmiş olabilir veya bir metin dosyası olmayabilir.";
 
 // incompatible characters alert
@@ -464,7 +460,6 @@
 "Recent Filters" = "Son Filtreler";
 "Clear Recent Filters" = "Son Filtreleri Temizle";
 "No Recent Filter" = "Son Filtre Yok";
-"No Filter Results" = "Filtre Sonucu Yok";
 
 // Warnings
 "No issues found." = "Sorun bulunamadı.";

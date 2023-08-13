@@ -49,7 +49,7 @@ final class OutlineViewController: NSViewController {
     }
     
     private var filteredOutlineItems: [OutlineItem] = []  { didSet { self.outlineView?.reloadData() } }
-    @objc dynamic var filteringMessage: String?
+    @objc dynamic var hasFilteredItems = false
     
     private var documentObserver: AnyCancellable?
     private var syntaxObserver: AnyCancellable?
@@ -237,9 +237,7 @@ final class OutlineViewController: NSViewController {
     private func filterItems(with searchString: String) {
         
         self.filteredOutlineItems = self.outlineItems.filterItems(with: searchString)
-        self.filteringMessage = (!searchString.isEmpty && self.filteredOutlineItems.isEmpty)
-            ? String(localized: "No Filter Results")
-            : nil
+        self.hasFilteredItems = (!searchString.isEmpty && self.filteredOutlineItems.isEmpty)
     }
 }
 

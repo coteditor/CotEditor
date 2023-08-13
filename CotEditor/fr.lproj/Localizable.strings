@@ -53,10 +53,6 @@
 "Find Result" = "Résultat de la recherche";
 
 
-// Main menu item titles
-"Check for Updates…" = "Vérifier les mises à jour…";
-
-
 
 /* MARK: AppDelegate */
 // Importing theme
@@ -464,7 +460,6 @@
 "Recent Filters" = "Filtres récents";
 "Clear Recent Filters" = "Effacer l’historique";
 "No Recent Filter" = "Aucun filtre récent";
-"No Filter Results" = "Aucun filtre trouvé";
 
 // Warnings
 "No issues found." = "Aucun problème trouvé.";

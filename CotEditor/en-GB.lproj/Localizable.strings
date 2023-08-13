@@ -53,10 +53,6 @@
 "Find Result" = "Find Result";
 
 
-// Main menu item titles
-"Check for Updates…" = "Check for Updates…";
-
-
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "Are you sure you want to delete “%@”?";
 "This action cannot be undone." = "This action cannot be undone.";
@@ -464,7 +460,6 @@
 "Recent Filters" = "Recent Filters";
 "Clear Recent Filters" = "Clear Recent Filters";
 "No Recent Filter" = "No Recent Filter";
-"No Filter Results" = "No Filter Results";
 
 // Warnings
 "No issues found." = "No issues found.";

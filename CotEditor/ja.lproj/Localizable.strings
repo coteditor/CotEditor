@@ -53,10 +53,6 @@
 "Find Result" = "検索結果";
 
 
-// Main menu item titles
-"Check for Updates…" = "アップデートを確認…";
-
-
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "“%@”を削除してもよろしいですか?";
 "This action cannot be undone." = "この操作は取り消せません。";
@@ -262,7 +258,7 @@
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "再解釈をするファイルがありません。";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "テキストエンコーディング“%1@”でファイル“%2@”を再解釈できませんでした。";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "テキストエンコーディング“%1$@”でファイル“%2$@”を再解釈できませんでした。";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "このファイルは、別のテキストエンコーディングで保存されているか、テキストファイルでない可能性があります。";
 
 // incompatible characters alert
@@ -464,7 +460,6 @@
 "Recent Filters" = "最近のフィルタ";
 "Clear Recent Filters" = "フィルタ履歴を消去";
 "No Recent Filter" = "フィルタ履歴がありません";
-"No Filter Results" = "フィルタ結果なし";
 
 // Warnings
 "No issues found." = "問題は見つかりませんでした。";

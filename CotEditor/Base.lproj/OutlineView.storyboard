@@ -40,7 +40,7 @@
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="rwF-t2-tPJ">
+                                                    <textFieldCell key="dataCell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" editable="YES" id="rwF-t2-tPJ">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -117,12 +117,11 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="Wry-M9-Gep" name="hidden" keyPath="filteringMessage" id="K9S-uP-gXF">
+                                    <binding destination="Wry-M9-Gep" name="hidden" keyPath="hasFilteredItems" id="SK6-Gx-dYy">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNil</string>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="Wry-M9-Gep" name="value" keyPath="filteringMessage" id="gCy-hm-15H"/>
                                 </connections>
                             </textField>
                         </subviews>

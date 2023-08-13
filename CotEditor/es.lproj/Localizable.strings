@@ -53,10 +53,6 @@
 "Find Result" = "Buscar resultado";
 
 
-// Main menu item titles
-"Check for Updates…" = "Comprueba si hay actualizaciones…";
-
-
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "¿Estas seguro de que quiere eliminar “%@”?";
 "This action cannot be undone." = "Esta acción no se puede deshacer.";
@@ -464,7 +460,6 @@
 "Recent Filters" = "Filtros recientes";
 "Clear Recent Filters" = "Borrar filtros recientes";
 "No Recent Filter" = "Sin filtro reciente";
-"No Filter Results" = "No hay resultados de filtro";
 
 // Warnings
 "No issues found." = "No se han encontrado problemas.";

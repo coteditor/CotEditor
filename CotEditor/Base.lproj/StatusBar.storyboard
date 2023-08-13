@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="NBJ-8W-V9X">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="NBJ-8W-V9X">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22152"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -44,18 +44,13 @@
                             </popUpButton>
                             <popUpButton toolTip="File Encoding" translatesAutoresizingMaskIntoConstraints="NO" id="CUv-So-9Og">
                                 <rect key="frame" x="378" y="0.0" width="133" height="21"/>
-                                <popUpButtonCell key="cell" type="smallSquare" title="Unicode (UTF-8)" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" autoenablesItems="NO" selectedItem="fc5-iy-HpH" id="2gs-WJ-6IP">
+                                <popUpButtonCell key="cell" type="smallSquare" title="File Encoding" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" tag="-1" inset="2" autoenablesItems="NO" selectedItem="q4F-Uw-VL4" id="2gs-WJ-6IP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                     <menu key="menu" autoenablesItems="NO" id="E76-Et-IKc">
                                         <items>
                                             <menuItem title="File Encoding" tag="-1" enabled="NO" id="q4F-Uw-VL4" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                            </menuItem>
-                                            <menuItem title="Unicode (UTF-8)" state="on" id="fc5-iy-HpH">
-                                                <connections>
-                                                    <action selector="changeEncoding:" target="wKh-dn-8NK" id="1lD-Lq-887"/>
-                                                </connections>
                                             </menuItem>
                                         </items>
                                     </menu>
