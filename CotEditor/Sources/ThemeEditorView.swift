@@ -1,5 +1,5 @@
 //
-//  ThemeDetailView.swift
+//  ThemeEditorView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -50,10 +50,10 @@ import AppKit.NSColor
     @Published var characters: Color
     @Published var comments: Color
     
-    @Published var author: String
-    @Published var distributionURL: String
-    @Published var license: String
-    @Published var description: String
+    @Published var author: String?
+    @Published var distributionURL: String?
+    @Published var license: String?
+    @Published var description: String?
     
     
     init(_ theme: Theme) {
@@ -80,10 +80,10 @@ import AppKit.NSColor
         self._characters = .init(initialValue: Color(nsColor: theme.characters.color))
         self._comments = .init(initialValue: Color(nsColor: theme.comments.color))
         
-        self._author = .init(initialValue: theme.metadata?.author ?? "")
-        self._distributionURL = .init(initialValue: theme.metadata?.distributionURL ?? "")
-        self._license = .init(initialValue: theme.metadata?.license ?? "")
-        self._description = .init(initialValue: theme.metadata?.description ?? "")
+        self._author = .init(initialValue: theme.metadata?.author)
+        self._distributionURL = .init(initialValue: theme.metadata?.distributionURL)
+        self._license = .init(initialValue: theme.metadata?.license)
+        self._description = .init(initialValue: theme.metadata?.description)
     }
     
     
@@ -110,7 +110,7 @@ import AppKit.NSColor
         theme.characters.color = NSColor(self.characters)
         theme.comments.color = NSColor(self.comments)
         
-        if ![self.author, self.distributionURL, self.license, self.description].allSatisfy(\.isEmpty) {
+        if ![self.author, self.distributionURL, self.license, self.description].compactMap({ $0 }).isEmpty {
             theme.metadata = .init(author: self.author,
                                    distributionURL: self.distributionURL,
                                    license: self.license,
@@ -123,7 +123,7 @@ import AppKit.NSColor
 
 
 
-struct ThemeDetailView: View {
+struct ThemeEditorView: View {
     
     @StateObject private var theme: ThemeObject
     @State private var isBundled: Bool
@@ -262,10 +262,10 @@ private struct SystemColorPicker: View {
 
 private struct ThemeMetadataView: View {
     
-    @Binding var author: String
-    @Binding var distributionURL: String
-    @Binding var license: String
-    @Binding var description: String
+    @Binding var author: String?
+    @Binding var distributionURL: String?
+    @Binding var license: String?
+    @Binding var description: String?
     let isEditable: Bool
     
     
@@ -275,17 +275,17 @@ private struct ThemeMetadataView: View {
         
         Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 4) {
             GridRow {
-                self.itemView("Author:", text: $author)
+                self.itemView("Author:", text: $author.bound)
             }
             GridRow {
-                self.itemView("URL:", text: $distributionURL)
-                LinkButton(url: self.distributionURL)
+                self.itemView("URL:", text: $distributionURL.bound)
+                LinkButton(url: self.distributionURL.bound)
             }
             GridRow {
-                self.itemView("License:", text: $license)
+                self.itemView("License:", text: $license.bound)
             }
             GridRow {
-                self.itemView("Description:", text: $description, lineLimit: 2...5)
+                self.itemView("Description:", text: $description.bound, lineLimit: 2...5)
             }
         }
         .controlSize(.small)
@@ -318,22 +318,22 @@ private struct ThemeMetadataView: View {
 // MARK: - Preview
 
 #Preview {
-    ThemeDetailView(ThemeManager.shared.setting(name: "Anura")!, isBundled: false) { _ in }
+    ThemeEditorView(ThemeManager.shared.setting(name: "Anura")!, isBundled: false) { _ in }
         .frame(width: 360, height: 280)
 }
 
 #Preview("Metadata (editable)") {
     ThemeMetadataView(author: .constant("Clarus"),
                       distributionURL: .constant("https://coteditor.com"),
-                      license: .constant(""),
+                      license: .constant(nil),
                       description: .constant(""),
                       isEditable: true)
 }
 
 #Preview("Metadata (fixed)") {
     ThemeMetadataView(author: .constant("Claus"),
-                      distributionURL: .constant(""),
-                      license: .constant(""),
-                      description: .constant(""),
+                      distributionURL: .constant(nil),
+                      license: .constant(nil),
+                      description: .constant(nil),
                       isEditable: false)
 }
