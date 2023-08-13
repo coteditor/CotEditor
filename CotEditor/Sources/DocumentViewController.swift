@@ -36,7 +36,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     private enum SerializationKey {
         
         static let theme = "theme"
-        static let writingDirection = "writingDirection"
     }
     
     
