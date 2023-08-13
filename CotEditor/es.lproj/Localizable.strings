@@ -426,6 +426,11 @@
 
 
 /* MARK: PrintAccessoryViewController */
+// Segmented control tooltips
+"Align Left" = "Alinear a la izquierda";
+"Center" = "Centrado";
+"Align Right" = "Alinear a la derecha";
+
 // Summary item names
 "Font Size" = "Font Size";  // FIXME: added
 "Color" = "Color";

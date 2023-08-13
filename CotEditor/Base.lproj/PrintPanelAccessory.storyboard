@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22152"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -135,9 +135,9 @@
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="wZK-fo-Sky">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
-                                        <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22" tag="2">
+                                        <segment image="arrow.backward.to.line" catalog="system" width="22"/>
+                                        <segment image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
+                                        <segment image="arrow.forward.to.line" catalog="system" width="22" tag="2">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
@@ -161,9 +161,9 @@
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="phR-yp-SWP">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
-                                        <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22" tag="2">
+                                        <segment image="arrow.backward.to.line" catalog="system" width="22"/>
+                                        <segment image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
+                                        <segment image="arrow.forward.to.line" catalog="system" width="22" tag="2">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
@@ -199,9 +199,9 @@
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Qh8-SW-Qcm">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
-                                        <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22" tag="2">
+                                        <segment image="arrow.backward.to.line" catalog="system" width="22"/>
+                                        <segment image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
+                                        <segment image="arrow.forward.to.line" catalog="system" width="22" tag="2">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
@@ -249,9 +249,9 @@
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="2gN-eY-bmu">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
-                                        <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22" tag="2">
+                                        <segment image="arrow.backward.to.line" catalog="system" width="22"/>
+                                        <segment image="arrow.right.and.line.vertical.and.arrow.left" catalog="system" width="24" selected="YES" tag="1"/>
+                                        <segment image="arrow.forward.to.line" catalog="system" width="22" tag="2">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
@@ -409,9 +409,13 @@
                     </view>
                     <connections>
                         <outlet property="colorPopUpButton" destination="bRC-3n-rin" id="O2m-OW-cSE"/>
+                        <outlet property="primaryFooterAlignmentControl" destination="qqp-Os-uMO" id="omG-Pa-ez3"/>
                         <outlet property="primaryFooterPopUpButton" destination="JEM-Eg-bfM" id="kMp-RR-37R"/>
+                        <outlet property="primaryHeaderAlignmentControl" destination="Y6C-KD-Qlx" id="ONp-r7-x6L"/>
                         <outlet property="primaryHeaderPopUpButton" destination="f1I-iq-7Ha" id="Td8-ON-0Jk"/>
+                        <outlet property="secondaryFooterAlignmentControl" destination="t3D-7C-ObH" id="26D-it-QSf"/>
                         <outlet property="secondaryFooterPopUpButton" destination="BMN-9W-V2O" id="OAn-UN-6UG"/>
+                        <outlet property="secondaryHeaderAlignmentControl" destination="zau-Af-OBf" id="6pC-2g-4XK"/>
                         <outlet property="secondaryHeaderPopUpButton" destination="lW8-WA-sUW" id="6RF-ye-0xv"/>
                     </connections>
                 </viewController>

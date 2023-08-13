@@ -4,11 +4,11 @@
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by imanishi on 2023/08/04.
+//  Created by 1024jp on 2023-08-04.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 CotEditor Project
+//  © 2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,5 +40,18 @@ extension PrintInfoType {
         item.title = self.label
         item.tag = Self.allCases.enumerated().first { $0.element == self }?.offset ?? 0
         return item
+    }
+}
+
+
+extension AlignmentType {
+    
+    static func setup(segmentedControl: NSSegmentedControl) {
+        
+        for type in self.allCases {
+            segmentedControl.setToolTip(type.help, forSegment: type.rawValue)
+            segmentedControl.setTag(type.rawValue, forSegment: type.rawValue)
+            segmentedControl.setImage(NSImage(systemSymbolName: type.symbolName, accessibilityDescription: type.help), forSegment: type.rawValue)
+        }
     }
 }

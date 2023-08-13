@@ -71,6 +71,11 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @IBOutlet private weak var primaryFooterPopUpButton: NSPopUpButton?
     @IBOutlet private weak var secondaryFooterPopUpButton: NSPopUpButton?
     
+    @IBOutlet private weak var primaryHeaderAlignmentControl: NSSegmentedControl?
+    @IBOutlet private weak var secondaryHeaderAlignmentControl: NSSegmentedControl?
+    @IBOutlet private weak var primaryFooterAlignmentControl: NSSegmentedControl?
+    @IBOutlet private weak var secondaryFooterAlignmentControl: NSSegmentedControl?
+    
     
     
     // MARK: -
@@ -84,6 +89,11 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         self.setup(popUpButton: self.secondaryHeaderPopUpButton!, contentKey: #keyPath(secondaryHeaderContent), enablingKey: #keyPath(printsHeader))
         self.setup(popUpButton: self.primaryFooterPopUpButton!, contentKey: #keyPath(primaryFooterContent), enablingKey: #keyPath(printsFooter))
         self.setup(popUpButton: self.secondaryFooterPopUpButton!, contentKey: #keyPath(secondaryFooterContent), enablingKey: #keyPath(printsFooter))
+        
+        AlignmentType.setup(segmentedControl: self.primaryHeaderAlignmentControl!)
+        AlignmentType.setup(segmentedControl: self.secondaryHeaderAlignmentControl!)
+        AlignmentType.setup(segmentedControl: self.primaryFooterAlignmentControl!)
+        AlignmentType.setup(segmentedControl: self.secondaryFooterAlignmentControl!)
     }
     
     

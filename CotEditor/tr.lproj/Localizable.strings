@@ -426,6 +426,11 @@
 
 
 /* MARK: PrintAccessoryViewController */
+// Segmented control tooltips
+"Align Left" = "Sola Hizala";
+"Center" = "Ortala";
+"Align Right" = "Sağa Hizala";
+
 // Summary item names
 "Font Size" = "Font Puntosu";
 "Color" = "Renk";

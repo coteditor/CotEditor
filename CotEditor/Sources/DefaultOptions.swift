@@ -102,7 +102,7 @@ enum AppearanceMode: Int {
 }
 
 
-@objc enum AlignmentType: Int, DefaultInitializable {
+@objc enum AlignmentType: Int, CaseIterable, DefaultInitializable {
     
     static let defaultValue: Self = .right
     
@@ -117,6 +117,26 @@ enum AppearanceMode: Int {
             case .left:   String(localized: "Left")
             case .center: String(localized: "Center")
             case .right:  String(localized: "Right")
+        }
+    }
+    
+    
+    var help: String {
+        
+        switch self {
+            case .left:   String(localized: "Align Left")
+            case .center: String(localized: "Center")
+            case .right:  String(localized: "Align Right")
+        }
+    }
+    
+    
+    var symbolName: String {
+        
+        switch self {
+            case .left: "arrow.backward.to.line"
+            case .center: "arrow.right.and.line.vertical.and.arrow.left"
+            case .right: "arrow.forward.to.line"
         }
     }
 }

@@ -56,30 +56,7 @@
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "954"; */
 "954.title" = "プリント";
 
-
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
 "3368.title" = "ヘッダをプリント";
-
-/* Class = "NSSegmentedCell"; ObjectID = "Jap-f3-ehL"; */
-"Jap-f3-ehL.ibShadowedToolTips[0]" = "左揃え";  /* Align Left */
-"Jap-f3-ehL.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
-"Jap-f3-ehL.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
-
-/* Class = "NSSegmentedCell"; ObjectID = "90p-SJ-bXq"; */
-"90p-SJ-bXq.ibShadowedToolTips[0]" = "左揃え";  /* Align Left */
-"90p-SJ-bXq.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
-"90p-SJ-bXq.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
-
-
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
 "3375.title" = "フッタをプリント";
-
-/* Class = "NSSegmentedCell"; ObjectID = "Zgh-yF-xd2"; */
-"Zgh-yF-xd2.ibShadowedToolTips[0]" = "左揃え";  /* Align Left */
-"Zgh-yF-xd2.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
-"Zgh-yF-xd2.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
-
-/* Class = "NSSegmentedCell"; ObjectID = "Pjk-d8-E4v"; */
-"Pjk-d8-E4v.ibShadowedToolTips[0]" = "左揃え";  /* Align Left */
-"Pjk-d8-E4v.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
-"Pjk-d8-E4v.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */

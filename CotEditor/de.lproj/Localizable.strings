@@ -426,6 +426,11 @@
 
 
 /* MARK: PrintAccessoryViewController */
+// Segmented control tooltips
+"Align Left" = "Linksbündig ausrichten";
+"Center" = "Zentrieren";
+"Align Right" = "Rechtsbündig ausrichten";
+
 // Summary item names
 "Font Size" = "Schriftgröße";
 "Color" = "Farbe";

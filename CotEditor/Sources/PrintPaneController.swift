@@ -37,6 +37,11 @@ final class PrintPaneController: NSViewController {
     @IBOutlet private weak var primaryFooterPopUpButton: NSPopUpButton?
     @IBOutlet private weak var secondaryFooterPopUpButton: NSPopUpButton?
     
+    @IBOutlet private weak var primaryHeaderAlignmentControl: NSSegmentedControl?
+    @IBOutlet private weak var secondaryHeaderAlignmentControl: NSSegmentedControl?
+    @IBOutlet private weak var primaryFooterAlignmentControl: NSSegmentedControl?
+    @IBOutlet private weak var secondaryFooterAlignmentControl: NSSegmentedControl?
+    
     
     
     // MARK: -
@@ -54,6 +59,11 @@ final class PrintPaneController: NSViewController {
                    contentKey: .primaryFooterContent, enablingKey: .printFooter)
         self.setup(popUpButton: self.secondaryFooterPopUpButton!,
                    contentKey: .secondaryFooterContent, enablingKey: .printFooter)
+        
+        AlignmentType.setup(segmentedControl: self.primaryHeaderAlignmentControl!)
+        AlignmentType.setup(segmentedControl: self.secondaryHeaderAlignmentControl!)
+        AlignmentType.setup(segmentedControl: self.primaryFooterAlignmentControl!)
+        AlignmentType.setup(segmentedControl: self.secondaryFooterAlignmentControl!)
     }
     
     override func viewWillAppear() {

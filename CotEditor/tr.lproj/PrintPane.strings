@@ -56,38 +56,7 @@
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "954"; */
 "954.title" = "Yazdır";
 
-
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
 "3368.title" = "Üstbilgiyi yazdır";
-
-/* Class = "NSSegmentedCell"; Jap-f3-ehL.ibShadowedToolTips[0] = "Align Left"; ObjectID = "Jap-f3-ehL"; */
-"Jap-f3-ehL.ibShadowedToolTips[0]" = "Sola Hizala";
-/* Class = "NSSegmentedCell"; Jap-f3-ehL.ibShadowedToolTips[1] = "Center"; ObjectID = "Jap-f3-ehL"; */
-"Jap-f3-ehL.ibShadowedToolTips[1]" = "Ortala";
-/* Class = "NSSegmentedCell"; Jap-f3-ehL.ibShadowedToolTips[2] = "Align Right"; ObjectID = "Jap-f3-ehL"; */
-"Jap-f3-ehL.ibShadowedToolTips[2]" = "Sağa Hizala";
-
-/* Class = "NSSegmentedCell"; 90p-SJ-bXq.ibShadowedToolTips[0] = "Align Left"; ObjectID = "90p-SJ-bXq"; */
-"90p-SJ-bXq.ibShadowedToolTips[0]" = "Sola Hizala";
-/* Class = "NSSegmentedCell"; 90p-SJ-bXq.ibShadowedToolTips[1] = "Center"; ObjectID = "90p-SJ-bXq"; */
-"90p-SJ-bXq.ibShadowedToolTips[1]" = "Ortala";
-/* Class = "NSSegmentedCell"; 90p-SJ-bXq.ibShadowedToolTips[2] = "Align Right"; ObjectID = "90p-SJ-bXq"; */
-"90p-SJ-bXq.ibShadowedToolTips[2]" = "Sağa Hizala";
-
-
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
 "3375.title" = "Altbilgiyi yazdır";
-
-/* Class = "NSSegmentedCell"; Zgh-yF-xd2.ibShadowedToolTips[0] = "Align Left"; ObjectID = "Zgh-yF-xd2"; */
-"Zgh-yF-xd2.ibShadowedToolTips[0]" = "Sola Hizala";
-/* Class = "NSSegmentedCell"; Zgh-yF-xd2.ibShadowedToolTips[1] = "Center"; ObjectID = "Zgh-yF-xd2"; */
-"Zgh-yF-xd2.ibShadowedToolTips[1]" = "Ortala";
-/* Class = "NSSegmentedCell"; Zgh-yF-xd2.ibShadowedToolTips[2] = "Align Right"; ObjectID = "Zgh-yF-xd2"; */
-"Zgh-yF-xd2.ibShadowedToolTips[2]" = "Sağa Hizala";
-
-/* Class = "NSSegmentedCell"; Pjk-d8-E4v.ibShadowedToolTips[0] = "Align Left"; ObjectID = "Pjk-d8-E4v"; */
-"Pjk-d8-E4v.ibShadowedToolTips[0]" = "Sola Hizala";
-/* Class = "NSSegmentedCell"; Pjk-d8-E4v.ibShadowedToolTips[1] = "Center"; ObjectID = "Pjk-d8-E4v"; */
-"Pjk-d8-E4v.ibShadowedToolTips[1]" = "Ortala";
-/* Class = "NSSegmentedCell"; Pjk-d8-E4v.ibShadowedToolTips[2] = "Align Right"; ObjectID = "Pjk-d8-E4v"; */
-"Pjk-d8-E4v.ibShadowedToolTips[2]" = "Sağa Hizala";

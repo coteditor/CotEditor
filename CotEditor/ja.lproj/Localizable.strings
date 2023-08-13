@@ -426,6 +426,11 @@
 
 
 /* MARK: PrintAccessoryViewController */
+// Segmented control tooltips
+"Align Left" = "左揃え";
+"Center" = "中央揃え";
+"Align Right" = "右揃え";
+
 // Summary item names
 "Font Size" = "フォントサイズ";
 "Color" = "カラー";

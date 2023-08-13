@@ -56,30 +56,7 @@
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "954"; */
 "954.title" = "Drucken";
 
-
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
 "3368.title" = "Kopfzeilen drucken";
-
-/* Class = "NSSegmentedCell"; ObjectID = "Jap-f3-ehL"; */
-"Jap-f3-ehL.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */
-"Jap-f3-ehL.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
-"Jap-f3-ehL.ibShadowedToolTips[2]" = "Rechtsbündig ausrichten";  /* Align Right */
-
-/* Class = "NSSegmentedCell"; ObjectID = "90p-SJ-bXq"; */
-"90p-SJ-bXq.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */
-"90p-SJ-bXq.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
-"90p-SJ-bXq.ibShadowedToolTips[2]" = "Rechtsbündig ausrichten";  /* Align Right */
-
-
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
 "3375.title" = "Fußzeilen drucken";
-
-/* Class = "NSSegmentedCell"; ObjectID = "Zgh-yF-xd2"; */
-"Zgh-yF-xd2.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */
-"Zgh-yF-xd2.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
-"Zgh-yF-xd2.ibShadowedToolTips[2]" = "Rechtsbündig ausrichten";  /* Align Right */
-
-/* Class = "NSSegmentedCell"; ObjectID = "Pjk-d8-E4v"; */
-"Pjk-d8-E4v.ibShadowedToolTips[0]" = "Linksbündig ausrichten";  /* Align Left */
-"Pjk-d8-E4v.ibShadowedToolTips[1]" = "Zentrieren";  /* Center */
-"Pjk-d8-E4v.ibShadowedToolTips[2]" = "Rechtsbündig ausrichten";  /* Align Right */

@@ -43,38 +43,7 @@
 /* Class = "NSTextFieldCell"; title = "Print Invisibles"; ObjectID = "M5e-Tg-MlQ"; */
 "M5e-Tg-MlQ.title" = "Print Invisibles";  // FIXME: added
 
-
 /* Class = "NSTextFieldCell"; title = "Print Header"; ObjectID = "l4b-D2-DDX"; */
 "l4b-D2-DDX.title" = "Imprimir encabezado";
-
-/* Class = "NSSegmentedCell"; wZK-fo-Sky.ibShadowedToolTips[0] = "Align Left"; ObjectID = "wZK-fo-Sky"; */
-"wZK-fo-Sky.ibShadowedToolTips[0]" = "Alinear a la izquierda";
-/* Class = "NSSegmentedCell"; wZK-fo-Sky.ibShadowedToolTips[1] = "Center"; ObjectID = "wZK-fo-Sky"; */
-"wZK-fo-Sky.ibShadowedToolTips[1]" = "Centrado";
-/* Class = "NSSegmentedCell"; wZK-fo-Sky.ibShadowedToolTips[2] = "Align Right"; ObjectID = "wZK-fo-Sky"; */
-"wZK-fo-Sky.ibShadowedToolTips[2]" = "Alinear a la derecha";
-
-/* Class = "NSSegmentedCell"; phR-yp-SWP.ibShadowedToolTips[0] = "Align Left"; ObjectID = "phR-yp-SWP"; */
-"phR-yp-SWP.ibShadowedToolTips[0]" = "Alinear a la izquierda";
-/* Class = "NSSegmentedCell"; phR-yp-SWP.ibShadowedToolTips[1] = "Center"; ObjectID = "phR-yp-SWP"; */
-"phR-yp-SWP.ibShadowedToolTips[1]" = "Centrado";
-/* Class = "NSSegmentedCell"; phR-yp-SWP.ibShadowedToolTips[2] = "Align Right"; ObjectID = "phR-yp-SWP"; */
-"phR-yp-SWP.ibShadowedToolTips[2]" = "Alinear a la derecha";
-
-
 /* Class = "NSTextFieldCell"; title = "Print Footer"; ObjectID = "mY6-Zh-2Uc"; */
 "mY6-Zh-2Uc.title" = "Imprimir pie de página";
-
-/* Class = "NSSegmentedCell"; Qh8-SW-Qcm.ibShadowedToolTips[0] = "Align Left"; ObjectID = "Qh8-SW-Qcm"; */
-"Qh8-SW-Qcm.ibShadowedToolTips[0]" = "Alinear a la izquierda";
-/* Class = "NSSegmentedCell"; Qh8-SW-Qcm.ibShadowedToolTips[1] = "Center"; ObjectID = "Qh8-SW-Qcm"; */
-"Qh8-SW-Qcm.ibShadowedToolTips[1]" = "Centrado";
-/* Class = "NSSegmentedCell"; Qh8-SW-Qcm.ibShadowedToolTips[2] = "Align Right"; ObjectID = "Qh8-SW-Qcm"; */
-"Qh8-SW-Qcm.ibShadowedToolTips[2]" = "Alinear a la derecha";
-
-/* Class = "NSSegmentedCell"; 2gN-eY-bmu.ibShadowedToolTips[0] = "Align Left"; ObjectID = "2gN-eY-bmu"; */
-"2gN-eY-bmu.ibShadowedToolTips[0]" = "Alinear a la izquierda";
-/* Class = "NSSegmentedCell"; 2gN-eY-bmu.ibShadowedToolTips[1] = "Center"; ObjectID = "2gN-eY-bmu"; */
-"2gN-eY-bmu.ibShadowedToolTips[1]" = "Centrado";
-/* Class = "NSSegmentedCell"; 2gN-eY-bmu.ibShadowedToolTips[2] = "Align Right"; ObjectID = "2gN-eY-bmu"; */
-"2gN-eY-bmu.ibShadowedToolTips[2]" = "Alinear a la derecha";

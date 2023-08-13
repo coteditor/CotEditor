@@ -56,30 +56,7 @@
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "954"; */
 "954.title" = "Imprimer";
 
-
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
 "3368.title" = "Imprimer l’en-tête";
-
-/* Class = "NSSegmentedCell"; ObjectID = "Jap-f3-ehL"; */
-"Jap-f3-ehL.ibShadowedToolTips[0]" = "Aligner à gauche";  /* Align Left */
-"Jap-f3-ehL.ibShadowedToolTips[1]" = "Centrer";  /* Center */
-"Jap-f3-ehL.ibShadowedToolTips[2]" = "Aligner à droite";  /* Align Right */
-
-/* Class = "NSSegmentedCell"; ObjectID = "90p-SJ-bXq"; */
-"90p-SJ-bXq.ibShadowedToolTips[0]" = "Aligner à gauche";  /* Align Left */
-"90p-SJ-bXq.ibShadowedToolTips[1]" = "Centrer";  /* Center */
-"90p-SJ-bXq.ibShadowedToolTips[2]" = "Aligner à droite";  /* Align Right */
-
-
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
 "3375.title" = "Imprimer le pied-de-page";
-
-/* Class = "NSSegmentedCell"; ObjectID = "Zgh-yF-xd2"; */
-"Zgh-yF-xd2.ibShadowedToolTips[0]" = "Aligner à gauche";  /* Align Left */
-"Zgh-yF-xd2.ibShadowedToolTips[1]" = "Centrer";  /* Center */
-"Zgh-yF-xd2.ibShadowedToolTips[2]" = "Aligner à droite";  /* Align Right */
-
-/* Class = "NSSegmentedCell"; ObjectID = "Pjk-d8-E4v"; */
-"Pjk-d8-E4v.ibShadowedToolTips[0]" = "Aligner à gauche";  /* Align Left */
-"Pjk-d8-E4v.ibShadowedToolTips[1]" = "Centrer";  /* Center */
-"Pjk-d8-E4v.ibShadowedToolTips[2]" = "Aligner à droite";  /* Align Right */

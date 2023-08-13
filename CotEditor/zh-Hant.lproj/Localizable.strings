@@ -426,6 +426,11 @@
 
 
 /* MARK: PrintAccessoryViewController */
+// Segmented control tooltips
+"Align Left" = "左對齊";
+"Center" = "居中";
+"Align Right" = "右對齊";
+
 // Summary item names
 "Font Size" = "字體大小";
 "Color" = "顏色";
