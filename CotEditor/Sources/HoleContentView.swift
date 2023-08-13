@@ -52,6 +52,8 @@ final class HoleContentView: NSView {
                         .map { $0.object as! NSView }
                         .filter { $0 is NSStackView }
                         .filter { $0.isDescendant(of: self) }
+                        .eraseToVoid()
+                        .merge(with: Just(Void()))
                         .sink { [unowned self] _ in
                             self.holes = self.descendants(type: NSStackView.self)
                                 .map { $0.convert($0.frame, to: self) }
