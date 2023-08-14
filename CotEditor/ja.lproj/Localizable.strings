@@ -652,7 +652,7 @@
 
 // Format pane
 // Installed syntaxes action menu items
-"Duplicate “%@”…" = "“%@”を複製…";
+"Duplicate “%@”" = "“%@”を複製";
 "Export “%@”…" = "“%@”を書き出す…";
 "Reveal “%@” in Finder" = "“%@”をFinderに表示";
 

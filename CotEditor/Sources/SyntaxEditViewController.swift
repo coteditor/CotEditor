@@ -32,7 +32,6 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     enum Mode {
         
         case edit(_ state: SettingState)
-        case copy(_ state: SettingState)
         case new
     }
     
@@ -71,7 +70,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         let manager = SyntaxManager.shared
         
         let syntax: SyntaxManager.SyntaxDictionary = switch mode {
-            case .edit(let state), .copy(let state):
+            case .edit(let state):
                 manager.settingDictionary(name: state.name) ?? manager.blankSettingDictionary
             case .new:
                 manager.blankSettingDictionary
@@ -82,7 +81,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             case .edit(let state):
                 self.isBundledSyntax = state.isBundled
                 self.isRestorable = state.isRestorable
-            case .copy, .new:
+            case .new:
                 self.isBundledSyntax = false
                 self.isRestorable = false
         }
@@ -128,7 +127,6 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         // setup syntax name field
         syntaxNameField.stringValue = switch self.mode {
             case .edit(let state): state.name
-            case .copy(let state): SyntaxManager.shared.savableSettingName(for: state.name, appendingCopySuffix: true)
             case .new: ""
         }
         if self.isBundledSyntax {

@@ -116,7 +116,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
                 
             case #selector(duplicateSyntax(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Duplicate “\(name)”…")
+                    menuItem.title = String(localized: "Duplicate “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
                 
@@ -347,13 +347,19 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// show syntax edit sheet in copy mode
+    /// duplicate selected syntax.
     @IBAction func duplicateSyntax(_ sender: Any?) {
         
-        let syntaxName = self.targetSyntaxName(for: sender)
-        let state = SyntaxManager.shared.state(of: syntaxName)!
+        let baseName = self.targetSyntaxName(for: sender)
+        let settingName: String
+        do {
+            settingName = try SyntaxManager.shared.duplicateSetting(name: baseName)
+        } catch {
+            self.presentError(error)
+            return
+        }
         
-        self.presentSyntaxEditor(mode: .copy(state))
+        self.updateSyntaxList(bySelecting: settingName)
     }
     
     
@@ -596,7 +602,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// Present the sytnax edit sheet.
+    /// Present the syntax edit sheet.
     ///
     /// - Parameter mode: The edit mode.
     private func presentSyntaxEditor(mode: SyntaxEditViewController.Mode) {
@@ -606,5 +612,23 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         }!
         
         self.presentAsSheet(viewController)
+    }
+    
+    
+    /// Update the syntax table and select the desired item.
+    ///
+    /// - Parameter selectingName: The syntax name to select.
+    private func updateSyntaxList(bySelecting selectingName: String) {
+        
+        self.syntaxNames = SyntaxManager.shared.settingNames
+        
+        guard
+            let tableView = self.syntaxTableView,
+            let row = self.syntaxNames.firstIndex(of: selectingName)
+        else { return assertionFailure() }
+        
+        tableView.reloadData()
+        tableView.selectRowIndexes([row], byExtendingSelection: false)
+        tableView.scrollRowToVisible(row)
     }
 }

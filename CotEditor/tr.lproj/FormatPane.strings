@@ -77,8 +77,8 @@
 
 /* Class = "NSMenuItem"; title = "Edit…"; ObjectID = "371-P0-KPK"; */
 "371-P0-KPK.title" = "Düzenle…";
-/* Class = "NSMenuItem"; title = "Duplicate…"; ObjectID = "5oN-VC-ot9"; */
-"5oN-VC-ot9.title" = "Çoğalt…";
+/* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "5oN-VC-ot9"; */
+"5oN-VC-ot9.title" = "Çoğalt";
 /* Class = "NSMenuItem"; title = "Restore"; ObjectID = "Zox-Ve-mru"; */
 "Zox-Ve-mru.title" = "Geri Yükle";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "NDE-r5-xAF"; */

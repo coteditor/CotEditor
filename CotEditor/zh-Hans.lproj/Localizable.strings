@@ -652,7 +652,7 @@
 
 // Format pane
 // Installed syntaxes action menu items
-"Duplicate “%@”…" = "拷贝“%@”…";
+"Duplicate “%@”" = "拷贝“%@”";
 "Export “%@”…" = "导出“%@”…";
 "Reveal “%@” in Finder" = "在访达中显示“%@”";
 
