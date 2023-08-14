@@ -76,11 +76,28 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var lineHighLightRects: [NSRect] = []
     private(set) var lineHighLightColor: NSColor?
     
-    var insertionLocations: [Int] = []  { didSet { self.updateInsertionPointTimer() } }
+    var insertionLocations: [Int] = []  {
+        
+        didSet {
+            self.needsUpdateInsertionIndicators = true
+            
+            if ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 14 {
+                self.updateInsertionPointTimer()
+            }
+        }
+    }
     var selectionOrigins: [Int] = []
     var insertionPointTimer: (any DispatchSourceTimer)?
     var insertionPointOn = false
     private(set) var isPerformingRectangularSelection = false
+    
+    @available(macOS 14, *)
+    var insertionIndicators: [NSTextInsertionIndicator] {
+        
+        get { self._insertionIndicators.compactMap { $0 as? NSTextInsertionIndicator } }
+        set { self._insertionIndicators = newValue }
+    }
+    private var _insertionIndicators: [NSView] = []
     
     // for Scaling extension
     var initialMagnificationScale: CGFloat = 0
@@ -103,6 +120,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private var isAutomaticIndentEnabled = false
     
     private var mouseDownPoint: NSPoint = .zero
+    private var needsUpdateInsertionIndicators = false
     
     private lazy var overscrollResizingDebouncer = Debouncer { [weak self] in self?.invalidateOverscrollRate() }
     
@@ -332,6 +350,26 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // post notification about becoming the first responder
         NotificationCenter.default.post(name: EditorTextView.didBecomeFirstResponderNotification, object: self)
         
+        if #available(macOS 14, *) {
+            for indicator in self.insertionIndicators {
+                indicator.displayMode = .automatic
+            }
+        }
+        
+        return true
+    }
+    
+    
+    override func resignFirstResponder() -> Bool {
+        
+        guard super.resignFirstResponder() else { return false }
+        
+        if #available(macOS 14, *) {
+            for indicator in self.insertionIndicators {
+                indicator.displayMode = .hidden
+            }
+        }
+        
         return true
     }
     
@@ -369,6 +407,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.overscrollResizingDebouncer.schedule()
         }
         
+        self.needsUpdateInsertionIndicators = true
         self.needsUpdateLineHighlight = true
     }
     
@@ -826,6 +865,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             guard self?.rangesForUserTextChange ?? self?.selectedRanges != currentRanges else { return }
             NotificationCenter.default.post(name: EditorTextView.didLiveChangeSelectionNotification, object: self)
         }
+        
+        self.needsUpdateInsertionIndicators = true
     }
     
     
@@ -916,6 +957,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             
             self.invalidateDefaultParagraphStyle()
             self.needsUpdateLineHighlight = true
+            self.needsUpdateInsertionIndicators = true
             
             // set to the super after updating textStorage attributes in `.invalidateDefaultParagraphStyle()`
             // to avoid the strange issue that letters change into undefined
@@ -956,6 +998,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    override func viewWillDraw() {
+        
+        super.viewWillDraw()
+        
+        if #available(macOS 14, *), self.needsUpdateInsertionIndicators {
+            self.updateInsertionIndicators()
+            self.needsUpdateInsertionIndicators = false
+        }
+    }
+    
+    
     /// draw background
     override func drawBackground(in rect: NSRect) {
         
@@ -972,6 +1025,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     /// draw insertion point
     override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
+        
+        // -> Use NSTextInsertionIndicators on macOS 14 and later.
+        if #available(macOS 14, *) {
+            return super.drawInsertionPoint(in: rect, color: .clear, turnedOn: flag)
+        }
         
         super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
         
@@ -1015,7 +1073,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // draw zero-width insertion points while rectangular selection
         // -> Because the insertion point blink timer stops while dragging. (macOS 10.14)
-        if self.needsDrawInsertionPoints {
+        if self.needsDrawInsertionPoints, ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 14 {
             self.insertionRanges
                 .filter(\.isEmpty)
                 .flatMap { self.insertionPointRects(at: $0.location) }
@@ -1130,6 +1188,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             }
             
             self.didChangeValue(for: \.baseWritingDirection)
+            
+            self.needsUpdateInsertionIndicators = true
         }
     }
     
@@ -1207,6 +1267,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.invalidateRestorableState()
             self.invalidateDefaultParagraphStyle()
             self.needsUpdateLineHighlight = true
+            self.needsUpdateInsertionIndicators = true
         }
     }
     
@@ -1221,6 +1282,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             
             self.invalidateDefaultParagraphStyle()
             self.needsUpdateLineHighlight = true
+            self.needsUpdateInsertionIndicators = true
         }
     }
     
@@ -1271,6 +1333,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         set {
             (self.layoutManager as? LayoutManager)?.showsInvisibles = newValue
+            self.needsUpdateInsertionIndicators = true
         }
     }
     
@@ -1371,6 +1434,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         } else {
             theme.insertionPoint.color
         }
+        if #available(macOS 14, *) {
+            for indicator in self.insertionIndicators {
+                indicator.color = self.insertionPointColor
+            }
+        }
         self.selectedTextAttributes[.backgroundColor] = theme.selection.usesSystemSetting
             ? .selectedTextBackgroundColor
             : theme.selection.color
@@ -1418,6 +1486,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         if let lineHeight = (self.layoutManager as? LayoutManager)?.lineHeight {
             self.enclosingScrollView?.lineScroll = lineHeight
         }
+        
+        self.needsUpdateInsertionIndicators = true
     }
     
     

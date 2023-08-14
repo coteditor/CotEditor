@@ -33,6 +33,9 @@ protocol MultiCursorEditing: NSTextView {
     var insertionPointTimer: (any DispatchSourceTimer)? { get set }
     var insertionPointOn: Bool { get set }
     var isPerformingRectangularSelection: Bool { get }
+    
+    @available(macOS 14, *)
+    var insertionIndicators: [NSTextInsertionIndicator] { get set }
 }
 
 
@@ -314,7 +317,10 @@ extension MultiCursorEditing {
     
     
     /// Enable or disable `insertionPointTimer` according to the selection state.
+    @available(macOS, deprecated: 14)
     func updateInsertionPointTimer() {
+        
+        if #available(macOS 14, *) { return }
         
         if self.isPerformingRectangularSelection || (!self.insertionLocations.isEmpty && self.selectedRanges.allSatisfy({ !$0.rangeValue.isEmpty })) {
             self.enableOwnInsertionPointTimer()
@@ -395,6 +401,37 @@ extension MultiCursorEditing {
         let maxBound = self.characterIndexForInsertion(at: NSPoint(x: rect.maxX, y: rect.midY))
         
         return NSRange(min(minBound, maxBound)..<max(minBound, maxBound))
+    }
+    
+    
+    /// Update insertion indicators.
+    @available(macOS 14, *)
+    func updateInsertionIndicators() {
+        
+        let properInsertionLocations = self.selectedRange.length == 0 ? [self.selectedRange.location] : []
+        let locations = properInsertionLocations + self.insertionLocations
+        
+        // reuse existing indicators
+        var indicators = ArraySlice(self.insertionIndicators)  // slice for popFirst()
+        
+        self.insertionIndicators = locations
+            .compactMap { self.insertionPointRects(at: $0).first }  // ignore split cursors
+            .map { rect in
+                if let indicator = indicators.popFirst() {
+                    indicator.frame = rect
+                    return indicator
+                } else {
+                    let indicator = NSTextInsertionIndicator(frame: rect)
+                    indicator.color = self.insertionPointColor
+                    self.addSubview(indicator)
+                    return indicator
+                }
+            }
+        
+        // remove unused indicators
+        for indicator in indicators {
+            indicator.removeFromSuperview()
+        }
     }
 }
 
@@ -489,6 +526,7 @@ private extension UserDefaults {
 private extension MultiCursorEditing {
     
     /// Enable insertion point blink timer to draw insertion points forcibly.
+    @available(macOS, deprecated: 14)
     private func enableOwnInsertionPointTimer() {
         
         guard self.insertionPointTimer?.isCancelled ?? true else { return }
