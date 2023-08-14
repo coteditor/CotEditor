@@ -256,7 +256,7 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Action Messages
     
-    /// open a new document as new window
+    /// Open a new document as a new window.
     @IBAction func newDocumentAsWindow(_ sender: Any?) {
         
         DocumentWindow.tabbingPreference = .manual
@@ -265,7 +265,7 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// open a new document as tab in the existing frontmost window
+    /// Open a new document as a tab in the existing frontmost window.
     @IBAction func newDocumentAsTab(_ sender: Any?) {
         
         DocumentWindow.tabbingPreference = .always
@@ -277,7 +277,7 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Private Methods
     
-    /// transient document to be replaced or nil
+    /// Transient document to be replaced or `nil`.
     private var transientDocument: Document? {
         
         guard
@@ -292,7 +292,11 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// replace window controllers in documents
+    /// Replace window controllers in documents.
+    ///
+    /// - Parameters:
+    ///   - transientDocument: The transient document to be replaced.
+    ///   - document: The new document to replace.
     @MainActor private func replaceTransientDocument(_ transientDocument: Document, with document: Document) {
         
         for controller in transientDocument.windowControllers {
@@ -340,7 +344,12 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// callback from document after calling `closeAllDocuments(withDelegate:didCloseAllSelector:contextInfo)`.
+    /// Callback from document after calling `closeAllDocuments(withDelegate:didCloseAllSelector:contextInfo)`.
+    ///
+    /// - Parameters:
+    ///   - documentController: The sender.
+    ///   - didCloseAll: The flag if the sender close all documents.
+    ///   - contextInfo: The context info.
     @objc private func documentController(_ documentController: NSDocumentController, didCloseAll: Bool, contextInfo: UnsafeMutableRawPointer) {
         
         // cancel relaunching
