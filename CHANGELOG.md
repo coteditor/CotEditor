@@ -14,8 +14,8 @@ Change Log
 
 - Change the system requirement to __macOS 13 Ventura and later__.
 - Update the behavior of the inspector button in the toolbar on macOS 14 Sonoma.
-- Add “Use system color” option to insertion point color in the theme setting view.
-- Change the inspector behavior to open inward.
+- Add “Use system color” option to the insertion point color in the theme setting view.
+- Change the inspector's behavior to open inward.
 - Add a font size field to the print dialog.
 - Deprecate the print font setting in the Print settings.
 - Deprecate the cursor type option.
