@@ -26,12 +26,13 @@
 
 import Combine
 import Foundation
+import AppKit.NSMenuItem
 import UniformTypeIdentifiers
 import Yams
 
 @objc protocol SyntaxHolder: AnyObject {
     
-    func changeSyntax(_ sender: AnyObject?)
+    func changeSyntax(_ sender: NSMenuItem)
     func recolorAll(_ sender: Any?)
 }
 

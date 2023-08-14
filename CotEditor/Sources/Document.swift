@@ -1049,11 +1049,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// Change the syntax.
-    @IBAction func changeSyntax(_ sender: AnyObject?) {
+    @IBAction func changeSyntax(_ sender: NSMenuItem) {
         
-        guard let name = sender?.title else { return assertionFailure() }
-        
-        self.setSyntax(name: name)
+        self.setSyntax(name: sender.title)
     }
     
     
