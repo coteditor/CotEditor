@@ -62,9 +62,9 @@ extension NSString {
         
         // avoid returning index between CRLF
         let index = location - 1
-        let offset = (self.character(at: index) == 0x000A && self.character(at: index - 1) == 0x000D) ? 1 : 0
+        let isCRLF = (index > 0 && self.character(at: index) == 0xA && self.character(at: index - 1) == 0xD)
         
-        return self.rangeOfComposedCharacterSequence(at: index - offset).lowerBound
+        return self.rangeOfComposedCharacterSequence(at: isCRLF ? index - 1 : index).lowerBound
     }
     
     
@@ -80,9 +80,9 @@ extension NSString {
         
         // avoid returning index between CRLF
         let index = location
-        let offset = (self.character(at: index) == 0x000D && self.character(at: index + 1) == 0x000A) ? 1 : 0
+        let isCRLF = (self.character(at: index) == 0xD && self.character(at: index + 1) == 0xA)
         
-        return self.rangeOfComposedCharacterSequence(at: index + offset).upperBound
+        return self.rangeOfComposedCharacterSequence(at: isCRLF ? index + 1 : index).upperBound
     }
     
     
