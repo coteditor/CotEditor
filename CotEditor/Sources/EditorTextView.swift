@@ -325,11 +325,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// post notification about becoming the first responder
     override func becomeFirstResponder() -> Bool {
         
         guard super.becomeFirstResponder() else { return false }
         
+        // post notification about becoming the first responder
         NotificationCenter.default.post(name: EditorTextView.didBecomeFirstResponderNotification, object: self)
         
         return true
