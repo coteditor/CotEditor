@@ -29,20 +29,11 @@ import SwiftUI
 
 final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate {
     
-    enum Mode {
-        
-        case edit(_ state: SettingState)
-        case new
-    }
-    
-    
-    
     // MARK: Private Properties
     
-    private let mode: Mode
+    private let originalName: String?
     private let syntax: NSMutableDictionary
     private let validator: SyntaxValidator
-    @objc private let isRestorable: Bool
     @objc private let isBundledSyntax: Bool
     
     @objc private dynamic var menuTitles: [String] = []  // for binding
@@ -62,29 +53,20 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     ///
     /// - Parameters:
     ///   - coder: The coder to instantiate the view from a storyboard.
-    ///   - mode: The edit mode.
-    init?(coder: NSCoder, mode: Mode) {
+    ///   - state: The setting state to edit, or nil for a new setting.
+    init?(coder: NSCoder, state: SettingState?) {
         
-        self.mode = mode
+        self.originalName = state?.name
+        self.isBundledSyntax = state?.isBundled ?? false
         
         let manager = SyntaxManager.shared
         
-        let syntax: SyntaxManager.SyntaxDictionary = switch mode {
-            case .edit(let state):
-                manager.settingDictionary(name: state.name) ?? manager.blankSettingDictionary
-            case .new:
-                manager.blankSettingDictionary
+        let syntax: SyntaxManager.SyntaxDictionary = if let state {
+            manager.settingDictionary(name: state.name) ?? manager.blankSettingDictionary
+        } else {
+            manager.blankSettingDictionary
         }
         self.syntax = NSMutableDictionary(dictionary: syntax)
-        
-        switch mode {
-            case .edit(let state):
-                self.isBundledSyntax = state.isBundled
-                self.isRestorable = state.isRestorable
-            case .new:
-                self.isBundledSyntax = false
-                self.isRestorable = false
-        }
         
         self.validator = SyntaxValidator(syntax: self.syntax)
         
@@ -125,10 +107,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         let syntaxNameField = self.syntaxNameField!
         
         // setup syntax name field
-        syntaxNameField.stringValue = switch self.mode {
-            case .edit(let state): state.name
-            case .new: ""
-        }
+        syntaxNameField.stringValue = self.originalName ?? ""
+        
         if self.isBundledSyntax {
             syntaxNameField.isBezeled = false
             syntaxNameField.isSelectable = false
@@ -184,8 +164,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     @IBAction func setToFactoryDefaults(_ sender: Any?) {
         
         guard
-            case .edit(let state) = self.mode,
-            let syntax = SyntaxManager.shared.bundledSettingDictionary(name: state.name)
+            let name = self.originalName,
+            let syntax = SyntaxManager.shared.bundledSettingDictionary(name: name)
         else { return }
         
         self.syntax.setDictionary(syntax)
@@ -235,19 +215,14 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             return
         }
         
-        // NSMutableDictonary to SyntaxDictionary
+        // NSMutableDictionary to SyntaxDictionary
         let syntaxDictionary: SyntaxManager.SyntaxDictionary = self.syntax.reduce(into: [:]) { (dictionary, item) in
             guard let key = item.key as? String else { return assertionFailure() }
             dictionary[key] = item.value
         }
         
-        let oldName: String? = {
-            guard case .edit(let state) = self.mode else { return nil }
-            return state.name
-        }()
-        
         do {
-            try SyntaxManager.shared.save(settingDictionary: syntaxDictionary, name: syntaxName, oldName: oldName)
+            try SyntaxManager.shared.save(settingDictionary: syntaxDictionary, name: syntaxName, oldName: self.originalName)
         } catch {
             print(error)
         }
@@ -266,17 +241,12 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     @discardableResult
     private func validate(syntaxName: String) -> Bool {
         
-        if case .edit = self.mode, self.isBundledSyntax { return true }  // cannot edit syntax name
+        if self.isBundledSyntax { return true }  // cannot edit syntax name
         
         self.message = nil
         
-        let originalName: String? = {
-            guard case .edit(let state) = self.mode else { return nil }
-            return state.name
-        }()
-        
         do {
-            try SyntaxManager.shared.validate(settingName: syntaxName, originalName: originalName)
+            try SyntaxManager.shared.validate(settingName: syntaxName, originalName: self.originalName)
         } catch {
             self.message = error.localizedDescription
             return false

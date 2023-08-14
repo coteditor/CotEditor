@@ -343,7 +343,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         let syntaxName = self.targetSyntaxName(for: sender)
         let state = SyntaxManager.shared.state(of: syntaxName)!
         
-        self.presentSyntaxEditor(mode: .edit(state))
+        self.presentSyntaxEditor(state: state)
     }
     
     
@@ -366,7 +366,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// show syntax edit sheet in new mode
     @IBAction func createSyntax(_ sender: Any?) {
         
-        self.presentSyntaxEditor(mode: .new)
+        self.presentSyntaxEditor()
     }
     
     /// delete selected syntax
@@ -604,11 +604,11 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     /// Present the syntax edit sheet.
     ///
-    /// - Parameter mode: The edit mode.
-    private func presentSyntaxEditor(mode: SyntaxEditViewController.Mode) {
+    /// - Parameter mode: The setting state to edit, or `nil` for a new setting.
+    private func presentSyntaxEditor(state: SettingState? = nil) {
         
         let viewController = NSStoryboard(name: "SyntaxEditView").instantiateInitialController { (coder) in
-            SyntaxEditViewController(coder: coder, mode: mode)
+            SyntaxEditViewController(coder: coder, state: state)
         }!
         
         self.presentAsSheet(viewController)
