@@ -158,9 +158,7 @@ final class TextFinder {
         
         self.findTask?.cancel()
         self.findTask = Task.detached(priority: .userInitiated) {
-            // debounce
-            try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.05))
-            
+            try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.05))  // debounce
             try await self.find(forward: true, isIncremental: true)
         }
     }
