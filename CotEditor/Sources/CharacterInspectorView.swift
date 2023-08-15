@@ -119,38 +119,51 @@ private struct ScalarDetailView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 2) {
+        Grid(alignment: .leadingLastTextBaseline, verticalSpacing: 2) {
             if self.items.contains(.codePoint) {
-                Group {
-                    if let surrogates = self.scalar.surrogateCodePoints {
-                        Text(verbatim: "\(self.scalar.codePoint) (\(surrogates.lead) \(surrogates.trail))")
-                    } else {
-                        Text(self.scalar.codePoint)
+                GridRow {
+                    Text("Code Point:")
+                        .gridColumnAlignment(.trailing)
+                    
+                    Group {
+                        if let surrogates = self.scalar.surrogateCodePoints {
+                            Text(verbatim: "\(self.scalar.codePoint) (\(surrogates.lead) \(surrogates.trail))")
+                        } else {
+                            Text(self.scalar.codePoint)
+                        }
                     }
+                    .monospacedDigit()
+                    .foregroundColor(.label)
+                    .textSelection(.enabled)
                 }
-                .monospacedDigit()
-                .foregroundColor(.label)
-                .textSelection(.enabled)
             }
             
             if self.items.contains(.block) {
-                if let blockName = self.scalar.localizedBlockName {
-                    Text(blockName)
-                        .foregroundColor(.label)
-                        .textSelection(.enabled)
-                } else {
-                    Text("No Block")
-                        .foregroundColor(.secondaryLabel)
+                GridRow {
+                    Text("Block:")
+                    
+                    if let blockName = self.scalar.localizedBlockName {
+                        Text(blockName)
+                            .foregroundColor(.label)
+                            .textSelection(.enabled)
+                    } else {
+                        Text("No Block")
+                            .foregroundColor(.secondaryLabel)
+                    }
                 }
             }
             
             if self.items.contains(.category) {
-                let category = self.scalar.properties.generalCategory
-                Text(verbatim: "\(category.longName) (\(category.shortName))")
-                    .foregroundColor(.label)
-                    .textSelection(.enabled)
+                GridRow {
+                    Text("Category:")
+                    
+                    let category = self.scalar.properties.generalCategory
+                    Text(verbatim: "\(category.longName) (\(category.shortName))")
+                        .foregroundColor(.label)
+                        .textSelection(.enabled)
+                }
             }
-        }.fixedSize()
+        }
     }
 }
 

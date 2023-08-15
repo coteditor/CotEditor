@@ -898,6 +898,9 @@
 /* MARK: Character Inspector View */
 "Unknown" = "Unbekannt";
 "No Block" = "Kein Block";
+"Code Point:" = "Codepunkte:";
+"Block:" = "Block:";
+"Category:" = "Kategorie:";
 
 
 

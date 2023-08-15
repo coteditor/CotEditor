@@ -898,6 +898,9 @@
 /* MARK: Character Inspector View */
 "Unknown" = "不明";
 "No Block" = "ブロックなし";
+"Code Point:" = "コードポイント:";
+"Block:" = "ブロック:";
+"Category:" = "カテゴリ:";
 
 
 

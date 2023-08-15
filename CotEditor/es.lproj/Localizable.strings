@@ -898,6 +898,9 @@
 /* MARK: Character Inspector View */
 "Unknown" = "Desconocido";
 "No Block" = "No bloque";
+"Code Point:" = "Code Point:";  // FIXME: new
+"Block:" = "Block:";  // FIXME: new
+"Category:" = "Category:";  // FIXME: new
 
 
 

@@ -897,7 +897,10 @@
 
 /* MARK: Character Inspector View */
 "Unknown" = "未知";
-"No Block" = "无 Block";
+"No Block" = "无Block";
+"Code Point:" = "Code Point:";  // FIXME: new
+"Block:" = "Block:";  // FIXME: new
+"Category:" = "Category:";  // FIXME: new
 
 
 
