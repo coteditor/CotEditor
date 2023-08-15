@@ -21,7 +21,6 @@ Change Log
 - Deprecate the print font setting in the Print settings.
 - Deprecate the cursor type option.
 - Migrate the sharing interface to the modern version.
-- Disable the beep sound at the end of successful replacement.
 - [trivial] Migrate the Opacity toolbar item to popover in macOS 14.
 - [trivial] Disable the contextual menu for shortcut fields.
 - [trivial] Reduce the maximum number to split editor.
@@ -30,16 +29,26 @@ Change Log
 - [trivial] Rearrange the layout of the encoding list.
 
 
+### Known Issues
+
+- UI are not localized yet.
+
+
+
+4.5.8 (574)
+--------------------------
+
+### Improvements
+
+- Disable the beep sound at the end of successful replacement.
+
+
 ### Fixes
 
 - Fix an issue that the rectangular selection could not add an insertion point at the empty last line.
 - Fix an issue that the line was not highlighted when one of multiple insertion points locates at the empty last line.
 - Fix an issue that the current line highlight did not update when some editor setting was changed.
-
-
-### Known Issues
-
-- UI are not localized yet.
+- Workaround an issue the toggle inspector command is disabled in macOS 14.
 
 
 
