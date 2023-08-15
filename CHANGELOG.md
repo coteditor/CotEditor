@@ -28,11 +28,6 @@ Change Log
 - [trivial] Rename “syntax style” with just “syntax.”
 
 
-### Fixes
-
-- Fix an issue that the “Indent selection with Tab key” in the Edit pane did not work. 
-
-
 
 4.5.7 (573)
 --------------------------

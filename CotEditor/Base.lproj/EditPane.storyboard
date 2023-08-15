@@ -194,9 +194,6 @@
                                         <buttonCell key="cell" type="check" title="Indent selection with Tab key" bezelStyle="regularSquare" imagePosition="left" inset="2" id="aVn-PD-hen">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
-                                            <connections>
-                                                <binding destination="TDG-Hm-YNe" name="value" keyPath="values.indentWithTabKey" id="jiQ-8A-P0W"/>
-                                            </connections>
                                         </buttonCell>
                                         <connections>
                                             <binding destination="TDG-Hm-YNe" name="value" keyPath="values.indentWithTabKey" id="2lE-lf-xA8"/>
