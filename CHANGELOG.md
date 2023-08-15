@@ -32,6 +32,7 @@ Change Log
 
 - Fix an issue that the rectangular selection could not add an insertion point at the empty last line.
 - Fix an issue that the line was not highlighted when one of multiple insertion points locates at the empty last line.
+- Fix an issue that the current line highlight did not update when some editor setting was changed.
 
 
 
