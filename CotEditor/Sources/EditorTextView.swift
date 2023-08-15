@@ -68,8 +68,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var needsUpdateLineHighlight = true {
         
         didSet {
-            guard needsUpdateLineHighlight else { return }
-            // remove previous highlights
             (self.lineHighLightRects + [self.visibleRect]).forEach { self.setNeedsDisplay($0, avoidAdditionalLayout: true) }
         }
     }
@@ -300,9 +298,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    
-    // MARK: Text View Methods
-    
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
@@ -343,17 +338,20 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// append inset only to the bottom for overscroll
+    
+    // MARK: Text View Methods
+    
     override var textContainerOrigin: NSPoint {
         
+        // append inset only to the bottom for overscroll
         NSPoint(x: super.textContainerOrigin.x, y: Self.textContainerInset.height)
             .offsetBy(dy: (self.layoutOrientation == .vertical) ? self.bounds.minY.rounded() : 0)
     }
     
     
-    /// use sub-insertion points also for multi-text editing
     override var rangesForUserTextChange: [NSValue]? {
         
+        // use sub-insertion points also for multi-text editing
         self.insertionRanges as [NSValue]
     }
     
@@ -389,7 +387,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// the receiver was attached to / detached from a window
     override func viewDidMoveToWindow() {
         
         super.viewDidMoveToWindow()
@@ -409,7 +406,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// view did change frame
     override func setFrameSize(_ newSize: NSSize) {
         
         let didChange = newSize != self.frame.size
@@ -427,7 +423,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// visible area did change
     override func viewDidEndLiveResize() {
         
         super.viewDidEndLiveResize()
@@ -436,7 +431,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// update state of text formatting NSTouchBarItems such as NSTouchBarItemIdentifierTextStyle and NSTouchBarItemIdentifierTextAlignment
     override func updateTextTouchBarItems() {
         
         // silly workaround for the issue #971, where `updateTextTouchBarItems()` is invoked repeatedly when resizing frame
@@ -446,7 +440,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// the left mouse button is pressed
     override func mouseDown(with event: NSEvent) {
         
         self.mouseDownPoint = self.convert(event.locationInWindow, from: nil)
@@ -487,7 +480,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// key is pressed
     override func keyDown(with event: NSEvent) {
         
         // perform snippet insertion if not in the middle of Japanese input
@@ -503,7 +495,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// Esc key is pressed
+    /// The Esc key is pressed.
     override func cancelOperation(_ sender: Any?) {
         
         // exit multi-cursor mode
@@ -517,7 +509,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// text did change
     override func didChangeText() {
         
         super.didChangeText()
@@ -543,7 +534,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// on inputting text (NSTextInputClient Protocol)
     override func insertText(_ string: Any, replacementRange: NSRange) {
         
         // do not use this method for programmatic insertion.
@@ -646,7 +636,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// insert tab & expand tab
     override func insertTab(_ sender: Any?) {
         
         // indent with tab key
@@ -669,7 +658,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// Shift + Tab is pressed
+    /// The Shift + Tab keys are pressed
     override func insertBacktab(_ sender: Any?) {
         
         // outdent with tab key
@@ -682,7 +671,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// insert new line & perform auto-indent
     override func insertNewline(_ sender: Any?) {
         
         guard
@@ -741,7 +729,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// delete & adjust indent
     override func deleteBackward(_ sender: Any?) {
         
         guard self.isEditable else { return super.deleteBackward(sender) }
@@ -771,7 +758,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// delete the selected text and place it onto the general pasteboard
     override func cut(_ sender: Any?) {
         
         let insertionRanges = self.insertionRanges
@@ -793,7 +779,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// Perform automatic corrections
     override func handleTextCheckingResults(_ results: [NSTextCheckingResult], forRange range: NSRange, types checkingTypes: NSTextCheckingTypes, options: [NSSpellChecker.OptionKey: Any] = [:], orthography: NSOrthography, wordCount: Int) {
         
         super.handleTextCheckingResults(results, forRange: range, types: checkingTypes, options: options, orthography: orthography, wordCount: wordCount)
@@ -811,7 +796,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// change multiple selection ranges
     override var selectedRanges: [NSValue] {
         
         willSet {
@@ -825,7 +809,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// Change selection.
+    /// Change selections.
     ///
     /// - Note: Update `insertionLocations` manually when you use this method.
     override func setSelectedRanges(_ ranges: [NSValue], affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
@@ -885,7 +869,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// set a single selection
+    /// Set a single selection.
     override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
         
         self.insertionLocations.removeAll()
@@ -894,7 +878,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// customize context menu
     override func menu(for event: NSEvent) -> NSMenu? {
         
         guard let menu = super.menu(for: event) else { return nil }
@@ -948,7 +931,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// text font
     override var font: NSFont? {
         
         get {
@@ -983,7 +965,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// change font via font panel
     override func changeFont(_ sender: Any?) {
         
         guard
@@ -1001,7 +982,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    ///
     override func setNeedsDisplay(_ invalidRect: NSRect) {
         
         // expand rect as a workaround for multiple cursors (2018-11 macOS 10.14)
@@ -1024,7 +1004,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// draw background
     override func drawBackground(in rect: NSRect) {
         
         super.drawBackground(in: rect)
@@ -1038,7 +1017,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// draw insertion point
     override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
         
         // -> Use NSTextInsertionIndicators on macOS 14 and later.
@@ -1055,7 +1033,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// draw view
     override func draw(_ dirtyRect: NSRect) {
         
         super.draw(dirtyRect)
@@ -1098,7 +1075,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// scroll to display specific range
     override func scrollRangeToVisible(_ range: NSRange) {
         
         // scroll line by line if an arrow key is pressed
@@ -1114,7 +1090,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// change text layout orientation
     override func setLayoutOrientation(_ orientation: NSLayoutManager.TextLayoutOrientation) {
         
         let didChange = orientation != self.layoutOrientation
@@ -1141,7 +1116,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// read pasted/dropped item from NSPaseboard (involed in `performDragOperation(_:)`)
+    /// Read the pasted/dropped item from NSPasteboard (invoked in `performDragOperation(_:)`).
     override func readSelection(from pboard: NSPasteboard, type: NSPasteboard.PasteboardType) -> Bool {
         
         // on file drop
@@ -1223,7 +1198,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Protocol
     
-    /// apply current state to related menu items and toolbar items
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
@@ -1270,7 +1244,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// tab width in number of spaces
+    /// Tab width in number of spaces.
     var tabWidth: Int {
         
         didSet {
@@ -1287,7 +1261,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// line height multiple
+    /// The line height multiple.
     var lineHeight: CGFloat {
         
         didSet {
@@ -1302,7 +1276,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// whether draws page guide
+    /// Whether draws the page guide.
     var showsPageGuide = false {
         
         didSet {
@@ -1311,7 +1285,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// whether draws indent guides
+    /// Whether draws indent guides.
     var showsIndentGuides: Bool {
         
         get {
@@ -1325,7 +1299,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// whether text is antialiased
+    /// Whether text is antialiased.
     var usesAntialias: Bool {
         
         get {
@@ -1339,7 +1313,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// whether invisible characters are shown
+    /// Whether invisible characters are shown.
     var showsInvisibles: Bool {
         
         get {
@@ -1356,7 +1330,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Action Messages
     
-    /// copy selection with syntax highlight and font style
+    /// Copy  the selections with syntax highlight and font style.
     @IBAction func copyWithStyle(_ sender: Any?) {
         
         guard !self.selectedRange.isEmpty else { return NSSound.beep() }
@@ -1406,14 +1380,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// input an Yen sign (¥)
+    /// Input an Yen sign (¥).
     @IBAction func inputYenMark(_ sender: Any?) {
         
         super.insertText("¥", replacementRange: .notFound)
     }
     
     
-    /// input a backslash (\\)
+    /// Input a backslash (\\).
     @IBAction func inputBackSlash(_ sender: Any?) {
         
         super.insertText("\\", replacementRange: .notFound)
@@ -1423,14 +1397,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Private Methods
     
-    /// document object representing the text view contents
+    /// The document object representing the text view contents.
     private var document: Document? {
         
         self.window?.windowController?.document as? Document
     }
     
     
-    /// update coloring settings
+    /// Update coloring settings with the current theme.
     private func applyTheme() {
         
         assert(Thread.isMainThread)
@@ -1506,7 +1480,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// calculate overscrolling amount
+    /// Calculate overscrolling amount and apply it.
     private func invalidateOverscrollRate() {
         
         guard let layoutManager = self.layoutManager as? LayoutManager else { return }
@@ -1541,7 +1515,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// validate whether turns the non-contiguous layout on
+    /// Validate whether turns the non-contiguous layout on.
     private func invalidateNonContiguousLayout() {
         
         self.layoutManager?.allowsNonContiguousLayout = {
@@ -1554,7 +1528,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// insert string representation of dropped files applying user setting
+    /// Insert string representation of dropped files applying the user's file drop settings.
+    ///
+    /// - Parameter urls: The file URLs of dropped files.
+    /// - Returns: Whether the file drop was performed.
     private func insertDroppedFiles(_ urls: [URL]) -> Bool {
         
         guard !urls.isEmpty else { return false }
@@ -1707,7 +1684,6 @@ extension EditorTextView {
     
     // MARK: Text View Methods
     
-    /// return range for word completion
     override var rangeForUserCompletion: NSRange {
         
         let range = super.rangeForUserCompletion
@@ -1727,7 +1703,6 @@ extension EditorTextView {
     }
     
     
-    /// build completion list
     override func completions(forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>) -> [String]? {
         
         // do nothing if completion is not suggested from the typed characters
@@ -1774,7 +1749,6 @@ extension EditorTextView {
     }
     
     
-    /// display completion candidate and list
     override func insertCompletion(_ word: String, forPartialWordRange charRange: NSRange, movement: Int, isFinal flag: Bool) {
         
         self.completionDebouncer.cancel()
@@ -1839,7 +1813,7 @@ extension EditorTextView {
     
     // MARK: Private Methods
     
-    /// display word completion list
+    /// Display the word completion candidates list.
     private func performCompletion() {
         
         // abord if:
@@ -1863,7 +1837,6 @@ extension EditorTextView {
     
     // MARK: Text View Methods
     
-    /// adjust word selection range
     override func selectionRange(forProposedRange proposedCharRange: NSRange, granularity: NSSelectionGranularity) -> NSRange {
         
         var range = super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity)
@@ -1921,7 +1894,10 @@ extension EditorTextView {
     
     // MARK: Public Methods
     
-    /// word range that includes location
+    /// Word range that includes location.
+    ///
+    /// - Parameter location: The character index to find the word range.
+    /// - Returns: The range of a word.
     func wordRange(at location: Int) -> NSRange {
         
         let proposedWordRange = super.selectionRange(forProposedRange: NSRange(location: location, length: 0), granularity: .selectByWord)
