@@ -37,6 +37,12 @@ Change Log
 - Fix an issue that the current line highlight did not update when some editor setting was changed.
 
 
+### Known Issues
+
+- UI are not localized yet.
+- Insertion points in the editor are displayed even when the application is inactive (FB12968177).
+
+
 
 4.5.7 (573)
 --------------------------
