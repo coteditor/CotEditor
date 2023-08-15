@@ -81,7 +81,9 @@ extension CurrentLineHighlighting {
             .map(\.rangeValue)
             .map { (self.string as NSString).lineRange(for: $0) }
             .reduce(into: [NSRange]()) { (ranges, range) in
-                if ranges.last?.touches(range) == true {
+                if range.isEmpty && range.location == self.string.length {
+                    ranges.append(range)
+                } else if ranges.last?.touches(range) == true {
                     ranges[ranges.count - 1].formUnion(range)
                 } else {
                     ranges.append(range)
