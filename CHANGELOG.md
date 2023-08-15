@@ -17,6 +17,7 @@ Change Log
 - Add “Use system color” option to the insertion point color in the theme setting view.
 - Change the inspector's behavior to open inward.
 - Add a font size field to the print dialog.
+- Update the character inspector to add labels for each item and display the Unicode version.
 - Deprecate the print font setting in the Print settings.
 - Deprecate the cursor type option.
 - Migrate the sharing interface to the modern version.

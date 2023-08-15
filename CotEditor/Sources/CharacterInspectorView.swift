@@ -108,8 +108,9 @@ private struct ScalarDetailView: View {
         static let codePoint = Self(rawValue: 1 << 0)
         static let block     = Self(rawValue: 1 << 1)
         static let category  = Self(rawValue: 1 << 2)
+        static let version   = Self(rawValue: 1 << 3)
         
-        static let all: Self = [.codePoint, .block, .category]
+        static let all: Self = [.codePoint, .block, .category, .version]
     }
     
     
@@ -161,6 +162,14 @@ private struct ScalarDetailView: View {
                     Text(verbatim: "\(category.longName) (\(category.shortName))")
                         .foregroundColor(.label)
                         .textSelection(.enabled)
+                }
+            }
+            
+            if self.items.contains(.version), let age = self.scalar.properties.age {
+                GridRow {
+                    Text("Version:")
+                    
+                    Text(verbatim: "Unicode \(age.major).\(age.minor)")
                 }
             }
         }
