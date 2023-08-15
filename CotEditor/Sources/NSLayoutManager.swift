@@ -232,7 +232,7 @@ extension NSLayoutManager {
         
         guard
             let primaryRect = self.insertionPointRect(at: characterIndex, alternate: false)
-        else { assertionFailure(); return [] }
+        else { return [] }
         
         guard
             UserDefaults.standard.useSplitCursor,
@@ -272,6 +272,8 @@ extension NSLayoutManager {
         
         let count = self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: alternate, inDisplayOrder: true, positions: nil, characterIndexes: nil)
         
+        guard count > 0 else { return nil }
+        
         var positions = [CGFloat](repeating: 0, count: count)
         var characterIndexes = [Int](repeating: 0, count: count)
         self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: alternate, inDisplayOrder: true, positions: &positions, characterIndexes: &characterIndexes)
@@ -279,13 +281,14 @@ extension NSLayoutManager {
         guard let index = characterIndexes.firstIndex(of: characterIndex) else { return nil }
         
         let position = positions[index]
-        let glyphIndex = self.glyphIndexForCharacter(at: characterIndex)
-        let lastGlyphIndex = self.isValidGlyphIndex(glyphIndex) ? glyphIndex : glyphIndex - 1
         
-        let lineFragment = if characterIndex == self.attributedString().length, self.extraLineFragmentTextContainer != nil {
-            self.extraLineFragmentRect
+        let lineFragment: NSRect
+        if characterIndex == self.attributedString().length, self.extraLineFragmentTextContainer != nil {
+            lineFragment = self.extraLineFragmentRect
         } else {
-            self.lineFragmentRect(forGlyphAt: lastGlyphIndex, effectiveRange: nil, withoutAdditionalLayout: true)
+            let glyphIndex = self.glyphIndexForCharacter(at: characterIndex)
+            let lastGlyphIndex = self.isValidGlyphIndex(glyphIndex) ? glyphIndex : glyphIndex - 1
+            lineFragment = self.lineFragmentRect(forGlyphAt: lastGlyphIndex, effectiveRange: nil, withoutAdditionalLayout: true)
         }
         
         return NSRect(x: lineFragment.minX + position, y: lineFragment.minY, width: 1, height: lineFragment.height)
