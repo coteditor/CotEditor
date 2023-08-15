@@ -155,14 +155,31 @@ extension MultiCursorEditing {
         
         let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
         
+        // possibility of the very last insertion point in the extra line fragment
+        var containsLastLine = (range.upperBound == self.string.length &&
+                                layoutManager.extraLineFragmentTextContainer != nil)
+        
         var locations: [Int] = []
-        layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { [unowned self] (_, usedRect, _, _, _) in
+        layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { [unowned self] (_, usedRect, _, lineGlyphRange, _) in
             let rect = usedRect.offset(by: self.textContainerOrigin)  // to view-based
             let point = NSPoint(x: startPoint.x, y: rect.midY)
             
             guard rect.contains(point) else { return }
             
-            locations.append(self.characterIndexForInsertion(at: point))
+            let index = self.characterIndexForInsertion(at: point)
+            
+            // -> The extra line fragment can be an insertion point
+            //    only when the other locations are at the line heads.
+            if containsLastLine {
+                let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
+                containsLastLine = (glyphIndex == lineGlyphRange.lowerBound)
+            }
+            
+            locations.append(index)
+        }
+        
+        if containsLastLine {
+            locations.append(self.string.length)
         }
         
         guard locations.count > 1 else { return nil }

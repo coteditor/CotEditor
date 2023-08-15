@@ -5,6 +5,10 @@ Change Log
 4.5.8 (574)
 --------------------------
 
+### Fixes
+
+- Fix an issue that the rectangular selection could not add an insertion point at the empty last line.
+
 
 
 4.5.7 (573)
