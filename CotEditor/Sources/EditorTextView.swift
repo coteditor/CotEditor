@@ -136,6 +136,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     private var defaultsObservers: Set<AnyCancellable> = []
     private var windowOpacityObserver: AnyCancellable?
+    private var applicationObserver: AnyCancellable?
     
     
     
@@ -270,6 +271,20 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 .filter { !$0 }
                 .sink { [unowned self] _ in self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange) },
         ]
+        
+        // workaround the issue that indicators display even the application is inactive
+        // (2023-08 macOS 14 beta 5, FB12968177)
+        if #available(macOS 14, *) {
+            self.applicationObserver = Publishers.Merge(
+                NotificationCenter.default.publisher(for: NSApplication.didResignActiveNotification, object: NSApp),
+                NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification, object: NSApp))
+            .filter { [unowned self] _ in self.window?.firstResponder == self }
+            .sink { [unowned self] _ in
+                for indicator in self.insertionIndicators {
+                    indicator.displayMode = NSApp.isActive ? .automatic : .hidden
+                }
+            }
+        }
     }
     
     

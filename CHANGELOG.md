@@ -40,7 +40,6 @@ Change Log
 ### Known Issues
 
 - UI are not localized yet.
-- Insertion points in the editor are displayed even when the application is inactive (FB12968177).
 
 
 

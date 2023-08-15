@@ -408,8 +408,11 @@ extension MultiCursorEditing {
     @available(macOS 14, *)
     func updateInsertionIndicators() {
         
+        assert(Thread.isMainThread)
+        
         let properInsertionLocations = self.selectedRange.length == 0 ? [self.selectedRange.location] : []
         let locations = properInsertionLocations + self.insertionLocations
+        let isActive = (self.window?.firstResponder == self && NSApp.isActive)
         
         // reuse existing indicators
         var indicators = ArraySlice(self.insertionIndicators)  // slice for popFirst()
@@ -423,6 +426,7 @@ extension MultiCursorEditing {
                 } else {
                     let indicator = NSTextInsertionIndicator(frame: rect)
                     indicator.color = self.insertionPointColor
+                    indicator.displayMode = isActive ? .automatic : .hidden
                     self.addSubview(indicator)
                     return indicator
                 }
