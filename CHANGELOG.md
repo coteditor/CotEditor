@@ -28,6 +28,11 @@ Change Log
 - [trivial] Rename “syntax style” with just “syntax.”
 
 
+### Fixes
+
+- Fix an issue that the rectangular selection could not add an insertion point at the empty last line.
+
+
 
 4.5.7 (573)
 --------------------------
