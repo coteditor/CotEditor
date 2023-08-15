@@ -924,6 +924,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             (self.layoutManager as? LayoutManager)?.textFont = font
             
             self.invalidateDefaultParagraphStyle()
+            self.needsUpdateLineHighlight = true
             
             // set to the super after updating textStorage attributes in `.invalidateDefaultParagraphStyle()`
             // to avoid the strange issue that letters change into undefined
@@ -1216,8 +1217,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             
             guard tabWidth != oldValue else { return }
             
-            self.invalidateDefaultParagraphStyle()
             self.invalidateRestorableState()
+            self.invalidateDefaultParagraphStyle()
+            self.needsUpdateLineHighlight = true
         }
     }
     
