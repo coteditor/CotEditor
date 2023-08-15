@@ -372,7 +372,11 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.label = String(localized: "Inspector")
                 item.toolTip = String(localized: "Show document information")
                 item.image = NSImage(systemSymbolName: "info.circle", accessibilityDescription: item.label)
-                item.action = #selector(WindowContentViewController.toggleInspector)
+                if #available(macOS 14, *) {
+                    item.action = #selector(WindowContentViewController.toggleInspector_)
+                } else {
+                    item.action = #selector(WindowContentViewController.toggleInspector)
+                }
                 item.visibilityPriority = .high
                 return item
                 

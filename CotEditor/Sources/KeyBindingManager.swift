@@ -239,6 +239,7 @@ final class KeyBindingManager: SettingManaging {
                  #selector((any SyntaxHolder).changeSyntaxStyle),
                  #selector((any ThemeHolder).changeTheme),
                  #selector(Document.changeLineEnding(_:)),
+                 #selector(WindowContentViewController.toggleInspector_),
                  #selector(DocumentViewController.changeTabWidth),
                  #selector((any SnippetInsertable).insertSnippet),
                  #selector(ScriptManager.launchScript),

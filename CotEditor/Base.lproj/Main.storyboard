@@ -1236,6 +1236,7 @@ CA
                         <outlet property="snippetMenu" destination="dZy-7n-iCq" id="3hf-hr-ScA"/>
                         <outlet property="syntaxStylesMenu" destination="304" id="kdn-rP-dcP"/>
                         <outlet property="themesMenu" destination="165-HJ-Xty" id="R7w-wo-SVO"/>
+                        <outlet property="toggleInspectorItem" destination="I2p-KB-gxR" id="pdk-TB-Z7O"/>
                     </connections>
                 </customObject>
                 <customObject id="1Vq-aI-bgB" customClass="NSFontManager"/>

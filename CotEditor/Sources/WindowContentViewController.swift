@@ -80,7 +80,7 @@ final class WindowContentViewController: NSSplitViewController {
         
         // disable toggling inspector in the tab overview mode
         switch item.action {
-            case #selector(toggleInspector):
+            case #selector(toggleInspector), #selector(toggleInspector_):
                 (item as? NSMenuItem)?.title = self.isInspectorShown
                     ? String(localized: "Hide Inspector")
                     : String(localized: "Show Inspector")
@@ -128,6 +128,15 @@ final class WindowContentViewController: NSSplitViewController {
     
     /// Toggle visibility of the inspector.
     @IBAction func toggleInspector(_ sender: Any?) {
+        
+        NSAnimationContext.current.withAnimation {
+            self.isInspectorShown.toggle()
+        }
+    }
+    
+    
+    /// Toggle visibility of the inspector (workaround for macOS 14).
+    @IBAction func toggleInspector_(_ sender: Any?) {
         
         NSAnimationContext.current.withAnimation {
             self.isInspectorShown.toggle()

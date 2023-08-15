@@ -72,6 +72,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet private weak var themesMenu: NSMenu?
     @IBOutlet private weak var normalizationMenu: NSMenu?
     @IBOutlet private weak var snippetMenu: NSMenu?
+    @IBOutlet private weak var toggleInspectorItem: NSMenuItem?
     
     
     #if DEBUG
@@ -156,6 +157,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 item.toolTip = form.localizedDescription
                 return item
             }
+        
+        // temporary workaround for macOS 14
+        if #available(macOS 14, *) {
+            self.toggleInspectorItem?.action = #selector(WindowContentViewController.toggleInspector_)
+        }
+        
     }
     
     
