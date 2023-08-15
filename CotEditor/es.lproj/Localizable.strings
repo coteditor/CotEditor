@@ -902,6 +902,7 @@
 "Block:" = "Block:";  // FIXME: new
 "Category:" = "Category:";  // FIXME: new
 "Version:" = "Version:";  // FIXME: new
+"deprecated" = "deprecated";  // FIXME: new
 
 
 

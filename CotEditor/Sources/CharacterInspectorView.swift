@@ -126,11 +126,15 @@ private struct ScalarDetailView: View {
                     Text("Code Point:")
                         .gridColumnAlignment(.trailing)
                     
-                    Group {
+                    HStack {
                         if let surrogates = self.scalar.surrogateCodePoints {
                             Text(verbatim: "\(self.scalar.codePoint) (\(surrogates.lead) \(surrogates.trail))")
                         } else {
                             Text(self.scalar.codePoint)
+                        }
+                        if self.scalar.properties.isDeprecated {
+                            Spacer()
+                            DeprecatedBadge()
                         }
                     }
                     .monospacedDigit()
@@ -213,6 +217,18 @@ private struct CharacterView: NSViewRepresentable {
 }
 
 
+private struct DeprecatedBadge: View {
+    
+    var body: some View {
+        
+        Text("deprecated")
+            .padding(.horizontal, 3)
+            .overlay(RoundedRectangle(cornerRadius: 3).stroke(.secondary))
+            .foregroundColor(.secondary)
+    }
+}
+
+
 
 // MARK: - Preview
 
@@ -236,6 +252,6 @@ private struct CharacterView: NSViewRepresentable {
     CharacterInspectorView(info: CharacterInfo(character: "🇦🇦"))
 }
 
-    #Preview("deprecated") {
-        CharacterInspectorView(info: CharacterInfo(character: "ឣ"))
+#Preview("deprecated") {
+    CharacterInspectorView(info: CharacterInfo(character: "ឣ"))
 }
