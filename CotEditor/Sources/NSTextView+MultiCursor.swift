@@ -412,11 +412,14 @@ extension MultiCursorEditing {
         
         guard !self.insertionLocations.isEmpty || !self.insertionIndicators.isEmpty else { return }
         
+        let properInsertionLocations = (self.isPerformingRectangularSelection && self.selectedRange.isEmpty) ? [self.selectedRange.location] : []
+        let insertionLocations = (self.insertionLocations + properInsertionLocations)
+        
         // reuse existing indicators
         var indicators = ArraySlice(self.insertionIndicators)  // slice for popFirst()
         let isActive = (self.window?.firstResponder == self && NSApp.isActive)
         
-        self.insertionIndicators = self.insertionLocations
+        self.insertionIndicators = insertionLocations
             .compactMap { self.insertionPointRects(at: $0).first }  // ignore split cursors
             .map { rect in
                 if let indicator = indicators.popFirst() {

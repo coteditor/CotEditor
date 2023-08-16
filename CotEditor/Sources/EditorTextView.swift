@@ -444,6 +444,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         self.mouseDownPoint = self.convert(event.locationInWindow, from: nil)
         self.isPerformingRectangularSelection = event.modifierFlags.contains(.option)
+        self.needsUpdateInsertionIndicators = true  // to draw dummy indicator for proper one while selecting
         self.updateInsertionPointTimer()
         
         let selectedRange = self.selectedRange.isEmpty ? self.selectedRange : nil
