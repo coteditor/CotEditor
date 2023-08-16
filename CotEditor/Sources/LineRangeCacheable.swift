@@ -45,7 +45,7 @@ struct LineRangeCache {
     
     fileprivate var lineStartIndexes = IndexSet()
     fileprivate var parsedIndexes = IndexSet()
-    fileprivate var firstUncoundedIndex = 0
+    fileprivate var firstUncountedIndex = 0
 }
 
 
@@ -144,13 +144,13 @@ extension LineRangeCacheable {
         
         assert(endIndex <= self.string.length)
         
-        guard endIndex >= self.lineRangeCache.firstUncoundedIndex else { return }
+        guard endIndex >= self.lineRangeCache.firstUncountedIndex else { return }
         
         let string = self.string
         
         guard string.length > 0 else { return }
         
-        let lowerParseBound = self.lineRangeCache.firstUncoundedIndex
+        let lowerParseBound = self.lineRangeCache.firstUncountedIndex
         let upperParseBound = self.lineRangeCache.parsedIndexes.contains(endIndex)
             ? self.lineRangeCache.parsedIndexes.rangeView(of: lowerParseBound...endIndex).last?.first ?? endIndex
             : endIndex
@@ -164,7 +164,7 @@ extension LineRangeCacheable {
             self.lineRangeCache.lineStartIndexes.insert(index)
         }
         self.lineRangeCache.parsedIndexes.insert(integersIn: lowerParseBound..<index)
-        self.lineRangeCache.invalidateFirstUncoundedIndex()
+        self.lineRangeCache.invalidateFirstUncountedIndex()
     }
 }
 
@@ -184,17 +184,17 @@ private extension LineRangeCache {
         self.lineStartIndexes.shift(startingAt: max(newRange.lowerBound + 1 - delta, 0), by: delta)
         self.lineStartIndexes.remove(integersIn: (newRange.lowerBound + 1)..<(newRange.upperBound + 1))
         
-        self.invalidateFirstUncoundedIndex()
+        self.invalidateFirstUncountedIndex()
     }
     
     
     /// Update the first uncounted index.
-    mutating func invalidateFirstUncoundedIndex() {
+    mutating func invalidateFirstUncountedIndex() {
         
         let firstInvalidIndex = self.parsedIndexes.contains(0)
             ? self.parsedIndexes.rangeView.first?.last.flatMap { $0 + 1 } ?? 0
             : 0
         
-        self.firstUncoundedIndex = self.lineStartIndexes.integerLessThanOrEqualTo(firstInvalidIndex) ?? 0
+        self.firstUncountedIndex = self.lineStartIndexes.integerLessThanOrEqualTo(firstInvalidIndex) ?? 0
     }
 }
