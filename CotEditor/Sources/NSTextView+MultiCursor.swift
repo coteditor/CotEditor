@@ -410,14 +410,13 @@ extension MultiCursorEditing {
         
         assert(Thread.isMainThread)
         
-        let properInsertionLocations = self.selectedRange.length == 0 ? [self.selectedRange.location] : []
-        let locations = properInsertionLocations + self.insertionLocations
-        let isActive = (self.window?.firstResponder == self && NSApp.isActive)
+        guard !self.insertionLocations.isEmpty || !self.insertionIndicators.isEmpty else { return }
         
         // reuse existing indicators
         var indicators = ArraySlice(self.insertionIndicators)  // slice for popFirst()
+        let isActive = (self.window?.firstResponder == self && NSApp.isActive)
         
-        self.insertionIndicators = locations
+        self.insertionIndicators = self.insertionLocations
             .compactMap { self.insertionPointRects(at: $0).first }  // ignore split cursors
             .map { rect in
                 if let indicator = indicators.popFirst() {
@@ -432,10 +431,27 @@ extension MultiCursorEditing {
                 }
             }
         
-        // remove unused indicators
+        // remove remaining indicators
         for indicator in indicators {
             indicator.removeFromSuperview()
         }
+    }
+}
+
+
+
+/// Workaround subclass to let NSTextView uses the new NSTextInsertionIndicator (FB12964810).
+@available(macOS, deprecated: 14, message: "Just remove this subclass and also all the codes related to insertion point drawing.")
+final class LegacyEditorTextView: EditorTextView {
+    
+    override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
+        
+        super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
+        
+        // draw sub insertion rects
+        self.insertionLocations
+            .flatMap { self.insertionPointRects(at: $0) }
+            .forEach { super.drawInsertionPoint(in: $0, color: color, turnedOn: flag) }
     }
 }
 

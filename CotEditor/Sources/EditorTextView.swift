@@ -35,7 +35,7 @@ private extension NSAttributedString.Key {
 
 // MARK: -
 
-final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursorEditing {
+class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursorEditing {
     
     // MARK: Notification Names
     
@@ -864,8 +864,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             guard self?.rangesForUserTextChange ?? self?.selectedRanges != currentRanges else { return }
             NotificationCenter.default.post(name: EditorTextView.didLiveChangeSelectionNotification, object: self)
         }
-        
-        self.needsUpdateInsertionIndicators = true
     }
     
     
@@ -1014,22 +1012,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         self.drawRoundedBackground(in: rect)
-    }
-    
-    
-    override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
-        
-        // -> Use NSTextInsertionIndicators on macOS 14 and later.
-        if #available(macOS 14, *) {
-            return super.drawInsertionPoint(in: rect, color: .clear, turnedOn: flag)
-        }
-        
-        super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
-        
-        // draw sub insertion rects
-        self.insertionLocations
-            .flatMap { self.insertionPointRects(at: $0) }
-            .forEach { super.drawInsertionPoint(in: $0, color: color, turnedOn: flag) }
     }
     
     
