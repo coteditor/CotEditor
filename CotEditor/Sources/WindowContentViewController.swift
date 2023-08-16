@@ -66,16 +66,9 @@ final class WindowContentViewController: NSSplitViewController {
         
         self.addChild(self.documentViewController)
         
-        let inspectorViewItem: NSSplitViewItem
-        if #available(macOS 14, *) {
-            inspectorViewItem = NSSplitViewItem(inspectorWithViewController: self.inspectorViewController)
-            inspectorViewItem.minimumThickness = NSSplitViewItem.unspecifiedDimension
-            inspectorViewItem.maximumThickness = NSSplitViewItem.unspecifiedDimension
-        } else {
-            inspectorViewItem = NSSplitViewItem(viewController: self.inspectorViewController)
-            inspectorViewItem.holdingPriority = .init(261)
-            inspectorViewItem.canCollapse = true
-        }
+        let inspectorViewItem = NSSplitViewItem(inspectorWithViewController: self.inspectorViewController)
+        inspectorViewItem.minimumThickness = NSSplitViewItem.unspecifiedDimension
+        inspectorViewItem.maximumThickness = NSSplitViewItem.unspecifiedDimension
         inspectorViewItem.isCollapsed = true
         self.addSplitViewItem(inspectorViewItem)
     }
