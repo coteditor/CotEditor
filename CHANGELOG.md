@@ -26,6 +26,7 @@ Change Log
 - [trivial] Disable the contextual menu for shortcut fields.
 - [trivial] Reduce the maximum number to split editor.
 - [trivial] Change the behavior of the duplication command for syntax definitions to just create a duplicated syntax instead of opening the syntax editor dialog.
+- [trivial] Improve the behavior when selecting a row in the find result table in the Find window.
 - [trivial] Rename “syntax style” with just “syntax.”
 - [trivial] Rearrange the layout of the encoding list.
 
