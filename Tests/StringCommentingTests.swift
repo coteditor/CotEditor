@@ -233,6 +233,12 @@ private final class CommentingTextView: NSTextView, Commenting, MultiCursorEditi
     var insertionPointOn: Bool = false
     var isPerformingRectangularSelection: Bool = false
     
+    @available(macOS 14, *)
+    var insertionIndicators: [NSTextInsertionIndicator] {
+        get { [] }
+        set { _ = newValue }
+    }
+    
     
     override var rangesForUserTextChange: [NSValue]? {
         
