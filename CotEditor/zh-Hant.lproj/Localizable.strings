@@ -204,7 +204,10 @@
 
 
 
-/* MARK: Multiple Replace View */
+/* MARK: Multiple Replace Panel */
+// window title
+"Multiple Replace" = "多重取代";
+
 // Undo action names
 "Insert Rule" = "插入規則";
 "Delete Rules" = "刪除規則";

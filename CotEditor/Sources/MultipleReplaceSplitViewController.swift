@@ -27,5 +27,24 @@ import AppKit
 
 final class MultipleReplaceSplitViewController: NSSplitViewController {
     
-    @IBOutlet private(set) weak var detailSplitViewItem: NSSplitViewItem?
+    // MARK: Lifecycle
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // -> Need to set *both* identifier and autosaveName to make autosaving work.
+        self.splitView.identifier = NSUserInterfaceItemIdentifier("MultipleReplaceSplitView")
+        self.splitView.autosaveName = "MultipleReplaceSplitView"
+        
+        let storyboard = NSStoryboard(name: "MultipleReplacePanel", bundle: nil)
+        
+        let listViewController = storyboard.instantiateController(withIdentifier: "ListViewController") as! NSViewController
+        let detailViewController = storyboard.instantiateController(withIdentifier: "DetailViewController") as! NSViewController
+        
+        self.splitViewItems = [
+            NSSplitViewItem(contentListWithViewController: listViewController),
+            NSSplitViewItem(viewController: detailViewController),
+        ]
+    }
 }

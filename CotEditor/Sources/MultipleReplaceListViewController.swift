@@ -286,7 +286,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     /// Return the view controller for the detail view on the right side in the panel.
     private var detailViewController: MultipleReplaceViewController? {
         
-        (self.parent as? MultipleReplaceSplitViewController)?.detailSplitViewItem?.viewController as? MultipleReplaceViewController
+        (self.parent as? NSSplitViewController)?.children.compactMap { $0 as? MultipleReplaceViewController }.first
     }
     
     

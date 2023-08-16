@@ -27,5 +27,22 @@ import AppKit
 
 final class MultipleReplacePanelController: NSWindowController {
     
-    static let shared: MultipleReplacePanelController = NSStoryboard(name: "MultipleReplacePanel").instantiateInitialController()!
+    // MARK: Public Properties
+    
+    static let shared: MultipleReplacePanelController = MultipleReplacePanelController()
+    
+    
+    // MARK: Lifecycle
+    
+    convenience init() {
+        
+        let window = NSPanel(contentViewController: MultipleReplaceSplitViewController())
+        window.styleMask = [.titled, .closable, .resizable, .fullSizeContentView, .utilityWindow]
+        window.level = .floating
+        window.titlebarAppearsTransparent = true
+        window.setFrameAutosaveName("Multiple Replace Panel")
+        window.title = String(localized: "Multiple Replace", comment: "window title")
+        
+        self.init(window: window)
+    }
 }

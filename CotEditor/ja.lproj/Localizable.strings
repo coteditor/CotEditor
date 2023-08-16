@@ -204,7 +204,10 @@
 
 
 
-/* MARK: Multiple Replace View */
+/* MARK: Multiple Replace Panel */
+// window title
+"Multiple Replace" = "複数置換";
+
 // Undo action names
 "Insert Rule" = "条件を追加";
 "Delete Rules" = "条件を削除";
