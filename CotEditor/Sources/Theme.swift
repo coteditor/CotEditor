@@ -162,6 +162,13 @@ struct Theme {
             self.insertionPoint.color
         }
     }
+    
+    
+    /// Selected text background color to use.
+    var effectiveSelectionColor: NSColor {
+        
+        self.selection.usesSystemSetting ? .selectedTextBackgroundColor : self.selection.color
+    }
 }
 
 

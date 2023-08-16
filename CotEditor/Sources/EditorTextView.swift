@@ -1418,19 +1418,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.lineHighLightColor = self.isOpaque
             ? theme.lineHighlight.color
             : theme.lineHighlight.color.withAlphaComponent(0.7)
-        self.insertionPointColor = if #available(macOS 14, *) {
-            theme.effectiveInsertionPointColor
-        } else {
-            theme.insertionPoint.color
-        }
+        self.insertionPointColor = theme.effectiveInsertionPointColor
         if #available(macOS 14, *) {
             for indicator in self.insertionIndicators {
                 indicator.color = self.insertionPointColor
             }
         }
-        self.selectedTextAttributes[.backgroundColor] = theme.selection.usesSystemSetting
-            ? .selectedTextBackgroundColor
-            : theme.selection.color
+        self.selectedTextAttributes[.backgroundColor] = theme.effectiveSelectionColor
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
         
         (self.window as? DocumentWindow)?.contentBackgroundColor = theme.background.color
