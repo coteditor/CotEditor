@@ -279,11 +279,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
 
 private extension NSToolbar.Identifier {
     
-    static let document = if #available(macOS 14, *) {
-        Self("Document")
-    } else {
-        Self("7E7590E9-43BC-40F7-B967-07FA2780E47B")
-    }
+    static let document = Self("Document")
 }
 
 
@@ -327,9 +323,14 @@ private extension NSToolbarItem.Identifier {
     static let find = Self(Self.prefix + "find")
     static let print = Self(Self.prefix + "print")
     static let share = Self(Self.prefix + "share")
+}
+
+
+public extension NSToolbarItem.Identifier {
     
-    @available(macOS, deprecated: 14, message: "Use `.inspectorTrackingSeparator`")
-    static let legacyInspectorTrackingSeparator = Self(Self.prefix + "inspectorTrackingSeparator")
+    /// The back-deployed version of the `.inspectorTrackingSeparator` to use the same identifier to the original one for the autosaving compatibility.
+    @backDeployed(before: macOS 14)
+    static var inspectorTrackingSeparator: Self  { Self("NSToolbarInspectorTrackingSeparatorItemIdentifier") }
 }
 
 
@@ -337,9 +338,7 @@ extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarImmovableItemIdentifiers(_ toolbar: NSToolbar) -> Set<NSToolbarItem.Identifier> {
         
-        guard #available(macOS 14, *) else { return [] }
-        
-        return [
+        [
             .flexibleSpace,
             .inspectorTrackingSeparator,
         ]
@@ -348,15 +347,7 @@ extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
-        guard #available(macOS 14, *) else {
-            return [
-                .syntax,
-                .legacyInspectorTrackingSeparator,
-                .inspector,
-            ]
-        }
-        
-        return [
+        [
             .syntax,
             .inspectorTrackingSeparator,
             .flexibleSpace,
@@ -683,7 +674,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.delegate = self
                 return item
                 
-            case .legacyInspectorTrackingSeparator:
+            case .inspectorTrackingSeparator where ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 14:
                 let splitView = (self.contentViewController as! NSSplitViewController).splitView
                 let item = NSTrackingSeparatorToolbarItem(identifier: itemIdentifier, splitView: splitView, dividerIndex: 0)
                 return item
