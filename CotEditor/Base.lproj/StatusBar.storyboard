@@ -25,7 +25,7 @@
                                 </connections>
                             </textField>
                             <popUpButton toolTip="Line Endings" translatesAutoresizingMaskIntoConstraints="NO" id="FNE-H9-iZR">
-                                <rect key="frame" x="511" y="0.0" width="85" height="21"/>
+                                <rect key="frame" x="509" y="0.0" width="89" height="21"/>
                                 <popUpButtonCell key="cell" type="smallSquare" title="Line Endings" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" tag="-1" inset="2" autoenablesItems="NO" selectedItem="mS8-3F-93y" id="uXq-8L-T6d">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -43,13 +43,13 @@
                                 </constraints>
                             </popUpButton>
                             <popUpButton toolTip="File Encoding" translatesAutoresizingMaskIntoConstraints="NO" id="CUv-So-9Og">
-                                <rect key="frame" x="378" y="0.0" width="133" height="21"/>
-                                <popUpButtonCell key="cell" type="smallSquare" title="File Encoding" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" tag="-1" inset="2" autoenablesItems="NO" selectedItem="q4F-Uw-VL4" id="2gs-WJ-6IP">
+                                <rect key="frame" x="376" y="0.0" width="133" height="21"/>
+                                <popUpButtonCell key="cell" type="smallSquare" title="File Encoding" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" tag="-1" inset="2" autoenablesItems="NO" selectedItem="q4F-Uw-VL4" id="2gs-WJ-6IP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                     <menu key="menu" autoenablesItems="NO" id="E76-Et-IKc">
                                         <items>
-                                            <menuItem title="File Encoding" tag="-1" enabled="NO" id="q4F-Uw-VL4" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
+                                            <menuItem title="File Encoding" state="on" tag="-1" enabled="NO" id="q4F-Uw-VL4" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                         </items>
@@ -60,13 +60,13 @@
                                 </constraints>
                             </popUpButton>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="DDY-i5-DV6">
-                                <rect key="frame" x="513" y="4" width="5" height="13"/>
+                                <rect key="frame" x="509" y="4" width="5" height="13"/>
                             </box>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="7Sd-lb-J3U">
-                                <rect key="frame" x="380" y="4" width="5" height="13"/>
+                                <rect key="frame" x="376" y="4" width="5" height="13"/>
                             </box>
                             <textField toolTip="File Size" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-9e-uCA" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="337" y="4" width="39" height="14"/>
+                                <rect key="frame" x="333" y="4" width="39" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="64 MB" usesSingleLineMode="YES" id="t1c-ZE-w5H">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -88,17 +88,17 @@
                             <constraint firstItem="EJU-9e-uCA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="v28-4g-3Pc" secondAttribute="trailing" constant="8" symbolic="YES" id="J7k-IJ-ITH"/>
                             <constraint firstAttribute="bottom" secondItem="FNE-H9-iZR" secondAttribute="bottom" id="PGF-o4-y6f"/>
                             <constraint firstItem="DDY-i5-DV6" firstAttribute="top" secondItem="JZo-9i-3gf" secondAttribute="top" constant="4" id="RVq-Lk-drv"/>
-                            <constraint firstItem="CUv-So-9Og" firstAttribute="leading" secondItem="7Sd-lb-J3U" secondAttribute="trailing" id="Rmj-41-sT7"/>
+                            <constraint firstItem="CUv-So-9Og" firstAttribute="leading" secondItem="7Sd-lb-J3U" secondAttribute="trailing" constant="2" id="Rmj-41-sT7"/>
                             <constraint firstItem="v28-4g-3Pc" firstAttribute="leading" secondItem="JZo-9i-3gf" secondAttribute="leading" constant="10" id="XGv-6S-ZAZ"/>
-                            <constraint firstItem="FNE-H9-iZR" firstAttribute="leading" secondItem="DDY-i5-DV6" secondAttribute="trailing" id="Z71-dQ-3Os"/>
-                            <constraint firstAttribute="trailing" secondItem="FNE-H9-iZR" secondAttribute="trailing" constant="4" id="ZBz-pD-I3x"/>
+                            <constraint firstItem="FNE-H9-iZR" firstAttribute="leading" secondItem="DDY-i5-DV6" secondAttribute="trailing" constant="2" id="Z71-dQ-3Os"/>
+                            <constraint firstAttribute="trailing" secondItem="FNE-H9-iZR" secondAttribute="trailing" constant="2" id="ZBz-pD-I3x"/>
                             <constraint firstAttribute="bottom" secondItem="7Sd-lb-J3U" secondAttribute="bottom" constant="4" id="cph-Ly-dHn"/>
                             <constraint firstItem="FNE-H9-iZR" firstAttribute="top" secondItem="JZo-9i-3gf" secondAttribute="top" id="iqg-5U-Tag"/>
                             <constraint firstItem="7Sd-lb-J3U" firstAttribute="leading" secondItem="EJU-9e-uCA" secondAttribute="trailing" constant="8" symbolic="YES" id="oeg-hS-hEI"/>
                             <constraint firstItem="v28-4g-3Pc" firstAttribute="centerY" secondItem="JZo-9i-3gf" secondAttribute="centerY" id="r4M-7l-VhS"/>
                             <constraint firstItem="CUv-So-9Og" firstAttribute="top" secondItem="JZo-9i-3gf" secondAttribute="top" id="vAr-ky-9Sp"/>
                             <constraint firstAttribute="bottom" secondItem="CUv-So-9Og" secondAttribute="bottom" id="vCi-dT-Fej"/>
-                            <constraint firstItem="DDY-i5-DV6" firstAttribute="leading" secondItem="CUv-So-9Og" secondAttribute="trailing" constant="4" id="wGi-ca-Rpd"/>
+                            <constraint firstItem="DDY-i5-DV6" firstAttribute="leading" secondItem="CUv-So-9Og" secondAttribute="trailing" constant="2" id="wGi-ca-Rpd"/>
                         </constraints>
                     </visualEffectView>
                     <connections>
