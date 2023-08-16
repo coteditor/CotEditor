@@ -1541,7 +1541,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let syntax = self.document?.syntaxParser.syntax.name
         
         let replacementString = urls.reduce(into: "") { (string, url) in
-            if url.pathExtension == "textClipping", let textClipping = try? TextClipping(url: url) {
+            if url.pathExtension == "textClipping", let textClipping = try? TextClipping(contentsOf: url) {
                 string += textClipping.string
                 return
             }

@@ -32,7 +32,7 @@ final class TextClippingTests: XCTestCase {
         
         let bundle = Bundle(for: type(of: self))
         let url = try XCTUnwrap(bundle.url(forResource: "moof", withExtension: "textClipping"))
-        let textClipping = try TextClipping(url: url)
+        let textClipping = try TextClipping(contentsOf: url)
         
         XCTAssertEqual(textClipping.string, "🐕moof🐄")
     }
