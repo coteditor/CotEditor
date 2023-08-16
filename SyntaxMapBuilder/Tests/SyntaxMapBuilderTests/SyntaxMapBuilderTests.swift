@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2022 1024jp
+//  © 2020-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -61,6 +61,7 @@ final class SyntaxMapBuilderTests: XCTestCase {
             }
             """
         
-        XCTAssertEqual(try buildSyntaxMap(directoryURL: syntaxesURL), expectedResult)
+        let data = try buildSyntaxMap(directoryURL: syntaxesURL)
+        XCTAssertEqual(String(data: data, encoding: .utf8), expectedResult)
     }
 }

@@ -1,4 +1,4 @@
-// swift-tools-version:5.7
+// swift-tools-version:5.9
 
 import PackageDescription
 
@@ -7,8 +7,11 @@ let package = Package(
     platforms: [
         .macOS(.v13),
     ],
+    products: [
+        .executable(name: "SyntaxMapBuilder", targets: ["SyntaxMapBuilder"]),
+    ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser", from: Version(1, 1, 0)),
+        .package(url: "https://github.com/apple/swift-argument-parser", from: Version(1, 2, 0)),
         .package(url: "https://github.com/jpsim/Yams", from: Version(5, 0, 0)),
     ],
     targets: [

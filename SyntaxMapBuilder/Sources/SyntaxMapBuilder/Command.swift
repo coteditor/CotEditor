@@ -24,7 +24,6 @@
 //
 
 import Foundation
-import UniformTypeIdentifiers
 import ArgumentParser
 import Yams
 
@@ -45,23 +44,25 @@ private struct Syntax: Codable {
 struct Command: ParsableCommand {
     
     @Argument(help: "A path to the Syntaxes directory.")
-    var url: URL
+    var input: URL
+    
+    @Argument(help: "The path to the result JSON file.")
+    var output: URL
     
     
     func run() throws {
         
-        let json = try buildSyntaxMap(directoryURL: self.url)
-        
-        print(json)
+        try buildSyntaxMap(directoryURL: self.input)
+            .write(to: self.output)
     }
 }
 
 
-func buildSyntaxMap(directoryURL: URL) throws -> String {
+func buildSyntaxMap(directoryURL: URL) throws -> Data {
     
     // find syntax files
-    let urls = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: [.contentTypeKey])
-        .filter { try $0.resourceValues(forKeys: [.contentTypeKey]).contentType?.conforms(to: .yaml) == true }
+    let urls = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil)
+        .filter { $0.pathExtension == "yml" }
     
     // build syntaxMap from syntax files
     let decoder = YAMLDecoder()
@@ -81,10 +82,8 @@ func buildSyntaxMap(directoryURL: URL) throws -> String {
     // encode syntaxMap to JSON style
     let encoder = JSONEncoder()
     encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-    let data = try encoder.encode(syntaxMap)
-    let json = String(data: data, encoding: .utf8)!
     
-    return json
+    return try encoder.encode(syntaxMap)
 }
 
 
