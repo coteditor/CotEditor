@@ -102,6 +102,9 @@
 "Not replaced" = "Değiştirilmedi";
 
 // pairs of button label and its tooltip
+"Close" = "Kapat";
+"Close find result." = "Bulma sonucunu kapat.";
+
 "Find All" = "Tümünü Bul";
 "Find and list all matches." = "Tüm eşleşmeleri listele.";
 
@@ -119,11 +122,16 @@
 
 
 
-/* MARK: FindPanelResultViewController */
+/* MARK: Find Panel Result View */
+"Find String: %@" = "Diziyi Bul: %@";
 // Find result (“%@” is filename)
 "No strings found in “%@.”" = "%@ içinde dizi bulunamadı.";
 "Found one string in “%@.”" = "%@ içinde bir dizi bulundu.";
 "Found %lld strings in “%@.”" = "%2$@ içinde %1$lld dizi bulundu.";
+
+// Column header
+"Line" = "Satır";
+"Found String" = "Dizi Bulundu";
 
 
 

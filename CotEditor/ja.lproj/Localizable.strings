@@ -102,6 +102,9 @@
 "Not replaced" = "見つかりません";
 
 // pairs of button label and its tooltip
+"Close" = "閉じる";
+"Close find result." = "検索結果を閉じる";
+
 "Find All" = "すべて検索";
 "Find and list all matches." = "すべての一致を検索しリストアップ";
 
@@ -119,11 +122,16 @@
 
 
 
-/* MARK: FindPanelResultViewController */
+/* MARK: Find Panel Result View */
+"Find String: %@" = "検索文字列: %@";
 // Find result (“%@” is filename)
 "No strings found in “%@.”" = "“%@”内に見つかりませんでした。";
 "Found one string in “%@.”" = "“%@”内に1件見つかりました。";
 "Found %lld strings in “%@.”" = "“%2$@”内に%1$lld件見つかりました。";
+
+// Column header
+"Line" = "行";
+"Found String" = "文字列";
 
 
 

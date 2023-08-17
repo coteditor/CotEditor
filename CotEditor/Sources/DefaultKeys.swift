@@ -159,7 +159,7 @@ extension DefaultKeys {
     static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
     static let consoleFontSize = DefaultKey<CGFloat>("consoleFontSize")
     static let outlineViewFontSize = DefaultKey<CGFloat>("outlineViewFontSize")
-    static let findResultViewFontSize = DefaultKey<CGFloat>("findResultViewFontSize")
+    static let findResultViewFontSize = DefaultKey<Double>("findResultViewFontSize")
     static let selectedMultipleReplaceSettingName = DefaultKey<String?>("selectedMultipleReplaceSettingName")
     static let unicodeHistory = DefaultKey<[String]>("unicodeHistory")
     static let regexPatternSortHistory = DefaultKey<[String]>("regexPatternSortHistory")

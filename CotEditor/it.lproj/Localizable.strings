@@ -102,6 +102,9 @@
 "Not replaced" = "Non sostituiti";
 
 // pairs of button label and its tooltip
+"Close" = "Chiudi";
+"Close find result." = "Chiudi i risultati di ricerca.";
+
 "Find All" = "Cerca tutto";
 "Find and list all matches." = "Mostra tutti i risultati di ricerca.";
 
@@ -119,11 +122,16 @@
 
 
 
-/* MARK: FindPanelResultViewController */
+/* MARK: Find Panel Result View */
+"Find String: %@" = "Trova stringa: %@";
 // Find result (“%@” is filename)
 "No strings found in “%@.”" = "Nessuna stringa trovata in “%@”.";
 "Found one string in “%@.”" = "Trovata una stringa in “%@”.";
 "Found %lld strings in “%@.”" = "Trovate %lld stringhe in %@”.";
+
+// Column header
+"Line" = "Riga";
+"Found String" = "Stringa trovata";
 
 
 

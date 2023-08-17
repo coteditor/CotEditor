@@ -81,21 +81,3 @@
 "ESq-ws-6H3.ibShadowedToolTip" = "Show advanced options";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "ESq-ws-6H3"; */
 "ESq-ws-6H3.ibExternalAccessibilityDescription" = "Advanced options";
-
-
-// Find Result
-
-/* Class = "NSButton"; ibShadowedToolTip = "Close find result."; ObjectID = "oC1-bN-UeN"; */
-"oC1-bN-UeN.ibShadowedToolTip" = "Close find result.";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
-"2MH-SD-x1y.ibShadowedDisplayPattern" = "Find String: %{value1}@";
-
-/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "CPd-0W-bKv"; */
-"CPd-0W-bKv.headerCell.title" = "Line";
-/* Class = "NSTableColumn"; headerCell.title = "Found String"; ObjectID = "PJ8-wp-pdK"; */
-"PJ8-wp-pdK.headerCell.title" = "Found String";
-
-
-/* Class = "NSView"; ibExternalAccessibilityDescription = "Find result"; ObjectID = "XqS-F4-g0U"; */
-"XqS-F4-g0U.ibExternalAccessibilityDescription" = "Find result";

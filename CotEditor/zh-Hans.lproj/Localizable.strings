@@ -102,6 +102,9 @@
 "Not replaced" = "没有进行替换";
 
 // pairs of button label and its tooltip
+"Close" = "关闭";
+"Close find result." = "关闭查找结果。";
+
 "Find All" = "全部查找";
 "Find and list all matches." = "列出所有匹配。";
 
@@ -119,11 +122,16 @@
 
 
 
-/* MARK: FindPanelResultViewController */
+/* MARK: Find Panel Result View */
+"Find String: %@" = "查找字符串：%@";
 // Find result (“%@” is filename)
 "No strings found in “%@.”" = "在“%@”中没有找到字符串。";
 "Found one string in “%@.”" = "在“%@”中找到一个字符串。";
 "Found %lld strings in “%@.”" = "%lld个字符串在“%@”中被找到。";
+
+// Column header
+"Line" = "行";
+"Found String" = "找到字符串";
 
 
 

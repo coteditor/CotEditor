@@ -81,15 +81,17 @@ enum TextFindResult {
 
 struct TextFindAllResult {
     
-    struct Match {
+    struct Match: Identifiable {
+        
+        let id = UUID()
         
         var range: NSRange
         var attributedLineString: NSAttributedString
     }
     
     
-    var findString: String
-    var matches: [Match]
+    var findString: String = ""
+    var matches: [Match] = []
 }
 
 

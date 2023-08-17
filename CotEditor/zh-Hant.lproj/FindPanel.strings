@@ -81,17 +81,3 @@
 "ESq-ws-6H3.ibShadowedToolTip" = "顯示進階選項";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "ESq-ws-6H3"; */
 "ESq-ws-6H3.ibExternalAccessibilityDescription" = "進階選項";
-
-
-// Find Result
-
-/* Class = "NSButton"; UeN.ibShadowedToolTip = "Close find result."; ObjectID = "oC1-bN-UeN"; */
-"oC1-bN-UeN.ibShadowedToolTip" = "關閉檢索結果。";
-
-/* Class = "BindingConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
-"2MH-SD-x1y.ibShadowedDisplayPattern" = "檢索字串：%{value1}@";
-
-/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "CPd-0W-bKv"; */
-"CPd-0W-bKv.headerCell.title" = "行";
-/* Class = "NSTableColumn"; headerCell.title = "Found String"; ObjectID = "PJ8-wp-pdK"; */
-"PJ8-wp-pdK.headerCell.title" = "找到字串";
