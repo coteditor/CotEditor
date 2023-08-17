@@ -88,7 +88,6 @@ extension DocumentViewController: NSTouchBarDelegate {
                 return item
                 
             case .share:
-                guard let document = self.document else { return nil }
                 let item = NSSharingServicePickerTouchBarItem(identifier: identifier)
                 item.delegate = self
                 return item
