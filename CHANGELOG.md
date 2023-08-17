@@ -5,6 +5,10 @@ Change Log
 4.5.9 (575)
 --------------------------
 
+### Fixes
+
+- Fix an issue that the Share button in the Touch Bar did not work when the document was replaced with the initial empty document.
+
 
 
 4.5.8 (574)

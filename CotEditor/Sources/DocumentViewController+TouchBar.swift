@@ -90,7 +90,7 @@ extension DocumentViewController: NSTouchBarDelegate {
             case .share:
                 guard let document = self.document else { return nil }
                 let item = NSSharingServicePickerTouchBarItem(identifier: identifier)
-                item.delegate = document
+                item.delegate = self
                 return item
                 
             default:
@@ -137,7 +137,6 @@ extension DocumentViewController: NSTouchBarDelegate {
 }
 
 
-
 extension DocumentViewController: TouchBarItemValidations {
     
     func validateTouchBarItem(_ item: NSTouchBarItem) -> Bool {
@@ -170,12 +169,11 @@ extension DocumentViewController: TouchBarItemValidations {
 }
 
 
-
-extension NSDocument: NSSharingServicePickerTouchBarItemDelegate {
+extension DocumentViewController: NSSharingServicePickerTouchBarItemDelegate {
     
     public func items(for pickerTouchBarItem: NSSharingServicePickerTouchBarItem) -> [Any] {
         
-        [self]
+        [self.document].compactMap { $0 }
     }
 }
 
@@ -183,6 +181,6 @@ extension NSDocument: NSSharingServicePickerTouchBarItemDelegate {
 
 private extension NSColor {
     
-    /// button bezel color for off state
+    /// The button bezel color for the off state.
     static let offStateButtonBezelColor = NSColor(white: 0.12, alpha: 1)
 }
