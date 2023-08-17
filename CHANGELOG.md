@@ -31,6 +31,11 @@ Change Log
 - [trivial] Rearrange the layout of the encoding list.
 
 
+### Fixes
+
+- Fix an issue that the Share button in the Touch Bar did not work when the document was replaced with the initial empty document.
+
+
 ### Known Issues
 
 - UI are not localized yet.
