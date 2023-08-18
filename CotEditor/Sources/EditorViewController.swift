@@ -46,6 +46,8 @@ final class EditorViewController: NSSplitViewController {
     private lazy var navigationBarController: NavigationBarController = NSStoryboard(name: "NavigationBar").instantiateInitialController()!
     private lazy var textViewController = EditorTextViewController()
     
+    private var navigationBarItem: NSSplitViewItem?
+    
     private var defaultObservers: [AnyCancellable] = []
     
     
@@ -69,13 +71,18 @@ final class EditorViewController: NSSplitViewController {
         super.viewDidLoad()
         
         self.splitView.isVertical = false
-        self.addChild(self.navigationBarController)
+        
+        let navigationBarItem = NSSplitViewItem(viewController: self.navigationBarController)
+        navigationBarItem.isCollapsed = true  // avoid initial view loading
+        self.navigationBarItem = navigationBarItem
+        self.addSplitViewItem(navigationBarItem)
+        
         self.addChild(self.textViewController)
         
         self.navigationBarController.textView = self.textView
         
         // set user defaults
-        self.navigationBarItem!.isCollapsed = !UserDefaults.standard[.showNavigationBar]
+        navigationBarItem.isCollapsed = !UserDefaults.standard[.showNavigationBar]
         UserDefaults.standard.publisher(for: .showNavigationBar)
             .sink { [weak self] in self?.navigationBarItem?.animator().isCollapsed = !$0 }
             .store(in: &self.defaultObservers)
@@ -197,15 +204,5 @@ final class EditorViewController: NSSplitViewController {
         else { return }
         
         textView.select(range: item.range)
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// The navigation bar item.
-    private var navigationBarItem: NSSplitViewItem? {
-        
-        self.splitViewItem(for: self.navigationBarController)
     }
 }

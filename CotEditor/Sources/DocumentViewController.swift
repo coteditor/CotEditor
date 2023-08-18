@@ -55,6 +55,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     
     private lazy var splitViewController = SplitViewController()
     private lazy var statusBarViewController: StatusBarController = NSStoryboard(name: "StatusBar", bundle: nil).instantiateInitialController()!
+    
     private weak var statusBarItem: NSSplitViewItem?
     
     private var documentSyntaxObserver: AnyCancellable?
@@ -74,14 +75,16 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         super.viewDidLoad()
         
+        self.splitView.isVertical = false
+        
         // set identifier for state restoration
         self.identifier = NSUserInterfaceItemIdentifier("DocumentViewController")
         
-        self.splitView.isVertical = false
         self.addChild(self.splitViewController)
         
         // set status bar
         let statusBarItem = NSSplitViewItem(viewController: self.statusBarViewController)
+        statusBarItem.isCollapsed = true  // avoid initial view loading
         self.addSplitViewItem(statusBarItem)
         self.statusBarItem = statusBarItem
         
