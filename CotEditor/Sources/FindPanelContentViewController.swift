@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import SwiftUI
 import Combine
 
 private let defaultResultViewHeight: CGFloat = 200
@@ -32,19 +33,52 @@ final class FindPanelContentViewController: NSSplitViewController {
     
     // MARK: Private Properties
     
+    private var resultSplitViewItem: NSSplitViewItem?
+    
     private var isUncollapsing = false
     private var resultObserver: AnyCancellable?
-    
-    @IBOutlet private weak var resultSplitViewItem: NSSplitViewItem?
     
     
     
     // MARK: -
     // MARK: Split View Controller Methods
     
+    override func loadView() {
+        
+        self.splitView = FindPanelSplitView()
+        self.splitView.isVertical = false
+        self.splitView.dividerStyle = .thin
+        
+        self.view = NSView()
+        self.view.addSubview(self.splitView)
+        
+        self.splitView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.view.topAnchor.constraint(equalTo: self.splitView.topAnchor),
+            self.view.bottomAnchor.constraint(equalTo: self.splitView.bottomAnchor),
+            self.view.leadingAnchor.constraint(equalTo: self.splitView.leadingAnchor),
+            self.view.trailingAnchor.constraint(equalTo: self.splitView.trailingAnchor),
+        ])
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        self.splitView.identifier = NSUserInterfaceItemIdentifier("FindPanelSplitView")
+        self.splitView.autosaveName = "FindPanelSplitView"
+        
+        let fieldViewItem = NSSplitViewItem(viewController: NSStoryboard(name: "FindPanelFieldView").instantiateInitialController()!)
+        fieldViewItem.holdingPriority = .init(251)
+        
+        let resultViewItem = NSSplitViewItem(viewController: NSHostingController(rootView: FindPanelResultView()))
+        resultViewItem.isCollapsed = true
+        self.resultSplitViewItem = resultViewItem
+        
+        let buttonViewItem = NSSplitViewItem(viewController: NSHostingController(rootView: FindPanelButtonView()))
+        
+        self.splitViewItems = [fieldViewItem, resultViewItem, buttonViewItem]
         
         self.resultObserver = NotificationCenter.default.publisher(for: TextFinder.didFindAllNotification)
             .compactMap { $0.object as? TextFinder }
@@ -98,10 +132,10 @@ final class FindPanelContentViewController: NSSplitViewController {
     
     // MARK: Private Methods
     
-    /// Unwrap view controller from the split view item.
-    private var resultViewController: FindPanelResultViewController? {
+    /// The view controller for the result view.
+    private var resultViewController: NSHostingController<FindPanelResultView>? {
         
-        self.resultSplitViewItem?.viewController as? FindPanelResultViewController
+        self.resultSplitViewItem?.viewController as? NSHostingController<FindPanelResultView>
     }
     
     

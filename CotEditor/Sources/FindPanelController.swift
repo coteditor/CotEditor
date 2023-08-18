@@ -36,8 +36,7 @@ final class FindPanelController: NSWindowController {
     
     convenience init() {
         
-        let viewController: NSViewController = NSStoryboard(name: "FindPanel", bundle: nil).instantiateInitialController()!
-        let window = NSPanel(contentViewController: viewController)
+        let window = NSPanel(contentViewController: FindPanelContentViewController())
         window.styleMask = [.titled, .closable, .resizable, .utilityWindow]
         window.level = .floating
         window.autorecalculatesKeyViewLoop = true

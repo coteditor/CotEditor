@@ -1,38 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="YRm-Np-TJD">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="fdE-8e-ywb">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22152"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Content View Controller-->
-        <scene sceneID="7vp-sv-2MQ">
-            <objects>
-                <splitViewController showSeguePresentationStyle="single" id="YRm-Np-TJD" userLabel="Content View Controller" customClass="FindPanelContentViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <splitViewItems>
-                        <splitViewItem holdingPriority="251" id="fLf-rT-Hpl"/>
-                        <splitViewItem id="qDW-yT-RMR"/>
-                        <splitViewItem id="7D3-e7-8Np"/>
-                    </splitViewItems>
-                    <splitView key="splitView" misplaced="YES" dividerStyle="thin" id="jKV-b0-yX6" customClass="FindPanelSplitView" customModule="CotEditor" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="460" height="197"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <connections>
-                            <outlet property="delegate" destination="YRm-Np-TJD" id="mVk-2J-Mww"/>
-                        </connections>
-                    </splitView>
-                    <connections>
-                        <outlet property="resultSplitViewItem" destination="qDW-yT-RMR" id="fpH-en-JIp"/>
-                        <segue destination="fdE-8e-ywb" kind="relationship" relationship="splitItems" id="JbM-yi-0lo"/>
-                        <segue destination="o0w-5G-h20" kind="relationship" relationship="splitItems" id="hWD-41-dIh"/>
-                        <segue destination="ANM-on-X4z" kind="relationship" relationship="splitItems" id="Zwa-mw-eps"/>
-                    </connections>
-                </splitViewController>
-                <customObject id="vTS-S6-K0K" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="198" y="659"/>
-        </scene>
         <!--Find Panel Field View Controller-->
         <scene sceneID="1pW-mx-KSL">
             <objects>
@@ -334,23 +307,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="773" y="444"/>
-        </scene>
-        <!--Find Panel Result View Controller-->
-        <scene sceneID="G51-Zn-Zie">
-            <objects>
-                <hostingController id="o0w-5G-h20" customClass="FindPanelResultViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController"/>
-                <customObject id="WyR-oW-kKJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="768" y="725"/>
-        </scene>
-        <!--Find Panel Button View Controller-->
-        <scene sceneID="x2J-1Q-IuO">
-            <objects>
-                <hostingController id="ANM-on-X4z" customClass="FindPanelButtonViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController"/>
-                <customObject id="MCg-oQ-Dbs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="768" y="1100"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
     <resources>

@@ -26,16 +26,8 @@
 import AppKit
 import SwiftUI
 
-final class FindPanelResultViewController: NSHostingController<FindPanelResultView> {
-    
-    required init?(coder aDecoder: NSCoder) {
-        
-        super.init(coder: aDecoder, rootView: FindPanelResultView(matches: [], findString: "", target: nil))
-    }
-    
-    
-    // MARK: Public Methods
-    
+extension NSHostingController<FindPanelResultView> {
+   
     /// Set new find matches.
     func setResult(_ result: TextFindAllResult, for client: NSTextView) {
         
@@ -43,6 +35,14 @@ final class FindPanelResultViewController: NSHostingController<FindPanelResultVi
     }
 }
 
+
+extension FindPanelResultView {
+    
+    init() {
+        
+        self.init(matches: [], findString: "", target: nil)
+    }
+}
 
 
 struct FindPanelResultView: View {

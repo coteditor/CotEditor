@@ -25,15 +25,6 @@
 
 import SwiftUI
 
-final class FindPanelButtonViewController: NSHostingController<FindPanelButtonView> {
-    
-    required init?(coder: NSCoder) {
-        
-        super.init(coder: coder, rootView: FindPanelButtonView())
-    }
-}
-
-
 struct FindPanelButtonView: View {
     
     @FirstResponder private var firstResponder

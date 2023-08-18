@@ -1,15 +1,15 @@
 //
-//  FindPanel.strings (French)
+//  FindPanelFieldView.strings (Spanish)
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by Aurélien Roy on 2019-04-26.
-//  Localized by Aurélien Roy
+//  Created by Agustin Borrego on 2023-07-30.
+//  Localized by Agustin Borrego
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 CotEditor Project
+//  © 2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,60 +24,61 @@
 //  limitations under the License.
 //
 
-/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "ISG-Ev-a6H"; */
-"ISG-Ev-a6H.ibShadowedIsNilPlaceholder" = "Rechercher";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "ISG-Ev-a6H"; */
+"ISG-Ev-a6H.ibShadowedIsNilPlaceholder" = "Buscar";
 /* Class = "NSTextView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
-"hxw-DS-gxQ.ibShadowedToolTip" = "Tapez le texte à rechercher.";
+"hxw-DS-gxQ.ibShadowedToolTip" = "Escriba el texto para buscar.";
 /* Class = "NSTextView"; ibExternalAccessibilityDescription = "Find"; ObjectID = "hxw-DS-gxQ"; */
-"hxw-DS-gxQ.ibExternalAccessibilityDescription" = "Rechercher";
+"hxw-DS-gxQ.ibExternalAccessibilityDescription" = "Buscar";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "ObJ-nS-x0g"; */
-"ObJ-nS-x0g.ibExternalAccessibilityDescription" = "Effacer";
+"ObJ-nS-x0g.ibExternalAccessibilityDescription" = "Limpiar";
 
-/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace with"; ObjectID = "2Xr-us-IiG"; */
-"2Xr-us-IiG.ibShadowedIsNilPlaceholder" = "Remplacer";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Replace with"; ObjectID = "2Xr-us-IiG"; */
+"2Xr-us-IiG.ibShadowedIsNilPlaceholder" = "Reemplazar con";
 /* Class = "NSTextView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
-"qiQ-tb-XCa.ibShadowedToolTip" = "Tapez le texte qui doit remplacer les résultats de recherche.";
+"qiQ-tb-XCa.ibShadowedToolTip" = "Escribe el texto para reemplazar el texto encontrado.";
 /* Class = "NSTextView"; ibExternalAccessibilityDescription = "Replace"; ObjectID = "qiQ-tb-XCa"; */
-"qiQ-tb-XCa.ibExternalAccessibilityDescription" = "Remplacer";
+"qiQ-tb-XCa.ibExternalAccessibilityDescription" = "Reemplazar";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "Y5M-CG-n0V"; */
-"Y5M-CG-n0V.ibExternalAccessibilityDescription" = "Effacer";
+"Y5M-CG-n0V.ibExternalAccessibilityDescription" = "Limpiar";
+
 
 /* Class = "NSButtonCell"; title = "Regular Expression"; ObjectID = "brT-HP-GVL"; */
-"brT-HP-GVL.title" = "Expression régulière";
+"brT-HP-GVL.title" = "Expresión regular";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to search with regular expression."; ObjectID = "8My-G5-daT"; */
-"8My-G5-daT.ibShadowedToolTip" = "Sélectionnez pour rechercher à l’aide d’une expression régulière.";
+"8My-G5-daT.ibShadowedToolTip" = "Seleccione para buscar con expresión regular.";
 
 /* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "4wg-Cz-ozb"; */
-"4wg-Cz-ozb.title" = "Ignorer la casse";
+"4wg-Cz-ozb.title" = "Ignorar mayúsculas";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "GvT-tD-Cbk"; */
-"GvT-tD-Cbk.ibShadowedToolTip" = "Sélectionnez pour ignorer la casse lors de la recherche.";
+"GvT-tD-Cbk.ibShadowedToolTip" = "Seleccione para ignorar las mayúsculas y minúsculas del carácter en la búsqueda.";
 
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
-"9bc-9Q-fhd.title" = "Dans la sélection";
+"9bc-9Q-fhd.title" = "En la selección";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to search text only from selection."; ObjectID = "tu7-IT-dA3"; */
-"tu7-IT-dA3.ibShadowedToolTip" = "Sélectionnez pour rechercher le texte seulement dans la sélection.";
+"tu7-IT-dA3.ibShadowedToolTip" = "Seleccione para buscar texto solo de la selección.";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Show quick reference for regular expression syntax."; ObjectID = "i2l-7Z-Zmf"; */
-"i2l-7Z-Zmf.ibShadowedToolTip" = "Affiche un pense-bête pour les expressions régulières";
+"i2l-7Z-Zmf.ibShadowedToolTip" = "Mostrar referencia rápida para la sintaxis de expresiones regulares.";
 
 
 // Buttons
 
 /* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Searches"; ObjectID = "3ZH-bg-rl5"; */
-"3ZH-bg-rl5.ibExternalAccessibilityDescription" = "Recherches récentes";
+"3ZH-bg-rl5.ibExternalAccessibilityDescription" = "Búsquedas recientes";
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
-"cdV-rY-hCN.title" = "Recherches récentes";
+"cdV-rY-hCN.title" = "Búsquedas recientes";
 /* Class = "NSMenuItem"; title = "Clear Recent Searches"; ObjectID = "vE8-oK-xlC"; */
-"vE8-oK-xlC.title" = "Effacer les recherches récentes";
+"vE8-oK-xlC.title" = "Borrar búsquedas recientes";
 
 /* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Replacements"; ObjectID = "Hw7-zz-RG8"; */
-"Hw7-zz-RG8.ibExternalAccessibilityDescription" = "Remplacements récents";
+"Hw7-zz-RG8.ibExternalAccessibilityDescription" = "Reemplazos recientes";
 /* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
-"7cw-iQ-0LM.title" = "Remplacements récents";
+"7cw-iQ-0LM.title" = "Reemplazos recientes";
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
-"vfK-an-Qnl.title" = "Effacer les remplacements récents";
+"vfK-an-Qnl.title" = "Borrar reemplazos recientes";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "ESq-ws-6H3"; */
-"ESq-ws-6H3.ibShadowedToolTip" = "Afficher les options avancées";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "ESq-ws-6H3"; */
-"ESq-ws-6H3.ibExternalAccessibilityDescription" = "Options avancées";
+"ESq-ws-6H3.ibExternalAccessibilityDescription" = "Advanced options";
+/* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "ESq-ws-6H3"; */
+"ESq-ws-6H3.ibShadowedToolTip" = "Show advanced options";
