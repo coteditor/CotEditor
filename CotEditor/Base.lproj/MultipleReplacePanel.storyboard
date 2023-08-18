@@ -92,7 +92,7 @@
                                                                         <imageReference key="image" image="exclamationmark.triangle.fill" catalog="system" symbolScale="default" renderingMode="original"/>
                                                                     </imageCell>
                                                                 </imageView>
-                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34g-xE-Dei" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34g-xE-Dei" customClass="RegularExpressionTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="103" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="dog" id="dIq-un-bYZ">
                                                                         <font key="font" metaFont="system"/>
@@ -137,10 +137,10 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="M9b-zX-U8A">
-                                                            <rect key="frame" x="135" y="1" width="104" height="16"/>
+                                                            <rect key="frame" x="135.5" y="1" width="104" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXD-LW-TDg" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXD-LW-TDg" customClass="RegularExpressionTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="104" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="cow" id="DD9-M3-I3n">
                                                                         <font key="font" metaFont="system"/>

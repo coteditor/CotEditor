@@ -90,8 +90,8 @@
 		2A1814B921CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */; };
 		2A1814BB21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814BA21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift */; };
 		2A1814BC21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814BA21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift */; };
-		2A1814BE21CFC9CF00602214 /* RegexTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814BD21CFC9CF00602214 /* RegexTextField.swift */; };
-		2A1814BF21CFC9CF00602214 /* RegexTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814BD21CFC9CF00602214 /* RegexTextField.swift */; };
+		2A1814BE21CFC9CF00602214 /* RegularExpressionTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814BD21CFC9CF00602214 /* RegularExpressionTextField.swift */; };
+		2A1814BF21CFC9CF00602214 /* RegularExpressionTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814BD21CFC9CF00602214 /* RegularExpressionTextField.swift */; };
 		2A1856051D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1856041D47E7FE008FA79E /* NSTextView+TextReplacement.swift */; };
 		2A1856061D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1856041D47E7FE008FA79E /* NSTextView+TextReplacement.swift */; };
 		2A18560B1D47FA37008FA79E /* TextFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A18560A1D47FA37008FA79E /* TextFinder.swift */; };
@@ -918,7 +918,7 @@
 		2A180F4A2854E71800EBAF66 /* NSTextSelectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextSelectionDataSource.swift; sourceTree = "<group>"; };
 		2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionFormatter.swift; sourceTree = "<group>"; };
 		2A1814BA21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegularExpressionSyntaxType+Color.swift"; sourceTree = "<group>"; };
-		2A1814BD21CFC9CF00602214 /* RegexTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexTextField.swift; sourceTree = "<group>"; };
+		2A1814BD21CFC9CF00602214 /* RegularExpressionTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionTextField.swift; sourceTree = "<group>"; };
 		2A1856041D47E7FE008FA79E /* NSTextView+TextReplacement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+TextReplacement.swift"; sourceTree = "<group>"; };
 		2A18560A1D47FA37008FA79E /* TextFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFinder.swift; sourceTree = "<group>"; };
 		2A1856111D48AFEA008FA79E /* PrintPanelAccessoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintPanelAccessoryController.swift; sourceTree = "<group>"; };
@@ -1595,7 +1595,7 @@
 				2A12C7FE1D1843B50069C60B /* SeparatorTextField.swift */,
 				2AACB1CC1D195ABD0073775B /* ShortcutField.swift */,
 				2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */,
-				2A1814BD21CFC9CF00602214 /* RegexTextField.swift */,
+				2A1814BD21CFC9CF00602214 /* RegularExpressionTextField.swift */,
 				2A0A602A27ABD74500725B70 /* FilterField.swift */,
 				2A10D1471E7477D30027192A /* StyledButton.swift */,
 				2A2391E42907B03800BCFEC9 /* ShrinkPopUpButton.swift */,
@@ -3039,11 +3039,11 @@
 				2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */,
 				2A57B98F294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */,
 				2A4AF76820759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
-				2A1814BF21CFC9CF00602214 /* RegexTextField.swift in Sources */,
 				2A1814B921CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */,
 				2A53F56727585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */,
 				2A0778622072040500876277 /* RegularExpressionSyntaxType.swift in Sources */,
 				2A1814BC21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift in Sources */,
+				2A1814BF21CFC9CF00602214 /* RegularExpressionTextField.swift in Sources */,
 				2A3643E71E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */,
 				2A158C1F2945E423000A4EC1 /* SavePanelAccessory.swift in Sources */,
 				2AA7E97E1DBAAC950083B7ED /* Script.swift in Sources */,
@@ -3394,11 +3394,11 @@
 				2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */,
 				2A57B990294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */,
 				2A4AF76720759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
-				2A1814BE21CFC9CF00602214 /* RegexTextField.swift in Sources */,
 				2A1814B821CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */,
 				2A53F56827585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */,
 				2A0778612072040500876277 /* RegularExpressionSyntaxType.swift in Sources */,
 				2A1814BB21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift in Sources */,
+				2A1814BE21CFC9CF00602214 /* RegularExpressionTextField.swift in Sources */,
 				2A3643E61E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */,
 				2A158C202945E423000A4EC1 /* SavePanelAccessory.swift in Sources */,
 				2AA7E97D1DBAAC950083B7ED /* Script.swift in Sources */,

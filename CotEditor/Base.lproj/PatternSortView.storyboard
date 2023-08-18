@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22152"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -425,7 +425,7 @@ Gw
                         <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kD8-MY-cO8" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kD8-MY-cO8" customClass="RegularExpressionTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="56" y="54" width="264" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="    Regular Expression" drawsBackground="YES" usesSingleLineMode="YES" id="Ia7-Mb-FNn" customClass="PaddingTextFieldCell" customModule="CotEditor" customModuleProvider="target">
                                     <font key="font" metaFont="system"/>
@@ -545,7 +545,7 @@ Gw
                                 </connections>
                             </imageView>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="zQG-S0-r5G">
-                                <rect key="frame" x="53" y="52" width="20" height="25"/>
+                                <rect key="frame" x="53" y="52" width="24" height="25"/>
                                 <popUpButtonCell key="cell" type="bevel" title="DUMMY" bezelStyle="rounded" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="KUj-jq-0yX" id="tof-rQ-mTe">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>

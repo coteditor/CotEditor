@@ -1,5 +1,5 @@
 //
-//  RegexTextField.swift
+//  RegularExpressionTextField.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 
 import AppKit
 
-final class RegexTextField: NSTextField {
+final class RegularExpressionTextField: NSTextField {
     
     // MARK: Public Properties
     
