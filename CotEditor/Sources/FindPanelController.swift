@@ -41,9 +41,10 @@ final class FindPanelController: NSWindowController {
         window.level = .floating
         window.autorecalculatesKeyViewLoop = true
         window.title = String(localized: "Find & Replace")
-        window.setFrameAutosaveName("Find Panel")
         
         self.init(window: window)
+        
+        self.windowFrameAutosaveName = "Find Panel"
     }
     
     

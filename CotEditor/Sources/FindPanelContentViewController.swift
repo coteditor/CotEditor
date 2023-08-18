@@ -27,15 +27,14 @@ import AppKit
 import SwiftUI
 import Combine
 
-private let defaultResultViewHeight: CGFloat = 200
-
 final class FindPanelContentViewController: NSSplitViewController {
     
     // MARK: Private Properties
     
+    private static let defaultResultViewHeight: CGFloat = 200
+    
     private var resultSplitViewItem: NSSplitViewItem?
     
-    private var isUncollapsing = false
     private var resultObserver: AnyCancellable?
     
     
@@ -66,14 +65,12 @@ final class FindPanelContentViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
-        self.splitView.identifier = NSUserInterfaceItemIdentifier("FindPanelSplitView")
-        self.splitView.autosaveName = "FindPanelSplitView"
-        
         let fieldViewItem = NSSplitViewItem(viewController: NSStoryboard(name: "FindPanelFieldView").instantiateInitialController()!)
         fieldViewItem.holdingPriority = .init(251)
         
         let resultViewItem = NSSplitViewItem(viewController: NSHostingController(rootView: FindPanelResultView()))
         resultViewItem.isCollapsed = true
+        resultViewItem.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         self.resultSplitViewItem = resultViewItem
         
         let buttonViewItem = NSSplitViewItem(viewController: NSHostingController(rootView: FindPanelButtonView()))
@@ -91,41 +88,41 @@ final class FindPanelContentViewController: NSSplitViewController {
         super.viewWillAppear()
         
         // make sure the result view is closed
-        self.setResultShown(false, animate: false)
+        if let item = self.resultSplitViewItem, item.isCollapsed == false {
+            item.viewController.view.frame.size.height = 0
+            item.isCollapsed = true
+        }
     }
     
     
-    /// collapse result view by dragging divider
     override func splitViewDidResizeSubviews(_ notification: Notification) {
         
         super.splitViewDidResizeSubviews(notification)
         
-        guard !self.isUncollapsing else { return }
-        
-        self.collapseResultViewIfNeeded()
+        // collapse result view if closed
+        if let item = self.resultSplitViewItem,
+           item.viewController.isViewShown,
+           item.viewController.view.frame.height < 1
+        {
+            item.isCollapsed = true
+        }
     }
     
     
-    /// avoid showing draggable cursor when result view collapsed
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
-        let effectiveRect = super.splitView(splitView, effectiveRect: proposedEffectiveRect, forDrawnRect: drawnRect, ofDividerAt: dividerIndex)
-        
-        if splitView.isSubviewCollapsed(splitView.subviews[dividerIndex + 1]) || dividerIndex == 1 {
-            return .zero
-        }
-        
-        return effectiveRect
+        // avoid showing draggable cursor when result view collapsed
+        (self.resultSplitViewItem?.isCollapsed == true) ? .zero : proposedEffectiveRect
     }
     
     
     
     // MARK: Action Messages
     
-    /// close opening find result view
+    /// Close the find result view.
     @IBAction func closeResultView(_ sender: Any?) {
         
-        self.setResultShown(false, animate: true)
+        self.setResultShown(false)
     }
     
     
@@ -150,64 +147,26 @@ final class FindPanelContentViewController: NSSplitViewController {
         
         guard !result.matches.isEmpty else { return }
         
-        self.setResultShown(true, animate: true)
+        self.setResultShown(true)
         self.splitView.window?.windowController?.showWindow(self)
     }
     
     
-    /// toggle result view visibility with/without animation
-    private func setResultShown(_ shown: Bool, animate: Bool) {
+    /// Toggle the visibility of the result view with animation.
+    ///
+    /// - Parameter shown: `true` to open the result view; otherwise, `false`.
+    private func setResultShown(_ shown: Bool) {
         
-        guard
-            let resultViewItem = self.resultSplitViewItem,
-            let panel = self.splitView.window
-        else { return assertionFailure() }
+        guard let item = self.resultSplitViewItem else { return assertionFailure() }
         
-        let resultView = resultViewItem.viewController.view
-        let height = resultView.bounds.height
-        
-        // resize panel frame
-        let diff: CGFloat = {
+        NSAnimationContext.runAnimationGroup { _ in
             if shown {
-                if resultViewItem.isCollapsed {
-                    return defaultResultViewHeight
-                } else {
-                    return max(defaultResultViewHeight - height, 0)
-                }
-            } else {
-                return -height
+                item.viewController.view.frame.size.height.clamp(to: 200...(.infinity))
             }
-        }()
-        var panelFrame = panel.frame
-        panelFrame.size.height += diff
-        panelFrame.origin.y -= diff
-        
-        // uncollapse if needed
-        if shown {
-            self.isUncollapsing = true
-            resultViewItem.isCollapsed = !shown
-            resultView.isHidden = false
+            item.animator().isCollapsed = !shown
+            
+        } completionHandler: { [weak self] in
+            self?.splitView.needsDisplay = true
         }
-        
-        panel.setFrame(panelFrame, display: true, animate: animate)
-        
-        self.isUncollapsing = false
-        if !shown {
-            self.collapseResultViewIfNeeded()
-        }
-    }
-    
-    
-    /// collapse result view if closed
-    private func collapseResultViewIfNeeded() {
-        
-        guard
-            let resultViewController = self.resultViewController,
-            resultViewController.isViewShown,
-            resultViewController.view.visibleRect.isEmpty
-        else { return }
-        
-        self.resultSplitViewItem?.isCollapsed = true
-        self.splitView.needsDisplay = true
     }
 }
