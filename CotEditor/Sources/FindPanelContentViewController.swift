@@ -159,13 +159,15 @@ final class FindPanelContentViewController: NSSplitViewController {
         
         guard let item = self.resultSplitViewItem else { return assertionFailure() }
         
+        if shown {
+            item.viewController.view.frame.size.height.clamp(to: 200...(.infinity))
+        }
+        
         NSAnimationContext.runAnimationGroup { _ in
-            if shown {
-                item.viewController.view.frame.size.height.clamp(to: 200...(.infinity))
-            }
             item.animator().isCollapsed = !shown
             
         } completionHandler: { [weak self] in
+            // invalidate divider drawing
             self?.splitView.needsDisplay = true
         }
     }
