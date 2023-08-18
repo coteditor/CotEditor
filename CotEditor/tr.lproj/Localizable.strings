@@ -103,7 +103,7 @@
 
 // pairs of button label and its tooltip
 "Find All" = "Tümünü Bul";
-"Find and list all matches up." = "Tüm eşleşmeleri listele.";
+"Find and list all matches." = "Tüm eşleşmeleri listele.";
 
 "Replace All" = "Tümünü Değiştir";
 "Replace all matches with the replacement text." = "Tüm eşleşmeleri değişim metniyle değiştir.";

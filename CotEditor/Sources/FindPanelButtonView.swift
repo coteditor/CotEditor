@@ -54,7 +54,7 @@ struct FindPanelButtonView: View {
             } primaryAction: {
                 self.performAction(.findAll)
             }
-            .help("Find and list all matches up.")
+            .help("Find and list all matches.")
             .fixedSize()
             
             Button("Replace All") {
@@ -89,8 +89,8 @@ struct FindPanelButtonView: View {
         }
         .responderChain(to: self.firstResponder)
         .padding(.top, 8)
-        .padding(.horizontal, 20)
-        .padding(.bottom)
+        .scenePadding(.horizontal)
+        .scenePadding(.bottom)
     }
     
     

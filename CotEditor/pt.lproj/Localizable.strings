@@ -103,7 +103,7 @@
 
 // pairs of button label and its tooltip
 "Find All" = "Buscar Tudo";
-"Find and list all matches up." = "Liste todas as ocorrências.";
+"Find and list all matches." = "Liste todas as ocorrências.";
 
 "Replace All" = "Substituir Tudo";
 "Replace all matches with the replacement text." = "Substitua todas as ocorrências pelo texto de substituição.";

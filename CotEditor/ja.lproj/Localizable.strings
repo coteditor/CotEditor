@@ -103,7 +103,7 @@
 
 // pairs of button label and its tooltip
 "Find All" = "すべて検索";
-"Find and list all matches up." = "すべての一致を検索しリストアップ";
+"Find and list all matches." = "すべての一致を検索しリストアップ";
 
 "Replace All" = "すべて置換";
 "Replace all matches with the replacement text." = "すべての一致を置換テキストで置き換え";

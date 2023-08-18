@@ -103,7 +103,7 @@
 
 // pairs of button label and its tooltip
 "Find All" = "Find All";
-"Find and list all matches up." = "Find and list all matches up.";
+"Find and list all matches." = "Find and list all matches.";
 
 "Replace All" = "Replace All";
 "Replace all matches with the replacement text." = "Replace all matches with the replacement text.";

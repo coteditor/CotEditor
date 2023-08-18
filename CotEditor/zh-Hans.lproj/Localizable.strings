@@ -103,7 +103,7 @@
 
 // pairs of button label and its tooltip
 "Find All" = "全部查找";
-"Find and list all matches up." = "列出所有匹配。";
+"Find and list all matches." = "列出所有匹配。";
 
 "Replace All" = "全部替换";
 "Replace all matches with the replacement text." = "将所有匹配用替换文本替换。";

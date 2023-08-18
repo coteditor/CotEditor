@@ -103,7 +103,7 @@
 
 // pairs of button label and its tooltip
 "Find All" = "Alles suchen";
-"Find and list all matches up." = "Suchen und alle Übereinstimmungen auflisten.";
+"Find and list all matches." = "Suchen und alle Übereinstimmungen auflisten.";
 
 "Replace All" = "Alles ersetzen";
 "Replace all matches with the replacement text." = "Alle Übereinstimmungen durch den Ersetzungstext ersetzen.";
