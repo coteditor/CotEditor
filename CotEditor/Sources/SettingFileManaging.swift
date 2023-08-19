@@ -452,9 +452,9 @@ enum InvalidNameError: LocalizedError {
             case .empty:
                 String(localized: "Name can’t be empty.")
             case .containSlash:
-                String(localized: "You can’t use a name that contains “/”.")
+                String(localized: "Name can’t contain “/”.")
             case .startWithDot:
-                String(localized: "You can’t use a name that begins with a dot “.”.")
+                String(localized: "Name can’t begin with a dot “.”.")
             case .duplicated(let name):
                 String(localized: "The name “\(name)” is already taken.")
         }

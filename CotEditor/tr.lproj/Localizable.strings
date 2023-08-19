@@ -721,8 +721,8 @@
 // Setting filename warnings
 "Please choose another name." = "Lütfen başka bir ad seçin.";
 "Name can’t be empty." = "Ad boş bırakılamaz.";
-"You can’t use a name that contains “/”." = "“/” içeren bir ad kullanamazsınız.";
-"You can’t use a name that begins with a dot “.”." = "“.” ile başlayan bir ad kullanamazsınız.";
+"Name can’t contain “/”." = "“/” içeren bir ad kullanamazsınız.";  // FIXME: updated
+"Name can’t begin with a dot “.”." = "“.” ile başlayan bir ad kullanamazsınız.";  // FIXME: updated
 "The name “%@” is already taken." = "“%@” adı halihazırda kullanılıyor.";
 
 

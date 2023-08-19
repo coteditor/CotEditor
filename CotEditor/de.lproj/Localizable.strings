@@ -721,8 +721,8 @@
 // Setting filename warnings
 "Please choose another name." = "Bitte wähle einen anderen Namen.";
 "Name can’t be empty." = "Name darf nicht leer sein.";
-"You can’t use a name that contains “/”." = "Name darf kein „/“ enthalten.";
-"You can’t use a name that begins with a dot “.”." = "Name darf nicht mit einem Punkt „.“ beginnen.";
+"Name can’t contain “/”." = "Name darf kein „/“ enthalten.";  // FIXME: updated
+"Name can’t begin with a dot “.”." = "Name darf nicht mit einem Punkt „.“ beginnen.";  // FIXME: updated
 "The name “%@” is already taken." = "„%@“ wird bereits verwendet.";
 
 

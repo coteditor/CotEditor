@@ -721,8 +721,8 @@
 // Setting filename warnings
 "Please choose another name." = "請輸入其他名稱。";
 "Name can’t be empty." = "名稱不能為空。";
-"You can’t use a name that contains “/”." = "名稱不能含有「/」。";
-"You can’t use a name that begins with a dot “.”." = "名稱不能含有「.」。";
+"Name can’t contain “/”." = "名稱不能含有「/」。";
+"Name can’t begin with a dot “.”." = "名稱不能含有「.」。";
 "The name “%@” is already taken." = "「%@」已經在使用中。";
 
 

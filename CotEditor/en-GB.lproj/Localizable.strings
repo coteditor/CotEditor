@@ -721,8 +721,8 @@
 // Setting filename warnings
 "Please choose another name." = "Please choose another name.";
 "Name can’t be empty." = "Name can’t be empty.";
-"You can’t use a name that contains “/”." = "You can’t use a name that contains “/”.";
-"You can’t use a name that begins with a dot “.”." = "You can’t use a name that begins with a dot “.”.";
+"Name can’t contain “/”." = "Name can’t contain “/”.";
+"Name can’t begin with a dot “.”." = "Name can’t begin with a dot “.”.";
 "The name “%@” is already taken." = "The name “%@” is already taken.";
 
 
