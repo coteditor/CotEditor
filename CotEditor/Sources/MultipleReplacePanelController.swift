@@ -40,6 +40,7 @@ final class MultipleReplacePanelController: NSWindowController {
         window.styleMask = [.titled, .closable, .resizable, .fullSizeContentView, .utilityWindow]
         window.level = .floating
         window.titlebarAppearsTransparent = true
+        window.standardWindowButton(.zoomButton)?.isEnabled = false
         window.setFrameAutosaveName("Multiple Replace Panel")
         window.title = String(localized: "Multiple Replace", comment: "window title")
         

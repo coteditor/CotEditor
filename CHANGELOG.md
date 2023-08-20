@@ -23,8 +23,9 @@ Change Log
 - Make sure to perform the automatic whitespace trimming every time before explicit saving by the user.
 - Migrate the sharing interface to the modern version.
 - [trivial] Migrate the Opacity toolbar item to popover in macOS 14.
+- [trivial] Disable the zoom button in the find & replace windows.
 - [trivial] Disable the contextual menu for shortcut fields.
-- [trivial] Reduce the maximum number to split editor.
+- [trivial] Reduce the maximum number of editors to split into.
 - [trivial] Change the behavior of the duplication command for syntax definitions to just create a duplicated syntax instead of opening the syntax editor dialog.
 - [trivial] Improve the behavior when selecting a row in the find result table in the Find window.
 - [trivial] Rename “syntax style” with just “syntax.”

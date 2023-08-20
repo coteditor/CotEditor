@@ -40,6 +40,7 @@ final class FindPanelController: NSWindowController {
         window.styleMask = [.titled, .closable, .resizable, .utilityWindow]
         window.level = .floating
         window.autorecalculatesKeyViewLoop = true
+        window.standardWindowButton(.zoomButton)?.isEnabled = false
         window.title = String(localized: "Find & Replace")
         
         self.init(window: window)
