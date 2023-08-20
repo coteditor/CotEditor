@@ -32,11 +32,9 @@
 "GRh-V2-hmW.title" = "Insérer automatiquement les parenthèses et guillemets fermants";
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "Inverser les touches “¥” et “\\”";
-/* Class = "NSTextFieldCell"; title = "Smart"; ObjectID = "6I3-dM-2QV"; */
-"6I3-dM-2QV.title" = "";
-/* Class = "NSButtonCell"; title = "Quotes"; ObjectID = "Abx-fM-gyc"; */
-"Abx-fM-gyc.title" = "Guillemets intelligents";
-/* Class = "NSButtonCell"; title = "Dashes"; ObjectID = "nr1-0X-aBY"; */
+/* Class = "NSButtonCell"; title = "Smart quotes"; ObjectID = "Abx-fM-gyc"; */
+"Abx-fM-gyc.title" = "Guillemets courbes";
+/* Class = "NSButtonCell"; title = "Smart dashes"; ObjectID = "nr1-0X-aBY"; */
 "nr1-0X-aBY.title" = "Tirets intelligents";
 /* Class = "NSButtonCell"; title = "Automatically trim trailing whitespace"; ObjectID = "noP-hx-YeQ"; */
 "noP-hx-YeQ.title" = "Retirer automatiquement les espaces en fin de ligne";

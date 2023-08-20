@@ -75,14 +75,16 @@
 "SR0-Bx-Nh6.title" = "Sütun";
 
 
-/* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "JZ8-uq-7Kg"; */
-"JZ8-uq-7Kg.title" = "Pencere genişliği:";
+/* Class = "NSTextFieldCell"; title = "Window size:"; ObjectID = "JZ8-uq-7Kg"; */
+"JZ8-uq-7Kg.title" = "Pencere Büyüklüğü:";
+/* Class = "NSTextFieldCell"; title = "width"; ObjectID = "IGc-EL-MXO"; */
+"IGc-EL-MXO.title" = "genişlik";
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "u8r-OW-Z1O"; */
-"u8r-OW-Z1O.title" = "pks";
-/* Class = "NSTextFieldCell"; title = "height:"; ObjectID = "Zhk-Nt-kiD"; */
-"Zhk-Nt-kiD.title" = "Yükseklik:";
+"u8r-OW-Z1O.title" = "piks.";
+/* Class = "NSTextFieldCell"; title = "height"; ObjectID = "Zhk-Nt-kiD"; */
+"Zhk-Nt-kiD.title" = "yükseklik";
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "VCx-PO-Fnr"; */
-"VCx-PO-Fnr.title" = "pks";
+"VCx-PO-Fnr.title" = "piks.";
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "hye-gP-iep"; */
 "hye-gP-iep.ibShadowedIsNilPlaceholder" = "Otom.";
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "UXj-fO-Vee"; */

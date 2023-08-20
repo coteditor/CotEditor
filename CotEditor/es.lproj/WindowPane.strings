@@ -61,7 +61,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Status bar shows:"; ObjectID = "kjP-FS-fyd"; */
-"kjP-FS-fyd.title" = "La barra de estado muestra:";
+"kjP-FS-fyd.title" = "Barra de estado:";  // omit "muestra" to avoid window resize
 /* Class = "NSButtonCell"; title = "Line count"; ObjectID = "6jK-xX-8AH"; */
 "6jK-xX-8AH.title" = "Recuento de líneas";
 
@@ -77,12 +77,14 @@
 "SR0-Bx-Nh6.title" = "Columna";
 
 
-/* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "JZ8-uq-7Kg"; */
-"JZ8-uq-7Kg.title" = "Ancho de ventana:";
+/* Class = "NSTextFieldCell"; title = "Window size:"; ObjectID = "JZ8-uq-7Kg"; */
+"JZ8-uq-7Kg.title" = "Tamaño de la ventana:";
+/* Class = "NSTextFieldCell"; title = "width"; ObjectID = "IGc-EL-MXO"; */
+"IGc-EL-MXO.title" = "anchura";
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "u8r-OW-Z1O"; */
 "u8r-OW-Z1O.title" = "px";
-/* Class = "NSTextFieldCell"; title = "height:"; ObjectID = "Zhk-Nt-kiD"; */
-"Zhk-Nt-kiD.title" = "Altura:";
+/* Class = "NSTextFieldCell"; title = "height"; ObjectID = "Zhk-Nt-kiD"; */
+"Zhk-Nt-kiD.title" = "altura";
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "VCx-PO-Fnr"; */
 "VCx-PO-Fnr.title" = "px";
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "hye-gP-iep"; */
@@ -99,4 +101,3 @@
 
 /* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
 "gSx-LA-TPc.title" = "Opacidad del editor:";
-   

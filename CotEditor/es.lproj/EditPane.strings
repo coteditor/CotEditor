@@ -32,12 +32,10 @@
 "GRh-V2-hmW.title" = "Inserte automáticamente los corchetes de cierre y las comillas";
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "Intercambia las teclas “¥” y “\\”";
-/* Class = "NSTextFieldCell"; title = "Smart"; ObjectID = "6I3-dM-2QV"; */
-"6I3-dM-2QV.title" = "Inteligente:";
-/* Class = "NSButtonCell"; title = "Quotes"; ObjectID = "Abx-fM-gyc"; */
-"Abx-fM-gyc.title" = "Comillas";
-/* Class = "NSButtonCell"; title = "Dashes"; ObjectID = "nr1-0X-aBY"; */
-"nr1-0X-aBY.title" = "Guiones";
+/* Class = "NSButtonCell"; title = "Smart quotes"; ObjectID = "Abx-fM-gyc"; */
+"Abx-fM-gyc.title" = "Comillas tipográficas";
+/* Class = "NSButtonCell"; title = "Smart dashes"; ObjectID = "nr1-0X-aBY"; */
+"nr1-0X-aBY.title" = "Guiones inteligentes";
 /* Class = "NSButtonCell"; title = "Automatically trim trailing whitespace"; ObjectID = "noP-hx-YeQ"; */
 "noP-hx-YeQ.title" = "Recortar automáticamente los espacios en blanco finales";
 /* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */

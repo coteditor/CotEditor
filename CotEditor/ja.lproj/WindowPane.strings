@@ -75,12 +75,14 @@
 "SR0-Bx-Nh6.title" = "現在の列";
 
 
-/* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "JZ8-uq-7Kg"; */
-"JZ8-uq-7Kg.title" = "ウインドウ幅:";
+/* Class = "NSTextFieldCell"; title = "Window size:"; ObjectID = "JZ8-uq-7Kg"; */
+"JZ8-uq-7Kg.title" = "ウインドウサイズ:";
+/* Class = "NSTextFieldCell"; title = "width"; ObjectID = "IGc-EL-MXO"; */
+"IGc-EL-MXO.title" = "幅";
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "u8r-OW-Z1O"; */
 "u8r-OW-Z1O.title" = "px";
-/* Class = "NSTextFieldCell"; title = "height:"; ObjectID = "Zhk-Nt-kiD"; */
-"Zhk-Nt-kiD.title" = "高さ:";
+/* Class = "NSTextFieldCell"; title = "height"; ObjectID = "Zhk-Nt-kiD"; */
+"Zhk-Nt-kiD.title" = "高さ";
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "VCx-PO-Fnr"; */
 "VCx-PO-Fnr.title" = "px";
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "hye-gP-iep"; */

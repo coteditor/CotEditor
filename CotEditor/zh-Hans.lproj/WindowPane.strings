@@ -75,14 +75,16 @@
 "SR0-Bx-Nh6.title" = "当前列";
 
 
-/* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "JZ8-uq-7Kg"; */
-"JZ8-uq-7Kg.title" = "窗口宽度：";
+/* Class = "NSTextFieldCell"; title = "Window size:"; ObjectID = "JZ8-uq-7Kg"; */
+"JZ8-uq-7Kg.title" = "窗口大小：";
+/* Class = "NSTextFieldCell"; title = "width"; ObjectID = "IGc-EL-MXO"; */
+"IGc-EL-MXO.title" = "宽度";
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "u8r-OW-Z1O"; */
-"u8r-OW-Z1O.title" = "px";
-/* Class = "NSTextFieldCell"; title = "height:"; ObjectID = "Zhk-Nt-kiD"; */
-"Zhk-Nt-kiD.title" = "高度：";
+"u8r-OW-Z1O.title" = "像素";
+/* Class = "NSTextFieldCell"; title = "height"; ObjectID = "Zhk-Nt-kiD"; */
+"Zhk-Nt-kiD.title" = "高度";
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "VCx-PO-Fnr"; */
-"VCx-PO-Fnr.title" = "px";
+"VCx-PO-Fnr.title" = "像素";
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "hye-gP-iep"; */
 "hye-gP-iep.ibShadowedIsNilPlaceholder" = "自动";
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "UXj-fO-Vee"; */

@@ -32,12 +32,10 @@
 "GRh-V2-hmW.title" = "Automatically insert closing brackets and quotes";
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "Swap “¥” and “\\” keys";
-/* Class = "NSTextFieldCell"; title = "Smart"; ObjectID = "6I3-dM-2QV"; */
-"6I3-dM-2QV.title" = "Smart";
-/* Class = "NSButtonCell"; title = "Quotes"; ObjectID = "Abx-fM-gyc"; */
-"Abx-fM-gyc.title" = "Quotes";
-/* Class = "NSButtonCell"; title = "Dashes"; ObjectID = "nr1-0X-aBY"; */
-"nr1-0X-aBY.title" = "Dashes";
+/* Class = "NSButtonCell"; title = "Smart quotes"; ObjectID = "Abx-fM-gyc"; */
+"Abx-fM-gyc.title" = "Smart quotes";
+/* Class = "NSButtonCell"; title = "Smart dashes"; ObjectID = "nr1-0X-aBY"; */
+"nr1-0X-aBY.title" = "Smart dashes";
 /* Class = "NSButtonCell"; title = "Automatically trim trailing whitespace"; ObjectID = "noP-hx-YeQ"; */
 "noP-hx-YeQ.title" = "Automatically trim trailing whitespace";
 /* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */

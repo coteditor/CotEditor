@@ -32,12 +32,10 @@
 "GRh-V2-hmW.title" = "Inserisci automaticamente parentesi e virgolette di chiusura";
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
 "3303.title" = "Inverti i tasti “¥” e “\\”";
-/* Class = "NSTextFieldCell"; title = "Smart"; ObjectID = "6I3-dM-2QV"; */
-"6I3-dM-2QV.title" = "Intelligente";
-/* Class = "NSButtonCell"; title = " Quotes"; ObjectID = "Abx-fM-gyc"; */
-"Abx-fM-gyc.title" = "Virgolette";
-/* Class = "NSButtonCell"; title = "Dashes"; ObjectID = "nr1-0X-aBY"; */
-"nr1-0X-aBY.title" = "Trattini";
+/* Class = "NSButtonCell"; title = "Smart quotes"; ObjectID = "Abx-fM-gyc"; */
+"Abx-fM-gyc.title" = "Virgolette smart";
+/* Class = "NSButtonCell"; title = "Smart dashes"; ObjectID = "nr1-0X-aBY"; */
+"nr1-0X-aBY.title" = "Trattini smart";
 /* Class = "NSButtonCell"; title = "Automatically trim trailing whitespace"; ObjectID = "noP-hx-YeQ"; */
 "noP-hx-YeQ.title" = "Rimuovi automaticamente spazi a fine riga";
 /* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
