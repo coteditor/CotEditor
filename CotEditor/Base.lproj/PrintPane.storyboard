@@ -14,16 +14,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="370"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="wGW-VF-jXB">
-                                <rect key="frame" x="130" y="20" width="341" height="350"/>
+                                <rect key="frame" x="141" y="20" width="318" height="350"/>
                                 <subviews>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jB6-pW-rzu">
-                                        <rect key="frame" x="111" y="189" width="214" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="Same as Document’s Setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="953" id="R0d-ln-RzZ">
+                                        <rect key="frame" x="111" y="189" width="149" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" title="Use Editor Setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="953" id="R0d-ln-RzZ">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="szT-0b-MOf">
                                                 <items>
-                                                    <menuItem title="Same as Document’s Setting" state="on" tag="1" id="953"/>
+                                                    <menuItem title="Use Editor Setting" state="on" tag="1" id="953"/>
                                                     <menuItem isSeparatorItem="YES" id="W39-uV-7Iq"/>
                                                     <menuItem title="Don’t Print" id="952"/>
                                                     <menuItem title="Print" tag="2" id="954"/>
@@ -36,13 +36,13 @@
                                         </connections>
                                     </popUpButton>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YjD-Jc-NEF">
-                                        <rect key="frame" x="111" y="219" width="214" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="Same as Document’s Setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="947" id="guD-S3-rc0">
+                                        <rect key="frame" x="111" y="219" width="149" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" title="Use Editor Setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="947" id="guD-S3-rc0">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="QXA-FM-XhB">
                                                 <items>
-                                                    <menuItem title="Same as Document’s Setting" state="on" tag="1" id="947"/>
+                                                    <menuItem title="Use Editor Setting" state="on" tag="1" id="947"/>
                                                     <menuItem isSeparatorItem="YES" id="LdL-xp-s2k"/>
                                                     <menuItem title="Don’t Print" id="946"/>
                                                     <menuItem title="Print" tag="2" id="948"/>
@@ -65,7 +65,7 @@
                                         </connections>
                                     </button>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fiR-qP-3Z4">
-                                        <rect key="frame" x="220" y="135" width="103" height="24"/>
+                                        <rect key="frame" x="220" y="135" width="80" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Jap-f3-ehL">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -129,8 +129,8 @@
                                         </connections>
                                     </segmentedControl>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ito-FV-Lxm">
-                                        <rect key="frame" x="111" y="275" width="214" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="Same as Document’s Setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="1354" id="RcI-6Q-ONB">
+                                        <rect key="frame" x="111" y="275" width="149" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" title="Use Editor Setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="1354" id="RcI-6Q-ONB">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" autoenablesItems="NO" id="Fpq-nr-7RN">
@@ -138,7 +138,7 @@
                                                     <menuItem title="Black and White" id="1353">
                                                         <attributedString key="attributedTitle"/>
                                                     </menuItem>
-                                                    <menuItem title="Same as Document’s Setting" state="on" id="1354"/>
+                                                    <menuItem title="Use Editor Setting" state="on" id="1354"/>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>

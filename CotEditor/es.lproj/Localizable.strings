@@ -456,7 +456,7 @@
 // Summary item values
 "%@ pt" = "%@ pt";  // FIXME: added
 "On" = "Encendido";
-"Same as Document’s Setting" = "Igual que la configuración del documento";
+"Use Editor Setting" = "Igual que la configuración del documento";  // FIXME: updated
 "Black and White" = "Blanco y negro";
 "Syntax Name" = "Nombre de la sintaxis";
 "Document Name" = "Nombre del documento";

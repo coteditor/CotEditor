@@ -85,7 +85,7 @@
 "ctl-Ps-V8Z.title" = "位置";
 /* Class = "NSButtonCell"; title = "Current line"; ObjectID = "JbR-gR-aiA"; */
 "JbR-gR-aiA.title" = "當前行";
-/* Class = "NSButtonCell"; title = "Column"; ObjectID = "SR0-Bx-Nh6"; */
+/* Class = "NSButtonCell"; title = "Current column"; ObjectID = "SR0-Bx-Nh6"; */
 "SR0-Bx-Nh6.title" = "當前列";
 
 

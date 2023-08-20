@@ -456,7 +456,7 @@
 // Summary item values
 "%@ pt" = "%@点";
 "On" = "开";
-"Same as Document’s Setting" = "同文档设置一致";
+"Use Editor Setting" = "同文档设置一致";  // FIXME: updated
 "Black and White" = "黑白";
 "Syntax Name" = "语法名";
 "Document Name" = "文档名";

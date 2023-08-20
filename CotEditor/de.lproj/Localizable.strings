@@ -456,7 +456,7 @@
 // Summary item values
 "%@ pt" = "%@ pt";
 "On" = "Ein";
-"Same as Document’s Setting" = "Wie Dokument";
+"Use Editor Setting" = "Einstellung des Editors verwenden";
 "Black and White" = "Schwarzweiß";
 "Syntax Name" = "Syntaxname";
 "Document Name" = "Dokumentenname";

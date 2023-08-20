@@ -46,6 +46,17 @@
                                             <binding destination="NU0-2h-SUe" name="selectedTag" keyPath="values.windowTabbing" id="i48-2i-Toj"/>
                                         </connections>
                                     </popUpButton>
+                                    <customView verticalHuggingPriority="750" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="heB-2f-hH0" customClass="SeparatorGuideView" customModule="CotEditor" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="469" width="495" height="1"/>
+                                    </customView>
+                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1hW-gQ-vjs">
+                                        <rect key="frame" x="89" y="439" width="41" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Show:" usesSingleLineMode="YES" id="iw9-Ba-eD2">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dN2-g1-1rQ">
                                         <rect key="frame" x="134" y="438" width="341" height="18"/>
                                         <buttonCell key="cell" type="check" title="Line numbers" bezelStyle="regularSquare" imagePosition="left" inset="2" id="A9U-Sx-or3">
@@ -54,6 +65,92 @@
                                         </buttonCell>
                                         <connections>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.showLineNumbers" id="4yr-xV-oCq"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WYL-DQ-n5Y">
+                                        <rect key="frame" x="154" y="416" width="119" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Draw separator" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zgz-Vf-91b">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showLineNumberSeparator" id="rbH-Xg-8V1"/>
+                                            <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showLineNumbers" id="ixu-Ti-hCz"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tUn-7J-c32">
+                                        <rect key="frame" x="134" y="394" width="144" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Invisible characters" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2gJ-qw-STq">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showInvisibles" id="pw8-VZ-LFj"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="osr-3d-8sz">
+                                        <rect key="frame" x="154" y="372" width="97" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Line ending" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Aj4-QP-CJe">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showInvisibleNewLine" id="PAm-EM-Ydw"/>
+                                            <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showInvisibles" id="oxu-JI-0lJ"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Vv-db-6bb">
+                                        <rect key="frame" x="300" y="372" width="48" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Tab" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Bl2-gV-lhC">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showInvisibleTab" id="UYg-yJ-SCE"/>
+                                            <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showInvisibles" id="yST-g7-du3"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rm2-f6-0UR">
+                                        <rect key="frame" x="400" y="372" width="64" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Space" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="PhH-3B-qss">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showInvisibleSpace" id="ixN-4f-5Dv"/>
+                                            <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showInvisibles" id="cve-50-v0x"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="zPs-eB-7ON">
+                                        <rect key="frame" x="154" y="350" width="140" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Other whitespaces" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="cWK-Dz-raZ">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showInvisibleWhitespaces" id="2b5-f3-8OQ"/>
+                                            <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showInvisibles" id="867-fg-e9T"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6wo-Yo-zAq">
+                                        <rect key="frame" x="300" y="350" width="175" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Other control characters" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="83g-MI-g5e">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showInvisibles" id="6s5-dl-wHg"/>
+                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showOtherInvisibleChars" id="lp3-Iw-jLw"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5iZ-l6-daQ">
+                                        <rect key="frame" x="134" y="328" width="109" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Indent guides" bezelStyle="regularSquare" imagePosition="left" inset="2" id="R9B-dO-pY1">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showIndentGuides" id="yOt-j4-p7y"/>
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WD1-55-LD1">
@@ -172,6 +269,9 @@
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.overscrollRate" id="GjU-5o-PT5"/>
                                         </connections>
                                     </stepper>
+                                    <customView verticalHuggingPriority="750" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="hZu-SP-zrK" customClass="SeparatorGuideView" customModule="CotEditor" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="234" width="495" height="1"/>
+                                    </customView>
                                     <textField focusRingType="none" horizontalHuggingPriority="751" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Obi-8V-K8Q">
                                         <rect key="frame" x="18" y="204" width="112" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Status bar shows:" usesSingleLineMode="YES" id="kjP-FS-fyd">
@@ -181,7 +281,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <gridView verticalHuggingPriority="750" xPlacement="leading" yPlacement="top" rowAlignment="firstBaseline" columnSpacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DnL-UN-PAA">
-                                        <rect key="frame" x="136" y="160" width="230" height="60"/>
+                                        <rect key="frame" x="136" y="160" width="255" height="60"/>
                                         <rows>
                                             <gridRow id="A5a-1R-KNS"/>
                                             <gridRow id="f5f-3D-cza"/>
@@ -257,8 +357,8 @@
                                             </gridCell>
                                             <gridCell row="aTU-TR-NnE" column="hlS-CI-3S4" id="Czg-oC-RJ8">
                                                 <button key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FLk-vp-SAl">
-                                                    <rect key="frame" x="133" y="-1" width="73" height="18"/>
-                                                    <buttonCell key="cell" type="check" title="Column" bezelStyle="regularSquare" imagePosition="left" inset="2" id="SR0-Bx-Nh6">
+                                                    <rect key="frame" x="133" y="-1" width="122" height="18"/>
+                                                    <buttonCell key="cell" type="check" title="Current Column" bezelStyle="regularSquare" imagePosition="left" inset="2" id="SR0-Bx-Nh6">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
@@ -309,9 +409,9 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dlN-sO-hCs">
-                                        <rect key="frame" x="244" y="95" width="38" height="14"/>
-                                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="height" id="Zhk-Nt-kiD">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ykE-9e-9Uz">
+                                        <rect key="frame" x="151" y="95" width="33" height="14"/>
+                                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="width" id="IGc-EL-MXO">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -342,6 +442,14 @@
                                         <rect key="frame" x="297" y="113" width="19" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="px" id="u8r-OW-Z1O">
                                             <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dlN-sO-hCs">
+                                        <rect key="frame" x="244" y="95" width="38" height="14"/>
+                                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="height" id="Zhk-Nt-kiD">
+                                            <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -496,117 +604,9 @@
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
-                                    <customView verticalHuggingPriority="750" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="heB-2f-hH0" customClass="SeparatorGuideView" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="469" width="495" height="1"/>
-                                    </customView>
-                                    <customView verticalHuggingPriority="750" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="hZu-SP-zrK" customClass="SeparatorGuideView" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="234" width="495" height="1"/>
-                                    </customView>
                                     <customView verticalHuggingPriority="750" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="7BU-ks-EwZ" customClass="SeparatorGuideView" customModule="CotEditor" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="143" width="495" height="1"/>
                                     </customView>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WYL-DQ-n5Y">
-                                        <rect key="frame" x="154" y="416" width="119" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Draw separator" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zgz-Vf-91b">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showLineNumberSeparator" id="rbH-Xg-8V1"/>
-                                            <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showLineNumbers" id="ixu-Ti-hCz"/>
-                                        </connections>
-                                    </button>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ykE-9e-9Uz">
-                                        <rect key="frame" x="151" y="95" width="33" height="14"/>
-                                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="width" id="IGc-EL-MXO">
-                                            <font key="font" metaFont="smallSystem"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tUn-7J-c32">
-                                        <rect key="frame" x="134" y="394" width="144" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Invisible characters" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2gJ-qw-STq">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showInvisibles" id="pw8-VZ-LFj"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="osr-3d-8sz">
-                                        <rect key="frame" x="154" y="372" width="97" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Line ending" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Aj4-QP-CJe">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showInvisibleNewLine" id="PAm-EM-Ydw"/>
-                                            <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showInvisibles" id="oxu-JI-0lJ"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Vv-db-6bb">
-                                        <rect key="frame" x="300" y="372" width="48" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Tab" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Bl2-gV-lhC">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showInvisibleTab" id="UYg-yJ-SCE"/>
-                                            <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showInvisibles" id="yST-g7-du3"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rm2-f6-0UR">
-                                        <rect key="frame" x="400" y="372" width="64" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Space" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="PhH-3B-qss">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showInvisibleSpace" id="ixN-4f-5Dv"/>
-                                            <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showInvisibles" id="cve-50-v0x"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="zPs-eB-7ON">
-                                        <rect key="frame" x="154" y="350" width="140" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Other whitespaces" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="cWK-Dz-raZ">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showInvisibleWhitespaces" id="2b5-f3-8OQ"/>
-                                            <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showInvisibles" id="867-fg-e9T"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6wo-Yo-zAq">
-                                        <rect key="frame" x="300" y="350" width="175" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Other control characters" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="83g-MI-g5e">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showInvisibles" id="6s5-dl-wHg"/>
-                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showOtherInvisibleChars" id="lp3-Iw-jLw"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5iZ-l6-daQ">
-                                        <rect key="frame" x="134" y="328" width="109" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Indent guides" bezelStyle="regularSquare" imagePosition="left" inset="2" id="R9B-dO-pY1">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.showIndentGuides" id="yOt-j4-p7y"/>
-                                        </connections>
-                                    </button>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1hW-gQ-vjs">
-                                        <rect key="frame" x="89" y="439" width="41" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Show:" usesSingleLineMode="YES" id="iw9-Ba-eD2">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="WVD-kf-A2E" firstAttribute="baseline" secondItem="WD1-55-LD1" secondAttribute="baseline" id="0Ct-dD-NNZ"/>

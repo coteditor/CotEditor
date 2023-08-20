@@ -33,8 +33,8 @@
 "3388.title" = "顏色：";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "1353"; */
 "1353.title" = "黑白";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
-"1354.title" = "與文件設定一致";
+/* Class = "NSMenuItem"; title = "Use Editor Setting"; ObjectID = "1354"; */
+"1354.title" = "與文件設定一致";  // FIXME: updated
 /* Class = "NSButtonCell"; title = "Print backgrounds"; ObjectID = "P53-bb-aGF"; */
 "P53-bb-aGF.title" = "列印背景";
 
@@ -42,8 +42,8 @@
 "3380.title" = "行號：";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "946"; */
 "946.title" = "不列印";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "947"; */
-"947.title" = "與文件設定一致";
+/* Class = "NSMenuItem"; title = "Use Editor Setting"; ObjectID = "947"; */
+"947.title" = "與文件設定一致";  // FIXME: updated
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "948"; */
 "948.title" = "列印";
 
@@ -51,8 +51,8 @@
 "3382.title" = "不可見元素：";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "952"; */
 "952.title" = "不列印";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
-"953.title" = "與文件設定一致";
+/* Class = "NSMenuItem"; title = "Use Editor Setting"; ObjectID = "953"; */
+"953.title" = "與文件設定一致";  // FIXME: updated
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "954"; */
 "954.title" = "列印";
 

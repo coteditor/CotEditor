@@ -85,7 +85,7 @@
 "ctl-Ps-V8Z.title" = "Position";
 /* Class = "NSButtonCell"; title = "Current line"; ObjectID = "JbR-gR-aiA"; */
 "JbR-gR-aiA.title" = "Aktuelle Zeile";
-/* Class = "NSButtonCell"; title = "Column"; ObjectID = "SR0-Bx-Nh6"; */
+/* Class = "NSButtonCell"; title = "Current column"; ObjectID = "SR0-Bx-Nh6"; */
 "SR0-Bx-Nh6.title" = "Aktuelle Spalte";
 
 

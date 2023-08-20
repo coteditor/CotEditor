@@ -85,8 +85,8 @@
 "ctl-Ps-V8Z.title" = "Location";
 /* Class = "NSButtonCell"; title = "Current line"; ObjectID = "JbR-gR-aiA"; */
 "JbR-gR-aiA.title" = "Current line";
-/* Class = "NSButtonCell"; title = "Column"; ObjectID = "SR0-Bx-Nh6"; */
-"SR0-Bx-Nh6.title" = "Column";
+/* Class = "NSButtonCell"; title = "Current column"; ObjectID = "SR0-Bx-Nh6"; */
+"SR0-Bx-Nh6.title" = "Current column";
 
 
 /* Class = "NSTextFieldCell"; title = "Window size:"; ObjectID = "JZ8-uq-7Kg"; */

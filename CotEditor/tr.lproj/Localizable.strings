@@ -456,7 +456,7 @@
 // Summary item values
 "%@ pt" = "%@ punto";
 "On" = "Açık";
-"Same as Document’s Setting" = "Belge Ayarlarıyla Aynı";
+"Use Editor Setting" = "Belge Ayarlarıyla Aynı";  // FIXME: updated
 "Black and White" = "Siyah - Beyaz";
 "Syntax Name" = "Sözdizim Adı";
 "Document Name" = "Belge Adı";

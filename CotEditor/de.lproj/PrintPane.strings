@@ -33,8 +33,8 @@
 "3388.title" = "Farbe:";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "1353"; */
 "1353.title" = "Schwarzweiß";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
-"1354.title" = "Wie Dokument";
+/* Class = "NSMenuItem"; title = "Use Editor Setting"; ObjectID = "1354"; */
+"1354.title" = "Einstellung des Editors verwenden";  // FIXME: updated
 /* Class = "NSButtonCell"; title = "Print backgrounds"; ObjectID = "P53-bb-aGF"; */
 "P53-bb-aGF.title" = "Hintergrund drucken";
 
@@ -42,8 +42,8 @@
 "3380.title" = "Zeilennummern:";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "946"; */
 "946.title" = "Nicht drucken";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "947"; */
-"947.title" = "Wie Dokument";
+/* Class = "NSMenuItem"; title = "Use Editor Setting"; ObjectID = "947"; */
+"947.title" = "Einstellung des Editors verwenden";  // FIXME: updated
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "948"; */
 "948.title" = "Drucken";
 
@@ -51,8 +51,8 @@
 "3382.title" = "Steuerzeichen:";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "952"; */
 "952.title" = "Nicht drucken";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
-"953.title" = "Wie Dokument";
+/* Class = "NSMenuItem"; title = "Use Editor Setting"; ObjectID = "953"; */
+"953.title" = "Einstellung des Editors verwenden";  // FIXME: updated
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "954"; */
 "954.title" = "Drucken";
 

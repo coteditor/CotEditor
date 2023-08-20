@@ -33,8 +33,8 @@
 "3388.title" = "カラー:";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "1353"; */
 "1353.title" = "白黒";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
-"1354.title" = "書類の設定と同じ";
+/* Class = "NSMenuItem"; title = "Use Editor Setting"; ObjectID = "1354"; */
+"1354.title" = "エディタの設定を使用";
 /* Class = "NSButtonCell"; title = "Print backgrounds"; ObjectID = "P53-bb-aGF"; */
 "P53-bb-aGF.title" = "背景をプリント";
 
@@ -42,8 +42,8 @@
 "3380.title" = "行番号:";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "946"; */
 "946.title" = "プリントしない";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "947"; */
-"947.title" = "書類の設定と同じ";
+/* Class = "NSMenuItem"; title = "Use Editor Setting"; ObjectID = "947"; */
+"947.title" = "エディタの設定を使用";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "948"; */
 "948.title" = "プリント";
 
@@ -51,8 +51,8 @@
 "3382.title" = "不可視文字:";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "952"; */
 "952.title" = "プリントしない";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
-"953.title" = "書類の設定と同じ";
+/* Class = "NSMenuItem"; title = "Use Editor Setting"; ObjectID = "953"; */
+"953.title" = "エディタの設定を使用";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "954"; */
 "954.title" = "プリント";
 

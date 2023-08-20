@@ -104,7 +104,7 @@ final class PrintPaneController: NSViewController {
         
         // build popup button
         popUpButton.addItem(withTitle: ThemeName.blackAndWhite)
-        popUpButton.addItem(withTitle: String(localized: "Same as Document’s Setting"))
+        popUpButton.addItem(withTitle: String(localized: "Use Editor Setting"))
         
         popUpButton.menu?.addItem(.separator())
         popUpButton.menu?.addItem(.sectionHeader(title: String(localized: "Theme")))

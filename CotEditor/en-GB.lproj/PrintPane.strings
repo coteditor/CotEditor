@@ -33,8 +33,8 @@
 "3388.title" = "Colour:";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "1353"; */
 "1353.title" = "Black and White";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
-"1354.title" = "Same as Document’s Setting";
+/* Class = "NSMenuItem"; title = "Use Editor Setting"; ObjectID = "1354"; */
+"1354.title" = "Use Editor Setting";
 /* Class = "NSButtonCell"; title = "Print backgrounds"; ObjectID = "P53-bb-aGF"; */
 "P53-bb-aGF.title" = "Print backgrounds";
 
@@ -42,8 +42,8 @@
 "3380.title" = "Line numbers:";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "946"; */
 "946.title" = "Don’t Print";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "947"; */
-"947.title" = "Same as Document’s Setting";
+/* Class = "NSMenuItem"; title = "Use Document’s Setting"; ObjectID = "947"; */
+"947.title" = "Use Editor Setting";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "948"; */
 "948.title" = "Print";
 
@@ -51,8 +51,8 @@
 "3382.title" = "Invisibles:";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "952"; */
 "952.title" = "Don’t Print";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
-"953.title" = "Same as Document’s Setting";
+/* Class = "NSMenuItem"; title = "Use Editor Setting"; ObjectID = "953"; */
+"953.title" = "Use Editor Setting";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "954"; */
 "954.title" = "Print";
 

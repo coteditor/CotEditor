@@ -96,7 +96,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="scope" width="104" minWidth="40" maxWidth="1000" headerToolTip="" id="pbJ-4Q-CE2">
+                                                <tableColumn identifier="scope" width="128" minWidth="40" maxWidth="1000" headerToolTip="" id="pbJ-4Q-CE2">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Syntax">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -109,11 +109,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="SdO-OQ-HSL">
-                                                            <rect key="frame" x="4" y="0.0" width="106" height="21"/>
+                                                            <rect key="frame" x="4" y="0.0" width="128" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <popUpButton id="68U-sn-0cP">
-                                                                    <rect key="frame" x="-3" y="1" width="107" height="20"/>
+                                                                    <rect key="frame" x="-3" y="1" width="131" height="20"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     <popUpButtonCell key="cell" type="bevel" title="All" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="vXM-oG-cI7" id="N04-oz-sU5">
                                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -157,7 +157,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="WTC-7C-m9U">
-                                                            <rect key="frame" x="118" y="0.0" width="304" height="21"/>
+                                                            <rect key="frame" x="142" y="0.0" width="304" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zxQ-hR-j2t">
@@ -192,7 +192,7 @@
                                                     </textFieldCell>
                                                     <prototypeCellViews>
                                                         <tableCellView id="YN5-88-L3R">
-                                                            <rect key="frame" x="430" y="0.0" width="74" height="21"/>
+                                                            <rect key="frame" x="454" y="0.0" width="74" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" id="7e5-Al-qqJ" customClass="ShortcutField" customModule="CotEditor" customModuleProvider="target">
