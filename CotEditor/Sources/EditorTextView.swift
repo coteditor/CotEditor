@@ -230,7 +230,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
                 .sink { [unowned self] _ in
                     self.invalidateFontSettings(for: self.syntaxKind)
                     self.observeFontDefaults(for: self.syntaxKind)
-                 },
+                },
             
             defaults.publisher(for: .balancesBrackets)
                 .sink { [unowned self] in self.balancesBrackets = $0 },
