@@ -389,10 +389,6 @@
 // tooltip
 "Show spelling and grammar" = "Show spelling and grammar";
 
-"Color Code" = "Colour Code";
-// tooltip
-"Open Color Code Editor and set selection as color code" = "Open Colour Code Editor and set selection as colour code";
-
 "Emoji & Symbols" = "Emoji & Symbols";
 // tooltip
 "Show Emoji & Symbols palette" = "Show Emoji & Symbols palette";
@@ -576,7 +572,7 @@
 
 
 /* MARK: ColorCodePanelAccessory */
-"color code" = "colour code";
+"Color Code" = "Colour Code";
 
 "Hexadecimal" = "Hexadecimal";
 "Hexadecimal (Short)" = "Hexadecimal (Short)";

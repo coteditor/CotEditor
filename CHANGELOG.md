@@ -24,6 +24,7 @@ Change Log
 - Reorganize the Settings window.
 - Deprecate the print font setting in the Print settings.
 - Deprecate the cursor type option.
+- Deprecate the Color Code toolbar button.
 - Make sure to perform the automatic whitespace trimming every time before explicit saving by the user.
 - Migrate the sharing interface to the modern version.
 - [trivial] Migrate the Opacity toolbar item to popover in macOS 14.

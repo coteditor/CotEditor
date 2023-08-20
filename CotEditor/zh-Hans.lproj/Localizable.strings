@@ -389,10 +389,6 @@
 // tooltip
 "Show spelling and grammar" = "显示拼写和语法";
 
-"Color Code" = "颜色代码";
-// tooltip
-"Open Color Code Editor and set selection as color code" = "打开调色盘并将选中内容设为颜色代码";
-
 "Emoji & Symbols" = "表情与符号";
 // tooltip
 "Show Emoji & Symbols palette" = "显示查找和替换";
@@ -576,7 +572,8 @@
 
 
 /* MARK: ColorCodePanelAccessory */
-"color code" = "颜色码";
+// placeholder
+"Color Code" = "颜色码";
 
 "Hexadecimal" = "Hex";
 "Hexadecimal (Short)" = "Hex（短）";

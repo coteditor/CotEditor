@@ -317,7 +317,6 @@ private extension NSToolbarItem.Identifier {
     static let keepOnTop = Self(Self.prefix + "keepOnTop")
     static let opacity = Self(Self.prefix + "opacity")
     static let spellCheck = Self(Self.prefix + "spellCheck")
-    static let colorCode = Self(Self.prefix + "colorCode")
     static let emojiAndSymbols = Self(Self.prefix + "emojiAndSymbols")
     static let fonts = Self(Self.prefix + "fonts")
     static let find = Self(Self.prefix + "find")
@@ -373,7 +372,6 @@ extension DocumentWindowController: NSToolbarDelegate {
             .keepOnTop,
             .opacity,
             .spellCheck,
-            .colorCode,
             .emojiAndSymbols,
             .fonts,
             .find,
@@ -620,15 +618,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.toolTip = String(localized: "Show spelling and grammar")
                 item.image = NSImage(resource: .abcCheckmark)
                 item.action = #selector(NSTextView.showGuessPanel)
-                return item
-                
-            case .colorCode:
-                let item = NSToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
-                item.label = String(localized: "Color Code")
-                item.toolTip = String(localized: "Open Color Code Editor and set selection as color code")
-                item.image = NSImage(systemSymbolName: "eyedropper.halffull", accessibilityDescription: item.label)
-                item.action = #selector(EditorTextView.editColorCode)
                 return item
                 
             case .emojiAndSymbols:

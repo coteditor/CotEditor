@@ -389,10 +389,6 @@
 // tooltip
 "Show spelling and grammar" = "Yazım ve dilbilgisi denetimini göster";
 
-"Color Code" = "Renk Kodu";
-// tooltip
-"Open Color Code Editor and set selection as color code" = "Renk kodu düzenleyicisini açar ve seçimi renk kodu olarak ayarla";
-
 "Emoji & Symbols" = "Emoji ve Semboller";
 // tooltip
 "Show Emoji & Symbols palette" = "Emoji ve Semboller paletini göster";
@@ -576,7 +572,8 @@
 
 
 /* MARK: ColorCodePanelAccessory */
-"color code" = "renk kodu";
+// placeholder
+"Color Code" = "Renk Kodu";
 
 "Hexadecimal" = "Onaltılık";
 "Hexadecimal (Short)" = "Onaltılık (Kısa)";

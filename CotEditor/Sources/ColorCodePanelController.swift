@@ -122,7 +122,7 @@ private struct ColorCodePanelAccessory: View {
     var body: some View {
         
         VStack {
-            TextField("color code", text: $colorCode)
+            TextField("Color Code", text: $colorCode)
                 .font(.system(size: 14, design: .monospaced))
                 .multilineTextAlignment(.center)
                 .onSubmit {

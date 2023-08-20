@@ -389,10 +389,6 @@
 // tooltip
 "Show spelling and grammar" = "スペルと文法を表示";
 
-"Color Code" = "カラーコード";
-// tooltip
-"Open Color Code Editor and set selection as color code" = "カラーコードエディタを開き、選択範囲をカラーコードとしてセット";
-
 "Emoji & Symbols" = "絵文字と記号";
 // tooltip
 "Show Emoji & Symbols palette" = "絵文字と記号パレットを表示";
@@ -576,7 +572,8 @@
 
 
 /* MARK: ColorCodePanelAccessory */
-"color code" = "カラーコード";
+// placeholder
+"Color Code" = "カラーコード";
 
 "Hexadecimal" = "16進法";
 "Hexadecimal (Short)" = "16進法（ショート）";

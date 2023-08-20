@@ -389,10 +389,6 @@
 // tooltip
 "Show spelling and grammar" = "Mostrar ortografía y gramática";
 
-"Color Code" = "Código de color";
-// tooltip
-"Open Color Code Editor and set selection as color code" = "Abra el editor de código de color y establezca la selección como código de color";
-
 "Emoji & Symbols" = "Emojis y símbolos";
 // tooltip
 "Show Emoji & Symbols palette" = "Mostrar paleta de emojis y símbolos";
@@ -576,7 +572,8 @@
 
 
 /* MARK: ColorCodePanelAccessory */
-"color code" = "código de color";
+// placeholder
+"Color Code" = "código de color";
 
 "Hexadecimal" = "Hexadecimal";
 "Hexadecimal (Short)" = "Hexadecimal (corto)";
