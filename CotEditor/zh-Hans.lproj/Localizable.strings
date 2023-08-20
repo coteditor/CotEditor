@@ -625,6 +625,10 @@
 
 
 // Appearance pane
+// alert message
+"The selected font doesn’t seem to be monospaced." = "The selected font doesn’t seem to be monospaced.";  // FIXME: added
+"Do you want to use it for the monospaced font?" = "Do you want to use it for the monospaced font?";  // “it” is the selected font.  // FIXME: added
+
 // Contextual menu items
 "Rename “%@”" = "给“%@”重新命名";
 "Duplicate “%@”" = "拷贝“%@”";

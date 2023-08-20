@@ -625,6 +625,10 @@
 
 
 // Appearance pane
+// alert message
+"The selected font doesn’t seem to be monospaced." = "選択したフォントは等幅フォントではないようです。";
+"Do you want to use it for the monospaced font?" = "選択したフォントを等幅フォントとして使用しますか？";  // “it” is the selected font.
+
 // Contextual menu items
 "Rename “%@”" = "“%@”を名称変更";
 "Duplicate “%@”" = "“%@”を複製";

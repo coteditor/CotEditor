@@ -62,9 +62,13 @@ extension DefaultKeys {
     
     // Appearance
     static let fontName = DefaultKey<String>("fontName")
-    static let fontSize = DefaultKey<CGFloat>("fontSize")
+    static let fontSize = DefaultKey<Double>("fontSize")
     static let shouldAntialias = DefaultKey<Bool>("shouldAntialias")
     static let ligature = DefaultKey<Bool>("ligature")
+    static let monospacedFontName = DefaultKey<String>("monospacedFontName")
+    static let monospacedFontSize = DefaultKey<Double>("monospacedFontSize")
+    static let monospacedShouldAntialias = DefaultKey<Bool>("monospacedShouldAntialias")
+    static let monospacedLigature = DefaultKey<Bool>("monospacedLigature")
     static let lineHeight = DefaultKey<CGFloat>("lineHeight")
     static let highlightCurrentLine = DefaultKey<Bool>("highlightCurrentLine")
     static let showInvisibles = DefaultKey<Bool>("showInvisibles")

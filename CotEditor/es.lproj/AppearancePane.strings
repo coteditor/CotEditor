@@ -33,6 +33,15 @@
 /* Class = "NSButtonCell"; title = "Ligatures"; ObjectID = "g3S-3v-6ZA"; */
 "g3S-3v-6ZA.title" = "Ligaduras";
 
+/* Class = "NSTextFieldCell"; title = "Monospaced font:"; ObjectID = "B8d-4v-fox"; */
+"B8d-4v-fox.title" = "Monospaced font:";  // FIXME: added
+/* Class = "NSButtonCell"; title = "Select…"; ObjectID = "DSX-09-54K"; */
+"DSX-09-54K.title" = "Seleccionar…";
+/* Class = "NSButtonCell"; title = "Antialias"; ObjectID = "3fg-x6-5T8"; */
+"3fg-x6-5T8.title" = "Antialiasing";
+/* Class = "NSButtonCell"; title = "Ligatures"; ObjectID = "AFh-3D-ZB2"; */
+"AFh-3D-ZB2.title" = "Ligaduras";
+
 /* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
 "r1c-v3-qW1.title" = "Altura de línea:";
 /* Class = "NSTextFieldCell"; title = "times"; ObjectID = "VLD-jj-zzl"; */
