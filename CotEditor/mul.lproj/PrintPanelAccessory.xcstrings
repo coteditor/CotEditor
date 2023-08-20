@@ -344,7 +344,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "列印不可見字元"
+            "value" : "列印不可見元素"
           }
         }
       }
