@@ -54,23 +54,6 @@
 /* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
 "ba7-dE-zXz.title" = "Cambiar el color de fondo";
 
-/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
-"oAZ-6U-Ba8.title" = "Invisibles:";
-/* Class = "NSButtonCell"; title = "Show invisible characters"; ObjectID = "gqy-Io-eUU"; */
-"gqy-Io-eUU.title" = "Mostrar carácteres invisibles";
-/* Class = "NSButtonCell"; title = "Line ending"; ObjectID = "Ont-7L-Uf5"; */
-"Ont-7L-Uf5.title" = "Final de línea";
-/* Class = "NSButtonCell"; title = "Tab"; ObjectID = "XSb-uU-5QP"; */
-"XSb-uU-5QP.title" = "Tabulación";
-/* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
-"gcF-OM-SV0.title" = "Espacio";
-/* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "Bf2-rS-2zu"; */
-"Bf2-rS-2zu.title" = "Otros espacios en blanco";
-/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
-"sxg-F3-ely.title" = "Otros carácteres de control";
-/* Class = "NSButtonCell"; title = "Show indent guides"; ObjectID = "csp-Hi-hb1"; */
-"csp-Hi-hb1.title" = "Mostrar guias de sangria";
-
 
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
 "6KG-3a-ZuU.title" = "Apariencia:";

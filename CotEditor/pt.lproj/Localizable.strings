@@ -372,7 +372,7 @@
 "Hide invisible characters" = "Ocultar invisíveis";
 "Show invisible characters" = "Mostrar invisíveis";
 
-"Indent Guides" = "Guia da Página";
+"Indent Guides" = "Guias de Recuo";
 // tooltip
 "Hide indent guide lines" = "Oculte a linha de guia da página";
 "Show indent guide lines" = "Mostre a linha de guia da página";
@@ -537,7 +537,7 @@
 "Wrap Lines" = "Ajustar Linhas";
 
 // Tooltip for “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled
-"To show invisible characters, set them in the Appearance settings" = "Para mostrar invisíveis, ative-os nas Definições";  // FIXME: Setting -> the Appearance Settings
+"To show invisible characters, set them in the Window settings" = "Para mostrar invisíveis, ative-os nas Definições";  // FIXME: Setting -> the Window Settings
 
 
 

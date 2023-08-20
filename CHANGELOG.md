@@ -21,6 +21,7 @@ Change Log
 - Add “Use system color” option to the insertion point color in the theme setting view.
 - Add a font size field to the print dialog.
 - Update the character inspector to add labels for each item and display the Unicode version.
+- Reorganize the Settings window.
 - Deprecate the print font setting in the Print settings.
 - Deprecate the cursor type option.
 - Make sure to perform the automatic whitespace trimming every time before explicit saving by the user.
@@ -32,7 +33,6 @@ Change Log
 - [trivial] Change the behavior of the duplication command for syntax definitions to just create a duplicated syntax instead of opening the syntax editor dialog.
 - [trivial] Improve the behavior when selecting a row in the find result table in the Find window.
 - [trivial] Rename “syntax style” with just “syntax.”
-- [trivial] Adjust the layout of the Settings window.
 
 
 ### Fixes

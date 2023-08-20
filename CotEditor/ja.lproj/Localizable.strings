@@ -537,7 +537,7 @@
 "Wrap Lines" = "行を折り返す";
 
 // Tooltip for “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled
-"To show invisible characters, set them in the Appearance settings" = "不可視文字を表示させるには「表示」設定で設定を変更してください";
+"To show invisible characters, set them in the Window settings" = "不可視文字を表示させるには「ウインドウ」設定で設定を変更してください";
 
 
 

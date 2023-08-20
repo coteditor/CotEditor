@@ -537,7 +537,7 @@
 "Wrap Lines" = "Renvoyer à la ligne";
 
 // Tooltip for “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled
-"To show invisible characters, set them in the Appearance settings" = "Pour afficher les caractères invisibles, activez l’option dans les Réglages";  // FIXME: Setting -> the Appearance Settings
+"To show invisible characters, set them in the Window settings" = "Pour afficher les caractères invisibles, activez l’option dans les Réglages";  // FIXME: Setting -> the Window Settings
 
 
 

@@ -54,24 +54,6 @@
 /* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
 "ba7-dE-zXz.title" = "改變背景顏色";
 
-
-/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
-"oAZ-6U-Ba8.title" = "不可見元素：";
-/* Class = "NSButtonCell"; title = "Show invisible characters"; ObjectID = "gqy-Io-eUU"; */
-"gqy-Io-eUU.title" = "顯示不可見元素";
-/* Class = "NSButtonCell"; title = "Line ending"; ObjectID = "Ont-7L-Uf5"; */
-"Ont-7L-Uf5.title" = "行尾";
-/* Class = "NSButtonCell"; title = "Tab"; ObjectID = "XSb-uU-5QP"; */
-"XSb-uU-5QP.title" = "Tab";
-/* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
-"gcF-OM-SV0.title" = "空格";
-/* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "Bf2-rS-2zu"; */
-"Bf2-rS-2zu.title" = "其他空白字元";
-/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
-"sxg-F3-ely.title" = "其他控制字元";
-/* Class = "NSButtonCell"; title = "Show indent guides"; ObjectID = "csp-Hi-hb1"; */
-"csp-Hi-hb1.title" = "顯示縮排指示";
-
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
 "6KG-3a-ZuU.title" = "外觀：";
 /* Class = "NSButtonCell"; title = "Match System"; ObjectID = "apQ-au-gOC"; */

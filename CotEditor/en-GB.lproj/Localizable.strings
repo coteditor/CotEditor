@@ -537,7 +537,7 @@
 "Wrap Lines" = "Wrap Lines";
 
 // Tooltip for “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled
-"To show invisible characters, set them in the Appearance settings" = "To show invisible characters, set them in the Appearance settings";
+"To show invisible characters, set them in the Window settings" = "To show invisible characters, set them in the Window settings";
 
 
 

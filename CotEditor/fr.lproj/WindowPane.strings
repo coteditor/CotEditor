@@ -43,6 +43,20 @@
 "A9U-Sx-or3.title" = "Numéros de ligne";
 /* Class = "NSButtonCell"; title = "Draw separator"; ObjectID = "zgz-Vf-91b"; */
 "zgz-Vf-91b.title" = "Afficher un séparateur";
+/* Class = "NSButtonCell"; title = "Invisible characters"; ObjectID = "2gJ-qw-STq"; */
+"2gJ-qw-STq.title" = "Caractères invisibles";
+/* Class = "NSButtonCell"; title = "Line ending"; ObjectID = "Aj4-QP-CJe"; */
+"Aj4-QP-CJe.title" = "Fin de ligne";
+/* Class = "NSButtonCell"; title = "Tab"; ObjectID = "Bl2-gV-lhC"; */
+"Bl2-gV-lhC.title" = "Tabulation";
+/* Class = "NSButtonCell"; title = "Space"; ObjectID = "PhH-3B-qss"; */
+"PhH-3B-qss.title" = "Espace";
+/* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "83g-MI-g5e"; */
+"83g-MI-g5e.title" = "Autres blancs";
+/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
+"sxg-F3-ely.title" = "Autres caractères de contrôle";
+/* Class = "NSButtonCell"; title = "Indent guides"; ObjectID = "R9B-dO-pY1"; */
+"R9B-dO-pY1.title" = "Guides d’indendation";
 /* Class = "NSButtonCell"; title = Page guide at column:; ObjectID = "3352"; */
 "3352.title" = "Guide de page à la colonne :";
 

@@ -537,7 +537,7 @@
 "Wrap Lines" = "換行";
 
 // Tooltip for “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled
-"To show invisible characters, set them in the Appearance settings" = "要顯示不可見元素，請在設定中進行設定";  // FIXME: Setting -> the Appearance Settings
+"To show invisible characters, set them in the Window settings" = "要顯示不可見元素，請在設定中進行設定";  // FIXME: Setting -> the Window Settings
 
 
 
