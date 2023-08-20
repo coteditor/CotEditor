@@ -56,6 +56,15 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     
     // MARK: Public Properties
     
+    var syntaxKind: Syntax.Kind = .general {
+        
+        didSet {
+            guard oldValue != syntaxKind else { return }
+            self.invalidateFontSettings(for: syntaxKind)
+            self.observeFontDefaults(for: syntaxKind)
+        }
+    }
+    
     var theme: Theme?  { didSet { self.applyTheme() } }
     
     var isAutomaticTabExpansionEnabled = false
@@ -133,6 +142,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in self?.trimTrailingWhitespace(ignoresEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines], keepingEditingPoint: true) }
     
     private var defaultsObservers: Set<AnyCancellable> = []
+    private var fontObservers: Set<AnyCancellable> = []
     private var windowOpacityObserver: AnyCancellable?
     private var applicationObserver: AnyCancellable?
     
@@ -202,20 +212,19 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.isContinuousSpellCheckingEnabled = defaults[.checkSpellingAsType]
         
         // set font
-        let font: NSFont = {
-            let fontName = defaults[.fontName]
-            let fontSize = defaults[.fontSize]
-            return NSFont(name: fontName, size: fontSize) ?? .userFont(ofSize: fontSize) ?? .systemFont(ofSize: fontSize)
-        }()
+        let font = defaults.font(for: .standard)
         super.font = font
         layoutManager.textFont = font
-        layoutManager.usesAntialias = defaults[.shouldAntialias]
+        layoutManager.usesAntialias = defaults[.antialias(for: .standard)]
         layoutManager.showsIndentGuides = defaults[.showIndentGuides]
         
-        self.ligature = defaults[.ligature] ? .standard : .none
+        self.ligature = defaults[.ligature(for: .standard)] ? .standard : .none
         self.invalidateDefaultParagraphStyle(initial: true)
         
-        // observe change in defaults
+        // observe font changes in defaults
+        self.observeFontDefaults(for: .general)
+        
+        // observe changes in defaults
         self.defaultsObservers = [
             defaults.publisher(for: .balancesBrackets)
                 .sink { [unowned self] in self.balancesBrackets = $0 },
@@ -238,16 +247,8 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
             defaults.publisher(for: .checkSpellingAsType)
                 .sink { [unowned self] in self.isContinuousSpellCheckingEnabled = $0 },
             
-            Publishers.Merge(defaults.publisher(for: .fontName).eraseToVoid(),
-                             defaults.publisher(for: .fontSize).eraseToVoid())
-                .sink { [unowned self] in self.resetFont(nil) },
-            defaults.publisher(for: .shouldAntialias)
-                .sink { [unowned self] in self.usesAntialias = $0 },
             defaults.publisher(for: .showIndentGuides)
                 .sink { [unowned self] in self.showsIndentGuides = $0 },
-            defaults.publisher(for: .ligature)
-                .sink { [unowned self] in self.ligature = $0 ? .standard : .none },
-            
             defaults.publisher(for: .enablesHangingIndent)
                 .sink { [unowned self] in
                     (self.textContainer as? TextContainer)?.isHangingIndentEnabled = $0
@@ -1290,6 +1291,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         }
         
         set {
+            guard newValue != usesAntialias else { return }
             (self.layoutManager as? LayoutManager)?.usesAntialias = newValue
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
         }
@@ -1415,6 +1417,41 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
         
         self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+    }
+    
+    
+    /// Start observing the update of the user font settings for the given syntax kind.
+    ///
+    /// - Parameter syntaxKind: The syntax kind corresponding to the font settings to be observed.
+    private func observeFontDefaults(for syntaxKind: Syntax.Kind) {
+        
+        let defaults = UserDefaults.standard
+        let type = syntaxKind.fontType
+        
+        self.fontObservers = [
+            Publishers.Merge(defaults.publisher(for: .fontName(for: type)).eraseToVoid(),
+                             defaults.publisher(for: .fontSize(for: type)).eraseToVoid())
+            .debounce(for: 0, scheduler: RunLoop.main)
+            .sink { [unowned self] in self.font = UserDefaults.standard.font(for: type) },
+            defaults.publisher(for: .antialias(for: type))
+                .sink { [unowned self] in self.usesAntialias = $0 },
+            defaults.publisher(for: .ligature(for: type))
+                .sink { [unowned self] in self.ligature = $0 ? .standard : .none },
+        ]
+    }
+    
+    
+    /// Restore font settings (font, antialias, and ligature) to the user setting.
+    ///
+    /// - Parameter syntaxKind: The syntax kind corresponding to the font settings to be observed.
+    private func invalidateFontSettings(for syntaxKind: Syntax.Kind) {
+        
+        let defaults = UserDefaults.standard
+        let type = syntaxKind.fontType
+        
+        self.font = defaults.font(for: type)
+        self.ligature = defaults[.ligature(for: type)] ? .standard : .none
+        self.usesAntialias = defaults[.antialias(for: type)]
     }
     
     

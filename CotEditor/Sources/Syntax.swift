@@ -185,3 +185,15 @@ struct Syntax: Equatable {
         return .init(extractors: extractors, nestables: nestables)
     }
 }
+
+
+extension Syntax.Kind {
+    
+    var fontType: FontType {
+        
+        switch self {
+            case .general: return .standard
+            case .code: return .monospaced
+        }
+    }
+}
