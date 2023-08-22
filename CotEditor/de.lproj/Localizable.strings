@@ -279,7 +279,7 @@
 // incompatible characters alert
 "Some characters would have to be changed or deleted in saving as “%@.”" = "Beim Speichern in „%@“ müssen einige Zeichen möglicherweise geändert oder gelöscht werden.";
 "Do you want to change encoding and show incompatible characters?" = "Möchtest du die Codierung ändern und die inkompatiblen Zeichen zeigen?";
-"Change Encoding" = "Codierung wechseln";
+"Change Encoding" = "Codierung ändern";
 
 // Inconsistent line ending alert
 "The document has inconsistent line endings." = "Das Dokument hat inkonsistente Zeilenenden.";
@@ -323,15 +323,15 @@
 "Smaller" = "Kleiner";
 "Bigger" = "Größer";
 // tooltip
-"Change text size" = "Schriftgröße wechseln";
-"Decrease text size" = "Die Schriftgröße verkleinern";
-"Increase text size" = "Die Schriftgröße vergrößern";
+"Change text size" = "Textgröße ändern";
+"Decrease text size" = "Text verkleinern";
+"Increase text size" = "Text vergrößern";
 
 "Writing Direction" = "Schreibrichtung";
 "Left to Right" = "Von links nach rechts";
 "Right to Left" = "Von rechts nach links";
 // tooltip
-"Change writing direction" = "Schreibrichtung wechseln";
+"Change writing direction" = "Schreibrichtung ändern";
 "Left to right" = "Von links nach rechts";
 "Right to left" = "Von rechts nach links";
 
@@ -383,7 +383,7 @@
 
 "Opacity" = "Deckkraft";
 // tooltip
-"Change editor’s opacity" = "Deckkraft des Editors wechseln";
+"Change editor’s opacity" = "Deckkraft des Editors ändern";
 
 "Spell Check" = "Rechtschreibprüfung";
 // tooltip

@@ -324,8 +324,8 @@
 "Bigger" = "大きく";
 // tooltip
 "Change text size" = "文字サイズを変更";
-"Decrease text size" = "文字を小さく";
-"Increase text size" = "文字を大きく";
+"Decrease text size" = "文字サイズを小さく";
+"Increase text size" = "文字サイズを大きく";
 
 "Writing Direction" = "文章の方向";
 "Left to Right" = "左から右";
