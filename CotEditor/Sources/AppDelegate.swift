@@ -174,6 +174,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Application Delegate
     
+    @available(macOS, deprecated: 14, message: "The secure restoration became automatically enabled on macOS 14 and later.")
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         
         true
