@@ -307,6 +307,15 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             case #selector(changeTabWidth):
                 (item as? any StatableItem)?.state = (self.tabWidth == item.tag) ? .on : .off
                 
+            case #selector(makeFontStandard):
+                let standardFont = UserDefaults.standard.font(for: .standard)
+                let monospacedFont = UserDefaults.standard.font(for: .monospaced)
+                (item as? NSMenuItem)?.state = (self.font == standardFont && standardFont != monospacedFont) ? .on : .off
+                
+            case #selector(makeFontMonospaced):
+                let monospacedFont = UserDefaults.standard.font(for: .monospaced)
+                (item as? NSMenuItem)?.state = (self.font == monospacedFont) ? .on : .off
+                
             case #selector(makeLayoutOrientationHorizontal):
                 (item as? any StatableItem)?.state = self.verticalLayoutOrientation ? .off : .on
                 
@@ -651,6 +660,24 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         viewController.rootView.parent = viewController
         
         self.presentAsSheet(viewController)
+    }
+    
+    
+    /// Change the font to the user's standard font.
+    @IBAction func makeFontStandard(_ sender: Any?) {
+        
+        for textView in self.editorViewControllers.compactMap(\.textView) {
+            textView.setFont(type: .standard)
+        }
+    }
+    
+    
+    /// Change the font to the user's monospaced font.
+    @IBAction func makeFontMonospaced(_ sender: Any?) {
+        
+        for textView in self.editorViewControllers.compactMap(\.textView) {
+            textView.setFont(type: .monospaced)
+        }
     }
     
     

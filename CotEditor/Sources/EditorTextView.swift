@@ -60,8 +60,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         didSet {
             guard oldValue != syntaxKind else { return }
-            self.invalidateFontSettings(for: syntaxKind)
-            self.observeFontDefaults(for: syntaxKind)
+            self.setFont(type: UserDefaults.standard[.usesMonospacedFont] ? .monospaced : syntaxKind.fontType)
         }
     }
     
@@ -212,25 +211,23 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.isContinuousSpellCheckingEnabled = defaults[.checkSpellingAsType]
         
         // set font
-        let font = defaults.font(for: .standard)
+        let fontType: FontType = defaults[.usesMonospacedFont] ? .monospaced : .standard
+        let font = defaults.font(for: fontType)
         super.font = font
         layoutManager.textFont = font
-        layoutManager.usesAntialias = defaults[.antialias(for: .standard)]
+        layoutManager.usesAntialias = defaults[.antialias(for: fontType)]
         layoutManager.showsIndentGuides = defaults[.showIndentGuides]
         
-        self.ligature = defaults[.ligature(for: .standard)] ? .standard : .none
+        self.ligature = defaults[.ligature(for: fontType)] ? .standard : .none
         self.invalidateDefaultParagraphStyle(initial: true)
         
         // observe font changes in defaults
-        self.observeFontDefaults(for: .general)
+        self.observeFontDefaults(for: fontType)
         
         // observe changes in defaults
         self.defaultsObservers = [
             defaults.publisher(for: .usesMonospacedFont)
-                .sink { [unowned self] _ in
-                    self.invalidateFontSettings(for: self.syntaxKind)
-                    self.observeFontDefaults(for: self.syntaxKind)
-                },
+                .sink { [unowned self] in self.setFont(type: $0 ? .monospaced : self.syntaxKind.fontType) },
             
             defaults.publisher(for: .balancesBrackets)
                 .sink { [unowned self] in self.balancesBrackets = $0 },
@@ -1318,6 +1315,20 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
+    /// Set the font (font, antialias, and ligature) to the given font type.
+    ///
+    /// - Parameter type: The font type to change.
+    func setFont(type: FontType) {
+        
+        let defaults = UserDefaults.standard
+        self.font = defaults.font(for: type)
+        self.ligature = defaults[.ligature(for: type)] ? .standard : .none
+        self.usesAntialias = defaults[.antialias(for: type)]
+        
+        self.observeFontDefaults(for: type)
+    }
+    
+    
     
     // MARK: Action Messages
     
@@ -1426,13 +1437,12 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Start observing the update of the user font settings for the given syntax kind.
+    /// Start observing the update of the user font settings of the given type.
     ///
-    /// - Parameter syntaxKind: The syntax kind corresponding to the font settings to be observed.
-    private func observeFontDefaults(for syntaxKind: Syntax.Kind) {
+    /// - Parameter type: The type of the font to observe.
+    private func observeFontDefaults(for type: FontType) {
         
         let defaults = UserDefaults.standard
-        let type: FontType = defaults[.usesMonospacedFont] ? .monospaced : syntaxKind.fontType
         
         self.fontObservers = [
             Publishers.Merge(defaults.publisher(for: .fontName(for: type)).eraseToVoid(),
@@ -1444,20 +1454,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
             defaults.publisher(for: .ligature(for: type))
                 .sink { [unowned self] in self.ligature = $0 ? .standard : .none },
         ]
-    }
-    
-    
-    /// Restore font settings (font, antialias, and ligature) to the user setting.
-    ///
-    /// - Parameter syntaxKind: The syntax kind corresponding to the font settings to be observed.
-    private func invalidateFontSettings(for syntaxKind: Syntax.Kind) {
-        
-        let defaults = UserDefaults.standard
-        let type: FontType = defaults[.usesMonospacedFont] ? .monospaced : syntaxKind.fontType
-        
-        self.font = defaults.font(for: type)
-        self.ligature = defaults[.ligature(for: type)] ? .standard : .none
-        self.usesAntialias = defaults[.antialias(for: type)]
     }
     
     

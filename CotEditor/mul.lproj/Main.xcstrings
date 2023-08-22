@@ -73,6 +73,36 @@
         }
       }
     },
+    "1Po-QB-StY.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Monospaced\"; ObjectID = \"1Po-QB-StY\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nichtproportional"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Monospaced"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Monospaced"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "等幅"
+          }
+        }
+      }
+    },
     "2da-fK-Nkg.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Enter Full Screen\"; ObjectID = \"2da-fK-Nkg\";",
       "extractionState" : "extracted_with_value",
@@ -12961,6 +12991,36 @@
         }
       }
     },
+    "Nfx-qA-gK4.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Font Type\"; ObjectID = \"Nfx-qA-gK4\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schrifttyp"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Font Type"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Font Type"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フォントタイプ"
+          }
+        }
+      }
+    },
     "nlp-Gj-W9G.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Make Camel Case\"; ObjectID = \"nlp-Gj-W9G\";",
       "extractionState" : "extracted_with_value",
@@ -14181,6 +14241,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新增文件"
+          }
+        }
+      }
+    },
+    "qTY-rj-A3z.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Standard\"; ObjectID = \"qTY-rj-A3z\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Standard"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標準"
           }
         }
       }

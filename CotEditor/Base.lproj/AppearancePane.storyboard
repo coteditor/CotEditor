@@ -37,11 +37,6 @@
                                         </textFieldCell>
                                         <connections>
                                             <accessibilityConnection property="title" destination="icl-ar-8yG" id="JXg-bX-b1p"/>
-                                            <binding destination="IE5-39-jAY" name="enabled" keyPath="values.usesMonospacedFont" id="2sj-dZ-GEg">
-                                                <dictionary key="options">
-                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                </dictionary>
-                                            </binding>
                                         </connections>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uMj-Iu-oCy">
@@ -56,11 +51,6 @@
                                         <connections>
                                             <accessibilityConnection property="title" destination="icl-ar-8yG" id="Rpq-MG-HTP"/>
                                             <action selector="showFonts:" target="WBM-EY-ENr" id="80p-Ig-zIc"/>
-                                            <binding destination="IE5-39-jAY" name="enabled" keyPath="values.usesMonospacedFont" id="RG9-6u-cvo">
-                                                <dictionary key="options">
-                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                </dictionary>
-                                            </binding>
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I9r-vj-2gy">
@@ -72,11 +62,6 @@
                                         <connections>
                                             <accessibilityConnection property="title" destination="icl-ar-8yG" id="akE-EA-zGb"/>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.shouldAntialias" id="WYd-vz-gCE"/>
-                                            <binding destination="IE5-39-jAY" name="enabled" keyPath="values.usesMonospacedFont" id="hE8-sB-jYa">
-                                                <dictionary key="options">
-                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                </dictionary>
-                                            </binding>
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4cD-mR-vJc">
@@ -88,11 +73,6 @@
                                         <connections>
                                             <accessibilityConnection property="title" destination="icl-ar-8yG" id="yEn-NR-Avf"/>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.ligature" id="BcZ-Pb-BN1"/>
-                                            <binding destination="IE5-39-jAY" name="enabled" keyPath="values.usesMonospacedFont" id="LMW-jU-6N4">
-                                                <dictionary key="options">
-                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                </dictionary>
-                                            </binding>
                                         </connections>
                                     </button>
                                     <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hws-J2-FDl">
@@ -203,11 +183,6 @@
                                         <connections>
                                             <accessibilityConnection property="title" destination="icl-ar-8yG" id="R9K-qZ-5od"/>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.fontSize" id="1q5-N1-Y58"/>
-                                            <binding destination="IE5-39-jAY" name="enabled" keyPath="values.usesMonospacedFont" id="qjc-hG-Xsw">
-                                                <dictionary key="options">
-                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                </dictionary>
-                                            </binding>
                                         </connections>
                                     </stepper>
                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZHd-UF-pkx">

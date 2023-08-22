@@ -384,6 +384,22 @@ Gw
                                                             <action selector="orderFrontFontPanel:" target="1Vq-aI-bgB" id="ClI-kR-koM"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="0o1-Dn-smf"/>
+                                                    <menuItem title="Font Type" id="Nfx-qA-gK4" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="Standard" id="qTY-rj-A3z">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="makeFontStandard:" target="Ady-hI-5gd" id="qvH-ZF-Igm"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Monospaced" id="1Po-QB-StY">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="makeFontMonospaced:" target="Ady-hI-5gd" id="TQY-xA-8UX"/>
+                                                        </connections>
+                                                    </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="398"/>
                                                     <menuItem title="Bigger" tag="3" keyEquivalent="+" id="405">
                                                         <connections>
