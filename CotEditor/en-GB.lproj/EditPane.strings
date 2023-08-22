@@ -43,8 +43,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
 "9bX-ei-1x8.title" = "Indentation:";
-/* Class = "NSButtonCell"; title = "Automatic indent"; ObjectID = "3285"; */
-"3285.title" = "Automatic indent";
 /* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
 "3283.title" = "Expand tabs to spaces";
 /* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
@@ -53,6 +51,8 @@
 "as9-us-CuG.title" = "spaces";
 /* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
 "Cte-hW-0M3.title" = "Detect indent style on document opening";
+/* Class = "NSButtonCell"; title = "Automatic indent while typing"; ObjectID = "3285"; */
+"3285.title" = "Automatic indent while typing";
 /* Class = "NSButtonCell"; title = "Indent selection with Tab key"; ObjectID = "aVn-PD-hen"; */
 "aVn-PD-hen.title" = "Indent selection with Tab key";
 

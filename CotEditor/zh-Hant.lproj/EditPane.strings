@@ -44,8 +44,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
 "9bX-ei-1x8.title" = "縮排：";
-/* Class = "NSButtonCell"; title = "Automatic indent"; ObjectID = "3285"; */
-"3285.title" = "自動縮排";
 /* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
 "3283.title" = "將tab轉換為空格";
 /* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
@@ -54,6 +52,8 @@
 "as9-us-CuG.title" = "個空格縮排";
 /* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
 "Cte-hW-0M3.title" = "在開啟文件時檢測縮排格式";
+/* Class = "NSButtonCell"; title = "Automatic indent while typing"; ObjectID = "3285"; */
+"3285.title" = "自動縮排";  // FIXME: updated
 /* Class = "NSButtonCell"; title = "Indent selection with Tab key"; ObjectID = "aVn-PD-hen"; */
 "aVn-PD-hen.title" = "使用Tab鍵對選擇進行縮排";
 

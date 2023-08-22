@@ -520,26 +520,24 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .tabStyle:
-                let menu = NSMenu()
-                menu.addItem(.sectionHeader(title: String(localized: "Tab Width")))
-                menu.items += [2, 3, 4, 8]
-                    .map { (width) in
-                        let item = NSMenuItem(title: width.formatted(), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
-                        item.tag = width
-                        return item
-                    }
-                menu.addItem(withTitle: String(localized: "Custom…"), action: #selector(DocumentViewController.customizeTabWidth), keyEquivalent: "")
-                menu.addItem(.separator())
-                menu.addItem(withTitle: String(localized: "Expand to Spaces Automatically"), action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: "")
-                
                 let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier)
+                item.isBordered = true
                 item.label = String(localized: "Tab Style")
                 item.toolTip = String(localized: "Expand tabs to spaces automatically")
                 item.stateImages[.on] = NSImage(resource: .tabRightSplit)
                 item.stateImages[.off] = NSImage(resource: .tabRight)
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
-                item.menu = menu
-                item.menuFormRepresentation = NSMenuItem(title: item.label, action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
+                item.menu.items = [
+                    .sectionHeader(title: String(localized: "Tab Width"))
+                ] + [2, 4, 8].map { (width) in
+                    let item = NSMenuItem(title: width.formatted(), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
+                    item.tag = width
+                    return item
+                } + [
+                    NSMenuItem(title: String(localized: "Custom…"), action: #selector(DocumentViewController.customizeTabWidth), keyEquivalent: ""),
+                    .separator(),
+                    NSMenuItem(title: String(localized: "Expand to Spaces Automatically"), action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: ""),
+                ]
                 
                 return item
                 

@@ -44,8 +44,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
 "9bX-ei-1x8.title" = "Sangría:";
-/* Class = "NSButtonCell"; title = "Automatic indent"; ObjectID = "3285"; */
-"3285.title" = "Sangría automática";
 /* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
 "3283.title" = "Expandir tabulaciones a espacios";
 /* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
@@ -54,6 +52,8 @@
 "as9-us-CuG.title" = "espacios";
 /* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
 "Cte-hW-0M3.title" = "Detectar el estilo de sangría al abrir el documento";
+/* Class = "NSButtonCell"; title = "Automatic indent while typing"; ObjectID = "3285"; */
+"3285.title" = "Sangría automática";  // FIXME: updated
 /* Class = "NSButtonCell"; title = "Indent selection with Tab key"; ObjectID = "aVn-PD-hen"; */
 "aVn-PD-hen.title" = "Selección de sangría con la tecla tabulación";
 

@@ -44,8 +44,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
 "9bX-ei-1x8.title" = "Girintileme:";
-/* Class = "NSButtonCell"; title = "Automatic indent"; ObjectID = "3285"; */
-"3285.title" = "Kendiliğinden girintile";
 /* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
 "3283.title" = "Sekmeleri boşluklara genişlet";
 /* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
@@ -54,6 +52,8 @@
 "as9-us-CuG.title" = "boşluk";
 /* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
 "Cte-hW-0M3.title" = "Belge açılışında girintileme biçemini algıla";
+/* Class = "NSButtonCell"; title = "Automatic indent while typing"; ObjectID = "3285"; */
+"3285.title" = "Kendiliğinden girintile";  // FIXME: updated
 /* Class = "NSButtonCell"; title = "Indent selection with Tab key"; ObjectID = "aVn-PD-hen"; */
 "aVn-PD-hen.title" = "Seçimi Sekme düğmesi ile girintile";
 

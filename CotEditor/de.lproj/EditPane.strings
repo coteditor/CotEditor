@@ -43,8 +43,6 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
-"9bX-ei-1x8.title" = "Einzug:";
-/* Class = "NSButtonCell"; title = "Automatic indent"; ObjectID = "3285"; */
 "3285.title" = "Automatischer Einzug";
 /* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
 "3283.title" = "Tabulatoren zu Leerzeichen expandieren";
@@ -54,6 +52,8 @@
 "as9-us-CuG.title" = "Leerzeichen";
 /* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
 "Cte-hW-0M3.title" = "Einzugsstil beim Öffnen ermitteln";
+/* Class = "NSButtonCell"; title = "Automatic indent while typing"; ObjectID = "3285"; */
+"3285.title" = "Automatischer Einzug während der Texteingabe";
 /* Class = "NSButtonCell"; title = "Indent selection with Tab key"; ObjectID = "aVn-PD-hen"; */
 "aVn-PD-hen.title" = "Auswahl mit der Tabulatortaste einrücken";
 

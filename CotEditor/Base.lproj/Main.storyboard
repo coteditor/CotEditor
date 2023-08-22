@@ -447,12 +447,6 @@ Gw
                                                             <action selector="changeTabWidth:" target="Ady-hI-5gd" id="ngY-gw-Vua"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="3" tag="3" id="8hL-SQ-WlX">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="changeTabWidth:" target="Ady-hI-5gd" id="CX0-T3-ylz"/>
-                                                        </connections>
-                                                    </menuItem>
                                                     <menuItem title="4" tag="4" id="fwb-zD-hBp">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
