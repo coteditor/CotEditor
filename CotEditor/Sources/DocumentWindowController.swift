@@ -630,12 +630,20 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .fonts:
-                let item = NSToolbarItem(itemIdentifier: itemIdentifier)
+                let item = NSMenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = String(localized: "Fonts")
-                item.toolTip = String(localized: "Show Fonts")
+                item.toolTip = String(localized: "Change Font")
                 item.image = NSImage(systemSymbolName: "textformat", accessibilityDescription: item.label)
-                item.action = #selector(NSFontManager.orderFrontFontPanel)
+                item.showsIndicator = false
+                item.menu.items = [
+                    NSMenuItem(),  // dummy item that will be hidden
+                    .sectionHeader(title: String(localized: "Font Type")),
+                    NSMenuItem(title: String(localized: "Standard"), action: #selector(DocumentViewController.makeFontStandard), keyEquivalent: ""),
+                    NSMenuItem(title: String(localized: "Monospaced"), action: #selector(DocumentViewController.makeFontMonospaced), keyEquivalent: ""),
+                    .separator(),
+                    NSMenuItem(title: String(localized: "Show Fonts"), action: #selector(NSFontManager.orderFrontFontPanel), keyEquivalent: ""),
+                ]
                 return item
                 
             case .find:

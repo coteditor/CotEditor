@@ -407,6 +407,11 @@
 
 "Fonts" = "Schriften";
 // tooltip
+"Change Font" = "Schrift ändern";
+// menu items
+"Font Type" = "Schrifttyp";
+"Standard" = "Standard";
+"Monospaced" = "Nichtproportional";
 "Show Fonts" = "Schriften einblenden";
 
 

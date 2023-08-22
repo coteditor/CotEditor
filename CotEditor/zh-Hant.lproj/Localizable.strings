@@ -407,6 +407,11 @@
 
 "Fonts" = "字體";
 // tooltip
+"Change Font" = "Change Font";  // FIXME: added
+// menu items
+"Font Type" = "Font Type";  // FIXME: added
+"Standard" = "Standard";  // FIXME: added
+"Monospaced" = "Monospaced";  // FIXME: added
 "Show Fonts" = "顯示字體";
 
 

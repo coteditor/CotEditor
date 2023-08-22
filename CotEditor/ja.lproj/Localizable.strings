@@ -407,6 +407,11 @@
 
 "Fonts" = "フォント";
 // tooltip
+"Change Font" = "フォントを変更";
+// menu items
+"Font Type" = "フォントタイプ";
+"Standard" = "標準";
+"Monospaced" = "等幅";
 "Show Fonts" = "フォントパネルを表示";
 
 
