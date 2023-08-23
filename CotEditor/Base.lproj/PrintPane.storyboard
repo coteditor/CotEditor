@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4if-cg-44c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4if-cg-44c">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22152"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,7 +24,7 @@
                                             <menu key="menu" id="szT-0b-MOf">
                                                 <items>
                                                     <menuItem title="Use Editor Setting" state="on" tag="1" id="953"/>
-                                                    <menuItem isSeparatorItem="YES" id="W39-uV-7Iq"/>
+                                                    <menuItem isSeparatorItem="YES" tag="-1" id="W39-uV-7Iq"/>
                                                     <menuItem title="Don’t Print" id="952"/>
                                                     <menuItem title="Print" tag="2" id="954"/>
                                                 </items>
@@ -43,7 +43,7 @@
                                             <menu key="menu" id="QXA-FM-XhB">
                                                 <items>
                                                     <menuItem title="Use Editor Setting" state="on" tag="1" id="947"/>
-                                                    <menuItem isSeparatorItem="YES" id="LdL-xp-s2k"/>
+                                                    <menuItem isSeparatorItem="YES" tag="-1" id="LdL-xp-s2k"/>
                                                     <menuItem title="Don’t Print" id="946"/>
                                                     <menuItem title="Print" tag="2" id="948"/>
                                                 </items>
