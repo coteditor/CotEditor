@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 CotEditor Project
+//  © 2014-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -51,10 +51,10 @@
 "Bl2-gV-lhC.title" = "Tab";
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "PhH-3B-qss"; */
 "PhH-3B-qss.title" = "空格";
-/* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "83g-MI-g5e"; */
-"83g-MI-g5e.title" = "其他空白字元";
-/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
-"sxg-F3-ely.title" = "其他控制字元";
+/* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "cWK-Dz-raZ"; */
+"cWK-Dz-raZ.title" = "其他空白字元";
+/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "83g-MI-g5e"; */
+"83g-MI-g5e.title" = "其他控制字元";
 /* Class = "NSButtonCell"; title = "Indent guides"; ObjectID = "R9B-dO-pY1"; */
 "R9B-dO-pY1.title" = "縮排指示";
 /* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */

@@ -51,10 +51,10 @@
 "Bl2-gV-lhC.title" = "Tabulación";
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "PhH-3B-qss"; */
 "PhH-3B-qss.title" = "Espacio";
-/* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "83g-MI-g5e"; */
-"83g-MI-g5e.title" = "Otros espacios en blanco";
-/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
-"sxg-F3-ely.title" = "Otros carácteres de control";
+/* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "cWK-Dz-raZ"; */
+"cWK-Dz-raZ.title" = "Otros espacios en blanco";
+/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "83g-MI-g5e"; */
+"83g-MI-g5e.title" = "Otros carácteres de control";
 /* Class = "NSButtonCell"; title = "Indent guides"; ObjectID = "R9B-dO-pY1"; */
 "R9B-dO-pY1.title" = "Guías de sangría";
 /* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */

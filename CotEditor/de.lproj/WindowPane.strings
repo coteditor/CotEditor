@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -51,10 +51,10 @@
 "Bl2-gV-lhC.title" = "Tabulator";
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "PhH-3B-qss"; */
 "PhH-3B-qss.title" = "Leerzeichen";
-/* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "83g-MI-g5e"; */
-"83g-MI-g5e.title" = "Andere Leerräumen";
-/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
-"sxg-F3-ely.title" = "Andere Steuerzeichen";
+/* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "cWK-Dz-raZ"; */
+"cWK-Dz-raZ.title" = "Andere Leerräumen";
+/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "83g-MI-g5e"; */
+"83g-MI-g5e.title" = "Andere Steuerzeichen";
 /* Class = "NSButtonCell"; title = "Indent guides"; ObjectID = "R9B-dO-pY1"; */
 "R9B-dO-pY1.title" = "Einzugshilfslinien";
 /* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */

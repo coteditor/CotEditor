@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -51,10 +51,10 @@
 "Bl2-gV-lhC.title" = "Sekme";
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "PhH-3B-qss"; */
 "PhH-3B-qss.title" = "Boşluk";
-/* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "83g-MI-g5e"; */
-"83g-MI-g5e.title" = "Diğer boşluklar";
-/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
-"sxg-F3-ely.title" = "Diğer denetim karakterleri";
+/* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "cWK-Dz-raZ"; */
+"cWK-Dz-raZ.title" = "Diğer boşluklar";
+/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "83g-MI-g5e"; */
+"83g-MI-g5e.title" = "Diğer denetim karakterleri";
 /* Class = "NSButtonCell"; title = "Indent guides"; ObjectID = "R9B-dO-pY1"; */
 "R9B-dO-pY1.title" = "Girintileme Kılavuzları";
 /* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */
