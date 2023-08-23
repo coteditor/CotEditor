@@ -355,12 +355,12 @@
 
 "Tab Style" = "Stile Pannello";
 // tooltip
-"Turn off expanding tabs to spaces" = "Disabilita l’espansione automatica dei Tab";
-"Expand tabs to spaces automatically" = "Abilita l’espansione automatica dei Tab";
+"Use tabs for indentation" = "Disabilita l’espansione automatica dei Tab";  // FIXME: updated
+"Use spaces for indentation" = "Abilita l’espansione automatica dei Tab";  // FIXME: updated
 // menu
 "Tab Width" = "Larghezza Tab";
 "Custom…" = "Personalizzato…";
-"Expand to Spaces Automatically" = "Espandi Tab automaticamente";
+"Use Spaces for Indentation" = "Espandi Tab automaticamente";  // FIXME: updated
 
 "Wrap Lines" = "A capo automatico";
 // tooltip

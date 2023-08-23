@@ -301,8 +301,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             case #selector(toggleAutoTabExpand):
                 (item as? any StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
                 (item as? NSToolbarItem)?.toolTip = self.isAutoTabExpandEnabled
-                    ? String(localized: "Turn off expanding tabs to spaces")
-                    : String(localized: "Expand tabs to spaces automatically")
+                    ? String(localized: "Use tabs for indentation")
+                    : String(localized: "Use spaces for indentation")
                 
             case #selector(changeTabWidth):
                 (item as? any StatableItem)?.state = (self.tabWidth == item.tag) ? .on : .off

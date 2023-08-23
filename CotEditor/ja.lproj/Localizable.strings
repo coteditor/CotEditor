@@ -355,12 +355,12 @@
 
 "Tab Style" = "タブスタイル";
 // tooltip
-"Turn off expanding tabs to spaces" = "自動タブ展開を無効に";
-"Expand tabs to spaces automatically" = "自動でタブをスペースに展開";
+"Use tabs for indentation" = "インデントにタブを使用";
+"Use spaces for indentation" = "インデントにスペースを使用";
 // menu
 "Tab Width" = "タブ幅";
 "Custom…" = "カスタム…";
-"Expand to Spaces Automatically" = "自動でスペースに展開";
+"Use Spaces for Indentation" = "インデントにスペースを使用";
 
 "Wrap Lines" = "行を折り返す";
 // tooltip

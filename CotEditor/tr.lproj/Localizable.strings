@@ -355,12 +355,12 @@
 
 "Tab Style" = "Sekme Biçemi";
 // tooltip
-"Turn off expanding tabs to spaces" = "Sekmeleri boşluklara dönüştürmeyi devre dışı bırak";
-"Expand tabs to spaces automatically" = "Sekmeleri kendiliğinden boşluklara dönüştür";
+"Use tabs for indentation" = "Sekmeleri boşluklara dönüştürmeyi devre dışı bırak";  // FIXME: updated
+"Use spaces for indentation" = "Sekmeleri kendiliğinden boşluklara dönüştür";  // FIXME: updated
 // menu
 "Tab Width" = "Sekme Genişliği";
 "Custom…" = "Özel…";
-"Expand to Spaces Automatically" = "Sekmeleri Kendiliğinden Genişlet";
+"Use Spaces for Indentation" = "Sekmeleri Kendiliğinden Genişlet";  // FIXME: updated
 
 "Wrap Lines" = "Satırları Kaydır";
 // tooltip

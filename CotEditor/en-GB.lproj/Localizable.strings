@@ -355,12 +355,12 @@
 
 "Tab Style" = "Tab Style";
 // tooltip
-"Turn off expanding tabs to spaces" = "Turn off expanding tabs to spaces";
-"Expand tabs to spaces automatically" = "Expand tabs to spaces automatically";
+"Use tabs for indentation" = "Use tabs for indentation";  // FIXME: updated
+"Use spaces for indentation" = "Use spaces for indentation";  // FIXME: updated
 // menu
 "Tab Width" = "Tab Width";
 "Custom…" = "Custom…";
-"Expand to Spaces Automatically" = "Expand to Spaces Automatically";
+"Use Spaces for Indentation" = "Use Spaces for Indentation";
 
 "Wrap Lines" = "Wrap Lines";
 // tooltip

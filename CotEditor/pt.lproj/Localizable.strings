@@ -355,12 +355,12 @@
 
 "Tab Style" = "Estilo da Tabulação";
 // tooltip
-"Turn off expanding tabs to spaces" = "Desative a expansão de tabulações automática";
-"Expand tabs to spaces automatically" = "Ative a expansão de tabulações automática";
+"Use tabs for indentation" = "Desative a expansão de tabulações automática";  // FIXME: updated
+"Use spaces for indentation" = "Ative a expansão de tabulações automática";  // FIXME: updated
 // menu
 "Tab Width" = "Largura da Tabulação";
 "Custom…" = "Personalizar…";
-"Expand to Spaces Automatically" = "Expandir Tabulações Automaticamente";
+"Use Spaces for Indentation" = "Expandir Tabulações Automaticamente";  // FIXME: updated
 
 "Wrap Lines" = "Ajustar Linhas";
 // tooltip

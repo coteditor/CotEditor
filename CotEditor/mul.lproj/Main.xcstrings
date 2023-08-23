@@ -11192,72 +11192,72 @@
       }
     },
     "hsG-8k-OKX.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Expand Tabs Automatically\"; ObjectID = \"hsG-8k-OKX\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Use Spaces for Indentation\"; ObjectID = \"hsG-8k-OKX\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tabulatoren automatisch expandieren"
+            "value" : "Leerzeichen für Einzug verwenden"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Expand Tabs Automatically"
+            "value" : "Use Spaces for Indentation"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Expand to Spaces Automatically"
+            "value" : "Use Spaces for Indentation"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Expande tabulaciones autoáticamente"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Convertir automatiquement les tabulations"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Espandi Tab automaticamente"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自動でスペースに展開"
+            "value" : "インデントにスペースを使用"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Expandir Tabulações Automaticamente"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Sekmeleri Kendiliğinden Genişlet"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Tab转为空格"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Tab轉為空格"
           }
         }

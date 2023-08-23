@@ -44,8 +44,12 @@
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
 "9bX-ei-1x8.title" = "Sangría:";
-/* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
-"3283.title" = "Expandir tabulaciones a espacios";
+/* Class = "NSTextFieldCell"; title = "Prefer using"; ObjectID = "jdu-bS-Jk1"; */
+"jdu-bS-Jk1.title" = "Prefer using";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Spaces"; ObjectID = "ZKV-jL-cQV"; */
+"ZKV-jL-cQV.title" = "Spaces";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Tabs"; ObjectID = "lVY-WF-4Yh"; */
+"lVY-WF-4Yh.title" = "Tabs";  // FIXME: added
 /* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
 "3287.title" = "Ancho de sangría:";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */
@@ -62,8 +66,8 @@
 "P1I-gs-RgX.title" = "Ajuste de líneas:";
 /* Class = "NSButtonCell"; title = "Wrap lines to editor width"; ObjectID = "3274"; */
 "3274.title" = "Ajustar líneas al ancho del editor";
-/* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
-"mCq-92-2sT.title" = "Líneas ajustadas con:";
+/* Class = "NSButtonCell"; title = "Indent wrapped lines by"; ObjectID = "mCq-92-2sT"; */
+"mCq-92-2sT.title" = "Líneas ajustadas con";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
 "P9V-pV-PAX.title" = "espacios";
 

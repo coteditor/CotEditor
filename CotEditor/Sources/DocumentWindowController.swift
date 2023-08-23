@@ -523,7 +523,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = String(localized: "Tab Style")
-                item.toolTip = String(localized: "Expand tabs to spaces automatically")
+                item.toolTip = String(localized: "Use spaces for indentation")
                 item.stateImages[.on] = NSImage(resource: .tabRightSplit)
                 item.stateImages[.off] = NSImage(resource: .tabRight)
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
@@ -536,7 +536,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 } + [
                     NSMenuItem(title: String(localized: "Custom…"), action: #selector(DocumentViewController.customizeTabWidth), keyEquivalent: ""),
                     .separator(),
-                    NSMenuItem(title: String(localized: "Expand to Spaces Automatically"), action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: ""),
+                    NSMenuItem(title: String(localized: "Use Spaces for Indentation"), action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: ""),
                 ]
                 
                 return item

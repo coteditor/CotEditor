@@ -355,12 +355,12 @@
 
 "Tab Style" = "Tab樣式";
 // tooltip
-"Turn off expanding tabs to spaces" = "禁止將tab擴展為空格";
-"Expand tabs to spaces automatically" = "自動將tab擴展為空格";
+"Use tabs for indentation" = "禁止將tab擴展為空格";  // FIXME: updated
+"Use spaces for indentation" = "自動將tab擴展為空格";  // FIXME: updated
 // menu
 "Tab Width" = "Tab寬度";
 "Custom…" = "自訂…";
-"Expand to Spaces Automatically" = "Tab轉為空格";
+"Use Spaces for Indentation" = "Tab轉為空格";  // FIXME: updated
 
 "Wrap Lines" = "換行";
 // tooltip

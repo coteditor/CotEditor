@@ -355,12 +355,12 @@
 
 "Tab Style" = "Tabulatorstil";
 // tooltip
-"Turn off expanding tabs to spaces" = "Tabulatorexpandierung deaktivieren";
-"Expand tabs to spaces automatically" = "Tabulator zu Leerzeichen automatisch expandieren";
+"Use tabs for indentation" = "Tabulatoren für Einzug verwenden";
+"Use spaces for indentation" = "Leerzeichen für Einzug verwenden";
 // menu
 "Tab Width" = "Tabulatorbreite";
 "Custom…" = "Konfigurieren …";
-"Expand to Spaces Automatically" = "Tabulatoren automatisch expandieren";
+"Use Spaces for Indentation" = "Leerzeichen für Einzug verwenden";
 
 "Wrap Lines" = "Zeilen umbrechen";
 // tooltip
