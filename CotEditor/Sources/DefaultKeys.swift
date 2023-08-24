@@ -42,6 +42,10 @@ extension DefaultKeys {
     
     // Window
     static let windowTabbing = DefaultKey<Int>("windowTabbing")
+    static let windowWidth = DefaultKey<CGFloat>("windowWidth")
+    static let windowHeight = DefaultKey<CGFloat>("windowHeight")
+    static let splitViewVertical = DefaultKey<Bool>("splitViewVertical")
+    static let windowAlpha = DefaultKey<CGFloat>("windowAlpha")
     static let showNavigationBar = DefaultKey<Bool>("showNavigationBar")
     static let showLineNumbers = DefaultKey<Bool>("showLineNumbers")
     static let showLineNumberSeparator = DefaultKey<Bool>("showLineNumberSeparator")
@@ -62,10 +66,6 @@ extension DefaultKeys {
     static let showStatusBarLocation = DefaultKey<Bool>("showStatusBarLocation")
     static let showStatusBarLine = DefaultKey<Bool>("showStatusBarLine")
     static let showStatusBarColumn = DefaultKey<Bool>("showStatusBarColumn")
-    static let windowWidth = DefaultKey<CGFloat>("windowWidth")
-    static let windowHeight = DefaultKey<CGFloat>("windowHeight")
-    static let splitViewVertical = DefaultKey<Bool>("splitViewVertical")
-    static let windowAlpha = DefaultKey<CGFloat>("windowAlpha")
     
     // Appearance
     static let fontName = DefaultKey<String>("fontName")

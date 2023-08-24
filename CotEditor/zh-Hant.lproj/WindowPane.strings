@@ -26,7 +26,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Prefer tabs:"; ObjectID = "8zu-3V-Obg"; */
 "8zu-3V-Obg.title" = "偏好標籤：";
-
 /* Class = "NSMenuItem"; title = "Respect System Setting"; ObjectID = "Guj-Kc-zf2"; */
 "Guj-Kc-zf2.title" = "使用系統設定";
 /* Class = "NSMenuItem"; title = "Never"; ObjectID = "o1f-vR-aFm"; */
@@ -35,6 +34,31 @@
 "10Z-Xd-CLV.title" = "自動";
 /* Class = "NSMenuItem"; title = "Always"; ObjectID = "OJs-2q-bg5"; */
 "OJs-2q-bg5.title" = "總是";  // The same as the popup menu selection in System Settings > Desktop & Dock
+
+/* Class = "NSTextFieldCell"; title = "Window size:"; ObjectID = "JZ8-uq-7Kg"; */
+"JZ8-uq-7Kg.title" = "視窗大小：";
+/* Class = "NSTextFieldCell"; title = "Width"; ObjectID = "IGc-EL-MXO"; */
+"IGc-EL-MXO.title" = "寬度";
+/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "u8r-OW-Z1O"; */
+"u8r-OW-Z1O.title" = "像素";
+/* Class = "NSTextFieldCell"; title = "Height"; ObjectID = "Zhk-Nt-kiD"; */
+"Zhk-Nt-kiD.title" = "高度：";
+/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "VCx-PO-Fnr"; */
+"VCx-PO-Fnr.title" = "像素";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "hye-gP-iep"; */
+"hye-gP-iep.ibShadowedIsNilPlaceholder" = "自動";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "UXj-fO-Vee"; */
+"UXj-fO-Vee.ibShadowedIsNilPlaceholder" = "自動";
+
+/* Class = "NSTextFieldCell"; title = "Split editor:"; ObjectID = "dug-hV-7hj"; */
+"dug-hV-7hj.title" = "分隔編輯器：";
+/* Class = "NSButtonCell"; title = "Horizontal"; ObjectID = "Bj6-2A-Nxj"; */
+"Bj6-2A-Nxj.title" = "水平";
+/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
+"sQC-O4-YON.title" = "垂直";
+
+/* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
+"gSx-LA-TPc.title" = "編輯器透明度：";
 
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */
@@ -87,29 +111,3 @@
 "JbR-gR-aiA.title" = "當前行";
 /* Class = "NSButtonCell"; title = "Current column"; ObjectID = "SR0-Bx-Nh6"; */
 "SR0-Bx-Nh6.title" = "當前列";
-
-
-/* Class = "NSTextFieldCell"; title = "Window size:"; ObjectID = "JZ8-uq-7Kg"; */
-"JZ8-uq-7Kg.title" = "視窗大小：";
-/* Class = "NSTextFieldCell"; title = "width"; ObjectID = "IGc-EL-MXO"; */
-"IGc-EL-MXO.title" = "寬度";
-/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "u8r-OW-Z1O"; */
-"u8r-OW-Z1O.title" = "像素";
-/* Class = "NSTextFieldCell"; title = "height"; ObjectID = "Zhk-Nt-kiD"; */
-"Zhk-Nt-kiD.title" = "高度：";
-/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "VCx-PO-Fnr"; */
-"VCx-PO-Fnr.title" = "像素";
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "hye-gP-iep"; */
-"hye-gP-iep.ibShadowedIsNilPlaceholder" = "自動";
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "UXj-fO-Vee"; */
-"UXj-fO-Vee.ibShadowedIsNilPlaceholder" = "自動";
-
-/* Class = "NSTextFieldCell"; title = "Split editor:"; ObjectID = "dug-hV-7hj"; */
-"dug-hV-7hj.title" = "分隔編輯器：";
-/* Class = "NSButtonCell"; title = "Horizontal"; ObjectID = "Bj6-2A-Nxj"; */
-"Bj6-2A-Nxj.title" = "水平";
-/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
-"sQC-O4-YON.title" = "垂直";
-
-/* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
-"gSx-LA-TPc.title" = "編輯器透明度：";

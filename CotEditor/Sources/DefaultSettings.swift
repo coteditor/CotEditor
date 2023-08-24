@@ -42,6 +42,10 @@ struct DefaultSettings {
         .checksUpdatesForBeta: false,
         
         .windowTabbing: -1,  // = Respect System Setting
+//        .windowWidth: 600.0,
+//        .windowHeight: 620.0,
+        .splitViewVertical: false,
+        .windowAlpha: 1.0,
         .showNavigationBar: true,
         .showLineNumbers: true,
         .showLineNumberSeparator: false,
@@ -62,10 +66,6 @@ struct DefaultSettings {
         .showStatusBarLocation: true,
         .showStatusBarLine: true,
         .showStatusBarColumn: false,
-//        .windowWidth: 600.0,
-//        .windowHeight: 620.0,
-        .splitViewVertical: false,
-        .windowAlpha: 1.0,
         
         .fontName: FontType.standard.systemFont().fontName,
         .fontSize: NSFont.systemFontSize,
