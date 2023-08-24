@@ -104,6 +104,8 @@ final class SplitViewController: NSSplitViewController {
     @IBAction func toggleSplitOrientation(_ sender: Any?) {
         
         self.splitView.isVertical.toggle()
+        
+        UserDefaults.standard[.splitViewVertical] = self.splitView.isVertical
     }
     
     

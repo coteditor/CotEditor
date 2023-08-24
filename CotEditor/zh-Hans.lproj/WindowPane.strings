@@ -50,13 +50,6 @@
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "UXj-fO-Vee"; */
 "UXj-fO-Vee.ibShadowedIsNilPlaceholder" = "自动";
 
-/* Class = "NSTextFieldCell"; title = "Split editor:"; ObjectID = "dug-hV-7hj"; */
-"dug-hV-7hj.title" = "分隔编辑器：";
-/* Class = "NSButtonCell"; title = "Horizontal"; ObjectID = "Bj6-2A-Nxj"; */
-"Bj6-2A-Nxj.title" = "水平";
-/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
-"sQC-O4-YON.title" = "垂直";
-
 /* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
 "gSx-LA-TPc.title" = "编辑器透明度：";
 

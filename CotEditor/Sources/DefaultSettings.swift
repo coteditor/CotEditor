@@ -44,7 +44,6 @@ struct DefaultSettings {
         .windowTabbing: -1,  // = Respect System Setting
 //        .windowWidth: 600.0,
 //        .windowHeight: 620.0,
-        .splitViewVertical: false,
         .windowAlpha: 1.0,
         .showNavigationBar: true,
         .showLineNumbers: true,
@@ -169,6 +168,7 @@ struct DefaultSettings {
         .recentSyntaxNames: [String](),
         .showStatusBar: true,
         .selectedInspectorPaneIndex: 0,
+        .splitViewVertical: false,
         .consoleFontSize: NSFont.smallSystemFontSize,
         .outlineViewFontSize: NSFont.smallSystemFontSize,
         .findResultViewFontSize: NSFont.smallSystemFontSize,
