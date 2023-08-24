@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="6FT-QA-TTg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="6FT-QA-TTg">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22152"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -375,6 +375,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="vfb-GS-2rH" id="g6n-uF-lph"/>
                                             <binding destination="TDG-Hm-YNe" name="selectedTag" keyPath="values.autoExpandTab" id="LIy-kq-cr7"/>
                                         </connections>
                                     </popUpButton>

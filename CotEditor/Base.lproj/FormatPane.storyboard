@@ -509,11 +509,6 @@
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="cbJ-XK-bnG">
-            <size key="intrinsicContentSize" width="16" height="16"/>
-        </designable>
-    </designables>
     <resources>
         <image name="NSActionTemplate" width="20" height="20"/>
         <image name="NSAddTemplate" width="18" height="17"/>
