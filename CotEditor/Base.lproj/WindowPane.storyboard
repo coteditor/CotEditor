@@ -195,7 +195,7 @@
                                             <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showPageGuide" id="n2C-zV-02A"/>
                                         </connections>
                                     </stepper>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="elp-ym-ri6">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="elp-ym-ri6">
                                         <rect key="frame" x="22" y="139" width="108" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Writing direction:" id="RwN-73-I8c">
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -203,7 +203,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jq0-Ac-Br7">
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jq0-Ac-Br7">
                                         <rect key="frame" x="132" y="138" width="98" height="18"/>
                                         <buttonCell key="cell" type="radio" title="Left to right" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="3Kb-bF-CW0">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -213,7 +213,7 @@
                                             <action selector="updateWritingDirectionSetting:" target="Qki-Cn-AgK" id="zJd-jJ-jcv"/>
                                         </connections>
                                     </button>
-                                    <button tag="1" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dbp-Ze-2O4">
+                                    <button tag="1" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dbp-Ze-2O4">
                                         <rect key="frame" x="236" y="138" width="97" height="18"/>
                                         <buttonCell key="cell" type="radio" title="Right to left" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="USo-8p-Edc">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -223,7 +223,7 @@
                                             <action selector="updateWritingDirectionSetting:" target="Qki-Cn-AgK" id="iIB-f1-onU"/>
                                         </connections>
                                     </button>
-                                    <button tag="2" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wjb-yR-EWC">
+                                    <button tag="2" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wjb-yR-EWC">
                                         <rect key="frame" x="339" y="138" width="72" height="18"/>
                                         <buttonCell key="cell" type="radio" title="Vertical" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Ge8-vU-lyg">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -233,7 +233,7 @@
                                             <action selector="updateWritingDirectionSetting:" target="Qki-Cn-AgK" id="Oux-yN-dZx"/>
                                         </connections>
                                     </button>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wv9-cn-NXQ">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="wv9-cn-NXQ">
                                         <rect key="frame" x="60" y="111" width="70" height="16"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Overscroll:" id="7Nz-lv-JZb">
                                             <font key="font" metaFont="system"/>
@@ -241,7 +241,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C9r-v1-hrx" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C9r-v1-hrx" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                         <rect key="frame" x="136" y="108" width="48" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="NEd-ig-lO2"/>
@@ -261,7 +261,7 @@
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.overscrollRate" id="MRk-BP-vHS"/>
                                         </connections>
                                     </textField>
-                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SQY-QF-RyC">
+                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SQY-QF-RyC">
                                         <rect key="frame" x="185" y="105" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.10000000000000001" maxValue="1" id="YHE-bc-7kQ"/>
                                         <connections>
@@ -430,7 +430,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" ambiguous="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gi0-Gf-dth">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gi0-Gf-dth">
                                         <rect key="frame" x="38" y="349" width="92" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Editor opacity:" usesSingleLineMode="YES" id="gSx-LA-TPc">
                                             <font key="font" metaFont="system"/>
@@ -438,7 +438,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <slider verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="klg-3N-8x9">
+                                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="klg-3N-8x9">
                                         <rect key="frame" x="158" y="340" width="204" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="jww-tZ-Fas"/>
@@ -451,7 +451,7 @@
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.windowAlpha" id="ym4-HC-0p8"/>
                                         </connections>
                                     </slider>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hqW-e1-Q8a" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hqW-e1-Q8a" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                         <rect key="frame" x="392" y="346" width="48" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="kWm-Nn-j3V"/>
@@ -495,7 +495,7 @@
                                             <outlet property="formatter" destination="yn0-hn-qBW" id="WLI-uH-iqt"/>
                                         </connections>
                                     </textField>
-                                    <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QR3-LX-w9s" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="QR3-LX-w9s" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
                                         <rect key="frame" x="136" y="348" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="9D8-b9-n4x"/>
@@ -507,7 +507,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </customView>
-                                    <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NTf-Ei-t1t" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="NTf-Ei-t1t" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
                                         <rect key="frame" x="368" y="348" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="NTf-Ei-t1t" secondAttribute="height" multiplier="1:1" id="ncV-US-ELV"/>
@@ -594,6 +594,7 @@
                                     <constraint firstItem="rm2-f6-0UR" firstAttribute="firstBaseline" secondItem="8Vv-db-6bb" secondAttribute="firstBaseline" id="j0w-nb-HWo"/>
                                     <constraint firstItem="Obi-8V-K8Q" firstAttribute="leading" secondItem="2rQ-L0-bX4" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="jBW-fE-hhJ"/>
                                     <constraint firstItem="XGK-jf-PNq" firstAttribute="width" secondItem="hfv-mJ-E2k" secondAttribute="width" id="jir-RK-GVp"/>
+                                    <constraint firstItem="Gi0-Gf-dth" firstAttribute="trailing" secondItem="w4k-Qb-kRF" secondAttribute="trailing" id="kIU-VE-hmX"/>
                                     <constraint firstItem="WVD-kf-A2E" firstAttribute="leading" secondItem="WD1-55-LD1" secondAttribute="trailing" constant="8" symbolic="YES" id="kaP-FU-p01"/>
                                     <constraint firstItem="1hW-gQ-vjs" firstAttribute="top" secondItem="heB-2f-hH0" secondAttribute="bottom" constant="14" id="keO-dc-beg"/>
                                     <constraint firstAttribute="trailing" secondItem="hZu-SP-zrK" secondAttribute="trailing" id="lnd-eu-PTf"/>
@@ -606,6 +607,7 @@
                                     <constraint firstItem="w4k-Qb-kRF" firstAttribute="top" secondItem="2rQ-L0-bX4" secondAttribute="top" constant="20" symbolic="YES" id="rz5-Vy-hFU"/>
                                     <constraint firstItem="9xw-el-9xy" firstAttribute="firstBaseline" secondItem="KaN-9u-fz0" secondAttribute="firstBaseline" id="sX6-14-LiR"/>
                                     <constraint firstItem="kQy-qH-I9N" firstAttribute="leading" secondItem="XGK-jf-PNq" secondAttribute="trailing" constant="6" id="ttS-vn-QAZ"/>
+                                    <constraint firstItem="elp-ym-ri6" firstAttribute="trailing" secondItem="1hW-gQ-vjs" secondAttribute="trailing" id="tvS-8b-FVZ"/>
                                     <constraint firstItem="Obi-8V-K8Q" firstAttribute="top" secondItem="hZu-SP-zrK" secondAttribute="bottom" constant="14" id="uXA-Mr-psh"/>
                                     <constraint firstAttribute="trailing" secondItem="heB-2f-hH0" secondAttribute="trailing" id="vAL-0O-z41"/>
                                     <constraint firstItem="jq0-Ac-Br7" firstAttribute="firstBaseline" secondItem="elp-ym-ri6" secondAttribute="firstBaseline" id="vHk-yO-PWq"/>
@@ -621,6 +623,7 @@
                                     <constraint firstItem="hqW-e1-Q8a" firstAttribute="leading" secondItem="NTf-Ei-t1t" secondAttribute="trailing" constant="8" symbolic="YES" id="yZC-i5-zdL"/>
                                     <constraint firstItem="heB-2f-hH0" firstAttribute="leading" secondItem="2rQ-L0-bX4" secondAttribute="leading" id="ylY-vi-4Z1"/>
                                     <constraint firstItem="DnL-UN-PAA" firstAttribute="top" secondItem="Obi-8V-K8Q" secondAttribute="top" id="zSO-cg-15K"/>
+                                    <constraint firstItem="wv9-cn-NXQ" firstAttribute="trailing" secondItem="1hW-gQ-vjs" secondAttribute="trailing" id="zbc-Mb-pVv"/>
                                 </constraints>
                             </customView>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="TQJ-IO-6BB">
