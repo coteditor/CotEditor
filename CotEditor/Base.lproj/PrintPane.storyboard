@@ -328,7 +328,7 @@
                                         </connections>
                                     </stepper>
                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gnD-Yx-C3A">
-                                        <rect key="frame" x="173" y="314" width="17" height="16"/>
+                                        <rect key="frame" x="175" y="314" width="17" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="pt" id="jUN-Ue-xrO">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -372,7 +372,7 @@
                                     <constraint firstItem="zgD-wy-VQk" firstAttribute="width" secondItem="5Bt-cy-Umw" secondAttribute="width" id="ZFD-hF-HSG"/>
                                     <constraint firstItem="ito-FV-Lxm" firstAttribute="leading" secondItem="zj5-Gl-MJM" secondAttribute="trailing" constant="8" symbolic="YES" id="Zbj-m3-5OD"/>
                                     <constraint firstItem="nPF-cF-nDP" firstAttribute="top" secondItem="zgD-wy-VQk" secondAttribute="bottom" constant="10" symbolic="YES" id="aG3-XK-jM2"/>
-                                    <constraint firstItem="gnD-Yx-C3A" firstAttribute="leading" secondItem="lA2-N9-R19" secondAttribute="trailing" constant="4" id="bfJ-ET-Cq6"/>
+                                    <constraint firstItem="gnD-Yx-C3A" firstAttribute="leading" secondItem="lA2-N9-R19" secondAttribute="trailing" constant="6" id="bfJ-ET-Cq6"/>
                                     <constraint firstItem="nTz-9X-jTg" firstAttribute="firstBaseline" secondItem="oq9-0A-awj" secondAttribute="firstBaseline" id="c9L-AO-SG4"/>
                                     <constraint firstItem="lA2-N9-R19" firstAttribute="leading" secondItem="nTz-9X-jTg" secondAttribute="trailing" constant="4" id="cQC-h9-e4q"/>
                                     <constraint firstItem="nPF-cF-nDP" firstAttribute="leading" secondItem="zgD-wy-VQk" secondAttribute="leading" id="dq2-hX-8FP"/>

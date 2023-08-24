@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JG1-NR-KT5">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JG1-NR-KT5">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22152"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -197,7 +197,7 @@
                                 </connections>
                             </textField>
                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ljx-Ae-jZN" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="262" y="122" width="49" height="14"/>
+                                <rect key="frame" x="264" y="122" width="49" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="seconds" id="ebJ-vk-RME">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -338,7 +338,7 @@
                             <constraint firstItem="BFb-ec-a8q" firstAttribute="leading" secondItem="Vvo-7F-4xj" secondAttribute="trailing" constant="4" id="TM0-cj-XB8"/>
                             <constraint firstItem="oN2-0G-iXz" firstAttribute="leading" secondItem="goq-md-y5e" secondAttribute="trailing" constant="8" symbolic="YES" id="TSb-dC-fcF"/>
                             <constraint firstItem="b87-JB-xzy" firstAttribute="firstBaseline" secondItem="qM1-WW-xuQ" secondAttribute="firstBaseline" id="UFz-ce-wNu"/>
-                            <constraint firstItem="Ljx-Ae-jZN" firstAttribute="leading" secondItem="BFb-ec-a8q" secondAttribute="trailing" constant="4" id="VHl-RY-bhs"/>
+                            <constraint firstItem="Ljx-Ae-jZN" firstAttribute="leading" secondItem="BFb-ec-a8q" secondAttribute="trailing" constant="6" id="VHl-RY-bhs"/>
                             <constraint firstItem="KT6-dp-FQ3" firstAttribute="leading" secondItem="W8P-Bl-UB5" secondAttribute="leading" id="W9n-Tl-M6A"/>
                             <constraint firstItem="NjY-HB-hDH" firstAttribute="top" secondItem="jK0-pT-HTR" secondAttribute="bottom" constant="8" symbolic="YES" id="Y4z-7N-fqC"/>
                             <constraint firstItem="sMb-to-ljF" firstAttribute="top" secondItem="NjY-HB-hDH" secondAttribute="bottom" constant="8" symbolic="YES" id="Z06-bX-iQ5"/>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22152"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -114,7 +114,7 @@
                                         </connections>
                                     </stepper>
                                     <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xDf-ra-dem">
-                                        <rect key="frame" x="197" y="66" width="38" height="16"/>
+                                        <rect key="frame" x="199" y="66" width="38" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="times" usesSingleLineMode="YES" id="VLD-jj-zzl">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -311,7 +311,7 @@
                                     <constraint firstItem="ZHd-UF-pkx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ADB-Wp-iDy" secondAttribute="leading" constant="20" symbolic="YES" id="nla-xy-hjf"/>
                                     <constraint firstItem="I9r-vj-2gy" firstAttribute="leading" secondItem="icl-ar-8yG" secondAttribute="trailing" constant="8" symbolic="YES" id="pWb-lP-gpe"/>
                                     <constraint firstItem="Wbx-s2-Xop" firstAttribute="leading" secondItem="wT1-jD-6aC" secondAttribute="trailing" constant="4" id="poV-ob-O75"/>
-                                    <constraint firstItem="xDf-ra-dem" firstAttribute="leading" secondItem="XWT-pS-k8a" secondAttribute="trailing" constant="4" id="qV9-uL-22L"/>
+                                    <constraint firstItem="xDf-ra-dem" firstAttribute="leading" secondItem="XWT-pS-k8a" secondAttribute="trailing" constant="6" id="qV9-uL-22L"/>
                                     <constraint firstItem="Cfh-8I-pCg" firstAttribute="leading" secondItem="C0e-PH-i1L" secondAttribute="trailing" constant="8" symbolic="YES" id="rms-Hn-Hfj"/>
                                     <constraint firstItem="2y3-Ti-pue" firstAttribute="firstBaseline" secondItem="rE0-DL-xRG" secondAttribute="firstBaseline" id="s8V-H4-8Cq"/>
                                     <constraint firstItem="kND-Z5-gU8" firstAttribute="centerY" secondItem="Fcc-rL-m1T" secondAttribute="centerY" id="sFK-MV-KyG"/>

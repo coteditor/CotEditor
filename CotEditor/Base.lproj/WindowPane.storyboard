@@ -402,7 +402,7 @@
                                         </connections>
                                     </textField>
                                     <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9xw-el-9xy">
-                                        <rect key="frame" x="202" y="113" width="19" height="16"/>
+                                        <rect key="frame" x="204" y="113" width="19" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="px" id="VCx-PO-Fnr">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -418,7 +418,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XGK-jf-PNq" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="231" y="110" width="64" height="21"/>
+                                        <rect key="frame" x="233" y="110" width="64" height="21"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" placeholderString="Auto" drawsBackground="YES" id="7iv-Gh-RFp">
                                             <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="sUS-DS-EEI">
                                                 <real key="minimum" value="100"/>
@@ -439,7 +439,7 @@
                                         </connections>
                                     </textField>
                                     <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kQy-qH-I9N">
-                                        <rect key="frame" x="297" y="113" width="19" height="16"/>
+                                        <rect key="frame" x="301" y="113" width="19" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="px" id="u8r-OW-Z1O">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -447,7 +447,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dlN-sO-hCs">
-                                        <rect key="frame" x="244" y="95" width="38" height="14"/>
+                                        <rect key="frame" x="246" y="95" width="38" height="14"/>
                                         <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="height" id="Zhk-Nt-kiD">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -672,7 +672,7 @@
                                     <constraint firstItem="dhU-V2-fZC" firstAttribute="top" secondItem="klg-3N-8x9" secondAttribute="bottom" constant="4" id="bOh-hO-FcE"/>
                                     <constraint firstItem="rm2-f6-0UR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Vv-db-6bb" secondAttribute="trailing" constant="8" symbolic="YES" id="bV5-jq-Wh5"/>
                                     <constraint firstItem="WD1-55-LD1" firstAttribute="top" secondItem="5iZ-l6-daQ" secondAttribute="bottom" constant="6" symbolic="YES" id="bbr-9b-nUB"/>
-                                    <constraint firstItem="9xw-el-9xy" firstAttribute="leading" secondItem="hfv-mJ-E2k" secondAttribute="trailing" constant="4" id="c75-pF-BeJ"/>
+                                    <constraint firstItem="9xw-el-9xy" firstAttribute="leading" secondItem="hfv-mJ-E2k" secondAttribute="trailing" constant="6" id="c75-pF-BeJ"/>
                                     <constraint firstItem="KI8-gR-WjS" firstAttribute="top" secondItem="ykE-9e-9Uz" secondAttribute="bottom" constant="8" symbolic="YES" id="c9P-d6-Hri"/>
                                     <constraint firstItem="osr-3d-8sz" firstAttribute="leading" secondItem="tUn-7J-c32" secondAttribute="leading" constant="20" id="cMd-ym-GRz"/>
                                     <constraint firstItem="osr-3d-8sz" firstAttribute="top" secondItem="tUn-7J-c32" secondAttribute="bottom" constant="6" symbolic="YES" id="clf-PM-Z9G"/>
@@ -704,7 +704,7 @@
                                     <constraint firstItem="w4k-Qb-kRF" firstAttribute="top" secondItem="2rQ-L0-bX4" secondAttribute="top" constant="20" symbolic="YES" id="rz5-Vy-hFU"/>
                                     <constraint firstItem="KI8-gR-WjS" firstAttribute="baseline" secondItem="dgR-do-Wa7" secondAttribute="baseline" id="sRQ-cb-trO"/>
                                     <constraint firstItem="9xw-el-9xy" firstAttribute="firstBaseline" secondItem="KaN-9u-fz0" secondAttribute="firstBaseline" id="sX6-14-LiR"/>
-                                    <constraint firstItem="kQy-qH-I9N" firstAttribute="leading" secondItem="XGK-jf-PNq" secondAttribute="trailing" constant="4" id="ttS-vn-QAZ"/>
+                                    <constraint firstItem="kQy-qH-I9N" firstAttribute="leading" secondItem="XGK-jf-PNq" secondAttribute="trailing" constant="6" id="ttS-vn-QAZ"/>
                                     <constraint firstItem="Obi-8V-K8Q" firstAttribute="top" secondItem="hZu-SP-zrK" secondAttribute="bottom" constant="14" id="uXA-Mr-psh"/>
                                     <constraint firstAttribute="trailing" secondItem="heB-2f-hH0" secondAttribute="trailing" id="vAL-0O-z41"/>
                                     <constraint firstItem="jq0-Ac-Br7" firstAttribute="firstBaseline" secondItem="elp-ym-ri6" secondAttribute="firstBaseline" id="vHk-yO-PWq"/>

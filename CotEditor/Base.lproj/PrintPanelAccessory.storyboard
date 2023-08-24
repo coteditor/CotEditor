@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22152"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -281,7 +281,7 @@
                                 <rect key="frame" x="0.0" y="302" width="440" height="5"/>
                             </box>
                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pEn-Qn-GtM" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="366" y="350" width="40" height="21"/>
+                                <rect key="frame" x="364" y="350" width="40" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="pfn-ZI-xFt"/>
                                 </constraints>
@@ -306,7 +306,7 @@
                                 </textFieldCell>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qUW-qA-jm5">
-                                <rect key="frame" x="407" y="347" width="19" height="28"/>
+                                <rect key="frame" x="405" y="347" width="19" height="28"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="4" maxValue="100" doubleValue="4" id="JEm-ad-tne"/>
                                 <connections>
                                     <binding destination="bU7-R8-ocO" name="value" keyPath="fontSize" id="DQA-Be-3I9"/>
@@ -349,7 +349,7 @@
                             <constraint firstItem="wT3-Se-Vox" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" id="FwU-VK-2sK"/>
                             <constraint firstItem="bRC-3n-rin" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CvE-De-52u" secondAttribute="trailing" constant="8" symbolic="YES" id="G6y-4L-rEj"/>
                             <constraint firstItem="Yho-OF-r7g" firstAttribute="top" secondItem="dK7-a2-oXG" secondAttribute="bottom" constant="10" id="HJ7-Np-mPI"/>
-                            <constraint firstItem="XHM-1R-Fyr" firstAttribute="leading" secondItem="qUW-qA-jm5" secondAttribute="trailing" constant="4" id="Hib-w5-nCg"/>
+                            <constraint firstItem="XHM-1R-Fyr" firstAttribute="leading" secondItem="qUW-qA-jm5" secondAttribute="trailing" constant="6" id="Hib-w5-nCg"/>
                             <constraint firstItem="dpB-O3-zLC" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" constant="20" symbolic="YES" id="Hqr-ur-Fe1"/>
                             <constraint firstItem="3Af-55-FYV" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" id="IKR-q2-dNG"/>
                             <constraint firstAttribute="trailing" secondItem="SdK-De-aPG" secondAttribute="trailing" id="JN2-wh-ZXK"/>
