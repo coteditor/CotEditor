@@ -84,23 +84,25 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         self.updateFontField()
         self.updateMonospacedFontField()
         
-        Publishers.Merge3(
-            UserDefaults.standard.publisher(for: .fontName).eraseToVoid(),
-            UserDefaults.standard.publisher(for: .fontSize).eraseToVoid(),
-            UserDefaults.standard.publisher(for: .shouldAntialias).eraseToVoid()
-        )
-        .debounce(for: 0, scheduler: RunLoop.main)
-        .sink { [weak self] in self?.updateFontField() }
-        .store(in: &self.fontObservers)
-        
-        Publishers.Merge3(
-            UserDefaults.standard.publisher(for: .monospacedFontName).eraseToVoid(),
-            UserDefaults.standard.publisher(for: .monospacedFontSize).eraseToVoid(),
-            UserDefaults.standard.publisher(for: .monospacedShouldAntialias).eraseToVoid()
-        )
-        .debounce(for: 0, scheduler: RunLoop.main)
-        .sink { [weak self] in self?.updateMonospacedFontField() }
-        .store(in: &self.fontObservers)
+        self.fontObservers = [
+            Publishers.Merge(
+                UserDefaults.standard.publisher(for: .fontName).eraseToVoid(),
+                UserDefaults.standard.publisher(for: .fontSize).eraseToVoid()
+            ).debounce(for: 0, scheduler: RunLoop.main)
+                .sink { [weak self] in self?.updateFontField() },
+            
+            UserDefaults.standard.publisher(for: .shouldAntialias, initial: true)
+                .sink { [weak self] in self?.fontField?.disablesAntialiasing = !$0 },
+            
+            Publishers.Merge(
+                UserDefaults.standard.publisher(for: .monospacedFontName).eraseToVoid(),
+                UserDefaults.standard.publisher(for: .monospacedFontSize).eraseToVoid()
+            ).debounce(for: 0, scheduler: RunLoop.main)
+                .sink { [weak self] in self?.updateMonospacedFontField() },
+            
+            UserDefaults.standard.publisher(for: .monospacedShouldAntialias, initial: true)
+                .sink { [weak self] in self?.monospacedFontField?.disablesAntialiasing = !$0 },
+        ]
         
         // select one of appearance radio buttons
         switch UserDefaults.standard[.documentAppearance] {
@@ -141,6 +143,12 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         // stop observations for UI update
         self.fontObservers.removeAll()
         self.themeManagerObservers.removeAll()
+        
+        // detach a possible font panel's target set in `showFonts(_:)`
+        if NSFontManager.shared.target === self {
+            NSFontManager.shared.target = nil
+            NSFontPanel.shared.close()
+        }
     }
     
     
@@ -736,20 +744,6 @@ extension NSUserInterfaceItemIdentifier {
 
 extension AppearancePaneController: NSFontChanging {
     
-    // MARK: View Controller Methods
-    
-    override func viewWillDisappear() {
-        
-        super.viewWillDisappear()
-        
-        // detach a possible font panel's target set in `showFonts(_:)`
-        if NSFontManager.shared.target === self {
-            NSFontManager.shared.target = nil
-        }
-    }
-    
-    
-    
     // MARK: Font Changing Methods
     
     /// Restrict items to display in the font panel.
@@ -806,8 +800,7 @@ extension AppearancePaneController: NSFontChanging {
         
         self.fontField?
             .displayFontName(UserDefaults.standard[.fontName],
-                             size: UserDefaults.standard[.fontSize],
-                             antialias: UserDefaults.standard[.shouldAntialias])
+                             size: UserDefaults.standard[.fontSize])
     }
     
     
@@ -816,22 +809,20 @@ extension AppearancePaneController: NSFontChanging {
         
         self.monospacedFontField?
             .displayFontName(UserDefaults.standard[.monospacedFontName],
-                             size: UserDefaults.standard[.monospacedFontSize],
-                             antialias: UserDefaults.standard[.monospacedShouldAntialias])
+                             size: UserDefaults.standard[.monospacedFontSize])
     }
 }
 
 
 
-private extension AntialiasingTextField {
+private extension NSTextField {
     
     /// Display the font name and size in the manner of the given font setting.
     ///
     /// - Parameters:
     ///   - name: The name of the font.
     ///   - size: The size of the font.
-    ///   - antialias: `true` to antialias the text display.
-    func displayFontName(_ name: String, size: Double, antialias: Bool) {
+    func displayFontName(_ name: String, size: Double) {
         
         guard let font = NSFont(name: name, size: size) else { return assertionFailure() }
         
@@ -840,6 +831,5 @@ private extension AntialiasingTextField {
         
         self.stringValue = displayName + " " + size.formatted()
         self.font = font.withSize(min(size, maxDisplaySize))
-        self.disablesAntialiasing = !antialias
     }
 }

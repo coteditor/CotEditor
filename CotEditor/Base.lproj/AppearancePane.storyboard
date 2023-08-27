@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22152"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +14,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="563"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="ADB-Wp-iDy">
-                                <rect key="frame" x="44" y="342" width="512" height="221"/>
+                                <rect key="frame" x="53" y="342" width="495" height="221"/>
                                 <subviews>
                                     <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="icl-ar-8yG">
                                         <rect key="frame" x="18" y="185" width="114" height="16"/>
@@ -40,7 +40,7 @@
                                         </connections>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uMj-Iu-oCy">
-                                        <rect key="frame" x="416" y="176" width="83" height="32"/>
+                                        <rect key="frame" x="399" y="176" width="83" height="32"/>
                                         <buttonCell key="cell" type="push" title="Select…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3289">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -130,7 +130,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xAb-JZ-6Pr">
-                                        <rect key="frame" x="136" y="37" width="356" height="18"/>
+                                        <rect key="frame" x="136" y="37" width="339" height="18"/>
                                         <buttonCell key="cell" type="check" title="Change background color" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ba7-dE-zXz">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -177,14 +177,6 @@
                                             <action selector="updateAppearanceSetting:" target="WBM-EY-ENr" id="zU1-hk-Efg"/>
                                         </connections>
                                     </button>
-                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wbx-s2-Xop">
-                                        <rect key="frame" x="399" y="179" width="19" height="28"/>
-                                        <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="100" doubleValue="12" id="bmU-Q2-Kep"/>
-                                        <connections>
-                                            <accessibilityConnection property="title" destination="icl-ar-8yG" id="R9K-qZ-5od"/>
-                                            <binding destination="IE5-39-jAY" name="value" keyPath="values.fontSize" id="1q5-N1-Y58"/>
-                                        </connections>
-                                    </stepper>
                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZHd-UF-pkx">
                                         <rect key="frame" x="18" y="137" width="114" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Monospaced font:" id="B8d-4v-fox">
@@ -218,7 +210,7 @@
                                         </connections>
                                     </textField>
                                     <button identifier="monospacedFontButton" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6lq-jQ-EgE">
-                                        <rect key="frame" x="416" y="128" width="83" height="32"/>
+                                        <rect key="frame" x="399" y="128" width="83" height="32"/>
                                         <buttonCell key="cell" type="push" title="Select…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DSX-09-54K">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -241,13 +233,6 @@
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.monospacedLigature" id="FvI-T1-cYd"/>
                                         </connections>
                                     </button>
-                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kND-Z5-gU8">
-                                        <rect key="frame" x="399" y="131" width="19" height="28"/>
-                                        <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="100" doubleValue="12" id="lEH-LN-Gki"/>
-                                        <connections>
-                                            <binding destination="IE5-39-jAY" name="value" keyPath="values.monospacedFontSize" id="3lJ-eA-twD"/>
-                                        </connections>
-                                    </stepper>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LCf-XZ-KEp">
                                         <rect key="frame" x="136" y="91" width="203" height="18"/>
                                         <buttonCell key="cell" type="check" title="Always use monospaced font" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="t8U-fh-Wkt">
@@ -262,14 +247,13 @@
                                 <constraints>
                                     <constraint firstItem="hws-J2-FDl" firstAttribute="trailing" secondItem="icl-ar-8yG" secondAttribute="trailing" id="3ry-gB-SFR"/>
                                     <constraint firstItem="C0e-PH-i1L" firstAttribute="leading" secondItem="Fcc-rL-m1T" secondAttribute="leading" id="4SE-GD-EjV"/>
-                                    <constraint firstItem="Wbx-s2-Xop" firstAttribute="centerY" secondItem="wT1-jD-6aC" secondAttribute="centerY" id="4rr-OH-4xo"/>
                                     <constraint firstItem="Tqw-t1-w9R" firstAttribute="leading" secondItem="rE0-DL-xRG" secondAttribute="trailing" constant="6" symbolic="YES" id="5TB-3p-oLc"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LCf-XZ-KEp" secondAttribute="trailing" constant="20" symbolic="YES" id="5YR-uu-ngV"/>
+                                    <constraint firstItem="6lq-jQ-EgE" firstAttribute="leading" secondItem="Fcc-rL-m1T" secondAttribute="trailing" constant="8" symbolic="YES" id="6L2-Sy-AKH"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sbW-46-DFB" secondAttribute="trailing" constant="20" symbolic="YES" id="6eb-Fr-d6A"/>
                                     <constraint firstItem="6lq-jQ-EgE" firstAttribute="centerY" secondItem="Fcc-rL-m1T" secondAttribute="centerY" id="7VU-Np-lNe"/>
                                     <constraint firstAttribute="bottom" secondItem="Tqw-t1-w9R" secondAttribute="bottom" constant="10" id="AkQ-qI-suM"/>
                                     <constraint firstItem="icl-ar-8yG" firstAttribute="centerY" secondItem="wT1-jD-6aC" secondAttribute="centerY" id="Awy-Lh-dcc"/>
-                                    <constraint firstItem="6lq-jQ-EgE" firstAttribute="leading" secondItem="kND-Z5-gU8" secondAttribute="trailing" constant="8" symbolic="YES" id="C67-Wd-Vd8"/>
                                     <constraint firstAttribute="trailing" secondItem="xAb-JZ-6Pr" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="C8X-qZ-GqH"/>
                                     <constraint firstItem="4cD-mR-vJc" firstAttribute="leading" secondItem="I9r-vj-2gy" secondAttribute="trailing" constant="8" symbolic="YES" id="CAF-oR-p9c"/>
                                     <constraint firstItem="sbW-46-DFB" firstAttribute="leading" secondItem="2y3-Ti-pue" secondAttribute="trailing" constant="8" symbolic="YES" id="DKp-dB-fTm"/>
@@ -289,8 +273,6 @@
                                     <constraint firstItem="icl-ar-8yG" firstAttribute="top" secondItem="ADB-Wp-iDy" secondAttribute="top" constant="20" symbolic="YES" id="PVD-oM-Cge"/>
                                     <constraint firstItem="Fcc-rL-m1T" firstAttribute="centerY" secondItem="ZHd-UF-pkx" secondAttribute="centerY" id="RCo-rU-m4T"/>
                                     <constraint firstItem="5XW-Ju-Ix5" firstAttribute="top" secondItem="LCf-XZ-KEp" secondAttribute="bottom" constant="8" symbolic="YES" id="SVZ-oV-anh"/>
-                                    <constraint firstItem="uMj-Iu-oCy" firstAttribute="leading" secondItem="Wbx-s2-Xop" secondAttribute="trailing" constant="8" symbolic="YES" id="UfD-bc-ydD"/>
-                                    <constraint firstItem="kND-Z5-gU8" firstAttribute="leading" secondItem="Fcc-rL-m1T" secondAttribute="trailing" constant="4" id="VrD-ZK-LBb"/>
                                     <constraint firstItem="LCf-XZ-KEp" firstAttribute="top" secondItem="C0e-PH-i1L" secondAttribute="bottom" constant="8" symbolic="YES" id="VxN-mh-5QG"/>
                                     <constraint firstItem="Fcc-rL-m1T" firstAttribute="height" secondItem="wT1-jD-6aC" secondAttribute="height" id="Vzc-QN-svh"/>
                                     <constraint firstItem="C0e-PH-i1L" firstAttribute="top" secondItem="Fcc-rL-m1T" secondAttribute="bottom" constant="4" id="XLX-B0-BhH"/>
@@ -309,12 +291,11 @@
                                     <constraint firstItem="xAb-JZ-6Pr" firstAttribute="leading" secondItem="x9R-2Y-F6b" secondAttribute="trailing" constant="8" symbolic="YES" id="m33-47-9sh"/>
                                     <constraint firstItem="XWT-pS-k8a" firstAttribute="centerY" secondItem="5XW-Ju-Ix5" secondAttribute="centerY" id="nIK-25-MZX"/>
                                     <constraint firstItem="ZHd-UF-pkx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ADB-Wp-iDy" secondAttribute="leading" constant="20" symbolic="YES" id="nla-xy-hjf"/>
+                                    <constraint firstItem="uMj-Iu-oCy" firstAttribute="leading" secondItem="wT1-jD-6aC" secondAttribute="trailing" constant="8" symbolic="YES" id="oIB-6V-zoG"/>
                                     <constraint firstItem="I9r-vj-2gy" firstAttribute="leading" secondItem="icl-ar-8yG" secondAttribute="trailing" constant="8" symbolic="YES" id="pWb-lP-gpe"/>
-                                    <constraint firstItem="Wbx-s2-Xop" firstAttribute="leading" secondItem="wT1-jD-6aC" secondAttribute="trailing" constant="4" id="poV-ob-O75"/>
                                     <constraint firstItem="xDf-ra-dem" firstAttribute="leading" secondItem="XWT-pS-k8a" secondAttribute="trailing" constant="6" id="qV9-uL-22L"/>
                                     <constraint firstItem="Cfh-8I-pCg" firstAttribute="leading" secondItem="C0e-PH-i1L" secondAttribute="trailing" constant="8" symbolic="YES" id="rms-Hn-Hfj"/>
                                     <constraint firstItem="2y3-Ti-pue" firstAttribute="firstBaseline" secondItem="rE0-DL-xRG" secondAttribute="firstBaseline" id="s8V-H4-8Cq"/>
-                                    <constraint firstItem="kND-Z5-gU8" firstAttribute="centerY" secondItem="Fcc-rL-m1T" secondAttribute="centerY" id="sFK-MV-KyG"/>
                                     <constraint firstItem="I9r-vj-2gy" firstAttribute="top" secondItem="wT1-jD-6aC" secondAttribute="bottom" constant="4" id="sUB-Yu-Aiy"/>
                                     <constraint firstItem="Cfh-8I-pCg" firstAttribute="firstBaseline" secondItem="C0e-PH-i1L" secondAttribute="firstBaseline" id="sfd-h0-Ujb"/>
                                     <constraint firstItem="4cD-mR-vJc" firstAttribute="firstBaseline" secondItem="I9r-vj-2gy" secondAttribute="firstBaseline" id="uyq-Ib-2OJ"/>
