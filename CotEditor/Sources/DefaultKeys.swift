@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Foundation
 import CoreGraphics
 
 extension DefaultKeys {
@@ -68,12 +69,10 @@ extension DefaultKeys {
     static let showStatusBarColumn = DefaultKey<Bool>("showStatusBarColumn")
     
     // Appearance
-    static let fontName = DefaultKey<String>("fontName")
-    static let fontSize = DefaultKey<Double>("fontSize")
+    static let font = DefaultKey<Data?>("font")
     static let shouldAntialias = DefaultKey<Bool>("shouldAntialias")
     static let ligature = DefaultKey<Bool>("ligature")
-    static let monospacedFontName = DefaultKey<String>("monospacedFontName")
-    static let monospacedFontSize = DefaultKey<Double>("monospacedFontSize")
+    static let monospacedFont = DefaultKey<Data?>("monospacedFont")
     static let monospacedShouldAntialias = DefaultKey<Bool>("monospacedShouldAntialias")
     static let monospacedLigature = DefaultKey<Bool>("monospacedLigature")
     static let usesMonospacedFont = DefaultKey<Bool>("usesMonospacedFont")

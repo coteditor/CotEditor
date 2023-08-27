@@ -67,12 +67,8 @@ struct DefaultSettings {
         .showStatusBarLine: true,
         .showStatusBarColumn: false,
         
-        .fontName: FontType.standard.systemFont().fontName,
-        .fontSize: NSFont.systemFontSize,
         .shouldAntialias: true,
         .ligature: true,
-        .monospacedFontName: FontType.monospaced.systemFont().fontName,
-        .monospacedFontSize: NSFont.systemFontSize,
         .monospacedShouldAntialias: true,
         .monospacedLigature: false,
         .usesMonospacedFont: false,

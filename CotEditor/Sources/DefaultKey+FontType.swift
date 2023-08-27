@@ -57,43 +57,43 @@ extension UserDefaults {
     /// - Returns: An NSFont.
     func font(for type: FontType) -> NSFont {
         
-        let name = self[.fontName(for: type)]
-        let size = self[.fontSize(for: type)]
+        guard
+            let data = self[.fontKey(for: type)],
+            let descriptor = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSFontDescriptor.self, from: data),
+            let font = NSFont(descriptor: descriptor, size: 0)
+        else { return type.systemFont() }
         
-        return NSFont(name: name, size: size) ?? type.systemFont(size: size)
+        return font
+    }
+}
+
+
+extension NSFont {
+    
+    /// Keyed archived data of the font descriptor to store.
+    var archivedData: Data {
+        
+        get throws {
+            
+            try NSKeyedArchiver.archivedData(withRootObject: self.fontDescriptor, requiringSecureCoding: true)
+        }
     }
 }
 
 
 // MARK: DefaultKey
 
-extension DefaultKey<String> {
+extension DefaultKey<Data?> {
     
     /// The user default key for the font name of the given font type.
     ///
     /// - Parameter type: The font type.
     /// - Returns: An user default key.
-    static func fontName(for type: FontType) -> DefaultKey<String> {
+    static func fontKey(for type: FontType) -> DefaultKey<Data?> {
         
         switch type {
-            case .standard: .fontName
-            case .monospaced: .monospacedFontName
-        }
-    }
-}
-
-
-extension DefaultKey<Double> {
-    
-    /// The user default key for the font size of the given font type.
-    ///
-    /// - Parameter type: The font type.
-    /// - Returns: An user default key.
-    static func fontSize(for type: FontType) -> DefaultKey<Double> {
-        
-        switch type {
-            case .standard: .fontSize
-            case .monospaced: .monospacedFontSize
+            case .standard: .font
+            case .monospaced: .monospacedFont
         }
     }
 }

@@ -81,25 +81,13 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         super.viewWillAppear()
         
         // setup font fields
-        self.updateFontField()
-        self.updateMonospacedFontField()
-        
         self.fontObservers = [
-            Publishers.Merge(
-                UserDefaults.standard.publisher(for: .fontName).eraseToVoid(),
-                UserDefaults.standard.publisher(for: .fontSize).eraseToVoid()
-            ).debounce(for: 0, scheduler: RunLoop.main)
-                .sink { [weak self] in self?.updateFontField() },
-            
+            UserDefaults.standard.publisher(for: .font, initial: true)
+                .sink { [weak self] _ in self?.fontField?.displayFontName(for: UserDefaults.standard.font(for: .standard)) },
             UserDefaults.standard.publisher(for: .shouldAntialias, initial: true)
                 .sink { [weak self] in self?.fontField?.disablesAntialiasing = !$0 },
-            
-            Publishers.Merge(
-                UserDefaults.standard.publisher(for: .monospacedFontName).eraseToVoid(),
-                UserDefaults.standard.publisher(for: .monospacedFontSize).eraseToVoid()
-            ).debounce(for: 0, scheduler: RunLoop.main)
-                .sink { [weak self] in self?.updateMonospacedFontField() },
-            
+            UserDefaults.standard.publisher(for: .monospacedFont, initial: true)
+                .sink { [weak self] _ in self?.monospacedFontField?.displayFontName(for: UserDefaults.standard.font(for: .monospaced)) },
             UserDefaults.standard.publisher(for: .monospacedShouldAntialias, initial: true)
                 .sink { [weak self] in self?.monospacedFontField?.disablesAntialiasing = !$0 },
         ]
@@ -772,8 +760,9 @@ extension AppearancePaneController: NSFontChanging {
             guard alert.runModal() == .alertFirstButtonReturn else { return }
         }
         
-        UserDefaults.standard[.fontName(for: target)] = font.fontName
-        UserDefaults.standard[.fontSize(for: target)] = font.pointSize
+        guard let data = try? font.archivedData else { return }
+        
+        UserDefaults.standard[.fontKey(for: target)] = data
     }
     
     
@@ -790,27 +779,6 @@ extension AppearancePaneController: NSFontChanging {
         NSFontManager.shared.orderFrontFontPanel(sender)
         NSFontManager.shared.target = self
     }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// Update the font name field with the latest settings.
-    private func updateFontField() {
-        
-        self.fontField?
-            .displayFontName(UserDefaults.standard[.fontName],
-                             size: UserDefaults.standard[.fontSize])
-    }
-    
-    
-    /// Update the monospaced font name field with the latest settings.
-    private func updateMonospacedFontField() {
-        
-        self.monospacedFontField?
-            .displayFontName(UserDefaults.standard[.monospacedFontName],
-                             size: UserDefaults.standard[.monospacedFontSize])
-    }
 }
 
 
@@ -820,14 +788,12 @@ private extension NSTextField {
     /// Display the font name and size in the manner of the given font setting.
     ///
     /// - Parameters:
-    ///   - name: The name of the font.
-    ///   - size: The size of the font.
-    func displayFontName(_ name: String, size: Double) {
-        
-        guard let font = NSFont(name: name, size: size) else { return assertionFailure() }
+    ///   - font: The font to display.
+    func displayFontName(for font: NSFont) {
         
         let displayName = font.displayName ?? font.fontName
-        let maxDisplaySize = NSFont.systemFontSize(for: .regular)
+        let size = font.pointSize
+        let maxDisplaySize = NSFont.systemFontSize(for: self.controlSize)
         
         self.stringValue = displayName + " " + size.formatted()
         self.font = font.withSize(min(size, maxDisplaySize))

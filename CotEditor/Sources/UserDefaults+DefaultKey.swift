@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2021 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,8 +23,7 @@
 //  limitations under the License.
 //
 
-import struct CoreGraphics.CGFloat
-import class Foundation.UserDefaults
+import Foundation
 
 extension UserDefaults {
     
@@ -78,6 +77,13 @@ extension UserDefaults {
     subscript(key: DefaultKey<CGFloat>) -> CGFloat {
         
         get { self.double(forKey: key.rawValue) }
+        set { self.set(newValue, forKey: key.rawValue) }
+    }
+    
+    
+    subscript(key: DefaultKey<Data?>) -> Data? {
+        
+        get { self.data(forKey: key.rawValue) }
         set { self.set(newValue, forKey: key.rawValue) }
     }
     

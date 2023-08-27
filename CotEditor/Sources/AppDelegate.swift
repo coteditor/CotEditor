@@ -94,6 +94,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.register(defaults: defaults)
         NSUserDefaultsController.shared.initialValues = defaults
         
+        // migrate font setting on CotEditor 4.6.0 (2023-08)
+        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion <= 580 {
+            UserDefaults.standard.migrateFontSetting()
+        }
+        
         ProcessInfo.processInfo.automaticTerminationSupportEnabled = true
         
         // instantiate shared instances
@@ -450,5 +455,28 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         feedbackAlert.runModal()
         
         return true
+    }
+}
+
+
+private extension UserDefaults {
+    
+    /// Migrate the user font setting to new format introduced on CotEditor 4.6.0 (2023-09).
+    @available(macOS, deprecated: 16, message: "The font setting migration is outdated.")
+    func migrateFontSetting() {
+        
+        guard
+            self.data(forKey: DefaultKey<Data>.font.rawValue) == nil,
+            self.data(forKey: DefaultKey<Data>.monospacedFont.rawValue) == nil,
+            let name = self.string(forKey: "fontName"),
+            let font = NSFont(name: name, size: self.double(forKey: "fontSize"))
+        else { return }
+        
+        if font.isFixedPitch {
+            self[.monospacedFont] = try? font.archivedData
+            self[.usesMonospacedFont] = true
+        } else {
+            self[.font] = try? font.archivedData
+        }
     }
 }

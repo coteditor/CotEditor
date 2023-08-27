@@ -1445,10 +1445,8 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         let defaults = UserDefaults.standard
         
         self.fontObservers = [
-            Publishers.Merge(defaults.publisher(for: .fontName(for: type)).eraseToVoid(),
-                             defaults.publisher(for: .fontSize(for: type)).eraseToVoid())
-            .debounce(for: 0, scheduler: RunLoop.main)
-            .sink { [unowned self] in self.font = UserDefaults.standard.font(for: type) },
+            defaults.publisher(for: .fontKey(for: type))
+                .sink { [unowned self] _ in self.font = UserDefaults.standard.font(for: type) },
             defaults.publisher(for: .antialias(for: type))
                 .sink { [unowned self] in self.usesAntialias = $0 },
             defaults.publisher(for: .ligature(for: type))
