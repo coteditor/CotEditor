@@ -938,7 +938,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         get {
             // make sure to return the font defined by user
-            return (self.layoutManager as? LayoutManager)?.textFont ?? super.font
+            (self.layoutManager as? LayoutManager)?.textFont ?? super.font
         }
         
         set {
