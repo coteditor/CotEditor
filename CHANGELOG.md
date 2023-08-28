@@ -9,20 +9,21 @@ Change Log
 
 - Support __macOS 14 Sonoma__.
 - Add feature to set the editor font depending of the syntax kind.
-- Add the monospaced font setting to the Appearance settings.
-- Add “Kind” option to syntax definitions.
+- Add the monospaced font setting to the Appearance settings pane.
+- Add the “Kind” option to syntax definitions.
+- Add ability to switch the monospaced/proportional font to the Fonts toolbar item.
 - Add Spanish localization (thanks to Agustin Borrego!).
 
 
 ### Improvements
 
 - Change the system requirement to __macOS 13 Ventura and later__.
-- Update the behavior and visual of the inspector pane.
+- Update the behavior and look of the inspector pane.
 - Add “Use system color” option to the insertion point color in the theme setting view.
 - Add a font size field to the print dialog.
 - Update the character inspector to add labels for each item and display the Unicode version.
 - Reorganize the Settings window.
-- Deprecate the print font setting in the Print settings.
+- Deprecate the print font option in the Print settings.
 - Deprecate the cursor type option.
 - Deprecate the Color Code toolbar button.
 - Make sure to perform the automatic whitespace trimming every time before explicit saving by the user.
