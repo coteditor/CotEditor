@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import SwiftUI
 
 final class GeneralPaneController: NSViewController {
     
@@ -105,6 +106,16 @@ final class GeneralPaneController: NSViewController {
     @IBAction func updateDocumentConflictSetting(_ sender: NSButton) {
         
         UserDefaults.standard[.documentConflictOption] = DocumentConflictOption(rawValue: sender.tag)!
+    }
+    
+    
+    /// Show warning manage sheet.
+    @IBAction func showWarningsSetting(_ sender: Any?) {
+        
+        let controller = NSHostingController(rootView: WarningsSettingView())
+        controller.rootView.parent = controller
+        
+        self.presentAsSheet(controller)
     }
     
     

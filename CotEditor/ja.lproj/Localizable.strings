@@ -625,6 +625,10 @@
 // command-line tool
 "installed at %@" = "%@にインストール済み";
 
+// warnings setting
+"Suppress following warnings:" = "以下を警告しない:";
+"Inconsistent line endings" = "改行コードの混在";
+
 
 // Appearance pane
 // alert message

@@ -625,6 +625,10 @@
 // command-line tool
 "installed at %@" = "Installato in bei %@";
 
+// warnings setting
+"Suppress following warnings:" = "Suppress following warnings:";  // FIXME: added
+"Inconsistent line endings" = "Inconsistent line endings";  // FIXME: added
+
 
 // Appearance pane
 // alert message

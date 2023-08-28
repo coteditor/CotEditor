@@ -624,6 +624,10 @@
 // command-line tool
 "installed at %@" = "installed at %@";
 
+// warnings setting
+"Suppress following warnings:" = "Suppress following warnings:";
+"Inconsistent line endings" = "Inconsistent line endings";
+
 
 // Appearance pane
 // alert message

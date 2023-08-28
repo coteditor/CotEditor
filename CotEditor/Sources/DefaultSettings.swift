@@ -39,6 +39,7 @@ struct DefaultSettings {
         .highlightLtGt: false,
         .highlightSelectionInstance: true,
         .selectionInstanceHighlightDelay: 0.5,
+        .suppressesInconsistentLineEndingAlert: false,
         .checksUpdatesForBeta: false,
         
         .windowTabbing: -1,  // = Respect System Setting
@@ -181,7 +182,6 @@ struct DefaultSettings {
         .savesTextOrientation: true,
         .maximumRecentSyntaxCount: 6,
         .minimumLengthForNonContiguousLayout: 5_000_000,
-        .suppressesInconsistentLineEndingAlert: false,
     ]
     
     

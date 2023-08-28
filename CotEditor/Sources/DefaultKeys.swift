@@ -38,6 +38,7 @@ extension DefaultKeys {
     static let highlightLtGt = DefaultKey<Bool>("highlightLtGt")
     static let highlightSelectionInstance = DefaultKey<Bool>("highlightSelectionInstance")
     static let selectionInstanceHighlightDelay = DefaultKey<Double>("selectionInstanceHighlightDelay")
+    static let suppressesInconsistentLineEndingAlert = DefaultKey<Bool>("suppressesInconsistentLineEndingAlert")
     static let checksUpdatesForBeta = DefaultKey<Bool>("checksUpdatesForBeta")
     
     // Window
@@ -177,7 +178,6 @@ extension DefaultKeys {
     static let savesTextOrientation = DefaultKey<Bool>("savesTextOrientation")
     static let maximumRecentSyntaxCount = DefaultKey<Int>("maximumRecentSyntaxCount")
     static let minimumLengthForNonContiguousLayout = DefaultKey<Int>("minimumLengthForNonContiguousLayout")
-    static let suppressesInconsistentLineEndingAlert = DefaultKey<Bool>("suppressesInconsistentLineEndingAlert")
     
     static let lastVersion = DefaultKey<String?>("lastVersion")
 }

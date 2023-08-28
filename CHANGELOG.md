@@ -12,6 +12,7 @@ Change Log
 - Add the monospaced font setting to the Appearance settings pane.
 - Add the “Kind” option to syntax definitions.
 - Add ability to switch the monospaced/proportional font to the Fonts toolbar item.
+- Add option to disable the inconsistent line endings dialog entirely.
 - Add Spanish localization (thanks to Agustin Borrego!).
 
 
