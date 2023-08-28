@@ -123,7 +123,7 @@
 
 
 /* MARK: Find Panel Result View */
-"Find String: %@" = "検索文字列: %@";
+"Find string: %@" = "検索文字列: %@";
 // Find result (“%@” is filename)
 "No strings found in “%@.”" = "“%@”内に見つかりませんでした。";
 "Found one string in “%@.”" = "“%@”内に1件見つかりました。";

@@ -123,7 +123,7 @@
 
 
 /* MARK: Find Panel Result View */
-"Find String: %@" = "Buscar String: %@";
+"Find string: %@" = "Buscar string: %@";
 // Find result (“%@” is filename)
 "No strings found in “%@.”" = "Nenhuma string encontrada em “%@.”";
 "Found one string in “%@.”" = "1 string encontrada em “%@.”";

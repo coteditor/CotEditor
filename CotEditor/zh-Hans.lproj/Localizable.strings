@@ -123,7 +123,7 @@
 
 
 /* MARK: Find Panel Result View */
-"Find String: %@" = "查找字符串：%@";
+"Find string: %@" = "查找字符串：%@";
 // Find result (“%@” is filename)
 "No strings found in “%@.”" = "在“%@”中没有找到字符串。";
 "Found one string in “%@.”" = "在“%@”中找到一个字符串。";
