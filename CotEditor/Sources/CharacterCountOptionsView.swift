@@ -51,7 +51,7 @@ struct CharacterCountOptionsView: View {
                 Text("Unit:")
                 
                 VStack(alignment: .leading) {
-                    Picker("Unit:", selection: $setting.unit) {
+                    Picker("Unit:", selection: $setting.unit.animation()) {
                         ForEach(CharacterCountOptions.CharacterUnit.allCases, id: \.self) {
                             Text($0.label).tag($0)
                         }
