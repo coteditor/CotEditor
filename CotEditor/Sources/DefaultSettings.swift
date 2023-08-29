@@ -92,7 +92,7 @@ struct DefaultSettings {
         .wrapLines: true,
         .enablesHangingIndent: true,
         .hangingIndentWidth: 0,
-        .appendsCommentSpacer: true,
+        .appendsCommentSpacer: false,
         .commentsAtLineHead: true,
         .completesDocumentWords: true,
         .completesSyntaxWords: true,
