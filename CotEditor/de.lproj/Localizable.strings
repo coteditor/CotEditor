@@ -626,7 +626,7 @@
 "installed at %@" = "bei %@ installiert";
 
 // warnings setting
-"Suppress following warnings:" = "Folgenden Warningen ausschalten:";
+"Suppress following warnings:" = "Folgenden Warnungen ausschalten:";
 "Inconsistent line endings" = "Inkonsistente Zeilenenden";
 
 
