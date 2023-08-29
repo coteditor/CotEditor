@@ -32,7 +32,7 @@ final class SettingsTabViewController: NSTabViewController {
     override var selectedTabViewItemIndex: Int {
         
         didSet {
-            if self.isViewLoaded {  // avoid storing initial state (set in the storyboard)
+            if self.isViewLoaded {  // avoid storing initial state
                 UserDefaults.standard[.lastSettingsPaneIdentifier] = self.tabViewItems[selectedTabViewItemIndex].identifier as? String
             }
         }
@@ -73,7 +73,9 @@ final class SettingsTabViewController: NSTabViewController {
     
     // MARK: Private Methods
     
-    /// resize window to fit to new view
+    /// Resize window to fit to the new view.
+    ///
+    /// - Parameter tabViewItem: The tab view item to switch.
     private func switchPane(to tabViewItem: NSTabViewItem) {
         
         guard let contentSize = tabViewItem.view?.frame.size else { return assertionFailure() }
@@ -99,7 +101,11 @@ final class SettingsTabViewController: NSTabViewController {
 
 private extension NSWindow {
     
-    /// calculate window frame for the given contentSize
+    /// Update window frame for the given contentSize.
+    ///
+    /// - Parameters:
+    ///   - contentSize: The frame rectangle for the window content view.
+    ///   - flag: Specifies whether the window redraws the views that need to be displayed.
     func setFrame(for contentSize: NSSize, display flag: Bool = false) {
         
         let frameSize = self.frameRect(forContentRect: NSRect(origin: .zero, size: contentSize)).size
