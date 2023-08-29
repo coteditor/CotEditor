@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2022 CotEditor Project
+ © 2006-2023 CotEditor Project
 */
 
 
@@ -264,6 +264,9 @@ th code {
 tbody th:first-child {
 	text-align: left;
 	vertical-align: top;
+}
+td > :last-child {
+	margin-bottom: 0;
 }
 
 
