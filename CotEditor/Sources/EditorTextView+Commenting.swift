@@ -319,7 +319,7 @@ extension String {
     }
     
     
-    /// Find inline-style delimiters in `ranges` as well as spacers between the content and a delimiter if eny.
+    /// Find inline-style delimiters in `ranges` as well as spacers between the content and a delimiter if any.
     ///
     /// - Parameters:
     ///   - delimiter: The inline delimiter to find.
@@ -346,7 +346,7 @@ extension String {
     }
     
     
-    /// Find block-style delimiters in `ranges` as well as spacers between the content and a delimiter if eny.
+    /// Find block-style delimiters in `ranges` as well as spacers between the content and a delimiter if any.
     ///
     /// - Note: This method matches a block only when one of the given `ranges` fits exactly.
     ///
