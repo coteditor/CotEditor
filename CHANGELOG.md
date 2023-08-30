@@ -8,11 +8,11 @@ Change Log
 ### New Features
 
 - Support __macOS 14 Sonoma__.
+- Add the “Kind” option to syntax definitions to set the syntax is for “general” or “code”.
 - Add feature to set the editor font depending of the syntax kind.
 - Add the monospaced font setting to the Appearance settings pane.
-- Add the “Kind” option to syntax definitions.
 - Add ability to switch the monospaced/proportional font to the Fonts toolbar item.
-- Add option to disable the inconsistent line endings dialog entirely.
+- Add option to disable the inconsistent line endings dialog entirely (not recommended).
 - Add Spanish localization (thanks to Agustin Borrego!).
 
 
@@ -20,15 +20,15 @@ Change Log
 
 - Change the system requirement to __macOS 13 Ventura and later__.
 - Update the behavior and look of the inspector pane.
-- Add “Use system color” option to the insertion point color in the theme setting view.
-- Add a font size field to the print dialog.
+- Add “Use system color” option to the cursor color in the theme setting view.
 - Update the character inspector to add labels for each item and display the Unicode version.
+- Make sure to perform the automatic whitespace trimming every time before explicit saving by the user.
+- Migrate the sharing interface to the modern version.
 - Reorganize the Settings window.
+- Add a font size field to the print dialog.
 - Deprecate the print font option in the Print settings.
 - Deprecate the cursor type option.
 - Deprecate the Color Code toolbar button.
-- Make sure to perform the automatic whitespace trimming every time before explicit saving by the user.
-- Migrate the sharing interface to the modern version.
 - [trivial] Migrate the Opacity toolbar item to popover in macOS 14.
 - [trivial] Disable the zoom button in the find & replace windows.
 - [trivial] Disable the contextual menu for shortcut fields.
@@ -36,6 +36,7 @@ Change Log
 - [trivial] Change the behavior of the duplication command for syntax definitions to just create a duplicated syntax instead of opening the syntax editor dialog.
 - [trivial] Improve the behavior when selecting a row in the find result table in the Find window.
 - [trivial] Rename “syntax style” with just “syntax.”
+- [dev] Update the build environment to Xcode 15 Beta 8 (Swift 5.9).
 
 
 ### Fixes
@@ -43,9 +44,14 @@ Change Log
 - Fix an issue that the Share button in the Touch Bar did not work when the document was replaced with the initial empty document.
 
 
+### Others
+
+- The toolbar customization will be reset at the first launch of CotEditor 4.6.0.
+
+
 ### Known Issues
 
-- UI are not localized yet.
+- User interface is not localized yeth.
 
 
 

@@ -18,6 +18,83 @@
 
 <article>
 	<header>
+		<h1>CotEditor 4.6.0</h1>
+		<p>リリース: <time>2023-09</time></p>
+	</header>
+
+
+	<section>
+		<h2>新機能</h2>
+
+		<ul>
+			<li><strong>macOS 14 Sonoma</strong>に対応</li>
+			<li>シンタックス定義に「種類」という項目を追加し、各シンタックスが一般用途かコード用途を選べるように</li>
+			<li>エディタのフォントをシンタックスの種類に応じて切り替える機能を追加</li>
+			<li>「表示」設定ペインに等幅フォントの設定欄を追加</li>
+			<li>ツールバーの「フォント」項目に表示フォントをプロポーショナルか等幅かを切り替えられる機能を追加</li>
+			<li>改行コードの混在警告ダイアログを全面的に抑止するオプションを追加（利用は非推奨）</li>
+			<li>スペイン語のローカリゼーションを追加（Agustin Borregoさんに感謝!）</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>改良</h2>
+
+		<ul>
+			<li>システム要件を<strong>macOS 13 Ventura以降</strong>に変更</li>
+			<li>インスペクタの振る舞いと見た目をアップデート</li>
+			<li>テーマのカーソルカラーに「システムカラーを使用」オプションを追加</li>
+			<li>文字インスペクタの各情報の頭に項目ラベルを追加し、文字のUnicodeバージョンも表示するよう改良</li>
+			<li>ユーザが明示的に書類を保存したときに、末尾空白の自動削除機能が必ず実行されるように変更</li>
+			<li>共有インターフェイスを最新のものに移行</li>
+			<li>設定ウインドウを整理</li>
+			<li>「プリント」ダイアログにフォントサイズ欄を追加</li>
+			<li>「プリント」設定でプリント時のフォントを別途選べる機能を廃止</li>
+			<li>カーソルのスタイルを選べる機能を廃止</li>
+			<li>「カラーコード」ツールバーボタンを廃止</li>
+			<li><span class="trivial">trivial</span>: macOS 14（以降）で不透明度ツールバー項目の表示方法を変更</li>
+			<li><span class="trivial">trivial</span>: 検索ウインドウのズームボタンを無効に</li>
+			<li><span class="trivial">trivial</span>: ショートカット入力フィールドで無効なコンテキストメニューが出ないように抑制</li>
+			<li><span class="trivial">trivial</span>: エディタを分割できる回数を制限</li>
+			<li><span class="trivial">trivial</span>: シンタックス定義を複製したときにシンタックスエディタを開くのではなく直ちに複製したシンタックスを作成するように変更</li>
+			<li><span class="trivial">trivial</span>: 検索ウインドウの結果ビューの行を選択したときの振る舞いを改良</li>
+			<li><span class="trivial">trivial</span>: 「シンタックススタイル」を「シンタックス」に名称変更</li>
+			<li><span class="trivial">開発</span>: ビルド環境をXcode 15 Beta 8 (Swift 5.9)に更新</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>修正</h2>
+
+		<ul>
+			<li>起動時に生成される新規書類を差し替えるかたちで書類を開いたときに、Touch Barの共有ボタンが機能しなかった不具合を修正</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>その他</h2>
+
+		<ul>
+			<li>ツールバーカスタマイズはCotEditor 4.6.0の初回起動時にリセットされます。</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>既知の問題</h2>
+
+		<ul>
+			<li>ユーザインターフェイスはまだローカライズされていません。</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
 		<h1>CotEditor 4.5.8</h1>
 		<p>リリース: <time>2023-08-15</time></p>
 	</header>
@@ -222,7 +299,7 @@
 		<ul>
 			<li>Swiftシンタックススタイルを更新していくつかのキーワードを追加</li>
 			<li><span class="label">非AppStore版</span>: Sparkleを2.3.2から2.4.0に更新</li>
-			<li><span class="trivial">開発</span>: 開発環境をXcode 14.3 (Swift 5.8)に更新</li>
+			<li><span class="trivial">開発</span>: ビルド環境をXcode 14.3 (Swift 5.8)に更新</li>
 		</ul>
 	</section>
 
@@ -526,7 +603,7 @@
 		<h2>改良</h2>
 
 		<ul>
-			<li><strong>macOS 13 Ventura</strong>をサポート</li>
+			<li><strong>macOS 13 Ventura</strong>に対応</li>
 			<li>システム要件を<strong>macOS 12 Monterey以上</strong>に変更</li>
 			<li>macOS 13 Ventura以降では「すべて検索」ボタンからほかの関連するコマンドも実行できるように改良</li>
 			<li>改行コードの不一致アラートの「この書類では次回から確認しない」オプションの状態を書類に記憶し、将来の同書類オープンでも設定を反映するように改良<ul>
@@ -554,7 +631,7 @@
 			<li><span class="trivial">trivial</span>: 正規表現の基本文法表示を改良</li>
 			<li><span class="trivial">trivial</span>: ステータスバーの表示を最適化</li>
 			<li><span class="trivial">trivial</span>: スクリプトメニューの更新を最適化</li>
-			<li><span class="trivial">開発</span>: 開発環境をXcode 14.1 (macOS 13 SDK)に更新</li>
+			<li><span class="trivial">開発</span>: ビルド環境をXcode 14.1 (macOS 13 SDK)に更新</li>
 			<li><span class="trivial">開発</span>: helpindexをcshelpindexに移行</li>
 			<li><span class="label">非AppStore版</span>: Sparkleを2.2.2から2.3.0に更新</li>
 		</ul>
@@ -822,7 +899,7 @@
 			<li>繁体中国語ローカリゼーションを改良（Shiki Suenさんに感謝！）</li>
 			<li>ヘルプを更新</li>
 			<li><span class="trivial">trivial</span>: TeX文書のUITを<code>org.tug.tex</code>に変更</li>
-	<li><span class="trivial">開発</span>: 開発環境をXcode 13.4 (macOS 12.3 SDK)に更新</li>
+	<li><span class="trivial">開発</span>: ビルド環境をXcode 13.4 (macOS 12.3 SDK)に更新</li>
 		</ul>
 	</section>
 
@@ -988,7 +1065,7 @@
 			<li>Swiftシンタックススタイルを更新してSwift 5.6で追加されたキーワードを追加</li>
 			<li>YAMLシンタックススタイルを更新してハイライトを改良</li>
 			<li><span class="trivial">trivial</span>: すべて検索/置換の進捗メッセージを改良</li>
-			<li><span class="trivial">開発</span>: 開発環境をXcode 13.3 (Swift 5.6)に更新</li>
+			<li><span class="trivial">開発</span>: ビルド環境をXcode 13.3 (Swift 5.6)に更新</li>
 		</ul>
 	</section>
 
@@ -1142,7 +1219,7 @@
 			<li><span class="trivial">trivial</span>: 設定ファイルの書き出しのときはデフォルトで拡張子を隠す</li>
 			<li><span class="trivial">trivial</span>: 別のウインドウが最前面に来たときに入力中のキーバインド変更をキャンセル</li>
 			<li><span class="trivial">trivial</span>: キーバインド設定のショートカットキーシンボルをいくつか変更</li>
-			<li><span class="trivial">開発</span>: 開発環境をXcode 13.2 (Swift 5.5)に更新</li>
+			<li><span class="trivial">開発</span>: ビルド環境をXcode 13.2 (Swift 5.5)に更新</li>
 			<li><span class="trivial">開発</span>: xcworkspaceを削除</li>
 			<li><span class="label">非AppStore版</span>: Sparkleを2.0.0に更新</li>
 		</ul>
@@ -1392,7 +1469,7 @@
 	<li>Rシンタックススタイルを更新</li>
 	<li><span class="label">非AppStore版</span>: アプリケーションサイズを減量</li>
 	<li><span class="trivial">開発</span>: Yamsを4.0.4から4.0.6に更新</li>
-	<li><span class="trivial">開発</span>: 開発環境をXcode 12.5に更新</li>
+	<li><span class="trivial">開発</span>: ビルド環境をXcode 12.5に更新</li>
 </ul>
 </section>
 </article>
@@ -1416,7 +1493,7 @@
 	<li>ダークモードで謝辞ウインドウ表示したときのチラツキを抑止</li>
 	<li>安定性を向上</li>
 	<li><span class="trivial">開発</span>: Yamsを4.0.1から4.0.4に更新</li>
-	<li><span class="trivial">開発</span>: 開発環境をXcode 12.4に更新</li>
+	<li><span class="trivial">開発</span>: ビルド環境をXcode 12.4に更新</li>
 </ul>
 </section>
 
@@ -1511,7 +1588,7 @@
 	<li><span class="trivial">trivial</span>: ツールバーアイコンのツールチップをより現状を表すように改良</li>
 	<li><span class="trivial">trivial</span>: 縦書きのときの行番号描画計算を最適化</li>
 	<li><span class="trivial">trivial</span>: 通常の横書きのときはnon-contiguous layoutをつねに有効に</li>
-	<li><span class="trivial">開発</span>: 開発環境をXcode 12.2 (Swift 5.3, macOS 11 SDK)に更新</li>
+	<li><span class="trivial">開発</span>: ビルド環境をXcode 12.2 (Swift 5.3, macOS 11 SDK)に更新</li>
 	<li><span class="trivial">開発</span>: DifferenceKitパッケージをネイティブのCollectionDifferenceに置き換え</li>
 	<li><span class="trivial">開発</span>: Yamsを3.0.1から4.0.0に更新</li>
 </ul>
@@ -1621,7 +1698,7 @@
 
 <ul>
 	<li>ウインドウの最小サイズをより小さく</li>
-	<li><span class="trivial">開発</span>: 開発環境をXcode 11.6に更新</li>
+	<li><span class="trivial">開発</span>: ビルド環境をXcode 11.6に更新</li>
 </ul>
 </section>
 
@@ -1785,7 +1862,7 @@
 	<li><span class="trivial">trivial</span>: ウインドウサイズ設定の入力欄が空欄になったときはデフォルト値をプレースホルダーとして表示</li>
 	<li><span class="trivial">trivial</span>: CotEditor 2.xまたはそれ以前のスニペットキーバインド設定の移行処理を削除</li>
 	<li><span class="trivial">trivial</span>: 同名の書類の自動バックアップ時の衝突可能性を改善</li>
-	<li><span class="trivial">開発</span>: 開発環境をXcode 11.5 (Swift 5.2)に更新</li>
+	<li><span class="trivial">開発</span>: ビルド環境をXcode 11.5 (Swift 5.2)に更新</li>
 	<li><span class="trivial">開発</span>: YAML.frameworkからYamsに移行</li>
 	<li><span class="trivial">開発</span>: 脱Carthage依存</li>
 	<li><span class="trivial">開発</span>: codesign関連のビルド設定を.xcconfigに移行（Yoshimasa Niwaさんに感謝！）</li>
@@ -2245,7 +2322,7 @@
 	<li>「文章の方向」ツールバーボタンの「左から右」ボタンをつねに有効に</li>
 	<li>安定性のために単語の数え方を変更</li>
 	<li>TOMLシンタックススタイルを更新しテーブルの配列に対応 （Takuto ASAKURAさんに感謝!）</li>
-	<li><span class="trivial">開発</span>: 開発環境をXcode 11.1 (Swift 5.1, macOS 10.15 SDK)に更新</li>
+	<li><span class="trivial">開発</span>: ビルド環境をXcode 11.1 (Swift 5.1, macOS 10.15 SDK)に更新</li>
 </ul>
 </section>
 
@@ -2482,7 +2559,7 @@
 	<li>縦書きで背景が暗いときにiビームカーソルがより見つけやすいように変更</li>
 	<li>検索パネルの結果欄の行番号に等幅数字を使用</li>
 	<li>検索結果ハイライトのパフォーマスを最適化</li>
-	<li><span class="trivial">開発</span>: 開発環境をXcode 10.2 (Swift 5)に更新</li>
+	<li><span class="trivial">開発</span>: ビルド環境をXcode 10.2 (Swift 5)に更新</li>
 	<li><span class="trivial">開発</span>: Differフレームワークを1.4.0に更新</li>
 </ul>
 </section>
@@ -3073,7 +3150,7 @@
 	<li>ODBエディタサポートを廃止</li>
 	<li><span class="trivial">trivial</span>: 高コントラストモードの対応を強化</li>
 	<li><span class="trivial">trivial</span>: 行番号の描画パフォーマンスを最適化</li>
-	<li><span class="trivial">開発</span>: 開発環境をXcode 10 (Swift 4.2, macOS 10.14 SDK)に更新</li>
+	<li><span class="trivial">開発</span>: ビルド環境をXcode 10 (Swift 4.2, macOS 10.14 SDK)に更新</li>
 	<li><span class="label">非AppStore版のみ</span>: Enhanced Runtime protectionを導入</li>
 	<li><span class="label">非AppStore版のみ</span>: Sparkleフレームワークを更新</li>
 </ul>
