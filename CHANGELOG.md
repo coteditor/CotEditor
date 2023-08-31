@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+4.6.0-beta.2 (unreleased)
+--------------------------
+
+### Known Issues
+
+- User interface is not localized yet.
+
+
+
 4.6.0-beta (581)
 --------------------------
 
@@ -51,7 +60,7 @@ Change Log
 
 ### Known Issues
 
-- User interface is not localized yeth.
+- User interface is not localized yet.
 
 
 
