@@ -1332,7 +1332,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     
     // MARK: Action Messages
     
-    /// Copy  the selections with syntax highlight and font style.
+    /// Copy the selections with syntax highlight and font style.
     @IBAction func copyWithStyle(_ sender: Any?) {
         
         guard !self.selectedRange.isEmpty else { return NSSound.beep() }
