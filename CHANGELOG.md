@@ -5,6 +5,11 @@ Change Log
 4.6.0-beta.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Change the font to prefer for the editor to select from the standard, monospaced, and automatic.
+
+
 ### Known Issues
 
 - User interface is not localized yet.

@@ -24,8 +24,17 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Z85-S9-uID"; */
-"Z85-S9-uID.title" = "Tipo de letra:";
+/* Class = "NSTextFieldCell"; title = "Prefer font using:"; ObjectID = "XQO-YW-cqZ"; */
+"XQO-YW-cqZ.title" = "Prefer font using:";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Automatic"; ObjectID = "XcC-5y-bLG"; */
+"XcC-5y-bLG.title" = "Automatic";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Standard"; ObjectID = "Vla-IY-EYW"; */
+"Vla-IY-EYW.title" = "Standard";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Monospaced"; ObjectID = "htL-1g-SvR"; */
+"htL-1g-SvR.title" = "Monospaced";  // FIXME: added
+
+/* Class = "NSTextFieldCell"; title = "Standard font:"; ObjectID = "Z85-S9-uID"; */
+"Z85-S9-uID.title" = "Standard font:";  // FIXME: added
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
 "3289.title" = "Seleccionar…";
 /* Class = "NSButtonCell"; title = "Antialias"; ObjectID = "3290"; */

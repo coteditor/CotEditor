@@ -60,7 +60,12 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         didSet {
             guard oldValue != syntaxKind else { return }
-            self.setFont(type: UserDefaults.standard[.usesMonospacedFont] ? .monospaced : syntaxKind.fontType)
+            let type: FontType = switch UserDefaults.standard[.fontPreference] {
+                case .automatic: syntaxKind.fontType
+                case .standard: .standard
+                case .monospaced: .monospaced
+            }
+            self.setFont(type: type)
         }
     }
     
@@ -211,7 +216,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.isContinuousSpellCheckingEnabled = defaults[.checkSpellingAsType]
         
         // set font
-        let fontType: FontType = defaults[.usesMonospacedFont] ? .monospaced : .standard
+        let fontType: FontType = (defaults[.fontPreference] == .monospaced) ? .monospaced : .standard
         let font = defaults.font(for: fontType)
         super.font = font
         layoutManager.textFont = font
@@ -226,8 +231,9 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         // observe changes in defaults
         self.defaultsObservers = [
-            defaults.publisher(for: .usesMonospacedFont)
-                .sink { [unowned self] in self.setFont(type: $0 ? .monospaced : self.syntaxKind.fontType) },
+            defaults.publisher(for: .fontPreference)
+                .map { [unowned self] _ in self.preferredFontType }
+                .sink { [unowned self] in self.setFont(type: $0) },
             
             defaults.publisher(for: .balancesBrackets)
                 .sink { [unowned self] in self.balancesBrackets = $0 },
@@ -1311,6 +1317,17 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         set {
             (self.layoutManager as? LayoutManager)?.showsInvisibles = newValue
             self.needsUpdateInsertionIndicators = true
+        }
+    }
+    
+    
+    /// The font type the user prefers.
+    var preferredFontType: FontType {
+        
+        switch UserDefaults.standard[.fontPreference] {
+            case .automatic: self.syntaxKind.fontType
+            case .standard: .standard
+            case .monospaced: .monospaced
         }
     }
     

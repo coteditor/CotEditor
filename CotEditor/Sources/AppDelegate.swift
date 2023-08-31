@@ -474,7 +474,7 @@ private extension UserDefaults {
         
         if font.isFixedPitch {
             self[.monospacedFont] = try? font.archivedData
-            self[.usesMonospacedFont] = true
+            self[.fontPreference] = .monospaced
         } else {
             self[.font] = try? font.archivedData
         }

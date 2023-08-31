@@ -24,8 +24,17 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Z85-S9-uID"; */
-"Z85-S9-uID.title" = "フォント:";
+/* Class = "NSTextFieldCell"; title = "Prefer font using:"; ObjectID = "XQO-YW-cqZ"; */
+"XQO-YW-cqZ.title" = "優先するフォント:";
+/* Class = "NSMenuItem"; title = "Automatic"; ObjectID = "XcC-5y-bLG"; */
+"XcC-5y-bLG.title" = "自動";
+/* Class = "NSMenuItem"; title = "Standard"; ObjectID = "Vla-IY-EYW"; */
+"Vla-IY-EYW.title" = "標準";
+/* Class = "NSMenuItem"; title = "Monospaced"; ObjectID = "htL-1g-SvR"; */
+"htL-1g-SvR.title" = "等幅";
+
+/* Class = "NSTextFieldCell"; title = "Standard font:"; ObjectID = "Z85-S9-uID"; */
+"Z85-S9-uID.title" = "標準フォント:";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
 "3289.title" = "選択…";
 /* Class = "NSButtonCell"; title = "Antialias"; ObjectID = "3290"; */

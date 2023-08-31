@@ -71,7 +71,7 @@ struct DefaultSettings {
         .ligature: true,
         .monospacedShouldAntialias: true,
         .monospacedLigature: false,
-        .usesMonospacedFont: false,
+        .fontPreference: FontPreference.automatic.rawValue,
         .lineHeight: 1.2,
         .highlightCurrentLine: false,
         .documentAppearance: AppearanceMode.default.rawValue,

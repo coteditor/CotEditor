@@ -49,6 +49,14 @@ enum WritingDirection: Int {
 }
 
 
+enum FontPreference: Int {
+    
+    case automatic
+    case monospaced
+    case standard
+}
+
+
 enum AppearanceMode: Int {
     
     case `default`

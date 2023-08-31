@@ -114,7 +114,7 @@ extension EditorTextView {
     /// reset scale and font to default
     @IBAction func resetFont(_ sender: Any?) {
         
-        self.font = UserDefaults.standard.font(for: UserDefaults.standard[.usesMonospacedFont] ? .monospaced : self.syntaxKind.fontType)
+        self.font = UserDefaults.standard.font(for: self.preferredFontType)
         self.setScaleKeepingVisibleArea(1.0)
     }
 }
