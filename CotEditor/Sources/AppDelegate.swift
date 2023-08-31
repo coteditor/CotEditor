@@ -95,7 +95,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSUserDefaultsController.shared.initialValues = defaults
         
         // migrate font setting on CotEditor 4.6.0 (2023-08)
-        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion <= 580 {
+        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion <= 581 {
             UserDefaults.standard.migrateFontSetting()
         }
         
