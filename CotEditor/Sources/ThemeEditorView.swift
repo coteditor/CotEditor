@@ -50,40 +50,34 @@ import AppKit.NSColor
     @Published var characters: Color
     @Published var comments: Color
     
-    @Published var author: String?
-    @Published var distributionURL: String?
-    @Published var license: String?
-    @Published var description: String?
+    @Published var metadata: Theme.Metadata
     
     
     init(_ theme: Theme) {
         
         self.name = theme.name
         
-        self._text = .init(initialValue: Color(nsColor: theme.text.color))
-        self._invisibles = .init(initialValue: Color(nsColor: theme.invisibles.color))
-        self._insertionPoint = .init(initialValue: Color(nsColor: theme.insertionPoint.color))
-        self._usesInsertionPointSystemSetting = .init(initialValue: theme.insertionPoint.usesSystemSetting)
-        self._background = .init(initialValue: Color(nsColor: theme.background.color))
-        self._lineHighlight = .init(initialValue: Color(nsColor: theme.lineHighlight.color))
-        self._selection = .init(initialValue: Color(nsColor: theme.selection.color))
-        self._usesSelectionSystemSetting = .init(initialValue: theme.selection.usesSystemSetting)
+        self.text = Color(nsColor: theme.text.color)
+        self.invisibles = Color(nsColor: theme.invisibles.color)
+        self.insertionPoint = Color(nsColor: theme.insertionPoint.color)
+        self.usesInsertionPointSystemSetting = theme.insertionPoint.usesSystemSetting
+        self.background = Color(nsColor: theme.background.color)
+        self.lineHighlight = Color(nsColor: theme.lineHighlight.color)
+        self.selection = Color(nsColor: theme.selection.color)
+        self.usesSelectionSystemSetting = theme.selection.usesSystemSetting
         
-        self._keywords = .init(initialValue: Color(nsColor: theme.keywords.color))
-        self._commands = .init(initialValue: Color(nsColor: theme.commands.color))
-        self._types = .init(initialValue: Color(nsColor: theme.types.color))
-        self._attributes = .init(initialValue: Color(nsColor: theme.attributes.color))
-        self._variables = .init(initialValue: Color(nsColor: theme.variables.color))
-        self._values = .init(initialValue: Color(nsColor: theme.values.color))
-        self._numbers = .init(initialValue: Color(nsColor: theme.numbers.color))
-        self._strings = .init(initialValue: Color(nsColor: theme.strings.color))
-        self._characters = .init(initialValue: Color(nsColor: theme.characters.color))
-        self._comments = .init(initialValue: Color(nsColor: theme.comments.color))
+        self.keywords = Color(nsColor: theme.keywords.color)
+        self.commands = Color(nsColor: theme.commands.color)
+        self.types = Color(nsColor: theme.types.color)
+        self.attributes = Color(nsColor: theme.attributes.color)
+        self.variables = Color(nsColor: theme.variables.color)
+        self.values = Color(nsColor: theme.values.color)
+        self.numbers = Color(nsColor: theme.numbers.color)
+        self.strings = Color(nsColor: theme.strings.color)
+        self.characters = Color(nsColor: theme.characters.color)
+        self.comments = Color(nsColor: theme.comments.color)
         
-        self._author = .init(initialValue: theme.metadata?.author)
-        self._distributionURL = .init(initialValue: theme.metadata?.distributionURL)
-        self._license = .init(initialValue: theme.metadata?.license)
-        self._description = .init(initialValue: theme.metadata?.description)
+        self.metadata = theme.metadata ?? .init()
     }
     
     
@@ -110,12 +104,7 @@ import AppKit.NSColor
         theme.characters.color = NSColor(self.characters)
         theme.comments.color = NSColor(self.comments)
         
-        if ![self.author, self.distributionURL, self.license, self.description].compactMap({ $0 }).isEmpty {
-            theme.metadata = .init(author: self.author,
-                                   distributionURL: self.distributionURL,
-                                   license: self.license,
-                                   description: self.description)
-        }
+        theme.metadata = self.metadata.isEmpty ? nil : self.metadata
         
         return theme
     }
@@ -201,11 +190,7 @@ struct ThemeEditorView: View {
                 }
                 .help("Show theme file information")
                 .popover(isPresented: self.$isMetadataPresenting, arrowEdge: .trailing) {
-                    ThemeMetadataView(author: $theme.author,
-                                      distributionURL: $theme.distributionURL,
-                                      license: $theme.license,
-                                      description: $theme.description,
-                                      isEditable: !self.isBundled)
+                    ThemeMetadataView(metadata: $theme.metadata, isEditable: !self.isBundled)
                 }
                 .buttonStyle(.borderless)
             }
@@ -262,10 +247,7 @@ private struct SystemColorPicker: View {
 
 private struct ThemeMetadataView: View {
     
-    @Binding var author: String?
-    @Binding var distributionURL: String?
-    @Binding var license: String?
-    @Binding var description: String?
+    @Binding var metadata: Theme.Metadata
     let isEditable: Bool
     
     
@@ -275,17 +257,17 @@ private struct ThemeMetadataView: View {
         
         Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 4) {
             GridRow {
-                self.itemView("Author:", text: $author.bound)
+                self.itemView("Author:", text: $metadata.author.bound)
             }
             GridRow {
-                self.itemView("URL:", text: $distributionURL.bound)
-                LinkButton(url: self.distributionURL.bound)
+                self.itemView("URL:", text: $metadata.distributionURL.bound)
+                LinkButton(url: self.metadata.distributionURL.bound)
             }
             GridRow {
-                self.itemView("License:", text: $license.bound)
+                self.itemView("License:", text: $metadata.license.bound)
             }
             GridRow {
-                self.itemView("Description:", text: $description.bound, lineLimit: 2...5)
+                self.itemView("Description:", text: $metadata.description.bound, lineLimit: 2...5)
             }
         }
         .controlSize(.small)
@@ -314,6 +296,16 @@ private struct ThemeMetadataView: View {
 }
 
 
+private extension Theme.Metadata {
+    
+    var isEmpty: Bool {
+        
+        [self.author, self.distributionURL, self.license, self.description]
+            .compactMap({ $0 }).isEmpty
+    }
+}
+
+
 
 // MARK: - Preview
 
@@ -323,17 +315,14 @@ private struct ThemeMetadataView: View {
 }
 
 #Preview("Metadata (editable)") {
-    ThemeMetadataView(author: .constant("Clarus"),
-                      distributionURL: .constant("https://coteditor.com"),
-                      license: .constant(nil),
-                      description: .constant(""),
-                      isEditable: true)
+    ThemeMetadataView(metadata: .constant(.init(
+        author: "Clarus",
+        distributionURL: "https://coteditor.com"
+    )), isEditable: true)
 }
 
 #Preview("Metadata (fixed)") {
-    ThemeMetadataView(author: .constant("Claus"),
-                      distributionURL: .constant(nil),
-                      license: .constant(nil),
-                      description: .constant(nil),
-                      isEditable: false)
+    ThemeMetadataView(metadata: .constant(.init(
+        author: "Claus"
+    )), isEditable: false)
 }
