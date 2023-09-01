@@ -1,9 +1,6 @@
+# Contributing Guidelines
 
-Contributing Guidelines
-==========================
-
-General Feedback
---------------------------
+## General Feedback
 
 Create a new issue on our [Issues page](https://github.com/coteditor/CotEditor/issues). You can write your feedback either in English (recommended) or in Japanese.
 
@@ -24,8 +21,7 @@ Create an issue per feature instead of listing multiple features on one issue pa
 
 
 
-Pull-Request
---------------------------
+## Pull-Request
 
 ### General Code Improvements
 
@@ -100,8 +96,7 @@ We don't accept pull requests for image resources. [1024jp](https://github.com/1
 
 
 
-Coding Style Guide
---------------------------
+## Coding Style Guide
 
 Please follow the style of the existing codes in CotEditor.
 

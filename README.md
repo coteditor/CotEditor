@@ -1,8 +1,6 @@
+# CotEditor
 
-CotEditor
-==========================
-
-CotEditor is a lightweight plain-text editor for macOS.
+CotEditor is a lightweight plain-text editor for macOS. The project aims to provide a general plain-text editor for everyone with intuitive macOS-native user interface.
 
 - __Requirement__: macOS 13 Ventura or later
 - __Web Site__: <https://coteditor.com>
@@ -13,10 +11,9 @@ CotEditor is a lightweight plain-text editor for macOS.
 
 
 
-Source Code
---------------------------
+## Source Code
 
-CotEditor is a pure document-based Cocoa application written in Swift.
+CotEditor is a purely macOS native application written in Swift. It adopts Cocoa's document-based application architecture.
 
 
 ### Development Environment
@@ -28,21 +25,19 @@ CotEditor is a pure document-based Cocoa application written in Swift.
 
 
 
-Contribution
---------------------------
+## Contribution
 
 CotEditor has its own contributing guidelines. Read [CONTRIBUTING.md](CONTRIBUTING.md) through before you create an issue or make a pull-request.
 
 
 
-How to Build
---------------------------
+## How to Build
 
 ### Build for Ad-hoc usage
 
 For those people who just want to build and play with CotEditor locally.
 
-1. Run following commands to resolve dependencies.
+1. Run the following commands to resolve dependencies.
     - `git submodule update --init --recursive`
 1. Open `CotEditor.xcodeproj` in Xcode.
 1. Change to ad-hoc build mode:
@@ -54,15 +49,14 @@ For those people who just want to build and play with CotEditor locally.
 
 ### Build for distribution
 
-1. Run following commands to resolve dependencies.
+1. Run the following commands to resolve dependencies.
     - `git submodule update --init --recursive`
 1. Open `CotEditor.xcodeproj` in Xcode.
 1. Build "CotEditor" scheme in the workspace.
 
 
 
-License
---------------------------
+## License
 
 © 2005-2009 nakamuxu,
 © 2011, 2014 usami-k,
