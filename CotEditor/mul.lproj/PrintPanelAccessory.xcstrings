@@ -145,74 +145,146 @@
         }
       }
     },
-    "l4b-D2-DDX.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Print Header\"; ObjectID = \"l4b-D2-DDX\";",
+    "JlJ-Fc-tes.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Header\"; ObjectID = \"JlJ-Fc-tes\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kopfzeilen drucken"
+            "value" : "Kopfzeilen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Print Header"
+            "value" : "Header"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Print Header"
+            "value" : "Header"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Imprimir encabezado"
+            "value" : "Cabecera"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Imprimer l’en-tête"
+            "value" : "En-tête"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Intestazione stampa"
+            "value" : "Intestazione"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ヘッダをプリント"
+            "value" : "ヘッダ"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Imprimir cabeçalho"
+            "value" : "Cabeçalho"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Üstbilgiyi yazdır"
+            "value" : "Üstbilgi"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打印页眉"
+            "value" : "页眉"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "列印頁首"
+            "value" : "標頭"
+          }
+        }
+      }
+    },
+    "l4b-D2-DDX.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Print Headers and Footers\"; ObjectID = \"l4b-D2-DDX\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopf- und Fußzeilen drucken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Print Headers and Footers"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Print Headers and Footers"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imprimir cabeceras y pies de página"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imprimer les en-têtes et pieds de page"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stampa intestazioni e piè di pagina"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ヘッダとフッタをプリント"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imprimir Cabeçalhos e Rodapés"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Üst Bilgileri ve Alt Bilgileri Yazdır"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打印页眉和页脚"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "列印標頭和註腳"
           }
         }
       }
@@ -422,73 +494,73 @@
       }
     },
     "mY6-Zh-2Uc.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Print Footer\"; ObjectID = \"mY6-Zh-2Uc\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Footer\"; ObjectID = \"mY6-Zh-2Uc\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fußzeilen drucken"
+            "value" : "Fußzeilen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Print Footer"
+            "value" : "Footer"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Print Footer"
+            "value" : "Footer"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Imprimir pie de página"
+            "value" : "Pie de página"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Imprimer le pied de page"
+            "value" : "Pied de page"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stampa pie’ di pagina"
+            "value" : "Pie’ di pagina"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "フッタをプリント"
+            "value" : "フッタ"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Imprimir rodapé"
+            "value" : "Rodapé"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Altbilgiyi yazdır"
+            "value" : "Altbilgi"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打印页脚"
+            "value" : "页脚"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "列印頁尾"
+            "value" : "註腳"
           }
         }
       }

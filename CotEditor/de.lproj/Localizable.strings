@@ -450,10 +450,8 @@
 "Print Backgrounds" = "Hintergrund drucken";
 "Line Number" = "Zeilennummern";
 "Invisibles" = "Steuerzeichen";
-"Primary Header" = "Primäre Kopfzeile";
-"Secondary Header" = "Sekundäre Kopfzeile";
-"Primary Footer" = "Primäre Fußzeile";
-"Secondary Footer" = "Sekundäre Fußzeile";
+"Header" = "Kopfzeile";
+"Footer" = "Fußzeile";
 
 // Summary item values
 "%@ pt" = "%@ pt";

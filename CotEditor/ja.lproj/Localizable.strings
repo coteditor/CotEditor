@@ -450,10 +450,8 @@
 "Print Backgrounds" = "背景をプリント";
 "Line Number" = "行番号";
 "Invisibles" = "不可視文字";
-"Primary Header" = "主ヘッダ";
-"Secondary Header" = "副ヘッダ";
-"Primary Footer" = "主フッタ";
-"Secondary Footer" = "副フッタ";
+"Header" = "ヘッダ";
+"Footer" = "フッタ";
 
 // Summary item values
 "%@ pt" = "%@ pt";

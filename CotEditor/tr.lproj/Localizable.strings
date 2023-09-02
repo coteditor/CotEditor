@@ -450,10 +450,8 @@
 "Print Backgrounds" = "Arka Planları Yazdır";
 "Line Number" = "Satır Numarası";
 "Invisibles" = "Görünmez Karakterler";
-"Primary Header" = "Birincil Üstbilgi";
-"Secondary Header" = "İkincil Üstbilgi";
-"Primary Footer" = "Birincil Altbilgi";
-"Secondary Footer" = "İkincil Altbilgi";
+"Header" = "Üstbilgi";
+"Footer" = "Altbilgi";
 
 // Summary item values
 "%@ pt" = "%@ punto";

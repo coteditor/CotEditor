@@ -450,10 +450,8 @@
 "Print Backgrounds" = "Stampa sfondi";
 "Line Number" = "Numero riga";
 "Invisibles" = "Caratteri invisibili";
-"Primary Header" = "Intestazione primaria";
-"Secondary Header" = "Intestazione secondaria";
-"Primary Footer" = "Pie’ di pagina primario";
-"Secondary Footer" = "Pie’ di pagina secondario";
+"Header" = "Intestazione";
+"Footer" = "Pie’ di pagina";
 
 // Summary item values
 "%@ pt" = "%@ pt";

@@ -450,10 +450,8 @@
 "Print Backgrounds" = "列印背景";
 "Line Number" = "行號";
 "Invisibles" = "不可見元素";
-"Primary Header" = "主頁眉";
-"Secondary Header" = "次頁眉";
-"Primary Footer" = "主頁腳";
-"Secondary Footer" = "次頁腳";
+"Header" = "標頭";
+"Footer" = "註腳";
 
 // Summary item values
 "%@ pt" = "%@點";

@@ -127,12 +127,11 @@ struct DefaultSettings {
         
         .printFontSize: NSFont.systemFontSize,
         .printBackground: false,
-        .printHeader: true,
+        .printHeaderAndFooter: true,
         .primaryHeaderContent: PrintInfoType.filePath.rawValue,
         .primaryHeaderAlignment: AlignmentType.left.rawValue,
         .secondaryHeaderContent: PrintInfoType.printDate.rawValue,
         .secondaryHeaderAlignment: AlignmentType.right.rawValue,
-        .printFooter: true,
         .primaryFooterContent: PrintInfoType.none.rawValue,
         .primaryFooterAlignment: AlignmentType.center.rawValue,
         .secondaryFooterContent: PrintInfoType.pageNumber.rawValue,

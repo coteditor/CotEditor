@@ -8,7 +8,8 @@ Change Log
 ### Improvements
 
 - Remove the Print settings in the Settings window (Instead, set print settings directly in the Print dialog).
-- [beta] Adjust layout in Settings window.
+- [beta] Adjust layout in the Settings window.
+- [beta] Adjust layout in the print dialog.
 
 
 

@@ -450,10 +450,8 @@
 "Print Backgrounds" = "Imprimir Fundos";
 "Line Number" = "Número da Linha";
 "Invisibles" = "Invisíveis";
-"Primary Header" = "Cabeçalho Primário";
-"Secondary Header" = "Cabeçalho Secundário";
-"Primary Footer" = "Rodapé Primário";
-"Secondary Footer" = "Rodapé Secundário";
+"Header" = "Cabeçalho";
+"Footer" = "Rodapé";
 
 // Summary item values
 "%@ pt" = "%@ pt";

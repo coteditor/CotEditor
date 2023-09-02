@@ -450,10 +450,8 @@
 "Print Backgrounds" = "Imprimir fondo";
 "Line Number" = "Número de línea";
 "Invisibles" = "Invisibles";
-"Primary Header" = "Encabezado principal";
-"Secondary Header" = "Encabezado secundario";
-"Primary Footer" = "Pie de página principal";
-"Secondary Footer" = "Pie de página secundario";
+"Header" = "Cabecera";
+"Footer" = "Pie de página";
 
 // Summary item values
 "%@ pt" = "%@ pt";  // FIXME: added

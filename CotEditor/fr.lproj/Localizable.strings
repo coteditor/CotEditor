@@ -450,10 +450,8 @@
 "Print Backgrounds" = "Imprimer l’arrière-plan";
 "Line Number" = "Numéro de ligne";
 "Invisibles" = "Caractères invisibles";
-"Primary Header" = "En-tête principal";
-"Secondary Header" = "En-tête secondaire";
-"Primary Footer" = "Pied de page principal";
-"Secondary Footer" = "Pied de page secondaire";
+"Header" = "En-tête";
+"Footer" = "Pied de page";
 
 // Summary item values
 "%@ pt" = "%@ pt";

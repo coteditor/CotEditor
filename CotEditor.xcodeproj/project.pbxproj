@@ -132,8 +132,6 @@
 		2A231A371E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */; };
 		2A231A391E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */; };
 		2A231A3A1E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */; };
-		2A2391E52907B03800BCFEC9 /* ShrinkPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2391E42907B03800BCFEC9 /* ShrinkPopUpButton.swift */; };
-		2A2391E62907B03800BCFEC9 /* ShrinkPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2391E42907B03800BCFEC9 /* ShrinkPopUpButton.swift */; };
 		2A25C52820F06BE80003AE1A /* CustomTabWidthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */; };
 		2A25C52920F06BE80003AE1A /* CustomTabWidthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */; };
 		2A2615892977FCF6008C2240 /* SubmitButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2615882977FCF6008C2240 /* SubmitButtonGroup.swift */; };
@@ -934,7 +932,6 @@
 		2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindProgress.swift; sourceTree = "<group>"; };
 		2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceSplitViewController.swift; sourceTree = "<group>"; };
 		2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceListViewController.swift; sourceTree = "<group>"; };
-		2A2391E42907B03800BCFEC9 /* ShrinkPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkPopUpButton.swift; sourceTree = "<group>"; };
 		2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabWidthView.swift; sourceTree = "<group>"; };
 		2A2615882977FCF6008C2240 /* SubmitButtonGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonGroup.swift; sourceTree = "<group>"; };
 		2A2747722111909400795954 /* String+Diff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Diff.swift"; sourceTree = "<group>"; };
@@ -1583,7 +1580,6 @@
 				2A1814BD21CFC9CF00602214 /* RegularExpressionTextField.swift */,
 				2A0A602A27ABD74500725B70 /* FilterField.swift */,
 				2A10D1471E7477D30027192A /* StyledButton.swift */,
-				2A2391E42907B03800BCFEC9 /* ShrinkPopUpButton.swift */,
 				2A63A9D724E8C8F70017ACBB /* OutlinePopUpButton.swift */,
 				2AC72E8025342726001D3CA0 /* SegmentedArrayControl.swift */,
 				2A479C811D8C15A600EEEFC2 /* CenteringTextFieldCell.swift */,
@@ -3047,7 +3043,6 @@
 				2A64F2491D26327C001B229F /* Shortcut+Error.swift in Sources */,
 				2AACB1CE1D195ABD0073775B /* ShortcutField.swift in Sources */,
 				2A505C052988D44E002080AA /* ShortcutFormatter.swift in Sources */,
-				2A2391E52907B03800BCFEC9 /* ShrinkPopUpButton.swift in Sources */,
 				2AB1BD1F287D747200C6FEAF /* SizeGetter.swift in Sources */,
 				2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A64F2461D259E49001B229F /* SnippetManager.swift in Sources */,
@@ -3402,7 +3397,6 @@
 				2AACB1CD1D195ABD0073775B /* ShortcutField.swift in Sources */,
 				2A64F2481D26327C001B229F /* Shortcut+Error.swift in Sources */,
 				2A505C062988D44E002080AA /* ShortcutFormatter.swift in Sources */,
-				2A2391E62907B03800BCFEC9 /* ShrinkPopUpButton.swift in Sources */,
 				2AB1BD20287D747200C6FEAF /* SizeGetter.swift in Sources */,
 				2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A64F2451D259E49001B229F /* SnippetManager.swift in Sources */,

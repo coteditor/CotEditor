@@ -324,10 +324,7 @@ final class PrintTextView: NSTextView, Themable {
         
         let keys = location.keys
         
-        guard
-            let printInfo = NSPrintOperation.current?.printInfo,
-            printInfo[keys.needsDraw] == true
-        else { return NSAttributedString() }
+        guard let printInfo = NSPrintOperation.current?.printInfo else { return NSAttributedString() }
         
         let primaryInfoType = PrintInfoType(printInfo[keys.primaryContent])
         let primaryAlignment = AlignmentType(printInfo[keys.primaryAlignment])
@@ -498,7 +495,6 @@ private enum HeaderFooterLocation {
     
     struct Keys {
         
-        var needsDraw: NSPrintInfo.AttributeKey
         var primaryContent: NSPrintInfo.AttributeKey
         var primaryAlignment: NSPrintInfo.AttributeKey
         var secondaryContent: NSPrintInfo.AttributeKey
@@ -510,15 +506,13 @@ private enum HeaderFooterLocation {
         
         switch self {
             case .header:
-                Keys(needsDraw: .printsHeader,
-                     primaryContent: .primaryHeaderContent,
+                Keys(primaryContent: .primaryHeaderContent,
                      primaryAlignment: .primaryHeaderAlignment,
                      secondaryContent: .secondaryHeaderContent,
                      secondaryAlignment: .secondaryHeaderAlignment)
                 
             case .footer:
-                Keys(needsDraw: .printsFooter,
-                     primaryContent: .primaryFooterContent,
+                Keys(primaryContent: .primaryFooterContent,
                      primaryAlignment: .primaryFooterAlignment,
                      secondaryContent: .secondaryFooterContent,
                      secondaryAlignment: .secondaryFooterAlignment)

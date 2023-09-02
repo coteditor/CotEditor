@@ -450,10 +450,8 @@
 "Print Backgrounds" = "Print Backgrounds";
 "Line Number" = "Line Number";
 "Invisibles" = "Invisibles";
-"Primary Header" = "Primary Header";
-"Secondary Header" = "Secondary Header";
-"Primary Footer" = "Primary Footer";
-"Secondary Footer" = "Secondary Footer";
+"Header" = "Header";
+"Footer" = "Footer";
 
 // Summary item values
 "%@ pt" = "%@ pt";
