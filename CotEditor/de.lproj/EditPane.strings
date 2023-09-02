@@ -46,9 +46,9 @@
 "3285.title" = "Automatischer Einzug";
 /* Class = "NSTextFieldCell"; title = "Prefer using"; ObjectID = "jdu-bS-Jk1"; */
 "jdu-bS-Jk1.title" = "Einrückung mit";
-/* Class = "NSMenuItem"; title = "Spaces"; ObjectID = "ZKV-jL-cQV"; */
+/* Class = "NSMenuItem"; title = "spaces"; ObjectID = "ZKV-jL-cQV"; */
 "ZKV-jL-cQV.title" = "Leerzeichen";
-/* Class = "NSMenuItem"; title = "Tabs"; ObjectID = "lVY-WF-4Yh"; */
+/* Class = "NSMenuItem"; title = "tabs"; ObjectID = "lVY-WF-4Yh"; */
 "lVY-WF-4Yh.title" = "Tabulatoren";
 /* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
 "3287.title" = "Einzugsweite:";

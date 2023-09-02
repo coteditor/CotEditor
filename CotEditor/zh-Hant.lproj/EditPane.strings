@@ -46,10 +46,10 @@
 "9bX-ei-1x8.title" = "縮排：";
 /* Class = "NSTextFieldCell"; title = "Prefer using"; ObjectID = "jdu-bS-Jk1"; */
 "jdu-bS-Jk1.title" = "Prefer using";  // FIXME: added
-/* Class = "NSMenuItem"; title = "Spaces"; ObjectID = "ZKV-jL-cQV"; */
-"ZKV-jL-cQV.title" = "Spaces";  // FIXME: added
-/* Class = "NSMenuItem"; title = "Tabs"; ObjectID = "lVY-WF-4Yh"; */
-"lVY-WF-4Yh.title" = "Tabs";  // FIXME: added
+/* Class = "NSMenuItem"; title = "spaces"; ObjectID = "ZKV-jL-cQV"; */
+"ZKV-jL-cQV.title" = "spaces";  // FIXME: added
+/* Class = "NSMenuItem"; title = "tabs"; ObjectID = "lVY-WF-4Yh"; */
+"lVY-WF-4Yh.title" = "tabs";  // FIXME: added
 /* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
 "3287.title" = "以";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */

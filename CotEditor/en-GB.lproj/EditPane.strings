@@ -45,10 +45,10 @@
 "9bX-ei-1x8.title" = "Indentation:";
 /* Class = "NSTextFieldCell"; title = "Prefer using"; ObjectID = "jdu-bS-Jk1"; */
 "jdu-bS-Jk1.title" = "Prefer using:";
-/* Class = "NSMenuItem"; title = "Spaces"; ObjectID = "ZKV-jL-cQV"; */
-"ZKV-jL-cQV.title" = "Spaces";
-/* Class = "NSMenuItem"; title = "Tabs"; ObjectID = "lVY-WF-4Yh"; */
-"lVY-WF-4Yh.title" = "Tabs";
+/* Class = "NSMenuItem"; title = "spaces"; ObjectID = "ZKV-jL-cQV"; */
+"ZKV-jL-cQV.title" = "spaces";
+/* Class = "NSMenuItem"; title = "tabs"; ObjectID = "lVY-WF-4Yh"; */
+"lVY-WF-4Yh.title" = "tabs";
 /* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
 "3287.title" = "Indent width:";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */
