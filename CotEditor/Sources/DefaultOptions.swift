@@ -102,16 +102,6 @@ enum AppearanceMode: Int {
     case right
     
     
-    var label: String {
-        
-        switch self {
-            case .left:   String(localized: "Left")
-            case .center: String(localized: "Center")
-            case .right:  String(localized: "Right")
-        }
-    }
-    
-    
     var help: String {
         
         switch self {

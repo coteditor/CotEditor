@@ -439,6 +439,16 @@
 
 
 /* MARK: PrintAccessoryViewController */
+"Theme" = "主题";
+
+// Content of headers/footers
+"Syntax Name" = "语法名";
+"Document Name" = "文档名";
+"File Path" = "文件路径";
+"Print Date" = "打印日期";
+"Last Modified Date" = "最终修改日期";
+"Page Number" = "页码";
+
 // Segmented control tooltips
 "Align Left" = "左对齐";
 "Center" = "居中";
@@ -457,15 +467,6 @@
 "%@ pt" = "%@点";
 "On" = "开";
 "Black and White" = "黑白";
-"Syntax Name" = "语法名";
-"Document Name" = "文档名";
-"File Path" = "文件路径";
-"Print Date" = "打印日期";
-"Last Modified Date" = "最终修改日期";
-"Page Number" = "页码";
-"Left" = "左";
-"Center" = "居中";
-"Right" = "右";
 
 
 
@@ -621,6 +622,8 @@
 "Later" = "稍后";
 // command-line tool
 "installed at %@" = "已安装于 %@";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "当前的cot符号链接没有指向正在运行的CotEditor。";
+"The current 'cot' symbolic link may target an invalid path." = "当前的cot符号链接可能指向无效路径。";
 
 // warnings setting
 "Suppress following warnings:" = "Suppress following warnings:";  // FIXME: added
@@ -682,16 +685,6 @@
 // Snippets pane
 // placeholder text
 "Select a snippet to edit." = "选择片段进行编辑。";
-
-
-// Print pane
-"Theme" = "主题";
-
-
-// Integration pane
-// Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "当前的cot符号链接没有指向正在运行的CotEditor。";
-"The current 'cot' symbolic link may target an invalid path." = "当前的cot符号链接可能指向无效路径。";
 
 
 

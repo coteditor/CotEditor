@@ -439,6 +439,16 @@
 
 
 /* MARK: PrintAccessoryViewController */
+"Theme" = "テーマ";
+
+// Content of headers/footers
+"Syntax Name" = "シンタックス名";
+"Document Name" = "書類名";
+"File Path" = "ファイルパス";
+"Print Date" = "プリント日時";
+"Last Modified Date" = "最終変更日時";
+"Page Number" = "ページ番号";
+
 // Segmented control tooltips
 "Align Left" = "左揃え";
 "Center" = "中央揃え";
@@ -454,18 +464,9 @@
 "Footer" = "フッタ";
 
 // Summary item values
-"%@ pt" = "%@ pt";
+"%@ pt" = "%@pt";
 "On" = "オン";
 "Black and White" = "白黒";
-"Syntax Name" = "シンタックス名";
-"Document Name" = "書類名";
-"File Path" = "ファイルパス";
-"Print Date" = "プリント日時";
-"Last Modified Date" = "最終変更日時";
-"Page Number" = "ページ番号";
-"Left" = "左揃え";
-"Center" = "中央揃え";
-"Right" = "右揃え";
 
 
 
@@ -621,6 +622,8 @@
 "Later" = "あとで";
 // command-line tool
 "installed at %@" = "%@にインストール済み";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "現在のcotシンボリックリンクはこのCotEditor以外に向けられています。";
+"The current 'cot' symbolic link may target an invalid path." = "現在のcotシンボリックリンクは無効なパスに向けられています。";
 
 // warnings setting
 "Suppress following warnings:" = "以下を警告しない:";
@@ -682,16 +685,6 @@
 // Snippets pane
 // placeholder text
 "Select a snippet to edit." = "編集するスニペットを選択してください。";
-
-
-// Print pane
-"Theme" = "テーマ";
-
-
-// Integration pane
-// Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "現在のcotシンボリックリンクはこのCotEditor以外に向けられています。";
-"The current 'cot' symbolic link may target an invalid path." = "現在のcotシンボリックリンクは無効なパスに向けられています。";
 
 
 

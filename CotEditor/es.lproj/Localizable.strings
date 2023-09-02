@@ -439,13 +439,23 @@
 
 
 /* MARK: PrintAccessoryViewController */
+"Theme" = "Tema";
+
+// Content of headers/footers
+"Syntax Name" = "Nombre de la sintaxis";
+"Document Name" = "Nombre del documento";
+"File Path" = "Ruta del archivo";
+"Print Date" = "Imprimir fecha";
+"Last Modified Date" = "Fecha de la última modificación";
+"Page Number" = "Número de página";
+
 // Segmented control tooltips
 "Align Left" = "Alinear a la izquierda";
 "Center" = "Centrado";
 "Align Right" = "Alinear a la derecha";
 
 // Summary item names
-"Font Size" = "Font Size";  // FIXME: added
+"Font Size" = "Tamaño letra";
 "Color" = "Color";
 "Print Backgrounds" = "Imprimir fondo";
 "Line Number" = "Número de línea";
@@ -454,18 +464,9 @@
 "Footer" = "Pie de página";
 
 // Summary item values
-"%@ pt" = "%@ pt";  // FIXME: added
+"%@ pt" = "%@ pt";
 "On" = "Encendido";
 "Black and White" = "Blanco y negro";
-"Syntax Name" = "Nombre de la sintaxis";
-"Document Name" = "Nombre del documento";
-"File Path" = "Ruta del archivo";
-"Print Date" = "Imprimir fecha";
-"Last Modified Date" = "Fecha de la última modificación";
-"Page Number" = "Número de página";
-"Left" = "Izquierda";
-"Center" = "Centro";
-"Right" = "Derecha";
 
 
 
@@ -621,6 +622,8 @@
 "Later" = "Más tarde";
 // command-line tool
 "installed at %@" = "Instalado en %@";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "El enlace simbólico 'cot' actual no se dirige al CotEditor en ejecución.";
+"The current 'cot' symbolic link may target an invalid path." = "El enlace simbólico 'cot' actual puede apuntar a una ruta no válida.";
 
 // warnings setting
 "Suppress following warnings:" = "Suppress following warnings:";  // FIXME: added
@@ -682,16 +685,6 @@
 // Snippets pane
 // placeholder text
 "Select a snippet to edit." = "Seleccione un fragmento para editar.";
-
-
-// Print pane
-"Theme" = "Tema";
-
-
-// Integration pane
-// Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "El enlace simbólico 'cot' actual no se dirige al CotEditor en ejecución.";
-"The current 'cot' symbolic link may target an invalid path." = "El enlace simbólico 'cot' actual puede apuntar a una ruta no válida.";
 
 
 

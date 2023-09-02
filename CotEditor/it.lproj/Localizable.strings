@@ -439,6 +439,16 @@
 
 
 /* MARK: PrintAccessoryViewController */
+"Theme" = "Tema";
+
+// Content of headers/footers
+"Syntax Name" = "Nome sintassi";
+"Document Name" = "Nome documento";
+"File Path" = "Percorso file";
+"Print Date" = "Data di stampa";
+"Last Modified Date" = "Data ultima modifica";
+"Page Number" = "Numero di pagina";
+
 // Segmented control tooltips
 "Align Left" = "Allinea a sinistra";
 "Center" = "Centra";
@@ -457,15 +467,6 @@
 "%@ pt" = "%@ pt";
 "On" = "Acceso";
 "Black and White" = "Bianco e nero";
-"Syntax Name" = "Nome sintassi";
-"Document Name" = "Nome documento";
-"File Path" = "Percorso file";
-"Print Date" = "Data di stampa";
-"Last Modified Date" = "Data ultima modifica";
-"Page Number" = "Numero di pagina";
-"Left" = "Allinea a sinistra";
-"Center" = "Allinea al centro";
-"Right" = "Allinea a destra";
 
 
 
@@ -621,6 +622,8 @@
 "Later" = "Più tardi";
 // command-line tool
 "installed at %@" = "Installato in bei %@";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "Il link simbolico 'cot' attuale non punta al CotEditor in esecuzione.";
+"The current 'cot' symbolic link may target an invalid path." = "Il link simbolico 'cot' attuale potrebbe puntare ad un percorso non valido.";
 
 // warnings setting
 "Suppress following warnings:" = "Suppress following warnings:";  // FIXME: added
@@ -682,16 +685,6 @@
 // Snippets pane
 // placeholder text
 "Select a snippet to edit." = "Selezionare un ritaglio da modificare.";
-
-
-// Print pane
-"Theme" = "Tema";
-
-
-// Integration pane
-// Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "Il link simbolico 'cot' attuale non punta al CotEditor in esecuzione.";
-"The current 'cot' symbolic link may target an invalid path." = "Il link simbolico 'cot' attuale potrebbe puntare ad un percorso non valido.";
 
 
 

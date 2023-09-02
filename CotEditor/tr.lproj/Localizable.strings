@@ -439,6 +439,16 @@
 
 
 /* MARK: PrintAccessoryViewController */
+"Theme" = "Tema";
+
+// Content of headers/footers
+"Syntax Name" = "Sözdizim Adı";
+"Document Name" = "Belge Adı";
+"File Path" = "Dosya Yolu";
+"Print Date" = "Yazdırma Tarihi";
+"Last Modified Date" = "Son Değiştirilme Tarihi";
+"Page Number" = "Sayfa Numarası";
+
 // Segmented control tooltips
 "Align Left" = "Sola Hizala";
 "Center" = "Ortala";
@@ -457,15 +467,6 @@
 "%@ pt" = "%@ punto";
 "On" = "Açık";
 "Black and White" = "Siyah - Beyaz";
-"Syntax Name" = "Sözdizim Adı";
-"Document Name" = "Belge Adı";
-"File Path" = "Dosya Yolu";
-"Print Date" = "Yazdırma Tarihi";
-"Last Modified Date" = "Son Değiştirilme Tarihi";
-"Page Number" = "Sayfa Numarası";
-"Left" = "Sol";
-"Center" = "Orta";
-"Right" = "Sağ";
 
 
 
@@ -621,6 +622,8 @@
 "Later" = "Daha Sonra";
 // command-line tool
 "installed at %@" = "%@ konumuna yüklendi";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "Geçerli 'cot' sembolik bağı, çalışan CotEditor’ü hedeflemiyor.";
+"The current 'cot' symbolic link may target an invalid path." = "Geçerli 'cot' sembolik bağı, geçersiz bir yolu hedefleyebilir.";
 
 // warnings setting
 "Suppress following warnings:" = "Suppress following warnings:";  // FIXME: added
@@ -682,16 +685,6 @@
 // Snippets pane
 // placeholder text
 "Select a snippet to edit." = "Düzenlenecek bir kod parçacığı seçin.";
-
-
-// Print pane
-"Theme" = "Tema";
-
-
-// Integration pane
-// Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "Geçerli 'cot' sembolik bağı, çalışan CotEditor’ü hedeflemiyor.";
-"The current 'cot' symbolic link may target an invalid path." = "Geçerli 'cot' sembolik bağı, geçersiz bir yolu hedefleyebilir.";
 
 
 

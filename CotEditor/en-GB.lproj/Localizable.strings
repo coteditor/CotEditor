@@ -356,8 +356,8 @@
 
 "Tab Style" = "Tab Style";
 // tooltip
-"Use tabs for indentation" = "Use tabs for indentation";  // FIXME: updated
-"Use spaces for indentation" = "Use spaces for indentation";  // FIXME: updated
+"Use tabs for indentation" = "Use tabs for indentation";
+"Use spaces for indentation" = "Use spaces for indentation";
 // menu
 "Tab Width" = "Tab Width";
 "Custom…" = "Custom…";
@@ -408,11 +408,11 @@
 
 "Fonts" = "Fonts";
 // tooltip
-"Change Font" = "Change Font";  // FIXME: added
+"Change Font" = "Change Font";
 // menu items
-"Font Type" = "Font Type";  // FIXME: added
-"Standard" = "Standard";  // FIXME: added
-"Monospaced" = "Monospaced";  // FIXME: added
+"Font Type" = "Font Type";
+"Standard" = "Standard";
+"Monospaced" = "Monospaced";
 "Show Fonts" = "Show Fonts";
 
 
@@ -439,6 +439,16 @@
 
 
 /* MARK: PrintAccessoryViewController */
+"Theme" = "Theme";
+
+// Content of headers/footers
+"Syntax Name" = "Syntax Name";
+"Document Name" = "Document Name";
+"File Path" = "File Path";
+"Print Date" = "Print Date";
+"Last Modified Date" = "Last Modified Date";
+"Page Number" = "Page Number";
+
 // Segmented control tooltips
 "Align Left" = "Align Left";
 "Center" = "Centre";
@@ -457,15 +467,6 @@
 "%@ pt" = "%@ pt";
 "On" = "On";
 "Black and White" = "Black and White";
-"Syntax Name" = "Syntax Name";
-"Document Name" = "Document Name";
-"File Path" = "File Path";
-"Print Date" = "Print Date";
-"Last Modified Date" = "Last Modified Date";
-"Page Number" = "Page Number";
-"Left" = "Left";
-"Center" = "Centre";
-"Right" = "Right";
 
 
 
@@ -620,6 +621,8 @@
 "Later" = "Later";
 // command-line tool
 "installed at %@" = "installed at %@";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "The current 'cot' symbolic link doesn’t target the running CotEditor.";
+"The current 'cot' symbolic link may target an invalid path." = "The current 'cot' symbolic link may target an invalid path.";
 
 // warnings setting
 "Suppress following warnings:" = "Suppress following warnings:";
@@ -681,16 +684,6 @@
 // Snippets pane
 // placeholder text
 "Select a snippet to edit." = "Select a snippet to edit.";
-
-
-// Print pane
-"Theme" = "Theme";
-
-
-// Integration pane
-// Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "The current 'cot' symbolic link doesn’t target the running CotEditor.";
-"The current 'cot' symbolic link may target an invalid path." = "The current 'cot' symbolic link may target an invalid path.";
 
 
 

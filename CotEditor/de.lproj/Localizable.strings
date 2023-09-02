@@ -439,6 +439,16 @@
 
 
 /* MARK: PrintAccessoryViewController */
+"Theme" = "Thema";
+
+// Content of headers/footers
+"Syntax Name" = "Syntaxname";
+"Document Name" = "Dokumentenname";
+"File Path" = "Dateipfad";
+"Print Date" = "Druckdatum";
+"Last Modified Date" = "Zuletzt geändertes Datum";
+"Page Number" = "Seitenzahl";
+
 // Segmented control tooltips
 "Align Left" = "Linksbündig ausrichten";
 "Center" = "Zentrieren";
@@ -457,15 +467,6 @@
 "%@ pt" = "%@ pt";
 "On" = "Ein";
 "Black and White" = "Schwarzweiß";
-"Syntax Name" = "Syntaxname";
-"Document Name" = "Dokumentenname";
-"File Path" = "Dateipfad";
-"Print Date" = "Druckdatum";
-"Last Modified Date" = "Zuletzt geändertes Datum";
-"Page Number" = "Seitenzahl";
-"Left" = "Linksbündig ausrichten";
-"Center" = "Zentrieren";
-"Right" = "Rechtsbündig ausrichten";
 
 
 
@@ -621,6 +622,8 @@
 "Later" = "Später";
 // command-line tool
 "installed at %@" = "bei %@ installiert";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "Der aktuelle 'cot' symbolische Link zielt nicht auf den laufenden CotEditor.";
+"The current 'cot' symbolic link may target an invalid path." = "Der aktuelle 'cot' symbolische Link könnte auf einen ungültigen Pfad zielen.";
 
 // warnings setting
 "Suppress following warnings:" = "Folgenden Warnungen ausschalten:";
@@ -682,16 +685,6 @@
 // Snippets pane
 // placeholder text
 "Select a snippet to edit." = "Wähle ein zu bearbeitendes Snippet.";
-
-
-// Print pane
-"Theme" = "Thema";
-
-
-// Integration pane
-// Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "Der aktuelle 'cot' symbolische Link zielt nicht auf den laufenden CotEditor.";
-"The current 'cot' symbolic link may target an invalid path." = "Der aktuelle 'cot' symbolische Link könnte auf einen ungültigen Pfad zielen.";
 
 
 
