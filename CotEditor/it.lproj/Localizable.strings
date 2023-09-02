@@ -458,7 +458,6 @@
 // Summary item values
 "%@ pt" = "%@ pt";
 "On" = "Acceso";
-"Use Editor Setting" = "Come da documento";  // FIXME: updated
 "Black and White" = "Bianco e nero";
 "Syntax Name" = "Nome sintassi";
 "Document Name" = "Nome documento";
@@ -614,7 +613,6 @@
 "Format" = "Formato";
 "Snippets" = "Snippet";
 "Key Bindings" = "Abbreviazioni";
-"Print" = "Stampa";
 
 
 // General pane

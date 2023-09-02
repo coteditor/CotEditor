@@ -65,23 +65,6 @@ enum AppearanceMode: Int {
 }
 
 
-@objc enum PrintColorMode: Int {
-    
-    case blackAndWhite
-    case sameAsDocument
-}
-
-
-@objc enum PrintVisibilityMode: Int, DefaultInitializable {
-    
-    static let defaultValue: Self = .no
-    
-    case no
-    case sameAsDocument
-    case yes
-}
-
-
 @objc enum PrintInfoType: Int, CaseIterable, DefaultInitializable {
     
     static let defaultValue: Self = .none

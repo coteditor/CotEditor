@@ -458,7 +458,6 @@
 // Summary item values
 "%@ pt" = "%@ pt";
 "On" = "オン";
-"Use Editor Setting" = "エディタの設定を使用";
 "Black and White" = "白黒";
 "Syntax Name" = "シンタックス名";
 "Document Name" = "書類名";
@@ -614,7 +613,6 @@
 "Format" = "フォーマット";
 "Snippets" = "スニペット";
 "Key Bindings" = "キーバインド";
-"Print" = "プリント";
 
 
 // General pane

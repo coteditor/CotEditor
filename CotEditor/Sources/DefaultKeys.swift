@@ -118,11 +118,8 @@ extension DefaultKeys {
     
     // Print
     static let printFontSize = DefaultKey<CGFloat>("printFontSize")
-    static let printColorIndex = DefaultKey<Int>("printColorIndex")
     static let printTheme = DefaultKey<String?>("printTheme")
     static let printBackground = DefaultKey<Bool>("printBackground")
-    static let printLineNumIndex = RawRepresentableDefaultKey<PrintVisibilityMode>("printLineNumIndex")
-    static let printInvisibleCharIndex = RawRepresentableDefaultKey<PrintVisibilityMode>("printInvisibleCharIndex")
     static let printHeader = DefaultKey<Bool>("printHeader")
     static let primaryHeaderContent = RawRepresentableDefaultKey<PrintInfoType>("headerOneStringIndex")
     static let primaryHeaderAlignment = RawRepresentableDefaultKey<AlignmentType>("headerOneAlignIndex")

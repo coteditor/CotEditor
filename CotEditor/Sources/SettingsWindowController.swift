@@ -85,7 +85,6 @@ private extension SettingsPane {
             case .format: "FormatPane"
             case .snippets: "SnippetsPane"
             case .keyBindings: "KeyBindingsPane"
-            case .print: "PrintPane"
         }
     }
 }

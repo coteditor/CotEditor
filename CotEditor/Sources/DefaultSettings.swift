@@ -126,10 +126,7 @@ struct DefaultSettings {
         ].map(\.dictionary),
         
         .printFontSize: NSFont.systemFontSize,
-        .printColorIndex: PrintColorMode.blackAndWhite.rawValue,
         .printBackground: false,
-        .printLineNumIndex: PrintVisibilityMode.no.rawValue,
-        .printInvisibleCharIndex: PrintVisibilityMode.no.rawValue,
         .printHeader: true,
         .primaryHeaderContent: PrintInfoType.filePath.rawValue,
         .primaryHeaderAlignment: AlignmentType.left.rawValue,

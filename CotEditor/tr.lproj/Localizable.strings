@@ -458,7 +458,6 @@
 // Summary item values
 "%@ pt" = "%@ punto";
 "On" = "Açık";
-"Use Editor Setting" = "Belge Ayarlarıyla Aynı";  // FIXME: updated
 "Black and White" = "Siyah - Beyaz";
 "Syntax Name" = "Sözdizim Adı";
 "Document Name" = "Belge Adı";
@@ -614,7 +613,6 @@
 "Format" = "Biçim";
 "Snippets" = "Kırpıntılar";
 "Key Bindings" = "Düğme Bağıntıları";
-"Print" = "Yazdır";
 
 
 // General pane

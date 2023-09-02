@@ -85,10 +85,10 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         
         super.viewDidLoad()
         
-        self.setup(popUpButton: self.primaryHeaderPopUpButton!, contentKey: #keyPath(primaryHeaderContent), enablingKey: #keyPath(printsHeader))
-        self.setup(popUpButton: self.secondaryHeaderPopUpButton!, contentKey: #keyPath(secondaryHeaderContent), enablingKey: #keyPath(printsHeader))
-        self.setup(popUpButton: self.primaryFooterPopUpButton!, contentKey: #keyPath(primaryFooterContent), enablingKey: #keyPath(printsFooter))
-        self.setup(popUpButton: self.secondaryFooterPopUpButton!, contentKey: #keyPath(secondaryFooterContent), enablingKey: #keyPath(printsFooter))
+        self.primaryHeaderPopUpButton!.menu!.items = PrintInfoType.menuItems
+        self.secondaryHeaderPopUpButton!.menu!.items = PrintInfoType.menuItems
+        self.primaryFooterPopUpButton!.menu!.items = PrintInfoType.menuItems
+        self.secondaryFooterPopUpButton!.menu!.items = PrintInfoType.menuItems
         
         AlignmentType.setup(segmentedControl: self.primaryHeaderAlignmentControl!)
         AlignmentType.setup(segmentedControl: self.secondaryHeaderAlignmentControl!)
@@ -111,24 +111,11 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
             
             self.fontSize = defaults[.printFontSize]
             
-            self.theme = switch PrintColorMode(rawValue: defaults[.printColorIndex]) {
-                case .blackAndWhite: ThemeName.blackAndWhite
-                case .sameAsDocument: ThemeManager.shared.userDefaultSettingName
-                default: defaults[.printTheme] ?? ThemeName.blackAndWhite
-            }
+            self.theme = defaults[.printTheme] ?? ThemeManager.shared.userDefaultSettingName
             self.printsBackground = defaults[.printBackground]
             
-            self.printsLineNumbers = switch defaults[.printLineNumIndex] {
-                case .no: false
-                case .sameAsDocument: self.documentShowsLineNumber
-                case .yes: true
-            }
-            
-            self.printsInvisibles = switch defaults[.printInvisibleCharIndex] {
-                case .no: false
-                case .sameAsDocument: self.documentShowsInvisibles
-                case .yes: true
-            }
+            self.printsLineNumbers = self.documentShowsLineNumber
+            self.printsInvisibles = self.documentShowsInvisibles
             
             self.printsHeader = defaults[.printHeader]
             self.primaryHeaderContent = defaults[.primaryHeaderContent]
@@ -266,19 +253,6 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     }
     
     
-    /// Set up pop-up button for header/footer print info.
-    /// - Parameters:
-    ///   - popUpButton: The pop-up button to set up.
-    ///   - contentKey: The default key for binding to set the option.
-    ///   - enablingKey: The default key for binding to enable the button.
-    private func setup(popUpButton: NSPopUpButton, contentKey: String, enablingKey: String) {
-        
-        popUpButton.menu?.items = PrintInfoType.menuItems
-        popUpButton.bind(.selectedTag, to: self, withKeyPath: contentKey)
-        popUpButton.bind(.enabled, to: self, withKeyPath: enablingKey)
-    }
-    
-    
     
     // MARK: Setting Accessors
     
@@ -286,14 +260,20 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @objc dynamic var fontSize: CGFloat {
         
         get { self.printInfo?[.fontSize] ?? 0 }
-        set { self.printInfo?[.fontSize] = newValue }
+        set {
+            self.printInfo?[.fontSize] = newValue
+            UserDefaults.standard[.printFontSize] = newValue
+        }
     }
     
     /// print theme
     @objc dynamic var theme: String {
         
         get { self.printInfo?[.theme] ?? ThemeName.blackAndWhite }
-        set { self.printInfo?[.theme] = newValue }
+        set {
+            self.printInfo?[.theme] = newValue
+            UserDefaults.standard[.printTheme] = newValue
+        }
     }
     
     
@@ -325,7 +305,10 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @objc dynamic var printsHeader: Bool {
         
         get { self.printInfo?[.printsHeader] ?? false }
-        set { self.printInfo?[.printsHeader] = newValue }
+        set { 
+            self.printInfo?[.printsHeader] = newValue
+            UserDefaults.standard[.printHeader] = newValue
+        }
     }
     
     
@@ -333,7 +316,10 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @objc dynamic var primaryHeaderContent: PrintInfoType {
         
         get { PrintInfoType(self.printInfo?[.primaryHeaderContent]) }
-        set { self.printInfo?[.primaryHeaderContent] = newValue.rawValue }
+        set { 
+            self.printInfo?[.primaryHeaderContent] = newValue.rawValue
+            UserDefaults.standard[.primaryHeaderContent] = newValue
+        }
     }
     
     
@@ -341,7 +327,10 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @objc dynamic var primaryHeaderAlignment: AlignmentType {
         
         get { AlignmentType(self.printInfo?[.primaryHeaderAlignment]) }
-        set { self.printInfo?[.primaryHeaderAlignment] = newValue.rawValue }
+        set {
+            self.printInfo?[.primaryHeaderAlignment] = newValue.rawValue
+            UserDefaults.standard[.primaryHeaderAlignment] = newValue
+        }
     }
     
     
@@ -349,7 +338,10 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @objc dynamic var secondaryHeaderContent: PrintInfoType {
         
         get { PrintInfoType(self.printInfo?[.secondaryHeaderContent]) }
-        set { self.printInfo?[.secondaryHeaderContent] = newValue.rawValue }
+        set {
+            self.printInfo?[.secondaryHeaderContent] = newValue.rawValue
+            UserDefaults.standard[.secondaryHeaderContent] = newValue
+        }
     }
     
     
@@ -357,7 +349,10 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @objc dynamic var secondaryHeaderAlignment: AlignmentType {
         
         get { AlignmentType(self.printInfo?[.secondaryHeaderAlignment]) }
-        set { self.printInfo?[.secondaryHeaderAlignment] = newValue.rawValue }
+        set { 
+            self.printInfo?[.secondaryHeaderAlignment] = newValue.rawValue
+            UserDefaults.standard[.secondaryHeaderAlignment] = newValue
+        }
     }
     
     
@@ -365,7 +360,10 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @objc dynamic var printsFooter: Bool {
         
         get { self.printInfo?[.printsFooter] ?? false }
-        set { self.printInfo?[.printsFooter] = newValue }
+        set {
+            self.printInfo?[.printsFooter] = newValue
+            UserDefaults.standard[.printFooter] = newValue
+        }
     }
     
     
@@ -373,7 +371,10 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @objc dynamic var primaryFooterContent: PrintInfoType {
         
         get { PrintInfoType(self.printInfo?[.primaryFooterContent]) }
-        set { self.printInfo?[.primaryFooterContent] = newValue.rawValue }
+        set {
+            self.printInfo?[.primaryFooterContent] = newValue.rawValue
+            UserDefaults.standard[.primaryFooterContent] = newValue
+        }
     }
     
     
@@ -381,7 +382,10 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @objc dynamic var primaryFooterAlignment: AlignmentType {
         
         get { AlignmentType(self.printInfo?[.primaryFooterAlignment]) }
-        set { self.printInfo?[.primaryFooterAlignment] = newValue.rawValue }
+        set {
+            self.printInfo?[.primaryFooterAlignment] = newValue.rawValue
+            UserDefaults.standard[.primaryFooterAlignment] = newValue
+        }
     }
     
     
@@ -389,7 +393,10 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @objc dynamic var secondaryFooterContent: PrintInfoType {
         
         get { PrintInfoType(self.printInfo?[.secondaryFooterContent]) }
-        set { self.printInfo?[.secondaryFooterContent] = newValue.rawValue }
+        set {
+            self.printInfo?[.secondaryFooterContent] = newValue.rawValue
+            UserDefaults.standard[.secondaryFooterContent] = newValue
+        }
     }
     
     
@@ -397,6 +404,43 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @objc dynamic var secondaryFooterAlignment: AlignmentType {
         
         get { AlignmentType(self.printInfo?[.secondaryFooterAlignment]) }
-        set { self.printInfo?[.secondaryFooterAlignment] = newValue.rawValue }
+        set {
+            self.printInfo?[.secondaryFooterAlignment] = newValue.rawValue
+            UserDefaults.standard[.secondaryFooterAlignment] = newValue
+        }
+    }
+}
+
+
+
+// MARK: Private Extensions
+
+private extension PrintInfoType {
+    
+    static var menuItems: [NSMenuItem] {
+        
+        [Self.none.menuItem, .separator()] + Self.allCases[1...].map(\.menuItem)
+    }
+    
+    
+    private var menuItem: NSMenuItem {
+        
+        let item = NSMenuItem()
+        item.title = self.label
+        item.tag = Self.allCases.enumerated().first { $0.element == self }?.offset ?? 0
+        return item
+    }
+}
+
+
+private extension AlignmentType {
+    
+    static func setup(segmentedControl: NSSegmentedControl) {
+        
+        for type in self.allCases {
+            segmentedControl.setToolTip(type.help, forSegment: type.rawValue)
+            segmentedControl.setTag(type.rawValue, forSegment: type.rawValue)
+            segmentedControl.setImage(NSImage(systemSymbolName: type.symbolName, accessibilityDescription: type.help), forSegment: type.rawValue)
+        }
     }
 }

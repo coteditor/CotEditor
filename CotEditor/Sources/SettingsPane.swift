@@ -32,7 +32,6 @@ enum SettingsPane: String, CaseIterable {
     case format
     case snippets
     case keyBindings
-    case print
     
     
     /// Localized label.
@@ -46,7 +45,6 @@ enum SettingsPane: String, CaseIterable {
             case .format: String(localized: "Format")
             case .snippets: String(localized: "Snippets")
             case .keyBindings: String(localized: "Key Bindings")
-            case .print: String(localized: "Print")
         }
     }
     
@@ -62,7 +60,6 @@ enum SettingsPane: String, CaseIterable {
             case .format: "doc.text"
             case .snippets: "note.text"
             case .keyBindings: "keyboard"
-            case .print: "printer"
         }
     }
 }

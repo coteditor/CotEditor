@@ -398,7 +398,7 @@
 // tooltip
 "Show Find & Replace" = "Mostrar Buscar y reemplazar";
 
-"Print" = "Print";
+"Print" = "Imprimir";
 // tooltip
 "Print document" = "Imprimir documento";
 
@@ -458,7 +458,6 @@
 // Summary item values
 "%@ pt" = "%@ pt";  // FIXME: added
 "On" = "Encendido";
-"Use Editor Setting" = "Igual que la configuración del documento";  // FIXME: updated
 "Black and White" = "Blanco y negro";
 "Syntax Name" = "Nombre de la sintaxis";
 "Document Name" = "Nombre del documento";
@@ -614,7 +613,6 @@
 "Format" = "Formato";
 "Snippets" = "Fragmentos";
 "Key Bindings" = "Atajos de teclado";
-"Print" = "Imprimir";
 
 
 // General pane

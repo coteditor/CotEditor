@@ -458,7 +458,6 @@
 // Summary item values
 "%@ pt" = "%@點";
 "On" = "開";
-"Use Editor Setting" = "同文件設置一致";  // FIXME: updated
 "Black and White" = "黑白";
 "Syntax Name" = "文法名";
 "Document Name" = "文件名稱";
@@ -614,7 +613,6 @@
 "Format" = "格式";
 "Snippets" = "程式碼片段";
 "Key Bindings" = "按鍵繫結";
-"Print" = "列印";
 
 
 // General pane

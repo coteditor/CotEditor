@@ -129,6 +129,10 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeader" id="hax-dD-WQ5"/>
+                                    <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="primaryHeaderContent" id="FUy-9z-58h"/>
+                                </connections>
                             </popUpButton>
                             <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y6C-KD-Qlx">
                                 <rect key="frame" x="362" y="131" width="80" height="24"/>
@@ -193,6 +197,10 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeader" id="QBW-tT-Tap"/>
+                                    <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="secondaryHeaderContent" id="6Uv-D0-NsK"/>
+                                </connections>
                             </popUpButton>
                             <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qqp-Os-uMO">
                                 <rect key="frame" x="362" y="29" width="80" height="24"/>
@@ -231,6 +239,10 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsFooter" id="8EQ-Ni-Vno"/>
+                                    <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="primaryFooterContent" id="uyd-Cz-fNg"/>
+                                </connections>
                             </popUpButton>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="BMN-9W-V2O" customClass="ShrinkPopUpButton" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="271" y="-3" width="89" height="25"/>
@@ -243,6 +255,10 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsFooter" id="M3v-IW-MCh"/>
+                                    <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="secondaryFooterContent" id="OeH-H5-Jl6"/>
+                                </connections>
                             </popUpButton>
                             <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t3D-7C-ObH">
                                 <rect key="frame" x="362" y="-1" width="80" height="24"/>

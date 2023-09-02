@@ -458,7 +458,6 @@
 // Summary item values
 "%@ pt" = "%@ pt";
 "On" = "Ein";
-"Use Editor Setting" = "Einstellung des Editors verwenden";
 "Black and White" = "Schwarzweiß";
 "Syntax Name" = "Syntaxname";
 "Document Name" = "Dokumentenname";
@@ -614,7 +613,6 @@
 "Format" = "Format";
 "Snippets" = "Snippets";
 "Key Bindings" = "Kurzbefehle";
-"Print" = "Drucken";
 
 
 // General pane
