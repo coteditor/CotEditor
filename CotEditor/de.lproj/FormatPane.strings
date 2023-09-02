@@ -25,7 +25,7 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "Default line endings:"; ObjectID = "3273"; */
-"3273.title" = "Standard-Zeilenenden:";
+"3273.title" = "Standardzeilenenden:";
 /* Class = "NSMenuItem"; title = "macOS / Unix (LF)"; ObjectID = "15"; */
 "15.title" = "macOS / Unix (LF)";
 /* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "14"; */
@@ -34,8 +34,8 @@
 "12.title" = "Windows (CRLF)";
 
 
-/* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
-"3278.title" = "Standard-Codierung:";
+/* Class = "NSTextFieldCell"; title = "Default encoding:"; ObjectID = "3278"; */
+"3278.title" = "Standardcodierung:";
 
 /* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
 "3277.title" = "Priorität der Codierungen:";
@@ -46,7 +46,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Default syntax:"; ObjectID = "3329"; */
-"3329.title" = "Standard-Syntax:";
+"3329.title" = "Standardsyntax:";
 
 /* Class = "NSTextFieldCell"; title = "Available syntaxes:"; ObjectID = "vlw-Tc-sLl"; */
 "vlw-Tc-sLl.title" = "Verfügbare Syntaxen:";

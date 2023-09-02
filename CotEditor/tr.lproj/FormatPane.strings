@@ -34,7 +34,7 @@
 /* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "12"; */
 "12.title" = "Windows (CRLF)";
 
-/* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
+/* Class = "NSTextFieldCell"; title = "Default encoding:"; ObjectID = "3278"; */
 "3278.title" = "Öntanımlı metin kodlaması:";
 
 /* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */

@@ -34,8 +34,8 @@
 "12.title" = "Windows (CRLF)";
 
 
-/* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
-"3278.title" = "默认文本编码：";
+/* Class = "NSTextFieldCell"; title = "Default encoding:"; ObjectID = "3278"; */
+"3278.title" = "默认编码：";
 
 /* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
 "3277.title" = "编码优先级：";
