@@ -234,13 +234,13 @@
                                         </connections>
                                     </button>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k1t-Xk-gYs">
-                                        <rect key="frame" x="135" y="188" width="118" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="Automatic" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="XcC-5y-bLG" id="xL0-Za-Olv">
+                                        <rect key="frame" x="135" y="188" width="121" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" title="Automatically" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="XcC-5y-bLG" id="xL0-Za-Olv">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="J7d-86-3ex">
                                                 <items>
-                                                    <menuItem title="Automatic" state="on" id="XcC-5y-bLG"/>
+                                                    <menuItem title="Automatically" state="on" id="XcC-5y-bLG"/>
                                                     <menuItem isSeparatorItem="YES" id="s03-Bx-g45"/>
                                                     <menuItem title="Standard" tag="2" id="Vla-IY-EYW"/>
                                                     <menuItem title="Monospaced" tag="1" id="htL-1g-SvR"/>

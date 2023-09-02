@@ -26,7 +26,7 @@
 
 /* Class = "NSTextFieldCell"; title = "Prefer font using:"; ObjectID = "XQO-YW-cqZ"; */
 "XQO-YW-cqZ.title" = "優先するフォント:";
-/* Class = "NSMenuItem"; title = "Automatic"; ObjectID = "XcC-5y-bLG"; */
+/* Class = "NSMenuItem"; title = "Automatically"; ObjectID = "XcC-5y-bLG"; */
 "XcC-5y-bLG.title" = "自動";
 /* Class = "NSMenuItem"; title = "Standard"; ObjectID = "Vla-IY-EYW"; */
 "Vla-IY-EYW.title" = "標準";

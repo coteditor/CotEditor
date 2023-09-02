@@ -26,8 +26,8 @@
 
 /* Class = "NSTextFieldCell"; title = "Prefer font using:"; ObjectID = "XQO-YW-cqZ"; */
 "XQO-YW-cqZ.title" = "Prefer font using:";  // FIXME: added
-/* Class = "NSMenuItem"; title = "Automatic"; ObjectID = "XcC-5y-bLG"; */
-"XcC-5y-bLG.title" = "Automatic";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Automatically"; ObjectID = "XcC-5y-bLG"; */
+"XcC-5y-bLG.title" = "Automatically";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Standard"; ObjectID = "Vla-IY-EYW"; */
 "Vla-IY-EYW.title" = "Standard";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Monospaced"; ObjectID = "htL-1g-SvR"; */
