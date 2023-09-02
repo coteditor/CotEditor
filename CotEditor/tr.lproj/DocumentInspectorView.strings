@@ -62,13 +62,13 @@
 "tZ6-05-eKf.title" = "Sözcük";
 
 
-/* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "ERr-yA-dIa"; */
-"ERr-yA-dIa.title" = "Konum";
+/* Class = "NSTextFieldCell"; title = "Cursor"; ObjectID = "ERr-yA-dIa"; */
+"ERr-yA-dIa.title" = "İmleç";
 
 /* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "nXT-Oq-0l6"; */
 "nXT-Oq-0l6.title" = "Konum";
-/* Class = "NSTextFieldCell"; title = "Current Line"; ObjectID = "f9g-dQ-g3K"; */
-"f9g-dQ-g3K.title" = "Geçerli Satır";
+/* Class = "NSTextFieldCell"; title = "Line"; ObjectID = "f9g-dQ-g3K"; */
+"f9g-dQ-g3K.title" = "Satır";
 /* Class = "NSTextFieldCell"; title = "Column"; ObjectID = "Wwr-gI-HPc"; */
 "Wwr-gI-HPc.title" = "Sütun";
 

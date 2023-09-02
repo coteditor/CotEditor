@@ -644,7 +644,7 @@
 
 /* Theme View */
 "Text:" = "Text:";
-"Cursor:" = "Cursor:";
+"Cursor:" = "Zeiger:";
 "Invisibles:" = "Steuerzeichen:";
 "Background:" = "Hintergrund:";
 "Current Line:" = "Aktuelle Zeile:";

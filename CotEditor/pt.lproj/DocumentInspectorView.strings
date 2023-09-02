@@ -61,13 +61,13 @@
 "tZ6-05-eKf.title" = "Palavras";
 
 
-/* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "nXT-Oq-0l6"; */
-"nXT-Oq-0l6.title" = "Localização";
+/* Class = "NSTextFieldCell"; title = "Cursor"; ObjectID = "nXT-Oq-0l6"; */
+"nXT-Oq-0l6.title" = "Cursor";
 
 /* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "ERr-yA-dIa"; */
 "ERr-yA-dIa.title" = "Localização";
-/* Class = "NSTextFieldCell"; title = "Current Line"; ObjectID = "f9g-dQ-g3K"; */
-"f9g-dQ-g3K.title" = "Linha Atual";
+/* Class = "NSTextFieldCell"; title = "Line"; ObjectID = "f9g-dQ-g3K"; */
+"f9g-dQ-g3K.title" = "Linha";
 /* Class = "NSTextFieldCell"; title = "Column"; ObjectID = "Wwr-gI-HPc"; */
 "Wwr-gI-HPc.title" = "Coluna";
 

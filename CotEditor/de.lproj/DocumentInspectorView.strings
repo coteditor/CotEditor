@@ -60,13 +60,13 @@
 /* Class = "NSTextFieldCell"; title = "Words"; ObjectID = "tZ6-05-eKf"; */
 "tZ6-05-eKf.title" = "Wörter";
 
-/* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "nXT-Oq-0l6"; */
-"nXT-Oq-0l6.title" = "Position";
+/* Class = "NSTextFieldCell"; title = "Cursor"; ObjectID = "nXT-Oq-0l6"; */
+"nXT-Oq-0l6.title" = "Zeiger";
 
 /* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "ERr-yA-dIa"; */
 "ERr-yA-dIa.title" = "Position";
-/* Class = "NSTextFieldCell"; title = "Current Line"; ObjectID = "f9g-dQ-g3K"; */
-"f9g-dQ-g3K.title" = "Aktuelle Zeile";
+/* Class = "NSTextFieldCell"; title = "Line"; ObjectID = "f9g-dQ-g3K"; */
+"f9g-dQ-g3K.title" = "Zeile";
 /* Class = "NSTextFieldCell"; title = "Column"; ObjectID = "Wwr-gI-HPc"; */
 "Wwr-gI-HPc.title" = "Spalte";
 
