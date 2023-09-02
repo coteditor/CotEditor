@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+4.6.0-beta.3 (unreleased)
+--------------------------
+
+### Improvements
+
+- [beta] Adjust layout in Settings window.
+
+
+
 4.6.0-beta.2 (583)
 --------------------------
 
