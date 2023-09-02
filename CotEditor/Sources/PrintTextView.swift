@@ -106,42 +106,36 @@ final class PrintTextView: NSTextView, Themable {
     
     // MARK: Text View Methods
     
-    /// the top/left point of text container
     override var textContainerOrigin: NSPoint {
         
         NSPoint(x: self.xOffset, y: 0)
     }
     
     
-    /// view's opacity
     override var isOpaque: Bool {
         
         true
     }
     
     
-    /// job title
     override var printJobTitle: String {
         
         self.documentInfo.name
     }
     
     
-    /// return page header attributed string
     override var pageHeader: NSAttributedString {
         
         self.headerFooter(for: .header)
     }
     
     
-    /// return page footer attributed string
     override var pageFooter: NSAttributedString {
         
         self.headerFooter(for: .footer)
     }
     
     
-    /// set printing font
     override var font: NSFont? {
         
         didSet {
@@ -273,7 +267,7 @@ final class PrintTextView: NSTextView, Themable {
     
     // MARK: Private Methods
     
-    /// parse current print settings in printInfo
+    /// Parse current print settings in printInfo.
     private func applyPrintSettings() {
         
         guard
@@ -319,59 +313,63 @@ final class PrintTextView: NSTextView, Themable {
     }
     
     
-    /// return attributed string for header/footer
+    /// Return the attributed string for header/footer.
+    ///
+    /// - Parameter type: Whether the string is for header or footer.
+    /// - Returns: The attributed string for header/footer.
     private func headerFooter(for location: HeaderFooterLocation) -> NSAttributedString {
-        
-        let keys = location.keys
         
         guard let printInfo = NSPrintOperation.current?.printInfo else { return NSAttributedString() }
         
+        let keys = location.keys
         let primaryInfoType = PrintInfoType(printInfo[keys.primaryContent])
-        let primaryAlignment = AlignmentType(printInfo[keys.primaryAlignment])
+        let primaryAlignment = AlignmentType(printInfo[keys.primaryAlignment]).textAlignment
         let secondaryInfoType = PrintInfoType(printInfo[keys.secondaryContent])
-        let secondaryAlignment = AlignmentType(printInfo[keys.secondaryAlignment])
+        let secondaryAlignment = AlignmentType(printInfo[keys.secondaryAlignment]).textAlignment
         
         let primaryString = self.printInfoString(type: primaryInfoType)
         let secondaryString = self.printInfoString(type: secondaryInfoType)
         
-        switch (primaryString, secondaryString) {
+        return switch (primaryString, secondaryString) {
             // case: empty
             case (.none, .none):
-                return NSAttributedString()
+                NSAttributedString()
             
             // case: single content
             case let (.some(string), .none):
-                return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: primaryAlignment))
+                NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: primaryAlignment))
             case let (.none, .some(string)):
-                return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: secondaryAlignment))
+                NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: secondaryAlignment))
                 
             case let (.some(primaryString), .some(secondaryString)):
                 switch (primaryAlignment, secondaryAlignment) {
                     // case: double-sided
                     case (.left, .right):
-                        return NSAttributedString(string: primaryString + "\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
+                        NSAttributedString(string: primaryString + "\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
                     case (.right, .left):
-                        return NSAttributedString(string: secondaryString + "\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
-                    
+                        NSAttributedString(string: secondaryString + "\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
+                        
                     // case: two lines
                     default:
-                        let primaryAttrString = NSAttributedString(string: primaryString, attributes: self.headerFooterAttributes(for: primaryAlignment))
-                        let secondaryAttrString = NSAttributedString(string: secondaryString, attributes: self.headerFooterAttributes(for: secondaryAlignment))
-                        
-                        return [primaryAttrString, secondaryAttrString].joined(separator: "\n")
+                        [NSAttributedString(string: primaryString, attributes: self.headerFooterAttributes(for: primaryAlignment)),
+                         NSAttributedString(string: secondaryString, attributes: self.headerFooterAttributes(for: secondaryAlignment))]
+                            .joined(separator: "\n")
                 }
         }
     }
     
     
-    /// return attributes for header/footer string
-    private func headerFooterAttributes(for alignment: AlignmentType) -> [NSAttributedString.Key: Any] {
+    /// Return attributes for header/footer string.
+    ///
+    /// - Parameter alignment: The text alignment.
+    /// - Returns: The attributes for NSAttributedString.
+    private func headerFooterAttributes(for alignment: NSTextAlignment) -> [NSAttributedString.Key: Any] {
         
         let font = NSFont.userFont(ofSize: self.headerFooterFontSize)
         
         let paragraphStyle = NSParagraphStyle.default.mutable
         paragraphStyle.lineBreakMode = .byTruncatingMiddle
-        paragraphStyle.alignment = alignment.textAlignment
+        paragraphStyle.alignment = alignment
         
         // tab stop for double-sided alignment (imitation of super.pageHeader)
         if let printInfo = NSPrintOperation.current?.printInfo {
@@ -385,7 +383,10 @@ final class PrintTextView: NSTextView, Themable {
     }
     
     
-    /// create string for header/footer
+    /// Create the string for header/footer.
+    ///
+    /// - Parameter type: Whether the string is for header or footer.
+    /// - Returns: The string for given info type.
     private func printInfoString(type: PrintInfoType) -> String? {
         
         switch type {
