@@ -27,6 +27,7 @@
 // Basic button titles
 "OK" = "OK";
 "Cancel" = "Abbrechen";
+"Done" = "Fertig";
 "Start" = "Start";
 "Restore Defaults" = "Standard wiederherstellen";
 "Delete" = "Löschen";

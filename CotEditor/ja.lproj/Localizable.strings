@@ -27,6 +27,7 @@
 // Basic button titles
 "OK" = "OK";
 "Cancel" = "キャンセル";
+"Done" = "完了";
 "Start" = "開始";
 "Restore Defaults" = "デフォルトに戻す";
 "Delete" = "削除";

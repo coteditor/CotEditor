@@ -44,7 +44,7 @@ struct WarningsSettingView: View {
             HStack {
                 HelpButton(anchor: "howto_manage_warnings")
                 Spacer()
-                Button("OK") {
+                Button("Done") {
                     self.parent?.dismiss(nil)
                 }.keyboardShortcut(.defaultAction)
             }.padding(.top)

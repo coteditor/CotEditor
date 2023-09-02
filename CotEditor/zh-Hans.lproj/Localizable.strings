@@ -27,6 +27,7 @@
 // Basic button titles
 "OK" = "好";
 "Cancel" = "取消";
+"Done" = "完成";
 "Start" = "开始";
 "Restore Defaults" = "恢复默认";
 "Delete" = "删除";
