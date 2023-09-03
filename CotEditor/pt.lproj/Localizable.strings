@@ -714,7 +714,7 @@
 "Please choose another name." = "Escolha outro nome.";
 "Name can’t be empty." = "O nome não pode estar vazio.";
 "Name can’t contain “/”." = "Nomes que contêm “/” não podem ser usados.";  // FIXME: updated
-"Name can’t begin with a dot “.”." = "Nomes que começam por “.” não podem ser usados.";  // FIXME: updated
+"Name can’t begin with “.”." = "Nomes que começam por “.” não podem ser usados.";  // FIXME: updated
 "The name “%@” is already taken." = "O nome “%@” já está sendo usado.";
 
 

@@ -714,7 +714,7 @@
 "Please choose another name." = "请输入其他名称。";
 "Name can’t be empty." = "名称不能为空。";
 "Name can’t contain “/”." = "名称不能含有“/”。";
-"Name can’t begin with a dot “.”." = "名称不能含有“.”。";
+"Name can’t begin with “.”." = "名称不能含有“.”。";
 "The name “%@” is already taken." = "“%@”已经在使用中。";
 
 

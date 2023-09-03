@@ -454,7 +454,7 @@ enum InvalidNameError: LocalizedError {
             case .containSlash:
                 String(localized: "Name can’t contain “/”.")
             case .startWithDot:
-                String(localized: "Name can’t begin with a dot “.”.")
+                String(localized: "Name can’t begin with “.”.")
             case .duplicated(let name):
                 String(localized: "The name “\(name)” is already taken.")
         }
