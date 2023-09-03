@@ -27,24 +27,11 @@ import SwiftUI
 
 struct MultipleReplaceSettingsView: View {
     
-    @StateObject private var options: MultipleReplace.Settings.Object
-    
-    private let completionHandler: (MultipleReplace.Settings) -> Void
+    @State var settings: MultipleReplace.Settings
+    let completionHandler: (MultipleReplace.Settings) -> Void
     
     
     // MARK: View
-    
-    /// Initialize view with given values.
-    ///
-    /// - Parameters:
-    ///   - settings: The current settings use as the initial values.
-    ///   - completionHandler: The callback method to perform when the view was dismissed.
-    init(settings: MultipleReplace.Settings, completionHandler: @escaping (MultipleReplace.Settings) -> Void) {
-        
-        self._options = StateObject(wrappedValue: .init(settings: settings))
-        self.completionHandler = completionHandler
-    }
-    
     
     var body: some View {
         
@@ -57,22 +44,22 @@ struct MultipleReplaceSettingsView: View {
             
             VStack(alignment: .leading, spacing: 14) {
                 FindTextualOptionsView(
-                    matchesFullWord: $options.textMatchesFullWord,
-                    isLiteralSearch: $options.textIsLiteralSearch,
-                    ignoresDiacriticMarks: $options.textIgnoresDiacriticMarks,
-                    ignoresWidth: $options.textIgnoresWidth
+                    matchesFullWord: $settings.matchesFullWord,
+                    isLiteralSearch: $settings.textualOptions.bind(.literal),
+                    ignoresDiacriticMarks: $settings.textualOptions.bind(.diacriticInsensitive),
+                    ignoresWidth: $settings.textualOptions.bind(.widthInsensitive)
                 )
                 
                 FindRegularExpressionOptionsView(
-                    isSingleLine: $options.regexIsSingleline,
-                    isMultiline: $options.regexIsMultiline,
-                    usesUnicodeBoundaries: $options.regexUsesUnicodeBoundaries,
-                    unescapesReplacementString: $options.regexUnescapesReplacementString
+                    isSingleLine: $settings.regexOptions.bind(.dotMatchesLineSeparators),
+                    isMultiline: $settings.regexOptions.bind(.anchorsMatchLines),
+                    usesUnicodeBoundaries: $settings.regexOptions.bind(.useUnicodeWordBoundaries),
+                    unescapesReplacementString: $settings.unescapesReplacementString
                 )
             }
         }
         .onDisappear {
-            self.completionHandler(self.options.settings)
+            self.completionHandler(self.settings)
         }
         .controlSize(.small)
         .fixedSize()

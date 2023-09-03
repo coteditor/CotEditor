@@ -124,8 +124,8 @@
 		2A222C3124FA8E0500251084 /* UserDefaults.Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A222C2F24FA8E0500251084 /* UserDefaults.Publisher.swift */; };
 		2A231A251E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* MultipleReplace+Codable.swift */; };
 		2A231A261E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* MultipleReplace+Codable.swift */; };
-		2A231A281E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift */; };
-		2A231A291E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift */; };
+		2A231A281E7BD82700C2A909 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* Binding.swift */; };
+		2A231A291E7BD82700C2A909 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* Binding.swift */; };
 		2A231A2D1E7BE8B700C2A909 /* FindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */; };
 		2A231A2E1E7BE8B700C2A909 /* FindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */; };
 		2A231A361E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */; };
@@ -928,7 +928,7 @@
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
 		2A222C2F24FA8E0500251084 /* UserDefaults.Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.Publisher.swift; sourceTree = "<group>"; };
 		2A231A241E7B4EDC00C2A909 /* MultipleReplace+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultipleReplace+Codable.swift"; sourceTree = "<group>"; };
-		2A231A271E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultipleReplace.Settings+Object.swift"; sourceTree = "<group>"; };
+		2A231A271E7BD82700C2A909 /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindProgress.swift; sourceTree = "<group>"; };
 		2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceSplitViewController.swift; sourceTree = "<group>"; };
 		2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceListViewController.swift; sourceTree = "<group>"; };
@@ -1468,6 +1468,7 @@
 			children = (
 				2AFD328829482D53000ED1C5 /* Color.swift */,
 				2A8321732980C41600F87D35 /* Image+Status.swift */,
+				2A231A271E7BD82700C2A909 /* Binding.swift */,
 			);
 			name = SwiftUI;
 			sourceTree = "<group>";
@@ -1691,21 +1692,9 @@
 			children = (
 				2A3581971E597ECE00762AA5 /* MultipleReplace.swift */,
 				2A231A241E7B4EDC00C2A909 /* MultipleReplace+Codable.swift */,
-				2A231A271E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift */,
 				2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplace.swift */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		2A231A2B1E7BD93600C2A909 /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				2A6876AA29641547006257A6 /* MultipleReplacePanelController.swift */,
-				2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */,
-				2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */,
-				2ACC5E401E7B08D300109ABC /* MultipleReplaceViewController.swift */,
-			);
-			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		2A2D6C1A1A602D7E002451FF /* Text Finder */ = {
@@ -1743,7 +1732,6 @@
 			children = (
 				2A231A2A1E7BD92F00C2A909 /* Models */,
 				2AF98CAD294C063E009AD47F /* Views */,
-				2A231A2B1E7BD93600C2A909 /* View Controllers */,
 			);
 			name = "Multiple Replace";
 			sourceTree = "<group>";
@@ -2373,6 +2361,10 @@
 		2AF98CAD294C063E009AD47F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2A6876AA29641547006257A6 /* MultipleReplacePanelController.swift */,
+				2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */,
+				2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */,
+				2ACC5E401E7B08D300109ABC /* MultipleReplaceViewController.swift */,
 				2AF98CAE294C0670009AD47F /* MultipleReplaceSettingsView.swift */,
 			);
 			name = Views;
@@ -2822,6 +2814,7 @@
 				2ABF86BE208C3C630082D52B /* AudioToolbox.swift in Sources */,
 				2A1ABCA527F079120054795D /* BidiScroller.swift in Sources */,
 				2A1ABC9B27F056E60054795D /* BidiScrollView.swift in Sources */,
+				2A231A291E7BD82700C2A909 /* Binding.swift in Sources */,
 				2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
 				2A479C831D8C15A600EEEFC2 /* CenteringTextFieldCell.swift in Sources */,
 				2AB1BD24287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift in Sources */,
@@ -2942,7 +2935,6 @@
 				2A1893AB1FFF422D00AD244F /* LineSort.swift in Sources */,
 				2A59B7032957089A0094F03B /* LinkButton.swift in Sources */,
 				2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */,
-				2A231A291E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift in Sources */,
 				2A3581991E597ECE00762AA5 /* MultipleReplace.swift in Sources */,
 				2A231A261E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */,
 				2A231A3A1E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */,
@@ -3176,6 +3168,7 @@
 				2ABF86BD208C3C630082D52B /* AudioToolbox.swift in Sources */,
 				2A1ABCA627F079120054795D /* BidiScroller.swift in Sources */,
 				2A1ABC9C27F056E60054795D /* BidiScrollView.swift in Sources */,
+				2A231A281E7BD82700C2A909 /* Binding.swift in Sources */,
 				2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
 				2A479C821D8C15A600EEEFC2 /* CenteringTextFieldCell.swift in Sources */,
 				2AB1BD25287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift in Sources */,
@@ -3296,7 +3289,6 @@
 				2A1893AA1FFF422D00AD244F /* LineSort.swift in Sources */,
 				2A59B7042957089A0094F03B /* LinkButton.swift in Sources */,
 				2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */,
-				2A231A281E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift in Sources */,
 				2A3581981E597ECE00762AA5 /* MultipleReplace.swift in Sources */,
 				2A231A251E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */,
 				2A231A391E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */,
