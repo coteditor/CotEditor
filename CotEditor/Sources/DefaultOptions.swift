@@ -115,7 +115,7 @@ enum AppearanceMode: Int {
     var symbolName: String {
         
         switch self {
-            case .left: "arrow.letf.to.line"
+            case .left: "arrow.left.to.line"
             case .center: "arrow.right.and.line.vertical.and.arrow.left"
             case .right: "arrow.right.to.line"
         }
