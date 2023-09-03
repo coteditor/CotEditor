@@ -98,7 +98,7 @@ struct FindPanelResultView: View {
             }
             .environment(\.defaultMinListRowHeight, 20)
             .tableStyle(.bordered)
-            .border(.divider, width: 1)
+            .border(Color(nsColor: .gridColor), width: 1)
             .padding(-1)
             .font(.system(size: self.fontSize))
             .onChange(of: self.selected) { newValue in
