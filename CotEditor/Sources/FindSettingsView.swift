@@ -52,8 +52,9 @@ struct FindSettingsView: View {
         VStack {
             Text("Advanced Find Options")
                 .fontWeight(.semibold)
-                .foregroundColor(.secondaryLabel)
-                .padding(.bottom, 2)
+                .foregroundColor(.secondary)
+                .controlSize(.regular)
+                .padding(.bottom, 6)
             
             VStack(alignment: .leading, spacing: 14) {
                 VStack(alignment: .leading, spacing: 6) {
@@ -63,22 +64,27 @@ struct FindSettingsView: View {
                     }
                 }
                 
-                FindTextualOptionsView(matchesFullWord: $settings.findMatchesFullWord,
-                                       isLiteralSearch: $settings.findTextIsLiteralSearch,
-                                       ignoresDiacriticMarks: $settings.findTextIgnoresDiacriticMarks,
-                                       ignoresWidth: $settings.findTextIgnoresWidth)
+                FindTextualOptionsView(
+                    matchesFullWord: $settings.findMatchesFullWord,
+                    isLiteralSearch: $settings.findTextIsLiteralSearch,
+                    ignoresDiacriticMarks: $settings.findTextIgnoresDiacriticMarks,
+                    ignoresWidth: $settings.findTextIgnoresWidth
+                )
                 
-                FindRegularExpressionOptionsView(isSingleLine: $settings.findRegexIsSingleline,
-                                                 isMultiline: $settings.findRegexIsMultiline,
-                                                 usesUnicodeBoundaries: $settings.findRegexUsesUnicodeBoundaries,
-                                                 unescapesReplacementString: $settings.findRegexUnescapesReplacementString)
+                FindRegularExpressionOptionsView(
+                    isSingleLine: $settings.findRegexIsSingleline,
+                    isMultiline: $settings.findRegexIsMultiline,
+                    usesUnicodeBoundaries: $settings.findRegexUsesUnicodeBoundaries,
+                    unescapesReplacementString: $settings.findRegexUnescapesReplacementString
+                )
                 
                 HStack {
                     Spacer()
                     HelpButton(anchor: "howto_find")
                 }
-            }.controlSize(.small)
+            }
         }
+        .controlSize(.small)
         .fixedSize()
         .scenePadding()
     }

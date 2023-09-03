@@ -51,24 +51,30 @@ struct MultipleReplaceSettingsView: View {
         VStack {
             Text("Advanced Find Options")
                 .fontWeight(.semibold)
-                .foregroundColor(.secondaryLabel)
-                .padding(.bottom, 2)
+                .foregroundColor(.secondary)
+                .controlSize(.regular)
+                .padding(.bottom, 6)
             
             VStack(alignment: .leading, spacing: 14) {
-                FindTextualOptionsView(matchesFullWord: $options.textMatchesFullWord,
-                                       isLiteralSearch: $options.textIsLiteralSearch,
-                                       ignoresDiacriticMarks: $options.textIgnoresDiacriticMarks,
-                                       ignoresWidth: $options.textIgnoresWidth)
+                FindTextualOptionsView(
+                    matchesFullWord: $options.textMatchesFullWord,
+                    isLiteralSearch: $options.textIsLiteralSearch,
+                    ignoresDiacriticMarks: $options.textIgnoresDiacriticMarks,
+                    ignoresWidth: $options.textIgnoresWidth
+                )
                 
-                FindRegularExpressionOptionsView(isSingleLine: $options.regexIsSingleline,
-                                                 isMultiline: $options.regexIsMultiline,
-                                                 usesUnicodeBoundaries: $options.regexUsesUnicodeBoundaries,
-                                                 unescapesReplacementString: $options.regexUnescapesReplacementString)
-            }.controlSize(.small)
+                FindRegularExpressionOptionsView(
+                    isSingleLine: $options.regexIsSingleline,
+                    isMultiline: $options.regexIsMultiline,
+                    usesUnicodeBoundaries: $options.regexUsesUnicodeBoundaries,
+                    unescapesReplacementString: $options.regexUnescapesReplacementString
+                )
+            }
         }
         .onDisappear {
             self.completionHandler(self.options.settings)
         }
+        .controlSize(.small)
         .fixedSize()
         .scenePadding()
     }
