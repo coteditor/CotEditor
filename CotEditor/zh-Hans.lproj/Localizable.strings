@@ -418,15 +418,7 @@
 
 
 /* MARK: Touch Bar */
-// Touch bar item labels -Document View
-"Invisibles" = "不可见元素";
-"Indent Guides" = "缩进指示";
-"Wrap Lines" = "换行";
-
-// Touch bar item labels -Text View
-"Shift" = "Shift";
-"Comment" = "注释";
-"Text Size" = "文本尺寸";
+// Touch bar item labels -Text Size
 "Actual Size" = "实际尺寸";
 
 

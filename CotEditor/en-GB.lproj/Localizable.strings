@@ -418,15 +418,7 @@
 
 
 /* MARK: Touch Bar */
-// Touch bar item labels -Document View
-"Invisibles" = "Invisibles";
-"Indent Guides" = "Indent Guides";
-"Wrap Lines" = "Wrap Lines";
-
-// Touch bar item labels -Text View
-"Shift" = "Shift";
-"Comment" = "Comment";
-"Text Size" = "Text Size";
+// Touch bar item labels -Text Size
 "Actual Size" = "Actual Size";
 
 

@@ -63,7 +63,7 @@ extension EditorTextView {
                 let item = NSCustomTouchBarItem(identifier: identifier)
                 let leftImage = NSImage(systemSymbolName: "decrease.indent", accessibilityDescription: String(localized: "Shift Left"))!
                 let rightImage = NSImage(systemSymbolName: "increase.indent", accessibilityDescription: String(localized: "Shift Right"))!
-                item.customizationLabel = String(localized: "Shift", comment: "touch bar item")
+                item.customizationLabel = String(localized: "Indent", comment: "touch bar item")
                 item.view = NSSegmentedControl(images: [leftImage, rightImage],
                                                trackingMode: .momentary,
                                                target: self, action: #selector(shift))
