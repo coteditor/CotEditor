@@ -325,7 +325,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     /// Show the Settings window.
-    @IBAction func showPreferences(_ sender: Any?) {
+    @IBAction func showSettingsWindow(_ sender: Any?) {
         
         self.settingsWindowController.showWindow(sender)
     }
