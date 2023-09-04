@@ -286,7 +286,7 @@ final class SyntaxManager: SettingFileManaging {
     func setting(name: SettingName) -> Setting? {
         
         if name == BundledSyntaxName.none {
-            return Syntax()
+            return Syntax.none
         }
         
         guard let setting: Setting = {

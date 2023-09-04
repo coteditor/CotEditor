@@ -37,6 +37,8 @@ struct Syntax: Equatable {
     
     // MARK: Public Properties
     
+    static let none = Syntax(name: BundledSyntaxName.none, kind: .code)
+    
     var name: String
     var kind: Kind
     var extensions: [String] = []
@@ -56,10 +58,10 @@ struct Syntax: Equatable {
     // MARK: -
     // MARK: Lifecycle
     
-    init() {
+    private init(name: String, kind: Kind) {
         
-        self.name = BundledSyntaxName.none
-        self.kind = .code
+        self.name = name
+        self.kind = kind
     }
     
     
@@ -99,22 +101,20 @@ struct Syntax: Equatable {
             .compactMap { try? OutlineDefinition(dictionary: $0) } ?? []
         
         // create word-completion data set
-        self.completionWords = {
-            if let completionDicts = dictionary[SyntaxKey.completions] as? [[String: Any]], !completionDicts.isEmpty {
-                // create from completion definition
-                return completionDicts
-                    .compactMap { $0[SyntaxDefinitionKey.keyString] as? String }
-                    .filter { !$0.isEmpty }
-                    .sorted()
-            } else {
-                // create from normal highlighting words
-                return self.highlightDefinitions.values.flatMap { $0 }
-                    .filter { $0.endString == nil && !$0.isRegularExpression }
-                    .map { $0.beginString.trimmingCharacters(in: .whitespacesAndNewlines) }
-                    .filter { !$0.isEmpty }
-                    .sorted()
-            }
-        }()
+        self.completionWords = if let completionDicts = dictionary[SyntaxKey.completions] as? [[String: Any]], !completionDicts.isEmpty {
+            // from completion definition
+            completionDicts
+                .compactMap { $0[SyntaxDefinitionKey.keyString] as? String }
+                .filter { !$0.isEmpty }
+                .sorted()
+        } else {
+            // from normal highlighting words
+            self.highlightDefinitions.values.flatMap { $0 }
+                .filter { $0.endString == nil && !$0.isRegularExpression }
+                .map { $0.beginString.trimmingCharacters(in: .whitespacesAndNewlines) }
+                .filter { !$0.isEmpty }
+                .sorted()
+        }
     }
     
     
@@ -192,8 +192,8 @@ extension Syntax.Kind {
     var fontType: FontType {
         
         switch self {
-            case .general: return .standard
-            case .code: return .monospaced
+            case .general: .standard
+            case .code: .monospaced
         }
     }
 }
