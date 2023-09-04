@@ -7,6 +7,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue that documents could not be saved with an unknown file extension.
 - Fix an issue that the Share button in the Touch Bar did not work when the document was replaced with the initial empty document.
 
 

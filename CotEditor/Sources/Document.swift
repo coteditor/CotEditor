@@ -536,6 +536,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         accessoryView.ensureFrameSize()
         savePanel.accessoryView = accessoryView
         
+        // let save panel accept any file extension
+        // -> Otherwise, the file extension for `.allowedContentTypes` is automatically added
+        //    even when the user specifies another one (macOS 14, 2023-09).
+        DispatchQueue.main.async { [weak savePanel] in
+            savePanel?.allowedContentTypes = []
+        }
+        
         return true
     }
     
