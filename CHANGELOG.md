@@ -13,6 +13,11 @@ Change Log
 - [beta] Adjust layout in the syntax editor.
 
 
+### Fixes
+
+- Fix an issue that documents could not be saved with an unknown file extension.
+
+
 
 4.6.0-beta.2 (583)
 --------------------------
