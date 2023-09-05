@@ -25,7 +25,7 @@
 
 import AppKit
 
-protocol CurrentLineHighlighting: NSTextView {
+@MainActor protocol CurrentLineHighlighting: NSTextView {
     
     var needsUpdateLineHighlight: Bool { get set }
     var lineHighLightRects: [NSRect] { get set }

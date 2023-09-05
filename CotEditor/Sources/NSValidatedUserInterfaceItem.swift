@@ -36,7 +36,7 @@ extension NSMenuItem: StatableItem { }
 
 extension NSValidatedUserInterfaceItem {
     
-    var toolTip: String? {
+    @MainActor var toolTip: String? {
         
         get {
             switch self {

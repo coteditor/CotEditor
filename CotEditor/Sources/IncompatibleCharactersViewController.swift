@@ -317,7 +317,7 @@ extension IncompatibleCharacter: KeySortable {
 private extension NSTextStorage {
     
     /// change background color of passed-in ranges
-    func markup(ranges: [NSRange]) {
+    @MainActor func markup(ranges: [NSRange]) {
         
         guard !ranges.isEmpty else { return }
         
@@ -332,7 +332,7 @@ private extension NSTextStorage {
     
     
     /// clear all background highlight (including text finder's highlights)
-    func clearAllMarkup() {
+    @MainActor func clearAllMarkup() {
         
         let range = self.string.nsRange
         

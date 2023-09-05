@@ -25,7 +25,7 @@
 
 import AppKit
 
-protocol MultiCursorEditing: NSTextView {
+@MainActor protocol MultiCursorEditing: NSTextView {
     
     var insertionLocations: [Int] { get set }
     var selectionOrigins: [Int] { get set }

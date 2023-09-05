@@ -548,7 +548,7 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
     }
     
     
-    func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
+    @MainActor func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
         
         switch recoveryOptionIndex {
             case 0:  // == Cancel

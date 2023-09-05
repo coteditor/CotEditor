@@ -454,7 +454,7 @@ private extension PrintInfoType {
 
 private extension AlignmentType {
     
-    static func setup(segmentedControl: NSSegmentedControl) {
+    @MainActor static func setup(segmentedControl: NSSegmentedControl) {
         
         for type in self.allCases {
             segmentedControl.setToolTip(type.help, forSegment: type.rawValue)
