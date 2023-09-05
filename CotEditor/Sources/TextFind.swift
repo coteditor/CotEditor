@@ -299,11 +299,11 @@ struct TextFind {
                 default:
                     var offset = 0
                     self.enumerateMatches(in: scopeRange) { (matchedRange, match, stop) in
-                        let replacedString: String = {
-                            guard let match, let regex = match.regularExpression else { return replacementString }
-                            
-                            return regex.replacementString(for: match, in: self.string, offset: 0, template: replacementString)
-                        }()
+                        let replacedString: String = if let match, let regex = match.regularExpression {
+                            regex.replacementString(for: match, in: self.string, offset: 0, template: replacementString)
+                        } else {
+                            replacementString
+                        }
                         
                         let localRange = matchedRange.shifted(by: -scopeRange.location - offset)
                         scopeString.replaceCharacters(in: localRange, with: replacedString)

@@ -98,17 +98,16 @@ extension InvisibleDrawing {
             if let cache = pathCache[codeUnit] {
                 path = cache
             } else {
-                let glyphWidth: CGFloat
-                switch invisible {
+                let glyphWidth: CGFloat = switch invisible {
                     case .newLine:
-                        glyphWidth = 0
+                        0
                     case .otherControl:
                         // for non-zeroAdvancement controls, such as VERTICAL TABULATION
-                        glyphWidth = self.boundingBoxForControlGlyph(for: self.textFont).width
+                        self.boundingBoxForControlGlyph(for: self.textFont).width
                     default:
                         // -> Avoid invoking `.enclosingRectForGlyph(at:in:)` as much as possible
                         //    that takes long time with long unwrapped lines.
-                        glyphWidth = (lineFragmentRange.contains(glyphIndex + 1) && !isRTL)
+                        (lineFragmentRange.contains(glyphIndex + 1) && !isRTL)
                             ? self.location(forGlyphAt: glyphIndex + 1).x - glyphLocation.x
                             : self.enclosingRectForGlyph(at: glyphIndex, in: textContainer).width
                 }
@@ -122,6 +121,7 @@ extension InvisibleDrawing {
                 }
             }
             let isInvalid = self.isInvalidInvisible(invisible, at: charIndex)
+            
             if isInvalid {
                 NSColor.systemRed.set()
             }
@@ -206,7 +206,7 @@ extension InvisibleDrawing {
 
 private extension Invisible {
     
-    /// Return the path to draw as alternative symbol.
+    /// Return the path to draw an alternative symbol.
     ///
     /// - Parameters:
     ///   - size: The size of bounding box.

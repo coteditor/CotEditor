@@ -50,7 +50,7 @@ final class LineNumberView: NSView {
             self.wrappedMarkGlyph = font.glyph(for: "-")
             self.digitGlyphs = (0...9).map { font.glyph(for: Character(String($0))) }
             
-            // calculate character width assuming the font is monospace
+            // calculate character width by assuming the font is monospace
             self.charWidth = font.advance(for: self.digitGlyphs[8]).width  // use '8' to get width
             
             // calculate margins

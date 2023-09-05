@@ -721,7 +721,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // check whether the document content is really modified
         // -> Avoid using NSFileCoordinator although the document recommends
-        //    because it cause deadlock when the document in the iCloud Document remotely modified.
+        //    because it causes deadlock when the document in the iCloud Document remotely modified.
         //    (2022-08 on macOS 12.5, Xcode 14, #1296)
         fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
         let data: Data
@@ -730,7 +730,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             let contentModificationDate = try fileURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate  // FILE_ACCESS
             guard contentModificationDate != self.fileModificationDate else { return }
             
-            // check if file contents was changed from the stored file data
+            // check if the file content was changed from the stored file data
             data = try Data(contentsOf: fileURL, options: [.mappedIfSafe])  // FILE_ACCESS
         } catch {
             return assertionFailure(error.localizedDescription)

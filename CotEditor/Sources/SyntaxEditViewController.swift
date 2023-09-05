@@ -27,7 +27,7 @@
 import AppKit
 import SwiftUI
 
-final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate {
+final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate, NSTableViewDataSource {
     
     // MARK: Private Properties
     
@@ -36,7 +36,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     private let validator: SyntaxValidator
     @objc private let isBundledSyntax: Bool
     
-    @objc private dynamic var menuTitles: [String] = []  // for binding
+    private var menuTitles: [String] = []
     @objc private dynamic var message: String?
     
     private var tabViewController: NSTabViewController?
@@ -144,9 +144,22 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     }
     
     
+    // NSTableViewDataSource  < menuTableView
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        
+        self.menuTitles.count
+    }
+    
+    
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        
+        self.menuTitles[safe: row]
+    }
+    
+    
     // NSTableViewDelegate  < menuTableView
     
-    /// side menu tableView selection did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         guard let tableView = notification.object as? NSTableView else { return assertionFailure() }
@@ -157,7 +170,6 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     }
     
     
-    /// return if menu item is selectable
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         
         // separator cannot be selected

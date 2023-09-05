@@ -98,12 +98,9 @@ private extension HUDView.Symbol {
     var systemName: String {
         
         switch self {
-            case .wrap:
-                "arrow.triangle.capsulepath"
-            case .reachTop:
-                "arrow.up.to.line"
-            case .reachBottom:
-                "arrow.down.to.line"
+            case .wrap: "arrow.triangle.capsulepath"
+            case .reachTop: "arrow.up.to.line"
+            case .reachBottom: "arrow.down.to.line"
         }
     }
     

@@ -267,15 +267,13 @@ extension EditorTextView {
         
         // calculate original selected range by taking additional word separators into consideration
         let newCursor = self.textStorage!.nextWord(from: cursor, forward: !isLeft, delimiters: .additionalWordSeparators)
-        let newRange: NSRange = {
-            if (newCursor < origin && origin < cursor) || (cursor < origin && origin < newCursor) {
-                return NSRange(origin..<origin)
-            } else if origin < newCursor {
-                return NSRange(origin..<newCursor)
-            } else {
-                return NSRange(newCursor..<origin)
-            }
-        }()
+        let newRange: NSRange = if (newCursor < origin && origin < cursor) || (cursor < origin && origin < newCursor) {
+            NSRange(origin..<origin)
+        } else if origin < newCursor {
+            NSRange(origin..<newCursor)
+        } else {
+            NSRange(newCursor..<origin)
+        }
         
         // manipulate only when the difference stemmed from the additional word boundaries
         let superCursor = isLowerOrigin ? superRange.upperBound : superRange.lowerBound

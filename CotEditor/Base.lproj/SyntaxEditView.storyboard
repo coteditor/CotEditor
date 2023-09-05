@@ -181,7 +181,7 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
-                                                <binding destination="GFH-ie-6ky" name="content" keyPath="arrangedObjects" id="nud-12-fNA"/>
+                                                <outlet property="dataSource" destination="8Mx-zQ-ItP" id="8bt-Ez-kCm"/>
                                                 <outlet property="delegate" destination="8Mx-zQ-ItP" id="1lQ-CV-RUI"/>
                                             </connections>
                                         </tableView>
@@ -379,12 +379,6 @@ DQ
                     </connections>
                 </viewController>
                 <customObject id="6nz-MY-aFy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController objectClassName="NSString" id="GFH-ie-6ky">
-                    <classReference key="objectClass" className="NSString"/>
-                    <connections>
-                        <binding destination="8Mx-zQ-ItP" name="contentArray" keyPath="menuTitles" id="Iyc-Af-9ek"/>
-                    </connections>
-                </arrayController>
             </objects>
             <point key="canvasLocation" x="270" y="-199"/>
         </scene>

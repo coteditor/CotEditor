@@ -246,12 +246,12 @@ extension Data {
         guard
             let cfEncoding: CFStringEncoding = {
                 if let cfEncodingNumber = components[safe: 1] {
-                    return UInt32(cfEncodingNumber)
+                    UInt32(cfEncodingNumber)
+                } else if let ianaCharSetName = components[safe: 0] {
+                    CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
+                } else {
+                    nil
                 }
-                if let ianaCharSetName = components[safe: 0] {
-                    return CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
-                }
-                return nil
             }(),
             cfEncoding != kCFStringEncodingInvalidId
         else { return nil }
