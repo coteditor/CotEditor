@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="KjS-UJ-AjC">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="KjS-UJ-AjC">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22146"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -95,15 +95,11 @@
                                 </connections>
                             </button>
                             <popUpButton horizontalHuggingPriority="751" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uo6-wO-fJZ" customClass="OutlinePopUpButton" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="57" y="-1" width="96" height="21"/>
-                                <popUpButtonCell key="cell" type="smallSquare" title="&lt;Outline Item&gt;" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="fgm-Hv-H3C" id="Noe-z9-zXZ" customClass="OutlinePopUpButtonCell" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="57" y="-1" width="37" height="21"/>
+                                <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="Noe-z9-zXZ" customClass="OutlinePopUpButtonCell" customModule="CotEditor" customModuleProvider="target">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
-                                    <menu key="menu" id="EeX-Bi-kba">
-                                        <items>
-                                            <menuItem title="&lt;Outline Item&gt;" state="on" id="fgm-Hv-H3C"/>
-                                        </items>
-                                    </menu>
+                                    <menu key="menu" id="EeX-Bi-kba"/>
                                 </popUpButtonCell>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="7hJ-QZ-5Wd"/>
@@ -118,7 +114,7 @@
                                 </connections>
                             </popUpButton>
                             <textField hidden="YES" wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-vI-TEc">
-                                <rect key="frame" x="68" y="2" width="87" height="14"/>
+                                <rect key="frame" x="68" y="2" width="107" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Extracting Outline…" id="aUE-uy-XLQ">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -144,7 +140,7 @@
                             <constraint firstItem="uo6-wO-fJZ" firstAttribute="leading" secondItem="MlW-Dz-FOk" secondAttribute="trailing" id="GA9-bT-tVf"/>
                             <constraint firstItem="BUj-TD-scp" firstAttribute="leading" secondItem="FJH-xr-Bxo" secondAttribute="trailing" constant="4" id="JTE-zW-r6R"/>
                             <constraint firstItem="feF-Kd-UKM" firstAttribute="bottom" secondItem="Bmo-XE-CCn" secondAttribute="bottom" constant="-1" id="Kke-Sl-ibg"/>
-                            <constraint firstItem="Svt-vI-TEc" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="uo6-wO-fJZ" secondAttribute="trailing" id="OdJ-nd-QK4"/>
+                            <constraint firstItem="syK-XU-x2I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Svt-vI-TEc" secondAttribute="trailing" constant="8" symbolic="YES" id="MTu-Pf-9wL"/>
                             <constraint firstItem="uo6-wO-fJZ" firstAttribute="top" secondItem="feF-Kd-UKM" secondAttribute="top" id="Pdl-aM-DT9"/>
                             <constraint firstItem="feF-Kd-UKM" firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" constant="1" id="YT4-Oj-3Yn"/>
                             <constraint firstItem="Bmo-XE-CCn" firstAttribute="top" secondItem="feF-Kd-UKM" secondAttribute="top" id="lnf-XI-Uu9"/>
