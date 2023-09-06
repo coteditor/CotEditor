@@ -140,7 +140,7 @@ final class StringCommentingTests: XCTestCase {
     
     // MARK: TextView extension Tests
     
-    func testTextViewInlineComment() {
+    @MainActor func testTextViewInlineComment() {
         
         let textView = CommentingTextView()
         
@@ -166,7 +166,7 @@ final class StringCommentingTests: XCTestCase {
     }
     
     
-    func testTextViewBlockComment() {
+    @MainActor func testTextViewBlockComment() {
         
         let textView = CommentingTextView()
         
@@ -192,7 +192,7 @@ final class StringCommentingTests: XCTestCase {
     }
     
     
-    func testIncompatibility() {
+    @MainActor func testIncompatibility() {
         
         let textView = CommentingTextView()
         

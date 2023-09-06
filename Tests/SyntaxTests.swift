@@ -91,9 +91,10 @@ final class SyntaxTests: XCTestCase {
     
     func testNoneSyntax() {
         
-        let syntax = Syntax()
+        let syntax = Syntax.none
         
         XCTAssertEqual(syntax.name, "None")
+        XCTAssertEqual(syntax.kind, .code)
         XCTAssert(syntax.highlightParser.isEmpty)
         XCTAssertNil(syntax.inlineCommentDelimiter)
         XCTAssertNil(syntax.blockCommentDelimiters)
