@@ -1593,7 +1593,7 @@
 				2A938ACB297E4BA9007FBE5F /* SettingsPane.swift */,
 				2A149DC619018F9200A9D6EF /* Panes */,
 				2A2E03481A4BF820006ABE9F /* Snippets Pane */,
-				2A2E03471A4BF808006ABE9F /* Syntax Edit Sheet */,
+				2A2E03471A4BF808006ABE9F /* Syntax Editor */,
 				2A91C3231D1C5840007CF8BE /* Other Views */,
 			);
 			name = "Settings Window";
@@ -1697,7 +1697,7 @@
 			name = "Text Finder";
 			sourceTree = "<group>";
 		};
-		2A2E03471A4BF808006ABE9F /* Syntax Edit Sheet */ = {
+		2A2E03471A4BF808006ABE9F /* Syntax Editor */ = {
 			isa = PBXGroup;
 			children = (
 				2A33D0831D1C7B46005977B9 /* SyntaxEditViewController.swift */,
@@ -1706,7 +1706,7 @@
 				2A33D07D1D1C75B8005977B9 /* SyntaxValidationView.swift */,
 				2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */,
 			);
-			name = "Syntax Edit Sheet";
+			name = "Syntax Editor";
 			sourceTree = "<group>";
 		};
 		2A2E03481A4BF820006ABE9F /* Snippets Pane */ = {
