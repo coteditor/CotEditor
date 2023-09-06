@@ -71,12 +71,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private lazy var printPanelAccessoryController: PrintPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory").instantiateInitialController()!
     
     private var readingEncoding: String.Encoding?  // encoding to read document file
-    private var suppressesInconsistentLineEndingAlert = false
-    private var isExternalUpdateAlertShown = false
     private var fileData: Data?
     private var shouldSaveEncodingXattr = true
     private var isExecutable = false
     private let saveOptions = SaveOptions()
+    private var suppressesInconsistentLineEndingAlert = false
+    private var isExternalUpdateAlertShown = false
     
     private var syntaxUpdateObserver: AnyCancellable?
     private var textStorageObserver: AnyCancellable?
@@ -979,29 +979,20 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard fileEncoding != self.fileEncoding else { return }
         
+        // change encoding immediately if there is nothing to worry about
+        if self.fileURL == nil || self.textStorage.string.isEmpty || fileEncoding.encoding == .utf8 {
+            // -> Lossy change must success.
+            return try! self.changeEncoding(to: fileEncoding, lossy: false)
+        }
+        
         // change encoding interactively
         self.performActivity(withSynchronousWaiting: true) { [unowned self] (activityCompletionHandler) in
-            
             let completionHandler = { [weak self] (didChange: Bool) in
                 if !didChange, let self {
-                    // reset status bar selection for in case if the operation was invoked from the popup button in the bar
-                    let originalEncoding = self.fileEncoding
-                    self.fileEncoding = originalEncoding
+                    // reset status bar selection for in case when the operation was invoked from the popup button in the status bar
+                    self.fileEncoding = self.fileEncoding
                 }
                 activityCompletionHandler()
-            }
-            
-            // change encoding immediately if there is nothing to worry about
-            if self.fileURL == nil ||
-                self.textStorage.string.isEmpty ||
-                (fileEncoding.encoding == .utf8 && self.fileEncoding.encoding == .utf8) {
-                do {
-                    try self.changeEncoding(to: fileEncoding, lossy: false)
-                    completionHandler(true)
-                } catch {
-                    self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
-                }
-                return
             }
             
             // ask whether just change the encoding or reinterpret document file
@@ -1025,7 +1016,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                         }
                         
                     case .alertSecondButtonReturn:  // = Reinterpret
-                        // ask user if document is edited
+                        // ask whether discard unsaved changes
                         if self.isDocumentEdited {
                             let alert = NSAlert()
                             alert.messageText = String(localized: "The document has unsaved changes.")
@@ -1035,7 +1026,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                             alert.addButton(withTitle: String(localized: "Discard Changes"))
                             alert.buttons.last?.hasDestructiveAction = true
                             
-                            documentWindow.attachedSheet?.orderOut(self)  // close previous sheet
                             let returnCode = await alert.beginSheetModal(for: documentWindow)
                             
                             guard returnCode == .alertSecondButtonReturn else {  // = Discard Changes
@@ -1206,6 +1196,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
             self.isExternalUpdateAlertShown = true
             
+            guard let documentWindow = self.windowForSheet else {
+                activityCompletionHandler()
+                assertionFailure()
+                return
+            }
+            
             let alert = NSAlert()
             alert.messageText = self.isDocumentEdited
                 ? String(localized: "The file has been changed by another application. There are also unsaved changes in CotEditor.")
@@ -1215,11 +1211,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             alert.addButton(withTitle: String(localized: "Update"))
             
             // mark the alert as critical in order to interrupt other sheets already attached
-            guard let documentWindow = self.windowForSheet else {
-                activityCompletionHandler()
-                assertionFailure()
-                return
-            }
             if documentWindow.attachedSheet != nil {
                 alert.alertStyle = .critical
             }
@@ -1236,7 +1227,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// Revert receiver with current document file without asking to user before.
+    /// Revert receiver with current document file without asking to the user in advance.
     @MainActor private func revertWithoutAsking() {
         
         guard
