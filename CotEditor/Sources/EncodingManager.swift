@@ -27,7 +27,7 @@
 import AppKit
 import Combine
 
-@objc protocol EncodingHolder: AnyObject {
+@objc protocol EncodingChanging: AnyObject {
     
     func changeEncoding(_ sender: NSMenuItem)
 }
@@ -124,7 +124,7 @@ final class EncodingManager {
             fileEncodings.insert(FileEncoding(encoding: .utf8, withUTF8BOM: true), at: index + 1)
         }
         
-        let action = #selector((any EncodingHolder).changeEncoding)
+        let action = #selector((any EncodingChanging).changeEncoding)
         
         menu.items.removeAll { $0.action == action }
         menu.items += fileEncodings.map { encoding in

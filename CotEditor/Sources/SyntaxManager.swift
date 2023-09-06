@@ -30,7 +30,7 @@ import AppKit.NSMenuItem
 import UniformTypeIdentifiers
 import Yams
 
-@objc protocol SyntaxHolder: AnyObject {
+@objc protocol SyntaxChanging: AnyObject {
     
     func changeSyntax(_ sender: NSMenuItem)
     func recolorAll(_ sender: Any?)

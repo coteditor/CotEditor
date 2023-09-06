@@ -133,15 +133,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         SyntaxManager.shared.$settingNames
-            .map { $0.map { NSMenuItem(title: $0, action: #selector((any SyntaxHolder).changeSyntax), keyEquivalent: "") } }
+            .map { $0.map { NSMenuItem(title: $0, action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "") } }
             .receive(on: RunLoop.main)
             .sink { [weak self] (items) in
                 guard let menu = self?.syntaxesMenu else { return }
                 
-                let recolorItem = menu.items.first { $0.action == #selector((any SyntaxHolder).recolorAll) }
+                let recolorItem = menu.items.first { $0.action == #selector((any SyntaxChanging).recolorAll) }
                 
                 menu.removeAllItems()
-                menu.addItem(withTitle: BundledSyntaxName.none, action: #selector((any SyntaxHolder).changeSyntax), keyEquivalent: "")
+                menu.addItem(withTitle: BundledSyntaxName.none, action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
                 menu.addItem(.separator())
                 menu.items += items
                 menu.addItem(.separator())
@@ -150,7 +150,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .store(in: &self.menuUpdateObservers)
         
         ThemeManager.shared.$settingNames
-            .map { $0.map { NSMenuItem(title: $0, action: #selector((any ThemeHolder).changeTheme), keyEquivalent: "") } }
+            .map { $0.map { NSMenuItem(title: $0, action: #selector((any ThemeChanging).changeTheme), keyEquivalent: "") } }
             .receive(on: RunLoop.main)
             .assign(to: \.items, on: self.themesMenu!)
             .store(in: &self.menuUpdateObservers)

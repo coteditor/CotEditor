@@ -235,9 +235,9 @@ final class KeyBindingManager: SettingManaging {
         
         // specific actions
         switch menuItem.action {
-            case #selector((any EncodingHolder).changeEncoding),
-                 #selector((any SyntaxHolder).changeSyntax),
-                 #selector((any ThemeHolder).changeTheme),
+            case #selector((any EncodingChanging).changeEncoding),
+                 #selector((any SyntaxChanging).changeSyntax),
+                 #selector((any ThemeChanging).changeTheme),
                  #selector(Document.changeLineEnding(_:)),
                  #selector(DocumentViewController.changeTabWidth),
                  #selector((any SnippetInsertable).insertSnippet),

@@ -30,7 +30,7 @@ import Combine
 import SwiftUI
 import UniformTypeIdentifiers
 
-final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, EncodingHolder {
+final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, EncodingChanging {
     
     // MARK: Private Properties
     

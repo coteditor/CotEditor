@@ -29,7 +29,7 @@ import Combine
 import SwiftUI
 import UniformTypeIdentifiers
 
-final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
+final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging {
     
     // MARK: Enums
     
