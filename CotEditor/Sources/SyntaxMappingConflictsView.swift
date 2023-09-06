@@ -72,13 +72,13 @@ struct SyntaxMappingConflictsView: View {
                 .controlSize(.small)
             
             if !self.extensionConflicts.isEmpty {
-                self.listView("Extension", conflicts: self.extensionConflicts)
+                ConflictTable("Extension", conflicts: self.extensionConflicts)
             }
             if !self.filenameConflicts.isEmpty {
-                self.listView("Filename", conflicts: self.filenameConflicts)
+                ConflictTable("Filename", conflicts: self.filenameConflicts)
             }
             if !self.interpreterConflicts.isEmpty {
-                self.listView("Interpreter", conflicts: self.interpreterConflicts)
+                ConflictTable("Interpreter", conflicts: self.interpreterConflicts)
             }
             
             HStack {
@@ -95,23 +95,45 @@ struct SyntaxMappingConflictsView: View {
         .scenePadding()
         .frame(width: 400, height: 500, alignment: .trailing)
     }
+}
+
+
+private struct ConflictTable: View {
+    
+    let name: LocalizedStringKey
+    @State var conflicts: [FileMappingConflict] = []
+    
+    @State private var sortOrder = [KeyPathComparator(\FileMappingConflict.name)]
     
     
-    @ViewBuilder private func listView(_ name: LocalizedStringKey, conflicts: [FileMappingConflict]) -> some View {
+    init(_ name: LocalizedStringKey, conflicts: [FileMappingConflict]) {
+        
+        self.name = name
+        self._conflicts = .init(wrappedValue: conflicts)
+    }
+    
+    var body: some View {
         
         Section {
-            Table(conflicts) {
-                TableColumn(name, value: \.name)
-                TableColumn("Used syntax") { Text($0.primarySyntax).fontWeight(.semibold) }
-                TableColumn("Duplicated syntaxes") { Text($0.duplicatedSyntaxes.joined(separator: " ,")) }
-            }.tableStyle(.bordered)
+            Table(self.conflicts, sortOrder: $sortOrder) {
+                TableColumn(self.name, value: \.name)
+                TableColumn("Used syntax", value: \.primarySyntax) {
+                    Text($0.primarySyntax).fontWeight(.semibold)
+                }
+                TableColumn("Duplicated syntaxes") {
+                    Text($0.duplicatedSyntaxes, format: .list(type: .and, width: .narrow))
+                }
+            }
+            .onChange(of: self.sortOrder) { newOrder in
+                self.conflicts.sort(using: newOrder)
+            }
+            .tableStyle(.bordered)
             
         } header: {
-            Text(name).fontWeight(.medium)
+            Text(self.name).fontWeight(.medium)
         }
     }
 }
-
 
 
 // MARK: - Preview
@@ -119,6 +141,6 @@ struct SyntaxMappingConflictsView: View {
 #Preview {
     SyntaxMappingConflictsView(dictionary: [
         .extensions: ["svg": ["SVG", "XML"]],
-        .filenames: ["foo": ["SVG", "XML"]],
+        .filenames: ["foo": ["SVG", "XML", "Foo"]],
     ])
 }
