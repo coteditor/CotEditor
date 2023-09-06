@@ -162,7 +162,7 @@ final actor EditorCounter {
         
         if self.requiredInfo.contains(.unicode) {
             result.unicode = (selectedStrings[0].compareCount(with: 1) == .equal)
-                ? selectedStrings[0].first?.unicodeScalars.map(\.codePoint).joined(separator: ", ")
+                ? selectedStrings[0].first?.unicodeScalars.map(\.codePoint).formatted(.list(type: .and, width: .narrow))
                 : nil
         }
         

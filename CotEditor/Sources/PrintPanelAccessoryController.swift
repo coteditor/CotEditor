@@ -170,7 +170,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         
         var items: [[NSPrintPanel.AccessorySummaryKey: String]] = [
             [.itemName: String(localized: "Font Size"),
-             .itemDescription: String(localized: "\(Double(self.fontSize).formatted(.number.precision(.fractionLength(0...1)))) pt")],
+             .itemDescription: String(localized: "\(self.fontSize, format: .number.precision(.fractionLength(0...1))) pt")],
             [.itemName: String(localized: "Color"),
              .itemDescription: self.theme],
         ]
