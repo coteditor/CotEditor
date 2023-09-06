@@ -67,7 +67,7 @@
 /* Class = "NSButtonCell"; title = "Ignore case"; ObjectID = "Lr8-mD-svg"; */
 "Lr8-mD-svg.title" = "大文字/小文字を無視";
 /* Class = "NSButtonCell"; title = "Use captured group:"; ObjectID = "eys-fy-HVq"; */
-"eys-fy-HVq.title" = "捕獲されたグループを使用:";
+"eys-fy-HVq.title" = "キャプチャされたグループを使用:";
 
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "Lw7-xg-639"; */
