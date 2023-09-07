@@ -15,7 +15,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that documents could not be saved with an unknown file extension.
+- Fix an issue that a known file extension was automatically added when a document is going to be saved with an unknown file extension.
 
 
 
