@@ -111,7 +111,8 @@ struct RegularExpressionReferenceView: View {
             Text("The syntax conforms to the \(icuLink) specifications.",
                  comment: "%@ is the name of the regex engine (ICU Regular Expressions)")
                 .font(.footnote)
-                .foregroundColor(.secondaryLabel)
+                .foregroundColor(.secondary)
+                .tint(.accent)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .multilineTextAlignment(.leading)
         }
