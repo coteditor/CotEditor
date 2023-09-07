@@ -17,7 +17,7 @@
 <p>From Sort by Pattern command in the Text &gt; Lines menu, you can sort selected lines by specifying the way to compare.</p>
 
 
-<p>The simple Sort command in the Text &gt; Lines menu is the same as sorting “Entire line” with “Ignore case” and “Respect language rules” options on.</p>
+<p>The normal Sort command in the Text &gt; Lines menu is the same as sorting “Entire line” with “Ignore case” and “Respect language rules” options on.</p>
 
 
 <section>
@@ -31,28 +31,33 @@
 <p>Specify the part in lines to compare on sort.</p>
 
 <dl>
+	<dt>Entire line</dt>
+	<dd>Compare entire lines.</dd>
+	
 	<dt>Column</dt>
 	<dd>Treat lines as CSV (character-separated values) format and use the specific column for comparison. Whitespace around the separator will just be ignored.</dd>
-	<dd><dl>
-		<dt>Delimiter</dt>
-		<dd>The character separating each column. You can use escape sequences such as <code>\t</code> for the tabular character. A comma will be used when this field is blank.</dd>
-		<dt>Position</dt>
-		<dd>The number of the column to use as the sort key. The column count starts at 1.</dd>
-	</dl></dd>
+	<dd><table>
+		<thead>
+			<tr><th>Option</th><th>Description</th></tr>
+		</thead>
+		<tbody>
+			<tr><td>Delimiter</td><td>The character separating each column. You can use escape sequences such as <code>\t</code> for the tabular character. A comma will be used when this field is blank.</dd>
+			<tr><td>Position</td><td>The number of the column to use as the sort key. The column count starts at 1.</td></tr>
+		</tbody>
+	</table></dd>
 
 	<dt>Regular expression</dt>
 	<dd>Specify the part to compare with the regular expression.</dd>
-	<dd><dl>
-		<dt>Pattern</dt>
-		<dd>The regular expression pattern to extract the part to compare.</dd>
-		<dt>Ignore case</dt>
-		<dd>Whether ignore the character case by extracting the regular expression pattern. This option will be used only for the sort key extraction. To set case-insensitive state for the sort phase, set in the sort option bellow.</dd>
-		<dt>Use captured group</dt>
-		<dd>The part in matches to use as the sort key. The entire match will be used when this checkbox is turned off.</dd>
-	</dl></dd>
-
-	<dt>Entire line</dt>
-	<dd>Compare entire lines.</dd>
+	<dd><table>
+		<thead>
+			<tr><th>Option</th><th>Description</th></tr>
+		</thead>
+		<tbody>
+			<tr><td>Pattern</td><td>The regular expression pattern to extract the part to compare.</dd>
+			<tr><td>Ignore case</td><td>Whether ignore the character case by extracting the regular expression pattern. This option will be used only for the sort key extraction. To set case-insensitive state for the sort phase, set in the sort option bellow.</td></tr>
+			<tr><td>Use captured group</td><td>The part in matches to use as the sort key. The entire match will be used when this checkbox is turned off.</td></tr>
+		</tbody>
+	</table></dd>
 </dl>
 </section>
 
