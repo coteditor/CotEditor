@@ -244,6 +244,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             textView.replace(with: String(character), range: textView.rangeForUserTextChange, selectedRange: nil)
         }
         let viewController = NSHostingController(rootView: view)
+        viewController.view.frame.size = viewController.view.intrinsicContentSize
         
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -1, dy: -1) ?? .zero
         let edge: NSRectEdge = (textView.layoutOrientation == .vertical) ? .maxX : .minY
@@ -284,6 +285,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         let characterInfo = CharacterInfo(character: character)
         let popoverController = DetachablePopoverViewController()
         popoverController.view = NSHostingView(rootView: CharacterInspectorView(info: characterInfo))
+        popoverController.view.frame.size = popoverController.view.intrinsicContentSize
         
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -4, dy: -4) ?? .zero
         

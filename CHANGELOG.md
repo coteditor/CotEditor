@@ -16,6 +16,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that a known file extension was automatically added when a document is going to be saved with an unknown file extension.
+- [beta] Fix the location to display popovers.
 
 
 
