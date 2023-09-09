@@ -11,6 +11,7 @@ Change Log
 - [beta] Adjust layout in the Settings window.
 - [beta] Adjust layout in the print dialog.
 - [beta] Adjust layout in the syntax editor.
+- [beta] Update help contents.
 
 
 ### Fixes

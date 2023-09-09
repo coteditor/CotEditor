@@ -109,6 +109,10 @@ p, li {
 	text-align: justify;
 }
 
+figure {
+	margin: 0;
+}
+
 ol,
 ul,
 pre {
@@ -205,7 +209,7 @@ em, strong {
 }
 
 img.bordered {
-	border: 0.5px solid -apple-system-secondary-label;
+	border: 0.5px solid -apple-system-tertiary-label;
 	border-radius: 3px;
 }
 
@@ -328,7 +332,7 @@ table.settings td ul {
 	padding-left: 1.5em;
 }
 table.settings td ul li strong {
-	font-weight: 500;
+	font-weight: 400;
 	font-style: italic;
 }
 table.settings td ul li strong:lang(ja) {
