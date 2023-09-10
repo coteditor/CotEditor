@@ -12,11 +12,11 @@ Change Log
 - [beta] Adjust layout in the print dialog.
 - [beta] Adjust layout in the syntax editor.
 - [beta] Update help contents.
+- [beta] Port changes in CotEditor 4.5.9.
 
 
 ### Fixes
 
-- Fix an issue that a known file extension was automatically added when a document is going to be saved with an unknown file extension.
 - [beta] Fix the location to display popovers.
 
 
@@ -85,6 +85,16 @@ Change Log
 ### Known Issues
 
 - User interface is not localized yet.
+
+
+
+4.5.9 (575)
+--------------------------
+
+### Fixes
+
+- Fix an issue that documents could not be saved with an unknown file extension.
+- Fix an issue that the Share button in the Touch Bar did not work when the document was replaced with the initial empty document.
 
 
 
