@@ -14,9 +14,16 @@
 
 <h1>Define syntax highlighting in CotEditor</h1>
 
-<h2>Types of syntax highlighting</h2>
+<p>Syntax highlighting is the feature to color words in a document depending on specific rules. A typical use is to colorize programming source code according to the grammatical function of terms, such as commands or variables, to make the structure of the program easier to understand. Other uses are coloring headings in structured languages such as Markdown, making certain characters that should not be used stand out, and many other uses depending on the type of document.</p>
 
-<p>The code elements that CotEditor’s syntax coloring uses are as follows:</p>
+<p>In CotEditor, a syntax rules the semantic meaning of the syntax highlighting, and the color scheme used in the actual highlighting is defined as a <a href="howto_customize_theme.html">theme</a>.</p>
+
+<p>To define highlighting rules for a syntax, select a syntax element to add highlighting condition from the list on the left of the syntax editor, then add conditions to the list on the right side. See <a href="syntax_definition.html">Define a syntax</a> for how to open the syntax editor.</p>
+
+
+<h2>Elements of syntax highlighting</h2>
+
+<p>CotEditor predefines the types of elements for the syntax highlighting already for the theme. They are:</p>
 
 <table>
 	<thead>
@@ -66,11 +73,13 @@
 	</tbody>
 </table>
 
-<p>CotEditor colors the code elements in the following order: 1) keywords, 2) commands, 3) types, 4) attributes, 5) variables, 6) values, 7) numbers, 8) strings, 9) characters, 10) comments. When your document contains an item to be colored that matches multiple categories (for example, keywords and commands), the color of the latter in the order will overwrite the former’s.</p>
+<p>CotEditor colors the elements from the top to the bottom: like Keywords, Commands, Types, and so on. When the document contains an item matching multiple categories (for example, keywords and commands), the color of the latter in the order will overwrite the former’s. The name of each element is just for reference and thus can actually apply also to other grammatical uses.</p>
 
 
 
 <h2>Customize syntax highlighting</h2>
+
+<p>To define the way to highlight, register either a specific string, a pair of the start and end strings, or a regular expression pattern as a highlighting condition for each highlighting element.</p>
 
 <p>Syntax coloring rules are determined by the following settings:</p>
 
@@ -87,11 +96,16 @@
 	</tbody>
 </table>
 
+<p>By defining conditions:</p>
 <ul>
-	<li>A definition whose Begin-string is blank will be ignored.</li>
-	<li>A definition whose End-string is blank and RE is turned off will be used for defining the completion list as well.</li>
-	<li>The RE setting affects both Begin-string and End-string, which means they should be written in the regular expression or plain form both together.</li>
+	<li>A condition whose begin string is blank will be ignored.</li>
+	<li>The RE setting affects both the begin and end strings, which means they should be written in the regular expression or plain form both together.</li>
 </ul>
+
+
+<h2>Completion candidates</h2>
+
+<p>A condition whose end string is blank and RE is turned off will be used for defining the completion list as well.</p>
 
 
 <section id="cf">

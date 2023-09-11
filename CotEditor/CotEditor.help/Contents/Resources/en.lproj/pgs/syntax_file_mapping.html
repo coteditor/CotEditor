@@ -18,6 +18,7 @@
 
 <p>The File Mapping definitions in each syntax are used for this detection.</p>
 
+
 <h2>Priority order of file mapping</h2>
 
 <p>CotEditor detects the corresponding syntax in the following order:</p>
@@ -50,9 +51,15 @@
 
 <p>When there are multiple syntaxes in the same level like the filename extension level or the filename level, custom syntaxes are prioritized over the bundled syntaxes. And yet, if there are multiple corresponding syntaxes, the first found syntax will be applied automatically.</p>
 
-<h2>File mapping conflicts</h2>
 
-<p>There are no conflicts among the bundled syntaxes. However, if you added custom syntaxes or modified the bundled syntaxes, the file mapping can conflict. You can see the existence of mapping conflicts from the Show File Mapping Conflict command in the Format pane in the Settings. If the menu item is gray-out, it means: there is no conflict.</p>
+<h2>Modify file mapping</h2>
+
+<p>To define the rules to map files for a syntax, select File Mapping from the list on the left of the syntax editor, then add file extensions, file names, or interpreters to the lists on the right side. See <a href="syntax_definition.html">Define a syntax</a> for how to open the syntax editor.</p>
+
+
+<h2>Solve file mapping conflicts</h2>
+
+<p>There are no conflicts among the bundled syntaxes. However, if you added custom syntaxes or modified the bundled syntaxes, the file mapping can conflict. You can see the existence of mapping conflicts from the Show File Mapping Conflict command in the Action button for the available syntaxes list in the Format settings. If the menu item is gray-out, it means: there is no conflict.</p>
 
 <p>You can just leave the file mapping conflicts as long as you can open files with your expected syntax. There is no side issue.</p>
 

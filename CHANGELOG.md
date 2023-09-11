@@ -8,9 +8,7 @@ Change Log
 ### Improvements
 
 - Remove the Print settings in the Settings window (Instead, set print settings directly in the Print dialog).
-- [beta] Adjust layout in the Settings window.
-- [beta] Adjust layout in the print dialog.
-- [beta] Adjust layout in the syntax editor.
+- [beta] Adjust layout in the Settings window, print dialog, and syntax editor.
 - [beta] Update help contents.
 - [beta] Port changes in CotEditor 4.5.9.
 
@@ -20,6 +18,11 @@ Change Log
 - [beta] Fix the location to display popovers.
 
 
+### Known Issues
+
+- User interface is not localized yet.
+
+
 
 4.6.0-beta.2 (583)
 --------------------------
@@ -27,11 +30,6 @@ Change Log
 ### Improvements
 
 - [beta] Change the font to prefer for the editor to select from the standard, monospaced, and automatic.
-
-
-### Known Issues
-
-- User interface is not localized yet.
 
 
 
@@ -80,11 +78,6 @@ Change Log
 ### Others
 
 - The toolbar customization will be reset at the first launch of CotEditor 4.6.0.
-
-
-### Known Issues
-
-- User interface is not localized yet.
 
 
 
