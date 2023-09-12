@@ -2,13 +2,14 @@
 Change Log
 ==========================
 
-4.6.0-beta.4 (unreleased)
+4.6.0-rc (unreleased)
 --------------------------
 
 ### Improvements
 
 - [beta] Adjust the position of history buttons in the find panel.
 - [beta] Update help contents.
+- [beta][dev] Update the build environment to Xcode 15 RC.
 
 
 ### Known Issues
