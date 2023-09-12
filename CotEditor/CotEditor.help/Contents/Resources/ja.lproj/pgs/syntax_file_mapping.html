@@ -14,13 +14,13 @@
 
 <h1>CotEditorでファイルをシンタックスに関連付ける</h1>
 
-<p>ファイルを開いたとき、CotEditor は自動でそのファイルの種類を判定して適切なシンタックスを適用します。</p>
+<p>ファイルを開いたとき、CotEditorは自動でそのファイルの種類を判定して適切なシンタックスを適用します。</p>
 
 <p>このとき、どのシンタックスが適用されるかは、各シンタックス定義内で設定された「ファイル関連付け」の情報を元に決定されます。</p>
 
 <h2>ファイル関連付けの優先順位</h2>
 
-<p>CotEditor は以下の順序で最適なシンタックスを捜査します。</p>
+<p>CotEditorは以下の順序で最適なシンタックスを捜査します。</p>
 
 <ol>
 	<li>ファイル名拡張子<ul>
@@ -39,7 +39,7 @@
 		<li>例: <code>#!/usr/bin/perl</code> → Perl (インタープリタ名: <code>perl</code>)</li>
 		<li>例: <code>#!/usr/bin/env python3</code> → Python (インタープリタ名: <code>python3</code>)</li>
 	</ul></li>
-	<li>XML 宣言<ul>
+	<li>XML宣言<ul>
 		<li>対応する拡張子・ファイル名・インタープリタがないとき、ファイル内容がXML宣言で始まっていたら、自動的にXMLシンタックスを適用します。</li>
 		<li>例: <code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</code> → XML</li>
 	</ul></li>
