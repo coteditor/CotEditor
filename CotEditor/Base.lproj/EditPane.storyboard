@@ -353,8 +353,8 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jwj-BA-jAE">
-                                        <rect key="frame" x="115" y="293" width="206" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Automatic indent while typing" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3285">
+                                        <rect key="frame" x="115" y="293" width="226" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Automatically indent while typing" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3285">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -363,14 +363,14 @@
                                         </connections>
                                     </button>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fUU-DY-nnn">
-                                        <rect key="frame" x="196" y="357" width="82" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="spaces" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="ZKV-jL-cQV" id="1dy-oP-fJL">
+                                        <rect key="frame" x="196" y="357" width="84" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" title="Spaces" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="ZKV-jL-cQV" id="1dy-oP-fJL">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="jyP-jE-BgZ">
                                                 <items>
-                                                    <menuItem title="spaces" state="on" tag="1" id="ZKV-jL-cQV"/>
-                                                    <menuItem title="tabs" id="lVY-WF-4Yh"/>
+                                                    <menuItem title="Spaces" state="on" tag="1" id="ZKV-jL-cQV"/>
+                                                    <menuItem title="Tabs" id="lVY-WF-4Yh"/>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>

@@ -505,7 +505,7 @@
 "Copy as Rich Text" = "Copia come Rich Text";
 "Select All" = "Seleziona tutto";
 "Straighten Quotes" = "Raddrizza virgolette";
-"Scripts" = "Scripts";  // FIXME: added
+"Script" = "Script";
 
 
 
@@ -695,7 +695,7 @@
 "Outline" = "Outline";
 "Completion List" = "Completamento";
 "File Mapping" = "Mappatura file";
-"Syntax Info" = "Info. sullo stile";  // Informazioni sullo stile  // FIXME: style -> syntax
+"Syntax Information" = "Info. sullo stile";  // Informazioni sullo stile  // FIXME: style -> syntax
 "Syntax Validation" = "Validazione sintassi";
 
 // Syntax validation results

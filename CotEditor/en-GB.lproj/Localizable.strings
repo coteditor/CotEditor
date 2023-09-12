@@ -505,7 +505,7 @@
 "Copy as Rich Text" = "Copy as Rich Text";
 "Select All" = "Select All";
 "Straighten Quotes" = "Straighten Quotes";
-"Scripts" = "Scripts";
+"Script" = "Script";
 
 
 
@@ -694,7 +694,7 @@
 "Outline" = "Outline";
 "Completion List" = "Completion List";
 "File Mapping" = "File Mapping";
-"Syntax Info" = "Syntax Info";
+"Syntax Information" = "Syntax Information";
 "Syntax Validation" = "Syntax Validation";
 
 // Syntax validation results

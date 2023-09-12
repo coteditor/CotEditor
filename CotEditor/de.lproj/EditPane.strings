@@ -46,9 +46,9 @@
 "3285.title" = "Automatischer Einzug";
 /* Class = "NSTextFieldCell"; title = "Prefer using"; ObjectID = "jdu-bS-Jk1"; */
 "jdu-bS-Jk1.title" = "Einrückung mit";
-/* Class = "NSMenuItem"; title = "spaces"; ObjectID = "ZKV-jL-cQV"; */
+/* Class = "NSMenuItem"; title = "Spaces"; ObjectID = "ZKV-jL-cQV"; */
 "ZKV-jL-cQV.title" = "Leerzeichen";
-/* Class = "NSMenuItem"; title = "tabs"; ObjectID = "lVY-WF-4Yh"; */
+/* Class = "NSMenuItem"; title = "Tabs"; ObjectID = "lVY-WF-4Yh"; */
 "lVY-WF-4Yh.title" = "Tabulatoren";
 /* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
 "3287.title" = "Einzugsweite:";
@@ -56,8 +56,8 @@
 "as9-us-CuG.title" = "Leerzeichen";
 /* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
 "Cte-hW-0M3.title" = "Einzugsstil beim Öffnen ermitteln";
-/* Class = "NSButtonCell"; title = "Automatic indent while typing"; ObjectID = "3285"; */
-"3285.title" = "Automatischer Einzug während der Texteingabe";
+/* Class = "NSButtonCell"; title = "Automatically indent while typing"; ObjectID = "3285"; */
+"3285.title" = "Während der Texteingabe automatisch einrücken";
 /* Class = "NSButtonCell"; title = "Indent selection with Tab key"; ObjectID = "aVn-PD-hen"; */
 "aVn-PD-hen.title" = "Auswahl mit der Tabulatortaste einrücken";
 

@@ -505,7 +505,7 @@
 "Copy as Rich Text" = "Als formatierten Text kopieren";
 "Select All" = "Alles auswählen";
 "Straighten Quotes" = "Anführungszeichen glätten";
-"Scripts" = "Skripten";
+"Script" = "Skript";
 
 
 
@@ -695,7 +695,7 @@
 "Outline" = "Gliederung";
 "Completion List" = "Vervollständigung";
 "File Mapping" = "Dateizuordnung";
-"Syntax Info" = "Syntax-Info";
+"Syntax Information" = "Syntax-Info";
 "Syntax Validation" = "Syntaxvalidierung";
 
 // Syntax validation results

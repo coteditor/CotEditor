@@ -505,7 +505,7 @@
 "Copy as Rich Text" = "以富文本拷贝";
 "Select All" = "全部选择";
 "Straighten Quotes" = "直引号";
-"Scripts" = "Scripts";  // FIXME: added
+"Script" = "脚本";
 
 
 
@@ -695,7 +695,7 @@
 "Outline" = "大纲";
 "Completion List" = "补全列表";
 "File Mapping" = "文件关联";
-"Syntax Info" = "样式信息";  // FIXME: style -> syntax
+"Syntax Information" = "样式信息";  // FIXME: style -> syntax
 "Syntax Validation" = "语法验证";
 
 // Syntax style validation results

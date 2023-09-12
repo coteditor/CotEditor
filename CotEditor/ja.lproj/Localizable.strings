@@ -505,7 +505,7 @@
 "Copy as Rich Text" = "リッチテキストとしてコピー";
 "Select All" = "すべてを選択";
 "Straighten Quotes" = "引用符をまっすぐにする";
-"Scripts" = "スクリプト";
+"Script" = "スクリプト";
 
 
 
@@ -695,7 +695,7 @@
 "Outline" = "アウトライン";
 "Completion List" = "入力補完リスト";
 "File Mapping" = "ファイル関連付け";
-"Syntax Info" = "シンタックス情報";
+"Syntax Information" = "シンタックス情報";
 "Syntax Validation" = "シンタックスの検証";
 
 // Syntax validation results

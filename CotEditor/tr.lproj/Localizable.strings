@@ -505,7 +505,7 @@
 "Copy as Rich Text" = "Zengin Metin Olarak Kopyala";
 "Select All" = "Tümünü Seç";
 "Straighten Quotes" = "Tırnakları Düzleştir";
-"Scripts" = "Scripts";  // FIXME: added
+"Script" = "Betik";
 
 
 
@@ -695,7 +695,7 @@
 "Outline" = "Ana Hat";
 "Completion List" = "Tamamlama Listesi";
 "File Mapping" = "Dosya Eşlemleme";
-"Syntax Info" = "Biçem Bilgisi";  // FIXME: style -> syntax
+"Syntax Information" = "Biçem Bilgisi";  // FIXME: style -> syntax
 "Syntax Validation" = "Sözdizim Doğrulama";
 
 // Syntax validation results

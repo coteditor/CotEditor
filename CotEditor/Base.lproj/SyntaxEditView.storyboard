@@ -89,7 +89,7 @@
                         <tabViewItem label="Completion List" id="hkH-bj-kzN"/>
                         <tabViewItem label="File Mapping" id="zFQ-sy-EQR"/>
                         <tabViewItem label="-" id="cmd-Pi-Czf"/>
-                        <tabViewItem label="Syntax Info" id="ijG-Rs-ukM"/>
+                        <tabViewItem label="Syntax Information" id="ijG-Rs-ukM"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" type="noTabsBezelBorder" id="Xkl-Ua-3Wq">

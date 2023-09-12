@@ -35,7 +35,7 @@
 "o3A-71-iGh.title" = "Testo da inserire con una abbreviazione o un comando da menu:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax"; ObjectID = "pbJ-4Q-CE2"; */
-"pbJ-4Q-CE2.headerCell.title" = "Stile della sintassi";  // FIXME: syntax style -> syntax
+"pbJ-4Q-CE2.headerCell.title" = "Sintassi";
 /* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "cMF-G3-bl6"; */
 "cMF-G3-bl6.headerCell.title" = "Nome";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "wer-OB-X46"; */

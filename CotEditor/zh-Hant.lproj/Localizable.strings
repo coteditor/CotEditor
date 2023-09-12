@@ -505,7 +505,7 @@
 "Copy as Rich Text" = "以富文字拷貝";
 "Select All" = "全部選擇";
 "Straighten Quotes" = "直引號";
-"Scripts" = "Scripts";  // FIXME: added
+"Script" = "指令碼";
 
 
 
@@ -695,7 +695,7 @@
 "Outline" = "大綱";
 "Completion List" = "補全列表";
 "File Mapping" = "檔案關聯";
-"Syntax Info" = "樣式資訊";  // FIXME: style -> syntax
+"Syntax Information" = "樣式資訊";  // FIXME: style -> syntax
 "Syntax Validation" = "文法驗證";
 
 // Syntax validation results

@@ -505,7 +505,7 @@
 "Copy as Rich Text" = "Copiar como texto enriquecido";
 "Select All" = "Seleccionar todo";
 "Straighten Quotes" = "Enderezar comillas";
-"Scripts" = "Scripts";
+"Script" = "Script";
 
 
 
@@ -695,7 +695,7 @@
 "Outline" = "Esquema";
 "Completion List" = "Lista de autocompletado";
 "File Mapping" = "Mapeo de archivos";
-"Syntax Info" = "Información de estilo";  // FIXME: style -> syntax
+"Syntax Information" = "Información de estilo";  // FIXME: style -> syntax
 "Syntax Validation" = "Validación de sintaxis";
 
 // Syntax validation results
