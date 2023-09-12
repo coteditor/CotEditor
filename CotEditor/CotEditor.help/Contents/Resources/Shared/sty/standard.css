@@ -15,7 +15,7 @@
 	color: -apple-system-label;
 }
 body {
-	margin: 1em 2em;
+	margin: 1rem 2rem;
 }
 
 a {
@@ -62,7 +62,7 @@ body > h1 {
 	font-size: 1.71rem;
 	line-height: 1.0;
 	font-weight: 400;
-	margin: 1.5em 0 1em;
+	margin: 2.5rem 0 1.5rem;
 }
 body > h1::before {
 	content: '';
@@ -79,19 +79,19 @@ h2 {
 	font-weight: 600;
 	line-height: 1.1;
 	letter-spacing: 0.02em;
-	margin-top: 2.5em;
-	margin-bottom: 1em;
+	margin-top: 2.5rem;
+	margin-bottom: 1rem;
 	clear: both;
 }
 :not(h1) + h2 {
 	border-top: 1px solid -apple-system-separator;
-	padding-top: 1em;
+	padding-top: 1rem;
 }
 h3 {
 	font-size: 100%;
 	font-weight: 500;
 	line-height: 1.1;
-	margin-top: 2em;
+	margin-top: 2rem;
 }
 h4 {
 	margin-bottom: 0;
@@ -101,7 +101,7 @@ h4 + * {
 }
 
 article+article {
-	margin: 2em 0;
+	margin: 2rem 0;
 	border-top: 1px solid -apple-system-separator;
 }
 
@@ -116,19 +116,19 @@ figure {
 ol,
 ul,
 pre {
-	margin: 0.5em 0;
+	margin: 0.5rem 0;
 	clear: both;
 }
 pre {
 	font-family: 'Courier', 'Courier New', monospace;
-	margin-left: 1em;
+	margin-left: 1rem;
 }
 pre.source {
 	background: hsl(0, 0%, 98%);
 	border: 1px solid -apple-system-tertiary-label;
 	border-radius: 3px;
-	max-width: 50em;
-	padding: 0.2em 0.5em;
+	max-width: 50rem;
+	padding: 0.2rem 0.5rem;
 	overflow: scroll;
 }
 
@@ -137,13 +137,13 @@ ul {
 }
 
 li {
-	margin-bottom: 0.5em;
+	margin-bottom: 0.4rem;
 }
 
 ul ul,
 ul ol {
-	padding: 0 3em;
-	margin: 0.5em 0;
+	padding: 0 3rem;
+	margin: 0.5rem 0;
 	border: none;
 }
 
@@ -151,19 +151,19 @@ ul + ul,
 ol + ol,
 ul + ol,
 ol + ul {
-	margin-top: 1em;
+	margin-top: 1rem;
 }
 
 table ul li {
 	margin-bottom: 0.2em;
 }
 #cf {
-	margin-top: 3em;
+	margin-top: 3rem;
 }
 #cf h2 {
 	font-size: 100%;
 	font-weight: 600;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.5rem;
 }
 #cf ul {
 	list-style-type: none;
@@ -178,17 +178,17 @@ table ul li {
 p.addition {
 	position: relative;
 	text-indent: 0;
-	padding: 0.3em 0.6em;
-	border-radius: 0.5em;
+	padding: 0.3rem 0.6rem;
+	border-radius: 0.5rem;
 	background: hsl(213, 50%, 97%);
 }
 p.addition::after {
 	content: '';
 	position: absolute;
-	top: -1.8em;
-	left: 4em;
-	margin-left: -1em;
-	border: 1em solid transparent;
+	top: -1.8rem;
+	left: 4rem;
+	margin-left: -1rem;
+	border: 1rem solid transparent;
 	border-bottom: 15px solid hsl(213, 50%, 97%);
 }
 p.addition > span:first-child {
@@ -217,32 +217,32 @@ dt {
 	font-weight: 600;
 }
 dd {
-	margin-left: 2em;
+	margin-left: 2rem;
 }
 dd + dt {
-	margin-top: 0.5em;
+	margin-top: 0.5rem;
 }
 dd + dd dl {
-	margin-top: 0.5em;
+	margin-top: 0.5rem;
 }
 
 table {
 	font-size: 100%;
 	border-collapse: collapse;
 	empty-cells: show;
-	margin: 1em 0;
+	margin: 1rem 0;
 }
 table caption {
 	font-weight: 500;
 	text-align: left;
-	margin: 0.4em 0;
+	margin: 0.4rem 0;
 }
 th,
 td {
 	line-height: 1.6;
 	border-bottom: 1px solid -apple-system-quaternary-label;
 	margin: 0;
-	padding: 0.5em 0.6em;
+	padding: 0.5rem 0.6rem;
 }
 table tr > :first-child {
 	padding-left: 0;
@@ -329,7 +329,7 @@ table.settings td dl > * {
 	margin-left: 0;
 }
 table.settings td ul {
-	padding-left: 1.5em;
+	padding-left: 1.5rem;
 }
 table.settings td ul li strong {
 	font-weight: 400;

@@ -14,19 +14,23 @@
 
 <h1>Define comment delimiters in CotEditor</h1>
 
-<p>The settings for comments that are used for both comment-out/uncomment and comment highlighting are as follows:</p>
+<p>To define the comment delimiters for a syntax, select Comment from the list on the left of the syntax editor, then input delimiters to the input fields on the right side. See <a href="syntax_definition.html">Define a syntax</a> for how to open the syntax editor.</p>
+
+<p>The settings for comments that are used for both comment-out/uncomment and syntax highlighting are as follows:</p>
 
 <table>
 	<thead>
 		<tr><th>Field</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		<tr><th>inline comment</th><td>The string here is used as the inline comment delimiter on comment-out/uncomment. If this field is empty, the value in the block comment is used in favor.</td></tr>
-		<tr><th>block comment</th><td>The strings here are used as block comment delimiters. These delimiters are used on uncommenting block comments and comment-outing if no inline comment delimiter is defined. You need to fill both ”begin with” and ”end with.”</td></tr>
+		<tr><th>inline comment</th><td>The string starting with this delimiter until the end of the line is handled as a inline comment.</td></tr>
+		<tr><th>block comment</th><td>The string surrounded with these start and end delimiters is handled as a block comment. You need to fill both ”begin with” and ”end with.”</td></tr>
 	</tbody>
 </table>
 
-<p>The coloring rules for the comment keywords in the table below are the same as the <a href="syntax_highlight_settings.html">Define syntax highlighting</a>. These settings are used only for highlighting.</p>
+<p>By the normal Comment Out command, the inline comment is preferred when both inline and block command delimiters are defined. When inline comment field is empty, the block comment is used in favor.</p>
+
+<p>The highlighting rules for the comment keywords in the table below works the same as the <a href="syntax_highlight_settings.html">Define syntax highlighting</a>. Unlike the settings for comment delimiters, these rules are used only for highlighting.</p>
 
 
 <section id="cf">

@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2016-2021 1024jp
+ © 2016-2023 1024jp
 */
 
 
@@ -29,10 +29,10 @@ dfn {
 }
 
 figure {
-	margin: 1em 0;
+	margin: 1rem 0;
 }
 figure > figcaption {
-	margin-left: 2em;
+	margin-left: 2rem;
 }
 
 
@@ -47,19 +47,19 @@ dl.tree + * {
 dl.tree dt::after {
 	content: ':';
 	font-weight: normal;
-	margin-right: 0.5em;
+	margin-right: 0.5rem;
 }
 dl.tree dt,
 dl.tree dd {
 	float: left;
-	margin: 0.1em 0;
+	margin: 0.1rem 0;
 }
 dl.tree dt,
 dl.tree dd + dd {
 	clear: left;
 }
 dl.tree dl.subtree {
-	margin: 0 0 0 2.5em;
+	margin: 0 0 0 2.5rem;
 }
 dl.tree dl.subtree dt {
 	font-weight: normal;

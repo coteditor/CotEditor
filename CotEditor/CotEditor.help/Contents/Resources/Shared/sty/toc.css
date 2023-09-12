@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2022 CotEditor Project
+ © 2006-2023 CotEditor Project
 */
 
 
@@ -19,7 +19,7 @@ ul {
 	list-style-type: none;
 }
 ul ul {
-	padding-left: 1.5em;
+	padding-left: 1.5rem;
 }
 
 summary {
@@ -31,5 +31,5 @@ summary::-webkit-details-marker {
 
 body > ul > li {
 	border-bottom: 0.5px solid -apple-system-tertiary-label;
-	padding: 0.3em 0;
+	padding: 0.3rem 0;
 }

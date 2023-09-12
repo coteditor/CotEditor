@@ -8,6 +8,12 @@ Change Log
 ### Improvements
 
 - [beta] Adjust the position of history buttons in the find panel.
+- [beta] Update help contents.
+
+
+### Known Issues
+
+- User interface is not localized yet.
 
 
 
@@ -25,11 +31,6 @@ Change Log
 ### Fixes
 
 - [beta] Fix the location to display popovers.
-
-
-### Known Issues
-
-- User interface is not localized yet.
 
 
 
