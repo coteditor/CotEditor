@@ -5,6 +5,10 @@ Change Log
 4.6.0-beta.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Adjust the position of history buttons in the find panel.
+
 
 
 4.6.0-beta.3 (585)
