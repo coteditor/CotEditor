@@ -16,6 +16,7 @@ Change Log
 ### Fixes
 
 - [beta] Fix an issue that the visibility of the inspector was not saved.
+- [beta] Fix an issue that the font preference update was not applied immediately to opened documents.
 
 
 ### Known Issues

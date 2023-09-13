@@ -75,7 +75,7 @@ extension DefaultKeys {
     static let monospacedFont = DefaultKey<Data?>("monospacedFont")
     static let monospacedShouldAntialias = DefaultKey<Bool>("monospacedShouldAntialias")
     static let monospacedLigature = DefaultKey<Bool>("monospacedLigature")
-    static let fontPreference = DefaultKey<FontPreference>("fontPreference")
+    static let fontPreference = RawRepresentableDefaultKey<FontPreference>("fontPreference")
     static let lineHeight = DefaultKey<CGFloat>("lineHeight")
     static let highlightCurrentLine = DefaultKey<Bool>("highlightCurrentLine")
     static let documentAppearance = RawRepresentableDefaultKey<AppearanceMode>("appearance")
