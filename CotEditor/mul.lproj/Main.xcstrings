@@ -100,6 +100,12 @@
             "state" : "translated",
             "value" : "等幅"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "等宽"
+          }
         }
       }
     },
@@ -11251,8 +11257,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Tab转为空格"
+            "state" : "translated",
+            "value" : "使用空格缩进"
           }
         },
         "zh-Hant" : {
@@ -12946,6 +12952,12 @@
             "state" : "translated",
             "value" : "フォントタイプ"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字体类型"
+          }
         }
       }
     },
@@ -14199,6 +14211,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "標準"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "标准"
           }
         }
       }
