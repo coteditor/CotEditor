@@ -101,6 +101,12 @@
             "value" : "等幅"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sabit Genişlikli"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11257,8 +11263,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sekmeleri Kendiliğinden Genişlet"
+            "state" : "translated",
+            "value" : "Girintileme için Boşluklar Kullan"
           }
         },
         "zh-Hans" : {
@@ -12959,6 +12965,12 @@
             "value" : "フォントタイプ"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Font Türü"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14223,6 +14235,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "標準"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standart"
           }
         },
         "zh-Hans" : {
