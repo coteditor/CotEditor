@@ -9,12 +9,18 @@ Change Log
 
 - [beta] Adjust the position of history buttons in the find panel.
 - [beta] Update help contents.
+- [beta] Update localizations.
 - [beta][dev] Update the build environment to Xcode 15 RC.
+
+
+### Fixes
+
+- [beta] Fix an issue that the visibility of the inspector was not saved.
 
 
 ### Known Issues
 
-- User interface is not localized yet.
+- User interface is partly not localized yet in Italian, French, Turkish, Portuguese, and Spanish.
 
 
 

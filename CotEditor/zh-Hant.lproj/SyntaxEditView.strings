@@ -28,11 +28,11 @@
 "987.title" = "名稱：";
 
 /* Class = "NSTextFieldCell"; title = "Kind:"; ObjectID = "7gP-yr-id8"; */
-"7gP-yr-id8.title" = "Kind:";  // FIXME: added
+"7gP-yr-id8.title" = "種類：";
 /* Class = "NSMenuItem"; title = "General"; ObjectID = "7Go-V4-3gr"; */
-"7Go-V4-3gr.title" = "General";  // FIXME: added
+"7Go-V4-3gr.title" = "通用";
 /* Class = "NSMenuItem"; title = "Code"; ObjectID = "rIw-Nl-f4X"; */
-"rIw-Nl-f4X.title" = "Code";  // FIXME: added
+"rIw-Nl-f4X.title" = "程式碼";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "1020"; */
 "1020.title" = "恢復預設";

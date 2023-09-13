@@ -106,6 +106,12 @@
             "state" : "translated",
             "value" : "等宽"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "等寬型"
+          }
         }
       }
     },
@@ -5360,7 +5366,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文法"
+            "value" : "文法定義"
           }
         }
       }
@@ -5432,7 +5438,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文法"
+            "value" : "文法定義"
           }
         }
       }
@@ -9680,7 +9686,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tab寬度"
+            "value" : "定位符號寬度"
           }
         }
       }
@@ -12958,6 +12964,12 @@
             "state" : "translated",
             "value" : "字体类型"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字型種類"
+          }
         }
       }
     },
@@ -14217,6 +14229,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "标准"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標準型"
           }
         }
       }
@@ -15800,7 +15818,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tab寬度"
+            "value" : "定位符號寬度"
           }
         }
       }

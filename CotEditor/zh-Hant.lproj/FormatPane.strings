@@ -46,20 +46,20 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Default syntax:"; ObjectID = "3329"; */
-"3329.title" = "預設文法樣式：";  // FIXME: syntax style -> syntax
+"3329.title" = "預設的文法定義：";
 
 /* Class = "NSTextFieldCell"; title = "Available syntaxes:"; ObjectID = "vlw-Tc-sLl"; */
-"vlw-Tc-sLl.title" = "可用的文法樣式：";  // FIXME: syntax style -> syntax
+"vlw-Tc-sLl.title" = "可用的文法定義：";
 
 /* Class = "NSView"; ibShadowedToolTip = "This syntax is customized."; ObjectID = "cbJ-XK-bnG"; */
-"cbJ-XK-bnG.ibShadowedToolTip" = "該樣式已被自訂。";  // FIXME: style -> syntax
+"cbJ-XK-bnG.ibShadowedToolTip" = "該文法定義已被自訂。";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Remove selected syntax"; ObjectID = "dI1-Dk-Mce"; */
-"dI1-Dk-Mce.ibShadowedToolTip" = "移除選中的樣式";  // FIXME: style -> syntax
+"dI1-Dk-Mce.ibShadowedToolTip" = "移除選中的文法定義";
 /* Class = "NSButton"; ibShadowedToolTip = "Add empty syntax"; ObjectID = "Hma-8v-2gu"; */
-"Hma-8v-2gu.ibShadowedToolTip" = "新增新的樣式";  // FIXME: style -> syntax
+"Hma-8v-2gu.ibShadowedToolTip" = "新增空白文法定義";
 /* Class = "NSButton"; ibShadowedToolTip = "Edit selected syntax"; ObjectID = "Q0c-oI-um3"; */
-"Q0c-oI-um3.ibShadowedToolTip" = "編輯選中樣式";  // FIXME: style -> syntax
+"Q0c-oI-um3.ibShadowedToolTip" = "編輯選中的文法定義";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Edit"; ObjectID = "Q0c-oI-um3"; */
 "Q0c-oI-um3.ibExternalAccessibilityDescription" = "編輯";
 
@@ -68,7 +68,7 @@
 /* Class = "NSMenuItem"; title = "Share…"; ObjectID = "xRA-ND-YIE"; */
 "xRA-ND-YIE.title" = "分享…";
 /* Class = "NSButtonCell"; title = "Reload All Syntaxes"; ObjectID = "FhP-Hj-cWE"; */
-"FhP-Hj-cWE.title" = "過載全部樣式";  // FIXME: style -> syntax
+"FhP-Hj-cWE.title" = "重新載入全部的文法定義";
 /* Class = "NSMenuItem"; title = "Show File Mapping Conflicts"; ObjectID = "hyN-4W-57i"; */
 "hyN-4W-57i.title" = "顯示檔案對映衝突";
 

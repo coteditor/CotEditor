@@ -142,7 +142,7 @@
 "Characters" = "字元";
 "any character" = "任意字元";
 "new line character" = "換行符";
-"tab character" = "tab符號";
+"tab character" = "定位符號";
 "word character" = "單字字元";
 "whitespace character" = "空格字元";
 "non-whitespace character" = "非空格字元";
@@ -309,9 +309,9 @@
 
 
 /* MARK: Toolbar */
-"Syntax" = "文法";
+"Syntax" = "文法定義";
 // tooltip
-"Change syntax" = "改變文法";
+"Change syntax" = "改變文法定義";
 // menu item title
 "Recently Used" = "最近使用";
 "Deleted" = "已刪除";  // heading for deleted items
@@ -356,12 +356,12 @@
 
 "Tab Style" = "Tab樣式";
 // tooltip
-"Use tabs for indentation" = "禁止將tab擴展為空格";  // FIXME: updated
-"Use spaces for indentation" = "自動將tab擴展為空格";  // FIXME: updated
+"Use tabs for indentation" = "以定位符號縮進";
+"Use spaces for indentation" = "以空格縮進";
 // menu
-"Tab Width" = "Tab寬度";
+"Tab Width" = "定位符號寬度";
 "Custom…" = "自訂…";
-"Use Spaces for Indentation" = "Tab轉為空格";  // FIXME: updated
+"Use Spaces for Indentation" = "以空格縮進";
 
 "Wrap Lines" = "換行";
 // tooltip
@@ -380,7 +380,7 @@
 
 "Keep on Top" = "保持在最上方";
 // tooltip
-"Keep the window always on top" = "Keep the window always on top";  // FIXME: added
+"Keep the window always on top" = "將視窗保持在最前端";
 
 "Opacity" = "透明度";
 // tooltip
@@ -408,11 +408,11 @@
 
 "Fonts" = "字體";
 // tooltip
-"Change Font" = "Change Font";  // FIXME: added
+"Change Font" = "變更字型";
 // menu items
-"Font Type" = "Font Type";  // FIXME: added
-"Standard" = "Standard";  // FIXME: added
-"Monospaced" = "Monospaced";  // FIXME: added
+"Font Type" = "字型種類";
+"Standard" = "標準型";
+"Monospaced" = "等寬型";
 "Show Fonts" = "顯示字體";
 
 
@@ -529,7 +529,7 @@
 "Wrap Lines" = "換行";
 
 // Tooltip for “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled
-"To show invisible characters, set them in the Window settings" = "要顯示不可見元素，請在設定中進行設定";  // FIXME: Setting -> the Window Settings
+"To show invisible characters, set them in the Window settings" = "如欲檢視不可見之字元，請洽「視窗設定」";
 
 
 
@@ -618,14 +618,14 @@
 "The current 'cot' symbolic link may target an invalid path." = "當前的cot符號鏈接可能指向無效路徑。";
 
 // warnings setting
-"Suppress following warnings:" = "Suppress following warnings:";  // FIXME: added
-"Inconsistent line endings" = "Inconsistent line endings";  // FIXME: added
+"Suppress following warnings:" = "停用下述警示窗：";
+"Inconsistent line endings" = "不一致的行尾字元";
 
 
 // Appearance pane
 // alert message
-"The selected font doesn’t seem to be monospaced." = "The selected font doesn’t seem to be monospaced.";  // FIXME: added
-"Do you want to use it for the monospaced font?" = "Do you want to use it for the monospaced font?";  // “it” is the selected font.  // FIXME: added
+"The selected font doesn’t seem to be monospaced." = "當前選中的字型似乎並非等寬字型。";
+"Do you want to use it for the monospaced font?" = "您真的要將這個字型作為等寬字型來使用嗎？";  // “it” is the selected font.
 
 // Contextual menu items
 "Rename “%@”" = "給「%@」重新命名";
@@ -642,7 +642,7 @@
 "Selection:" = "選中：";
 "Use system color" = "使用系統顏色";
 
-"Syntax" = "文法";
+"Syntax" = "文法定義";
 "Keywords:" = "關鍵字：";
 "Commands:" = "命令：";
 "Types:" = "型別：";
@@ -695,7 +695,7 @@
 "Outline" = "大綱";
 "Completion List" = "補全列表";
 "File Mapping" = "檔案關聯";
-"Syntax Information" = "樣式資訊";  // FIXME: style -> syntax
+"Syntax Information" = "文法資訊";
 "Syntax Validation" = "文法驗證";
 
 // Syntax validation results
@@ -724,7 +724,7 @@
 "None" = "無";
 
 // Description for editing bundled syntax
-"Bundled syntaxes can’t be renamed." = "內置樣式的名稱不能改變。";  // FIXME: style -> syntax
+"Bundled syntaxes can’t be renamed." = "原廠文法無法被更名。";
 
 // Suffix of copied syntax
 "copy" = "拷貝";
@@ -732,8 +732,8 @@
 // Import syntax file choose openPanel button
 "Import" = "導入";
 // Importing same name syntax alert
-"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "將要安裝名為「%@」的新樣式，但是已經存在同名的自訂樣式。";  // FIXME: style -> syntax
-"Do you want to replace it?\nReplaced syntax can’t be restored." = "要取代樣式嗎？\n被取代的樣式無法將恢復。";  // FIXME: style -> syntax
+"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "即將安裝新的文法定義「%@」，但目前已經有另一筆同名文法定義登記在庫。";
+"Do you want to replace it?\nReplaced syntax can’t be restored." = "真的要取而代之嗎？\n被取代的文法定義將會永遠丟失、無法找回。";
 
 // Export syntax file savePanel label
 "Export As:" = "導出為：";
@@ -857,14 +857,14 @@
 
 
 /* MARK: Syntax Mapping Conflicts View */
-"Syntax Mapping Conflicts" = "文法樣式對映衝突";  // FIXME: syntax style -> syntax
-"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "下列檔案對映規則被註冊了多種格式。CotEditor自動使用第一個格式。可以透過編輯每個文法格式來解決衝突。";  // FIXME: updated
+"Syntax Mapping Conflicts" = "文法定義映射衝突";
+"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "下述檔案映射規則已登記於多個文法定義當中。CotEditor會自動使用最開頭的那筆文法定義。如欲解決這些衝突，請逐個編輯每一筆文法定義。";
 "Extension" = "副檔名";
 "Filename" = "檔名";
 "Interpreter" = "直譯器";
 // table column headers
-"Used syntax" = "已使用樣式";  // FIXME: updated
-"Duplicated syntaxes" = "重複的樣式";  // FIXME: updated
+"Used syntax" = "已使用的文法定義";
+"Duplicated syntaxes" = "重複的文法定義";
 
 
 
@@ -891,7 +891,7 @@
 
 
 /* MARK: Custom Tab Width View */
-"Tab width:" = "Tab寬度：";  // label
+"Tab width:" = "定位符號寬度：";  // label
 
 
 
@@ -905,11 +905,11 @@
 /* MARK: Character Inspector View */
 "Unknown" = "未知的";
 "No Block" = "無Block";
-"Code Point:" = "Code Point:";  // FIXME: new
-"Block:" = "Block:";  // FIXME: new
-"Category:" = "Category:";  // FIXME: new
-"Version:" = "Version:";  // FIXME: new
-"deprecated" = "deprecated";  // FIXME: new
+"Code Point:" = "碼位:";
+"Block:" = "區段:";
+"Category:" = "分類:";
+"Version:" = "版本:";
+"deprecated" = "已廢棄";
 
 
 

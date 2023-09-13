@@ -35,7 +35,7 @@
 "o3A-71-iGh.title" = "欲藉由選單命令或鍵盤熱鍵插入的文字:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax"; ObjectID = "pbJ-4Q-CE2"; */
-"pbJ-4Q-CE2.headerCell.title" = "文法";
+"pbJ-4Q-CE2.headerCell.title" = "文法定義";
 /* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "cMF-G3-bl6"; */
 "cMF-G3-bl6.headerCell.title" = "名稱";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "wer-OB-X46"; */
@@ -60,8 +60,8 @@
 "JRQ-2g-t49.title" = "欲藉由將檔案拽入至編輯器的方式插入的文字:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax"; ObjectID = "RqT-x4-YbN"; */
-"RqT-x4-YbN.headerCell.title" = "文法";
-"RqT-x4-YbN.headerToolTip" = "文法樣式中的檔案拖拽設定已啟用";  /* Syntax in which this file drop setting is used. */  // FIXME: syntax style -> syntax
+"RqT-x4-YbN.headerCell.title" = "文法定義";
+"RqT-x4-YbN.headerToolTip" = "該檔案拽入設定所使用的文法定義。";  /* Syntax in which this file drop setting is used. */
 
 /* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
 "FAF-cL-AAk.headerCell.title" = "副檔名";
