@@ -61,7 +61,7 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax"; ObjectID = "RqT-x4-YbN"; */
 "RqT-x4-YbN.headerCell.title" = "语法";
-"RqT-x4-YbN.headerToolTip" = "语法样式中的文件拖拽设置已启用";  /* Syntax in which this file drop setting is used. */  // FIXME: syntax style -> syntax
+"RqT-x4-YbN.headerToolTip" = "语法中的文件拖拽设置已启用";  /* Syntax in which this file drop setting is used. */
 
 /* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
 "FAF-cL-AAk.headerCell.title" = "扩展名";
