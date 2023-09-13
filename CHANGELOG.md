@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Deprecate the option to swap `¥` and `\` keys.
 - [beta] Adjust the position of history buttons in the find panel.
 - [beta] Update help contents.
 - [beta] Update localizations.

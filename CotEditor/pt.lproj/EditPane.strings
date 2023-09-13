@@ -30,8 +30,6 @@
 "3302.title" = "Copiar/colar inteligente";
 /* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
 "GRh-V2-hmW.title" = "Inserir chaves e aspas finais automaticamente";
-/* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
-"3303.title" = "Trocar teclas “¥” e “\\”";
 /* Class = "NSButtonCell"; title = "Smart quotes"; ObjectID = "Abx-fM-gyc"; */
 "Abx-fM-gyc.title" = "Aspas Inteligentes";
 /* Class = "NSButtonCell"; title = "Smart dashes"; ObjectID = "nr1-0X-aBY"; */

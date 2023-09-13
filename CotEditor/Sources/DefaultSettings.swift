@@ -79,7 +79,6 @@ struct DefaultSettings {
         
         .smartInsertAndDelete: false,
         .balancesBrackets: false,
-        .swapYenAndBackSlash: false,
         .enableSmartQuotes: false,
         .enableSmartDashes: false,
         .autoTrimsTrailingWhitespace: false,

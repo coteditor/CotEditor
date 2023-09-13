@@ -133,27 +133,6 @@ class FindPanelTextView: NSTextView {
     }
     
     
-    /// swap `¥` with `\` if needed
-    override func insertText(_ string: Any, replacementRange: NSRange) {
-        
-        // cast input to String
-        var string = String(anyString: string)
-        
-        // swap `¥` with `\` if needed
-        if UserDefaults.standard[.swapYenAndBackSlash] {
-            switch string {
-                case "\\":
-                    string = "¥"
-                case "¥":
-                    string = "\\"
-                default: break
-            }
-        }
-        
-        super.insertText(string, replacementRange: replacementRange)
-    }
-    
-    
     override func responds(to aSelector: Selector!) -> Bool {
         
         // ignore text find action (standard NSTextField behavior)

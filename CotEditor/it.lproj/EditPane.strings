@@ -30,8 +30,6 @@
 "3302.title" = "Copia/incolla smart";
 /* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
 "GRh-V2-hmW.title" = "Inserisci automaticamente parentesi e virgolette di chiusura";
-/* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
-"3303.title" = "Inverti i tasti “¥” e “\\”";
 /* Class = "NSButtonCell"; title = "Smart quotes"; ObjectID = "Abx-fM-gyc"; */
 "Abx-fM-gyc.title" = "Virgolette smart";
 /* Class = "NSButtonCell"; title = "Smart dashes"; ObjectID = "nr1-0X-aBY"; */

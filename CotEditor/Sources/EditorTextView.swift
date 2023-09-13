@@ -549,22 +549,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         // do not use this method for programmatic insertion.
         
-        // sanitize input to plain string
-        let plainString: String = {
-            // cast input to String
-            let input = String(anyString: string)
-            
-            // swap '¥' with '\' if needed
-            if UserDefaults.standard[.swapYenAndBackSlash] {
-                switch input {
-                    case "\\": return "¥"
-                    case "¥": return "\\"
-                    default: break
-                }
-            }
-            
-            return input
-        }()
+        let plainString = String(anyString: string)
         
         // enter multi-cursor editing
         let insertionRanges = self.insertionRanges
