@@ -36,6 +36,8 @@ final class WindowContentViewController: NSSplitViewController {
     
     private lazy var inspectorViewController = InspectorViewController()
     
+    private var windowObserver: NSKeyValueObservation?
+    
     
     
     // MARK: -
@@ -71,6 +73,11 @@ final class WindowContentViewController: NSSplitViewController {
         inspectorViewItem.maximumThickness = NSSplitViewItem.unspecifiedDimension
         inspectorViewItem.isCollapsed = true
         self.addSplitViewItem(inspectorViewItem)
+        
+        // adopt the visibility of the inspector from the last change
+        self.windowObserver = self.view.observe(\.window) { [weak self] (_, _)  in
+            self?.restoreAutosavingState()
+        }
     }
     
     

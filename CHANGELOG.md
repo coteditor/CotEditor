@@ -13,6 +13,11 @@ Change Log
 - [beta][dev] Update the build environment to Xcode 15 RC.
 
 
+### Fixes
+
+- [beta] Fix an issue that the visibility of the inspector was not saved.
+
+
 ### Known Issues
 
 - User interface is partly not localized yet in Italian, French, Portuguese, and Spanish.

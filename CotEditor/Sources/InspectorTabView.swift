@@ -116,6 +116,14 @@ final class InspectorTabView: NSTabView {
     }
     
     
+    override func layout() {
+        
+        super.layout()
+        
+        self.selectedTabViewItem?.view?.frame = self.contentRect
+    }
+    
+    
     override func selectTabViewItem(at index: Int) {
         
         super.selectTabViewItem(at: index)
