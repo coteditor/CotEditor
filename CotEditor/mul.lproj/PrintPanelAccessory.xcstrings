@@ -311,6 +311,12 @@
             "value" : "Print Line Numbers"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imprimir números de línea"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -375,6 +381,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Print Invisibles"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imprimir Invisibles"
           }
         },
         "fr" : {

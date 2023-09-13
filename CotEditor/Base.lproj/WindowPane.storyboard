@@ -11,7 +11,7 @@
             <objects>
                 <viewController id="Qki-Cn-AgK" customClass="WindowPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uRF-iT-6pD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="468"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="448"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="2rQ-L0-bX4">
                                 <rect key="frame" x="53" y="20" width="495" height="428"/>
