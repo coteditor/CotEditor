@@ -37,14 +37,14 @@ struct AdvancedCharacterCounterView: View {
         
         HStack(alignment: .firstTextBaseline) {
             if let count = self.count {
-            let key: String.LocalizationValue = switch self.counter.setting.unit {
-                    case .byte: "*\(count)* byte(s)"
-                    default:    "*\(count)* character(s)"
+                let markdown: AttributedString = switch self.counter.setting.unit {
+                    case .byte: .init(localized: "*\(count)* byte(s)", table: "Count", locale: .current)
+                    default:    .init(localized: "*\(count)* character(s)", table: "Count", locale: .current)
                 }
                 let attributes = AttributeContainer
                     .font(.body.monospacedDigit().weight(.medium))
                     .foregroundColor(.label)
-                let attributedCount = AttributedString(localized: key, locale: .current)
+                let attributedCount = markdown
                     .replacingAttributes(AttributeContainer.inlinePresentationIntent(.emphasized), with: attributes)
                 
                 Text(attributedCount)

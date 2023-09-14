@@ -312,8 +312,6 @@
 		2A6602D01D05BD72003E8D87 /* StatusBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602CE1D05BD72003E8D87 /* StatusBar.storyboard */; };
 		2A685F6A2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */; };
 		2A685F6B2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */; };
-		2A68721F2887F0D8006D6B41 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 2A68721D2887F0D8006D6B41 /* Localizable.stringsdict */; };
-		2A6872202887F0D8006D6B41 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 2A68721D2887F0D8006D6B41 /* Localizable.stringsdict */; };
 		2A68722F288A5C44006D6B41 /* DraggableHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A68722E288A5C44006D6B41 /* DraggableHostingView.swift */; };
 		2A687230288A5C44006D6B41 /* DraggableHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A68722E288A5C44006D6B41 /* DraggableHostingView.swift */; };
 		2A6876A82963DE38006257A6 /* TextFinderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876A72963DE38006257A6 /* TextFinderSettings.swift */; };
@@ -455,6 +453,8 @@
 		2A938AD0297E4D7B007FBE5F /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A938ACE297E4D7B007FBE5F /* SettingsWindowController.swift */; };
 		2A94FC791BE225A200B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
 		2A94FC7B1BE225F000B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
+		2A954B242AB28B010070FB74 /* Count.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A954B232AB28B010070FB74 /* Count.xcstrings */; };
+		2A954B252AB28B010070FB74 /* Count.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A954B232AB28B010070FB74 /* Count.xcstrings */; };
 		2A9710932A9C7BAE00CE9CDD /* WarningsSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9710922A9C7BAE00CE9CDD /* WarningsSettingView.swift */; };
 		2A9710942A9C7BAE00CE9CDD /* WarningsSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9710922A9C7BAE00CE9CDD /* WarningsSettingView.swift */; };
 		2A9AC937244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */; };
@@ -1058,15 +1058,6 @@
 		2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInitializable.swift; sourceTree = "<group>"; };
 		2A6602CF1D05BD72003E8D87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/StatusBar.storyboard; sourceTree = "<group>"; };
 		2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAppleEventManager+Additions.swift"; sourceTree = "<group>"; };
-		2A687222288834E4006D6B41 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ja; path = ja.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		2A687223288834E9006D6B41 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
-		2A687224288834EB006D6B41 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		2A687225288834EF006D6B41 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = it; path = it.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		2A687226288834F1006D6B41 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = pt; path = pt.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		2A687227288834F3006D6B41 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		2A687228288834F6006D6B41 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = tr; path = tr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		2A687229288834FA006D6B41 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "en-GB"; path = "en-GB.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
-		2A68722A288834FB006D6B41 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		2A68722E288A5C44006D6B41 /* DraggableHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableHostingView.swift; sourceTree = "<group>"; };
 		2A6876A72963DE38006257A6 /* TextFinderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFinderSettings.swift; sourceTree = "<group>"; };
 		2A6876AA29641547006257A6 /* MultipleReplacePanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleReplacePanelController.swift; sourceTree = "<group>"; };
@@ -1151,6 +1142,7 @@
 		2A938ACB297E4BA9007FBE5F /* SettingsPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPane.swift; sourceTree = "<group>"; };
 		2A938ACE297E4D7B007FBE5F /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = cot/cot; sourceTree = SOURCE_ROOT; };
+		2A954B232AB28B010070FB74 /* Count.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Count.xcstrings; sourceTree = "<group>"; };
 		2A9710922A9C7BAE00CE9CDD /* WarningsSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningsSettingView.swift; sourceTree = "<group>"; };
 		2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+InvisibleDrawing.swift"; sourceTree = "<group>"; };
 		2A9B134D27E2D84E009954A4 /* NSDraggingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDraggingInfo.swift; sourceTree = "<group>"; };
@@ -1160,7 +1152,6 @@
 		2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacterTests.swift; sourceTree = "<group>"; };
 		2A9C370A1D66E99400774BA4 /* Pair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		2A9C370D1D672A1F00774BA4 /* BracePairTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BracePairTests.swift; sourceTree = "<group>"; };
-		2A9ECAFE2A7B4B2D001B00DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		2AA056AC26FCA171000E0CB2 /* Arithmetics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arithmetics.swift; sourceTree = "<group>"; };
 		2AA14CF71FA47E8900EAF586 /* ScriptDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptDescriptor.swift; sourceTree = "<group>"; };
 		2AA14CFB1FA4983500EAF586 /* AppleScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleScript.swift; sourceTree = "<group>"; };
@@ -1403,7 +1394,6 @@
 		999FCEDD2A7537C000462DE4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MultipleReplacePanel.strings; sourceTree = "<group>"; };
 		999FCEDF2A7537C300462DE4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
 		999FCEE42A7537CA00462DE4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PatternSortView.strings; sourceTree = "<group>"; };
-		99A8630D2A753A5700EEEE75 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		99A8630E2A753A7400EEEE75 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		99A8630F2A753A8400EEEE75 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/UnicodeBlock.strings; sourceTree = "<group>"; };
 		99A863102A753A9900EEEE75 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = es.lproj/Credits.html; sourceTree = "<group>"; };
@@ -1847,8 +1837,8 @@
 			children = (
 				2A1EB5C319AD469500C1E37E /* Assets.xcassets */,
 				2A149DC91902BC3900A9D6EF /* Storyboards */,
-				2A68721D2887F0D8006D6B41 /* Localizable.stringsdict */,
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
+				2A954B232AB28B010070FB74 /* Count.xcstrings */,
 				2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */,
 				2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */,
 				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
@@ -2596,7 +2586,7 @@
 				2A80C6691CEE540F00AA664D /* Acknowledgments.html in Resources */,
 				2AE73EC9203520E100D8903B /* Acknowledgments.css in Resources */,
 				2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */,
-				2A68721F2887F0D8006D6B41 /* Localizable.stringsdict in Resources */,
+				2A954B242AB28B010070FB74 /* Count.xcstrings in Resources */,
 				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
 				2AAF93562A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A5E6FC12A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
@@ -2658,7 +2648,6 @@
 				2A80C6681CEE540F00AA664D /* Acknowledgments.html in Resources */,
 				2AE73EC8203520E000D8903B /* Acknowledgments.css in Resources */,
 				2A456C451A1EE38E00395158 /* ReportTemplate.md in Resources */,
-				2A6872202887F0D8006D6B41 /* Localizable.stringsdict in Resources */,
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
 				2AAF93572A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A5E6FC22A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
@@ -2666,6 +2655,7 @@
 				2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
 				2AA2E0131BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
 				2A5EA16E2A88FAEE00D16730 /* Sparkle.xcstrings in Resources */,
+				2A954B252AB28B010070FB74 /* Count.xcstrings in Resources */,
 				2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */,
 				2A10D1281E714D230027192A /* AppearancePane.storyboard in Resources */,
 				2A4144BC201397D70061F653 /* DocumentInspectorView.storyboard in Resources */,
@@ -3720,24 +3710,6 @@
 				2A5EA1612A88E8B000D16730 /* mul */,
 			);
 			name = StatusBar.storyboard;
-			sourceTree = "<group>";
-		};
-		2A68721D2887F0D8006D6B41 /* Localizable.stringsdict */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A9ECAFE2A7B4B2D001B00DB /* en */,
-				2A687229288834FA006D6B41 /* en-GB */,
-				2A687222288834E4006D6B41 /* ja */,
-				2A687223288834E9006D6B41 /* zh-Hans */,
-				2A68722A288834FB006D6B41 /* zh-Hant */,
-				2A687227288834F3006D6B41 /* fr */,
-				2A687224288834EB006D6B41 /* de */,
-				2A687225288834EF006D6B41 /* it */,
-				2A687226288834F1006D6B41 /* pt */,
-				99A8630D2A753A5700EEEE75 /* es */,
-				2A687228288834F6006D6B41 /* tr */,
-			);
-			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 		2A7F4E022871F46D0029CE66 /* PrintPanelAccessory.storyboard */ = {

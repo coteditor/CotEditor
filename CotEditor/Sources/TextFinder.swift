@@ -63,7 +63,7 @@ enum TextFindResult {
                     case ...0:
                         String(localized: "Not found")
                     default:
-                        String(localized: "\(self.count) found", comment: "%lld is number of founds")
+                        String(localized: "\(self.count) found", table: "Count", comment: "%lld is number of founds")
                 }
                 
             case .replaced:
@@ -71,7 +71,7 @@ enum TextFindResult {
                     case ...0:
                         String(localized: "Not replaced")
                     default:
-                        String(localized: "\(self.count) replaced", comment: "%lld is number of replaced")
+                        String(localized: "\(self.count) replaced", table: "Count", comment: "%lld is number of replaced")
                 }
         }
     }
