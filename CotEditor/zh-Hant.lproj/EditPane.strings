@@ -74,8 +74,6 @@
 "EDl-AJ-1dK.title" = "註釋：";
 /* Class = "NSButtonCell"; title = "Append a space to comment delimiter"; ObjectID = "6Dw-5M-Gv0"; */
 "6Dw-5M-Gv0.title" = "在註釋符號後追加空格";
-/* Class = "NSButtonCell"; title = "Always from line head"; ObjectID = "Byi-E9-owf"; */
-"Byi-E9-owf.title" = "使用從行首開始";
 
 
 /* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */

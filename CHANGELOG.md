@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Deprecate the option to swap `¥` and `\` keys.
+- Deprecate the option to comment always from line head (This behavior is now always enabled).
 - [beta] Adjust the position of history buttons in the find panel.
 - [beta] Update help contents.
 - [beta] Update localizations.

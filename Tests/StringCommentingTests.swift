@@ -224,7 +224,6 @@ private final class CommentingTextView: NSTextView, Commenting, MultiCursorEditi
     var inlineCommentDelimiter: String? = "//"
     var blockCommentDelimiters: Pair<String>? = Pair("<-", "->")
     var appendsCommentSpacer: Bool = true
-    var commentsAtLineHead: Bool = false
     
     // MultiCursorEditing
     var insertionLocations: [Int] = []

@@ -74,8 +74,6 @@
 "EDl-AJ-1dK.title" = "Commento:";
 /* Class = "NSButtonCell"; title = "Append a space to comment delimiter"; ObjectID = "6Dw-5M-Gv0"; */
 "6Dw-5M-Gv0.title" = "Aggiungi uno spazio al delimitatore del commento";
-/* Class = "NSButtonCell"; title = "Always from line head"; ObjectID = "Byi-E9-owf"; */
-"Byi-E9-owf.title" = "Sempre dall’inizio della riga";
 
 
 /* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */

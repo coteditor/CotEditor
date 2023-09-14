@@ -97,7 +97,6 @@ extension DefaultKeys {
     static let enablesHangingIndent = DefaultKey<Bool>("enableHangingIndent")
     static let hangingIndentWidth = DefaultKey<Int>("hangingIndentWidth")
     static let appendsCommentSpacer = DefaultKey<Bool>("appendsCommentSpacer")
-    static let commentsAtLineHead = DefaultKey<Bool>("commentsAtLineHead")
     static let completesDocumentWords = DefaultKey<Bool>("completesDocumentWords")
     static let completesSyntaxWords = DefaultKey<Bool>("completesSyntaxWords")
     static let completesStandardWords = DefaultKey<Bool>("completesStandardWords")

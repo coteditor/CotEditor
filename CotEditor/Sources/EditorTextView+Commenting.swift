@@ -35,12 +35,6 @@ extension EditorTextView: Commenting {
     }
     
     
-    var commentsAtLineHead: Bool {
-        
-        UserDefaults.standard[.commentsAtLineHead]
-    }
-    
-    
     
     // MARK: Action Messages
     
@@ -50,7 +44,7 @@ extension EditorTextView: Commenting {
         if self.canUncomment(partly: false) {
             self.uncomment()
         } else {
-            self.commentOut(types: .both, fromLineHead: self.commentsAtLineHead)
+            self.commentOut(types: .both, fromLineHead: true)
         }
     }
     
@@ -104,7 +98,6 @@ protocol Commenting: NSTextView {
     var blockCommentDelimiters: Pair<String>? { get }
     
     var appendsCommentSpacer: Bool { get }
-    var commentsAtLineHead: Bool { get }
 }
 
 
@@ -188,7 +181,7 @@ extension Commenting {
     
     /// Whether selected ranges can be uncommented.
     ///
-    /// - Parameter partly: When `true`, the method returns true when a part of selections is commented-out,
+    /// - Parameter partly: When `true`, the method returns `true` when a part of selections is commented-out,
     ///                     otherwise only when the entire selections can be commented out.
     /// - Returns: `true` when selection can be uncommented.
     func canUncomment(partly: Bool) -> Bool {
@@ -333,8 +326,8 @@ extension String {
         guard !ranges.isEmpty, !self.isEmpty else { return [] }
         
         let delimiterPattern = NSRegularExpression.escapedPattern(for: delimiter)
-        let spacerPattern = spacer.isEmpty ? "" : "(?:" + spacer + ")?"
-        let pattern = "^[ \t]*(" + delimiterPattern + spacerPattern + ")"
+        let spacerPattern = spacer.isEmpty ? "" : "(?:\(spacer))?"
+        let pattern = "^[ \t]*(\(delimiterPattern + spacerPattern))"
         let regex = try! NSRegularExpression(pattern: pattern, options: [.anchorsMatchLines])
         
         let delimiterRanges = ranges
@@ -363,8 +356,8 @@ extension String {
         
         let beginPattern = NSRegularExpression.escapedPattern(for: delimiters.begin)
         let endPattern = NSRegularExpression.escapedPattern(for: delimiters.end)
-        let spacerPattern = spacer.isEmpty ? "" : "(?:" + spacer + ")?"
-        let pattern = "\\A[ \t]*(" + beginPattern + spacerPattern + ").*?(" + spacerPattern + endPattern + ")[ \t]*\\Z"
+        let spacerPattern = spacer.isEmpty ? "" : "(?:\(spacer))?"
+        let pattern = "\\A[ \t]*(\(beginPattern + spacerPattern)).*?(\(spacerPattern + endPattern))[ \t]*\\Z"
         let regex = try! NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators])
         
         let delimiterRanges = ranges
