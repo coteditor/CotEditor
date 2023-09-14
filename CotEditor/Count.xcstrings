@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "*%lld* byte(s)" : {
+      "comment" : "Counter for Advanced Character Count",
       "localizations" : {
         "de" : {
           "variations" : {
@@ -180,6 +181,7 @@
       }
     },
     "*%lld* character(s)" : {
+      "comment" : "Counter for Advanced Character Count",
       "localizations" : {
         "de" : {
           "variations" : {

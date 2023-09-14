@@ -11275,8 +11275,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Tab轉為空格"
+            "state" : "translated",
+            "value" : "以空格縮進"
           }
         }
       }

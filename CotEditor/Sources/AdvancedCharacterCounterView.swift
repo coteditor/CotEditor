@@ -38,8 +38,10 @@ struct AdvancedCharacterCounterView: View {
         HStack(alignment: .firstTextBaseline) {
             if let count = self.count {
                 let markdown: AttributedString = switch self.counter.setting.unit {
-                    case .byte: .init(localized: "*\(count)* byte(s)", table: "Count", locale: .current)
-                    default:    .init(localized: "*\(count)* character(s)", table: "Count", locale: .current)
+                    case .byte: .init(localized: "*\(count)* byte(s)", table: "Count", locale: .current,
+                                      comment: "Counter for Advanced Character Count")
+                    default:    .init(localized: "*\(count)* character(s)", table: "Count", locale: .current,
+                                      comment: "Counter for Advanced Character Count")
                 }
                 let attributes = AttributeContainer
                     .font(.body.monospacedDigit().weight(.medium))
