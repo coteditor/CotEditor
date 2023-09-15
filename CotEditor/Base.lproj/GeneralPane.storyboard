@@ -169,20 +169,19 @@
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sMb-to-ljF">
                                 <rect key="frame" x="165" y="460" width="176" height="25"/>
-                                <popUpButtonCell key="cell" type="push" title="Create New Document" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="i4c-DG-ADS" id="F8J-5l-ztJ">
+                                <popUpButtonCell key="cell" type="push" title="Create New Document" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="i4c-DG-ADS" id="F8J-5l-ztJ">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="fR3-H2-Zcj">
                                         <items>
-                                            <menuItem title="Create New Document" state="on" tag="1" id="i4c-DG-ADS"/>
-                                            <menuItem title="Show Open Dialog" tag="2" id="hIX-mh-cG4"/>
-                                            <menuItem title="Do Nothing" id="KgD-GV-alV"/>
+                                            <menuItem title="Create New Document" state="on" id="i4c-DG-ADS"/>
+                                            <menuItem title="Show Open Dialog" tag="1" id="hIX-mh-cG4"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
                                     <accessibilityConnection property="title" destination="NjY-HB-hDH" id="0aF-7O-TPv"/>
-                                    <binding destination="ttU-LH-46v" name="selectedTag" keyPath="values.noDocumentOnLaunchBehavior" id="wWs-3z-fa0"/>
+                                    <binding destination="ttU-LH-46v" name="selectedTag" keyPath="values.noDocumentOnLaunchOption" id="QYE-T4-7gU"/>
                                 </connections>
                             </popUpButton>
                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vvR-Ur-0ju" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">

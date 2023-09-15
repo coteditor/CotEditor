@@ -36,8 +36,6 @@
 "i4c-DG-ADS.title" = "Criar Novo Documento";
 /* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
 "hIX-mh-cG4.title" = "Mostrar Diálogo de Abertura";
-/* Class = "NSMenuItem"; title = "Do Nothing"; ObjectID = "KgD-GV-alV"; */
-"KgD-GV-alV.title" = "Não Fazer Nada";
 
 
 /* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */

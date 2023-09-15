@@ -36,8 +36,6 @@
 "i4c-DG-ADS.title" = "Yeni Belge Oluştur";
 /* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
 "hIX-mh-cG4.title" = "Aç İletişim Kutusunu Göster";
-/* Class = "NSMenuItem"; title = "Do Nothing"; ObjectID = "KgD-GV-alV"; */
-"KgD-GV-alV.title" = "Bir Şey Yapma";
 
 
 /* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */

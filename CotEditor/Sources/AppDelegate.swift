@@ -94,9 +94,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.register(defaults: defaults)
         NSUserDefaultsController.shared.initialValues = defaults
         
-        // migrate font setting on CotEditor 4.6.0 (2023-08)
-        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion <= 581 {
+        // migrate settings on CotEditor 4.6.0 (2023-08)
+        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion <= 586 {
             UserDefaults.standard.migrateFontSetting()
+            UserDefaults.standard.migrateOnLaunchSetting()
         }
         
         ProcessInfo.processInfo.automaticTerminationSupportEnabled = true
@@ -221,13 +222,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
-        switch UserDefaults.standard[.noDocumentOnLaunchBehavior] {
+        switch UserDefaults.standard[.noDocumentOnLaunchOption] {
             case .untitledDocument:
                 return true
             case .openPanel:
                 NSDocumentController.shared.openDocument(nil)
-                return false
-            case .none:
                 return false
         }
     }
@@ -461,6 +460,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 private extension UserDefaults {
     
+    /// Migrate the on launch setting to new key updated on CotEditor 4.6.0 (2023-09).
+    @available(macOS, deprecated: 16, message: "The setting migration is outdated.")
+    func migrateOnLaunchSetting() {
+        
+        guard self.integer(forKey: "noDocumentOnLaunchBehavior") == 2 else { return }
+        
+        self[.noDocumentOnLaunchOption] = .openPanel
+    }
+    
+    
     /// Migrate the user font setting to new format introduced on CotEditor 4.6.0 (2023-09).
     @available(macOS, deprecated: 16, message: "The font setting migration is outdated.")
     func migrateFontSetting() {
@@ -469,7 +478,9 @@ private extension UserDefaults {
             self.data(forKey: DefaultKey<Data>.font.rawValue) == nil,
             self.data(forKey: DefaultKey<Data>.monospacedFont.rawValue) == nil,
             let name = self.string(forKey: "fontName"),
-            let font = NSFont(name: name, size: self.double(forKey: "fontSize"))
+            let font = NSFont(name: name, size: self.double(forKey: "fontSize")),
+            self[.font] == nil,
+            self[.monospacedFont] == nil
         else { return }
         
         if font.isFixedPitch {

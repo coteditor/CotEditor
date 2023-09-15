@@ -30,7 +30,7 @@ struct DefaultSettings {
     
     static let defaults: [DefaultKeys: Any] = [
         .quitAlwaysKeepsWindows: true,
-        .noDocumentOnLaunchBehavior: NoDocumentOnLaunchBehavior.untitledDocument.rawValue,
+        .noDocumentOnLaunchOption: NoDocumentOnLaunchOption.untitledDocument.rawValue,
         .enablesAutosaveInPlace: true,
         .documentConflictOption: DocumentConflictOption.revert.rawValue,
         .autoLinkDetection: false,

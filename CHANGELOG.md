@@ -7,9 +7,10 @@ Change Log
 
 ### Improvements
 
+- Deprecate the option to do nothing when no document is opened on startup.
 - Deprecate the option to swap `¥` and `\` keys.
-- Deprecate the option to comment always from line head (This behavior is now always enabled).
-- [beta] Adjust the position of history buttons in the find panel.
+- Deprecate the option to comment always from the line head (This behavior is now always enabled).
+- [beta] Adjust the position of the history buttons in the find panel.
 - [beta] Update help contents.
 - [beta] Update localizations.
 - [beta][dev] Update the build environment to Xcode 15 RC.
@@ -24,7 +25,7 @@ Change Log
 
 ### Known Issues
 
-- User interface is partly not localized yet in Italian, French, Portuguese, and Spanish.
+The user interface is partly not localized yet in Italian, French, Portuguese, and Spanish.
 
 
 
