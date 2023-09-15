@@ -30,8 +30,6 @@
 "3302.title" = "智慧型拷貝/貼上";
 /* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
 "GRh-V2-hmW.title" = "自動補全括弧和引號";
-/* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
-"3303.title" = "轉換「¥」和「\\」按鍵";
 /* Class = "NSButtonCell"; title = "Smart quotes"; ObjectID = "Abx-fM-gyc"; */
 "Abx-fM-gyc.title" = "智慧型引號";
 /* Class = "NSButtonCell"; title = "Smart dashes"; ObjectID = "nr1-0X-aBY"; */

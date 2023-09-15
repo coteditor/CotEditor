@@ -84,7 +84,6 @@ extension DefaultKeys {
     // Edit
     static let smartInsertAndDelete = DefaultKey<Bool>("smartInsertAndDelete")
     static let balancesBrackets = DefaultKey<Bool>("balancesBrackets")
-    static let swapYenAndBackSlash = DefaultKey<Bool>("swapYenAndBackSlashKey")
     static let enableSmartQuotes = DefaultKey<Bool>("enableSmartQuotes")
     static let enableSmartDashes = DefaultKey<Bool>("enableSmartDashes")
     static let autoTrimsTrailingWhitespace = DefaultKey<Bool>("autoTrimsTrailingWhitespace")

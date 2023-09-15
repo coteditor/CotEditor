@@ -30,8 +30,6 @@
 "3302.title" = "Intelligentes Kopieren/Ersetzen";
 /* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
 "GRh-V2-hmW.title" = "Klammern und Anführungszeichen automatisch schließen";  // Schließende Klammern und Anführungszeichen automatisch hinzufügen
-/* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
-"3303.title" = "„¥“ und „\\“ Tasten tauschen";
 /* Class = "NSButtonCell"; title = "Smart quotes"; ObjectID = "Abx-fM-gyc"; */
 "Abx-fM-gyc.title" = "Intelligente Anführungszeichen";
 /* Class = "NSButtonCell"; title = "Smart dashes"; ObjectID = "nr1-0X-aBY"; */
