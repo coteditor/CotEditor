@@ -156,7 +156,7 @@ final class ThemeManager: SettingFileManaging {
     /// return whether given setting name is dark theme
     func isDark(name: String) -> Bool {
         
-        name.contains(/(Dark)$/)
+        name.hasSuffix("(Dark)")
     }
     
     
