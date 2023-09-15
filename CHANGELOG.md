@@ -25,7 +25,7 @@ Change Log
 
 ### Known Issues
 
-The user interface is partly not localized yet in Italian, French, Portuguese, and Spanish.
+- The user interface is partly not localized yet in Italian, French, Portuguese, and Spanish.
 
 
 
