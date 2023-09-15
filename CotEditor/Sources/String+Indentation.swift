@@ -129,9 +129,7 @@ extension String {
     /// range of indent characters in line at the location
     func rangeOfIndent(at index: String.Index) -> Range<String.Index>? {
         
-        let lineRange = self.lineRange(at: index)
-        
-        return self.range(of: "^[ \\t]++", options: .regularExpression, range: lineRange)
+        self[self.lineRange(at: index)].firstRange(of: /^[ \t]++/)
     }
     
     
