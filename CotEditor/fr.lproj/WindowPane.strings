@@ -89,9 +89,6 @@
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
 "P9V-pV-PAX.title" = "espaces";
 
-/* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
-"7Nz-lv-JZb.title" = "Overscroll :";
-
 /* Class = "NSTextFieldCell"; title = "Writing Direction:"; ObjectID = "RwN-73-I8c"; */
 "RwN-73-I8c.title" = "Sens de l’écriture :";
 /* Class = "NSButtonCell"; title = "Left to right"; ObjectID = "3Kb-bF-CW0"; */
@@ -100,6 +97,9 @@
 "USo-8p-Edc.title" = "De droite à gauche";
 /* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "Ge8-vU-lyg"; */
 "Ge8-vU-lyg.title" = "Vertical";
+
+/* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
+"7Nz-lv-JZb.title" = "Overscroll :";
 
 
 /* Class = "NSTextFieldCell"; title = "Status bar shows:"; ObjectID = "kjP-FS-fyd"; */

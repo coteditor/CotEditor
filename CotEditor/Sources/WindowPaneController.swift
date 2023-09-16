@@ -33,9 +33,9 @@ final class WindowPaneController: NSViewController {
     
     @IBOutlet private weak var tabbingOptionMenu: NSMenu?
     
-    @IBOutlet private weak var overscrollField: NSTextField?
     @IBOutlet private weak var pageGuideColumnField: NSTextField?
     @IBOutlet private weak var hangingIndentWidthField: NSTextField?
+    @IBOutlet private weak var overscrollField: NSTextField?
     
     @IBOutlet private weak var ltrWritingDirectionButton: NSButton?
     @IBOutlet private weak var rtlWritingDirectionButton: NSButton?
@@ -51,9 +51,9 @@ final class WindowPaneController: NSViewController {
         super.viewDidLoad()
         
         // set initial values as fields' placeholder
-        self.overscrollField?.bindNullPlaceholderToUserDefaults()
         self.pageGuideColumnField?.bindNullPlaceholderToUserDefaults()
         self.hangingIndentWidthField?.bindNullPlaceholderToUserDefaults()
+        self.overscrollField?.bindNullPlaceholderToUserDefaults()
     }
     
     
