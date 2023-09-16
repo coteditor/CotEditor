@@ -311,7 +311,7 @@
 /* MARK: Toolbar */
 "Syntax" = "Sintaxe";
 // tooltip
-"Change syntax" = "Altere o estilo da sintaxe";  // FIXME: syntax style -> syntax
+"Change syntax" = "Alterar sintaxe";
 // menu item title
 "Recently Used" = "Recentes";
 "Deleted" = "Apagado";
@@ -356,12 +356,12 @@
 
 "Tab Style" = "Estilo da Tabulação";
 // tooltip
-"Use tabs for indentation" = "Desative a expansão de tabulações automática";  // FIXME: updated
-"Use spaces for indentation" = "Ative a expansão de tabulações automática";  // FIXME: updated
+"Use tabs for indentation" = "Use tabulações para indentação";
+"Use spaces for indentation" = "Use espaços para indentação";
 // menu
 "Tab Width" = "Largura da Tabulação";
 "Custom…" = "Personalizar…";
-"Use Spaces for Indentation" = "Expandir Tabulações Automaticamente";  // FIXME: updated
+"Use Spaces for Indentation" = "Use espaços para Indentação";
 
 "Wrap Lines" = "Ajustar Linhas";
 // tooltip
@@ -380,7 +380,7 @@
 
 "Keep on Top" = "Manter em Primeiro Plano";
 // tooltip
-"Keep the window always on top" = "Keep the window always on top";  // FIXME: added
+"Keep the window always on top" = "Manter janela sempre no topo";
 
 "Opacity" = "Opacidade";
 // tooltip
@@ -408,11 +408,11 @@
 
 "Fonts" = "Fontes";
 // tooltip
-"Change Font" = "Change Font";  // FIXME: added
+"Change Font" = "Alterar Fonte";
 // menu items
-"Font Type" = "Font Type";  // FIXME: added
-"Standard" = "Standard";  // FIXME: added
-"Monospaced" = "Monospaced";  // FIXME: added
+"Font Type" = "Tipo de Fonte";
+"Standard" = "Padrão";
+"Monospaced" = "Monoespaçado";
 "Show Fonts" = "Mostrar tipos de letra";
 
 
@@ -529,7 +529,7 @@
 "Wrap Lines" = "Ajustar Linhas";
 
 // Tooltip for “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled
-"To show invisible characters, set them in the Window settings" = "Para mostrar invisíveis, ative-os nas Definições";  // FIXME: Setting -> the Window Settings
+"To show invisible characters, set them in the Window settings" = "Para exibir caracteres invisíveis, configure-os na janela de Configurações";
 
 
 
@@ -618,14 +618,14 @@
 "The current 'cot' symbolic link may target an invalid path." = "O destino do link simbólico ‘cot’ atual pode ser um caminho inválido.";
 
 // warnings setting
-"Suppress following warnings:" = "Suppress following warnings:";  // FIXME: added
-"Inconsistent line endings" = "Inconsistent line endings";  // FIXME: added
+"Suppress following warnings:" = "Omitir os seguintes avisos:";
+"Inconsistent line endings" = "Fim de linha inconsistente";
 
 
 // Appearance pane
 // alert message
-"The selected font doesn’t seem to be monospaced." = "The selected font doesn’t seem to be monospaced.";  // FIXME: added
-"Do you want to use it for the monospaced font?" = "Do you want to use it for the monospaced font?";  // “it” is the selected font.  // FIXME: added
+"The selected font doesn’t seem to be monospaced." = "A fonte selecionada não parace ser monoespaçada.";
+"Do you want to use it for the monospaced font?" = "Você deseja usar a fonte selecionada como fonte monoespaçada?";  // “it” is the selected font.
 
 // Contextual menu items
 "Rename “%@”" = "Renomear “%@”";
@@ -695,7 +695,7 @@
 "Outline" = "Plano";
 "Completion List" = "Lista de Preenchimento";
 "File Mapping" = "Mapeamento de Arquivo";
-"Syntax Information" = "Informações do Estilo";  // FIXME: style -> syntax
+"Syntax Information" = "Informação de Sintaxe";
 "Syntax Validation" = "Validação da Sintaxe";
 
 // Syntax validation results
@@ -712,9 +712,9 @@
 
 // Setting filename warnings
 "Please choose another name." = "Escolha outro nome.";
-"Name can’t be empty." = "O nome não pode estar vazio.";
-"Name can’t contain “/”." = "Nomes que contêm “/” não podem ser usados.";  // FIXME: updated
-"Name can’t begin with “.”." = "Nomes que começam por “.” não podem ser usados.";  // FIXME: updated
+"Name can’t be empty." = "Nome não pode estar vazio.";
+"Name can’t contain “/”." = "Nome não pode conter “/”.";
+"Name can’t begin with “.”." = "Nome não pode começar com “.”.";
 "The name “%@” is already taken." = "O nome “%@” já está sendo usado.";
 
 
@@ -724,7 +724,7 @@
 "None" = "Nenhum";
 
 // Description for editing bundled syntax
-"Bundled syntaxes can’t be renamed." = "Os estilos integrados não podem ser renomeados.";  // FIXME: style -> syntax
+"Bundled syntaxes can’t be renamed." = "Não é possível renomear pacotes de sintaxe.";
 
 // Suffix of copied syntax
 "copy" = "(cópia)";
@@ -732,8 +732,8 @@
 // Import syntax file choose openPanel button
 "Import" = "Importar";
 // Importing same name syntax alert
-"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "Um novo estilo chamado “%@” será instalado, mas já existe um estilo personalizado com o mesmo nome.";  // FIXME: style -> syntax
-"Do you want to replace it?\nReplaced syntax can’t be restored." = "Deseja substituí-lo?\nOs estilos substituídos não podem ser restaurados.";  // FIXME: style -> syntax
+"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "Uma nova sintaxe chamada “%@” será instalada, porém uma sintaxe customizada com mesmo nome já existe.";
+"Do you want to replace it?\nReplaced syntax can’t be restored." = "Você deseja alterar?\nUma sintaxe alterada não pode ser restaurada.";
 
 // Export syntax file savePanel label
 "Export As:" = "Exportar Como:";
@@ -857,14 +857,14 @@
 
 
 /* MARK: Syntax Mapping Conflicts View */
-"Syntax Mapping Conflicts" = "Conflitos de Mapeamento de Estilos de Sintaxe";  // FIXME: syntax style -> syntax
-"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "As seguintes regras de mapeamento de arquivo estão registradas em vários estilos. O CotEditor usa o primeiro estilo automaticamente. Para resolver conflitos, edite cada estilo de sintaxe.";  // FIXME: updated
+"Syntax Mapping Conflicts" = "Conflitos no mapeamento de sintaxes";
+"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "As seguintes regras de mapeamento de arquivo estão registradas em várias sintaxes. O CotEditor utiliza automaticamente a primeira sintaxe. Para resolver os conflitos, edite cada definição de sintaxe."
 "Extension" = "Extensão";
 "Filename" = "Nome do Arquivo";
 "Interpreter" = "Intérpretes";
 // table column headers
-"Used syntax" = "Estilo Usado";  // FIXME: updated
-"Duplicated syntaxes" = "Estilos Duplicados";  // FIXME: updated
+"Used syntax" = "Sintaxe usada";
+"Duplicated syntaxes" = "Sintaxes duplicadas";
 
 
 
@@ -905,11 +905,11 @@
 /* MARK: Character Inspector View */
 "Unknown" = "Desconhecido";
 "No Block" = "Nenhum Bloco";
-"Code Point:" = "Code Point:";  // FIXME: new
-"Block:" = "Block:";  // FIXME: new
-"Category:" = "Category:";  // FIXME: new
-"Version:" = "Version:";  // FIXME: new
-"deprecated" = "deprecated";  // FIXME: new
+"Code Point:" = "Ponto de Código:";
+"Block:" = "Bloco:";
+"Category:" = "Categoria:";
+"Version:" = "Versão:";
+"deprecated" = "depreciado";
 
 
 

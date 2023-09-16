@@ -101,6 +101,12 @@
             "value" : "等幅"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Monoespaçado"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11257,8 +11263,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Expandir Tabulações Automaticamente"
+            "state" : "translated",
+            "value" : "Use espaços para Indentação"
           }
         },
         "tr" : {
@@ -12965,6 +12971,12 @@
             "value" : "フォントタイプ"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo de Fonte"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14235,6 +14247,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "標準"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Padrão"
           }
         },
         "tr" : {
