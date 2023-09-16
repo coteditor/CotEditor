@@ -124,7 +124,7 @@ Gw
                                 </connections>
                             </button>
                             <button tag="2" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bN6-xc-HWj">
-                                <rect key="frame" x="271" y="268" width="142" height="18"/>
+                                <rect key="frame" x="267" y="268" width="142" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Regular expression" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Ase-N7-QHB">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -247,7 +247,7 @@ Gw
                             <constraint firstItem="CQO-oZ-nKa" firstAttribute="leading" secondItem="pgB-9B-CeZ" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="d1y-Yd-imT"/>
                             <constraint firstAttribute="trailing" secondItem="dBa-xL-w0w" secondAttribute="trailing" constant="20" symbolic="YES" id="dH5-Kc-gkE"/>
                             <constraint firstItem="fPh-fe-6Jh" firstAttribute="leading" secondItem="CQO-oZ-nKa" secondAttribute="trailing" constant="8" symbolic="YES" id="eT7-i2-vIY"/>
-                            <constraint firstItem="bN6-xc-HWj" firstAttribute="leading" secondItem="dx8-zl-dSu" secondAttribute="trailing" constant="12" id="fQc-Wt-6vB"/>
+                            <constraint firstItem="bN6-xc-HWj" firstAttribute="leading" secondItem="dx8-zl-dSu" secondAttribute="trailing" constant="8" symbolic="YES" id="fQc-Wt-6vB"/>
                             <constraint firstItem="dBa-xL-w0w" firstAttribute="leading" secondItem="oqP-25-2rA" secondAttribute="trailing" constant="8" symbolic="YES" id="gf2-zF-2Xp"/>
                             <constraint firstItem="db2-oG-LH9" firstAttribute="leading" secondItem="CQO-oZ-nKa" secondAttribute="trailing" constant="8" symbolic="YES" id="hU6-Eo-Rcp"/>
                             <constraint firstItem="AE3-Op-b7T" firstAttribute="leading" secondItem="pgB-9B-CeZ" secondAttribute="leading" constant="20" symbolic="YES" id="jGh-Am-GrA"/>
