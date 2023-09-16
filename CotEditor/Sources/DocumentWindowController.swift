@@ -614,7 +614,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = String(localized: "Spell Check")
                 item.toolTip = String(localized: "Show spelling and grammar")
-                item.image = NSImage(resource: .abcCheckmark)
+                item.image = NSImage(systemSymbolName: "textformat.abc.dottedunderline", accessibilityDescription: item.label)
                 item.action = #selector(NSTextView.showGuessPanel)
                 return item
                 
