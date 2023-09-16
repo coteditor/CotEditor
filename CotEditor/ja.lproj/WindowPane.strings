@@ -50,9 +50,6 @@
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "UXj-fO-Vee"; */
 "UXj-fO-Vee.ibShadowedIsNilPlaceholder" = "自動";
 
-/* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
-"gSx-LA-TPc.title" = "エディタの不透明度:";
-
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */
 "iw9-Ba-eD2.title" = "表示:";
@@ -77,6 +74,24 @@
 /* Class = "NSButtonCell"; title = Page guide at column:; ObjectID = "3352"; */
 "3352.title" = "ページガイド　列:";
 
+/* Class = "NSTextFieldCell"; title = "Current line:"; ObjectID = "oKu-Fu-hRU"; */
+"oKu-Fu-hRU.title" = "現在の行:";
+/* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
+"ba7-dE-zXz.title" = "背景カラーを変更";
+
+
+/* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
+"P1I-gs-RgX.title" = "行の折り返し:";
+/* Class = "NSButtonCell"; title = "Wrap lines to editor width"; ObjectID = "3274"; */
+"3274.title" = "エディタの幅に合わせて行を折り返す";
+/* Class = "NSButtonCell"; title = "Indent wrapped lines by"; ObjectID = "mCq-92-2sT"; */
+"mCq-92-2sT.title" = "折り返した行のインデント:";
+/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
+"P9V-pV-PAX.title" = "スペース";
+
+/* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
+"7Nz-lv-JZb.title" = "超過スクロール:";
+
 /* Class = "NSTextFieldCell"; title = "Writing Direction:"; ObjectID = "RwN-73-I8c"; */
 "RwN-73-I8c.title" = "文章の方向:";
 /* Class = "NSButtonCell"; title = "Left to right"; ObjectID = "3Kb-bF-CW0"; */
@@ -85,9 +100,6 @@
 "USo-8p-Edc.title" = "右から左";
 /* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "Ge8-vU-lyg"; */
 "Ge8-vU-lyg.title" = "縦書き";
-
-/* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
-"7Nz-lv-JZb.title" = "超過スクロール:";
 
 
 /* Class = "NSTextFieldCell"; title = "Status bar shows:"; ObjectID = "kjP-FS-fyd"; */

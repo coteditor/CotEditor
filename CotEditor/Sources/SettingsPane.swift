@@ -26,8 +26,8 @@
 enum SettingsPane: String, CaseIterable {
     
     case general
-    case window
     case appearance
+    case window
     case edit
     case format
     case snippets
@@ -39,8 +39,8 @@ enum SettingsPane: String, CaseIterable {
         
         switch self {
             case .general: String(localized: "General")
-            case .window: String(localized: "Window")
             case .appearance: String(localized: "Appearance")
+            case .window: String(localized: "Window")
             case .edit: String(localized: "Edit")
             case .format: String(localized: "Format")
             case .snippets: String(localized: "Snippets")
@@ -54,8 +54,8 @@ enum SettingsPane: String, CaseIterable {
         
         switch self {
             case .general: "gearshape"
-            case .window: "uiwindow.split.2x1"
             case .appearance: "eyeglasses"
+            case .window: "uiwindow.split.2x1"
             case .edit: "square.and.pencil"
             case .format: "doc.text"
             case .snippets: "note.text"

@@ -45,6 +45,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @IBOutlet private weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var monospacedFontField: AntialiasingTextField?
     @IBOutlet private weak var lineHeightField: NSTextField?
+    @IBOutlet private weak var editorOpacityField: NSTextField?
     
     @IBOutlet private weak var defaultAppearanceButton: NSButton?
     @IBOutlet private weak var lightAppearanceButton: NSButton?
@@ -71,6 +72,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         // set initial value as field's placeholder
         self.lineHeightField?.bindNullPlaceholderToUserDefaults()
+        self.editorOpacityField?.bindNullPlaceholderToUserDefaults()
         
         self.themeNames = ThemeManager.shared.settingNames
     }

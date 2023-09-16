@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 CotEditor Project
+//  © 2015-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,23 +58,6 @@
 "rpa-Di-f4s.title" = "Charger la nouvelle version";
 
 
-/* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "Parsing :";
-
-/* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
-"tPy-Ox-YpP.title" = "Lier les URLs dans le document";
-/* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */
-"3300.title" = "Vérifier le document lors de la saisie";
-/* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
-"RrC-LL-hid.title" = "Surligner les “()” “[]” “{}” associés";
-/* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
-"al9-WE-Rqy.title" = "Surligner “<>”";
-/* Class = "NSButtonCell"; title = "Highlight instances of selected text"; ObjectID = "Rcq-1K-8nz"; */
-"Rcq-1K-8nz.title" = "Surligner les autres instances du texte sélectionné";
-/* Class = "NSTextFieldCell"; title = "Delay:"; ObjectID = "rOw-DD-kV5"; */
-"rOw-DD-kV5.title" = "Délai :";
-/* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "ebJ-vk-RME"; */
-"ebJ-vk-RME.title" = "secondes";
 /* Class = "NSTextFieldCell"; title = "Dialog warnings:"; ObjectID = "Igx-ay-Cgz"; */
 "Igx-ay-Cgz.title" = "Dialog warnings:";  // FIXME: added
 /* Class = "NSButtonCell"; title = "Manage Warnings…"; ObjectID = "G2q-Im-jTO"; */
@@ -97,6 +80,5 @@
 
 /* Class = "NSButtonCell"; title = "Update to pre-releases when available"; ObjectID = "4aT-ka-sbv"; */
 "4aT-ka-sbv.title" = "Mettre à jour vers les versions préliminaires, quand disponible";
-
 /* Class = "NSButtonCell"; title = "Regardless of this setting, new pre-releases are always included while using a pre-release."; ObjectID = "chR-VY-cuI"; */
 "chR-VY-cuI.title" = "Lorsque vous utilisez une version préliminaire, vous recevrez toujours les nouvelles versions préliminaires, peu importe l’activation ou non de cette option.";

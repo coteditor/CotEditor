@@ -24,21 +24,6 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "Substitution:"; ObjectID = "SqI-BC-ar9"; */
-"SqI-BC-ar9.title" = "Substitution:";
-/* Class = "NSButtonCell"; title = "Smart copy/paste"; ObjectID = "3302"; */
-"3302.title" = "Smart copy/paste";
-/* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
-"GRh-V2-hmW.title" = "Automatically insert closing brackets and quotes";
-/* Class = "NSButtonCell"; title = "Smart quotes"; ObjectID = "Abx-fM-gyc"; */
-"Abx-fM-gyc.title" = "Smart quotes";
-/* Class = "NSButtonCell"; title = "Smart dashes"; ObjectID = "nr1-0X-aBY"; */
-"nr1-0X-aBY.title" = "Smart dashes";
-/* Class = "NSButtonCell"; title = "Automatically trim trailing whitespace"; ObjectID = "noP-hx-YeQ"; */
-"noP-hx-YeQ.title" = "Automatically trim trailing whitespace";
-/* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
-"Tma-Oh-F7v.title" = "Including whitespace-only lines";
-
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
 "9bX-ei-1x8.title" = "Indentation:";
 /* Class = "NSTextFieldCell"; title = "Prefer using"; ObjectID = "jdu-bS-Jk1"; */
@@ -58,20 +43,46 @@
 /* Class = "NSButtonCell"; title = "Indent selection with Tab key"; ObjectID = "aVn-PD-hen"; */
 "aVn-PD-hen.title" = "Indent selection with Tab key";
 
-/* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
-"P1I-gs-RgX.title" = "Line wrapping:";
-/* Class = "NSButtonCell"; title = "Wrap lines to editor width"; ObjectID = "3274"; */
-"3274.title" = "Wrap lines to editor width";
-/* Class = "NSButtonCell"; title = "Indent wrapped lines by"; ObjectID = "mCq-92-2sT"; */
-"mCq-92-2sT.title" = "Indent wrapped lines by";
-/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
-"P9V-pV-PAX.title" = "spaces";
+
+/* Class = "NSTextFieldCell"; title = "Substitution:"; ObjectID = "SqI-BC-ar9"; */
+"SqI-BC-ar9.title" = "Substitution:";
+/* Class = "NSButtonCell"; title = "Smart copy/paste"; ObjectID = "3302"; */
+"3302.title" = "Smart copy/paste";
+/* Class = "NSButtonCell"; title = "Smart quotes"; ObjectID = "Abx-fM-gyc"; */
+"Abx-fM-gyc.title" = "Smart quotes";
+/* Class = "NSButtonCell"; title = "Smart dashes"; ObjectID = "nr1-0X-aBY"; */
+"nr1-0X-aBY.title" = "Smart dashes";
+/* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
+"GRh-V2-hmW.title" = "Automatically insert closing brackets and quotes";
+/* Class = "NSButtonCell"; title = "Automatically trim trailing whitespace"; ObjectID = "noP-hx-YeQ"; */
+"noP-hx-YeQ.title" = "Automatically trim trailing whitespace";
+/* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
+"Tma-Oh-F7v.title" = "Including whitespace-only lines";
 
 
 /* Class = "NSTextFieldCell"; title = "Comment:"; ObjectID = "EDl-AJ-1dK"; */
 "EDl-AJ-1dK.title" = "Comment:";
 /* Class = "NSButtonCell"; title = "Append a space to comment delimiter"; ObjectID = "6Dw-5M-Gv0"; */
 "6Dw-5M-Gv0.title" = "Append a space to comment delimiter";
+
+
+/* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
+"lzy-Ei-xlT.title" = "Content parse:";
+
+/* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
+"tPy-Ox-YpP.title" = "Link URLs in document";
+/* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */
+"3300.title" = "Check spelling while typing";
+/* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
+"RrC-LL-hid.title" = "Highlight matching braces “()” “[]” “{}”";
+/* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
+"al9-WE-Rqy.title" = "Highlight “<>”";
+/* Class = "NSButtonCell"; title = "Highlight instances of selected text"; ObjectID = "Rcq-1K-8nz"; */
+"Rcq-1K-8nz.title" = "Highlight instances of selected text";
+/* Class = "NSTextFieldCell"; title = "Delay:"; ObjectID = "rOw-DD-kV5"; */
+"rOw-DD-kV5.title" = "Delay:";
+/* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "ebJ-vk-RME"; */
+"ebJ-vk-RME.title" = "seconds";
 
 /* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */
 "gDN-SU-sZH.title" = "Completion:";

@@ -24,22 +24,6 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "Substitution:"; ObjectID = "SqI-BC-ar9"; */
-"SqI-BC-ar9.title" = "Substitution :";
-/* Class = "NSButtonCell"; title = "Smart copy/paste"; ObjectID = "3302"; */
-"3302.title" = "Copier-coller intelligent";
-/* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
-"GRh-V2-hmW.title" = "Insérer automatiquement les parenthèses et guillemets fermants";
-/* Class = "NSButtonCell"; title = "Smart quotes"; ObjectID = "Abx-fM-gyc"; */
-"Abx-fM-gyc.title" = "Guillemets courbes";
-/* Class = "NSButtonCell"; title = "Smart dashes"; ObjectID = "nr1-0X-aBY"; */
-"nr1-0X-aBY.title" = "Tirets intelligents";
-/* Class = "NSButtonCell"; title = "Automatically trim trailing whitespace"; ObjectID = "noP-hx-YeQ"; */
-"noP-hx-YeQ.title" = "Retirer automatiquement les espaces en fin de ligne";
-/* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
-"Tma-Oh-F7v.title" = "Même les lignes composées uniquement d’espaces";
-
-
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
 "9bX-ei-1x8.title" = "Indentation :";
 /* Class = "NSTextFieldCell"; title = "Prefer using"; ObjectID = "jdu-bS-Jk1"; */
@@ -60,20 +44,45 @@
 "aVn-PD-hen.title" = "Indenter la sélection avec la touche Tabulation";
 
 
-/* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
-"P1I-gs-RgX.title" = "Retours à la ligne :";
-/* Class = "NSButtonCell"; title = "Wrap lines to editor width"; ObjectID = "3274"; */
-"3274.title" = "Renvoyer les lignes qui dépassent la largeur de l’éditeur";
-/* Class = "NSButtonCell"; title = "Indent wrapped lines by"; ObjectID = "mCq-92-2sT"; */
-"mCq-92-2sT.title" = "Indenter les lignes renvoyées avec";
-/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
-"P9V-pV-PAX.title" = "espaces";
+/* Class = "NSTextFieldCell"; title = "Substitution:"; ObjectID = "SqI-BC-ar9"; */
+"SqI-BC-ar9.title" = "Substitution :";
+/* Class = "NSButtonCell"; title = "Smart copy/paste"; ObjectID = "3302"; */
+"3302.title" = "Copier-coller intelligent";
+/* Class = "NSButtonCell"; title = "Smart quotes"; ObjectID = "Abx-fM-gyc"; */
+"Abx-fM-gyc.title" = "Guillemets courbes";
+/* Class = "NSButtonCell"; title = "Smart dashes"; ObjectID = "nr1-0X-aBY"; */
+"nr1-0X-aBY.title" = "Tirets intelligents";
+/* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
+"GRh-V2-hmW.title" = "Insérer automatiquement les parenthèses et guillemets fermants";
+/* Class = "NSButtonCell"; title = "Automatically trim trailing whitespace"; ObjectID = "noP-hx-YeQ"; */
+"noP-hx-YeQ.title" = "Retirer automatiquement les espaces en fin de ligne";
+/* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
+"Tma-Oh-F7v.title" = "Même les lignes composées uniquement d’espaces";
 
 
 /* Class = "NSTextFieldCell"; title = "Comment:"; ObjectID = "EDl-AJ-1dK"; */
 "EDl-AJ-1dK.title" = "Commentaires :";
 /* Class = "NSButtonCell"; title = "Append a space to comment delimiter"; ObjectID = "6Dw-5M-Gv0"; */
 "6Dw-5M-Gv0.title" = "Ajouter un espace après le symbole de commentaire";
+
+
+/* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
+"lzy-Ei-xlT.title" = "Parsing :";
+
+/* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
+"tPy-Ox-YpP.title" = "Lier les URLs dans le document";
+/* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */
+"3300.title" = "Vérifier le document lors de la saisie";
+/* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
+"RrC-LL-hid.title" = "Surligner les “()” “[]” “{}” associés";
+/* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
+"al9-WE-Rqy.title" = "Surligner “<>”";
+/* Class = "NSButtonCell"; title = "Highlight instances of selected text"; ObjectID = "Rcq-1K-8nz"; */
+"Rcq-1K-8nz.title" = "Surligner les autres instances du texte sélectionné";
+/* Class = "NSTextFieldCell"; title = "Delay:"; ObjectID = "rOw-DD-kV5"; */
+"rOw-DD-kV5.title" = "Délai :";
+/* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "ebJ-vk-RME"; */
+"ebJ-vk-RME.title" = "secondes";
 
 
 /* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */

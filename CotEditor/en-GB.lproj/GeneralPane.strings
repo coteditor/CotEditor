@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,23 +58,6 @@
 "rpa-Di-f4s.title" = "Update to modified edition";
 
 
-/* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "Content parse:";
-
-/* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
-"tPy-Ox-YpP.title" = "Link URLs in document";
-/* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */
-"3300.title" = "Check spelling while typing";
-/* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
-"RrC-LL-hid.title" = "Highlight matching braces “()” “[]” “{}”";
-/* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
-"al9-WE-Rqy.title" = "Highlight “<>”";
-/* Class = "NSButtonCell"; title = "Highlight instances of selected text"; ObjectID = "Rcq-1K-8nz"; */
-"Rcq-1K-8nz.title" = "Highlight instances of selected text";
-/* Class = "NSTextFieldCell"; title = "Delay:"; ObjectID = "rOw-DD-kV5"; */
-"rOw-DD-kV5.title" = "Delay:";
-/* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "ebJ-vk-RME"; */
-"ebJ-vk-RME.title" = "seconds";
 /* Class = "NSTextFieldCell"; title = "Dialog warnings:"; ObjectID = "Igx-ay-Cgz"; */
 "Igx-ay-Cgz.title" = "Dialogue warnings:";
 /* Class = "NSButtonCell"; title = "Manage Warnings…"; ObjectID = "G2q-Im-jTO"; */
@@ -97,6 +80,5 @@
 
 /* Class = "NSButtonCell"; title = "Update to pre-releases when available"; ObjectID = "4aT-ka-sbv"; */
 "4aT-ka-sbv.title" = "Update to pre-releases when available";
-
 /* Class = "NSTextFieldCell"; title = "Regardless of this setting, new pre-releases are always included while using a pre-release."; ObjectID = "chR-VY-cuI"; */
 "chR-VY-cuI.title" = "Regardless of this setting, new pre-releases are always included while using a pre-release.";

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 CotEditor Project
+//  © 2016-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -56,25 +56,6 @@
 "IkZ-EO-BSv.title" = "Chiedi cosa fare";
 /* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "rpa-Di-f4s"; */
 "rpa-Di-f4s.title" = "Aggiorna usando la versione modificata";
-
-
-/* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "Analizza il contenuto:";
-
-/* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
-"tPy-Ox-YpP.title" = "Collegamenti agli URL nel documento";
-/* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */
-"3300.title" = "Controlla ortografia mentre scrivo";
-/* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
-"RrC-LL-hid.title" = "Evidenzia le parentesi “()” “[]” “{}” accoppiate";
-/* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
-"al9-WE-Rqy.title" = "Evidenzia “<>”";
-/* Class = "NSButtonCell"; title = "Highlight instances of selected text"; ObjectID = "Rcq-1K-8nz"; */
-"Rcq-1K-8nz.title" = "Evidenzia le istanze del testo selezionato";
-/* Class = "NSTextFieldCell"; title = "Delay:"; ObjectID = "rOw-DD-kV5"; */
-"rOw-DD-kV5.title" = "Ritardo:";
-/* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "ebJ-vk-RME"; */
-"ebJ-vk-RME.title" = "secondi";
 /* Class = "NSTextFieldCell"; title = "Dialog warnings:"; ObjectID = "Igx-ay-Cgz"; */
 "Igx-ay-Cgz.title" = "Dialog warnings:";  // FIXME: added
 /* Class = "NSButtonCell"; title = "Manage Warnings…"; ObjectID = "G2q-Im-jTO"; */
@@ -97,6 +78,5 @@
 
 /* Class = "NSButtonCell"; title = "Update to pre-releases when available"; ObjectID = "4aT-ka-sbv"; */
 "4aT-ka-sbv.title" = "Includi versioni preliminari";
-
 /* Class = "NSButtonCell"; title = "Regardless of this setting, new pre-releases are always included while using a pre-release."; ObjectID = "chR-VY-cuI"; */
 "chR-VY-cuI.title" = "Indipendentemente da questa impostazione, se si sta usando una versione preliminare le successive versioni preliminari saranno sempre incluse negli aggiornamenti.";

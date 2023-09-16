@@ -56,11 +56,6 @@
 /* Class = "NSTextFieldCell"; title = "times"; ObjectID = "VLD-jj-zzl"; */
 "VLD-jj-zzl.title" = "veces";
 
-/* Class = "NSTextFieldCell"; title = "Current line:"; ObjectID = "oKu-Fu-hRU"; */
-"oKu-Fu-hRU.title" = "Línea actual:";
-/* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
-"ba7-dE-zXz.title" = "Cambiar el color de fondo";
-
 
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
 "6KG-3a-ZuU.title" = "Apariencia:";
@@ -70,6 +65,9 @@
 "FwU-oj-kwc.title" = "Claro";
 /* Class = "NSButtonCell"; title = "Dark"; ObjectID = "1Cg-21-kjr"; */
 "1Cg-21-kjr.title" = "Oscuro";
+
+/* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
+"gSx-LA-TPc.title" = "Opacidad del editor:";
 
 
 /* Class = "NSTableColumn"; headerCell.title = "Theme"; ObjectID = "Avf-y8-wXG"; */

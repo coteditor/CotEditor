@@ -79,8 +79,8 @@ private extension SettingsPane {
         
         switch self {
             case .general: "GeneralPane"
-            case .window: "WindowPane"
             case .appearance: "AppearancePane"
+            case .window: "WindowPane"
             case .edit: "EditPane"
             case .format: "FormatPane"
             case .snippets: "SnippetsPane"

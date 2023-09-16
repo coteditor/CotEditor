@@ -33,7 +33,7 @@ final class EditPaneController: NSViewController {
     @objc private dynamic lazy var isValidCompletion: Bool = self.validateCompletionSetting()
     
     @IBOutlet private weak var tabWidthField: NSTextField?
-    @IBOutlet private weak var hangingIndentWidthField: NSTextField?
+    @IBOutlet private weak var selectionInstanceHighlightDelayField: NSTextField?
     
     
     
@@ -46,7 +46,7 @@ final class EditPaneController: NSViewController {
         
         // set initial values as fields' placeholder
         self.tabWidthField?.bindNullPlaceholderToUserDefaults()
-        self.hangingIndentWidthField?.bindNullPlaceholderToUserDefaults()
+        self.selectionInstanceHighlightDelayField?.bindNullPlaceholderToUserDefaults()
     }
     
     

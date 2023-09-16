@@ -1470,8 +1470,8 @@
 			isa = PBXGroup;
 			children = (
 				2AC20A6F1E70819E0093B9C6 /* GeneralPane.storyboard */,
-				2A10D1031E7088B00027192A /* WindowPane.storyboard */,
 				2A10D1261E714D230027192A /* AppearancePane.storyboard */,
+				2A10D1031E7088B00027192A /* WindowPane.storyboard */,
 				2A10D12E1E7152F30027192A /* EditPane.storyboard */,
 				2A10D1361E715E5B0027192A /* FormatPane.storyboard */,
 				2ADF3BFF1E6D7345009125BB /* SnippetsPane.storyboard */,
@@ -1484,8 +1484,8 @@
 			isa = PBXGroup;
 			children = (
 				2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */,
-				2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */,
 				2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */,
+				2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */,
 				2A78BFAC1D1B138D00A583D2 /* EditPaneController.swift */,
 				2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */,
 				2AA4D3731D1AA0AC001D261D /* KeyBindingsPaneController.swift */,

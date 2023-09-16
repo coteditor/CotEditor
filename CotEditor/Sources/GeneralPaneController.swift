@@ -34,8 +34,6 @@ final class GeneralPaneController: NSViewController {
     @IBOutlet private weak var notifyConflictButton: NSButton?
     @IBOutlet private weak var revertConflictButton: NSButton?
     
-    @IBOutlet private weak var selectionInstanceHighlightDelayField: NSTextField?
-    
     @IBOutlet private weak var cltStatusView: NSImageView?
     @IBOutlet private weak var cltPathField: NSTextField?
     
@@ -43,14 +41,6 @@ final class GeneralPaneController: NSViewController {
     
     // MARK: -
     // MARK: View Controller Methods
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        self.selectionInstanceHighlightDelayField?.bindNullPlaceholderToUserDefaults()
-    }
-    
     
     override func viewWillAppear() {
         
