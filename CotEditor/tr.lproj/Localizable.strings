@@ -529,7 +529,7 @@
 "Wrap Lines" = "Satırları Kaydır";
 
 // Tooltip for “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled
-"To show invisible characters, set them in the Window settings" = "Görünmez karakterleri pencere ayarlarından açabilirsiniz";  // FIXME: Setting -> the Window Settings
+"To show invisible characters, set them in the Window settings" = "Görünmez karakterleri pencere ayarlarından açabilirsiniz";
 
 
 
