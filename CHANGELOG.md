@@ -10,6 +10,7 @@ Change Log
 - Deprecate the option to do nothing when no document is opened on startup.
 - Deprecate the option to swap `¥` and `\` keys.
 - Deprecate the option to comment always from the line head (This behavior is now always enabled).
+- [non-AppStore ver.] Update Sparkle from 2.4.2 to 2.5.0.
 - [beta] Adjust the position of the history buttons in the find panel.
 - [beta] Update help contents.
 - [beta] Update localizations.
