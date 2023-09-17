@@ -118,7 +118,9 @@ struct EncodingListView: View {
     /// Whether the selection contains separators.
     private var canDeleteSeparators: Bool {
         
-        self.encodingItems.filter(\.isSeparator).map(\.id).contains(self.selectedItems)
+        self.selectedItems
+            .compactMap { id in self.encodingItems.first { $0.id == id } }
+            .contains(where: \.isSeparator)
     }
     
     
@@ -168,7 +170,7 @@ private struct EncodingView: View {
         HStack(alignment: .firstTextBaseline) {
             Text(self.name)
             Text(verbatim: self.ianaCharsetName)
-                .foregroundColor(.secondary)  // prefer .secondary over .secondaryLabel to change color when selected
+                .foregroundColor(.secondary)
         }.frame(height: 13)
     }
     
