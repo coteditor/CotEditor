@@ -36,11 +36,11 @@ struct DefaultSettings {
         .suppressesInconsistentLineEndingAlert: false,
         .checksUpdatesForBeta: false,
         
+        .fontPreference: FontPreference.automatic.rawValue,
         .shouldAntialias: true,
         .ligature: true,
         .monospacedShouldAntialias: true,
         .monospacedLigature: false,
-        .fontPreference: FontPreference.automatic.rawValue,
         .lineHeight: 1.2,
         .documentAppearance: AppearanceMode.default.rawValue,
         .windowAlpha: 1.0,

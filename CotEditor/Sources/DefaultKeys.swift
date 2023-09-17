@@ -37,13 +37,13 @@ extension DefaultKeys {
     static let checksUpdatesForBeta = DefaultKey<Bool>("checksUpdatesForBeta")
     
     // Appearance
+    static let fontPreference = RawRepresentableDefaultKey<FontPreference>("fontPreference")
     static let font = DefaultKey<Data?>("font")
     static let shouldAntialias = DefaultKey<Bool>("shouldAntialias")
     static let ligature = DefaultKey<Bool>("ligature")
     static let monospacedFont = DefaultKey<Data?>("monospacedFont")
     static let monospacedShouldAntialias = DefaultKey<Bool>("monospacedShouldAntialias")
     static let monospacedLigature = DefaultKey<Bool>("monospacedLigature")
-    static let fontPreference = RawRepresentableDefaultKey<FontPreference>("fontPreference")
     static let lineHeight = DefaultKey<CGFloat>("lineHeight")
     static let documentAppearance = RawRepresentableDefaultKey<AppearanceMode>("appearance")
     static let windowAlpha = DefaultKey<CGFloat>("windowAlpha")

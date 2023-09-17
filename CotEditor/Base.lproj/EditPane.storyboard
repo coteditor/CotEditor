@@ -310,7 +310,6 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <binding destination="TDG-Hm-YNe" name="enabled" keyPath="values.highlightBraces" id="sFR-Lc-Z9u"/>
                                             <binding destination="TDG-Hm-YNe" name="value" keyPath="values.highlightBraces" id="vBe-Ei-W6u"/>
                                         </connections>
                                     </button>
@@ -321,6 +320,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
+                                            <binding destination="TDG-Hm-YNe" name="enabled" keyPath="values.highlightBraces" id="tM1-JW-ttP"/>
                                             <binding destination="TDG-Hm-YNe" name="value" keyPath="values.highlightLtGt" id="dxE-FK-iuf"/>
                                         </connections>
                                     </button>

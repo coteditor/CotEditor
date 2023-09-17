@@ -173,7 +173,6 @@
                                         <rect key="frame" x="138" y="109" width="260" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="750" constant="260" id="1NH-gY-fav"/>
-                                            <constraint firstAttribute="height" constant="22" id="XpJ-go-S7S"/>
                                         </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" title="Font Name 12" drawsBackground="YES" id="Rqy-Su-cwW" customClass="CenteringTextFieldCell" customModule="CotEditor" customModuleProvider="target">
                                             <font key="font" metaFont="system"/>
