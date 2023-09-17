@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Improve the behavior of the find result table.
 - Deprecate the option to do nothing when no document is opened on startup.
 - Deprecate the option to swap `¥` and `\` keys.
 - Deprecate the option to comment always from the line head (This behavior is now always enabled).

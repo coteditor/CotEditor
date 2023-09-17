@@ -49,11 +49,12 @@ struct FindPanelResultView: View {
     
     typealias Match = TextFindAllResult.Match
     
-    let matches: [Match]
+    @State var matches: [Match]
     let findString: String
     weak var target: NSTextView?
     
-    @State private var selected: Match.ID?
+    @State private var selection: Set<Match.ID> = []
+    @State private var sortOrder = [KeyPathComparator(\Match.range.location)]
     
     @AppStorage(.findResultViewFontSize) private var fontSize: Double
     
@@ -82,8 +83,8 @@ struct FindPanelResultView: View {
             Text("Find string: \(self.findString)")
                 .scenePadding(.horizontal)
             
-            Table(self.matches, selection: $selected) {
-                TableColumn("Line") {
+            Table(self.matches, selection: $selection, sortOrder: $sortOrder) {
+                TableColumn("Line", value: \.range.location) {
                     Text(self.target?.lineNumber(at: $0.range.location) ?? 0, format: .number)
                         .monospacedDigit()
                         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -101,9 +102,12 @@ struct FindPanelResultView: View {
             .border(Color(nsColor: .gridColor), width: 1)
             .padding(-1)
             .font(.system(size: self.fontSize))
-            .onChange(of: self.selected) { newValue in
-                guard let newValue else { return }
-                self.selectMatch(newValue)
+            .onChange(of: self.selection) { newValue in
+                guard newValue.count == 1, let id = newValue.first else { return }
+                self.selectMatch(id)
+            }
+            .onChange(of: self.sortOrder) { newOrder in
+                self.matches.sort(using: newOrder)
             }
             .onCommand(#selector(EditorTextView.biggerFont), perform: self.biggerFont)
             .onCommand(#selector(EditorTextView.smallerFont), perform: self.smallerFont)
