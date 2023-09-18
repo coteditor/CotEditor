@@ -539,7 +539,7 @@
                 <customObject id="F6O-dU-PkM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="TDG-Hm-YNe" userLabel="Shared User Defaults Controller"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="334"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
     <resources>

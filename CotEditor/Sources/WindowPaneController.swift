@@ -86,7 +86,7 @@ final class WindowPaneController: NSViewController {
     
     // MARK: Action Messages
     
-    /// A radio button of writingDirection was clicked
+    /// A radio button of writingDirection was clicked.
     @IBAction func updateWritingDirectionSetting(_ sender: NSControl) {
         
         UserDefaults.standard[.writingDirection] = WritingDirection(rawValue: sender.tag)!

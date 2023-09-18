@@ -10,7 +10,7 @@
         <scene sceneID="6Sb-ps-7Bi">
             <objects>
                 <viewController id="Qki-Cn-AgK" customClass="WindowPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uRF-iT-6pD">
+                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uRF-iT-6pD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="2rQ-L0-bX4">
@@ -713,7 +713,7 @@
                 <customObject id="Vhg-R8-9Sf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="NU0-2h-SUe" userLabel="Shared User Defaults Controller"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="219"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
 </document>
