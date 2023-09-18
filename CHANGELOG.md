@@ -5,6 +5,11 @@ Change Log
 4.6.0-rc (unreleased)
 --------------------------
 
+### New Features
+
+- Copy matched lines by selecting rows in the find result view and perform the Copy command.
+
+
 ### Improvements
 
 - Improve the behavior of the find result table.
@@ -67,7 +72,7 @@ Change Log
 - Add the “Kind” option to syntax definitions to set the syntax is for “general” or “code.”
 - Add feature to set the editor font depending of the syntax kind.
 - Add the monospaced font setting to the Appearance settings pane.
-- Add ability to switch the monospaced/proportional font to the Fonts toolbar item.
+- Add feature to switch the monospaced/proportional font to the Fonts toolbar item.
 - Add option to disable the inconsistent line endings dialog entirely (not recommended).
 - Add Spanish localization (thanks to Agustin Borrego!).
 

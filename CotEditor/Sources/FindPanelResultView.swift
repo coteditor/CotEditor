@@ -102,6 +102,9 @@ struct FindPanelResultView: View {
             .border(Color(nsColor: .gridColor), width: 1)
             .padding(-1)
             .font(.system(size: self.fontSize))
+            .copyable(self.matches
+                .filter { self.selection.contains($0.id) }
+                .map(\.attributedLineString.string))
             .onChange(of: self.selection) { newValue in
                 guard newValue.count == 1, let id = newValue.first else { return }
                 self.selectMatch(id)

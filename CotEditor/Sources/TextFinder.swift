@@ -541,7 +541,7 @@ final class TextFinder {
                     
                     // build a highlighted line string for result table
                     let lineRange = lineCounter.lineRange(for: matchedRange)
-                    let lineString = (textFind.string as NSString).substring(with: lineRange)
+                    let lineString = (textFind.string as NSString).substring(with: lineRange).replacing(/\R$/, with: "")
                     let attrLineString = NSMutableAttributedString(string: lineString)
                     for (index, range) in matches.enumerated() where !range.isEmpty {
                         attrLineString.addAttribute(.backgroundColor,
