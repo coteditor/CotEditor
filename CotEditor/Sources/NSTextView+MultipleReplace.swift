@@ -101,7 +101,7 @@ extension NSTextView {
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
         
         // setup progress sheet
-        let progress = FindProgress(scope: 0..<(definition.replacements.count))
+        let progress = FindProgress(scope: 0..<definition.replacements.count)
         let indicatorView = FindProgressView("Replace All", progress: progress, unit: .replacement)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator

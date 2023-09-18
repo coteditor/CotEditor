@@ -54,7 +54,7 @@ struct EditedRangeSet {
                 let modifiedRange = NSRange(location: union.location, length: union.length + changeInLength)
                 
                 if added, let last = ranges.last, last.touches(modifiedRange) {
-                    ranges[ranges.count - 1].formUnion(modifiedRange)
+                    ranges[ranges.endIndex - 1].formUnion(modifiedRange)
                 } else {
                     ranges.append(modifiedRange)
                     added = true

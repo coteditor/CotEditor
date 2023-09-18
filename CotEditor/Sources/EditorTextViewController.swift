@@ -118,7 +118,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 (self?.textView?.enclosingScrollView as? BidiScrollView)?.scrollerDirection = isRTL ? .rightToLeft : .leftToRight
                 
                 // set line number view location
-                let index = isRTL ? stackView.arrangedSubviews.count - 1 : 0
+                let index = isRTL ? stackView.arrangedSubviews.endIndex - 1 : 0
                 
                 guard stackView.arrangedSubviews[safe: index] != lineNumberView else { return }
                 

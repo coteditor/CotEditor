@@ -367,7 +367,7 @@ extension String {
                 if let last = groups.last?.last,
                    string.lineRange(for: last).intersects(string.lineRange(for: range))
                 {
-                    groups[groups.count - 1].append(range)
+                    groups[groups.endIndex - 1].append(range)
                 } else {
                     groups.append([range])
                 }

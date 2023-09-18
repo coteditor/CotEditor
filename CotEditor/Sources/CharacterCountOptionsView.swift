@@ -60,7 +60,7 @@ struct CharacterCountOptionsView: View {
                     
                     if self.setting.unit == .byte {
                         Picker("Encoding:", selection: self.$setting.encoding) {
-                            ForEach(0..<String.sortedAvailableStringEncodings.count, id: \.self) { index in
+                            ForEach(String.sortedAvailableStringEncodings.indices, id: \.self) { index in
                                 if let encoding = String.sortedAvailableStringEncodings[index] {
                                     Text(String.localizedName(of: encoding))
                                         .tag(Int(encoding.rawValue))

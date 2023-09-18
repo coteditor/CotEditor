@@ -150,7 +150,7 @@ private extension Array where Element == ValueRange<LineEnding> {
         }
         
         if let upperEditedIndex = self[lowerEditedIndex...].firstIndex(where: { $0.location >= (editedRange.upperBound - delta) }) {
-            for index in upperEditedIndex..<self.count {
+            for index in upperEditedIndex..<self.endIndex {
                 self[index].shift(by: delta)
             }
             self.removeSubrange(lowerEditedIndex..<upperEditedIndex)

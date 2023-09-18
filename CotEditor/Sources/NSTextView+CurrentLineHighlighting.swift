@@ -84,7 +84,7 @@ extension CurrentLineHighlighting {
                 if range.isEmpty && range.location == self.string.length {
                     ranges.append(range)
                 } else if ranges.last?.touches(range) == true {
-                    ranges[ranges.count - 1].formUnion(range)
+                    ranges[ranges.endIndex - 1].formUnion(range)
                 } else {
                     ranges.append(range)
                 }

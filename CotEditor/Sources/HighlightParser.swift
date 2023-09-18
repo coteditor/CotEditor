@@ -159,7 +159,7 @@ struct HighlightParser {
         var seekLocation = parseRange.location
         var index = 0
         
-        while index < positions.count {
+        while index < positions.endIndex {
             let beginPosition = positions[index]
             index += 1
             

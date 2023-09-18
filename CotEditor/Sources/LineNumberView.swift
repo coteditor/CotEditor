@@ -293,7 +293,7 @@ final class LineNumberView: NSView {
                             : CGPoint(x: -drawingInfo.padding, y: y)
                         
                         // get glyphs and positions
-                        let positions: [CGPoint] = (0..<digits.count)
+                        let positions: [CGPoint] = digits.indices
                             .map { basePosition.offsetBy(dx: -CGFloat($0 + 1) * drawingInfo.charWidth) }
                         let glyphs: [CGGlyph] = digits
                             .map { drawingInfo.digitGlyphs[$0] }

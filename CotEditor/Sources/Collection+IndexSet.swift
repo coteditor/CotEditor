@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,10 +39,10 @@ extension RangeReplaceableCollection where Index == Int {
     /// Return subset at IndexSet
     func elements(at indexes: IndexSet) -> [Element] {
         
-        assert((indexes.max() ?? .max) <= self.count)
+        assert((indexes.max() ?? .max) <= self.endIndex)
         
         return indexes
-            .filter { $0 < self.count }
+            .filter { $0 < self.endIndex }
             .map { self[$0] }
     }
     
