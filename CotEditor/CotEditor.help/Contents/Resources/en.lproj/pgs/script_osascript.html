@@ -106,7 +106,7 @@
 		<dd>The range of characters in the selection. The format is '{location, length}'.</dd>
 
 		<dt><code>line range</code></dt>
-		<dd>The range of lines in the selection. The format is '{location, length}'. (<code>length</code> can be omitted, one line will be selected even if it were <code>0</code> or <code>0</code>)</dd>
+		<dd>The range of lines in the selection. The format is '{location, length}'. (<code>length</code> can be omitted, one line is selected even if it were <code>0</code> or <code>1</code>)</dd>
 	</dl></dd>
 </dl>
 
@@ -148,10 +148,10 @@
 <p>The <code>selection</code> property doesn’t work by itself. Use this property with others such as <code>contents</code>.</p>
 
 <p>When ‘location’ is a negative value, the selection range starts from the ‘location’-th last character.<br/>
-When ‘length’ is a positive value, the selection range becomes the ‘length’ characters starting from ‘location.’ If ‘length’ is larger than the number of the rest characters in the document, the range will be from ‘location’ to the end.<br/>
-When ‘length’ is a negative value, the selection range ends at the ‘length’-th last character. If the absolute value of ‘length’ is smaller than ‘location’ (i.e. the selection’s end point is before ‘location’), the caret just moves to ‘location’ (same as when {location, 0} was input).</p>
+When ‘length’ is a positive value, the selection range becomes the ‘length’ characters starting from ‘location.’ If ‘length’ is larger than the number of the rest characters in the document, the range is from ‘location’ to the end.<br/>
+When ‘length’ is a negative value, the selection range ends at the ‘length’-th last character. If the absolute value of ‘length’ is smaller than ‘location’ (that is, the selection’s end point is before ‘location’), the caret just moves to ‘location’ (same as when {location, 0} was input).</p>
 <p>This specifying method is based on <code>substr</code> in PHP.</p>
-<p>The command for changing selection doesn’t scroll the window. Use the <code>scroll to caret</code> command or <code>jump</code> command to make the selection remain in the view.</p>
+<p>The command for changing selection doesn’t scroll through the editor. Use the <code>scroll to caret</code> command or <code>jump</code> command to make the selection remain in the view.</p>
 </section>
 </section>
 
@@ -180,7 +180,7 @@ When ‘length’ is a negative value, the selection range ends at the ‘length
 <h4>Example</h4>
 <figure>
 	<pre class="source"><code class="AppleScript">write to console &quot;Script failed.&quot;</code></pre>
-	<figcaption>Display the massege &quot;Script failed.&quot; on the CotEditor’s console.</figcaption>
+	<figcaption>Appears the message &quot;Script failed.&quot; on the CotEditor’s console.</figcaption>
 </figure>
 </section>
 
@@ -336,7 +336,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <figure>
 	<pre class="source"><code class="AppleScript">jump front document to line -1</code></pre>
-	<figcaption>Move the caret to the last line and scroll the editor so that the speficifed area can be seen.</figcaption>
+	<figcaption>Move the insertion point to the last line and scroll through the editor to view the specified area.</figcaption>
 </figure>
 
 <h4>Discussion</h4>
@@ -417,7 +417,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 <h4>Discussion</h4>
 
 <p>Returns <code>false</code> if the file has never been saved.</p>
-<p>Changes that are not yet saved will be lost.</p>
+<p>Changes that are not yet saved are lost.</p>
 
 <p>From CotEditor 4.0.7 on, the new encoding name accepts also IANA charset names.</p>
 </section>

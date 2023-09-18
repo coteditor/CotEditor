@@ -28,7 +28,7 @@
 
 		<ul>
 			<li>Support <strong>macOS 14 Sonoma</strong>.</li>
-			<li>Add the “Kind” option to syntax definitions to set the syntax is for “general” or “code”.</li>
+			<li>Add the “Kind” option to syntax definitions to set the syntax is for “general” or “code.”</li>
 			<li>Add feature to set the editor font depending of the syntax kind.</li>
 			<li>Add the monospaced font setting to the Appearance settings pane.</li>
 			<li>Add ability to switch the monospaced/proportional font to the Fonts toolbar item.</li>
@@ -45,7 +45,7 @@
 			<li>Change the system requirement to <strong>macOS 13 Ventura and later</strong>.</li>
 			<li>Update the behavior and look of the inspector pane.</li>
 			<li>Add “Use system color” option to the cursor color in the theme setting view.</li>
-			<li>Update the character inspector to add labels for each item and display the Unicode version.</li>
+			<li>Update the character inspector to add labels for each item and show the Unicode version.</li>
 			<li>Make sure to perform the automatic whitespace trimming every time before explicit saving by the user.</li>
 			<li>Migrate the sharing interface to the modern version.</li>
 			<li>Reorganize the Settings window.</li>
@@ -57,6 +57,7 @@
 			<li>Deprecate the option to swap <kbd>¥</kbd> and <kbd>\</kbd> keys.</li>
 			<li>Deprecate the option to comment always from the line head (This behavior is now always enabled).</li>
 			<li>Deprecate the Color Code toolbar button.</li>
+            <li>Update the User Guide.</li>
 			<li><span class="trivial">trivial</span>: Migrate the Opacity toolbar item to popover in macOS 14.</li>
 			<li><span class="trivial">trivial</span>: Disable the zoom button in the find & replace windows.</li>
 			<li><span class="trivial">trivial</span>: Disable the contextual menu for shortcut fields.</li>
@@ -90,7 +91,7 @@
 		<h2>Fixes</h2>
 
 		<ul>
-			<li>Fix an issue that documents could not be saved with an unknown file extension.</li>
+			<li>Fix an issue that documents could not be saved with an unknown filename extension.</li>
 			<li>Fix an issue that the Share button in the Touch Bar did not work when the document was replaced with the initial empty document.</li>
 		</ul>
 	</section>
@@ -371,7 +372,7 @@
 
 		<ul>
 			<li>Reconstruct the Snippets (ex. File Drop) and Key Bindings panes in the Settings window.</li>
-			<li>Allow single function key stroke for a keyboard shortcut.</li>
+			<li>Allow single function keystroke for a keyboard shortcut.</li>
 			<li>Update item order of the Edit menu.</li>
 			<li>Change counting characters/lines/words to count all elements in multiple selections.</li>
 			<li>Change the threshold to trigger the automatic completion to 3 letters to optimize calculation time by large documents.</li>
@@ -381,7 +382,7 @@
 			<li>Make filter highlights of the outline list more legible in the Dark Mode.</li>
 			<li>Update Swift syntax style to add keywords for Swift 5.8.</li>
 			<li>Deprecate the Insert Encoding Name command (use AppleScript instead).</li>
-			<li>Update the help contents.</li>
+			<li>Update the User Guide.</li>
 			<li><span class="label">non-AppStore ver.</span>: Update Sparkle from 2.3.1 to 2.3.2.</li>
 			<li><span class="trivial">dev</span>: Update Yams from 5.0.4 to 5.0.5.</li>
 		</ul>
@@ -539,7 +540,7 @@
 
 		<ul>
 			<li>Fix an issue on macOS 13 that the table in the Multiple Replace dialog was corrupted when switching the set.</li>
-			<li>Fix an issue that a file extension was appended to the file by saving even when the syntax style has no extensions.</li>
+			<li>Fix an issue that a filename extension was appended to the file by saving even when the syntax style has no extensions.</li>
 			<li>Fix an issue that the line number view did occasionally not widen even when the number exceeds 4 digits.</li>
 			<li>Fix an issue that an unwanted extra blank document was created when creating a new document with the selection by Services under specific conditions.</li>
 			<li>Fix an issue that the scripting result could be corrupted under some specific conditions.</li>
@@ -907,7 +908,7 @@
 			<li>Update Markdown and Textile syntax styles to fix highlighting.</li>
 			<li>Improve the indent style detection.</li>
 			<li>Improve traditional Chinese localization (thanks to Shiki Suen!).</li>
-			<li>Update the help contents.</li>
+			<li>Update the User Guide.</li>
 			<li><span class="trivial">trivial</span>: Change UTI for TeX document to <code>org.tug.tex</code>.</li>
 			<li><span class="trivial">dev</span>: Update the build environment to Xcode 13.4 (macOS 12.3 SDK).</li>
 		</ul>
@@ -1007,9 +1008,9 @@
 			<li>Deprecate the feature to replace <code>$LN</code> in the outline menu template with the line number of the occurrence.</li>
 			<li>Remove original document icons for CoffeeScript and Tcl.</li>
 			<li>Revise text for more Mac-like expression.</li>
-			<li>Update the help contents.</li>
+			<li>Update the User Guide.</li>
 			<li>Improve stability.</li>
-			<li><span class="trivial">trivial</span>: Accept script files for the Script menu with an uppercased file extension.</li>
+			<li><span class="trivial">trivial</span>: Accept script files for the Script menu with an uppercased filename extension.</li>
 			<li><span class="trivial">trivial</span>: Replace <code>\n</code> with <code>\R</code> for the newline metacharacter in the Basic Regular Expression Syntax reference.</li>
 			<li><span class="trivial">trivial</span>: Tweak Anura theme.</li>
 			<li><span class="trivial">trivial</span>: Enable the secure state restoration introduced in macOS 12.</li>
@@ -1086,7 +1087,7 @@
 		<h2>Fixes</h2>
 
 		<ul>
-			<li>Fix an issue that the file extension proposed in the save dialog for untitled document did not reflect the latest syntax style.</li>
+			<li>Fix an issue that the filename extension proposed in the save dialog for untitled document did not reflect the latest syntax style.</li>
 			<li>Fix an issue that the application could not open Haskell files.</li>
 			<li>Fix a potential crash when opening files via Services.</li>
 		</ul>
@@ -1215,7 +1216,7 @@
 			<li>Allow the menu key bindings to assign a shortcut without the Command key.</li>
 			<li>Display code points instead of left blank in the incompatible character table for control characters.</li>
 			<li>Update Swift syntax style to add keywords added in Swift 5.5.</li>
-			<li>Update C++ syntax style to add more file extensions.</li>
+			<li>Update C++ syntax style to add more filename extensions.</li>
 			<li>Update Markdown syntax style for faster syntax parsing.</li>
 			<li>Change the behavior to include the last empty line in the calculation when specifying lines with a negative value in the Go to Line command or via AppleScript.</li>
 			<li>Improve the character info section in the document inspector to display the list of code points for the selected character instead of displaying only when a single Unicode character is selected.</li>
@@ -1228,7 +1229,7 @@
 			<li>Improve the animation by drag &amp; drop in tables.</li>
 			<li>Optimize several document parse.</li>
 			<li><span class="trivial">trivial</span>: Adjust the margin of the editor area.</li>
-			<li><span class="trivial">trivial</span>: Hide the file extension of setting files by export by default.</li>
+			<li><span class="trivial">trivial</span>: Hide the filename extension of setting files by export by default.</li>
 			<li><span class="trivial">trivial</span>: Finish key binding input in Key Bindings pane when another window becomes frontmost.</li>
 			<li><span class="trivial">trivial</span>: Update some symbols for shortcut keys in the key binding settings.</li>
 			<li><span class="trivial">dev</span>: Update the build environment to Xcode 13.2 (Swift 5.5).</li>
@@ -1334,7 +1335,7 @@
 
 		<ul>
 			<li>Highlight named capture where highlight regular expression patterns such as in the find panel.</li>
-			<li>Add “.erb” extension to Ruby syntax style.</li>
+			<li>Add .erb extension to Ruby syntax style.</li>
 			<li>Accept IANA charset names as the encoding name in <code>convert</code> and <code>reinterpret</code> commands for AppleScript.</li>
 			<li>Improve error messages for OSA Scripting.</li>
 			<li><span class="trivial">trivial</span>: Tweak the help layout.</li>
@@ -1375,7 +1376,7 @@
 			<li>Improve the syntax highlighting algorithm around comments and quoted text.</li>
 			<li>Revert JavaScript syntax style update in CotEditor 4.0.5 that modifies regular expression highlight.</li>
 			<li>Update the bundled cot command to enable reading large piped text entirely.</li>
-			<li>Update help contents.</li>
+			<li>Update the User Guide.</li>
 			<li><span class="trivial">trivial</span>: Sort themes alphabetically regardless of whether they are bundled or not.</li>
 			<li><span class="trivial">trivial</span>: Make the timing to trim trailing spaces shorter.</li>
 			<li><span class="trivial">trivial</span>: Tweak Japanese localization in Preferences.</li>
@@ -1477,7 +1478,7 @@
 
 <ul>
 	<li>Keep detached character inspectors even after the parent document is closed.</li>
-	<li>Detect syntax style from the file extension also case-insensitively.</li>
+	<li>Detect syntax style from the filename extension also case-insensitively.</li>
 	<li>Update R syntax style.</li>
 	<li><span class="label">non-AppStore ver.</span>: Reduce the application size.</li>
 	<li><span class="trivial">dev</span>: Update Yams from 4.0.4 to 4.0.6.</li>
@@ -1515,7 +1516,7 @@
 
 <ul>
 	<li>Fix French localization.</li>
-	<li><span class="trivial">trivial</span>: Fix script icon in Help contents in Dark mode.</li>
+	<li><span class="trivial">trivial</span>: Fix script icon in the User Guide in Dark mode.</li>
 </ul>
 </section>
 </article>
@@ -1719,7 +1720,7 @@
 <h2>Fixes</h2>
 
 <ul>
-	<li>Fix an issue that an unremovable empty dialog could show up when performing Replace All under specific conditions.</li>
+	<li>Fix an issue that an unremovable empty dialog could appear when performing Replace All under specific conditions.</li>
 	<li>Fix an issue in the find/replacement progress report that the progress message was not updated when nothing found.</li>
 	<li>Fix an issue in the outline menu in the navigation bar that the last separator did not appear.</li>
 	<li>Fix an issue in toolbar that menu style items were vertically squashed in the toolbar customization dialog.</li>
@@ -2569,7 +2570,7 @@
 
 <ul>
 	<li>Make the i-beam cursor more legible in vertical text orientation and dark background theme.</li>
-	<li>Use monospace numbers for line numbers in Find All result table.</li>
+	<li>Use monospaced numbers for line numbers in Find All result table.</li>
 	<li>Optimize performance highlighting found matches.</li>
 	<li><span class="trivial">dev</span>: Update build environment to Xcode 10.2 (Swift 5).</li>
 	<li><span class="trivial">dev</span>: Update Differ framework to 1.4.0.</li>
@@ -2863,7 +2864,7 @@
 
 <ul>
 	<li>Fix the cursor location by changing the selection with shortcut <kbd>⌘←</kbd>.</li>
-	<li>Fix an issue where the rainbow cursor could appear when cancelling syntax highlight with a large document multiple times.</li>
+	<li>Fix an issue where the rainbow cursor could appear when canceling syntax highlight with a large document multiple times.</li>
 </ul>
 </section>
 </article>
@@ -2940,7 +2941,7 @@
 <h2>New Features</h2>
 
 <ul>
-	<li>New option for cursor style (Customize the behavior in Appearances preference pane).</li>
+	<li>New option for cursor style (Customize the behavior in Appearance preference pane).</li>
 </ul>
 </section>
 
@@ -3492,7 +3493,7 @@
 	<li>Remove the workaround for the issue of editor scrolling on early macOS High Sierra that was introduced on CotEditor 3.2.4.</li>
 	<li>Optimize syntax highlighting performance.</li>
 	<li>Update “Java” syntax style by adding term <code>var</code> (Thanks to Marc Prud’hommeaux!)</li>
-	<li><span class="trivial">trivial</span> Use monospace digits where suitable.</li>
+	<li><span class="trivial">trivial</span> Use monospaced digits where suitable.</li>
 	<li><span class="trivial">trivial</span> <span class="label">non-AppStore ver.</span>: Update Sparkle framework.</li>
 </ul>
 </section>
@@ -3726,7 +3727,7 @@
 		<li>Fix highlight of string and bytes literals.</li>
 	</ul></li>
 	<li>Tweak acknowledgments window design.</li>
-	<li>Update Help contents style.</li>
+	<li>Update the style of the User Guide.</li>
 	<li>Some minor UI improvements and fixes.</li>
 	<li>Update Japanese localization to conform with the modern macOS localization rules.</li>
 	<li>Update the internal source code to Swift 4.</li>
@@ -4248,7 +4249,7 @@
 	<li>Scale up character view in character inspector.</li>
 	<li>Change drawing font for some invisible characters to draw them at a better position.</li>
 	<li>Update “JavaScript” syntax style.</li>
-	<li>Add more description about scripting in the help contents.</li>
+	<li>Add more description about scripting in the User Guide.</li>
 	<li>Deprecate hidden settings for UI update interval.</li>
 	<li>Update build environment to Xcode 8.2.1 (SDK macOS 10.12.2).</li>
 	<li><span class="label">non-AppStore ver.</span>: Update Sparkle framework to version 1.16.0.</li>
@@ -4502,7 +4503,7 @@
 	<li>Fix an issue where selection range after some text actions was wrong.</li>
 	<li>Fix an issue where document icons were blurry in non-Retina display.</li>
 	<li>Fix an issue where status bar layout collapsed if status line overflows.</li>
-	<li>Fix an issue where document theme reloaded unnecessarily on the first time Appearances pane display.</li>
+	<li>Fix an issue where document theme reloaded unnecessarily on the first time Appearance pane display.</li>
 	<li>Fix an issue where the application could crash when script was failed.</li>
 	<li>Fix an issue where scrolling to the end of document with <kbd>⌘</kbd>+<kbd>↓</kbd> shortcut didn’t scroll to the end.</li>
 	<li>Improve general stability.</li>
@@ -4664,7 +4665,7 @@
 	<li>Remove byte count display in document inspector.</li>
 	<li>Display also an accurate file size in document inspector.</li>
 	<li>Display dialogs for changing file encoding as a document-modal sheet.</li>
-	<li>Move scripting manual into help contents.</li>
+	<li>Move scripting manual into the User Guide.</li>
 	<li>Make window size setting window translucent.</li>
 	<li>Avoid expanding status bar into side inspector.</li>
 	<li>Improve line height calculation.</li>
@@ -5089,7 +5090,7 @@
 	</ul></li>
 	<li>Now, the change of the page guide column option is applied to opened documents immediately.</li>
 	<li>Tweak text in preferences.</li>
-	<li>Update help contents.</li>
+	<li>Update the User Guide.</li>
 	<li><span class="label">non-AppStore ver.</span>: Update Sparkle framework to version 1.14.0.</li>
 </ul>
 </section>
@@ -5279,7 +5280,7 @@
 	<li>Fix an issue where the application could crash just after starting dictation.</li>
 	<li>Fix an issue where key binding setting could fail.</li>
 	<li>Fix an issue where the scroll bar style didn’t change to light color on dark background theme.</li>
-	<li>Fix an issue where the character inspector didn’t show up on Mavericks and earlier.</li>
+	<li>Fix an issue where the character inspector didn’t appear on Mavericks and earlier.</li>
 	<li>Fix an issue where split orientation setting wasn’t applied.</li>
 	<li>Fix an issue where “Jump to Selection” action didn’t jump to selection in editor if another text box is focused.</li>
 	<li>Fix an issue where some table cells didn’t change their text color when selected.</li>
@@ -6439,7 +6440,7 @@
 	<li>Remove the output type keyword <code>Pasteboard puts</code> for CotEditor script, that was deprecated on CotEditor 0.7.2 and had remained for backwards compatibility.</li>
 	<li>Add hidden setting key <code>layoutTextVertical</code> (boolean) to set text orientation vertical as default.</li>
 	<li>Deprecate font settings for navigation bar and line number view which are hidden settings.</li>
-	<li>Move version history from rich text format to one of the Help contents.</li>
+	<li>Move version history from rich text format to one of the User Guide.</li>
 	<li>Update documents.</li>
 	<li>Update Sparkle framework to 1.8.0.</li>
 	<li>Update build environment to OS X Yosemite + Xcode 6.1 (SDK 10.10).</li>
@@ -6505,7 +6506,7 @@
 	<li>Fix an issue that file size info didn’t update after the file update. (thanks to aki-san)</li>
 	<li>Fix an issue that auto-indent was not invoked with Japanese fill-width space.</li>
 	<li>Fix an issue that change of view opacity would not be applied to the line number views of the opened windows.</li>
-	<li>Fix an issue that some temporary settings for the opened editors could be canceled occasionally.</li>
+	<li>Fix an issue that some temporary settings for the opened editors could be cancelled occasionally.</li>
 </ul>
 </section>
 </article>
@@ -7338,7 +7339,7 @@
 	<li>When selecting multiple lines, the selection’s background color would break between lines. This problem has been fixed.</li>
 	<li>Turning on the “All controls” option for “Full keyboard access” in System Preferences could cause some problems (e.g. hiding the caret in a new document or incorrect behavior of input method). This problem has been fixed.</li>
 	<li>Fixed a bug where user-configured key bindings couldn’t be deleted in the “Menu Key Bindings” setting.</li>
-	<li>Fixed a bug where current syntax coloring was canceled on each overwrite saving.</li>
+	<li>Fixed a bug where current syntax coloring was cancelled on each overwrite saving.</li>
 	<li>With the “Fix line height with composite font” option turned off, line height couldn’t be changed. This problem has been fixed.</li>
 	<li>Corrected the warning message appears when changing file encoding.</li>
 	<li>Modified the inner workings.</li>

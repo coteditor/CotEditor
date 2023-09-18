@@ -73,7 +73,7 @@
 	</tbody>
 </table>
 
-<p>CotEditor colors the elements from the top to the bottom: like Keywords, Commands, Types, and so on. When the document contains an item matching multiple categories (for example, keywords and commands), the color of the latter in the order will overwrite the former’s. The name of each element is just for reference and thus can actually apply also to other grammatical uses.</p>
+<p>CotEditor colors the elements from the top to the bottom: like Keywords, Commands, Types, and so on. When the document contains an item matching multiple categories (for example, keywords and commands), the color of the latter in the order overwrites the former’s. The name of each element is just for reference and thus can actually apply also to other grammatical uses.</p>
 
 
 
@@ -88,8 +88,8 @@
 		<tr><th>Field</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		<tr><th>RE</th><td>If this option is selected, both Begin-string and End-string will be considered regular expressions (RE stands for Regular Expression).</td></tr>
-		<tr><th>IC</th><td>If this option is selected, the case will be ignored during the search (IC stands for Ignore Case). For example, if you set “abc” as Begin-string and check IC, “ABC” or “abc” or “Abc” in your document will be matched.</td></tr>
+		<tr><th>RE</th><td>If selected, both the begin and end strings are considered as regular expressions (RE stands for Regular Expression).</td></tr>
+		<tr><th>IC</th><td>If selected, the case is ignored for searching (IC stands for Ignore Case). For example, if you set “abc” as the begin string and select IC, “ABC” or “abc” or “Abc” in your document will be matched.</td></tr>
 		<tr><th>Begin String</th><td>A string that denotes the beginning of the search pattern. This is required to search the code elements you want to be colored.</td></tr>
 		<tr><th>End String</th><td>A string that denotes the end of the search pattern. This field can be left blank.</td></tr>
 		<tr><th>Description</th><td>You can use this field to leave a comment about the term. Description doesn’t affect syntax highlighting. This field can be left blank.</td></tr>
@@ -98,14 +98,14 @@
 
 <p>By defining conditions:</p>
 <ul>
-	<li>A condition whose begin string is blank will be ignored.</li>
+	<li>A condition whose begin string is blank is ignored.</li>
 	<li>The RE setting affects both the begin and end strings, which means they should be written in the regular expression or plain form both together.</li>
 </ul>
 
 
 <h2>Completion candidates</h2>
 
-<p>A condition whose end string is blank and RE is turned off will be used for defining the completion list as well.</p>
+<p>A condition whose end string is blank and the regular expression option is unselected is used for defining the completion list as well.</p>
 
 
 <section id="cf">

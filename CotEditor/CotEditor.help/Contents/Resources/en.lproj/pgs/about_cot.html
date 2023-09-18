@@ -25,7 +25,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 
 <h3>Security authorization</h3>
-<p>In macOS, user authorization is required to control CotEditor from other applications in which <code>cot</code> command is used. The authorization is normally done via the dialog displayed when using the <code>cot</code> command for the first time. However, in some cases, you may need to authorize it manually from System Settings &gt; privacy &amp; Security &gt; Automation. Select the checkbox for <strong>CotEditor</strong> (and also <strong>System Events</strong> for <code>--wait</code> option) under your client application, such as Terminal.</p>
+<p>In macOS, user authorization is required to control CotEditor from other applications in which <code>cot</code> command is used. The authorization is normally done via the dialog appeared when using the <code>cot</code> command for the first time. However, in some cases, you may need to authorize it manually from System Settings &gt; privacy &amp; Security &gt; Automation. Select the checkbox for <strong>CotEditor</strong> (and also <strong>System Events</strong> for <code>--wait</code> option) under your client application, such as Terminal.</p>
 
 
 <h3>Installation of Python 3</h3>
@@ -62,7 +62,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <p>For <code>--line</code> and <code>--column</code> options, you can specify a negative number to count from the end of the document (<code>--line</code> option) or a line (<code>--column</code> option).</p>
 
 <h2>Examples</h2>
-<p>A simple <code>cot</code> command will launch CotEditor, or just activate it if CotEditor is already running.</p>
+<p>A simple <code>cot</code> command launches CotEditor, or just activate it if CotEditor is already running.</p>
 
 <pre class="source"><code>cot
 </code></pre>
@@ -77,7 +77,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <pre class="source"><code>cot --line -1 --column -1 foo.txt
 </code></pre>
 
-<p>You can also pipe a text. CotEditor will open a new document with the piped text.</p>
+<p>You can also pipe a text. Then, CotEditor opens a new document with the piped text.</p>
 
 <pre class="source"><code>echo &quot;I am a dog but also a cow at the same time.&quot; | cot
 </code></pre>

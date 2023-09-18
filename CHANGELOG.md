@@ -14,7 +14,7 @@ Change Log
 - [non-AppStore ver.] Update Sparkle from 2.4.2 to 2.5.0.
 - [beta] Reorganize the Settings window.
 - [beta] Adjust the position of the history buttons in the find panel.
-- [beta] Update help contents.
+- [beta] Update the User Guide.
 - [beta] Update localizations.
 - [beta][dev] Update the build environment to Xcode 15 RC.
 
@@ -39,7 +39,7 @@ Change Log
 
 - Remove the Print settings in the Settings window (Instead, set print settings directly in the Print dialog).
 - [beta] Adjust layout in the Settings window, print dialog, and syntax editor.
-- [beta] Update help contents.
+- [beta] Update the User Guide.
 - [beta] Port changes in CotEditor 4.5.9.
 
 
@@ -64,7 +64,7 @@ Change Log
 ### New Features
 
 - Support __macOS 14 Sonoma__.
-- Add the “Kind” option to syntax definitions to set the syntax is for “general” or “code”.
+- Add the “Kind” option to syntax definitions to set the syntax is for “general” or “code.”
 - Add feature to set the editor font depending of the syntax kind.
 - Add the monospaced font setting to the Appearance settings pane.
 - Add ability to switch the monospaced/proportional font to the Fonts toolbar item.
@@ -77,7 +77,7 @@ Change Log
 - Change the system requirement to __macOS 13 Ventura and later__.
 - Update the behavior and look of the inspector pane.
 - Add “Use system color” option to the cursor color in the theme setting view.
-- Update the character inspector to add labels for each item and display the Unicode version.
+- Update the character inspector to add labels for each item and show the Unicode version.
 - Make sure to perform the automatic whitespace trimming every time before explicit saving by the user.
 - Migrate the sharing interface to the modern version.
 - Reorganize the Settings window.
@@ -111,7 +111,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that documents could not be saved with an unknown file extension.
+- Fix an issue that documents could not be saved with an unknown filename extension.
 - Fix an issue that the Share button in the Touch Bar did not work when the document was replaced with the initial empty document.
 
 
@@ -315,13 +315,13 @@ Change Log
 ### Improvements
 
 - Reconstruct the Snippets (ex. File Drop) and Key Bindings panes in the Settings window.
-- Allow single function key stroke for a keyboard shortcut.
+- Allow single function keystroke for a keyboard shortcut.
 - Optimize the performance of text editing while URL linking is enabled.
 - Update item order of the Edit menu.
 - Make filter highlights of the outline list more legible in the Dark Mode.
 - Update Swift syntax style to add keywords for Swift 5.8.
 - Deprecate the Insert Encoding Name command (use AppleScript instead).
-- Update the help contents.
+- Update the User Guide.
 - [non-AppStore ver.] Update Sparkle from 2.3.1 to 2.3.2.
 - [dev] Update Yams from 5.0.4 to 5.0.5.
 
@@ -420,7 +420,7 @@ Change Log
 ### Fixes
 
 - Fix an issue on macOS 13 that the table in the Multiple Replace dialog was corrupted when switching the set.
-- Fix an issue that a file extension was appended to the file by saving even when the syntax style has no extensions.
+- Fix an issue that a filename extension was appended to the file by saving even when the syntax style has no extensions.
 - Fix an issue that the line number view did occasionally not widen even when the number exceeds 4 digits.
 - Fix an issue that an unwanted extra blank document was created when creating a new document with the selection by Services under specific conditions.
 - Fix an issue that the scripting result could be corrupted under some specific conditions.
@@ -740,7 +740,7 @@ Change Log
 - Update Markdown and Textile syntax styles to fix highlighting.
 - Improve the indent style detection.
 - Improve traditional Chinese localization (thanks to Shiki Suen!).
-- Update the help contents.
+- Update the User Guide.
 - [dev] Update the build environment to Xcode 13.4 (macOS 12.3 SDK).
 - [trivial] Change UTI for TeX document to `org.tug.tex`.
 
@@ -783,7 +783,7 @@ Change Log
 
 ### Improvements
 
-- [rc] Update the help contents.
+- [rc] Update the User Guide.
 - [rc] Update localized strings.
 
 
@@ -836,7 +836,7 @@ Change Log
 
 ### Improvements
 
-- [beta] Update the help contents.
+- [beta] Update the User Guide.
 - [beta][trivial] Optimize the performance of the Warnings pane.
 
 
@@ -881,8 +881,8 @@ Change Log
 - Deprecate the feature to replace `$LN` in the outline menu template with the line number of the occurrence.
 - Remove original document icons for CoffeeScript and Tcl.
 - Revise text for more Mac-like expression.
-- Update the help contents.
-- [trivial] Accept script files for the Script menu with an uppercased file extension.
+- Update the User Guide.
+- [trivial] Accept script files for the Script menu with an uppercased filename extension.
 - [trivial] Replace `\n` with `\R` for the newline metacharacter in the Basic Regular Expression Syntax reference.
 - [trivial] Tweak Anura theme.
 
@@ -921,7 +921,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that the file extension proposed in the save dialog for untitled document did not reflect the latest syntax style.
+- Fix an issue that the filename extension proposed in the save dialog for untitled document did not reflect the latest syntax style.
 - Fix an issue that the application could not open Haskell files.
 - Fix a potential crash when opening files via Services.
 
@@ -1012,7 +1012,7 @@ Change Log
 - Allow the menu key bindings to assign a shortcut without the Command key.
 - Display code points instead of left blank in the incompatible character table for control characters.
 - Update Swift syntax style to add keywords added in Swift 5.5.
-- Update C++ syntax style to add more file extensions.
+- Update C++ syntax style to add more filename extensions.
 - Update Markdown syntax style for faster syntax parsing.
 - Change the behavior to include the last empty line in the calculation when specifying lines with a negative value in the Go to Line command or via AppleScript.
 - Improve the character info section in the document inspector to display the list of code points for the selected character instead of displaying only when a single Unicode character is selected.
@@ -1025,7 +1025,7 @@ Change Log
 - Improve the animation by drag & drop in tables.
 - Optimize several document parse.
 - [trivial] Adjust the margin of the editor area.
-- [trivial] Hide the file extension of setting files by export by default.
+- [trivial] Hide the filename extension of setting files by export by default.
 - [trivial] Finish key binding input in Key Bindings pane when another window becomes frontmost.
 - [trivial] Update some symbols for shortcut keys in the key binding settings.
 - [dev] Update the build environment to Xcode 13.2 (Swift 5.5).
@@ -1088,7 +1088,7 @@ Change Log
 ### Improvements
 
 - Highlight named capture where highlight regular expression patterns such as in the find panel.
-- Add “.erb” extension to Ruby syntax style.
+- Add .erb extension to Ruby syntax style.
 - Accept IANA charset names as the encoding name in `convert` and `reinterpret` commands for AppleScript.
 - Improve error messages for OSA Scripting.
 - [trivial] Tweak the help layout.
@@ -1116,7 +1116,7 @@ Change Log
 - Improve the syntax highlighting algorithm around comments and quoted text.
 - Revert JavaScript syntax style update in CotEditor 4.0.5 that modifies regular expression highlight.
 - Update the bundled cot command to enable reading large piped text entirely.
-- Update help contents.
+- Update the User Guide.
 - [trivial] Sort themes alphabetically regardless of whether they are bundled or not.
 - [trivial] Make the timing to trim trailing spaces shorter.
 - [trivial] Tweak Japanese localization in Preferences.
@@ -1179,7 +1179,7 @@ Change Log
 ### Improvements
 
 - Keep detached character inspectors even after the parent document is closed.
-- Detect syntax style from the file extension also case-insensitively.
+- Detect syntax style from the filename extension also case-insensitively.
 - Update R syntax style.
 - [non-AppStore ver.] Reduce the application size.
 - [dev] Update Yams from 4.0.4 to 4.0.6.
@@ -1203,7 +1203,7 @@ Change Log
 ### Fixes
 
 - Fix French localization.
-- [trivial] Fix script icon in Help contents in Dark mode.
+- [trivial] Fix script icon in the User Guide in Dark mode.
 
 
 
@@ -1311,7 +1311,7 @@ Change Log
 
 - Checkmarks are not applied to the corresponding items in the menus for the collapsed toolbar items.
 - [Big Sur] Syntax highlight for the regular expression disappears when the text field becomes in editing (FB8719584).
-- [Big Sur] Screenshots in the help contents are not updated yet.
+- [Big Sur] Screenshots in the User Guide are not updated yet.
 - [Big Sur] Document icons are not updated yet for Big Sur style.
 
 
@@ -1323,7 +1323,7 @@ Change Log
 
 - Round the corners of current line highlight.
 - [beta][Big Sur] Match the inspector background to desktop color.
-- [beta][trivial] Update titlebar color.
+- [beta][trivial] Update title bar color.
 
 
 ### Fixes
@@ -1381,7 +1381,7 @@ Change Log
 
 ### Known Issues
 
-- Some of help contents are not updated yet.
+- Some of the contents in the User Guide are not updated yet.
 - Document icons are not updated yet for Big Sur style.
 
 
@@ -1440,7 +1440,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that an unremovable empty dialog could show up when performing Replace All under specific conditions.
+- Fix an issue that an unremovable empty dialog could appear when performing Replace All under specific conditions.
 - Fix an issue in the find/replacement progress report that the progress message was not updated when nothing found.
 - Fix an issue in the outline menu in the navigation bar that the last separator did not appear.
 - Fix an issue in toolbar that menu style items were vertically squashed in the toolbar customization dialog.
@@ -2081,7 +2081,7 @@ no change.
 ### Improvements
 
 - Make the i-beam cursor legible in vertical text orientation and dark background theme.
-- Use monospace numbers for line numbers in Find All result table.
+- Use monospaced numbers for line numbers in Find All result table.
 - Optimize performance highlighting found matches.
 - [dev] Update build environment to Xcode 10.2 (Swift 5).
 - [dev] Update Differ framework to 1.4.0.
@@ -2178,7 +2178,7 @@ no change.
 
 - [beta] Disable “Change Opacity” action while fullscreen mode.
 - [beta] Move the position of the opacity control popover.
-- [beta] Update help contents.
+- [beta] Update the User Guide.
 - [trivial] Improve toolbar color.
 - [dev] Update Differ framework to 1.3.0.
 
@@ -2412,7 +2412,7 @@ no change.
 ### Fixes
 
 - Fix the cursor location by changing the selection with shortcut `⌘←`.
-- Fix an issue where the rainbow cursor could appear when cancelling syntax highlight with a large document multiple times.
+- Fix an issue where the rainbow cursor could appear when canceling syntax highlight with a large document multiple times.
 
 
 
@@ -2457,7 +2457,7 @@ no change.
 
 ### New Features
 
-- New option for cursor style (Customize the behavior in Appearances preference pane).
+- New option for cursor style (Customize the behavior in Appearance preference pane).
 
 
 ### Improvements
@@ -2963,7 +2963,7 @@ no change.
 - Avoid switching to inactive tabbed window only to show a syntax highlighting indicator.
 - Remove the workaround for the issue of editor scrolling on early macOS High Sierra that was introduced on CotEditor 3.2.4.
 - Update “Java” syntax style by adding term `var` (Thanks to Marc Prud'hommeaux!)
-- [trivial] Use monospace digits where suitable.
+- [trivial] Use monospaced digits where suitable.
 - [trivial][non-AppStore ver.] Update Sparkle framework.
 - [dev] Update build environment to Xcode 9.3 (Swift 4.1).
 
@@ -3083,7 +3083,7 @@ no change.
 
 - [beta] Adjust position of invisible line ending character on the RTL writing mode.
 - [beta] Tweak the layout of the “Sort by Pattern” dialog.
-- Update Help contents style.
+- Update the style of the User Guide.
 
 
 ### Fixes
@@ -3506,7 +3506,7 @@ no change.
 - Scale up character view in character inspector.
 - Change drawing font for some invisible characters to draw them at a better position.
 - Update “JavaScript” syntax style.
-- Add more description about scripting in the help contents.
+- Add more description about scripting in the User Guide.
 - Deprecate hidden settings for UI update interval.
 - Update build environment to Xcode 8.2.1 (SDK macOS 10.12.2).
 - [non-AppStore ver.] Update Sparkle framework to version 1.16.0.
@@ -3664,7 +3664,7 @@ no change.
 - Fix an issue where selection range after some text actions was wrong.
 - Fix an issue where document icons were blurry in non-Retina display.
 - Fix an issue where status bar layout collapsed if status line overflows.
-- Fix an issue where document theme reloaded unnecessarily on the first time Appearances pane display.
+- Fix an issue where document theme reloaded unnecessarily on the first time Appearance pane display.
 - Fix an issue where the application could crash when a script was failed.
 - Fix an issue where scrolling to the end of the document with `⌘`+`↓` shortcut didn't scroll to the end.
 - Improve general stability.
@@ -3774,7 +3774,7 @@ no change.
     - Open sideview outward also on Yosemite.
     - Sync states of sidebar among tabs in a window more correctly.
     - Fix some unwanted behavior around sidebar.
-- [beta] Update help contents.
+- [beta] Update the User Guide.
 
 
 ### Fixes
@@ -3880,7 +3880,7 @@ no change.
 - Display also an accurate file size in document inspector.
 - Display dialogs for changing file encoding as a document-modal sheet.
 - Display also an accurate file size in document inspector.
-- Move scripting manual into help contents.
+- Move scripting manual into the User Guide.
 - Make window size setting window translucent.
 - Avoid expanding status bar into side inspector.
 - Improve line height calculation.
@@ -4165,7 +4165,7 @@ no change.
     - Remove a duplicated term.
 - Now, the change of the page guide column option is applied to opened documents immediately.
 - Tweak text in preferences.
-- Update help contents.
+- Update the User Guide.
 - [non-AppStore ver.] Update Sparkle framework to version 1.14.0.
 
 
@@ -4301,7 +4301,7 @@ no change.
 - Fix an issue where the application could crash just after starting dictation.
 - Fix an issue where key binding setting could fail.
 - Fix an issue where the scroll bar style didn't change to light color on dark background theme.
-- Fix an issue where the character inspector didn't show up on Mavericks and earlier.
+- Fix an issue where the character inspector didn't appear on Mavericks and earlier.
 - Fix an issue where split orientation setting wasn't applied.
 - Fix an issue where “Jump to Selection” action didn't jump to selection in editor if another text box is focused.
 - Fix an issue where some table cells didn't change their text color when selected.
@@ -4591,7 +4591,7 @@ no change.
 - Fix an issue where the application crashed when typing a part of surrogate pair character.
 - Fix an issue where invisibles which are a surrogate pair occasionally did not display.
 - Fix an issue where the toolbar button state of the text orientation was not updated on window restoration.
-- Fix help contents layout.
+- Fix the layout of the User Guide.
 - [rc] Fix an issue where table headers had sometimes unwanted space around them on Yosemite and earlier.
 - [rc] Fix an issue where calculation of hanging indent width was sometimes incorrect.
 - [beta] Fix an issue where an unwanted migration window was displayed on the first launch even when there is nothing to be migrated.
@@ -4823,7 +4823,7 @@ no change.
 ### Improvements
 
 - [beta] Add `--new` option to `cot` command-line tool.
-- Update help contents.
+- Update the User Guide.
 
 
 ### Fixes
@@ -5112,7 +5112,7 @@ no change.
     - Improve outline extracting rules.
 - Deprecate “Drag selected text immediately” setting.
 - Tweak result messages by syntax style validator and partially localized.
-- Move version history from rich text format to one of the Help contents.
+- Move version history from rich text format to one of the User Guide.
 - Improve background drawing:
     - On Mountain Lion and later, scrolling performance on semi-transparent views has been improved.
     - On Mountain Lion and later, text view gets no drop-shadow by texts on semi-transparent.

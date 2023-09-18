@@ -23,7 +23,7 @@
 <section>
 <h2>Sample</h2>
 
-<p>In this field, you can check which part in a line will be used for sort comparison.</p>
+<p>In this field, you can test which part in a line will be used for sort comparison.</p>
 </section>
 
 <section>
@@ -35,13 +35,13 @@
 	<dd>Compare entire lines.</dd>
 	
 	<dt>Column</dt>
-	<dd>Treat lines as CSV (character-separated values) format and use the specific column for comparison. Whitespace around the separator will just be ignored.</dd>
+	<dd>Treat lines as CSV (character-separated values) format and use the specific column for comparison. Whitespace around the separator is just ignored.</dd>
 	<dd><table>
 		<thead>
 			<tr><th>Option</th><th>Description</th></tr>
 		</thead>
 		<tbody>
-			<tr><td>Delimiter</td><td>The character separating each column. You can use escape sequences such as <code>\t</code> for the tabular character. A comma will be used when this field is blank.</dd>
+			<tr><td>Delimiter</td><td>The character separating each column. You can use escape sequences such as <code>\t</code> for the tabular character. A comma is used when this field is blank.</dd>
 			<tr><td>Position</td><td>The number of the column to use as the sort key. The column count starts at 1.</td></tr>
 		</tbody>
 	</table></dd>
@@ -54,8 +54,8 @@
 		</thead>
 		<tbody>
 			<tr><td>Pattern</td><td>The regular expression pattern to extract the part to compare.</dd>
-			<tr><td>Ignore case</td><td>Whether ignore the character case by extracting the regular expression pattern. This option will be used only for the sort key extraction. To set case-insensitive state for the sort phase, set in the sort option bellow.</td></tr>
-			<tr><td>Use captured group</td><td>The part in matches to use as the sort key. The entire match will be used when this checkbox is turned off.</td></tr>
+			<tr><td>Ignore case</td><td>Whether ignore the character case by extracting the regular expression pattern. This option is used only for the sort key extraction. To set case-insensitive state for the sort phase, set in the sort option bellow.</td></tr>
+			<tr><td>Use captured group</td><td>The part in matches to use as the sort key. The entire match is used when this option is unselected.</td></tr>
 		</tbody>
 	</table></dd>
 </dl>
@@ -72,7 +72,7 @@
 	</thead>
 	<tbody>
 		<tr><td>Ignore case</td><td>Ignore character case on sort.</td></tr>
-		<tr><td>Respect language rules</td><td>Fuzzily sort respecting the current language setting. i.e.: ignoring trivial differences such as character widths or diacritical marks.</td></tr>
+		<tr><td>Respect language rules</td><td>Fuzzily sort respecting the current language setting. For example, ignoring trivial differences such as character widths or diacritical marks.</td></tr>
 		<tr><td>Treat numbers as numeric value</td><td>Numbers within the sort keys are compared as numeric value. (e.g.: file12 &gt; file5)</td></tr>
 		<tr><td>Keep the first line at the top</td><td>Ignore the first line by sorting.</td></tr>
 		<tr><td>In descending order</td><td>Sort results in descending order.</td></tr>
