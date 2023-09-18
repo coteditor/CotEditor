@@ -711,7 +711,7 @@
 "No original file for “%@” was found." = "Aucun fichier original pour « %@ » n’a été trouvé.";
 
 // Setting filename warnings
-"Please choose another name." = "Veuillez choisir un autre nom.";
+"Choose another name." = "Choisir un autre nom.";
 "Name can’t be empty." = "Le nom ne peut pas être vide.";
 "Name can’t contain “/”." = "Le nom ne peut pas contenir de slashs « / ».";  // FIXME: updated
 "Name can’t begin with “.”." = "Le nom ne peut pas commencer par un point « . »";  // FIXME: updated

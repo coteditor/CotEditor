@@ -711,7 +711,7 @@
 "No original file for “%@” was found." = "無法找到「%@」的源檔案。";
 
 // Setting filename warnings
-"Please choose another name." = "請輸入其他名稱。";
+"Choose another name." = "輸入其他名稱。";
 "Name can’t be empty." = "名稱不能為空。";
 "Name can’t contain “/”." = "名稱不能含有「/」。";
 "Name can’t begin with “.”." = "名稱不能含有「.」。";

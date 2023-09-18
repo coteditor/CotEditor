@@ -60,7 +60,7 @@
 /* Class = "NSTextFieldCell"; title = "Words"; ObjectID = "tZ6-05-eKf"; */
 "tZ6-05-eKf.title" = "字";
 
-/* Class = "NSTextFieldCell"; title = "Cursor"; ObjectID = "nXT-Oq-0l6"; */
+/* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "nXT-Oq-0l6"; */
 "nXT-Oq-0l6.title" = "游標";
 
 /* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "ERr-yA-dIa"; */

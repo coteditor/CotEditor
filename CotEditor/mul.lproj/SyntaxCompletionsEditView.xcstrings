@@ -74,25 +74,25 @@
       }
     },
     "fJg-PK-TBB.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"If no word, the completion list will be generated from coloring settings.\"; ObjectID = \"fJg-PK-TBB\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"If no word, the completion list is generated from coloring settings.\"; ObjectID = \"fJg-PK-TBB\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wenn leer, wird die Vervollständigungsliste aus den Einstellungen für das Hervorheben erzeugt werden."
+            "value" : "Wenn leer, wird die Vervollständigungsliste aus den Einstellungen für das Hervorheben erzeugt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "If no word, the completion list will be generated from coloring settings."
+            "value" : "If no word, the completion list is generated from coloring settings."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "If no word, the completion list will be generated from colouring settings."
+            "value" : "If no word, the completion list is generated from coloring settings."
           }
         },
         "es" : {

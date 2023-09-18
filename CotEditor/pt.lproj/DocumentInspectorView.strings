@@ -61,8 +61,8 @@
 "tZ6-05-eKf.title" = "Palavras";
 
 
-/* Class = "NSTextFieldCell"; title = "Cursor"; ObjectID = "nXT-Oq-0l6"; */
-"nXT-Oq-0l6.title" = "Cursor";
+/* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "nXT-Oq-0l6"; */
+"nXT-Oq-0l6.title" = "Localização";
 
 /* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "ERr-yA-dIa"; */
 "ERr-yA-dIa.title" = "Localização";

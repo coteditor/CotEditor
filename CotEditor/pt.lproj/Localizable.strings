@@ -711,7 +711,7 @@
 "No original file for “%@” was found." = "O arquivo original de “%@” não foi encontrado.";
 
 // Setting filename warnings
-"Please choose another name." = "Escolha outro nome.";
+"Choose another name." = "Escolha outro nome.";
 "Name can’t be empty." = "Nome não pode estar vazio.";
 "Name can’t contain “/”." = "Nome não pode conter “/”.";
 "Name can’t begin with “.”." = "Nome não pode começar com “.”.";

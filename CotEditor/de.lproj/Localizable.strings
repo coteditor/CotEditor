@@ -711,7 +711,7 @@
 "No original file for “%@” was found." = "Keine Original-Datei für „%@“ wurde gefunden.";
 
 // Setting filename warnings
-"Please choose another name." = "Bitte wähle einen anderen Namen.";
+"Choose another name." = "Wähle einen anderen Namen.";
 "Name can’t be empty." = "Name darf nicht leer sein.";
 "Name can’t contain “/”." = "Name darf kein „/“ enthalten.";
 "Name can’t begin with “.”." = "Name darf nicht mit „.“ beginnen.";
@@ -830,7 +830,7 @@
 
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
-"The insertion point after inserting the snippet." = "Die Cursorposition nach dem Einfügen des Snippets.";
+"The insertion point after inserting the snippet." = "Die Einfügemarke nach dem Einfügen des Snippets.";
 "The selected text." = "Der ausgewählte Text.";
 
 

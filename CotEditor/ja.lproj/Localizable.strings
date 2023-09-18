@@ -711,7 +711,7 @@
 "No original file for “%@” was found." = "“%@”のオリジナルファイルが見つかりませんでした。";
 
 // Setting filename warnings
-"Please choose another name." = "別の名前を指定してください。";
+"Choose another name." = "別の名前を指定してください。";
 "Name can’t be empty." = "名前は空にできません。";
 "Name can’t contain “/”." = "名前に“/”を含めることはできません。";
 "Name can’t begin with “.”." = "名前を“.”から始めることはできません。";

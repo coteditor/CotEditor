@@ -449,8 +449,8 @@
                                             </connections>
                                         </textField>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iDC-JM-uBc">
-                                            <rect key="frame" x="10" y="114" width="45" height="15"/>
-                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Cursor" usesSingleLineMode="YES" id="nXT-Oq-0l6">
+                                            <rect key="frame" x="10" y="114" width="56" height="15"/>
+                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Location" usesSingleLineMode="YES" id="nXT-Oq-0l6">
                                                 <font key="font" metaFont="systemBold" size="12"/>
                                                 <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

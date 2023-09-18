@@ -710,7 +710,7 @@
 "No original file for “%@” was found." = "No original file for “%@” was found.";
 
 // Setting filename warnings
-"Please choose another name." = "Please choose another name.";
+"Choose another name." = "Choose another name.";
 "Name can’t be empty." = "Name can’t be empty.";
 "Name can’t contain “/”." = "Name can’t contain “/”.";
 "Name can’t begin with “.”." = "Name can’t begin with “.”.";

@@ -463,7 +463,7 @@ enum InvalidNameError: LocalizedError {
     
     var recoverySuggestion: String? {
         
-        String(localized: "Please choose another name.")
+        String(localized: "Choose another name.")
     }
 }
 

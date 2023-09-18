@@ -60,8 +60,8 @@
 /* Class = "NSTextFieldCell"; title = "Words"; ObjectID = "tZ6-05-eKf"; */
 "tZ6-05-eKf.title" = "Parole";
 
-/* Class = "NSTextFieldCell"; title = "Cursor"; ObjectID = "nXT-Oq-0l6"; */
-"nXT-Oq-0l6.title" = "Cursore";
+/* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "nXT-Oq-0l6"; */
+"nXT-Oq-0l6.title" = "Posizione";
 
 /* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "ERr-yA-dIa"; */
 "ERr-yA-dIa.title" = "Posizione";
