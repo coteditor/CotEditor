@@ -95,6 +95,12 @@
             "value" : "Monospaced"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spaziatura fissa"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11251,8 +11257,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Espandi Tab automaticamente"
+            "state" : "translated",
+            "value" : "Usa gli spazi per il rientro"
           }
         },
         "ja" : {
@@ -12965,6 +12971,12 @@
             "value" : "Font Type"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo Font"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14238,6 +14250,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard"
+          }
+        },
+        "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standard"

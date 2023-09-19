@@ -46,20 +46,20 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Default syntax:"; ObjectID = "3329"; */
-"3329.title" = "Stile della sintassi standard:";  // FIXME: syntax style -> syntax
+"3329.title" = "Sintassi di default:";
 
 /* Class = "NSTextFieldCell"; title = "Available syntaxes:"; ObjectID = "vlw-Tc-sLl"; */
-"vlw-Tc-sLl.title" = "Stili di sintassi installati:";  // FIXME: syntax style -> syntax
+"vlw-Tc-sLl.title" = "Sintassi disponibili:";
 
 /* Class = "NSView"; ibShadowedToolTip = "This syntax is customized."; ObjectID = "cbJ-XK-bnG"; */
-"cbJ-XK-bnG.ibShadowedToolTip" = "Questo stile è stato modificato.";  // FIXME: style -> syntax
+"cbJ-XK-bnG.ibShadowedToolTip" = "Questa è una sintassi personalizzata.";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Remove selected syntax"; ObjectID = "dI1-Dk-Mce"; */
-"dI1-Dk-Mce.ibShadowedToolTip" = "Rimuovi lo stile selezionato";  // FIXME: style -> syntax
+"dI1-Dk-Mce.ibShadowedToolTip" = "Rimuovi la sintassi selezionata";
 /* Class = "NSButton"; ibShadowedToolTip = "Add empty syntax"; ObjectID = "Hma-8v-2gu"; */
-"Hma-8v-2gu.ibShadowedToolTip" = "Aggiungi stile vuoto";  // FIXME: style -> syntax
+"Hma-8v-2gu.ibShadowedToolTip" = "Aggiungi sintassi vuota";
 /* Class = "NSButton"; ibShadowedToolTip = "Edit selected syntax"; ObjectID = "Q0c-oI-um3"; */
-"Q0c-oI-um3.ibShadowedToolTip" = "Modifica lo stile selezionato";  // FIXME: style -> syntax
+"Q0c-oI-um3.ibShadowedToolTip" = "Modifica la sintassi selezionata";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Edit"; ObjectID = "Q0c-oI-um3"; */
 "Q0c-oI-um3.ibExternalAccessibilityDescription" = "Modifica";
 
@@ -69,7 +69,7 @@
 /* Class = "NSMenuItem"; title = "Share…"; ObjectID = "xRA-ND-YIE"; */
 "xRA-ND-YIE.title" = "Condividi…";
 /* Class = "NSButtonCell"; title = "Reload All Syntaxes"; ObjectID = "FhP-Hj-cWE"; */
-"FhP-Hj-cWE.title" = "Ricarica tutti gli Stili";  // FIXME: style -> syntax
+"FhP-Hj-cWE.title" = "Ricarica tutte le sintassi";
 /* Class = "NSMenuItem"; title = "Show File Mapping Conflicts"; ObjectID = "hyN-4W-57i"; */
 "hyN-4W-57i.title" = "Mostra i conflitti di mappatura file";
 

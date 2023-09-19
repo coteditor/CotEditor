@@ -27,11 +27,11 @@
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
 "9bX-ei-1x8.title" = "Rientro:";
 /* Class = "NSTextFieldCell"; title = "Prefer using"; ObjectID = "jdu-bS-Jk1"; */
-"jdu-bS-Jk1.title" = "Prefer using";  // FIXME: added
+"jdu-bS-Jk1.title" = "Preferisci l'uso di:";
 /* Class = "NSMenuItem"; title = "Spaces"; ObjectID = "ZKV-jL-cQV"; */
-"ZKV-jL-cQV.title" = "Spaces";  // FIXME: added
+"ZKV-jL-cQV.title" = "Spazi";
 /* Class = "NSMenuItem"; title = "Tabs"; ObjectID = "lVY-WF-4Yh"; */
-"lVY-WF-4Yh.title" = "Tabs";  // FIXME: added
+"lVY-WF-4Yh.title" = "Tabulazioni";
 /* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
 "3287.title" = "Ampiezza rientro:";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */
@@ -39,7 +39,7 @@
 /* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
 "Cte-hW-0M3.title" = "Rileva il tipo di rientro all’apertura del documento";
 /* Class = "NSButtonCell"; title = "Automatically indent while typing"; ObjectID = "3285"; */
-"3285.title" = "Rientro automatico";  // FIXME: updated
+"3285.title" = "Rientro automatico durante la digitazione";
 /* Class = "NSButtonCell"; title = "Indent selection with Tab key"; ObjectID = "aVn-PD-hen"; */
 "aVn-PD-hen.title" = "Rientra la selezione con il tasto Tab";
 
@@ -93,7 +93,7 @@
 /* Class = "NSButtonCell"; title = "Words in document"; ObjectID = "EJZ-N6-54G"; */
 "EJZ-N6-54G.title" = "Parole del documento";
 /* Class = "NSButtonCell"; title = "Words defined in syntax"; ObjectID = "1v9-7i-9RL"; */
-"1v9-7i-9RL.title" = "Parole definite nello stile della sintassi";  // FIXME: syntax style -> syntax
+"1v9-7i-9RL.title" = "Parole definite nella sintassi";
 /* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */
 "c5j-0N-f2R.title" = "Parole standard";
 

@@ -57,9 +57,9 @@
 /* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "rpa-Di-f4s"; */
 "rpa-Di-f4s.title" = "Aggiorna usando la versione modificata";
 /* Class = "NSTextFieldCell"; title = "Dialog warnings:"; ObjectID = "Igx-ay-Cgz"; */
-"Igx-ay-Cgz.title" = "Dialog warnings:";  // FIXME: added
+"Igx-ay-Cgz.title" = "Avvisi:";
 /* Class = "NSButtonCell"; title = "Manage Warnings…"; ObjectID = "G2q-Im-jTO"; */
-"G2q-Im-jTO.title" = "Manage Warnings…";  // FIXME: added
+"G2q-Im-jTO.title" = "Gestisci avvisi…";
 
 
 /* Class = "NSTextFieldCell"; title = "Command-line tool:"; ObjectID = "kQn-Uu-cqG"; */
