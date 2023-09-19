@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,11 +25,16 @@
 
 import AppKit
 
-final class SettingsWindow: NSPanel {
+final class SettingsWindow: NSWindow {
     
-    // MARK: Panel Methods
+    // MARK: Window Methods
     
-    /// disable "Hide Toolbar" menu item
+    override func cancelOperation(_ sender: Any?) {
+        
+        self.close()
+    }
+    
+    
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         switch menuItem.action {

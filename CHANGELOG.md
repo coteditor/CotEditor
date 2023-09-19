@@ -21,11 +21,12 @@ Change Log
 - [beta] Adjust the position of the history buttons in the find panel.
 - [beta] Update the User Guide.
 - [beta] Update localizations.
-- [beta][dev] Update the build environment to Xcode 15 RC.
+- [beta][dev] Update the build environment to Xcode 15.
 
 
 ### Fixes
 
+- Fix an issue that the Settings window was not listed in the Window menu.
 - [beta] Fix an issue that the visibility of the inspector was not saved.
 - [beta] Fix an issue that the font preference update was not applied immediately to opened documents.
 - [beta] Fix an issue that themes did not switch by the appearance change.
