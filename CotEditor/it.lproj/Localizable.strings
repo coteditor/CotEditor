@@ -858,7 +858,7 @@
 
 /* MARK: Syntax Mapping Conflicts View */
 "Syntax Mapping Conflicts" = "Conflitto di mappatura delle sintassi";
-"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "Le regole di mappatura del file che seguono sono registrate in più sintassi. CotEditor userà la prima sintassi. Per risolvere i conflitti, modificare le definizioni di ciascuna sintassi."
+"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "Le regole di mappatura del file che seguono sono registrate in più sintassi. CotEditor userà la prima sintassi. Per risolvere i conflitti, modificare le definizioni di ciascuna sintassi.";
 "Extension" = "Estensione";
 "Filename" = "Nome del file";
 "Interpreter" = "Interpreti";
