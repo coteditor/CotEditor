@@ -34,7 +34,7 @@ Change Log
 
 ### Known Issues
 
-- The user interface is partly not localized yet in French, and Spanish.
+- The user interface is partly not localized yet in Spanish.
 
 
 

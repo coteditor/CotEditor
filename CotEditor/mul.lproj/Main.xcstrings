@@ -95,6 +95,12 @@
             "value" : "Monospaced"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Monochasse"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11251,8 +11257,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Convertir automatiquement les tabulations"
+            "state" : "translated",
+            "value" : "Utiliser des Espaces pour l’Indentation"
           }
         },
         "it" : {
@@ -12971,6 +12977,12 @@
             "value" : "Font Type"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type de Police"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14250,6 +14262,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard"
+          }
+        },
+        "fr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standard"

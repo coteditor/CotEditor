@@ -51,14 +51,14 @@
 /* Class = "NSTextFieldCell"; title = "Available syntaxes:"; ObjectID = "vlw-Tc-sLl"; */
 "vlw-Tc-sLl.title" = "Syntaxes disponibles :";
 /* Class = "NSView"; ibShadowedToolTip = "This syntax is customized."; ObjectID = "cbJ-XK-bnG"; */
-"cbJ-XK-bnG.ibShadowedToolTip" = "Cette syntaxe est personnalisée.";
+"cbJ-XK-bnG.ibShadowedToolTip" = "Cette syntaxe est personalisée.";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Remove selected syntax"; ObjectID = "dI1-Dk-Mce"; */
 "dI1-Dk-Mce.ibShadowedToolTip" = "Supprimer la syntaxe sélectionnée";
 /* Class = "NSButton"; ibShadowedToolTip = "Add empty syntax"; ObjectID = "Hma-8v-2gu"; */
-"Hma-8v-2gu.ibShadowedToolTip" = "Ajouter une syntaxe vide";
+"Hma-8v-2gu.ibShadowedToolTip" = "Ajouter une syntaxe vierge";
 /* Class = "NSButton"; ibShadowedToolTip = "Edit selected syntax"; ObjectID = "Q0c-oI-um3"; */
-"Q0c-oI-um3.ibShadowedToolTip" = "Editer la syntaxe sélectionnée";
+"Q0c-oI-um3.ibShadowedToolTip" = "Éditer la syntaxe sélectionnée";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Edit"; ObjectID = "Q0c-oI-um3"; */
 "Q0c-oI-um3.ibExternalAccessibilityDescription" = "Editer";
 
