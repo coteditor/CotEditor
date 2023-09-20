@@ -36,7 +36,7 @@
 "OJs-2q-bg5.title" = "Sempre";  // The same as the popup menu selection in System Settings > Desktop & Dock
 
 /* Class = "NSTextFieldCell"; title = "Window size:"; ObjectID = "JZ8-uq-7Kg"; */
-"JZ8-uq-7Kg.title" = "Tamanho da Janela:";
+"JZ8-uq-7Kg.title" = "Tamanho da janela:";
 /* Class = "NSTextFieldCell"; title = "Width"; ObjectID = "IGc-EL-MXO"; */
 "IGc-EL-MXO.title" = "Largura";
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "u8r-OW-Z1O"; */
