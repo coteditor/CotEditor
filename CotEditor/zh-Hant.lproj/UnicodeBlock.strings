@@ -365,3 +365,7 @@
 "Cyrillic Extended-D" = "斯拉夫文延伸-D";
 "Nag Mundari" = "Nag Mundari";
 "CJK Unified Ideographs Ext. H" = "中日韓統一表意文字延伸H";
+
+
+// Blocks added in Unicode 15.1.0 (2023-09)
+"CJK Unified Ideographs Ext. I" = "中日韓統一表意文字延伸I";

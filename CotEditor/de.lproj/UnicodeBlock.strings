@@ -365,3 +365,7 @@
 "Cyrillic Extended-D" = "Kyrillisch Erweitert-D";
 "Nag Mundari" = "Nag Mundari";
 "CJK Unified Ideographs Ext. H" = "CJK Ideografen (Unified Ext. H)";
+
+
+// Blocks added in Unicode 15.1.0 (2023-09)
+"CJK Unified Ideographs Ext. I" = "CJK Ideografen (Unified Ext. I)";

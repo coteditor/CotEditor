@@ -16,6 +16,7 @@ Change Log
 - Deprecate the option to do nothing when no document is opened on startup.
 - Deprecate the option to swap `¥` and `\` keys.
 - Deprecate the option to comment always from the line head (This behavior is now always enabled).
+- Update the Unicode block name list for the character inspector to Unicode 15.1.0.
 - [non-AppStore ver.] Update Sparkle from 2.4.2 to 2.5.0.
 - [beta] Reorganize the Settings window.
 - [beta] Adjust the position of the history buttons in the find panel.
