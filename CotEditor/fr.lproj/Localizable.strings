@@ -624,8 +624,8 @@
 
 // Appearance pane
 // alert message
-"The selected font doesn’t seem to be monospaced." = "La police sélectionnée ne semble pas être à espacements constants.";  // FIXME: needs consider
-"Do you want to use it for the monospaced font?" = "Voulez-vous l'utiliser comme police à espacements constants?";  // “it” is the selected font.  // FIXME: needs consider
+"The selected font doesn’t seem to be monospaced." = "La police sélectionnée ne semble pas être monochasse.";
+"Do you want to use it for the monospaced font?" = "Voulez-vous l'utiliser comme police monochasse ?";  // “it” is the selected font.
 
 // Contextual menu items
 "Rename “%@”" = "Renommer « %@ »";
