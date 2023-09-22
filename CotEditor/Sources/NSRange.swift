@@ -88,6 +88,52 @@ extension NSRange {
 }
 
 
+
+extension NSRange {
+    
+    struct InsertionItem: Equatable {
+        
+        var string: String
+        var location: Int
+        var forward: Bool
+    }
+    
+    
+    /// Return a new range by assuming the indices of the given items are inserted.
+    ///
+    /// - Parameter items: Insertion items to be inserted.
+    /// - Returns: A new range that the receiver moved.
+    func inserted(items: [Self.InsertionItem]) -> NSRange {
+        
+        let location = items
+            .prefix { (self.isEmpty && $0.forward) ? $0.location <= self.lowerBound : $0.location < self.lowerBound }
+            .map(\.string.length)
+            .reduce(self.location, +)
+        let length = items
+            .filter { (self.isEmpty || !$0.forward) ? self.lowerBound < $0.location : self.lowerBound <= $0.location }
+            .filter { (self.isEmpty || $0.forward) ? $0.location < self.upperBound : $0.location <= self.upperBound }
+            .map(\.string.length)
+            .reduce(self.length, +)
+        
+        return NSRange(location: location, length: length)
+    }
+    
+    
+    /// Return a new range by assuming the indexes in the given ranges are removed.
+    ///
+    /// - Parameter ranges: An array of NSRange where the indexes are removed.
+    /// - Returns: A new range that the receiver moved.
+    func removed(ranges: [NSRange]) -> NSRange {
+        
+        let indices = IndexSet(integersIn: ranges)
+        let location = self.location - indices.count(in: ..<self.lowerBound)
+        let length = self.length - indices.count(in: Range(self)!)
+        
+        return NSRange(location: location, length: length)
+    }
+}
+
+
 extension Sequence<NSRange> {
     
     /// The range that contains all ranges.
@@ -99,5 +145,23 @@ extension Sequence<NSRange> {
         else { return nil }
         
         return NSRange(lowerBound..<upperBound)
+    }
+}
+
+
+extension IndexSet {
+    
+    /// Initialize an index set with multiple NSRanges.
+    ///
+    /// - Parameter ranges: The ranges to insert.
+    init(integersIn ranges: [NSRange]) {
+        
+        assert(!ranges.contains(.notFound))
+        
+        self.init()
+        
+        for range in ranges.compactMap(Range.init) {
+            self.insert(integersIn: range)
+        }
     }
 }

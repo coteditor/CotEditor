@@ -200,9 +200,7 @@ extension MultiCursorEditing {
         guard !ranges.isEmpty else { return nil }
         
         let ranges = ranges.unique.sorted(\.location)
-        let selectionSet = ranges
-            .compactMap(Range.init)
-            .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
+        let selectionSet = IndexSet(integersIn: ranges)
         let nonemptyRanges = selectionSet.rangeView
             .map(NSRange.init)
         var emptyRanges = ranges

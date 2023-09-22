@@ -132,30 +132,22 @@ extension NSTextView {
         
         assert(Thread.isMainThread)
         
-        let ranges = self.string.rangesOfTrailingWhitespace(ignoresEmptyLines: ignoresEmptyLines)
+        let whitespaceRanges = self.string.rangesOfTrailingWhitespace(ignoresEmptyLines: ignoresEmptyLines)
+        
+        guard !whitespaceRanges.isEmpty else { return }
+        
         let editingRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map(\.rangeValue)
         
-        // exclude editing lines if needed
-        let replacementRanges: [NSRange] = keepingEditingPoint
-            ? ranges.filter { range in editingRanges.allSatisfy { !$0.touches(range) } }
-            : ranges
+        let trimmingRanges: [NSRange] = keepingEditingPoint
+            ? whitespaceRanges.filter { range in editingRanges.allSatisfy { !$0.touches(range) } }
+            : whitespaceRanges
         
-        guard !replacementRanges.isEmpty else { return }
+        guard !trimmingRanges.isEmpty else { return }
         
-        let replacementStrings = [String](repeating: "", count: replacementRanges.count)
+        let replacementStrings = [String](repeating: "", count: trimmingRanges.count)
+        let selectedRanges = editingRanges.map { $0.removed(ranges: trimmingRanges) }
         
-        // calculate selectedRanges after deletion
-        let removedIndexes = replacementRanges
-            .compactMap(Range.init)
-            .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
-        let selectedRanges: [NSRange] = editingRanges.map { range in
-            let location = range.location - removedIndexes.count { $0 < range.location }
-            let length = range.length - removedIndexes.count { range.contains($0) }
-            
-            return NSRange(location: location, length: length)
-        }
-        
-        self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges,
+        self.replace(with: replacementStrings, ranges: trimmingRanges, selectedRanges: selectedRanges,
                      actionName: String(localized: "Trim Trailing Whitespace"))
     }
 }

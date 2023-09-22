@@ -38,7 +38,7 @@ extension EditorTextView: Commenting {
     
     // MARK: Action Messages
     
-    /// toggle comment state in selection
+    /// Toggle the comment state of the selections.
     @IBAction func toggleComment(_ sender: Any?) {
         
         if self.canUncomment(partly: false) {
@@ -49,28 +49,28 @@ extension EditorTextView: Commenting {
     }
     
     
-    /// comment out selection appending comment delimiters
+    /// Comment out the selections by appending comment delimiters.
     @IBAction func commentOut(_ sender: Any?) {
         
         self.commentOut(types: .both, fromLineHead: false)
     }
     
     
-    /// comment out selection appending block comment delimiters
+    /// Comment out the selections by appending block comment delimiters.
     @IBAction func blockCommentOut(_ sender: Any?) {
         
         self.commentOut(types: .block, fromLineHead: false)
     }
     
     
-    /// comment out selection appending inline comment delimiters
+    /// Comment out the selections by appending inline comment delimiters.
     @IBAction func inlineCommentOut(_ sender: Any?) {
         
         self.commentOut(types: .inline, fromLineHead: false)
     }
     
     
-    /// uncomment selection removing comment delimiters
+    /// Uncomment the selections by removing comment delimiters.
     @IBAction func uncomment(_ sender: Any?) {
         
         self.uncomment()
@@ -105,7 +105,7 @@ extension Commenting {
     
     // MARK: Public Methods
     
-    /// Comment out selections by appending comment delimiters.
+    /// Comment out the selections by appending comment delimiters.
     ///
     /// - Parameters:
     ///   - types: The type of commenting-out. When, `.both`, inline-style takes priority over block-style.
@@ -143,7 +143,7 @@ extension Commenting {
     }
     
     
-    /// Uncomment selections by removing comment delimiters.
+    /// Uncomment the selections by removing comment delimiters.
     func uncomment() {
         
         guard
@@ -172,14 +172,14 @@ extension Commenting {
         guard !deletionRanges.isEmpty else { return }
         
         let newStrings = [String](repeating: "", count: deletionRanges.count)
-        let newSelectedRanges = selectedRanges.map { $0.deleted(ranges: deletionRanges) }
+        let newSelectedRanges = selectedRanges.map { $0.removed(ranges: deletionRanges) }
         
         self.replace(with: newStrings, ranges: deletionRanges, selectedRanges: newSelectedRanges,
                      actionName: String(localized: "Uncomment"))
     }
     
     
-    /// Whether selected ranges can be uncommented.
+    /// Whether the selected ranges can be uncommented.
     ///
     /// - Parameter partly: When `true`, the method returns `true` when a part of selections is commented-out,
     ///                     otherwise only when the entire selections can be commented out.
@@ -214,69 +214,9 @@ extension Commenting {
 
 
 
-extension NSRange {
-    
-    struct InsertionItem: Equatable {
-        
-        var string: String
-        var location: Int
-        var forward: Bool
-    }
-    
-    
-    /// Return a new range by assuming the indices of the given items are inserted.
-    ///
-    /// - Parameter items: An array of items to be inserted.
-    /// - Returns: A new range that the receiver moved.
-    func inserted(items: [Self.InsertionItem]) -> NSRange {
-        
-        var location = items
-            .prefix { $0.location < self.lowerBound }  //  || ($0.location == self.lowerBound && $0.forward)
-            .map(\.string.length)
-            .reduce(self.location, +)
-        var length = items
-            .filter { self.lowerBound < $0.location && $0.location < self.upperBound }
-            .map(\.string.length)
-            .reduce(self.length, +)
-        
-        // adjust edge insertions depending on the selection state
-        if self.isEmpty {
-            location += items
-                .filter { $0.location == self.lowerBound && $0.forward }
-                .map(\.string.length)
-                .reduce(0, +)
-        } else {
-            length += items
-                .filter { $0.location == self.lowerBound && $0.forward || $0.location == self.upperBound && !$0.forward }
-                .map(\.string.length)
-                .reduce(0, +)
-        }
-        
-        return NSRange(location: location, length: length)
-    }
-    
-    
-    /// Return a new range by assuming the indexes in the given ranges are removed.
-    ///
-    /// - Parameter ranges: An array of NSRange where the indexes are removed.
-    /// - Returns: A new range that the receiver moved.
-    func deleted(ranges: [NSRange]) -> NSRange {
-        
-        let indices = ranges
-            .compactMap(Range.init)
-            .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
-        
-        let location = self.location - indices.count(in: ..<self.lowerBound)
-        let length = self.length - indices.count(in: Range(self)!)
-        
-        return NSRange(location: location, length: length)
-    }
-}
-
-
 extension String {
     
-    /// Return editing information to comment out given `ranges` by appending inline-style comment delimiters
+    /// Return the editing information to comment out the given `ranges` by appending inline-style comment delimiters
     /// and spacers after delimiters.
     ///
     /// - Parameters:
@@ -295,7 +235,7 @@ extension String {
     }
     
     
-    /// Return editing information to comment out given `ranges` by appending block-style comment delimiters
+    /// Return the editing information to comment out the given `ranges` by appending block-style comment delimiters
     /// and spacers between string and delimiters.
     ///
     /// - Parameters:

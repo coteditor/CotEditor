@@ -51,4 +51,37 @@ final class NSRangeTests: XCTestCase {
         XCTAssertFalse(NSRange(location: 1, length: 1).isNotFound)
     }
     
+    
+    func testRangeInsertion() {
+        
+        XCTAssertEqual(NSRange(0..<0).inserted(items: []), NSRange(0..<0))
+        XCTAssertEqual(NSRange(0..<0).inserted(items: [.init(string: "", location: 0, forward: true)]), NSRange(0..<0))
+        
+        XCTAssertEqual(NSRange(0..<0).inserted(items: [.init(string: "abc", location: 0, forward: true)]), NSRange(3..<3))
+        XCTAssertEqual(NSRange(0..<0).inserted(items: [.init(string: "abc", location: 0, forward: false)]), NSRange(0..<0))
+        XCTAssertEqual(NSRange(1..<1).inserted(items: [.init(string: "abc", location: 0, forward: false)]), NSRange(4..<4))
+        XCTAssertEqual(NSRange(0..<5).inserted(items: [.init(string: "abc", location: 2, forward: true)]), NSRange(0..<8))
+        XCTAssertEqual(NSRange(0..<5).inserted(items: [.init(string: "abc", location: 6, forward: true)]), NSRange(0..<5))
+        
+        XCTAssertEqual(NSRange(2..<2).inserted(items: [.init(string: "abc", location: 2, forward: true),
+                                                       .init(string: "abc", location: 2, forward: false)]), NSRange(5..<5))
+        XCTAssertEqual(NSRange(2..<3).inserted(items: [.init(string: "abc", location: 2, forward: true),
+                                                       .init(string: "abc", location: 2, forward: false)]), NSRange(2..<6))
+        XCTAssertEqual(NSRange(2..<3).inserted(items: [.init(string: "abc", location: 3, forward: true),
+                                                       .init(string: "abc", location: 3, forward: false)]), NSRange(2..<6))
+    }
+    
+    
+    func testRangeRemoval() {
+        
+        XCTAssertEqual(NSRange(0..<0).removed(ranges: []), NSRange(0..<0))
+        XCTAssertEqual(NSRange(0..<0).removed(ranges: [NSRange(0..<0)]), NSRange(0..<0))
+        
+        XCTAssertEqual(NSRange(0..<10).removed(ranges: [NSRange(2..<4)]), NSRange(0..<8))
+        XCTAssertEqual(NSRange(1..<10).removed(ranges: [NSRange(0..<2)]), NSRange(0..<8))
+        XCTAssertEqual(NSRange(1..<10).removed(ranges: [NSRange(11..<20)]), NSRange(1..<10))
+        
+        XCTAssertEqual(NSRange(1..<10).removed(ranges: [NSRange(2..<4), NSRange(3..<5)]), NSRange(1..<7))
+        XCTAssertEqual(NSRange(1..<10).removed(ranges: [NSRange(0..<2), NSRange(3..<5), NSRange(9..<20)]), NSRange(0..<5))
+    }
 }

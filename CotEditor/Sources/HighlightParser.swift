@@ -202,9 +202,7 @@ struct HighlightParser {
                 
                 try Task.checkCancellation()
                 
-                let indexes = ranges
-                    .compactMap(Range.init)
-                    .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
+                let indexes = IndexSet(integersIn: ranges)
                 
                 dict[type] = dict.values.reduce(into: indexes) { $0.subtract($1) }
             }
