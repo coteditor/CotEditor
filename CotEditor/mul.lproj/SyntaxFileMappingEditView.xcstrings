@@ -169,8 +169,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Los intérpretes se utilizan para determinar el estilo de sintaxis a partir del shebang en el documento"
+            "state" : "needs_review",
+            "value" : "Los intérpretes se utilizan para determinar el sintaxis a partir del shebang en el documento"
           }
         },
         "fr" : {

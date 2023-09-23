@@ -59,9 +59,9 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Dialog warnings:"; ObjectID = "Igx-ay-Cgz"; */
-"Igx-ay-Cgz.title" = "Dialog warnings:";  // FIXME: added
+"Igx-ay-Cgz.title" = "Advertencias de diálogo:";  // FIXME: needs review
 /* Class = "NSButtonCell"; title = "Manage Warnings…"; ObjectID = "G2q-Im-jTO"; */
-"G2q-Im-jTO.title" = "Manage Warnings…";  // FIXME: added
+"G2q-Im-jTO.title" = "Administrar advertencias…";  // FIXME: needs review
 
 
 /* Class = "NSTextFieldCell"; title = "Command-line tool:"; ObjectID = "kQn-Uu-cqG"; */

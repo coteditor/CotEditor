@@ -33,11 +33,6 @@ Change Log
 - [beta] Fix an issue that themes did not switch by the appearance change.
 
 
-### Known Issues
-
-- The user interface is partly not localized yet in Spanish.
-
-
 
 4.6.0-beta.3 (585)
 --------------------------

@@ -95,6 +95,12 @@
             "value" : "Monospaced"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Monoespaciado"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1676,7 +1682,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comprobar ortografia mientras se escribe"
+            "value" : "Comprobar ortografía mientras se escribe"
           }
         },
         "fr" : {
@@ -11252,7 +11258,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Expande tabulaciones autoáticamente"
+            "value" : "Usar espacios para sangría"
           }
         },
         "fr" : {
@@ -12977,6 +12983,12 @@
             "value" : "Font Type"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tipo de fuente"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14265,6 +14277,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standard"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estándar"
           }
         },
         "fr" : {

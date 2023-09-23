@@ -47,20 +47,20 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Default syntax:"; ObjectID = "3329"; */
-"3329.title" = "Estilo de sintaxis predeterminado:";  // FIXME: syntax style -> syntax
+"3329.title" = "Sintaxis predeterminado:";
 
 /* Class = "NSTextFieldCell"; title = "Available syntaxes:"; ObjectID = "vlw-Tc-sLl"; */
-"vlw-Tc-sLl.title" = "Estilos de sintaxis disponibles:";  // FIXME: syntax styles -> syntaxes
+"vlw-Tc-sLl.title" = "Sintaxis disponibles:";
 
 /* Class = "NSView"; ibShadowedToolTip = "This syntax is customized."; ObjectID = "cbJ-XK-bnG"; */
-"cbJ-XK-bnG.ibShadowedToolTip" = "Este estilo está personalizado.";  // FIXME: style -> syntax
+"cbJ-XK-bnG.ibShadowedToolTip" = "Esta sintaxis está personalizada.";  // FIXME: needs review
 
 /* Class = "NSButton"; ibShadowedToolTip = "Remove selected syntax"; ObjectID = "dI1-Dk-Mce"; */
-"dI1-Dk-Mce.ibShadowedToolTip" = "Eliminar el estilo seleccionado";  // FIXME: style -> syntax
+"dI1-Dk-Mce.ibShadowedToolTip" = "Eliminar la sintaxis seleccionada";  // FIXME: needs review
 /* Class = "NSButton"; ibShadowedToolTip = "Add empty syntax"; ObjectID = "Hma-8v-2gu"; */
-"Hma-8v-2gu.ibShadowedToolTip" = "Añadir estilo vacío";  // FIXME: style -> syntax
+"Hma-8v-2gu.ibShadowedToolTip" = "Añade sintaxis vacía";  // FIXME: needs review
 /* Class = "NSButton"; ibShadowedToolTip = "Edit selected syntax"; ObjectID = "Q0c-oI-um3"; */
-"Q0c-oI-um3.ibShadowedToolTip" = "Editar el estilo seleccionado";  // FIXME: style -> syntax
+"Q0c-oI-um3.ibShadowedToolTip" = "Editar la sintaxis seleccionada";  // FIXME: needs review
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Edit"; ObjectID = "Q0c-oI-um3"; */
 "Q0c-oI-um3.ibExternalAccessibilityDescription" = "Editar";
 
@@ -70,7 +70,7 @@
 /* Class = "NSMenuItem"; title = "Share…"; ObjectID = "xRA-ND-YIE"; */
 "xRA-ND-YIE.title" = "Compartir…";
 /* Class = "NSMenuItem"; title = "Reload All Syntaxes"; ObjectID = "FhP-Hj-cWE"; */
-"FhP-Hj-cWE.title" = "Recargar todos los estilos";  // FIXME: style -> syntax
+"FhP-Hj-cWE.title" = "Recargue todas las sintaxis";  // FIXME: needs review
 /* Class = "NSMenuItem"; title = "Show File Mapping Conflicts"; ObjectID = "hyN-4W-57i"; */
 "hyN-4W-57i.title" = "Mostrar conflictos de mapeo de archivos";
 
