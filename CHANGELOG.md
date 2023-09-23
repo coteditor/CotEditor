@@ -7,7 +7,7 @@ Change Log
 
 ### New Features
 
-- Copy matched lines by selecting rows in the find result view and perform the Copy command.
+- Copy the matched lines by selecting rows in the find result view and performing the Copy command.
 
 
 ### Improvements
