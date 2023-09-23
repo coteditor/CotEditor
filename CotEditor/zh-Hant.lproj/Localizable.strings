@@ -909,6 +909,7 @@
 "Block:" = "區段:";
 "Category:" = "分類:";
 "Version:" = "版本:";
+// badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
 "deprecated" = "已廢棄";
 
 

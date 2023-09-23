@@ -910,6 +910,7 @@
 "Block:" = "Sous-ensemble :";
 "Category:" = "Catégorie :";
 "Version:" = "Version :";
+// badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
 "deprecated" = "déprécié";
 
 

@@ -909,6 +909,7 @@
 "Block:" = "Blok:";
 "Category:" = "Kategori:";
 "Version:" = "Sürüm:";
+// badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
 "deprecated" = "kullanımdan kaldırıldı";
 
 

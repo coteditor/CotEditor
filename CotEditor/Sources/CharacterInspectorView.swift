@@ -221,7 +221,7 @@ private struct DeprecatedBadge: View {
     
     var body: some View {
         
-        Text("deprecated")
+        Text("deprecated", comment: "badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification")
             .padding(.horizontal, 3)
             .overlay(RoundedRectangle(cornerRadius: 3).stroke(.secondary))
             .foregroundColor(.secondary)
