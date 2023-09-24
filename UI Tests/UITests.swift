@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -50,6 +50,7 @@ final class UITests: XCTestCase {
         // type some words
         let documentWindow = app.windows.firstMatch
         let textView = documentWindow.textViews.firstMatch
+        _ = textView.waitForExistence(timeout: 5)
         textView.typeText("Test.\r")
         XCTAssertEqual(textView.value as! String, "Test.\n")
         
