@@ -5,6 +5,10 @@ Change Log
 4.6.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update the Swift syntax to add keywords for Swift 5.9.
+
 
 
 4.6.0-rc (587)
