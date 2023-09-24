@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Update the Swift syntax to add keywords for Swift 5.9.
+- [beta] Update the User Guide.
 
 
 
