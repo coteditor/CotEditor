@@ -68,7 +68,7 @@ final class FindPanelContentViewController: NSSplitViewController {
         let fieldViewItem = NSSplitViewItem(viewController: NSStoryboard(name: "FindPanelFieldView").instantiateInitialController()!)
         fieldViewItem.holdingPriority += 1
         
-        let resultViewItem = NSSplitViewItem(viewController: NSHostingController(rootView: FindPanelResultView()))
+        let resultViewItem = NSSplitViewItem(viewController: FindPanelResultViewController())
         resultViewItem.isCollapsed = true
         resultViewItem.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         self.resultSplitViewItem = resultViewItem
@@ -130,9 +130,9 @@ final class FindPanelContentViewController: NSSplitViewController {
     // MARK: Private Methods
     
     /// The view controller for the result view.
-    private var resultViewController: NSHostingController<FindPanelResultView>? {
+    private var resultViewController: FindPanelResultViewController? {
         
-        self.resultSplitViewItem?.viewController as? NSHostingController<FindPanelResultView>
+        self.resultSplitViewItem?.viewController as? FindPanelResultViewController
     }
     
     

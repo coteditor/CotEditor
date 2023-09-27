@@ -5,6 +5,10 @@ Change Log
 4.6.1 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue that the result of Find All did not update.
+
 
 
 4.6.0 (589)

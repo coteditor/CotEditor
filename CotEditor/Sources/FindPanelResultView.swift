@@ -26,21 +26,31 @@
 import AppKit
 import SwiftUI
 
-extension NSHostingController<FindPanelResultView> {
-   
-    /// Set new find matches.
-    func setResult(_ result: TextFindAllResult, for client: NSTextView) {
-        
-        self.rootView = FindPanelResultView(matches: result.matches, findString: result.findString, target: client)
-    }
-}
-
-
-extension FindPanelResultView {
+final class FindPanelResultViewController: NSHostingController<FindPanelResultView> {
+    
+    private let model = FindPanelResultView.Model()
+    
     
     init() {
         
-        self.init(matches: [], findString: "", target: nil)
+        super.init(rootView: FindPanelResultView(model: self.model))
+    }
+    
+    
+    @MainActor required dynamic init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    /// Set new find matches.
+    func setResult(_ result: TextFindAllResult, for client: NSTextView) {
+        
+        self.model.matches = result.matches
+        self.model.findString = result.findString
+        self.model.target = client
+        
+        self.rootView = FindPanelResultView(model: self.model)
     }
 }
 
@@ -49,9 +59,15 @@ struct FindPanelResultView: View {
     
     typealias Match = TextFindAllResult.Match
     
-    @State var matches: [Match]
-    let findString: String
-    weak var target: NSTextView?
+    final class Model: ObservableObject {
+        
+        @Published var matches: [Match] = []
+        @Published var findString: String = ""
+        weak var target: NSTextView?
+    }
+    
+    
+    @ObservedObject var model: Model
     
     @State private var selection: Set<Match.ID> = []
     @State private var sortOrder = [KeyPathComparator(\Match.range.location)]
@@ -80,12 +96,12 @@ struct FindPanelResultView: View {
                     .fontWeight(.bold)
             }.scenePadding(.horizontal)
             
-            Text("Find string: \(self.findString)")
+            Text("Find string: \(self.model.findString)")
                 .scenePadding(.horizontal)
             
-            Table(self.matches, selection: $selection, sortOrder: $sortOrder) {
+            Table(self.model.matches, selection: $selection, sortOrder: $sortOrder) {
                 TableColumn("Line", value: \.range.location) {
-                    Text(self.target?.lineNumber(at: $0.range.location) ?? 0, format: .number)
+                    Text(self.model.target?.lineNumber(at: $0.range.location) ?? 0, format: .number)
                         .monospacedDigit()
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(.vertical, -2)
@@ -102,7 +118,7 @@ struct FindPanelResultView: View {
             .border(Color(nsColor: .gridColor), width: 1)
             .padding(-1)
             .font(.system(size: self.fontSize))
-            .copyable(self.matches
+            .copyable(self.model.matches
                 .filter { self.selection.contains($0.id) }
                 .map(\.attributedLineString.string))
             .onChange(of: self.selection) { newValue in
@@ -110,7 +126,7 @@ struct FindPanelResultView: View {
                 self.selectMatch(id)
             }
             .onChange(of: self.sortOrder) { newOrder in
-                self.matches.sort(using: newOrder)
+                self.model.matches.sort(using: newOrder)
             }
             .onCommand(#selector(EditorTextView.biggerFont), perform: self.biggerFont)
             .onCommand(#selector(EditorTextView.smallerFont), perform: self.smallerFont)
@@ -125,12 +141,12 @@ struct FindPanelResultView: View {
     
     private var message: LocalizedStringKey {
         
-        let documentName = (self.target?.window?.windowController?.document as? NSDocument)?.displayName ?? "Unknown"  // This should never be nil.
+        let documentName = (self.model.target?.window?.windowController?.document as? NSDocument)?.displayName ?? "Unknown"  // This should never be nil.
         
-        return switch self.matches.count {
+        return switch self.model.matches.count {
             case 0:  "No strings found in “\(documentName).”"
             case 1:  "Found one string in “\(documentName).”"
-            default: "Found \(self.matches.count) strings in “\(documentName).”"
+            default: "Found \(self.model.matches.count) strings in “\(documentName).”"
         }
     }
     
@@ -142,11 +158,11 @@ struct FindPanelResultView: View {
         
         // abandon if text becomes shorter than range to select
         guard
-            let textView = self.target,
-            let range = self.matches.first(where: { $0.id == id })?.range,
+            let textView = self.model.target,
+            let range = self.model.matches.first(where: { $0.id == id })?.range,
             textView.string.nsRange.upperBound >= range.upperBound
         else { return }
-        
+        moof()
         textView.select(range: range)
         textView.showFindIndicator(for: range)
     }
@@ -180,13 +196,14 @@ struct FindPanelResultView: View {
 // MARK: - Preview
 
 #Preview {
-    FindPanelResultView(
-        matches: [
-            .init(range: .notFound,
-                  attributedLineString: .init("Clarus says moof!")),
-            .init(range: .notFound,
-                  attributedLineString: .init("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")),
-        ],
-        findString: "Clarus"
-    )
+    let model = FindPanelResultView.Model()
+    model.matches = [
+        .init(range: .notFound,
+              attributedLineString: .init("Clarus says moof!")),
+        .init(range: .notFound,
+              attributedLineString: .init("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")),
+    ]
+    model.findString = "Clarus"
+    
+    return FindPanelResultView(model: model)
 }
