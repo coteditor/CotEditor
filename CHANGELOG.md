@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the result of Find All did not update.
+- Fix an issue that the change of the option “When nothing else is open” in the General settings was not applied.
 - [non-AppStore ver.] Fix the layout of the General settings.
 
 

@@ -30,7 +30,7 @@ extension DefaultKeys {
     
     // General
     static let quitAlwaysKeepsWindows = DefaultKey<Bool>("NSQuitAlwaysKeepsWindows")
-    static let noDocumentOnLaunchOption = RawRepresentableDefaultKey<NoDocumentOnLaunchOption>("NoDocumentOnLaunchOption")
+    static let noDocumentOnLaunchOption = RawRepresentableDefaultKey<NoDocumentOnLaunchOption>("noDocumentOnLaunchOption")
     static let enablesAutosaveInPlace = DefaultKey<Bool>("enablesAutosaveInPlace")
     static let documentConflictOption = RawRepresentableDefaultKey<DocumentConflictOption>("documentConflictOption")
     static let suppressesInconsistentLineEndingAlert = DefaultKey<Bool>("suppressesInconsistentLineEndingAlert")
