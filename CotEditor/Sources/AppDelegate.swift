@@ -222,6 +222,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
+        moof(UserDefaults.standard[.noDocumentOnLaunchOption])
         switch UserDefaults.standard[.noDocumentOnLaunchOption] {
             case .untitledDocument:
                 return true

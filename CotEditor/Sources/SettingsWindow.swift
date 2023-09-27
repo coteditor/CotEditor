@@ -25,15 +25,9 @@
 
 import AppKit
 
-final class SettingsWindow: NSWindow {
+final class SettingsWindow: NSPanel {
     
     // MARK: Window Methods
-    
-    override func cancelOperation(_ sender: Any?) {
-        
-        self.close()
-    }
-    
     
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
