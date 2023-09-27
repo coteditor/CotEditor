@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the result of Find All did not update.
+- [non-AppStore ver.] Fix the layout of the General settings.
 
 
 

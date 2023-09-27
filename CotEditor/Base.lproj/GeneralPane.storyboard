@@ -289,7 +289,18 @@
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="LLa-wu-mor">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="103"/>
                         <subviews>
-                            <button tag="-1" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="eh0-fN-8C5">
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="9j3-BL-0Mu">
+                                <rect key="frame" x="20" y="90" width="560" height="5"/>
+                            </box>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OaX-Zw-7k0">
+                                <rect key="frame" x="18" y="62" width="108" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Software update:" id="geU-63-sAC">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="eh0-fN-8C5">
                                 <rect key="frame" x="130" y="61" width="222" height="18"/>
                                 <buttonCell key="cell" type="check" title="Check for updates automatically" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3423">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -299,15 +310,7 @@
                                     <binding destination="pZi-vk-ErT" name="value" keyPath="values.SUEnableAutomaticChecks" id="Dkr-PR-bQz"/>
                                 </connections>
                             </button>
-                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" tag="-1" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lSi-dW-Eg4">
-                                <rect key="frame" x="18" y="62" width="108" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Software update:" usesSingleLineMode="YES" id="geU-63-sAC">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button tag="-1" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="FJU-WB-SQP">
+                            <button verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="FJU-WB-SQP">
                                 <rect key="frame" x="130" y="39" width="259" height="18"/>
                                 <buttonCell key="cell" type="check" title="Update to pre-releases when available" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4aT-ka-sbv">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -317,7 +320,7 @@
                                     <binding destination="pZi-vk-ErT" name="value" keyPath="values.checksUpdatesForBeta" id="2Zd-GD-6RA"/>
                                 </connections>
                             </button>
-                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" tag="-2" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dyM-Pb-Ay4">
+                            <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dyM-Pb-Ay4">
                                 <rect key="frame" x="150" y="8" width="432" height="28"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Regardless of this setting, new pre-releases are always included while using a pre-release." id="chR-VY-cuI">
                                     <font key="font" metaFont="smallSystem"/>
@@ -325,24 +328,21 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="9j3-BL-0Mu">
-                                <rect key="frame" x="20" y="90" width="560" height="5"/>
-                            </box>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="OaX-Zw-7k0" firstAttribute="top" secondItem="9j3-BL-0Mu" secondAttribute="bottom" constant="14" id="1JG-qp-HDz"/>
                             <constraint firstItem="FJU-WB-SQP" firstAttribute="top" secondItem="eh0-fN-8C5" secondAttribute="bottom" constant="6" symbolic="YES" id="8fU-Da-1wL"/>
+                            <constraint firstItem="eh0-fN-8C5" firstAttribute="firstBaseline" secondItem="OaX-Zw-7k0" secondAttribute="firstBaseline" id="BVx-TR-0u6"/>
                             <constraint firstAttribute="trailing" secondItem="dyM-Pb-Ay4" secondAttribute="trailing" constant="20" symbolic="YES" id="FsL-Eg-P3a"/>
-                            <constraint firstItem="lSi-dW-Eg4" firstAttribute="baseline" secondItem="eh0-fN-8C5" secondAttribute="baseline" id="GXP-ey-68V"/>
-                            <constraint firstItem="lSi-dW-Eg4" firstAttribute="leading" secondItem="LLa-wu-mor" secondAttribute="leading" constant="20" symbolic="YES" id="KLl-Cd-slR"/>
-                            <constraint firstItem="eh0-fN-8C5" firstAttribute="leading" secondItem="lSi-dW-Eg4" secondAttribute="trailing" constant="8" symbolic="YES" id="NnR-c2-aUX"/>
                             <constraint firstItem="9j3-BL-0Mu" firstAttribute="leading" secondItem="LLa-wu-mor" secondAttribute="leading" constant="20" symbolic="YES" id="Peg-z2-ye7"/>
-                            <constraint firstItem="lSi-dW-Eg4" firstAttribute="top" secondItem="9j3-BL-0Mu" secondAttribute="bottom" constant="14" id="Xxc-ce-MnO"/>
+                            <constraint firstItem="eh0-fN-8C5" firstAttribute="leading" secondItem="OaX-Zw-7k0" secondAttribute="trailing" constant="8" symbolic="YES" id="PtY-eV-ZxI"/>
+                            <constraint firstItem="FJU-WB-SQP" firstAttribute="leading" secondItem="OaX-Zw-7k0" secondAttribute="trailing" constant="8" symbolic="YES" id="QeC-1i-JOi"/>
                             <constraint firstItem="9j3-BL-0Mu" firstAttribute="top" secondItem="LLa-wu-mor" secondAttribute="top" constant="10" id="YRP-MT-gVv"/>
                             <constraint firstAttribute="trailing" secondItem="9j3-BL-0Mu" secondAttribute="trailing" constant="20" symbolic="YES" id="Ygt-p7-MQ7"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eh0-fN-8C5" secondAttribute="trailing" constant="20" symbolic="YES" id="fcJ-VZ-zVv"/>
                             <constraint firstAttribute="bottom" secondItem="dyM-Pb-Ay4" secondAttribute="bottom" constant="8" id="kef-Ld-b3u"/>
+                            <constraint firstItem="OaX-Zw-7k0" firstAttribute="leading" secondItem="LLa-wu-mor" secondAttribute="leading" constant="20" symbolic="YES" id="q7r-EM-yH9"/>
                             <constraint firstItem="dyM-Pb-Ay4" firstAttribute="leading" secondItem="FJU-WB-SQP" secondAttribute="leading" constant="20" id="xWW-sr-0uO"/>
-                            <constraint firstItem="FJU-WB-SQP" firstAttribute="leading" secondItem="eh0-fN-8C5" secondAttribute="leading" id="xim-Fg-Yo8"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FJU-WB-SQP" secondAttribute="trailing" constant="20" symbolic="YES" id="xvp-XS-wV6"/>
                             <constraint firstItem="dyM-Pb-Ay4" firstAttribute="top" secondItem="FJU-WB-SQP" secondAttribute="bottom" constant="4" id="y4j-tC-CkU"/>
                         </constraints>
