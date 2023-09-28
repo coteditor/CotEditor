@@ -48,7 +48,7 @@
 /* Class = "NSTextFieldCell"; title = "Default syntax:"; ObjectID = "3329"; */
 "3329.title" = "Default syntax:";
 
-/* Class = "NSTextFieldCell"; title = "Available syntaxs:"; ObjectID = "vlw-Tc-sLl"; */
+/* Class = "NSTextFieldCell"; title = "Available syntaxes:"; ObjectID = "vlw-Tc-sLl"; */
 "vlw-Tc-sLl.title" = "Available syntaxes:";
 
 /* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
