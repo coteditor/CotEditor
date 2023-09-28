@@ -5,6 +5,11 @@ Change Log
 4.6.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- Tweak German localization.
+
+
 ### Fixes
 
 - Fix an issue that the Settings window disappeared when the application is inactive.

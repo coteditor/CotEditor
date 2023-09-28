@@ -1016,7 +1016,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hervorhebung aufheben"
+            "value" : "Markierung entfernen"
           }
         },
         "en" : {
@@ -11888,7 +11888,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alles hervorheben"
+            "value" : "Alles markieren"
           }
         },
         "en" : {

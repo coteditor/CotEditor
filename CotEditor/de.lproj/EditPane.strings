@@ -74,11 +74,11 @@
 /* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */
 "3300.title" = "Rechtschreibung während der Texteingabe prüfen";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
-"RrC-LL-hid.title" = "Passende Klammern „()“ „[]“ „{}“ hervorheben";
+"RrC-LL-hid.title" = "Passende Klammern „()“ „[]“ „{}“ markieren";
 /* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
-"al9-WE-Rqy.title" = "„<>“ hervorheben";
+"al9-WE-Rqy.title" = "„<>“ markieren";
 /* Class = "NSButtonCell"; title = "Highlight instances of selected text"; ObjectID = "Rcq-1K-8nz"; */
-"Rcq-1K-8nz.title" = "Instanzen des ausgewählten Textes hervorheben";
+"Rcq-1K-8nz.title" = "Instanzen des ausgewählten Textes markieren";
 /* Class = "NSTextFieldCell"; title = "Delay:"; ObjectID = "rOw-DD-kV5"; */
 "rOw-DD-kV5.title" = "Verzögerung:";
 /* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "ebJ-vk-RME"; */
