@@ -5,6 +5,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Description\"; ObjectID = \"0ah-vG-2QL\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Popis"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -77,6 +83,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"RE\"; ObjectID = \"hjj-zA-Yr9\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RV"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -149,6 +161,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerToolTip = \"Regular Expression\"; ObjectID = \"hjj-zA-Yr9\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regulární výraz"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -221,6 +239,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"End String\"; ObjectID = \"i4u-kF-59v\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koncový řetězec"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -293,6 +317,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Begin String\"; ObjectID = \"QJ2-Qf-Fyb\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Počáteční řetězec"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -365,6 +395,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"IC\"; ObjectID = \"qJN-3P-dIu\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IV"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -437,6 +473,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerToolTip = \"Ignore Case (case-insensitive)\"; ObjectID = \"qJN-3P-dIu\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorovat velikost písmen"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

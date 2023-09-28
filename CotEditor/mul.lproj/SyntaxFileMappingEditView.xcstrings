@@ -5,6 +5,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Extensions\"; ObjectID = \"6eS-Hj-xoA\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přípony"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -77,6 +83,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Interpreters\"; ObjectID = \"Axx-Oq-E9U\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interprety"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -149,6 +161,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"The interpreters are used to determine the syntax from the shebang in the document.\"; ObjectID = \"dIj-Z5-J2j\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interprety se používají k určení syntaxe ze shebangu v dokumentu."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -221,6 +239,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Interpreter\"; ObjectID = \"I6J-y5-MxO\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interpret"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -293,6 +317,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Filenames\"; ObjectID = \"IAe-3F-qcV\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Názvy souborů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -365,6 +395,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Extension\"; ObjectID = \"IIL-M3-S2o\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přípona"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -437,6 +473,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Filename\"; ObjectID = \"jwM-Gn-44e\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Název souboru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -509,6 +551,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \".hiddenFile\"; ObjectID = \"o3p-wd-vXY\"; Note = \"Dummy\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -581,6 +629,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"(without dots)\"; ObjectID = \"QjK-XG-E4X\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(bez teček)"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -653,6 +707,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"txt\"; ObjectID = \"Vce-NT-Qem\"; Note = \"Dummy\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -725,6 +785,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"txt\"; ObjectID = \"x5Z-tz-rKt\"; Note = \"Dummy\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

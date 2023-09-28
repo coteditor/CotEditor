@@ -76,7 +76,7 @@
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "All"; ObjectID = "hY5-0z-qN6"; */
 "hY5-0z-qN6.ibShadowedIsNilPlaceholder" = "Všechny";  // displays if no scope extension is specified
 /* Class = "NSMenuItem"; title = "All"; ObjectID = "W3Z-PB-IUJ"; */
-"W3Z-PB-IUJ.title" = "Všechny";  // displays if no scope syntax style is specified
+"W3Z-PB-IUJ.title" = "Všechny";  // displays if no scope syntax is specified
 
 /* Class = "NSSegmentedCell"; oXA-8G-UhH.ibShadowedToolTips[0] = "Add"; ObjectID = "oXA-8G-UhH"; */
 "oXA-8G-UhH.ibShadowedToolTips[0]" = "Přidat";
