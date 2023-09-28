@@ -38,6 +38,7 @@ final class SettingsWindowController: NSWindowController {
         
         let window = SettingsWindow(contentViewController: viewController)
         window.styleMask = [.closable, .titled]
+        window.hidesOnDeactivate = false
         
         self.init(window: window)
     }

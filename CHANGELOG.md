@@ -5,6 +5,10 @@ Change Log
 4.6.2 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue that the Settings window disappeared when the application is inactive.
+- [trivial] Fix an issue that unwanted debug log appeared in the Console.
 
 
 4.6.1 (591)
