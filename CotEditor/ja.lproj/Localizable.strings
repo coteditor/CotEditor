@@ -102,6 +102,23 @@
 "Not found" = "見つかりません";
 "Not replaced" = "見つかりません";
 
+// pairs of checkbox label and its tooltip
+"Regular Expression" = "正規表現";
+"Select to search with regular expression." = "検索に正規表現を使う場合に選択";
+
+"Ignore Case" = "大文字/小文字を無視";
+"Select to ignore character case on search." = "大文字/小文字を区別せずに検索する場合に選択";
+
+"In Selection" = "選択範囲のみ";
+"Select to search text only from selection." = "現在の選択範囲のみを検索対象とする場合に選択";
+
+// tooltip for regex help button
+"Show quick reference for regular expression syntax." = "正規表現文法の簡易用語集を表示";
+
+// pair of accessibility label for a image button and its tooltip
+"Advanced options" = "詳細オプション";
+"Show advanced options" = "詳細オプションを表示";
+
 // pairs of button label and its tooltip
 "Close" = "閉じる";
 "Close find result." = "検索結果を閉じる";

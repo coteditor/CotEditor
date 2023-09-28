@@ -102,6 +102,23 @@
 "Not found" = "未找到";
 "Not replaced" = "沒有進行取代";
 
+// pairs of checkbox label and its tooltip
+"Regular Expression" = "常規表示式";
+"Select to search with regular expression." = "選中以啟用常規表示式尋找。";
+
+"Ignore Case" = "忽略大小寫";
+"Select to ignore character case on search." = "選中以忽略大小寫。";
+
+"In Selection" = "所選範圍";
+"Select to search text only from selection." = "選中僅在選擇範圍內進行文字尋找。";
+
+// tooltip for regex help button
+"Show quick reference for regular expression syntax." = "顯示常規表示式快速參考。";
+
+// pair of accessibility label for a image button and its tooltip
+"Advanced options" = "進階選項";
+"Show advanced options" = "顯示進階選項";
+
 // pairs of button label and its tooltip
 "Close" = "關閉";
 "Close find result." = "關閉尋找結果。";

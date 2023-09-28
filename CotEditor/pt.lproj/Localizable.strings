@@ -102,6 +102,23 @@
 "Not found" = "Não encontrado";
 "Not replaced" = "Não substituído";
 
+// pairs of checkbox label and its tooltip
+"Regular Expression" = "Expressão Regular";
+"Select to search with regular expression." = "Selecione para buscar com expressão regular.";
+
+"Ignore Case" = "Ignorar Maiúsculas/Minúsculas";
+"Select to ignore character case on search." = "Selecione para ignorar maiúsculas/minúsculas ao buscar.";
+
+"In Selection" = "Na Seleção";
+"Select to search text only from selection." = "Selecione para buscar apenas no texto da seleção.";
+
+// tooltip for regex help button
+"Show quick reference for regular expression syntax." = "Mostre a referência rápida da sintaxe de expressões regulares.";
+
+// pair of accessibility label for a image button and its tooltip
+"Advanced options" = "Opções avançadas";
+"Show advanced options" = "Mostrar opções avançadas";
+
 // pairs of button label and its tooltip
 "Close" = "Fechar";
 "Close find result." = "Feche os resultados da busca.";

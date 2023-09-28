@@ -1,5 +1,5 @@
 //
-//  FindPanelFieldViewController.swift
+//  FindPanelFieldView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,6 +26,36 @@
 import AppKit
 import Combine
 import SwiftUI
+
+struct FindPanelMainView: View {
+    
+    var body: some View {
+        
+        VStack {
+            FindPanelFieldView()
+            FindPanelOptionView()
+        }
+        .scenePadding(.top)
+        .scenePadding(.horizontal)
+        .padding(.bottom, 8)
+    }
+}
+
+
+private struct FindPanelFieldView: NSViewControllerRepresentable {
+    
+    func makeNSViewController(context: Context) -> some NSViewController {
+        
+        NSStoryboard(name: "FindPanelFieldView", bundle: nil).instantiateInitialController()!
+    }
+    
+    
+    func updateNSViewController(_ nsViewController: NSViewControllerType, context: Context) {
+        
+    }
+}
+
+
 
 final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
@@ -202,33 +232,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         self.view.window?.makeKeyAndOrderFront(self)
         
         UserDefaults.standard.removeObject(forKey: DefaultKeys.replaceHistory.rawValue)
-    }
-    
-    
-    /// show the regular expression reference view as popover
-    @IBAction func showRegularExpressionReference(_ sender: NSButton) {
-        
-        if let viewController = self.presentedViewControllers?.first(where: { $0.view is NSHostingView<RegularExpressionReferenceView> }) {
-            return self.dismiss(viewController)
-        }
-        
-        let viewController = DetachablePopoverViewController()
-        viewController.view = NSHostingView(rootView: RegularExpressionReferenceView())
-        
-        self.present(viewController, asPopoverRelativeTo: sender.bounds, of: sender, preferredEdge: .maxY, behavior: .transient)
-    }
-    
-    
-    /// show the advanced find options view as popover
-    @IBAction func showFindSettings(_ sender: NSButton) {
-        
-        if let viewController = self.presentedViewControllers?.first(where: { $0 is NSHostingController<FindSettingsView> }) {
-            return self.dismiss(viewController)
-        }
-        
-        let viewController = NSHostingController(rootView: FindSettingsView())
-        
-        self.present(viewController, asPopoverRelativeTo: sender.bounds, of: sender, preferredEdge: .maxX, behavior: .transient)
     }
     
     

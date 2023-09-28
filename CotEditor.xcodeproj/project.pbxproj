@@ -185,6 +185,8 @@
 		2A3E61C027C3795B00C6E5B6 /* OptionalMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3E61BE27C3795B00C6E5B6 /* OptionalMenu.swift */; };
 		2A3F18FA203270BE002F1CA7 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3F18F9203270BE002F1CA7 /* UITests.swift */; };
 		2A3F8F682429E04000CBBA89 /* DebouncerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3F8F672429E04000CBBA89 /* DebouncerTests.swift */; };
+		2A40D28A2AA8AEF000402373 /* FindPanelOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A40D2892AA8AEF000402373 /* FindPanelOptionView.swift */; };
+		2A40D28B2AA8AEF000402373 /* FindPanelOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A40D2892AA8AEF000402373 /* FindPanelOptionView.swift */; };
 		2A4144B8201397150061F653 /* InconsistentLineEndingsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144B6201397150061F653 /* InconsistentLineEndingsView.storyboard */; };
 		2A4144BC201397D70061F653 /* DocumentInspectorView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144BA201397D70061F653 /* DocumentInspectorView.storyboard */; };
 		2A41EC1A1DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */; };
@@ -270,8 +272,8 @@
 		2A5D13421D1FE34F00D38E6A /* FindPanelFieldView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D13401D1FE34F00D38E6A /* FindPanelFieldView.storyboard */; };
 		2A5D13451D1FE66300D38E6A /* FindPanelButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13441D1FE66300D38E6A /* FindPanelButtonView.swift */; };
 		2A5D13461D1FE66300D38E6A /* FindPanelButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13441D1FE66300D38E6A /* FindPanelButtonView.swift */; };
-		2A5D13481D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */; };
-		2A5D13491D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */; };
+		2A5D13481D1FEF9900D38E6A /* FindPanelFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13471D1FEF9900D38E6A /* FindPanelFieldView.swift */; };
+		2A5D13491D1FEF9900D38E6A /* FindPanelFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13471D1FEF9900D38E6A /* FindPanelFieldView.swift */; };
 		2A5D134B1D1FF31900D38E6A /* FindPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */; };
 		2A5D134C1D1FF31900D38E6A /* FindPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */; };
 		2A5D2DC321908F4A006814D5 /* NSFont+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D2DC221908F4A006814D5 /* NSFont+Name.swift */; };
@@ -484,6 +486,8 @@
 		2AA14D001FA498E900EAF586 /* UnixScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14CFE1FA498E900EAF586 /* UnixScript.swift */; };
 		2AA14D021FA4999200EAF586 /* PersistentOSAScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14D011FA4999200EAF586 /* PersistentOSAScript.swift */; };
 		2AA14D031FA4999200EAF586 /* PersistentOSAScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14D011FA4999200EAF586 /* PersistentOSAScript.swift */; };
+		2AA175FA2AC5634500F6462C /* PopoverHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA175F92AC5634500F6462C /* PopoverHolderView.swift */; };
+		2AA175FB2AC5634500F6462C /* PopoverHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA175F92AC5634500F6462C /* PopoverHolderView.swift */; };
 		2AA2C6FC24399A920017D1EC /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA2C6FB24399A920017D1EC /* Yams */; };
 		2AA2C6FE24399AA20017D1EC /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA2C6FD24399AA20017D1EC /* Yams */; };
 		2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */; };
@@ -970,6 +974,7 @@
 		2A401FE41D9AED8200ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = it; path = it.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		2A401FE71D9AF0A300ACE036 /* it */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2A401FE81D9AF7CA00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/UnicodeBlock.strings; sourceTree = "<group>"; };
+		2A40D2892AA8AEF000402373 /* FindPanelOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPanelOptionView.swift; sourceTree = "<group>"; };
 		2A4144B7201397150061F653 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/InconsistentLineEndingsView.storyboard; sourceTree = "<group>"; };
 		2A4144BB201397D70061F653 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DocumentInspectorView.storyboard; sourceTree = "<group>"; };
 		2A4144C02013A90B0061F653 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
@@ -1023,7 +1028,7 @@
 		2A5D13371D1FCBDE00D38E6A /* FindPanelResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelResultView.swift; sourceTree = "<group>"; };
 		2A5D13411D1FE34F00D38E6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FindPanelFieldView.storyboard; sourceTree = "<group>"; };
 		2A5D13441D1FE66300D38E6A /* FindPanelButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelButtonView.swift; sourceTree = "<group>"; };
-		2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelFieldViewController.swift; sourceTree = "<group>"; };
+		2A5D13471D1FEF9900D38E6A /* FindPanelFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelFieldView.swift; sourceTree = "<group>"; };
 		2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelController.swift; sourceTree = "<group>"; };
 		2A5D2DC221908F4A006814D5 /* NSFont+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFont+Name.swift"; sourceTree = "<group>"; };
 		2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterField.swift; sourceTree = "<group>"; };
@@ -1160,6 +1165,7 @@
 		2AA14CFB1FA4983500EAF586 /* AppleScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleScript.swift; sourceTree = "<group>"; };
 		2AA14CFE1FA498E900EAF586 /* UnixScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnixScript.swift; sourceTree = "<group>"; };
 		2AA14D011FA4999200EAF586 /* PersistentOSAScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentOSAScript.swift; sourceTree = "<group>"; };
+		2AA175F92AC5634500F6462C /* PopoverHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverHolderView.swift; sourceTree = "<group>"; };
 		2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterInfoTests.swift; sourceTree = "<group>"; };
 		2AA2E0121BFE12620087BDD6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UnicodeBlock.strings; sourceTree = "<group>"; };
 		2AA2E0151BFE14310087BDD6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UnicodeBlock.strings"; sourceTree = "<group>"; };
@@ -2075,7 +2081,6 @@
 				2AED466F1E425CD200751C45 /* TextFind.swift */,
 				2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */,
 				2AB1BD21287D752300C6FEAF /* Views */,
-				2ACFE5891D205CE90005233A /* View Controllers */,
 				2A009ADB1A5AB96F00C3D542 /* Text View */,
 				2A3581931E597AFE00762AA5 /* Multiple Replace */,
 			);
@@ -2171,6 +2176,13 @@
 		2AB1BD21287D752300C6FEAF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */,
+				2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */,
+				2A5D13471D1FEF9900D38E6A /* FindPanelFieldView.swift */,
+				2A40D2892AA8AEF000402373 /* FindPanelOptionView.swift */,
+				2A5D13371D1FCBDE00D38E6A /* FindPanelResultView.swift */,
+				2A5D13441D1FE66300D38E6A /* FindPanelButtonView.swift */,
+				2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */,
 				2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */,
 				2AF98CAA294B9488009AD47F /* FindSettingsView.swift */,
 				2A5D130F1D1EE66500D38E6A /* FindProgressView.swift */,
@@ -2272,19 +2284,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		2ACFE5891D205CE90005233A /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */,
-				2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */,
-				2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */,
-				2A5D13371D1FCBDE00D38E6A /* FindPanelResultView.swift */,
-				2A5D13441D1FE66300D38E6A /* FindPanelButtonView.swift */,
-				2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */,
-			);
-			name = "View Controllers";
-			sourceTree = "<group>";
-		};
 		2AD2861919856F3100C9342F /* Editor */ = {
 			isa = PBXGroup;
 			children = (
@@ -2334,6 +2333,7 @@
 				2A4A7D122856FF340085D2E7 /* HelpButton.swift */,
 				2A2615882977FCF6008C2240 /* SubmitButtonGroup.swift */,
 				2A5D13121D1EE8FF00D38E6A /* HUDView.swift */,
+				2AA175F92AC5634500F6462C /* PopoverHolderView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2876,8 +2876,9 @@
 				2A5D13461D1FE66300D38E6A /* FindPanelButtonView.swift in Sources */,
 				2ACFE58C1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
 				2A5D134C1D1FF31900D38E6A /* FindPanelController.swift in Sources */,
-				2A5D13491D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
+				2A5D13491D1FEF9900D38E6A /* FindPanelFieldView.swift in Sources */,
 				2A5D13301D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */,
+				2A40D28A2AA8AEF000402373 /* FindPanelOptionView.swift in Sources */,
 				2A5D13391D1FCBDE00D38E6A /* FindPanelResultView.swift in Sources */,
 				2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2A5D13361D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
@@ -2997,6 +2998,7 @@
 				2A1893A81FFF16A400AD244F /* PatternSortViewController.swift in Sources */,
 				2AA14D031FA4999200EAF586 /* PersistentOSAScript.swift in Sources */,
 				2A11F2141E669BFA005E1675 /* PointerBridge.swift in Sources */,
+				2AA175FA2AC5634500F6462C /* PopoverHolderView.swift in Sources */,
 				2A1856131D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */,
 				2A57B98F294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */,
@@ -3232,8 +3234,9 @@
 				2A5D13451D1FE66300D38E6A /* FindPanelButtonView.swift in Sources */,
 				2ACFE58B1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
 				2A5D134B1D1FF31900D38E6A /* FindPanelController.swift in Sources */,
-				2A5D13481D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
+				2A5D13481D1FEF9900D38E6A /* FindPanelFieldView.swift in Sources */,
 				2A5D132F1D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */,
+				2A40D28B2AA8AEF000402373 /* FindPanelOptionView.swift in Sources */,
 				2A5D13381D1FCBDE00D38E6A /* FindPanelResultView.swift in Sources */,
 				2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2A5D13351D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
@@ -3353,6 +3356,7 @@
 				2A1893A71FFF16A400AD244F /* PatternSortViewController.swift in Sources */,
 				2AA14D021FA4999200EAF586 /* PersistentOSAScript.swift in Sources */,
 				2A11F2131E669BFA005E1675 /* PointerBridge.swift in Sources */,
+				2AA175FB2AC5634500F6462C /* PopoverHolderView.swift in Sources */,
 				2A1856121D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */,
 				2A57B990294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */,

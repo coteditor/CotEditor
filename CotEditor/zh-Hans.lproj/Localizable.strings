@@ -102,6 +102,23 @@
 "Not found" = "未找到";
 "Not replaced" = "没有进行替换";
 
+// pairs of checkbox label and its tooltip
+"Regular Expression" = "正则表达式";
+"Select to search with regular expression." = "选中以启用正则表达式查找。";
+
+"Ignore Case" = "忽略大小写";
+"Select to ignore character case on search." = "选中以忽略大小写。";
+
+"In Selection" = "所选内容";
+"Select to search text only from selection." = "选中仅在选择范围内进行文本查找。";
+
+// tooltip for regex help button
+"Show quick reference for regular expression syntax." = "显示正则表达式快速参考。";
+
+// pair of accessibility label for a image button and its tooltip
+"Advanced options" = "高级选项";
+"Show advanced options" = "显示高级选项";
+
 // pairs of button label and its tooltip
 "Close" = "关闭";
 "Close find result." = "关闭查找结果。";

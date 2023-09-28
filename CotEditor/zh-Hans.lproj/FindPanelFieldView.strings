@@ -42,27 +42,6 @@
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "Y5M-CG-n0V"; */
 "Y5M-CG-n0V.ibExternalAccessibilityDescription" = "清除";
 
-/* Class = "NSButtonCell"; title = "Regular Expression"; ObjectID = "brT-HP-GVL"; */
-"brT-HP-GVL.title" = "正则表达式";
-/* Class = "NSButton"; ibShadowedToolTip = "Select to search with regular expression."; ObjectID = "8My-G5-daT"; */
-"8My-G5-daT.ibShadowedToolTip" = "选中以启用正则表达式查找。";
-
-/* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "4wg-Cz-ozb"; */
-"4wg-Cz-ozb.title" = "忽略大小写";
-/* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "GvT-tD-Cbk"; */
-"GvT-tD-Cbk.ibShadowedToolTip" = "选中以忽略大小写。";
-
-/* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
-"9bc-9Q-fhd.title" = "所选内容";
-/* Class = "NSButton"; ibShadowedToolTip = "Select to search text only from selection."; ObjectID = "tu7-IT-dA3"; */
-"tu7-IT-dA3.ibShadowedToolTip" = "选中仅在选择范围内进行文本查找。";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Show quick reference for regular expression syntax."; ObjectID = "i2l-7Z-Zmf"; */
-"i2l-7Z-Zmf.ibShadowedToolTip" = "显示正则表达式快速参考。";
-
-
-// Buttons
-
 /* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Searches"; ObjectID = "3ZH-bg-rl5"; */
 "3ZH-bg-rl5.ibExternalAccessibilityDescription" = "最近的搜索";
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
@@ -76,8 +55,3 @@
 "7cw-iQ-0LM.title" = "最近的替换";
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
 "vfK-an-Qnl.title" = "清除最近替换";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "ESq-ws-6H3"; */
-"ESq-ws-6H3.ibShadowedToolTip" = "显示高级选项";
-/* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "ESq-ws-6H3"; */
-"ESq-ws-6H3.ibExternalAccessibilityDescription" = "高级选项";
