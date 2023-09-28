@@ -698,7 +698,7 @@
 "Syntax Information" = "语法信息";
 "Syntax Validation" = "语法验证";
 
-// Syntax style validation results
+// Syntax validation results
 "No error found." = "没有发现错误。";
 "An error found." = "发现1个错误。";
 "%lld errors found." = "发现%lld个错误。";
