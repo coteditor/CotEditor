@@ -292,7 +292,7 @@
 "Supplementary Private Use Area-A" = "補充專用區域 -A";
 
 
-// The following blocks are (mostly newly added to Unicode and therefore) not in the glosseries.
+// The following blocks are (mostly newly added to Unicode and therefore) not in the glossaries.
 "Syriac Supplement" = "敘利亞文補充";
 "Cyrillic Extended-C" = "斯拉夫文延伸-C";
 "High Private Use Surrogates" = "高度私有使用區";
