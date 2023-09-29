@@ -71,6 +71,7 @@ Currently, we already have maintainers for:
 - English (UK)
 - Simplified Chinese
 - Traditional Chinese
+- Czech
 - French
 - German
 - Italian

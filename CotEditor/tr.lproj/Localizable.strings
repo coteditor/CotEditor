@@ -29,7 +29,7 @@
 "Cancel" = "Vazgeç";
 "Done" = "Bitti";
 "Start" = "Başlangıç";
-"Restore Defaults" = "Saptanmışlara Dön";
+"Restore Defaults" = "Výchozí hodnoty";
 "Delete" = "Sil";
 
 
@@ -86,7 +86,7 @@
 "Empty find string" = "Bulunacak dizi boş";
 "The option “in selection” is selected, although nothing is selected." = "“seçimde” seçeneği etkin; ancak hiçbir şey seçilmemiş.";
 "Input text to find." = "Bulunacak girdi metni";
-"Select the search scope in the document or turn off the “in selection” option." = "Belgedeki arama kapsamını değiştir veya “seçimde” seçeneğini devre dışı bırak.";
+"Select the search scope in the document or turn off the “in selection” option." = "Vyberte rozsah vyhledávání v dokumentu nebo zakažte možnost „ve výběru“.";
 
 // accessibility announcement
 "Search wrapped." = "Arama baştan sürüyor";  // announced when the search restarted from the beginning.
@@ -123,7 +123,7 @@
 "Close find result." = "Bulma sonucunu kapat.";
 
 "Find All" = "Tümünü Bul";
-"Find and list all matches." = "Tüm eşleşmeleri listele.";
+"Find and list all matches." = "Vyhledat a vypsat všechny shody.";
 
 "Replace All" = "Tümünü Değiştir";
 "Replace all matches with the replacement text." = "Tüm eşleşmeleri değişim metniyle değiştir.";
@@ -193,7 +193,7 @@
 
 
 /* MARK: Find Settings View */
-"Advanced Find Options" = "Gelişmiş Bul Seçenekleri";
+"Advanced Find Options" = "Upřesňující možnosti hledání";  // FIXME:
 
 // checkbox labels
 "Wrap search around" = "Aramayı başa sar";
