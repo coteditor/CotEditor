@@ -14,6 +14,7 @@ Change Log
 
 - Fix an issue that the application crashed when performing the Find All command with a specific find string.
 - Fix an issue that the Settings window disappeared when the application is inactive.
+- Fix an issue that the editor did not remember the scroll position when relaunch the application.
 - [trivial] Fix an issue that unwanted debug log appeared in the Console.
 
 

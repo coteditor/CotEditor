@@ -70,6 +70,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         scrollView.horizontalScroller = BidiScroller()
         scrollView.hasVerticalScroller = true
         scrollView.documentView = textView
+        scrollView.identifier = NSUserInterfaceItemIdentifier("EditorScrollView")
         
         let lineNumberView = LineNumberView(textView: textView)
         
