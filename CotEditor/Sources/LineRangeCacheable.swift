@@ -104,6 +104,28 @@ extension LineRangeCacheable {
     }
     
     
+    /// Return the range of the content lines including the given range.
+    ///
+    /// Because this method count up all the line ranges up to the given index when not cached yet,
+    /// there is a large performance disadvantage when just a single line range is needed.
+    /// In addition, this method actually doesn't has much performance advantage becaouse it checks the line ending range.
+    ///
+    /// - Parameter range: The range of character for finding the line range.
+    /// - Returns: The character range of the content line.
+    func lineContentRange(for range: NSRange) -> NSRange {
+        
+        let lineRange = self.lineRange(for: range)
+        
+        guard range.upperBound < lineRange.upperBound else { return lineRange }
+        
+        let lineEndingRange = self.string.range(of: "\\R", options: [.backwards, .anchored, .regularExpression], range: lineRange)
+        
+        guard !lineEndingRange.isNotFound else { return lineRange }
+        
+        return NSRange(lineRange.lowerBound..<lineEndingRange.lowerBound)
+    }
+    
+    
     /// Return the index of the first character of the line touched by the given index.
     ///
     /// Because this method count up all the line ranges up to the given index when not cached yet,
