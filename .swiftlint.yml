@@ -1,5 +1,5 @@
 deployment_target:
-  macOS_deployment_target: 12
+  macOS_deployment_target: 13
 
 excluded:
   - "*/.build"
@@ -66,11 +66,13 @@ opt_in_rules:
 
 disabled_rules:
   - block_based_kvo
+  - control_statement
   - force_cast
   - force_try
   - opening_brace
   - switch_case_alignment
   - trailing_comma
+  - unneeded_override
 
 private_outlet:
   allow_private_set: true
