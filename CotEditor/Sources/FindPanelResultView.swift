@@ -122,6 +122,14 @@ struct FindPanelResultView: View {
                 .filter { self.selection.contains($0.id) }
                 .map(\.attributedLineString.string))
             .onChange(of: self.selection) { newValue in
+                // remove selection of previous data
+                if newValue.count > 1 {
+                    let ids = self.model.matches.map(\.id)
+                    for id in newValue where !ids.contains(id) {
+                        self.selection.remove(id)
+                    }
+                }
+                
                 guard newValue.count == 1, let id = newValue.first else { return }
                 self.selectMatch(id)
             }
@@ -141,7 +149,7 @@ struct FindPanelResultView: View {
     
     private var message: LocalizedStringKey {
         
-        let documentName = (self.model.target?.window?.windowController?.document as? NSDocument)?.displayName ?? "Unknown"  // This should never be nil.
+        let documentName = self.model.target?.documentName ?? "Unknown"  // This should never be nil.
         
         return switch self.model.matches.count {
             case 0:  "No strings found in “\(documentName).”"
@@ -162,7 +170,7 @@ struct FindPanelResultView: View {
             let range = self.model.matches.first(where: { $0.id == id })?.range,
             textView.string.nsRange.upperBound >= range.upperBound
         else { return }
-        moof()
+        
         textView.select(range: range)
         textView.showFindIndicator(for: range)
     }
@@ -188,6 +196,15 @@ struct FindPanelResultView: View {
     private func resetFont() {
         
         UserDefaults.standard.restore(key: .findResultViewFontSize)
+    }
+}
+
+
+private extension NSTextView {
+    
+    var documentName: String? {
+        
+        self.window?.windowController?.document?.displayName
     }
 }
 
