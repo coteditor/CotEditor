@@ -33,6 +33,7 @@ final class FindPanelContentViewController: NSSplitViewController {
     
     private static let defaultResultViewHeight: Double = 200
     
+    private var fieldSplitViewItem: NSSplitViewItem?
     private var resultSplitViewItem: NSSplitViewItem?
     
     private var resultObserver: AnyCancellable?
@@ -66,7 +67,7 @@ final class FindPanelContentViewController: NSSplitViewController {
         super.viewDidLoad()
         
         let fieldViewItem = NSSplitViewItem(viewController: NSStoryboard(name: "FindPanelFieldView").instantiateInitialController()!)
-        fieldViewItem.holdingPriority += 1
+        self.fieldSplitViewItem = fieldViewItem
         
         let resultViewItem = NSSplitViewItem(viewController: FindPanelResultViewController())
         resultViewItem.isCollapsed = true
@@ -87,11 +88,17 @@ final class FindPanelContentViewController: NSSplitViewController {
         
         super.viewWillAppear()
         
-        // make sure the result view is closed
-        if let item = self.resultSplitViewItem, item.isCollapsed == false {
-            item.viewController.view.frame.size.height = 0
-            item.isCollapsed = true
-        }
+        self.fieldSplitViewItem?.holdingPriority = .defaultLow + 1
+        
+    }
+    
+    
+    override func viewWillDisappear() {
+        
+        super.viewWillDisappear()
+        
+        self.fieldSplitViewItem?.holdingPriority = .defaultHigh
+        self.resultSplitViewItem?.isCollapsed = true
     }
     
     

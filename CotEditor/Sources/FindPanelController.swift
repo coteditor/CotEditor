@@ -25,7 +25,7 @@
 
 import AppKit
 
-final class FindPanelController: NSWindowController {
+final class FindPanelController: NSWindowController, NSWindowDelegate {
     
     // MARK: Public Properties
     
@@ -45,7 +45,20 @@ final class FindPanelController: NSWindowController {
         
         self.init(window: window)
         
+        window.delegate = self
+        
         self.windowFrameAutosaveName = "Find Panel"
+    }
+    
+    
+    func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
+        
+        if sender.isVisible {
+            frameSize
+        } else {
+            // avoid restoring window height
+            NSSize(width: frameSize.width, height: sender.frame.height)
+        }
     }
     
     

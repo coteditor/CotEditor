@@ -13,9 +13,11 @@ Change Log
 ### Fixes
 
 - Fix an issue that the application crashed when performing the Find All command with a specific find string.
+- Fix an issue that the initial find window height was unwantedly expanded when the find result view had appeared in the last session.
 - Fix an issue that the Settings window disappeared when the application is inactive.
 - Fix an issue that the editor did not remember the scroll position when relaunch the application.
 - [trivial] Fix an issue that unwanted debug log appeared in the Console.
+
 
 
 4.6.1 (591)
