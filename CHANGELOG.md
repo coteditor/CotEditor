@@ -13,7 +13,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the application crashed when performing the Find All command with a specific find string.
-- Fix an issue that the find all result view occasionally missed the document to select.
+- Fix an issue that the find result view occasionally failed to select the match in the editor by clicking a row.
 - Fix an issue that the initial find window height was unwantedly expanded when the find result view had appeared in the last session.
 - Fix an issue that the lines copied from the find result table could be truncated.
 - Fix an issue that the Settings window disappeared when the application is inactive.
