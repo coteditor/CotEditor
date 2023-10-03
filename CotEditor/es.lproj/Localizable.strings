@@ -874,11 +874,11 @@
 // Variation selectors
 "Emoji Style" = "Emoji Style";  // FIXME: missing
 "Text Style" = "Text Style";  // FIXME: missing
-"Skin Tone I-II" = "Skin Tone I-II";  // FIXME: missing
-"Skin Tone III" = "Skin Tone III";  // FIXME: missing
-"Skin Tone IV" = "Skin Tone IV";  // FIXME: missing
-"Skin Tone V" = "Skin Tone V";  // FIXME: missing
-"Skin Tone VI" = "Skin Tone VI";  // FIXME: missing
+"Skin Tone I-II" = "Tono de piel I-II";
+"Skin Tone III" = "Tono de piel III";
+"Skin Tone IV" = "Tono de piel IV";
+"Skin Tone V" = "Tono de piel V";
+"Skin Tone VI" = "Tono de piel VI";
 "Variant" = "Variant";  // FIXME: missing
 
 

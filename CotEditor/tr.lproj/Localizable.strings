@@ -320,13 +320,13 @@
 // tooltip
 "Show document information" = "Belge bilgisini göster";
 
-"Text Size" = "Metin Boyutu";
+"Text Size" = "Metin Puntosu";
 "Smaller" = "Daha Küçük";
 "Bigger" = "Daha Büyük";
 // tooltip
-"Change text size" = "Metin boyutunu değiştir";
-"Decrease text size" = "Metin boyutunu azalt";
-"Increase text size" = "Metin boyutunu artır";
+"Change text size" = "Metin puntosunu değiştir";
+"Decrease text size" = "Metin puntosunu azalt";
+"Increase text size" = "Metin puntosunu artır";
 
 "Writing Direction" = "Yazım Yönü";
 "Left to Right" = "Soldan Sağa";
@@ -874,11 +874,11 @@
 // Variation selectors
 "Emoji Style" = "Emoji Biçemi";
 "Text Style" = "Metin Biçemi";
-"Skin Tone I-II" = "Deri Tonu I-II";
-"Skin Tone III" = "Deri Tonu III";
-"Skin Tone IV" = "Deri Tonu IV";
-"Skin Tone V" = "Deri Tonu V";
-"Skin Tone VI" = "Deri Tonu VI";
+"Skin Tone I-II" = "Ten Rengi I-II";
+"Skin Tone III" = "Ten Rengi III";
+"Skin Tone IV" = "Ten Rengi IV";
+"Skin Tone V" = "Ten Rengi V";
+"Skin Tone VI" = "Ten Rengi VI";
 "Variant" = "Varyant";
 
 

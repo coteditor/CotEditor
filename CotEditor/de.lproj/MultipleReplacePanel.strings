@@ -35,7 +35,7 @@
 /* Class = "NSMenuItem"; title = "Share…"; ObjectID = "XIe-MY-JEs"; */
 "XIe-MY-JEs.title" = "Teilen …";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "tLz-9S-3we"; */
-"tLz-9S-3we.title" = "Im Finder anzeigen";
+"tLz-9S-3we.title" = "Im Finder zeigen";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "iZn-Pw-tgJ"; */
 "iZn-Pw-tgJ.title" = "Importieren …";
 /* Class = "NSMenuItem"; title = "Reload All Definitions"; ObjectID = "0ca-Jy-pHT"; */
@@ -54,7 +54,7 @@
 /* Class = "NSMenuItem"; title = "Share…"; ObjectID = "3hj-yI-UYg"; */
 "3hj-yI-UYg.title" = "Teilen …";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "sYx-dd-JiV"; */
-"sYx-dd-JiV.title" = "Im Finder anzeigen";
+"sYx-dd-JiV.title" = "Im Finder zeigen";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "8TG-QH-hxz"; */
 "8TG-QH-hxz.title" = "Importieren …";
 

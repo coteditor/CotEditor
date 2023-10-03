@@ -325,8 +325,8 @@
 "Bigger" = "大きく";
 // tooltip
 "Change text size" = "文字サイズを変更";
-"Decrease text size" = "文字サイズを小さく";
-"Increase text size" = "文字サイズを大きく";
+"Decrease text size" = "文字サイズを小さくする";
+"Increase text size" = "文字サイズを大きくする";
 
 "Writing Direction" = "文章の方向";
 "Left to Right" = "左から右";
@@ -392,7 +392,7 @@
 
 "Emoji & Symbols" = "絵文字と記号";
 // tooltip
-"Show Emoji & Symbols palette" = "絵文字と記号パレットを表示";
+"Show Emoji & Symbols palette" = "“絵文字と記号”を表示";
 
 "Find" = "検索";
 // tooltip
@@ -571,8 +571,8 @@
 // placeholder
 "Color Code" = "カラーコード";
 
-"Hexadecimal" = "16進法";
-"Hexadecimal (Short)" = "16進法（ショート）";
+"Hexadecimal" = "16進数";
+"Hexadecimal (Short)" = "16進数（ショート）";
 "CSS RGB" = "CSS RGB";
 "CSS RGBa" = "CSS RGBa";
 "CSS HSL" = "CSS HSL";

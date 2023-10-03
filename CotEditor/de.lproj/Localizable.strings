@@ -631,7 +631,7 @@
 "Rename “%@”" = "„%@“ umbenennen";
 "Duplicate “%@”" = "„%@“ duplizieren";
 "Restore “%@”" = "„%@“ zurücksetzen";
-"Reveal “%@” in Finder" = "„%@“ im Finder anzeigen";
+"Reveal “%@” in Finder" = "„%@“ im Finder zeigen";
 
 /* Theme View */
 "Text:" = "Text:";
@@ -671,7 +671,7 @@
 // Installed syntaxes action menu items
 "Duplicate “%@”" = "„%@“ duplizieren";
 "Export “%@”…" = "„%@“ exportieren …";
-"Reveal “%@” in Finder" = "„%@“ im Finder anzeigen";
+"Reveal “%@” in Finder" = "„%@“ im Finder zeigen";
 
 
 // Snippets pane
@@ -874,11 +874,11 @@
 // Variation selectors
 "Emoji Style" = "Emoji-Stil";
 "Text Style" = "Text-Stil";
-"Skin Tone I-II" = "Hautfarbe I-II";
-"Skin Tone III" = "Hautfarbe III";
-"Skin Tone IV" = "Hautfarbe IV";
-"Skin Tone V" = "Hautfarbe V";
-"Skin Tone VI" = "Hautfarbe VI";
+"Skin Tone I-II" = "Hautton I-II";
+"Skin Tone III" = "Hautton III";
+"Skin Tone IV" = "Hautton IV";
+"Skin Tone V" = "Hautton V";
+"Skin Tone VI" = "Hautton VI";
 "Variant" = "Variante";
 
 
