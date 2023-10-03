@@ -5,6 +5,10 @@ Change Log
 4.6.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Improve Chinese localizations.
+
 
 
 4.6.2 (594)

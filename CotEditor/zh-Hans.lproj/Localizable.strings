@@ -142,7 +142,7 @@
 "Characters" = "字符";
 "any character" = "任意字符";
 "new line character" = "换行符";
-"tab character" = "tab符号";
+"tab character" = "制表符";
 "word character" = "单词字符";
 "whitespace character" = "空格字符";
 "non-whitespace character" = "非空格字符";
@@ -320,13 +320,13 @@
 // tooltip
 "Show document information" = "显示文档信息";
 
-"Text Size" = "文本尺寸";
+"Text Size" = "文字大小";
 "Smaller" = "较小";
 "Bigger" = "较大";
 // tooltip
-"Change text size" = "改变文本尺寸";
-"Decrease text size" = "减少文本尺寸";
-"Increase text size" = "增加文本尺寸";
+"Change text size" = "更改文本大小";
+"Decrease text size" = "缩小文字大小";
+"Increase text size" = "增加文字大小";
 
 "Writing Direction" = "书写方向";
 "Left to Right" = "从左到右";
@@ -337,8 +337,8 @@
 "Right to left" = "从右到左";
 
 "Text Orientation" = "文字方向";
-"Horizontal" = "水平";
-"Vertical" = "竖直";
+"Horizontal" = "横排";
+"Vertical" = "竖排";
 // tooltip
 "Switch text orientation" = "切换文字方向";
 
@@ -354,12 +354,12 @@
 // tooltip
 "Comment-out or uncomment selection" = "将选中内容注释或取消注释";
 
-"Tab Style" = "Tab 样式";
+"Tab Style" = "Tab样式";
 // tooltip
-"Use tabs for indentation" = "使用tab缩进";
+"Use tabs for indentation" = "使用制表符缩进";
 "Use spaces for indentation" = "使用空格缩进";
 // menu
-"Tab Width" = "Tab宽度";
+"Tab Width" = "制表符宽度";
 "Custom…" = "自定义…";
 "Use Spaces for Indentation" = "使用空格缩进";
 
@@ -571,8 +571,8 @@
 // placeholder
 "Color Code" = "颜色码";
 
-"Hexadecimal" = "Hex";
-"Hexadecimal (Short)" = "Hex（短）";
+"Hexadecimal" = "十六进制";
+"Hexadecimal (Short)" = "十六进制（短）";
 "CSS RGB" = "CSS RGB";
 "CSS RGBa" = "CSS RGBa";
 "CSS HSL" = "CSS HSL";
@@ -769,7 +769,7 @@
 "Insert Text %lld" = "插入文本%lld";
 
 // Keyboard key name
-"Space" = "空格键";
+"Space" = "空格";
 
 // Warning messages
 "“%@” is already taken by the “%@” command." = "“%@”已被“%@”命令使用。";
@@ -874,11 +874,11 @@
 // Variation selectors
 "Emoji Style" = "表情文字格式";
 "Text Style" = "文本文字格式";
-"Skin Tone I-II" = "色调I-II";
-"Skin Tone III" = "色调III";
-"Skin Tone IV" = "色调IV";
-"Skin Tone V" = "色 V";
-"Skin Tone VI" = "色调VI";
+"Skin Tone I-II" = "肤色I-II";
+"Skin Tone III" = "肤色III";
+"Skin Tone IV" = "肤色IV";
+"Skin Tone V" = "肤色V";
+"Skin Tone VI" = "肤色VI";
 "Variant" = "异体字";
 
 
@@ -891,7 +891,7 @@
 
 
 /* MARK: Custom Tab Width View */
-"Tab width:" = "Tab宽度：";  // label
+"Tab width:" = "制表符宽度：";  // label
 
 
 

@@ -68,14 +68,14 @@
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
 "cdV-rY-hCN.title" = "最近的搜尋";
 /* Class = "NSMenuItem"; title = "Clear Recent Searches"; ObjectID = "vE8-oK-xlC"; */
-"vE8-oK-xlC.title" = "清除最近檢索";
+"vE8-oK-xlC.title" = "清除最近的搜尋項目";
 
 /* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Replacements"; ObjectID = "Hw7-zz-RG8"; */
 "Hw7-zz-RG8.ibExternalAccessibilityDescription" = "最近的取代";
 /* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
 "7cw-iQ-0LM.title" = "最近的取代";
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
-"vfK-an-Qnl.title" = "清除最近取代";
+"vfK-an-Qnl.title" = "清除最近的取代項目";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "ESq-ws-6H3"; */
 "ESq-ws-6H3.ibShadowedToolTip" = "顯示進階選項";
