@@ -206,7 +206,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "解释器将根据文档整体来决定语法高亮样式。"
+            "value" : "解释器将根据文稿整体来决定语法高亮样式。"
           }
         },
         "zh-Hant" : {

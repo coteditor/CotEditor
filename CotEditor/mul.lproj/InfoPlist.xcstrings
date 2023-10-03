@@ -1150,7 +1150,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "HTML文档"
+            "value" : "HTML文稿"
           }
         },
         "zh-Hant" : {
@@ -1406,7 +1406,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "JSON文档"
+            "value" : "JSON文稿"
           }
         },
         "zh-Hant" : {
@@ -1726,7 +1726,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Markdown文档"
+            "value" : "Markdown文稿"
           }
         },
         "zh-Hant" : {
@@ -2254,7 +2254,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "reStructured文本文档"
+            "value" : "reStructured文本文稿"
           }
         },
         "zh-Hant" : {
@@ -2830,7 +2830,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "TeX文档"
+            "value" : "TeX文稿"
           }
         },
         "zh-Hant" : {
@@ -2894,7 +2894,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Textile文档"
+            "value" : "Textile文稿"
           }
         },
         "zh-Hant" : {
@@ -2958,7 +2958,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "TOML档"
+            "value" : "TOML文稿"
           }
         },
         "zh-Hant" : {
@@ -3150,7 +3150,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "XML文档"
+            "value" : "XML文稿"
           }
         },
         "zh-Hant" : {
@@ -3214,7 +3214,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "YAML文档"
+            "value" : "YAML文稿"
           }
         },
         "zh-Hant" : {

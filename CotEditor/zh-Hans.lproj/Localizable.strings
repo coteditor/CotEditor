@@ -87,7 +87,7 @@
 "Empty find string" = "空的搜索字符串";
 "The option “in selection” is selected, although nothing is selected." = "“在选择中搜索”选项被激活，但是并没有内容被选中。";
 "Input text to find." = "输入文本以查找。";
-"Select the search scope in the document or turn off the “in selection” option." = "在文档中选择搜索范围，或者禁用“在选择中搜索”。";
+"Select the search scope in the document or turn off the “in selection” option." = "在文稿中选择搜索范围，或者禁用“在选择中搜索”。";
 
 // accessibility announcement
 "Search wrapped." = "已从头搜索";  // announced when the search restarted from the beginning.
@@ -268,12 +268,12 @@
 "Show Incompatible Characters" = "显示不兼容字符";
 
 // Encoding change with unsaved changes alert
-"The document has unsaved changes." = "该文档中含有未保存的修改。";
-"Do you want to discard the changes and reopen the document using “%@”?" = "你确认放弃更改，并使用“%@”重新打开文档吗？";  // %@ is an encoding name.
+"The document has unsaved changes." = "该文稿中含有未保存的修改。";
+"Do you want to discard the changes and reopen the document using “%@”?" = "你确认放弃更改，并使用“%@”重新打开文稿吗？";  // %@ is an encoding name.
 "Discard Changes" = "放弃修改";
 
 // Reinterpretation failed alert
-"The document doesn’t have a file to reinterpret." = "该文档没有用来再次解释的文件。";
+"The document doesn’t have a file to reinterpret." = "该文稿没有用来再次解释的文件。";
 "The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "文件“%@”无法使用“%@”编码再次解释。";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "该文件可能已使用了不同的文本编码来存储，或者可能不是文本文件。";
 
@@ -283,9 +283,9 @@
 "Change Encoding" = "更改编码";
 
 // Inconsistent line ending alert
-"The document has inconsistent line endings." = "文档包含不一致的换行符。";
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "需要将所有换行符都替换为文档中最常使用的%@吗？";
-"Don’t ask again for this document" = "对该文档不再询问";
+"The document has inconsistent line endings." = "文稿包含不一致的换行符。";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "需要将所有换行符都替换为文稿中最常使用的%@吗？";
+"Don’t ask again for this document" = "对该文稿不再询问";
 "Convert" = "转换";
 "Review" = "检查";
 "Ignore" = "忽略";
@@ -304,7 +304,7 @@
 
 /* MARK: Document Window */
 // tooltip for the "edited" indicator in the window tab
-"Document has unsaved changes" = "文档中存在未保存的更改";
+"Document has unsaved changes" = "文稿中存在未保存的更改";
 
 
 
@@ -318,7 +318,7 @@
 
 "Inspector" = "检查器";
 // tooltip
-"Show document information" = "显示文档信息";
+"Show document information" = "显示文稿信息";
 
 "Text Size" = "文字大小";
 "Smaller" = "较小";
@@ -404,7 +404,7 @@
 
 // tooltip
 // -> The toolbar label for "Share" is set automatically.
-"Share document file" = "共享文档文件";
+"Share document file" = "共享文稿文件";
 
 "Fonts" = "字体";
 // tooltip
@@ -435,7 +435,7 @@
 
 // Content of headers/footers
 "Syntax Name" = "语法名";
-"Document Name" = "文档名";
+"Document Name" = "文稿名";
 "File Path" = "文件路径";
 "Print Date" = "打印日期";
 "Last Modified Date" = "最终修改日期";
@@ -790,8 +790,8 @@
 
 /* MARK: Script */
 // No script target document errors
-"No document to get input." = "没有输入文档。";
-"No document to put output." = "没有输出文档。";
+"No document to get input." = "没有输入文稿。";
+"No document to put output." = "没有输出文稿。";
 
 // Script file error description
 "The script “%@” does not exist." = "脚本“%@”不存在。";
@@ -815,7 +815,7 @@
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "拖拽的文件绝对路径";
-"The relative path between the dropped file and the document." = "拖拽的文件与编辑中文档的相对路径";
+"The relative path between the dropped file and the document." = "拖拽的文件与编辑中文稿的相对路径";
 "The dropped file’s name including extension (if exists)." = "拖拽的文件的檔案名稱以及扩展名（如果存在）";
 "The dropped file’s name without extension." = "不带扩展名的檔案名稱";
 "The dropped file’s extension." = "拖拽的文件的扩展名";
