@@ -2012,7 +2012,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最小化"
+            "value" : "縮到最小"
           }
         }
       }
@@ -2444,7 +2444,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開啟檔案⋯"
+            "value" : "打開⋯"
           }
         }
       }
@@ -3092,7 +3092,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "幫助"
+            "value" : "輔助說明"
           }
         }
       }
@@ -3164,7 +3164,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "幫助"
+            "value" : "輔助說明"
           }
         }
       }
@@ -3236,7 +3236,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor幫助"
+            "value" : "CotEditor輔助說明"
           }
         }
       }
@@ -3380,7 +3380,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開啟最近使用"
+            "value" : "打開最近使用過的檔案"
           }
         }
       }
@@ -3452,7 +3452,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開啟最近使用"
+            "value" : "打開最近使用過的檔案"
           }
         }
       }
@@ -3884,7 +3884,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "退出CotEditor"
+            "value" : "結束CotEditor"
           }
         }
       }
@@ -4028,7 +4028,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "全部顯示"
+            "value" : "顯示全部"
           }
         }
       }
@@ -7532,7 +7532,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AppleScript辞書"
+            "value" : "AppleScript用語説明"
           }
         },
         "pt" : {
@@ -7550,13 +7550,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AppleScript字典"
+            "value" : "AppleScript词典"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AppleScript字典"
+            "value" : "AppleScript指令詞彙"
           }
         }
       }
@@ -7628,7 +7628,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "輸入反斜槓"
+            "value" : "輸入反斜線"
           }
         }
       }
@@ -8564,7 +8564,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "釋出說明"
+            "value" : "版本附註"
           }
         }
       }
@@ -11366,13 +11366,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "查找所选内容"
+            "value" : "用所选内容查找"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "尋找所選內容"
+            "value" : "使用所選範圍尋找"
           }
         }
       }
@@ -11798,13 +11798,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "以富文本拷贝"
+            "value" : "以多信息文本拷贝"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "以富文字複製"
+            "value" : "以帶格式文字複製"
           }
         }
       }
@@ -12374,13 +12374,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "替换所选内容"
+            "value" : "用所选内容替换"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "取代所選內容"
+            "value" : "使用所選範圍取代"
           }
         }
       }
@@ -13604,7 +13604,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "跳到所選內容"
+            "value" : "跳至所選範圍"
           }
         }
       }
@@ -15686,13 +15686,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "新建标签"
+            "value" : "新建标签页"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "新增標籤"
+            "value" : "新增標籤頁"
           }
         }
       }

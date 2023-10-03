@@ -872,8 +872,8 @@
 "<a letter consisting of %lld characters>" = "<包含有%lld個字元>";
 
 // Variation selectors
-"Emoji Style" = "表情文字格式";
-"Text Style" = "文字文字格式";
+"Emoji Style" = "表情符號風格";
+"Text Style" = "文字風格";
 "Skin Tone I-II" = "膚色I-II";
 "Skin Tone III" = "膚色III";
 "Skin Tone IV" = "膚色IV";
