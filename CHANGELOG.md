@@ -5,6 +5,11 @@ Change Log
 4.6.2 (unreleased)
 --------------------------
 
+### New Features
+
+- Add syntax style for “PRQL”.
+
+
 ### Improvements
 
 - Tweak German localization.
