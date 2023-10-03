@@ -42,7 +42,7 @@
                                     <constraint firstAttribute="height" constant="21" id="i5y-f9-wPx"/>
                                 </constraints>
                             </popUpButton>
-                            <popUpButton toolTip="File Encoding" translatesAutoresizingMaskIntoConstraints="NO" id="CUv-So-9Og">
+                            <popUpButton toolTip="Text Encoding" translatesAutoresizingMaskIntoConstraints="NO" id="CUv-So-9Og">
                                 <rect key="frame" x="376" y="0.0" width="133" height="21"/>
                                 <popUpButtonCell key="cell" type="smallSquare" title="Text Encoding" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" tag="-1" inset="2" autoenablesItems="NO" selectedItem="q4F-Uw-VL4" id="2gs-WJ-6IP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

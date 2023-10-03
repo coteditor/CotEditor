@@ -74,43 +74,43 @@
       }
     },
     "CUv-So-9Og.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSPopUpButton\"; ibShadowedToolTip = \"File Encoding\"; ObjectID = \"CUv-So-9Og\";",
+      "comment" : "Class = \"NSPopUpButton\"; ibShadowedToolTip = \"Text Encoding\"; ObjectID = \"CUv-So-9Og\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Codierung"
+            "value" : "Textcodierung"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "File Encoding"
+            "value" : "Text Encoding"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "File Encoding"
+            "value" : "Text Encoding"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Codificación de archivos"
+            "value" : "Codificación de texto"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Encodage"
+            "value" : "Encodage du texte"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Codifica file"
+            "value" : "Codifica testo"
           }
         },
         "ja" : {
@@ -122,25 +122,25 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Codificação do arquivo"
+            "value" : "Codificação de Texto"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dosya Kodlaması"
+            "value" : "Metin Kodlaması"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文件编码"
+            "value" : "文本编码"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "檔案編碼"
+            "value" : "文字編碼"
           }
         }
       }
