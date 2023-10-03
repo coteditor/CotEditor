@@ -120,7 +120,7 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// return syntax name corresponding to file name
+    /// return syntax name corresponding to filename
     func settingName(documentFileName fileName: String) -> SettingName? {
         
         let mappingTables = self.mappingTables

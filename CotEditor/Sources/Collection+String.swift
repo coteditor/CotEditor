@@ -87,7 +87,7 @@ private func compareFunction(options: StringComparisonOptions) -> (String, Strin
 
 
 
-// MARK: - File Name
+// MARK: - Filename
 
 extension Collection<String> {
     

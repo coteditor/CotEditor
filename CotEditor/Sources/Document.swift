@@ -223,7 +223,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 let baseFileName = fileURL.deletingPathExtension().lastPathComponent
                     .replacing(/^\./, with: "", maxReplacements: 1)  // avoid file to be hidden
                 
-                // append an unique string to avoid overwriting another backup file with the same file name.
+                // append an unique string to avoid overwriting another backup file with the same filename.
                 let maxIdentifierLength = Int(NAME_MAX) - (baseFileName + " ()." + fileURL.pathExtension).length
                 let fileName = baseFileName + " (" + UUID().uuidString.prefix(maxIdentifierLength) + ")"
                 
@@ -444,7 +444,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             }
             if error != nil { return }
             
-            // apply syntax that is inferred from the file name or the shebang
+            // apply syntax that is inferred from the filename or the shebang
             if saveOperation == .saveAsOperation,
                let syntaxName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
                 ?? SyntaxManager.shared.settingName(documentContent: self.textStorage.string)

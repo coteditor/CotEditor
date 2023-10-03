@@ -86,10 +86,10 @@ protocol SettingFileManaging: SettingManaging {
     /// UTType of user setting file
     var fileType: UTType { get }
     
-    /// List of names of setting file name (without extension).
+    /// List of names of setting filename (without extension).
     var settingNames: [String] { get set }
     
-    /// List of names of setting file name which are bundled (without extension).
+    /// List of names of setting filename which are bundled (without extension).
     var bundledSettingNames: [String] { get }
     
     /// Stored settings to avoid loading frequently-used setting files multiple times.
@@ -198,7 +198,7 @@ extension SettingFileManaging {
     }
     
     
-    /// Validate whether the setting name is valid (for a file name) and throw an error if not.
+    /// Validate whether the setting name is valid (for a filename) and throw an error if not.
     ///
     /// - Parameters:
     ///   - settingName: The setting name to validate.
@@ -215,11 +215,11 @@ extension SettingFileManaging {
             throw InvalidNameError.empty
         }
         
-        if settingName.contains("/") {  // invalid for a file name
+        if settingName.contains("/") {  // invalid for filename
             throw InvalidNameError.containSlash
         }
         
-        if settingName.hasPrefix(".") {  // invalid for a file name
+        if settingName.hasPrefix(".") {  // invalid for filename
             throw InvalidNameError.startWithDot
         }
         
