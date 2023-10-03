@@ -42,7 +42,7 @@
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "u8r-OW-Z1O"; */
 "u8r-OW-Z1O.title" = "像素";
 /* Class = "NSTextFieldCell"; title = "Height"; ObjectID = "Zhk-Nt-kiD"; */
-"Zhk-Nt-kiD.title" = "高度：";
+"Zhk-Nt-kiD.title" = "高度";
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "VCx-PO-Fnr"; */
 "VCx-PO-Fnr.title" = "像素";
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "hye-gP-iep"; */
