@@ -61,7 +61,7 @@ struct OpenPanelAccessory: View {
                     }
                 }
                 
-                Toggle("Show hidden files", isOn: $showsHiddenFiles)
+                Toggle("Show invisible files", isOn: $showsHiddenFiles)
                     .onChange(of: self.showsHiddenFiles) { shows in
                         guard let openPanel = self.openPanel else { return }
                         

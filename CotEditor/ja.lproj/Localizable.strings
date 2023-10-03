@@ -231,7 +231,7 @@
 
 /* MARK: Open Panel Accessory */
 "Encoding:" = "エンコーディング:";
-"Show hidden files" = "不可視ファイルを表示";
+"Show invisible files" = "不可視ファイルを表示";
 
 
 

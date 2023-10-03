@@ -231,7 +231,7 @@
 
 /* MARK: Open Panel Accessory */
 "Encoding:" = "编码：";
-"Show hidden files" = "显示隐藏文件";
+"Show invisible files" = "显示不可见的文件";
 
 
 

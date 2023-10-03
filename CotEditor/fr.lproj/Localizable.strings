@@ -231,7 +231,7 @@
 
 /* MARK: Open Panel Accessory */
 "Encoding:" = "Encodage :";
-"Show hidden files" = "Afficher les fichiers cachés";
+"Show invisible files" = "Afficher les fichiers cachés";
 
 
 
