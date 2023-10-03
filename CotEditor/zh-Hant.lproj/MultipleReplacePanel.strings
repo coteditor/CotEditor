@@ -72,7 +72,7 @@
 "PuQ-No-wC1.ibShadowedToolTip" = "勾選此項以套用該取代規則。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Find"; ObjectID = "zee-UW-TVR"; */
-"zee-UW-TVR.headerCell.title" = "檢索";
+"zee-UW-TVR.headerCell.title" = "尋找";
 
 /* Class = "NSTableColumn"; headerCell.title = "Replace With"; ObjectID = "nRC-aM-NZ2"; */
 "nRC-aM-NZ2.headerCell.title" = "取代";
@@ -91,7 +91,7 @@
 "Rhy-iE-CIC.headerCell.title" = "描述";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Select to search with regular expression."; ObjectID = "Lk4-Ym-IrV"; */
-"Lk4-Ym-IrV.ibShadowedToolTip" = "選中以啟用常規表示式檢索。";
+"Lk4-Ym-IrV.ibShadowedToolTip" = "選中以啟用常規表示式尋找。";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "I23-3I-yq5"; */
 "I23-3I-yq5.ibShadowedToolTip" = "選中以忽略大小寫。";
 
@@ -108,7 +108,7 @@
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "4lm-Fu-Fcf"; */
 "4lm-Fu-Fcf.title" = "所選範圍";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to replace text only in selection."; ObjectID = "pfM-xk-MrN"; */
-"pfM-xk-MrN.ibShadowedToolTip" = "選中僅在選擇範圍內進行文字檢索。";
+"pfM-xk-MrN.ibShadowedToolTip" = "選中僅在選擇範圍內進行文字尋找。";
 
 /* Class = "NSButtonCell"; title = "Highlight All"; ObjectID = "kdu-Ni-M64"; */
 "kdu-Ni-M64.title" = "全部高亮";

@@ -96,7 +96,7 @@
 
 /* MARK: Find Panel */
 // window title
-"Find & Replace" = "檢索與取代";
+"Find & Replace" = "尋找與取代";
 
 // find results in input fields
 "Not found" = "未找到";
@@ -104,9 +104,9 @@
 
 // pairs of button label and its tooltip
 "Close" = "關閉";
-"Close find result." = "關閉檢索結果。";
+"Close find result." = "關閉尋找結果。";
 
-"Find All" = "檢索全部";
+"Find All" = "尋找全部";
 "Find and list all matches." = "列出所有匹配。";
 
 "Replace All" = "全部取代";
@@ -115,16 +115,16 @@
 "Replace" = "取代";
 "Replace the current selection with the replacement text, then find the next match." = "用取代文字取代當前選中內容，然後查找下一個匹配項目";
 
-"Find Previous" = "檢索上一個";
-"Find previous match." = "檢索前一個匹配。";
+"Find Previous" = "尋找上一個";
+"Find previous match." = "尋找前一個匹配。";
 
-"Find Next" = "檢索下一個";
-"Find next match." = "檢索後一個匹配。";
+"Find Next" = "尋找下一個";
+"Find next match." = "尋找後一個匹配。";
 
 
 
 /* MARK: Find Panel Result View */
-"Find string: %@" = "檢索字串：%@";
+"Find string: %@" = "尋找字串：%@";
 // Find result (“%@” is filename)
 "No strings found in “%@.”" = "在「%@」中沒有找到字元串。";
 "Found one string in “%@.”" = "在「%@」中找到一個字元串。";
@@ -177,30 +177,30 @@
 
 
 /* MARK: Find Settings View */
-"Advanced Find Options" = "進階檢索選項";
+"Advanced Find Options" = "進階尋找選項";
 
 // checkbox labels
-"Wrap search around" = "折行檢索";
-"Search incrementally" = "增量檢索";
+"Wrap search around" = "折行尋找";
+"Search incrementally" = "增量尋找";
 
 
-"Textual Search" = "文字檢索";
+"Textual Search" = "文字尋找";
 
 // pairs of checkbox label and its tooltip
 "Match only whole word" = "僅全字匹配";
-"Restrict search results to the whole words." = "將檢索結果限定於全字。";
+"Restrict search results to the whole words." = "將尋找結果限定於全字。";
 
 "Distinguish characters strictly" = "嚴格區分字元";
-"Exact character-by-character equivalence." = "逐字元相等檢索";
+"Exact character-by-character equivalence." = "逐字元相等尋找";
 
 "Ignore diacritical marks" = "忽略變音符號";
-"Search ignores diacritical marks (e.g. ö = o)." = "忽略變音符號進行檢索（例如ö = o）。";
+"Search ignores diacritical marks (e.g. ö = o)." = "忽略變音符號進行尋找（例如ö = o）。";
 
 "Ignore width differences" = "忽略字元寬度";
-"Search ignores width differences in character forms (e.g. ａ = a)." = "忽略字元形式的寬度進行檢索（例如ａ = a）。";
+"Search ignores width differences in character forms (e.g. ａ = a)." = "忽略字元形式的寬度進行尋找（例如ａ = a）。";
 
 
-"Regular Expression Search" = "常規表示式檢索";
+"Regular Expression Search" = "常規表示式尋找";
 
 // pairs of checkbox label and its tooltip
 "Dot matches line separators" = "使點匹配換行";
@@ -396,7 +396,7 @@
 
 "Find" = "查找";
 // tooltip
-"Show Find & Replace" = "顯示查找與取代";
+"Show Find & Replace" = "顯示尋找與取代";
 
 "Print" = "列印";
 // tooltip

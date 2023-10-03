@@ -6476,7 +6476,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "檢索"
+            "value" : "尋找"
           }
         }
       }
@@ -10148,7 +10148,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "檢索⋯"
+            "value" : "尋找⋯"
           }
         }
       }
@@ -11084,7 +11084,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "檢索全部"
+            "value" : "尋找全部"
           }
         }
       }
@@ -11372,7 +11372,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "檢索所選內容"
+            "value" : "尋找所選內容"
           }
         }
       }
@@ -12164,7 +12164,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "檢索"
+            "value" : "尋找"
           }
         }
       }
@@ -12308,7 +12308,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "取代並檢索下一個"
+            "value" : "取代並尋找下一個"
           }
         }
       }
@@ -13172,7 +13172,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "檢索下一個"
+            "value" : "尋找下一個"
           }
         }
       }
@@ -15476,7 +15476,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選擇全部檢索到的匹配"
+            "value" : "選擇全部尋找到的匹配"
           }
         }
       }
@@ -15764,7 +15764,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "檢索上一個"
+            "value" : "尋找上一個"
           }
         }
       }

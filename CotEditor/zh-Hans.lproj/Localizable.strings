@@ -96,7 +96,7 @@
 
 /* MARK: Find Panel */
 // window title
-"Find & Replace" = "查找与替换";
+"Find & Replace" = "查找和替换";
 
 // find results in input fields
 "Not found" = "未找到";
@@ -396,7 +396,7 @@
 
 "Find" = "查找";
 // tooltip
-"Show Find & Replace" = "显示查找与替换";
+"Show Find & Replace" = "显示查找和替换";
 
 "Print" = "打印";
 // tooltip
