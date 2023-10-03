@@ -245,7 +245,7 @@
 
 // Large file alert
 "The file “%@” has a size of %@." = "ファイル“%@”はファイルサイズが%@あります。";
-"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリケーションの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか?";
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか?";
 "Open" = "開く";
 
 
@@ -291,8 +291,8 @@
 "Ignore" = "無視";
 
 // Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリケーションによって変更されました。CotEditorで加えた編集もまだ保存されていません。";
-"The file has been changed by another application." = "ファイルは別のアプリケーションによって変更されました。";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリによって変更されました。CotEditorで加えた編集もまだ保存されていません。";
+"The file has been changed by another application." = "ファイルは別のアプリによって変更されました。";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "CotEditorでの編集内容を保持しますか、それとも変更された内容に更新しますか?";
 "Keep CotEditor’s Edition" = "CotEditorの編集内容を保持";
 "Update" = "更新";
@@ -608,7 +608,7 @@
 
 // General pane
 // Autosave setting update alert
-"The change will be applied first on the next launch." = "この変更は次回アプリケーション起動時に適用されます。";
+"The change will be applied first on the next launch." = "この変更は次回アプリ起動時に適用されます。";
 "Do you want to restart CotEditor now?" = "CotEditorを今すぐ再起動しますか?";
 "Restart Now" = "今すぐ再起動";
 "Later" = "あとで";
@@ -822,8 +822,8 @@
 "The dropped file’s extension (converted to lowercase)." = "ドロップ元ファイルの拡張子（小文字）";
 "The dropped file’s extension (converted to uppercase)." = "ドロップ元ファイルの拡張子（大文字）";
 "The parent directory name of dropped file." = "ドロップ元ファイルのあるディレクトリ名";
-"(If the dropped file is an image) image width." = "イメージの幅（ドロップ元ファイルが画像ファイルのときのみ有効）";
-"(If the dropped file is an image) image height." = "イメージの高さ（ドロップ元ファイルが画像ファイルのときのみ有効）";
+"(If the dropped file is an image) image width." = "画像の幅（ドロップ元ファイルが画像ファイルのときのみ有効）";
+"(If the dropped file is an image) image height." = "画像の高さ（ドロップ元ファイルが画像ファイルのときのみ有効）";
 "(If the dropped file is a text file) file content." = "ファイル内容（ドロップ元ファイルがテキストファイルのときのみ有効）";
 
 

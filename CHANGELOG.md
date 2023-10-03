@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- Tweak German localization.
+- Tweak German and Japanese localization.
 
 
 ### Fixes
