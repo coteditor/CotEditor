@@ -230,7 +230,7 @@
 
 
 /* MARK: Open Panel Accessory */
-"Encoding:" = "エンコーディング:";
+"Text encoding:" = "テキストエンコーディング:";
 "Show invisible files" = "不可視ファイルを表示";
 
 
@@ -256,7 +256,7 @@
 "Line Endings to %@" = "改行コードを%@へ";
 
 // Convert or reinterpret encoding alert
-"File encoding" = "エンコーディング";
+"Text encoding" = "テキストエンコーディング";
 "Do you want to convert or reinterpret this document using “%@”?" = "“%@”を使って書類を変換または再解釈しますか?";
 "Convert" = "変換";
 "Reinterpret" = "再解釈";

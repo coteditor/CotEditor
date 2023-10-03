@@ -70,7 +70,7 @@ final class EncodingManager {
     
     // MARK: Public Methods
     
-    /// User file encoding.
+    /// User text encoding.
     var defaultEncoding: FileEncoding {
         
         get {

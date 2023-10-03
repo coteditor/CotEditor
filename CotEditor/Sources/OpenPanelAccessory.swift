@@ -48,7 +48,7 @@ struct OpenPanelAccessory: View {
         
         VStack(alignment: .center) {
             Form {
-                Picker("Encoding:", selection: $options.encoding) {
+                Picker("Text encoding:", selection: $options.encoding) {
                     Text("Automatic").tag(String.Encoding?.none)
                     Divider()
                     

@@ -355,9 +355,9 @@ Gw
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Line Endings" id="296" customClass="OptionalMenu" customModule="CotEditor" customModuleProvider="target"/>
                                         </menuItem>
-                                        <menuItem title="File Encoding" id="299">
+                                        <menuItem title="Text Encoding" id="299">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="File Encoding" id="300"/>
+                                            <menu key="submenu" title="Text Encoding" id="300"/>
                                         </menuItem>
                                         <menuItem title="Syntax" id="302">
                                             <modifierMask key="keyEquivalentModifierMask"/>

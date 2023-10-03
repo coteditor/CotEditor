@@ -73,7 +73,7 @@ struct DocumentFile {
     ///
     /// - Parameters:
     ///   - fileURL: The location of the file to read.
-    ///   - encodingStrategy: The file encoding to read the file.
+    ///   - encodingStrategy: The text encoding to read the file.
     init(fileURL: URL, encodingStrategy: EncodingStrategy) throws {
         
         let data = try Data(contentsOf: fileURL, options: [.mappedIfSafe])  // FILE_READ
@@ -118,11 +118,11 @@ struct DocumentFile {
     
     // MARK: Private Methods
     
-    /// Read string from data by detecting the file encoding automatically.
+    /// Read string from data by detecting the text encoding automatically.
     ///
     /// - Parameters:
     ///   - data: The data to encode.
-    ///   - xattrEncoding: The file encoding read from the file's extended attributes.
+    ///   - xattrEncoding: The text encoding read from the file's extended attributes.
     ///   - suggestedCFEncodings: The list of CSStringEncodings to test the encoding.
     ///   - refersToEncodingTag: The boolean whether to refer encoding tag in the file content.
     /// - Returns: The decoded string and used encoding.

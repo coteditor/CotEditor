@@ -230,7 +230,7 @@
 
 
 /* MARK: Open Panel Accessory */
-"Encoding:" = "編碼：";
+"Text encoding:" = "文字編碼：";
 "Show invisible files" = "顯示隱藏檔案";
 
 
@@ -256,7 +256,7 @@
 "Line Endings to %@" = "行尾變更為%@";
 
 // Convert or reinterpret encoding alert
-"File encoding" = "檔案編碼";
+"Text encoding" = "文字編碼";
 "Do you want to convert or reinterpret this document using “%@”?" = "要使用「%@」進行轉換或者再次解釋這份文件嗎？";
 "Convert" = "轉換";
 "Reinterpret" = "再次解釋";

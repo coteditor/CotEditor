@@ -230,7 +230,7 @@
 
 
 /* MARK: Open Panel Accessory */
-"Encoding:" = "Kodlama:";
+"Text encoding:" = "Metin kodlaması:";
 "Show invisible files" = "Gizli dosyaları göster";
 
 
@@ -256,7 +256,7 @@
 "Line Endings to %@" = "Satır Sonları: %@";
 
 // Convert or reinterpret encoding alert
-"File encoding" = "Dosya Kodlaması";
+"Text encoding" = "Metin kodlaması";
 "Do you want to convert or reinterpret this document using “%@”?" = "Bu belgeyi “%@” kullanarak dönüştürmek veya yeniden yorumlamak istiyor musunuz?";
 "Convert" = "Dönüştür";
 "Reinterpret" = "Yeniden Yorumla";

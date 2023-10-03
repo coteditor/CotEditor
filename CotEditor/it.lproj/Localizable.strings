@@ -230,7 +230,7 @@
 
 
 /* MARK: Open Panel Accessory */
-"Encoding:" = "Codifica:";
+"Text encoding:" = "Codifica testo:";
 "Show invisible files" = "Mostra i file nascosti";
 
 
@@ -256,7 +256,7 @@
 "Line Endings to %@" = "Termine riga a %@";
 
 // Convert or reinterpret encoding alert
-"File encoding" = "Codifica file";
+"Text encoding" = "Codifica testo";
 "Do you want to convert or reinterpret this document using “%@”?" = "Si desidera convertire o reinterpretare il documento usando “%@”?";
 "Convert" = "Converti";
 "Reinterpret" = "Reinterpreta";

@@ -230,7 +230,7 @@
 
 
 /* MARK: Open Panel Accessory */
-"Encoding:" = "Codierung:";
+"Text encoding:" = "Textcodierung:";
 "Show invisible files" = "Unsichtbare Dateien anzeigen";
 
 
@@ -256,7 +256,7 @@
 "Line Endings to %@" = "Zeilenenden zu %@";
 
 // Convert or reinterpret encoding alert
-"File encoding" = "Dateicodierung";
+"Text encoding" = "Textcodierung";
 "Do you want to convert or reinterpret this document using “%@”?" = "Möchtest du dieses Dokument mit „%@“ umwandeln oder neu interpretieren?";
 "Convert" = "Umwandeln";
 "Reinterpret" = "Neu interpretieren";
