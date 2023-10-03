@@ -7496,7 +7496,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AppleScript-Bibliothek"
+            "value" : "AppleScript-Lexikon"
           }
         },
         "en" : {
@@ -9584,7 +9584,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neu in CotEditor"
+            "value" : "Neue Funktionen in CotEditor"
           }
         },
         "en" : {
@@ -9614,7 +9614,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cosa c’è di nuovo in CotEditor"
+            "value" : "Novità di CotEditor"
           }
         },
         "ja" : {
@@ -9638,13 +9638,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor新特性"
+            "value" : "CotEditor新功能"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor新特性"
+            "value" : "CotEditor的新功能"
           }
         }
       }

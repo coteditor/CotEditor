@@ -438,7 +438,7 @@
 "Document Name" = "Nom du document";
 "File Path" = "Chemin du fichier";
 "Print Date" = "Date d’impression";
-"Last Modified Date" = "Date de la dernière modification";
+"Last Modified Date" = "Date de dernière modification";
 "Page Number" = "Numéro de page";
 
 // Segmented control tooltips

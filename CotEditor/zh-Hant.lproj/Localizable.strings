@@ -419,7 +419,7 @@
 
 /* MARK: Touch Bar */
 // Touch bar item labels -Text Size
-"Actual Size" = "實際尺寸";
+"Actual Size" = "實際大小";
 
 
 
@@ -438,7 +438,7 @@
 "Document Name" = "文件名稱";
 "File Path" = "檔案路徑";
 "Print Date" = "列印日期";
-"Last Modified Date" = "最近修改日期";
+"Last Modified Date" = "上次修改日期";
 "Page Number" = "頁碼";
 
 // Segmented control tooltips
