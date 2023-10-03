@@ -108,7 +108,7 @@ struct FindPanelResultView: View {
                 }.width(ideal: 30, max: 64)
                 
                 TableColumn("Found String") {
-                    Text(AttributedString($0.attributedLineString))
+                    Text(AttributedString($0.attributedLineString(offset: 16)))
                         .truncationMode(.tail)
                         .padding(.vertical, -2)
                 }
@@ -209,15 +209,24 @@ private extension NSTextView {
 }
 
 
+private extension TextFindAllResult.Match {
+    
+    func attributedLineString(offset: Int) -> NSAttributedString {
+        
+        self.attributedLineString.truncatedHead(until: self.lineLocation, offset: offset)
+    }
+}
+
+
 
 // MARK: - Preview
 
 #Preview {
     let model = FindPanelResultView.Model()
     model.matches = [
-        .init(range: .notFound,
+        .init(range: NSRange(12..<16), lineLocation: 12,
               attributedLineString: .init("Clarus says moof!")),
-        .init(range: .notFound,
+        .init(range: NSRange(64..<73), lineLocation: 64,
               attributedLineString: .init("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")),
     ]
     model.findString = "Clarus"

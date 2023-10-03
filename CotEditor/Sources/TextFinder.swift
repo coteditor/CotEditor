@@ -86,6 +86,7 @@ struct TextFindAllResult {
         let id = UUID()
         
         var range: NSRange
+        var lineLocation: Int
         var attributedLineString: NSAttributedString
     }
     
@@ -548,9 +549,8 @@ final class TextFinder {
                                                     value: highlightColors[index],
                                                     range: range.shifted(by: -lineRange.location))
                     }
-                    attrLineString.truncateHead(until: matchedRange.location - lineRange.location, offset: 16)
                     
-                    resultMatches.append(.init(range: matchedRange, attributedLineString: attrLineString))
+                    resultMatches.append(.init(range: matchedRange, lineLocation: matchedRange.location - lineRange.location, attributedLineString: attrLineString))
                 }
                 
                 progress.completedUnit = matches[0].upperBound

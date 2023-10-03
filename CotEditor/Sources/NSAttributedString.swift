@@ -73,6 +73,20 @@ extension NSAttributedString {
         
         return value != nil || effectiveRange.upperBound < range.upperBound
     }
+    
+    
+    /// Truncate head with an ellipsis symbol until the specific `location` if the length before the location is the longer than the `offset`.
+    ///
+    /// - Parameters:
+    ///   - location: The character index to start truncation.
+    ///   - offset: The maximum number of composed characters to leave on the left of the `location`.
+    func truncatedHead(until location: Int, offset: Int) -> NSAttributedString {
+        
+        let mutable = self.mutable
+        mutable.truncateHead(until: location, offset: offset)
+        
+        return mutable
+    }
 }
 
 
@@ -86,7 +100,7 @@ extension NSMutableAttributedString {
     }
     
     
-    /// Truncate head with an ellipsis symbol until the specific `location` if the length before the location is the longer than the `maxOffset`.
+    /// Truncate head with an ellipsis symbol until the specific `location` if the length before the location is the longer than the `offset`.
     ///
     /// - Parameters:
     ///   - location: The character index to start truncation.
