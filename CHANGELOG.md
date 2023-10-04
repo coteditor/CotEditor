@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Improve Chinese localizations.
+- [trivial] Avoid unwanted line break in the character inspector.
 
 
 
