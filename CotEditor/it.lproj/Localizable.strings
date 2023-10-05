@@ -55,7 +55,7 @@
 
 
 // warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "Si è sicuri di voler cancellare “%@”?";
+"Are you sure you want to delete “%@”?" = "Confermi di voler eliminare “%@”?";
 "This action cannot be undone." = "L’azione è irreversibile.";
 
 

@@ -55,7 +55,7 @@
 
 
 // warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "确认删除“%@”？";
+"Are you sure you want to delete “%@”?" = "你确定要删除“%@”吗？";
 "This action cannot be undone." = "此操作不能撤销。";
 
 
@@ -270,7 +270,7 @@
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "该文稿中含有未保存的修改。";
 "Do you want to discard the changes and reopen the document using “%@”?" = "你确认放弃更改，并使用“%@”重新打开文稿吗？";  // %@ is an encoding name.
-"Discard Changes" = "放弃修改";
+"Discard Changes" = "放弃更改";
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "该文稿没有用来再次解释的文件。";
@@ -291,8 +291,8 @@
 "Ignore" = "忽略";
 
 // Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "文件被其他应用更改，CotEditor中还有未保存的变更。";
-"The file has been changed by another application." = "文件被其他应用更改。";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "该文件已被其他应用程序更改。CotEditor中还有未保存的变更。";
+"The file has been changed by another application." = "该文件已被其他应用程序更改。";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "保留CotEditor的版本还是更新至被编辑过的版本？";
 "Keep CotEditor’s Edition" = "保留CotEditor编辑的内容";
 "Update" = "更新";

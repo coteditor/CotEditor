@@ -55,7 +55,7 @@
 
 
 // warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "“%@” silmek istediğinize emin misiniz?";
+"Are you sure you want to delete “%@”?" = "“%@” öğesini silmek istediğinizden emin misiniz?";
 "This action cannot be undone." = "Bu eylem geri alınamaz.";
 
 

@@ -55,8 +55,8 @@
 
 
 // warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "確認刪除「%@」？";
-"This action cannot be undone." = "此操作不能還原。";
+"Are you sure you want to delete “%@”?" = "確定要刪除「%@」嗎？";
+"This action cannot be undone." = "此動作無法還原。";
 
 
 
@@ -291,8 +291,8 @@
 "Ignore" = "忽略";
 
 // Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "檔案被其他應用更改，CotEditor中還有未儲存的變更。";
-"The file has been changed by another application." = "檔案被其他應用更改。";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "其他應用程式已對此檔案進行修改。CotEditor中還有未儲存的變更。";
+"The file has been changed by another application." = "其他應用程式已對此檔案進行修改。";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "保留CotEditor的版本還是更新至被編輯過的版本？";
 "Keep CotEditor’s Edition" = "保留CotEditor編輯的內容";
 "Update" = "更新";

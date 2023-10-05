@@ -55,8 +55,8 @@
 
 
 // warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "¿Estas seguro de que quiere eliminar “%@”?";
-"This action cannot be undone." = "Esta acción no se puede deshacer.";
+"Are you sure you want to delete “%@”?" = "¿Seguro que quieres eliminar “%@”?";
+"This action cannot be undone." = "Esta operación no puede deshacerse.";
 
 
 
@@ -291,8 +291,8 @@
 "Ignore" = "Ignorar";
 
 // Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "El archivo ha sido cambiado por otra aplicación. También hay cambios no guardados en CotEditor.";
-"The file has been changed by another application." = "El archivo ha sido cambiado por otra aplicación.";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "Otra aplicación ha modificado el archivo. También hay cambios no guardados en CotEditor.";
+"The file has been changed by another application." = "Otra aplicación ha modificado el archivo.";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "¿Quieres conservar la edición de CotEditor o actualizarla a la edición modificada?";
 "Keep CotEditor’s Edition" = "Conservar edición de Coteditor";
 "Update" = "Actualizar";

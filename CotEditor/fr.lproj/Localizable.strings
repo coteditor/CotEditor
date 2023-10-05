@@ -68,7 +68,7 @@
 
 
 // warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "Êtes-vous sûr de vouloir supprimer « %@ » ?";
+"Are you sure you want to delete “%@”?" = "Voulez-vous vraiment supprimer « %@ » ?";
 "This action cannot be undone." = "Cette action est irréversible.";
 
 
@@ -313,7 +313,7 @@
 // tooltip
 "Change syntax" = "Changer la syntaxe";
 // item in the menu
-"Recently Used" = "Récemment utilisés";
+"Recently Used" = "Utilisés récemment";
 "Deleted" = "Supprimés";  // heading for deleted items
 
 "Inspector" = "Inspecteur";

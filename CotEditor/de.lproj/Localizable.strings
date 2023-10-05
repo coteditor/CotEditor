@@ -55,7 +55,7 @@
 
 
 // warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "Möchtest du „%@“ wirklich löschen?";
+"Are you sure you want to delete “%@”?" = "Soll „%@“ wirklich gelöscht werden?";
 "This action cannot be undone." = "Diese Aktion kann nicht widerrufen werden.";
 
 
