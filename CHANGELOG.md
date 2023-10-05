@@ -11,6 +11,11 @@ Change Log
 - [trivial] Avoid unwanted line break in the character inspector.
 
 
+### Fixes
+
+- Fix that a label was not localized.
+
+
 
 4.6.2 (594)
 --------------------------

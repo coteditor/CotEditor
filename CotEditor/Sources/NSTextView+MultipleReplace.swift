@@ -124,8 +124,8 @@ extension NSTextView {
         progress.finish()
         
         let message = (progress.count == 0)
-            ? String(localized: "Not replaced")
-            : String(localized: "\(progress.count) replaced")
+            ? String(localized: "Not replaced", table: "Count")
+            : String(localized: "\(progress.count) replaced", table: "Count")
         
         self.requestAccessibilityAnnouncement(message)
         
