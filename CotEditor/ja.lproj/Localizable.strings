@@ -869,7 +869,7 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<%lld字から成る文字>";
+"<a letter consisting of %lld characters>" = "<%lld字から成る文字>";  // %lld is always 2 or more.
 
 // Variation selectors
 "Emoji Style" = "絵文字スタイル";

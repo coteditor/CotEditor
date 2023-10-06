@@ -83,7 +83,8 @@ struct CharacterInfo {
         
         let unicodes = self.character.unicodeScalars
         if self.isComplex {
-            return String(localized: "<a letter consisting of \(unicodes.count) characters>")
+            return String(localized: "<a letter consisting of \(unicodes.count) characters>",
+                          comment: "%lld is always 2 or more.")
         }
         
         guard var unicodeName = unicodes.first?.name else { return nil }

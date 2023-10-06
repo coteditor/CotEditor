@@ -869,7 +869,7 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<包含有%lld个字符>";
+"<a letter consisting of %lld characters>" = "<包含有%lld个字符>";  // %lld is always 2 or more.
 
 // Variation selectors
 "Emoji Style" = "表情符号风格";

@@ -869,7 +869,7 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<una letra que consta de %lld caracteres>";  // FIXME: needs review
+"<a letter consisting of %lld characters>" = "<una letra que consta de %lld caracteres>";  // %lld is always 2 or more.  // FIXME: needs review
 
 // Variation selectors
 "Emoji Style" = "Emoji Style";  // FIXME: missing

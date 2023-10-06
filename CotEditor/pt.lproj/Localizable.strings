@@ -869,7 +869,7 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<uma letra que consiste em %lld caracteres>";
+"<a letter consisting of %lld characters>" = "<uma letra que consiste em %lld caracteres>";  // %lld is always 2 or more.
 
 // Variation selectors
 "Emoji Style" = "Estilo do Emoji";

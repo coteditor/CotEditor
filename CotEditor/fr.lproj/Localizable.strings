@@ -870,7 +870,7 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<un symbole constitué de %lld caractères>";
+"<a letter consisting of %lld characters>" = "<un symbole constitué de %lld caractères>";  // %lld is always 2 or more.
 
 // Variation selectors
 "Emoji Style" = "Style d’Emoji";

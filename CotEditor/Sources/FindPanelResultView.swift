@@ -147,14 +147,14 @@ struct FindPanelResultView: View {
     }
     
     
-    private var message: LocalizedStringKey {
+    private var message: String {
         
         let documentName = self.model.target?.documentName ?? "Unknown"  // This should never be nil.
         
         return switch self.model.matches.count {
-            case 0:  "No strings found in “\(documentName).”"
-            case 1:  "Found one string in “\(documentName).”"
-            default: "Found \(self.model.matches.count) strings in “\(documentName).”"
+            case 0:  String(localized: "No strings found in “\(documentName).”")
+            case 1:  String(localized: "Found one string in “\(documentName).”")
+            default: String(localized: "Found \(self.model.matches.count) strings in “\(documentName).”")
         }
     }
     

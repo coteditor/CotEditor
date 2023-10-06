@@ -869,7 +869,7 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "%lld karakterden oluşan bir harf";
+"<a letter consisting of %lld characters>" = "%lld karakterden oluşan bir harf";  // %lld is always 2 or more.
 
 // Variation selectors
 "Emoji Style" = "Emoji Biçemi";

@@ -868,7 +868,7 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<a letter consisting of %lld characters>";
+"<a letter consisting of %lld characters>" = "<a letter consisting of %lld characters>";  // %lld is always 2 or more.
 
 // Variation selectors
 "Emoji Style" = "Emoji Style";
