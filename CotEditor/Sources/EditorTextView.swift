@@ -135,7 +135,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     
     private lazy var overscrollResizingDebouncer = Debouncer { [weak self] in self?.invalidateOverscrollRate() }
     
-    private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
+    private let instanceHighlightColor: NSColor = .accent.withAlphaComponent(0.3)
     private var instanceHighlightTask: Task<Void, any Error>?
     
     private var needsRecompletion = false

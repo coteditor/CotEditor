@@ -23,12 +23,11 @@
 //  limitations under the License.
 //
 
-import AppKit.NSAppearance
 import AppKit.NSColor
 
 extension NSColor {
     
-    static let textHighlighterColor = NSColor(resource: .accent).withAlphaComponent(0.4)
+    static let textHighlighterColor: NSColor = .accent.withAlphaComponent(0.4)
 }
 
 
@@ -42,7 +41,7 @@ extension NSColor {
     func decompose(into number: Int) -> [NSColor] {
         
         (0..<number)
-            .map { CGFloat($0) / CGFloat(number) }
+            .map { Double($0) / Double(number) }
             .map { (self.hueComponent + $0).truncatingRemainder(dividingBy: 1) }
             .map { NSColor(calibratedHue: $0, saturation: self.saturationComponent, brightness: self.brightnessComponent, alpha: self.alphaComponent) }
     }
