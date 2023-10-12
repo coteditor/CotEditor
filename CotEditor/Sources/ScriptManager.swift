@@ -252,7 +252,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// - Parameters:
     ///   - error: The error to present.
     ///   - scriptName: The name of script.
-    @MainActor private static func presentError(_ error: any Error, scriptName: String) {
+    @MainActor private static func presentError(_ error: some Error, scriptName: String) {
         
         switch error {
             case is ScriptError:
