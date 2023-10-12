@@ -363,7 +363,7 @@
 "Custom…" = "Özel…";
 "Use Spaces for Indentation" = "Girintileme için Boşluklar Kullan";
 
-"Wrap Lines" = "Satırları Kaydır";
+"Line Wrapping" = "Satır Kaydırma";
 // tooltip
 "Unwrap lines" = "Satırları olduğu gibi bırak";
 "Wrap lines" = "Satırları pencere kenarından geri döndür";

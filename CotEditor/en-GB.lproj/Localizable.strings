@@ -363,7 +363,7 @@
 "Custom…" = "Custom…";
 "Use Spaces for Indentation" = "Use Spaces for Indentation";
 
-"Wrap Lines" = "Wrap Lines";
+"Line Wrapping" = "Line Wrapping";
 // tooltip
 "Unwrap lines" = "Unwrap lines";
 "Wrap lines" = "Wrap lines";

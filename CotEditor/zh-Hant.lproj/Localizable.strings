@@ -363,7 +363,7 @@
 "Custom…" = "自訂⋯";
 "Use Spaces for Indentation" = "以空格縮進";
 
-"Wrap Lines" = "換行";
+"Line Wrapping" = "換行";
 // tooltip
 "Unwrap lines" = "不換行";
 "Wrap lines" = "換行";

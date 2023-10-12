@@ -363,7 +363,7 @@
 "Custom…" = "Konfigurieren …";
 "Use Spaces for Indentation" = "Leerzeichen für Einzug verwenden";
 
-"Wrap Lines" = "Zeilen umbrechen";
+"Line Wrapping" = "Zeilenumbruch";
 // tooltip
 "Unwrap lines" = "Zeilen nicht umbrechen";
 "Wrap lines" = "Zeilen umbrechen";

@@ -363,7 +363,7 @@
 "Custom…" = "Personalizar…";
 "Use Spaces for Indentation" = "Use espaços para Indentação";
 
-"Wrap Lines" = "Ajustar Linhas";
+"Line Wrapping" = "Ajuste de Linha";
 // tooltip
 "Unwrap lines" = "Desajustar linhas";
 "Wrap lines" = "Ajustar linhas";

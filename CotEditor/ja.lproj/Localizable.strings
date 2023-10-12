@@ -363,9 +363,9 @@
 "Custom…" = "カスタム…";
 "Use Spaces for Indentation" = "インデントにスペースを使用";
 
-"Wrap Lines" = "行を折り返す";
+"Line Wrapping" = "行の折り返し";
 // tooltip
-"Unwrap lines" = "行の折り返さない";
+"Unwrap lines" = "行を折り返さない";
 "Wrap lines" = "行を折り返す";
 
 "Invisibles" = "不可視文字";

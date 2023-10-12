@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Improve Chinese localizations.
+- [trivial] Update label and tooltip for the Line Wrapping toolbar item.
 - [trivial] Avoid unwanted line break in the character inspector.
 
 

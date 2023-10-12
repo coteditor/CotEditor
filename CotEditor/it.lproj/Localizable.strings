@@ -363,7 +363,7 @@
 "Custom…" = "Personalizzato…";
 "Use Spaces for Indentation" = "Usa gli spazi per il rientro";
 
-"Wrap Lines" = "A capo automatico";
+"Line Wrapping" = "Adattamento righe:";
 // tooltip
 "Unwrap lines" = "Rimuovi a capo automatico";
 "Wrap lines" = "A capo automatico";
