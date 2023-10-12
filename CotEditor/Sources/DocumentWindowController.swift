@@ -569,7 +569,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.label = String(localized: "Indent Guides")
                 item.toolTip = String(localized: "Hide indent guide lines")
                 item.stateImages[.on] = NSImage(resource: .textIndentguidesHide)
-                
                 item.stateImages[.off] = NSImage(resource: .textIndentguides)
                 item.action = #selector(DocumentViewController.toggleIndentGuides)
                 item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
