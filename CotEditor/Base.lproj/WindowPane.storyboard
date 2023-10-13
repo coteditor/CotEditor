@@ -291,6 +291,9 @@
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.highlightCurrentLine" id="s1F-ps-Mjh"/>
+                                        </connections>
                                     </button>
                                     <textField focusRingType="none" horizontalHuggingPriority="751" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="xZO-qm-3B8">
                                         <rect key="frame" x="37" y="187" width="93" height="16"/>

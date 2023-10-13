@@ -14,7 +14,8 @@ Change Log
 
 ### Fixes
 
-- Fix that a label was not localized.
+- Fix an issue that the checkbox to change the background color for the current line in the Window settings did not work.
+- Fix an issue that a label was not localized.
 
 
 
