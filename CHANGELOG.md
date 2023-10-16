@@ -11,6 +11,7 @@ Change Log
 - Improve Chinese localizations.
 - [trivial] Update label and tooltip for the Line Wrapping toolbar item.
 - [trivial] Avoid unwanted line break in the character inspector.
+- [non-AppStore ver.] Update Sparkle from 2.5.0 to 2.5.1.
 
 
 ### Fixes
