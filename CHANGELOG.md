@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Set the text kerning in the editor to zero if the font is monospaced.
 - Improve Chinese localizations.
 - [trivial] Update label and tooltip for the Line Wrapping toolbar item.
 - [trivial] Avoid unwanted line break in the character inspector.

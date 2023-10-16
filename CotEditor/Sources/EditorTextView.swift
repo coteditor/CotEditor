@@ -224,6 +224,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         layoutManager.showsIndentGuides = defaults[.showIndentGuides]
         
         self.ligature = defaults[.ligature(for: fontType)] ? .standard : .none
+        self.typingAttributes[.kern] = (fontType == .monospaced) ? 0 : nil
         self.invalidateDefaultParagraphStyle(initial: true)
         
         // observe font changes in defaults
@@ -1326,6 +1327,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.font = defaults.font(for: type)
         self.ligature = defaults[.ligature(for: type)] ? .standard : .none
         self.usesAntialias = defaults[.antialias(for: type)]
+        self.typingAttributes[.kern] = (type == .monospaced) ? 0 : nil
         
         self.observeFontDefaults(for: type)
     }
