@@ -51,7 +51,7 @@ extension NSFont {
     
     
     /// Core Graphics font object corresponding to the font
-    var cgFont: CGFont {
+    final var cgFont: CGFont {
         
         CTFontCopyGraphicsFont(self, nil)
     }

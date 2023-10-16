@@ -28,7 +28,7 @@ import AppKit
 extension NSTableView {
     
     /// The row view where the user clicked.
-    var clickedRowView: NSTableRowView? {
+    final var clickedRowView: NSTableRowView? {
         
         guard self.clickedRow >= 0 else { return nil }
         

@@ -28,35 +28,35 @@ import Foundation
 extension Bundle {
     
     /// application name
-    var bundleName: String {
+    final var bundleName: String {
         
         self.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
     }
     
     
     /// human-friendly version expression (semantic versioning)
-    var shortVersion: String {
+    final var shortVersion: String {
         
         self.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     }
     
     
     /// build number
-    var bundleVersion: String {
+    final var bundleVersion: String {
         
         self.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
     }
     
     
     /// help book name
-    var helpBookName: String? {
+    final var helpBookName: String? {
         
         self.object(forInfoDictionaryKey: "CFBundleHelpBookName") as? String
     }
     
     
     /// Is the running app a pre-release version?
-    var isPrerelease: Bool {
+    final var isPrerelease: Bool {
         
         // -> Pre-release versions contain non-digit letter.
         self.shortVersion.contains(/[^0-9.]/)

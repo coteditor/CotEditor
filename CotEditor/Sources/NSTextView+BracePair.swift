@@ -28,7 +28,7 @@ import AppKit
 extension NSTextView {
     
     /// find the matching braces for the character before the cursors and highlight them
-    func highlightMatchingBrace(candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) {
+    final func highlightMatchingBrace(candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) {
         
         guard
             !self.string.isEmpty,

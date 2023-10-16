@@ -35,7 +35,7 @@ extension NSTextView {
     ///   - inSelection: Whether find string only in selectedRanges.
     /// - Returns: A result message.
     /// - Throws: `CancellationError`
-    @MainActor func highlight(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
+    @MainActor final func highlight(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
         
         self.isEditable = false
         defer { self.isEditable = true }
@@ -92,7 +92,7 @@ extension NSTextView {
     ///   - inSelection: Whether find string only in selectedRanges.
     /// - Returns: A result message.
     /// - Throws: `CancellationError`
-    @MainActor func replaceAll(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
+    @MainActor final func replaceAll(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
         
         self.isEditable = false
         defer { self.isEditable = true }

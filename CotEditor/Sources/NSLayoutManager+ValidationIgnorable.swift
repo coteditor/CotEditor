@@ -56,7 +56,7 @@ extension NSLayoutManager {
     ///
     /// - Parameter range: The overall range in which temporary attributes are updated.
     /// - Parameter work: The work to do while the display validation is disabled..
-    func groupTemporaryAttributesUpdate(in range: NSRange, work: () throws -> Void) rethrows {
+    final func groupTemporaryAttributesUpdate(in range: NSRange, work: () throws -> Void) rethrows {
         
         guard let self = self as? any ValidationIgnorable else {
             assertionFailure("Conforming to ValidationIgnorable protocol is expected when using groupTemporaryAttributesUpdate(in:work:).")

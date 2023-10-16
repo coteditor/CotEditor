@@ -657,7 +657,7 @@ final class TextFinder {
 
 extension NSTextView {
     
-    @IBAction func unhighlight(_ sender: Any?) {
+    @IBAction final func unhighlight(_ sender: Any?) {
         
         self.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.nsRange)
     }

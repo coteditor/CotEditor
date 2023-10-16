@@ -71,7 +71,7 @@ extension UserDefaults {
 extension NSFont {
     
     /// Keyed archived data of the font descriptor to store.
-    var archivedData: Data {
+    final var archivedData: Data {
         
         get throws {
             

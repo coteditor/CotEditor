@@ -34,7 +34,7 @@ extension NSTextView {
     ///   - enabled: If true, parse and highlight, otherwise just remove the current highlight.
     /// - Returns: Whether the content is not invalid.
     @discardableResult
-    @MainActor func highlightAsRegularExpressionPattern(mode: RegularExpressionParseMode, enabled: Bool = true) -> Bool {
+    @MainActor final func highlightAsRegularExpressionPattern(mode: RegularExpressionParseMode, enabled: Bool = true) -> Bool {
         
         guard
             let layoutManager = self.textLayoutManager

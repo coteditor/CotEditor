@@ -464,7 +464,7 @@ extension NSTextView {
     ///
     /// - Parameter index: The character index where the insertion point will locate.
     /// - Returns: Rect where insertion point filled.
-    func insertionPointRects(at index: Int) -> [NSRect] {
+    final func insertionPointRects(at index: Int) -> [NSRect] {
         
         guard let layoutManager = self.layoutManager else { assertionFailure(); return [] }
         
@@ -484,7 +484,7 @@ extension NSTextView {
     ///
     /// - Parameter index: The character index of the reference insertion point.
     /// - Returns: The character index of the objective insertion point location or `0` if cannot move.
-    func upperInsertionLocation(of index: Int) -> Int {
+    final func upperInsertionLocation(of index: Int) -> Int {
         
         guard
             let layoutManager = self.layoutManager,
@@ -504,7 +504,7 @@ extension NSTextView {
     ///
     /// - Parameter index: The character index of the reference insertion point.
     /// - Returns: The character index of the objective insertion point location or end of the document if cannot move.
-    func lowerInsertionLocation(of index: Int) -> Int {
+    final func lowerInsertionLocation(of index: Int) -> Int {
         
         guard
             let layoutManager = self.layoutManager,

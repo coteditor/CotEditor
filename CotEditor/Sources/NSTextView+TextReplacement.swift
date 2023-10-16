@@ -31,7 +31,7 @@ extension NSTextView {
     
     /// perform simple text replacement
     @discardableResult
-    func replace(with string: String, range: NSRange, selectedRange: NSRange?, actionName: String? = nil) -> Bool {
+    final func replace(with string: String, range: NSRange, selectedRange: NSRange?, actionName: String? = nil) -> Bool {
         
         let selectedRanges: [NSRange]? = selectedRange.flatMap { [$0] }
         
@@ -41,7 +41,7 @@ extension NSTextView {
     
     /// perform multiple text replacements
     @discardableResult
-    func replace(with strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?, actionName: String? = nil) -> Bool {
+    final func replace(with strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?, actionName: String? = nil) -> Bool {
         
         assert(Thread.isMainThread)
         assert(strings.count == ranges.count, "unbalanced number of strings and ranges for multiple replacement")
@@ -102,7 +102,7 @@ extension NSTextView {
     
     
     /// set undoable selection change
-    func setSelectedRangesWithUndo(_ ranges: [NSValue]) {
+    final func setSelectedRangesWithUndo(_ ranges: [NSValue]) {
         
         if let self = self as? any MultiCursorEditing,
            let set = self.prepareForSelectionUpdate(ranges.map(\.rangeValue))
@@ -121,14 +121,14 @@ extension NSTextView {
     
     
     /// set undoable selection change
-    func setSelectedRangesWithUndo(_ ranges: [NSRange]) {
+    final func setSelectedRangesWithUndo(_ ranges: [NSRange]) {
         
         self.setSelectedRangesWithUndo(ranges as [NSValue])
     }
     
     
     /// trim all trailing whitespace with/without keeping editing point
-    func trimTrailingWhitespace(ignoresEmptyLines: Bool, keepingEditingPoint: Bool = false) {
+    final func trimTrailingWhitespace(ignoresEmptyLines: Bool, keepingEditingPoint: Bool = false) {
         
         assert(Thread.isMainThread)
         

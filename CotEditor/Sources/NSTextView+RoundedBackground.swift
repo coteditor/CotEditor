@@ -36,7 +36,7 @@ extension NSTextView {
     // MARK: Public Methods
     
     /// draw rounded background rects for .roundedBackgroundColor temporary attributes in the layoutManager
-    func drawRoundedBackground(in dirtyRect: NSRect) {
+    final func drawRoundedBackground(in dirtyRect: NSRect) {
         
         // avoid invoking heavy-duty `range(for:)` as possible
         guard

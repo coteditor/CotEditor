@@ -28,14 +28,14 @@ import AppKit
 extension NSTextView {
     
     /// The first selected string
-    var selectedString: String {
+    final var selectedString: String {
         
         (self.string as NSString).substring(with: self.selectedRange)
     }
     
     
     /// The selected strings.
-    var selectedStrings: [String] {
+    final var selectedStrings: [String] {
         
         self.selectedRanges
             .map(\.rangeValue)
@@ -44,7 +44,7 @@ extension NSTextView {
     
     
     /// character just before the given range
-    func character(before range: NSRange) -> Unicode.Scalar? {
+    final func character(before range: NSRange) -> Unicode.Scalar? {
         
         guard range.lowerBound > 0 else { return nil }
         
@@ -55,7 +55,7 @@ extension NSTextView {
     
     
     /// character just after the given range
-    func character(after range: NSRange) -> Unicode.Scalar? {
+    final func character(after range: NSRange) -> Unicode.Scalar? {
         
         let index = String.UnicodeScalarIndex(utf16Offset: range.upperBound, in: self.string)
         
@@ -64,7 +64,7 @@ extension NSTextView {
     
     
     /// location of the beginning of the current visual line considering indent
-    func locationOfBeginningOfLine(for location: Int) -> Int {
+    final func locationOfBeginningOfLine(for location: Int) -> Int {
         
         let string = self.string as NSString
         let lineRange = string.lineRange(at: location)
@@ -88,7 +88,7 @@ extension NSTextView {
     /// Select the given range with visual feedback.
     ///
     /// - Parameter range: The character range to select.
-    func select(range: NSRange) {
+    final func select(range: NSRange) {
         
         self.selectedRange = range
         self.scrollRangeToVisible(range)

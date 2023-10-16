@@ -30,7 +30,7 @@ extension NSControl {
     /// Bind receiver's nullPlaceholder with initial value of correspondent UserDefaults key.
     ///
     /// - Parameter binding: The target property of the receiver to bind.
-    func bindNullPlaceholderToUserDefaults(_ binding: NSBindingName = .value) {
+    final func bindNullPlaceholderToUserDefaults(_ binding: NSBindingName = .value) {
         
         guard
             let bindingInfo = self.infoForBinding(binding),

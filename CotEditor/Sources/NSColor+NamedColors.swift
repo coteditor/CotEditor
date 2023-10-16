@@ -38,7 +38,7 @@ extension NSColor {
     ///
     /// - Parameter number: The required number of colors.
     /// - Returns: An array of created colors.
-    func decompose(into number: Int) -> [NSColor] {
+    final func decompose(into number: Int) -> [NSColor] {
         
         (0..<number)
             .map { Double($0) / Double(number) }

@@ -31,7 +31,7 @@ extension NSLayoutManager {
     ///
     /// - Parameter charIndex: The index of the character for which to return the line fragment range.
     /// - Returns: The range of characters that locate in the same line fragment of the given character.
-    func lineFragmentRange(at charIndex: Int) -> NSRange {
+    final func lineFragmentRange(at charIndex: Int) -> NSRange {
         
         let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
         var lineGlyphRange: NSRange = .notFound
@@ -55,7 +55,7 @@ extension NSLayoutManager {
     ///   - forSelection: Whether obtaining rect in the quality for selection range drawing.
     ///   - textContainer: The text container in which the glyph is laid out.
     /// - Returns: The enclosing rectangle.
-    func enclosingRectForGlyph(at glyphIndex: Int, forSelection: Bool = false, in textContainer: NSTextContainer) -> NSRect {
+    final func enclosingRectForGlyph(at glyphIndex: Int, forSelection: Bool = false, in textContainer: NSTextContainer) -> NSRect {
         
         assert(self.isValidGlyphIndex(glyphIndex))
         
@@ -83,7 +83,7 @@ extension NSLayoutManager {
     ///   - location: The index for which to check attributes. This value must not exceed the bounds of the receiver.
     ///   - range: The range over which to search for continuous presence of attrName. This value must not exceed the bounds of the receiver.
     /// - Returns: A range contains the maximum range over which the named attribute’s value applies, clipped to rangeLimit. Or `nil` if no attribute value exists.
-    func effectiveRange(of attrName: NSAttributedString.Key, at location: Int, in range: NSRange? = nil) -> NSRange? {
+    final func effectiveRange(of attrName: NSAttributedString.Key, at location: Int, in range: NSRange? = nil) -> NSRange? {
         
         let range = range ?? self.attributedString().range
         var effectiveRange = NSRange.notFound
@@ -103,7 +103,7 @@ extension NSLayoutManager {
     ///   - value: The value for the specified attribute.
     ///   - range: The range of the attribute value in the receiver.
     ///   - stop: A reference to a Boolean value, which you can set to true within the closure to stop further processing of the attribute enumeration.
-    func enumerateTemporaryAttribute(_ attrName: NSAttributedString.Key, in enumerationRange: NSRange, using block: (_ value: Any, _ range: NSRange, _ stop: inout Bool) -> Void) {
+    final func enumerateTemporaryAttribute(_ attrName: NSAttributedString.Key, in enumerationRange: NSRange, using block: (_ value: Any, _ range: NSRange, _ stop: inout Bool) -> Void) {
         
         var characterIndex = enumerationRange.location
         while characterIndex < enumerationRange.upperBound {
@@ -128,7 +128,7 @@ extension NSLayoutManager {
     ///   - attrName: The name of temporary attribute key to check.
     ///   - range: The range where to check. When `nil`, search the entire range.
     /// - Returns: Whether the given attribute key exists.
-    func hasTemporaryAttribute(_ attrName: NSAttributedString.Key, in range: NSRange? = nil) -> Bool {
+    final func hasTemporaryAttribute(_ attrName: NSAttributedString.Key, in range: NSRange? = nil) -> Bool {
         
         guard self.attributedString().length > 0 else { return false }
         
@@ -153,7 +153,7 @@ extension NSLayoutManager {
     ///
     /// - Parameter index: The character index to check.
     /// - Returns: `true` when is right-to-left, otherwise `false`.
-    func isRTL(at index: Int) -> Bool {
+    final func isRTL(at index: Int) -> Bool {
         
         let glyphIndex = self.glyphIndexForCharacter(at: index)
         
@@ -172,7 +172,7 @@ extension NSLayoutManager {
     ///   - characterIndex: The character index of the origin character.
     ///   - baseWritingDirection: The base writing direction of the entire string to move index among lines.
     /// - Returns: Left character index.
-    func leftCharacterIndex(of characterIndex: Int, baseWritingDirection: NSWritingDirection) -> Int {
+    final func leftCharacterIndex(of characterIndex: Int, baseWritingDirection: NSWritingDirection) -> Int {
         
         let characterIndexes = self.lineFragmentInsertionPointIndexes(forCharacterAt: characterIndex)
         
@@ -200,7 +200,7 @@ extension NSLayoutManager {
     ///   - characterIndex: The character index of the origin character.
     ///   - baseWritingDirection: The base writing direction of the entire string to move index among lines.
     /// - Returns: Right character index.
-    func rightCharacterIndex(of characterIndex: Int, baseWritingDirection: NSWritingDirection) -> Int {
+    final func rightCharacterIndex(of characterIndex: Int, baseWritingDirection: NSWritingDirection) -> Int {
         
         let characterIndexes = self.lineFragmentInsertionPointIndexes(forCharacterAt: characterIndex)
         
@@ -228,7 +228,7 @@ extension NSLayoutManager {
     ///
     /// - Parameter characterIndex: The character index.
     /// - Returns: One-pixel-width rects to draw insertion point in the layout manager coordinate.
-    func insertionPointRects(at characterIndex: Int) -> [NSRect] {
+    final func insertionPointRects(at characterIndex: Int) -> [NSRect] {
         
         guard
             let primaryRect = self.insertionPointRect(at: characterIndex, alternate: false)
@@ -321,7 +321,7 @@ extension NSLayoutManager {
     ///   - offsetsHandler: The block returning the vertical offsets in the line fragment coordinate to draw additional guidelines.
     ///   - textContainer: The text container in which the glyphs are laid out.
     ///   - glyphRange: The range of glyphs laid out in the current line fragment.
-    func drawLineFragments(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, offsetsHandler: @escaping (_ textContainer: NSTextContainer, _ glyphRange: NSRange) -> [CGFloat] = { (_, _) in [] }) {
+    final func drawLineFragments(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, offsetsHandler: @escaping (_ textContainer: NSTextContainer, _ glyphRange: NSRange) -> [CGFloat] = { (_, _) in [] }) {
         
         NSGraphicsContext.saveGraphicsState()
         

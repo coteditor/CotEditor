@@ -27,13 +27,13 @@ import AppKit.NSAppearance
 
 extension NSAppearance {
     
-    var isDark: Bool {
+    final var isDark: Bool {
         
         self.bestMatch(from: [.aqua, .darkAqua]) == .darkAqua
     }
     
     
-    var isHighContrast: Bool {
+    final var isHighContrast: Bool {
         
         switch self.name {
             case .accessibilityHighContrastAqua,

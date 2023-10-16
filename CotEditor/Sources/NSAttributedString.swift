@@ -28,7 +28,7 @@ import Foundation.NSAttributedString
 extension NSAttributedString {
     
     /// Whole range.
-    var range: NSRange {
+    final var range: NSRange {
         
         NSRange(location: 0, length: self.length)
     }
@@ -60,7 +60,7 @@ extension NSAttributedString {
     ///   - attrName: The name of the attribute key to check.
     ///   - range: The range where to check. When `nil`, search the entire range.
     /// - Returns: Whether the attribute for the given attribute key exists.
-    func hasAttribute(_ attrName: NSAttributedString.Key, in range: NSRange? = nil) -> Bool {
+    final func hasAttribute(_ attrName: NSAttributedString.Key, in range: NSRange? = nil) -> Bool {
         
         guard self.length > 0 else { return false }
         
@@ -80,7 +80,7 @@ extension NSAttributedString {
     /// - Parameters:
     ///   - location: The character index to start truncation.
     ///   - offset: The maximum number of composed characters to leave on the left of the `location`.
-    func truncatedHead(until location: Int, offset: Int) -> NSAttributedString {
+    final func truncatedHead(until location: Int, offset: Int) -> NSAttributedString {
         
         let mutable = self.mutable
         mutable.truncateHead(until: location, offset: offset)
@@ -105,7 +105,7 @@ extension NSMutableAttributedString {
     /// - Parameters:
     ///   - location: The character index to start truncation.
     ///   - offset: The maximum number of composed characters to leave on the left of the `location`.
-    func truncateHead(until location: Int, offset: Int) {
+    final func truncateHead(until location: Int, offset: Int) {
         
         assert(location >= 0)
         assert(offset >= 0)

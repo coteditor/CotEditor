@@ -41,7 +41,7 @@ extension NSTextStorage {
     /// - Parameters
     ///   - block: The block to be executed when the textStorage is edited.
     ///   - editedString: The contents of the textStorage after the editing.
-    func observeDirectEditing(block: @escaping (_ editedString: String) -> Void) {
+    final func observeDirectEditing(block: @escaping (_ editedString: String) -> Void) {
         
         weak var observer: (any NSObjectProtocol)?
         observer = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self, queue: .main) { [weak self] notification in

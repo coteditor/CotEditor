@@ -46,7 +46,7 @@ extension NSTouchBar {
     
     
     /// validate currently visible touch bar items
-    func validateVisibleItems() {
+    final func validateVisibleItems() {
         
         guard self.isVisible else { return }
         
@@ -216,13 +216,13 @@ extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
     
     // MARK: Validated User Interface Item Protocol
     
-    public var action: Selector? {
+    public final var action: Selector? {
         
         self.control?.action
     }
     
     
-    public var tag: Int {
+    public final var tag: Int {
         
         self.control?.tag ?? 0
     }

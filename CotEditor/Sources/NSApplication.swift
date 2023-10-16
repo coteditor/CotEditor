@@ -28,7 +28,7 @@ import AppKit
 extension NSApplication {
     
     /// Relaunch application itself.
-    func relaunch() {
+    final func relaunch() {
         
         let escapedPath = Bundle.main.bundlePath.replacing("\"", with: "\\\"")
         let command = "sleep 2; open \"\(escapedPath)\""
