@@ -8,9 +8,8 @@ Change Log
 ### Improvements
 
 - Set the text kerning in the editor to zero if the font is monospaced.
-- Improve Chinese localizations.
-- [trivial] Update label and tooltip for the Line Wrapping toolbar item.
-- [trivial] Avoid unwanted line break in the character inspector.
+- Improve localization.
+- [trivial] Update the label and tooltip for the Line Wrapping toolbar item.
 - [non-AppStore ver.] Update Sparkle from 2.5.0 to 2.5.1.
 
 
@@ -18,6 +17,7 @@ Change Log
 
 - Fix an issue that the checkbox to change the background color for the current line in the Window settings did not work.
 - Fix an issue that a label was not localized.
+- [trivial] Fix unwanted line breaks in the character inspector.
 
 
 
