@@ -29,15 +29,6 @@ extension RegularExpressionSyntaxType {
     
     var color: NSColor {
         
-        NSColor(resource: self.colorResource)
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    private var colorResource: ColorResource {
-        
         switch self {
             case .character: .Regex.character
             case .backReference: .Regex.backReference
