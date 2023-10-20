@@ -26,7 +26,6 @@
 import AppKit
 import SwiftUI
 
-
 struct HelpButton: NSViewRepresentable {
     
     typealias NSViewType = NSButton
