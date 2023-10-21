@@ -74,6 +74,18 @@ numbers:
   ignoreCase: true
   regularExpression: true
   description: "decimal"
+- beginString: "\\b0b[01][01_]*l?"
+  ignoreCase: true
+  regularExpression: true
+  description: "binary"
+- beginString: "\\b0o[0-7][0-7_]*l?"
+  ignoreCase: true
+  regularExpression: true
+  description: "octal"
+- beginString: "\\b0x[0-9a-f][0-9a-f_]*l?"
+  ignoreCase: true
+  regularExpression: true
+  description: "hexadecimal"
 strings:
 - beginString: "\""
   endString: "\""
