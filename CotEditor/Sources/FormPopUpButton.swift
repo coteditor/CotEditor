@@ -95,9 +95,9 @@ final class FormPopUpButtonCell: NSPopUpButtonCell {
                 case (false, true, true): .tertiarySystemFill
                 case (false, true, false): .quaternarySystemFill
                 case (true, false, true): preconditionFailure()  // gradient
-                case (true, false, false): .windowBackgroundColor  // TODO: ??
+                case (true, false, false): .windowBackgroundColor  // not exactly same
                 case (true, true, true): .labelColor
-                case (true, true, false): .tertiarySystemFill  // TODO: a bit whiter
+                case (true, true, false): .tertiarySystemFill  // not exactly same
             }
             
             fillColor.setFill()
@@ -127,31 +127,6 @@ final class FormPopUpButtonCell: NSPopUpButtonCell {
 
 
 
-public extension NSColor {
-    
-    /// The back-deployed version of the `.systemFill`.
-    @backDeployed(before: macOS 14)
-    static var systemFill: NSColor  { .labelColor.withAlphaComponent(0.50) }
-    
-    /// The back-deployed version of the `.secondarySystemFill`.
-    @backDeployed(before: macOS 14)
-    static var secondarySystemFill: NSColor  { .labelColor.withAlphaComponent(0.15) }
-    
-    /// The back-deployed version of the `.tertiarySystemFill`.
-    @backDeployed(before: macOS 14)
-    static var tertiarySystemFill: NSColor  { .labelColor.withAlphaComponent(0.10) }
-    
-    /// The back-deployed version of the `.quaternarySystemFill`.
-    @backDeployed(before: macOS 14)
-    static var quaternarySystemFill: NSColor  { .labelColor.withAlphaComponent(0.05) }
-    
-    /// The back-deployed version of the `.quinarySystemFill`.
-    @backDeployed(before: macOS 14)
-    static var quinarySystemFill: NSColor  { .labelColor.withAlphaComponent(0.03) }
-}
-
-
-
 // MARK: - Preview
 
 @available(macOS 14, *)
@@ -161,7 +136,6 @@ public extension NSColor {
     
     return button
 }
-
 
 @available(macOS 14, *)
 #Preview("Disabled") {
