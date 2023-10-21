@@ -5,6 +5,10 @@ Change Log
 4.6.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- [trivial] Improve the style of the pop-up buttons in the print panel.
+
 
 
 4.6.3 (596)

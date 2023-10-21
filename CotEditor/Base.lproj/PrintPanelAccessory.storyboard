@@ -38,9 +38,9 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="bRC-3n-rin">
-                                <rect key="frame" x="317" y="288" width="123" height="16"/>
-                                <popUpButtonCell key="cell" type="bevel" title="Black and White" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="nUs-hp-672" id="2oE-V0-Tbw">
+                            <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bRC-3n-rin" customClass="FormPopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="311" y="281" width="133" height="25"/>
+                                <popUpButtonCell key="cell" type="roundTextured" title="Black and White" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="nUs-hp-672" id="2oE-V0-Tbw" customClass="FormPopUpButtonCell" customModule="CotEditor" customModuleProvider="target">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" autoenablesItems="NO" id="e9h-Of-563">
@@ -111,10 +111,10 @@
                                     <binding destination="bU7-R8-ocO" name="value" keyPath="printsInvisibles" id="0wL-g6-9Og"/>
                                 </connections>
                             </switch>
-                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="f1I-iq-7Ha">
-                                <rect key="frame" x="281" y="105" width="75" height="16"/>
-                                <popUpButtonCell key="cell" type="bevel" title="DUMMY" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="Y5Z-M5-b2b" id="jk3-rE-AyP">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f1I-iq-7Ha" customClass="FormPopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="275" y="98" width="85" height="25"/>
+                                <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="Y5Z-M5-b2b" id="jk3-rE-AyP" customClass="FormPopUpButtonCell" customModule="CotEditor" customModuleProvider="target">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="3uu-24-iga">
                                         <items>
@@ -123,8 +123,8 @@
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
-                                    <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeaderAndFooter" id="eJp-67-m1S"/>
                                     <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="primaryHeaderContent" id="FUy-9z-58h"/>
+                                    <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeaderAndFooter" id="eJp-67-m1S"/>
                                 </connections>
                             </popUpButton>
                             <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y6C-KD-Qlx">
@@ -141,6 +141,7 @@
                                 </segmentedCell>
                                 <connections>
                                     <accessibilityConnection property="title" destination="f1I-iq-7Ha" id="ilc-7n-q0o"/>
+                                    <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="primaryHeaderAlignment" id="o6Y-Ju-UzO"/>
                                     <binding destination="bU7-R8-ocO" name="enabled2" keyPath="primaryHeaderContent" previousBinding="qhU-95-d2A" id="M2F-LI-6BY">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -150,7 +151,6 @@
                                         </dictionary>
                                     </binding>
                                     <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeaderAndFooter" id="qhU-95-d2A"/>
-                                    <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="primaryHeaderAlignment" id="o6Y-Ju-UzO"/>
                                 </connections>
                             </segmentedControl>
                             <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zau-Af-OBf">
@@ -167,6 +167,8 @@
                                 </segmentedCell>
                                 <connections>
                                     <accessibilityConnection property="title" destination="lW8-WA-sUW" id="Pfa-Ji-2ZV"/>
+                                    <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeaderAndFooter" id="X7O-hI-jHX"/>
+                                    <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="secondaryHeaderAlignment" id="vFE-bC-Bb0"/>
                                     <binding destination="bU7-R8-ocO" name="enabled2" keyPath="secondaryHeaderContent" previousBinding="X7O-hI-jHX" id="PCW-1e-6jz">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -175,14 +177,12 @@
                                             <integer key="NSNullPlaceholder" value="-1"/>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeaderAndFooter" id="X7O-hI-jHX"/>
-                                    <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="secondaryHeaderAlignment" id="vFE-bC-Bb0"/>
                                 </connections>
                             </segmentedControl>
-                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="lW8-WA-sUW">
-                                <rect key="frame" x="281" y="74" width="75" height="16"/>
-                                <popUpButtonCell key="cell" type="bevel" title="DUMMY" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="M42-Kl-i11" id="Vqj-Po-rB8">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lW8-WA-sUW" customClass="FormPopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="275" y="68" width="85" height="25"/>
+                                <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="M42-Kl-i11" id="Vqj-Po-rB8" customClass="FormPopUpButtonCell" customModule="CotEditor" customModuleProvider="target">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="Bk3-uv-jzy">
                                         <items>
@@ -209,6 +209,7 @@
                                 </segmentedCell>
                                 <connections>
                                     <accessibilityConnection property="title" destination="JEM-Eg-bfM" id="WUh-mW-fmm"/>
+                                    <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="primaryFooterAlignment" id="xRY-eU-52j"/>
                                     <binding destination="bU7-R8-ocO" name="enabled2" keyPath="primaryFooterContent" previousBinding="fSX-zo-exX" id="DEB-4P-hKR">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -218,13 +219,12 @@
                                         </dictionary>
                                     </binding>
                                     <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeaderAndFooter" id="fSX-zo-exX"/>
-                                    <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="primaryFooterAlignment" id="xRY-eU-52j"/>
                                 </connections>
                             </segmentedControl>
-                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="JEM-Eg-bfM">
-                                <rect key="frame" x="281" y="32" width="75" height="18"/>
-                                <popUpButtonCell key="cell" type="bevel" title="DUMMY" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="qXf-Q9-bwe" id="inp-eT-VVY">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JEM-Eg-bfM" customClass="FormPopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="275" y="27" width="85" height="25"/>
+                                <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="qXf-Q9-bwe" id="inp-eT-VVY" customClass="FormPopUpButtonCell" customModule="CotEditor" customModuleProvider="target">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="TfU-Pz-bEH">
                                         <items>
@@ -233,14 +233,14 @@
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
-                                    <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeaderAndFooter" id="ceA-At-ocE"/>
                                     <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="primaryFooterContent" id="uyd-Cz-fNg"/>
+                                    <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeaderAndFooter" id="ceA-At-ocE"/>
                                 </connections>
                             </popUpButton>
-                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="BMN-9W-V2O">
-                                <rect key="frame" x="281" y="4" width="75" height="16"/>
-                                <popUpButtonCell key="cell" type="bevel" title="DUMMY" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="VyN-kq-VID" id="mh2-B1-LxR">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BMN-9W-V2O" customClass="FormPopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="275" y="-3" width="85" height="25"/>
+                                <popUpButtonCell key="cell" type="roundTextured" title="DUMMY" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="VyN-kq-VID" id="mh2-B1-LxR" customClass="FormPopUpButtonCell" customModule="CotEditor" customModuleProvider="target">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="fhH-st-yT7">
                                         <items>
@@ -267,6 +267,8 @@
                                 </segmentedCell>
                                 <connections>
                                     <accessibilityConnection property="title" destination="BMN-9W-V2O" id="E46-uW-adf"/>
+                                    <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeaderAndFooter" id="znG-su-4aa"/>
+                                    <binding destination="bU7-R8-ocO" name="selectedIndex" keyPath="secondaryFooterAlignment" id="4vD-ax-KUb"/>
                                     <binding destination="bU7-R8-ocO" name="enabled2" keyPath="secondaryFooterContent" previousBinding="znG-su-4aa" id="jbK-db-qyV">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -275,8 +277,6 @@
                                             <integer key="NSNullPlaceholder" value="-1"/>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeaderAndFooter" id="znG-su-4aa"/>
-                                    <binding destination="bU7-R8-ocO" name="selectedIndex" keyPath="secondaryFooterAlignment" id="4vD-ax-KUb"/>
                                 </connections>
                             </segmentedControl>
                             <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" controlSize="mini" baseWritingDirection="leftToRight" alignment="left" state="on" translatesAutoresizingMaskIntoConstraints="NO" id="5oG-pS-6uI">
