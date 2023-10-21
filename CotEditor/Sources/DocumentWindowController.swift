@@ -475,7 +475,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let verticalItem = NSToolbarItem(itemIdentifier: .verticalText)
                 verticalItem.label = String(localized: "Vertical")
                 verticalItem.toolTip = String(localized: "Vertical")
-                verticalItem.image = NSImage(resource: .textVerticalorientation)
+                verticalItem.image = NSImage(resource: .textVertical)
                 verticalItem.action = #selector(DocumentViewController.makeLayoutOrientationVertical)
                 
                 let item = ToolbarItemGroup(itemIdentifier: itemIdentifier)
