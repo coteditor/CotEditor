@@ -67,7 +67,6 @@ final class LineNumberView: NSView {
         didSet {
             if !self.isHiddenOrHasHiddenAncestor {
                 self.invalidateThickness()
-                self.invalidateIntrinsicContentSize()
             }
         }
     }
@@ -100,8 +99,8 @@ final class LineNumberView: NSView {
     
     private let textView: NSTextView
     
-    private var drawingInfo: DrawingInfo?
-    private var thickness = 32.0
+    private var drawingInfo: DrawingInfo
+    @Invalidating(.intrinsicContentSize) private var thickness = 32.0
     
     @Invalidating(.display) private var textColor: NSColor = .textColor
     @Invalidating(.display) private var backgroundColor: NSColor = .textBackgroundColor
@@ -120,10 +119,10 @@ final class LineNumberView: NSView {
     init(textView: NSTextView) {
         
         self.textView = textView
+        self.drawingInfo = DrawingInfo(fontSize: textView.font!.pointSize, scale: textView.scale)
         
         super.init(frame: .zero)
         
-        self.invalidateDrawingInfo()
         self.observeTextView(textView)
     }
     
@@ -250,7 +249,6 @@ final class LineNumberView: NSView {
     private func drawNumbers(in rect: NSRect) {
         
         guard
-            let drawingInfo = self.drawingInfo,
             let layoutManager = self.textView.layoutManager as? LayoutManager,
             let context = NSGraphicsContext.current?.cgContext
         else { return assertionFailure() }
@@ -262,6 +260,7 @@ final class LineNumberView: NSView {
         context.setFillColor(self.foregroundColor().cgColor)
         context.setStrokeColor(self.foregroundColor(.stroke).cgColor)
         
+        let drawingInfo = self.drawingInfo
         let textView = self.textView
         let isVerticalText = textView.layoutOrientation == .vertical
         let scale = textView.scale
@@ -344,27 +343,20 @@ final class LineNumberView: NSView {
     /// Update receiver's thickness based on drawingInfo and textView's status.
     private func invalidateThickness() {
         
-        guard let drawingInfo = self.drawingInfo else { return assertionFailure() }
-        
-        let thickness: CGFloat = {
+        self.thickness = {
             switch self.orientation {
                 case .horizontal:
                     let requiredNumberOfDigits = max(self.numberOfLines.digits.count, self.minNumberOfDigits)
-                    let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
+                    let thickness = CGFloat(requiredNumberOfDigits) * self.drawingInfo.charWidth + 2 * self.drawingInfo.padding
                     return max(thickness.rounded(.up), self.minVerticalThickness)
                     
                 case .vertical:
-                    let thickness = drawingInfo.fontSize + 4 * drawingInfo.tickLength
+                    let thickness = self.drawingInfo.fontSize + 4 * self.drawingInfo.tickLength
                     return max(thickness.rounded(.up), self.minHorizontalThickness)
                     
                 @unknown default: fatalError()
             }
         }()
-        
-        guard thickness != self.thickness else { return }
-        
-        self.thickness = thickness
-        self.invalidateIntrinsicContentSize()
     }
     
     
