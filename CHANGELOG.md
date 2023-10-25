@@ -10,6 +10,11 @@ Change Log
 - [trivial] Improve the style of the pop-up buttons in the print panel.
 
 
+### Fixes
+
+- Fix an issue that the initial width of the line number view did not grow even the document is large.
+
+
 
 4.6.3 (596)
 --------------------------

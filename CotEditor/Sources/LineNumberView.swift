@@ -107,6 +107,7 @@ final class LineNumberView: NSView {
     @Invalidating(.display) private var backgroundColor: NSColor = .textBackgroundColor
     
     private var opacityObserver: AnyCancellable?
+    private var textStorageObserver: AnyCancellable?
     private var textViewSubscriptions: Set<AnyCancellable> = []
     
     private var draggingInfo: DraggingInfo?
@@ -122,8 +123,8 @@ final class LineNumberView: NSView {
         
         super.init(frame: .zero)
         
-        self.observeTextView(textView)
         self.invalidateDrawingInfo()
+        self.observeTextView(textView)
     }
     
     
@@ -171,6 +172,7 @@ final class LineNumberView: NSView {
             assert(self.textView.enclosingScrollView?.contentView != nil)
             
             self.textViewSubscriptions.removeAll()
+            self.textStorageObserver = nil
         }
         
         // redraw on window opacity change
@@ -374,18 +376,18 @@ final class LineNumberView: NSView {
         self.textViewSubscriptions.removeAll()
         
         // observe content change
-        // -> The textStorage of the textView can be changed.
-        NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: nil)
-            .compactMap { $0.object as? NSTextStorage }
-            .filter { $0.editedMask.contains(.editedCharacters) }
-            .receive(on: RunLoop.main)  // touch textView on main thread
-            .filter { [weak self] in $0 == self?.textView.textStorage }
-            .sink { [weak self] _ in
-                // -> The digit of the line numbers affect thickness.
-                if self?.orientation == .horizontal {
-                    self?.invalidateThickness()
-                }
-                self?.needsDisplay = true
+        textView.layoutManager?.publisher(for: \.textStorage, options: .initial)
+            .sink { [weak self] in
+                self?.invalidateThickness()
+                self?.textStorageObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: $0)
+                    .compactMap { $0.object as? NSTextStorage }
+                    .filter { $0.editedMask.contains(.editedCharacters) }
+                    .receive(on: RunLoop.main)  // touch textView on main thread
+                    .sink { [weak self] _ in
+                        // -> The digit of the line numbers affect thickness.
+                        self?.invalidateThickness()
+                        self?.needsDisplay = true
+                    }
             }
             .store(in: &self.textViewSubscriptions)
         
