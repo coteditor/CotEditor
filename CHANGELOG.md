@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- [trivial] Dim the switcher buttons in the inspector when the window is inactive.
 - [trivial] Improve the style of the pop-up buttons in the print panel.
 
 

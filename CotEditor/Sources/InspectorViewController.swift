@@ -173,8 +173,7 @@ private extension InspectorPane {
     
     func image(selected: Bool = false) -> NSImage? {
         
-        NSImage(systemSymbolName: selected ? self.selectedImageName : self.imageName,
-                accessibilityDescription: self.name)?
+        NSImage(systemSymbolName: selected ? self.selectedImageName : self.imageName, accessibilityDescription: self.name)?
             .withSymbolConfiguration(.init(pointSize: 0, weight: selected ? .semibold : .regular))
     }
     
