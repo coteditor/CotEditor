@@ -86,6 +86,7 @@ struct TextFindAllResult {
         let id = UUID()
         
         var range: NSRange
+        var lineLocation: Int
         var attributedLineString: NSAttributedString
     }
     
@@ -510,7 +511,7 @@ final class TextFinder {
         let client = self.client!
         client.isEditable = false
         
-        let highlightColors = NSColor.textHighlighterColor.usingColorSpace(.genericRGB)!.decompose(into: textFind.numberOfCaptureGroups + 1)
+        let highlightColors = NSColor.textHighlighterColor.decompose(into: textFind.numberOfCaptureGroups + 1)
         let lineCounter = LineCounter(textFind.string as NSString)
         
         // setup progress sheet
@@ -543,14 +544,11 @@ final class TextFinder {
                     let lineRange = lineCounter.lineContentRange(for: matchedRange)
                     let lineString = (textFind.string as NSString).substring(with: lineRange)
                     let attrLineString = NSMutableAttributedString(string: lineString)
-                    for (index, range) in matches.enumerated() where !range.isEmpty {
-                        attrLineString.addAttribute(.backgroundColor,
-                                                    value: highlightColors[index],
-                                                    range: range.shifted(by: -lineRange.location))
+                    for (color, range) in zip(highlightColors, matches) where !range.isEmpty {
+                        attrLineString.addAttribute(.backgroundColor, value: color, range: range.shifted(by: -lineRange.location))
                     }
-                    attrLineString.truncateHead(until: matchedRange.location - lineRange.location, offset: 16)
                     
-                    resultMatches.append(.init(range: matchedRange, attributedLineString: attrLineString))
+                    resultMatches.append(.init(range: matchedRange, lineLocation: matchedRange.location - lineRange.location, attributedLineString: attrLineString))
                 }
                 
                 progress.completedUnit = matches[0].upperBound
@@ -659,7 +657,7 @@ final class TextFinder {
 
 extension NSTextView {
     
-    @IBAction func unhighlight(_ sender: Any?) {
+    @IBAction final func unhighlight(_ sender: Any?) {
         
         self.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.nsRange)
     }

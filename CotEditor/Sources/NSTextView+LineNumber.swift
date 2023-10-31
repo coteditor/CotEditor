@@ -50,7 +50,7 @@ extension NSTextView {
     ///
     /// - Parameter location: NSRange-based character index.
     /// - Returns: The number of lines (1-based).
-    func lineNumber(at location: Int) -> Int {
+    final func lineNumber(at location: Int) -> Int {
         
         (self.layoutManager as? any LineRangeCacheable)?.lineNumber(at: location) ?? (self.string as NSString).lineNumber(at: location)
     }
@@ -66,7 +66,7 @@ extension NSTextView {
     ///   - lineRect: The line fragment rect.
     ///   - line: The information of the line.
     ///   - lineNumber: The number of logical line (1-based).
-    func enumerateLineFragments(in rect: NSRect, for range: NSRange? = nil, options: LineEnumerationOptions = [], body: (_ lineRect: NSRect, _ line: Line, _ lineNumber: Int) -> Void) {
+    final func enumerateLineFragments(in rect: NSRect, for range: NSRange? = nil, options: LineEnumerationOptions = [], body: (_ lineRect: NSRect, _ line: Line, _ lineNumber: Int) -> Void) {
         
         guard
             let layoutManager = self.layoutManager,

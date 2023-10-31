@@ -30,14 +30,14 @@ import AppKit
 extension NSTextView {
     
     /// calculate visible range
-    var visibleRange: NSRange? {
+    final var visibleRange: NSRange? {
         
         self.range(for: self.visibleRect, withoutAdditionalLayout: true)
     }
     
     
     /// calculate range of characters in rect
-    func range(for rect: NSRect, withoutAdditionalLayout: Bool = false) -> NSRange? {
+    final func range(for rect: NSRect, withoutAdditionalLayout: Bool = false) -> NSRange? {
         
         guard
             let layoutManager = self.layoutManager,
@@ -54,7 +54,7 @@ extension NSTextView {
     
     
     /// return bounding rectangle (in text view coordinates) enclosing all the given character range
-    func boundingRect(for range: NSRange) -> NSRect? {
+    final func boundingRect(for range: NSRange) -> NSRect? {
         
         guard
             let layoutManager = self.layoutManager,
@@ -69,7 +69,7 @@ extension NSTextView {
     
     
     /// return bounding rectangles (in text view coordinates) enclosing all the given character range
-    func boundingRects(for range: NSRange) -> [NSRect] {
+    final func boundingRects(for range: NSRange) -> [NSRect] {
         
         var count = 0
         guard
@@ -94,7 +94,7 @@ extension NSTextView {
     // MARK: Public Methods
     
     /// current zooming scale
-    @objc var scale: CGFloat {
+    @objc final var scale: CGFloat {
         
         get {
             self.convert(.unit, to: nil).width
@@ -132,7 +132,7 @@ extension NSTextView {
     
     
     /// zoom to the scale keeping passed-in point position in scroll view
-    func setScale(_ scale: CGFloat, centeredAt point: NSPoint) {
+    final func setScale(_ scale: CGFloat, centeredAt point: NSPoint) {
         
         let currentScale = self.scale
         
@@ -164,7 +164,7 @@ extension NSTextView {
     
     
     /// zoom to the scale keeping current visible rect position in scroll view
-    func setScaleKeepingVisibleArea(_ scale: CGFloat) {
+    final func setScaleKeepingVisibleArea(_ scale: CGFloat) {
         
         self.setScale(scale, centeredAt: self.visibleRect.mid)
     }
@@ -177,7 +177,7 @@ extension NSTextView {
 extension NSTextView {
     
     /// if soft wrap lines
-    var wrapsLines: Bool {
+    final var wrapsLines: Bool {
         
         get {
             self.textContainer?.widthTracksTextView ?? false
@@ -222,7 +222,7 @@ extension NSTextView {
     
     
     /// return infinite size for textContainer considering writing orientation state
-    var infiniteSize: CGSize {
+    final var infiniteSize: CGSize {
         
         // infinite size doesn't work with RTL (2018-01 macOS 10.13).
         (self.baseWritingDirection == .rightToLeft)

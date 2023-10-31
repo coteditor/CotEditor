@@ -55,7 +55,7 @@
 
 
 // warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "“%@” silmek istediğinize emin misiniz?";
+"Are you sure you want to delete “%@”?" = "“%@” öğesini silmek istediğinizden emin misiniz?";
 "This action cannot be undone." = "Bu eylem geri alınamaz.";
 
 
@@ -230,8 +230,8 @@
 
 
 /* MARK: Open Panel Accessory */
-"Encoding:" = "Kodlama:";
-"Show hidden files" = "Gizli dosyaları göster";
+"Text encoding:" = "Metin kodlaması:";
+"Show invisible files" = "Gizli dosyaları göster";
 
 
 
@@ -256,7 +256,7 @@
 "Line Endings to %@" = "Satır Sonları: %@";
 
 // Convert or reinterpret encoding alert
-"File encoding" = "Dosya Kodlaması";
+"Text encoding" = "Metin kodlaması";
 "Do you want to convert or reinterpret this document using “%@”?" = "Bu belgeyi “%@” kullanarak dönüştürmek veya yeniden yorumlamak istiyor musunuz?";
 "Convert" = "Dönüştür";
 "Reinterpret" = "Yeniden Yorumla";
@@ -320,13 +320,13 @@
 // tooltip
 "Show document information" = "Belge bilgisini göster";
 
-"Text Size" = "Metin Boyutu";
+"Text Size" = "Metin Puntosu";
 "Smaller" = "Daha Küçük";
 "Bigger" = "Daha Büyük";
 // tooltip
-"Change text size" = "Metin boyutunu değiştir";
-"Decrease text size" = "Metin boyutunu azalt";
-"Increase text size" = "Metin boyutunu artır";
+"Change text size" = "Metin puntosunu değiştir";
+"Decrease text size" = "Metin puntosunu azalt";
+"Increase text size" = "Metin puntosunu artır";
 
 "Writing Direction" = "Yazım Yönü";
 "Left to Right" = "Soldan Sağa";
@@ -363,7 +363,7 @@
 "Custom…" = "Özel…";
 "Use Spaces for Indentation" = "Girintileme için Boşluklar Kullan";
 
-"Wrap Lines" = "Satırları Kaydır";
+"Line Wrapping" = "Satır Kaydırma";
 // tooltip
 "Unwrap lines" = "Satırları olduğu gibi bırak";
 "Wrap lines" = "Satırları pencere kenarından geri döndür";
@@ -438,7 +438,7 @@
 "Document Name" = "Belge Adı";
 "File Path" = "Dosya Yolu";
 "Print Date" = "Yazdırma Tarihi";
-"Last Modified Date" = "Son Değiştirilme Tarihi";
+"Last Modified Date" = "Son Değişiklik Tarihi";
 "Page Number" = "Sayfa Numarası";
 
 // Segmented control tooltips
@@ -869,16 +869,16 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "%lld karakterden oluşan bir harf";
+"<a letter consisting of %lld characters>" = "%lld karakterden oluşan bir harf";  // %lld is always 2 or more.
 
 // Variation selectors
 "Emoji Style" = "Emoji Biçemi";
 "Text Style" = "Metin Biçemi";
-"Skin Tone I-II" = "Deri Tonu I-II";
-"Skin Tone III" = "Deri Tonu III";
-"Skin Tone IV" = "Deri Tonu IV";
-"Skin Tone V" = "Deri Tonu V";
-"Skin Tone VI" = "Deri Tonu VI";
+"Skin Tone I-II" = "Ten Rengi I-II";
+"Skin Tone III" = "Ten Rengi III";
+"Skin Tone IV" = "Ten Rengi IV";
+"Skin Tone V" = "Ten Rengi V";
+"Skin Tone VI" = "Ten Rengi VI";
 "Variant" = "Varyant";
 
 

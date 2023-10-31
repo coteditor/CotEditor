@@ -745,7 +745,7 @@ private extension NSAttributedString {
     ///   - isForward: `true` if the search should be forward, otherwise false.
     ///   - delimiters: Additional characters to treat as word delimiters.
     /// - Returns: The index of the first character of the word after the given index if `isForward` is `true`; otherwise, after the given index.
-    func nextWord(from location: Int, forward isForward: Bool, delimiters: CharacterSet) -> Int {
+    final func nextWord(from location: Int, forward isForward: Bool, delimiters: CharacterSet) -> Int {
         
         assert(location >= 0)
         assert(location <= self.length)

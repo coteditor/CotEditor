@@ -308,7 +308,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     // MARK: Action Messages
     
-    /// save default file encoding
+    /// save default text encoding
     @IBAction func changeEncoding(_ sender: NSMenuItem) {
         
         EncodingManager.shared.defaultEncoding = FileEncoding(tag: sender.tag)

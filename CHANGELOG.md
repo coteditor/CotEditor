@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-4.6.2 (unreleased)
+4.6.4 (unreleased)
 --------------------------
 
 ### New Features
@@ -12,17 +12,52 @@ Change Log
 
 ### Improvements
 
-- Tweak German localization.
+- [trivial] Dim the switcher buttons in the inspector when the window is inactive.
+- [trivial] Improve the style of the pop-up buttons in the print panel.
+
+
+### Fixes
+
+- Fix an issue that the initial width of the line number view did not grow even the document is large.
+
+
+
+4.6.3 (596)
+--------------------------
+
+### Improvements
+
+- Set the text kerning in the editor to zero if the font is monospaced.
+- Improve localization.
+- [trivial] Update the label and tooltip for the Line Wrapping toolbar item.
+- [non-AppStore ver.] Update Sparkle from 2.5.0 to 2.5.1.
+
+
+### Fixes
+
+- Fix an issue that the checkbox to change the background color for the current line in the Window settings did not work.
+- Fix an issue that a label was not localized.
+- [trivial] Fix unwanted line breaks in the character inspector.
+
+
+
+4.6.2 (594)
+--------------------------
+
+### Improvements
+
+- Tweak German and Japanese localization.
 
 
 ### Fixes
 
 - Fix an issue that the application crashed when performing the Find All command with a specific find string.
-- Fix an issue that the find all result view occasionally missed the document to select.
+- Fix an issue that the find result view occasionally failed to select the match in the editor by clicking a row.
 - Fix an issue that the initial find window height was unwantedly expanded when the find result view had appeared in the last session.
+- Fix an issue that the lines copied from the find result table could be truncated.
 - Fix an issue that the Settings window disappeared when the application is inactive.
-- Fix an issue that the editor did not remember the scroll position when relaunch the application.
-- [trivial] Fix an issue that unwanted debug log appeared in the Console.
+- Fix an issue that the editor did not remember the scroll position when relaunching the application.
+- [trivial] Fix an issue that unwanted debug logs appeared in the Console.
 
 
 

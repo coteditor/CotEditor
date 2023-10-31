@@ -475,7 +475,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let verticalItem = NSToolbarItem(itemIdentifier: .verticalText)
                 verticalItem.label = String(localized: "Vertical")
                 verticalItem.toolTip = String(localized: "Vertical")
-                verticalItem.image = NSImage(resource: .textVerticalorientation)
+                verticalItem.image = NSImage(resource: .textVertical)
                 verticalItem.action = #selector(DocumentViewController.makeLayoutOrientationVertical)
                 
                 let item = ToolbarItemGroup(itemIdentifier: itemIdentifier)
@@ -544,9 +544,7 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .wrapLines:
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = String(localized: "Wrap Lines")
-                item.possibleLabels = [String(localized: "Wrap Lines"),
-                                       String(localized: "Unwrap Lines")]
+                item.label = String(localized: "Line Wrapping")
                 item.toolTip = String(localized: "Wrap lines")
                 item.stateImages[.on] = NSImage(resource: .textWrapSlash)
                 item.stateImages[.off] = NSImage(resource: .textWrap)
@@ -571,7 +569,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.label = String(localized: "Indent Guides")
                 item.toolTip = String(localized: "Hide indent guide lines")
                 item.stateImages[.on] = NSImage(resource: .textIndentguidesHide)
-                
                 item.stateImages[.off] = NSImage(resource: .textIndentguides)
                 item.action = #selector(DocumentViewController.toggleIndentGuides)
                 item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")

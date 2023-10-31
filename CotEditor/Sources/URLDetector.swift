@@ -119,7 +119,7 @@ extension NSTextStorage {
     ///
     /// - Parameter range: The range where links are detected, or nil to detect all.
     /// - Throws: `CancellationError`
-    @MainActor func linkURLs(in range: NSRange? = nil) async throws {
+    @MainActor final func linkURLs(in range: NSRange? = nil) async throws {
         
         guard self.length > 0 else { return }
         

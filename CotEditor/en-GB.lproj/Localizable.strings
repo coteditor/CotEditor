@@ -230,8 +230,8 @@
 
 
 /* MARK: Open Panel Accessory */
-"Encoding:" = "Encoding:";
-"Show hidden files" = "Show hidden files";
+"Text encoding:" = "Text encoding:";
+"Show invisible files" = "Show invisible files";
 
 
 
@@ -256,7 +256,7 @@
 "Line Endings to %@" = "Line Endings to %@";
 
 // Convert or reinterpret encoding alert
-"File encoding" = "File encoding";
+"Text encoding" = "Text encoding";
 "Do you want to convert or reinterpret this document using “%@”?" = "Do you want to convert or reinterpret this document using “%@”?";
 "Convert" = "Convert";
 "Reinterpret" = "Reinterpret";
@@ -363,7 +363,7 @@
 "Custom…" = "Custom…";
 "Use Spaces for Indentation" = "Use Spaces for Indentation";
 
-"Wrap Lines" = "Wrap Lines";
+"Line Wrapping" = "Line Wrapping";
 // tooltip
 "Unwrap lines" = "Unwrap lines";
 "Wrap lines" = "Wrap lines";
@@ -868,7 +868,7 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<a letter consisting of %lld characters>";
+"<a letter consisting of %lld characters>" = "<a letter consisting of %lld characters>";  // %lld is always 2 or more.
 
 // Variation selectors
 "Emoji Style" = "Emoji Style";

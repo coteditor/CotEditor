@@ -35,7 +35,7 @@ extension NSRegularExpression {
     ///   - range: The range of the string to search.
     /// - Throws: `CancellationError`
     /// - Returns: An array of all the matches.
-    func cancellableMatches(in string: String, options: MatchingOptions = [], range: NSRange) throws -> [NSTextCheckingResult] {
+    final func cancellableMatches(in string: String, options: MatchingOptions = [], range: NSRange) throws -> [NSTextCheckingResult] {
         
         var matches: [NSTextCheckingResult] = []
         self.enumerateMatches(in: string, options: options, range: range) { (match, _, stopPointer) in

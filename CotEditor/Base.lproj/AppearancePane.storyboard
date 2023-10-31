@@ -10,8 +10,8 @@
         <scene sceneID="oau-eS-BHv">
             <objects>
                 <viewController id="WBM-EY-ENr" customClass="AppearancePaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LgU-un-VaX">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="572"/>
+                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="LgU-un-VaX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="568"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="ADB-Wp-iDy">
                                 <rect key="frame" x="53" y="348" width="495" height="220"/>

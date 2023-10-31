@@ -176,7 +176,7 @@ private struct ScalarDetailView: View {
                     Text(verbatim: "Unicode \(age.major).\(age.minor)")
                 }
             }
-        }
+        }.fixedSize()
     }
 }
 

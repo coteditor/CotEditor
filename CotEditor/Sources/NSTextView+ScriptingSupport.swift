@@ -38,7 +38,7 @@ enum InsertionLocation {
 extension NSTextView {
     
     /// Insert string at desired location and select inserted range.
-    func insert(string: String, at location: InsertionLocation) {
+    final func insert(string: String, at location: InsertionLocation) {
         
         let replacementRange: NSRange = switch location {
             case .replaceSelection:

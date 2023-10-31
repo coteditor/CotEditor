@@ -25,6 +25,7 @@
 
 import SwiftUI
 
+@available(macOS, deprecated: 14)
 @MainActor final class OpacityHostingView: NSHostingView<OpacityView> {
     
     convenience init(window: DocumentWindow?) {

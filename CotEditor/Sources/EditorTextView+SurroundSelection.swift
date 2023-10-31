@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2022 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -85,7 +85,7 @@ extension NSTextView {
     
     /// insert strings around selections
     @discardableResult
-    func surroundSelections(begin: String, end: String) -> Bool {
+    final func surroundSelections(begin: String, end: String) -> Bool {
         
         guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return false }
         

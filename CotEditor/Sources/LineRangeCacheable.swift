@@ -118,7 +118,7 @@ extension LineRangeCacheable {
         
         guard range.upperBound < lineRange.upperBound else { return lineRange }
         
-        let lineEndingRange = self.string.range(of: "\\R", options: [.backwards, .anchored, .regularExpression], range: lineRange)
+        let lineEndingRange = self.string.range(of: "\\R$", options: .regularExpression, range: lineRange)
         
         guard !lineEndingRange.isNotFound else { return lineRange }
         

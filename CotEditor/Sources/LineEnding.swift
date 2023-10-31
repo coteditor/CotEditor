@@ -131,23 +131,6 @@ private extension BidirectionalCollection<LineEnding> {
 }
 
 
-extension StringProtocol {
-    
-    /// Return a new string in which all specified line ending characters in the receiver are replaced by another given line endings.
-    ///
-    /// - Parameters:
-    ///     - lineEndings: The line endings type to replace. If nil, all kind of line endings are replaced.
-    ///     - lineEnding: The line ending type with which to replace target.
-    /// - Returns: String replacing line ending characters.
-    func replacingLineEndings(_ lineEndings: [LineEnding]? = nil, with lineEnding: LineEnding) -> String {
-        
-        let lineEndings = lineEndings ?? LineEnding.allCases
-        
-        return self.replacingOccurrences(of: lineEndings.regexPattern, with: lineEnding.string, options: .regularExpression)
-    }
-}
-
-
 
 extension String {
     
@@ -182,18 +165,31 @@ extension String {
 }
 
 
+extension StringProtocol {
+    
+    /// Return a new string in which all specified line ending characters in the receiver are replaced by another given line endings.
+    ///
+    /// - Parameters:
+    ///     - lineEndings: The line ending types to replace.
+    ///     - lineEnding: The line ending type with which to replace the target.
+    /// - Returns: String replacing line ending characters.
+    func replacingLineEndings(_ lineEndings: [LineEnding] = LineEnding.allCases, with lineEnding: LineEnding) -> String {
+        
+        self.replacingOccurrences(of: lineEndings.regexPattern, with: lineEnding.string, options: .regularExpression)
+    }
+}
+
+
 
 extension NSMutableAttributedString {
     
     /// Replace all line ending characters in the receiver with another given line endings.
     ///
     /// - Parameters:
-    ///     - lineEndings: The line endings type to replace. If nil, all kind of line endings are replaced.
-    ///     - newLineEnding: The line ending type with which to replace target.
-    func replaceLineEndings(_ lineEndings: [LineEnding]? = nil, with newLineEnding: LineEnding) {
+    ///     - lineEndings: The line ending types to replace.
+    ///     - lineEnding: The line ending type with which to replace the target.
+    final func replaceLineEndings(_ lineEndings: [LineEnding] = LineEnding.allCases, with lineEnding: LineEnding) {
         
-        let lineEndings = lineEndings ?? LineEnding.allCases
-        
-        self.mutableString.replaceOccurrences(of: lineEndings.regexPattern, with: newLineEnding.string, options: .regularExpression, range: self.range)
+        self.mutableString.replaceOccurrences(of: lineEndings.regexPattern, with: lineEnding.string, options: .regularExpression, range: self.range)
     }
 }

@@ -259,7 +259,7 @@ extension NSLayoutManager {
     /// Extract all syntax highlights in the given range.
     ///
     /// - Returns: An array of Highlights in order.
-    @MainActor func syntaxHighlights() -> [Highlight] {
+    @MainActor final func syntaxHighlights() -> [Highlight] {
         
         let targetRange = self.attributedString().range
         
@@ -281,7 +281,7 @@ extension NSLayoutManager {
     /// - Parameters:
     ///   - highlights: The highlight definitions to apply.
     ///   - range: The range to update syntax highlight.
-    @MainActor func apply(highlights: [Highlight], range: NSRange) {
+    @MainActor final func apply(highlights: [Highlight], range: NSRange) {
         
         assert(highlights.sorted(\.range.location) == highlights)
         
@@ -309,7 +309,7 @@ extension NSLayoutManager {
     ///
     /// - Parameters:
     ///   - theme: The theme to apply.
-    @MainActor func invalidateHighlight(theme: Theme) {
+    @MainActor final func invalidateHighlight(theme: Theme) {
         
         let targetRange = self.attributedString().range
         

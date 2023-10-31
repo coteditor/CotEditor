@@ -88,6 +88,16 @@ final class LineRangeCacheableTests: XCTestCase {
     }
     
     
+    func testLineContentRange() {
+        
+        let lineString = LineString("dog \n\n cat \n cow")
+        XCTAssertEqual(lineString.lineContentRange(for: NSRange(0..<3)), NSRange(0..<4))
+        XCTAssertEqual(lineString.lineContentRange(for: NSRange(4..<6)), NSRange(0..<6))
+        XCTAssertEqual(lineString.lineContentRange(for: NSRange(5..<6)), NSRange(5..<6))
+        XCTAssertEqual(lineString.lineContentRange(for: NSRange(7..<13)), NSRange(6..<16))
+    }
+    
+    
     func testRangeToLineRangeCalculation() throws {
         
         let lineString = LineString("dog \n\n cat \n cow \n")

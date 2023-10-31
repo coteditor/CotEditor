@@ -61,13 +61,13 @@
 /* Class = "NSTextFieldCell"; title = "Dialog warnings:"; ObjectID = "Igx-ay-Cgz"; */
 "Igx-ay-Cgz.title" = "警示窗：";
 /* Class = "NSButtonCell"; title = "Manage Warnings…"; ObjectID = "G2q-Im-jTO"; */
-"G2q-Im-jTO.title" = "管理警示窗…";
+"G2q-Im-jTO.title" = "管理警示窗⋯";
 
 
 /* Class = "NSTextFieldCell"; title = "Command-line tool:"; ObjectID = "kQn-Uu-cqG"; */
 "kQn-Uu-cqG.title" = "命令列工具：";
 /* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "ltN-wn-m8M"; */
-"ltN-wn-m8M.title" = "瞭解更多…";
+"ltN-wn-m8M.title" = "瞭解更多⋯";
 /* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
 "c48-xK-Ag1.title" = "cot命令列工具可以讓您使用命令列來啟動CotEditor並開啟檔案。";
 

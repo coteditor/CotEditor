@@ -56,7 +56,7 @@
 
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "Tem certeza de que deseja apagar “%@”?";
-"This action cannot be undone." = "Esta ação não poderá ser desfeita.";
+"This action cannot be undone." = "Essa ação não pode ser desfeita.";
 
 
 
@@ -230,8 +230,8 @@
 
 
 /* MARK: Open Panel Accessory */
-"Encoding:" = "Codificação:";
-"Show hidden files" = "Mostrar arquivos ocultos";
+"Text encoding:" = "Codificação do texto:";
+"Show invisible files" = "Mostrar arquivos ocultos";
 
 
 
@@ -256,7 +256,7 @@
 "Line Endings to %@" = "Finais de Linha para %@";
 
 // Convert or reinterpret encoding alert
-"File encoding" = "Codificação do arquivo";
+"Text encoding" = "Codificação de texto";
 "Do you want to convert or reinterpret this document using “%@”?" = "Deseja usar “%@” para converter ou reinterpretar este documento?";
 "Convert" = "Converter";
 "Reinterpret" = "Reinterpretar";
@@ -291,8 +291,8 @@
 "Ignore" = "Ignorar";
 
 // Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "O arquivo foi modificado por outro aplicativo. Também há alterações não salvas no CotEditor.";
-"The file has been changed by another application." = "O arquivo foi modificado por outro aplicativo.";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "O arquivo foi alterado por outro aplicativo. Também há alterações não salvas no CotEditor.";
+"The file has been changed by another application." = "O arquivo foi alterado por outro aplicativo.";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Deseja manter a edição do CotEditor ou atualizar para a edição modificada?";
 "Keep CotEditor’s Edition" = "Manter Edição do CotEditor";
 "Update" = "Atualizar";
@@ -363,7 +363,7 @@
 "Custom…" = "Personalizar…";
 "Use Spaces for Indentation" = "Use espaços para Indentação";
 
-"Wrap Lines" = "Ajustar Linhas";
+"Line Wrapping" = "Ajuste de Linha";
 // tooltip
 "Unwrap lines" = "Desajustar linhas";
 "Wrap lines" = "Ajustar linhas";
@@ -869,7 +869,7 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<uma letra que consiste em %lld caracteres>";
+"<a letter consisting of %lld characters>" = "<uma letra que consiste em %lld caracteres>";  // %lld is always 2 or more.
 
 // Variation selectors
 "Emoji Style" = "Estilo do Emoji";

@@ -72,7 +72,7 @@
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "連結文件中的URL";
 /* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */
-"3300.title" = "輸入時檢查拼寫";
+"3300.title" = "在輸入時同步檢查拼字";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
 "RrC-LL-hid.title" = "高亮配對括弧「()」「[]」「{}」";
 /* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */

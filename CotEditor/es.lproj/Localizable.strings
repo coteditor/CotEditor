@@ -55,8 +55,8 @@
 
 
 // warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "¿Estas seguro de que quiere eliminar “%@”?";
-"This action cannot be undone." = "Esta acción no se puede deshacer.";
+"Are you sure you want to delete “%@”?" = "¿Seguro que quieres eliminar “%@”?";
+"This action cannot be undone." = "Esta operación no puede deshacerse.";
 
 
 
@@ -230,8 +230,8 @@
 
 
 /* MARK: Open Panel Accessory */
-"Encoding:" = "Codificación:";
-"Show hidden files" = "Mostrar archivos ocultos";
+"Text encoding:" = "Codificación del texto:";
+"Show invisible files" = "Mostrar archivos ocultos";
 
 
 
@@ -256,7 +256,7 @@
 "Line Endings to %@" = "Finales de línea a %@";
 
 // Convert or reinterpret encoding alert
-"File encoding" = "Codificación de archivos";
+"Text encoding" = "Codificación de texto";
 "Do you want to convert or reinterpret this document using “%@”?" = "¿Quieres convertir o reinterpretar este documento usando “%@”?";
 "Convert" = "Convertir";
 "Reinterpret" = "Reinterpretación";
@@ -291,8 +291,8 @@
 "Ignore" = "Ignorar";
 
 // Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "El archivo ha sido cambiado por otra aplicación. También hay cambios no guardados en CotEditor.";
-"The file has been changed by another application." = "El archivo ha sido cambiado por otra aplicación.";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "Otra aplicación ha modificado el archivo. También hay cambios no guardados en CotEditor.";
+"The file has been changed by another application." = "Otra aplicación ha modificado el archivo.";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "¿Quieres conservar la edición de CotEditor o actualizarla a la edición modificada?";
 "Keep CotEditor’s Edition" = "Conservar edición de Coteditor";
 "Update" = "Actualizar";
@@ -363,7 +363,7 @@
 "Custom…" = "Personalizar…";
 "Use Spaces for Indentation" = "Usar espacios para sangría";  // FIXME: needs review
 
-"Wrap Lines" = "Ajustar líneas";
+"Line Wrapping" = "Ajuste de líneas";
 // tooltip
 "Unwrap lines" = "Desajustar líneas";
 "Wrap lines" = "Ajustar líneas";
@@ -419,7 +419,7 @@
 
 /* MARK: Touch Bar */
 // Touch bar item labels -Text Size
-"Actual Size" = "Tamaño actual";
+"Actual Size" = "Tamaño real";
 
 
 
@@ -438,7 +438,7 @@
 "Document Name" = "Nombre del documento";
 "File Path" = "Ruta del archivo";
 "Print Date" = "Imprimir fecha";
-"Last Modified Date" = "Fecha de la última modificación";
+"Last Modified Date" = "Fecha de última modificación";
 "Page Number" = "Número de página";
 
 // Segmented control tooltips
@@ -869,16 +869,16 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<una letra que consta de %lld caracteres>";  // FIXME: needs review
+"<a letter consisting of %lld characters>" = "<una letra que consta de %lld caracteres>";  // %lld is always 2 or more.  // FIXME: needs review
 
 // Variation selectors
 "Emoji Style" = "Emoji Style";  // FIXME: missing
 "Text Style" = "Text Style";  // FIXME: missing
-"Skin Tone I-II" = "Skin Tone I-II";  // FIXME: missing
-"Skin Tone III" = "Skin Tone III";  // FIXME: missing
-"Skin Tone IV" = "Skin Tone IV";  // FIXME: missing
-"Skin Tone V" = "Skin Tone V";  // FIXME: missing
-"Skin Tone VI" = "Skin Tone VI";  // FIXME: missing
+"Skin Tone I-II" = "Tono de piel I-II";
+"Skin Tone III" = "Tono de piel III";
+"Skin Tone IV" = "Tono de piel IV";
+"Skin Tone V" = "Tono de piel V";
+"Skin Tone VI" = "Tono de piel VI";
 "Variant" = "Variant";  // FIXME: missing
 
 

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import AppKit
 extension NSView {
     
     /// The root view controller.
-    var viewControllerForSheet: NSViewController? {
+    final var viewControllerForSheet: NSViewController? {
         
         self.window?.windowController?.contentViewController
     }
@@ -42,7 +42,7 @@ extension NSView {
     /// - Parameters:
     ///   - announcement: The localized string to announce.
     ///   - priority: The announcement priority.
-    func requestAccessibilityAnnouncement(_ announcement: String, priority: NSAccessibilityPriorityLevel = .high) {
+    final func requestAccessibilityAnnouncement(_ announcement: String, priority: NSAccessibilityPriorityLevel = .high) {
         
         NSAccessibility.post(element: self, notification: .announcementRequested,
                              userInfo: [.announcement: announcement,

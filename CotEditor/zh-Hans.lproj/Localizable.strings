@@ -55,7 +55,7 @@
 
 
 // warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "确认删除“%@”？";
+"Are you sure you want to delete “%@”?" = "你确定要删除“%@”吗？";
 "This action cannot be undone." = "此操作不能撤销。";
 
 
@@ -87,7 +87,7 @@
 "Empty find string" = "空的搜索字符串";
 "The option “in selection” is selected, although nothing is selected." = "“在选择中搜索”选项被激活，但是并没有内容被选中。";
 "Input text to find." = "输入文本以查找。";
-"Select the search scope in the document or turn off the “in selection” option." = "在文档中选择搜索范围，或者禁用“在选择中搜索”。";
+"Select the search scope in the document or turn off the “in selection” option." = "在文稿中选择搜索范围，或者禁用“在选择中搜索”。";
 
 // accessibility announcement
 "Search wrapped." = "已从头搜索";  // announced when the search restarted from the beginning.
@@ -96,7 +96,7 @@
 
 /* MARK: Find Panel */
 // window title
-"Find & Replace" = "查找与替换";
+"Find & Replace" = "查找和替换";
 
 // find results in input fields
 "Not found" = "未找到";
@@ -142,7 +142,7 @@
 "Characters" = "字符";
 "any character" = "任意字符";
 "new line character" = "换行符";
-"tab character" = "tab符号";
+"tab character" = "制表符";
 "word character" = "单词字符";
 "whitespace character" = "空格字符";
 "non-whitespace character" = "非空格字符";
@@ -172,7 +172,7 @@
 "first match" = "首字匹配";
 
 "The syntax conforms to the %@ specifications." = "语法遵守%@规范";  // %@ is the name of the regex engine below (ICU Regular Expressions)
-"ICU Regular Expressions" = "ICU Regular Expressions";
+"ICU Regular Expressions" = "ICU正则表达式";
 
 
 
@@ -230,8 +230,8 @@
 
 
 /* MARK: Open Panel Accessory */
-"Encoding:" = "编码：";
-"Show hidden files" = "显示隐藏文件";
+"Text encoding:" = "文本编码：";
+"Show invisible files" = "显示不可见的文件";
 
 
 
@@ -256,7 +256,7 @@
 "Line Endings to %@" = "行尾变更为%@";
 
 // Convert or reinterpret encoding alert
-"File encoding" = "文件编码";
+"Text encoding" = "文本编码";
 "Do you want to convert or reinterpret this document using “%@”?" = "要使用“%@”进行转换或者再次解释吗？";
 "Convert" = "转换";
 "Reinterpret" = "再次解释";
@@ -268,12 +268,12 @@
 "Show Incompatible Characters" = "显示不兼容字符";
 
 // Encoding change with unsaved changes alert
-"The document has unsaved changes." = "该文档中含有未保存的修改。";
-"Do you want to discard the changes and reopen the document using “%@”?" = "你确认放弃更改，并使用“%@”重新打开文档吗？";  // %@ is an encoding name.
-"Discard Changes" = "放弃修改";
+"The document has unsaved changes." = "该文稿中含有未保存的修改。";
+"Do you want to discard the changes and reopen the document using “%@”?" = "你确认放弃更改，并使用“%@”重新打开文稿吗？";  // %@ is an encoding name.
+"Discard Changes" = "放弃更改";
 
 // Reinterpretation failed alert
-"The document doesn’t have a file to reinterpret." = "该文档没有用来再次解释的文件。";
+"The document doesn’t have a file to reinterpret." = "该文稿没有用来再次解释的文件。";
 "The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "文件“%@”无法使用“%@”编码再次解释。";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "该文件可能已使用了不同的文本编码来存储，或者可能不是文本文件。";
 
@@ -283,16 +283,16 @@
 "Change Encoding" = "更改编码";
 
 // Inconsistent line ending alert
-"The document has inconsistent line endings." = "文档包含不一致的换行符。";
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "需要将所有换行符都替换为文档中最常使用的%@吗？";
-"Don’t ask again for this document" = "对该文档不再询问";
+"The document has inconsistent line endings." = "文稿包含不一致的换行符。";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "需要将所有换行符都替换为文稿中最常使用的%@吗？";
+"Don’t ask again for this document" = "对该文稿不再询问";
 "Convert" = "转换";
 "Review" = "检查";
 "Ignore" = "忽略";
 
 // Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "文件被其他应用更改，CotEditor中还有未保存的变更。";
-"The file has been changed by another application." = "文件被其他应用更改。";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "该文件已被其他应用程序更改。CotEditor中还有未保存的变更。";
+"The file has been changed by another application." = "该文件已被其他应用程序更改。";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "保留CotEditor的版本还是更新至被编辑过的版本？";
 "Keep CotEditor’s Edition" = "保留CotEditor编辑的内容";
 "Update" = "更新";
@@ -304,7 +304,7 @@
 
 /* MARK: Document Window */
 // tooltip for the "edited" indicator in the window tab
-"Document has unsaved changes" = "文档中存在未保存的更改";
+"Document has unsaved changes" = "文稿中存在未保存的更改";
 
 
 
@@ -318,15 +318,15 @@
 
 "Inspector" = "检查器";
 // tooltip
-"Show document information" = "显示文档信息";
+"Show document information" = "显示文稿信息";
 
-"Text Size" = "文本尺寸";
+"Text Size" = "文字大小";
 "Smaller" = "较小";
 "Bigger" = "较大";
 // tooltip
-"Change text size" = "改变文本尺寸";
-"Decrease text size" = "减少文本尺寸";
-"Increase text size" = "增加文本尺寸";
+"Change text size" = "更改文本大小";
+"Decrease text size" = "缩小文字大小";
+"Increase text size" = "增加文字大小";
 
 "Writing Direction" = "书写方向";
 "Left to Right" = "从左到右";
@@ -337,8 +337,8 @@
 "Right to left" = "从右到左";
 
 "Text Orientation" = "文字方向";
-"Horizontal" = "水平";
-"Vertical" = "竖直";
+"Horizontal" = "横排";
+"Vertical" = "竖排";
 // tooltip
 "Switch text orientation" = "切换文字方向";
 
@@ -354,16 +354,16 @@
 // tooltip
 "Comment-out or uncomment selection" = "将选中内容注释或取消注释";
 
-"Tab Style" = "Tab 样式";
+"Tab Style" = "Tab样式";
 // tooltip
-"Use tabs for indentation" = "使用tab缩进";
+"Use tabs for indentation" = "使用制表符缩进";
 "Use spaces for indentation" = "使用空格缩进";
 // menu
-"Tab Width" = "Tab宽度";
+"Tab Width" = "制表符宽度";
 "Custom…" = "自定义…";
 "Use Spaces for Indentation" = "使用空格缩进";
 
-"Wrap Lines" = "换行";
+"Line Wrapping" = "换行";
 // tooltip
 "Unwrap lines" = "不换行";
 "Wrap lines" = "换行";
@@ -396,7 +396,7 @@
 
 "Find" = "查找";
 // tooltip
-"Show Find & Replace" = "显示查找与替换";
+"Show Find & Replace" = "显示查找和替换";
 
 "Print" = "打印";
 // tooltip
@@ -404,7 +404,7 @@
 
 // tooltip
 // -> The toolbar label for "Share" is set automatically.
-"Share document file" = "共享文档文件";
+"Share document file" = "共享文稿文件";
 
 "Fonts" = "字体";
 // tooltip
@@ -419,7 +419,7 @@
 
 /* MARK: Touch Bar */
 // Touch bar item labels -Text Size
-"Actual Size" = "实际尺寸";
+"Actual Size" = "实际大小";
 
 
 
@@ -435,10 +435,10 @@
 
 // Content of headers/footers
 "Syntax Name" = "语法名";
-"Document Name" = "文档名";
+"Document Name" = "文稿名";
 "File Path" = "文件路径";
 "Print Date" = "打印日期";
-"Last Modified Date" = "最终修改日期";
+"Last Modified Date" = "上次修改日期";
 "Page Number" = "页码";
 
 // Segmented control tooltips
@@ -571,8 +571,8 @@
 // placeholder
 "Color Code" = "颜色码";
 
-"Hexadecimal" = "Hex";
-"Hexadecimal (Short)" = "Hex（短）";
+"Hexadecimal" = "十六进制";
+"Hexadecimal (Short)" = "十六进制（短）";
 "CSS RGB" = "CSS RGB";
 "CSS RGBa" = "CSS RGBa";
 "CSS HSL" = "CSS HSL";
@@ -769,7 +769,7 @@
 "Insert Text %lld" = "插入文本%lld";
 
 // Keyboard key name
-"Space" = "空格键";
+"Space" = "空格";
 
 // Warning messages
 "“%@” is already taken by the “%@” command." = "“%@”已被“%@”命令使用。";
@@ -790,8 +790,8 @@
 
 /* MARK: Script */
 // No script target document errors
-"No document to get input." = "没有输入文档。";
-"No document to put output." = "没有输出文档。";
+"No document to get input." = "没有输入文稿。";
+"No document to put output." = "没有输出文稿。";
 
 // Script file error description
 "The script “%@” does not exist." = "脚本“%@”不存在。";
@@ -815,7 +815,7 @@
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "拖拽的文件绝对路径";
-"The relative path between the dropped file and the document." = "拖拽的文件与编辑中文档的相对路径";
+"The relative path between the dropped file and the document." = "拖拽的文件与编辑中文稿的相对路径";
 "The dropped file’s name including extension (if exists)." = "拖拽的文件的檔案名稱以及扩展名（如果存在）";
 "The dropped file’s name without extension." = "不带扩展名的檔案名稱";
 "The dropped file’s extension." = "拖拽的文件的扩展名";
@@ -869,16 +869,16 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<包含有%lld个字符>";
+"<a letter consisting of %lld characters>" = "<包含有%lld个字符>";  // %lld is always 2 or more.
 
 // Variation selectors
-"Emoji Style" = "表情文字格式";
-"Text Style" = "文本文字格式";
-"Skin Tone I-II" = "色调I-II";
-"Skin Tone III" = "色调III";
-"Skin Tone IV" = "色调IV";
-"Skin Tone V" = "色 V";
-"Skin Tone VI" = "色调VI";
+"Emoji Style" = "表情符号风格";
+"Text Style" = "文字风格";
+"Skin Tone I-II" = "肤色I-II";
+"Skin Tone III" = "肤色III";
+"Skin Tone IV" = "肤色IV";
+"Skin Tone V" = "肤色V";
+"Skin Tone VI" = "肤色VI";
 "Variant" = "异体字";
 
 
@@ -891,7 +891,7 @@
 
 
 /* MARK: Custom Tab Width View */
-"Tab width:" = "Tab宽度：";  // label
+"Tab width:" = "制表符宽度：";  // label
 
 
 

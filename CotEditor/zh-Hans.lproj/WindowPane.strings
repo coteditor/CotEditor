@@ -25,7 +25,7 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "Prefer tabs:"; ObjectID = "8zu-3V-Obg"; */
-"8zu-3V-Obg.title" = "偏好标签：";
+"8zu-3V-Obg.title" = "偏好标签页：";
 /* Class = "NSMenuItem"; title = "Respect System Setting"; ObjectID = "Guj-Kc-zf2"; */
 "Guj-Kc-zf2.title" = "使用系统设定";
 /* Class = "NSMenuItem"; title = "Never"; ObjectID = "o1f-vR-aFm"; */
@@ -62,7 +62,7 @@
 /* Class = "NSButtonCell"; title = "Line ending"; ObjectID = "Aj4-QP-CJe"; */
 "Aj4-QP-CJe.title" = "行尾";
 /* Class = "NSButtonCell"; title = "Tab"; ObjectID = "Bl2-gV-lhC"; */
-"Bl2-gV-lhC.title" = "Tab";
+"Bl2-gV-lhC.title" = "制表符";
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "PhH-3B-qss"; */
 "PhH-3B-qss.title" = "空格";
 /* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "cWK-Dz-raZ"; */
@@ -96,7 +96,7 @@
 /* Class = "NSButtonCell"; title = "Right to left"; ObjectID = "USo-8p-Edc"; */
 "USo-8p-Edc.title" = "从右到左";
 /* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "Ge8-vU-lyg"; */
-"Ge8-vU-lyg.title" = "竖直";
+"Ge8-vU-lyg.title" = "竖排";
 
 /* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
 "7Nz-lv-JZb.title" = "额外滚动：";

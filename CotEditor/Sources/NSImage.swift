@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2022 1024jp
+//  © 2020-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ extension NSImage {
     ///
     /// - Parameter color: The color to tint the image.
     /// - Returns: A tinted image.
-    func tinted(with color: NSColor) -> Self {
+    final func tinted(with color: NSColor) -> Self {
         
         assert(self.isTemplate, "An image to tint should be a template image.")
         

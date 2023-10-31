@@ -68,7 +68,7 @@
 
 
 // warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "Êtes-vous sûr de vouloir supprimer « %@ » ?";
+"Are you sure you want to delete “%@”?" = "Voulez-vous vraiment supprimer « %@ » ?";
 "This action cannot be undone." = "Cette action est irréversible.";
 
 
@@ -230,8 +230,8 @@
 
 
 /* MARK: Open Panel Accessory */
-"Encoding:" = "Encodage :";
-"Show hidden files" = "Afficher les fichiers cachés";
+"Text encoding:" = "Encodage du texte :";
+"Show invisible files" = "Afficher les fichiers cachés";
 
 
 
@@ -256,7 +256,7 @@
 "Line Endings to %@" = "Fins de ligne en %@";
 
 // Convert or reinterpret encoding alert
-"File encoding" = "Encodage du fichier";
+"Text encoding" = "Encodage du texte";
 "Do you want to convert or reinterpret this document using “%@”?" = "Voulez-vous convertir le document ou bien le réinterpréter en utilisant « %@ » ?";
 "Convert" = "Convertir";
 "Reinterpret" = "Ré-interpréter";
@@ -313,7 +313,7 @@
 // tooltip
 "Change syntax" = "Changer la syntaxe";
 // item in the menu
-"Recently Used" = "Récemment utilisés";
+"Recently Used" = "Utilisés récemment";
 "Deleted" = "Supprimés";  // heading for deleted items
 
 "Inspector" = "Inspecteur";
@@ -363,7 +363,7 @@
 "Custom…" = "Personnalisé…";
 "Use Spaces for Indentation" = "Utiliser des espaces pour l’indentation";
 
-"Wrap Lines" = "Renv. à la ligne";
+"Line Wrapping" = "Retours à la ligne";
 // tooltip
 "Unwrap lines" = "Ne pas renvoyer à la ligne";
 "Wrap lines" = "Renvoyer à la ligne";
@@ -438,7 +438,7 @@
 "Document Name" = "Nom du document";
 "File Path" = "Chemin du fichier";
 "Print Date" = "Date d’impression";
-"Last Modified Date" = "Date de la dernière modification";
+"Last Modified Date" = "Date de dernière modification";
 "Page Number" = "Numéro de page";
 
 // Segmented control tooltips
@@ -870,16 +870,16 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<un symbole constitué de %lld caractères>";
+"<a letter consisting of %lld characters>" = "<un symbole constitué de %lld caractères>";  // %lld is always 2 or more.
 
 // Variation selectors
 "Emoji Style" = "Style d’Emoji";
 "Text Style" = "Style de Texte";
-"Skin Tone I-II" = "Couleur de peau I-II";
-"Skin Tone III" = "Couleur de peau III";
-"Skin Tone IV" = "Couleur de peau IV";
-"Skin Tone V" = "Couleur de peau V";
-"Skin Tone VI" = "Couleur de peau VI";
+"Skin Tone I-II" = "Ton de chair I-II";
+"Skin Tone III" = "Ton de chair III";
+"Skin Tone IV" = "Ton de chair IV";
+"Skin Tone V" = "Ton de chair V";
+"Skin Tone VI" = "Ton de chair VI";
 "Variant" = "Variante";
 
 

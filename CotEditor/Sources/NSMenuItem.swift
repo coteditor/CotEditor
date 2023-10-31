@@ -27,7 +27,7 @@ import AppKit
 
 extension NSMenuItem {
     
-    var shortcut: Shortcut? {
+    final var shortcut: Shortcut? {
         
         get {
             Shortcut(modifierMask: self.keyEquivalentModifierMask, keyEquivalent: self.keyEquivalent)

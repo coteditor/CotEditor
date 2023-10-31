@@ -37,6 +37,14 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
     // MARK: -
     // MARK: Segmented Control Methods
     
+    override func viewWillDraw() {
+        
+        super.viewWillDraw()
+        
+        self.alphaValue = (self.window?.isMainWindow ?? false) ? 1 : 0.5
+    }
+    
+    
     override var selectedSegment: Int {
         
         didSet {

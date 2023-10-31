@@ -25,7 +25,7 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "Prefer tabs:"; ObjectID = "8zu-3V-Obg"; */
-"8zu-3V-Obg.title" = "偏好標籤：";
+"8zu-3V-Obg.title" = "偏好標籤頁：";
 /* Class = "NSMenuItem"; title = "Respect System Setting"; ObjectID = "Guj-Kc-zf2"; */
 "Guj-Kc-zf2.title" = "使用系統設定";
 /* Class = "NSMenuItem"; title = "Never"; ObjectID = "o1f-vR-aFm"; */
@@ -42,7 +42,7 @@
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "u8r-OW-Z1O"; */
 "u8r-OW-Z1O.title" = "像素";
 /* Class = "NSTextFieldCell"; title = "Height"; ObjectID = "Zhk-Nt-kiD"; */
-"Zhk-Nt-kiD.title" = "高度：";
+"Zhk-Nt-kiD.title" = "高度";
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "VCx-PO-Fnr"; */
 "VCx-PO-Fnr.title" = "像素";
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "hye-gP-iep"; */
@@ -62,7 +62,7 @@
 /* Class = "NSButtonCell"; title = "Line ending"; ObjectID = "Aj4-QP-CJe"; */
 "Aj4-QP-CJe.title" = "行尾";
 /* Class = "NSButtonCell"; title = "Tab"; ObjectID = "Bl2-gV-lhC"; */
-"Bl2-gV-lhC.title" = "Tab";
+"Bl2-gV-lhC.title" = "定位符號";
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "PhH-3B-qss"; */
 "PhH-3B-qss.title" = "空格";
 /* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "cWK-Dz-raZ"; */
@@ -83,7 +83,7 @@
 /* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
 "P1I-gs-RgX.title" = "換行：";
 /* Class = "NSButtonCell"; title = "Wrap lines to editor width"; ObjectID = "3274"; */
-"3274.title" = "換行以適合編輯器寬度";
+"3274.title" = "換行以符合編輯器的寬度";
 /* Class = "NSButtonCell"; title = "Indent wrapped lines by"; ObjectID = "mCq-92-2sT"; */
 "mCq-92-2sT.title" = "自動換行縮排字元數：";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
@@ -92,11 +92,11 @@
 /* Class = "NSTextFieldCell"; title = "Writing Direction:"; ObjectID = "RwN-73-I8c"; */
 "RwN-73-I8c.title" = "書寫方向：";
 /* Class = "NSButtonCell"; title = "Left to right"; ObjectID = "3Kb-bF-CW0"; */
-"3Kb-bF-CW0.title" = "從左到右";
+"3Kb-bF-CW0.title" = "由左至右";
 /* Class = "NSButtonCell"; title = "Right to left"; ObjectID = "USo-8p-Edc"; */
-"USo-8p-Edc.title" = "從右到左";
+"USo-8p-Edc.title" = "由右至左";
 /* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "Ge8-vU-lyg"; */
-"Ge8-vU-lyg.title" = "豎直";
+"Ge8-vU-lyg.title" = "直書";
 
 /* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
 "7Nz-lv-JZb.title" = "額外滾動：";

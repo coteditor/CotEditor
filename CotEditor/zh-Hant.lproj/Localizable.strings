@@ -29,7 +29,7 @@
 "Cancel" = "取消";
 "Done" = "完成";
 "Start" = "開始";
-"Restore Defaults" = "恢復預設";
+"Restore Defaults" = "回復預設值";
 "Delete" = "刪除";
 "Restore" = "還原";
 
@@ -41,22 +41,22 @@
 
 
 // Accessibility labels
-"Inspector" = "檢查器";
+"Inspector" = "檢閱器";
 "Document Inspector" = "文件檢閱器";
 "Outline" = "大綱";
 "Warnings" = "警告";
 "Incompatible Characters" = "不兼容字元";
-"Filter" = "過濾";
-"Status Bar" = "狀態欄";
+"Filter" = "濾波器";
+"Status Bar" = "狀態列";
 "Editor" = "編輯器";
-"Navigation Bar" = "巡覽列";
+"Navigation Bar" = "導覽列";
 "Line Numbers" = "行號";
 "Find Result" = "查找結果";
 
 
 // warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "確認刪除「%@」？";
-"This action cannot be undone." = "此操作不能撤銷。";
+"Are you sure you want to delete “%@”?" = "確定要刪除「%@」嗎？";
+"This action cannot be undone." = "此動作無法還原。";
 
 
 
@@ -78,7 +78,7 @@
 "Find All" = "全部查找";
 "Replace All" = "全部取代";
 "Highlight All" = "全部高亮";
-"Searching in text…" = "正在文字中搜索…";
+"Searching in text…" = "正在文字中搜索⋯";
 "%lld string found." = "找到%lld個匹配";
 "%lld strings found." = "找到%lld個匹配";
 "%lld string replaced." = "已取代%lld個匹配";
@@ -96,7 +96,7 @@
 
 /* MARK: Find Panel */
 // window title
-"Find & Replace" = "檢索與取代";
+"Find & Replace" = "尋找與取代";
 
 // find results in input fields
 "Not found" = "未找到";
@@ -104,9 +104,9 @@
 
 // pairs of button label and its tooltip
 "Close" = "關閉";
-"Close find result." = "關閉檢索結果。";
+"Close find result." = "關閉尋找結果。";
 
-"Find All" = "檢索全部";
+"Find All" = "尋找全部";
 "Find and list all matches." = "列出所有匹配。";
 
 "Replace All" = "全部取代";
@@ -115,16 +115,16 @@
 "Replace" = "取代";
 "Replace the current selection with the replacement text, then find the next match." = "用取代文字取代當前選中內容，然後查找下一個匹配項目";
 
-"Find Previous" = "檢索上一個";
-"Find previous match." = "檢索前一個匹配。";
+"Find Previous" = "尋找上一個";
+"Find previous match." = "尋找前一個匹配。";
 
-"Find Next" = "檢索下一個";
-"Find next match." = "檢索後一個匹配。";
+"Find Next" = "尋找下一個";
+"Find next match." = "尋找後一個匹配。";
 
 
 
 /* MARK: Find Panel Result View */
-"Find string: %@" = "檢索字串：%@";
+"Find string: %@" = "尋找字串：%@";
 // Find result (“%@” is filename)
 "No strings found in “%@.”" = "在「%@」中沒有找到字元串。";
 "Found one string in “%@.”" = "在「%@」中找到一個字元串。";
@@ -177,30 +177,30 @@
 
 
 /* MARK: Find Settings View */
-"Advanced Find Options" = "進階檢索選項";
+"Advanced Find Options" = "進階尋找選項";
 
 // checkbox labels
-"Wrap search around" = "折行檢索";
-"Search incrementally" = "增量檢索";
+"Wrap search around" = "折行尋找";
+"Search incrementally" = "增量尋找";
 
 
-"Textual Search" = "文字檢索";
+"Textual Search" = "文字尋找";
 
 // pairs of checkbox label and its tooltip
 "Match only whole word" = "僅全字匹配";
-"Restrict search results to the whole words." = "將檢索結果限定於全字。";
+"Restrict search results to the whole words." = "將尋找結果限定於全字。";
 
 "Distinguish characters strictly" = "嚴格區分字元";
-"Exact character-by-character equivalence." = "逐字元相等檢索";
+"Exact character-by-character equivalence." = "逐字元相等尋找";
 
 "Ignore diacritical marks" = "忽略變音符號";
-"Search ignores diacritical marks (e.g. ö = o)." = "忽略變音符號進行檢索（例如ö = o）。";
+"Search ignores diacritical marks (e.g. ö = o)." = "忽略變音符號進行尋找（例如ö = o）。";
 
 "Ignore width differences" = "忽略字元寬度";
-"Search ignores width differences in character forms (e.g. ａ = a)." = "忽略字元形式的寬度進行檢索（例如ａ = a）。";
+"Search ignores width differences in character forms (e.g. ａ = a)." = "忽略字元形式的寬度進行尋找（例如ａ = a）。";
 
 
-"Regular Expression Search" = "常規表示式檢索";
+"Regular Expression Search" = "常規表示式尋找";
 
 // pairs of checkbox label and its tooltip
 "Dot matches line separators" = "使點匹配換行";
@@ -230,8 +230,8 @@
 
 
 /* MARK: Open Panel Accessory */
-"Encoding:" = "編碼：";
-"Show hidden files" = "顯示隱藏檔案";
+"Text encoding:" = "文字編碼：";
+"Show invisible files" = "顯示隱藏檔案";
 
 
 
@@ -256,7 +256,7 @@
 "Line Endings to %@" = "行尾變更為%@";
 
 // Convert or reinterpret encoding alert
-"File encoding" = "檔案編碼";
+"Text encoding" = "文字編碼";
 "Do you want to convert or reinterpret this document using “%@”?" = "要使用「%@」進行轉換或者再次解釋這份文件嗎？";
 "Convert" = "轉換";
 "Reinterpret" = "再次解釋";
@@ -291,8 +291,8 @@
 "Ignore" = "忽略";
 
 // Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "檔案被其他應用更改，CotEditor中還有未儲存的變更。";
-"The file has been changed by another application." = "檔案被其他應用更改。";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "其他應用程式已對此檔案進行修改。CotEditor中還有未儲存的變更。";
+"The file has been changed by another application." = "其他應用程式已對此檔案進行修改。";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "保留CotEditor的版本還是更新至被編輯過的版本？";
 "Keep CotEditor’s Edition" = "保留CotEditor編輯的內容";
 "Update" = "更新";
@@ -316,29 +316,29 @@
 "Recently Used" = "最近使用";
 "Deleted" = "已刪除";  // heading for deleted items
 
-"Inspector" = "檢查器";
+"Inspector" = "檢閱器";
 // tooltip
 "Show document information" = "顯示文件資訊";
 
-"Text Size" = "文字尺寸";
-"Smaller" = "較小";
-"Bigger" = "較大";
+"Text Size" = "文字大小";
+"Smaller" = "縮小";
+"Bigger" = "放大";
 // tooltip
-"Change text size" = "改變文字尺寸";
-"Decrease text size" = "減少文字尺寸";
-"Increase text size" = "增加文字尺寸";
+"Change text size" = "更改文字大小";
+"Decrease text size" = "縮小文字大小";
+"Increase text size" = "放大文字大小";
 
 "Writing Direction" = "書寫方向";
-"Left to Right" = "從左到右";
-"Right to Left" = "從右到左";
+"Left to Right" = "由左至右";
+"Right to Left" = "由右至左";
 // tooltip
 "Change writing direction" = "改變書寫方向";
-"Left to right" = "從左到右";
-"Right to left" = "從右到左";
+"Left to right" = "由左至右";
+"Right to left" = "由右至左";
 
 "Text Orientation" = "文字方向";
-"Horizontal" = "水平";
-"Vertical" = "豎直";
+"Horizontal" = "橫書";
+"Vertical" = "直書";
 // tooltip
 "Switch text orientation" = "切換文字方向";
 
@@ -360,10 +360,10 @@
 "Use spaces for indentation" = "以空格縮進";
 // menu
 "Tab Width" = "定位符號寬度";
-"Custom…" = "自訂…";
+"Custom…" = "自訂⋯";
 "Use Spaces for Indentation" = "以空格縮進";
 
-"Wrap Lines" = "換行";
+"Line Wrapping" = "換行";
 // tooltip
 "Unwrap lines" = "不換行";
 "Wrap lines" = "換行";
@@ -396,7 +396,7 @@
 
 "Find" = "查找";
 // tooltip
-"Show Find & Replace" = "顯示查找與取代";
+"Show Find & Replace" = "顯示尋找與取代";
 
 "Print" = "列印";
 // tooltip
@@ -408,9 +408,9 @@
 
 "Fonts" = "字體";
 // tooltip
-"Change Font" = "變更字型";
+"Change Font" = "更改字體";
 // menu items
-"Font Type" = "字型種類";
+"Font Type" = "字體種類";
 "Standard" = "標準型";
 "Monospaced" = "等寬型";
 "Show Fonts" = "顯示字體";
@@ -419,7 +419,7 @@
 
 /* MARK: Touch Bar */
 // Touch bar item labels -Text Size
-"Actual Size" = "實際尺寸";
+"Actual Size" = "實際大小";
 
 
 
@@ -438,7 +438,7 @@
 "Document Name" = "文件名稱";
 "File Path" = "檔案路徑";
 "Print Date" = "列印日期";
-"Last Modified Date" = "最近修改日期";
+"Last Modified Date" = "上次修改日期";
 "Page Number" = "頁碼";
 
 // Segmented control tooltips
@@ -472,7 +472,7 @@
 "No issues found." = "沒有發現問題。";
 
 // Incompatible characters
-"Scanning incompatible characters…" = "掃描不兼容字元…";
+"Scanning incompatible characters…" = "掃描不兼容字元⋯";
 "Found an incompatible character." = "發現1處不兼容字元。";
 "Found %lld incompatible characters." = "發現%lld處不兼容字元。";  // %lld is the number of characters
 
@@ -511,14 +511,14 @@
 
 /* MARK: DocumentViewController */
 // Menu items
-"Hide Inspector" = "隱藏檢查器";
-"Show Inspector" = "顯示檢查器";
+"Hide Inspector" = "隱藏檢閱器";
+"Show Inspector" = "顯示檢閱器";
 "Hide Line Numbers" = "隱藏行號";
 "Show Line Numbers" = "顯示行號";
-"Hide Status Bar" = "隱藏狀態欄";
-"Show Status Bar" = "顯示狀態欄";
-"Hide Navigation Bar" = "隱藏巡覽列";
-"Show Navigation Bar" = "顯示巡覽列";
+"Hide Status Bar" = "隱藏狀態列";
+"Show Status Bar" = "顯示狀態列";
+"Hide Navigation Bar" = "隱藏導覽列";
+"Show Navigation Bar" = "顯示導覽列";
 "Hide Invisibles" = "隱藏不可見元素";
 "Show Invisibles" = "顯示不可見元素";
 "Hide Page Guide" = "隱藏頁面指示";
@@ -571,8 +571,8 @@
 // placeholder
 "Color Code" = "顏色碼";
 
-"Hexadecimal" = "Hex";
-"Hexadecimal (Short)" = "Hex（短）";
+"Hexadecimal" = "十六進位";
+"Hexadecimal (Short)" = "十六進位（短）";
 "CSS RGB" = "CSS RGB";
 "CSS RGBa" = "CSS RGBa";
 "CSS HSL" = "CSS HSL";
@@ -597,7 +597,7 @@
 
 /* MARK: Settings */
 // Panes
-"General" = "通用";
+"General" = "一般";
 "Window" = "視窗";
 "Appearance" = "外觀";
 "Edit" = "編輯";
@@ -624,14 +624,14 @@
 
 // Appearance pane
 // alert message
-"The selected font doesn’t seem to be monospaced." = "當前選中的字型似乎並非等寬字型。";
-"Do you want to use it for the monospaced font?" = "您真的要將這個字型作為等寬字型來使用嗎？";  // “it” is the selected font.
+"The selected font doesn’t seem to be monospaced." = "當前選中的字體似乎並非等寬字體。";
+"Do you want to use it for the monospaced font?" = "您真的要將這個字體作為等寬字體來使用嗎？";  // “it” is the selected font.
 
 // Contextual menu items
 "Rename “%@”" = "給「%@」重新命名";
 "Duplicate “%@”" = "拷貝「%@」";
 "Restore “%@”" = "還原「%@」";
-"Reveal “%@” in Finder" = "在訪達中顯示「%@」";
+"Reveal “%@” in Finder" = "顯示「%@」於Finder";
 
 /* Theme View */
 "Text:" = "字元：";
@@ -670,8 +670,8 @@
 // Format pane
 // Installed syntaxes action menu items
 "Duplicate “%@”" = "拷貝「%@」";
-"Export “%@”…" = "導出「%@」…";
-"Reveal “%@” in Finder" = "在訪達中顯示「%@」";
+"Export “%@”…" = "輸出「%@」⋯";
+"Reveal “%@” in Finder" = "顯示「%@」於Finder";
 
 
 // Snippets pane
@@ -707,7 +707,7 @@
 
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "「%@」無法刪除。";
-"“%@” couldn’t be imported." = "「%@」無法導入。";
+"“%@” couldn’t be imported." = "「%@」無法輸入。";
 "No original file for “%@” was found." = "無法找到「%@」的源檔案。";
 
 // Setting filename warnings
@@ -730,13 +730,13 @@
 "copy" = "拷貝";
 
 // Import syntax file choose openPanel button
-"Import" = "導入";
+"Import" = "輸入";
 // Importing same name syntax alert
 "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "即將安裝新的文法定義「%@」，但目前已經有另一筆同名文法定義登記在庫。";
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "真的要取而代之嗎？\n被取代的文法定義將會永遠丟失、無法找回。";
 
 // Export syntax file savePanel label
-"Export As:" = "導出為：";
+"Export As:" = "輸出為：";
 
 // Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "塊註釋需要同時有起始符號和終止符號。";
@@ -769,7 +769,7 @@
 "Insert Text %lld" = "插入文字%lld";
 
 // Keyboard key name
-"Space" = "空格鍵";
+"Space" = "空格";
 
 // Warning messages
 "“%@” is already taken by the “%@” command." = "「%@」已被「%@」命令使用。";
@@ -869,16 +869,16 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<包含有%lld個字元>";
+"<a letter consisting of %lld characters>" = "<包含有%lld個字元>";  // %lld is always 2 or more.
 
 // Variation selectors
-"Emoji Style" = "表情文字格式";
-"Text Style" = "文字文字格式";
-"Skin Tone I-II" = "色調I-II";
-"Skin Tone III" = "色調III";
-"Skin Tone IV" = "色調IV";
-"Skin Tone V" = "色調V";
-"Skin Tone VI" = "色調VI";
+"Emoji Style" = "表情符號風格";
+"Text Style" = "文字風格";
+"Skin Tone I-II" = "膚色I-II";
+"Skin Tone III" = "膚色III";
+"Skin Tone IV" = "膚色IV";
+"Skin Tone V" = "膚色V";
+"Skin Tone VI" = "膚色VI";
 "Variant" = "異體字";
 
 
@@ -904,7 +904,7 @@
 
 /* MARK: Character Inspector View */
 "Unknown" = "未知的";
-"No Block" = "無Block";
+"No Block" = "無區段";
 "Code Point:" = "碼位:";
 "Block:" = "區段:";
 "Category:" = "分類:";
@@ -916,7 +916,7 @@
 
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
-"Advanced Character Count…" = "進階字元統計…";
+"Advanced Character Count…" = "進階字元統計⋯";
 "Stop Advanced Character Count" = "停止進階字元統計";
 // error message when counting failed
 "failed" = "已失敗";

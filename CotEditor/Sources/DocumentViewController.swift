@@ -268,7 +268,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 (item as? NSMenuItem)?.title = self.wrapsLines
                     ? String(localized: "Unwrap Lines")
                     : String(localized: "Wrap Lines")
-                (item as? NSToolbarItem)?.label = self.wrapsLines
+                (item as? NSToolbarItem)?.toolTip = self.wrapsLines
                     ? String(localized: "Unwrap lines")
                     : String(localized: "Wrap lines")
                 (item as? StatableToolbarItem)?.state = self.wrapsLines ? .on : .off

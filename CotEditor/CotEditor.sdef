@@ -62,7 +62,7 @@
             <property name="IANA charset" code="iacs" type="text" access="r" description="The IANA charset name of the document.">
                 <cocoa key="IANACharSetName"/>
             </property>
-            <property name="has BOM" code="hBOM" type="boolean" access="r" description="Is the file encoding of the document has BOM (byte order mark)?">
+            <property name="has BOM" code="hBOM" type="boolean" access="r" description="Is the text encoding of the document has BOM (byte order mark)?">
                 <cocoa key="hasBOM"/>
             </property>
             <property name="length" code="slen" type="integer" access="r" hidden="yes" description="The number of characters in the document. !!!: This property is deprecated on CotEditor 4.4.0, and available just for the backward compatibility.">

@@ -135,7 +135,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     
     private lazy var overscrollResizingDebouncer = Debouncer { [weak self] in self?.invalidateOverscrollRate() }
     
-    private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
+    private let instanceHighlightColor: NSColor = .accent.withAlphaComponent(0.3)
     private var instanceHighlightTask: Task<Void, any Error>?
     
     private var needsRecompletion = false
@@ -224,6 +224,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         layoutManager.showsIndentGuides = defaults[.showIndentGuides]
         
         self.ligature = defaults[.ligature(for: fontType)] ? .standard : .none
+        self.typingAttributes[.kern] = (fontType == .monospaced) ? 0 : nil
         self.invalidateDefaultParagraphStyle(initial: true)
         
         // observe font changes in defaults
@@ -1326,6 +1327,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.font = defaults.font(for: type)
         self.ligature = defaults[.ligature(for: type)] ? .standard : .none
         self.usesAntialias = defaults[.antialias(for: type)]
+        self.typingAttributes[.kern] = (type == .monospaced) ? 0 : nil
         
         self.observeFontDefaults(for: type)
     }

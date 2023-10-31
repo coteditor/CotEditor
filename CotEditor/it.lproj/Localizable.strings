@@ -55,7 +55,7 @@
 
 
 // warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "Si è sicuri di voler cancellare “%@”?";
+"Are you sure you want to delete “%@”?" = "Confermi di voler eliminare “%@”?";
 "This action cannot be undone." = "L’azione è irreversibile.";
 
 
@@ -230,8 +230,8 @@
 
 
 /* MARK: Open Panel Accessory */
-"Encoding:" = "Codifica:";
-"Show hidden files" = "Mostra i file nascosti";
+"Text encoding:" = "Codifica testo:";
+"Show invisible files" = "Mostra i file nascosti";
 
 
 
@@ -256,7 +256,7 @@
 "Line Endings to %@" = "Termine riga a %@";
 
 // Convert or reinterpret encoding alert
-"File encoding" = "Codifica file";
+"Text encoding" = "Codifica testo";
 "Do you want to convert or reinterpret this document using “%@”?" = "Si desidera convertire o reinterpretare il documento usando “%@”?";
 "Convert" = "Converti";
 "Reinterpret" = "Reinterpreta";
@@ -363,7 +363,7 @@
 "Custom…" = "Personalizzato…";
 "Use Spaces for Indentation" = "Usa gli spazi per il rientro";
 
-"Wrap Lines" = "A capo automatico";
+"Line Wrapping" = "Adattamento righe:";
 // tooltip
 "Unwrap lines" = "Rimuovi a capo automatico";
 "Wrap lines" = "A capo automatico";
@@ -419,7 +419,7 @@
 
 /* MARK: Touch Bar */
 // Touch bar item labels -Text Size
-"Actual Size" = "Dimensioni reali";
+"Actual Size" = "Dimensione reale";
 
 
 
@@ -869,16 +869,16 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<una lettera composta di %lld caratteri>";
+"<a letter consisting of %lld characters>" = "<una lettera composta di %lld caratteri>";  // %lld is always 2 or more.
 
 // Variation selectors
 "Emoji Style" = "Stile Emoji";
 "Text Style" = "Stile Testo";
-"Skin Tone I-II" = "Tono Pelle I-II";
-"Skin Tone III" = "Tono Pelle III";
-"Skin Tone IV" = "Tono Pelle IV";
-"Skin Tone V" = "Tono Pelle V";
-"Skin Tone VI" = "Tono Pelle VI";
+"Skin Tone I-II" = "Tonalità pelle I-II";
+"Skin Tone III" = "Tonalità pelle III";
+"Skin Tone IV" = "Tonalità pelle IV";
+"Skin Tone V" = "Tonalità pelle V";
+"Skin Tone VI" = "Tonalità pelle VI";
 "Variant" = "Variante";
 
 

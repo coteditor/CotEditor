@@ -32,7 +32,7 @@ extension NSView {
     ///
     /// - Parameters:
     ///   - symbol: The symbol to display in the HUD.
-    func showHUD(symbol: HUDView.Symbol) {
+    final func showHUD(symbol: HUDView.Symbol) {
         
         let hudView = NSHostingView(rootView: HUDView(symbol: symbol))
         hudView.rootView.parent = hudView

@@ -230,8 +230,8 @@
 
 
 /* MARK: Open Panel Accessory */
-"Encoding:" = "エンコーディング:";
-"Show hidden files" = "不可視ファイルを表示";
+"Text encoding:" = "テキストエンコーディング:";
+"Show invisible files" = "不可視ファイルを表示";
 
 
 
@@ -245,7 +245,7 @@
 
 // Large file alert
 "The file “%@” has a size of %@." = "ファイル“%@”はファイルサイズが%@あります。";
-"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリケーションの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか?";
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか?";
 "Open" = "開く";
 
 
@@ -256,7 +256,7 @@
 "Line Endings to %@" = "改行コードを%@へ";
 
 // Convert or reinterpret encoding alert
-"File encoding" = "エンコーディング";
+"Text encoding" = "テキストエンコーディング";
 "Do you want to convert or reinterpret this document using “%@”?" = "“%@”を使って書類を変換または再解釈しますか?";
 "Convert" = "変換";
 "Reinterpret" = "再解釈";
@@ -291,8 +291,8 @@
 "Ignore" = "無視";
 
 // Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリケーションによって変更されました。CotEditorで加えた編集もまだ保存されていません。";
-"The file has been changed by another application." = "ファイルは別のアプリケーションによって変更されました。";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "このファイルは、別のアプリケーションによって変更されました。CotEditorで加えた編集もまだ保存されていません。";
+"The file has been changed by another application." = "このファイルは、別のアプリケーションによって変更されました。";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "CotEditorでの編集内容を保持しますか、それとも変更された内容に更新しますか?";
 "Keep CotEditor’s Edition" = "CotEditorの編集内容を保持";
 "Update" = "更新";
@@ -325,8 +325,8 @@
 "Bigger" = "大きく";
 // tooltip
 "Change text size" = "文字サイズを変更";
-"Decrease text size" = "文字サイズを小さく";
-"Increase text size" = "文字サイズを大きく";
+"Decrease text size" = "文字サイズを小さくする";
+"Increase text size" = "文字サイズを大きくする";
 
 "Writing Direction" = "文章の方向";
 "Left to Right" = "左から右";
@@ -363,9 +363,9 @@
 "Custom…" = "カスタム…";
 "Use Spaces for Indentation" = "インデントにスペースを使用";
 
-"Wrap Lines" = "行を折り返す";
+"Line Wrapping" = "行の折り返し";
 // tooltip
-"Unwrap lines" = "行の折り返さない";
+"Unwrap lines" = "行を折り返さない";
 "Wrap lines" = "行を折り返す";
 
 "Invisibles" = "不可視文字";
@@ -392,7 +392,7 @@
 
 "Emoji & Symbols" = "絵文字と記号";
 // tooltip
-"Show Emoji & Symbols palette" = "絵文字と記号パレットを表示";
+"Show Emoji & Symbols palette" = "“絵文字と記号”を表示";
 
 "Find" = "検索";
 // tooltip
@@ -571,8 +571,8 @@
 // placeholder
 "Color Code" = "カラーコード";
 
-"Hexadecimal" = "16進法";
-"Hexadecimal (Short)" = "16進法（ショート）";
+"Hexadecimal" = "16進数";
+"Hexadecimal (Short)" = "16進数（ショート）";
 "CSS RGB" = "CSS RGB";
 "CSS RGBa" = "CSS RGBa";
 "CSS HSL" = "CSS HSL";
@@ -608,7 +608,7 @@
 
 // General pane
 // Autosave setting update alert
-"The change will be applied first on the next launch." = "この変更は次回アプリケーション起動時に適用されます。";
+"The change will be applied first on the next launch." = "この変更は次回アプリ起動時に適用されます。";
 "Do you want to restart CotEditor now?" = "CotEditorを今すぐ再起動しますか?";
 "Restart Now" = "今すぐ再起動";
 "Later" = "あとで";
@@ -822,8 +822,8 @@
 "The dropped file’s extension (converted to lowercase)." = "ドロップ元ファイルの拡張子（小文字）";
 "The dropped file’s extension (converted to uppercase)." = "ドロップ元ファイルの拡張子（大文字）";
 "The parent directory name of dropped file." = "ドロップ元ファイルのあるディレクトリ名";
-"(If the dropped file is an image) image width." = "イメージの幅（ドロップ元ファイルが画像ファイルのときのみ有効）";
-"(If the dropped file is an image) image height." = "イメージの高さ（ドロップ元ファイルが画像ファイルのときのみ有効）";
+"(If the dropped file is an image) image width." = "画像の幅（ドロップ元ファイルが画像ファイルのときのみ有効）";
+"(If the dropped file is an image) image height." = "画像の高さ（ドロップ元ファイルが画像ファイルのときのみ有効）";
 "(If the dropped file is a text file) file content." = "ファイル内容（ドロップ元ファイルがテキストファイルのときのみ有効）";
 
 
@@ -849,7 +849,7 @@
 
 
 /* MARK: Encoding List View */
-"Drag encodings to change the order:" = "エンコーディングをドラッグして並び替えます:";
+"Drag encodings to change the order:" = "エンコーディングをドラッグして並び替えてください:";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "この順序はエンコーディングメニューや書類を開くときのエンコーディング認識で使われます。自動認識では上位のエンコーディングがより優先して適用されます。";
 "Add Separator" = "区切り線を追加";
 "Delete Separator" = "区切り線を削除";
@@ -869,7 +869,7 @@
 
 
 /* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<%lld字から成る文字>";
+"<a letter consisting of %lld characters>" = "<%lld字から成る文字>";  // %lld is always 2 or more.
 
 // Variation selectors
 "Emoji Style" = "絵文字スタイル";

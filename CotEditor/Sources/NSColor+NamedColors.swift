@@ -23,12 +23,11 @@
 //  limitations under the License.
 //
 
-import AppKit.NSAppearance
 import AppKit.NSColor
 
 extension NSColor {
     
-    static let textHighlighterColor = NSColor(resource: .accent).withAlphaComponent(0.4)
+    static let textHighlighterColor: NSColor = .accent.withAlphaComponent(0.4)
 }
 
 
@@ -39,11 +38,36 @@ extension NSColor {
     ///
     /// - Parameter number: The required number of colors.
     /// - Returns: An array of created colors.
-    func decompose(into number: Int) -> [NSColor] {
+    final func decompose(into number: Int) -> [NSColor] {
         
         (0..<number)
-            .map { CGFloat($0) / CGFloat(number) }
+            .map { Double($0) / Double(number) }
             .map { (self.hueComponent + $0).truncatingRemainder(dividingBy: 1) }
             .map { NSColor(calibratedHue: $0, saturation: self.saturationComponent, brightness: self.brightnessComponent, alpha: self.alphaComponent) }
     }
+}
+
+
+
+public extension NSColor {
+    
+    /// The back-deployed version of the `.systemFill`.
+    @backDeployed(before: macOS 14)
+    static var systemFill: NSColor  { .labelColor.withAlphaComponent(0.50) }
+    
+    /// The back-deployed version of the `.secondarySystemFill`.
+    @backDeployed(before: macOS 14)
+    static var secondarySystemFill: NSColor  { .labelColor.withAlphaComponent(0.15) }
+    
+    /// The back-deployed version of the `.tertiarySystemFill`.
+    @backDeployed(before: macOS 14)
+    static var tertiarySystemFill: NSColor  { .labelColor.withAlphaComponent(0.10) }
+    
+    /// The back-deployed version of the `.quaternarySystemFill`.
+    @backDeployed(before: macOS 14)
+    static var quaternarySystemFill: NSColor  { .labelColor.withAlphaComponent(0.05) }
+    
+    /// The back-deployed version of the `.quinarySystemFill`.
+    @backDeployed(before: macOS 14)
+    static var quinarySystemFill: NSColor  { .labelColor.withAlphaComponent(0.03) }
 }

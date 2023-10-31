@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2022 1024jp
+//  © 2019-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import AppKit
 extension NSPrintInfo {
     
     /// The content size of the paper.
-    var paperContentSize: NSSize {
+    final var paperContentSize: NSSize {
         
         var size = self.paperSize
         size.width -= self.leftMargin + self.rightMargin

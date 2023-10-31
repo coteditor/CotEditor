@@ -31,7 +31,7 @@ extension NSViewController {
     ///
     /// This computed property avoid unwanted view loading when the view is not yet loaded.
     /// However, it does not check whether the view is actually visible. For that, see the discussion part of `isHiddenOrHasHiddenAncestor`.
-    var isViewShown: Bool {
+    final var isViewShown: Bool {
         
         self.isViewLoaded && !self.view.isHiddenOrHasHiddenAncestor
     }

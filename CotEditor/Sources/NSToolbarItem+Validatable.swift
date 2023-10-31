@@ -51,6 +51,7 @@ extension Validatable where Self: NSToolbarItem {
 
 // MARK: -
 
+@available(macOS, deprecated: 14)
 final class MenuToolbarItem: NSMenuToolbarItem, Validatable {
     
     override func validate() {

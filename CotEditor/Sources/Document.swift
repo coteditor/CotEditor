@@ -223,7 +223,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 let baseFileName = fileURL.deletingPathExtension().lastPathComponent
                     .replacing(/^\./, with: "", maxReplacements: 1)  // avoid file to be hidden
                 
-                // append an unique string to avoid overwriting another backup file with the same file name.
+                // append an unique string to avoid overwriting another backup file with the same filename.
                 let maxIdentifierLength = Int(NAME_MAX) - (baseFileName + " ()." + fileURL.pathExtension).length
                 let fileName = baseFileName + " (" + UUID().uuidString.prefix(maxIdentifierLength) + ")"
                 
@@ -444,7 +444,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             }
             if error != nil { return }
             
-            // apply syntax that is inferred from the file name or the shebang
+            // apply syntax that is inferred from the filename or the shebang
             if saveOperation == .saveAsOperation,
                let syntaxName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
                 ?? SyntaxManager.shared.settingName(documentContent: self.textStorage.string)
@@ -812,7 +812,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     /// Reinterpret the document file with the desired encoding.
     ///
-    /// - Parameter encoding: The file encoding to read.
+    /// - Parameter encoding: The text encoding to read.
     /// - Throws: `ReinterpretationError`
     func reinterpret(encoding: String.Encoding) throws {
         
@@ -836,10 +836,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Change the file encoding and register the process to the undo manager.
+    /// Change the text encoding and register the process to the undo manager.
     ///
     /// - Parameters:
-    ///   - fileEncoding: The file encoding to change with.
+    ///   - fileEncoding: The text encoding to change with.
     ///   - lossy: Whether the change is lossy.
     /// - Throws: `EncodingError` (Kind.lossyConversion) can be thrown but only if `lossy` flag is `false`.
     func changeEncoding(to fileEncoding: FileEncoding, lossy: Bool) throws {
@@ -972,7 +972,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Change the document file encoding.
+    /// Change the document text encoding.
     @IBAction func changeEncoding(_ sender: NSMenuItem) {
         
         let fileEncoding = FileEncoding(tag: sender.tag)
@@ -997,7 +997,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             
             // ask whether just change the encoding or reinterpret document file
             let alert = NSAlert()
-            alert.messageText = String(localized: "File encoding")
+            alert.messageText = String(localized: "Text encoding")
             alert.informativeText = String(localized: "Do you want to convert or reinterpret this document using “\(fileEncoding.localizedName)”?")
             alert.addButton(withTitle: String(localized: "Convert"))
             alert.addButton(withTitle: String(localized: "Reinterpret"))
@@ -1115,7 +1115,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         assert(Thread.isMainThread)
         
-        // check file encoding for conversion and ask user how to solve
+        // check text encoding for conversion and ask user how to solve
         do {
             try self.checkSavingSafetyForConverting()
         } catch {
@@ -1126,7 +1126,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Check if the content can be saved with the current file encoding.
+    /// Check if the content can be saved with the current text encoding.
     private func checkSavingSafetyForConverting() throws {
         
         guard self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) else {

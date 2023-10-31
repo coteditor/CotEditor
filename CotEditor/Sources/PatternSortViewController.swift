@@ -122,7 +122,7 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     // MARK: Sort Pattern View Controller Delegate
     
     /// sort pattern setting did update
-    func didUpdate(sortPattern: any SortPattern) {
+    func didUpdate(sortPattern: some SortPattern) {
         
         guard let field = self.sampleLineField else { return }
         
@@ -181,7 +181,7 @@ final class SortPatternTabViewController: NSTabViewController {
 
 protocol SortPatternViewControllerDelegate: AnyObject {
     
-    func didUpdate(sortPattern: any SortPattern)
+    func didUpdate(sortPattern: some SortPattern)
 }
 
 

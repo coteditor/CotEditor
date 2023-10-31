@@ -186,7 +186,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             let item = NSMenuItem()
             item.title = ""
             item.setAccessibilityLabel(String(localized: "Script"))
-            item.image = NSImage(systemSymbolName: "applescript.fill", accessibilityDescription: String(localized: "Scripts"))
+            item.image = NSImage(systemSymbolName: "applescript.fill", accessibilityDescription: String(localized: "Script"))
             item.toolTip = String(localized: "Script")
             item.submenu = scriptMenu
             

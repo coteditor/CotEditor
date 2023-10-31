@@ -48,7 +48,7 @@ extension NSDocument {
     
     
     /// present an error alert as document modal sheet by blocking asynchronous saving.
-    func presentErrorAsSheetSafely(_ error: any Error, synchronousWaiting waitSynchronously: Bool = false, recoveryHandler: RecoveryHandler? = nil) {
+    final func presentErrorAsSheetSafely(_ error: some Error, synchronousWaiting waitSynchronously: Bool = false, recoveryHandler: RecoveryHandler? = nil) {
         
         self.performActivity(withSynchronousWaiting: waitSynchronously) { [unowned self] activityCompletionHandler in
             self.presentErrorAsSheet(error) { (didRecover) in
@@ -60,7 +60,7 @@ extension NSDocument {
     
     
     /// present an error alert as document modal sheet
-    func presentErrorAsSheet(_ error: any Error, recoveryHandler: RecoveryHandler? = nil) {
+    final func presentErrorAsSheet(_ error: some Error, recoveryHandler: RecoveryHandler? = nil) {
         
         guard let window = self.windowForSheet else {
             let didRecover = self.presentError(error)

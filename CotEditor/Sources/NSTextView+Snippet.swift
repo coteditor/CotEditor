@@ -41,7 +41,7 @@ extension NSTextView {
     /// Insert the given snippet to the insertion points.
     ///
     /// - Parameter snippet: The snippet to insert.
-    func insert(snippet: Snippet) {
+    final func insert(snippet: Snippet) {
         
         guard let ranges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
         

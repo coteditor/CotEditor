@@ -64,13 +64,13 @@
 		<dd>書類の選択内容オブジェクト（text selection型）</dd>
 
 		<dt><code>encoding</code></dt>
-		<dd>エンコーディング（text型）</dd>
+		<dd>テキストエンコーディング（text型）</dd>
 
 		<dt><code>IANA charset</code></dt>
-		<dd>エンコーディングのIANA charset名（text型、<code>Shift_JIS</code>, <code>EUC-JP</code>など）</dd>
+		<dd>テキストエンコーディングのIANA charset名（text型、<code>Shift_JIS</code>, <code>EUC-JP</code>など）</dd>
 
 		<dt><code>has BOM</code></dt>
-		<dd>エンコーディングでBOMがあるかどうか（boolean型）<span class="added">CotEditor 4.1で追加</span></dd>
+		<dd>テキストエンコーディングでBOMがあるかどうか（boolean型）<span class="added">CotEditor 4.1で追加</span></dd>
 
 		<dt><code>line ending</code></dt>
 		<dd>改行コード（<code>CR</code> / <code>LF</code> / <code>CRLF</code> / <code>NEL</code> / <code>LS</code> / <code>PS</code>）</dd>
@@ -352,10 +352,10 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <dl class="tree">
 	<dt><code class="command">convert</code></dt>
-	<dd>書類のエンコーディングを変換する。</dd>
+	<dd>書類のテキストエンコーディングを変換する。</dd>
 	<dd><dl class="subtree">
 		<dt><code>to</code> (text)</dt>
-		<dd>新しいエンコーディング（ローカライズされたエンコーディング名かIANA charset名で指定）</dd>
+		<dd>新しいテキストエンコーディング（ローカライズされたエンコーディング名かIANA charset名で指定）</dd>
 
 		<dt>[<code>lossy</code>] (boolean)</dt>
 		<dd>エンコーディング適用によって一部の文字列が失われても良いか</dd>
@@ -383,7 +383,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <h4>詳細</h4>
 
-<p>CotEditor 4.0.7以降は、新しいエンコーディングの指定にIANA charset nameも使えます。</p>
+<p>CotEditor 4.0.7以降は、新しいテキストエンコーディングの指定にIANA charset nameも使えます。</p>
 </section>
 
 

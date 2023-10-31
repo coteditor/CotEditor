@@ -33,13 +33,13 @@
 "wmw-xg-bSt.title" = "当无项目可以打开时：";
 
 /* Class = "NSMenuItem"; title = "Create New Document"; ObjectID = "i4c-DG-ADS"; */
-"i4c-DG-ADS.title" = "创建新文档";
+"i4c-DG-ADS.title" = "创建新文稿";
 /* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
 "hIX-mh-cG4.title" = "显示打开对话框";
 
 
 /* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
-"Ki4-3Y-AZL.title" = "文档保存：";
+"Ki4-3Y-AZL.title" = "文稿保存：";
 
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "开启带有版本的自动保存";
@@ -48,7 +48,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "When document is changed by another application:"; ObjectID = "x4n-2n-I3p"; */
-"x4n-2n-I3p.title" = "当文档被其他应用更改时：";
+"x4n-2n-I3p.title" = "当文稿被其他应用更改时：";
 
 /* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "sBH-MX-cTd"; */
 "sBH-MX-cTd.title" = "保留CotEditor的版本";
