@@ -78,45 +78,37 @@ struct RegularExpressionReferenceView: View {
     
     var body: some View {
         
-        Section {
-            HStack(alignment: .top) {
-                VStack(alignment: .leading) {
+        VStack(alignment: .leading) {
+            Text("Basic Regular Expression Syntax")
+                .font(.title3)
+                .foregroundColor(.secondary)
+            
+            HStack(alignment: .top, spacing: 12) {
+                VStack(alignment: .leading, spacing: 12) {
                     DefinitionList(Definition.characters, title: "Characters")
-                    Spacer()
                     DefinitionList(Definition.anchors, title: "Anchors")
                 }
                 Divider()
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 12) {
                     DefinitionList(Definition.quantifiers, title: "Quantifiers")
-                    Spacer()
                     DefinitionList(Definition.extendedGroups, title: "Extended Groups")
-                    Spacer()
                     DefinitionList(Definition.backReference, title: "Back Reference")
                 }
-            }
-            .controlSize(.small)
+            }.controlSize(.small)
             
-        } header: {
-            Text("Basic Regular Expression Syntax")
-                .font(.title3)
-                .foregroundColor(.secondaryLabel)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-        } footer: {
+            let icuURL = "https://unicode-org.github.io/icu/userguide/strings/regexp.html"
             let icuLink = AttributedString(localized: "ICU Regular Expressions")
-                .settingAttributes(.init([
-                    .link: URL(string: "https://unicode-org.github.io/icu/userguide/strings/regexp.html")!,
-                ]))
+                .settingAttributes(.init([.link: URL(string: icuURL)!]))
             
             Text("The syntax conforms to the \(icuLink) specifications.",
                  comment: "%@ is the name of the regex engine (ICU Regular Expressions)")
                 .font(.footnote)
                 .foregroundColor(.secondary)
-                .tint(.accent)
+                .tint(.accentColor)
                 .frame(maxWidth: .infinity, alignment: .trailing)
-                .multilineTextAlignment(.leading)
+                .padding(.top, 8)
         }
-        .fixedSize(horizontal: true, vertical: false)
+        .fixedSize()
         .scenePadding()
     }
     
@@ -136,23 +128,21 @@ struct RegularExpressionReferenceView: View {
         
         var body: some View {
             
-            Section {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(self.title)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+                
                 Grid(alignment: .leading, verticalSpacing: 1) {
                     ForEach(self.definitions) { definition in
                         GridRow {
-                            Text(verbatim: definition.term)
+                            Text(definition.term)
                                 .fontWeight(.medium)
                             Text(definition.description)
                         }
                     }
                 }
-                
-            } header: {
-                Text(self.title)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.secondaryLabel)
-            }
-            .frame(minWidth: 200, alignment: .leading)
+            }.frame(minWidth: 200, alignment: .leading)
         }
     }
 }
