@@ -82,6 +82,7 @@ struct UnicodeInputView: View {
                 }
                 .menuStyle(.borderlessButton)
                 .frame(width: 16)
+                .padding(.leading, 4)
             }
         }
         .padding(10)
