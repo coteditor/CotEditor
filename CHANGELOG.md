@@ -14,7 +14,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that the initial width of the line number view did not grow even the document is large.
+- Fix an issue that the initial width of the line number view did not grow although the document is large.
 
 
 
