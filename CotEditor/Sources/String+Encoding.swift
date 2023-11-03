@@ -96,13 +96,6 @@ extension String.Encoding {
     }
     
     
-    /// whether receiver can convert Yen sign (U+00A5)
-    var canConvertYenSign: Bool {
-        
-        "¥".canBeConverted(to: self)
-    }
-    
-    
     /// IANA charset name for the encoding
     var ianaCharSetName: String? {
         
@@ -218,15 +211,10 @@ extension String {
     }
     
     
-    /// convert Yen sign in consideration of the encoding
+    /// Convert Yen signs (U+00A5) in consideration of the encoding.
     func convertingYenSign(for encoding: String.Encoding) -> String {
         
-        guard !self.isEmpty, !encoding.canConvertYenSign else {
-            return self
-        }
-        
-        // replace Yen signs to backslashes if encoding cannot convert Yen sign
-        return self.replacing("¥", with: "\\")
+        "¥".canBeConverted(to: encoding) ? self : self.replacing("¥", with: "\\")
     }
 }
 

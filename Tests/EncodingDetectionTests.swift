@@ -214,14 +214,18 @@ final class EncodingDetectionTests: XCTestCase {
     
     func testYenConversion() {
         
-        XCTAssertTrue(String.Encoding.utf8.canConvertYenSign)
-        XCTAssertTrue(String.Encoding(cfEncodings: .shiftJIS).canConvertYenSign)
-        XCTAssertFalse(String.Encoding.japaneseEUC.canConvertYenSign)  // ? (U+003F)
-        XCTAssertFalse(String.Encoding.ascii.canConvertYenSign)  // Y (U+0059)
+        XCTAssertTrue("¥".canBeConverted(to: .utf8))
+        XCTAssertTrue("¥".canBeConverted(to: String.Encoding(cfEncodings: .shiftJIS)))
+        XCTAssertFalse("¥".canBeConverted(to: .shiftJIS))
+        XCTAssertFalse("¥".canBeConverted(to: .japaneseEUC))  // ? (U+003F)
+        XCTAssertFalse("¥".canBeConverted(to: .ascii))  // Y (U+0059)
         
-        let string = "yen \\ ¥ yen"
-        XCTAssertEqual(string.convertingYenSign(for: .utf8), "yen \\ ¥ yen")
-        XCTAssertEqual(string.convertingYenSign(for: .ascii), "yen \\ \\ yen")
+        let string = "\\ ¥ yen"
+        XCTAssertEqual(string.convertingYenSign(for: .utf8), string)
+        XCTAssertEqual(string.convertingYenSign(for: String.Encoding(cfEncodings: .shiftJIS)), string)
+        XCTAssertEqual(string.convertingYenSign(for: .shiftJIS), "\\ \\ yen")
+        XCTAssertEqual(string.convertingYenSign(for: .japaneseEUC), "\\ \\ yen")
+        XCTAssertEqual(string.convertingYenSign(for: .ascii), "\\ \\ yen")
     }
     
     
