@@ -41,7 +41,7 @@ struct IncompatibleCharacter: Equatable {
 
 extension String {
     
-    /// list-up characters cannot be converted to the passed-in encoding
+    /// list characters cannot be converted to the passed-in encoding
     ///
     /// - Throws: `CancellationError`
     func scanIncompatibleCharacters(with encoding: String.Encoding) throws -> [IncompatibleCharacter] {

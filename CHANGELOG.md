@@ -938,7 +938,7 @@ Change Log
 
 - Ability to handle documents holding multiple types of line endings.
 - Alert inconsistent line endings in the document when opening or reloading.
-- List up the inconsistent line endings in the Warnings pane in the inspector.
+- List the inconsistent line endings in the Warnings pane in the inspector.
 - Minor line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either when pressing the Option key or when the document's line ending is one of these).
 - Add the hidden Paste Exactly command (Command-Option-V) that pastes text in the clipboard without any modification, such as adjusting line endings to the document setting.
 - Add an option Selection to the Pages section in the Print dialog to print only the selected text in the document.

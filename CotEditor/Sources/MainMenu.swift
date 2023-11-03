@@ -37,7 +37,7 @@ enum MainMenu: Int {
     case help
     
     
-    /// Menu item tags not to list up in the Key Bindings setting.
+    /// Menu item tags not to list in the Key Bindings setting.
     enum MenuItemTag: Int {
         
         case recentDocuments = 2999
