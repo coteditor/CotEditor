@@ -2000,6 +2000,7 @@
 				2AC6BFCF21D00A8500FF325C /* Regex Parser */,
 				2AA375461D40BDCB0080C27C /* LineEnding.swift */,
 				2A8E25BA24DC59C400FCC33A /* FileEncoding.swift */,
+				2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */,
 				2AAD61EF1D2B0856008FE772 /* FuzzyRange.swift */,
 				2A4257BB1D239F850086DAAD /* Invisible.swift */,
 				2AF073E21D33C3AB00770BA6 /* Theme.swift */,
@@ -2093,7 +2094,6 @@
 				2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */,
 				2AF45E1D1E6C0D920030CD60 /* EditorCounter.swift */,
 				2A8C338B1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift */,
-				2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */,
 				2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */,
 				2A1125C523F6EFB2006A1DB2 /* URLDetector.swift */,
 			);

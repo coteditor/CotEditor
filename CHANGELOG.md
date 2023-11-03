@@ -5,6 +5,10 @@ Change Log
 4.6.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- Optimize the performance of the incompatible character scan.
+
 
 
 4.6.4 (599)
