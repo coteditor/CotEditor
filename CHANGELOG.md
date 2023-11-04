@@ -10,6 +10,11 @@ Change Log
 - Optimize the performance of the incompatible character scan.
 
 
+### Fixes
+
+- Fix an issue that the application could hang when opening a large document without line breaks.
+
+
 
 4.6.4 (599)
 --------------------------

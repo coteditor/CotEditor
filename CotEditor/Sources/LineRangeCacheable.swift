@@ -186,7 +186,7 @@ extension LineRangeCacheable {
             self.lineRangeCache.lineStartIndexes.insert(index)
         }
         self.lineRangeCache.parsedIndexes.insert(integersIn: lowerParseBound..<index)
-        self.lineRangeCache.invalidateFirstUncountedIndex()
+        self.lineRangeCache.firstUncountedIndex = index
     }
 }
 
@@ -211,12 +211,11 @@ private extension LineRangeCache {
     
     
     /// Update the first uncounted index.
-    mutating func invalidateFirstUncountedIndex() {
+    private mutating func invalidateFirstUncountedIndex() {
         
         let firstInvalidIndex = self.parsedIndexes.contains(0)
-            ? self.parsedIndexes.rangeView.first?.last.flatMap { $0 + 1 } ?? 0
+            ? self.parsedIndexes.rangeView.first?.upperBound ?? 0
             : 0
-        
         self.firstUncountedIndex = self.lineStartIndexes.integerLessThanOrEqualTo(firstInvalidIndex) ?? 0
     }
 }
