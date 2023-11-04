@@ -798,6 +798,7 @@ private extension NSTextField {
         let maxDisplaySize = NSFont.systemFontSize(for: self.controlSize)
         
         self.stringValue = displayName + " " + size.formatted()
+        self.toolTip = self.stringValue
         self.font = font.withSize(min(size, maxDisplaySize))
     }
 }

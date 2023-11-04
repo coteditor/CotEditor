@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Optimize the performance of the incompatible character scan.
+- [trivial] Add tooltip to font field in Appearance settings pane.
 
 
 ### Fixes
