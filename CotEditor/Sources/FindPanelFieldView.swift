@@ -68,12 +68,13 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     private var resultObservers: Set<AnyCancellable> = []
     
     @IBOutlet private weak var findTextView: RegexFindPanelTextView?
-    @IBOutlet private weak var replacementTextView: RegexFindPanelTextView?
     @IBOutlet private weak var findHistoryMenu: NSMenu?
-    @IBOutlet private weak var replaceHistoryMenu: NSMenu?
     @IBOutlet private weak var findResultField: NSTextField?
-    @IBOutlet private weak var replacementResultField: NSTextField?
     @IBOutlet private weak var findClearButtonConstraint: NSLayoutConstraint?
+    
+    @IBOutlet private weak var replacementTextView: RegexFindPanelTextView?
+    @IBOutlet private weak var replaceHistoryMenu: NSMenu?
+    @IBOutlet private weak var replacementResultField: NSTextField?
     @IBOutlet private weak var replacementClearButtonConstraint: NSLayoutConstraint?
     
     
