@@ -240,7 +240,7 @@ struct SortOptions: Equatable {
     var keepsFirstLine: Bool = false
     var descending: Bool = false
     
-    private var locale: Locale = .current
+    var locale: Locale = .current  // open for unit test
     
     
     var compareOptions: String.CompareOptions {
