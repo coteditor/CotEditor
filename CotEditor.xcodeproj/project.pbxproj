@@ -265,8 +265,6 @@
 		2A5D13301D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */; };
 		2A5D13321D1FB90300D38E6A /* FindPanelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */; };
 		2A5D13331D1FB90300D38E6A /* FindPanelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */; };
-		2A5D13351D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */; };
-		2A5D13361D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */; };
 		2A5D13381D1FCBDE00D38E6A /* FindPanelResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13371D1FCBDE00D38E6A /* FindPanelResultView.swift */; };
 		2A5D13391D1FCBDE00D38E6A /* FindPanelResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13371D1FCBDE00D38E6A /* FindPanelResultView.swift */; };
 		2A5D13421D1FE34F00D38E6A /* FindPanelFieldView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D13401D1FE34F00D38E6A /* FindPanelFieldView.storyboard */; };
@@ -1024,7 +1022,6 @@
 		2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatableToolbarItem.swift; sourceTree = "<group>"; };
 		2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelLayoutManager.swift; sourceTree = "<group>"; };
 		2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelTextView.swift; sourceTree = "<group>"; };
-		2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelTextClipView.swift; sourceTree = "<group>"; };
 		2A5D13371D1FCBDE00D38E6A /* FindPanelResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelResultView.swift; sourceTree = "<group>"; };
 		2A5D13411D1FE34F00D38E6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FindPanelFieldView.storyboard; sourceTree = "<group>"; };
 		2A5D13441D1FE66300D38E6A /* FindPanelButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelButtonView.swift; sourceTree = "<group>"; };
@@ -1448,7 +1445,6 @@
 			isa = PBXGroup;
 			children = (
 				2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */,
-				2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */,
 				2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */,
 				2A4AF76620759BE500C47606 /* RegexFindPanelTextView.swift */,
 				2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */,
@@ -2881,7 +2877,6 @@
 				2A40D28A2AA8AEF000402373 /* FindPanelOptionView.swift in Sources */,
 				2A5D13391D1FCBDE00D38E6A /* FindPanelResultView.swift in Sources */,
 				2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
-				2A5D13361D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
 				2A5D13331D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
 				2A231A2E1E7BE8B700C2A909 /* FindProgress.swift in Sources */,
 				2A5D13111D1EE66500D38E6A /* FindProgressView.swift in Sources */,
@@ -3239,7 +3234,6 @@
 				2A40D28B2AA8AEF000402373 /* FindPanelOptionView.swift in Sources */,
 				2A5D13381D1FCBDE00D38E6A /* FindPanelResultView.swift in Sources */,
 				2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
-				2A5D13351D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
 				2A5D13321D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
 				2A231A2D1E7BE8B700C2A909 /* FindProgress.swift in Sources */,
 				2A5D13101D1EE66500D38E6A /* FindProgressView.swift in Sources */,
