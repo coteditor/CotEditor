@@ -85,30 +85,26 @@ final class NavigationBarController: NSViewController {
             let textView = self.textView
         else { return assertionFailure() }
         
-        self.viewObservers.removeAll()
-        
-        splitViewController.splitView.publisher(for: \.isVertical)
-            .map { NSImage(resource: $0 ? .splitAddVertical : .splitAdd) }
-            .assign(to: \.image, on: self.openSplitButton!)
-            .store(in: &self.viewObservers)
-        splitViewController.$canCloseSplitItem
-            .sink { [weak self] in self?.showsCloseButton = $0 }
-            .store(in: &self.viewObservers)
-        
-        textView.publisher(for: \.layoutOrientation, options: .initial)
-            .sink { [weak self] in self?.updateTextOrientation(to: $0) }
-            .store(in: &self.viewObservers)
-        
-        NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
-            .map { $0.object as! NSTextView }
-            .filter { !$0.hasMarkedText() }
-            // avoid updating outline item selection before finishing outline parse
-            // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
-            //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
-            .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
-            .debounce(for: .seconds(0.05), scheduler: RunLoop.main)
-            .sink { [weak self] _ in self?.invalidateOutlineMenuSelection() }
-            .store(in: &self.viewObservers)
+        self.viewObservers = [
+            splitViewController.splitView.publisher(for: \.isVertical)
+                .map { NSImage(resource: $0 ? .splitAddVertical : .splitAdd) }
+                .assign(to: \.image, on: self.openSplitButton!),
+            splitViewController.$canCloseSplitItem
+                .sink { [weak self] in self?.showsCloseButton = $0 },
+            
+            textView.publisher(for: \.layoutOrientation, options: .initial)
+                .sink { [weak self] in self?.updateTextOrientation(to: $0) },
+            
+            NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
+                .map { $0.object as! NSTextView }
+                .filter { !$0.hasMarkedText() }
+                // avoid updating outline item selection before finishing outline parse
+                // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
+                //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
+                .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
+                .debounce(for: .seconds(0.05), scheduler: RunLoop.main)
+                .sink { [weak self] _ in self?.invalidateOutlineMenuSelection() }
+        ]
         
         self.updateOutlineMenu()
     }

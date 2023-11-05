@@ -365,56 +365,47 @@ final class LineNumberView: NSView {
         
         assert(textView.enclosingScrollView?.contentView != nil)
         
-        self.textViewSubscriptions.removeAll()
-        
-        // observe content change
-        textView.layoutManager?.publisher(for: \.textStorage, options: .initial)
-            .sink { [weak self] in
-                self?.invalidateThickness()
-                self?.textStorageObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: $0)
-                    .compactMap { $0.object as? NSTextStorage }
-                    .filter { $0.editedMask.contains(.editedCharacters) }
-                    .receive(on: RunLoop.main)  // touch textView on main thread
-                    .sink { [weak self] _ in
-                        // -> The digit of the line numbers affect thickness.
-                        self?.invalidateThickness()
-                        self?.needsDisplay = true
-                    }
-            }
-            .store(in: &self.textViewSubscriptions)
-        
-        NotificationCenter.default.publisher(for: EditorTextView.didLiveChangeSelectionNotification, object: textView)
-            .sink { [weak self] _ in self?.needsDisplay = true }
-            .store(in: &self.textViewSubscriptions)
-        
-        NotificationCenter.default.publisher(for: NSView.frameDidChangeNotification, object: textView)
-            .sink { [weak self] _ in self?.needsDisplay = true }
-            .store(in: &self.textViewSubscriptions)
-        
-        NotificationCenter.default.publisher(for: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView)
-            .sink { [weak self] _ in self?.needsDisplay = true }
-            .store(in: &self.textViewSubscriptions)
-        
-        textView.publisher(for: \.defaultParagraphStyle?.lineHeightMultiple)
-            .sink { [weak self] _ in self?.needsDisplay = true }
-            .store(in: &self.textViewSubscriptions)
-        
-        textView.publisher(for: \.textColor, options: .initial)
-            .compactMap { $0 }
-            .sink { [weak self] in self?.textColor = $0 }
-            .store(in: &self.textViewSubscriptions)
-        
-        textView.publisher(for: \.backgroundColor, options: .initial)
-            .sink { [weak self] in self?.backgroundColor = $0 }
-            .store(in: &self.textViewSubscriptions)
-        
-        textView.publisher(for: \.font)
-            .sink { [weak self] _ in self?.invalidateDrawingInfo() }
-            .store(in: &self.textViewSubscriptions)
-        
-        textView.publisher(for: \.scale)
-            .sink { [weak self] _ in self?.invalidateDrawingInfo() }
-            .store(in: &self.textViewSubscriptions)
+        self.textViewSubscriptions = [
+            // observe content change
+            textView.layoutManager!.publisher(for: \.textStorage, options: .initial)
+                .sink { [weak self] in
+                    self?.invalidateThickness()
+                    self?.textStorageObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: $0)
+                        .compactMap { $0.object as? NSTextStorage }
+                        .filter { $0.editedMask.contains(.editedCharacters) }
+                        .receive(on: RunLoop.main)  // touch textView on main thread
+                        .sink { [weak self] _ in
+                            // -> The digit of the line numbers affect thickness.
+                            self?.invalidateThickness()
+                            self?.needsDisplay = true
+                        }
+                },
+            
+            NotificationCenter.default.publisher(for: EditorTextView.didLiveChangeSelectionNotification, object: textView)
+                .sink { [weak self] _ in self?.needsDisplay = true },
+            
+            NotificationCenter.default.publisher(for: NSView.frameDidChangeNotification, object: textView)
+                .sink { [weak self] _ in self?.needsDisplay = true },
+            
+            NotificationCenter.default.publisher(for: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView)
+                .sink { [weak self] _ in self?.needsDisplay = true },
+            
+            textView.publisher(for: \.defaultParagraphStyle?.lineHeightMultiple)
+                .sink { [weak self] _ in self?.needsDisplay = true },
+            
+            textView.publisher(for: \.textColor, options: .initial)
+                .compactMap { $0 }
+                .sink { [weak self] in self?.textColor = $0 },
+            
+            textView.publisher(for: \.backgroundColor, options: .initial)
+                .sink { [weak self] in self?.backgroundColor = $0 },
+            
+            textView.publisher(for: \.font)
+                .sink { [weak self] _ in self?.invalidateDrawingInfo() },
+            
+            textView.publisher(for: \.scale)
+                .sink { [weak self] _ in self?.invalidateDrawingInfo() },
+        ]
     }
 }
 

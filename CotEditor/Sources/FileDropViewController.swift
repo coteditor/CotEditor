@@ -49,13 +49,12 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
         super.viewDidLoad()
         
         // setup add/remove button
-        self.arrayObservers.removeAll()
-        self.fileDropController?.publisher(for: \.canAdd, options: .initial)
-            .sink { [weak self] in self?.addRemoveButton?.setEnabled($0, forSegment: 0) }
-            .store(in: &self.arrayObservers)
-        self.fileDropController?.publisher(for: \.canRemove, options: .initial)
-            .sink { [weak self] in self?.addRemoveButton?.setEnabled($0, forSegment: 1) }
-            .store(in: &self.arrayObservers)
+        self.arrayObservers = [
+            self.fileDropController!.publisher(for: \.canAdd, options: .initial)
+                .sink { [weak self] in self?.addRemoveButton?.setEnabled($0, forSegment: 0) },
+            self.fileDropController!.publisher(for: \.canRemove, options: .initial)
+                .sink { [weak self] in self?.addRemoveButton?.setEnabled($0, forSegment: 1) },
+        ]
         
         // setup variable menu
         if let menu = self.variableInsertionMenu?.menu {

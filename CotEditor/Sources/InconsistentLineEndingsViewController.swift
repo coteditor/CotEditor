@@ -55,25 +55,26 @@ final class InconsistentLineEndingsViewController: NSViewController {
         
         super.viewWillAppear()
         
-        self.document?.lineEndingScanner.$inconsistentLineEndings
-            .removeDuplicates()
-            .receive(on: RunLoop.main)
-            .sink { [unowned self] in
-                self.lineEndings = $0.sorted(using: self.tableView?.sortDescriptors ?? [])
-                self.tableView?.enclosingScrollView?.isHidden = $0.isEmpty
-                self.tableView?.reloadData()
-                self.updateMessage()
-            }
-            .store(in: &self.observers)
+        guard let document = self.document else { return assertionFailure() }
         
-        self.document?.$lineEnding
-            .removeDuplicates()
-            .receive(on: RunLoop.main)
-            .sink { [unowned self] in
-                self.documentLineEnding = $0
-                self.updateMessage()
-            }
-            .store(in: &self.observers)
+        self.observers = [
+            document.lineEndingScanner.$inconsistentLineEndings
+                .removeDuplicates()
+                .receive(on: RunLoop.main)
+                .sink { [unowned self] in
+                    self.lineEndings = $0.sorted(using: self.tableView?.sortDescriptors ?? [])
+                    self.tableView?.enclosingScrollView?.isHidden = $0.isEmpty
+                    self.tableView?.reloadData()
+                    self.updateMessage()
+                },
+            document.$lineEnding
+                .removeDuplicates()
+                .receive(on: RunLoop.main)
+                .sink { [unowned self] in
+                    self.documentLineEnding = $0
+                    self.updateMessage()
+                },
+        ]
     }
     
     

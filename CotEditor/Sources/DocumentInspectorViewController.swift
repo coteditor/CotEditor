@@ -129,50 +129,47 @@ final class DocumentInspectorViewController: NSViewController {
     /// - Parameter document: The document to observe.
     private func subscribe(_ document: Document) {
         
-        document.publisher(for: \.fileURL, options: .initial)
-            .map { $0?.path }
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.path, on: self.fileInfo)
-            .store(in: &self.documentObservers)
-        
-        document.$fileAttributes
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] (attributes) in
-                guard let info = self?.fileInfo else { return }
-                
-                let dateFormat = Date.FormatStyle(date: .abbreviated, time: .shortened)
-                
-                info.creationDate = (attributes?[.creationDate] as? Date)?.formatted(dateFormat)
-                info.modificationDate = (attributes?[.modificationDate] as? Date)?.formatted(dateFormat)
-                info.fileSize = (attributes?[.size] as? UInt64)?.formatted(.byteCount(style: .file, includesActualByteCount: true))
-                info.owner = attributes?[.ownerAccountName] as? String
-                info.permission = (attributes?[.posixPermissions] as? UInt16)?.formatted(.filePermissions)
-            }
-            .store(in: &self.documentObservers)
-        
-        document.$fileEncoding
-            .map(\.localizedName)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in self?.encoding = $0 }
-            .store(in: &self.documentObservers)
-        
-        document.$lineEnding
-            .map(\.name)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in self?.lineEndings = $0 }
-            .store(in: &self.documentObservers)
-        
-        document.analyzer.$result
-            .receive(on: DispatchQueue.main)
-            .sink { [info = self.editorInfo] (result) in
-                info.chars = result.characters.formatted
-                info.lines = result.lines.formatted
-                info.words = result.words.formatted
-                info.location = result.location?.formatted()
-                info.line = result.line?.formatted()
-                info.column = result.column?.formatted()
-                info.unicode = result.unicode
-            }
-            .store(in: &self.documentObservers)
+        self.documentObservers = [
+            document.publisher(for: \.fileURL, options: .initial)
+                .map { $0?.path }
+                .receive(on: DispatchQueue.main)
+                .assign(to: \.path, on: self.fileInfo),
+            
+            document.$fileAttributes
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] (attributes) in
+                    guard let info = self?.fileInfo else { return }
+                    
+                    let dateFormat = Date.FormatStyle(date: .abbreviated, time: .shortened)
+                    
+                    info.creationDate = (attributes?[.creationDate] as? Date)?.formatted(dateFormat)
+                    info.modificationDate = (attributes?[.modificationDate] as? Date)?.formatted(dateFormat)
+                    info.fileSize = (attributes?[.size] as? UInt64)?.formatted(.byteCount(style: .file, includesActualByteCount: true))
+                    info.owner = attributes?[.ownerAccountName] as? String
+                    info.permission = (attributes?[.posixPermissions] as? UInt16)?.formatted(.filePermissions)
+                },
+            
+            document.$fileEncoding
+                .map(\.localizedName)
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] in self?.encoding = $0 },
+            
+            document.$lineEnding
+                .map(\.name)
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] in self?.lineEndings = $0 },
+            
+            document.analyzer.$result
+                .receive(on: DispatchQueue.main)
+                .sink { [info = self.editorInfo] (result) in
+                    info.chars = result.characters.formatted
+                    info.lines = result.lines.formatted
+                    info.words = result.words.formatted
+                    info.location = result.location?.formatted()
+                    info.line = result.line?.formatted()
+                    info.column = result.column?.formatted()
+                    info.unicode = result.unicode
+                },
+        ]
     }
 }

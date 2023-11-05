@@ -105,23 +105,22 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         }
         
         // sync theme list change
-        self.themeManagerObservers.removeAll()
-        ThemeManager.shared.$settingNames
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in self?.updateThemeList() }
-            .store(in: &self.themeManagerObservers)
-        ThemeManager.shared.didUpdateSetting
-            .compactMap(\.new)
-            .receive(on: RunLoop.main)
-            .sink { [weak self] (name) in
-                guard
-                    name == self?.selectedThemeName,
-                    let latestTheme = ThemeManager.shared.setting(name: name)
-                else { return }
-                
-                self?.setTheme(latestTheme, name: name)
-            }
-            .store(in: &self.themeManagerObservers)
+        self.themeManagerObservers = [
+            ThemeManager.shared.$settingNames
+                .receive(on: RunLoop.main)
+                .sink { [weak self] _ in self?.updateThemeList() },
+            ThemeManager.shared.didUpdateSetting
+                .compactMap(\.new)
+                .receive(on: RunLoop.main)
+                .sink { [weak self] (name) in
+                    guard
+                        name == self?.selectedThemeName,
+                        let latestTheme = ThemeManager.shared.setting(name: name)
+                    else { return }
+                    
+                    self?.setTheme(latestTheme, name: name)
+                },
+        ]
         self.themeTableView?.scrollToBeginningOfDocument(nil)
     }
     

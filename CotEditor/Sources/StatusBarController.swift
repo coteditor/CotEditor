@@ -127,36 +127,30 @@ import Combine
         document.analyzer.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
         document.analyzer.invalidate()
         
-        self.documentObservers.removeAll()
-        
-        // observe editor info update
-        document.analyzer.$result
-            .removeDuplicates()
-            .map { [weak self] in self?.statusAttributedString(result: $0, types: UserDefaults.standard.statusBarEditorInfo) }
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in self?.editorStatus = $0 }
-            .store(in: &self.documentObservers)
-        
-        // observe file size
-        document.$fileAttributes
-            .map { $0?[.size] as? UInt64 }
-            .removeDuplicates()
-            .map { $0?.formatted(.byteCount(style: .file, spellsOutZero: false)) }
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in self?.fileSize = $0 }
-            .store(in: &self.documentObservers)
-        
-        // observe document status change
-        document.$fileEncoding
-            .map(\.tag)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in self?.encodingPopUpButton?.selectItem(withTag: $0) }
-            .store(in: &self.documentObservers)
-        document.$lineEnding
-            .map(\.index)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in self?.lineEndingPopUpButton?.selectItem(withTag: $0) }
-            .store(in: &self.documentObservers)
+        self.documentObservers = [
+            // observe editor info update
+            document.analyzer.$result
+                .removeDuplicates()
+                .map { [weak self] in self?.statusAttributedString(result: $0, types: UserDefaults.standard.statusBarEditorInfo) }
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] in self?.editorStatus = $0 },
+            
+            // observe file size
+            document.$fileAttributes
+                .map { $0?[.size] as? UInt64 }
+                .removeDuplicates()
+                .map { $0?.formatted(.byteCount(style: .file, spellsOutZero: false)) }
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] in self?.fileSize = $0 },
+            
+            // observe document status change
+            document.$fileEncoding
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] in self?.encodingPopUpButton?.selectItem(withTag: $0.tag) },
+            document.$lineEnding
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] in self?.lineEndingPopUpButton?.selectItem(withTag: $0.index) },
+        ]
     }
     
     

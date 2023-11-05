@@ -111,15 +111,15 @@ final class IncompatibleCharactersViewController: NSViewController {
             scanner.shouldScan = self.isViewShown
             scanner.invalidate()
             
-            scanner.$incompatibleCharacters
-                .removeDuplicates()
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] in self?.didUpdateIncompatibleCharacters($0) }
-                .store(in: &self.scannerObservers)
-            scanner.$isScanning
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] in self?.updateMessage(isScanning: $0) }
-                .store(in: &self.scannerObservers)
+            self.scannerObservers = [
+                scanner.$incompatibleCharacters
+                    .removeDuplicates()
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in self?.didUpdateIncompatibleCharacters($0) },
+                scanner.$isScanning
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in self?.updateMessage(isScanning: $0) },
+            ]
         }
     }
     

@@ -83,9 +83,10 @@ final class EditorViewController: NSSplitViewController {
         
         // set user defaults
         navigationBarItem.isCollapsed = !UserDefaults.standard[.showNavigationBar]
-        UserDefaults.standard.publisher(for: .showNavigationBar)
-            .sink { [weak self] in self?.navigationBarItem?.animator().isCollapsed = !$0 }
-            .store(in: &self.defaultObservers)
+        self.defaultObservers = [
+            UserDefaults.standard.publisher(for: .showNavigationBar)
+                .sink { [weak self] in self?.navigationBarItem?.animator().isCollapsed = !$0 },
+        ]
         
         // set accessibility
         self.view.setAccessibilityElement(true)
