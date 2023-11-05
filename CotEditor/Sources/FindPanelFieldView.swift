@@ -68,13 +68,12 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     private var resultObservers: Set<AnyCancellable> = []
     
     @IBOutlet private weak var findTextView: RegexFindPanelTextView?
-    @IBOutlet private weak var findHistoryMenu: NSMenu?
-    @IBOutlet private weak var findResultField: NSTextField?
-    @IBOutlet private weak var findClearButtonConstraint: NSLayoutConstraint?
-    
     @IBOutlet private weak var replacementTextView: RegexFindPanelTextView?
+    @IBOutlet private weak var findHistoryMenu: NSMenu?
     @IBOutlet private weak var replaceHistoryMenu: NSMenu?
+    @IBOutlet private weak var findResultField: NSTextField?
     @IBOutlet private weak var replacementResultField: NSTextField?
+    @IBOutlet private weak var findClearButtonConstraint: NSLayoutConstraint?
     @IBOutlet private weak var replacementClearButtonConstraint: NSLayoutConstraint?
     
     
@@ -98,11 +97,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.findTextView?.action = #selector(performFind)
         self.findTextView?.target = self
-        
-        // set insets for history and clear buttons to input fields
-        let fieldInsets = NSEdgeInsets(top: 0, left: 30, bottom: 0, right: 22)
-        self.findTextView?.enclosingScrollView?.contentView.contentInsets = fieldInsets
-        self.replacementTextView?.enclosingScrollView?.contentView.contentInsets = fieldInsets
         
         // adjust clear button position according to the visibility of scroller area
         let scroller = self.findTextView?.enclosingScrollView?.verticalScroller

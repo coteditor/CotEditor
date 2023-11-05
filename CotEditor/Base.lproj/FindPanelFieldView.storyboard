@@ -16,9 +16,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="460" height="118"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" borderType="line" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" minMagnification="1" translatesAutoresizingMaskIntoConstraints="NO" id="8gM-hc-HhV" customClass="SynchronizedScrollView" customModule="CotEditor" customModuleProvider="target">
+                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" borderType="line" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" minMagnification="1" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gM-hc-HhV" customClass="SynchronizedScrollView" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="460" height="54"/>
-                                <clipView key="contentView" id="vCs-g9-nGi">
+                                <clipView key="contentView" id="vCs-g9-nGi" customClass="FindPanelTextClipView" customModule="CotEditor" customModuleProvider="target">
                                     <rect key="frame" x="1" y="1" width="458" height="52"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -62,9 +62,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" borderType="line" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" minMagnification="1" translatesAutoresizingMaskIntoConstraints="NO" id="AIf-o5-KHg" customClass="SynchronizedScrollView" customModule="CotEditor" customModuleProvider="target">
+                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" borderType="line" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" minMagnification="1" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIf-o5-KHg" customClass="SynchronizedScrollView" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="460" height="54"/>
-                                <clipView key="contentView" id="vJP-0z-fPc">
+                                <clipView key="contentView" id="vJP-0z-fPc" customClass="FindPanelTextClipView" customModule="CotEditor" customModuleProvider="target">
                                     <rect key="frame" x="1" y="1" width="458" height="52"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
