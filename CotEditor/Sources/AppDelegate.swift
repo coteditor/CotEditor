@@ -113,6 +113,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         super.awakeFromNib()
         
+        self.menuUpdateObservers.removeAll()
+        
         // sync menus with setting list updates
         EncodingManager.shared.$encodings
             .receive(on: RunLoop.main)

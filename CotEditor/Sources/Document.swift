@@ -109,9 +109,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // auto-link URLs in the content
         self.urlDetector = URLDetector(textStorage: self.textStorage)
-        UserDefaults.standard.publisher(for: .autoLinkDetection, initial: true)
-            .assign(to: \.isEnabled, on: self.urlDetector)
-            .store(in: &self.defaultObservers)
+        self.defaultObservers = [
+            UserDefaults.standard.publisher(for: .autoLinkDetection, initial: true)
+                .assign(to: \.isEnabled, on: self.urlDetector),
+        ]
         
         super.init()
         
