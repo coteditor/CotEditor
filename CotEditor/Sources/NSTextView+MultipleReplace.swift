@@ -77,7 +77,7 @@ extension NSTextView {
         
         let message = (progress.count == 0)
             ? String(localized: "Not found")
-            : String(localized: "\(progress.count) found")
+            : String(localized: "\(progress.count) found", table: "Count")
         
         self.requestAccessibilityAnnouncement(message)
         
