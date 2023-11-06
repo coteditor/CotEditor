@@ -756,7 +756,7 @@
 "Export As:" = "名前:";
 
 // Syntax validation
-"Block comment needs both begin delimiter and end delimiter." = "ブロックコメントは開始文字と終了文字の両方を必要とします。";
+"Block comment needs both begin delimiter and end delimiter." = "ブロックコメントは開始と終了の両方の文字列が必要です。";
 "Begin string" = "開始文字列";
 "End string" = "終了文字列";
 "The same word is registered multiple times." = "重複して登録されています。";
