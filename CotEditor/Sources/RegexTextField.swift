@@ -64,6 +64,7 @@ struct RegexTextField: NSViewRepresentable {
         textField.delegate = context.coordinator
         textField.placeholderString = self.prompt.flatMap(String.init(localized:))
         textField.isEditable = true
+        textField.lineBreakMode = .byTruncatingTail
         (textField.cell as? PaddingTextFieldCell)?.leadingPadding = self.leadingInset
         
         return textField
