@@ -50,10 +50,6 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         
         super.viewDidLoad()
         
-        // observe editing replacement definition in the main view
-        self.settingUpdateObserver = self.detailViewController?.didSettingUpdate
-            .sink { [weak self] in self?.saveSetting(setting: $0) }
-        
         // register drag & drop types
         let receiverTypes = NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) }
         self.tableView?.registerForDraggedTypes([.fileURL] + receiverTypes)
@@ -87,6 +83,17 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
             .sink { [weak self] _ in self?.updateSettingList() }
     }
     
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        // observe editing replacement definition in the main view
+        assert(self.detailViewController != nil)
+        self.settingUpdateObserver = self.detailViewController?.didSettingUpdate
+            .sink { [weak self] in self?.saveSetting(setting: $0) }
+    }
+
     
     
     // MARK: Menu Item Validation

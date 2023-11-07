@@ -14,6 +14,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue that changes in the multiple replacement definition editor did not saved.
 - Fix an issue that the application could hang when opening a large document without line breaks.
 - Fix an issue that a label was not localized.
 
