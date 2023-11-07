@@ -85,7 +85,7 @@ struct FindProgressView: View {
             
             Text(self.description)
                 .monospacedDigit()
-                .foregroundColor(.secondaryLabel)
+                .foregroundStyle(.secondary)
                 .controlSize(.small)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }

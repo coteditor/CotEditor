@@ -73,7 +73,7 @@ struct CharacterCountOptionsView: View {
                     }
                     
                     Text(self.setting.unit.description)
-                        .foregroundColor(.secondaryLabel)
+                        .foregroundStyle(.secondary)
                         .controlSize(.small)
                         .frame(width: max(300, self.contentWidth ?? 0), alignment: .leading)
                         .fixedSize()

@@ -81,7 +81,7 @@ struct RegularExpressionReferenceView: View {
         VStack(alignment: .leading) {
             Text("Basic Regular Expression Syntax")
                 .font(.title3)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
             
             HStack(alignment: .top, spacing: 12) {
                 VStack(alignment: .leading, spacing: 12) {
@@ -103,7 +103,7 @@ struct RegularExpressionReferenceView: View {
             Text("The syntax conforms to the \(icuLink) specifications.",
                  comment: "%@ is the name of the regex engine (ICU Regular Expressions)")
                 .font(.footnote)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 .tint(.accentColor)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.top, 8)
@@ -131,7 +131,7 @@ struct RegularExpressionReferenceView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(self.title)
                     .fontWeight(.semibold)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                 
                 Grid(alignment: .leading, verticalSpacing: 1) {
                     ForEach(self.definitions) { definition in

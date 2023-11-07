@@ -52,7 +52,7 @@ struct FindSettingsView: View {
         VStack {
             Text("Advanced Find Options")
                 .fontWeight(.semibold)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 .controlSize(.regular)
                 .padding(.bottom, 6)
             

@@ -71,7 +71,7 @@ struct OpacityView: View {
         VStack(alignment: .leading) {
             Text("Editor’s Opacity")
                 .fontWeight(.semibold)
-                .foregroundColor(.secondaryLabel)
+                .foregroundStyle(.secondary)
                 .labelsHidden()
             
             OpacitySlider(value: $opacity)

@@ -97,7 +97,7 @@ struct SyntaxValidationView: View {
                             .lineLimit(1)
                         if let role = self.error.localizedRole {
                             Text("(\(role))")
-                                .foregroundColor(.secondaryLabel)
+                                .foregroundStyle(.secondary)
                         }
                     }
                     if let failureReason = self.error.failureReason {

@@ -77,7 +77,7 @@ struct HUDView: View {
                 .frame(width: 72, height: 72)
                 .scaleEffect(y: self.symbol.isFlipped ? -1 : 1)
                 .padding(28)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 .background(.ultraThinMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                 .onAppear {
