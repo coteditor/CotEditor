@@ -37,6 +37,8 @@ final class OutlineViewController: NSViewController {
     
     // MARK: Private Properties
     
+    private var document: Document?  { self.representedObject as? Document }
+    
     private var outlineItems: [OutlineItem] = [] {
         
         didSet {
@@ -64,18 +66,6 @@ final class OutlineViewController: NSViewController {
     
     // MARK: -
     // MARK: Lifecycle
-    
-    override var representedObject: Any? {
-        
-        didSet {
-            assert(representedObject == nil || representedObject is Document,
-                   "representedObject of \(self.className) must be an instance of \(Document.className())")
-            
-            self.observeDocument()
-            self.observeSyntax()
-        }
-    }
-    
     
     override func viewDidLoad() {
         
@@ -124,6 +114,18 @@ final class OutlineViewController: NSViewController {
     }
     
     
+    override var representedObject: Any? {
+        
+        didSet {
+            assert(representedObject == nil || representedObject is Document,
+                   "representedObject of \(self.className) must be an instance of \(Document.className())")
+            
+            self.observeDocument()
+            self.observeSyntax()
+        }
+    }
+    
+    
     
     // MARK: Actions
     
@@ -143,13 +145,6 @@ final class OutlineViewController: NSViewController {
     
     
     // MARK: Private Methods
-    
-    /// Current outline items.
-    private var document: Document? {
-        
-        self.representedObject as? Document
-    }
-    
     
     /// User input string for filtering.
     private var filterString: String {

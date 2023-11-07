@@ -55,9 +55,10 @@ final class DocumentInspectorViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private var documentObservers: Set<AnyCancellable> = []
     private var document: Document?  { self.representedObject as? Document }
     private var analyzer: DocumentAnalyzer?  { self.document?.analyzer }
+    
+    private var documentObservers: Set<AnyCancellable> = []
     
     @objc private(set) dynamic var fileInfo: FileInfo = .init()
     @objc private(set) dynamic var encoding: String = "–"
@@ -69,7 +70,7 @@ final class DocumentInspectorViewController: NSViewController {
     
     
     // MARK: -
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         

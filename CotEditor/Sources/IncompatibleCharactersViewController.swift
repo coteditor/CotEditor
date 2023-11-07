@@ -58,7 +58,7 @@ final class IncompatibleCharactersViewController: NSViewController {
     
     
     // MARK: -
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         
