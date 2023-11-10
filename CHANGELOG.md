@@ -8,13 +8,13 @@ Change Log
 ### Improvements
 
 - Optimize the performance of the incompatible character scan.
-- [trivial] Add tooltip to font field in Appearance settings pane.
+- [trivial] Add a tooltip to font fields in the Appearance settings pane.
 - [dev] Migrate the custom sort pattern view to SwiftUI.
 
 
 ### Fixes
 
-- Fix an issue that changes in the multiple replacement definition editor did not saved.
+- Fix an issue that changes in the multiple replacement definition editor did not save.
 - Fix an issue that the application could hang when opening a large document without line breaks.
 - Fix an issue that a label was not localized.
 
