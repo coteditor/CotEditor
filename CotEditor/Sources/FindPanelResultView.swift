@@ -119,7 +119,7 @@ struct FindPanelResultView: View {
             .padding(-1)
             .font(.system(size: self.fontSize))
             .copyable(self.model.matches
-                .filter { self.selection.contains($0.id) }
+                .filter(with: self.selection)
                 .map(\.attributedLineString.string))
             .onChange(of: self.selection) { newValue in
                 // remove selection of previous data

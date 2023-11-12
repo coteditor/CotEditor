@@ -27,9 +27,10 @@ import SwiftUI
 
 private struct Definition: Identifiable {
     
-    var term: String
+    let term: String
     var description: LocalizedStringKey
-    let id = UUID()
+    
+    var id: String { self.term }
 }
 
 
