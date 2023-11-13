@@ -60,6 +60,12 @@ public final class HeadingMenuItem: NSMenuItem {
     }
     
     
+    public override var isSectionHeader: Bool {
+        
+        true
+    }
+    
+    
     // MARK: Private Methods
     
     /// Make the menu item label heading style.
