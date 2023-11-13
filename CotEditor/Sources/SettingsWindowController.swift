@@ -63,10 +63,16 @@ final class SettingsWindowController: NSWindowController {
 
 private extension SettingsPane {
     
+    private enum ViewType {
+        
+        case storyboard(NSStoryboard.Name)
+        case swiftUI
+    }
+    
+    
     var tabViewItem: NSTabViewItem {
         
-        let viewController: NSViewController = NSStoryboard(name: self.storyboardName, bundle: nil).instantiateInitialController()!
-        let tabViewItem = NSTabViewItem(viewController: viewController)
+        let tabViewItem = NSTabViewItem(viewController: self.viewController)
         tabViewItem.label = self.label
         tabViewItem.image = NSImage(systemSymbolName: self.symbolName, accessibilityDescription: self.label)
         tabViewItem.identifier = self.rawValue
@@ -75,16 +81,28 @@ private extension SettingsPane {
     }
     
     
-    private var storyboardName: NSStoryboard.Name {
+    private var viewController: NSViewController {
+        
+        switch self.viewType {
+            case .storyboard(let name):
+                NSStoryboard(name: name, bundle: nil).instantiateInitialController()!
+                
+            case .swiftUI:
+                preconditionFailure()
+        }
+    }
+    
+    
+    private var viewType: ViewType {
         
         switch self {
-            case .general: "GeneralPane"
-            case .appearance: "AppearancePane"
-            case .window: "WindowPane"
-            case .edit: "EditPane"
-            case .format: "FormatPane"
-            case .snippets: "SnippetsPane"
-            case .keyBindings: "KeyBindingsPane"
+            case .general: .storyboard("GeneralPane")
+            case .appearance: .storyboard("AppearancePane")
+            case .window: .storyboard("WindowPane")
+            case .edit: .storyboard("EditPane")
+            case .format: .storyboard("FormatPane")
+            case .snippets: .storyboard("SnippetsPane")
+            case .keyBindings: .storyboard("KeyBindingsPane")
         }
     }
 }
