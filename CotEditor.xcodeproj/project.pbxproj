@@ -715,8 +715,6 @@
 		2AE7A8DA20450FE600830830 /* OutlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE7A8D820450FE600830830 /* OutlineViewController.swift */; };
 		2AE95A1A2A86270000E85CF5 /* HoleContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE95A192A86270000E85CF5 /* HoleContentView.swift */; };
 		2AE95A1B2A86270000E85CF5 /* HoleContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE95A192A86270000E85CF5 /* HoleContentView.swift */; };
-		2AE95A262A89055300E85CF5 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE95A252A89055300E85CF5 /* Optional.swift */; };
-		2AE95A272A89055300E85CF5 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE95A252A89055300E85CF5 /* Optional.swift */; };
 		2AEAA8232096380C001A175C /* HighlightExtractors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAA8222096380C001A175C /* HighlightExtractors.swift */; };
 		2AEAA8242096380C001A175C /* HighlightExtractors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAA8222096380C001A175C /* HighlightExtractors.swift */; };
 		2AEB8B442726220000C2F3DD /* IncompatibleCharacterFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEB8B432726220000C2F3DD /* IncompatibleCharacterFormatter.swift */; };
@@ -1296,7 +1294,6 @@
 		2AE7A8D520450C0000830830 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/OutlineView.storyboard; sourceTree = "<group>"; };
 		2AE7A8D820450FE600830830 /* OutlineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineViewController.swift; sourceTree = "<group>"; };
 		2AE95A192A86270000E85CF5 /* HoleContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoleContentView.swift; sourceTree = "<group>"; };
-		2AE95A252A89055300E85CF5 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		2AEAA8222096380C001A175C /* HighlightExtractors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightExtractors.swift; sourceTree = "<group>"; };
 		2AEB8B432726220000C2F3DD /* IncompatibleCharacterFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacterFormatter.swift; sourceTree = "<group>"; };
 		2AEBD259246BB4C200EC97A3 /* NSAttributedStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTests.swift; sourceTree = "<group>"; };
@@ -1642,7 +1639,6 @@
 				2A5ADE831D2168FC00F6CE26 /* Collection.swift */,
 				2A5C00332814698000700CAE /* Collection+BinarySearch.swift */,
 				2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */,
-				2AE95A252A89055300E85CF5 /* Optional.swift */,
 			);
 			name = Swift;
 			sourceTree = "<group>";
@@ -2983,7 +2979,6 @@
 				2AC3845420C929950003F213 /* OpacitySampleView.swift in Sources */,
 				2A158C222945F54B000A4EC1 /* OpacityView.swift in Sources */,
 				2AC6069C20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */,
-				2AE95A262A89055300E85CF5 /* Optional.swift in Sources */,
 				2A3E61BF27C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,
 				2A88E7721E81A2C7000019C6 /* OrderedSet.swift in Sources */,
 				2A8458962A073C830056B1EA /* OutlineDefinition.swift in Sources */,
@@ -3344,7 +3339,6 @@
 				2AC3845320C929950003F213 /* OpacitySampleView.swift in Sources */,
 				2A158C232945F54B000A4EC1 /* OpacityView.swift in Sources */,
 				2AC6069B20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */,
-				2AE95A272A89055300E85CF5 /* Optional.swift in Sources */,
 				2A3E61C027C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,
 				2A88E7711E81A2C7000019C6 /* OrderedSet.swift in Sources */,
 				2A8458972A073C830056B1EA /* OutlineDefinition.swift in Sources */,

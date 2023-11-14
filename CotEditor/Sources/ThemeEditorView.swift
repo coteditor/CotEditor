@@ -257,17 +257,17 @@ private struct ThemeMetadataView: View {
         
         Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 4) {
             GridRow {
-                self.itemView("Author:", text: $metadata.author.bound)
+                self.itemView("Author:", text: $metadata.author ?? "")
             }
             GridRow {
-                self.itemView("URL:", text: $metadata.distributionURL.bound)
-                LinkButton(url: self.metadata.distributionURL.bound)
+                self.itemView("URL:", text: $metadata.distributionURL ?? "")
+                LinkButton(url: self.metadata.distributionURL ?? "")
             }
             GridRow {
-                self.itemView("License:", text: $metadata.license.bound)
+                self.itemView("License:", text: $metadata.license ?? "")
             }
             GridRow {
-                self.itemView("Description:", text: $metadata.description.bound, lineLimit: 2...5)
+                self.itemView("Description:", text: $metadata.description ?? "", lineLimit: 2...5)
             }
         }
         .controlSize(.small)
