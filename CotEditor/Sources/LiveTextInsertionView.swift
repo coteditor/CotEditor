@@ -58,6 +58,7 @@ struct LiveTextInsertionView: View {
             Divider()
             
             HStack(alignment: .firstTextBaseline) {
+                HelpButton(anchor: "howto_insert_camera_text")
                 Spacer()
                 
                 if case .success(let analysis) = self.result, !analysis.transcript.isEmpty {
