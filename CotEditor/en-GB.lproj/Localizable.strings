@@ -957,6 +957,12 @@
 
 
 
+/* MARK: LiveTextInsertionView */
+// error messages
+"No text detected" = "No text detected";
+"Detection failed" = "Detection failed";
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "Advanced Character Count…";

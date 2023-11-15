@@ -226,6 +226,9 @@ Gw
                                                 <action selector="showUnicodeInputPanel:" target="Ady-hI-5gd" id="c4v-c9-nMK"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Insert from iPhone or iPad" identifier="NSMenuItemImportFromDeviceIdentifier" id="srI-0X-faq">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="660"/>
                                         <menuItem title="Spelling and Grammar" id="2QI-XD-7pJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>

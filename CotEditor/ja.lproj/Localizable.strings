@@ -959,6 +959,13 @@
 
 
 
+/* MARK: LiveTextInsertionView */
+// error messages
+"No text detected" = "テキストが検出されませんでした";
+"Detection failed" = "検出に失敗しました";
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "高度な文字カウント…";

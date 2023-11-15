@@ -14689,6 +14689,78 @@
         }
       }
     },
+    "srI-0X-faq.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Insert from iPhone or iPad\"; ObjectID = \"srI-0X-faq\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Von iPhone oder iPad einfügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Insert from iPhone or iPad"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insert from iPhone or iPad"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insertar desde iPhone o iPad"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insérer depuis l’iPhone ou l’iPad"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserisci da iPhone o iPad"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhoneまたはiPadから挿入"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserir do iPhone ou iPad"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone’dan veya iPad’den Ekle"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从iPhone或iPad插入"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從iPhone或iPad插入"
+          }
+        }
+      }
+    },
     "Srp-eD-10Q.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Single Quotes\"; ObjectID = \"Srp-eD-10Q\";",
       "extractionState" : "extracted_with_value",

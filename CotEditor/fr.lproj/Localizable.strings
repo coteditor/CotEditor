@@ -959,6 +959,13 @@
 
 
 
+/* MARK: LiveTextInsertionView */
+// error messages
+"No text detected" = "No text detected";  // FIXME: added
+"Detection failed" = "Detection failed";  // FIXME: added
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "Comptage de caractères avancé…";

@@ -28,7 +28,7 @@ import AppKit
 import Combine
 import SwiftUI
 
-final class EditorTextViewController: NSViewController, NSTextViewDelegate {
+final class EditorTextViewController: NSViewController, NSServicesMenuRequestor, NSTextViewDelegate {
     
     // MARK: Enums
     
@@ -154,6 +154,41 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         if coder.decodeBool(forKey: SerializationKey.showsAdvancedCounter) {
             self.showAdvancedCharacterCounter()
         }
+    }
+    
+    
+    
+    // MARK: View Controller
+    
+    override func validRequestor(forSendType sendType: NSPasteboard.PasteboardType?, returnType: NSPasteboard.PasteboardType?) -> Any? {
+        
+        // accept continuity camera
+        //   - Take Photo: .jpeg, .tiff
+        //   - Scan Documents: .pdf, .tiff
+        //   - Sketch: .png
+        if let returnType, NSImage.imageTypes.contains(returnType.rawValue) {
+            return (returnType != .png) ? self : nil
+        }
+        
+        return super.validRequestor(forSendType: sendType, returnType: returnType)
+    }
+    
+    
+    
+    // MARK: Services Menu Requestor
+    
+    func readSelection(from pboard: NSPasteboard) -> Bool {
+        
+        // scan from continuity camera
+        if pboard.canReadItem(withDataConformingToTypes: NSImage.imageTypes),
+           let image = NSImage(pasteboard: pboard)
+        {
+            self.popoverLiveText(image: image)
+            
+            return true
+        }
+        
+        return false
     }
     
     
@@ -310,6 +345,28 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     
     // MARK: Private Methods
+    
+    /// Show a popover indicating the given image and live text detection.
+    ///
+    /// - Parameter image: The image to scan text.
+    private func popoverLiveText(image: NSImage) {
+        
+        guard let textView = self.textView else { return assertionFailure() }
+        
+        let rootView = LiveTextInsertionView(image: image) { [weak textView] string in
+            guard let textView else { return }
+            textView.replace(with: string, range: textView.selectedRange, selectedRange: nil)
+        }
+        let viewController = NSHostingController(rootView: rootView)
+        viewController.sizingOptions = .preferredContentSize
+        viewController.rootView.parent = viewController
+        
+        let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -1, dy: -1) ?? .zero
+        
+        textView.scrollRangeToVisible(textView.selectedRange)
+        self.present(viewController, asPopoverRelativeTo: positioningRect, of: textView, preferredEdge: .maxY, behavior: .transient)
+    }
+    
     
     /// Hide existing advanced character counter.
     ///

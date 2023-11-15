@@ -5,6 +5,15 @@ Change Log
 4.7.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Insert scanned text in a photo taken by iPhoto or iPad.
+
+
+### TODO
+
+- Some text are not localized yet.
+
 
 
 4.6.5 (601)
