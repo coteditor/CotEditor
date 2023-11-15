@@ -7,7 +7,7 @@ Change Log
 
 ### New Features
 
-- Insert scanned text in a photo taken by iPhoto or iPad.
+- Insert scanned text in a photo taken by iPhone or iPad.
 
 
 ### TODO
