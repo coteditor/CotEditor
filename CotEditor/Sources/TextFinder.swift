@@ -127,6 +127,7 @@ struct TextFindAllResult {
         case highlight = 103
         case unhighlight = 104
         case showMultipleReplaceInterface = 105
+        case multipleReplace = 106
     }
     
     
@@ -190,7 +191,8 @@ struct TextFindAllResult {
                 
             case .replaceAll,
                  .replace,
-                 .replaceAndFind:
+                 .replaceAndFind,
+                 .multipleReplace:
                 self.client.isEditable
                 
             case .highlight,
@@ -211,7 +213,7 @@ struct TextFindAllResult {
     /// Performs the specified text finding action.
     ///
     /// - Parameter action: The text finding action.
-    func performAction(_ action: Action) {
+    func performAction(_ action: Action, representedItem: Any? = nil) {
         
         guard self.validateAction(action) else { return }
         
@@ -262,6 +264,10 @@ struct TextFindAllResult {
                 
             case .showMultipleReplaceInterface:
                 MultipleReplacePanelController.shared.showWindow(nil)
+                
+            case .multipleReplace:
+                guard let name = representedItem as? String else { return assertionFailure() }
+                self.multiReplaceAll(name: name)
         }
     }
     
@@ -359,6 +365,19 @@ struct TextFindAllResult {
         
         Task {
             await self.replaceAll()
+        }
+    }
+    
+    
+    /// Performs multiple replacement with a specific replacement definition.
+    ///
+    /// - Parameter name: The name of the multiple replacement definition.
+    @MainActor private func multiReplaceAll(name: String) {
+        
+        guard let definition = try? ReplacementManager.shared.setting(name: name) else { return assertionFailure() }
+        
+        Task {
+            try await self.client.replaceAll(definition, inSelection: TextFinderSettings.shared.inSelection)
         }
     }
     

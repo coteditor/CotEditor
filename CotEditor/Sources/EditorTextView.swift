@@ -1583,7 +1583,7 @@ extension EditorTextView: TextFinderClient {
             let action = TextFinder.Action(rawValue: tag)
         else { return }
         
-        self.textFinder.performAction(action)
+        self.textFinder.performAction(action, representedItem: (sender as? NSMenuItem)?.representedObject)
     }
     
     

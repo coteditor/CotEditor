@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22689"/>
     </dependencies>
     <scenes>
@@ -1060,11 +1059,19 @@ CA
                                                 <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="pda-dk-WF2"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Multiple Replace…" tag="105" id="o7K-sI-KJA">
+                                        <menuItem title="Multiple Replace" id="h4w-vU-ArK">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="hfZ-b9-U43"/>
-                                            </connections>
+                                            <menu key="submenu" title="Multiple Replace" id="OaT-5c-bMY">
+                                                <items>
+                                                    <menuItem isSeparatorItem="YES" id="95O-Ht-HSc"/>
+                                                    <menuItem title="Manage Multiple Replace…" tag="105" id="o7K-sI-KJA">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="hfZ-b9-U43"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="vue-8R-4Kg"/>
                                         <menuItem title="Highlight All" tag="103" keyEquivalent="H" id="JAO-3o-fRo">
@@ -1219,6 +1226,7 @@ CA
                     <connections>
                         <outlet property="encodingsMenu" destination="300" id="Oy6-3l-RCI"/>
                         <outlet property="lineEndingsMenu" destination="296" id="U4V-rN-Wn0"/>
+                        <outlet property="multipleReplaceMenu" destination="OaT-5c-bMY" id="YLT-05-lBG"/>
                         <outlet property="normalizationMenu" destination="600" id="Ned-B7-VAN"/>
                         <outlet property="snippetMenu" destination="dZy-7n-iCq" id="3hf-hr-ScA"/>
                         <outlet property="syntaxesMenu" destination="304" id="KxC-5F-otD"/>

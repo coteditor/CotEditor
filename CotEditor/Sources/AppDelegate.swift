@@ -87,6 +87,7 @@ private enum BundleIdentifier {
     @IBOutlet private weak var themesMenu: NSMenu?
     @IBOutlet private weak var normalizationMenu: NSMenu?
     @IBOutlet private weak var snippetMenu: NSMenu?
+    @IBOutlet private weak var multipleReplaceMenu: NSMenu?
     
     
     #if DEBUG
@@ -201,6 +202,28 @@ private enum BundleIdentifier {
                 item.toolTip = form.localizedDescription
                 return item
             }
+        
+        // build multiple replacement menu items
+        withContinuousObservationTracking {
+            _ = ReplacementManager.shared.settingNames
+        } onChange: {
+            Task { @MainActor in
+                guard let menu = self.multipleReplaceMenu else { return }
+                
+                let manageItem = menu.items.last
+                menu.items = ReplacementManager.shared.settingNames.map {
+                    let item = NSMenuItem()
+                    item.title = $0
+                    item.action = #selector(NSTextView.performTextFinderAction)
+                    item.tag = TextFinder.Action.multipleReplace.rawValue
+                    item.representedObject = $0
+                    return item
+                } + [
+                    .separator(),
+                    manageItem!,
+                ]
+            }
+        }
     }
     
     
