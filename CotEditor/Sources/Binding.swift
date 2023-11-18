@@ -60,3 +60,12 @@ func ?? <T>(lhs: Binding<T?>, rhs: T) -> Binding<T> {
         set: { lhs.wrappedValue = $0 }
     )
 }
+
+
+func ?? (lhs: Binding<String?>, rhs: String) -> Binding<String> {
+    
+    Binding(
+        get: { lhs.wrappedValue ?? rhs },
+        set: { lhs.wrappedValue = $0.isEmpty ? nil : $0 }
+    )
+}
