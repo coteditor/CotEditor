@@ -228,9 +228,7 @@ private final class ConsoleViewController: NSViewController {
         guard let storage = self.textView?.textStorage else { return }
         
         storage.beginEditing()
-        storage.enumerateAttribute(.consolePart, in: storage.range) { (part, range, _) in
-            guard let part = part as? Console.Log.Part else { return }
-            
+        storage.enumerateAttribute(.consolePart, type: Console.Log.Part.self, in: storage.range) { (part, range, _) in
             storage.addAttributes(part.attributes(fontSize: fontSize), range: range)
         }
         storage.endEditing()

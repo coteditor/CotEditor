@@ -54,6 +54,26 @@ extension NSAttributedString {
     }
     
     
+    /// Enumerate range and value of the given temporary attribute key.
+    ///
+    /// - Parameters:
+    ///   - attrName: The name of the temporary attribute to enumerate.
+    ///   - Type:The type of the value.
+    ///   - enumerationRange: The range over which the attribute values are enumerated.
+    ///   - options: The options used by the enumeration. For possible values, see NSAttributedString.EnumerationOptions.
+    ///   - block: A closure to apply to ranges of the specified attribute in the receiver.
+    ///   - value: The value for the specified attribute.
+    ///   - range: The range of the attribute value in the receiver.
+    ///   - stop: A reference to a Boolean value, which you can set to true within the closure to stop further processing of the attribute enumeration.
+    final func enumerateAttribute<T>(_ attrName: NSAttributedString.Key, type: T.Type, in enumerationRange: NSRange, options: EnumerationOptions = [], using block: (_ value: T, _ range: NSRange, _ stop: UnsafeMutablePointer<ObjCBool>) -> Void) {
+        
+        self.enumerateAttribute(attrName, in: range, options: options) { (value, range, stop) in
+            guard let value = value as? T else { return }
+            block(value, range, stop)
+        }
+    }
+    
+    
     /// Check if at least one attribute for the given attribute key exists.
     ///
     /// - Parameters:
