@@ -94,23 +94,24 @@ extension NSLayoutManager {
     }
     
     
-    /// Enumerate range and value of given temporary attribute.
+    /// Enumerate range and value of the given temporary attribute key.
     ///
     /// - Parameters:
     ///   - attrName: The name of the temporary attribute to enumerate.
+    ///   - Type:The type of the value.
     ///   - enumerationRange: The range over which the attribute values are enumerated.
     ///   - block: A closure to apply to ranges of the specified attribute in the receiver.
     ///   - value: The value for the specified attribute.
     ///   - range: The range of the attribute value in the receiver.
     ///   - stop: A reference to a Boolean value, which you can set to true within the closure to stop further processing of the attribute enumeration.
-    final func enumerateTemporaryAttribute(_ attrName: NSAttributedString.Key, in enumerationRange: NSRange, using block: (_ value: Any, _ range: NSRange, _ stop: inout Bool) -> Void) {
+    final func enumerateTemporaryAttribute<T>(_ attrName: NSAttributedString.Key, type: T.Type, in enumerationRange: NSRange, using block: (_ value: T, _ range: NSRange, _ stop: inout Bool) -> Void) {
         
         var characterIndex = enumerationRange.location
         while characterIndex < enumerationRange.upperBound {
             var effectiveRange: NSRange = .notFound
             let value = self.temporaryAttribute(attrName, atCharacterIndex: characterIndex, longestEffectiveRange: &effectiveRange, in: enumerationRange)
             
-            if let value {
+            if let value = value as? T {
                 var stop = false
                 block(value, effectiveRange, &stop)
                 

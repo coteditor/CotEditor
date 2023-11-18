@@ -1349,9 +1349,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
                 let styledText = NSMutableAttributedString(string: plainText, attributes: self.typingAttributes)
                 
                 // apply syntax highlight that is set as temporary attributes in layout manager to attributed string
-                self.layoutManager?.enumerateTemporaryAttribute(.foregroundColor, in: selectedRange) { (value, range, _) in
-                    guard let color = value as? NSColor else { return }
-                    
+                self.layoutManager?.enumerateTemporaryAttribute(.foregroundColor, type: NSColor.self, in: selectedRange) { (color, range, _) in
                     let localRange = range.shifted(by: -selectedRange.location)
                     
                     styledText.addAttribute(.foregroundColor, value: color, range: localRange)

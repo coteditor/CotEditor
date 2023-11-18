@@ -264,9 +264,7 @@ extension NSLayoutManager {
         let targetRange = self.attributedString().range
         
         var highlights: [Highlight] = []
-        self.enumerateTemporaryAttribute(.syntaxType, in: targetRange) { (type, range, _) in
-            guard let type = type as? SyntaxType else { return }
-            
+        self.enumerateTemporaryAttribute(.syntaxType, type: SyntaxType.self, in: targetRange) { (type, range, _) in
             highlights.append(Highlight(value: type, range: range))
         }
         
@@ -316,9 +314,7 @@ extension NSLayoutManager {
         guard self.hasTemporaryAttribute(.syntaxType, in: targetRange) else { return }
         
         self.groupTemporaryAttributesUpdate(in: targetRange) {
-            self.enumerateTemporaryAttribute(.syntaxType, in: targetRange) { (type, range, _) in
-                guard let type = type as? SyntaxType else { return }
-                
+            self.enumerateTemporaryAttribute(.syntaxType, type: SyntaxType.self, in: targetRange) { (type, range, _) in
                 if let color = theme.style(for: type)?.color {
                     self.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
                 } else {
