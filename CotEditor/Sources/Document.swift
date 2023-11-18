@@ -894,8 +894,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 target.lineEnding = currentLineEnding
                 
                 // register redo
-                target.undoManager?.registerUndo(withTarget: target) { $0.changeLineEnding(to: lineEnding)
-                }
+                target.undoManager?.registerUndo(withTarget: target) { $0.changeLineEnding(to: lineEnding) }
             }
             undoManager.setActionName(String(localized: "Line Endings to \(lineEnding.name)"))
         }
