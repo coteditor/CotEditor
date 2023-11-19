@@ -44,7 +44,6 @@ opt_in_rules:
   - nimble_operator
   - optional_enum_case_matching
   - overridden_super_call
-  - pattern_matching_keywords
   - prefer_self_type_over_type_of_self
   - prefer_zero_over_explicit_init
   - private_outlet

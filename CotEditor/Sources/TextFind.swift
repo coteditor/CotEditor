@@ -115,12 +115,12 @@ struct TextFind {
         }
         
         switch mode {
-            case let .textual(options, isFullWord):
+            case .textual(let options, let isFullWord):
                 assert(!options.contains(.backwards))
                 self.regex = nil
                 self.fullWordChecker = isFullWord ? try! NSRegularExpression(pattern: "^\\b.+\\b$") : nil
                 
-            case let .regularExpression(options, _):
+            case .regularExpression(let options, _):
                 do {
                     self.regex = try NSRegularExpression(pattern: findString, options: options)
                 } catch {
@@ -227,7 +227,7 @@ struct TextFind {
         let selectedRange = self.selectedRanges.first!
         
         switch self.mode {
-            case let .textual(options, _):
+            case .textual(let options, _):
                 let matchedRange = (string as NSString).range(of: self.findString, options: options, range: selectedRange)
                 guard matchedRange.location != NSNotFound else { return nil }
                 guard self.checkFullWord(in: matchedRange) else { return nil }
@@ -291,7 +291,7 @@ struct TextFind {
             
             // replace string
             switch self.mode {
-                case let .textual(options: options, fullWord: fullWord) where !fullWord:
+                case .textual(options: let options, fullWord: let fullWord) where !fullWord:
                     // replace at once for performance
                     let count = scopeString.replaceOccurrences(of: self.findString, with: replacementString, options: options, range: scopeString.range)
                     block(scopeRange, count, &ioStop)

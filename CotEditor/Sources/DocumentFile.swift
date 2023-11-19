@@ -89,7 +89,7 @@ struct DocumentFile {
         let content: String
         let encoding: String.Encoding
         switch encodingStrategy {
-            case let .automatic(priority, refersToTag):
+            case .automatic(let priority, let refersToTag):
                 (content, encoding) = try Self.string(data: data, xattrEncoding: self.xattrEncoding,
                                                       suggestedCFEncodings: priority,
                                                       refersToEncodingTag: refersToTag)

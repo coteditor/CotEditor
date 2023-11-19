@@ -45,7 +45,7 @@ struct InvalidShortcutError: LocalizedError {
             case .singleType:
                 String(localized: "Single type is invalid for a shortcut.")
                 
-            case let .alreadyTaken(name):
+            case .alreadyTaken(let name):
                 String(localized: "“\(self.shortcut.symbol)” is already taken by the “\(name)” command.")
                 
             case .shiftOnlyModifier:

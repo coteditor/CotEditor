@@ -267,7 +267,7 @@ final class KeyBindingManager: SettingManaging {
         switch menuItem.action {
             case #selector(NSMenu.submenuAction), .none:
                 return true
-            case let .some(action):
+            case .some(let action):
                 return self.defaultKeyBindings.contains { $0.action == action }
         }
     }

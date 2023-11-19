@@ -114,7 +114,7 @@ final class KeyBindingsPaneController: NSViewController, NSOutlineViewDataSource
                 
             case .key:
                 switch node.item {
-                    case let .value(item):
+                    case .value(let item):
                         cellView.objectValue = item.shortcut
                         cellView.textField?.placeholderString = item.defaultShortcut?.symbol
                         

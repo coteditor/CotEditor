@@ -433,7 +433,7 @@ private enum ScriptMenuItem: Sendable {
     func menuItem(action: Selector, target: AnyObject?) -> NSMenuItem {
         
         switch self {
-            case let .script(name, script):
+            case .script(let name, let script):
                 let item = NSMenuItem(title: name, action: action, keyEquivalent: "")
                 // -> Shortcut will be applied later in `applyShortcuts()`.
                 item.representedObject = script
@@ -441,7 +441,7 @@ private enum ScriptMenuItem: Sendable {
                 item.toolTip = String(localized: "Option-click to open script in editor.")
                 return item
                 
-            case let .folder(name, items):
+            case .folder(let name, let items):
                 let menu = NSMenu(title: name)
                 menu.items = items.map { $0.menuItem(action: action, target: target) }
                 let item = NSMenuItem(title: name, action: nil, keyEquivalent: "")
@@ -458,10 +458,10 @@ private enum ScriptMenuItem: Sendable {
     var scripts: [any Script] {
         
         switch self {
-            case let .script(_, script):
+            case .script(_, let script):
                 [script]
                 
-            case let .folder(_, items):
+            case .folder(_, let items):
                 items.flatMap(\.scripts)
                 
             case .separator:
