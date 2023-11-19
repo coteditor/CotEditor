@@ -30,11 +30,11 @@ import Combine
     
     // MARK: Public Properties
     
-    weak var document: Document? {
+    var document: Document {
         
         didSet {
-            if let document, self.isViewShown {
-                self.subscribe(document)
+            if self.isViewShown {
+                self.observeDocument()
             }
         }
     }
@@ -55,7 +55,21 @@ import Combine
     
     
     // MARK: -
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
+    
+    init?(document: Document, coder: NSCoder) {
+        
+        self.document = document
+        
+        super.init(coder: coder)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         
@@ -98,9 +112,7 @@ import Combine
                 self?.editorStatus = self?.statusAttributedString(result: document.analyzer.result, types: $0)
             }
         
-        guard let document = self.document else { return assertionFailure() }
-        
-        self.subscribe(document)
+        self.observeDocument()
     }
     
     
@@ -111,7 +123,7 @@ import Combine
         self.encodingListObserver = nil
         self.defaultsObserver = nil
         
-        self.document?.analyzer.statusBarRequirements = []
+        self.document.analyzer.statusBarRequirements = []
         self.documentObservers.removeAll()
     }
     
@@ -120,23 +132,21 @@ import Combine
     // MARK: Private Methods
     
     /// Synchronize UI with related document values.
-    ///
-    /// - Parameter document: The document to observe.
-    private func subscribe(_ document: Document) {
+    private func observeDocument() {
         
-        document.analyzer.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
-        document.analyzer.invalidate()
+        self.document.analyzer.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
+        self.document.analyzer.invalidate()
         
         self.documentObservers = [
             // observe editor info update
-            document.analyzer.$result
+            self.document.analyzer.$result
                 .removeDuplicates()
                 .map { [weak self] in self?.statusAttributedString(result: $0, types: UserDefaults.standard.statusBarEditorInfo) }
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] in self?.editorStatus = $0 },
             
             // observe file size
-            document.$fileAttributes
+            self.document.$fileAttributes
                 .map { $0?[.size] as? UInt64 }
                 .removeDuplicates()
                 .map { $0?.formatted(.byteCount(style: .file, spellsOutZero: false)) }
@@ -144,10 +154,10 @@ import Combine
                 .sink { [weak self] in self?.fileSize = $0 },
             
             // observe document status change
-            document.$fileEncoding
+            self.document.$fileEncoding
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] in self?.encodingPopUpButton?.selectItem(withTag: $0.tag) },
-            document.$lineEnding
+            self.document.$lineEnding
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] in self?.lineEndingPopUpButton?.selectItem(withTag: $0.index) },
         ]
@@ -210,9 +220,7 @@ import Combine
         
         EncodingManager.shared.updateChangeEncodingMenu(menu)
         
-        if let fileEncoding = self.document?.fileEncoding {
-            popUpButton.selectItem(withTag: fileEncoding.tag)
-        }
+        popUpButton.selectItem(withTag: self.document.fileEncoding.tag)
     }
     
     

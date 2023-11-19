@@ -34,11 +34,15 @@ private extension NSUserInterfaceItemIdentifier {
 }
 
 
-final class InconsistentLineEndingsViewController: NSViewController {
+final class InconsistentLineEndingsViewController: NSViewController, DocumentOwner {
+    
+    // MARK: Public Properties
+    
+    var document: Document
+    
     
     // MARK: Private Properties
     
-    private var document: Document?  { self.representedObject as? Document }
     private var lineEndings: [ValueRange<LineEnding>] = []
     private var documentLineEnding: LineEnding = .lf
     
@@ -51,14 +55,26 @@ final class InconsistentLineEndingsViewController: NSViewController {
     
     // MARK: Lifecycle
     
+    required init?(document: Document, coder: NSCoder) {
+        
+        self.document = document
+        
+        super.init(coder: coder)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func viewWillAppear() {
         
         super.viewWillAppear()
         
-        guard let document = self.document else { return assertionFailure() }
-        
         self.observers = [
-            document.lineEndingScanner.$inconsistentLineEndings
+            self.document.lineEndingScanner.$inconsistentLineEndings
                 .removeDuplicates()
                 .receive(on: RunLoop.main)
                 .sink { [unowned self] in
@@ -67,7 +83,7 @@ final class InconsistentLineEndingsViewController: NSViewController {
                     self.tableView?.reloadData()
                     self.updateMessage()
                 },
-            document.$lineEnding
+            self.document.$lineEnding
                 .removeDuplicates()
                 .receive(on: RunLoop.main)
                 .sink { [unowned self] in
@@ -122,7 +138,7 @@ final class InconsistentLineEndingsViewController: NSViewController {
         
         guard
             let item = self.lineEndings[safe: row],
-            let textView = self.document?.textView
+            let textView = self.document.textView
         else { return }
         
         textView.selectedRange = item.range
@@ -162,7 +178,7 @@ extension InconsistentLineEndingsViewController: NSTableViewDataSource {
         switch identifier {
             case .line:
                 // calculate the line number first at this point to postpone the high cost processing as much as possible
-                return self.document?.lineEndingScanner.lineNumber(at: lineEnding.location).formatted()
+                return self.document.lineEndingScanner.lineNumber(at: lineEnding.location).formatted()
             case .lineEnding:
                 return lineEnding.value.name
             default:

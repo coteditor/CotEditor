@@ -166,7 +166,7 @@ extension DocumentViewController: NSSharingServicePickerTouchBarItemDelegate {
     
     public func items(for pickerTouchBarItem: NSSharingServicePickerTouchBarItem) -> [Any] {
         
-        [self.document].compactMap { $0 }
+        [self.document]
     }
 }
 

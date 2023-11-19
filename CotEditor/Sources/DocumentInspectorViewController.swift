@@ -51,12 +51,16 @@ final class EditorInfo: NSObject {
 }
 
 
-final class DocumentInspectorViewController: NSViewController {
+final class DocumentInspectorViewController: NSViewController, DocumentOwner {
+    
+    // MARK: Public Properties
+    
+    var document: Document { didSet { self.updateDocument() } }
+    
     
     // MARK: Private Properties
     
-    private var document: Document?  { self.representedObject as? Document }
-    private var analyzer: DocumentAnalyzer?  { self.document?.analyzer }
+    private var analyzer: DocumentAnalyzer  { self.document.analyzer }
     
     private var documentObservers: Set<AnyCancellable> = []
     
@@ -72,6 +76,20 @@ final class DocumentInspectorViewController: NSViewController {
     // MARK: -
     // MARK: Lifecycle
     
+    required init?(document: Document, coder: NSCoder) {
+        
+        self.document = document
+        
+        super.init(coder: coder)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -85,11 +103,9 @@ final class DocumentInspectorViewController: NSViewController {
         
         super.viewWillAppear()
         
-        guard let document = self.document else { return assertionFailure() }
-        
-        self.subscribe(document)
-        self.analyzer?.updatesAll = true
-        self.analyzer?.invalidate()
+        self.observeDocument()
+        self.analyzer.updatesAll = true
+        self.analyzer.invalidate()
     }
     
     
@@ -98,45 +114,33 @@ final class DocumentInspectorViewController: NSViewController {
         super.viewDidDisappear()
         
         self.documentObservers.removeAll()
-        self.analyzer?.updatesAll = false
-    }
-    
-    
-    override var representedObject: Any? {
-        
-        willSet {
-            self.analyzer?.updatesAll = false
-            self.documentObservers.removeAll()
-        }
-        
-        didSet {
-            assert(representedObject == nil || representedObject is Document,
-                   "representedObject of \(self.className) must be an instance of \(Document.className())")
-            
-            self.analyzer?.updatesAll = self.isViewShown
-            
-            if self.isViewShown, let document = self.document {
-                self.subscribe(document)
-            }
-        }
+        self.analyzer.updatesAll = false
     }
     
     
     
     // MARK: Private Methods
     
+    private func updateDocument() {
+        
+        self.analyzer.updatesAll = self.isViewShown
+        
+        if self.isViewShown {
+            self.observeDocument()
+        }
+    }
+    
+    
     /// Synchronize UI with related document values.
-    ///
-    /// - Parameter document: The document to observe.
-    private func subscribe(_ document: Document) {
+    private func observeDocument() {
         
         self.documentObservers = [
-            document.publisher(for: \.fileURL, options: .initial)
+            self.document.publisher(for: \.fileURL, options: .initial)
                 .map { $0?.path }
                 .receive(on: DispatchQueue.main)
                 .assign(to: \.path, on: self.fileInfo),
             
-            document.$fileAttributes
+            self.document.$fileAttributes
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] attributes in
                     guard let info = self?.fileInfo else { return }
@@ -150,17 +154,17 @@ final class DocumentInspectorViewController: NSViewController {
                     info.permission = (attributes?[.posixPermissions] as? UInt16)?.formatted(.filePermissions)
                 },
             
-            document.$fileEncoding
+            self.document.$fileEncoding
                 .map(\.localizedName)
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] in self?.encoding = $0 },
             
-            document.$lineEnding
+            self.document.$lineEnding
                 .map(\.name)
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] in self?.lineEndings = $0 },
             
-            document.analyzer.$result
+            self.document.analyzer.$result
                 .receive(on: DispatchQueue.main)
                 .sink { [info = self.editorInfo] result in
                     info.chars = result.characters.formatted

@@ -31,11 +31,22 @@ import SwiftUI
 private let maximumNumberOfSplitEditors = 4
 
 
-final class DocumentViewController: NSSplitViewController, ThemeChanging, NSToolbarItemValidation {
+final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeChanging, NSToolbarItemValidation {
     
     private enum SerializationKey {
         
         static let theme = "theme"
+    }
+    
+    
+    // MARK: Public Properties
+    
+    var document: Document  {
+        
+        didSet {
+            self.statusBarViewController.document = document
+            self.updateDocument()
+        }
     }
     
     
@@ -54,8 +65,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     ]
     
     private lazy var splitViewController = SplitViewController()
-    private lazy var statusBarViewController: StatusBarController = NSStoryboard(name: "StatusBar", bundle: nil).instantiateInitialController()!
-    
+    private lazy var statusBarViewController: StatusBarController = NSStoryboard(name: "StatusBar", bundle: nil)
+        .instantiateInitialController { StatusBarController(document: self.document, coder: $0) }!
     private weak var statusBarItem: NSSplitViewItem?
     
     private var documentSyntaxObserver: AnyCancellable?
@@ -64,12 +75,28 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     private var defaultsObservers: Set<AnyCancellable> = []
     private var themeChangeObserver: AnyCancellable?
     
-    private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.syntaxParser?.invalidateOutline() }
+    private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.syntaxParser.invalidateOutline() }
     
     
     
     // MARK: -
     // MARK: Lifecycle
+    
+    init(document: Document) {
+        
+        self.document = document
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        self.updateDocument()
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         
@@ -197,23 +224,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     
     // MARK: Split View Controller Methods
-    
-    /// deliver document to child view controllers
-    override var representedObject: Any? {
-        
-        willSet {
-            self.documentSyntaxObserver = nil
-            self.outlineObserver = nil
-        }
-        
-        didSet {
-            guard let document = representedObject as? Document else { return }
-            
-            // This setter can be invoked twice if the view was initially made for a transient document.
-            self.replace(document: document)
-        }
-    }
-    
     
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
@@ -364,14 +374,14 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             self.focusedTextView?.hasMarkedText() != true
         else { return }
         
-        self.document?.analyzer.invalidate()
-        self.document?.incompatibleCharacterScanner.invalidate()
+        self.document.analyzer.invalidate()
+        self.document.incompatibleCharacterScanner.invalidate()
         self.outlineParseDebouncer.schedule()
         
         // -> Perform in the next run loop to give layoutManagers time to update their values.
         let editedRange = textStorage.editedRange
         DispatchQueue.main.async { [weak self] in
-            self?.syntaxParser?.highlight(around: editedRange)
+            self?.syntaxParser.highlight(around: editedRange)
         }
     }
     
@@ -379,33 +389,24 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// The selection did change.
     @objc private func textViewDidLiveChangeSelection(_ notification: Notification) {
         
-        self.document?.analyzer.invalidate(onlySelection: true)
+        self.document.analyzer.invalidate(onlySelection: true)
     }
     
     
     /// The document updated its syntax.
     private func didChangeSyntax() {
         
-        guard let syntaxParser = self.syntaxParser else { return assertionFailure() }
-        
         for viewController in self.editorViewControllers {
-            viewController.apply(syntax: syntaxParser.syntax)
+            viewController.apply(syntax: self.syntaxParser.syntax)
         }
         
         self.outlineParseDebouncer.perform()
-        syntaxParser.highlight()
+        self.syntaxParser.highlight()
     }
     
     
     
     // MARK: Public Methods
-    
-    /// The represented document.
-    var document: Document? {
-        
-        self.representedObject as? Document
-    }
-    
     
     /// The text view currently focused on.
     var focusedTextView: EditorTextView? {
@@ -487,7 +488,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     @objc dynamic var verticalLayoutOrientation: Bool = false {
         
         didSet {
-            self.document?.isVerticalText = verticalLayoutOrientation
+            self.document.isVerticalText = verticalLayoutOrientation
             
             let orientation: NSLayoutManager.TextLayoutOrientation = verticalLayoutOrientation ? .vertical : .horizontal
             
@@ -565,7 +566,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Recolor whole document.
     @IBAction func recolorAll(_ sender: Any?) {
         
-        self.syntaxParser?.highlight()
+        self.syntaxParser.highlight()
     }
     
     
@@ -757,7 +758,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         NSTextInputContext.current?.discardMarkedText()
         
         let newEditorViewController = self.addEditorView(below: currentEditorViewController)
-        self.replace(document: self.document!, in: newEditorViewController)
+        self.replace(document: self.document, in: newEditorViewController)
         
         // copy parsed syntax highlight
         if let textView = newEditorViewController.textView,
@@ -811,9 +812,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     // MARK: Private Methods
     
     /// The document's syntax parser.
-    private var syntaxParser: SyntaxParser? {
+    private var syntaxParser: SyntaxParser {
         
-        self.document?.syntaxParser
+        self.document.syntaxParser
     }
     
     
@@ -825,19 +826,15 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     
     /// Setup the receiver and its children with the given document.
-    ///
-    /// - Parameter document: The new document.
-    private func replace(document: Document) {
-        
-        self.statusBarViewController.document = document
+    private func updateDocument() {
         
         for editorViewController in self.editorViewControllers {
-            self.replace(document: document, in: editorViewController)
+            self.replace(document: self.document, in: editorViewController)
         }
         
         // detect indent style
         if UserDefaults.standard[.detectsIndentStyle],
-           let indentStyle = document.textStorage.string.detectedIndentStyle
+           let indentStyle = self.document.textStorage.string.detectedIndentStyle
         {
             self.isAutoTabExpandEnabled = switch indentStyle {
                 case .tab: false
@@ -847,19 +844,19 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         // start parsing syntax for highlighting and outlines
         self.outlineParseDebouncer.perform()
-        document.syntaxParser.highlight()
+        self.document.syntaxParser.highlight()
         
         NotificationCenter.default.addObserver(self, selector: #selector(textStorageDidProcessEditing),
                                                name: NSTextStorage.didProcessEditingNotification,
-                                               object: document.textStorage)
+                                               object: self.document.textStorage)
         
         // observe syntax change
-        self.documentSyntaxObserver = document.didChangeSyntax
+        self.documentSyntaxObserver = self.document.didChangeSyntax
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in self?.didChangeSyntax() }
         
         // observe syntaxParser for outline update
-        self.outlineObserver = document.syntaxParser.$outlineItems
+        self.outlineObserver = self.document.syntaxParser.$outlineItems
             .removeDuplicates()
             .receive(on: RunLoop.main)
             .sink { [weak self] outlineItems in

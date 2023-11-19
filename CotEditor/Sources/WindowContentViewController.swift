@@ -25,16 +25,24 @@
 
 import AppKit
 
-final class WindowContentViewController: NSSplitViewController {
+protocol DocumentOwner: NSViewController {
+    
+    var document: Document { get set }
+}
+
+
+final class WindowContentViewController: NSSplitViewController, DocumentOwner {
     
     // MARK: Public Properties
     
-    private(set) lazy var documentViewController = DocumentViewController()
+    var document: Document  { didSet { self.updateDocument() } }
+    
+    private(set) lazy var documentViewController = DocumentViewController(document: self.document)
     
     
     // MARK: Private Properties
     
-    private lazy var inspectorViewController = InspectorViewController()
+    private lazy var inspectorViewController = InspectorViewController(document: self.document)
     
     private var windowObserver: NSKeyValueObservation?
     
@@ -42,6 +50,20 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: -
     // MARK: Split View Controller Methods
+    
+    init(document: Document) {
+        
+        self.document = document
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func loadView() {
         
@@ -197,5 +219,13 @@ final class WindowContentViewController: NSSplitViewController {
     private func toggleVisibilityOfInspector(pane: InspectorPane) {
         
         self.setInspectorShown(!self.isInspectorShown(pane: pane), pane: pane)
+    }
+    
+    
+    /// Update the document in children.
+    private func updateDocument() {
+        
+        self.documentViewController.document = self.document
+        self.inspectorViewController.document = self.document
     }
 }

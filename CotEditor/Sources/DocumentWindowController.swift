@@ -70,7 +70,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     convenience init(document: Document) {
         
-        let window = DocumentWindow(contentViewController: WindowContentViewController())
+        let window = DocumentWindow(contentViewController: WindowContentViewController(document: document))
         window.styleMask.update(with: .fullSizeContentView)
         window.setFrameAutosaveName(Self.windowFrameName)
         
@@ -137,12 +137,11 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         }
         
         didSet {
-            // deliver represented object to child view controllers
-            for child in self.contentViewController!.children {
-                child.representedObject = document
-            }
-            
             guard let document = document as? Document else { return }
+            
+            if document != oldValue as? Document {
+                (self.contentViewController as? WindowContentViewController)?.document = document
+            }
             
             // observe document's syntax change
             self.documentSyntaxObserver = document.didChangeSyntax

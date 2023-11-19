@@ -36,12 +36,16 @@ private extension NSUserInterfaceItemIdentifier {
 }
 
 
-final class IncompatibleCharactersViewController: NSViewController {
+final class IncompatibleCharactersViewController: NSViewController, DocumentOwner {
+    
+    // MARK: Public Properties
+    
+    var document: Document  { didSet { self.updateDocument() } }
+    
     
     // MARK: Private Properties
     
-    private var document: Document?  { self.representedObject as? Document }
-    private var scanner: IncompatibleCharacterScanner?  { self.document?.incompatibleCharacterScanner }
+    private var scanner: IncompatibleCharacterScanner  { self.document.incompatibleCharacterScanner }
     private var incompatibleCharacters: [IncompatibleCharacter] = []
     
     private var scannerObservers: Set<AnyCancellable> = []
@@ -60,6 +64,20 @@ final class IncompatibleCharactersViewController: NSViewController {
     // MARK: -
     // MARK: Lifecycle
     
+    required init?(document: Document, coder: NSCoder) {
+        
+        self.document = document
+        
+        super.init(coder: coder)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -75,11 +93,11 @@ final class IncompatibleCharactersViewController: NSViewController {
         
         super.viewWillAppear()
         
-        let isCollapsed = self.scanner?.incompatibleCharacters.isEmpty ?? true
+        let isCollapsed = self.scanner.incompatibleCharacters.isEmpty
         self.collapseView(isCollapsed, animate: false)
         
-        self.scanner?.shouldScan = true
-        self.scanner?.invalidate()
+        self.scanner.shouldScan = true
+        self.scanner.invalidate()
         self.updateMessage(isScanning: false)
     }
     
@@ -88,38 +106,10 @@ final class IncompatibleCharactersViewController: NSViewController {
         
         super.viewDidDisappear()
         
-        self.scanner?.shouldScan = false
+        self.scanner.shouldScan = false
         
         if !self.incompatibleCharacters.isEmpty {
-            self.document?.textStorage.clearAllMarkup()
-        }
-    }
-    
-    
-    override var representedObject: Any? {
-        
-        willSet {
-            self.scannerObservers.removeAll()
-            
-            assert(newValue == nil || newValue is Document,
-                   "representedObject of \(self.className) must be an instance of \(Document.self)")
-        }
-        
-        didSet {
-            guard let scanner = self.scanner else { return }
-            
-            scanner.shouldScan = self.isViewShown
-            scanner.invalidate()
-            
-            self.scannerObservers = [
-                scanner.$incompatibleCharacters
-                    .removeDuplicates()
-                    .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in self?.didUpdateIncompatibleCharacters($0) },
-                scanner.$isScanning
-                    .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in self?.updateMessage(isScanning: $0) },
-            ]
+            self.document.textStorage.clearAllMarkup()
         }
     }
     
@@ -137,9 +127,28 @@ final class IncompatibleCharactersViewController: NSViewController {
     
     // MARK: Private Methods
     
+    private func updateDocument() {
+        
+        let scanner = self.scanner
+        
+        scanner.shouldScan = self.isViewShown
+        scanner.invalidate()
+        
+        self.scannerObservers = [
+            scanner.$incompatibleCharacters
+                .removeDuplicates()
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] in self?.didUpdateIncompatibleCharacters($0) },
+            scanner.$isScanning
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] in self?.updateMessage(isScanning: $0) },
+        ]
+    }
+    
+    
     @MainActor private func didUpdateIncompatibleCharacters(_ incompatibleCharacters: [IncompatibleCharacter]) {
         
-        guard let textStorage = self.document?.textStorage else { return }
+        let textStorage = self.document.textStorage
         
         if !self.incompatibleCharacters.isEmpty {
             textStorage.clearAllMarkup()
@@ -220,7 +229,7 @@ final class IncompatibleCharactersViewController: NSViewController {
         
         guard
             let item = self.incompatibleCharacters[safe: row],
-            let textView = self.document?.textView
+            let textView = self.document.textView
         else { return }
         
         textView.selectedRange = item.range
@@ -259,7 +268,7 @@ extension IncompatibleCharactersViewController: NSTableViewDataSource {
         
         switch identifier {
             case .line:
-                return self.document?.lineEndingScanner.lineNumber(at: incompatibleCharacter.location).formatted()
+                return self.document.lineEndingScanner.lineNumber(at: incompatibleCharacter.location).formatted()
             case .character:
                 return String(incompatibleCharacter.character)
             case .converted:

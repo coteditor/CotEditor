@@ -25,9 +25,28 @@
 
 import AppKit
 
-final class WarningsViewController: NSSplitViewController {
+final class WarningsViewController: NSSplitViewController, DocumentOwner {
+    
+    // MARK: Public Properties
+    
+    var document: Document { didSet { self.updateDocument() } }
+    
     
     // MARK: Lifecycle
+    
+    init(document: Document) {
+        
+        self.document = document
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         
@@ -35,31 +54,27 @@ final class WarningsViewController: NSSplitViewController {
         
         self.splitView.isVertical = false
         
-        self.addChild(NSStoryboard(name: "IncompatibleCharactersView").instantiateInitialController()!)
-        self.addChild(NSStoryboard(name: "InconsistentLineEndingsView").instantiateInitialController()!)
-        self.updateRepresentedObject()
+        self.children = [
+            NSStoryboard(name: "IncompatibleCharactersView").instantiateInitialController { coder in
+                IncompatibleCharactersViewController(document: self.document, coder: coder)
+            }!,
+            NSStoryboard(name: "InconsistentLineEndingsView").instantiateInitialController { coder in
+                InconsistentLineEndingsViewController(document: self.document, coder: coder)
+            }!,
+        ]
         
         // set accessibility
         self.view.setAccessibilityLabel(String(localized: "Warnings"))
     }
     
     
-    /// deliver passed-in document instance to child view controllers
-    override var representedObject: Any? {
-        
-        didSet {
-            self.updateRepresentedObject()
-        }
-    }
-    
-    
     // MARK: Private Methods
     
-    /// Update representedObjects in the child views.
-    private func updateRepresentedObject() {
+    /// Update document in the child views.
+    private func updateDocument() {
         
         for item in self.splitViewItems {
-            item.viewController.representedObject = representedObject
+            (item.viewController as? any DocumentOwner)?.document = self.document
         }
     }
 }
