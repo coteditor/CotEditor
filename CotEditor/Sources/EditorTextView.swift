@@ -81,11 +81,11 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     var needsUpdateLineHighlight = true {
         
         didSet {
-            (self.lineHighLightRects + [self.visibleRect]).forEach { self.setNeedsDisplay($0, avoidAdditionalLayout: true) }
+            (self.lineHighlightRects + [self.visibleRect]).forEach { self.setNeedsDisplay($0, avoidAdditionalLayout: true) }
         }
     }
-    var lineHighLightRects: [NSRect] = []
-    private(set) var lineHighLightColor: NSColor?
+    var lineHighlightRects: [NSRect] = []
+    private(set) var lineHighlightColor: NSColor?
     
     var insertionLocations: [Int] = []  {
         
@@ -412,7 +412,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
             .sink { [weak self] in
                 self?.drawsBackground = $0
                 self?.enclosingScrollView?.drawsBackground = $0
-                self?.lineHighLightColor = self?.lineHighLightColor?.withAlphaComponent($0 ? 1.0 : 0.7)
+                self?.lineHighlightColor = self?.lineHighlightColor?.withAlphaComponent($0 ? 1.0 : 0.7)
             }
     }
     
@@ -1419,7 +1419,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         self.textColor = theme.text.color
         self.backgroundColor = theme.background.color
-        self.lineHighLightColor = self.isOpaque
+        self.lineHighlightColor = self.isOpaque
             ? theme.lineHighlight.color
             : theme.lineHighlight.color.withAlphaComponent(0.7)
         self.insertionPointColor = theme.effectiveInsertionPointColor

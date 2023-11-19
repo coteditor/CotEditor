@@ -28,8 +28,8 @@ import AppKit
 @MainActor protocol CurrentLineHighlighting: NSTextView {
     
     var needsUpdateLineHighlight: Bool { get set }
-    var lineHighLightRects: [NSRect] { get set }
-    var lineHighLightColor: NSColor? { get }
+    var lineHighlightRects: [NSRect] { get set }
+    var lineHighlightColor: NSColor? { get }
 }
 
 
@@ -42,20 +42,20 @@ extension CurrentLineHighlighting {
     func drawCurrentLine(in dirtyRect: NSRect) {
         
         if self.needsUpdateLineHighlight {
-            self.lineHighLightRects = self.calculateLineHighLightRects()
+            self.lineHighlightRects = self.calculateLineHighlightRects()
             self.needsUpdateLineHighlight = false
         }
         
         let fontSize = self.font?.pointSize ?? NSFont.systemFontSize
         let radius = fontSize / 4
-        let paths = self.lineHighLightRects
+        let paths = self.lineHighlightRects
             .filter { $0.intersects(dirtyRect) }
             .map { self.centerScanRect($0) }
             .map { NSBezierPath(roundedRect: $0, xRadius: radius, yRadius: radius) }
         
         guard
             !paths.isEmpty,
-            let color = self.lineHighLightColor
+            let color = self.lineHighlightColor
         else { return }
         
         NSGraphicsContext.saveGraphicsState()
@@ -73,7 +73,7 @@ extension CurrentLineHighlighting {
     /// Calculate highlight rects for all insertion points.
     ///
     /// - Returns: Rects for current line highlight.
-    private func calculateLineHighLightRects() -> [NSRect] {
+    private func calculateLineHighlightRects() -> [NSRect] {
         
         guard let editingRanges = self.rangesForUserTextChange else { return [] }
         
