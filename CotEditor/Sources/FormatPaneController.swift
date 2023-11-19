@@ -607,7 +607,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// - Parameter state: The setting state to edit, or `nil` for a new setting.
     private func presentSyntaxEditor(state: SettingState? = nil) {
         
-        let viewController = NSStoryboard(name: "SyntaxEditView").instantiateInitialController { (coder) in
+        let viewController = NSStoryboard(name: "SyntaxEditView").instantiateInitialController { coder in
             SyntaxEditViewController(coder: coder, state: state)
         }!
         

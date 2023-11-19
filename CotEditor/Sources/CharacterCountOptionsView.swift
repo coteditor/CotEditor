@@ -84,13 +84,13 @@ struct CharacterCountOptionsView: View {
                             Toggle("Normalization:", isOn: $setting.normalizes)
                             Picker("Normalization:", selection: $setting.normalizationForm) {
                                 Section {
-                                    ForEach(UnicodeNormalizationForm.standardForms, id: \.self) { (form) in
+                                    ForEach(UnicodeNormalizationForm.standardForms, id: \.self) { form in
                                         Text(form.localizedName).tag(form)
                                             .help(form.localizedDescription)
                                     }
                                 }
                                 Section {
-                                    ForEach(UnicodeNormalizationForm.modifiedForms, id: \.self) { (form) in
+                                    ForEach(UnicodeNormalizationForm.modifiedForms, id: \.self) { form in
                                         Text(form.localizedName).tag(form)
                                             .help(form.localizedDescription)
                                     }

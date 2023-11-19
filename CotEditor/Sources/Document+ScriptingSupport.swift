@@ -73,7 +73,7 @@ extension Document {
         get {
             let textStorage = NSTextStorage(string: self.textStorage.string)
             
-            textStorage.observeDirectEditing { [weak self] (editedString) in
+            textStorage.observeDirectEditing { [weak self] editedString in
                 self?.textView?.insert(string: editedString, at: .replaceAll)
             }
             

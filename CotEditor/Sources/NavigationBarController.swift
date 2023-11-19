@@ -213,7 +213,7 @@ final class NavigationBarController: NSViewController {
         guard let outlineMenu = self.outlineMenu?.menu else { return assertionFailure() }
         
         outlineMenu.items = outlineItems
-            .flatMap { (outlineItem) -> [NSMenuItem] in
+            .flatMap { outlineItem in
                 switch outlineItem.title {
                     case .separator:
                         // dummy item to avoid merging sequential separators into a single separator

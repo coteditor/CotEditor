@@ -138,7 +138,7 @@ final class DocumentInspectorViewController: NSViewController {
             
             document.$fileAttributes
                 .receive(on: DispatchQueue.main)
-                .sink { [weak self] (attributes) in
+                .sink { [weak self] attributes in
                     guard let info = self?.fileInfo else { return }
                     
                     let dateFormat = Date.FormatStyle(date: .abbreviated, time: .shortened)
@@ -162,7 +162,7 @@ final class DocumentInspectorViewController: NSViewController {
             
             document.analyzer.$result
                 .receive(on: DispatchQueue.main)
-                .sink { [info = self.editorInfo] (result) in
+                .sink { [info = self.editorInfo] result in
                     info.chars = result.characters.formatted
                     info.lines = result.lines.formatted
                     info.words = result.words.formatted

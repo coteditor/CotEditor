@@ -112,7 +112,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             ThemeManager.shared.didUpdateSetting
                 .compactMap(\.new)
                 .receive(on: RunLoop.main)
-                .sink { [weak self] (name) in
+                .sink { [weak self] name in
                     guard
                         name == self?.selectedThemeName,
                         let latestTheme = ThemeManager.shared.setting(name: name)

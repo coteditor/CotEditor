@@ -92,7 +92,7 @@ import SwiftUI
             .receive(on: DispatchQueue.main)
             .compactMap { [weak self] in self?.textView.selectedStrings }
             .receive(on: DispatchQueue.global())
-            .map { [unowned self] (strings) in
+            .map { [unowned self] strings in
                 strings
                     .map { $0.count(options: self.setting.options) }
                     .reduce(0) { (total, count) in

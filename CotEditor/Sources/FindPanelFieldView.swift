@@ -102,7 +102,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         // adjust clear button position according to the visibility of scroller area
         let scroller = self.findTextView?.enclosingScrollView?.verticalScroller
         self.scrollerStyleObserver = scroller?.publisher(for: \.scrollerStyle, options: .initial)
-            .sink { [weak self, weak scroller] (scrollerStyle) in
+            .sink { [weak self, weak scroller] scrollerStyle in
                 var inset = 5.0
                 if scrollerStyle == .legacy, let scroller {
                     inset += scroller.thickness
@@ -121,12 +121,12 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             
             // sync text view states with user default
             UserDefaults.standard.publisher(for: .findUsesRegularExpression, initial: true)
-                .sink { [unowned self] (value) in
+                .sink { [unowned self] value in
                     self.findTextView?.isRegularExpressionMode = value
                     self.replacementTextView?.isRegularExpressionMode = value
                 },
             UserDefaults.standard.publisher(for: .findRegexUnescapesReplacementString, initial: true)
-                .sink { [unowned self] (value) in
+                .sink { [unowned self] value in
                     self.replacementTextView?.parseMode = .replacement(unescapes: value)
                 }
         ]

@@ -127,7 +127,7 @@ extension BidirectionalCollection<OutlineItem> {
     /// - Returns: Matched items.
     func filterItems(with searchString: String) -> [OutlineItem] {
         
-        self.compactMap { (item) in
+        self.compactMap { item in
             item.title.abbreviatedMatch(with: searchString).flatMap { (item: item, result: $0) }
         }
         .map {

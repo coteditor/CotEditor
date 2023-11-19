@@ -188,7 +188,7 @@ extension FileDropItem {
         // -> Use NSImageRep because NSImage's `size` returns a DPI applied size.
         if self.format.contains(Variable.imageWidth.token) || self.format.contains(Variable.imageHeight.token) {
             var imageRep: NSImageRep?
-            NSFileCoordinator().coordinate(readingItemAt: droppedFileURL, options: [.withoutChanges, .resolvesSymbolicLink], error: nil) { (newURL: URL) in
+            NSFileCoordinator().coordinate(readingItemAt: droppedFileURL, options: [.withoutChanges, .resolvesSymbolicLink], error: nil) { newURL in
                 imageRep = NSImageRep(contentsOf: newURL)
             }
             if let imageRep {

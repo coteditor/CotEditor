@@ -38,7 +38,7 @@ final class LineEndingScannerTests: XCTestCase {
         // test async line ending scan
         let expectation = self.expectation(description: "didScanLineEndings")
         let observer = scanner.$inconsistentLineEndings
-            .sink { (lineEndings) in
+            .sink { lineEndings in
                 XCTAssertEqual(lineEndings, [ValueRange(value: .nel, range: NSRange(location: 3, length: 1)),
                                              ValueRange(value: .crlf, range: NSRange(location: 11, length: 2))])
                 expectation.fulfill()
@@ -62,7 +62,7 @@ final class LineEndingScannerTests: XCTestCase {
         // test async line ending scan
         let expectation = self.expectation(description: "didScanLineEndings")
         let observer = scanner.$inconsistentLineEndings
-            .sink { (lineEndings) in
+            .sink { lineEndings in
                 XCTAssert(lineEndings.isEmpty)
                 expectation.fulfill()
             }
@@ -85,7 +85,7 @@ final class LineEndingScannerTests: XCTestCase {
         // test async line ending scan
         let expectation = self.expectation(description: "didScanLineEndings")
         let observer = scanner.$inconsistentLineEndings
-            .sink { (lineEndings) in
+            .sink { lineEndings in
                 XCTAssertEqual(lineEndings, [ValueRange(value: .crlf, range: NSRange(location: 3, length: 2)),
                                              ValueRange(value: .cr, range: NSRange(location: 8, length: 1))])
                 expectation.fulfill()

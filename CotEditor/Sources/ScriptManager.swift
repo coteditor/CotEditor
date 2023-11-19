@@ -62,7 +62,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         self.syntaxObserver = (DocumentController.shared as! DocumentController).$currentSyntaxName
             .removeDuplicates()
-            .sink { [unowned self] (styleName) in Task { @MainActor in self.currentContext = styleName } }
+            .sink { [unowned self] styleName in Task { @MainActor in self.currentContext = styleName } }
     }
     
     

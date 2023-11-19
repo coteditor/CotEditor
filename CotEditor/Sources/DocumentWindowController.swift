@@ -110,7 +110,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         // observe appearance setting change
         self.appearanceModeObserver = UserDefaults.standard.publisher(for: .documentAppearance, initial: true)
-            .map { (value) in
+            .map { value in
                 switch value {
                     case .default: nil
                     case .light:   NSAppearance(named: .aqua)
@@ -529,7 +529,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
                 item.menu.items = [
                     .sectionHeader(title: String(localized: "Tab Width"))
-                ] + [2, 4, 8].map { (width) in
+                ] + [2, 4, 8].map { width in
                     let item = NSMenuItem(title: width.formatted(), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                     item.tag = width
                     return item

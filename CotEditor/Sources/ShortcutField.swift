@@ -50,7 +50,7 @@ final class ShortcutField: NSTextField, NSTextViewDelegate {
             fieldEditor.delegate = self
         }
         
-        self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [unowned self] (event) -> NSEvent? in
+        self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [unowned self] event -> NSEvent? in
             guard let shortcut = Shortcut(keyDownEvent: event) else { return event }
             
             if event.keyCode == 53, shortcut.modifierMask.isEmpty {  // single Escape

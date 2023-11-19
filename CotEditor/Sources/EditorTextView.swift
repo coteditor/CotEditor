@@ -829,7 +829,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         // remove official selectedRanges from the sub insertion points
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
-        self.insertionLocations.removeAll { (location) in selectedRanges.contains { $0.touches(location) } }
+        self.insertionLocations.removeAll { location in selectedRanges.contains { $0.touches(location) } }
         
         if !stillSelectingFlag, !self.hasMultipleInsertions {
             self.selectionOrigins = [self.selectedRange.location]
@@ -1344,7 +1344,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         // substring all selected attributed strings
         let selections: [NSAttributedString] = self.selectedRanges
             .map(\.rangeValue)
-            .map { (selectedRange) in
+            .map { selectedRange in
                 let plainText = (self.string as NSString).substring(with: selectedRange)
                 let styledText = NSMutableAttributedString(string: plainText, attributes: self.typingAttributes)
                 

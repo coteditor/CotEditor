@@ -138,7 +138,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         SyntaxManager.shared.$settingNames
             .map { $0.map { NSMenuItem(title: $0, action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "") } }
             .receive(on: RunLoop.main)
-            .sink { [weak self] (items) in
+            .sink { [weak self] items in
                 guard let menu = self?.syntaxesMenu else { return }
                 
                 let recolorItem = menu.items.first { $0.action == #selector((any SyntaxChanging).recolorAll) }
@@ -165,7 +165,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // build Unicode normalization menu items
         self.normalizationMenu?.items = (UnicodeNormalizationForm.standardForms + [nil] +
                                          UnicodeNormalizationForm.modifiedForms)
-            .map { (form) in
+            .map { form in
                 guard let form else { return .separator() }
                 
                 let item = NSMenuItem()

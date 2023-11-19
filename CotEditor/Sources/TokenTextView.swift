@@ -186,15 +186,15 @@ extension TokenRepresentable {
 
 private extension NSColor {
     
-    static let tokenTextColor = NSColor(name: nil) { (appearance) in
+    static let tokenTextColor = NSColor(name: nil) { appearance in
         NSColor.selectedControlColor.blended(withFraction: 0.7, of: appearance.isDark ? .white : .black)!
     }
     
-    static let tokenBracketColor = NSColor(name: nil) { (appearance) in
+    static let tokenBracketColor = NSColor(name: nil) { appearance in
         NSColor.selectedControlColor.blended(withFraction: 0.3, of: appearance.isDark ? .white : .black)!
     }
     
-    static let tokenBackgroundColor = NSColor(name: nil) { (appearance) in
+    static let tokenBackgroundColor = NSColor(name: nil) { appearance in
         NSColor.selectedControlColor.withAlphaComponent(appearance.isDark ? 0.5 : 0.3)
     }
 }

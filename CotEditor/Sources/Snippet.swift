@@ -102,7 +102,7 @@ extension Snippet {
     func insertions(for string: String, ranges: [NSRange]) -> (strings: [String], selectedRanges: [NSRange]?) {
         
         var offset = 0
-        let insertions = ranges.map { (range) in
+        let insertions = ranges.map { range in
             let selectedString = (string as NSString).substring(with: range)
             let indent = string.rangeOfIndent(at: range.location)
                 .flatMap { (string as NSString).substring(with: $0) } ?? ""

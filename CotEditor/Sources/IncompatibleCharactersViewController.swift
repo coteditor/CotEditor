@@ -182,7 +182,7 @@ final class IncompatibleCharactersViewController: NSViewController {
         fixedConstraint.isActive = true
         
         scrollView.isHidden = isCollapsed
-        NSAnimationContext.runAnimationGroup { (context) in
+        NSAnimationContext.runAnimationGroup { context in
             if !animate {
                 context.duration = 0
             }

@@ -120,8 +120,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // observe syntax update
         self.syntaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
-            .filter { [weak self] (change) in change.old == self?.syntaxParser.syntax.name }
-            .sink { [weak self] (change) in self?.setSyntax(name: change.new ?? BundledSyntaxName.none) }
+            .filter { [weak self] change in change.old == self?.syntaxParser.syntax.name }
+            .sink { [weak self] change in self?.setSyntax(name: change.new ?? BundledSyntaxName.none) }
     }
     
     
@@ -439,7 +439,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         //     2. Open the save panel once and cancel it.
         //     3. Quit the application.
         //     4. Then, the application hangs up.
-        super.save(to: url, ofType: typeName, for: saveOperation) { (error) in
+        super.save(to: url, ofType: typeName, for: saveOperation) { error in
             defer {
                 completionHandler(error)
             }
@@ -986,8 +986,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         }
         
         // change encoding interactively
-        self.performActivity(withSynchronousWaiting: true) { [unowned self] (activityCompletionHandler) in
-            let completionHandler = { [weak self] (didChange: Bool) in
+        self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
+            let completionHandler = { [weak self] didChange in
                 if !didChange, let self {
                     // reset status bar selection for in case when the operation was invoked from the popup button in the status bar
                     self.fileEncoding = self.fileEncoding

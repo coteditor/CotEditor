@@ -93,7 +93,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         // observe text orientation for line number view
         self.orientationObserver = self.textView!.publisher(for: \.layoutOrientation, options: .initial)
-            .sink { [weak self] (orientation) in
+            .sink { [weak self] orientation in
                 guard let self else { return assertionFailure() }
                 
                 self.stackView?.orientation = switch orientation {
@@ -109,7 +109,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         self.writingDirectionObserver = self.textView!.publisher(for: \.baseWritingDirection)
             .removeDuplicates()
             .map { $0 == .rightToLeft }
-            .sink { [weak self] (isRTL) in
+            .sink { [weak self] isRTL in
                 guard
                     let stackView = self?.stackView,
                     let lineNumberView = self?.lineNumberView
@@ -254,7 +254,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         let lineCount = (string as NSString).substring(with: textView.selectedRange).numberOfLines
         let lineRange = FuzzyRange(location: lineNumber, length: lineCount)
         
-        let view = GoToLineView(lineRange: lineRange) { (lineRange) in
+        let view = GoToLineView(lineRange: lineRange) { lineRange in
             guard let range = textView.string.rangeForLine(in: lineRange) else { return false }
             
             textView.select(range: range)
@@ -273,7 +273,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        let view = UnicodeInputView { [unowned textView] (character) in
+        let view = UnicodeInputView { [unowned textView] character in
             // flag to skip line ending sanitization
             textView.isApprovedTextChange = true
             defer { textView.isApprovedTextChange = false }

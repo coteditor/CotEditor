@@ -129,7 +129,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         // observe appearance change for theme toggle
         self.appearanceObserver = self.view.publisher(for: \.effectiveAppearance)
-            .sink { [weak self] (appearance) in
+            .sink { [weak self] appearance in
                 guard
                     let self,
                     !UserDefaults.standard[.pinsThemeAppearance],
@@ -653,7 +653,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Change the tab width to desired number through a sheet.
     @IBAction func customizeTabWidth(_ sender: Any?) {
         
-        let view = CustomTabWidthView(tabWidth: self.tabWidth) { [weak self] (tabWidth) in
+        let view = CustomTabWidthView(tabWidth: self.tabWidth) { [weak self] tabWidth in
             self?.tabWidth = tabWidth
         }
         let viewController = NSHostingController(rootView: view)
@@ -862,7 +862,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         self.outlineObserver = document.syntaxParser.$outlineItems
             .removeDuplicates()
             .receive(on: RunLoop.main)
-            .sink { [weak self] (outlineItems) in
+            .sink { [weak self] outlineItems in
                 self?.editorViewControllers.forEach { $0.outlineItems = outlineItems }
             }
     }

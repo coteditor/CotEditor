@@ -75,7 +75,7 @@ final actor UserUnixTask {
         
         let data = Data(input.utf8)
         
-        self.inputPipe.fileHandleForWriting.writeabilityHandler = { (handle) in
+        self.inputPipe.fileHandleForWriting.writeabilityHandler = { handle in
             do {
                 try handle.write(contentsOf: data)
                 try handle.close()
@@ -120,8 +120,8 @@ private extension Pipe {
     /// Create asynchronous stream for the standard output.
     var readingStream: AsyncStream<Data> {
         
-        AsyncStream { (continuation) in
-            self.fileHandleForReading.readabilityHandler = { (handle) in
+        AsyncStream { continuation in
+            self.fileHandleForReading.readabilityHandler = { handle in
                 let data = handle.availableData
                 if data.isEmpty {
                     handle.readabilityHandler = nil

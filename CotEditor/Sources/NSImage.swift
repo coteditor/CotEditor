@@ -35,7 +35,7 @@ extension NSImage {
         
         assert(self.isTemplate, "An image to tint should be a template image.")
         
-        let image = Self(size: self.size, flipped: false) { [image = self.copy() as! Self] (dstRect) -> Bool in
+        let image = Self(size: self.size, flipped: false) { [image = self.copy() as! Self] dstRect -> Bool in
             
             image.draw(in: dstRect)
             

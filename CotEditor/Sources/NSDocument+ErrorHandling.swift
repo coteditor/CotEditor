@@ -51,7 +51,7 @@ extension NSDocument {
     final func presentErrorAsSheetSafely(_ error: some Error, synchronousWaiting waitSynchronously: Bool = false, recoveryHandler: RecoveryHandler? = nil) {
         
         self.performActivity(withSynchronousWaiting: waitSynchronously) { [unowned self] activityCompletionHandler in
-            self.presentErrorAsSheet(error) { (didRecover) in
+            self.presentErrorAsSheet(error) { didRecover in
                 activityCompletionHandler()
                 recoveryHandler?(didRecover)
             }

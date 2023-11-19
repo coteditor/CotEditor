@@ -471,7 +471,7 @@ extension NSTextView {
         let scale = self.scale
         return layoutManager.insertionPointRects(at: index)
             .map { $0.offset(by: self.textContainerOrigin) }
-            .map { (rect) in
+            .map { rect in
                 NSRect(x: (rect.minX * scale).rounded(.down) / scale,
                        y: rect.minY,
                        width: 1 / scale,

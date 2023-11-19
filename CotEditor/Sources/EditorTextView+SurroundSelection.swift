@@ -68,7 +68,7 @@ extension EditorTextView {
     /// show custom surround sheet
     @IBAction func surroundSelection(_ sender: Any?) {
         
-        let view = CustomSurroundStringView(pair: self.customSurroundPair) { [weak self] (pair) in
+        let view = CustomSurroundStringView(pair: self.customSurroundPair) { [weak self] pair in
             self?.surroundSelections(begin: pair.begin, end: pair.end)
             self?.customSurroundPair = pair
         }
