@@ -77,7 +77,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         self.syntaxChangeObserver = Publishers.Merge(SyntaxManager.shared.$settingNames.eraseToVoid(),
                                                      SyntaxManager.shared.didUpdateSetting.eraseToVoid())
-        .debounce(for: 0, scheduler: RunLoop.main)
+            .debounce(for: 0, scheduler: RunLoop.main)
             .sink { [weak self] _ in self?.setupSyntaxMenus() }
     }
     
