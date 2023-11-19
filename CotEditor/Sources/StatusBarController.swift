@@ -80,7 +80,7 @@ import Combine
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in self?.buildEncodingPopUpButton() }
         
-        // observe change in defaults
+        // observe changes in defaults
         let editorDefaultKeys: [DefaultKey<Bool>] = [
             .showStatusBarLines,
             .showStatusBarChars,
@@ -264,9 +264,9 @@ private extension NSAttributedString {
     static func formatted(state: String?) -> Self {
         
         if let state {
-            return Self(string: state)
+            Self(string: state)
         } else {
-            return Self(string: "-", attributes: [.foregroundColor: NSColor.disabledControlTextColor])
+            Self(string: "-", attributes: [.foregroundColor: NSColor.disabledControlTextColor])
         }
     }
     
