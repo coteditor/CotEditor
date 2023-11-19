@@ -183,12 +183,12 @@ final class LineNumberView: NSView {
     /// draw background
     override func draw(_ dirtyRect: NSRect) {
         
+        NSGraphicsContext.saveGraphicsState()
+        
         // fill background
         if self.isOpaque {
-            NSGraphicsContext.saveGraphicsState()
             self.backgroundColor.setFill()
             dirtyRect.fill()
-            NSGraphicsContext.restoreGraphicsState()
         }
         
         // draw separator
@@ -199,15 +199,15 @@ final class LineNumberView: NSView {
                 default:                NSRect(x: self.frame.width - 1, y: 0, width: 1, height: self.frame.height)
             }
             
-            NSGraphicsContext.saveGraphicsState()
             self.foregroundColor(.separator).set()
             self.backingAlignedRect(lineRect, options: .alignAllEdgesOutward)
                 .intersection(dirtyRect)
                 .fill()
-            NSGraphicsContext.restoreGraphicsState()
         }
         
         self.drawNumbers(in: dirtyRect)
+        
+        NSGraphicsContext.restoreGraphicsState()
     }
     
     
@@ -253,8 +253,6 @@ final class LineNumberView: NSView {
             let context = NSGraphicsContext.current?.cgContext
         else { return assertionFailure() }
         
-        context.saveGState()
-        
         context.setFont(Self.lineNumberFont)
         context.setFontSize(drawingInfo.fontSize)
         context.setFillColor(self.foregroundColor().cgColor)
@@ -267,13 +265,13 @@ final class LineNumberView: NSView {
         
         // adjust drawing coordinate
         let relativePoint = self.convert(NSPoint.zero, from: textView)
-        let baselineOffset = layoutManager.baselineOffset(for: textView.layoutOrientation)
-        let lineBase = scale * (textView.textContainerOrigin.y + baselineOffset)
+        let originOffset = scale * textView.textContainerOrigin.y
+        let lineOffset = scale * layoutManager.baselineOffset(for: textView.layoutOrientation)
         switch textView.layoutOrientation {
             case .horizontal:
-                context.translateBy(x: self.thickness, y: relativePoint.y - lineBase)
+                context.translateBy(x: self.thickness, y: relativePoint.y - originOffset)
             case .vertical:
-                context.translateBy(x: (relativePoint.x - lineBase).rounded(), y: 0)
+                context.translateBy(x: relativePoint.x - originOffset, y: 0)
             @unknown default: fatalError()
         }
         
@@ -290,8 +288,8 @@ final class LineNumberView: NSView {
                         
                         // calculate base position
                         let basePosition: CGPoint = isVerticalText
-                            ? CGPoint(x: (y + drawingInfo.charWidth * CGFloat(digits.count) / 2).rounded(.up), y: 3 * drawingInfo.tickLength)
-                            : CGPoint(x: -drawingInfo.padding, y: y)
+                            ? CGPoint(x: y - lineOffset + drawingInfo.charWidth * CGFloat(digits.count) / 2, y: 3 * drawingInfo.tickLength)
+                            : CGPoint(x: -drawingInfo.padding, y: y - lineOffset)
                         
                         // get glyphs and positions
                         let positions: [CGPoint] = digits.indices
@@ -313,18 +311,16 @@ final class LineNumberView: NSView {
                     
                     // draw tick
                     if isVerticalText {
-                        let rect = CGRect(x: y.rounded() + 0.5, y: 1, width: 0, height: drawingInfo.tickLength)
+                        let rect = CGRect(x: (y - lineOffset).rounded() + 0.5, y: 1, width: 0, height: drawingInfo.tickLength)
                         context.stroke(rect, width: scale)
                     }
                     
                 case .wrapped:
                     // draw wrapped mark (-)
-                    let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y)
+                    let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y - lineOffset)
                     context.showGlyphs([drawingInfo.wrappedMarkGlyph], at: [position])
             }
         }
-        
-        context.restoreGState()
     }
     
     
