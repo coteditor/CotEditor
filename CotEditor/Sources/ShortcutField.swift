@@ -53,9 +53,9 @@ final class ShortcutField: NSTextField, NSTextViewDelegate {
         self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [unowned self] event -> NSEvent? in
             guard let shortcut = Shortcut(keyDownEvent: event) else { return event }
             
-            if event.keyCode == 53, shortcut.modifierMask.isEmpty {  // single Escape
+            if event.keyCode == 53, shortcut.modifiers.isEmpty {  // single Escape
                 // treat as cancel
-            } else if event.specialKey == .delete, shortcut.modifierMask.isEmpty {  // single Delete
+            } else if event.specialKey == .delete, shortcut.modifiers.isEmpty {  // single Delete
                 // treat as delete
                 self.objectValue = nil
             } else {

@@ -30,12 +30,12 @@ extension NSMenuItem {
     final var shortcut: Shortcut? {
         
         get {
-            Shortcut(modifierMask: self.keyEquivalentModifierMask, keyEquivalent: self.keyEquivalent)
+            Shortcut(self.keyEquivalent, modifiers: self.keyEquivalentModifierMask)
         }
         
         set {
-            self.keyEquivalentModifierMask = newValue?.modifierMask ?? []
             self.keyEquivalent = newValue?.keyEquivalent ?? ""
+            self.keyEquivalentModifierMask = newValue?.modifiers ?? []
         }
     }
 }

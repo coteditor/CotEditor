@@ -189,13 +189,13 @@ extension DocumentWindow {
         
         // toggle tab bar with ⌘⇧T`
         // -> This is needed under the case when "Show/Hide Tab Bar" menu item is not yet added to the View menu. (2020-01)
-        if shortcut.modifierMask == [.command, .shift], shortcut.keyEquivalent == "T" {
+        if shortcut.modifiers == [.command, .shift], shortcut.keyEquivalent == "T" {
             self.toggleTabBar(nil)
             return true
         }
         
         // select tabbed window with `⌘+number` (`⌘9` for the last tab)
-        if shortcut.modifierMask == [.command],
+        if shortcut.modifiers == [.command],
            let number = Int(shortcut.keyEquivalent), number > 0,
            let windows = self.tabbedWindows,
            let window = (number == 9) ? windows.last : windows[safe: number - 1]  // 1-based to 0-based

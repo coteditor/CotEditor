@@ -73,7 +73,7 @@ extension Shortcut {
         
         // avoid shift-only modifier with a letter
         // -> typing Shift + letter inserting an uppercase letter instead of invoking a shortcut
-        if self.modifierMask == .shift,
+        if self.modifiers == .shift,
            self.keyEquivalent.contains(where: { $0.isLetter || $0.isNumber })
         {
             throw InvalidShortcutError(kind: .shiftOnlyModifier, shortcut: self)

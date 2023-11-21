@@ -83,18 +83,18 @@ enum ModifierKey: CaseIterable {
 
 struct Shortcut {
     
-    let modifierMask: NSEvent.ModifierFlags
     let keyEquivalent: String
+    let modifiers: NSEvent.ModifierFlags
     
     
     // MARK: Lifecycle
     
-    init?(modifierMask: NSEvent.ModifierFlags, keyEquivalent: String) {
+    init?(_ keyEquivalent: String, modifiers: NSEvent.ModifierFlags) {
         
         guard !keyEquivalent.isEmpty else { return nil }
         
-        self.modifierMask = modifierMask
         self.keyEquivalent = keyEquivalent
+        self.modifiers = modifiers
     }
     
     
@@ -106,12 +106,12 @@ struct Shortcut {
         guard let keyEquivalent = keySpecChars.last else { return nil }
         
         let modifierCharacters = keySpecChars.dropLast()
-        let modifierMask = ModifierKey.allCases
+        let modifiers = ModifierKey.allCases
             .filter { modifierCharacters.contains($0.keySpecChar) }
             .reduce(into: NSEvent.ModifierFlags()) { $0.formUnion($1.mask) }
         
-        self.modifierMask = modifierMask
         self.keyEquivalent = String(keyEquivalent)
+        self.modifiers = modifiers
     }
     
     
@@ -130,12 +130,12 @@ struct Shortcut {
             .map(String.init) ?? lastSymbol.lowercased()
         
         let modifierCharacters = components.dropLast().joined()
-        let modifierMask = ModifierKey.allCases
+        let modifiers = ModifierKey.allCases
             .filter { modifierCharacters.contains($0.symbol) }
             .reduce(into: NSEvent.ModifierFlags()) { $0.formUnion($1.mask) }
         
-        self.modifierMask = modifierMask
         self.keyEquivalent = keyEquivalent
+        self.modifiers = modifiers
     }
     
     
@@ -163,12 +163,12 @@ struct Shortcut {
         
         // remove unwanted Shift
         let ignoresShift = "`~!@#$%^&()_{}|\":<>?=/*-+.'".contains(keyEquivalent)
-        let modifierMask = event.modifierFlags
+        let modifiers = event.modifierFlags
             .intersection(ModifierKey.mask)
             .subtracting(ignoresShift ? .shift : [])
         
-        self.modifierMask = modifierMask
         self.keyEquivalent = keyEquivalent
+        self.modifiers = modifiers
     }
     
     
@@ -179,7 +179,7 @@ struct Shortcut {
         
         let shortcut = self.normalized
         let modifierCharacters = ModifierKey.allCases
-            .filter { shortcut.modifierMask.contains($0.mask) }
+            .filter { shortcut.modifiers.contains($0.mask) }
             .map(\.keySpecChar)
             .joined()
         
@@ -192,7 +192,7 @@ struct Shortcut {
         
         let shortcut = self.normalized
         
-        return (shortcut.modifierMaskSymbols + [shortcut.keyEquivalentSymbol]).joined(separator: .thinSpace)
+        return (shortcut.modifierSymbols + [shortcut.keyEquivalentSymbol]).joined(separator: .thinSpace)
     }
     
     
@@ -205,7 +205,7 @@ struct Shortcut {
             return true
         }
         
-        return !self.modifierMask.isEmpty
+        return !self.modifiers.isEmpty
     }
     
     
@@ -213,10 +213,10 @@ struct Shortcut {
     // MARK: Private Methods
     
     /// Modifier keys string to display.
-    private var modifierMaskSymbols: [String] {
+    private var modifierSymbols: [String] {
         
         ModifierKey.allCases
-            .filter { self.modifierMask.contains($0.mask) }
+            .filter { self.modifiers.contains($0.mask) }
             .map(\.symbol)
     }
     
@@ -319,7 +319,7 @@ extension Shortcut: Equatable {
         let lhs = lhs.normalized
         let rhs = rhs.normalized
         
-        return lhs.modifierMask == rhs.modifierMask && lhs.keyEquivalent == rhs.keyEquivalent
+        return lhs.modifiers == rhs.modifiers && lhs.keyEquivalent == rhs.keyEquivalent
     }
     
     
@@ -330,10 +330,10 @@ extension Shortcut: Equatable {
         
         let needsShift = self.keyEquivalent.last?.isUppercase == true
         
-        let modifierMask = self.modifierMask.union(needsShift ? .shift : [])
         let keyEquivalent = self.keyEquivalent.lowercased()
+        let modifiers = self.modifiers.union(needsShift ? .shift : [])
         
-        return Shortcut(modifierMask: modifierMask, keyEquivalent: keyEquivalent) ?? self
+        return Shortcut(keyEquivalent, modifiers: modifiers) ?? self
     }
 }
 
@@ -351,8 +351,8 @@ extension Shortcut: Hashable {
     
     func hash(into hasher: inout Hasher) {
         
-        hasher.combine(self.modifierMask.rawValue)
         hasher.combine(self.keyEquivalent)
+        hasher.combine(self.modifiers.rawValue)
     }
 }
 
