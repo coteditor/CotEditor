@@ -31,7 +31,8 @@ struct QuickActionView: View {
     struct Candidate: Identifiable {
         
         var command: ActionCommand
-        var result: String.AbbreviatedMatchResult
+        var matches: [ActionCommand.MatchedPath]
+        var score: Int
         var id: UUID  { self.command.id }
     }
     
@@ -68,7 +69,7 @@ struct QuickActionView: View {
                     ScrollView(.vertical) {
                         Group {
                             ForEach(self.candidates) { candidate in
-                                ActionCommandView(command: candidate.command, matchedRanges: candidate.result.ranges)
+                                ActionCommandView(command: candidate.command, matches: candidate.matches)
                                     .selected(candidate.id == self.selection)
                                     .id(candidate.id)
                                     .onTapGesture {
@@ -89,10 +90,10 @@ struct QuickActionView: View {
         .onChange(of: self.command) { command in
             self.candidates = self.commands
                 .compactMap {
-                    guard let result = $0.title.abbreviatedMatch(with: command) else { return nil }
-                    return Candidate(command: $0, result: result)
+                    guard let result = $0.match(command: command) else { return nil }
+                    return Candidate(command: $0, matches: result.result, score: result.score)
                 }
-                .sorted(\.result.score)
+                .sorted(\.score)
             self.selection = self.candidates.first?.id
         }
         .onChange(of: self.controlActiveState) { state in
@@ -161,7 +162,7 @@ private struct ActionCommandView: View {
     @Environment(\.colorSchemeContrast) var colorContrast
     
     let command: ActionCommand
-    let matchedRanges: [Range<String.Index>]
+    let matches: [ActionCommand.MatchedPath]
     
     var isSelected = false
     
@@ -178,20 +179,25 @@ private struct ActionCommandView: View {
             
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Text(self.attributed(self.command.title, in: self.matchedRanges, font: .body))
+                    ForEach(Array(self.matches.enumerated()), id: \.offset) { (offset, match) in
+                        if offset > 0 {
+                            Image(systemName: "chevron.compact.right")
+                                .opacity(0.4)
+                        }
+                        Text(self.attributed(match.string, in: match.ranges, font: .body))
+                            .layoutPriority((offset == 0) ? 10 : Double(offset))
+                    }
                 }
-                .lineLimit(1)
-                .truncationMode(.tail)
                 .foregroundStyle((self.isSelected && self.colorContrast == .standard) ? Color.selectedMenuItemText.opacity(0.8) : .primary)
                 
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     ForEach(Array(self.command.paths.enumerated()), id: \.offset) { (offset, path) in
                         if offset > 0 {
                             Image(systemName: "chevron.compact.right")
-                                .controlSize(.mini)
-                                .opacity(0.5)
+                                .opacity(0.4)
                         }
                         Text(path)
+                            .layoutPriority((offset == 0) ? 10 : Double(offset))
                     }
                 }
                 .foregroundStyle(self.isSelected ? .primary : .secondary)
@@ -203,11 +209,14 @@ private struct ActionCommandView: View {
             if let shortcut = self.command.shortcut {
                 Text(shortcut.symbol)
                     .foregroundStyle(self.isSelected ? .primary : .secondary)
+                    .fixedSize()
+                    .layoutPriority(100)
             }
         }
+        .lineLimit(1)
         .padding(.vertical, 4)
         .padding(.horizontal)
-        .contentShape(Rectangle())  // for click
+        .contentShape(Rectangle())  // for clicking
         .foregroundStyle(self.isSelected ? Color.selectedMenuItemText : .primary)
         .background(self.isSelected ? Color.accentColor : .clear,
                     in: RoundedRectangle(cornerRadius: 6))
@@ -274,11 +283,11 @@ private extension Color {
                              paths: ["Find"],
                              shortcut: Shortcut("f", modifiers: .command),
                              action: #selector(NSResponder.yank)),
-              result: String.AbbreviatedMatchResult([], 0)),
+              matches: [], score: 0),
         .init(command: .init(kind: .command, title: "Fortran",
                              paths: ["Format", "Syntax"],
                              action: #selector(NSResponder.yank)),
-              result: String.AbbreviatedMatchResult([], 0)),
+              matches: [], score: 0),
     ]
     
     return QuickActionView(candidates: candidates)
@@ -291,7 +300,7 @@ private extension Color {
                        paths: ["Format", "Syntax"],
                        shortcut: Shortcut("s", modifiers: [.command]),
                        action: #selector(NSResponder.yank)),
-        matchedRanges: [],
+        matches: [],
         isSelected: true
     )
     .fixedSize(horizontal: false, vertical: true)

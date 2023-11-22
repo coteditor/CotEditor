@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -130,6 +130,7 @@ extension BidirectionalCollection<OutlineItem> {
         self.compactMap { item in
             item.title.abbreviatedMatch(with: searchString).flatMap { (item: item, result: $0) }
         }
+        .filter { $0.result.remaining.isEmpty }
         .map {
             var item = $0.item
             item.filteredRanges = $0.result.ranges.map { NSRange($0, in: item.title) }

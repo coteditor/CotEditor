@@ -25,30 +25,38 @@
 
 extension String {
     
-    typealias AbbreviatedMatchResult = (ranges: [Range<String.Index>], score: Int)
+    struct AbbreviatedMatchResult {
+        
+        var ranges: [Range<String.Index>]
+        var remaining: String
+        var score: Int
+    }
     
     
     /// Search ranges of the characters contains in the `searchString` in the `searchString` order.
     ///
     /// - Parameter searchString: The string to search.
-    /// - Returns: The array of matched character ranges or `nil` if not matched.
+    /// - Returns: The matched character ranges and score, or `nil` if not matched.
     func abbreviatedMatch(with searchString: String) -> AbbreviatedMatchResult? {
         
         guard !searchString.isEmpty, !self.isEmpty else { return nil }
         
-        let ranges: [Range<String.Index>] = searchString.reduce(into: []) { (ranges, character) in
+        var ranges: [Range<String.Index>] = []
+        for character in searchString {
             let index = ranges.last?.upperBound ?? self.startIndex
             
-            guard let range = self.range(of: String(character), options: .caseInsensitive, range: index..<self.endIndex) else { return }
+            guard let range = self.range(of: String(character), options: .caseInsensitive, range: index..<self.endIndex) else { break }
             
             ranges.append(range)
         }
         
-        guard ranges.count == searchString.count else { return nil }
+        guard !ranges.isEmpty else { return nil }
+        
+        let remaining = String(searchString.suffix(searchString.count - ranges.count))
         
         // just simply calculate the length...
         let score = self.distance(from: ranges.first!.lowerBound, to: ranges.last!.upperBound)
         
-        return (ranges, score)
+        return AbbreviatedMatchResult(ranges: ranges, remaining: remaining, score: score)
     }
 }

@@ -59,6 +59,39 @@ struct ActionCommand: Identifiable {
 }
 
 
+extension ActionCommand {
+    
+    struct MatchedPath {
+        
+        var string: String
+        var ranges: [Range<String.Index>]
+    }
+    
+    
+    func match(command: String) -> (result: [MatchedPath], score: Int)? {
+        
+        guard !command.isEmpty else { return nil }
+        
+        var matches: [MatchedPath] = []
+        var score = 0
+        var remaining = command
+        for string in (self.paths[1...] + [self.title]) {
+            let match = string.abbreviatedMatch(with: remaining)
+            
+            if matches.isEmpty, match == nil { continue }
+            
+            matches.append(.init(string: string, ranges: match?.ranges ?? []))
+            score += match?.score ?? 0
+            remaining = match?.remaining ?? remaining
+        }
+        
+        guard remaining.isEmpty else { return nil }
+        
+        return (matches, score)
+    }
+}
+
+
 extension NSMenuItem {
     
     /// The flat collection of `ActionCommand` representation including  descendant items.
