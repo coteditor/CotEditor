@@ -1297,6 +1297,78 @@
         }
       }
     },
+    "7Su-OV-TgR.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Show Quick Actions…\"; ObjectID = \"7Su-OV-TgR\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schnellaktionen einblenden …"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Show Quick Actions…"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Quick Actions…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar las acciones rápidas…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher les actions rapides…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra azioni rapide…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "クイックアクションを表示…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar Ações Rápidas…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hızlı Eylemler’i Göster…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示快速操作…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示快速動作…"
+          }
+        }
+      }
+    },
     "8z7-Jc-agP.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Theme\"; ObjectID = \"8z7-Jc-agP\";",
       "extractionState" : "extracted_with_value",

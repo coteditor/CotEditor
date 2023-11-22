@@ -332,6 +332,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
+    /// Show the Quick Action bar.
+    @IBAction func showQuickActions(_ sender: Any?) {
+        
+        QuickActionWindowController.shared.showWindow(sender)
+    }
+    
+    
     /// Show Snippet pane in the Settings window.
     @IBAction func showSnippetEditor(_ sender: Any?) {
         

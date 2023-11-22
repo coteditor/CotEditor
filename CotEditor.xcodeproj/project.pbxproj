@@ -285,6 +285,12 @@
 		2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsView.swift */; };
 		2A5DCE871D1888D800D5D74C /* SyntaxMappingConflictsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsView.swift */; };
 		2A5DCE8A1D18FFDB00D5D74C /* EncodingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE881D18FFDB00D5D74C /* EncodingListView.swift */; };
+		2A5E41052B0AEFBB00D5EA20 /* QuickActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E41042B0AEFBB00D5EA20 /* QuickActionView.swift */; };
+		2A5E41062B0AEFBB00D5EA20 /* QuickActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E41042B0AEFBB00D5EA20 /* QuickActionView.swift */; };
+		2A5E41082B0AF62100D5EA20 /* QuickActionWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E41072B0AF62100D5EA20 /* QuickActionWindowController.swift */; };
+		2A5E41092B0AF62100D5EA20 /* QuickActionWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E41072B0AF62100D5EA20 /* QuickActionWindowController.swift */; };
+		2A5E410B2B0B559300D5EA20 /* ActionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E410A2B0B559300D5EA20 /* ActionCommand.swift */; };
+		2A5E410C2B0B559400D5EA20 /* ActionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E410A2B0B559300D5EA20 /* ActionCommand.swift */; };
 		2A5E6FC12A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */; };
 		2A5E6FC22A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */; };
 		2A5E6FC42A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */; };
@@ -1037,6 +1043,9 @@
 		2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxMappingConflictsView.swift; sourceTree = "<group>"; };
 		2A5DCE881D18FFDB00D5D74C /* EncodingListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingListView.swift; sourceTree = "<group>"; };
 		2A5DD44122793B9B0057AAD1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = fr; path = fr.lproj/ReportTemplate.md; sourceTree = "<group>"; };
+		2A5E41042B0AEFBB00D5EA20 /* QuickActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionView.swift; sourceTree = "<group>"; };
+		2A5E41072B0AF62100D5EA20 /* QuickActionWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionWindowController.swift; sourceTree = "<group>"; };
+		2A5E410A2B0B559300D5EA20 /* ActionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCommand.swift; sourceTree = "<group>"; };
 		2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = UnicodeNormalization.xcstrings; path = mul.lproj/UnicodeNormalization.xcstrings; sourceTree = "<group>"; };
 		2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = InfoPlist.xcstrings; path = mul.lproj/InfoPlist.xcstrings; sourceTree = "<group>"; };
 		2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = ServicesMenu.xcstrings; path = mul.lproj/ServicesMenu.xcstrings; sourceTree = "<group>"; };
@@ -2043,6 +2052,16 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		2A5E410D2B0CE4DB00D5EA20 /* Quick Action Bar */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E41072B0AF62100D5EA20 /* QuickActionWindowController.swift */,
+				2A5E41042B0AEFBB00D5EA20 /* QuickActionView.swift */,
+				2A5E410A2B0B559300D5EA20 /* ActionCommand.swift */,
+			);
+			name = "Quick Action Bar";
+			sourceTree = "<group>";
+		};
 		2A6602EB1D05E04E003E8D87 /* Accessory Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -2374,6 +2393,7 @@
 			children = (
 				2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */,
 				2A4257AF1D22FD490086DAAD /* ColorCodePanelController.swift */,
+				2A5E410D2B0CE4DB00D5EA20 /* Quick Action Bar */,
 			);
 			name = Panels;
 			sourceTree = "<group>";
@@ -2787,9 +2807,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A39F15726F74C2500B52876 /* AccessibleStepper.swift in Sources */,
+				2A5E410B2B0B559300D5EA20 /* ActionCommand.swift in Sources */,
 				2AF29EC42882EE7700DF31D2 /* AdvancedCharacterCounter.swift in Sources */,
 				2A04E9C327FEFA86008C82D8 /* AdvancedCharacterCounterView.swift in Sources */,
-				2A73B9332A8F6620002F3A16 /* RegexTextField.swift in Sources */,
 				2ACDC09B1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
 				2AC2462F1D1BC70C00E46CFA /* AppDelegate.swift in Sources */,
 				2A2792931D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
@@ -2999,8 +3019,11 @@
 				2AA175FA2AC5634500F6462C /* PopoverHolderView.swift in Sources */,
 				2A1856131D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */,
+				2A5E41052B0AEFBB00D5EA20 /* QuickActionView.swift in Sources */,
+				2A5E41082B0AF62100D5EA20 /* QuickActionWindowController.swift in Sources */,
 				2A57B98F294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */,
 				2A4AF76820759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
+				2A73B9332A8F6620002F3A16 /* RegexTextField.swift in Sources */,
 				2A1814B921CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */,
 				2A53F56727585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */,
 				2A0778622072040500876277 /* RegularExpressionSyntaxType.swift in Sources */,
@@ -3148,6 +3171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A39F15826F74C2500B52876 /* AccessibleStepper.swift in Sources */,
+				2A5E410C2B0B559400D5EA20 /* ActionCommand.swift in Sources */,
 				2AF29EC52882EE7700DF31D2 /* AdvancedCharacterCounter.swift in Sources */,
 				2A04E9C427FEFA87008C82D8 /* AdvancedCharacterCounterView.swift in Sources */,
 				2ACDC09A1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
@@ -3257,7 +3281,6 @@
 				2AEAA8232096380C001A175C /* HighlightExtractors.swift in Sources */,
 				2A8458942A073C5F0056B1EA /* HighlightDefinition.swift in Sources */,
 				2AAD61F81D2BA3F5008FE772 /* HighlightParser.swift in Sources */,
-				2A73B9342A8F6620002F3A16 /* RegexTextField.swift in Sources */,
 				2AE95A1B2A86270000E85CF5 /* HoleContentView.swift in Sources */,
 				2A5D13131D1EE8FF00D38E6A /* HUDView.swift in Sources */,
 				2AE144B72B00A963005E8CF1 /* Identifiable.swift in Sources */,
@@ -3361,7 +3384,10 @@
 				2A1856121D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */,
 				2A57B990294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */,
+				2A5E41062B0AEFBB00D5EA20 /* QuickActionView.swift in Sources */,
+				2A5E41092B0AF62100D5EA20 /* QuickActionWindowController.swift in Sources */,
 				2A4AF76720759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
+				2A73B9342A8F6620002F3A16 /* RegexTextField.swift in Sources */,
 				2A1814B821CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */,
 				2A53F56827585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */,
 				2A0778612072040500876277 /* RegularExpressionSyntaxType.swift in Sources */,

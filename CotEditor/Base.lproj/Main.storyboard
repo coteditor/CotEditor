@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -607,6 +607,12 @@ Gw
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleStatusBar:" target="Ady-hI-5gd" id="pjH-8E-CJp"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="WNT-nz-Qhz"/>
+                                        <menuItem title="Show Quick Actions…" keyEquivalent="k" id="7Su-OV-TgR">
+                                            <connections>
+                                                <action selector="showQuickActions:" target="Ady-hI-5gd" id="6AA-OS-m64"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="366"/>

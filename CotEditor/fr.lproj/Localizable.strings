@@ -830,6 +830,11 @@
 
 
 
+/* MARK: Quick Action Bar */
+"Quick Actions" = "Actions rapides";
+
+
+
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Le chemin absolu du fichier déposé.";

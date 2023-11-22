@@ -829,6 +829,11 @@
 
 
 
+/* MARK: Quick Action Bar */
+"Quick Actions" = "クイックアクション";
+
+
+
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "ドロップ元ファイルの絶対パス";

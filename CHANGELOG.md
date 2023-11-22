@@ -7,6 +7,7 @@ Change Log
 
 ### New Features
 
+- Add Quick Action bar which can launch by the Command-K keys.
 - Insert scanned text in a photo taken by iPhone or iPad.
 
 
