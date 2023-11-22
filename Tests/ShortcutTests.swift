@@ -31,8 +31,8 @@ final class ShortcutTests: XCTestCase {
     
     func testEquivalent() {
         
-        XCTAssertEqual(Shortcut(modifierMask: [.control], keyEquivalent: "A"),
-                       Shortcut(modifierMask: [.control, .shift], keyEquivalent: "a"))
+        XCTAssertEqual(Shortcut("A", modifiers: [.control]),
+                       Shortcut("a", modifiers: [.control, .shift]))
         
         XCTAssertEqual(Shortcut(keySpecChars: "^A"),
                        Shortcut(keySpecChars: "^$a"))
@@ -41,16 +41,16 @@ final class ShortcutTests: XCTestCase {
     
     func testKeySpecCharsCreation() {
         
-        XCTAssertNil(Shortcut(modifierMask: [], keyEquivalent: ""))
-        XCTAssertEqual(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "a")?.keySpecChars, "^$a")
-        XCTAssertEqual(Shortcut(modifierMask: [.command, .option], keyEquivalent: "b")?.keySpecChars, "~@b")
-        XCTAssertEqual(Shortcut(modifierMask: [.control], keyEquivalent: "A")?.keySpecChars, "^$a")  // uppercase for Shift key
-        XCTAssertEqual(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "a")?.keySpecChars, "^$a")
+        XCTAssertNil(Shortcut("", modifiers: []))
+        XCTAssertEqual(Shortcut("a", modifiers: [.control, .shift])?.keySpecChars, "^$a")
+        XCTAssertEqual(Shortcut("b", modifiers: [.command, .option])?.keySpecChars, "~@b")
+        XCTAssertEqual(Shortcut("A", modifiers: [.control])?.keySpecChars, "^$a")  // uppercase for Shift key
+        XCTAssertEqual(Shortcut("a", modifiers: [.control, .shift])?.keySpecChars, "^$a")
         
-        XCTAssertEqual(Shortcut(modifierMask: [], keyEquivalent: "a")?.keySpecChars, "a")
-        XCTAssertNil(Shortcut(modifierMask: [.control, .shift], keyEquivalent: ""))
-        XCTAssertEqual(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "a")?.isValid, true)
-        XCTAssertEqual(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "ab")?.isValid, false)
+        XCTAssertEqual(Shortcut("a", modifiers: [])?.keySpecChars, "a")
+        XCTAssertNil(Shortcut("", modifiers: [.control, .shift]))
+        XCTAssertEqual(Shortcut("a", modifiers: [.control, .shift])?.isValid, true)
+        XCTAssertEqual(Shortcut("ab", modifiers: [.control, .shift])?.isValid, false)
     }
     
     
@@ -59,7 +59,7 @@ final class ShortcutTests: XCTestCase {
         let shortcut = try XCTUnwrap(Shortcut(keySpecChars: "^$a"))
         
         XCTAssertEqual(shortcut.keyEquivalent, "a")
-        XCTAssertEqual(shortcut.modifierMask, [.control, .shift])
+        XCTAssertEqual(shortcut.modifiers, [.control, .shift])
     }
     
     
@@ -68,7 +68,7 @@ final class ShortcutTests: XCTestCase {
         let menuItem = NSMenuItem(title: "", action: nil, keyEquivalent: "C")
         menuItem.keyEquivalentModifierMask = [.command]
         
-        let shortcut = Shortcut(modifierMask: menuItem.keyEquivalentModifierMask, keyEquivalent: menuItem.keyEquivalent)
+        let shortcut = Shortcut(menuItem.keyEquivalent, modifiers: menuItem.keyEquivalentModifierMask)
         
         XCTAssertEqual(shortcut?.symbol, "⇧ ⌘ C")
     }
@@ -82,12 +82,11 @@ final class ShortcutTests: XCTestCase {
         XCTAssertEqual(Shortcut(keySpecChars: "~@b")?.symbol, "⌥ ⌘ B")
         
         // test unprintable keys
-        
         let f10 = try XCTUnwrap(UnicodeScalar(NSF10FunctionKey).flatMap(String.init))
         XCTAssertEqual(Shortcut(keySpecChars: "@" + f10)?.symbol, "⌘ F10")
         
         let delete = try XCTUnwrap(UnicodeScalar(NSDeleteCharacter).flatMap(String.init))
-        XCTAssertEqual(Shortcut(keySpecChars: "@" + String(delete))?.symbol, "⌘ ⌦")
+        XCTAssertEqual(Shortcut(keySpecChars: "@" + delete)?.symbol, "⌘ ⌦")
         
         // test creation
         XCTAssertNil(Shortcut(symbolRepresentation: ""))
