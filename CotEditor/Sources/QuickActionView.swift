@@ -117,7 +117,6 @@ struct QuickActionView: View {
                     
                 case .inactive:
                     self.command = ""
-                    self.candidates.removeAll()
                     if let keyMonitor {
                         NSEvent.removeMonitor(keyMonitor)
                         self.keyMonitor = nil
