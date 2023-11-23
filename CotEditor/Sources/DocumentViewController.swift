@@ -98,6 +98,12 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: EditorTextView.didLiveChangeSelectionNotification, object: nil)
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
