@@ -82,17 +82,18 @@ final class ShortcutTests: XCTestCase {
         XCTAssertEqual(Shortcut(keySpecChars: "~@b")?.symbol, "⌥ ⌘ B")
         
         // test unprintable keys
-        let f10 = try XCTUnwrap(UnicodeScalar(NSF10FunctionKey).flatMap(String.init))
+        let f10 = try XCTUnwrap(String(NSEvent.SpecialKey.f10.unicodeScalar))
         XCTAssertEqual(Shortcut(keySpecChars: "@" + f10)?.symbol, "⌘ F10")
         
         let delete = try XCTUnwrap(UnicodeScalar(NSDeleteCharacter).flatMap(String.init))
-        XCTAssertEqual(Shortcut(keySpecChars: "@" + delete)?.symbol, "⌘ ⌦")
+        XCTAssertEqual(Shortcut(keySpecChars: "@" + delete)?.symbol, "⌘ ⌫")
         
         // test creation
+        let deleteForward = try XCTUnwrap(String(NSEvent.SpecialKey.deleteForward.unicodeScalar))
         XCTAssertNil(Shortcut(symbolRepresentation: ""))
         XCTAssertEqual(Shortcut(symbolRepresentation: "^ ⇧ A")?.keySpecChars, "^$a")
         XCTAssertEqual(Shortcut(symbolRepresentation: "⌥ ⌘ B")?.keySpecChars, "~@b")
         XCTAssertEqual(Shortcut(symbolRepresentation: "⌘ F10")?.keySpecChars, "@" + f10)
-        XCTAssertEqual(Shortcut(symbolRepresentation: "⌘ ⌦")?.keySpecChars, "@" + delete)
+        XCTAssertEqual(Shortcut(symbolRepresentation: "⌘ ⌦")?.keySpecChars, "@" + deleteForward)
     }
 }
