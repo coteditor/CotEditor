@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-4.7.0 (unreleased)
+4.7.0-beta (unreleased)
 --------------------------
 
 ### New Features
