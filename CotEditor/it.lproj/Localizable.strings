@@ -965,8 +965,8 @@
 
 /* MARK: LiveTextInsertionView */
 // error messages
-"No text detected" = "Nessun testo trovato";
-"Detection failed" = "Ricerca fallita";
+"No text detected" = "Nessun testo individuato";
+"Detection failed" = "Individuazione fallita";
 
 
 
