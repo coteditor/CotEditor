@@ -87,10 +87,7 @@ final class ShortcutField: NSTextField, NSTextViewDelegate {
         }
         
         // end monitoring key down event
-        if let monitor = self.keyDownMonitor {
-            NSEvent.removeMonitor(monitor)
-            self.keyDownMonitor = nil
-        }
+        self.removeKeyMonitor()
         self.windowObserver = nil
         
         super.textDidEndEditing(notification)
@@ -104,5 +101,17 @@ final class ShortcutField: NSTextField, NSTextViewDelegate {
         
         // disable contextual menu for field editor
         nil
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Remove key down monitoring.
+    private func removeKeyMonitor() {
+        
+        if let monitor = self.keyDownMonitor {
+            NSEvent.removeMonitor(monitor)
+            self.keyDownMonitor = nil
+        }
     }
 }
