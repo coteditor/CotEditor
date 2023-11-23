@@ -965,8 +965,8 @@
 
 /* MARK: LiveTextInsertionView */
 // error messages
-"No text detected" = "No text detected";  // FIXME: added
-"Detection failed" = "Detection failed";  // FIXME: added
+"No text detected" = "沒能偵測到文字";
+"Detection failed" = "偵測失敗";
 
 
 
