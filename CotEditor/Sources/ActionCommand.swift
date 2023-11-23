@@ -110,7 +110,7 @@ extension NSMenuItem {
                     return command
                 }
             
-        } else if let action = self.action, !self.isHidden, !ActionCommand.unsupportedActions.contains(action) {
+        } else if let action = self.action, !self.isHidden, self.isEnabled, !ActionCommand.unsupportedActions.contains(action) {
             [ActionCommand(kind: (action == #selector(ScriptManager.launchScript)) ? .script : .command,
                            title: self.title, paths: [], shortcut: self.shortcut, action: action, tag: self.tag, representedObject: self.representedObject)]
             

@@ -5,6 +5,10 @@ Change Log
 4.7.0-beta.2 (unreleased)
 --------------------------
 
+### Fixes
+
+- [beta] Fix an issue that disabled menu items were listed as the quick action candidates.
+
 
 
 4.7.0-beta (611)
