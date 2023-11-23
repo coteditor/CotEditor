@@ -43,6 +43,7 @@ struct ActionCommand: Identifiable {
     
     var action: Selector
     var tag: Int = 0
+    var representedObject: Any?
     
     
     /// Perform the original menu action.
@@ -53,6 +54,7 @@ struct ActionCommand: Identifiable {
         sender.title = self.title
         sender.action = self.action
         sender.tag = self.tag
+        sender.representedObject = self.representedObject
         
         return NSApp.sendAction(self.action, to: nil, from: sender)
     }
@@ -97,8 +99,10 @@ extension NSMenuItem {
     /// The flat collection of `ActionCommand` representation including  descendant items.
     var actionCommands: [ActionCommand] {
         
-        if let submenu = self.submenu {
-            return submenu.items
+        self.validate()
+        
+        return if let submenu = self.submenu {
+            submenu.items
                 .flatMap { $0.actionCommands }
                 .map {
                     var command = $0
@@ -107,12 +111,11 @@ extension NSMenuItem {
                 }
             
         } else if let action = self.action, !self.isHidden, !ActionCommand.unsupportedActions.contains(action) {
-            self.validate()
-            return [ActionCommand(kind: (action == #selector(ScriptManager.launchScript)) ? .script : .command,
-                                  title: self.title, paths: [], shortcut: self.shortcut, action: action, tag: self.tag)]
+            [ActionCommand(kind: (action == #selector(ScriptManager.launchScript)) ? .script : .command,
+                           title: self.title, paths: [], shortcut: self.shortcut, action: action, tag: self.tag, representedObject: self.representedObject)]
             
         } else {
-            return []
+            []
         }
     }
     
