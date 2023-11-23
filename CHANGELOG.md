@@ -11,6 +11,11 @@ Change Log
 - Insert scanned text in a photo taken by iPhone or iPad.
 
 
+### Fixes
+
+- Fix an issue that the Forward Delete key could not be correctly assigned as custom key bindings.
+
+
 ### TODO
 
 - Some text are not localized yet.
