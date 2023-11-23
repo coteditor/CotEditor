@@ -37,11 +37,11 @@ struct QuickActionView: View {
     }
     
     
-    @Environment(\.controlActiveState) private var controlActiveState
-    
     weak var parent: NSWindow?
     
-    @State var command: String = ""
+    @Environment(\.controlActiveState) private var controlActiveState
+    
+    @State private var command: String = ""
     @State var candidates: [Candidate] = []
     
     @State private var commands: [ActionCommand] = []
@@ -60,14 +60,14 @@ struct QuickActionView: View {
                     .fontWeight(.light)
                     .textFieldStyle(.plain)
             }
-            .font(.system(size: 22))
+            .font(.system(size: 20))
             .padding(12)
             
             if !self.candidates.isEmpty {
                 Divider()
                 ScrollViewReader { proxy in
                     ScrollView(.vertical) {
-                        Group {
+                        LazyVStack {
                             ForEach(self.candidates) { candidate in
                                 ActionCommandView(command: candidate.command, matches: candidate.matches)
                                     .selected(candidate.id == self.selection)
@@ -283,11 +283,17 @@ private extension Color {
                              paths: ["Find"],
                              shortcut: Shortcut("f", modifiers: .command),
                              action: #selector(NSResponder.yank)),
-              matches: [], score: 0),
+              matches: [.init(string: "Find…", ranges: [])],
+              score: 0),
         .init(command: .init(kind: .command, title: "Fortran",
                              paths: ["Format", "Syntax"],
                              action: #selector(NSResponder.yank)),
-              matches: [], score: 0),
+              matches: [
+                .init(string: "Syntax",
+                      ranges: [Range(NSRange(0..<2), in: "Syntax")!]),
+                .init(string: "Fortran", ranges: []),
+              ],
+              score: 0),
     ]
     
     return QuickActionView(candidates: candidates)
@@ -300,7 +306,7 @@ private extension Color {
                        paths: ["Format", "Syntax"],
                        shortcut: Shortcut("s", modifiers: [.command]),
                        action: #selector(NSResponder.yank)),
-        matches: [],
+        matches: [.init(string: "Swift", ranges: [])],
         isSelected: true
     )
     .fixedSize(horizontal: false, vertical: true)

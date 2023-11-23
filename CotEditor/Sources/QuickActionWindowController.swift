@@ -33,7 +33,7 @@ final class QuickActionWindowController: NSWindowController {
     
     init() {
         
-        let view = NSHostingViewSuppressingSafeArea(rootView: QuickActionView())
+        let view = HostingViewSuppressingSafeArea(rootView: QuickActionView())
         let panel = CommandBarPanel(contentRect: .zero, styleMask: [.titled, .fullSizeContentView], backing: .buffered, defer: false)
         panel.contentView = view
         panel.animationBehavior = .utilityWindow
@@ -63,8 +63,6 @@ private final class CommandBarPanel: NSPanel {
     
     override func cancelOperation(_ sender: Any?) {
         
-        super.cancelOperation(sender)
-        
         // -> Needs to close manually when a panel does not have a close button.
         self.close()
     }
@@ -80,7 +78,7 @@ private final class CommandBarPanel: NSPanel {
 
 
 /// Workaround for the issue that a window still keeps content height for the title bar even with `.ignoresSafeArea()`.
-private final class NSHostingViewSuppressingSafeArea<T: View>: NSHostingView<T> {
+private final class HostingViewSuppressingSafeArea<T: View>: NSHostingView<T> {
     
     private lazy var layoutGuide = NSLayoutGuide()
     
