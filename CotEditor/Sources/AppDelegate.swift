@@ -332,10 +332,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// Show the Quick Action bar.
+    /// Show the Quick Action command bar.
     @IBAction func showQuickActions(_ sender: Any?) {
         
-        QuickActionWindowController.shared.showWindow(sender)
+        CommandBarWindowController.shared.showWindow(sender)
     }
     
     

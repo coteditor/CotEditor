@@ -1,5 +1,5 @@
 //
-//  QuickActionWindowController.swift
+//  CommandBarWindowController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,14 +26,14 @@
 import AppKit
 import SwiftUI
 
-final class QuickActionWindowController: NSWindowController {
+final class CommandBarWindowController: NSWindowController {
     
-    static let shared = QuickActionWindowController()
+    static let shared = CommandBarWindowController()
     
     
     init() {
         
-        let view = HostingViewSuppressingSafeArea(rootView: QuickActionView())
+        let view = HostingViewSuppressingSafeArea(rootView: CommandBarView())
         let panel = CommandBarPanel(contentRect: .zero, styleMask: [.titled, .fullSizeContentView], backing: .buffered, defer: false)
         panel.contentView = view
         panel.animationBehavior = .utilityWindow

@@ -1,5 +1,5 @@
 //
-//  QuickActionView.swift
+//  CommandBarView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,7 @@
 import SwiftUI
 import AppKit
 
-struct QuickActionView: View {
+struct CommandBarView: View {
     
     struct Candidate: Identifiable {
         
@@ -41,7 +41,7 @@ struct QuickActionView: View {
     
     @Environment(\.controlActiveState) private var controlActiveState
     
-    @State private var command: String = ""
+    @State private var input: String = ""
     @State var candidates: [Candidate] = []
     
     @State private var commands: [ActionCommand] = []
@@ -55,7 +55,7 @@ struct QuickActionView: View {
         VStack(spacing: 0) {
             HStack(alignment: .firstTextBaseline) {
                 Image(systemName: "magnifyingglass")
-                TextField("Quick Actions", text: $command)
+                TextField("Quick Actions", text: $input)
                     .onSubmit(self.perform)
                     .fontWeight(.light)
                     .textFieldStyle(.plain)
@@ -87,10 +87,10 @@ struct QuickActionView: View {
                 .fixedSize(horizontal: false, vertical: true)
             }
         }
-        .onChange(of: self.command) { command in
+        .onChange(of: self.input) { input in
             self.candidates = self.commands
                 .compactMap {
-                    guard let result = $0.match(command: command) else { return nil }
+                    guard let result = $0.match(command: input) else { return nil }
                     return Candidate(command: $0, matches: result.result, score: result.score)
                 }
                 .sorted(\.score)
@@ -117,7 +117,7 @@ struct QuickActionView: View {
                     }
                     
                 case .inactive:
-                    self.command = ""
+                    self.input = ""
                     if let keyMonitor {
                         NSEvent.removeMonitor(keyMonitor)
                         self.keyMonitor = nil
@@ -278,7 +278,7 @@ private extension Color {
 // MARK: - Preview
 
 #Preview {
-    let candidates: [QuickActionView.Candidate] = [
+    let candidates: [CommandBarView.Candidate] = [
         .init(command: .init(kind: .command, title: "Find…",
                              paths: ["Find"],
                              shortcut: Shortcut("f", modifiers: .command),
@@ -296,7 +296,7 @@ private extension Color {
               score: 0),
     ]
     
-    return QuickActionView(candidates: candidates)
+    return CommandBarView(candidates: candidates)
 }
 
 

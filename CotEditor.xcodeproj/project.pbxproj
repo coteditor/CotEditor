@@ -285,10 +285,10 @@
 		2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsView.swift */; };
 		2A5DCE871D1888D800D5D74C /* SyntaxMappingConflictsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsView.swift */; };
 		2A5DCE8A1D18FFDB00D5D74C /* EncodingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE881D18FFDB00D5D74C /* EncodingListView.swift */; };
-		2A5E41052B0AEFBB00D5EA20 /* QuickActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E41042B0AEFBB00D5EA20 /* QuickActionView.swift */; };
-		2A5E41062B0AEFBB00D5EA20 /* QuickActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E41042B0AEFBB00D5EA20 /* QuickActionView.swift */; };
-		2A5E41082B0AF62100D5EA20 /* QuickActionWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E41072B0AF62100D5EA20 /* QuickActionWindowController.swift */; };
-		2A5E41092B0AF62100D5EA20 /* QuickActionWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E41072B0AF62100D5EA20 /* QuickActionWindowController.swift */; };
+		2A5E41052B0AEFBB00D5EA20 /* CommandBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E41042B0AEFBB00D5EA20 /* CommandBarView.swift */; };
+		2A5E41062B0AEFBB00D5EA20 /* CommandBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E41042B0AEFBB00D5EA20 /* CommandBarView.swift */; };
+		2A5E41082B0AF62100D5EA20 /* CommandBarWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E41072B0AF62100D5EA20 /* CommandBarWindowController.swift */; };
+		2A5E41092B0AF62100D5EA20 /* CommandBarWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E41072B0AF62100D5EA20 /* CommandBarWindowController.swift */; };
 		2A5E410B2B0B559300D5EA20 /* ActionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E410A2B0B559300D5EA20 /* ActionCommand.swift */; };
 		2A5E410C2B0B559400D5EA20 /* ActionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E410A2B0B559300D5EA20 /* ActionCommand.swift */; };
 		2A5E6FC12A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */; };
@@ -1043,8 +1043,8 @@
 		2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxMappingConflictsView.swift; sourceTree = "<group>"; };
 		2A5DCE881D18FFDB00D5D74C /* EncodingListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingListView.swift; sourceTree = "<group>"; };
 		2A5DD44122793B9B0057AAD1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = fr; path = fr.lproj/ReportTemplate.md; sourceTree = "<group>"; };
-		2A5E41042B0AEFBB00D5EA20 /* QuickActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionView.swift; sourceTree = "<group>"; };
-		2A5E41072B0AF62100D5EA20 /* QuickActionWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionWindowController.swift; sourceTree = "<group>"; };
+		2A5E41042B0AEFBB00D5EA20 /* CommandBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBarView.swift; sourceTree = "<group>"; };
+		2A5E41072B0AF62100D5EA20 /* CommandBarWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBarWindowController.swift; sourceTree = "<group>"; };
 		2A5E410A2B0B559300D5EA20 /* ActionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCommand.swift; sourceTree = "<group>"; };
 		2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = UnicodeNormalization.xcstrings; path = mul.lproj/UnicodeNormalization.xcstrings; sourceTree = "<group>"; };
 		2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = InfoPlist.xcstrings; path = mul.lproj/InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -2052,14 +2052,14 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		2A5E410D2B0CE4DB00D5EA20 /* Quick Action Bar */ = {
+		2A5E410D2B0CE4DB00D5EA20 /* Command Bar */ = {
 			isa = PBXGroup;
 			children = (
-				2A5E41072B0AF62100D5EA20 /* QuickActionWindowController.swift */,
-				2A5E41042B0AEFBB00D5EA20 /* QuickActionView.swift */,
+				2A5E41072B0AF62100D5EA20 /* CommandBarWindowController.swift */,
+				2A5E41042B0AEFBB00D5EA20 /* CommandBarView.swift */,
 				2A5E410A2B0B559300D5EA20 /* ActionCommand.swift */,
 			);
-			name = "Quick Action Bar";
+			name = "Command Bar";
 			sourceTree = "<group>";
 		};
 		2A6602EB1D05E04E003E8D87 /* Accessory Views */ = {
@@ -2393,7 +2393,7 @@
 			children = (
 				2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */,
 				2A4257AF1D22FD490086DAAD /* ColorCodePanelController.swift */,
-				2A5E410D2B0CE4DB00D5EA20 /* Quick Action Bar */,
+				2A5E410D2B0CE4DB00D5EA20 /* Command Bar */,
 			);
 			name = Panels;
 			sourceTree = "<group>";
@@ -2835,6 +2835,8 @@
 				2AFD328929482D53000ED1C5 /* Color.swift in Sources */,
 				2A4257B11D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2A1A4EB024FB9D9300B50AA0 /* Combine.swift in Sources */,
+				2A5E41052B0AEFBB00D5EA20 /* CommandBarView.swift in Sources */,
+				2A5E41082B0AF62100D5EA20 /* CommandBarWindowController.swift in Sources */,
 				2AC13A0924F112D800799A93 /* CommandLineToolManager.swift in Sources */,
 				2A885E341D5C3A1B00288723 /* Comparable.swift in Sources */,
 				2A5D130B1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
@@ -3019,8 +3021,6 @@
 				2AA175FA2AC5634500F6462C /* PopoverHolderView.swift in Sources */,
 				2A1856131D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */,
-				2A5E41052B0AEFBB00D5EA20 /* QuickActionView.swift in Sources */,
-				2A5E41082B0AF62100D5EA20 /* QuickActionWindowController.swift in Sources */,
 				2A57B98F294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */,
 				2A4AF76820759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
 				2A73B9332A8F6620002F3A16 /* RegexTextField.swift in Sources */,
@@ -3199,6 +3199,8 @@
 				2AFD328A29482D53000ED1C5 /* Color.swift in Sources */,
 				2A4257B01D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2A1A4EB124FB9D9300B50AA0 /* Combine.swift in Sources */,
+				2A5E41062B0AEFBB00D5EA20 /* CommandBarView.swift in Sources */,
+				2A5E41092B0AF62100D5EA20 /* CommandBarWindowController.swift in Sources */,
 				2AC13A0A24F112D800799A93 /* CommandLineToolManager.swift in Sources */,
 				2A885E331D5C3A1B00288723 /* Comparable.swift in Sources */,
 				2A5D130A1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
@@ -3384,8 +3386,6 @@
 				2A1856121D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */,
 				2A57B990294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */,
-				2A5E41062B0AEFBB00D5EA20 /* QuickActionView.swift in Sources */,
-				2A5E41092B0AF62100D5EA20 /* QuickActionWindowController.swift in Sources */,
 				2A4AF76720759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
 				2A73B9342A8F6620002F3A16 /* RegexTextField.swift in Sources */,
 				2A1814B821CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */,
