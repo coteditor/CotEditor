@@ -30,7 +30,6 @@ struct ActionCommand: Identifiable {
     enum Kind {
         
         case command
-        case outline
         case script
     }
     

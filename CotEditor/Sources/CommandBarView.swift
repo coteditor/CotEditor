@@ -264,7 +264,6 @@ private extension ActionCommand.Kind {
         
         switch self {
             case .command: "filemenu.and.selection"
-            case .outline: "list.bullet.rectangle"
             case .script: "applescript.fill"
         }
     }
