@@ -99,11 +99,10 @@ extension NSMenuItem {
     /// The flat collection of `ActionCommand` representation including  descendant items.
     var actionCommands: [ActionCommand] {
         
-        self.validate()
-        
-        return if let submenu = self.submenu {
-            submenu.items
-                .flatMap { $0.actionCommands }
+        if let submenu = self.submenu {
+            submenu.update()
+            return submenu.items
+                .flatMap(\.actionCommands)
                 .map {
                     var command = $0
                     command.paths.insert(self.title, at: 0)
@@ -111,30 +110,12 @@ extension NSMenuItem {
                 }
             
         } else if self.isEnabled, !self.isHidden, let action = self.action, !ActionCommand.unsupportedActions.contains(action) {
-            [ActionCommand(kind: (action == #selector(ScriptManager.launchScript)) ? .script : .command,
-                           title: self.actionTitle, paths: [], shortcut: self.shortcut, action: action, tag: self.tag, representedObject: self.representedObject)]
+            return [ActionCommand(kind: (action == #selector(ScriptManager.launchScript)) ? .script : .command,
+                                  title: self.actionTitle, paths: [], shortcut: self.shortcut, action: action, tag: self.tag,
+                                  representedObject: self.representedObject)]
             
         } else {
-            []
-        }
-    }
-    
-    
-    /// Validate the menu item so that the menu item properties, such as title, are updated to fit to the latest states.
-    private func validate() {
-        
-        guard
-            let validator = self.target
-                ?? self.action.flatMap({ NSApp.target(forAction: $0, to: self.target, from: self) }) as AnyObject?
-        else { return }
-        
-        switch validator {
-            case let validator as any NSUserInterfaceValidations:
-                validator.validateUserInterfaceItem(self)
-            case let validator as any NSMenuItemValidation:
-                validator.validateMenuItem(self)
-            default:
-                break
+            return []
         }
     }
     
@@ -159,5 +140,6 @@ private extension ActionCommand {
     
     static let unsupportedActions: [Selector] = [
         #selector(AppDelegate.showQuickActions),
+        Selector(("_importFromDeviceText:")),
     ]
 }
