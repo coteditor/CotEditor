@@ -5,6 +5,11 @@ Change Log
 4.7.0-beta.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta][trivial] Add device name to quick actions related to Continuity Camera.
+
+
 ### Fixes
 
 - [beta] Fix an issue that disabled menu items were listed as the quick action candidates.

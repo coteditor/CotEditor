@@ -112,7 +112,7 @@ extension NSMenuItem {
             
         } else if self.isEnabled, !self.isHidden, let action = self.action, !ActionCommand.unsupportedActions.contains(action) {
             [ActionCommand(kind: (action == #selector(ScriptManager.launchScript)) ? .script : .command,
-                           title: self.title, paths: [], shortcut: self.shortcut, action: action, tag: self.tag, representedObject: self.representedObject)]
+                           title: self.actionTitle, paths: [], shortcut: self.shortcut, action: action, tag: self.tag, representedObject: self.representedObject)]
             
         } else {
             []
@@ -129,13 +129,28 @@ extension NSMenuItem {
         else { return }
         
         switch validator {
-            case let validator as any NSMenuItemValidation:
-                validator.validateMenuItem(self)
             case let validator as any NSUserInterfaceValidations:
                 validator.validateUserInterfaceItem(self)
+            case let validator as any NSMenuItemValidation:
+                validator.validateMenuItem(self)
             default:
                 break
         }
+    }
+    
+    
+    /// The title for command action.
+    private var actionTitle: String {
+        
+        // append the device name to the title for "Insert from iPhone/iPad" actions
+        guard
+            self.action == Selector(("importFromDevice:")),
+            let siblings = self.menu?.items,
+            let index = siblings.firstIndex(of: self),
+            let deviceNameItem = siblings[0..<index].last(where: { !$0.isEnabled && $0.action == Selector(("_importFromDeviceText:")) })
+        else { return self.title }
+        
+        return "\(self.title) (\(deviceNameItem.title))"
     }
 }
 
