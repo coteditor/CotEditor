@@ -149,10 +149,13 @@ struct CommandBarView: View {
     /// Perform the selected command and close the view.
     private func perform() {
         
+        // first close the command bar and then take the action
+        // so that the action is delivered to the correct (first) responder.
+        self.parent?.close()
+        
         if let command = self.candidates.first(where: { $0.id == self.selection })?.command {
             command.perform()
         }
-        self.parent?.close()
     }
 }
 

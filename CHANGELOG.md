@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - [beta] Fix an issue that disabled menu items were listed as the quick action candidates.
+- [beta] Fix an issue that some actions were not performed properly by the Quick Action.
 
 
 
