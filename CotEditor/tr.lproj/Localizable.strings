@@ -965,8 +965,8 @@
 
 /* MARK: LiveTextInsertionView */
 // error messages
-"No text detected" = "No text detected";  // FIXME: added
-"Detection failed" = "Detection failed";  // FIXME: added
+"No text detected" = "Algılanan metin yok";
+"Detection failed" = "Algılama başarısız";
 
 
 
