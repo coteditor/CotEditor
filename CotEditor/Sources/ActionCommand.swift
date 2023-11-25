@@ -33,6 +33,7 @@ struct ActionCommand: Identifiable {
         case script
     }
     
+    
     let id = UUID()
     
     var kind: Kind
