@@ -966,7 +966,7 @@
 
 /* MARK: LiveTextInsertionView */
 // error messages
-"No text detected" = "没有检测到文字";
+"No text detected" = "没有检测到文本";
 "Detection failed" = "检测失败";
 
 
