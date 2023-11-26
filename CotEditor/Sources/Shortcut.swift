@@ -67,6 +67,18 @@ enum ModifierKey: CaseIterable {
     }
     
     
+    /// SF Symbol name to display in GUI.
+    var symbolName: String {
+        
+        switch self {
+            case .control: "control"
+            case .option:  "option"
+            case .shift:   "shift"
+            case .command: "command"
+        }
+    }
+    
+    
     /// Symbol to store.
     var keySpecChar: String {
         
@@ -208,11 +220,8 @@ struct Shortcut {
     }
     
     
-    
-    // MARK: Private Methods
-    
-    /// Modifier keys string to display.
-    private var modifierSymbols: [String] {
+    /// Modifier key strings to display.
+    var modifierSymbols: [String] {
         
         ModifierKey.allCases
             .filter { self.modifiers.contains($0.mask) }
@@ -220,8 +229,17 @@ struct Shortcut {
     }
     
     
+    /// SF Symbol name for modifier keys to display.
+    var modifierSymbolNames: [String] {
+        
+        ModifierKey.allCases
+            .filter { self.modifiers.contains($0.mask) }
+            .map(\.symbolName)
+    }
+    
+    
     /// Key equivalent to display.
-    private var keyEquivalentSymbol: String {
+    var keyEquivalentSymbol: String {
         
         guard let scalar = self.keyEquivalent.unicodeScalars.first else { return "" }
         
@@ -229,6 +247,18 @@ struct Shortcut {
             ?? self.keyEquivalent.uppercased()
     }
     
+    
+    /// SF Symbol name for key equivalent if exists
+    var keyEquivalentSymbolName: String? {
+        
+        guard let scalar = self.keyEquivalent.unicodeScalars.first else { return nil }
+        
+        return Self.keyEquivalentSymbolNames[scalar]
+    }
+    
+    
+    
+    // MARK: Private Methods
     
     /// Some special keys allowed to assign without modifier keys.
     private static let singleKeys: [NSEvent.SpecialKey] = [
@@ -300,6 +330,30 @@ struct Shortcut {
         .help: "Help",
         .space: String(localized: "Space", comment: "keyboard key name"),
         .mic: "🎤︎",  // U+1F3A4, U+FE0E
+    ].mapKeys(\.unicodeScalar)
+    
+    
+    /// Table for key equivalent that have SF Symbols to display.
+    private static let keyEquivalentSymbolNames: [Unicode.Scalar: String] = [
+        NSEvent.SpecialKey
+        .upArrow: "arrowtriangle.up.fill",
+        .downArrow: "arrowtriangle.down.fill",
+        .leftArrow: "arrowtriangle.left.fill",
+        .rightArrow: "arrowtriangle.right.fill",
+        .deleteForward: "delete.forward",
+        .delete: "delete.backward",
+        .backspace: "delete.backward",
+        .home: "arrow.up.to.line.compact",
+        .end: "arrow.down.to.line.compact",
+        .pageUp: "arrow.up",
+        .pageDown: "arrow.down",
+        .clearLine: "clear",
+        .carriageReturn: "return",
+        .enter: "projective",
+        .tab: "arrow.right.to.line.compact",
+        .backTab: "arrow.left.to.line.compact",
+        .escape: "escape",
+        .mic: "mic",
     ].mapKeys(\.unicodeScalar)
 }
 

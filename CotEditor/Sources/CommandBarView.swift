@@ -218,9 +218,8 @@ private struct ActionCommandView: View {
             Spacer()
             
             if let shortcut = self.command.shortcut {
-                Text(shortcut.symbol)
+                ShortcutView(shortcut)
                     .foregroundStyle(self.isSelected ? .primary : .secondary)
-                    .fixedSize()
                     .layoutPriority(100)
             }
         }

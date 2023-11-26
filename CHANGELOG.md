@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Enable the “Input Backslash” and “Input Yen Mark” menu commands in all text fields in the application.
+- [beta] Use the same shortcut symbols as the menu display in the Quick Action bar.  
 - [beta] Adjust the layout of the Quick Action bar.
 - [beta.2] Update some localized text.
 
