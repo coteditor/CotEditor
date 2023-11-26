@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Enable the “Input Backslash” and “Input Yen Mark” actions in all text fields in the application.
 - [beta.2] Adjust the layout of the Quick Action bar.
 
 

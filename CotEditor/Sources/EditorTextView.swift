@@ -1384,20 +1384,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Input an Yen sign (¥).
-    @IBAction func inputYenMark(_ sender: Any?) {
-        
-        super.insertText("¥", replacementRange: .notFound)
-    }
-    
-    
-    /// Input a backslash (\\).
-    @IBAction func inputBackSlash(_ sender: Any?) {
-        
-        super.insertText("\\", replacementRange: .notFound)
-    }
-    
-    
     
     // MARK: Private Methods
     

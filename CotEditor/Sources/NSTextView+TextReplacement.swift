@@ -150,6 +150,22 @@ extension NSTextView {
         self.replace(with: replacementStrings, ranges: trimmingRanges, selectedRanges: selectedRanges,
                      actionName: String(localized: "Trim Trailing Whitespace"))
     }
+    
+    
+    // MARK: Actions
+    
+    /// Input a backslash (\\) to the insertion points.
+    @IBAction final func inputBackSlash(_ sender: Any?) {
+        
+        self.insertText("\\", replacementRange: .notFound)
+    }
+    
+    
+    /// Input an Yen sign (¥) to the insertion points.
+    @IBAction final func inputYenMark(_ sender: Any?) {
+        
+        self.insertText("¥", replacementRange: .notFound)
+    }
 }
 
 
