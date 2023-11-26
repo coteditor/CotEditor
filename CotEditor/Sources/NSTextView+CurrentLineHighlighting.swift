@@ -38,7 +38,9 @@ extension CurrentLineHighlighting {
     
     // MARK: Public Methods
     
-    /// draw current line highlight
+    /// Draw the highlight for the lines where the insertion points locate.
+    ///
+    /// - Parameter dirtyRect: The A rectangle defining the portion of the view that requires redrawing.
     func drawCurrentLine(in dirtyRect: NSRect) {
         
         // calculate rects but only when needed
@@ -79,9 +81,9 @@ extension CurrentLineHighlighting {
     
     // MARK: Private Methods
     
-    /// Calculate highlight rects for all insertion points.
+    /// Return the character ranges for the lines where the insertion points locate.
     ///
-    /// - Returns: Rects for current line highlight.
+    /// - Returns: Ranges for the current line highlight.
     private func selectedLineRanges() -> [NSRange] {
         
         guard let editingRanges = self.rangesForUserTextChange else { return [] }
