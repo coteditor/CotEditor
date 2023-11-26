@@ -90,7 +90,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     override init() {
         
         // register default setting values
-        let defaults = DefaultSettings.defaults.mapKeys(\.rawValue)
+        let defaults = DefaultSettings.defaults
+            .compactMapValues { $0 }
+            .mapKeys(\.rawValue)
         UserDefaults.standard.register(defaults: defaults)
         NSUserDefaultsController.shared.initialValues = defaults
         
