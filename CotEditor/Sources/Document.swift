@@ -694,27 +694,29 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         guard
             UserDefaults.standard[.documentConflictOption] != .ignore,
             !self.isExternalUpdateAlertShown,  // don't check twice if already notified
-            var fileURL = self.fileURL
+            let fileURL = self.fileURL
         else { return }
         
-        // check whether the document content is really modified
-        // -> Avoid using NSFileCoordinator although the document recommends
-        //    because it causes deadlock when the document in the iCloud Document remotely modified.
-        //    (2022-08 on macOS 12.5, Xcode 14, #1296)
-        fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
-        let data: Data
+        // ignore if file's modificationDate is the same as document's modificationDate
+        let modificationDate: Date?
         do {
-            // ignore if file's modificationDate is the same as document's modificationDate
-            let contentModificationDate = try fileURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate  // FILE_ACCESS
-            guard contentModificationDate != self.fileModificationDate else { return }
-            
-            // check if the file content was changed from the stored file data
-            data = try Data(contentsOf: fileURL, options: [.mappedIfSafe])  // FILE_ACCESS
+            modificationDate = try fileURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate  // FILE_ACCESS
         } catch {
             return assertionFailure(error.localizedDescription)
         }
+        guard let modificationDate, modificationDate != self.fileModificationDate else { return }
         
-        guard data != self.fileData else { return }
+        // check if the file content was changed from the stored file data
+        var data: Data?
+        var error: NSError?
+        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: &error) { newURL in
+            do {
+                data = try Data(contentsOf: newURL, options: [.mappedIfSafe])  // FILE_ACCESS
+            } catch {
+                return assertionFailure(error.localizedDescription)
+            }
+        }
+        guard let data, data != self.fileData else { return }
         
         // notify about external file update
         Task {
