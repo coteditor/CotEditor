@@ -95,6 +95,10 @@ extension NSTextStorage {
         
         if let selection {
             self.restoreEditorSelection(selection)
+        } else {
+            for textView in self.layoutManagers.compactMap(\.firstTextView) {
+                textView.selectedRange = NSRange(0..<0)
+            }
         }
     }
 }
