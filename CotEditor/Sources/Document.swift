@@ -280,38 +280,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // -> Presented errors will be displayed again after the revert automatically. (since OS X 10.10)
         self.windowForSheet?.sheets.forEach { $0.close() }
         
-        // store current selections
-        let lastString = self.textStorage.string.immutable
-        let editorStates = self.textStorage.layoutManagers
-            .compactMap(\.textViewForBeginningOfSelection)
-            .map { (textView: $0, ranges: $0.selectedRanges.map(\.rangeValue)) }
+        let selection = self.textStorage.editorSelection
         
         try super.revert(toContentsOf: url, ofType: typeName)
         
         // do nothing if already no textView exists
-        guard !editorStates.isEmpty else { return }
+        guard let selection else { return }
         
-        // apply to UI
         self.applyContentToWindow()
-        
-        // select previous ranges again
-        // -> Taking performance issues into consideration,
-        //    the selection ranges will be adjusted only when the content size is small enough;
-        //    otherwise, just cut extra ranges off.
-        let string = self.textStorage.string
-        let range = self.textStorage.range
-        let maxLength = 20_000  // takes ca. 1.3 sec. with MacBook Pro 13-inch late 2016 (3.3 GHz)
-        let considersDiff = lastString.length < maxLength || string.length < maxLength
-        
-        for state in editorStates {
-            let selectedRanges = considersDiff
-                ? string.equivalentRanges(to: state.ranges, in: lastString)
-                : state.ranges.map { $0.intersection(range) ?? NSRange(location: range.upperBound, length: 0) }
-            
-            guard !selectedRanges.isEmpty else { continue }
-            
-            state.textView.selectedRanges = selectedRanges.unique as [NSValue]
-        }
+        self.textStorage.restoreEditorSelection(selection)
     }
     
     
