@@ -31,17 +31,27 @@ extension NSTextStorage {
     ///
     /// - Parameters:
     ///   - string: The content string to replace with.
-    final func replaceContent(with string: String) {
+    ///   - keepsSelection: foo.
+    final func replaceContent(with string: String, keepsSelection: Bool = false) {
         
         assert(self.layoutManagers.isEmpty || Thread.isMainThread)
         
         guard string != self.string else { return }
         
+        let textViews = self.layoutManagers.compactMap(\.textViewForBeginningOfSelection)
+        let ranges: [NSRange?] = keepsSelection
+            ? textViews.map(\.selectedRange)
+            : Array(repeating: nil, count: textViews.count)
+        
         self.replaceCharacters(in: self.range, with: string)
         
         // reset insertion point
-        for textView in self.layoutManagers.compactMap(\.textViewForBeginningOfSelection) {
-            textView.selectedRange = NSRange(0..<0)
+        for (textView, range) in zip(textViews, ranges) {
+            textView.selectedRange = if let range {
+                NSRange(min(range.lowerBound, self.length)..<min(range.upperBound, self.length))
+            } else {
+                NSRange(0..<0)
+            }
         }
     }
 }

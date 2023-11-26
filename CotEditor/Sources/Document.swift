@@ -878,9 +878,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // register undo
         if let undoManager = self.undoManager {
+            let selectedRanges = self.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection).map(\.selectedRange)
             undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.textStorage.string] target in
                 target.textStorage.replaceContent(with: string)
                 target.lineEnding = currentLineEnding
+                for (textView, range) in zip(target.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection), selectedRanges) {
+                    textView.selectedRange = range
+                }
                 
                 // register redo
                 target.undoManager?.registerUndo(withTarget: target) { $0.changeLineEnding(to: lineEnding) }
@@ -890,7 +894,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // update line endings in text storage
         let string = self.textStorage.string.replacingLineEndings(with: lineEnding)
-        self.textStorage.replaceContent(with: string)
+        self.textStorage.replaceContent(with: string, keepsSelection: true)
         
         // update line ending
         self.lineEnding = lineEnding
