@@ -2,6 +2,11 @@
 Change Log
 ==========================
 
+4.7.0-beta.3 (unreleased)
+--------------------------
+
+
+
 4.7.0-beta.2 (613)
 --------------------------
 
@@ -10,7 +15,7 @@ Change Log
 - Optimize the performance of the normalization of incompatible line endings.
 - Improve stability.
 - [trivial] Increase the default font size and line height.
-- [beta][trivial] Add device name to quick actions related to Continuity Camera.
+- [beta] Add device name to quick actions related to Continuity Camera.
 - [beta] Localize strings added on CotEditor 4.7.0.
 
 
