@@ -374,6 +374,8 @@
 		2A73B5BD1D468DD30025337F /* Unicode.Scalar+Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5BB1D468DD30025337F /* Unicode.Scalar+Information.swift */; };
 		2A73B9332A8F6620002F3A16 /* RegexTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B9322A8F6620002F3A16 /* RegexTextField.swift */; };
 		2A73B9342A8F6620002F3A16 /* RegexTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B9322A8F6620002F3A16 /* RegexTextField.swift */; };
+		2A7470692B12FA5700669A7B /* NSTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7470682B12FA5700669A7B /* NSTextStorage.swift */; };
+		2A74706A2B12FA5700669A7B /* NSTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7470682B12FA5700669A7B /* NSTextStorage.swift */; };
 		2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2A75ACCA19E86DDB00444894 /* CotEditor.sdef */; };
 		2A7646E71D48EAF200350674 /* SettingManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E61D48EAF200350674 /* SettingManaging.swift */; };
 		2A7646E81D48EAF200350674 /* SettingManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E61D48EAF200350674 /* SettingManaging.swift */; };
@@ -1104,6 +1106,7 @@
 		2A73B5B31D4675350025337F /* Unicode.Scalar+ControlCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Unicode.Scalar+ControlCharacter.swift"; sourceTree = "<group>"; };
 		2A73B5BB1D468DD30025337F /* Unicode.Scalar+Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Unicode.Scalar+Information.swift"; sourceTree = "<group>"; };
 		2A73B9322A8F6620002F3A16 /* RegexTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexTextField.swift; sourceTree = "<group>"; };
+		2A7470682B12FA5700669A7B /* NSTextStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextStorage.swift; sourceTree = "<group>"; };
 		2A75ACCA19E86DDB00444894 /* CotEditor.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CotEditor.sdef; sourceTree = "<group>"; };
 		2A7646E61D48EAF200350674 /* SettingManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingManaging.swift; sourceTree = "<group>"; };
 		2A7646E91D48ECD100350674 /* SettingFileManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingFileManaging.swift; sourceTree = "<group>"; };
@@ -1624,6 +1627,7 @@
 		2A180F462854E58400EBAF66 /* TextKit */ = {
 			isa = PBXGroup;
 			children = (
+				2A7470682B12FA5700669A7B /* NSTextStorage.swift */,
 				2AE73F3F203D2FBB00D8903B /* NSLayoutManager.swift */,
 				2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */,
 				2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */,
@@ -2982,6 +2986,7 @@
 				2A6FD9EE1D3A85D700A59784 /* NSString.swift in Sources */,
 				2AF63BA82A6FA4D900E1258E /* NSTableView.swift in Sources */,
 				2A180F4B2854E71800EBAF66 /* NSTextSelectionDataSource.swift in Sources */,
+				2A7470692B12FA5700669A7B /* NSTextStorage.swift in Sources */,
 				2ABBACA21E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */,
 				2A3A19E3206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */,
 				2A1311D72127DCE1001D52C5 /* NSTextView+CurrentLineHighlighting.swift in Sources */,
@@ -3346,6 +3351,7 @@
 				2A6FD9ED1D3A85D700A59784 /* NSString.swift in Sources */,
 				2AF63BA92A6FA4D900E1258E /* NSTableView.swift in Sources */,
 				2A180F4C2854E71800EBAF66 /* NSTextSelectionDataSource.swift in Sources */,
+				2A74706A2B12FA5700669A7B /* NSTextStorage.swift in Sources */,
 				2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */,
 				2A3A19E2206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */,
 				2A1311D62127DCE1001D52C5 /* NSTextView+CurrentLineHighlighting.swift in Sources */,

@@ -235,7 +235,7 @@ final class DocumentController: NSDocumentController {
         
         let document = try self.transientDocument ?? (try self.openUntitledDocumentAndDisplay(false) as! Document)
         
-        document.replaceContent(with: content)
+        document.textStorage.replaceContent(with: content)
         document.updateChangeCount(.changeDone)
         
         if displayDocument {

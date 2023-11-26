@@ -161,7 +161,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         }
         
         if let string = coder.decodeObject(of: NSString.self, forKey: SerializationKey.originalContentString) as? String {
-            self.replaceContent(with: string)
+            self.textStorage.replaceContent(with: string)
         }
     }
     
@@ -377,7 +377,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         }
         
         // update textStorage
-        self.replaceContent(with: file.string)
+        self.textStorage.replaceContent(with: file.string)
         
         // set read values
         self.fileEncoding = file.fileEncoding
@@ -800,22 +800,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Replace whole content with the given `string`.
-    ///
-    /// - Parameter string: The content string to replace with.
-    func replaceContent(with string: String) {
-        
-        assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
-        
-        self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
-        
-        // reset insertion point
-        for textView in self.textStorage.layoutManagers.compactMap(\.firstTextView) {
-            textView.selectedRange = NSRange(0..<0)
-        }
-    }
-    
-    
     /// Reinterpret the document file with the desired encoding.
     ///
     /// - Parameter encoding: The text encoding to read.
@@ -895,7 +879,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // register undo
         if let undoManager = self.undoManager {
             undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.textStorage.string] target in
-                target.replaceContent(with: string)
+                target.textStorage.replaceContent(with: string)
                 target.lineEnding = currentLineEnding
                 
                 // register redo
@@ -904,8 +888,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             undoManager.setActionName(String(localized: "Line Endings to \(lineEnding.name)"))
         }
         
+        // update line endings in text storage
+        let string = self.textStorage.string.replacingLineEndings(with: lineEnding)
+        self.textStorage.replaceContent(with: string)
+        
         // update line ending
-        self.textStorage.replaceLineEndings(with: lineEnding)
         self.lineEnding = lineEnding
     }
     
