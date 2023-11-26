@@ -11,18 +11,13 @@ Change Log
 - Improve stability.
 - [trivial] Increase the default font size and line height.
 - [beta][trivial] Add device name to quick actions related to Continuity Camera.
-- [beta] Localize strings added on CotEditor 4.7.0 to Chinese, Italian, and Turkish.
+- [beta] Localize strings added on CotEditor 4.7.0.
 
 
 ### Fixes
 
 - [beta] Fix an issue that disabled menu items were listed as the quick action candidates.
 - [beta] Fix an issue that some actions were not performed properly by the Quick Action.
-
-
-### TODO
-
-- Some text are not localized yet in French, and Portuguese.
 
 
 
