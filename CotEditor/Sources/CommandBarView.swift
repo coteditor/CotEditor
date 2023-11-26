@@ -220,7 +220,7 @@ private struct ActionCommandView: View {
         }
         .lineLimit(1)
         .padding(.vertical, 4)
-        .padding(.horizontal)
+        .padding(.horizontal, 12)
         .contentShape(Rectangle())  // for clicking
         .foregroundStyle(self.isSelected ? Color.selectedMenuItemText : .primary)
         .background(self.isSelected ? Color.accentColor : .clear,
@@ -324,7 +324,8 @@ private extension Color {
                        paths: ["Format", "Syntax"],
                        shortcut: Shortcut("s", modifiers: [.command]),
                        action: #selector(NSResponder.yank)),
-        matches: [.init(string: "Swift", ranges: [])],
+        matches: [.init(string: "Swift",
+                        ranges: [Range(NSRange(1..<3), in: "Swift")!])],
         isSelected: true
     )
     .fixedSize(horizontal: false, vertical: true)
