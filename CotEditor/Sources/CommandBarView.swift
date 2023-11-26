@@ -67,7 +67,7 @@ struct CommandBarView: View {
                 Divider()
                 ScrollViewReader { proxy in
                     ScrollView(.vertical) {
-                        LazyVStack {
+                        LazyVStack(spacing: 6) {
                             ForEach(self.candidates) { candidate in
                                 ActionCommandView(command: candidate.command, matches: candidate.matches)
                                     .selected(candidate.id == self.selection)
@@ -77,12 +77,14 @@ struct CommandBarView: View {
                                         self.perform()
                                     }
                             }
-                        }.padding(.horizontal, 12)
-                    }.onChange(of: self.selection) { id in
+                        }
+                        .padding(.horizontal, 12)
+                    }
+                    .onChange(of: self.selection) { id in
                         proxy.scrollTo(id)
                     }
                 }
-                .padding(.vertical, 12)
+                .compatibleContentMargins(.vertical, 12)
                 .frame(maxHeight: 300)
                 .fixedSize(horizontal: false, vertical: true)
             }
@@ -265,6 +267,20 @@ private extension ActionCommand.Kind {
         switch self {
             case .command: "filemenu.and.selection"
             case .script: "applescript.fill"
+        }
+    }
+}
+
+
+private extension View {
+    
+    @available(macOS, deprecated: 14)
+    func compatibleContentMargins(_ edges: Edge.Set = .all, _ length: CGFloat?) -> some View {
+        
+        if #available(macOS 14, *) {
+            return self.contentMargins(edges, length, for: .scrollContent)
+        } else {
+            return self.padding(edges, length)
         }
     }
 }
