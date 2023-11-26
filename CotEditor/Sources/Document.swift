@@ -808,6 +808,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
         
         self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
+        
+        // reset insertion point
+        for textView in self.textStorage.layoutManagers.compactMap(\.firstTextView) {
+            textView.selectedRange = NSRange(0..<0)
+        }
     }
     
     
