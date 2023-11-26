@@ -57,7 +57,7 @@ struct DefaultSettings {
         .showInvisibleTab: true,
         .showInvisibleSpace: false,
         .showInvisibleWhitespaces: true,
-        .showInvisibleControl: false,
+        .showInvisibleControl: true,
         .showIndentGuides: false,
         .showPageGuide: false,
         .pageGuideColumn: 80,
