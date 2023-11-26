@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Optimize the performance of the normalization of incompatible line endings.
 - [beta][trivial] Add device name to quick actions related to Continuity Camera.
 - [beta] Localize strings added on CotEditor 4.7.0 to Chinese, Italian, and Turkish.
 

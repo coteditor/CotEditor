@@ -156,7 +156,10 @@ extension NSMutableAttributedString {
     ///     - lineEnding: The line ending type with which to replace the target.
     final func replaceLineEndings(with lineEnding: LineEnding) {
         
-        self.mutableString.replaceOccurrences(of: LineEnding.allRegexPattern, with: lineEnding.string, options: .regularExpression, range: self.range)
+        // -> Intentionally avoid replacing characters in the mutableString directly,
+        //    because it pots a quantity of small edited notifications,
+        //    which costs high. (2023-11, macOS 14)
+        self.replaceCharacters(in: self.range, with: self.string.replacingLineEndings(with: lineEnding))
     }
 }
 
