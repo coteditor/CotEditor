@@ -62,7 +62,7 @@ extension NSTextStorage {
         // -> Taking performance issues into consideration,
         //    the selection ranges are adjusted only when the content is small enough;
         //    otherwise, just cut extra ranges off.
-        let maxLength = 20_000  // takes ca. 1.3 sec. with MacBook Pro 13-inch late 2016 (3.3 GHz)
+        let maxLength = 1_000_000  // takes ca. 0.05 sec. with MacBook M1 13-inch late 2020 (3.3 GHz)
         let considersDiff = state.string.length < maxLength && self.length < maxLength
         
         for (textView, selectedRange) in zip(textViews, state.ranges) {
