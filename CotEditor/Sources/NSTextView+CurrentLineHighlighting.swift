@@ -41,9 +41,18 @@ extension CurrentLineHighlighting {
     /// draw current line highlight
     func drawCurrentLine(in dirtyRect: NSRect) {
         
-        if self.needsUpdateLineHighlight {
-            self.lineHighlightRects = self.calculateLineHighlightRects()
-            self.needsUpdateLineHighlight = false
+        // calculate rects but only when needed
+        // to avoid unneeded high-cost calculation for a latter part of a large document
+        if self.needsUpdateLineHighlight, let dirtyRange = self.range(for: dirtyRect) {
+            let lineRanges = self.selectedLineRanges()
+            
+            if lineRanges.contains(where: { $0.intersects(dirtyRange) }) {
+                self.lineHighlightRects = lineRanges.map(self.lineRect(for:))
+                self.needsUpdateLineHighlight = false
+            } else {
+                // remove outdated rects anyway
+                self.lineHighlightRects.removeAll()
+            }
         }
         
         let fontSize = self.font?.pointSize ?? NSFont.systemFontSize
@@ -73,7 +82,7 @@ extension CurrentLineHighlighting {
     /// Calculate highlight rects for all insertion points.
     ///
     /// - Returns: Rects for current line highlight.
-    private func calculateLineHighlightRects() -> [NSRect] {
+    private func selectedLineRanges() -> [NSRange] {
         
         guard let editingRanges = self.rangesForUserTextChange else { return [] }
         
@@ -89,7 +98,6 @@ extension CurrentLineHighlighting {
                     ranges.append(range)
                 }
             }
-            .map { self.lineRect(for: $0) }
     }
     
     
