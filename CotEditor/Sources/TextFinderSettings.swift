@@ -106,7 +106,7 @@ final class TextFinderSettings: NSObject {
     }
     
     
-    /// Whether the search wraps  around.
+    /// Whether the search wraps around.
     var isWrap: Bool {
         
         self.defaults[.findIsWrap]

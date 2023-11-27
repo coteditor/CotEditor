@@ -96,7 +96,7 @@ extension ActionCommand {
 
 extension NSMenuItem {
     
-    /// The flat collection of `ActionCommand` representation including  descendant items.
+    /// The flat collection of `ActionCommand` representation including descendant items.
     var actionCommands: [ActionCommand] {
         
         if let submenu = self.submenu {

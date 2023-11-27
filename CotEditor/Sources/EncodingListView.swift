@@ -27,7 +27,7 @@ import SwiftUI
 
 private struct EncodingItem: Identifiable {
     
-    /// Return every time  a new instance with a different id.
+    /// Return every time a new instance with a different id.
     static var separator: Self  { Self(encoding: kCFStringEncodingInvalidId) }
     
     let id = UUID()

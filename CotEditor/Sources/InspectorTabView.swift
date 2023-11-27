@@ -151,7 +151,7 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Private Methods
     
-    /// Update the private control every time when the line-up of  tab items changed.
+    /// Update the private control every time when the line-up of tab items changed.
     private func rebuildSegmentedControl() {
         
         self.segmentedControl.segmentCount = self.numberOfTabViewItems
