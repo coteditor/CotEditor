@@ -7,8 +7,9 @@ Change Log
 
 ### Improvements
 
-- Enable the “Input Backslash” and “Input Yen Mark” actions in all text fields in the application.
-- [beta.2] Adjust the layout of the Quick Action bar.
+- Enable the “Input Backslash” and “Input Yen Mark” menu commands in all text fields in the application.
+- [beta] Adjust the layout of the Quick Action bar.
+- [beta.2] Update some localized text.
 
 
 ### Fixes
@@ -22,7 +23,7 @@ Change Log
 
 ### Improvements
 
-- Optimize the performance of the normalization of incompatible line endings.
+- Optimize the performance of the normalization of inconsistent line endings.
 - Improve stability.
 - [trivial] Increase the default font size and line height.
 - [beta] Add device name to quick actions related to Continuity Camera.
