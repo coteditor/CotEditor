@@ -965,8 +965,8 @@
 
 /* MARK: LiveTextInsertionView */
 // error messages
-"No text detected" = "Nenhum texto detectado";  // FIXME: needs review
-"Detection failed" = "A detecção falhou";  // FIXME: needs review
+"No text detected" = "Texto não detectado";
+"Detection failed" = "Falha na detecção";
 
 
 
