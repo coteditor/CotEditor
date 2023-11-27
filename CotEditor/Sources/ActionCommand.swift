@@ -94,7 +94,20 @@ extension ActionCommand {
 }
 
 
-extension NSMenuItem {
+extension NSApplication {
+    
+    /// All active ActionCommands in the main menu for the Quick Action bar.
+    var actionCommands: [ActionCommand] {
+        
+        self.mainMenu?.items.flatMap(\.actionCommands) ?? []
+    }
+}
+
+
+
+// MARK: - Private Extensions
+
+private extension NSMenuItem {
     
     /// The flat collection of `ActionCommand` representation including descendant items.
     var actionCommands: [ActionCommand] {

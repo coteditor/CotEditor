@@ -28,6 +28,12 @@ import AppKit
 
 struct CommandBarView: View {
     
+    final class Model: ObservableObject {
+        
+        @Published var commands: [ActionCommand] = []
+    }
+    
+    
     struct Candidate: Identifiable {
         
         var command: ActionCommand
@@ -37,14 +43,16 @@ struct CommandBarView: View {
     }
     
     
+    let model: Model
+    
     weak var parent: NSWindow?
+    
     
     @Environment(\.controlActiveState) private var controlActiveState
     
     @State private var input: String = ""
     @State var candidates: [Candidate] = []
     
-    @State private var commands: [ActionCommand] = []
     @State private var selection: ActionCommand.ID?
     
     @State private var keyMonitor: Any?
@@ -90,7 +98,7 @@ struct CommandBarView: View {
             }
         }
         .onChange(of: self.input) { input in
-            self.candidates = self.commands
+            self.candidates = self.model.commands
                 .compactMap {
                     guard let result = $0.match(command: input) else { return nil }
                     return Candidate(command: $0, matches: result.result, score: result.score)
@@ -101,8 +109,6 @@ struct CommandBarView: View {
         .onChange(of: self.controlActiveState) { state in
             switch state {
                 case .key, .active:
-                    self.commands = NSApp.mainMenu?.items
-                        .flatMap(\.actionCommands) ?? []
                     self.keyMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
                         if let key = event.specialKey,
                            event.modifierFlags.isDisjoint(with: [.shift, .control, .option, .command])
@@ -314,7 +320,7 @@ private extension Color {
               score: 0),
     ]
     
-    return CommandBarView(candidates: candidates)
+    return CommandBarView(model: .init(), candidates: candidates)
 }
 
 

@@ -28,14 +28,23 @@ import SwiftUI
 
 final class CommandBarWindowController: NSWindowController {
     
+    // MARK: Public Properties
+    
     static let shared = CommandBarWindowController()
     
     
+    // MARK: Private Properties
+    
+    private let model = CommandBarView.Model()
+    
+    
+    
+    // MARK: Lifecycle
+    
     init() {
         
-        let view = HostingViewSuppressingSafeArea(rootView: CommandBarView())
         let panel = CommandBarPanel(contentRect: .zero, styleMask: [.titled, .fullSizeContentView], backing: .buffered, defer: false)
-        panel.contentView = view
+        panel.contentView = HostingViewSuppressingSafeArea(rootView: CommandBarView(model: self.model, parent: panel))
         panel.animationBehavior = .utilityWindow
         panel.collectionBehavior.insert(.fullScreenAuxiliary)
         panel.isFloatingPanel = true
@@ -46,7 +55,6 @@ final class CommandBarWindowController: NSWindowController {
         panel.standardWindowButton(.zoomButton)?.isHidden = true
         panel.standardWindowButton(.miniaturizeButton)?.isHidden = true
         panel.center()
-        view.rootView.parent = panel
         
         super.init(window: panel)
     }
@@ -56,8 +64,23 @@ final class CommandBarWindowController: NSWindowController {
         
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    override func showWindow(_ sender: Any?) {
+        
+        // update action candidates
+        // -> Needs to update before the bar becomes key window.
+        if self.window?.isVisible != true {
+            self.model.commands = NSApp.actionCommands
+        }
+        
+        super.showWindow(sender)
+    }
 }
 
+
+
+// MARK: - Private Classes
 
 private final class CommandBarPanel: NSPanel {
     

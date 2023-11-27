@@ -11,6 +11,11 @@ Change Log
 - [beta.2] Adjust the layout of the Quick Action bar.
 
 
+### Fixes
+
+- [beta] Fix an issue that some active actions were not listed in the Quick Action bar.
+
+
 
 4.7.0-beta.2 (613)
 --------------------------
