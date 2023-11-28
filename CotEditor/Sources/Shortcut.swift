@@ -48,8 +48,8 @@ enum ModifierKey: CaseIterable {
         
         switch self {
             case .control: .control
-            case .option:  .option
-            case .shift:   .shift
+            case .option: .option
+            case .shift: .shift
             case .command: .command
         }
     }
@@ -60,8 +60,8 @@ enum ModifierKey: CaseIterable {
         
         switch self {
             case .control: "^"
-            case .option:  "⌥"
-            case .shift:   "⇧"
+            case .option: "⌥"
+            case .shift: "⇧"
             case .command: "⌘"
         }
     }
@@ -72,8 +72,8 @@ enum ModifierKey: CaseIterable {
         
         switch self {
             case .control: "control"
-            case .option:  "option"
-            case .shift:   "shift"
+            case .option: "option"
+            case .shift: "shift"
             case .command: "command"
         }
     }
@@ -84,8 +84,8 @@ enum ModifierKey: CaseIterable {
         
         switch self {
             case .control: "^"
-            case .option:  "~"
-            case .shift:   "$"
+            case .option: "~"
+            case .shift: "$"
             case .command: "@"
         }
     }
