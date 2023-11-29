@@ -39,7 +39,7 @@ struct RangedIntegerFormatStyle: ParseableFormatStyle {
     
     func format(_ value: Int) -> String {
         
-        String(value.clamped(to: self.range))
+        value.clamped(to: self.range).formatted()
     }
 }
 

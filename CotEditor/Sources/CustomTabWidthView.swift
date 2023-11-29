@@ -51,24 +51,19 @@ struct CustomTabWidthView: View {
     
     var body: some View {
         
-        VStack {
-            Form {
-                TextField("Tab width:", value: $value,
-                          format: .ranged(1...99, defaultValue: self.defaultWidth),
-                          prompt: Text(self.defaultWidth, format: .number))
-                .monospacedDigit()
-                    .multilineTextAlignment(.trailing)
+        VStack(alignment: .trailing) {
+            LabeledContent("Tab width:") {
+                StepperNumberField(value: $value, default: self.defaultWidth, in: 1...99)
                     .onSubmit(self.submit)
             }
             
             HStack {
-                Spacer()
+                Spacer(minLength: 0)
                 SubmitButtonGroup(action: self.submit) {
                     self.parent?.dismiss(nil)
                 }
             }
         }
-        .fixedSize()
         .scenePadding()
     }
     

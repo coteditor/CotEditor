@@ -218,7 +218,7 @@ struct ColumnSortPatternView: View {
             }.padding(.trailing)
             
             LabeledContent("Position:") {
-                StepperNumberField(value: $pattern.column, in: 1...(.max), prompt: Text(1, format: .number))
+                StepperNumberField(value: $pattern.column, default: 1, in: 1...(.max))
             }
         }.fixedSize()
     }
@@ -283,9 +283,8 @@ struct RegularExpressionSortPatternView: View {
         
         HStack {
             Toggle("Use captured group:", isOn: $pattern.usesCaptureGroup)
-            StepperNumberField(value: $pattern.group,
-                               in: 0...self.pattern.numberOfCaptureGroups,
-                               prompt: Text(1, format: .number))
+            StepperNumberField(value: $pattern.group, default: 1,
+                               in: 0...self.pattern.numberOfCaptureGroups)
                 .disabled(!self.pattern.usesCaptureGroup)
         }.fixedSize()
     }
