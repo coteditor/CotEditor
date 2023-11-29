@@ -30,7 +30,7 @@ import AppKit.NSEvent
 /// Modifier keys for keyboard shortcut.
 ///
 /// The order of cases (control, option, shift, and command) is determined in the HIG.
-enum ModifierKey: CaseIterable {
+private enum ModifierKey: CaseIterable {
     
     case control
     case option
@@ -112,7 +112,7 @@ struct Shortcut {
     
     /// Initialize Shortcut from a stored string.
     ///
-    /// - Parameter keySpecChars: The storeble representation.
+    /// - Parameter keySpecChars: The storable representation.
     init?(keySpecChars: String) {
         
         guard let keyEquivalent = keySpecChars.last else { return nil }
