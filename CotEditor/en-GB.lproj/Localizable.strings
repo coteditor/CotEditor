@@ -556,22 +556,6 @@
 "Key Bindings" = "Key Bindings";
 
 
-// General pane
-// Autosave setting update alert
-"The change will be applied first on the next launch." = "The change will be applied first on the next launch.";
-"Do you want to restart CotEditor now?" = "Do you want to restart CotEditor now?";
-"Restart Now" = "Restart Now";
-"Later" = "Later";
-// command-line tool
-"installed at %@" = "installed at %@";
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "The current 'cot' symbolic link doesn’t target the running CotEditor.";
-"The current 'cot' symbolic link may target an invalid path." = "The current 'cot' symbolic link may target an invalid path.";
-
-// warnings setting
-"Suppress following warnings:" = "Suppress following warnings:";
-"Inconsistent line endings" = "Inconsistent line endings";
-
-
 // Appearance pane
 // alert message
 "The selected font doesn’t seem to be monospaced." = "The selected font doesn’t seem to be monospaced.";

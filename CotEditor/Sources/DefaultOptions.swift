@@ -32,7 +32,7 @@ enum NoDocumentOnLaunchOption: Int {
 }
 
 
-enum DocumentConflictOption: Int {
+enum DocumentConflictOption: Int, CaseIterable {
     
     case ignore
     case notify

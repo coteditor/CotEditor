@@ -553,22 +553,6 @@
 "Key Bindings" = "按键绑定";
 
 
-// General pane
-// Autosave setting update alert
-"The change will be applied first on the next launch." = "变更将在下次启动时生效。";
-"Do you want to restart CotEditor now?" = "现在就重启CotEditor吗？";
-"Restart Now" = "现在重启";
-"Later" = "稍后";
-// command-line tool
-"installed at %@" = "已安装于 %@";
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "当前的cot符号链接没有指向正在运行的CotEditor。";
-"The current 'cot' symbolic link may target an invalid path." = "当前的cot符号链接可能指向无效路径。";
-
-// warnings setting
-"Suppress following warnings:" = "阻止以下警告：";
-"Inconsistent line endings" = "行尾不一致";
-
-
 // Appearance pane
 // alert message
 "The selected font doesn’t seem to be monospaced." = "所选字体似乎不是等宽字体。";
