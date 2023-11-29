@@ -190,7 +190,7 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
             .filter { $0[FileDropItem.CodingKeys.format] != nil }
         
         // check if the new setting is different from the default
-        let defaultSetting = UserDefaults.standard.registeredValue(for: .fileDropArray)
+        let defaultSetting = UserDefaults.standard[initial: .fileDropArray]
         if defaultSetting == sanitized {
             UserDefaults.standard.restore(key: .fileDropArray)
         } else {

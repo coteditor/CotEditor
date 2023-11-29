@@ -111,7 +111,7 @@ struct EncodingListView: View {
     /// Whether the current order differs from the default.
     private var canRestore: Bool {
         
-        self.encodingItems.map(\.encoding) != UserDefaults.standard.registeredValue(for: .encodingList)
+        self.encodingItems.map(\.encoding) != UserDefaults.standard[initial: .encodingList]
     }
     
     
@@ -127,7 +127,7 @@ struct EncodingListView: View {
     /// Restore encodings setting list in the view to the default.
     private func restore() {
         
-        self.encodingItems = UserDefaults.standard.registeredValue(for: .encodingList).map(EncodingItem.init)
+        self.encodingItems = UserDefaults.standard[initial: .encodingList].map(EncodingItem.init)
     }
     
     
