@@ -29,7 +29,7 @@ import AppKit.NSEvent
 
 /// Modifier keys for keyboard shortcut.
 ///
-/// The order of cases (control, option, shift, and command) is determined in the HIG.
+/// - Note: The order of cases (control, option, shift, and command) is determined in the HIG.
 private enum ModifierKey: CaseIterable {
     
     case control
