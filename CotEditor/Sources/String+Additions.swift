@@ -39,18 +39,19 @@ extension String {
     /// Unescaped version of the string by unescaping the characters with backslashes.
     var unescaped: String {
         
-        // -> According to the Swift documentation, these are the all combinations with backslash except for \\ itself.
+        // -> According to the Swift documentation, these are the all combinations with backslash.
         //    cf. https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID295
         let entities = [
-            "\0": "0",   // null character
-            "\t": "t",   // horizontal tab
-            "\n": "n",   // line feed
-            "\r": "r",   // carriage return
-            "\"": "\"",  // double quotation mark
-            "\'": "'",   // single quotation mark
+            #"0"#: "\0",  // null character
+            #"t"#: "\t",  // horizontal tab
+            #"n"#: "\n",  // line feed
+            #"r"#: "\r",  // carriage return
+            #"""#: "\"",  // double quotation mark
+            #"'"#: "\'",  // single quotation mark
+            #"\"#: "\\",  // backslash
         ]
         
-        return entities.reduce(self) { $0.replacingOccurrences(of: #"(?<!\\)((?:\\\\)*)\\"# + $1.value, with: "$1" + $1.key, options: .regularExpression) }
+        return self.replacing(/\\([0tnr"'\\])/) { entities[String($0.1)]! }
     }
     
     
