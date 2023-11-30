@@ -51,7 +51,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that the Forward Delete key could not be correctly assigned as custom key bindings.
+- Fix an issue that the Forward Delete key could not be correctly assigned as a custom shortcut key.
 
 
 ### TODO
