@@ -77,7 +77,7 @@ private extension Shortcut {
 #Preview {
     VStack(alignment: .trailing, spacing: 6) {
         ShortcutView(Shortcut("s", modifiers: [.command, .shift])!)
-        ShortcutView(Shortcut(".", modifiers: [.command,])!)
+        ShortcutView(Shortcut(".", modifiers: [.command])!)
         ShortcutView(Shortcut(.carriageReturn, modifiers: [.command]))
         ShortcutView(Shortcut(.tab, modifiers: [.control]))
         ShortcutView(Shortcut(.help, modifiers: [.command]))
