@@ -176,17 +176,9 @@ extension String {
         
         guard !self.isEmpty else { return nil }
         
-        let tags = ["charset=", "encoding=", "@charset", "encoding:", "coding:"]
-        let pattern = "\\b(?:" + tags.joined(separator: "|") + ") *[\"']? *([-_a-zA-Z0-9]+)"
-        let regex = try! NSRegularExpression(pattern: pattern)
-        let scanLength = min(self.length, maxLength)
+        let regex = /\b(charset=|encoding=|@charset|encoding:|coding:) *["']? *(?<encoding>[-_a-zA-Z0-9]+)/
         
-        guard
-            let match = regex.firstMatch(in: self, range: NSRange(location: 0, length: scanLength)),
-            let matchedRange = Range(match.range(at: 1), in: self)
-        else { return nil }
-        
-        let ianaCharSetName = self[matchedRange]
+        guard let ianaCharSetName = try? regex.firstMatch(in: self.prefix(maxLength))?.encoding else { return nil }
         
         // convert IANA CharSet name to CFStringEncoding
         let cfEncoding: CFStringEncoding = {

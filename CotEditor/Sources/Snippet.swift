@@ -130,7 +130,7 @@ extension Snippet {
         assert(indent.allSatisfy(\.isWhitespace))
         
         let format = self.format
-            .replacingOccurrences(of: "(?<=\\R)", with: indent, options: .regularExpression)  // indent
+            .replacing(/\R/) { $0.output + indent }  // indent
             .replacing(Variable.selection.token, with: selectedString)  // selection
         
         let cursors = (format as NSString).ranges(of: Variable.cursor.token)
