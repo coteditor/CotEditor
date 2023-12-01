@@ -38,12 +38,7 @@ private enum ModifierKey: CaseIterable {
     case command
     
     
-    static var mask: NSEvent.ModifierFlags {
-        
-        self.allCases.reduce(into: []) { $0.formUnion($1.mask) }
-    }
-    
-    
+    /// NSEvent.ModifierFlags representation.
     var mask: NSEvent.ModifierFlags {
         
         switch self {
@@ -92,6 +87,15 @@ private enum ModifierKey: CaseIterable {
 }
 
 
+private extension [ModifierKey] {
+    
+    /// NSEvent.ModifierFlags representation.
+    var mask: NSEvent.ModifierFlags {
+        
+        self.reduce(into: []) { $0.formUnion($1.mask) }
+    }
+}
+
 
 struct Shortcut {
     
@@ -101,6 +105,7 @@ struct Shortcut {
     
     // MARK: Lifecycle
     
+    /// Initialize Shortcut directly from a key equivalent character and modifiers.
     init?(_ keyEquivalent: String, modifiers: NSEvent.ModifierFlags) {
         
         guard !keyEquivalent.isEmpty else { return nil }
@@ -120,7 +125,7 @@ struct Shortcut {
         let modifierCharacters = keySpecChars.dropLast()
         let modifiers = ModifierKey.allCases
             .filter { modifierCharacters.contains($0.keySpecChar) }
-            .reduce(into: NSEvent.ModifierFlags()) { $0.formUnion($1.mask) }
+            .mask
         
         self.keyEquivalent = String(keyEquivalent)
         self.modifiers = modifiers
@@ -144,7 +149,7 @@ struct Shortcut {
         let modifierCharacters = components.dropLast().joined()
         let modifiers = ModifierKey.allCases
             .filter { modifierCharacters.contains($0.symbol) }
-            .reduce(into: NSEvent.ModifierFlags()) { $0.formUnion($1.mask) }
+            .mask
         
         self.keyEquivalent = keyEquivalent
         self.modifiers = modifiers
@@ -163,7 +168,7 @@ struct Shortcut {
             charactersIgnoringModifiers.count == 1
         else { return nil }
         
-        // correct Backspace key
+        // correct the Backspace key
         //  -> Backspace:      The key above the Return.
         //     Forward Delete: The key with printed "Delete" where next to the ten key pad.
         // cf. https://developer.apple.com/documentation/appkit/nsmenuitem/1514842-keyequivalent
@@ -175,7 +180,7 @@ struct Shortcut {
         // remove unwanted Shift
         let ignoresShift = "`~!@#$%^&()_{}|\":<>?=/*-+.'".contains(keyEquivalent)
         let modifiers = event.modifierFlags
-            .intersection(ModifierKey.mask)
+            .intersection(ModifierKey.allCases.mask)
             .subtracting(ignoresShift ? .shift : [])
         
         self.keyEquivalent = keyEquivalent
@@ -216,7 +221,7 @@ struct Shortcut {
             return true
         }
         
-        return !self.modifiers.isEmpty
+        return self.modifiers.isSubset(of: ModifierKey.allCases.mask)
     }
     
     
@@ -243,8 +248,7 @@ struct Shortcut {
         
         guard let scalar = self.keyEquivalent.unicodeScalars.first else { return "" }
         
-        return Self.keyEquivalentSymbols[scalar]
-            ?? self.keyEquivalent.uppercased()
+        return Self.keyEquivalentSymbols[scalar] ?? String(scalar).uppercased()
     }
     
     
