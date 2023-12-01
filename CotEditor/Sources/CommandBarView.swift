@@ -86,13 +86,13 @@ struct CommandBarView: View {
                                     }
                             }
                         }
-                        .padding(.horizontal, 12)
+                        .padding(.horizontal, 10)
                     }
                     .onChange(of: self.selection) { id in
                         proxy.scrollTo(id)
                     }
                 }
-                .compatibleContentMargins(.vertical, 12)
+                .compatibleContentMargins(.vertical, 10)
                 .frame(maxHeight: 300)
                 .fixedSize(horizontal: false, vertical: true)
             }
@@ -184,9 +184,11 @@ private struct ActionCommandView: View {
             Image(systemName: self.command.kind.systemImage)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .font(.system(size: 23))
                 .fontWeight(.light)
                 .foregroundStyle(self.isSelected ? .primary : .secondary)
-                .frame(width: 32, height: 20, alignment: .center)
+                .frame(width: 26, height: 22, alignment: .center)
+                .padding(.horizontal, 4)
             
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
@@ -196,6 +198,7 @@ private struct ActionCommandView: View {
                                 .opacity(0.4)
                         }
                         Text(self.attributed(match.string, in: match.ranges, font: .body))
+                            .frame(minWidth: 20)
                             .layoutPriority((offset == 0) ? 10 : Double(offset))
                     }
                 }
@@ -225,7 +228,7 @@ private struct ActionCommandView: View {
         }
         .lineLimit(1)
         .padding(.vertical, 4)
-        .padding(.horizontal, 12)
+        .padding(.horizontal, 10)
         .contentShape(Rectangle())  // for clicking
         .foregroundStyle(self.isSelected ? Color.selectedMenuItemText : .primary)
         .background(self.isSelected ? Color.accentColor : .clear,
@@ -302,20 +305,25 @@ private extension Color {
 
 #Preview {
     let candidates: [CommandBarView.Candidate] = [
-        .init(command: .init(kind: .command, title: "Find…",
-                             paths: ["Find"],
-                             shortcut: Shortcut("f", modifiers: .command),
+        .init(command: .init(kind: .command, title: "Enter Full Screen",
+                             paths: ["View"],
+                             shortcut: Shortcut("E", modifiers: .function),
                              action: #selector(NSResponder.yank)),
-              matches: [.init(string: "Find…", ranges: [])],
+              matches: [.init(string: "Enter Full Screen", ranges: [])],
               score: 0),
         .init(command: .init(kind: .command, title: "Fortran",
                              paths: ["Format", "Syntax"],
                              action: #selector(NSResponder.yank)),
               matches: [
-                .init(string: "Syntax",
-                      ranges: [Range(NSRange(0..<2), in: "Syntax")!]),
+                .init(string: "Syntax", ranges: [Range(NSRange(0..<2), in: "Syntax")!]),
                 .init(string: "Fortran", ranges: []),
               ],
+              score: 0),
+        .init(command: .init(kind: .script, title: "Run Script",
+                             paths: ["Script"],
+                             shortcut: Shortcut("R", modifiers: .command),
+                             action: #selector(NSResponder.yank)),
+              matches: [.init(string: "Run Script", ranges: [])],
               score: 0),
     ]
     
