@@ -36,6 +36,13 @@ private enum ModifierKey: CaseIterable {
     case option
     case shift
     case command
+    case function  // This key modifier is reserved for system applications.
+    
+    static let validCases: [Self] = Array(Self.allCases[0..<4])
+    
+    
+    /// It seems there is no easy way to detect the Globe key without private APIs... (2023-12 on macOS 14)
+    private static let supportsGlobeKey = false
     
     
     /// NSEvent.ModifierFlags representation.
@@ -46,6 +53,7 @@ private enum ModifierKey: CaseIterable {
             case .option: .option
             case .shift: .shift
             case .command: .command
+            case .function: .function
         }
     }
     
@@ -58,6 +66,7 @@ private enum ModifierKey: CaseIterable {
             case .option: "⌥"
             case .shift: "⇧"
             case .command: "⌘"
+            case .function: Self.supportsGlobeKey ? "🌐︎" : "fn"
         }
     }
     
@@ -70,6 +79,7 @@ private enum ModifierKey: CaseIterable {
             case .option: "option"
             case .shift: "shift"
             case .command: "command"
+            case .function: Self.supportsGlobeKey ? "globe" : "fn"
         }
     }
     
@@ -82,6 +92,7 @@ private enum ModifierKey: CaseIterable {
             case .option: "~"
             case .shift: "$"
             case .command: "@"
+            case .function: preconditionFailure("Fn/Globe key cannot be used for custom shortcuts.")
         }
     }
 }
@@ -106,6 +117,8 @@ struct Shortcut {
     // MARK: Lifecycle
     
     /// Initialize Shortcut directly from a key equivalent character and modifiers.
+    ///
+    /// - Note: This initializer accepts the fn key while the others not.
     init?(_ keyEquivalent: String, modifiers: NSEvent.ModifierFlags) {
         
         guard !keyEquivalent.isEmpty else { return nil }
@@ -123,7 +136,7 @@ struct Shortcut {
         guard let keyEquivalent = keySpecChars.last else { return nil }
         
         let modifierCharacters = keySpecChars.dropLast()
-        let modifiers = ModifierKey.allCases
+        let modifiers = ModifierKey.validCases
             .filter { modifierCharacters.contains($0.keySpecChar) }
             .mask
         
@@ -147,7 +160,7 @@ struct Shortcut {
             .map(String.init) ?? lastSymbol.lowercased()
         
         let modifierCharacters = components.dropLast().joined()
-        let modifiers = ModifierKey.allCases
+        let modifiers = ModifierKey.validCases
             .filter { modifierCharacters.contains($0.symbol) }
             .mask
         
@@ -194,7 +207,7 @@ struct Shortcut {
     var keySpecChars: String {
         
         let shortcut = self.normalized
-        let modifierCharacters = ModifierKey.allCases
+        let modifierCharacters = ModifierKey.validCases
             .filter { shortcut.modifiers.contains($0.mask) }
             .map(\.keySpecChar)
             .joined()
@@ -215,13 +228,16 @@ struct Shortcut {
     /// Whether key combination is valid for a shortcut.
     var isValid: Bool {
         
-        guard self.keyEquivalent.count == 1 else { return false }
+        guard
+            self.keyEquivalent.count == 1,
+            !self.modifiers.contains(.function)
+        else { return false }
         
         if Self.singleKeys.map(\.unicodeScalar).map(String.init).contains(self.keyEquivalent) {
             return true
         }
         
-        return self.modifiers.isSubset(of: ModifierKey.allCases.mask)
+        return self.modifiers.isSubset(of: ModifierKey.validCases.mask)
     }
     
     

@@ -63,6 +63,21 @@ final class ShortcutTests: XCTestCase {
     }
     
     
+    func testShortcutWithFnKey() throws {
+        
+        let shortcut = try XCTUnwrap(Shortcut("a", modifiers: [.function]))
+        
+        XCTAssertFalse(shortcut.isValid)
+        XCTAssertEqual(shortcut.keyEquivalent, "a")
+        XCTAssertEqual(shortcut.modifiers, [.function])
+        XCTAssertEqual(shortcut.symbol, "fn A")
+        XCTAssertEqual(shortcut.keySpecChars, "a", "The fn key should be ignored.")
+        
+        let symbolName = try XCTUnwrap(shortcut.modifierSymbolNames.first)
+        XCTAssertNotNil(NSImage(systemSymbolName: symbolName, accessibilityDescription: nil))
+    }
+    
+    
     func testMenuItemShortcut() {
         
         let menuItem = NSMenuItem(title: "", action: nil, keyEquivalent: "C")

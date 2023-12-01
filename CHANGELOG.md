@@ -18,6 +18,7 @@ Change Log
 
 - Fixed an issue that the “unescape replacement string” option could not unescape consecutive backslashes correctly.
 - [beta] Fix an issue that some active actions were not listed in the Quick Action bar.
+- [beta] Fix an issue that keyboard shortcuts that include the Globe/fn key were not displayed in the Quick Action.
 
 
 
