@@ -1,12 +1,11 @@
-
-Change Log
-==========================
+# Change Log
 
 4.7.0 (unreleased)
 --------------------------
 
 ### Improvements
 
+- [trivial] Add shortcut symbols for special keys not on common keyboards.
 - [rc] Display the Globe symbol instead of “fn” for shortcuts in the Quick Action bar if the user keyboard is supposed to have the Globe key (thanks to Katsumi Kishikawa!).
 
 
