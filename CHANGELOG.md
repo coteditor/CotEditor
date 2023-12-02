@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+4.7.0 (unreleased)
+--------------------------
+
+### Improvements
+
+- [rc] Display the Globe symbol instead of “fn” for shortcuts in the Quick Action bar if the user keyboard is supposed to have the Globe key (thanks to Katsumi Kishikawa!).
+
+
+
 4.7.0-rc (615)
 --------------------------
 

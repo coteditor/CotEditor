@@ -26,6 +26,7 @@
 
 import Foundation
 import AppKit.NSEvent
+import IOKit
 
 /// Modifier keys for keyboard shortcut.
 ///
@@ -39,10 +40,6 @@ private enum ModifierKey: CaseIterable {
     case function  // This key modifier is reserved for system applications.
     
     static let validCases: [Self] = Array(Self.allCases[0..<4])
-    
-    
-    /// It seems there is no easy way to detect the Globe key without private APIs... (2023-12 on macOS 14)
-    private static let supportsGlobeKey = false
     
     
     /// NSEvent.ModifierFlags representation.
@@ -95,6 +92,18 @@ private enum ModifierKey: CaseIterable {
             case .function: preconditionFailure("Fn/Globe key cannot be used for custom shortcuts.")
         }
     }
+    
+    
+    /// Return `true` if the user keyboard is supposed to have the Globe key.
+    private static let supportsGlobeKey = {
+        
+        let entry = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceMatching("AppleHIDKeyboardEventDriverV2"))
+        defer { IOObjectRelease(entry) }
+        
+        guard let property = IORegistryEntryCreateCFProperty(entry, "SupportsGlobeKey" as CFString, kCFAllocatorDefault, 0)?.takeRetainedValue() else { return false }
+        
+        return (property as? Int) == 1
+    }()
 }
 
 
