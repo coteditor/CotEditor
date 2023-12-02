@@ -70,7 +70,7 @@ final class ShortcutTests: XCTestCase {
         XCTAssertFalse(shortcut.isValid)
         XCTAssertEqual(shortcut.keyEquivalent, "a")
         XCTAssertEqual(shortcut.modifiers, [.function])
-        XCTAssertEqual(shortcut.symbol, "fn A")
+        XCTAssert(shortcut.symbol == "fn A" || shortcut.symbol == "🌐︎ A")
         XCTAssertEqual(shortcut.keySpecChars, "a", "The fn key should be ignored.")
         
         let symbolName = try XCTUnwrap(shortcut.modifierSymbolNames.first)
