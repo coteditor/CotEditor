@@ -5,7 +5,7 @@
 
 ### New Features
 
-- Update `cot` command-line tool to accept `--syntax` (`-s`) option that sets desired syntax to the documents just opened.
+- Add `--syntax` (`-s`) option to the `cot` command-line tool to set desired syntax to the documents just opened.
 
 
 ### Improvements
