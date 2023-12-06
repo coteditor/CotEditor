@@ -3,6 +3,11 @@
 4.7.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Update `cot` command-line tool to accept `--syntax` (`-s`) option that sets desired syntax to the documents just opened.
+
+
 ### Improvements
 
 - [trivial] Add shortcut symbols for special keys not on common keyboards.
