@@ -1,6 +1,6 @@
 # Change Log
 
-4.7.0 (unreleased)
+4.7.0-rc.2 (617)
 --------------------------
 
 ### New Features
