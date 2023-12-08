@@ -57,7 +57,7 @@ struct UnicodeInputView: View {
                     .inset(.leading, 18)
                     .monospacedDigit()
                 
-                Menu("") {
+                Menu {
                     let scalars = UserDefaults.standard[.unicodeHistory]
                         .compactMap(UTF32.CodeUnit.init(codePoint:))
                         .compactMap(UnicodeScalar.init)
@@ -79,6 +79,8 @@ struct UnicodeInputView: View {
                     if !scalars.isEmpty {
                         Button("Clear Recents", role: .destructive, action: self.clearRecents)
                     }
+                } label: {
+                    EmptyView()
                 }
                 .menuStyle(.borderlessButton)
                 .frame(width: 16)

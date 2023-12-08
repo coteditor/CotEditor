@@ -130,7 +130,7 @@ private struct ColorCodePanelAccessory: View {
                 }
             
             HStack {
-                Picker("", selection: $type) {
+                Picker(selection: $type) {
                     Section {
                         ForEach(ColorCodeType.hexTypes, id: \.self) { type in
                             Text(type.label).tag(type.rawValue)
@@ -141,6 +141,8 @@ private struct ColorCodePanelAccessory: View {
                             Text(type.label).tag(type.rawValue)
                         }
                     }
+                } label: {
+                    EmptyView()
                 }
                 .onChange(of: self.type, perform: self.apply(type:))
                 .labelsHidden()
