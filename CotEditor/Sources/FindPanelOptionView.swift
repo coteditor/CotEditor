@@ -40,8 +40,8 @@ struct FindPanelOptionView: View {
     
     var body: some View {
         
-        HStack(alignment: .firstTextBaseline, spacing: 12) {
-            HStack(alignment: .firstTextBaseline, spacing: 4) {
+        HStack(spacing: 12) {
+            HStack(spacing: 4) {
                 Toggle("Regular Expression", isOn: $usesRegularExpression)
                     .help("Select to search with regular expression.")
                     .fixedSize()
