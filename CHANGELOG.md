@@ -1,5 +1,16 @@
 # Change Log
 
+4.7.0 (unreleased)
+--------------------------
+
+### Improvements
+
+- [dev] Update the build environment to Xcode 15.1.
+- [rc.2] Remove hidden actions from Quick Action candidates.
+- [rc.2] Update the User Guide.
+
+
+
 4.7.0-rc.2 (617)
 --------------------------
 
