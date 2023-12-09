@@ -6,6 +6,7 @@
 ### Fixes
 
 - Fix an issue that last letters of some script name with a period could be wrongly interpreted as shortcut keys.
+- Fix an issue that the Quick Actions bar dropped to draw the Shift key in some shortcuts.
 
 
 

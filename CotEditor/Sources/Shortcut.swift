@@ -449,7 +449,7 @@ extension Shortcut: Equatable {
     /// Normalize Shortcut by preferring to use the Shift key rather than an upper key equivalent character.
     ///
     /// According to the AppKit's specification, the Command-Shift-c and Command-C should be considered to be identical.
-    private var normalized: Self {
+    var normalized: Self {
         
         let needsShift = self.keyEquivalent.last?.isUppercase == true
         

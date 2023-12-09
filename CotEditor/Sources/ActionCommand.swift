@@ -124,7 +124,7 @@ private extension NSMenuItem {
             
         } else if self.isEnabled, !self.isHidden, let action = self.action, !ActionCommand.unsupportedActions.contains(action) {
             return [ActionCommand(kind: (action == #selector(ScriptManager.launchScript)) ? .script : .command,
-                                  title: self.actionTitle, paths: [], shortcut: self.shortcut, action: action, tag: self.tag,
+                                  title: self.actionTitle, paths: [], shortcut: self.shortcut?.normalized, action: action, tag: self.tag,
                                   representedObject: self.representedObject)]
             
         } else {
