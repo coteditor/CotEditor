@@ -48,6 +48,7 @@ final class ShortcutTests: XCTestCase {
         XCTAssertEqual(Shortcut("a", modifiers: [.control, .shift])?.keySpecChars, "^$a")
         
         XCTAssertEqual(Shortcut("a", modifiers: [])?.keySpecChars, "a")
+        XCTAssertEqual(Shortcut("a", modifiers: [])?.isValid, false)
         XCTAssertNil(Shortcut("", modifiers: [.control, .shift]))
         XCTAssertEqual(Shortcut("a", modifiers: [.control, .shift])?.isValid, true)
         XCTAssertEqual(Shortcut("ab", modifiers: [.control, .shift])?.isValid, false)
@@ -60,6 +61,7 @@ final class ShortcutTests: XCTestCase {
         
         XCTAssertEqual(shortcut.keyEquivalent, "a")
         XCTAssertEqual(shortcut.modifiers, [.control, .shift])
+        XCTAssert(shortcut.isValid)
     }
     
     
@@ -86,6 +88,7 @@ final class ShortcutTests: XCTestCase {
         let shortcut = Shortcut(menuItem.keyEquivalent, modifiers: menuItem.keyEquivalentModifierMask)
         
         XCTAssertEqual(shortcut?.symbol, "⇧ ⌘ C")
+        XCTAssertEqual(shortcut, menuItem.shortcut)
     }
     
     
