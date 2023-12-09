@@ -3,6 +3,10 @@
 4.7.1 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue that last letters of some script name with a period could be wrongly interpreted as shortcut keys.
+
 
 
 4.7.0 (621)

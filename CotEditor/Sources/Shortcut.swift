@@ -246,6 +246,8 @@ struct Shortcut {
             return true
         }
         
+        guard !self.modifiers.isEmpty else { return false }
+        
         return self.modifiers.isSubset(of: ModifierKey.validCases.mask)
     }
     
