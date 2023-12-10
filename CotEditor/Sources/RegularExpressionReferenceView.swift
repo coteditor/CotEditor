@@ -95,20 +95,22 @@ struct RegularExpressionReferenceView: View {
                     DefinitionList(Definition.extendedGroups, title: "Extended Groups")
                     DefinitionList(Definition.backReference, title: "Back Reference")
                 }
-            }.controlSize(.small)
+            }
             
             let icuURL = "https://unicode-org.github.io/icu/userguide/strings/regexp.html"
             let icuLink = AttributedString(localized: "ICU Regular Expressions")
-                .settingAttributes(.init([.link: URL(string: icuURL)!]))
+                .settingAttributes(AttributeContainer
+                    .link(URL(string: icuURL)!)
+                    .underlineStyle(.single))
             
             Text("The syntax conforms to the \(icuLink) specifications.",
                  comment: "%@ is the name of the regex engine (ICU Regular Expressions)")
-                .font(.footnote)
                 .foregroundStyle(.secondary)
                 .tint(.accentColor)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.top, 8)
         }
+        .controlSize(.small)
         .fixedSize()
         .scenePadding()
     }
