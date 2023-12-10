@@ -10,9 +10,9 @@
 
 ### Fixes
 
-- Fix an issue that some actions, such as scripts, could not performed via the Quick Action bar.
-- Fix an issue that last letters of some script name with a period could be wrongly interpreted as shortcut keys.
-- Fix an issue that the Quick Actions bar dropped to draw the Shift key in some shortcuts.
+- Fix an issue on CotEditor 4.7.0 that some actions, such as scripts, could not performed via the Quick Action bar.
+- Fix an issue on CotEditor 4.7.0 that last letters of some script name with a period could be wrongly interpreted as shortcut keys.
+- Fix an issue on CotEditor 4.7.0 that the Quick Actions bar dropped to draw the Shift key in some shortcuts.
 
 
 
