@@ -214,6 +214,38 @@ final class StringLineProcessingTests: XCTestCase {
         XCTAssertEqual(info?.ranges, [NSRange(3, 5), NSRange(8, 3)])
         XCTAssertEqual(info?.selectedRanges, [NSRange(3, 0)])
     }
+    
+    
+    func testJoinLinesIn() {
+        
+        let string = """
+            aa
+              bbbb
+            ccc
+            d
+            """
+        let info = string.joinLines(in: [NSRange(1, 6), NSRange(10, 1)])
+        
+        XCTAssertEqual(info.strings, ["a bb", "c"])
+        XCTAssertEqual(info.ranges, [NSRange(1, 6), NSRange(10, 1)])
+        XCTAssertEqual(info.selectedRanges, [NSRange(1, 4), NSRange(8, 1)])
+    }
+    
+    
+    func testJoinLinesAfter() {
+        
+        let string = """
+            aa
+              bbbb
+            ccc
+            d
+            """
+        let info = string.joinLines(after: [NSRange(1, 0), NSRange(10, 0), NSRange(14, 0)])
+        
+        XCTAssertEqual(info.strings, [" ", " "])
+        XCTAssertEqual(info.ranges, [NSRange(2, 3), NSRange(13, 1)])
+        XCTAssertNil(info.selectedRanges)
+    }
 }
 
 

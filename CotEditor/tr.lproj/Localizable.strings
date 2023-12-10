@@ -516,6 +516,7 @@
 "Delete Duplicate Lines" = "Çoğaltılan Satırları Sil";
 "Duplicate Line" = "Satır Yinele";
 "Delete Line" = "Satın Sil";
+"Join Lines" = "Satırları Birleştir";
 "Trim Trailing Whitespace" = "İzleyen Boşluğu Kırp";
 
 // Contextual menu items

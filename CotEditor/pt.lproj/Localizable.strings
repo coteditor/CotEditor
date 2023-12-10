@@ -516,6 +516,7 @@
 "Delete Duplicate Lines" = "Apagar Linhas Duplicadas";
 "Duplicate Line" = "Duplicar Linha";
 "Delete Line" = "Apagar Linha";
+"Join Lines" = "Juntar Linhas";
 "Trim Trailing Whitespace" = "Aparar Espaço em Branco à Direita";
 
 // Contextual menu items

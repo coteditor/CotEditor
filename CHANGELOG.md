@@ -3,6 +3,11 @@
 4.7.1 (unreleased)
 --------------------------
 
+### New Features
+
+- Add “Join Lines” command to the Text menu.
+
+
 ### Fixes
 
 - Fix an issue that some actions, such as scripts, could not performed via the Quick Action bar.

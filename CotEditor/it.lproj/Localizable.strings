@@ -512,10 +512,11 @@
 "Move Line" = "Muovi riga";
 "Sort Lines" = "Ordina righe";
 "Reverse Lines" = "Inverti righe";
-"Shuffle Lines" = "Mescola le righe";
+"Shuffle Lines" = "Mescola righe";
 "Delete Duplicate Lines" = "Elimina righe duplicate";
 "Duplicate Line" = "Duplica riga";
 "Delete Line" = "Elimina riga";
+"Join Lines" = "Unisci righe";
 "Trim Trailing Whitespace" = "Rimuovi spazi bianchi a fine riga";
 
 // Contextual menu items

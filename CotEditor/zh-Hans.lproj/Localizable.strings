@@ -516,6 +516,7 @@
 "Delete Duplicate Lines" = "移除重复行";
 "Duplicate Line" = "复制行";
 "Delete Line" = "删除行";
+"Join Lines" = "连接行";
 "Trim Trailing Whitespace" = "移除行尾空白";
 
 // Contextual menu items

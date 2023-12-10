@@ -516,6 +516,7 @@
 "Delete Duplicate Lines" = "Doppelte Zeilen löschen";
 "Duplicate Line" = "Zeile duplizieren";
 "Delete Line" = "Zeile löschen";
+"Join Lines" = "Zeilen verbinden";
 "Trim Trailing Whitespace" = "Leerzeichen am Zeilenende entfernen";
 
 // Contextual menu items

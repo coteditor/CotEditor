@@ -128,6 +128,21 @@ extension EditorTextView {
     }
     
     
+    /// Join the lines in the selections when the selections contain more than one line break; otherwise join the line where the cursor exists to the subsequent line,
+    @IBAction func joinLines(_ sender: Any?) {
+        
+        guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
+        
+        let editingInfo = if selectedRanges.contains(where: { !$0.isEmpty }) {
+            self.string.joinLines(in: selectedRanges)
+        } else {
+            self.string.joinLines(after: selectedRanges)
+        }
+        
+        self.edit(with: editingInfo, actionName: String(localized: "Join Lines"))
+    }
+    
+    
     /// trim all trailing whitespace
     @IBAction func trimTrailingWhitespace(_ sender: Any?) {
         
@@ -416,6 +431,36 @@ extension String {
         selectedRanges = selectedRanges.unique.sorted(\.location)
         
         return EditingInfo(strings: replacementStrings, ranges: lineRanges, selectedRanges: selectedRanges)
+    }
+    
+    
+    /// Join lines in the ranges by replacing continuous whitespaces with a space.
+    func joinLines(in ranges: [NSRange]) -> EditingInfo {
+        
+        let replacementStrings = ranges
+            .map { (self as NSString).substring(with: $0) }
+            .map { $0.replacing(/\s*\R\s*/, with: " ") }
+        var selectedRanges: [NSRange] = []
+        var offset = 0
+        for (range, replacementString) in zip(ranges, replacementStrings) {
+            selectedRanges.append(NSRange(location: range.location + offset, length: replacementString.length))
+            offset += replacementString.length - range.length
+        }
+        
+        return EditingInfo(strings: replacementStrings, ranges: ranges, selectedRanges: selectedRanges)
+    }
+    
+    
+    /// Join each of lines containing the given ranges with the subsequent line by replacing continuous whitespaces with a space.
+    func joinLines(after ranges: [NSRange]) -> EditingInfo {
+        
+        let lineRanges = (self as NSString).lineRanges(for: ranges)
+        let replacementRanges = lineRanges
+            .map { (self as NSString).range(of: #"\s*\R\s*"#, options: .regularExpression, range: NSRange($0.lowerBound..<self.length)) }
+            .filter { !$0.isNotFound }  // when in the last line
+        let replacementStrings = Array(repeating: " ", count: replacementRanges.count)
+        
+        return EditingInfo(strings: replacementStrings, ranges: replacementRanges, selectedRanges: nil)
     }
     
     
