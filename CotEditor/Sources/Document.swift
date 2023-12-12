@@ -701,10 +701,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         var modificationDate: Date?
         var error: NSError?
         NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: &error) { newURL in  // FILE_ACCESS
-            var newURL = newURL
-            fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
             do {
                 // ignore if file's modificationDate is the same as document's modificationDate
+                fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
                 modificationDate = try fileURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
                 guard modificationDate != self.fileModificationDate else { return }
                 
