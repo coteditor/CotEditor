@@ -80,9 +80,12 @@ struct CommandBarView: View {
                                 ActionCommandView(command: candidate.command, matches: candidate.matches)
                                     .selected(candidate.id == self.selection)
                                     .id(candidate.id)
-                                    .onTapGesture {
+                                    .onMouseDown {
                                         self.selection = candidate.id
-                                        self.perform()
+                                    } onMouseUp: { translation in
+                                        if translation == .zero {
+                                            self.perform()
+                                        }
                                     }
                             }
                         }
@@ -290,6 +293,21 @@ private extension View {
         } else {
             return self.padding(edges, length)
         }
+    }
+    
+    
+    /// Perform actions when clicking the mouse on the view.
+    ///
+    /// - Parameters:
+    ///   - onMouseDown: The action to perform when the mouse is down.
+    ///   - onMouseUp: The action to perform when the mouse is up.
+    func onMouseDown(_ onMouseDown: @escaping () -> Void, onMouseUp: @escaping (_ translation: CGSize) -> Void = { _ in }) -> some View {
+        
+        self.simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in onMouseDown() }
+                .onEnded { onMouseUp($0.translation) }
+        )
     }
 }
 
