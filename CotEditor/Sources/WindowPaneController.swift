@@ -64,12 +64,12 @@ final class WindowPaneController: NSViewController {
         // display the current systemwide user setting for window tabbing in "Respect System Setting" menu item.
         let menu = self.tabbingOptionMenu!
         let systemSettingLabel = menu.item(withTag: NSWindow.userTabbingPreference.rawValue)!.title
-        let attributes: [NSAttributedString.Key: Any] = [.font: menu.font].compactMapValues { $0 }
-        let attrLabel = NSAttributedString(string: self.titleForRespectSystemSetting, attributes: attributes)
-        let userSettingLabel = NSAttributedString(string: String(localized: " (\(systemSettingLabel))"),
-                                                  attributes: [.foregroundColor: NSColor.secondaryLabelColor].merging(attributes) { $1 })
+        let attributes = AttributeContainer().font(menu.font)
+        let attrLabel = AttributedString(self.titleForRespectSystemSetting, attributes: attributes)
+        let userSettingLabel = AttributedString(localized: " (\(systemSettingLabel))")
+            .settingAttributes(attributes.foregroundColor(.secondaryLabelColor))
         
-        menu.items.first!.attributedTitle = attrLabel + userSettingLabel
+        menu.items.first!.attributedTitle = NSAttributedString(attrLabel + userSettingLabel)
         
         // select one of writing direction radio buttons
         switch UserDefaults.standard[.writingDirection] {
