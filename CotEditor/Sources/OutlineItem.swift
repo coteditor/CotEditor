@@ -26,6 +26,10 @@
 import AppKit.NSFont
 import struct Foundation.NSRange
 
+extension NSFont: @unchecked Sendable { }
+extension NSParagraphStyle: @unchecked Sendable { }
+
+
 struct OutlineItem: Equatable {
     
     struct Style: OptionSet {
@@ -41,7 +45,7 @@ struct OutlineItem: Equatable {
     var title: String
     var range: NSRange
     var style: Style = []
-    fileprivate(set) var filteredRanges: [NSRange]?
+    fileprivate(set) var filteredRanges: [Range<String.Index>]?
     
     
     var isSeparator: Bool {
@@ -53,9 +57,9 @@ struct OutlineItem: Equatable {
 
 extension OutlineItem {
     
-    func attributedTitle(for baseFont: NSFont, attributes: [NSAttributedString.Key: Any] = [:]) -> NSAttributedString {
+    func attributedTitle(for baseFont: NSFont, paragraphStyle: NSParagraphStyle) -> AttributedString {
         
-        var attributes = attributes
+        var attributes = AttributeContainer().paragraphStyle(paragraphStyle)
         var traits: NSFontDescriptor.SymbolicTraits = []
         
         if self.style.contains(.bold) {
@@ -65,15 +69,15 @@ extension OutlineItem {
             traits.insert(.italic)
         }
         if self.style.contains(.underline) {
-            attributes[.underlineStyle] = NSUnderlineStyle.single.rawValue
+            attributes.underlineStyle = .single
         }
         
         if !traits.isEmpty {
-            attributes[.font] = NSFont(descriptor: baseFont.fontDescriptor.withSymbolicTraits(traits),
-                                       size: baseFont.pointSize)
+            attributes.font = NSFont(descriptor: baseFont.fontDescriptor.withSymbolicTraits(traits),
+                                     size: baseFont.pointSize)
         }
         
-        return NSAttributedString(string: self.title, attributes: attributes)
+        return AttributedString(self.title, attributes: attributes)
     }
 }
 
@@ -133,7 +137,7 @@ extension BidirectionalCollection<OutlineItem> {
         .filter { $0.result.remaining.isEmpty }
         .map {
             var item = $0.item
-            item.filteredRanges = $0.result.ranges.map { NSRange($0, in: item.title) }
+            item.filteredRanges = $0.result.ranges
             return item
         }
     }

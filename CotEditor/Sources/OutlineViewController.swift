@@ -323,21 +323,22 @@ extension OutlineViewController: NSOutlineViewDataSource {
             case .title:
                 let fontSize = UserDefaults.standard[.outlineViewFontSize]
                 let font = outlineView.font?.withSize(fontSize) ?? .systemFont(ofSize: fontSize)
-                let attrTitle = outlineItem.attributedTitle(for: font, attributes: [.paragraphStyle: self.itemParagraphStyle])
+                var attrTitle = outlineItem.attributedTitle(for: font, paragraphStyle: self.itemParagraphStyle)
                 
-                guard let ranges = outlineItem.filteredRanges else { return attrTitle }
+                guard let ranges = outlineItem.filteredRanges else { return NSAttributedString(attrTitle) }
                 
-                let mutableAttrTitle = attrTitle.mutable
-                let attributes: [NSAttributedString.Key: Any] = [
-                    .font: NSFont.systemFont(ofSize: fontSize, weight: .semibold),
-                    .backgroundColor: NSColor.findHighlightColor,
-                    .foregroundColor: NSColor.black.withAlphaComponent(0.9),  // for legibility in Dark Mode
-                ]
+                let attributes = AttributeContainer()
+                    .font(.systemFont(ofSize: fontSize, weight: .semibold))
+                    .backgroundColor(.findHighlightColor)
+                    .foregroundColor(.black.withAlphaComponent(0.9))  // for legibility in Dark Mode
+                
                 for range in ranges {
-                    mutableAttrTitle.addAttributes(attributes, range: range)
+                    guard let attrRange = Range(range, in: attrTitle) else { continue }
+                    
+                    attrTitle[attrRange].setAttributes(attributes)
                 }
                 
-                return mutableAttrTitle
+                return NSAttributedString(attrTitle)
                 
             default:
                 preconditionFailure()
