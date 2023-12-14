@@ -387,7 +387,7 @@ extension DocumentWindowController: NSToolbarDelegate {
         switch itemIdentifier {
             case .syntax:
                 let popUpButton = NSPopUpButton()
-                popUpButton.bezelStyle = .texturedRounded
+                popUpButton.bezelStyle = .toolbar
                 popUpButton.menu?.autoenablesItems = false
                 self.syntaxPopUpButton = popUpButton
                 self.buildSyntaxPopUpButton()
