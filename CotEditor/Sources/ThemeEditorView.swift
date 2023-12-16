@@ -26,7 +26,7 @@
 import SwiftUI
 import AppKit.NSColor
 
-@MainActor private final class ThemeObject: ObservableObject {
+private final class ThemeObject: ObservableObject {
     
     private let name: String?
     
