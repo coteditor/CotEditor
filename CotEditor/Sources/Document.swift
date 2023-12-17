@@ -816,6 +816,89 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
+    /// Change the text encoding by asking options to the user.
+    ///
+    /// - Parameter fileEncoding: The file encoding to change.
+    func changeEncoding(to fileEncoding: FileEncoding) {
+        
+        assert(Thread.isMainThread)
+        
+        guard fileEncoding != self.fileEncoding else { return }
+        
+        // change encoding immediately if there is nothing to worry about
+        if self.fileURL == nil || self.textStorage.string.isEmpty || fileEncoding.encoding == .utf8 {
+            // -> Lossy change must success.
+            return try! self.changeEncoding(to: fileEncoding, lossy: false)
+        }
+        
+        // change encoding interactively
+        self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
+            let completionHandler = { [weak self] didChange in
+                if !didChange, let self {
+                    // reset status bar selection for in case when the operation was invoked from the popup button in the status bar
+                    self.fileEncoding = self.fileEncoding
+                }
+                activityCompletionHandler()
+            }
+            
+            // ask whether just change the encoding or reinterpret document file
+            let alert = NSAlert()
+            alert.messageText = String(localized: "Text encoding")
+            alert.informativeText = String(localized: "Do you want to convert or reinterpret this document using “\(fileEncoding.localizedName)”?")
+            alert.addButton(withTitle: String(localized: "Convert"))
+            alert.addButton(withTitle: String(localized: "Reinterpret"))
+            alert.addButton(withTitle: String(localized: "Cancel"))
+            
+            let documentWindow = self.windowForSheet!
+            Task {
+                let returnCode = await alert.beginSheetModal(for: documentWindow)
+                switch returnCode {
+                    case .alertFirstButtonReturn:  // = Convert
+                        do {
+                            try self.changeEncoding(to: fileEncoding, lossy: false)
+                            completionHandler(true)
+                        } catch {
+                            self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
+                        }
+                        
+                    case .alertSecondButtonReturn:  // = Reinterpret
+                        // ask whether discard unsaved changes
+                        if self.isDocumentEdited {
+                            let alert = NSAlert()
+                            alert.messageText = String(localized: "The document has unsaved changes.")
+                            alert.informativeText = String(localized: "Do you want to discard the changes and reopen the document using “\(fileEncoding.localizedName)”?",
+                                                           comment: "%@ is an encoding name")
+                            alert.addButton(withTitle: String(localized: "Cancel"))
+                            alert.addButton(withTitle: String(localized: "Discard Changes"))
+                            alert.buttons.last?.hasDestructiveAction = true
+                            
+                            let returnCode = await alert.beginSheetModal(for: documentWindow)
+                            
+                            guard returnCode == .alertSecondButtonReturn else {  // = Discard Changes
+                                completionHandler(false)
+                                return
+                            }
+                        }
+                        
+                        // reinterpret
+                        do {
+                            try self.reinterpret(encoding: fileEncoding.encoding)
+                            completionHandler(true)
+                        } catch {
+                            NSSound.beep()
+                            self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
+                        }
+                        
+                    case .alertThirdButtonReturn:  // = Cancel
+                        completionHandler(false)
+                        
+                    default: preconditionFailure()
+                }
+            }
+        }
+    }
+    
+    
     /// Change the text encoding and register the process to the undo manager.
     ///
     /// - Parameters:
@@ -939,12 +1022,28 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
+    /// Change the document text encoding wit sender's tag.
+    @IBAction func changeEncoding(_ sender: NSMenuItem) {
+        
+        let fileEncoding = FileEncoding(tag: sender.tag)
+        
+        self.changeEncoding(to: fileEncoding)
+    }
+    
+    
     /// Change the line ending with sender's tag.
     @IBAction func changeLineEnding(_ sender: NSMenuItem) {
         
         guard let lineEnding = LineEnding.allCases[safe: sender.tag] else { return assertionFailure() }
         
         self.changeLineEnding(to: lineEnding)
+    }
+    
+    
+    /// Change the syntax.
+    @IBAction func changeSyntax(_ sender: NSMenuItem) {
+        
+        self.setSyntax(name: sender.title)
     }
     
     
@@ -956,96 +1055,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // -> Get titlebar view to mimic the behavior in iWork apps... (macOS 14 on 2023-12)
         let view = contentView.window?.standardWindowButton(.closeButton)?.superview ?? contentView
         
-         NSSharingServicePicker(items: [self])
+        NSSharingServicePicker(items: [self])
             .show(relativeTo: .zero, of: view, preferredEdge: .minY)
-    }
-    
-    
-    /// Change the document text encoding.
-    @IBAction func changeEncoding(_ sender: NSMenuItem) {
-        
-        let fileEncoding = FileEncoding(tag: sender.tag)
-        
-        guard fileEncoding != self.fileEncoding else { return }
-        
-        // change encoding immediately if there is nothing to worry about
-        if self.fileURL == nil || self.textStorage.string.isEmpty || fileEncoding.encoding == .utf8 {
-            // -> Lossy change must success.
-            return try! self.changeEncoding(to: fileEncoding, lossy: false)
-        }
-        
-        // change encoding interactively
-        self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
-            let completionHandler = { [weak self] didChange in
-                if !didChange, let self {
-                    // reset status bar selection for in case when the operation was invoked from the popup button in the status bar
-                    self.fileEncoding = self.fileEncoding
-                }
-                activityCompletionHandler()
-            }
-            
-            // ask whether just change the encoding or reinterpret document file
-            let alert = NSAlert()
-            alert.messageText = String(localized: "Text encoding")
-            alert.informativeText = String(localized: "Do you want to convert or reinterpret this document using “\(fileEncoding.localizedName)”?")
-            alert.addButton(withTitle: String(localized: "Convert"))
-            alert.addButton(withTitle: String(localized: "Reinterpret"))
-            alert.addButton(withTitle: String(localized: "Cancel"))
-            
-            let documentWindow = self.windowForSheet!
-            Task {
-                let returnCode = await alert.beginSheetModal(for: documentWindow)
-                switch returnCode {
-                    case .alertFirstButtonReturn:  // = Convert
-                        do {
-                            try self.changeEncoding(to: fileEncoding, lossy: false)
-                            completionHandler(true)
-                        } catch {
-                            self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
-                        }
-                        
-                    case .alertSecondButtonReturn:  // = Reinterpret
-                        // ask whether discard unsaved changes
-                        if self.isDocumentEdited {
-                            let alert = NSAlert()
-                            alert.messageText = String(localized: "The document has unsaved changes.")
-                            alert.informativeText = String(localized: "Do you want to discard the changes and reopen the document using “\(fileEncoding.localizedName)”?",
-                                                           comment: "%@ is an encoding name")
-                            alert.addButton(withTitle: String(localized: "Cancel"))
-                            alert.addButton(withTitle: String(localized: "Discard Changes"))
-                            alert.buttons.last?.hasDestructiveAction = true
-                            
-                            let returnCode = await alert.beginSheetModal(for: documentWindow)
-                            
-                            guard returnCode == .alertSecondButtonReturn else {  // = Discard Changes
-                                completionHandler(false)
-                                return
-                            }
-                        }
-                        
-                        // reinterpret
-                        do {
-                            try self.reinterpret(encoding: fileEncoding.encoding)
-                            completionHandler(true)
-                        } catch {
-                            NSSound.beep()
-                            self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
-                        }
-                        
-                    case .alertThirdButtonReturn:  // = Cancel
-                        completionHandler(false)
-                        
-                    default: preconditionFailure()
-                }
-            }
-        }
-    }
-    
-    
-    /// Change the syntax.
-    @IBAction func changeSyntax(_ sender: NSMenuItem) {
-        
-        self.setSyntax(name: sender.title)
     }
     
     
