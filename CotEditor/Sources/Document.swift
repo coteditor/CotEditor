@@ -951,7 +951,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     /// Show the sharing picker interface.
     @IBAction func shareDocument(_ sender: Any?) {
         
-        guard let view = self.viewController?.view else { return assertionFailure() }
+        guard let contentView = self.viewController?.view else { return assertionFailure() }
+        
+        // -> Get titlebar view to mimic the behavior in iWork apps... (macOS 14 on 2023-12)
+        let view = contentView.window?.standardWindowButton(.closeButton)?.superview ?? contentView
         
          NSSharingServicePicker(items: [self])
             .show(relativeTo: .zero, of: view, preferredEdge: .minY)
