@@ -131,7 +131,7 @@ import Combine
     
     // MARK: Private Methods
     
-    /// Synchronize UI with related document values.
+    /// Synchronizes UI with related document values.
     private func observeDocument() {
         
         self.document.analyzer.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
@@ -164,7 +164,7 @@ import Combine
     }
     
     
-    /// Build the left side text.
+    /// Builds the left side text.
     ///
     /// - Parameters:
     ///   - result: The editor count result.
@@ -210,7 +210,7 @@ import Combine
     }
     
     
-    /// Build the encoding pop-up button.
+    /// Builds the encoding pop-up button.
     @MainActor private func buildEncodingPopUpButton() {
         
         guard
@@ -224,7 +224,7 @@ import Combine
     }
     
     
-    /// Build the line ending pop-up menu.
+    /// Builds the line ending pop-up menu.
     @MainActor private func buildLineEndingPopUpButton() {
         
         guard let menu = self.lineEndingPopUpButton?.menu else { return assertionFailure() }
@@ -265,7 +265,7 @@ private extension UserDefaults {
 
 private extension NSAttributedString {
     
-    /// Formatted state for status bar.
+    /// Returns formatted state for status bar.
     ///
     /// - Parameter state: The content string.
     /// - Returns: An attributed string.
@@ -279,7 +279,7 @@ private extension NSAttributedString {
     }
     
     
-    /// Formatted label for status bar.
+    /// Returns formatted label for status bar.
     ///
     /// - Parameter label: Localized label.
     /// - Returns: An attributed string.

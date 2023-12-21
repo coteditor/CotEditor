@@ -25,7 +25,7 @@
 
 extension Comparable {
     
-    /// Return clamped value to min/max values.
+    /// Returns clamped value to min/max values.
     ///
     /// - Parameter range: Condition which receiver should be in between.
     /// - Returns: Processed value.
@@ -35,7 +35,7 @@ extension Comparable {
     }
     
     
-    /// Clamp self to min/max values.
+    /// Clamps self to min/max values.
     ///
     /// - Parameter range: Condition which receiver should be in between.
     mutating func clamp(to range: ClosedRange<Self>) {

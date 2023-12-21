@@ -35,7 +35,7 @@ struct HelpButton: NSViewRepresentable {
     
     
     
-    /// Initialize a help button to jump the specific anchor in the system help viewer.
+    /// Initializes a help button to jump the specific anchor in the system help viewer.
     ///
     /// - Parameter anchor: The help anchor.
     init(anchor: String) {
@@ -44,7 +44,7 @@ struct HelpButton: NSViewRepresentable {
     }
     
     
-    /// Initialize a help button to perform the action when clicked.
+    /// Initializes a help button to perform the action when clicked.
     ///
     /// - Parameter action: The action to perform.
     init(action: @escaping () -> Void) {

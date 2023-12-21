@@ -29,7 +29,7 @@ import AppKit
 
 extension NSTextSelectionDataSource {
     
-    /// Convert NSRange to NSTextRange.
+    /// Converts NSRange to NSTextRange.
     ///
     /// - Parameter range: The NSRange to convert.
     /// - Returns: A text range or nil if the given range is invalid.
@@ -44,7 +44,7 @@ extension NSTextSelectionDataSource {
     }
     
     
-    /// Convert NSTextRange to NSRange.
+    /// Converts NSTextRange to NSRange.
     ///
     /// - Parameter textRange: The NSTextRange to convert.
     /// - Returns: An NSRange.

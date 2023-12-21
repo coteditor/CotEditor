@@ -36,7 +36,7 @@ struct CustomTabWidthView: View {
     
     // MARK: View
     
-    /// Initialize view with given values.
+    /// Initializes view with given values.
     ///
     /// - Parameters:
     ///   - tabWidth: The default tab width.
@@ -70,7 +70,7 @@ struct CustomTabWidthView: View {
     
     // MARK: Private Methods
     
-    /// Submit the current input.
+    /// Submits the current input.
     private func submit() {
         
         self.completionHandler(self.value)

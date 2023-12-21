@@ -25,7 +25,7 @@
 
 import AppKit
 
-/// tableView column identifier
+/// Column identifiers for table view.
 private extension NSUserInterfaceItemIdentifier {
     
     static let scope = NSUserInterfaceItemIdentifier("scope")
@@ -119,7 +119,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     }
     
     
-    /// start dragging
+    /// Starts dragging.
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
         
         // register dragged type
@@ -135,7 +135,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     }
     
     
-    /// validate when dragged items come into tableView
+    /// Validates when dragged items come into tableView.
     func tableView(_ tableView: NSTableView, validateDrop info: any NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // accept only self drag-and-drop
@@ -149,7 +149,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     }
     
     
-    /// check acceptability of dragged items and insert them to table
+    /// Checks acceptability of dragged items and insert them to table.
     func tableView(_ tableView: NSTableView, acceptDrop info: any NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         // accept only self drag-and-drop
@@ -215,7 +215,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     }
     
     
-    /// Change selection in the table.
+    /// Changes the selection in the table.
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         self.selectionDidChange()
@@ -224,7 +224,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     
     // MARK: Text View Delegate (format text view)
     
-    /// Insertion text did update.
+    /// The insertion text did update.
     func textDidEndEditing(_ notification: Notification) {
         
         guard
@@ -297,7 +297,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     }
     
     
-    /// Validate and apply new shortcut key input.
+    /// Validates and applies the new shortcut key input.
     @IBAction func didEditShortcut(_ sender: ShortcutField) {
         
         guard let tableView = self.tableView else { return assertionFailure() }
@@ -341,14 +341,14 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     
     // MARK: Private Methods
     
-    /// Save current setting.
+    /// Saves current setting.
     private func saveSetting() {
         
         SnippetManager.shared.save(self.snippets)
     }
     
     
-    /// Update controls according to the state of selection in the table view.
+    /// Updates controls according to the state of selection in the table view.
     private func selectionDidChange() {
         
         guard
@@ -373,7 +373,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
 
 private extension NSTableView {
     
-    /// Move the specified rows to the new row location using animation.
+    /// Moves the specified rows to the new row location using animation.
     ///
     /// - Parameters:
     ///   - oldIndexes: Initial row indexes.

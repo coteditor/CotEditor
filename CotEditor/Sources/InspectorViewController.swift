@@ -138,7 +138,7 @@ final class InspectorViewController: NSTabViewController, DocumentOwner {
     
     // MARK: Private Methods
     
-    /// Update the document in children.
+    /// Updates the document in children.
     private func updateDocument() {
         
         for item in self.tabViewItems {

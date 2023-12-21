@@ -65,7 +65,7 @@ extension String {
 
 extension StringProtocol {
     
-    /// Range of the line containing a given index.
+    /// Returns the range of the line containing a given index.
     ///
     /// - Parameter index: The character index within the receiver.
     /// - Returns: The character range of the line.
@@ -75,7 +75,7 @@ extension StringProtocol {
     }
     
     
-    /// Range of the line containing a given index.
+    /// Returns the range of the line containing a given index.
     ///
     /// - Parameter index: The character index within the receiver.
     /// - Returns: The character range of the line contents.
@@ -85,7 +85,7 @@ extension StringProtocol {
     }
     
     
-    /// Return line range excluding last line ending character if exists.
+    /// Returns line range excluding last line ending character if exists.
     ///
     /// - Parameter range: A range within the receiver.
     /// - Returns: The range of characters representing the line or lines containing a given range.
@@ -100,7 +100,7 @@ extension StringProtocol {
     }
     
     
-    /// Return the index of the first character of the line touched by the given index.
+    /// Returns the index of the first character of the line touched by the given index.
     ///
     /// - Note: Unlike NSString's one, this method does not have the performance advantage.
     ///
@@ -118,7 +118,7 @@ extension StringProtocol {
     }
     
     
-    /// Return the index of the last character before the line ending of the line touched by the given index.
+    /// Returns the index of the last character before the line ending of the line touched by the given index.
     ///
     /// - Note: Unlike NSString's one, this method does not have the performance advantage.
     ///
@@ -136,7 +136,7 @@ extension StringProtocol {
     }
     
     
-    /// Check if character at the index is escaped with backslash.
+    /// Checks if character at the index is escaped with backslash.
     ///
     /// - Parameter index: The index of the character to check.
     /// - Returns: `true` when the character at the given index is escaped.
@@ -154,7 +154,7 @@ extension StringProtocol {
 
 extension String {
     
-    /// Divide the given range into logical line contents ranges.
+    /// Divides the given range into logical line contents ranges.
     ///
     /// - Parameter range: The range to divide or `nil`.
     /// - Returns: Logical line ranges.
@@ -167,7 +167,7 @@ extension String {
     }
     
     
-    /// Check if character at the location in UTF16 is escaped with backslash.
+    /// Checks if character at the location in UTF16 is escaped with backslash.
     ///
     /// - Parameter location: The UTF16-based location of the character to check.
     /// - Returns: `true` when the character at the given index is escaped.

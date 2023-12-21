@@ -130,7 +130,7 @@ final class WindowContentViewController: NSSplitViewController, DocumentOwner {
     
     // MARK: Public Methods
     
-    /// Open the desired inspector pane.
+    /// Opens the desired inspector pane.
     ///
     /// - Parameter pane: The inspector pane to open.
     func showInspector(pane: InspectorPane) {
@@ -142,7 +142,7 @@ final class WindowContentViewController: NSSplitViewController, DocumentOwner {
     
     // MARK: Action Messages
     
-    /// Toggle visibility of the inspector.
+    /// Toggles visibility of the inspector.
     @IBAction override func toggleInspector(_ sender: Any?) {
         
         if #available(macOS 14, *) {
@@ -153,21 +153,21 @@ final class WindowContentViewController: NSSplitViewController, DocumentOwner {
     }
     
     
-    /// Toggle visibility of the document inspector pane.
+    /// Toggles visibility of the document inspector pane.
     @IBAction func getInfo(_ sender: Any?) {
         
         self.toggleVisibilityOfInspector(pane: .document)
     }
     
     
-    /// Toggle visibility of the outline pane.
+    /// Toggles visibility of the outline pane.
     @IBAction func toggleOutlineMenu(_ sender: Any?) {
         
         self.toggleVisibilityOfInspector(pane: .outline)
     }
     
     
-    /// Toggle visibility of warnings pane.
+    /// Toggles visibility of warnings pane.
     @IBAction func toggleWarningsPane(_ sender: Any?) {
         
         self.toggleVisibilityOfInspector(pane: .warnings)
@@ -191,7 +191,7 @@ final class WindowContentViewController: NSSplitViewController, DocumentOwner {
     }
     
     
-    /// Set the visibility of the inspector and switch pane with animation.
+    /// Sets the visibility of the inspector and switch pane with animation.
     ///
     /// - Parameters:
     ///   - shown: The boolean flag whether to open or close the pane.
@@ -203,7 +203,7 @@ final class WindowContentViewController: NSSplitViewController, DocumentOwner {
     }
     
     
-    /// Whether the given pane in the inspector is currently shown.
+    /// Returns whether the given pane in the inspector is currently shown.
     ///
     /// - Parameter pane: The inspector pane to check.
     /// - Returns: `true` when the pane is currently visible.
@@ -213,7 +213,7 @@ final class WindowContentViewController: NSSplitViewController, DocumentOwner {
     }
     
     
-    /// Toggle visibility of pane in the inspector.
+    /// Toggles visibility of pane in the inspector.
     ///
     /// - Parameter pane: The inspector pane to toggle visibility.
     private func toggleVisibilityOfInspector(pane: InspectorPane) {
@@ -222,7 +222,7 @@ final class WindowContentViewController: NSSplitViewController, DocumentOwner {
     }
     
     
-    /// Update the document in children.
+    /// Updates the document in children.
     private func updateDocument() {
         
         self.documentViewController.document = self.document

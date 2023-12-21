@@ -37,7 +37,7 @@ extension Image {
     }
     
     
-    /// Create a SwiftUI image with an AppKit status image instance.
+    /// Creates a SwiftUI image with an AppKit status image instance.
     ///
     /// - Parameter status: The NSImage status to display.
     init(status: Status) {

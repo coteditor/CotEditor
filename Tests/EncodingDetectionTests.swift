@@ -169,7 +169,7 @@ final class EncodingDetectionTests: XCTestCase {
     }
     
     
-    /// Make sure the behaviors around Shift-JIS.
+    /// Makes sure the behaviors around Shift-JIS.
     func testShiftJIS() {
         
         let shiftJIS = CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)

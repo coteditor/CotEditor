@@ -52,7 +52,7 @@ struct PatternSortView: View {
     
     // MARK: View
     
-    /// Initialize view with given values.
+    /// Initializes view with given values.
     ///
     /// - Parameters:
     ///   - sampleLine: A line of target text to display as sample.
@@ -158,7 +158,7 @@ struct PatternSortView: View {
     }
     
     
-    /// Submit the current input.
+    /// Submits the current input.
     private func submit() {
         
         guard
@@ -176,7 +176,7 @@ struct PatternSortView: View {
     }
     
     
-    /// Validate the current sort pattern and apply the result to the view.
+    /// Validates the current sort pattern and applies the result to the view.
     ///
     /// - Returns: Whether the sort pattern is valid.
     @discardableResult
@@ -295,7 +295,7 @@ struct RegularExpressionSortPatternView: View {
     }
     
     
-    /// Clear the regular expression pattern history.
+    /// Clears the regular expression pattern history.
     private func clearRecents() {
         
         UserDefaults.standard[.regexPatternSortHistory].removeAll()

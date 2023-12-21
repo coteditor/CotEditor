@@ -37,7 +37,7 @@ extension NSView {
 
 extension NSView {
     
-    /// Send user feedback for the VoiceOver.
+    /// Sends user feedback for the VoiceOver.
     ///
     /// - Parameters:
     ///   - announcement: The localized string to announce.

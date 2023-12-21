@@ -38,7 +38,7 @@ struct IncompatibleCharacter: Equatable {
 
 extension String {
     
-    /// List characters cannot be converted to the passed-in encoding.
+    /// Lists characters cannot be converted to the passed-in encoding.
     ///
     /// - Parameter encoding: The string encoding to test compatibility.
     /// - Returns: An array of IncompatibleCharacter.

@@ -29,7 +29,7 @@ extension EditorTextView {
     
     // MARK: Action Messages (Case Transformations)
     
-    /// transform to upper case
+    /// Transforms the selections to upper case.
     @IBAction override func uppercaseWord(_ sender: Any?) {
         
         // override the default behavior to avoid invoking `selectWord(_:)` command
@@ -39,42 +39,42 @@ extension EditorTextView {
     }
     
     
-    /// transform to lower case
+    /// Transforms the selections to lower case.
     @IBAction override func lowercaseWord(_ sender: Any?) {
         
         self.transformSelection { $0.localizedLowercase }
     }
     
     
-    /// transform to capitalized case
+    /// Transforms the selections to capitalized case.
     @IBAction override func capitalizeWord(_ sender: Any?) {
         
         self.transformSelection { $0.localizedCapitalized }
     }
     
     
-    /// transform to snake case
+    /// Transforms the selections to snake case.
     @IBAction func snakecaseWord(_ sender: Any?) {
         
         self.transformSelection { $0.snakecased }
     }
     
     
-    /// transform to camel case
+    /// Transforms the selections to camel case.
     @IBAction func camelcaseWord(_ sender: Any?) {
         
         self.transformSelection { $0.camelcased }
     }
     
     
-    /// transform to pascal case
+    /// Transforms the selections to pascal case.
     @IBAction func pascalcaseWord(_ sender: Any?) {
         
         self.transformSelection { $0.pascalcased }
     }
     
     
-    /// encode URL
+    /// Encodes URL.
     @IBAction func encodeURL(_ sender: Any?) {
         
         let allowedCharacters = CharacterSet.alphanumerics.union(.init(charactersIn: "-._~"))
@@ -85,7 +85,7 @@ extension EditorTextView {
     }
     
     
-    /// decode URL
+    /// Decodes URL.
     @IBAction func decodeURL(_ sender: Any?) {
         
         self.transformSelection {
@@ -97,7 +97,7 @@ extension EditorTextView {
     
     // MARK: Action Messages (Transformations)
     
-    /// transform all full-width-available half-width characters in selection to full-width
+    /// Transforms all full-width-available half-width characters in the selections to full-width.
     @IBAction func exchangeFullwidth(_ sender: Any?) {
         
         self.transformSelection {
@@ -106,7 +106,7 @@ extension EditorTextView {
     }
     
     
-    /// transform all full-width characters in selection to half-width
+    /// Transforms all full-width characters in the selections to half-width.
     @IBAction func exchangeHalfwidth(_ sender: Any?) {
         
         self.transformSelection {
@@ -115,7 +115,7 @@ extension EditorTextView {
     }
     
     
-    /// transform half-width roman characters in selection to full-width
+    /// Transforms half-width roman characters in the selections to full-width.
     @IBAction func exchangeFullwidthRoman(_ sender: Any?) {
         
         self.transformSelection {
@@ -124,7 +124,7 @@ extension EditorTextView {
     }
     
     
-    /// transform full-width roman characters in selection to half-width
+    /// Transforms full-width roman characters in the selections to half-width.
     @IBAction func exchangeHalfwidthRoman(_ sender: Any?) {
         
         self.transformSelection {
@@ -133,7 +133,7 @@ extension EditorTextView {
     }
     
     
-    /// transform Hiragana in selection to Katakana
+    /// Transforms Hiragana in the selections to Katakana.
     @IBAction func exchangeKatakana(_ sender: Any?) {
         
         self.transformSelection {
@@ -142,7 +142,7 @@ extension EditorTextView {
     }
     
     
-    /// transform Katakana in selection to Hiragana
+    /// Transforms Katakana in the selections to Hiragana.
     @IBAction func exchangeHiragana(_ sender: Any?) {
         
         self.transformSelection {
@@ -154,7 +154,7 @@ extension EditorTextView {
     
     // MARK: Action Messages (Unicode Normalization)
     
-    /// Normalize Unicode in selection.
+    /// Normalizes Unicode in the selections.
     @IBAction func normalizeUnicode(_ sender: NSMenuItem) {
         
         guard
@@ -166,7 +166,7 @@ extension EditorTextView {
     }
     
     
-    /// Normalize Unicode in selection.
+    /// Normalizes Unicode in the selections.
     ///
     /// - Parameter form: The Unicode normalization form.
     func normalizeUnicode(form: UnicodeNormalizationForm) {
@@ -180,7 +180,7 @@ extension EditorTextView {
     
     // MARK: Action Messages (Smart Quotes)
     
-    /// Straighten all curly quotes.
+    /// Straightens all curly quotes.
     @IBAction func straightenQuotesInSelection(_ sender: Any?) {
         
         self.transformSelection {
@@ -196,7 +196,7 @@ extension EditorTextView {
 
 private extension NSTextView {
     
-    /// transform all selected strings and register to undo manager
+    /// Transforms all selected strings and register to undo manager.
     func transformSelection(actionName: String? = nil, block: (String) -> String) {
         
         // transform the word that contains the cursor if nothing is selected

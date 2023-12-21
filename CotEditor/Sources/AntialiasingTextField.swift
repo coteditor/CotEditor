@@ -36,7 +36,7 @@ final class AntialiasingTextField: NSTextField {
     // MARK: -
     // MARK: Text Field Methods
     
-    /// control antialiasing of text
+    /// Controls antialiasing of text.
     override func draw(_ dirtyRect: NSRect) {
         
         if self.disablesAntialiasing {

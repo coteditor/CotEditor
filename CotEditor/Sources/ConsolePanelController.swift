@@ -76,7 +76,7 @@ final class ConsolePanelController: NSWindowController {
     }
     
     
-    /// Append given message to the console.
+    /// Appends given message to the console.
     ///
     /// - Parameters:
     ///   - log: The console log to show.
@@ -163,7 +163,7 @@ private final class ConsoleViewController: NSViewController {
     
     // MARK: Public Methods
     
-    /// Append the given log message to the console.
+    /// Appends the given log message to the console.
     ///
     /// - Parameter log: The log to append.
     func append(log: Console.Log) {
@@ -184,7 +184,7 @@ private final class ConsoleViewController: NSViewController {
     
     // MARK: Actions
     
-    /// Flush existing log.
+    /// Flushes existing log.
     @IBAction func clearAll(_ sender: Any?) {
         
         guard let textView = self.textView else { return assertionFailure() }
@@ -194,14 +194,14 @@ private final class ConsoleViewController: NSViewController {
     }
     
     
-    /// Increase content font size.
+    /// Increases content font size.
     @IBAction func biggerFont(_ sender: Any?) {
         
         self.fontSize += 1
     }
     
     
-    /// Decrease content font size.
+    /// Decreases content font size.
     @IBAction func smallerFont(_ sender: Any?) {
         
         guard UserDefaults.standard[.consoleFontSize] > NSFont.smallSystemFontSize else { return }
@@ -210,7 +210,7 @@ private final class ConsoleViewController: NSViewController {
     }
     
     
-    /// Restore content font size to the default.
+    /// Restores content font size to the default.
     @IBAction func resetFont(_ sender: Any?) {
         
         UserDefaults.standard.restore(key: .consoleFontSize)
@@ -220,7 +220,7 @@ private final class ConsoleViewController: NSViewController {
     
     // MARK: Private Methods
     
-    /// Change font size of the text view.
+    /// Changes font size of the text view.
     ///
     /// - Parameter fontSize: The new font size.
     private func changeFontSize(_ fontSize: Double) {

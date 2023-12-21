@@ -68,7 +68,9 @@ final class CommandLineToolManager: Sendable {
     }
     
     
-    /// Check the destination of symlink and return whether `cot` command is exists at '/usr/local/bin/'.
+    /// Checks the destination of symlink and return whether `cot` command is exists at '/usr/local/bin/'.
+    ///
+    /// - Returns: The result status.
     func validateSymlink() -> Status {
         
         if !self.linkURL.isReachable { return .none }

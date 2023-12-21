@@ -43,7 +43,7 @@ final class FindPanelResultViewController: NSHostingController<FindPanelResultVi
     }
     
     
-    /// Set new find matches.
+    /// Sets new find matches.
     func setResult(_ result: TextFindAllResult, for client: NSTextView) {
         
         self.model.matches = result.matches
@@ -159,7 +159,7 @@ struct FindPanelResultView: View {
     }
     
     
-    /// Select the match in the target text view.
+    /// Selects the match in the target text view.
     ///
     /// - Parameter id: The identifier of the match to select.
     private func selectMatch(_ id: Match.ID) {
@@ -176,14 +176,14 @@ struct FindPanelResultView: View {
     }
     
     
-    /// Increase result's font size.
+    /// Increases the result's font size.
     private func biggerFont() {
         
         self.fontSize += 1
     }
     
     
-    /// Decrease result's font size.
+    /// Decreases the result's font size.
     private func smallerFont() {
         
         guard self.fontSize > NSFont.smallSystemFontSize else { return }
@@ -192,7 +192,7 @@ struct FindPanelResultView: View {
     }
     
     
-    /// Restore result's font size to default.
+    /// Restores the result's font size to default.
     private func resetFont() {
         
         UserDefaults.standard.restore(key: .findResultViewFontSize)

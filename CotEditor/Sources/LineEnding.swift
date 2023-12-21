@@ -103,7 +103,7 @@ enum LineEnding: Character, CaseIterable {
 
 extension String {
     
-    /// Collect ranges of all line endings per line ending type from the beginning.
+    /// Collects ranges of all line endings per line ending type from the beginning.
     ///
     /// - Parameters:
     ///     - range: The range to parse.
@@ -136,7 +136,7 @@ extension String {
 
 extension StringProtocol {
     
-    /// Return a new string in which all line endings in the receiver are replaced with the given line endings.
+    /// Returns a new string in which all line endings in the receiver are replaced with the given line endings.
     ///
     /// - Parameters:
     ///     - lineEnding: The line ending type with which to replace the target.
@@ -150,7 +150,7 @@ extension StringProtocol {
 
 extension NSMutableAttributedString {
     
-    /// Replace all line endings in the receiver with given line endings.
+    /// Replaces all line endings in the receiver with given line endings.
     ///
     /// - Parameters:
     ///     - lineEnding: The line ending type with which to replace the target.

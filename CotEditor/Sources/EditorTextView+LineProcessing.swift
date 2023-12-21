@@ -30,7 +30,7 @@ extension EditorTextView {
     
     // MARK: Action Messages
     
-    /// move selected line up
+    /// Moves selected line up.
     @IBAction func moveLineUp(_ sender: Any?) {
         
         guard
@@ -43,7 +43,7 @@ extension EditorTextView {
     }
     
     
-    /// move selected line down
+    /// Moves selected line down.
     @IBAction func moveLineDown(_ sender: Any?) {
         
         guard
@@ -56,7 +56,7 @@ extension EditorTextView {
     }
     
     
-    /// sort selected lines (only in the first selection) ascending
+    /// Sorts selected lines (only in the first selection) ascending.
     @IBAction func sortLinesAscending(_ sender: Any?) {
         
         // process whole document if no text selected
@@ -68,7 +68,7 @@ extension EditorTextView {
     }
     
     
-    /// reverse selected lines (only in the first selection)
+    /// Reverses selected lines (only in the first selection).
     @IBAction func reverseLines(_ sender: Any?) {
         
         // process whole document if no text selected
@@ -80,7 +80,7 @@ extension EditorTextView {
     }
     
     
-    /// shuffle selected lines (only in the first selection)
+    /// Shuffles selected lines (only in the first selection).
     @IBAction func shuffleLines(_ sender: Any?) {
         
         // process whole document if no text selected
@@ -92,7 +92,7 @@ extension EditorTextView {
     }
     
     
-    /// delete duplicate lines in selection
+    /// Deletes duplicate lines in selection.
     @IBAction func deleteDuplicateLine(_ sender: Any?) {
         
         guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
@@ -106,7 +106,7 @@ extension EditorTextView {
     }
     
     
-    /// duplicate selected lines below
+    /// Duplicates selected lines below.
     @IBAction func duplicateLine(_ sender: Any?) {
         
         guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
@@ -117,7 +117,7 @@ extension EditorTextView {
     }
     
     
-    /// remove selected lines
+    /// Removes selected lines.
     @IBAction func deleteLine(_ sender: Any?) {
         
         guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
@@ -128,7 +128,7 @@ extension EditorTextView {
     }
     
     
-    /// Join the lines in the selections when the selections contain more than one line break; otherwise join the line where the cursor exists to the subsequent line,
+    /// Joins the lines in the selections when the selections contain more than one line break; otherwise join the line where the cursor exists to the subsequent line.
     @IBAction func joinLines(_ sender: Any?) {
         
         guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
@@ -143,7 +143,7 @@ extension EditorTextView {
     }
     
     
-    /// trim all trailing whitespace
+    /// Trims all trailing whitespace.
     @IBAction func trimTrailingWhitespace(_ sender: Any?) {
         
         let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
@@ -152,7 +152,7 @@ extension EditorTextView {
     }
     
     
-    /// show pattern sort sheet
+    /// Shows the pattern sort sheet.
     @IBAction func patternSort(_ sender: Any?) {
         
         guard self.isEditable else { return NSSound.beep() }
@@ -178,14 +178,14 @@ extension EditorTextView {
     
     // MARK: Private Methods
     
-    /// replace content according to EditingInfo
+    /// Replaces content according to EditingInfo.
     private func edit(with info: String.EditingInfo, actionName: String) {
         
         self.replace(with: info.strings, ranges: info.ranges, selectedRanges: info.selectedRanges, actionName: actionName)
     }
     
     
-    /// Sort lines in the text content.
+    /// Sorts lines in the text content.
     ///
     /// - Parameters:
     ///   - pattern: The sort pattern.
@@ -221,7 +221,7 @@ extension String {
     }
     
     
-    /// move selected line up
+    /// Moves selected line up.
     func moveLineUp(in ranges: [NSRange]) -> EditingInfo? {
         
         // get line ranges to process
@@ -268,7 +268,7 @@ extension String {
     }
     
     
-    /// move selected line down
+    /// Moves selected line down.
     func moveLineDown(in ranges: [NSRange]) -> EditingInfo? {
         
         // get line ranges to process
@@ -318,28 +318,28 @@ extension String {
     }
     
     
-    /// sort selected lines ascending
+    /// Sorts selected lines ascending.
     func sortLinesAscending(in range: NSRange) -> EditingInfo? {
         
         self.sortLines(in: range) { $0.sorted(options: [.localized, .caseInsensitive]) }
     }
     
     
-    /// reverse selected lines
+    /// Reverses selected lines.
     func reverseLines(in range: NSRange) -> EditingInfo? {
         
         self.sortLines(in: range) { $0.reversed() }
     }
     
     
-    /// shuffle selected lines
+    /// Shuffles selected lines.
     func shuffleLines(in range: NSRange) -> EditingInfo? {
         
         self.sortLines(in: range) { $0.shuffled() }
     }
     
     
-    /// delete duplicate lines in selection
+    /// Deletes duplicate lines in selection.
     func deleteDuplicateLine(in ranges: [NSRange]) -> EditingInfo? {
         
         let string = self as NSString
@@ -369,7 +369,7 @@ extension String {
     }
     
     
-    /// duplicate selected lines below
+    /// Duplicates selected lines below.
     func duplicateLine(in ranges: [NSRange], lineEnding: Character) -> EditingInfo? {
         
         let string = self as NSString
@@ -414,7 +414,7 @@ extension String {
     }
     
     
-    /// remove selected lines
+    /// Removes selected lines.
     func deleteLine(in ranges: [NSRange]) -> EditingInfo? {
         
         guard !ranges.isEmpty else { return nil }
@@ -434,7 +434,7 @@ extension String {
     }
     
     
-    /// Join lines in the ranges by replacing continuous whitespaces with a space.
+    /// Joins lines in the ranges by replacing continuous whitespaces with a space.
     func joinLines(in ranges: [NSRange]) -> EditingInfo {
         
         let replacementStrings = ranges
@@ -451,7 +451,7 @@ extension String {
     }
     
     
-    /// Join each of lines containing the given ranges with the subsequent line by replacing continuous whitespaces with a space.
+    /// Joins each of lines containing the given ranges with the subsequent line by replacing continuous whitespaces with a space.
     func joinLines(after ranges: [NSRange]) -> EditingInfo {
         
         let lineRanges = (self as NSString).lineRanges(for: ranges)
@@ -467,7 +467,7 @@ extension String {
     
     // MARK: Private Methods
     
-    /// Sort lines in the range using the given predicate.
+    /// Sorts lines in the range using the given predicate.
     ///
     /// - Parameters:
     ///   - range: The range where sort lines.

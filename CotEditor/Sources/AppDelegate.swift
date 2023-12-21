@@ -296,7 +296,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Action Messages
     
-    /// Activate self and perform New menu action (from Dock menu).
+    /// Activates self and perform New menu action (from Dock menu).
     @IBAction func newDocumentActivatingApplication(_ sender: Any?) {
         
         NSApp.activate(ignoringOtherApps: true)
@@ -304,7 +304,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// Show the standard about panel.
+    /// Shows the standard about panel.
     @IBAction func showAboutPanel(_ sender: Any?) {
         
         var options: [NSApplication.AboutPanelOptionKey: Any] = [:]
@@ -327,42 +327,42 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// Show the Settings window.
+    /// Shows the Settings window.
     @IBAction func showSettingsWindow(_ sender: Any?) {
         
         self.settingsWindowController.showWindow(sender)
     }
     
     
-    /// Show the Quick Action command bar.
+    /// Shows the Quick Action command bar.
     @IBAction func showQuickActions(_ sender: Any?) {
         
         CommandBarWindowController.shared.showWindow(sender)
     }
     
     
-    /// Show Snippet pane in the Settings window.
+    /// Shows Snippet pane in the Settings window.
     @IBAction func showSnippetEditor(_ sender: Any?) {
         
         self.settingsWindowController.openPane(.snippets)
     }
     
     
-    /// Show console panel.
+    /// Shows console panel.
     @IBAction func showConsolePanel(_ sender: Any?) {
         
         ConsolePanelController.shared.showWindow(sender)
     }
     
     
-    /// Show acknowledgments window.
+    /// Shows acknowledgments window.
     @IBAction func showAcknowledgments(_ sender: Any?) {
         
         self.acknowledgmentsWindowController.showWindow(sender)
     }
     
     
-    /// Open OSAScript dictionary in Script Editor.
+    /// Opens OSAScript dictionary in Script Editor.
     @IBAction func openAppleScriptDictionary(_ sender: Any?) {
         
         guard let scriptEditorURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: BundleIdentifier.scriptEditor) else { return }
@@ -374,7 +374,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// Open a specific page in the system Help viewer.
+    /// Opens a specific page in the system Help viewer.
     @IBAction func openHelpAnchor(_ sender: AnyObject) {
         
         guard let identifier = (sender as? any NSUserInterfaceItemIdentification)?.identifier else { return assertionFailure() }
@@ -383,21 +383,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// Open the application web site (coteditor.com) in the default web browser.
+    /// Opens the application web site (coteditor.com) in the default web browser.
     @IBAction func openWebSite(_ sender: Any?) {
         
         NSWorkspace.shared.open(AppWebURL.website.url)
     }
     
     
-    /// Open the bug report page in the default web browser.
+    /// Opens the bug report page in the default web browser.
     @IBAction func reportBug(_ sender: Any?) {
         
         NSWorkspace.shared.open(AppWebURL.issueTracker.url)
     }
     
     
-    /// Open a new bug report window.
+    /// Opens a new bug report window.
     @IBAction func createBugReport(_ sender: Any?) {
         
         // load template file
@@ -426,7 +426,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Private Methods
     
-    /// Ask user whether install the file as a CotEditor theme, or process as a text file.
+    /// Asks user whether install the file as a CotEditor theme, or process as a text file.
     ///
     /// - Parameter url: The file URL to a theme file.
     /// - Returns: Whether the given file was handled as a theme file.
@@ -471,7 +471,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 private extension UserDefaults {
     
-    /// Migrate the on launch setting to new key updated on CotEditor 4.6.0 (2023-09).
+    /// Migrates the on launch setting to new key updated on CotEditor 4.6.0 (2023-09).
     @available(macOS, deprecated: 16, message: "The setting migration is outdated.")
     func migrateOnLaunchSetting() {
         
@@ -481,7 +481,7 @@ private extension UserDefaults {
     }
     
     
-    /// Migrate the user font setting to new format introduced on CotEditor 4.6.0 (2023-09).
+    /// Migrates the user font setting to new format introduced on CotEditor 4.6.0 (2023-09).
     @available(macOS, deprecated: 16, message: "The font setting migration is outdated.")
     func migrateFontSetting() {
         

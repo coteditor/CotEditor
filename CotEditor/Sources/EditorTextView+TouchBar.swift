@@ -95,7 +95,7 @@ extension EditorTextView {
     
     // MARK: NSCandidateListTouchBarItemDelegate
     
-    /// tell the delegate that a user has stopped touching candidates in the candidate list item.
+    /// Tells the delegate that a user has stopped touching candidates in the candidate list item.
     override func candidateListTouchBarItem(_ anItem: NSCandidateListTouchBarItem<AnyObject>, endSelectingCandidateAt index: Int) {
         
         // insert candidate by ourselves to workaround the unwanted behavior about insertion point with a word that starts with a symbol character: e.g. "__init__" in Python (2017-12 macOS 10.13)
@@ -116,7 +116,7 @@ extension EditorTextViewController {
     
     // MARK: NSTextViewDelegate
     
-    /// suggest candidates for automatic text completion
+    /// Suggests candidates for automatic text completion.
     func textView(_ textView: NSTextView, candidatesForSelectedRange selectedRange: NSRange) -> [Any]? {
         
         var index = 0

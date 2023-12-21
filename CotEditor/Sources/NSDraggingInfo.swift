@@ -28,7 +28,7 @@ import UniformTypeIdentifiers
 
 extension NSDraggingInfo {
     
-    /// Obtain NSFilePromiseReceiver type dragging items.
+    /// Obtains NSFilePromiseReceiver type dragging items.
     ///
     /// - Parameters:
     ///   - type: The UTType to restrict the results.
@@ -51,7 +51,7 @@ extension NSDraggingInfo {
     }
     
     
-    /// Obtain file URL type dragging items.
+    /// Obtains file URL type dragging items.
     ///
     /// - Parameters:
     ///   - type: The UTType to restrict the results.

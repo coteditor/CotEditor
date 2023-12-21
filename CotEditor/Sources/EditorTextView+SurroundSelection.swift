@@ -30,42 +30,42 @@ extension EditorTextView {
     
     // MARK: Action Messages
     
-    /// insert ' around selections
+    /// Inserts single quotation marks ' around the selections.
     @IBAction func surroundSelectionWithSingleQuotes(_ sender: Any?) {
         
         self.surroundSelections(begin: "'", end: "'")
     }
     
     
-    /// insert " around selections
+    /// Inserts double quotation marks " around the selections.
     @IBAction func surroundSelectionWithDoubleQuotes(_ sender: Any?) {
         
         self.surroundSelections(begin: "\"", end: "\"")
     }
     
     
-    /// insert () around selections
+    /// Inserts pairs of parentheses () around the selections.
     @IBAction func surroundSelectionWithParentheses(_ sender: Any?) {
         
         self.surroundSelections(begin: "(", end: ")")
     }
     
     
-    /// insert {} around selections
+    /// Inserts pairs of braces {} around the selections.
     @IBAction func surroundSelectionWithBraces(_ sender: Any?) {
         
         self.surroundSelections(begin: "{", end: "}")
     }
     
     
-    /// insert [] around selections
+    /// Inserts square brackets [] around the selections.
     @IBAction func surroundSelectionWithSquareBrackets(_ sender: Any?) {
         
         self.surroundSelections(begin: "[", end: "]")
     }
     
     
-    /// show custom surround sheet
+    /// Shows the custom surround sheet.
     @IBAction func surroundSelection(_ sender: Any?) {
         
         let view = CustomSurroundStringView(pair: self.customSurroundPair) { [weak self] pair in
@@ -83,7 +83,7 @@ extension EditorTextView {
 
 extension NSTextView {
     
-    /// insert strings around selections
+    /// Inserts strings around selections.
     @discardableResult
     final func surroundSelections(begin: String, end: String) -> Bool {
         

@@ -25,7 +25,7 @@
 
 import AppKit
 
-/// outlineView column identifier
+/// Column identifiers for outline view.
 private extension NSUserInterfaceItemIdentifier {
     
     static let command = NSUserInterfaceItemIdentifier("command")
@@ -64,7 +64,6 @@ final class KeyBindingsPaneController: NSViewController, NSOutlineViewDataSource
     
     // MARK: Outline View Data Source
     
-    /// return number of child items
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
         if let node = item as? Node<KeyBindingItem> {
@@ -77,14 +76,12 @@ final class KeyBindingsPaneController: NSViewController, NSOutlineViewDataSource
     }
     
     
-    /// return if item is expandable
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         
         (item as? Node<KeyBindingItem>)?.children != nil
     }
     
     
-    /// return child items
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
         if let node = item as? Node<KeyBindingItem> {
@@ -133,7 +130,7 @@ final class KeyBindingsPaneController: NSViewController, NSOutlineViewDataSource
     
     // MARK: Action Messages
     
-    /// Validate and apply new shortcut key input.
+    /// Validates and apply new shortcut key input.
     @IBAction func didEditShortcut(_ sender: ShortcutField) {
         
         guard let outlineView = self.outlineView else { return assertionFailure() }
@@ -179,7 +176,7 @@ final class KeyBindingsPaneController: NSViewController, NSOutlineViewDataSource
     }
     
     
-    /// Restore key binding setting to default.
+    /// Restores key binding setting to default.
     @IBAction func setToFactoryDefaults(_ sender: Any?) {
         
         try? KeyBindingManager.shared.restoreDefaults()
@@ -194,7 +191,7 @@ final class KeyBindingsPaneController: NSViewController, NSOutlineViewDataSource
     
     // MARK: Private Methods
     
-    /// Save current settings.
+    /// Saves the current settings.
     private func saveSettings() {
         
         let keyBindings = self.menuTree

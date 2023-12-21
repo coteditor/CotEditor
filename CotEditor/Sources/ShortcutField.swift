@@ -39,7 +39,7 @@ final class ShortcutField: NSTextField, NSTextViewDelegate {
     // MARK: -
     // MARK: Text Field Methods
     
-    /// text field turns into edit mode
+    /// Text field turns into edit mode.
     override func becomeFirstResponder() -> Bool {
         
         guard super.becomeFirstResponder() else { return false }
@@ -77,7 +77,7 @@ final class ShortcutField: NSTextField, NSTextViewDelegate {
     }
     
     
-    /// end editing
+    /// End editing.
     override func textDidEndEditing(_ notification: Notification) {
         
         // restore field editor
@@ -106,7 +106,7 @@ final class ShortcutField: NSTextField, NSTextViewDelegate {
     
     // MARK: Private Methods
     
-    /// Remove key down monitoring.
+    /// Stops and removes the key down monitoring.
     private func removeKeyMonitor() {
         
         if let monitor = self.keyDownMonitor {

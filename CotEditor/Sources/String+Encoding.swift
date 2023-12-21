@@ -124,7 +124,7 @@ extension String {
         }
     
     
-    /// decode data and remove UTF-8 BOM if exists
+    /// Decodes data and remove UTF-8 BOM if exists
     ///
     /// cf. <https://bugs.swift.org/browse/SR-10173>
     init?(bomCapableData data: Data, encoding: String.Encoding) {
@@ -137,7 +137,7 @@ extension String {
     }
     
     
-    /// obtain string from Data with intelligent encoding detection
+    /// Obtains string from Data with intelligent encoding detection.
     init(data: Data, suggestedCFEncodings: [CFStringEncoding], usedEncoding: inout String.Encoding?) throws {
         
         // detect encoding from so-called "magic numbers"
@@ -171,7 +171,7 @@ extension String {
     
     // MARK: Public Methods
     
-    /// scan encoding declaration in string
+    /// Scans encoding declaration in string.
     func scanEncodingDeclaration(upTo maxLength: Int, suggestedCFEncodings: [CFStringEncoding]) -> String.Encoding? {
         
         guard !self.isEmpty else { return nil }
@@ -203,7 +203,7 @@ extension String {
     }
     
     
-    /// Convert Yen signs (U+00A5) in consideration of the encoding.
+    /// Converts Yen signs (U+00A5) in consideration of the encoding.
     func convertingYenSign(for encoding: String.Encoding) -> String {
         
         "¥".canBeConverted(to: encoding) ? self : self.replacing("¥", with: "\\")
@@ -216,7 +216,7 @@ extension String {
 
 extension Data {
     
-    /// decode `com.apple.TextEncoding` extended file attribute to encoding
+    /// Decodes `com.apple.TextEncoding` extended file attribute to encoding.
     var decodingXattrEncoding: String.Encoding? {
         
         guard let string = String(data: self, encoding: .ascii) else { return nil }
@@ -243,7 +243,7 @@ extension Data {
 
 extension String.Encoding {
     
-    /// encode encoding to data for `com.apple.TextEncoding` extended file attribute
+    /// Encodes encoding to data for `com.apple.TextEncoding` extended file attribute
     var xattrEncodingData: Data? {
         
         let cfEncoding = CFStringConvertNSStringEncodingToEncoding(self.rawValue)

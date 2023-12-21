@@ -111,7 +111,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     
     // MARK: Layout Manager Methods
     
-    /// adjust rect of last empty line
+    /// Adjusts rect of last empty line.
     override func setExtraLineFragmentRect(_ fragmentRect: NSRect, usedRect: NSRect, textContainer container: NSTextContainer) {
         
         // -> The height of the extra line fragment should be the same as other normal fragments that are likewise customized in the delegate.
@@ -124,7 +124,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     }
     
     
-    /// draw glyphs
+    /// Draws glyphs.
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         
         NSGraphicsContext.saveGraphicsState()
@@ -147,7 +147,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     }
     
     
-    /// draw underline
+    /// Draws underline.
     override func drawUnderline(forGlyphRange glyphRange: NSRange, underlineType underlineVal: NSUnderlineStyle, baselineOffset: CGFloat, lineFragmentRect lineRect: NSRect, lineFragmentGlyphRange lineGlyphRange: NSRange, containerOrigin: NSPoint) {
         
         // move single underline position on the vertical orientation to the left side.
@@ -165,7 +165,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     }
     
     
-    /// fill background rectangles with a color
+    /// Fills background rectangles with a color.
     override func fillBackgroundRectArray(_ rectArray: UnsafePointer<NSRect>, count rectCount: Int, forCharacterRange charRange: NSRange, color: NSColor) {
         
         // modify selected highlight color when the window is inactive
@@ -184,7 +184,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     }
     
     
-    /// invalidate display for the given character range
+    /// Invalidates display for the given character range.
     override func invalidateDisplay(forCharacterRange charRange: NSRange) {
         
         // ignore display validation during applying temporary attributes continuously
@@ -245,7 +245,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     }
     
     
-    /// Fixed baseline offset to place glyphs vertically in the middle of a line.
+    /// Returns adjusted baseline offset to place glyphs vertically in the middle of a line.
     ///
     /// - Parameter layoutOrientation: The text layout orientation.
     /// - Returns: The baseline offset.

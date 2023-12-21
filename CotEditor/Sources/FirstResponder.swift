@@ -28,7 +28,7 @@ import SwiftUI
 
 extension View {
     
-    /// Provide access to the Cocoa responder chain.
+    /// Provides access to the Cocoa responder chain.
     ///
     /// - Parameter firstResponder: The first responder.
     func responderChain(to firstResponder: FirstResponder) -> some View {
@@ -51,7 +51,7 @@ final class FirstResponder {
     }
     
     
-    /// Send the action message to the first responder, namely `nil`.
+    /// Sends the action message to the first responder, namely `nil`.
     ///
     /// - Parameters:
     ///   - action: The action message to send.

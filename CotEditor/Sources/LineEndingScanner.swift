@@ -88,7 +88,7 @@ final class LineEndingScanner {
     }
     
     
-    /// Return the 1-based line number at the given character index.
+    /// Returns the 1-based line number at the given character index.
     ///
     /// - Parameter index: The character index.
     /// - Returns: The 1-based line number.
@@ -100,7 +100,7 @@ final class LineEndingScanner {
     }
     
     
-    /// Whether the character at the given index is a line ending inconsistent with the `documentLineEnding`.
+    /// Returns whether the character at the given index is a line ending inconsistent with the `documentLineEnding`.
     ///
     /// - Parameter characterIndex: The index of character to test.
     /// - Returns: A boolean indicating whether the character is an inconsistent line ending.
@@ -113,7 +113,7 @@ final class LineEndingScanner {
     
     // MARK: Private Methods
     
-    /// Update inconsistent line endings assuming the textStorage was edited.
+    /// Updates inconsistent line endings by assuming the textStorage was edited.
     ///
     /// - Parameters:
     ///   - editedRange: The edited range.

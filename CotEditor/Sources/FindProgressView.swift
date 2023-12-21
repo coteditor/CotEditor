@@ -46,7 +46,7 @@ struct FindProgressView: View {
     
     // MARK: View
     
-    /// Initialize view from a storyboard with given progress instance.
+    /// Initializes a view from a storyboard with given progress instance.
     ///
     /// - Parameters:
     ///   - label: The text to display as the label of the indicator.
@@ -113,7 +113,7 @@ struct FindProgressView: View {
     
     // MARK: Private Methods
     
-    /// Update the progress description.
+    /// Updates the progress description.
     private func updateDescription() {
         
         self.description = String(localized: self.unit.format(self.progress.count))

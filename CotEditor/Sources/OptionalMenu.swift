@@ -68,7 +68,7 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
     
     // MARK: Private Functions
     
-    /// Check the state of the modifier key press and update the item visibility.
+    /// Checks the state of the modifier key press and update the item visibility.
     ///
     /// - Parameter force: Whether forcing to update the item visibility.
     @objc private func validateKeyEvent(force: Bool = false) {
@@ -81,7 +81,7 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
     }
     
     
-    /// Update the visibility of optional items.
+    /// Updates the visibility of optional items.
     ///
     /// - Parameter shows: `true` to show optional items.
     private func updateOptionalItems(shows: Bool) {

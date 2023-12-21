@@ -27,7 +27,7 @@ import AppKit
 
 extension NSSplitViewController {
     
-    /// Restore the visibility of tab view items.
+    /// Restores the visibility of tab view items.
     final func restoreAutosavingState() {
         
         assert(self.isViewLoaded)

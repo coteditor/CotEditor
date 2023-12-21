@@ -46,7 +46,7 @@ extension StringProtocol {
     }
     
     
-    /// Calculate the line number at the given character index (1-based).
+    /// Calculates the line number at the given character index (1-based).
     ///
     /// - Parameter index: The character index.
     /// - Returns: The line number.
@@ -58,7 +58,7 @@ extension StringProtocol {
     }
     
     
-    /// Count the number of lines in the given range including the last blank line.
+    /// Counts the number of lines in the given range including the last blank line.
     ///
     /// - Parameter range: The character range to count lines, or when `nil`, the entire range.
     /// - Returns: The number of lines.
@@ -81,7 +81,7 @@ extension StringProtocol {
     }
     
     
-    /// Count the number of lines in the given ranges including the last blank line.
+    /// Counts the number of lines in the given ranges including the last blank line.
     ///
     /// - Parameter ranges: The character ranges to count lines.
     /// - Returns: The number of lines.
@@ -113,7 +113,7 @@ extension StringProtocol {
     }
     
     
-    /// Calculate the number of characters from the beginning of the line where the given character index locates (0-based).
+    /// Calculates the number of characters from the beginning of the line where the given character index locates (0-based).
     ///
     /// - Parameter index: The character index.
     /// - Returns: The column number.
@@ -129,7 +129,7 @@ extension StringProtocol {
 
 extension String {
     
-    /// Calculate the line number at the given character index (1-based).
+    /// Calculates the line number at the given character index (1-based).
     ///
     /// - Parameter location: The UTF16-based character index.
     /// - Returns: The line number.
@@ -141,7 +141,7 @@ extension String {
     }
     
     
-    /// Count the number of lines in the given range including the last blank line.
+    /// Counts the number of lines in the given range including the last blank line.
     ///
     /// - Parameter range: The character range to count lines, or when `nil`, the entire range.
     /// - Returns: The number of lines.
@@ -190,7 +190,7 @@ struct CharacterCountOptions {
 
 extension String {
     
-    /// Count string in the way described in the `option`.
+    /// Counts string in the way described in the `option`.
     ///
     /// - Parameter options: The way to count.
     /// - Returns: Counted number, or nil if failed.

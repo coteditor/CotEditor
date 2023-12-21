@@ -70,7 +70,7 @@ final class WarningsViewController: NSSplitViewController, DocumentOwner {
     
     // MARK: Private Methods
     
-    /// Update document in the child views.
+    /// Updates document in the child views.
     private func updateDocument() {
         
         for item in self.splitViewItems {

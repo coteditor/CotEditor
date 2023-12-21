@@ -93,7 +93,7 @@ extension Snippet {
     }
     
     
-    /// Return strings to insert.
+    /// Returns strings to insert.
     ///
     /// - Parameters:
     ///   - string: The whole content string where to insert the snippet.
@@ -119,7 +119,7 @@ extension Snippet {
     }
     
     
-    /// Return a string to insert.
+    /// Returns a string to insert.
     ///
     /// - Parameters:
     ///   - selectedString: The selected string.

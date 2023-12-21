@@ -103,7 +103,7 @@ final class RegularExpressionTextField: NSTextField {
     }
     
     
-    /// receiver was focused to edit content
+    /// The Receiver was focused to edit content.
     override func becomeFirstResponder() -> Bool {
         
         guard super.becomeFirstResponder() else { return false }
@@ -114,7 +114,7 @@ final class RegularExpressionTextField: NSTextField {
     }
     
     
-    /// text (in the field editor) was just changed
+    /// The text in the field editor was just changed.
     override func textDidChange(_ notification: Notification) {
         
         super.textDidChange(notification)
@@ -123,7 +123,7 @@ final class RegularExpressionTextField: NSTextField {
     }
     
     
-    /// string value was directly changed
+    /// The string value was directly changed.
     override var objectValue: Any? {
         
         didSet {
@@ -141,7 +141,7 @@ final class RegularExpressionTextField: NSTextField {
     }
     
     
-    /// syntax highlight field editor
+    /// Syntax highlights the field editor.
     private func invalidateFieldEditor() {
         
         guard let editor = self.currentEditor() as? NSTextView else { return }

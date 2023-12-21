@@ -29,7 +29,7 @@ extension EditorTextView {
     
     // MARK: Text View Methods - Arrow
     
-    /// Move cursor backward (←).
+    /// Moves cursor backward (←).
     ///
     /// - Note:
     ///   Although the method name contains "Left", it will be adjusted intelligently in vertical/RTL layout mode.
@@ -50,7 +50,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor backward and modify selection (⇧←).
+    /// Moves cursor backward and modifies selection (⇧←).
     override func moveLeftAndModifySelection(_ sender: Any?) {
         
         // -> The default implementation cannot handle CRLF line endings correctly (2022-02 macOS 12).
@@ -64,7 +64,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor forward (→)
+    /// Moves cursor forward (→).
     override func moveRight(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {
@@ -81,7 +81,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor forward and modify selection (⇧→).
+    /// Moves cursor forward and modifies selection (⇧→).
     override func moveRightAndModifySelection(_ sender: Any?) {
         
         // -> The default implementation cannot handle CRLF line endings correctly (2022-02 macOS 12).
@@ -95,7 +95,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor up to the upper visual line (↑ / ^P)
+    /// Moves cursor up to the upper visual line (↑ / ^P).
     override func moveUp(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {
@@ -108,7 +108,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor up and modify selection (⇧↑ / ^⇧P).
+    /// Moves cursor up and modifies selection (⇧↑ / ^⇧P).
     override func moveUpAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -121,7 +121,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor down to the lower visual line (↓ / ^N)
+    /// Moves cursor down to the lower visual line (↓ / ^N)
     override func moveDown(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {
@@ -134,7 +134,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor down and modify selection (⇧↓ / ^⇧N).
+    /// Moves cursor down and modifies selection (⇧↓ / ^⇧N).
     override func moveDownAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -150,7 +150,7 @@ extension EditorTextView {
     
     // MARK: Text View Methods - Option+Arrow
     
-    /// move cursor to the beginning of the word continuously (opt←)
+    /// Moves cursor to the beginning of the word continuously (opt←)
     override func moveWordLeft(_ sender: Any?) {
         
         // find word boundary myself
@@ -163,7 +163,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the beginning of the word and modify selection continuously (⇧opt←).
+    /// Moves cursor to the beginning of the word and modifies selection continuously (⇧opt←).
     override func moveWordLeftAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -176,7 +176,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the end of the word continuously (opt→)
+    /// Moves cursor to the end of the word continuously (opt→)
     override func moveWordRight(_ sender: Any?) {
         
         // find word boundary myself (cf. moveWordLeft(_:))
@@ -187,7 +187,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the end of the word and modify selection continuously (⇧opt→).
+    /// Moves cursor to the end of the word and modifies selection continuously (⇧opt→).
     override func moveWordRightAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -200,7 +200,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the beginning of the logical line and modify selection continuously (⇧opt↑).
+    /// Moves cursor to the beginning of the logical line and modifies selection continuously (⇧opt↑).
     override func moveParagraphBackwardAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -213,7 +213,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the end of the logical line and modify selection continuously (⇧opt↓).
+    /// Moves cursor to the end of the logical line and modifies selection continuously (⇧opt↓).
     override func moveParagraphForwardAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -226,13 +226,13 @@ extension EditorTextView {
     }
     
     
-    /// Expand/reduce a single selection to the next word boundary by considering additional word separators.
+    /// Expands/reduces a single selection to the next word boundary by considering additional word separators.
     ///
     /// - Parameter sender: The sender of the action.
     /// - Parameter isLeft: `true` if this method is invoked from `moveWordLeftAndModifySelection(_:)`, otherwise `false`.
     ///
     /// - Note:
-    /// this method changes the selection by using only the super's selection modification methods
+    /// This method changes the selection by using only the super's selection modification methods
     /// to let the textView remember the correct cursor origin for following single selection modifications.
     private func moveWordAndModifySelection(_ sender: Any?, left isLeft: Bool) {
         
@@ -296,7 +296,7 @@ extension EditorTextView {
     
     // MARK: Text View Methods - Command+Arrow
     
-    /// move cursor to the beginning of the current visual line (⌘←)
+    /// Moves cursor to the beginning of the current visual line (⌘←)
     override func moveToBeginningOfLine(_ sender: Any?) {
         
         self.moveCursors(affinity: .downstream) {
@@ -305,7 +305,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the beginning of the current visual line and modify selection (⇧⌘←).
+    /// Moves cursor to the beginning of the current visual line and modifies selection (⇧⌘←).
     override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -327,7 +327,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the end of the current visual line (⌘→)
+    /// Moves cursor to the end of the current visual line (⌘→)
     override func moveToEndOfLine(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {
@@ -341,7 +341,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the end of the current visual line and modify selection (⇧⌘→).
+    /// Moves cursor to the end of the current visual line and modifies selection (⇧⌘→).
     override func moveToEndOfLineAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -358,7 +358,7 @@ extension EditorTextView {
     
     // MARK: Text View Methods - Emacs
     
-    /// Move cursor backward (^B).
+    /// Moves cursor backward (^B).
     ///
     /// - Note: `opt↑` invokes first this method and then `moveToBeginningOfParagraph(_:)`.
     override func moveBackward(_ sender: Any?) {
@@ -371,7 +371,7 @@ extension EditorTextView {
     }
     
     
-    /// Move cursor backward and modify selection (^⇧B).
+    /// Moves cursor backward and modifies selection (^⇧B).
     ///
     /// - Note: `opt⇧↓` invokes first this method and then `moveToEndOfParagraphAndModifySelection(_:)`.
     override func moveBackwardAndModifySelection(_ sender: Any?) {
@@ -385,7 +385,7 @@ extension EditorTextView {
     }
     
     
-    /// Move cursor forward (^F).
+    /// Moves cursor forward (^F).
     ///
     /// - Note: `opt↓` invokes first this method and then `moveToEndOfParagraph(_:)`.
     override func moveForward(_ sender: Any?) {
@@ -398,7 +398,7 @@ extension EditorTextView {
     }
     
     
-    /// Move cursor forward and modify selection (^⇧F).
+    /// Moves cursor forward and modifies selection (^⇧F).
     ///
     /// - Note: `opt⇧↓` invokes first this method and then `moveToEndOfParagraphAndModifySelection(_:)`.
     override func moveForwardAndModifySelection(_ sender: Any?) {
@@ -412,7 +412,7 @@ extension EditorTextView {
     }
     
     
-    /// Move cursor to the beginning of the logical line (^A).
+    /// Moves cursor to the beginning of the logical line (^A).
     ///
     /// - Note: `opt↑` invokes first `moveBackward(_:)` and then this method.
     override func moveToBeginningOfParagraph(_ sender: Any?) {
@@ -427,7 +427,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the beginning of the logical line and modify selection (^⇧A).
+    /// Moves cursor to the beginning of the logical line and modifies selection (^⇧A).
     override func moveToBeginningOfParagraphAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -440,7 +440,7 @@ extension EditorTextView {
     }
     
     
-    /// Move cursor to the end of the logical line (^E).
+    /// Moves cursor to the end of the logical line (^E).
     ///
     /// - Note: `opt↓` invokes first `moveForward(_:)` and then this method.
     override func moveToEndOfParagraph(_ sender: Any?) {
@@ -455,7 +455,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the end of the logical line and modify selection (^⇧E).
+    /// Moves cursor to the end of the logical line and modifies selection (^⇧E).
     override func moveToEndOfParagraphAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -468,7 +468,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the beginning of the word (^⌥B)
+    /// Moves cursor to the beginning of the word (^⌥B)
     override func moveWordBackward(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {
@@ -481,7 +481,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the beginning of the word and modify selection (^⌥⇧B).
+    /// Moves cursor to the beginning of the word and modifies selection (^⌥⇧B).
     override func moveWordBackwardAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -494,7 +494,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the end of the word (^⌥F)
+    /// Moves cursor to the end of the word (^⌥F)
     override func moveWordForward(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {
@@ -507,7 +507,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the end of the word and modify selection (^⌥⇧F).
+    /// Moves cursor to the end of the word and modifies selection (^⌥⇧F).
     override func moveWordForwardAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -531,7 +531,7 @@ extension EditorTextView {
     
     // MARK: Text View Methods - Select
     
-    /// select logical line
+    /// Selects logical line.
     override func selectParagraph(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {
@@ -546,7 +546,7 @@ extension EditorTextView {
     }
     
     
-    /// select word
+    /// Selects word.
     override func selectWord(_ sender: Any?) {
         
         if self.selectedRange.isEmpty {
@@ -584,7 +584,7 @@ extension EditorTextView {
     
     // MARK: Actions
     
-    /// process user's shortcut input
+    /// Processes user's shortcut input.
     override func performKeyEquivalent(with event: NSEvent) -> Bool {
         
         guard !super.performKeyEquivalent(with: event) else { return true }
@@ -612,14 +612,14 @@ extension EditorTextView {
     }
     
     
-    /// add insertion point just above the first selected range (^⇧↑)
+    /// Adds insertion point just above the first selected range (^⇧↑).
     @IBAction func selectColumnUp(_ sender: Any?) {
         
         self.addSelectedColumn(affinity: .downstream)
     }
     
     
-    /// add insertion point just below the last selected range (^⇧↓)
+    /// Adds insertion point just below the last selected range (^⇧↓).
     @IBAction func selectColumnDown(_ sender: Any?) {
         
         self.addSelectedColumn(affinity: .upstream)
@@ -634,7 +634,7 @@ extension EditorTextView {
     
     // MARK: Deletion
     
-    /// delete forward (fn+delete / ^D)
+    /// Deletes forward (fn+delete / ^D).
     override func deleteForward(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {
@@ -645,7 +645,7 @@ extension EditorTextView {
     }
     
     
-    /// delete to the end of logical line (^K)
+    /// Deletes to the end of logical line (^K).
     override func deleteToEndOfParagraph(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {
@@ -657,7 +657,7 @@ extension EditorTextView {
     }
     
     
-    /// delete to the beginning of visual line (command+delete)
+    /// Deletes to the beginning of visual line (command+delete).
     override func deleteToBeginningOfLine(_ sender: Any?) {
         
         // -> Do not invoke super even with a single selection because the behavior of
@@ -668,7 +668,7 @@ extension EditorTextView {
     }
     
     
-    /// delete to the beginning of word (opt+delete)
+    /// Deletes to the beginning of word (opt+delete).
     override func deleteWordBackward(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {
@@ -680,7 +680,7 @@ extension EditorTextView {
     }
     
     
-    /// delete to the end of word (opt⌦)
+    /// Deletes to the end of word (opt⌦).
     override func deleteWordForward(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {
@@ -695,7 +695,7 @@ extension EditorTextView {
     
     // MARK: Editing
     
-    /// swap characters before and after insertions (^T)
+    /// Swaps characters before and after insertions (^T).
     override func transpose(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {

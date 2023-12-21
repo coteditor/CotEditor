@@ -78,7 +78,7 @@ final class ThemeManager: SettingFileManaging {
     
     // MARK: Public Methods
     
-    /// default setting by taking the appearance state into consideration
+    /// The default setting by taking the appearance state into consideration.
     var defaultSettingName: String {
         
         let defaultSettingName = DefaultSettings.defaults[.theme] as! String
@@ -88,7 +88,7 @@ final class ThemeManager: SettingFileManaging {
     }
     
     
-    /// user default setting by taking the appearance state into consideration
+    /// The user default setting by taking the appearance state into consideration.
     var userDefaultSettingName: String {
         
         let settingName = UserDefaults.standard[.theme]
@@ -118,7 +118,11 @@ final class ThemeManager: SettingFileManaging {
     }
     
     
-    /// save setting file
+    /// Saves the given setting file.
+    ///
+    /// - Parameters:
+    ///   - setting: The setting to save.
+    ///   - name: The name of the setting to save.
     func save(setting: Setting, name: String) throws {
         
         let encoder = JSONEncoder()
@@ -139,7 +143,7 @@ final class ThemeManager: SettingFileManaging {
     }
     
     
-    /// create a new untitled setting
+    /// Creates a new untitled setting.
     ///
     /// - Returns: The setting name created.
     @discardableResult
@@ -153,14 +157,22 @@ final class ThemeManager: SettingFileManaging {
     }
     
     
-    /// return whether given setting name is dark theme
+    /// Returns whether given setting name is dark theme.
+    ///
+    /// - Parameter name: The setting name to test.
+    /// - Returns: A bool value.
     func isDark(name: String) -> Bool {
         
         name.hasSuffix("(Dark)")
     }
     
     
-    /// return setting name of dark/light version of given one if any exists
+    /// Returns the setting name of dark/light version of given one if any exists.
+    ///
+    /// - Parameters:
+    ///   - name: The base setting name.
+    ///   - forDark: `true` when the dark mode version should be returned.
+    /// - Returns: A setting name or `nil`, if not exists.
     func equivalentSettingName(to name: String, forDark: Bool) -> String? {
         
         let baseName = name.replacing(/\ \((Dark|Light)\)$/, with: "", maxReplacements: 1)
@@ -181,14 +193,14 @@ final class ThemeManager: SettingFileManaging {
     
     // MARK: Setting File Managing
     
-    /// Load setting from the file at the given URL.
+    /// Loads the setting from the file at the given URL.
     func loadSetting(at fileURL: URL) throws -> Setting {
         
         try Theme(contentsOf: fileURL)
     }
     
     
-    /// Load settings in the user domain.
+    /// Loads the settings in the user domain.
     func loadUserSettings() {
         
         // get user setting names if exists

@@ -45,7 +45,7 @@ struct RegexTextField: NSViewRepresentable {
     }
     
     
-    /// Set the inset value inside the field.
+    /// Sets the inset value inside the field.
     ///
     /// - Parameters:
     ///   - inset: An amount, given in points, to inset this view on the specified edges.

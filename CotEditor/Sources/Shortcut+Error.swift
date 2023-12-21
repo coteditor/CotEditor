@@ -60,7 +60,7 @@ struct InvalidShortcutError: LocalizedError {
 
 extension Shortcut {
     
-    /// Validate whether the new shortcut is settable.
+    /// Validates whether the new shortcut is settable.
     ///
     /// - Throws: `InvalidShortcutError`
     /// - Parameters:

@@ -38,7 +38,7 @@ struct StringComparisonOptions: OptionSet {
 
 extension MutableCollection where Self: RandomAccessCollection {
     
-    /// Sort the collection in place, using the string value that the given key path refers as the comparison between elements.
+    /// Sorts the collection in place, using the string value that the given key path refers as the comparison between elements.
     ///
     /// - Parameters:
     ///   - keyPath: The key path to the string to compare.
@@ -51,7 +51,7 @@ extension MutableCollection where Self: RandomAccessCollection {
     }
     
     
-    /// Sort the collection, using the desired string comparison strategy.
+    /// Sorts the collection, using the desired string comparison strategy.
     ///
     /// - Parameters:
     ///   - options: The strategy to compare strings.
@@ -66,7 +66,7 @@ extension MutableCollection where Self: RandomAccessCollection {
 
 extension Sequence {
     
-    /// Return the elements of the sequence, sorted using the string value that the given key path refers with the desired string comparison strategy.
+    /// Returns the elements of the sequence, sorted using the string value that the given key path refers with the desired string comparison strategy.
     ///
     /// - Parameters:
     ///   - keyPath: The key path to the string to compare.
@@ -80,7 +80,7 @@ extension Sequence {
     }
     
     
-    /// Return the elements of the sequence, sorted with the desired string comparison strategy.
+    /// Returns the elements of the sequence, sorted with the desired string comparison strategy.
     ///
     /// - Parameters:
     ///   - options: The strategy to compare strings.
@@ -116,7 +116,7 @@ private func compareFunction(options: StringComparisonOptions) -> (String, Strin
 
 extension Collection<String> {
     
-    /// Create a unique name from the receiver's elements by adding the suffix and also a number if needed.
+    /// Creates a unique name from the receiver's elements by adding the suffix and also a number if needed.
     ///
     /// - Parameters:
     ///   - proposedName: The name candidate.

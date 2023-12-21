@@ -75,7 +75,7 @@ final class GeneralPaneController: NSViewController {
     
     // MARK: Action Messages
     
-    /// "Enable Auto Save and Versions" checkbox was clicked
+    /// "Enable Auto Save and Versions" checkbox was clicked.
     @IBAction func updateAutosaveSetting(_ sender: Any?) {
         
         // do nothing if the setting returned to the current one.
@@ -85,7 +85,7 @@ final class GeneralPaneController: NSViewController {
     }
     
     
-    /// "Restore last windows on launch" checkbox was clicked
+    /// "Restore last windows on launch" checkbox was clicked.
     @IBAction func updateWindowRestorationSetting(_ sender: Any?) {
         
         self.askRelaunch(for: .quitAlwaysKeepsWindows)
@@ -99,7 +99,7 @@ final class GeneralPaneController: NSViewController {
     }
     
     
-    /// Show warning manage sheet.
+    /// Shows a warning manage sheet.
     @IBAction func showWarningsSetting(_ sender: Any?) {
         
         let controller = NSHostingController(rootView: WarningsSettingView())
@@ -112,6 +112,9 @@ final class GeneralPaneController: NSViewController {
     
     // MARK: Private Methods
     
+    /// Shows a dialog to the user to ask relaunching the app to apply new setting to it.
+    ///
+    /// - Parameter defaultKey: The default key to toggle.
     @MainActor private func askRelaunch(for defaultKey: DefaultKey<Bool>) {
         
         let alert = NSAlert()
@@ -139,7 +142,7 @@ final class GeneralPaneController: NSViewController {
     }
     
     
-    /// Apply command-line tool availability to UI.
+    /// Applies the command-line tool availability to UI.
     private func validateCommandLineTool() {
         
         let status = CommandLineToolManager.shared.validateSymlink()

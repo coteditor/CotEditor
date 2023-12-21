@@ -27,7 +27,7 @@ import AppKit
 
 extension NSApplication {
     
-    /// Relaunch application itself.
+    /// Relaunches the application itself.
     final func relaunch() {
         
         let escapedPath = Bundle.main.bundlePath.replacing("\"", with: "\\\"")

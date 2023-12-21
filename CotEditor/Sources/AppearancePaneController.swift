@@ -144,7 +144,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     // MARK: User Interface Validation
     
-    /// apply current state to menu items
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.themeTableMenu)
@@ -214,21 +213,21 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     // MARK: Data Source
     
-    /// number of themes
+    /// The number of themes.
     func numberOfRows(in tableView: NSTableView) -> Int {
         
         self.themeNames.count
     }
     
     
-    /// content of table cell
+    /// The content of the table cell.
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
         self.themeNames[safe: row]
     }
     
     
-    /// validate when dragged items come to tableView
+    /// Validates when dragged items come to tableView.
     func tableView(_ tableView: NSTableView, validateDrop info: any NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         guard
@@ -247,7 +246,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// check acceptability of dropped items and insert them to table
+    /// Check the acceptability of dropped items and inserts them to table.
     func tableView(_ tableView: NSTableView, acceptDrop info: any NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         if let receivers = info.filePromiseReceivers(with: .cotTheme, for: tableView) {
@@ -318,7 +317,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     // NSTableViewDelegate  < themeTableView
     
-    /// selection of theme table did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         guard notification.object as? NSTableView == self.themeTableView else { return }
@@ -327,7 +325,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// set if table cell is editable
     func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
         
         guard let view = rowView.view(atColumn: 0) as? NSTableCellView else { return }
@@ -340,7 +337,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// set action on swiping theme name
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }
@@ -374,7 +370,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     // NSTextFieldDelegate
     
-    /// theme name was edited
+    /// A theme name was edited.
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
         let newName = fieldEditor.string
@@ -407,7 +403,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     // MARK: Action Messages
     
-    /// A radio button of documentAppearance was clicked
+    /// A radio button of documentAppearance was clicked.
     @IBAction func updateAppearanceSetting(_ sender: NSButton) {
         
         UserDefaults.standard[.documentAppearance] = AppearanceMode(rawValue: sender.tag)!
@@ -419,7 +415,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// add theme
+    /// Adds a new theme.
     @IBAction func addTheme(_ sender: Any?) {
         
         let settingName: String
@@ -434,7 +430,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// duplicate selected theme
+    /// Duplicates the selected theme.
     @IBAction func duplicateTheme(_ sender: Any?) {
         
         let baseName = self.targetThemeName(for: sender)
@@ -450,7 +446,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// start renaming theme
+    /// Starts renaming a theme.
     @IBAction func renameTheme(_ sender: Any?) {
         
         let themeName = self.targetThemeName(for: sender)
@@ -460,7 +456,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// delete selected theme
+    /// Deletes the selected theme.
     @IBAction func deleteTheme(_ sender: Any?) {
         
         let themeName = self.targetThemeName(for: sender)
@@ -469,7 +465,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// restore selected theme to original bundled one
+    /// Restores the selected theme to original bundled one.
     @IBAction func restoreTheme(_ sender: Any?) {
         
         let themeName = self.targetThemeName(for: sender)
@@ -478,7 +474,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// export selected theme
+    /// Exports the selected theme.
     @IBAction func exportTheme(_ sender: Any?) {
         
         let settingName = self.targetThemeName(for: sender)
@@ -503,7 +499,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// import theme file via open panel
+    /// Imports theme files via the open panel.
     @IBAction func importTheme(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
@@ -523,6 +519,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
+    /// Shares the selected themes.
     @IBAction func shareTheme(_ sender: NSMenuItem) {
         
         let themeName = self.targetThemeName(for: sender)
@@ -540,7 +537,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// open directory in Application Support in Finder where the selected theme exists
+    /// Opens the theme directory in the Application Support directory in the Finder where the selected theme exists.
     @IBAction func revealThemeInFinder(_ sender: Any?) {
         
         let themeName = self.targetThemeName(for: sender)
@@ -551,6 +548,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
+    /// Reloads all the themes in the user domain.
     @IBAction func reloadAllThemes(_ sender: Any?) {
         
         Task.detached(priority: .utility) {
@@ -572,7 +570,10 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// return representedObject if sender is menu item, otherwise selection in the list table
+    /// Returns representedObject if sender is menu item, otherwise selection in the list table.
+    ///
+    /// - Parameter sender: The sender to test.
+    /// - Returns: The setting name.
     private func targetThemeName(for sender: Any?) -> String {
         
         if let menuItem = sender as? NSMenuItem {
@@ -594,7 +595,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// set given theme
+    /// Sets the given theme to the editor.
+    ///
+    /// - Parameter name: The theme name.
     private func setTheme(name: String) {
         
         guard
@@ -611,7 +614,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// Set the given theme to theme view.
+    /// Sets the given theme to theme view.
     ///
     /// - Parameters:
     ///   - theme: The theme to set to the view.
@@ -633,7 +636,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// try to delete given theme
+    /// Tries to delete the given theme.
+    ///
+    /// - Parameter name: The name of the theme to delete.
     private func deleteTheme(name: String) {
         
         let alert = NSAlert()
@@ -668,7 +673,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// try to restore given theme
+    /// Tries to restore the given theme.
+    ///
+    /// - Parameter name: The name of the theme to restore.
     private func restoreTheme(name: String) {
         
         do {
@@ -679,7 +686,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// try to import theme file at given URL
+    /// Tries to import the theme files at the given URL.
+    ///
+    /// - Parameter fileURL: The file name of the theme.
     private func importTheme(fileURL: URL) {
         
         do {
@@ -691,7 +700,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// update theme list
+    /// Updates the theme list.
+    ///
+    /// - Parameter selectingName: The string of the selecting item.
     private func updateThemeList(bySelecting selectingName: String? = nil) {
         
         let themeName = selectingName ?? ThemeManager.shared.userDefaultSettingName
@@ -711,7 +722,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// update selection of theme table
+    /// Updates the selection of the theme table.
     private func updateThemeSelection() {
         
         let themeName = ThemeManager.shared.userDefaultSettingName
@@ -735,14 +746,14 @@ extension AppearancePaneController: NSFontChanging {
     
     // MARK: Font Changing Methods
     
-    /// Restrict items to display in the font panel.
+    /// Restricts items to display in the font panel.
     func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
         
         [.collection, .face, .size]
     }
     
     
-    /// The font selection in the font panel did update.
+    /// Returns the font selection in the font panel did update.
     func changeFont(_ sender: NSFontManager?) {
         
         guard let sender else { return assertionFailure() }
@@ -770,7 +781,7 @@ extension AppearancePaneController: NSFontChanging {
     
     // MARK: Action Messages
     
-    /// Show the font panel.
+    /// Shows the font panel.
     @IBAction func showFonts(_ sender: NSButton) {
         
         self.fontPanelTarget = (sender.identifier == .monospacedFontButton) ? .monospaced : .standard
@@ -786,7 +797,7 @@ extension AppearancePaneController: NSFontChanging {
 
 private extension NSTextField {
     
-    /// Display the font name and size in the manner of the given font setting.
+    /// Displays the font name and size in the manner of the given font setting.
     ///
     /// - Parameters:
     ///   - font: The font to display.

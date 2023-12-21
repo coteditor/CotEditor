@@ -47,7 +47,7 @@ struct ActionCommand: Identifiable {
     var representedObject: Any?
     
     
-    /// Perform the original menu action.
+    /// Performs the original menu action.
     @discardableResult
     func perform() -> Bool {
         

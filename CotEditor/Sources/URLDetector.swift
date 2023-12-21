@@ -76,7 +76,7 @@ final class URLDetector {
     
     // MARK: Private Methods
     
-    /// Observe the changes of the given textStorage to detect URLs around the edited area.
+    /// Observes the changes of the given textStorage to detect URLs around the edited area.
     ///
     /// - Parameter textStorage: The text storage to observe.
     private func observeTextStorage(_ textStorage: NSTextStorage) {
@@ -93,7 +93,7 @@ final class URLDetector {
     }
     
     
-    /// Update URLs around the edited ranges.
+    /// Updates URLs around the edited ranges.
     ///
     /// - Parameter delay: The debounce delay.
     @MainActor private func detectInvalidRanges(after delay: Duration = .zero) async throws {
@@ -115,7 +115,7 @@ final class URLDetector {
 
 extension NSTextStorage {
     
-    /// Link detected URLs in the content.
+    /// Links detected URLs in the content.
     ///
     /// - Parameter range: The range where links are detected, or nil to detect all.
     /// - Throws: `CancellationError`

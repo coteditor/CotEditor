@@ -119,7 +119,7 @@ final class BidiScroller: NSScroller {
     }
     
     
-    /// Horizontally flip the drawing coordinate when the scroller direction is right-to-left.
+    /// Horizontally flips the drawing coordinate when the scroller direction is right-to-left.
     ///
     /// - Parameter part: The scroller part drawing in.
     private func flipHorizontalCoordinatesInRightToLeftLayout(for part: NSScroller.Part) {

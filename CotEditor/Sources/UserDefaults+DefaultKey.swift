@@ -27,7 +27,7 @@ import Foundation
 
 extension UserDefaults {
     
-    /// Restore default value to the factory default.
+    /// Restores default value to the factory default.
     ///
     /// - Parameter key: The default key to restore.
     func restore<T>(key: DefaultKey<T>) {
@@ -36,7 +36,7 @@ extension UserDefaults {
     }
     
     
-    /// Return the initial value for key registered on `register(defaults:)`.
+    /// Returns the initial value for key registered on `register(defaults:)`.
     ///
     /// - Parameter key: The default key.
     /// - Returns: The initial value.
@@ -46,7 +46,7 @@ extension UserDefaults {
     }
     
     
-    /// Return the initial value for key registered on `register(defaults:)`.
+    /// Returns the initial value for key registered on `register(defaults:)`.
     ///
     /// - Parameter key: The default key.
     /// - Returns: The initial value.

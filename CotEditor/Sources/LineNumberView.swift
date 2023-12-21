@@ -136,21 +136,18 @@ final class LineNumberView: NSView {
     
     // MARK: View Methods
     
-    /// view name for VoiceOver
     override func accessibilityLabel() -> String? {
         
         String(localized: "Line Numbers")
     }
     
     
-    /// make background transparent
     override var isOpaque: Bool {
         
         self.textView.isOpaque
     }
     
     
-    /// define the size
     override var intrinsicContentSize: NSSize {
         
         switch self.orientation {
@@ -161,7 +158,6 @@ final class LineNumberView: NSView {
     }
     
     
-    /// receiver is about to be attached to / detached from a window
     override func viewWillMove(toWindow newWindow: NSWindow?) {
         
         super.viewWillMove(toWindow: newWindow)
@@ -180,7 +176,6 @@ final class LineNumberView: NSView {
     }
     
     
-    /// draw background
     override func draw(_ dirtyRect: NSRect) {
         
         NSGraphicsContext.saveGraphicsState()
@@ -214,7 +209,7 @@ final class LineNumberView: NSView {
     
     // MARK: Private Methods
     
-    /// total number of lines in the text view
+    /// The total number of lines in the text view.
     private var numberOfLines: Int {
         
         assert(self.textView.layoutManager is any LineRangeCacheable)
@@ -223,7 +218,7 @@ final class LineNumberView: NSView {
     }
     
     
-    /// return foreground color by considering the current accessibility setting
+    /// Returns foreground color by considering the current accessibility setting.
     private func foregroundColor(_ strength: ColorStrength = .normal) -> NSColor {
         
         let fraction = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
@@ -236,7 +231,7 @@ final class LineNumberView: NSView {
     }
     
     
-    /// return line number font for selected lines by considering the current accessibility setting
+    /// Returns line number font for selected lines by considering the current accessibility setting.
     private var boldLineNumberFont: CGFont {
         
         NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
@@ -245,7 +240,7 @@ final class LineNumberView: NSView {
     }
     
     
-    /// draw line numbers
+    /// Draws line numbers.
     private func drawNumbers(in rect: NSRect) {
         
         guard
@@ -324,7 +319,7 @@ final class LineNumberView: NSView {
     }
     
     
-    /// Update parameters related to drawing and layout based on textView's status.
+    /// Updates parameters related to drawing and layout based on textView's status.
     private func invalidateDrawingInfo() {
         
         guard let textFont = self.textView.font else { return assertionFailure() }
@@ -336,7 +331,7 @@ final class LineNumberView: NSView {
     }
     
     
-    /// Update receiver's thickness based on drawingInfo and textView's status.
+    /// Updates receiver's thickness based on drawingInfo and textView's status.
     private func invalidateThickness() {
         
         self.thickness = {
@@ -356,7 +351,7 @@ final class LineNumberView: NSView {
     }
     
     
-    /// observe textView's update to update line number drawing
+    /// Observes textView's update to update line number drawing.
     private func observeTextView(_ textView: NSTextView) {
         
         assert(textView.enclosingScrollView?.contentView != nil)
@@ -421,14 +416,14 @@ extension LineNumberView {
     
     // MARK: View Methods
     
-    /// scroll parent textView with scroll event
+    /// Scrolls parent textView with scroll event.
     override func scrollWheel(with event: NSEvent) {
         
         self.textView.scrollWheel(with: event)
     }
     
     
-    /// start selecting correspondent lines in text view with drag / click event
+    /// Starts selecting correspondent lines in text view with a dragging / clicking event.
     override func mouseDown(with event: NSEvent) {
         
         guard let window = self.window else { return assertionFailure() }
@@ -446,14 +441,14 @@ extension LineNumberView {
     }
     
     
-    /// select lines while dragging event
+    /// Selects lines while dragging event.
     override func mouseDragged(with event: NSEvent) {
         
         self.selectLines(with: event)
     }
     
     
-    /// end selecting correspondent lines in text view with drag event
+    /// Ends selecting correspondent lines in text view with drag event.
     override func mouseUp(with event: NSEvent) {
         
         self.draggingInfo = nil
@@ -463,7 +458,7 @@ extension LineNumberView {
     
     // MARK: Private Methods
     
-    /// select lines while dragging event
+    /// Selects lines while dragging event.
     private func selectLines(with event: NSEvent) {
         
         guard

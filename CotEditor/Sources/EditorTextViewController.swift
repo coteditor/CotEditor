@@ -244,7 +244,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     // MARK: Action Messages
     
-    /// Show the Go To sheet.
+    /// Shows the Go To sheet.
     @IBAction func gotoLocation(_ sender: Any?) {
         
         guard let textView = self.textView else { return assertionFailure() }
@@ -268,7 +268,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
-    /// Show the Unicode input view.
+    /// Shows the Unicode input view.
     @IBAction func showUnicodeInputPanel(_ sender: Any?) {
         
         guard let textView = self.textView else { return assertionFailure() }
@@ -291,7 +291,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
-    /// Show the advanced counter.
+    /// Shows the advanced counter.
     @IBAction func toggleAdvancedCounter(_ sender: Any?) {
         
         // hide counter
@@ -310,7 +310,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
-    /// Show the character information by popover.
+    /// Shows the character information by popover.
     @IBAction func showSelectionInfo(_ sender: Any?) {
         
         guard
@@ -346,7 +346,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     // MARK: Private Methods
     
-    /// Show a popover indicating the given image and live text detection.
+    /// Shows a popover indicating the given image and live text detection.
     ///
     /// - Parameter image: The image to scan text.
     private func popoverLiveText(image: NSImage) {
@@ -368,7 +368,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
-    /// Hide existing advanced character counter.
+    /// Hides the existing advanced character counter.
     ///
     /// - Parameter counterView: The advanced character counter to dismiss.
     private func dismissAdvancedCharacterCounter() {
@@ -385,7 +385,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
-    /// Setup and show advanced character counter.
+    /// Sets and shows advanced character counter.
     private func showAdvancedCharacterCounter() {
         
         guard let textView = self.textView else { return assertionFailure() }
@@ -439,7 +439,7 @@ extension EditorTextViewController: NSFontChanging {
     
     // MARK: Font Changing Methods
     
-    /// Restrict items in the font panel toolbar.
+    /// Restricts items in the font panel toolbar.
     func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
         
         [.collection, .face, .size]

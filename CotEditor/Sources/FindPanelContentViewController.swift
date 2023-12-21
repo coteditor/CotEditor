@@ -126,7 +126,7 @@ final class FindPanelContentViewController: NSSplitViewController {
     
     // MARK: Action Messages
     
-    /// Close the find result view.
+    /// Closes the find result view.
     @IBAction func closeResultView(_ sender: Any?) {
         
         self.setResultShown(false)
@@ -143,7 +143,7 @@ final class FindPanelContentViewController: NSSplitViewController {
     }
     
     
-    /// Completion notification of the Find All command.
+    /// Notifies the completion of the Find All command.
     ///
     /// - Parameter textFinder: The TextFinder that did Find All.
     private func didFinishFindAll(in textFinder: TextFinder) {
@@ -159,7 +159,7 @@ final class FindPanelContentViewController: NSSplitViewController {
     }
     
     
-    /// Toggle the visibility of the result view with animation.
+    /// Toggles the visibility of the result view with animation.
     ///
     /// - Parameter shown: `true` to open the result view; otherwise, `false`.
     private func setResultShown(_ shown: Bool) {

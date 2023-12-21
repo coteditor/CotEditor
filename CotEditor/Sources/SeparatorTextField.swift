@@ -60,7 +60,7 @@ final class SeparatorTextField: NSTextField {
     
     // MARK: Private Properties
     
-    /// whether it is a separator item
+    /// Whether the receiver is a separator item.
     private var isSeparator: Bool {
         
         self.stringValue == .separator

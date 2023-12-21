@@ -26,7 +26,7 @@
 import AppKit
 import Combine
 
-/// Table column identifiers
+/// Column identifiers for table view.
 private extension NSUserInterfaceItemIdentifier {
     
     static let line = Self("Line")
@@ -115,7 +115,7 @@ final class InconsistentLineEndingsViewController: NSViewController, DocumentOwn
     
     // MARK: Private Methods
     
-    /// Update the result message above the table.
+    /// Updates the result message above the table.
     @MainActor private func updateMessage() {
         
         guard let messageField = self.messageField else { return assertionFailure() }
@@ -131,7 +131,7 @@ final class InconsistentLineEndingsViewController: NSViewController, DocumentOwn
     }
     
     
-    /// Select correspondence range of the item in the editor.
+    /// Selects correspondence range of the item in the editor.
     ///
     /// - Parameter row: The index of items to select.
     @MainActor private func selectItem(at row: Int) {

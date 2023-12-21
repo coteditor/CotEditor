@@ -238,7 +238,6 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// apply current state to related toolbar items
     func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
         
         // manually pass toolbar items to `validateUserInterfaceItem(_:)`,
@@ -546,7 +545,7 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// Apply editor styles to the text storage and update editor views.
+    /// Applies editor styles to the text storage and update editor views.
     func invalidateStyleInTextStorage() {
         
         assert(Thread.isMainThread)
@@ -569,63 +568,63 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     
     // MARK: Action Messages
     
-    /// Recolor whole document.
+    /// Recolors whole document.
     @IBAction func recolorAll(_ sender: Any?) {
         
         self.syntaxParser.highlight()
     }
     
     
-    /// Set new theme from a menu item.
+    /// Sets new theme from a menu item.
     @IBAction func changeTheme(_ sender: NSMenuItem) {
         
         self.setTheme(name: sender.title)
     }
     
     
-    /// Toggle the visibility of the line number views.
+    /// Toggles the visibility of the line number views.
     @IBAction func toggleLineNumber(_ sender: Any?) {
         
         self.showsLineNumber.toggle()
     }
     
     
-    /// Toggle the visibility of status bar with fancy animation (sync all documents).
+    /// Toggles the visibility of status bar with fancy animation (sync all documents).
     @IBAction func toggleStatusBar(_ sender: Any?) {
         
         UserDefaults.standard[.showStatusBar].toggle()
     }
     
     
-    /// Toggle the visibility of page guide line in the text views.
+    /// Toggles the visibility of page guide line in the text views.
     @IBAction func togglePageGuide(_ sender: Any?) {
         
         self.showsPageGuide.toggle()
     }
     
     
-    /// Toggle the visibility of indent guides in the text views.
+    /// Toggles the visibility of indent guides in the text views.
     @IBAction func toggleIndentGuides(_ sender: Any?) {
         
         self.showsIndentGuides.toggle()
     }
     
     
-    /// Toggle if lines wrap at the window edge.
+    /// Toggles if lines wrap at the window edge.
     @IBAction func toggleLineWrap(_ sender: Any?) {
         
         self.wrapsLines.toggle()
     }
     
     
-    /// Toggle the visibility of invisible characters in the text views.
+    /// Toggles the visibility of invisible characters in the text views.
     @IBAction func toggleInvisibleChars(_ sender: Any?) {
         
         self.showsInvisibles.toggle()
     }
     
     
-    /// Toggle if antialias text in the text views.
+    /// Toggles if antialias text in the text views.
     @IBAction func toggleAntialias(_ sender: Any?) {
         
         for textView in self.editorViewControllers.compactMap(\.textView) {
@@ -634,7 +633,7 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// Toggle the ligature mode in the text views.
+    /// Toggles the ligature mode in the text views.
     @IBAction func toggleLigatures(_ sender: Any?) {
         
         for textView in self.editorViewControllers.compactMap(\.textView) {
@@ -643,21 +642,21 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// Toggle if the text views expand tab input.
+    /// Toggles if the text views expand tab input.
     @IBAction func toggleAutoTabExpand(_ sender: Any?) {
         
         self.isAutoTabExpandEnabled.toggle()
     }
     
     
-    /// Change the tab width from a menu item.
+    /// Changes the tab width from a menu item.
     @IBAction func changeTabWidth(_ sender: NSMenuItem) {
         
         self.tabWidth = sender.tag
     }
     
     
-    /// Change the tab width to desired number through a sheet.
+    /// Changes the tab width to desired number through a sheet.
     @IBAction func customizeTabWidth(_ sender: Any?) {
         
         let view = CustomTabWidthView(tabWidth: self.tabWidth) { [weak self] tabWidth in
@@ -670,7 +669,7 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// Change the font to the user's standard font.
+    /// Changes the font to the user's standard font.
     @IBAction func makeFontStandard(_ sender: Any?) {
         
         for textView in self.editorViewControllers.compactMap(\.textView) {
@@ -679,7 +678,7 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// Change the font to the user's monospaced font.
+    /// Changes the font to the user's monospaced font.
     @IBAction func makeFontMonospaced(_ sender: Any?) {
         
         for textView in self.editorViewControllers.compactMap(\.textView) {
@@ -688,28 +687,28 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// Make text layout orientation horizontal.
+    /// Makes text layout orientation horizontal.
     @IBAction func makeLayoutOrientationHorizontal(_ sender: Any?) {
         
         self.verticalLayoutOrientation = false
     }
     
     
-    /// Make the text layout orientation vertical.
+    /// Makes the text layout orientation vertical.
     @IBAction func makeLayoutOrientationVertical(_ sender: Any?) {
         
         self.verticalLayoutOrientation = true
     }
     
     
-    /// Make the entire writing direction left-to-right.
+    /// Makes the entire writing direction left-to-right.
     @IBAction func makeWritingDirectionLeftToRight(_ sender: Any?) {
         
         self.writingDirection = .leftToRight
     }
     
     
-    /// Make the entire writing direction right-to-left.
+    /// Makes the entire writing direction right-to-left.
     @IBAction func makeWritingDirectionRightToLeft(_ sender: Any?) {
         
         self.verticalLayoutOrientation = false
@@ -717,21 +716,21 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// Change writing direction by a grouped toolbar item.
+    /// Changes writing direction by a grouped toolbar item.
     @IBAction func changeWritingDirection(_ sender: NSToolbarItemGroup) {
         
         assertionFailure("This is a dummy action designed to be used just for the segmentation selection validation.")
     }
     
     
-    /// Change layout orientation by a grouped toolbar item.
+    /// Changes layout orientation by a grouped toolbar item.
     @IBAction func changeOrientation(_ sender: NSToolbarItemGroup) {
         
         assertionFailure("This is a dummy action designed to be used just for the segmentation selection validation.")
     }
     
     
-    /// Show the editor opacity slider as popover.
+    /// Shows the editor opacity slider as popover.
     @IBAction func showOpacitySlider(_ sender: Any?) {
         
         let opacityView = OpacityView(window: self.view.window as? DocumentWindow)
@@ -751,7 +750,7 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// Split editor view.
+    /// Splits editor view.
     @IBAction func openSplitTextView(_ sender: Any?) {
         
         guard self.splitViewController.splitViewItems.count < maximumNumberOfSplitEditors else { return NSSound.beep() }
@@ -786,7 +785,7 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// Close one of the split editors.
+    /// Closes one of the split editors.
     @IBAction func closeSplitTextView(_ sender: Any?) {
         
         assert(self.splitViewController.splitViewItems.count > 1)
@@ -831,7 +830,7 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// Setup the receiver and its children with the given document.
+    /// Sets the receiver and its children with the given document.
     private func updateDocument() {
         
         for editorViewController in self.editorViewControllers {
@@ -871,7 +870,7 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// Create a new split editor.
+    /// Creates a new split editor.
     ///
     /// - Parameter otherViewController: The view controller of the reference editor located above the editor to add.
     /// - Returns: The editor view controller created.
@@ -918,7 +917,7 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// Replace the document in the editorViewController with the given document.
+    /// Replaces the document in the editorViewController with the given document.
     ///
     /// - Parameters:
     ///   - document: The new document to be replaced with.
@@ -931,7 +930,7 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// Apply the given theme to child text views.
+    /// Applies the given theme to child text views.
     ///
     /// - Parameter name: The name of the theme to apply.
     private func setTheme(name: String) {
@@ -949,7 +948,7 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// Find the base `EditorViewController` for split editor management actions.
+    /// Finds the base `EditorViewController` for split editor management actions.
     ///
     /// - Parameter sender: The action sender.
     /// - Returns: An editor view controller, or `nil` if not found.

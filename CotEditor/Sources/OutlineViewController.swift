@@ -26,7 +26,7 @@
 import AppKit
 import Combine
 
-/// outlineView column identifiers
+/// Column identifiers for outline view
 private extension NSUserInterfaceItemIdentifier {
     
     static let title = NSUserInterfaceItemIdentifier("title")
@@ -159,7 +159,7 @@ final class OutlineViewController: NSViewController, DocumentOwner {
     }
     
     
-    /// Search field text did update.
+    /// The search field text did update.
     @IBAction func searchFieldDidUpdate(_ sender: NSSearchField) {
         
         self.filterItems(with: sender.stringValue)
@@ -186,7 +186,7 @@ final class OutlineViewController: NSViewController, DocumentOwner {
     }()
     
     
-    /// Select correspondence range of the outline item in textView.
+    /// Selects correspondence range of the outline item in textView.
     ///
     /// - Parameter row: The index of the outline item to select.
     private func selectOutlineItem(at row: Int) {
@@ -209,7 +209,7 @@ final class OutlineViewController: NSViewController, DocumentOwner {
     }
     
     
-    /// Update document observation for syntax.
+    /// Updates document observation for syntax.
     private func observeDocument() {
         
         self.documentObserver = self.document.didChangeSyntax
@@ -218,7 +218,7 @@ final class OutlineViewController: NSViewController, DocumentOwner {
     }
     
     
-    /// Update syntax observation for outline.
+    /// Updates syntax observation for outline.
     private func observeSyntax() {
         
         self.syntaxObserver = self.document.syntaxParser.$outlineItems
@@ -228,7 +228,7 @@ final class OutlineViewController: NSViewController, DocumentOwner {
     }
     
     
-    /// Update row selection to synchronize with editor's cursor location.
+    /// Updates row selection to synchronize with editor's cursor location.
     ///
     /// - Parameter textView: The text view to apply the selection. when nil, the current focused editor will be used (the document can have multiple editors).
     private func invalidateCurrentLocation(textView: NSTextView? = nil) {
@@ -249,7 +249,7 @@ final class OutlineViewController: NSViewController, DocumentOwner {
     }
     
     
-    /// Filter outline items in table.
+    /// Filters outline items in table.
     ///
     /// - Parameter searchString: The string to search.
     private func filterItems(with searchString: String) {
@@ -275,7 +275,7 @@ extension OutlineViewController: NSOutlineViewDelegate {
     }
     
     
-    /// avoid selecting separator item
+    /// avoids selecting separator item
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         
         (item as? OutlineItem)?.title != .separator
@@ -286,7 +286,7 @@ extension OutlineViewController: NSOutlineViewDelegate {
 
 extension OutlineViewController: NSOutlineViewDataSource {
     
-    /// return number of child items
+    /// returns number of child items
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
         if !self.filterString.isEmpty { return self.filteredOutlineItems.count }
@@ -295,14 +295,14 @@ extension OutlineViewController: NSOutlineViewDataSource {
     }
     
     
-    /// return if item is expandable
+    /// returns if item is expandable
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         
         false
     }
     
     
-    /// return child items
+    /// returns child items
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
         if !self.filterString.isEmpty { return self.filteredOutlineItems[index] }
@@ -311,7 +311,7 @@ extension OutlineViewController: NSOutlineViewDataSource {
     }
     
     
-    /// return suitable item for cell to display
+    /// returns suitable item for cell to display
     func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn: NSTableColumn?, byItem item: Any?) -> Any? {
         
         guard
@@ -350,14 +350,14 @@ extension OutlineViewController: NSOutlineViewDataSource {
 
 extension OutlineViewController {
     
-    /// Increase outline view's font size.
+    /// Increases outline view's font size.
     @IBAction func biggerFont(_ sender: Any?) {
         
         UserDefaults.standard[.outlineViewFontSize] += 1
     }
     
     
-    /// Decrease outline view's font size.
+    /// Decreases outline view's font size.
     @IBAction func smallerFont(_ sender: Any?) {
         
         guard UserDefaults.standard[.outlineViewFontSize] > NSFont.smallSystemFontSize else { return }
@@ -366,7 +366,7 @@ extension OutlineViewController {
     }
     
     
-    /// Restore outline view's font size to default.
+    /// Restores outline view's font size to default.
     @IBAction func resetFont(_ sender: Any?) {
         
         UserDefaults.standard.restore(key: .outlineViewFontSize)

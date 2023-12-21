@@ -34,14 +34,14 @@ final class IncompatibleCharacterFormatter: Formatter {
     
     // MARK: Formatter Function
     
-    /// convert to plain string
+    /// Converts to plain string.
     override func string(for obj: Any?) -> String? {
         
         obj as? String
     }
     
     
-    /// create attributed string from object
+    /// Creates attributed string from object.
     override func attributedString(for obj: Any, withDefaultAttributes attrs: [NSAttributedString.Key: Any]? = nil) -> NSAttributedString? {
         
         guard

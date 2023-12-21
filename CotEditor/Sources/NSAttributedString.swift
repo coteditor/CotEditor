@@ -34,7 +34,7 @@ extension NSAttributedString {
     }
     
     
-    /// Concatenate attributed strings.
+    /// Concatenates attributed strings.
     static func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
         
         let result = NSMutableAttributedString(attributedString: lhs)
@@ -44,7 +44,7 @@ extension NSAttributedString {
     }
     
     
-    /// Append another attributed string.
+    /// Appends another attributed string.
     static func += (lhs: inout NSAttributedString, rhs: NSAttributedString) {
         
         let result = NSMutableAttributedString(attributedString: lhs)
@@ -54,7 +54,7 @@ extension NSAttributedString {
     }
     
     
-    /// Enumerate range and value of the given temporary attribute key.
+    /// Enumerates range and value of the given temporary attribute key.
     ///
     /// - Parameters:
     ///   - attrName: The name of the temporary attribute to enumerate.
@@ -74,7 +74,7 @@ extension NSAttributedString {
     }
     
     
-    /// Check if at least one attribute for the given attribute key exists.
+    /// Checks if at least one attribute for the given attribute key exists.
     ///
     /// - Parameters:
     ///   - attrName: The name of the attribute key to check.
@@ -95,7 +95,7 @@ extension NSAttributedString {
     }
     
     
-    /// Truncate head with an ellipsis symbol until the specific `location` if the length before the location is the longer than the `offset`.
+    /// Truncates head with an ellipsis symbol until the specific `location` if the length before the location is the longer than the `offset`.
     ///
     /// - Parameters:
     ///   - location: The character index to start truncation.
@@ -113,14 +113,14 @@ extension NSAttributedString {
 
 extension NSMutableAttributedString {
     
-    /// Append another attributed string.
+    /// Appends another attributed string.
     static func += (lhs: inout NSMutableAttributedString, rhs: NSAttributedString) {
         
         lhs.append(rhs)
     }
     
     
-    /// Truncate head with an ellipsis symbol until the specific `location` if the length before the location is the longer than the `offset`.
+    /// Truncates head with an ellipsis symbol until the specific `location` if the length before the location is the longer than the `offset`.
     ///
     /// - Parameters:
     ///   - location: The character index to start truncation.
@@ -145,7 +145,7 @@ extension NSMutableAttributedString {
 
 extension Sequence<NSAttributedString> {
     
-    /// Return a new attributed string by concatenating the elements of the sequence, adding the given separator between each element.
+    /// Returns a new attributed string by concatenating the elements of the sequence, adding the given separator between each element.
     ///
     /// - Parameter separator: An attributed string to insert between each of the elements in this sequence.
     /// - Returns: A single, concatenated attributed string.
@@ -169,7 +169,7 @@ extension Sequence<NSAttributedString> {
     }
     
     
-    /// Return a new attributed string by concatenating the elements of the sequence, adding the given separator between each element.
+    /// Returns a new attributed string by concatenating the elements of the sequence, adding the given separator between each element.
     ///
     /// - Parameter separator: A string to insert between each of the elements in this sequence.
     /// - Returns: A single, concatenated attributed string.

@@ -38,7 +38,7 @@ final class PaddingTextFieldCell: NSTextFieldCell {
     // MARK: -
     // MARK: Cell Methods
     
-    /// add padding to area to draw text
+    /// Adds padding to area to draw text.
     override func drawingRect(forBounds rect: NSRect) -> NSRect {
         
         assert(self.leadingPadding >= 0)

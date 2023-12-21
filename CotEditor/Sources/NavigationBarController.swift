@@ -139,7 +139,7 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// Show the menu items of the outline menu.
+    /// Shows the menu items of the outline menu.
     func openOutlineMenu() {
         
         guard let popUpButton = self.outlineMenu else { return }
@@ -151,7 +151,7 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Action Messages
     
-    /// Select outline item from the popup menu.
+    /// Selects outline item from the popup menu.
     @IBAction func selectOutlineMenuItem(_ sender: NSMenuItem) {
         
         guard
@@ -203,7 +203,7 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// Build outline menu from `outlineItems`.
+    /// Builds outline menu using `outlineItems`.
     private func updateOutlineMenu() {
         
         self.isParsingOutline = (self.outlineItems == nil)
@@ -237,7 +237,7 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// Select the proper item in outline menu based on the current selection in the text view.
+    /// Selects the proper item in outline menu based on the current selection in the text view.
     private func invalidateOutlineMenuSelection() {
         
         guard
@@ -262,7 +262,7 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// Update the direction of the menu item arrows.
+    /// Updates the direction of the menu item arrows.
     ///
     /// - Parameter orientation: The text orientation in the text view.
     private func updateTextOrientation(to orientation: NSLayoutManager.TextLayoutOrientation) {

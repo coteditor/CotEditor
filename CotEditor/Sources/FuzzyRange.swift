@@ -37,7 +37,7 @@ struct FuzzyRange: Equatable {
 
 extension FuzzyRange {
     
-    /// Create a FuzzyRange instance from a string representation joined by `:`.
+    /// Creates a FuzzyRange instance from a string representation joined by `:`.
     init?(string: String) {
         
         let components = string.components(separatedBy: ":").map(Int.init)
@@ -68,7 +68,7 @@ extension FuzzyRange {
 
 extension String {
     
-    /// Convert FuzzyRange that allows negative values to the valid NSRange.
+    /// Converts FuzzyRange that allows negative values to the valid NSRange.
     ///
     /// - Note:
     ///   A negative location accesses the element by counting backwards from the end.
@@ -96,7 +96,7 @@ extension String {
     }
     
     
-    /// Return the character range for the line range that allows negative values.
+    /// Returns the character range for the line range that allows negative values.
     ///
     /// - Note:
     ///   `location` of the passed-in range is 1-based. Passing a fuzzy range whose location is `0` returns `nil`.
@@ -132,7 +132,7 @@ extension String {
     }
     
     
-    /// Return the cursor location for fuzzily specified line and column.
+    /// Returns the cursor location for fuzzily specified line and column.
     ///
     /// - Note:
     ///   `line` of the passed-in range is 1-based.

@@ -140,7 +140,7 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
     }
     
     
-    /// Keep position to be inside of the parent frame.
+    /// Keeps position to be inside of the parent frame.
     @MainActor private func adjustPosition() {
         
         guard let superFrame = self.superview?.frame else { return assertionFailure() }

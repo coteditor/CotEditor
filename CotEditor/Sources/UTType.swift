@@ -37,7 +37,7 @@ extension UTType {
 
 extension URL {
     
-    /// Test whether the receiver conforms to the given file URL.
+    /// Tests whether the receiver conforms to the given file URL.
     ///
     /// This method checks only the conformance of the file extension.
     ///

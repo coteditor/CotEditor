@@ -27,7 +27,7 @@ import struct Foundation.NSRange
 
 extension StringProtocol {
     
-    /// Calculate equivalent ranges in the receiver to the given ranges in the given string using DifferenceKit.
+    /// Calculates equivalent ranges in the receiver to the given ranges in the given string using DifferenceKit.
     ///
     /// - Parameters:
     ///   - ranges: The original ranges to be based on.

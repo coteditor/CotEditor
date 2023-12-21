@@ -96,13 +96,13 @@ protocol SettingFileManaging: SettingManaging {
     var cachedSettings: [String: Setting] { get set }
     
     
-    /// Return setting instance corresponding to the given setting name.
+    /// Returns setting instance corresponding to the given setting name.
     func setting(name: String) -> Setting?
     
-    /// Load setting from the file at the given URL.
+    /// Loads setting from the file at the given URL.
     func loadSetting(at fileURL: URL) throws -> Setting
     
-    /// Load settings in the user domain.
+    /// Loads settings in the user domain.
     func loadUserSettings()
 }
 
@@ -112,7 +112,7 @@ extension SettingFileManaging {
     
     // MARK: Default implementation
     
-    /// return setting instance corresponding to the given setting name
+    /// Returns setting instance corresponding to the given setting name.
     func setting(name: String) -> Setting? {
         
         if let setting = self.cachedSettings[name] {
@@ -131,7 +131,7 @@ extension SettingFileManaging {
     
     // MARK: Public Methods
     
-    /// file urls for user settings
+    /// File urls for user settings.
     var userSettingFileURLs: [URL] {
         
         (try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
@@ -141,28 +141,28 @@ extension SettingFileManaging {
     }
     
     
-    /// create setting name from a URL (don't care if it exists)
+    /// Creates the setting name from a URL (don't care if it exists).
     func settingName(from fileURL: URL) -> String {
         
         fileURL.deletingPathExtension().lastPathComponent
     }
     
     
-    /// return a valid setting file URL for the setting name or nil if not exists
+    /// Returns a valid setting file URL for the setting name or nil if not exists.
     func urlForUsedSetting(name: String) -> URL? {
         
         self.urlForUserSetting(name: name) ?? self.urlForBundledSetting(name: name)
     }
     
     
-    /// return a setting file URL in the application's Resources domain or nil if not exists
+    /// Returns a setting file URL in the application's Resources domain or nil if not exists.
     func urlForBundledSetting(name: String) -> URL? {
         
         Bundle.main.url(forResource: name, withExtension: self.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)
     }
     
     
-    /// return a setting file URL in the user's Application Support domain or nil if not exists
+    /// Returns a setting file URL in the user's Application Support domain or nil if not exists.
     func urlForUserSetting(name: String) -> URL? {
         
         guard self.settingNames.contains(name) else { return nil }
@@ -173,14 +173,14 @@ extension SettingFileManaging {
     }
     
     
-    /// return a setting file URL in the user's Application Support domain (don't care if it exists)
+    /// Returns a setting file URL in the user's Application Support domain (don't care if it exists).
     func preparedURLForUserSetting(name: String) -> URL {
         
         self.userSettingDirectoryURL.appendingPathComponent(name, conformingTo: self.fileType)
     }
     
     
-    /// whether the setting name is one of the bundled settings
+    /// Returns whether the setting name is one of the bundled settings.
     func state(of name: String) -> SettingState? {
         
         SettingState(name: name,
@@ -189,7 +189,7 @@ extension SettingFileManaging {
     }
     
     
-    /// return setting name appending number suffix without extension
+    /// Returns setting name appending number suffix without extension.
     func savableSettingName(for proposedName: String, appendingCopySuffix: Bool = false) -> String {
         
         let suffix = appendingCopySuffix ? String(localized: "copy", comment: "copied file suffix") : nil
@@ -198,7 +198,7 @@ extension SettingFileManaging {
     }
     
     
-    /// Validate whether the setting name is valid (for a filename) and throw an error if not.
+    /// Validates whether the setting name is valid (for a filename) and throw an error if not.
     ///
     /// - Parameters:
     ///   - settingName: The setting name to validate.
@@ -229,7 +229,7 @@ extension SettingFileManaging {
     }
     
     
-    /// Delete user's setting file for the setting name.
+    /// Deletes user's setting file for the setting name.
     ///
     /// - Throws: `SettingFileError`
     func removeSetting(name: String) throws {
@@ -249,7 +249,7 @@ extension SettingFileManaging {
     }
     
     
-    /// restore the setting with name
+    /// Restores the setting with name.
     func restoreSetting(name: String) throws {
         
         guard self.state(of: name)?.isRestorable == true else { return }  // only bundled setting can be restored
@@ -265,7 +265,7 @@ extension SettingFileManaging {
     }
     
     
-    /// duplicate the setting with name
+    /// Duplicates the setting with name.
     @discardableResult
     func duplicateSetting(name: String) throws -> String {
         
@@ -288,7 +288,7 @@ extension SettingFileManaging {
     }
     
     
-    /// rename the setting with name
+    /// Renames the setting with name.
     func renameSetting(name: String, to newName: String) throws {
         
         let sanitizedNewName = newName.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -306,7 +306,7 @@ extension SettingFileManaging {
     }
     
     
-    /// export setting file to passed-in URL
+    /// Exports setting file to passed-in URL.
     func exportSetting(name: String, to fileURL: URL, hidesExtension: Bool) throws {
         
         let sourceURL = self.preparedURLForUserSetting(name: name)
@@ -340,7 +340,7 @@ extension SettingFileManaging {
     }
     
     
-    /// Import setting at passed-in URL.
+    /// Imports setting at passed-in URL.
     ///
     /// - Throws: `SettingFileError`
     func importSetting(fileURL: URL) throws {
@@ -362,7 +362,7 @@ extension SettingFileManaging {
     }
     
     
-    /// Update the managed setting list by applying the given change.
+    /// Updates the managed setting list by applying the given change.
     ///
     /// - Parameter change: The change.
     func updateSettingList(change: SettingChange) {
@@ -392,7 +392,7 @@ extension SettingFileManaging {
     
     // MARK: Private Methods
     
-    /// Force importing the setting at the passed-in URL.
+    /// Forces importing the setting at the passed-in URL.
     ///
     /// - Parameter fileURL: The URL of the file to import.
     /// - Throws: `SettingFileError`

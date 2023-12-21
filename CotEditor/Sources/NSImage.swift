@@ -27,7 +27,7 @@ import AppKit
 
 extension NSImage {
     
-    /// Return a copy of the image tinted with the color.
+    /// Returns a copy of the image tinted with the color.
     ///
     /// - Parameter color: The color to tint the image.
     /// - Returns: A tinted image.

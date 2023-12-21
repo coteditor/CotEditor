@@ -93,7 +93,7 @@ struct TextFind {
     // MARK: -
     // MARK: Lifecycle
     
-    /// Return a TextFind instance with the specified options.
+    /// Returns a TextFind instance with the specified options.
     ///
     /// - Parameters:
     ///   - string: The string to search.
@@ -175,7 +175,7 @@ struct TextFind {
     }
     
     
-    /// Return the nearest match in `matches` from the insertion point.
+    /// Returns the nearest match in `matches` from the insertion point.
     ///
     /// - Parameters:
     ///   - matches: The matched ranges to find in.
@@ -216,7 +216,7 @@ struct TextFind {
     }
     
     
-    /// Return ReplacementItem replacing matched string in selection.
+    /// Returns ReplacementItem replacing matched string in selection.
     ///
     /// - Parameters:
     ///   - replacementString: The string with which to replace.
@@ -246,7 +246,7 @@ struct TextFind {
     }
     
     
-    /// Find all matches in the scopes.
+    /// Finds all matches in the scopes.
     ///
     /// - Parameters:
     ///   - block: The block enumerates the matches.
@@ -269,7 +269,7 @@ struct TextFind {
     }
     
     
-    /// Replace all matches in the scopes.
+    /// Replaces all matches in the scopes.
     ///
     /// - Parameters:
     ///   - replacementString: The string with which to replace.
@@ -339,7 +339,7 @@ struct TextFind {
     
     // MARK: Private Methods
     
-    /// Unescape the given string for replacement string as needed.
+    /// Unescapes the given string for replacement string as needed.
     ///
     /// - Parameters:
     ///   - string: The string to use as the replacement template.
@@ -355,7 +355,7 @@ struct TextFind {
     }
     
     
-    /// Check if the given range is a range of whole word.
+    /// Checks if the given range is a range of whole word.
     ///
     /// - Parameters:
     ///   - range: The character range to test.
@@ -368,7 +368,7 @@ struct TextFind {
     }
     
     
-    /// Enumerate matches in string using current settings.
+    /// Enumerates matches in string using current settings.
     ///
     /// - Parameters:
     ///   - range: The range of the string to search.
@@ -384,7 +384,7 @@ struct TextFind {
     }
     
     
-    /// Enumerate matches in string using textual search.
+    /// Enumerates matches in string using textual search.
     ///
     /// - Parameters:
     ///   - range: The range of the string to search.
@@ -416,7 +416,7 @@ struct TextFind {
     }
     
     
-    /// Enumerate matches in string using regular expression.
+    /// Enumerates matches in string using regular expression.
     ///
     /// - Parameters:
     ///   - range: The range of the string to search.

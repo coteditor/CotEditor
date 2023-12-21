@@ -156,7 +156,7 @@ final class TextFinder {
     
     // MARK: Public Methods
     
-    /// Schedule incremental search.
+    /// Schedules an incremental search.
     func incrementalSearch() {
         
         self.findTask?.cancel()
@@ -267,7 +267,7 @@ final class TextFinder {
     
     // MARK: Private Actions
     
-    /// Find next matched string.
+    /// Finds the next matched string.
     @MainActor private func nextMatch() {
         
         self.findTask?.cancel()
@@ -277,7 +277,7 @@ final class TextFinder {
     }
     
     
-    /// Find previous matched string.
+    /// Finds the previous matched string.
     @MainActor private func previousMatch() {
         
         self.findTask?.cancel()
@@ -287,7 +287,7 @@ final class TextFinder {
     }
     
     
-    /// Select all matched strings.
+    /// Selects all matched strings.
     @MainActor private func selectAll() {
         
         guard let textFind = self.prepareTextFind() else { return }
@@ -300,7 +300,7 @@ final class TextFinder {
     }
     
     
-    /// Find all matched strings and show results in a table.
+    /// Finds all matched strings and shows results in a table.
     @MainActor private func findAll() {
         
         Task {
@@ -309,7 +309,7 @@ final class TextFinder {
     }
     
     
-    /// Highlight all matched strings.
+    /// Highlights all matched strings.
     @MainActor private func highlight() {
         
         Task {
@@ -318,14 +318,14 @@ final class TextFinder {
     }
     
     
-    /// Remove all of current highlights in the frontmost textView.
+    /// Removes all of current highlights in the frontmost textView.
     @MainActor private func unhighlight() {
         
         self.client.unhighlight(nil)
     }
     
     
-    /// Replace matched string in selection with replacementString.
+    /// Replaces matched string in selection with replacementString.
     @MainActor private func replace() {
         
         if self.replaceSelected() {
@@ -338,7 +338,7 @@ final class TextFinder {
     }
     
     
-    /// Replace matched string with replacementString and select the next match.
+    /// Replaces matched string with replacementString and selects the next match.
     @MainActor private func replaceAndFind() {
         
         self.replaceSelected()
@@ -352,7 +352,7 @@ final class TextFinder {
     }
     
     
-    /// Replace all matched strings with given string.
+    /// Replaces all matched strings with given string.
     @MainActor private func replaceAll() {
         
         Task {
@@ -361,7 +361,7 @@ final class TextFinder {
     }
     
     
-    /// Set selected string to find field.
+    /// Sets the selected string to find field.
     @MainActor private func setSearchString() {
         
         TextFinderSettings.shared.findString = self.client.selectedString
@@ -369,7 +369,7 @@ final class TextFinder {
     }
     
     
-    /// Set selected string to replace field.
+    /// Sets the selected string to replace field.
     @MainActor private func setReplaceString() {
         
         TextFinderSettings.shared.replacementString = self.client.selectedString
@@ -379,7 +379,7 @@ final class TextFinder {
     
     // MARK: Private Methods
     
-    /// Check Find can be performed and alert if needed.
+    /// Checks the Find action can be performed and alerts if needed.
     ///
     /// - Parameter presentsError: Whether shows error dialog on the find panel.
     /// - Returns: A TextFind object with the current state, or `nil` if not ready.
@@ -424,7 +424,7 @@ final class TextFinder {
     }
     
     
-    /// Perform single find.
+    /// Performs a single find.
     ///
     /// - Parameters:
     ///   - forward: The flag whether finds forward or backward.
@@ -481,7 +481,7 @@ final class TextFinder {
     }
     
     
-    /// Replace matched string in selection with replacementString.
+    /// Replaces a matched string in selection with replacementString.
     @discardableResult
     @MainActor private func replaceSelected() -> Bool {
         
@@ -499,7 +499,7 @@ final class TextFinder {
     }
     
     
-    /// Find all matched strings and apply the result to views.
+    /// Finds all matched strings and applies the result to views.
     ///
     /// - Parameters:
     ///   - showsList: Whether shows the result view when finished.
@@ -590,7 +590,7 @@ final class TextFinder {
     }
     
     
-    /// Replace all matched strings and apply the result to views.
+    /// Replaces all matched strings and applies the result to views.
     @MainActor private func replaceAll() async {
         
         guard let textFind = self.prepareTextFind() else { return }
@@ -638,7 +638,7 @@ final class TextFinder {
     }
     
     
-    /// Notify find/replacement result to the user.
+    /// Notifies the find/replacement result to the user.
     ///
     /// - Parameters:
     ///   - result: The result of the process.

@@ -27,7 +27,7 @@ import AppKit
 
 extension NSTextView {
     
-    /// Invalidate content string as a regular expression pattern and highlight them.
+    /// Invalidates content string as a regular expression pattern and highlight them.
     ///
     /// - Parameters:
     ///   - mode: Parse mode of regular expression.

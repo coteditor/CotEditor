@@ -27,7 +27,7 @@ import AppKit
 
 extension NSLayoutManager {
     
-    /// Calculate visual (wrapped) line range.
+    /// Calculates visual (wrapped) line range.
     ///
     /// - Parameter charIndex: The index of the character for which to return the line fragment range.
     /// - Returns: The range of characters that locate in the same line fragment of the given character.
@@ -48,7 +48,7 @@ extension NSLayoutManager {
     }
     
     
-    /// The enclosing rectangle of a glyph at the given index.
+    /// Returns the enclosing rectangle of a glyph at the given index.
     ///
     /// - Parameters:
     ///   - glyphIndex: The glyph index for which to return enclosing rectangle.
@@ -76,7 +76,7 @@ extension NSLayoutManager {
 
 extension NSLayoutManager {
     
-    /// Return range of given attribute if the location is in it, otherwise nil.
+    /// Returns range of given attribute if the location is in it, otherwise nil.
     ///
     /// - Parameters:
     ///   - attrName: The name of a temporary attribute.
@@ -94,7 +94,7 @@ extension NSLayoutManager {
     }
     
     
-    /// Enumerate range and value of the given temporary attribute key.
+    /// Enumerates range and value of the given temporary attribute key.
     ///
     /// - Parameters:
     ///   - attrName: The name of the temporary attribute to enumerate.
@@ -123,7 +123,7 @@ extension NSLayoutManager {
     }
     
     
-    /// Check if at least one temporary attribute for given attribute key exists.
+    /// Checks if at least one temporary attribute for given attribute key exists.
     ///
     /// - Parameters:
     ///   - attrName: The name of temporary attribute key to check.
@@ -150,7 +150,7 @@ extension NSLayoutManager {
 
 extension NSLayoutManager {
     
-    /// Check the writing direction of the character.
+    /// Checks the writing direction of the character.
     ///
     /// - Parameter index: The character index to check.
     /// - Returns: `true` when is right-to-left, otherwise `false`.
@@ -167,7 +167,7 @@ extension NSLayoutManager {
     }
     
     
-    /// Return the character index of the left side of the given character index in display order.
+    /// Returns the character index of the left side of the given character index in display order.
     ///
     /// - Parameters:
     ///   - characterIndex: The character index of the origin character.
@@ -195,7 +195,7 @@ extension NSLayoutManager {
     }
     
     
-    /// Return the character index of the right side of the given character index in display order.
+    /// Returns the character index of the right side of the given character index in display order.
     ///
     /// - Parameters:
     ///   - characterIndex: The character index of the origin character.
@@ -223,7 +223,7 @@ extension NSLayoutManager {
     }
     
     
-    /// Rects to draw insertion point for the given character index.
+    /// Returns rects to draw insertion point for the given character index.
     ///
     /// - Note: The rects can be either in one or two when the cursor split at the boundary of the writing direction.
     ///
@@ -247,7 +247,7 @@ extension NSLayoutManager {
     }
     
     
-    /// Return the character indexes for the insertion points in the same line fragment of the given character index in display order.
+    /// Returns the character indexes for the insertion points in the same line fragment of the given character index in display order.
     ///
     /// - Parameter characterIndex: The character index of one character within the line fragment.
     /// - Returns: An array contains character indexes in display order.
@@ -261,7 +261,7 @@ extension NSLayoutManager {
     }
     
     
-    /// Rect to draw insertion point for the given character index.
+    /// Returns a rect to draw insertion point for the given character index.
     ///
     /// - Parameters:
     ///   - characterIndex: The character index.
@@ -312,7 +312,7 @@ extension NSLayoutManager {
     private static let guidelineColor = NSColor(hue: 0.5, saturation: 0.75, brightness: 0.5, alpha: 1)
     
     
-    /// Draw guidelines of line fragment and baseline for debugging.
+    /// Draws guidelines of line fragment and baseline for debugging.
     ///
     /// Invoke this method in `drawBackground(forGlyphRange:at:)` to check the text layout for debugging.
     ///

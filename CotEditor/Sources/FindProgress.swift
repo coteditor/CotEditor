@@ -36,7 +36,7 @@ final class FindProgress: ObservableObject {
     private let scope: Range<Int>
     
     
-    /// Instantiate a progress.
+    /// Instantiates a progress.
     ///
     /// - Parameter scope: The range of progress unit to work with.
     init(scope: Range<Int>) {
@@ -56,7 +56,7 @@ final class FindProgress: ObservableObject {
     }
     
     
-    /// Increment count.
+    /// Increments count.
     ///
     /// - Parameter count: The amount to increment.
     func increment(by count: Int = 1) {

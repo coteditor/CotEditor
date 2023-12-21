@@ -131,7 +131,7 @@ final class DocumentInspectorViewController: NSViewController, DocumentOwner {
     }
     
     
-    /// Synchronize UI with related document values.
+    /// Synchronizes UI with related document values.
     private func observeDocument() {
         
         self.documentObservers = [

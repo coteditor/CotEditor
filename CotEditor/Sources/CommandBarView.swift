@@ -143,7 +143,7 @@ struct CommandBarView: View {
     }
     
     
-    /// Move the selection to the next one, if any exists.
+    /// Moves the selection to the next one, if any exists.
     ///
     /// - Parameter down: Whether move down or up the selection.
     private func move(down: Bool) {
@@ -157,7 +157,7 @@ struct CommandBarView: View {
     }
     
     
-    /// Perform the selected command and close the view.
+    /// Performs the selected command and closes the view.
     private func perform() {
         
         // first close the command bar and then take the action
@@ -239,7 +239,7 @@ private struct ActionCommandView: View {
     }
     
     
-    /// Set the selecting state of the receiver.
+    /// Sets the selecting state of the receiver.
     ///
     /// - Parameter selected: The selecting state to change.
     func selected(_ selected: Bool = true) -> Self {
@@ -250,7 +250,7 @@ private struct ActionCommandView: View {
     }
     
     
-    /// Return an AttributedString by highlighting the given ranges by taking the view states into account.
+    /// Returns an AttributedString by highlighting the given ranges by taking the view states into account.
     ///
     /// - Parameters:
     ///   - string: The base string to create the attributed string.
@@ -296,7 +296,7 @@ private extension View {
     }
     
     
-    /// Perform actions when clicking the mouse on the view.
+    /// Performs actions when clicking the mouse on the view.
     ///
     /// - Parameters:
     ///   - onMouseDown: The action to perform when the mouse is down.

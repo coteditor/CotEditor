@@ -35,7 +35,7 @@ extension NSTextView {
     
     // MARK: Public Methods
     
-    /// draw rounded background rects for .roundedBackgroundColor temporary attributes in the layoutManager
+    /// Draws rounded background rects for .roundedBackgroundColor temporary attributes in the layoutManager.
     final func drawRoundedBackground(in dirtyRect: NSRect) {
         
         // avoid invoking heavy-duty `range(for:)` as possible
@@ -72,7 +72,7 @@ extension NSTextView {
     
     // MARK: Private Methods
     
-    /// return fragment bezier paths of which a rounded rect for given range consists.
+    /// Returns fragment bezier paths of which a rounded rect for given range consists.
     private func roundedRectPaths(for range: NSRange) -> [NSBezierPath] {
         
         let rects = self.boundingRects(for: range).map(self.centerScanRect)

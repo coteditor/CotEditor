@@ -88,7 +88,7 @@ final class EncodingManager {
     }
     
     
-    /// Return corresponding String.Encoding from an encoding name.
+    /// Returns corresponding String.Encoding from an encoding name.
     ///
     /// - Parameter encodingName: The name of the encoding to find.
     /// - Returns: A string encoding or nil.
@@ -100,7 +100,7 @@ final class EncodingManager {
     }
     
     
-    /// Return corresponding String.Encoding from an IANA charset name.
+    /// Returns corresponding String.Encoding from an IANA charset name.
     ///
     /// - Parameter encodingName: The IANA charset name of the encoding to find.
     /// - Returns: A string encoding or nil.
@@ -112,7 +112,7 @@ final class EncodingManager {
     }
     
     
-    /// Set available encoding menu items with action `changeEncoding(_:)` to the passed-in menu.
+    /// Sets available encoding menu items with action `changeEncoding(_:)` to the passed-in menu.
     ///
     /// - Parameter menu: The menu to update its items.
     func updateChangeEncodingMenu(_ menu: NSMenu) {
@@ -141,7 +141,7 @@ final class EncodingManager {
     
     // MARK: Private Methods
     
-    /// Convert invalid encoding values (-1) to `kCFStringEncodingInvalidId`.
+    /// Converts invalid encoding values (-1) to `kCFStringEncodingInvalidId`.
     private func sanitizeEncodingListSetting() {
         
         guard

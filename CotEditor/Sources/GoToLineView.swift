@@ -35,7 +35,7 @@ struct GoToLineView: View {
     
     // MARK: View
     
-    /// Initialize view with given values.
+    /// Initializes view with given values.
     ///
     /// - Parameters:
     ///   - lineRange: The current line range.
@@ -74,7 +74,7 @@ struct GoToLineView: View {
     
     // MARK: Private Methods
     
-    /// Submit the current input.
+    /// Submits the current input.
     private func submit() {
         
         guard

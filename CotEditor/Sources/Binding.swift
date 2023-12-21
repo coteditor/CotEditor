@@ -29,7 +29,7 @@ import SwiftUI
 
 extension Binding where Value: OptionSet {
     
-    /// Enable binding to an option using Bool.
+    /// Enables binding to an option using Bool.
     ///
     /// - Parameter options: The option to bind.
     /// - Returns: A `Binding<Bool>` struct.

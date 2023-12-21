@@ -124,7 +124,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     
     // MARK: Action Messages
     
-    /// text size slider was moved
+    /// Text size slider was moved.
     @IBAction func textSizeSliderChanged(_ sliderItem: NSSliderTouchBarItem) {
         
         let scale = sliderItem.doubleValue
@@ -133,7 +133,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     }
     
     
-    /// "Actual Size" button was touched
+    /// The Actual Size button was touched.
     @IBAction func resetTextSize(_ sender: Any?) {
         
         self.textView?.setScaleKeepingVisibleArea(1.0)

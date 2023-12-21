@@ -69,7 +69,7 @@ struct DocumentFile {
     // MARK: -
     // MARK: Lifecycle
     
-    /// Read file at the given URL and initialize.
+    /// Reads file at the given URL and initialize.
     ///
     /// - Parameters:
     ///   - fileURL: The location of the file to read.
@@ -118,7 +118,7 @@ struct DocumentFile {
     
     // MARK: Private Methods
     
-    /// Read string from data by detecting the text encoding automatically.
+    /// Reads string from data by detecting the text encoding automatically.
     ///
     /// - Parameters:
     ///   - data: The data to encode.

@@ -47,7 +47,7 @@ extension NSDocument {
     typealias RecoveryHandler = ((_ didRecover: Bool) -> Void)
     
     
-    /// present an error alert as document modal sheet by blocking asynchronous saving.
+    /// Presents an error alert as document modal sheet by blocking asynchronous saving.
     final func presentErrorAsSheetSafely(_ error: some Error, synchronousWaiting waitSynchronously: Bool = false, recoveryHandler: RecoveryHandler? = nil) {
         
         self.performActivity(withSynchronousWaiting: waitSynchronously) { [unowned self] activityCompletionHandler in
@@ -59,7 +59,7 @@ extension NSDocument {
     }
     
     
-    /// present an error alert as document modal sheet
+    /// Presents an error alert as document modal sheet.
     final func presentErrorAsSheet(_ error: some Error, recoveryHandler: RecoveryHandler? = nil) {
         
         guard let window = self.windowForSheet else {
@@ -86,7 +86,7 @@ extension NSDocument {
     
     // MARK: Private Methods
     
-    /// perform didRecoverBlock after recovering presented error
+    /// Performs didRecoverBlock after recovering presented error.
     @objc private func didPresentErrorWithRecovery(didRecover: Bool, contextInfo: UnsafeMutableRawPointer) {
         
         let recoveryHandler: RecoveryHandler = bridgeUnwrapped(contextInfo)

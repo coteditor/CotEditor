@@ -223,7 +223,7 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Public Methods
     
-    /// Open an untitled document with the given content or recycle the transient document if available.
+    /// Opens an untitled document with the given content or recycles the transient document if available.
     ///
     /// - Parameters:
     ///   - content: The text content to fill in the created document.
@@ -256,7 +256,7 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Action Messages
     
-    /// Open a new document as a new window.
+    /// Opens a new document as a new window.
     @IBAction func newDocumentAsWindow(_ sender: Any?) {
         
         DocumentWindow.tabbingPreference = .manual
@@ -265,7 +265,7 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// Open a new document as a tab in the existing frontmost window.
+    /// Opens a new document as a tab in the existing frontmost window.
     @IBAction func newDocumentAsTab(_ sender: Any?) {
         
         DocumentWindow.tabbingPreference = .always
@@ -292,7 +292,7 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// Replace window controllers in documents.
+    /// Replaces window controllers in documents.
     ///
     /// - Parameters:
     ///   - transientDocument: The transient document to be replaced.
@@ -313,7 +313,7 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// Check file before creating a new document instance.
+    /// Checks file before creating a new document instance.
     ///
     /// - Parameters:
     ///   - url: The location of the new document object.

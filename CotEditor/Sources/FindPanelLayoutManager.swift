@@ -69,7 +69,6 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     
     // MARK: Layout Manager Methods
     
-    /// draw invisible characters
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         
         if self.showsInvisibles {
@@ -83,9 +82,9 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     
     // MARK: Layout Manager Delegate Methods
     
-    /// adjust line height to be all the same
     func layoutManager(_ layoutManager: NSLayoutManager, shouldSetLineFragmentRect lineFragmentRect: UnsafeMutablePointer<NSRect>, lineFragmentUsedRect: UnsafeMutablePointer<NSRect>, baselineOffset: UnsafeMutablePointer<CGFloat>, in textContainer: NSTextContainer, forGlyphRange glyphRange: NSRange) -> Bool {
         
+        // adjust line height to be all the same
         lineFragmentRect.pointee.size.height = self.lineHeight
         lineFragmentUsedRect.pointee.size.height = self.lineHeight
         baselineOffset.pointee = self.baselineOffset
@@ -94,16 +93,16 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     }
     
     
-    /// treat control characters as whitespace to draw replacement glyphs
     func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {
         
+        // treat control characters as whitespace to draw replacement glyphs
         self.showsControlCharacter(at: charIndex, proposedAction: action) ? .whitespace : action
     }
     
     
-    /// make a blank space to draw the replacement glyph in `drawGlyphs(forGlyphRange:at:)` later
     func layoutManager(_ layoutManager: NSLayoutManager, boundingBoxForControlGlyphAt glyphIndex: Int, for textContainer: NSTextContainer, proposedLineFragment proposedRect: NSRect, glyphPosition: NSPoint, characterIndex charIndex: Int) -> NSRect {
         
+        // make a blank space to draw the replacement glyph in `drawGlyphs(forGlyphRange:at:)` later
         self.boundingBoxForControlGlyph
     }
     

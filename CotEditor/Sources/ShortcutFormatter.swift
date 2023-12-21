@@ -27,14 +27,14 @@ import Foundation
 
 final class ShortcutFormatter: Formatter {
     
-    /// convert to plain string
+    /// Converts to plain string.
     override func string(for obj: Any?) -> String? {
         
         (obj as? Shortcut)?.symbol
     }
     
     
-    /// format backwards
+    /// Formats backwards.
     override func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
         
         obj?.pointee = Shortcut(symbolRepresentation: string) as AnyObject?

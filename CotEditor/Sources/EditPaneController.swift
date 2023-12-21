@@ -53,7 +53,7 @@ final class EditPaneController: NSViewController {
     
     // MARK: Action Messages
     
-    /// completion list condition was changed
+    /// The condition of the completion list was changed.
     @IBAction func updateCompletionListWords(_ sender: Any?) {
         
         self.isValidCompletion = self.validateCompletionSetting()
@@ -63,7 +63,7 @@ final class EditPaneController: NSViewController {
     
     // MARK: Private Methods
     
-    /// update hint for word completion
+    /// Updates the hint for word completion.
     private func validateCompletionSetting() -> Bool {
         
         (UserDefaults.standard[.completesDocumentWords] ||

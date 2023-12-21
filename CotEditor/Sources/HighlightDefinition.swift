@@ -55,7 +55,7 @@ struct HighlightDefinition: Equatable {
     }
     
     
-    /// create a regex type definition from simple words by considering non-word characters around words
+    /// Creates a regex type definition from simple words by considering non-word characters around words.
     init(words: [String], ignoreCase: Bool) {
         
         assert(!words.isEmpty)

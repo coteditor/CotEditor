@@ -84,7 +84,7 @@ extension OutlineItem {
 
 extension BidirectionalCollection<OutlineItem> {
     
-    /// Return the index of element for the given range.
+    /// Returns the index of element for the given range.
     ///
     /// - Parameter range: The character range to refer.
     /// - Returns: The index of the corresponding outline item, or `nil` if not exist.
@@ -94,7 +94,7 @@ extension BidirectionalCollection<OutlineItem> {
     }
     
     
-    /// Return the previous non-separator element from the given range.
+    /// Returns the previous non-separator element from the given range.
     ///
     /// - Parameter range: The character range to refer.
     /// - Returns: The previous outline item, or `nil` if not exist.
@@ -106,7 +106,7 @@ extension BidirectionalCollection<OutlineItem> {
     }
     
     
-    /// Return the next non-separator element from the given range.
+    /// Returns the next non-separator element from the given range.
     ///
     /// - Parameter range: The character range to refer.
     /// - Returns: The next outline item, or `nil` if not exist.
@@ -125,7 +125,7 @@ extension BidirectionalCollection<OutlineItem> {
     }
     
     
-    /// Filter matched outline items abbreviatedly.
+    /// Filters matched outline items abbreviatedly.
     ///
     /// - Parameter searchString: The string to search.
     /// - Returns: Matched items.

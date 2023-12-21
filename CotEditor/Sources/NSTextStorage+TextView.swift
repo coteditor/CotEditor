@@ -48,7 +48,7 @@ extension NSTextStorage {
     }
     
     
-    /// Apply the previous selection to the text views by taking diff into account.
+    /// Applies the previous selection to the text views by taking diff into account.
     ///
     /// - Parameter state: The selection state to apply.
     final func restoreEditorSelection(_ state: EditorSelection) {
@@ -78,7 +78,7 @@ extension NSTextStorage {
     }
     
     
-    /// Replace whole content with the given `string`.
+    /// Replaces whole content with the given `string`.
     ///
     /// - Parameters:
     ///   - string: The content string to replace with.

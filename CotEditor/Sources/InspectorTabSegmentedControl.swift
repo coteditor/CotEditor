@@ -64,7 +64,7 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
     
     // MARK: Public Methods
     
-    /// Set images for both normal and selected states for the specified segment.
+    /// Sets images for both normal and selected states for the specified segment.
     ///
     /// - Parameters:
     ///   - image: The image to apply to the segment or `nil` if you want to clear the existing image.
@@ -90,7 +90,7 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
     
     // MARK: Private Methods
     
-    /// Return the image associated with the specified segment by taking the selection state into consideration.
+    /// Returns the image associated with the specified segment by taking the selection state into consideration.
     ///
     /// - Parameters:
     ///   - segment: The index of the segment whose image you want to get.

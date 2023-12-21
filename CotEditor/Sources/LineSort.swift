@@ -52,7 +52,7 @@ protocol SortPattern: Equatable {
 
 extension SortPattern {
     
-    /// Sort given lines with the receiver's pattern.
+    /// Sorts given lines with the receiver's pattern.
     ///
     /// - Parameters:
     ///   - string: The string to sort.
@@ -204,7 +204,7 @@ struct RegularExpressionSortPattern: SortPattern {
     }
     
     
-    /// Test the regular expression pattern is valid.
+    /// Tests the regular expression pattern is valid.
     func validate() throws {
         
         if self.searchPattern.isEmpty {
@@ -257,7 +257,7 @@ struct SortOptions: Equatable {
     }
     
     
-    /// Interpret the given string as numeric value using the receiver's parsing strategy.
+    /// Interprets the given string as numeric value using the receiver's parsing strategy.
     ///
     /// If the receiver's `.numeric` property is `false`, it certainly returns `nil`.
     ///

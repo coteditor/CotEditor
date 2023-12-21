@@ -94,7 +94,7 @@ final class MultipleReplaceViewController: NSViewController {
     }
     
     
-    /// Add a new replacement rule at the end.
+    /// Adds a new replacement rule at the end.
     @IBAction func add(_ sender: Any?) {
         
         self.endEditing()
@@ -114,7 +114,7 @@ final class MultipleReplaceViewController: NSViewController {
     }
     
     
-    /// Remove selected replacement rules.
+    /// Removes selected replacement rules.
     @IBAction func remove(_ sender: Any?) {
         
         self.endEditing()
@@ -131,7 +131,7 @@ final class MultipleReplaceViewController: NSViewController {
     }
     
     
-    /// Show the advanced options view.
+    /// Shows the advanced options view.
     @IBAction func showOptions(_ sender: NSButton) {
         
         if let viewController = self.presentedViewControllers?.first(where: { $0 is NSHostingController<MultipleReplaceSettingsView> }) {
@@ -151,7 +151,7 @@ final class MultipleReplaceViewController: NSViewController {
     }
     
     
-    /// Highlight all matches in the target textView.
+    /// Highlights all matches in the target textView.
     @IBAction func highlight(_ sender: Any?) {
         
         self.endEditing()
@@ -168,7 +168,7 @@ final class MultipleReplaceViewController: NSViewController {
     }
     
     
-    /// Perform replacement with current set.
+    /// Performs replacement with current set.
     @IBAction func batchReplaceAll(_ sender: Any?) {
         
         self.endEditing()
@@ -192,7 +192,7 @@ final class MultipleReplaceViewController: NSViewController {
     
     // MARK: Public Methods
     
-    /// Set another replacement definition.
+    /// Sets another replacement definition.
     ///
     /// - Parameter setting: The setting to replace.
     func change(setting: MultipleReplace) {
@@ -229,14 +229,14 @@ final class MultipleReplaceViewController: NSViewController {
     }
     
     
-    /// Notify update to delegate.
+    /// Notifies the update to delegate.
     private func notifyUpdate() {
         
         self.didSettingUpdate.send(self.definition)
     }
     
     
-    /// Validate the availability of the remove button.
+    /// Validates the availability of the remove button.
     private func invalidateRemoveButton() {
         
         let canRemove = self.tableView?.selectedRowIndexes.isEmpty == false
@@ -244,7 +244,7 @@ final class MultipleReplaceViewController: NSViewController {
     }
     
     
-    /// Validate the current setting.
+    /// Validates the current setting.
     private func validateObject() {
         
         self.hasInvalidSetting = self.definition.replacements.contains {
@@ -254,7 +254,7 @@ final class MultipleReplaceViewController: NSViewController {
     }
     
     
-    /// Undoable insertion of replacement definitions.
+    /// Performs undoable insertion of replacement definitions.
     ///
     /// - Parameters:
     ///   - replacements: New replacement definitions to insert.
@@ -286,7 +286,7 @@ final class MultipleReplaceViewController: NSViewController {
     }
     
     
-    /// Undoable removal of replacement definitions.
+    /// Performs undoable removal of replacement definitions.
     ///
     /// - Parameter rowIndexes: Rows of definitions to remove.
     private func removeReplacements(at rowIndexes: IndexSet) {
@@ -314,7 +314,7 @@ final class MultipleReplaceViewController: NSViewController {
     }
     
     
-    /// Undoable replacement definitions' update.
+    /// Performs undoable replacement definitions' update.
     ///
     /// - Parameters:
     ///   - replacements: New replacement definitions to update.
@@ -349,7 +349,7 @@ final class MultipleReplaceViewController: NSViewController {
     }
     
     
-    /// Undoable move of replacement definitions.
+    /// Performs undoable move of replacement definitions.
     ///
     /// - Parameters:
     ///   - sourceRows: Rows of definitions to move.
@@ -410,14 +410,14 @@ private extension NSPasteboard.PasteboardType {
 
 extension MultipleReplaceViewController: NSTableViewDelegate {
     
-    /// selection did change
+    /// Selection did change.
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         self.invalidateRemoveButton()
     }
     
     
-    /// make table cell view
+    /// Makes table cell view.
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
         guard
@@ -479,7 +479,7 @@ extension MultipleReplaceViewController: NSTableViewDelegate {
     
     // MARK: Actions
     
-    /// apply edited value to data model
+    /// Applies edited value to data model.
     @IBAction func didEditTableCell(_ sender: NSControl) {
         
         guard let tableView = self.tableView else { return }
@@ -549,7 +549,7 @@ extension MultipleReplaceViewController: NSTableViewDataSource {
     }
     
     
-    /// start dragging
+    /// Starts dragging.
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
         
         // register dragged type
@@ -568,7 +568,7 @@ extension MultipleReplaceViewController: NSTableViewDataSource {
     }
     
     
-    /// validate when dragged items come into tableView
+    /// Validates when dragged items come into tableView.
     func tableView(_ tableView: NSTableView, validateDrop info: any NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // accept only self drag-and-drop
@@ -582,7 +582,7 @@ extension MultipleReplaceViewController: NSTableViewDataSource {
     }
     
     
-    /// check acceptability of dragged items and insert them to table
+    /// Checks the acceptability of dragged items and inserts them to table.
     func tableView(_ tableView: NSTableView, acceptDrop info: any NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         // accept only self drag-and-drop
@@ -604,7 +604,7 @@ extension MultipleReplaceViewController: NSTableViewDataSource {
     }
     
     
-    /// items are dropped somewhere
+    /// Items are dropped somewhere.
     func tableView(_ tableView: NSTableView, draggingSession session: NSDraggingSession, endedAt screenPoint: NSPoint, operation: NSDragOperation) {
         
         switch operation {

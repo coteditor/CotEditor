@@ -100,7 +100,7 @@ enum UnicodeNormalizationForm: String, CaseIterable {
 
 extension StringProtocol {
     
-    /// A string created by normalizing the string’s contents using the specified form.
+    /// Returns a string created by normalizing the string’s contents using the specified form.
     ///
     /// - Parameter form: The Unicode normalization form.
     /// - Returns: A normalized string.

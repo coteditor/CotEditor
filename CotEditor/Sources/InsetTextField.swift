@@ -120,7 +120,7 @@ extension InsetTextField {
     }
     
     
-    /// Set the inset value inside the field.
+    /// Sets the inset value inside the field.
     ///
     /// - Parameters:
     ///   - edges: The set of edges to inset for this view.
@@ -141,7 +141,7 @@ extension InsetTextField {
     }
     
     
-    /// Set an action to perform when the user submits a value to this view.
+    /// Sets an action to perform when the user submits a value to this view.
     ///
     /// - Parameter action: The action to perform on submission of a value.
     func onSubmit(_ action: @escaping () -> Void) -> Self {
@@ -152,7 +152,7 @@ extension InsetTextField {
     }
     
     
-    /// Modify the font to use fixed-width digits.
+    /// Modifies the font to use fixed-width digits.
     func monospacedDigit() -> Self {
         
         var view = self

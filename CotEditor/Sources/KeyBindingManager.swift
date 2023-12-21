@@ -79,7 +79,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Apply all keyboard shortcuts to the main menu.
+    /// Applys all keyboard shortcuts to the main menu.
     func applyShortcutsToMainMenu() {
         
         guard !self.modifiedKeyBindings.isEmpty else { return }
@@ -92,7 +92,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Remove all user customization.
+    /// Removes all user customization.
     func restoreDefaults() throws {
         
         try self.removeSettingFile()
@@ -102,7 +102,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Find the action that has the given shortcut.
+    /// Finds the action that has the given shortcut.
     ///
     /// - Parameter shortcut: The shortcut to find.
     /// - Returns: The command name for the user.
@@ -112,7 +112,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Save passed-in key binding settings.
+    /// Saves passed-in key binding settings.
     ///
     /// - Parameter keyBindings: The key bindings to save.
     func saveKeyBindings(_ keyBindings: [KeyBinding]) throws {
@@ -163,7 +163,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Load user settings.
+    /// Loads user settings.
     private func loadSettings() throws -> [KeyBinding] {
         
         let fileURL = self.settingFileURL
@@ -177,7 +177,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Remove setting file in the user domain, if exists.
+    /// Removes the setting file in the user domain, if exists.
     private func removeSettingFile() throws {
         
         guard self.settingFileURL.isReachable else { return }
@@ -192,7 +192,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Return the shortcut for the passed-in selector and menu item tag.
+    /// Returns the shortcut for the passed-in selector and menu item tag.
     ///
     /// - Parameters:
     ///   - action: The action selector.
@@ -256,7 +256,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Allow modifying only menu items existed at launch.
+    /// Allows modifying only menu items existed at launch.
     ///
     /// - Parameter menuItem: The menu item to check.
     /// - Returns: Whether the given menu item can be modified by the user.
@@ -273,7 +273,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// The shortcut for the given menuItem was customized in the session.
+    /// Returns whether the shortcut for the given menuItem was customized in the session.
     ///
     /// - Parameter menuItem: The menu item to check.
     /// - Returns: Whether the given menu item was modified by the user.
@@ -284,7 +284,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Scan all keyboard shortcuts as well as selector names in passed-in menu.
+    /// Scans all keyboard shortcuts as well as selector names in passed-in menu.
     ///
     /// - Parameter menu: The menu where to collect key bindings.
     /// - Returns: An array of KeyBindings.
@@ -304,7 +304,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Clear keyboard shortcuts to be modified in the passed-in menu.
+    /// Clears keyboard shortcuts to be modified in the passed-in menu.
     ///
     /// - Parameter menu: The menu where to remove shortcuts.
     private func clearShortcuts(in menu: NSMenu) {
@@ -323,7 +323,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Apply keyboard shortcuts customized by the user to the passed-in menu.
+    /// Applies keyboard shortcuts customized by the user to the passed-in menu.
     ///
     /// - Parameter menu: The menu where to apply shortcuts.
     private func applyShortcuts(to menu: NSMenu) {
@@ -346,7 +346,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// A collection of the menu tree.
+    /// Returns a collection of the menu tree.
     ///
     /// - Parameters:
     ///   - menu: The menu where to collect key binding items.
@@ -374,7 +374,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Find the action that has the given shortcut in the menu.
+    /// Finds the action that has the given shortcut in the menu.
     private func commandName(for shortcut: Shortcut, in menu: NSMenu) -> String? {
         
         menu.items.lazy

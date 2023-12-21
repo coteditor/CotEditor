@@ -61,7 +61,7 @@ final class IncompatibleCharacterScanner {
     
     // MARK: Public Methods
     
-    /// Scan only when needed.
+    /// Scans only when needed.
     func invalidate() {
         
         guard self.shouldScan else { return }

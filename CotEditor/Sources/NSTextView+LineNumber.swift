@@ -44,7 +44,7 @@ extension NSTextView {
     
     
     
-    /// The 1-based line number at the given character index.
+    /// Returns the 1-based line number at the given character index.
     ///
     /// This method has a performance advantage if the receiver's layoutManager conforms LineRangeCacheable.
     ///
@@ -56,7 +56,7 @@ extension NSTextView {
     }
     
     
-    /// Enumerate line fragments in area with line numbers.
+    /// Enumerates line fragments in area with line numbers.
     ///
     /// - Parameters:
     ///   - rect: The bounding rectangle for which to process lines.
@@ -136,7 +136,7 @@ extension NSTextView {
     
     // MARK: Private Methods
     
-    /// The 1-based line number at the given character index.
+    /// Returns the 1-based line number at the given character index.
     ///
     /// This method has a performance advantage if the receiver's layoutManager conforms LineRangeCacheable.
     ///

@@ -66,7 +66,9 @@ final class DocumentAnalyzer {
     
     // MARK: Public Methods
     
-    /// update editor info (only if really needed)
+    /// Updates editor info (only if really needed).
+    ///
+    /// - Parameter onlySelection: `true` to invalidate only the selection.
     func invalidate(onlySelection: Bool = false) {
         
         guard !self.requiredInfoTypes.isEmpty else { return }

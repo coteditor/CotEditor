@@ -35,7 +35,7 @@ struct StepperNumberField: View {
     private var fieldWidth: CGFloat? = 32
     
     
-    /// Create a text field editing numerical value with a stepper.
+    /// Creates a text field editing numerical value with a stepper.
     ///
     /// - Parameters:
     ///   - value: The underlying value to edit.
@@ -84,7 +84,7 @@ struct StepperNumberField: View {
     }
     
     
-    /// Set the input field width to the specified size.
+    /// Sets the input field width to the specified size.
     ///
     /// - Parameter fieldWidth: The field width.
     func fieldWidth(_ fieldWidth: CGFloat?) -> some View {

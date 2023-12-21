@@ -177,7 +177,7 @@ extension DocumentWindow {
     }
     
     
-    /// process user's shortcut input
+    /// Processes user's shortcut input
     override func performKeyEquivalent(with event: NSEvent) -> Bool {
         
         guard !super.performKeyEquivalent(with: event) else { return true }

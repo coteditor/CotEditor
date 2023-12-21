@@ -34,7 +34,7 @@ protocol KeySortable {
 
 extension MutableCollection where Self: RandomAccessCollection, Element: KeySortable {
     
-    /// Sort the receiver using NSSortDescriptor.
+    /// Sorts the receiver using NSSortDescriptor.
     ///
     /// - Parameter descriptors: The description how to sort.
     mutating func sort(using descriptors: [NSSortDescriptor]) {
@@ -60,7 +60,7 @@ extension MutableCollection where Self: RandomAccessCollection, Element: KeySort
 
 extension Sequence where Element: KeySortable {
     
-    /// Return the sorted elements of the receiver by sorting using NSSortDescriptor.
+    /// Returns the sorted elements of the receiver by sorting using NSSortDescriptor.
     ///
     /// - Parameter descriptors: The description how to sort.
     /// - Returns: The sorted result.
@@ -87,7 +87,7 @@ extension Sequence where Element: KeySortable {
 
 extension Comparable {
     
-    /// Compare the receiver with the given value.
+    /// Compares the receiver with the given value.
     ///
     /// - Parameter other: The value to compare with.
     /// - Returns: The result of comparison.

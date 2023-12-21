@@ -44,7 +44,7 @@ struct FileDropItem {
     
     // MARK: Public Methods
     
-    /// Test whether the given conditions are supported.
+    /// Tests whether the given conditions are supported.
     ///
     /// - Parameters:
     ///   - pathExtension: The file extension.
@@ -165,7 +165,7 @@ extension FileDropItem {
     
     // MARK: Public Methods
     
-    /// Create file drop text.
+    /// Creates file drop text.
     ///
     /// - Parameters:
     ///   - droppedFileURL: The file URL of dropped file to insert.

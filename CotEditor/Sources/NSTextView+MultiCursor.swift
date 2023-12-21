@@ -65,7 +65,7 @@ extension MultiCursorEditing {
     }
     
     
-    /// Insert the same string at multiple ranges.
+    /// Inserts the same string at multiple ranges.
     ///
     /// - Parameters:
     ///   - string: The string to insert.
@@ -105,7 +105,7 @@ extension MultiCursorEditing {
     }
     
     
-    /// Remove characters at all insertionRanges when there is more than one to delete.
+    /// Removes characters at all insertionRanges when there is more than one to delete.
     ///
     /// - Parameter forward: Perform the forward delete when the flag raised; otherwise, delete backward.
     /// - Returns: Whether the deletion succeed.
@@ -140,7 +140,7 @@ extension MultiCursorEditing {
     }
     
     
-    /// Calculate multiple insertion points for rectangular selection.
+    /// Calculates multiple insertion points for rectangular selection.
     ///
     /// - Parameters:
     ///   - startPoint: The point where the dragging started, in view coordinates.
@@ -191,7 +191,7 @@ extension MultiCursorEditing {
     }
     
     
-    /// Sanitize and divide selection ranges candidate to ones to set to the proper `selectionRanges` and `insertionLocations`.
+    /// Sanitizes and divide selection ranges candidate to ones to set to the proper `selectionRanges` and `insertionLocations`.
     ///
     /// - Parameter ranges: The selection ranges candidate.
     /// - Returns: Sanitized range set to set to `selectionRanges` and `insertionLocations`, or `nil` when invalid.
@@ -215,7 +215,7 @@ extension MultiCursorEditing {
     }
     
     
-    /// Add a new insertion point at `point` or remove an existing if any.
+    /// Adds a new insertion point at `point` or removes an existing if any.
     ///
     /// - Parameter point: The point where user clicked, in view coordinates.
     /// - Returns: Whether the insertion/removal succeed.
@@ -240,7 +240,7 @@ extension MultiCursorEditing {
     }
     
     
-    /// Move all cursors with the same rule.
+    /// Moves all cursors with the same rule.
     ///
     /// - Parameters:
     ///   - affinity: The selection affinity for the movement.
@@ -265,7 +265,7 @@ extension MultiCursorEditing {
     }
     
     
-    /// Move all cursors and expand selection with the same rule.
+    /// Moves all cursors and expands selection with the same rule.
     ///
     /// - Parameters:
     ///   - forward: `true` if the cursor should move forward, otherwise `false`.
@@ -314,7 +314,7 @@ extension MultiCursorEditing {
     }
     
     
-    /// Enable or disable `insertionPointTimer` according to the selection state.
+    /// Enables or disables `insertionPointTimer` according to the selection state.
     @available(macOS, deprecated: 14)
     func updateInsertionPointTimer() {
         
@@ -328,7 +328,7 @@ extension MultiCursorEditing {
     }
     
     
-    /// Add new insertion points just above/below to the current insertions.
+    /// Adds new insertion points just above/below to the current insertions.
     ///
     /// - Parameter affinity: The direction to add new ones; `.downstream` to add above, otherwise `.upstream`.
     func addSelectedColumn(affinity: NSSelectionAffinity) {
@@ -388,7 +388,7 @@ extension MultiCursorEditing {
     }
     
     
-    /// Return the range for selection that are laid out within the given rectangle
+    /// Returns the range for selection that are laid out within the given rectangle
     /// expecting the given rect is contained in a single line fragment.
     ///
     /// - Parameter rect: The bounding rectangle for which to return range.
@@ -402,7 +402,7 @@ extension MultiCursorEditing {
     }
     
     
-    /// Update insertion indicators.
+    /// Updates insertion indicators.
     @available(macOS 14, *)
     func updateInsertionIndicators() {
         
@@ -460,7 +460,7 @@ final class LegacyEditorTextView: EditorTextView {
 
 extension NSTextView {
     
-    /// Calculate rect for insertion point at `index`.
+    /// Calculates rect for insertion point at `index`.
     ///
     /// - Parameter index: The character index where the insertion point will locate.
     /// - Returns: Rect where insertion point filled.
@@ -480,7 +480,7 @@ extension NSTextView {
     }
     
     
-    /// Find the location for the insertion point where one (visual) line above to the given insertion point location.
+    /// Finds the location for the insertion point where one (visual) line above to the given insertion point location.
     ///
     /// - Parameter index: The character index of the reference insertion point.
     /// - Returns: The character index of the objective insertion point location or `0` if cannot move.
@@ -500,7 +500,7 @@ extension NSTextView {
     }
     
     
-    /// Find the location for the insertion point where one (visual) line below to the given insertion point location.
+    /// Finds the location for the insertion point where one (visual) line below to the given insertion point location.
     ///
     /// - Parameter index: The character index of the reference insertion point.
     /// - Returns: The character index of the objective insertion point location or end of the document if cannot move.
@@ -546,7 +546,7 @@ private extension UserDefaults {
 
 private extension MultiCursorEditing {
     
-    /// Enable insertion point blink timer to draw insertion points forcibly.
+    /// Enables insertion point blink timer to draw insertion points forcibly.
     @available(macOS, deprecated: 14)
     private func enableOwnInsertionPointTimer() {
         
@@ -572,7 +572,7 @@ private extension MultiCursorEditing {
 
 private extension NSLayoutManager {
     
-    /// Return the bounds between upper and lower bounds of the given `range` in horizontal axis.
+    /// Returns the bounds between upper and lower bounds of the given `range` in horizontal axis.
     ///
     /// - Parameters:
     ///   - characterRange: The glyph range for which to return the bounds.
@@ -588,7 +588,7 @@ private extension NSLayoutManager {
     }
     
     
-    /// Return all line fragment used rects including `extraLineFragmentUsedRect` or empty range at the end of given range.
+    /// Returns all line fragment used rects including `extraLineFragmentUsedRect` or empty range at the end of given range.
     ///
     /// - Parameters:
     ///   - glyphRange: The glyph range where to return line fragment rectangles.

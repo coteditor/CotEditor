@@ -123,7 +123,7 @@ final class TextContainer: NSTextContainer {
     
     // MARK: Private Methods
     
-    /// Let layoutManager invalidate the entire layout.
+    /// Lets layoutManager invalidate the entire layout.
     private func invalidateLayout() {
         
         guard let layoutManager = self.layoutManager else { return }

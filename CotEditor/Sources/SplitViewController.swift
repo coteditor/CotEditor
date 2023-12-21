@@ -100,7 +100,7 @@ final class SplitViewController: NSSplitViewController {
     
     // MARK: Action Messages
     
-    /// Toggle divider orientation.
+    /// Toggles divider orientation.
     @IBAction func toggleSplitOrientation(_ sender: Any?) {
         
         self.splitView.isVertical.toggle()
@@ -109,14 +109,14 @@ final class SplitViewController: NSSplitViewController {
     }
     
     
-    /// Move focus to the next text view.
+    /// Moves focus to the next text view.
     @IBAction func focusNextSplitTextView(_ sender: Any?) {
         
         self.focusSplitTextView(onNext: true)
     }
     
     
-    /// Move focus to the previous text view.
+    /// Moves focus to the previous text view.
     @IBAction func focusPrevSplitTextView(_ sender: Any?) {
         
         self.focusSplitTextView(onNext: false)
@@ -126,7 +126,7 @@ final class SplitViewController: NSSplitViewController {
     
     // MARK: Private Methods
     
-    /// Move focus to the next/previous text view.
+    /// Moves focus to the next/previous text view.
     ///
     /// - Parameter onNext: Move to the next if `true`, otherwise previous.
     private func focusSplitTextView(onNext: Bool) {

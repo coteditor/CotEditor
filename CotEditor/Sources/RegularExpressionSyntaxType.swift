@@ -138,7 +138,7 @@ enum RegularExpressionSyntaxType: CaseIterable {
 
 private extension StringProtocol {
     
-    /// Find the ranges of `[^abc]` pattern in the regular expression.
+    /// Finds the ranges of `[^abc]` pattern in the regular expression.
     ///
     /// - Parameter includingSymbols: Whether the result ranges including `[]` and `^`.
     /// - Returns: The matched ranges.
@@ -166,7 +166,7 @@ private extension StringProtocol {
     
     // MARK: Private Methods
     
-    /// Find the range of the first `[^abc]` pattern in the regular expression after the given index.
+    /// Finds the range of the first `[^abc]` pattern in the regular expression after the given index.
     ///
     /// - Parameter searchIndex: The character index to start finding.
     /// - Returns: The found range and if the found pattern is a negative pattern (not `[abc]` but `[^abc]`), or `nil` if not found.

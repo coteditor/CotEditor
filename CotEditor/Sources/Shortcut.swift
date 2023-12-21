@@ -94,7 +94,7 @@ private enum ModifierKey: CaseIterable {
     }
     
     
-    /// Return `true` if the user keyboard is supposed to have the Globe key.
+    /// Returns `true` if the user keyboard is supposed to have the Globe key.
     private static let supportsGlobeKey = {
         
         let entry = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceMatching("AppleHIDKeyboardEventDriverV2"))
@@ -125,7 +125,7 @@ struct Shortcut {
     
     // MARK: Lifecycle
     
-    /// Initialize Shortcut directly from a key equivalent character and modifiers.
+    /// Initializes Shortcut directly from a key equivalent character and modifiers.
     ///
     /// - Note: This initializer accepts the fn key while the others not.
     init?(_ keyEquivalent: String, modifiers: NSEvent.ModifierFlags) {
@@ -137,7 +137,7 @@ struct Shortcut {
     }
     
     
-    /// Initialize Shortcut from a stored string.
+    /// Initializes Shortcut from a stored string.
     ///
     /// - Parameter keySpecChars: The storable representation.
     init?(keySpecChars: String) {
@@ -154,7 +154,7 @@ struct Shortcut {
     }
     
     
-    /// Initialize Shortcut from a display representation.
+    /// Initializes Shortcut from a display representation.
     ///
     /// - Parameter string: The shortcut string to display in GUI.
     init?(symbolRepresentation string: String) {
@@ -178,7 +178,7 @@ struct Shortcut {
     }
     
     
-    /// Initialize Shortcut from a key down event.
+    /// Initializes Shortcut from a key down event.
     ///
     /// - Parameter event: The key down event.
     init?(keyDownEvent event: NSEvent) {
@@ -446,7 +446,7 @@ extension Shortcut: Equatable {
     }
     
     
-    /// Normalize Shortcut by preferring to use the Shift key rather than an upper key equivalent character.
+    /// Normalizes Shortcut by preferring to use the Shift key rather than an upper key equivalent character.
     ///
     /// According to the AppKit's specification, the Command-Shift-c and Command-C should be considered to be identical.
     var normalized: Self {

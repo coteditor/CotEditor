@@ -28,7 +28,7 @@ import SwiftUI
 
 extension NSView {
     
-    /// Show a HUD view as a chid view.
+    /// Shows a HUD view as a chid view.
     ///
     /// - Parameters:
     ///   - symbol: The symbol to display in the HUD.

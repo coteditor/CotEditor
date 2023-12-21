@@ -27,7 +27,7 @@
 import AppKit
 import Combine
 
-/// Table column identifiers
+/// Column identifiers for table view.
 private extension NSUserInterfaceItemIdentifier {
     
     static let line = Self("Line")
@@ -166,7 +166,7 @@ final class IncompatibleCharactersViewController: NSViewController, DocumentOwne
     }
     
     
-    /// Open / close the view by adjusting the height of the table.
+    /// Opens or closes the view by adjusting the height of the table.
     ///
     /// - Parameters:
     ///   - isCollapsed: The flag indicating whether open or close.
@@ -208,7 +208,7 @@ final class IncompatibleCharactersViewController: NSViewController, DocumentOwne
     }
     
     
-    /// Update the state message on the table.
+    /// Updates the state message on the table.
     @MainActor private func updateMessage(isScanning: Bool) {
         
         self.messageField?.textColor = self.incompatibleCharacters.isEmpty ? .secondaryLabelColor : .labelColor
@@ -222,7 +222,7 @@ final class IncompatibleCharactersViewController: NSViewController, DocumentOwne
     }
     
     
-    /// Select correspondence range of the item in the editor.
+    /// Selects correspondence range of the item in the editor.
     ///
     /// - Parameter row: The index of items to select.
     @MainActor private func selectItem(at row: Int) {
@@ -325,7 +325,9 @@ extension IncompatibleCharacter: KeySortable {
 
 private extension NSTextStorage {
     
-    /// change background color of passed-in ranges
+    /// Changes the background color of passed-in ranges.
+    ///
+    /// - Parameter ranges: The ranges to markup.
     @MainActor func markup(ranges: [NSRange]) {
         
         guard !ranges.isEmpty else { return }
@@ -340,7 +342,7 @@ private extension NSTextStorage {
     }
     
     
-    /// clear all background highlight (including text finder's highlights)
+    /// Clears all background highlight (including text finder's highlights).
     @MainActor func clearAllMarkup() {
         
         let range = self.string.nsRange

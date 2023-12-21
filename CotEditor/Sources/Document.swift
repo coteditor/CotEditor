@@ -763,7 +763,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Open existing document file (alternative methods for `init(contentsOf:ofType:)`).
+    /// Opens an existing document file (alternative methods for `init(contentsOf:ofType:)`).
     func didMakeDocumentForExistingFile(url: URL) {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
@@ -790,7 +790,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Reinterpret the document file with the desired encoding.
+    /// Reinterprets the document file with the desired encoding.
     ///
     /// - Parameter encoding: The text encoding to read.
     /// - Throws: `ReinterpretationError`
@@ -816,7 +816,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Change the text encoding by asking options to the user.
+    /// Changes the text encoding by asking options to the user.
     ///
     /// - Parameter fileEncoding: The file encoding to change.
     func changeEncoding(to fileEncoding: FileEncoding) {
@@ -899,7 +899,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Change the text encoding and register the process to the undo manager.
+    /// Changes the text encoding and registers the process to the undo manager.
     ///
     /// - Parameters:
     ///   - fileEncoding: The text encoding to change with.
@@ -974,7 +974,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Change the syntax to one with the given name.
+    /// Changes the syntax to one with the given name.
     ///
     /// - Parameters:
     ///   - name: The name of the syntax to change with.
@@ -1000,7 +1000,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     // MARK: Action Messages
     
-    /// Save document.
+    /// Saves the document.
     @IBAction override func save(_ sender: Any?) {
         
         self.askSavingSafety { (continuesSaving: Bool) in
@@ -1011,7 +1011,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Save document to a new location.
+    /// Saves the document to a new location.
     @IBAction override func saveAs(_ sender: Any?) {
         
         self.askSavingSafety { (continuesSaving: Bool) in
@@ -1022,7 +1022,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Change the document text encoding wit sender's tag.
+    /// Changes the document text encoding wit sender's tag.
     @IBAction func changeEncoding(_ sender: NSMenuItem) {
         
         let fileEncoding = FileEncoding(tag: sender.tag)
@@ -1031,7 +1031,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Change the line ending with sender's tag.
+    /// Changes the line ending with sender's tag.
     @IBAction func changeLineEnding(_ sender: NSMenuItem) {
         
         guard let lineEnding = LineEnding.allCases[safe: sender.tag] else { return assertionFailure() }
@@ -1040,14 +1040,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Change the syntax.
+    /// Changes the syntax.
     @IBAction func changeSyntax(_ sender: NSMenuItem) {
         
         self.setSyntax(name: sender.title)
     }
     
     
-    /// Show the sharing picker interface.
+    /// Shows the sharing picker interface.
     @IBAction func shareDocument(_ sender: Any?) {
         
         guard let contentView = self.viewController?.view else { return assertionFailure() }
@@ -1077,7 +1077,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Transfer file information to UI.
+    /// Transfers the file information to UI.
     private func applyContentToWindow() {
         
         // update incompatible characters if pane is visible
@@ -1110,7 +1110,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Check if can save safely with the current encoding and ask if not.
+    /// Checks if can save safely with the current encoding and ask if not.
     private func askSavingSafety(completionHandler: @escaping (Bool) -> Void) {
         
         assert(Thread.isMainThread)
@@ -1126,7 +1126,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Check if the content can be saved with the current text encoding.
+    /// Checks if the content can be saved with the current text encoding.
     private func checkSavingSafetyForConverting() throws {
         
         guard self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) else {
@@ -1135,7 +1135,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Display alert about inconsistent line endings.
+    /// Displays an alert about inconsistent line endings.
     private func showInconsistentLineEndingAlert() {
         
         assert(Thread.isMainThread)
@@ -1187,7 +1187,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Display alert about file modification by an external process.
+    /// Displays an alert about file modification by an external process.
     @MainActor private func showUpdatedByExternalProcessAlert() {
         
         // do nothing if alert is already shown
@@ -1227,7 +1227,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Revert receiver with current document file without asking to the user in advance.
+    /// Reverts the receiver with current document file without asking to the user in advance.
     @MainActor private func revertWithoutAsking() {
         
         guard
@@ -1282,6 +1282,7 @@ private enum ReinterpretationError: LocalizedError {
 private struct EncodingError: LocalizedError, RecoverableError {
     
     enum ErrorKind {
+        
         case lossySaving
         case lossyConversion
     }

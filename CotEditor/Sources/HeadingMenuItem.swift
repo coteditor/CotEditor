@@ -68,7 +68,7 @@ public final class HeadingMenuItem: NSMenuItem {
     
     // MARK: Private Methods
     
-    /// Make the menu item label heading style.
+    /// Makes the menu item label heading style.
     private func updateAttributedTitle() {
         
         self.attributedTitle = NSAttributedString(string: self.title, attributes: [

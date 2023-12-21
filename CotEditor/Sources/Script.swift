@@ -39,7 +39,7 @@ protocol Script: Sendable {
     init(url: URL, name: String, shortcut: Shortcut?) throws
     
     
-    /// Execute the script.
+    /// Executes the script.
     ///
     /// - Throws: `ScriptError` by the script,`ScriptFileError`, or any errors on script loading.
     func run() async throws
@@ -51,7 +51,7 @@ protocol EventScript: Script {
     var eventTypes: [ScriptingEventType] { get set }
     
     
-    /// Execute the script by sending it the given Apple event.
+    /// Executes the script by sending it the given Apple event.
     ///
     /// - Parameters:
     ///   - event: The Apple event.

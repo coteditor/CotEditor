@@ -27,7 +27,7 @@ import SwiftUI
 
 private struct EncodingItem: Identifiable {
     
-    /// Return every time a new instance with a different id.
+    /// Returns every time a new instance with a different id.
     static var separator: Self  { Self(encoding: kCFStringEncodingInvalidId) }
     
     let id = UUID()
@@ -124,21 +124,21 @@ struct EncodingListView: View {
     }
     
     
-    /// Restore encodings setting list in the view to the default.
+    /// Restores encodings setting list in the view to the default.
     private func restore() {
         
         self.encodingItems = UserDefaults.standard[initial: .encodingList].map(EncodingItem.init)
     }
     
     
-    /// Save the current encodings to the user default.
+    /// Saves the current encodings to the user default.
     private func save() {
         
         UserDefaults.standard[.encodingList] = self.encodingItems.map(\.encoding)
     }
     
     
-    /// Add a separator below the last selection.
+    /// Adds a separator below the last selection.
     private func addSeparator() {
         
         let index = self.encodingItems.lastIndex { self.selection.contains($0.id) }
@@ -149,7 +149,7 @@ struct EncodingListView: View {
     }
     
     
-    /// Delete separators in the selection.
+    /// Deletes separators in the selection.
     private func deleteSeparators() {
         
         withAnimation {

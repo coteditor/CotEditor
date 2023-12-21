@@ -45,14 +45,14 @@ final class RegularExpressionFormatter: Formatter {
     // MARK: -
     // MARK: Formatter Function
     
-    /// convert to plain string
+    /// Converts to plain string
     override func string(for obj: Any?) -> String? {
         
         obj as? String
     }
     
     
-    /// syntax highlight regular expression pattern
+    /// Creates attributed string from object.
     override func attributedString(for obj: Any, withDefaultAttributes attrs: [NSAttributedString.Key: Any]? = nil) -> NSAttributedString? {
         
         guard let string = self.string(for: obj) else { return nil }
@@ -104,7 +104,7 @@ final class RegularExpressionFormatter: Formatter {
     }
     
     
-    /// format backwards
+    /// Formats backwards.
     override func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
         
         obj?.pointee = string as AnyObject

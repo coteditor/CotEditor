@@ -95,7 +95,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     // MARK: Menu Item Validation
     
-    /// apply current state to menu items
+    /// Applies the current state to menu items.
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.syntaxTableMenu)
@@ -161,14 +161,12 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     // MARK: Delegate & Data Source
     
-    /// number of syntaxes
     func numberOfRows(in tableView: NSTableView) -> Int {
         
         self.syntaxNames.count
     }
     
     
-    /// content of table cell
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
         guard
@@ -182,7 +180,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     
     
-    /// selected syntax in "Installed syntaxes" list table did change
+    /// The selected syntax in the "Installed syntaxes" list table did change.
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         guard notification.object as? NSTableView == self.syntaxTableView else { return }
@@ -191,7 +189,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// set action on swiping syntax name
+    /// Sets actions on swiping syntax name.
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }
@@ -221,7 +219,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// validate when dragged items come to tableView
+    /// Validates when dragged items come to tableView.
     func tableView(_ tableView: NSTableView, validateDrop info: any NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         guard
@@ -240,7 +238,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// check acceptability of dropped items and insert them to table
+    /// Checks acceptability of dropped items and inserts them to table.
     func tableView(_ tableView: NSTableView, acceptDrop info: any NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         if let receivers = info.filePromiseReceivers(with: .yaml, for: tableView) {
@@ -308,14 +306,14 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     // MARK: Action Messages
     
-    /// save default text encoding
+    /// Saves the default text encoding.
     @IBAction func changeEncoding(_ sender: NSMenuItem) {
         
         EncodingManager.shared.defaultEncoding = FileEncoding(tag: sender.tag)
     }
     
     
-    /// show encoding list sheet
+    /// Shows the encoding list sheet.
     @IBAction func showEncodingList(_ sender: Any?) {
         
         let view = EncodingListView()
@@ -326,7 +324,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// show syntax mapping conflict error sheet
+    /// Shows the syntax mapping conflict error sheet.
     @IBAction func openSyntaxMappingConflictSheet(_ sender: Any?) {
         
         let view = SyntaxMappingConflictsView(dictionary: SyntaxManager.shared.mappingConflicts)
@@ -337,7 +335,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// show syntax edit sheet
+    /// Shows the syntax edit sheet.
     @IBAction func editSyntax(_ sender: Any?) {
         
         let syntaxName = self.targetSyntaxName(for: sender)
@@ -347,7 +345,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// duplicate selected syntax.
+    /// Duplicates the selected syntax.
     @IBAction func duplicateSyntax(_ sender: Any?) {
         
         let baseName = self.targetSyntaxName(for: sender)
@@ -363,13 +361,13 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// show syntax edit sheet in new mode
+    /// Shows the syntax edit sheet in new mode.
     @IBAction func createSyntax(_ sender: Any?) {
         
         self.presentSyntaxEditor()
     }
     
-    /// delete selected syntax
+    /// Deletes the selected syntax.
     @IBAction func deleteSyntax(_ sender: Any?) {
         
         let syntaxName = self.targetSyntaxName(for: sender)
@@ -378,7 +376,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// restore selected syntax to original bundled one
+    /// Restores the selected syntax to original bundled one.
     @IBAction func restoreSyntax(_ sender: Any?) {
         
         let syntaxName = self.targetSyntaxName(for: sender)
@@ -387,7 +385,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// export selected syntax
+    /// Exports the selected syntax.
     @IBAction func exportSyntax(_ sender: Any?) {
         
         let settingName = self.targetSyntaxName(for: sender)
@@ -412,7 +410,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// import syntax file via open panel
+    /// Imports syntax files via the open panel.
     @IBAction func importSyntax(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
@@ -432,6 +430,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
+    /// Shares the selected syntax.
     @IBAction func shareStyle(_ sender: NSMenuItem) {
         
         let styleName = self.targetSyntaxName(for: sender)
@@ -449,7 +448,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// open directory in Application Support in Finder where the selected syntax exists
+    /// Opens the syntax directory in the Application Support directory in the Finder where the selected syntax exists.
     @IBAction func revealSyntaxInFinder(_ sender: Any?) {
         
         let syntaxName = self.targetSyntaxName(for: sender)
@@ -460,6 +459,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
+    /// Reloads all the syntaxes in the user domain.
     @IBAction func reloadAllSyntaxes(_ sender: Any?) {
         
         Task.detached(priority: .utility) {
@@ -471,7 +471,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     // MARK: Private Methods
     
-    /// build encoding menu
+    /// Builds the encoding menu.
     private func setupEncodingMenu() {
         
         guard
@@ -484,7 +484,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// build syntax menus
+    /// Builds the syntax menus.
     private func setupSyntaxMenus() {
         
         let syntaxNames = SyntaxManager.shared.settingNames
@@ -514,7 +514,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// syntax name which is currently selected in the list table
+    /// The syntax name which is currently selected in the list table.
     private var selectedSyntaxName: String {
         
         guard let tableView = self.syntaxTableView, tableView.selectedRow >= 0 else {
@@ -524,7 +524,10 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// return representedObject if sender is menu item, otherwise selection in the list table
+    /// Returns representedObject if sender is menu item, otherwise selection in the list table.
+    ///
+    /// - Parameter sender: The sender to test.
+    /// - Returns: The setting name.
     private func targetSyntaxName(for sender: Any?) -> String {
         
         if let menuItem = sender as? NSMenuItem {
@@ -546,7 +549,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// try to delete given syntax
+    /// Tries to delete the given syntax.
+    ///
+    /// - Parameter name: The name of the syntax to delete.
     private func deleteSyntax(name: String) {
         
         let alert = NSAlert()
@@ -579,7 +584,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// try to restore given syntax
+    /// Tries to restore the given syntax.
+    ///
+    /// - Parameter name: The name of the syntax to restore.
     private func restoreSyntax(name: String) {
         
         do {
@@ -590,7 +597,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// try to import syntax file at given URL
+    /// Tries to import the syntax files at the given URL.
+    ///
+    /// - Parameter fileURL: The file name of the syntax.
     private func importSyntax(fileURL: URL) {
         
         do {
@@ -602,7 +611,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// Present the syntax edit sheet.
+    /// Presents the syntax edit sheet.
     ///
     /// - Parameter state: The setting state to edit, or `nil` for a new setting.
     private func presentSyntaxEditor(state: SettingState? = nil) {
@@ -615,7 +624,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// Update the syntax table and select the desired item.
+    /// Updates the syntax table and select the desired item.
     ///
     /// - Parameter selectingName: The syntax name to select.
     private func updateSyntaxList(bySelecting selectingName: String) {

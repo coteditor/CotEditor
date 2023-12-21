@@ -806,7 +806,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Change selections.
+    /// Changes selections.
     ///
     /// - Note: Update `insertionLocations` manually when you use this method.
     override func setSelectedRanges(_ ranges: [NSValue], affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
@@ -864,7 +864,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Set a single selection.
+    /// Sets a single selection.
     override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
         
         self.insertionLocations.removeAll()
@@ -1095,7 +1095,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Read the pasted/dropped item from NSPasteboard (invoked in `performDragOperation(_:)`).
+    /// Reads the pasted/dropped item from NSPasteboard (invoked in `performDragOperation(_:)`).
     override func readSelection(from pboard: NSPasteboard, type: NSPasteboard.PasteboardType) -> Bool {
         
         // on file drop
@@ -1318,7 +1318,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Set the font (font, antialias, and ligature) to the given font type.
+    /// Sets the font (font, antialias, and ligature) to the given font type.
     ///
     /// - Parameter type: The font type to change.
     func setFont(type: FontType) {
@@ -1336,7 +1336,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     
     // MARK: Action Messages
     
-    /// Copy the selections with syntax highlight and font style.
+    /// Copies the selections with syntax highlight and font style.
     @IBAction func copyWithStyle(_ sender: Any?) {
         
         guard !self.selectedRange.isEmpty else { return NSSound.beep() }
@@ -1373,7 +1373,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Paste clipboard text without any modification.
+    /// Pastes clipboard text without any modification.
     @IBAction func pasteAsIs(_ sender: Any?) {
         
         self.isApprovedTextChange = true
@@ -1394,7 +1394,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Update coloring settings with the current theme.
+    /// Updates coloring settings with the current theme.
     private func applyTheme() {
         
         assert(Thread.isMainThread)
@@ -1425,7 +1425,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Start observing the update of the user font settings of the given type.
+    /// Starts observing the update of the user font settings of the given type.
     ///
     /// - Parameter type: The type of the font to observe.
     private func observeFontDefaults(for type: FontType) {
@@ -1443,7 +1443,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Update `defaultParagraphStyle` based on the font, tab width, and line height.
+    /// Updates `defaultParagraphStyle` based on the font, tab width, and line height.
     ///
     /// - Parameter initial: If true, apply the paragraphStyle even if the values are the same as the current `.defaultParagraphStyle.
     private func invalidateDefaultParagraphStyle(initial: Bool = false) {
@@ -1482,7 +1482,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Calculate overscrolling amount and apply it.
+    /// Calculates overscrolling amount and apply it.
     private func invalidateOverscrollRate() {
         
         guard let layoutManager = self.layoutManager as? LayoutManager else { return }
@@ -1517,7 +1517,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Validate whether turns the non-contiguous layout on.
+    /// Validates whether turns the non-contiguous layout on.
     private func invalidateNonContiguousLayout() {
         
         self.layoutManager?.allowsNonContiguousLayout = if self.layoutOrientation == .vertical {
@@ -1530,7 +1530,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Insert string representation of dropped files applying the user's file drop settings.
+    /// Inserts string representation of dropped files applying the user's file drop settings.
     ///
     /// - Parameter urls: The file URLs of dropped files.
     /// - Returns: Whether the file drop was performed.
@@ -1572,7 +1572,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Highlight the brace matching to the brace next to the cursor.
+    /// Highlights the brace matching to the brace next to the cursor.
     private func highlightMatchingBrace() {
         
         let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
@@ -1581,7 +1581,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Highlight all instances of the selection.
+    /// Highlights all instances of the selection.
     ///
     /// - Parameter delay: The delay time to start highlighting instance.
     private func highlightInstances(after delay: Duration) {
@@ -1638,14 +1638,14 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
 
 extension EditorTextView: TextFinderClient {
     
-    /// Deliver the Cocoa standard text find action messages to the TextFinder instance.
+    /// Delivers the Cocoa standard text find action messages to the TextFinder instance.
     override func performTextFinderAction(_ sender: Any?) {
         
         self.performEditorTextFinderAction(sender)
     }
     
     
-    /// Deliver text find actions for EditorTextView to the TextFinder instance.
+    /// Delivers text find actions for EditorTextView to the TextFinder instance.
     @IBAction func performEditorTextFinderAction(_ sender: Any?) {
         
         guard
@@ -1657,21 +1657,21 @@ extension EditorTextView: TextFinderClient {
     }
     
     
-    /// Perform find next.
+    /// Performs find next.
     @IBAction func matchNext(_ sender: Any?) {
         
         self.textFinder.performAction(.nextMatch)
     }
     
     
-    /// Perform find previous.
+    /// Performs find previous.
     @IBAction func matchPrevious(_ sender: Any?) {
         
         self.textFinder.performAction(.previousMatch)
     }
     
     
-    /// Perform incremental search.
+    /// Performs incremental search.
     @IBAction func incrementalSearch(_ sender: Any?) {
         
         self.textFinder.incrementalSearch()
@@ -1815,7 +1815,7 @@ extension EditorTextView {
     
     // MARK: Private Methods
     
-    /// Display the word completion candidates list.
+    /// Displays the word completion candidates list.
     private func performCompletion() {
         
         // abord if:
@@ -1896,7 +1896,7 @@ extension EditorTextView {
     
     // MARK: Public Methods
     
-    /// Word range that includes location.
+    /// Returns the word range that includes the given location.
     ///
     /// - Parameter location: The character index to find the word range.
     /// - Returns: The range of a word.

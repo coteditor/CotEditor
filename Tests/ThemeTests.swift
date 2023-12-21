@@ -68,7 +68,7 @@ final class ThemeTests: XCTestCase {
     }
     
     
-    /// test if all of bundled themes are valid
+    /// Tests if all of bundled themes are valid.
     func testBundledThemes() throws {
         
         let themeDirectoryURL = try XCTUnwrap(self.bundle.url(forResource: self.themeDirectoryName, withExtension: nil))

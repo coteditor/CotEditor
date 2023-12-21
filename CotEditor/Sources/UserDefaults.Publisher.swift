@@ -28,7 +28,7 @@ import Foundation
 
 extension UserDefaults {
     
-    /// Publish values when the value identified by a default key changes.
+    /// Publishes values when the value identified by a default key changes.
     ///
     /// - Parameters:
     ///   - key: The default key of the default value to publish.

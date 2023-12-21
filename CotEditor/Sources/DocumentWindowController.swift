@@ -199,14 +199,14 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Private Methods
     
-    /// Restore the window opacity.
+    /// Restores the window opacity.
     private func restoreWindowOpacity() {
         
         self.window?.isOpaque = (self.window as? DocumentWindow)?.backgroundAlpha == 1
     }
     
     
-    /// Build syntax popup menu in toolbar.
+    /// Builds syntax popup menu in toolbar.
     private func buildSyntaxPopUpButton() {
         
         guard let menu = self.syntaxPopUpButton?.menu else { return }
@@ -236,7 +236,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
-    /// Select the given syntax in the syntax pop-up button for the toolbar.
+    /// Selects the given syntax in the syntax pop-up button for the toolbar.
     ///
     /// - Parameter syntaxName: The name of the syntax to select.
     private func selectSyntaxPopUpItem(with syntaxName: String) {

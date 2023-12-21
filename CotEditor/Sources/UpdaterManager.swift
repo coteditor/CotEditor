@@ -55,7 +55,7 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     }
     
     
-    /// setup Sparkle
+    /// Sets Sparkle up.
     @MainActor func setup() {
         
         // insert "Check for Updates…" menu item

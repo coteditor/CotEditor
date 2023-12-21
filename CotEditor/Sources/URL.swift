@@ -27,14 +27,14 @@ import Foundation
 
 extension URL {
     
-    /// Simply check the reachability of the URL by ignoring errors.
+    /// Simply checks the reachability of the URL by ignoring errors.
     var isReachable: Bool {
         
         (try? self.checkResourceIsReachable()) == true
     }
     
     
-    /// Return relative-path string.
+    /// Returns relative-path string.
     ///
     /// - Parameter baseURL: The URL the relative path based on.
     /// - Returns: A path string.
