@@ -256,11 +256,10 @@ struct TextFind {
         
         for range in self.scopeRanges {
             self.enumerateMatches(in: range) { (matchedRange, match, stop) in
-                let matches: [NSRange]
-                if let match {
-                    matches = (0..<match.numberOfRanges).map(match.range(at:))
+                let matches: [NSRange] = if let match {
+                    (0..<match.numberOfRanges).map(match.range(at:))
                 } else {
-                    matches = [matchedRange]
+                    [matchedRange]
                 }
                 
                 block(matches, &stop)
