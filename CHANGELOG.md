@@ -3,6 +3,10 @@
 4.7.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- [non-AppStore ver.] Update Sparkle from 2.5.1 to 2.6.0.
+
 
 
 4.7.1 (623)
