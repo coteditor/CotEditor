@@ -337,37 +337,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
-        
-        guard edge == .trailing else { return [] }
-        
-        // get swiped theme
-        let themeName = self.themeNames[row]
-        
-        // do nothing on undeletable theme
-        guard
-            let state = ThemeManager.shared.state(of: themeName),
-            state.isCustomized
-        else { return [] }
-        
-        if state.isRestorable {
-            return [NSTableViewRowAction(style: .regular,
-                                         title: String(localized: "Restore"),
-                                         handler: { [weak self] (_, _) in
-                                            self?.restoreTheme(name: themeName)
-                                            
-                                            // finish swiped mode anyway
-                                            tableView.rowActionsVisible = false
-                                         })]
-        } else {
-            return [NSTableViewRowAction(style: .destructive,
-                                         title: String(localized: "Delete"),
-                                         handler: { [weak self] (_, _) in
-                                            self?.deleteTheme(name: themeName)
-                                         })]
-        }
-    }
-    
     // NSTextFieldDelegate
     
     /// A theme name was edited.
@@ -650,13 +619,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         let window = self.view.window!
         Task {
-            let returnCode = await alert.beginSheetModal(for: window)
-            
-            guard returnCode == .alertSecondButtonReturn else {  // cancelled
-                // flush swipe action for in case if this deletion was invoked by swiping the theme name
-                self.themeTableView?.rowActionsVisible = false
-                return
-            }
+            guard await alert.beginSheetModal(for: window) == .alertSecondButtonReturn else { return }
             
             do {
                 try ThemeManager.shared.removeSetting(name: name)

@@ -189,36 +189,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// Sets actions on swiping syntax name.
-    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
-        
-        guard edge == .trailing else { return [] }
-        
-        // get swiped syntax
-        let syntaxName = self.syntaxNames[row]
-        
-        // do nothing on undeletable syntax
-        guard let state = SyntaxManager.shared.state(of: syntaxName), state.isCustomized else { return [] }
-        
-        if state.isBundled {
-            return [NSTableViewRowAction(style: .regular,
-                                         title: String(localized: "Restore"),
-                                         handler: { [weak self] (_, _) in
-                                            self?.restoreSyntax(name: syntaxName)
-                                            
-                                            // finish swiped mode anyway
-                                            tableView.rowActionsVisible = false
-                                         })]
-        } else {
-            return [NSTableViewRowAction(style: .destructive,
-                                         title: String(localized: "Delete"),
-                                         handler: { [weak self] (_, _) in
-                                            self?.deleteSyntax(name: syntaxName)
-                                         })]
-        }
-    }
-    
-    
     /// Validates when dragged items come to tableView.
     func tableView(_ tableView: NSTableView, validateDrop info: any NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
@@ -563,11 +533,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         let window = self.view.window!
         Task {
-            guard await alert.beginSheetModal(for: window) == .alertSecondButtonReturn else {  // cancelled
-                // flush swipe action for in case if this deletion was invoked by swiping the syntax name
-                self.syntaxTableView?.rowActionsVisible = false
-                return
-            }
+            guard await alert.beginSheetModal(for: window) == .alertSecondButtonReturn else { return }
             
             do {
                 try SyntaxManager.shared.removeSetting(name: name)
