@@ -30,7 +30,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
     
     // MARK: Delegate
     
-    /// The selection did change.
+    /// Invoked when the selection did change.
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         guard let tableView = notification.object as? NSTableView, tableView.numberOfRows > 0 else { return }

@@ -410,7 +410,7 @@ private extension NSPasteboard.PasteboardType {
 
 extension MultipleReplaceViewController: NSTableViewDelegate {
     
-    /// Selection did change.
+    /// Invoked when the selection did change.
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         self.invalidateRemoveButton()

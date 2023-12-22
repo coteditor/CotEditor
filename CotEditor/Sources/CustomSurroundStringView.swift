@@ -101,7 +101,7 @@ struct CustomSurroundStringView: View {
         
         self.completionHandler(Pair(self.pair.begin, endString))
         
-        /// store the last used string pair
+        // store the last used string pair
         self.defaultBeginString = self.pair.begin
         self.defaultEndString = self.pair.end
         

@@ -27,6 +27,6 @@ extension String {
     
     static let thinSpace = "\u{2009}"
     
-    /// constant string representing a separator
+    /// Constant string representing a separator.
     static let separator = "-"
 }

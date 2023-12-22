@@ -369,7 +369,7 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     
     // MARK: Notifications
     
-    /// Text was edited (invoked right **before** notifying layout managers).
+    /// Invoked when the text was edited (invoked right **before** notifying layout managers).
     override func textStorageDidProcessEditing(_ notification: Notification) {
         
         let textStorage = notification.object as! NSTextStorage
@@ -391,7 +391,7 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     }
     
     
-    /// The selection did change.
+    /// Invoked when the selection did change.
     @objc private func textViewDidLiveChangeSelection(_ notification: Notification) {
         
         self.document.analyzer.invalidate(onlySelection: true)

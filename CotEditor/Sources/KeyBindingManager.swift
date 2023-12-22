@@ -79,7 +79,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Applys all keyboard shortcuts to the main menu.
+    /// Applies all keyboard shortcuts to the main menu.
     func applyShortcutsToMainMenu() {
         
         guard !self.modifiedKeyBindings.isEmpty else { return }

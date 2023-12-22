@@ -143,7 +143,7 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
     
     // MARK: Text View Delegate (format text view)
     
-    /// The insertion format text view was edited.
+    /// Invoked when the insertion format text view was edited.
     func textDidEndEditing(_ notification: Notification) {
         
         guard

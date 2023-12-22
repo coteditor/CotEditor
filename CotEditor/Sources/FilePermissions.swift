@@ -66,14 +66,14 @@ struct FilePermissions {
     }
     
     
-    /// human-readable permission expression like "rwxr--r--"
+    /// The human-readable permission expression like "rwxr--r--"
     var symbolic: String {
         
         self.user.symbolic + self.group.symbolic + self.others.symbolic
     }
     
     
-    /// octal value expression like "644"
+    /// The octal value expression like "644"
     var octal: String {
         
         String(self.mask, radix: 8)

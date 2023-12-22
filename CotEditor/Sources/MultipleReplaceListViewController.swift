@@ -539,7 +539,7 @@ extension MultipleReplaceListViewController: NSTableViewDelegate {
     }
     
     
-    /// The selection of setting table did change.
+    /// Invoked when the selection of setting table did change.
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         guard

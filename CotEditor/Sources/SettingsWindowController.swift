@@ -46,7 +46,7 @@ final class SettingsWindowController: NSWindowController {
     
     // MARK: Public Methods
     
-    /// Open specific setting pane.
+    /// Opens a specific setting pane.
     ///
     /// - Parameter pane: The pane to display.
     func openPane(_ pane: SettingsPane) {

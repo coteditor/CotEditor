@@ -263,7 +263,7 @@ final class OutlineViewController: NSViewController, DocumentOwner {
 
 extension OutlineViewController: NSOutlineViewDelegate {
     
-    /// selection changed
+    /// Invoked when selection changed.
     func outlineViewSelectionDidChange(_ notification: Notification) {
         
         guard
@@ -275,7 +275,7 @@ extension OutlineViewController: NSOutlineViewDelegate {
     }
     
     
-    /// avoids selecting separator item
+    /// Avoids selecting separator item.
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         
         (item as? OutlineItem)?.title != .separator
@@ -286,7 +286,7 @@ extension OutlineViewController: NSOutlineViewDelegate {
 
 extension OutlineViewController: NSOutlineViewDataSource {
     
-    /// returns number of child items
+    /// Returns number of child items.
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
         if !self.filterString.isEmpty { return self.filteredOutlineItems.count }
@@ -295,14 +295,14 @@ extension OutlineViewController: NSOutlineViewDataSource {
     }
     
     
-    /// returns if item is expandable
+    /// Returns if item is expandable.
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         
         false
     }
     
     
-    /// returns child items
+    /// Returns child items.
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
         if !self.filterString.isEmpty { return self.filteredOutlineItems[index] }
@@ -311,7 +311,7 @@ extension OutlineViewController: NSOutlineViewDataSource {
     }
     
     
-    /// returns suitable item for cell to display
+    /// Returns suitable item for cell to display.
     func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn: NSTableColumn?, byItem item: Any?) -> Any? {
         
         guard

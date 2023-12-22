@@ -145,7 +145,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Text View Delegate
     
-    /// A find/replacement string did change
+    /// Invoked when a find/replacement string did change.
     func textDidChange(_ notification: Notification) {
         
         guard let textView = notification.object as? RegexFindPanelTextView else { return assertionFailure() }

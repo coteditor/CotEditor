@@ -215,7 +215,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     }
     
     
-    /// Changes the selection in the table.
+    /// Invoked when the selection in the table did change.
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         self.selectionDidChange()
@@ -224,7 +224,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     
     // MARK: Text View Delegate (format text view)
     
-    /// The insertion text did update.
+    /// Invoked when the insertion text did update.
     func textDidEndEditing(_ notification: Notification) {
         
         guard

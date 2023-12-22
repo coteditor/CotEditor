@@ -193,7 +193,7 @@ extension NSTouchBar {
 
 extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
     
-    /// validate item if content view is NSControl
+    /// Validates item if content view is NSControl.
     fileprivate func validate() {
         
         // validate content control

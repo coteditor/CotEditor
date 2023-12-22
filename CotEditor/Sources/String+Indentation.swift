@@ -133,7 +133,7 @@ extension String {
     }
     
     
-    /// Return the range for deleting soft-tab or nil if the character to delete is not a space.
+    /// Returns the range for deleting soft-tab or nil if the character to delete is not a space.
     ///
     /// - Parameters:
     ///   - range: The range of selection.

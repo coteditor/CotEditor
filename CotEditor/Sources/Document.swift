@@ -203,7 +203,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// backup file URL for autosaveElsewhere
+    /// The backup file URL for autosaveElsewhere.
     override var autosavedContentsFileURL: URL? {
         
         get {

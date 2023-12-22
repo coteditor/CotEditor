@@ -73,7 +73,7 @@ final class SettingsTabViewController: NSTabViewController {
     
     // MARK: Private Methods
     
-    /// Resize window to fit to the new view.
+    /// Resizes the window frame to fit to the new view.
     ///
     /// - Parameter tabViewItem: The tab view item to switch.
     private func switchPane(to tabViewItem: NSTabViewItem) {
@@ -101,7 +101,7 @@ final class SettingsTabViewController: NSTabViewController {
 
 private extension NSWindow {
     
-    /// Update window frame for the given contentSize.
+    /// Updates window frame for the given contentSize.
     ///
     /// - Parameters:
     ///   - contentSize: The frame rectangle for the window content view.

@@ -267,7 +267,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
 
 extension LayoutManager: NSLayoutManagerDelegate {
     
-    /// adjust line height to be all the same
+    /// Adjusts line height to be all the same.
     func layoutManager(_ layoutManager: NSLayoutManager, shouldSetLineFragmentRect lineFragmentRect: UnsafeMutablePointer<NSRect>, lineFragmentUsedRect: UnsafeMutablePointer<NSRect>, baselineOffset: UnsafeMutablePointer<CGFloat>, in textContainer: NSTextContainer, forGlyphRange glyphRange: NSRange) -> Bool {
         
         // avoid inconsistent line height by a composite font
@@ -285,7 +285,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
     }
     
     
-    /// treat control characters as whitespace to draw replacement glyphs
+    /// Treats control characters as whitespace to draw replacement glyphs.
     func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {
         
         // -> Then, the glyph width can be modified in `layoutManager(_:boundingBoxForControlGlyphAt:...)`.
@@ -293,14 +293,14 @@ extension LayoutManager: NSLayoutManagerDelegate {
     }
     
     
-    /// make a blank space to draw the replacement glyph in `drawGlyphs(forGlyphRange:at:)` later
+    /// Makes a blank space to draw the replacement glyph in `drawGlyphs(forGlyphRange:at:)` later.
     func layoutManager(_ layoutManager: NSLayoutManager, boundingBoxForControlGlyphAt glyphIndex: Int, for textContainer: NSTextContainer, proposedLineFragment proposedRect: NSRect, glyphPosition: NSPoint, characterIndex charIndex: Int) -> NSRect {
         
         self.boundingBoxForControlGlyph
     }
     
     
-    /// avoid soft wrapping just after indent
+    /// Avoids soft wrapping just after indent.
     func layoutManager(_ layoutManager: NSLayoutManager, shouldBreakLineByWordBeforeCharacterAt charIndex: Int) -> Bool {
         
         // check if the character is the first non-whitespace character after indent
@@ -321,7 +321,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
     }
     
     
-    /// apply syntax highlighting on printing also
+    /// Applies syntax highlighting on printing also.
     func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [NSAttributedString.Key: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [NSAttributedString.Key: Any]? {
         
         attrs

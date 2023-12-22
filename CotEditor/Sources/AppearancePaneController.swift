@@ -403,7 +403,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     // MARK: Action Messages
     
-    /// A radio button of documentAppearance was clicked.
+    /// A radio button for `documentAppearance` was clicked.
     @IBAction func updateAppearanceSetting(_ sender: NSButton) {
         
         UserDefaults.standard[.documentAppearance] = AppearanceMode(rawValue: sender.tag)!
@@ -700,9 +700,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// Updates the theme list.
+    /// Updates the theme table and selects the desired item.
     ///
-    /// - Parameter selectingName: The string of the selecting item.
+    /// - Parameter selectingName: The item name to select.
     private func updateThemeList(bySelecting selectingName: String? = nil) {
         
         let themeName = selectingName ?? ThemeManager.shared.userDefaultSettingName

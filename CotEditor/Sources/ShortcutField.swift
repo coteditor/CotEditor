@@ -77,7 +77,7 @@ final class ShortcutField: NSTextField, NSTextViewDelegate {
     }
     
     
-    /// End editing.
+    /// Invoked when the editing ends.
     override func textDidEndEditing(_ notification: Notification) {
         
         // restore field editor

@@ -180,7 +180,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     
     
-    /// The selected syntax in the "Installed syntaxes" list table did change.
+    /// Invoked when the selected syntax in the "Installed syntaxes" list table did change.
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         guard notification.object as? NSTableView == self.syntaxTableView else { return }
@@ -624,9 +624,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// Updates the syntax table and select the desired item.
+    /// Updates the syntax table and selects the desired item.
     ///
-    /// - Parameter selectingName: The syntax name to select.
+    /// - Parameter selectingName: The item name to select.
     private func updateSyntaxList(bySelecting selectingName: String) {
         
         self.syntaxNames = SyntaxManager.shared.settingNames

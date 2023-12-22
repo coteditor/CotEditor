@@ -75,7 +75,7 @@ final class GeneralPaneController: NSViewController {
     
     // MARK: Action Messages
     
-    /// "Enable Auto Save and Versions" checkbox was clicked.
+    /// The "Enable Auto Save and Versions" checkbox was clicked.
     @IBAction func updateAutosaveSetting(_ sender: Any?) {
         
         // do nothing if the setting returned to the current one.
@@ -92,7 +92,7 @@ final class GeneralPaneController: NSViewController {
     }
     
     
-    /// A radio button of documentConflictOption was clicked
+    /// A radio button for `documentConflictOption` was clicked.
     @IBAction func updateDocumentConflictSetting(_ sender: NSButton) {
         
         UserDefaults.standard[.documentConflictOption] = DocumentConflictOption(rawValue: sender.tag)!

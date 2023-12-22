@@ -114,7 +114,7 @@ final class RegularExpressionTextField: NSTextField {
     }
     
     
-    /// The text in the field editor was just changed.
+    /// Invoked when the text in the field editor was just changed.
     override func textDidChange(_ notification: Notification) {
         
         super.textDidChange(notification)
