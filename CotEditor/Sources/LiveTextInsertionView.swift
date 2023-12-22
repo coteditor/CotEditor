@@ -77,9 +77,12 @@ struct LiveTextInsertionView: View {
             .scenePadding(.bottom)
         }
         .task {
-            self.result = await Task {
-                try await Self.analyzer.analyze(self.image, orientation: .up, configuration: .init([.text]))
-            }.result
+            do {
+                let analysis = try await Self.analyzer.analyze(self.image, orientation: .up, configuration: .init([.text]))
+                self.result = .success(analysis)
+            } catch {
+                self.result = .failure(error)
+            }
         }
         .controlSize(.small)
         .fixedSize()
