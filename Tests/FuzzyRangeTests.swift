@@ -71,24 +71,30 @@ final class FuzzyRangeTests: XCTestCase {
     }
     
     
-    func testFuzzyRangeString() {
+    func testFormattingFuzzyRange() {
         
-        XCTAssertEqual(FuzzyRange(location: 0, length: 0).string, "0")
-        XCTAssertEqual(FuzzyRange(location: 1, length: 0).string, "1")
-        XCTAssertEqual(FuzzyRange(location: 1, length: 1).string, "1")
-        XCTAssertEqual(FuzzyRange(location: 1, length: 2).string, "1:2")
-        XCTAssertEqual(FuzzyRange(location: -1, length: 0).string, "-1")
-        XCTAssertEqual(FuzzyRange(location: -1, length: -1).string, "-1:-1")
+        XCTAssertEqual(FuzzyRange(location: 0, length: 0).formatted(), "0")
+        XCTAssertEqual(FuzzyRange(location: 1, length: 0).formatted(), "1")
+        XCTAssertEqual(FuzzyRange(location: 1, length: 1).formatted(), "1")
+        XCTAssertEqual(FuzzyRange(location: 1, length: 2).formatted(), "1:2")
+        XCTAssertEqual(FuzzyRange(location: -1, length: 0).formatted(), "-1")
+        XCTAssertEqual(FuzzyRange(location: -1, length: -1).formatted(), "-1:-1")
+    }
+    
+    
+    func testParsingFuzzyRange() throws {
         
-        XCTAssertEqual(FuzzyRange(string: "0"), FuzzyRange(location: 0, length: 0))
-        XCTAssertEqual(FuzzyRange(string: "1"), FuzzyRange(location: 1, length: 0))
-        XCTAssertEqual(FuzzyRange(string: "1:2"), FuzzyRange(location: 1, length: 2))
-        XCTAssertEqual(FuzzyRange(string: "-1"), FuzzyRange(location: -1, length: 0))
-        XCTAssertEqual(FuzzyRange(string: "-1:-1"), FuzzyRange(location: -1, length: -1))
-        XCTAssertNil(FuzzyRange(string: ""))
-        XCTAssertNil(FuzzyRange(string: "abc"))
-        XCTAssertNil(FuzzyRange(string: "1:a"))
-        XCTAssertNil(FuzzyRange(string: "1:1:1"))
+        let parser = FuzzyRangeParseStrategy()
+        
+        XCTAssertEqual(try parser.parse("0"), FuzzyRange(location: 0, length: 0))
+        XCTAssertEqual(try parser.parse("1"), FuzzyRange(location: 1, length: 0))
+        XCTAssertEqual(try parser.parse("1:2"), FuzzyRange(location: 1, length: 2))
+        XCTAssertEqual(try parser.parse("-1"), FuzzyRange(location: -1, length: 0))
+        XCTAssertEqual(try parser.parse("-1:-1"), FuzzyRange(location: -1, length: -1))
+        XCTAssertThrowsError(try parser.parse(""))
+        XCTAssertThrowsError(try parser.parse("abc"))
+        XCTAssertThrowsError(try parser.parse("1:a"))
+        XCTAssertThrowsError(try parser.parse("1:1:1"))
     }
     
     

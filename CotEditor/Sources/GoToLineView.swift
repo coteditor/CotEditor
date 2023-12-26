@@ -29,29 +29,20 @@ struct GoToLineView: View {
     
     weak var parent: NSHostingController<Self>?
     
-    @State private var value: String
-    private let completionHandler: (_ lineRange: FuzzyRange) -> Bool
+    /// The current line range.
+    @State var lineRange: FuzzyRange
+    
+    /// The callback method to perform when the command was accepted.
+    let completionHandler: (_ lineRange: FuzzyRange) -> Bool
     
     
     // MARK: View
-    
-    /// Initializes view with given values.
-    ///
-    /// - Parameters:
-    ///   - lineRange: The current line range.
-    ///   - completionHandler: The callback method to perform when the command was accepted.
-    init(lineRange: FuzzyRange, completionHandler: @escaping (_ lineRange: FuzzyRange) -> Bool) {
-        
-        self._value = State(initialValue: lineRange.string)
-        self.completionHandler = completionHandler
-    }
-    
     
     var body: some View {
         
         VStack {
             Form {
-                TextField("Line:", text: $value, prompt: Text("Line Number"))
+                TextField("Line:", value: $lineRange, format: .fuzzyRange, prompt: Text("Line Number"))
                     .monospacedDigit()
                     .multilineTextAlignment(.trailing)
                     .onSubmit(self.submit)
@@ -78,8 +69,7 @@ struct GoToLineView: View {
     private func submit() {
         
         guard
-            let lineRange = FuzzyRange(string: self.value),
-            self.completionHandler(lineRange)
+            self.completionHandler(self.lineRange)
         else { return NSSound.beep() }
         
         self.parent?.dismiss(nil)
