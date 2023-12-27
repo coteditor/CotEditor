@@ -81,7 +81,7 @@ enum TextFindResult {
 
 struct TextFindAllResult {
     
-    struct Match: Identifiable {
+    struct Match: Identifiable, @unchecked Sendable {
         
         let id = UUID()
         
