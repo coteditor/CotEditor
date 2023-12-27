@@ -154,6 +154,10 @@ final class EncodingDetectionTests: XCTestCase {
         
         XCTAssertEqual("<meta charset=\"utf-8\"/>".scanEncodingDeclaration(upTo: 128, suggestedCFEncodings: [utf8, shiftJISX0213, shiftJIS]),
                        .utf8)
+        
+        // Swift.Regex with non-simple word boundaries never returns when the given string contains a specific pattern of letters (2023-12 on Swift 5.9).
+        XCTAssertNil("ﾀﾏｺﾞ,1,".scanEncodingDeclaration(upTo: 128, suggestedCFEncodings: []))
+        XCTAssertNil(try /\ba/.wordBoundaryKind(.simple).firstMatch(in: "ﾀﾏｺﾞ,1,"))
     }
     
     

@@ -9,6 +9,11 @@
 - [non-AppStore ver.] Update Sparkle from 2.5.1 to 2.5.2.
 
 
+### Fixes
+
+- Fix an issue that the application could not open a document containing a specific pattern of letters.
+
+
 
 4.7.1 (623)
 --------------------------
