@@ -96,7 +96,7 @@ extension String.Encoding {
     }
     
     
-    /// IANA charset name for the encoding
+    /// IANA charset name for the encoding.
     var ianaCharSetName: String? {
         
         CFStringConvertEncodingToIANACharSetName(self.cfEncoding) as String?
@@ -124,7 +124,7 @@ extension String {
         }
     
     
-    /// Decodes data and remove UTF-8 BOM if exists
+    /// Decodes data and remove UTF-8 BOM if exists.
     ///
     /// cf. <https://bugs.swift.org/browse/SR-10173>
     init?(bomCapableData data: Data, encoding: String.Encoding) {
@@ -137,7 +137,13 @@ extension String {
     }
     
     
-    /// Obtains string from Data with intelligent encoding detection.
+    /// Returns a  `String` initialized by converting given `data` into Unicode characters using an intelligent encoding detection.
+    ///
+    /// - Parameters:
+    ///   - data: The data object containing the string data.
+    ///   - suggestedCFEncodings: The prioritized list of encoding candidates.
+    ///   - usedEncoding: The encoding used to interpret the data.
+    /// - Throws: `CocoaError(.fileReadUnknownStringEncoding)`
     init(data: Data, suggestedCFEncodings: [CFStringEncoding], usedEncoding: inout String.Encoding?) throws {
         
         // detect encoding from so-called "magic numbers"
@@ -171,8 +177,15 @@ extension String {
     
     // MARK: Public Methods
     
-    /// Scans encoding declaration in string.
+    /// Scans an possible encoding declaration in the string.
+    ///
+    /// - Parameters:
+    ///   - maxLength: The number of forward characters to be scanned.
+    ///   - suggestedCFEncodings: The priority of encodings to determine the user-preferred Shift JIS encoding.
+    /// - Returns: A string encoding, or `nil` if not found.
     func scanEncodingDeclaration(upTo maxLength: Int, suggestedCFEncodings: [CFStringEncoding]) -> String.Encoding? {
+        
+        assert(maxLength > 0)
         
         guard !self.isEmpty else { return nil }
         
@@ -181,21 +194,19 @@ extension String {
         guard let ianaCharSetName = try? regex.firstMatch(in: self.prefix(maxLength))?.encoding else { return nil }
         
         // convert IANA CharSet name to CFStringEncoding
-        let cfEncoding: CFStringEncoding = {
+        let cfEncoding: CFStringEncoding = if ianaCharSetName.uppercased() == "SHIFT_JIS",
+            let cfEncoding = suggestedCFEncodings.first(where: { $0 == .shiftJIS || $0 == .shiftJIS_X0213 })
+        {
             // pick user's preferred one for "Shift_JIS"
             // -> CFStringConvertIANACharSetNameToEncoding() converts "SHIFT_JIS" to .shiftJIS regardless of the letter case.
-            //    Although this behavior is theoretically correct since IANA is case insensitive,
+            //    Although this behavior is theoretically correct since the IANA charset name is case insensitive,
             //    we treat them with care by respecting the user's priority.
             //    FYI: CFStringConvertEncodingToIANACharSetName() converts .shiftJIS and .shiftJIS_X0213
             //         to "shift_jis" and "Shift_JIS" respectively.
-            if ianaCharSetName.uppercased() == "SHIFT_JIS",
-               let cfEncoding = suggestedCFEncodings.first(where: { $0 == .shiftJIS || $0 == .shiftJIS_X0213 })
-            {
-                return cfEncoding
-            }
-            
-            return CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
-        }()
+            cfEncoding
+        } else {
+            CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
+        }
         
         guard cfEncoding != kCFStringEncodingInvalidId else { return nil }
         
@@ -204,6 +215,9 @@ extension String {
     
     
     /// Converts Yen signs (U+00A5) in consideration of the encoding.
+    ///
+    /// - Parameter encoding: The text encoding to keep compatibility.
+    /// - Returns: A new string converted all Yen signs.
     func convertingYenSign(for encoding: String.Encoding) -> String {
         
         "¥".canBeConverted(to: encoding) ? self : self.replacing("¥", with: "\\")
@@ -243,7 +257,7 @@ extension Data {
 
 extension String.Encoding {
     
-    /// Encodes encoding to data for `com.apple.TextEncoding` extended file attribute
+    /// Encodes encoding to data for `com.apple.TextEncoding` extended file attribute.
     var xattrEncodingData: Data? {
         
         let cfEncoding = CFStringConvertNSStringEncodingToEncoding(self.rawValue)
