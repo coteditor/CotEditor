@@ -25,7 +25,7 @@
 
 import AppKit
 import SwiftUI
-import VisionKit
+@preconcurrency import VisionKit
 
 extension NSImage: @unchecked Sendable { }
 
