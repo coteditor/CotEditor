@@ -10,7 +10,9 @@ metadata:
   license: "Same as CotEditor"
   version: "0.0.1"
 outlineMenu: []
-attributes: []
+attributes:
+- beginString: "@{\w+(=\w+)?}"
+  regularExpression: true
 keywords:
 - beginString: "aggregate"
 - beginString: "derive"
