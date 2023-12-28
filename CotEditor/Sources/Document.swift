@@ -362,7 +362,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // determine syntax (only on the first file open)
         if self.windowForSheet == nil {
-            let syntaxName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent, content: file.string)
+            let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: file.string) ?? BundledSyntaxName.none
             self.setSyntax(name: syntaxName, isInitial: true)
         }
     }
@@ -424,8 +424,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             
             // apply syntax that is inferred from the filename or the shebang
             if saveOperation == .saveAsOperation,
-               let syntaxName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
-                ?? SyntaxManager.shared.settingName(documentContent: self.textStorage.string)
+               let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: self.textStorage.string)
             {
                 // -> Due to the async-saving, self.textStorage can be changed from the actual saved contents.
                 //    But we don't care about that.

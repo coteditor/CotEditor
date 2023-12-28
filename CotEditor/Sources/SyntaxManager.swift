@@ -111,72 +111,15 @@ final class SyntaxManager: SettingFileManaging {
     
     // MARK: Public Methods
     
-    /// Returns the syntax name corresponding to given variables.
+    /// Returns the syntax name corresponding to the given document.
     ///
     /// - Parameters:
     ///   - fileName: The  file name of the document to detect the corresponding syntax name.
     ///   - content: The content of the document.
     /// - Returns: A setting name.
-    func settingName(documentFileName fileName: String, content: String) -> SettingName {
+    func settingName(documentName fileName: String, content: String) -> SettingName? {
         
-        self.settingName(documentFileName: fileName)
-            ?? self.settingName(documentContent: content)
-            ?? BundledSyntaxName.none
-    }
-    
-    
-    /// Returns the syntax name corresponding to filename.
-    ///
-    /// - Parameters:
-    ///   - fileName: The  file name of the document to detect the corresponding syntax name.
-    /// - Returns: A setting name, or `nil` if not exists.
-    func settingName(documentFileName fileName: String) -> SettingName? {
-        
-        let mappingTables = self.mappingTables
-        
-        if let settingName = mappingTables[.filenames]?[fileName]?.first {
-            return settingName
-        }
-        
-        if let pathExtension = fileName.split(separator: ".").last,
-           let extensionTable = mappingTables[.extensions]
-        {
-            if let settingName = extensionTable[String(pathExtension)]?.first {
-                return settingName
-            }
-            
-            // check case-insensitively
-            let lowerPathExtension = pathExtension.lowercased()
-            if let settingName = extensionTable
-                .first(where: { $0.key.lowercased() == lowerPathExtension })?
-                .value.first
-            {
-                return settingName
-            }
-        }
-        
-        return nil
-    }
-    
-    
-    /// Returns the syntax name scanning shebang in document content.
-    ///
-    /// - Parameters:
-    ///   - content: The content of the document.
-    /// - Returns: A setting name, or `nil` if not exists.
-    func settingName(documentContent content: String) -> SettingName? {
-        
-        if let interpreter = content.scanInterpreterInShebang(),
-           let settingName = self.mappingTables[.interpreters]?[interpreter]?.first {
-            return settingName
-        }
-        
-        // check XML declaration
-        if content.hasPrefix("<?xml ") {
-            return BundledSyntaxName.xml
-        }
-        
-        return nil
+        self.settingName(documentName: fileName) ?? self.settingName(documentContent: content)
     }
     
     
@@ -430,6 +373,62 @@ final class SyntaxManager: SettingFileManaging {
         guard let bundledSyntax = self.bundledSettingDictionary(name: name) else { return false }
         
         return syntax == bundledSyntax
+    }
+    
+    
+    /// Returns the syntax name corresponding to the given filename.
+    ///
+    /// - Parameters:
+    ///   - fileName: The  file name of the document to detect the corresponding syntax name.
+    /// - Returns: A setting name, or `nil` if not exists.
+    private func settingName(documentName fileName: String) -> SettingName? {
+        
+        let mappingTables = self.mappingTables
+        
+        if let settingName = mappingTables[.filenames]?[fileName]?.first {
+            return settingName
+        }
+        
+        if let pathExtension = fileName.split(separator: ".").last,
+           let extensionTable = mappingTables[.extensions]
+        {
+            if let settingName = extensionTable[String(pathExtension)]?.first {
+                return settingName
+            }
+            
+            // check case-insensitively
+            let lowerPathExtension = pathExtension.lowercased()
+            if let settingName = extensionTable
+                .first(where: { $0.key.lowercased() == lowerPathExtension })?
+                .value.first
+            {
+                return settingName
+            }
+        }
+        
+        return nil
+    }
+    
+    
+    /// Returns the syntax name scanning the shebang in content.
+    ///
+    /// - Parameters:
+    ///   - content: The content of the document.
+    /// - Returns: A setting name, or `nil` if not exists.
+    private func settingName(documentContent content: String) -> SettingName? {
+        
+        if let interpreter = content.scanInterpreterInShebang(),
+           let settingName = self.mappingTables[.interpreters]?[interpreter]?.first 
+        {
+            return settingName
+        }
+        
+        // check XML declaration
+        if content.hasPrefix("<?xml ") {
+            return BundledSyntaxName.xml
+        }
+        
+        return nil
     }
 }
 
