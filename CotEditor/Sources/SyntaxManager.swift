@@ -253,7 +253,7 @@ final class SyntaxManager: SettingFileManaging {
             let yamlString = try Yams.dump(object: settingDictionary.yamlEncodable, allowUnicode: true)
             let data = Data(yamlString.utf8)
             
-            try self.prepareUserSettingDirectory()
+            try FileManager.default.createIntermediateDirectories(to: fileURL)
             try data.write(to: fileURL)
         }
         

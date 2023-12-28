@@ -26,16 +26,11 @@
 
 import AppKit
 
-final class KeyBindingManager: SettingManaging {
+final class KeyBindingManager {
     
     // MARK: Public Properties
     
     static let shared = KeyBindingManager()
-    
-    
-    // MARK: Setting Managing Properties
-    
-    static let directoryName: String = "KeyBindings"
     
     
     // MARK: Private Properties
@@ -121,9 +116,10 @@ final class KeyBindingManager: SettingManaging {
             let encoder = PropertyListEncoder()
             encoder.outputFormat = .xml
             let data = try encoder.encode(self.userKeyBindings.sorted(\.action.description))
+            let fileURL = self.settingFileURL
             
-            try self.prepareUserSettingDirectory()
-            try data.write(to: self.settingFileURL)
+            try FileManager.default.createIntermediateDirectories(to: fileURL)
+            try data.write(to: fileURL)
         }
         
         // apply new settings to the menu
@@ -137,7 +133,8 @@ final class KeyBindingManager: SettingManaging {
     /// File URL to save custom key bindings file.
     private var settingFileURL: URL {
         
-        self.userSettingDirectoryURL.appendingPathComponent("Shortcuts", conformingTo: .propertyList)
+        URL.applicationSupportDirectory(component: "KeyBindings")
+            .appendingPathComponent("Shortcuts", conformingTo: .propertyList)
     }
     
     

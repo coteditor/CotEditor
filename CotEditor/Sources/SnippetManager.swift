@@ -154,12 +154,6 @@ final class SnippetManager {
 
 // MARK: - Migration
 
-extension SnippetManager: SettingManaging {
-    
-    static var directoryName: String { "KeyBindings" }
-}
-
-
 private extension SnippetManager {
     
     private struct OldKeyBinding: Decodable {
@@ -177,10 +171,11 @@ private extension SnippetManager {
         guard let texts = UserDefaults.standard.stringArray(forKey: defaultKey) else { return }
         
         let shortcuts: [Int: Shortcut]
-        let fileURL = self.userSettingDirectoryURL.appendingPathComponent("SnippetKeyBindings", conformingTo: .propertyList)
-        if
-            let data = try? Data(contentsOf: fileURL),
-            let keyBindings = try? PropertyListDecoder().decode([OldKeyBinding].self, from: data)
+        let fileURL = URL.applicationSupportDirectory(component: "KeyBindings")
+            .appendingPathComponent("SnippetKeyBindings", conformingTo: .propertyList)
+        
+        if let data = try? Data(contentsOf: fileURL),
+           let keyBindings = try? PropertyListDecoder().decode([OldKeyBinding].self, from: data)
         {
             shortcuts = keyBindings.reduce(into: [:]) { (map, keyBinding) in
                 guard

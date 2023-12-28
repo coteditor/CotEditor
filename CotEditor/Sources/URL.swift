@@ -62,6 +62,43 @@ extension URL {
 }
 
 
+// MARK: User Domain
+
+extension URL {
+    
+    /// A temporary URL in the user domain for file replacement.
+    static var itemReplacementDirectory: URL {
+        
+        get throws {
+            try URL(for: .itemReplacementDirectory, in: .userDomainMask, appropriateFor: .userDirectory, create: true)
+        }
+    }
+    
+    
+    /// Returns the URL for the given subdirectory in the application support directory in the user domain.
+    ///
+    /// - Parameter subDirectory: The name of the subdirectory in the application support.
+    /// - Returns: A directory URL.
+    static func applicationSupportDirectory(component subDirectory: String) -> URL {
+        
+        .applicationSupportDirectory
+        .appending(component: "CotEditor", directoryHint: .isDirectory)
+        .appending(component: subDirectory, directoryHint: .isDirectory)
+    }
+}
+
+
+extension FileManager {
+    
+    /// Creates intermediate directories to the given URL if not available.
+    ///
+    /// - Parameter fileURL: The file URL.
+    final func createIntermediateDirectories(to fileURL: URL) throws {
+        
+        try self.createDirectory(at: fileURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+    }
+}
+
 
 // MARK: Sandboxing
 

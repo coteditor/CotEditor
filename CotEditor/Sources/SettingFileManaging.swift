@@ -71,7 +71,7 @@ struct SettingState: Equatable {
 
 // MARK: -
 
-protocol SettingFileManaging: SettingManaging {
+protocol SettingFileManaging: AnyObject {
     
     associatedtype Setting
     
@@ -275,11 +275,10 @@ extension SettingFileManaging {
             throw SettingFileError(kind: .noSourceFile, name: name, error: nil)
         }
         
-        // create directory to save in user domain if not yet exist
-        try self.prepareUserSettingDirectory()
+        let destURL = self.preparedURLForUserSetting(name: newName)
         
-        try FileManager.default.copyItem(at: sourceURL,
-                                         to: self.preparedURLForUserSetting(name: newName))
+        try FileManager.default.createIntermediateDirectories(to: destURL)
+        try FileManager.default.copyItem(at: sourceURL, to: destURL)
         
         let change: SettingChange = .added(newName)
         self.updateSettingList(change: change)
@@ -392,6 +391,13 @@ extension SettingFileManaging {
     
     // MARK: Private Methods
     
+    /// The user setting directory URL in Application Support.
+    private var userSettingDirectoryURL: URL {
+        
+        .applicationSupportDirectory(component: Self.directoryName)
+    }
+    
+    
     /// Forces importing the setting at the passed-in URL.
     ///
     /// - Parameter fileURL: The URL of the file to import.
@@ -401,8 +407,7 @@ extension SettingFileManaging {
         let name = self.settingName(from: fileURL)
         let destURL = self.preparedURLForUserSetting(name: name)
         
-        // create directory to save in user domain if not yet exist
-        try self.prepareUserSettingDirectory()
+        try FileManager.default.createIntermediateDirectories(to: destURL)
         
         // copy file
         var coordinationError: NSError?

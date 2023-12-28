@@ -55,4 +55,10 @@ final class URLExtensionsTests: XCTestCase {
         
         XCTAssertEqual(url.path(relativeTo: baseURL), "file1.txt")
     }
+    
+    
+    func testItemReplacementDirectoryCreation() throws {
+        
+        XCTAssertNoThrow(try URL.itemReplacementDirectory)
+    }
 }

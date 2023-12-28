@@ -75,7 +75,7 @@ final class ReplacementManager: SettingFileManaging {
         let data = try encoder.encode(setting)
         let fileURL = self.preparedURLForUserSetting(name: name)
         
-        try self.prepareUserSettingDirectory()
+        try FileManager.default.createIntermediateDirectories(to: fileURL)
         try data.write(to: fileURL)
         
         self.cachedSettings[name] = setting

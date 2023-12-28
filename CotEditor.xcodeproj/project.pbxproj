@@ -379,8 +379,6 @@
 		2A7470692B12FA5700669A7B /* NSTextStorage+TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7470682B12FA5700669A7B /* NSTextStorage+TextView.swift */; };
 		2A74706A2B12FA5700669A7B /* NSTextStorage+TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7470682B12FA5700669A7B /* NSTextStorage+TextView.swift */; };
 		2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2A75ACCA19E86DDB00444894 /* CotEditor.sdef */; };
-		2A7646E71D48EAF200350674 /* SettingManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E61D48EAF200350674 /* SettingManaging.swift */; };
-		2A7646E81D48EAF200350674 /* SettingManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E61D48EAF200350674 /* SettingManaging.swift */; };
 		2A7646EC1D49035500350674 /* SettingFileManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E91D48ECD100350674 /* SettingFileManaging.swift */; };
 		2A7646ED1D49035500350674 /* SettingFileManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E91D48ECD100350674 /* SettingFileManaging.swift */; };
 		2A7725641D50401300A53C09 /* SyntaxValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7725631D50401300A53C09 /* SyntaxValidator.swift */; };
@@ -1111,7 +1109,6 @@
 		2A73B9322A8F6620002F3A16 /* RegexTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexTextField.swift; sourceTree = "<group>"; };
 		2A7470682B12FA5700669A7B /* NSTextStorage+TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+TextView.swift"; sourceTree = "<group>"; };
 		2A75ACCA19E86DDB00444894 /* CotEditor.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CotEditor.sdef; sourceTree = "<group>"; };
-		2A7646E61D48EAF200350674 /* SettingManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingManaging.swift; sourceTree = "<group>"; };
 		2A7646E91D48ECD100350674 /* SettingFileManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingFileManaging.swift; sourceTree = "<group>"; };
 		2A7725631D50401300A53C09 /* SyntaxValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxValidator.swift; sourceTree = "<group>"; };
 		2A7846DA18FE035E006BDF00 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
@@ -1530,7 +1527,7 @@
 		2A15832A18E3A1EC00601026 /* Setting Managers */ = {
 			isa = PBXGroup;
 			children = (
-				2AD49C251D0BEF0400FF4CC9 /* Protocols */,
+				2A7646E91D48ECD100350674 /* SettingFileManaging.swift */,
 				2A4257A61D22E0660086DAAD /* EncodingManager.swift */,
 				2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */,
 				2A9082F11D32A9B500228F50 /* ThemeManager.swift */,
@@ -2316,15 +2313,6 @@
 			name = Editor;
 			sourceTree = "<group>";
 		};
-		2AD49C251D0BEF0400FF4CC9 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				2A7646E61D48EAF200350674 /* SettingManaging.swift */,
-				2A7646E91D48ECD100350674 /* SettingFileManaging.swift */,
-			);
-			name = Protocols;
-			sourceTree = "<group>";
-		};
 		2ADD36941CFCAD4200F3175D /* Inspector */ = {
 			isa = PBXGroup;
 			children = (
@@ -3049,7 +3037,6 @@
 				2A12C8001D1843B50069C60B /* SeparatorTextField.swift in Sources */,
 				2A78BFBD1D1B376000A583D2 /* ServicesProvider.swift in Sources */,
 				2A7646EC1D49035500350674 /* SettingFileManaging.swift in Sources */,
-				2A7646E81D48EAF200350674 /* SettingManaging.swift in Sources */,
 				2A938ACC297E4BA9007FBE5F /* SettingsPane.swift in Sources */,
 				2A44321D219AC1F8008A0A6B /* SettingsTabViewController.swift in Sources */,
 				2AA79C7921CB7251005AD6AD /* SettingsWindow.swift in Sources */,
@@ -3415,7 +3402,6 @@
 				2A12C7FF1D1843B50069C60B /* SeparatorTextField.swift in Sources */,
 				2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */,
 				2A7646ED1D49035500350674 /* SettingFileManaging.swift in Sources */,
-				2A7646E71D48EAF200350674 /* SettingManaging.swift in Sources */,
 				2A938ACD297E4BA9007FBE5F /* SettingsPane.swift in Sources */,
 				2A44321C219AC1F8008A0A6B /* SettingsTabViewController.swift in Sources */,
 				2AA79C7821CB7251005AD6AD /* SettingsWindow.swift in Sources */,
