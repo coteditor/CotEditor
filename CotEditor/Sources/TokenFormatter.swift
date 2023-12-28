@@ -40,8 +40,8 @@ final class TokenFormatter: Formatter {
     override func attributedString(for obj: Any, withDefaultAttributes attrs: [NSAttributedString.Key: Any]? = nil) -> NSAttributedString? {
         
         self.string(for: obj)?
-            .components(separatedBy: ", ")
-            .map { NSAttributedString(attachment: .init(token: $0, attributes: attrs)) }
+            .split(separator: ", ")
+            .map { NSAttributedString(attachment: .init(token: String($0), attributes: attrs)) }
             .joined(separator: .init(string: " ", attributes: attrs))
     }
     

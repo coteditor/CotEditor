@@ -418,7 +418,7 @@ final class SyntaxManager: SettingFileManaging {
     private func settingName(documentContent content: String) -> SettingName? {
         
         if let interpreter = content.scanInterpreterInShebang(),
-           let settingName = self.mappingTables[.interpreters]?[interpreter]?.first 
+           let settingName = self.mappingTables[.interpreters]?[interpreter]?.first
         {
             return settingName
         }

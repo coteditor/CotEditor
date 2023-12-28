@@ -62,7 +62,7 @@ private extension NSSplitView {
         assert(subviewFrames.count == self.arrangedSubviews.count)
         
         return subviewFrames.map { string in
-            let components = string.components(separatedBy: ", ")
+            let components = string.split(separator: ", ")
             let isCollapsed = (components[safe: 4] as NSString?)?.boolValue ?? false
             
             assert(components.count == 6)

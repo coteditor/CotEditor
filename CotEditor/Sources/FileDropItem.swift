@@ -79,8 +79,9 @@ extension FileDropItem {
         
         self.format = dictionary[CodingKeys.format] ?? ""
         
-        if let extensions = dictionary[CodingKeys.extensions]?.components(separatedBy: ", ") {
+        if let extensions = dictionary[CodingKeys.extensions] {
             self.extensions = extensions
+                .split(separator: ",")
                 .map { $0.trimmingCharacters(in: .whitespaces) }
                 .filter { !$0.isEmpty }
         }

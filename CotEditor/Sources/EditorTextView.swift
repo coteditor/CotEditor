@@ -1360,7 +1360,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         // prepare objects for rectangular selection
         let pasteboardString = selections.joined(separator: self.lineEnding.string)
-        let propertyList = selections.map { $0.string.components(separatedBy: .newlines).count }
+        let propertyList = selections.map { $0.string.split(omittingEmptySubsequences: false, whereSeparator: \.isNewline).count }
         
         // set to paste board
         let pboard = NSPasteboard.general

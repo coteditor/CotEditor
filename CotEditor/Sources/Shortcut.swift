@@ -159,7 +159,7 @@ struct Shortcut {
     /// - Parameter string: The shortcut string to display in GUI.
     init?(symbolRepresentation string: String) {
         
-        let components = string.components(separatedBy: .whitespaces)
+        let components = string.split(whereSeparator: \.isWhitespace)
         
         guard let lastSymbol = components.last, !lastSymbol.isEmpty else { return nil }
         

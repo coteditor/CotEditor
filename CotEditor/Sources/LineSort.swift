@@ -136,9 +136,9 @@ struct CSVSortPattern: SortPattern {
         
         let delimiter = self.delimiter.isEmpty ? "," : self.delimiter.unescaped
         let index = self.column - 1  // column number is 1-based
+        let components = line.split(separator: delimiter, omittingEmptySubsequences: false)
         
-        return line.components(separatedBy: delimiter)[safe: index]?
-            .trimmingCharacters(in: .whitespaces)
+        return components[safe: index]?.trimmingCharacters(in: .whitespaces)
     }
     
     
@@ -148,7 +148,7 @@ struct CSVSortPattern: SortPattern {
         
         let delimiter = self.delimiter.isEmpty ? "," : self.delimiter.unescaped
         let index = self.column - 1  // column number is 1-based
-        let components = line.components(separatedBy: delimiter)
+        let components = line.split(separator: delimiter, omittingEmptySubsequences: false)
         
         guard let component = components[safe: index] else { return nil }
         

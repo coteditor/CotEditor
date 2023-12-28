@@ -95,7 +95,7 @@ struct FuzzyRangeParseStrategy: ParseStrategy {
     /// - Throws: `ParseError`.
     func parse(_ value: String) throws -> FuzzyRange {
         
-        let components = value.components(separatedBy: ":").map(Int.init)
+        let components = value.split(separator: ":").map(String.init).map(Int.init)
         
         guard
             (1...2).contains(components.count),

@@ -235,7 +235,7 @@ extension Data {
         
         guard let string = String(data: self, encoding: .ascii) else { return nil }
         
-        let components = string.components(separatedBy: ";")
+        let components = string.split(separator: ";")
         
         guard
             let cfEncoding: CFStringEncoding = {

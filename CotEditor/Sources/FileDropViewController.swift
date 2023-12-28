@@ -221,7 +221,7 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
         extensionsString
             .components(separatedBy: .alphanumerics.inverted)  // separator + typical invalid characters
             .filter { !$0.isEmpty }
-            .map { $0.lowercased() }
             .joined(separator: ", ")
+            .lowercased()
     }
 }
