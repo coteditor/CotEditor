@@ -23,70 +23,68 @@
 //  limitations under the License.
 //
 
+import AppKit
 import Foundation
-
-struct InvalidShortcutError: LocalizedError {
-    
-    enum Kind {
-        
-        case singleType
-        case alreadyTaken(name: String)
-        case shiftOnlyModifier
-        case unsupported
-    }
-    
-    var kind: Kind
-    var shortcut: Shortcut
-    
-    
-    var errorDescription: String? {
-        
-        switch self.kind {
-            case .singleType:
-                String(localized: "Single type is invalid for a shortcut.")
-                
-            case .alreadyTaken(let name):
-                String(localized: "“\(self.shortcut.symbol)” is already taken by the “\(name)” command.")
-                
-            case .shiftOnlyModifier:
-                String(localized: "The Shift key can be used only with another modifier key.")
-                
-            case .unsupported:
-                String(localized: "The combination “\(self.shortcut.symbol)” is not supported for the shortcut customization.")
-        }
-    }
-}
-
 
 extension Shortcut {
     
-    /// Validates whether the new shortcut is settable.
-    ///
-    /// - Throws: `InvalidShortcutError`
-    /// - Parameters:
-    ///   - shortcut: The shortcut to test.
-    func checkCustomizationAvailability() throws {
+    struct CustomizationError: LocalizedError {
         
-        if self.keyEquivalent == "\u{9}" || self.keyEquivalent == "\u{19}" {  // Tab or Backtab
-            throw InvalidShortcutError(kind: .unsupported, shortcut: self)
+        enum Kind {
+            
+            case singleType
+            case alreadyTaken(name: String)
+            case shiftOnlyModifier
+            case unsupported
         }
         
-        // avoid shift-only modifier with a letter
+        var kind: Kind
+        var shortcut: Shortcut
+        
+        
+        var errorDescription: String? {
+            
+            switch self.kind {
+                case .singleType:
+                    String(localized: "Single type is invalid for a shortcut.")
+                    
+                case .alreadyTaken(let name):
+                    String(localized: "“\(self.shortcut.symbol)” is already taken by the “\(name)” command.")
+                    
+                case .shiftOnlyModifier:
+                    String(localized: "The Shift key can be used only with another modifier key.")
+                    
+                case .unsupported:
+                    String(localized: "The combination “\(self.shortcut.symbol)” is not supported for the shortcut customization.")
+            }
+        }
+    }
+    
+
+    /// Validates whether the shortcut is available for user customization.
+    ///
+    /// - Throws: `Shortcut.CustomizationError`
+    func checkCustomizationAvailability() throws {
+        
+        // Tab or Backtab
+        if self.keyEquivalent == "\u{9}" || self.keyEquivalent == "\u{19}" {
+            throw CustomizationError(kind: .unsupported, shortcut: self)
+        }
+        
+        // avoid Shift-only modifier with a letter
         // -> typing Shift + letter inserting an uppercase letter instead of invoking a shortcut
-        if self.modifiers == .shift,
-           self.keyEquivalent.contains(where: { $0.isLetter || $0.isNumber })
-        {
-            throw InvalidShortcutError(kind: .shiftOnlyModifier, shortcut: self)
+        if self.modifiers == .shift, self.keyEquivalent.contains(where: \.isLetter) {
+            throw CustomizationError(kind: .shiftOnlyModifier, shortcut: self)
         }
         
         // single key is invalid
-        guard self.isValid else {
-            throw InvalidShortcutError(kind: .singleType, shortcut: self)
+        if !self.isValid {
+            throw CustomizationError(kind: .singleType, shortcut: self)
         }
         
         // duplication check
-        if let duplicatedName = KeyBindingManager.shared.commandName(for: self) {
-            throw InvalidShortcutError(kind: .alreadyTaken(name: duplicatedName), shortcut: self)
+        if let duplicatedName = NSApp.mainMenu?.commandName(for: self) {
+            throw CustomizationError(kind: .alreadyTaken(name: duplicatedName), shortcut: self)
         }
     }
 }

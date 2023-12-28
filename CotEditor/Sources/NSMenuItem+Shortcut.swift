@@ -1,5 +1,5 @@
 //
-//  NSMenuItem.swift
+//  NSMenuItem+Shortcut.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -37,5 +37,29 @@ extension NSMenuItem {
             self.keyEquivalent = newValue?.keyEquivalent ?? ""
             self.keyEquivalentModifierMask = newValue?.modifiers ?? []
         }
+    }
+}
+
+
+extension NSMenu {
+    
+    /// Finds the menu item that has the given shortcut.
+    ///
+    /// - Parameter shortcut: The shortcut to find.
+    /// - Returns: The command name for the user.
+    final func commandName(for shortcut: Shortcut) -> String? {
+        
+        self.items.lazy
+            .compactMap { item in
+                if let submenu = item.submenu {
+                    submenu.commandName(for: shortcut)
+                } else if shortcut == item.shortcut {
+                    item.title
+                } else {
+                    nil
+                }
+            }
+            .first?
+            .trimmingCharacters(in: .whitespaces.union(.punctuationCharacters))  // remove ellipsis
     }
 }

@@ -102,17 +102,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Finds the action that has the given shortcut.
-    ///
-    /// - Parameter shortcut: The shortcut to find.
-    /// - Returns: The command name for the user.
-    func commandName(for shortcut: Shortcut) -> String? {
-        
-        self.commandName(for: shortcut, in: NSApp.mainMenu!)
-    }
-    
-    
-    /// Saves passed-in key binding settings.
+    /// Saves the passed-in key binding settings.
     ///
     /// - Parameter keyBindings: The key bindings to save.
     func saveKeyBindings(_ keyBindings: [KeyBinding]) throws {
@@ -371,24 +361,5 @@ final class KeyBindingManager: SettingManaging {
                 
                 return Node(name: menuItem.title, item: .value(item))
             }
-    }
-    
-    
-    /// Finds the action that has the given shortcut in the menu.
-    private func commandName(for shortcut: Shortcut, in menu: NSMenu) -> String? {
-        
-        menu.items.lazy
-            .filter { $0.action != #selector(ScriptManager.launchScript) }
-            .compactMap { menuItem in
-                if let submenu = menuItem.submenu {
-                    return self.commandName(for: shortcut, in: submenu)
-                }
-                
-                guard shortcut == menuItem.shortcut else { return nil }
-                
-                return menuItem.title
-            }
-            .first?
-            .trimmingCharacters(in: .whitespaces.union(.punctuationCharacters))  // remove ellipsis
     }
 }
