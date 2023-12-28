@@ -6,7 +6,7 @@ metadata:
   author: "vanillajonathan"
   description: "PRQL is a modern language for transforming data — a simple, powerful, pipelined SQL replacement"
   distributionURL: "https://coteditor.com"
-  lastModified: "2023-10-03"
+  lastModified: "2023-12-29"
   license: "Same as CotEditor"
   version: "0.0.1"
 outlineMenu: []
@@ -24,6 +24,7 @@ keywords:
 - beginString: "window"
 - beginString: "case"
 - beginString: "let"
+- beginString: "module"
 - beginString: "prql"
 commands:
 - beginString: "abs"
@@ -60,10 +61,11 @@ types:
 - beginString: "int32"
 - beginString: "int64"
 - beginString: "int128"
-- beginString: "text"
-- beginString: "date"
 - beginString: "time"
 - beginString: "timestamp"
+- beginString: "text"
+- beginString: "date"
+- beginString: "math"
 variables: []
 values:
 - beginString: "true"
