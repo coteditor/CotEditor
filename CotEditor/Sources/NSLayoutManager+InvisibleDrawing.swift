@@ -41,7 +41,7 @@ protocol InvisibleDrawing: NSLayoutManager {
 
 extension InvisibleDrawing {
     
-    /// Draw invisible character symbols.
+    /// Draws invisible character symbols.
     ///
     /// - Parameters:
     ///   - glyphsToShow: The range of glyphs that are drawn.
@@ -139,7 +139,7 @@ extension InvisibleDrawing {
     }
     
     
-    /// Invalidate invisible character drawing.
+    /// Invalidates invisible character drawing.
     ///
     /// - Precondition:
     ///   - The visibility of whole invisible characters is set by the implementer through `showsInvisibles` property.
@@ -170,7 +170,7 @@ extension InvisibleDrawing {
     }
     
     
-    /// Whether a control character replacement glyph for the control character will be drawn.
+    /// Returns whether a control character replacement glyph for the control character will be drawn.
     ///
     /// - Parameters:
     ///   - charIndex: The character index.
@@ -206,7 +206,7 @@ extension InvisibleDrawing {
 
 private extension Invisible {
     
-    /// Return the path to draw an alternative symbol.
+    /// Returns the path to draw an alternative symbol.
     ///
     /// - Parameters:
     ///   - size: The size of bounding box.

@@ -29,7 +29,7 @@ import XCTest
 
 final class StringExtensionsTests: XCTestCase {
     
-    /// Test if the U+FEFF omitting bug on Swift 5 still exists.
+    /// Tests if the U+FEFF omitting bug on Swift 5 still exists.
     ///
     /// - Bug: <https://bugs.swift.org/browse/SR-10896>
     func testFEFF() {
@@ -66,10 +66,17 @@ final class StringExtensionsTests: XCTestCase {
     
     func testUnescaping() {
         
-        XCTAssertEqual("foo\\\\\\nbar".unescaped, "foo\\\\\nbar")
-        XCTAssertEqual("\\foo\\\\\\0bar\\".unescaped, "\\foo\\\\\u{0}bar\\")
-        XCTAssertEqual("\\\\\\\\foo".unescaped, "\\\\\\\\foo")
-        XCTAssertEqual(#"foo：\n\n1"#.unescaped, "foo：\n\n1")
+        XCTAssertEqual(#"\\"#.unescaped, "\\")
+        XCTAssertEqual(#"\'"#.unescaped, "\'")
+        XCTAssertEqual(#"\""#.unescaped, "\"")
+        XCTAssertEqual(#"a\n   "#.unescaped, "a\n   ")
+        XCTAssertEqual(#"a\\n  "#.unescaped, "a\\n  ")
+        XCTAssertEqual(#"a\\\n "#.unescaped, "a\\\n ")
+        XCTAssertEqual(#"a\\\\n"#.unescaped, "a\\\\n")
+        XCTAssertEqual(#"\\\\\t"#.unescaped, "\\\\\t")
+        XCTAssertEqual(#"\\foo\\\\\0bar\\"#.unescaped, "\\foo\\\\\u{0}bar\\")
+        XCTAssertEqual(#"\\\\\\\\foo"#.unescaped, "\\\\\\\\foo")
+        XCTAssertEqual(#"foo: \r\n1"#.unescaped, "foo: \r\n1")
     }
     
     

@@ -33,16 +33,31 @@ enum InspectorPane: Int, CaseIterable {
 }
 
 
-final class InspectorViewController: NSTabViewController {
+final class InspectorViewController: NSTabViewController, DocumentOwner {
     
     // MARK: Public Properties
     
+    var document: Document  { didSet { self.updateDocument() } }
     var selectedPane: InspectorPane { InspectorPane(rawValue: self.selectedTabViewItemIndex) ?? .document }
     
     
     
     // MARK: -
     // MARK: Lifecycle
+    
+    init(document: Document) {
+        
+        self.document = document
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func loadView() {
         
@@ -75,10 +90,9 @@ final class InspectorViewController: NSTabViewController {
         super.viewDidLoad()
         
         self.tabViewItems = InspectorPane.allCases.map { pane in
-            let item = NSTabViewItem(viewController: pane.viewController())
+            let item = NSTabViewItem(viewController: pane.viewController(document: self.document))
             item.image = pane.image()
             item.label = pane.name
-            item.viewController?.representedObject = self.representedObject
             return item
         }
         
@@ -101,17 +115,6 @@ final class InspectorViewController: NSTabViewController {
     
     // MARK: Tab View Controller Methods
     
-    /// deliver passed-in document instance to child view controllers
-    override var representedObject: Any? {
-        
-        didSet {
-            for item in self.tabViewItems {
-                item.viewController?.representedObject = representedObject
-            }
-        }
-    }
-    
-    
     override var selectedTabViewItemIndex: Int {
         
         didSet {
@@ -129,6 +132,17 @@ final class InspectorViewController: NSTabViewController {
         
         if !self.view.inLiveResize, self.view.frame.width > 0 {
             UserDefaults.standard[.sidebarWidth] = self.view.frame.width
+        }
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Updates the document in children.
+    private func updateDocument() {
+        
+        for item in self.tabViewItems {
+            (item.viewController as? any DocumentOwner)?.document = self.document
         }
     }
 }
@@ -158,15 +172,19 @@ private extension InspectorPane {
     }
     
     
-    func viewController() -> NSViewController {
+    func viewController(document: Document) -> NSViewController {
         
         switch self {
             case .document:
-                NSStoryboard(name: "DocumentInspectorView").instantiateInitialController()!
+                NSStoryboard(name: "DocumentInspectorView").instantiateInitialController { coder in
+                    DocumentInspectorViewController(document: document, coder: coder)
+                }!
             case .outline:
-                NSStoryboard(name: "OutlineView").instantiateInitialController()!
+                NSStoryboard(name: "OutlineView").instantiateInitialController { coder in
+                    OutlineViewController(document: document, coder: coder)
+                }!
             case .warnings:
-                WarningsViewController()
+                WarningsViewController(document: document)
         }
     }
     

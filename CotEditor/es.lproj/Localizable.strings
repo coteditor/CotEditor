@@ -31,7 +31,6 @@
 "Start" = "Iniciar";
 "Restore Defaults" = "Restaurar valores por omisión";
 "Delete" = "Eliminar";
-"Restore" = "Restaurar";
 
 
 // words with symbols
@@ -101,6 +100,23 @@
 // find results in input fields
 "Not found" = "No encontrado";
 "Not replaced" = "No reemplazado";
+
+// pairs of checkbox label and its tooltip
+"Regular Expression" = "Expresión regular";
+"Select to search with regular expression." = "Seleccione para buscar con expresión regular.";
+
+"Ignore Case" = "Ignorar mayúsculas";
+"Select to ignore character case on search." = "Seleccione para ignorar las mayúsculas y minúsculas del carácter en la búsqueda.";
+
+"In Selection" = "En la selección";
+"Select to search text only from selection." = "Seleccione para buscar texto solo de la selección.";
+
+// tooltip for regex help button
+"Show quick reference for regular expression syntax." = "Mostrar referencia rápida para la sintaxis de expresiones regulares.";
+
+// pair of accessibility label for a image button and its tooltip
+"Advanced options" = "Advanced options";  // FIXME: missing
+"Show advanced options" = "Show advanced options";  // FIXME: missing
 
 // pairs of button label and its tooltip
 "Close" = "Cerrar";
@@ -499,6 +515,7 @@
 "Delete Duplicate Lines" = "Eliminar líneas repetidas";
 "Duplicate Line" = "Duplicar línea";
 "Delete Line" = "Eliminar línea";
+"Join Lines" = "Unir líneas";
 "Trim Trailing Whitespace" = "Recortar espacios en blanco finales";
 
 // Contextual menu items
@@ -812,6 +829,11 @@
 
 
 
+/* MARK: Quick Action Bar */
+"Quick Actions" = "Acciones rápidas";
+
+
+
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "La ruta absoluta del archivo eliminado.";
@@ -845,6 +867,33 @@
 // error messages ("pattern" is a regular expression pattern)
 "Invalid pattern" = "Patrón no válido";
 "Empty pattern" = "Patrón vacío";
+
+"Sample:" = "Ejemplo:";
+// tooltip
+"Sample line to check which part in a line will be used for sort comparison." = "Línea de muestra para comprobar qué parte de una línea se utilizará para la comparación de clasificación.";
+
+"Sort key:" = "Ordenar clave:";
+"Entire line" = "Toda la línea";
+"Column" = "Columna";
+"Regular expression" = "Expresión regular";
+
+"Sort option:" = "Ordenar opción:";
+"Ignore Case" = "Ignorar mayúsculas";
+"Respect language rules" = "Respeta las reglas del lenguaje";
+"Treat numbers as numeric value" = "Tratar los números como valor numérico";
+"Keep the first line at the top" = "Mantén la primera línea en la parte superior";
+"In descending order" = "En orden descendente";
+
+"Delimiter:" = "Delimitador:";
+"Position:" = "Posición:";
+
+"Pattern:" = "Patrón:";
+"Regular Expression" = "Expresión regular";
+"Ignore case" = "Ignorar capitalización";
+"Use captured group:" = "Usar grupo capturado:";
+
+// button label
+"Sort" = "Ordenar";
 
 
 
@@ -911,6 +960,13 @@
 "Version:" = "Versión:";  // FIXME: needs review
 // badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
 "deprecated" = "obsoleto";  // FIXME: needs review
+
+
+
+/* MARK: LiveTextInsertionView */
+// error messages
+"No text detected" = "No se detectó texto";  // FIXME: needs review
+"Detection failed" = "La detección falló";  // FIXME: needs review
 
 
 

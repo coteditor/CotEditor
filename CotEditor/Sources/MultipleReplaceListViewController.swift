@@ -50,10 +50,6 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         
         super.viewDidLoad()
         
-        // observe editing replacement definition in the main view
-        self.settingUpdateObserver = self.detailViewController?.didSettingUpdate
-            .sink { [weak self] in self?.saveSetting(setting: $0) }
-        
         // register drag & drop types
         let receiverTypes = NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) }
         self.tableView?.registerForDraggedTypes([.fileURL] + receiverTypes)
@@ -88,10 +84,21 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     }
     
     
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        // observe editing replacement definition in the main view
+        assert(self.detailViewController != nil)
+        self.settingUpdateObserver = self.detailViewController?.didSettingUpdate
+            .sink { [weak self] in self?.saveSetting(setting: $0) }
+    }
+
+    
     
     // MARK: Menu Item Validation
     
-    /// apply current state to menu items
+    /// Applies current state to menu items.
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.tableView?.menu)
@@ -145,7 +152,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     
     // MARK: Action Messages
     
-    /// Add a blank setting.
+    /// Adds a blank setting.
     @IBAction func addSetting(_ sender: Any?) {
         
         let settingName: String
@@ -160,7 +167,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     }
     
     
-    /// Duplicate the selected setting.
+    /// Duplicates the selected setting.
     @IBAction func duplicateSetting(_ sender: Any?) {
         
         guard let baseName = self.targetSettingName(for: sender) else { return }
@@ -177,7 +184,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     }
     
     
-    /// Rename the selected setting.
+    /// Renames the selected setting.
     @IBAction func renameSetting(_ sender: Any?) {
         
         guard
@@ -189,7 +196,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     }
     
     
-    /// Remove the selected setting.
+    /// Removes the selected setting.
     @IBAction func deleteSetting(_ sender: Any?) {
         
         guard let settingName = self.targetSettingName(for: sender) else { return }
@@ -198,7 +205,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     }
     
     
-    /// Export the selected setting.
+    /// Exports the selected setting.
     @IBAction func exportSetting(_ sender: Any?) {
         
         guard let settingName = self.targetSettingName(for: sender) else { return }
@@ -223,7 +230,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     }
     
     
-    /// Import a setting file.
+    /// Imports a setting file.
     @IBAction func importSetting(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
@@ -241,7 +248,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     }
     
     
-    /// Show the sharing interface for the selected setting.
+    /// Shows the sharing interface for the selected setting.
     @IBAction func shareSetting(_ sender: Any?) {
         
         guard
@@ -259,7 +266,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         }
     }
     
-    /// Open the directory in Application Support in the Finder where the selected setting exists.
+    /// Opens the directory in Application Support in the Finder where the selected setting exists.
     @IBAction func revealSettingInFinder(_ sender: Any?) {
         
         guard
@@ -271,7 +278,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     }
     
     
-    /// Reload all setting files in Application Support.
+    /// Reloads all setting files in Application Support.
     @IBAction func reloadAllSettings(_ sender: Any?) {
         
         Task.detached(priority: .utility) {
@@ -283,14 +290,14 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     
     // MARK: Private Methods
     
-    /// Return the view controller for the detail view on the right side in the panel.
+    /// Returns the view controller for the detail view on the right side in the panel.
     private var detailViewController: MultipleReplaceViewController? {
         
         (self.parent as? NSSplitViewController)?.children.compactMap { $0 as? MultipleReplaceViewController }.first
     }
     
     
-    /// Return setting name which is currently selected in the list table.
+    /// Returns setting name which is currently selected in the list table.
     private var selectedSettingName: String? {
         
         let index = self.tableView?.selectedRow ?? 0
@@ -299,7 +306,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     }
     
     
-    /// Return representedObject if sender is menu item, otherwise selection in the list table.
+    /// Returns representedObject if sender is menu item, otherwise selection in the list table.
     ///
     /// - Parameter sender: The sender of the current action if available.
     /// - Returns: The name of the target setting.
@@ -324,7 +331,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     }
     
     
-    /// Try to delete the given setting.
+    /// Tries to delete the given setting.
     ///
     /// - Parameter name: The name of the setting to delete.
     private func deleteSetting(name: String) {
@@ -360,7 +367,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     }
     
     
-    /// Try to import setting file at given URL.
+    /// Tries to import setting file at given URL.
     ///
     /// - Parameter fileURL: The file URL of the setting to import.
     private func importSetting(fileURL: URL) {
@@ -374,7 +381,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     }
     
     
-    /// Update setting list view.
+    /// Updates setting list view.
     ///
     /// - Parameter selectingName: The setting name to select after the view update.
     private func updateSettingList(bySelecting selectingName: String? = nil) {
@@ -399,7 +406,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     }
     
     
-    /// Save the given setting as the current selected name.
+    /// Saves the given setting as the current selected name.
     ///
     /// - Parameter setting: The setting to save.
     private func saveSetting(setting: MultipleReplace) {
@@ -420,21 +427,19 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
 
 extension MultipleReplaceListViewController: NSTableViewDataSource {
     
-    /// number of settings
     func numberOfRows(in tableView: NSTableView) -> Int {
         
         self.settingNames.count
     }
     
     
-    /// content of table cell
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
         self.settingNames[row]
     }
     
     
-    /// validate when dragged items come to tableView
+    /// Validates when dragged items come to tableView.
     func tableView(_ tableView: NSTableView, validateDrop info: any NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         guard
@@ -453,7 +458,7 @@ extension MultipleReplaceListViewController: NSTableViewDataSource {
     }
     
     
-    /// check acceptability of dropped items and insert them to table
+    /// Checks the acceptability of dropped items and inserts them to table.
     func tableView(_ tableView: NSTableView, acceptDrop info: any NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         if let receivers = info.filePromiseReceivers(with: .cotReplacement, for: tableView) {
@@ -524,7 +529,7 @@ extension MultipleReplaceListViewController: NSFilePromiseProviderDelegate {
 
 extension MultipleReplaceListViewController: NSTableViewDelegate {
     
-    /// selection of setting table will change
+    /// The selection of setting table will change.
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         
         // save the unsaved change before the selection changes
@@ -534,7 +539,7 @@ extension MultipleReplaceListViewController: NSTableViewDelegate {
     }
     
     
-    /// selection of setting table did change
+    /// Invoked when the selection of setting table did change.
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         guard
@@ -553,7 +558,7 @@ extension MultipleReplaceListViewController: NSTableViewDelegate {
 
 extension MultipleReplaceListViewController: NSTextFieldDelegate {
     
-    /// setting name was edited
+    /// Setting name was edited.
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
         // finish if empty (The original name will be restored automatically)

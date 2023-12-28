@@ -31,7 +31,6 @@
 "Start" = "Start";
 "Restore Defaults" = "Restore Defaults";
 "Delete" = "Delete";
-"Restore" = "Restore";
 
 
 // words with symbols
@@ -101,6 +100,23 @@
 // find results in input fields
 "Not found" = "Not found";
 "Not replaced" = "Not replaced";
+
+// pairs of checkbox label and its tooltip
+"Regular Expression" = "Regular Expression";
+"Select to search with regular expression." = "Select to search with regular expression.";
+
+"Ignore Case" = "Ignore Case";
+"Select to ignore character case on search." = "Select to ignore character case on search.";
+
+"In Selection" = "In Selection";
+"Select to search text only from selection." = "Select to search text only from selection.";
+
+// tooltip for regex help button
+"Show quick reference for regular expression syntax." = "Show quick reference for regular expression syntax.";
+
+// pair of accessibility label for a image button and its tooltip
+"Advanced options" = "Advanced options";
+"Show advanced options" = "Show advanced options";
 
 // pairs of button label and its tooltip
 "Close" = "Close";
@@ -499,6 +515,7 @@
 "Delete Duplicate Lines" = "Delete Duplicate Lines";
 "Duplicate Line" = "Duplicate Line";
 "Delete Line" = "Delete Line";
+"Join Lines" = "Join Lines";
 "Trim Trailing Whitespace" = "Trim Trailing Whitespace";
 
 // Contextual menu items
@@ -811,6 +828,11 @@
 
 
 
+/* MARK: Quick Action Bar */
+"Quick Actions" = "Quick Actions";
+
+
+
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "The dropped file absolute path.";
@@ -844,6 +866,33 @@
 // error messages ("pattern" is a regular expression pattern)
 "Invalid pattern" = "Invalid pattern";
 "Empty pattern" = "Empty pattern";
+
+"Sample:" = "Sample:";
+// tooltip
+"Sample line to check which part in a line will be used for sort comparison." = "Sample line to check which part in a line will be used for sort comparison.";
+
+"Sort key:" = "Sort key:";
+"Entire line" = "Entire line";
+"Column" = "Column";
+"Regular expression" = "Regular expression";
+
+"Sort option:" = "Sort option:";
+"Ignore Case" = "Ignore Case";
+"Respect language rules" = "Respect language rules";
+"Treat numbers as numeric value" = "Treat numbers as numeric value";
+"Keep the first line at the top" = "Keep the first line at the top";
+"In descending order" = "In descending order";
+
+"Delimiter:" = "Delimiter:";
+"Position:" = "Position:";
+
+"Pattern:" = "Pattern:";
+"Regular Expression" = "Regular Expression";
+"Ignore case" = "Ignore case";
+"Use captured group:" = "Use captured group:";
+
+// button label
+"Sort" = "Sort";
 
 
 
@@ -910,6 +959,13 @@
 "Version:" = "Version:";
 // badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
 "deprecated" = "deprecated";
+
+
+
+/* MARK: LiveTextInsertionView */
+// error messages
+"No text detected" = "No text detected";
+"Detection failed" = "Detection failed";
 
 
 

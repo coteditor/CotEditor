@@ -25,7 +25,7 @@
 
 import AppKit
 
-/// text view that behaves like a NSTextField
+/// Text view that behaves like a NSTextField.
 class FindPanelTextView: NSTextView {
     
     var action: Selector?
@@ -72,7 +72,7 @@ class FindPanelTextView: NSTextView {
     
     // MARK: TextView Methods
     
-    /// view is on focus
+    /// The view is on focus.
     override func becomeFirstResponder() -> Bool {
         
         // select whole string on focus (standard NSTextField behavior)
@@ -82,7 +82,7 @@ class FindPanelTextView: NSTextView {
     }
     
     
-    /// view dismiss focus
+    /// The view dismisses focus.
     override func resignFirstResponder() -> Bool {
         
         // clear current selection (standard NSTextField behavior)
@@ -92,7 +92,7 @@ class FindPanelTextView: NSTextView {
     }
     
     
-    /// content string did update
+    /// The content string did update.
     override func didChangeText() {
         
         super.didChangeText()
@@ -101,7 +101,7 @@ class FindPanelTextView: NSTextView {
     }
     
     
-    /// string did update via binding
+    /// The string did update via binding.
     override var string: String {
         
         didSet {
@@ -110,25 +110,25 @@ class FindPanelTextView: NSTextView {
     }
     
     
-    /// perform the action with return (standard NSTextField behavior)
     override func insertNewline(_ sender: Any?) {
         
+        // perform the action with return (standard NSTextField behavior)
         if let action {
             NSApp.sendAction(action, to: self.target, from: self)
         }
     }
     
     
-    /// jump to the next key view by the Tab key (standard NSTextField behavior)
     override func insertTab(_ sender: Any?) {
         
+        // jump to the next key view by the Tab key (standard NSTextField behavior)
         self.window?.selectNextKeyView(nil)
     }
     
     
-    /// jump to the previous key view by the Tab key (standard NSTextField behavior)
     override func insertBacktab(_ sender: Any?) {
         
+        // jump to the previous key view by the Tab key (standard NSTextField behavior)
         self.window?.selectPreviousKeyView(nil)
     }
     
@@ -147,7 +147,7 @@ class FindPanelTextView: NSTextView {
     
     // MARK: Actions
     
-    /// clear current text
+    /// Clears the current text.
     @IBAction func clear(_ sender: Any?) {
         
         guard self.shouldChangeText(in: self.string.nsRange, replacementString: "") else { return }

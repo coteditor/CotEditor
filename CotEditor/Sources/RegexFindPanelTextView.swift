@@ -38,7 +38,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
     // MARK: -
     // MARK: Text View Methods
     
-    /// content string did update
+    /// The content string did update.
     override func didChangeText() {
         
         // invalidate the pattern before invoking delegates
@@ -48,7 +48,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
     }
     
     
-    /// adjust word selection range
+    /// Adjusts word selection range.
     override func selectionRange(forProposedRange proposedCharRange: NSRange, granularity: NSSelectionGranularity) -> NSRange {
         
         let range = super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity)
@@ -79,7 +79,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
     }
     
     
-    /// selection did change
+    /// The selection did change.
     override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
         
         super.setSelectedRange(charRange, affinity: affinity, stillSelecting: stillSelectingFlag)
@@ -97,7 +97,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
     
     // MARK: Private Methods
     
-    /// highlight string as regular expression pattern
+    /// Highlights the content string as a regular expression pattern.
     private func invalidateRegularExpression() {
         
         self.isValid = self.highlightAsRegularExpressionPattern(mode: self.parseMode, enabled: self.isRegularExpressionMode)

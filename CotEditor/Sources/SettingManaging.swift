@@ -27,7 +27,7 @@ import Foundation
 
 protocol SettingManaging: AnyObject {
     
-    /// directory name in both Application Support and bundled Resources
+    /// The directory name in both Application Support and bundled Resources.
     static var directoryName: String { get }
 }
 
@@ -35,7 +35,7 @@ protocol SettingManaging: AnyObject {
 
 extension SettingManaging {
     
-    /// user setting directory URL in Application Support
+    /// The user setting directory URL in Application Support.
     var userSettingDirectoryURL: URL {
         
         supportDirectoryURL.appending(component: Self.directoryName, directoryHint: .isDirectory)
@@ -57,7 +57,7 @@ extension SettingManaging {
     }
     
     
-    /// create user setting directory if not yet exist
+    /// Creates the user setting directory if not yet exist.
     func prepareUserSettingDirectory() throws {
         
         try FileManager.default.createDirectory(at: self.userSettingDirectoryURL, withIntermediateDirectories: true)
@@ -68,5 +68,5 @@ extension SettingManaging {
 
 // MARK: Private Property
 
-/// application's support directory in user's `Application Support/`
+/// Application's support directory in user's `Application Support/`.
 private let supportDirectoryURL: URL = .applicationSupportDirectory.appending(component: "CotEditor", directoryHint: .isDirectory)

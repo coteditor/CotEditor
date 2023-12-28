@@ -86,7 +86,7 @@ extension Unicode.Scalar {
 
 extension UTF32.CodeUnit {
     
-    /// Return Unicode name.
+    /// Returns Unicode name.
     ///
     /// Implemented at UTF32.CodeUnit level in order to cover single surrogate characters
     /// that are not allowed by Unicode.Scalar.

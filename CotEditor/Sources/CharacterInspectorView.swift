@@ -58,7 +58,7 @@ private struct CharacterDetailView: View {
                     .textSelection(.enabled)
             } else {
                 Text("Unknown")
-                    .foregroundColor(.secondaryLabel)
+                    .foregroundColor(.secondary)
             }
             
             if !self.info.isComplex {
@@ -153,7 +153,7 @@ private struct ScalarDetailView: View {
                             .textSelection(.enabled)
                     } else {
                         Text("No Block")
-                            .foregroundColor(.secondaryLabel)
+                            .foregroundStyle(.secondary)
                     }
                 }
             }
@@ -224,7 +224,7 @@ private struct DeprecatedBadge: View {
         Text("deprecated", comment: "badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification")
             .padding(.horizontal, 3)
             .overlay(RoundedRectangle(cornerRadius: 3).stroke(.secondary))
-            .foregroundColor(.secondary)
+            .foregroundStyle(.secondary)
     }
 }
 

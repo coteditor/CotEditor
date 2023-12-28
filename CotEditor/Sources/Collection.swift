@@ -25,7 +25,7 @@
 
 extension RangeReplaceableCollection where Element: Equatable {
     
-    /// Remove first collection element that is equal to the given `element`.
+    /// Removes first collection element that is equal to the given `element`.
     ///
     /// - Parameter element: The element to be removed.
     /// - Returns: The index of the removed element, or `nil` if not contains.
@@ -40,7 +40,7 @@ extension RangeReplaceableCollection where Element: Equatable {
     }
     
     
-    /// Add a new element to the end of the collection by keeping all the collection's elements unique.
+    /// Adds a new element to the end of the collection by keeping all the collection's elements unique.
     ///
     /// - Parameters:
     ///   - element: The element to append.
@@ -60,7 +60,7 @@ extension RangeReplaceableCollection where Element: Equatable {
 
 extension Collection {
     
-    /// Return the element at the specified index only if it is within bounds, otherwise nil.
+    /// Returns the element at the specified index only if it is within bounds, otherwise nil.
     ///
     /// - Parameter index: The position of the element to obtain.
     subscript(safe index: Index) -> Element? {
@@ -88,7 +88,7 @@ extension Sequence where Element: Equatable {
 
 extension Array where Element: Equatable {
     
-    /// Remove duplicated elements by keeping ordering.
+    /// Removes duplicated elements by keeping ordering.
     mutating func formUnique() {
         
         self = self.unique
@@ -99,7 +99,7 @@ extension Array where Element: Equatable {
 
 extension Dictionary {
     
-    /// Return a new dictionary containing the keys transformed by the given closure with the values of this dictionary.
+    /// Returns a new dictionary containing the keys transformed by the given closure with the values of this dictionary.
     ///
     /// - Parameter transform: A closure that transforms a key. Every transformed key must be unique.
     /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
@@ -109,7 +109,7 @@ extension Dictionary {
     }
     
     
-    /// Return a new dictionary containing the keys transformed by the given keyPath with the values of this dictionary.
+    /// Returns a new dictionary containing the keys transformed by the given keyPath with the values of this dictionary.
     ///
     /// - Parameter keyPath: The keyPath to the value to transform key. Every transformed key must be unique.
     /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
@@ -136,7 +136,7 @@ extension Dictionary {
 
 extension Sequence {
     
-    /// Return the elements of the sequence, sorted using the value that the given key path refers as the comparison between elements.
+    /// Returns the elements of the sequence, sorted using the value that the given key path refers as the comparison between elements.
     ///
     /// - Parameter keyPath: The key path to the value to compare.
     /// - Returns: A sorted array of the sequence’s elements.
@@ -149,7 +149,7 @@ extension Sequence {
 
 extension MutableCollection where Self: RandomAccessCollection {
     
-    /// Sort the collection in place, using the value that the given key path refers as the comparison between elements.
+    /// Sorts the collection in place, using the value that the given key path refers as the comparison between elements.
     ///
     /// - Parameter keyPath: The key path to the value to compare.
     mutating func sort(_ keyPath: KeyPath<Element, some Comparable>) {
@@ -170,7 +170,7 @@ enum QuantityComparisonResult {
 
 extension Sequence {
     
-    /// Count up elements that satisfy the given predicate.
+    /// Counts up elements that satisfy the given predicate.
     ///
     /// - Parameters:
     ///    - predicate: A closure that takes an element of the sequence as its argument
@@ -182,7 +182,7 @@ extension Sequence {
     }
     
     
-    /// Count up elements by enumerating collection until encountering the element that doesn't satisfy the given predicate.
+    /// Counts up elements by enumerating collection until encountering the element that doesn't satisfy the given predicate.
     ///
     /// - Parameters:
     ///    - predicate: A closure that takes an element of the sequence as its argument

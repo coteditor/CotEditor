@@ -29,7 +29,7 @@ import SwiftUI
 
 extension Binding where Value: OptionSet {
     
-    /// Enable binding to an option using Bool.
+    /// Enables binding to an option using Bool.
     ///
     /// - Parameter options: The option to bind.
     /// - Returns: A `Binding<Bool>` struct.
@@ -48,4 +48,24 @@ extension Binding where Value: OptionSet {
             }
         )
     }
+}
+
+
+// MARK: Optional Binding
+
+func ?? <T>(lhs: Binding<T?>, rhs: T) -> Binding<T> {
+    
+    Binding(
+        get: { lhs.wrappedValue ?? rhs },
+        set: { lhs.wrappedValue = $0 }
+    )
+}
+
+
+func ?? (lhs: Binding<String?>, rhs: String) -> Binding<String> {
+    
+    Binding(
+        get: { lhs.wrappedValue ?? rhs },
+        set: { lhs.wrappedValue = $0.isEmpty ? nil : $0 }
+    )
 }

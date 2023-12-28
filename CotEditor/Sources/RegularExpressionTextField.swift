@@ -32,7 +32,7 @@ final class RegularExpressionTextField: NSTextField {
     @objc dynamic var parsesRegularExpression = true {
         
         didSet {
-            self.regexFormatter?.parsesRegularExpression = parsesRegularExpression
+            self.regexFormatter.parsesRegularExpression = parsesRegularExpression
             self.invalidateFieldEditor()
             self.needsDisplay = true
         }
@@ -41,12 +41,14 @@ final class RegularExpressionTextField: NSTextField {
     var unescapesReplacement: Bool = false {
         
         didSet {
-            self.regexFormatter?.mode = self.parseMode
+            self.regexFormatter.mode = self.parseMode
         }
     }
     
     
     // MARK: Private Properties
+    
+    private let regexFormatter = RegularExpressionFormatter()
     
     @IBInspectable private var isReplacement: Bool = false
     @IBInspectable private var showsError: Bool = true
@@ -58,15 +60,38 @@ final class RegularExpressionTextField: NSTextField {
     // MARK: -
     // MARK: Text Field Methods
     
+    override class var cellClass: AnyClass? {
+        
+        get { PaddingTextFieldCell.self }
+        set { _ = newValue }
+    }
+    
+    
+    init(string: String = "") {
+     
+        super.init(frame: .zero)
+        
+        self.formatter = self.regexFormatter
+        self.stringValue = string
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        super.init(coder: coder)
+        
+        self.formatter = self.regexFormatter
+    }
+    
+    
     override func awakeFromNib() {
         
         super.awakeFromNib()
         
         // setup regex formatter
-        let formatter = RegularExpressionFormatter()
-        formatter.mode = self.parseMode
-        formatter.showsError = self.showsError
-        formatter.showsInvisibles = self.showsInvisibles
+        self.regexFormatter.mode = self.parseMode
+        self.regexFormatter.showsError = self.showsError
+        self.regexFormatter.showsInvisibles = self.showsInvisibles
         self.formatter = formatter
         
         // bind with cellView's objectValue
@@ -78,7 +103,7 @@ final class RegularExpressionTextField: NSTextField {
     }
     
     
-    /// receiver was focused to edit content
+    /// The Receiver was focused to edit content.
     override func becomeFirstResponder() -> Bool {
         
         guard super.becomeFirstResponder() else { return false }
@@ -89,7 +114,7 @@ final class RegularExpressionTextField: NSTextField {
     }
     
     
-    /// text (in the field editor) was just changed
+    /// Invoked when the text in the field editor was just changed.
     override func textDidChange(_ notification: Notification) {
         
         super.textDidChange(notification)
@@ -98,7 +123,7 @@ final class RegularExpressionTextField: NSTextField {
     }
     
     
-    /// string value was directly changed
+    /// The string value was directly changed.
     override var objectValue: Any? {
         
         didSet {
@@ -110,19 +135,13 @@ final class RegularExpressionTextField: NSTextField {
     
     // MARK: Private Methods
     
-    private var regexFormatter: RegularExpressionFormatter? {
-        
-        self.formatter as? RegularExpressionFormatter
-    }
-    
-    
     private var parseMode: RegularExpressionParseMode {
         
         self.isReplacement ? .replacement(unescapes: self.unescapesReplacement) : .search
     }
     
     
-    /// syntax highlight field editor
+    /// Syntax highlights the field editor.
     private func invalidateFieldEditor() {
         
         guard let editor = self.currentEditor() as? NSTextView else { return }

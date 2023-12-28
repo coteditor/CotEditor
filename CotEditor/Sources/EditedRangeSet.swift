@@ -33,7 +33,7 @@ struct EditedRangeSet {
     private(set) var ranges: [NSRange] = []
     
     
-    /// Update edit ranges by assuming the string was edited in an NSTextStorage and the storage returns the given `editedRange` and `changeInLength`.
+    /// Updates edit ranges by assuming the string was edited in an NSTextStorage and the storage returns the given `editedRange` and `changeInLength`.
     ///
     /// - Parameters:
     ///   - editedRange: The current remained range where edited.
@@ -73,7 +73,7 @@ struct EditedRangeSet {
     }
     
     
-    /// Clear all stored ranges.
+    /// Clears all stored ranges.
     mutating func clear() {
         
         self.ranges.removeAll()

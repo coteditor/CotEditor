@@ -27,7 +27,7 @@ import Foundation.NSAppleEventManager
 
 extension NSAppleEventManager {
     
-    /// whether now is open/reopen event
+    /// Whether now is open/reopen event.
     final var isOpenEvent: Bool {
         
         guard

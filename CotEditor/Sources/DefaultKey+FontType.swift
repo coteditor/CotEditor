@@ -31,7 +31,7 @@ enum FontType {
     case monospaced
     
     
-    /// Default system font the given font type.
+    /// Returns the default system font the given font type.
     ///
     /// - Parameter size: The size of the font.
     /// - Returns: An NSFont.
@@ -51,7 +51,7 @@ enum FontType {
 
 extension UserDefaults {
     
-    /// User font for the given font type.
+    /// Returns the user font for the given font type.
     ///
     /// - Parameter type: The font type.
     /// - Returns: An NSFont.
@@ -85,7 +85,7 @@ extension NSFont {
 
 extension DefaultKey<Data?> {
     
-    /// The user default key for the font name of the given font type.
+    /// Returns the user default key for the font name of the given font type.
     ///
     /// - Parameter type: The font type.
     /// - Returns: An user default key.
@@ -101,7 +101,7 @@ extension DefaultKey<Data?> {
 
 extension DefaultKey<Bool> {
     
-    /// The user default key for whether the antialiasing is enabled for the given font type.
+    /// Returns the user default key for whether the antialiasing is enabled for the given font type.
     ///
     /// - Parameter type: The font type.
     /// - Returns: An user default key.
@@ -114,7 +114,7 @@ extension DefaultKey<Bool> {
     }
     
     
-    /// The user default key for whether the ligature is enabled for the given font type.
+    /// Returns the user default key for whether the ligature is enabled for the given font type.
     ///
     /// - Parameter type: The font type.
     /// - Returns: An user default key.

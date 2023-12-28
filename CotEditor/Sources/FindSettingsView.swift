@@ -25,7 +25,7 @@
 
 import SwiftUI
 
-@MainActor private final class FindSettings: ObservableObject {
+private final class FindSettings: ObservableObject {
     
     @AppStorage(.findIsWrap) var findIsWrap: Bool
     @AppStorage(.findSearchesIncrementally) var findSearchesIncrementally: Bool
@@ -52,7 +52,7 @@ struct FindSettingsView: View {
         VStack {
             Text("Advanced Find Options")
                 .fontWeight(.semibold)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
                 .controlSize(.regular)
                 .padding(.bottom, 6)
             

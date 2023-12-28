@@ -33,7 +33,7 @@ struct ValueRange<Value> {
     var location: Int  { self.range.location }
     
     
-    /// Return a copy by shifting the range location toward the given offset.
+    /// Returns a copy by shifting the range location toward the given offset.
     ///
     /// - Parameter offset: The offset to shift.
     /// - Returns: A new ValueRange.
@@ -43,7 +43,7 @@ struct ValueRange<Value> {
     }
     
     
-    /// Shift the range location toward the given offset.
+    /// Shifts the range location toward the given offset.
     ///
     /// - Parameter offset: The offset to shift.
     mutating func shift(by offset: Int) {

@@ -109,9 +109,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // auto-link URLs in the content
         self.urlDetector = URLDetector(textStorage: self.textStorage)
-        UserDefaults.standard.publisher(for: .autoLinkDetection, initial: true)
-            .assign(to: \.isEnabled, on: self.urlDetector)
-            .store(in: &self.defaultObservers)
+        self.defaultObservers = [
+            UserDefaults.standard.publisher(for: .autoLinkDetection, initial: true)
+                .assign(to: \.isEnabled, on: self.urlDetector),
+        ]
         
         super.init()
         
@@ -119,8 +120,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // observe syntax update
         self.syntaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
-            .filter { [weak self] (change) in change.old == self?.syntaxParser.syntax.name }
-            .sink { [weak self] (change) in self?.setSyntax(name: change.new ?? BundledSyntaxName.none) }
+            .filter { [weak self] change in change.old == self?.syntaxParser.syntax.name }
+            .sink { [weak self] change in self?.setSyntax(name: change.new ?? BundledSyntaxName.none) }
     }
     
     
@@ -160,7 +161,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         }
         
         if let string = coder.decodeObject(of: NSString.self, forKey: SerializationKey.originalContentString) as? String {
-            self.replaceContent(with: string)
+            self.textStorage.replaceContent(with: string)
         }
     }
     
@@ -202,7 +203,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// backup file URL for autosaveElsewhere
+    /// The backup file URL for autosaveElsewhere.
     override var autosavedContentsFileURL: URL? {
         
         get {
@@ -279,38 +280,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // -> Presented errors will be displayed again after the revert automatically. (since OS X 10.10)
         self.windowForSheet?.sheets.forEach { $0.close() }
         
-        // store current selections
-        let lastString = self.textStorage.string.immutable
-        let editorStates = self.textStorage.layoutManagers
-            .compactMap(\.textViewForBeginningOfSelection)
-            .map { (textView: $0, ranges: $0.selectedRanges.map(\.rangeValue)) }
+        let selection = self.textStorage.editorSelection
         
         try super.revert(toContentsOf: url, ofType: typeName)
         
         // do nothing if already no textView exists
-        guard !editorStates.isEmpty else { return }
+        guard let selection else { return }
         
-        // apply to UI
         self.applyContentToWindow()
-        
-        // select previous ranges again
-        // -> Taking performance issues into consideration,
-        //    the selection ranges will be adjusted only when the content size is small enough;
-        //    otherwise, just cut extra ranges off.
-        let string = self.textStorage.string
-        let range = self.textStorage.range
-        let maxLength = 20_000  // takes ca. 1.3 sec. with MacBook Pro 13-inch late 2016 (3.3 GHz)
-        let considersDiff = lastString.length < maxLength || string.length < maxLength
-        
-        for state in editorStates {
-            let selectedRanges = considersDiff
-                ? string.equivalentRanges(to: state.ranges, in: lastString)
-                : state.ranges.map { $0.intersection(range) ?? NSRange(location: range.upperBound, length: 0) }
-            
-            guard !selectedRanges.isEmpty else { continue }
-            
-            state.textView.selectedRanges = selectedRanges.unique as [NSValue]
-        }
+        self.textStorage.restoreEditorSelection(selection)
     }
     
     
@@ -376,7 +354,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         }
         
         // update textStorage
-        self.replaceContent(with: file.string)
+        self.textStorage.replaceContent(with: file.string)
         
         // set read values
         self.fileEncoding = file.fileEncoding
@@ -438,7 +416,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         //     2. Open the save panel once and cancel it.
         //     3. Quit the application.
         //     4. Then, the application hangs up.
-        super.save(to: url, ofType: typeName, for: saveOperation) { (error) in
+        super.save(to: url, ofType: typeName, for: saveOperation) { error in
             defer {
                 completionHandler(error)
             }
@@ -705,12 +683,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     // MARK: Protocols
     
-    /// File has been modified by an external process.
     override func presentedItemDidChange() {
         
         // [caution] This method can be called from any thread.
         
-        // [caution] DO NOT invoke `super.presentedItemDidChange()` that reverts document automatically if autosavesInPlace is enable.
+        // [caution] DO NOT invoke `super.presentedItemDidChange()` that reverts document automatically if autosavesInPlace is enabled.
 //        super.presentedItemDidChange()
         
         guard
@@ -719,24 +696,39 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             var fileURL = self.fileURL
         else { return }
         
-        // check whether the document content is really modified
-        // -> Avoid using NSFileCoordinator although the document recommends
-        //    because it causes deadlock when the document in the iCloud Document remotely modified.
-        //    (2022-08 on macOS 12.5, Xcode 14, #1296)
-        fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
-        let data: Data
-        do {
-            // ignore if file's modificationDate is the same as document's modificationDate
-            let contentModificationDate = try fileURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate  // FILE_ACCESS
-            guard contentModificationDate != self.fileModificationDate else { return }
-            
-            // check if the file content was changed from the stored file data
-            data = try Data(contentsOf: fileURL, options: [.mappedIfSafe])  // FILE_ACCESS
-        } catch {
-            return assertionFailure(error.localizedDescription)
+        // check if the file content was changed from the stored file data
+        var didChange = false
+        var modificationDate: Date?
+        var error: NSError?
+        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: &error) { newURL in  // FILE_ACCESS
+            do {
+                // ignore if file's modificationDate is the same as document's modificationDate
+                fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
+                modificationDate = try fileURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
+                guard modificationDate != self.fileModificationDate else { return }
+                
+                // check if file contents was changed from the stored file data
+                let data = try Data(contentsOf: newURL, options: [.mappedIfSafe])
+                didChange = data != self.fileData
+            } catch {
+                assertionFailure(error.localizedDescription)
+            }
+        }
+        if let error {
+            assertionFailure(error.localizedDescription)
         }
         
-        guard data != self.fileData else { return }
+        guard didChange else {
+            // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
+            // -> If not, an alert shows up when user saves the file.
+            guard let modificationDate else { return }
+            DispatchQueue.main.async { [weak self] in
+                if self?.fileModificationDate?.compare(modificationDate) == .orderedAscending {
+                    self?.fileModificationDate = modificationDate
+                }
+            }
+            return
+        }
         
         // notify about external file update
         Task {
@@ -752,7 +744,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Apply the current states to menu items.
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         switch menuItem.action {
@@ -772,7 +763,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Open existing document file (alternative methods for `init(contentsOf:ofType:)`).
+    /// Opens an existing document file (alternative methods for `init(contentsOf:ofType:)`).
     func didMakeDocumentForExistingFile(url: URL) {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
@@ -799,18 +790,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Replace whole content with the given `string`.
-    ///
-    /// - Parameter string: The content string to replace with.
-    func replaceContent(with string: String) {
-        
-        assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
-        
-        self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
-    }
-    
-    
-    /// Reinterpret the document file with the desired encoding.
+    /// Reinterprets the document file with the desired encoding.
     ///
     /// - Parameter encoding: The text encoding to read.
     /// - Throws: `ReinterpretationError`
@@ -836,146 +816,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Change the text encoding and register the process to the undo manager.
+    /// Changes the text encoding by asking options to the user.
     ///
-    /// - Parameters:
-    ///   - fileEncoding: The text encoding to change with.
-    ///   - lossy: Whether the change is lossy.
-    /// - Throws: `EncodingError` (Kind.lossyConversion) can be thrown but only if `lossy` flag is `false`.
-    func changeEncoding(to fileEncoding: FileEncoding, lossy: Bool) throws {
+    /// - Parameter fileEncoding: The file encoding to change.
+    func changeEncoding(to fileEncoding: FileEncoding) {
         
         assert(Thread.isMainThread)
-        
-        guard fileEncoding != self.fileEncoding else { return }
-        
-        // check if conversion is lossy
-        guard lossy || self.textStorage.string.canBeConverted(to: fileEncoding.encoding) else {
-            throw EncodingError(kind: .lossyConversion, fileEncoding: fileEncoding, attempter: self)
-        }
-        
-        // register undo
-        if let undoManager = self.undoManager {
-            undoManager.registerUndo(withTarget: self) { [currentFileEncoding = self.fileEncoding, shouldSaveEncodingXattr = self.shouldSaveEncodingXattr] target in
-                target.fileEncoding = currentFileEncoding
-                target.shouldSaveEncodingXattr = shouldSaveEncodingXattr
-                target.incompatibleCharacterScanner.invalidate()
-                
-                // register redo
-                target.undoManager?.registerUndo(withTarget: target) { try? $0.changeEncoding(to: fileEncoding, lossy: lossy) }
-            }
-            undoManager.setActionName(String(localized: "Encoding to “\(fileEncoding.localizedName)”"))
-        }
-        
-        // update encoding
-        self.fileEncoding = fileEncoding
-        self.shouldSaveEncodingXattr = true
-        
-        // update incompatible characters inspector
-        self.incompatibleCharacterScanner.invalidate()
-    }
-    
-    
-    /// Change line endings and register the process to the undo manager.
-    ///
-    /// - Parameter lineEnding: The line ending type to change with.
-    func changeLineEnding(to lineEnding: LineEnding) {
-        
-        assert(Thread.isMainThread)
-        
-        guard lineEnding != self.lineEnding ||
-                !self.lineEndingScanner.inconsistentLineEndings.isEmpty
-        else { return }
-        
-        // register undo
-        if let undoManager = self.undoManager {
-            undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.textStorage.string] target in
-                target.replaceContent(with: string)
-                target.lineEnding = currentLineEnding
-                
-                // register redo
-                target.undoManager?.registerUndo(withTarget: target) { $0.changeLineEnding(to: lineEnding)
-                }
-            }
-            undoManager.setActionName(String(localized: "Line Endings to \(lineEnding.name)"))
-        }
-        
-        // update line ending
-        self.textStorage.replaceLineEndings(with: lineEnding)
-        self.lineEnding = lineEnding
-    }
-    
-    
-    /// Change the syntax to one with the given name.
-    ///
-    /// - Parameters:
-    ///   - name: The name of the syntax to change with.
-    ///   - isInitial: Whether the setting is initial.
-    func setSyntax(name: String, isInitial: Bool = false) {
-        
-        guard
-            let syntax = SyntaxManager.shared.setting(name: name),
-            syntax != self.syntaxParser.syntax
-        else { return }
-        
-        // update
-        self.syntaxParser.syntax = syntax
-        
-        // skip notification when initial syntax was set on file open
-        // to avoid redundant highlight parse due to async notification.
-        guard !isInitial else { return }
-        
-        self.didChangeSyntax.send(name)
-    }
-    
-    
-    
-    // MARK: Action Messages
-    
-    /// Save document.
-    @IBAction override func save(_ sender: Any?) {
-        
-        self.askSavingSafety { (continuesSaving: Bool) in
-            guard continuesSaving else { return }
-            
-            super.save(sender)
-        }
-    }
-    
-    
-    /// Save document to a new location.
-    @IBAction override func saveAs(_ sender: Any?) {
-        
-        self.askSavingSafety { (continuesSaving: Bool) in
-            guard continuesSaving else { return }
-            
-            super.saveAs(sender)
-        }
-    }
-    
-    
-    /// Change the line ending with sender's tag.
-    @IBAction func changeLineEnding(_ sender: NSMenuItem) {
-        
-        guard let lineEnding = LineEnding.allCases[safe: sender.tag] else { return assertionFailure() }
-        
-        self.changeLineEnding(to: lineEnding)
-    }
-    
-    
-    /// Show the sharing picker interface.
-    @IBAction func shareDocument(_ sender: Any?) {
-        
-        guard let view = self.viewController?.view else { return assertionFailure() }
-        
-         NSSharingServicePicker(items: [self])
-            .show(relativeTo: .zero, of: view, preferredEdge: .minY)
-    }
-    
-    
-    /// Change the document text encoding.
-    @IBAction func changeEncoding(_ sender: NSMenuItem) {
-        
-        let fileEncoding = FileEncoding(tag: sender.tag)
         
         guard fileEncoding != self.fileEncoding else { return }
         
@@ -986,8 +832,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         }
         
         // change encoding interactively
-        self.performActivity(withSynchronousWaiting: true) { [unowned self] (activityCompletionHandler) in
-            let completionHandler = { [weak self] (didChange: Bool) in
+        self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
+            let completionHandler = { [weak self] didChange in
                 if !didChange, let self {
                     // reset status bar selection for in case when the operation was invoked from the popup button in the status bar
                     self.fileEncoding = self.fileEncoding
@@ -1053,10 +899,164 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Change the syntax.
+    /// Changes the text encoding and registers the process to the undo manager.
+    ///
+    /// - Parameters:
+    ///   - fileEncoding: The text encoding to change with.
+    ///   - lossy: Whether the change is lossy.
+    /// - Throws: `EncodingError` (Kind.lossyConversion) can be thrown but only if `lossy` flag is `false`.
+    func changeEncoding(to fileEncoding: FileEncoding, lossy: Bool) throws {
+        
+        assert(Thread.isMainThread)
+        
+        guard fileEncoding != self.fileEncoding else { return }
+        
+        // check if conversion is lossy
+        guard lossy || self.textStorage.string.canBeConverted(to: fileEncoding.encoding) else {
+            throw EncodingError(kind: .lossyConversion, fileEncoding: fileEncoding, attempter: self)
+        }
+        
+        // register undo
+        if let undoManager = self.undoManager {
+            undoManager.registerUndo(withTarget: self) { [currentFileEncoding = self.fileEncoding, shouldSaveEncodingXattr = self.shouldSaveEncodingXattr] target in
+                target.fileEncoding = currentFileEncoding
+                target.shouldSaveEncodingXattr = shouldSaveEncodingXattr
+                target.incompatibleCharacterScanner.invalidate()
+                
+                // register redo
+                target.undoManager?.registerUndo(withTarget: target) { try? $0.changeEncoding(to: fileEncoding, lossy: lossy) }
+            }
+            undoManager.setActionName(String(localized: "Encoding to “\(fileEncoding.localizedName)”"))
+        }
+        
+        // update encoding
+        self.fileEncoding = fileEncoding
+        self.shouldSaveEncodingXattr = true
+        
+        // update incompatible characters inspector
+        self.incompatibleCharacterScanner.invalidate()
+    }
+    
+    
+    /// Change line endings and register the process to the undo manager.
+    ///
+    /// - Parameter lineEnding: The line ending type to change with.
+    func changeLineEnding(to lineEnding: LineEnding) {
+        
+        assert(Thread.isMainThread)
+        
+        guard lineEnding != self.lineEnding ||
+                !self.lineEndingScanner.inconsistentLineEndings.isEmpty
+        else { return }
+        
+        // register undo
+        if let undoManager = self.undoManager {
+            let selectedRanges = self.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection).map(\.selectedRange)
+            undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.textStorage.string] target in
+                target.textStorage.replaceContent(with: string)
+                target.lineEnding = currentLineEnding
+                for (textView, range) in zip(target.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection), selectedRanges) {
+                    textView.selectedRange = range
+                }
+                
+                // register redo
+                target.undoManager?.registerUndo(withTarget: target) { $0.changeLineEnding(to: lineEnding) }
+            }
+            undoManager.setActionName(String(localized: "Line Endings to \(lineEnding.name)"))
+        }
+        
+        // update line endings in text storage
+        let string = self.textStorage.string.replacingLineEndings(with: lineEnding)
+        self.textStorage.replaceContent(with: string, keepsSelection: true)
+        
+        // update line ending
+        self.lineEnding = lineEnding
+    }
+    
+    
+    /// Changes the syntax to one with the given name.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the syntax to change with.
+    ///   - isInitial: Whether the setting is initial.
+    func setSyntax(name: String, isInitial: Bool = false) {
+        
+        guard
+            let syntax = SyntaxManager.shared.setting(name: name),
+            syntax != self.syntaxParser.syntax
+        else { return }
+        
+        // update
+        self.syntaxParser.syntax = syntax
+        
+        // skip notification when initial syntax was set on file open
+        // to avoid redundant highlight parse due to async notification.
+        guard !isInitial else { return }
+        
+        self.didChangeSyntax.send(name)
+    }
+    
+    
+    
+    // MARK: Action Messages
+    
+    /// Saves the document.
+    @IBAction override func save(_ sender: Any?) {
+        
+        self.askSavingSafety { (continuesSaving: Bool) in
+            guard continuesSaving else { return }
+            
+            super.save(sender)
+        }
+    }
+    
+    
+    /// Saves the document to a new location.
+    @IBAction override func saveAs(_ sender: Any?) {
+        
+        self.askSavingSafety { (continuesSaving: Bool) in
+            guard continuesSaving else { return }
+            
+            super.saveAs(sender)
+        }
+    }
+    
+    
+    /// Changes the document text encoding wit sender's tag.
+    @IBAction func changeEncoding(_ sender: NSMenuItem) {
+        
+        let fileEncoding = FileEncoding(tag: sender.tag)
+        
+        self.changeEncoding(to: fileEncoding)
+    }
+    
+    
+    /// Changes the line ending with sender's tag.
+    @IBAction func changeLineEnding(_ sender: NSMenuItem) {
+        
+        guard let lineEnding = LineEnding.allCases[safe: sender.tag] else { return assertionFailure() }
+        
+        self.changeLineEnding(to: lineEnding)
+    }
+    
+    
+    /// Changes the syntax.
     @IBAction func changeSyntax(_ sender: NSMenuItem) {
         
         self.setSyntax(name: sender.title)
+    }
+    
+    
+    /// Shows the sharing picker interface.
+    @IBAction func shareDocument(_ sender: Any?) {
+        
+        guard let contentView = self.viewController?.view else { return assertionFailure() }
+        
+        // -> Get titlebar view to mimic the behavior in iWork apps... (macOS 14 on 2023-12)
+        let view = contentView.window?.standardWindowButton(.closeButton)?.superview ?? contentView
+        
+        NSSharingServicePicker(items: [self])
+            .show(relativeTo: .zero, of: view, preferredEdge: .minY)
     }
     
     
@@ -1077,7 +1077,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Transfer file information to UI.
+    /// Transfers the file information to UI.
     private func applyContentToWindow() {
         
         // update incompatible characters if pane is visible
@@ -1110,7 +1110,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Check if can save safely with the current encoding and ask if not.
+    /// Checks if can save safely with the current encoding and ask if not.
     private func askSavingSafety(completionHandler: @escaping (Bool) -> Void) {
         
         assert(Thread.isMainThread)
@@ -1126,7 +1126,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Check if the content can be saved with the current text encoding.
+    /// Checks if the content can be saved with the current text encoding.
     private func checkSavingSafetyForConverting() throws {
         
         guard self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) else {
@@ -1135,7 +1135,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Display alert about inconsistent line endings.
+    /// Displays an alert about inconsistent line endings.
     private func showInconsistentLineEndingAlert() {
         
         assert(Thread.isMainThread)
@@ -1187,7 +1187,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Display alert about file modification by an external process.
+    /// Displays an alert about file modification by an external process.
     @MainActor private func showUpdatedByExternalProcessAlert() {
         
         // do nothing if alert is already shown
@@ -1227,7 +1227,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Revert receiver with current document file without asking to the user in advance.
+    /// Reverts the receiver with current document file without asking to the user in advance.
     @MainActor private func revertWithoutAsking() {
         
         guard
@@ -1259,7 +1259,7 @@ private enum ReinterpretationError: LocalizedError {
             case .noFile:
                 String(localized: "The document doesn’t have a file to reinterpret.")
                 
-            case let .reinterpretationFailed(fileURL, encoding):
+            case .reinterpretationFailed(let fileURL, let encoding):
                 String(localized: "The file “\(fileURL.lastPathComponent)” couldn’t be reinterpreted using text encoding “\(String.localizedName(of: encoding)).”")
         }
     }
@@ -1282,6 +1282,7 @@ private enum ReinterpretationError: LocalizedError {
 private struct EncodingError: LocalizedError, RecoverableError {
     
     enum ErrorKind {
+        
         case lossySaving
         case lossyConversion
     }

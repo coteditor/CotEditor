@@ -38,7 +38,7 @@ struct CustomSurroundStringView: View {
     
     // MARK: View
     
-    /// Initialize view from a storyboard with given values.
+    /// Initializes view from a storyboard with given values.
     ///
     /// - Parameters:
     ///   - pair: A pair of strings to fill as default value.
@@ -89,7 +89,7 @@ struct CustomSurroundStringView: View {
     
     // MARK: Private Methods
     
-    /// Submit the current input.
+    /// Submits the current input.
     private func submit() {
         
         self.parent?.commitEditing()
@@ -101,7 +101,7 @@ struct CustomSurroundStringView: View {
         
         self.completionHandler(Pair(self.pair.begin, endString))
         
-        /// store the last used string pair
+        // store the last used string pair
         self.defaultBeginString = self.pair.begin
         self.defaultEndString = self.pair.end
         

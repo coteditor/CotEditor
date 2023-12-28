@@ -62,7 +62,7 @@ final class ColorCodePanelController: NSObject, NSWindowDelegate {
     
     // MARK: Public Methods
     
-    /// Show the color panel with the color code accessory.
+    /// Shows the color panel with the color code accessory.
     ///
     /// - Parameter colorCode: The color code of the color to set to the panel.
     func showWindow(colorCode: String?) {
@@ -130,7 +130,7 @@ private struct ColorCodePanelAccessory: View {
                 }
             
             HStack {
-                Picker("", selection: $type) {
+                Picker(selection: $type) {
                     Section {
                         ForEach(ColorCodeType.hexTypes, id: \.self) { type in
                             Text(type.label).tag(type.rawValue)
@@ -141,6 +141,8 @@ private struct ColorCodePanelAccessory: View {
                             Text(type.label).tag(type.rawValue)
                         }
                     }
+                } label: {
+                    EmptyView()
                 }
                 .onChange(of: self.type, perform: self.apply(type:))
                 .labelsHidden()
@@ -158,7 +160,7 @@ private struct ColorCodePanelAccessory: View {
     
     // MARK: Private Methods
     
-    /// Insert the color code to the selection of the frontmost document.
+    /// Inserts the color code to the selection of the frontmost document.
     private func submit() {
         
         self.apply(colorCode: self.colorCode)
@@ -170,7 +172,7 @@ private struct ColorCodePanelAccessory: View {
     }
     
     
-    /// Set the color representing the given code to the color panel and select the corresponding color code type.
+    /// Sets the color representing the given code to the color panel and selects the corresponding color code type.
     ///
     /// - Parameter colorCode: The color code of the color to set.
     private func apply(colorCode: String) {
@@ -186,7 +188,8 @@ private struct ColorCodePanelAccessory: View {
     }
     
     
-    /// Convert the color code to the specified code type.
+    /// Converts the color code to the specified code type.
+    ///
     /// - Parameter rawValue: The rawValue of ColorCodeType.
     private func apply(type rawValue: Int) {
         
@@ -200,7 +203,7 @@ private struct ColorCodePanelAccessory: View {
     }
     
     
-    /// Update color code for new color.
+    /// Updates color code for new color.
     ///
     /// - Parameter color: The color.
     private func apply(color: NSColor) {
@@ -210,7 +213,7 @@ private struct ColorCodePanelAccessory: View {
         
         guard var colorCode = color?.colorCode(type: type) else { return assertionFailure() }
         
-        // keep lettercase
+        // keep letter case
         if ColorCodeType.hexTypes.contains(type), self.colorCode.contains(where: \.isUppercase) {
             colorCode = colorCode.uppercased()
         }

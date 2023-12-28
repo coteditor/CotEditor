@@ -45,7 +45,7 @@ struct InvalidShortcutError: LocalizedError {
             case .singleType:
                 String(localized: "Single type is invalid for a shortcut.")
                 
-            case let .alreadyTaken(name):
+            case .alreadyTaken(let name):
                 String(localized: "“\(self.shortcut.symbol)” is already taken by the “\(name)” command.")
                 
             case .shiftOnlyModifier:
@@ -60,7 +60,7 @@ struct InvalidShortcutError: LocalizedError {
 
 extension Shortcut {
     
-    /// Validate whether the new shortcut is settable.
+    /// Validates whether the new shortcut is settable.
     ///
     /// - Throws: `InvalidShortcutError`
     /// - Parameters:
@@ -73,7 +73,7 @@ extension Shortcut {
         
         // avoid shift-only modifier with a letter
         // -> typing Shift + letter inserting an uppercase letter instead of invoking a shortcut
-        if self.modifierMask == .shift,
+        if self.modifiers == .shift,
            self.keyEquivalent.contains(where: { $0.isLetter || $0.isNumber })
         {
             throw InvalidShortcutError(kind: .shiftOnlyModifier, shortcut: self)

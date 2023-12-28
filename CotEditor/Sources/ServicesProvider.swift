@@ -29,7 +29,7 @@ final class ServicesProvider: NSObject {
     
     // MARK: Public Methods
     
-    /// open new document with string via Services
+    /// Opens new document with string via Services
     @objc func openSelection(_ pboard: NSPasteboard, userData: String, error errorPointer: AutoreleasingUnsafeMutablePointer<NSString?>) {
         
         guard let selection = pboard.string(forType: .string) else { return assertionFailure() }
@@ -44,7 +44,7 @@ final class ServicesProvider: NSObject {
     }
     
     
-    /// open files via Services
+    /// Opens files via Services
     @objc func openFile(_ pboard: NSPasteboard, userData: String, error errorPointer: AutoreleasingUnsafeMutablePointer<NSString?>) {
         
         guard let fileURLs = pboard.readObjects(forClasses: [NSURL.self]) as? [URL] else { return assertionFailure() }

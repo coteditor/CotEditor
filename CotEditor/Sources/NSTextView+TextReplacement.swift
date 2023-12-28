@@ -29,7 +29,7 @@ extension NSTextView {
     
     // MARK: Public Methods
     
-    /// perform simple text replacement
+    /// Performs simple text replacement.
     @discardableResult
     final func replace(with string: String, range: NSRange, selectedRange: NSRange?, actionName: String? = nil) -> Bool {
         
@@ -39,7 +39,7 @@ extension NSTextView {
     }
     
     
-    /// perform multiple text replacements
+    /// Performs multiple text replacements.
     @discardableResult
     final func replace(with strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?, actionName: String? = nil) -> Bool {
         
@@ -101,7 +101,7 @@ extension NSTextView {
     }
     
     
-    /// set undoable selection change
+    /// Performs undoable selection change.
     final func setSelectedRangesWithUndo(_ ranges: [NSValue]) {
         
         if let self = self as? any MultiCursorEditing,
@@ -120,14 +120,14 @@ extension NSTextView {
     }
     
     
-    /// set undoable selection change
+    /// Performs undoable selection change.
     final func setSelectedRangesWithUndo(_ ranges: [NSRange]) {
         
         self.setSelectedRangesWithUndo(ranges as [NSValue])
     }
     
     
-    /// trim all trailing whitespace with/without keeping editing point
+    /// Trims all trailing whitespace with/without keeping editing point.
     final func trimTrailingWhitespace(ignoresEmptyLines: Bool, keepingEditingPoint: Bool = false) {
         
         assert(Thread.isMainThread)
@@ -150,13 +150,29 @@ extension NSTextView {
         self.replace(with: replacementStrings, ranges: trimmingRanges, selectedRanges: selectedRanges,
                      actionName: String(localized: "Trim Trailing Whitespace"))
     }
+    
+    
+    // MARK: Actions
+    
+    /// Inputs a backslash (\\) to the insertion points.
+    @IBAction final func inputBackSlash(_ sender: Any?) {
+        
+        self.insertText("\\", replacementRange: .notFound)
+    }
+    
+    
+    /// Inputs an Yen sign (¥) to the insertion points.
+    @IBAction final func inputYenMark(_ sender: Any?) {
+        
+        self.insertText("¥", replacementRange: .notFound)
+    }
 }
 
 
 
 extension String {
     
-    /// Create a String from Any but `anyString` must be either String or NSAttributedString.
+    /// Creates a String from Any but `anyString` must be either String or NSAttributedString.
     ///
     /// - Parameter anyString: String or NSAttributedString.
     init(anyString: Any) {

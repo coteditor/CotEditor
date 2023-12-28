@@ -18,6 +18,137 @@
 
 <article>
 	<header>
+		<h1>CotEditor 4.7.1</h1>
+		<p>リリース: <time>2023-12-12</time></p>
+	</header>
+
+
+	<section>
+		<h2>新機能</h2>
+
+		<ul>
+			<li>「テキスト」メニューに「行を結合」コマンドを追加</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>修正</h2>
+
+		<ul>
+			<li>コマンドラインプロセスから書類ファイルが編集されたときに書類が更新されないことがあったCotEditor 4.7.0の不具合を修正</li>
+			<li>スクリプト名の末尾がピリオドと文字のとき、その文字がショートカットキーとして解釈されてしまうことがあったCotEditor 4.7.0の不具合を修正</li>
+			<li>クイックアクションバーからスクリプトなどのいくつかのタイプのアクションが実行できなかったCotEditor 4.7.0の不具合を修正</li>
+			<li>クックアクションバーがショートカットのShiftキーを描画しないことがあったCotEditor 4.7.0の不具合を修正</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
+		<h1>CotEditor 4.7.0</h1>
+		<p>リリース: <time>2023-12-09</time></p>
+	</header>
+
+
+	<section>
+		<h2>新機能</h2>
+
+		<ul>
+			<li><kbd>Command</kbd>+<kbd>K</kbd>キーで呼び出せる<a href="howto_quick_action.html">クイックアクションバー</a></li>
+			<li>iPhoneやiPadで撮った写真からテキストを<a href="howto_insert_camera_text.html">スキャンして挿入</a></li>
+			<li><code>cot</code>コマンドラインツールに開いた書類のシンタックスを指定できる<code>--syntax</code> (<code>-s</code>)オプションを追加</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>改良</h2>
+
+		<ul>
+			<li>「バックスラッシュを入力」と「半角円マークを入力」メニューコマンドをすべての入力フィールドで有効に</li>
+			<li>改行コードの不一致の解消のパフォーマンスを最適化</li>
+			<li>安定性を向上</li>
+			<li><span class="trivial">trivial</span>: デフォルトのフォントサイズと行高を変更</li>
+			<li><span class="trivial">trivial</span>: カスタムタブ幅入力にステッパーを追加</li>
+			<li><span class="trivial">trivial</span>: ショートカットキー表示にあまり一般的でないキーのシンボルを追加</li>
+			<li><span class="trivial">開発</span>: ビルド環境をXcode 15.1に更新</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>修正</h2>
+
+		<ul>
+			<li>「置換文字列のエスケープ文字を解釈」オプションが連続するエスケープ文字を正しく解釈できなかった不具合を修正</li>
+			<li>Forward Deleteキーがカスタムショートカットキーとして正しく登録できなかった不具合を修正</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
+		<h1>CotEditor 4.6.5</h1>
+		<p>リリース: <time>2023-11-10</time></p>
+	</header>
+
+
+	<section>
+		<h2>改良</h2>
+
+		<ul>
+			<li>非互換文字スキャンのパフォーマンスを改善</li>
+			<li><span class="trivial">trivial</span>: 外観設定ペインのフォントフィールドにツールチップを追加</li>
+			<li><span class="trivial">開発</span>: カスタム並び替えビューをSwiftUIに移行</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>修正</h2>
+
+		<ul>
+			<li>複数置換設定の編集が保存されなかった不具合を修正</li>
+			<li>改行のない大きな書類を開いたときにアプリケーションがハングすることがあった不具合を修正</li>
+			<li>ローカライズ漏れを修正</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
+		<h1>CotEditor 4.6.4</h1>
+		<p>リリース: <time>2023-11-02</time></p>
+	</header>
+
+
+	<section>
+		<h2>改良</h2>
+
+		<ul>
+			<li><span class="trivial">trivial</span>: ウインドウがアクティブでないときにペインスイッチボタンの表示を薄く</li>
+			<li><span class="trivial">trivial</span>: プリントパネルのポップアップボタンのスタイルを改良</li>
+			<li><span class="trivial">trivial</span>: 正規表現文法リファレンスのレイアウトを調整</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>修正</h2>
+
+		<ul>
+			<li>大きい書類を開いたときに行番号ビューが広がらなかった不具合を修正</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
 		<h1>CotEditor 4.6.3</h1>
 		<p>リリース: <time>2023-10-17</time></p>
 	</header>
@@ -2049,7 +2180,7 @@
 	<li>「書類中のURLをリンク」オプションが有効なときに大きな書類でURL探索のために出ていたレインボーカーソルおよびそれに伴う操作不能時間を抑止</li>
 	<li>「スネークケースにする」と「キャメルケースにする」コマンドでアクセント記号を伴う文字も正しく扱えるように改良</li>
 	<li>シンタックスハイライトの進捗メッセージを改良</li>
-	<li>描画のパフォーマンスと安定性の向上</li>
+	<li>描画のパフォーマンスと安定性を向上</li>
 	<li><span class="trivial">trivial</span>: 折り返し検索の視覚通知を調整</li>
 </ul>
 </section>
@@ -6004,7 +6135,7 @@
 <ul>
 	<li>行番号の桁数が大きいときの行番号描画を修正</li>
 	<li>外部プロセスによる編集の通知が機能していなかった不具合を修正</li>
-	<li>安定性の向上</li>
+	<li>安定性を向上</li>
 </ul>
 </section>
 </article>
@@ -6060,7 +6191,7 @@
 <ul>
 	<li>書類情報のファイルパーミッション8進数表現が間違っていた不具合を修正</li>
 	<li>テキスト編集時にアプリケーションがハングすることがあった不具合を修正</li>
-	<li>安定性の向上</li>
+	<li>安定性を向上</li>
 </ul>
 </section>
 </article>

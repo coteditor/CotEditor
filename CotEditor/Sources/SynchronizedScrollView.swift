@@ -29,7 +29,7 @@ final class SynchronizedScrollView: NSScrollView {
     
     // MARK: Scroll View Methods
     
-    /// receive pinch zoom event
+    /// Receives a pinch zoom event.
     override func magnify(with event: NSEvent) {
         
         let lastMagnification = self.magnification
@@ -46,7 +46,7 @@ final class SynchronizedScrollView: NSScrollView {
     }
     
     
-    /// receive double-tap event adjusting scale
+    /// Receives a double-tap event adjusting scale.
     override func smartMagnify(with event: NSEvent) {
         
         for scrollView in self.siblings {
@@ -58,14 +58,14 @@ final class SynchronizedScrollView: NSScrollView {
     
     // MARK: Private Methods
     
-    /// auto-founded scroll views to sync (including the receiver itself)
+    /// Auto-founded scroll views to sync (including the receiver itself).
     private var siblings: [SynchronizedScrollView] {
         
         self.superview?.subviews.compactMap { $0 as? SynchronizedScrollView } ?? [self]
     }
     
     
-    /// invoke super's `smartMagnify(with:)` without the issue about the cycle invoking
+    /// Invokes super's `smartMagnify(with:)` without the issue about the cycle invoking.
     private func syncedSmartMagnify(with event: NSEvent) {
         
         super.smartMagnify(with: event)
@@ -93,7 +93,7 @@ extension SynchronizedScrollView: NSUserInterfaceValidations {
     }
     
     
-    /// scale up
+    /// Scales up.
     @IBAction func biggerFont(_ sender: Any?) {
         
         for scrollView in self.siblings {
@@ -102,7 +102,7 @@ extension SynchronizedScrollView: NSUserInterfaceValidations {
     }
     
     
-    /// scale down
+    /// Scales down.
     @IBAction func smallerFont(_ sender: Any?) {
         
         for scrollView in self.siblings {
@@ -111,7 +111,7 @@ extension SynchronizedScrollView: NSUserInterfaceValidations {
     }
     
     
-    /// reset scale to default
+    /// Resets the scale to the default.
     @IBAction func resetFont(_ sender: Any?) {
         
         for scrollView in self.siblings {

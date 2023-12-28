@@ -99,28 +99,28 @@ final class TextFinderSettings: NSObject {
     }
     
     
-    /// Whether find string only in selectedRanges.
+    /// Whether finds string only in selectedRanges.
     var inSelection: Bool {
         
         self.defaults[.findInSelection]
     }
     
     
-    /// Whether the search wraps  around.
+    /// Whether the search wraps around.
     var isWrap: Bool {
         
         self.defaults[.findIsWrap]
     }
     
     
-    /// Add the current find string to the history.
+    /// Adds the current find string to the history.
     func noteFindHistory() {
         
         self.appendHistory(self.findString, forKey: .findHistory)
     }
     
     
-    /// Add the current find and replacement strings to the history.
+    /// Adds the current find and replacement strings to the history.
     func noteReplaceHistory() {
         
         self.appendHistory(self.findString, forKey: .findHistory)
@@ -131,7 +131,7 @@ final class TextFinderSettings: NSObject {
     
     // MARK: Private Methods
     
-    /// Put the current find string to the shared pasteboard.
+    /// Puts the current find string to the shared pasteboard.
     private func shareFindString() {
         
         let pasteboard = NSPasteboard(name: .find)
@@ -140,7 +140,7 @@ final class TextFinderSettings: NSObject {
     }
     
     
-    /// Add a new value to the history as the latest item with the user defaults key.
+    /// Adds a new value to the history as the latest item with the user defaults key.
     ///
     /// - Parameters:
     ///   - value: The value to add.

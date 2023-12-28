@@ -76,7 +76,7 @@ struct UnixScript: Script {
     
     // MARK: Script Methods
     
-    /// Execute the script.
+    /// Executes the script.
     ///
     /// - Throws: `ScriptError` by the script,`ScriptFileError`, or any errors on script loading.
     func run() async throws {
@@ -123,7 +123,7 @@ struct UnixScript: Script {
     
     // MARK: Private Methods
     
-    /// Read the document content.
+    /// Reads the document content.
     ///
     /// - Parameters:
     ///   - type: The type of input target.
@@ -143,7 +143,7 @@ struct UnixScript: Script {
     }
     
     
-    /// Apply script output to the desired target.
+    /// Applies script output to the desired target.
     ///
     /// - Parameters:
     ///   - output: The output string.
@@ -191,7 +191,7 @@ private protocol ScriptToken {
 
 private extension ScriptToken where Self: RawRepresentable, Self.RawValue == String {
     
-    /// read type from script
+    /// Reads type from script
     init?(scanning script: String) {
         
         let pattern = "%%%\\{" + Self.token + "=" + "(.+)" + "\\}%%%"

@@ -61,7 +61,7 @@ final class IncompatibleCharacterScanner {
     
     // MARK: Public Methods
     
-    /// Scan only when needed.
+    /// Scans only when needed.
     func invalidate() {
         
         guard self.shouldScan else { return }
@@ -77,13 +77,12 @@ final class IncompatibleCharacterScanner {
         }
         
         self.isScanning = true
-        self.task = Task {
-            defer { self.isScanning = false }
+        self.task = Task { [weak self] in
+            defer { self?.isScanning = false }
             try await Task.sleep(for: .seconds(0.4), tolerance: .seconds(0.1))  // debounce
             
             let string = await MainActor.run { document.textStorage.string.immutable }
-            let incompatibleCharacters = try string.scanIncompatibleCharacters(with: encoding)
-            self.incompatibleCharacters = incompatibleCharacters
+            self?.incompatibleCharacters = try string.charactersIncompatible(with: encoding)
         }
     }
 }

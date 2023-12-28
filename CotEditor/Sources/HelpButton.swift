@@ -30,17 +30,73 @@ struct HelpButton: NSViewRepresentable {
     
     typealias NSViewType = NSButton
     
-    let anchor: String
+    private var anchor: String?
+    private var action: (() -> Void)?
+    
+    
+    
+    /// Initializes a help button to jump the specific anchor in the system help viewer.
+    ///
+    /// - Parameter anchor: The help anchor.
+    init(anchor: String) {
+        
+        self.anchor = anchor
+    }
+    
+    
+    /// Initializes a help button to perform the action when clicked.
+    ///
+    /// - Parameter action: The action to perform.
+    init(action: @escaping () -> Void) {
+        
+        self.action = action
+    }
     
     
     func makeNSView(context: Context) -> NSButton {
         
-        let nsView = NSButton(title: "", target: nil, action: #selector(AppDelegate.openHelpAnchor))
+        let nsView = NSButton(title: "", target: nil, action: nil)
         nsView.bezelStyle = .helpButton
-        nsView.identifier = .init(self.anchor)
+        
+        if let anchor {
+            nsView.identifier = .init(anchor)
+            nsView.action = #selector(AppDelegate.openHelpAnchor)
+        } else if self.action != nil {
+            nsView.target = context.coordinator
+            nsView.action = #selector(Coordinator.performAction)
+        }
+        
         return nsView
     }
     
     
     func updateNSView(_ nsView: NSButton, context: Context) { }
+    
+    
+    
+    func makeCoordinator() -> Coordinator {
+        
+        Coordinator(action: self.action)
+    }
+    
+    
+    
+    final class Coordinator: NSObject {
+        
+        var action: (() -> Void)?
+        
+        
+        init(action: (() -> Void)?) {
+            
+            self.action = action
+            
+            super.init()
+        }
+        
+        
+        @objc func performAction(_ sender: NSButton) {
+            
+            self.action?()
+        }
+    }
 }

@@ -93,7 +93,7 @@ struct TextFind {
     // MARK: -
     // MARK: Lifecycle
     
-    /// Return a TextFind instance with the specified options.
+    /// Returns a TextFind instance with the specified options.
     ///
     /// - Parameters:
     ///   - string: The string to search.
@@ -115,12 +115,12 @@ struct TextFind {
         }
         
         switch mode {
-            case let .textual(options, isFullWord):
+            case .textual(let options, let isFullWord):
                 assert(!options.contains(.backwards))
                 self.regex = nil
                 self.fullWordChecker = isFullWord ? try! NSRegularExpression(pattern: "^\\b.+\\b$") : nil
                 
-            case let .regularExpression(options, _):
+            case .regularExpression(let options, _):
                 do {
                     self.regex = try NSRegularExpression(pattern: findString, options: options)
                 } catch {
@@ -175,7 +175,7 @@ struct TextFind {
     }
     
     
-    /// Return the nearest match in `matches` from the insertion point.
+    /// Returns the nearest match in `matches` from the insertion point.
     ///
     /// - Parameters:
     ///   - matches: The matched ranges to find in.
@@ -216,7 +216,7 @@ struct TextFind {
     }
     
     
-    /// Return ReplacementItem replacing matched string in selection.
+    /// Returns ReplacementItem replacing matched string in selection.
     ///
     /// - Parameters:
     ///   - replacementString: The string with which to replace.
@@ -227,7 +227,7 @@ struct TextFind {
         let selectedRange = self.selectedRanges.first!
         
         switch self.mode {
-            case let .textual(options, _):
+            case .textual(let options, _):
                 let matchedRange = (string as NSString).range(of: self.findString, options: options, range: selectedRange)
                 guard matchedRange.location != NSNotFound else { return nil }
                 guard self.checkFullWord(in: matchedRange) else { return nil }
@@ -246,7 +246,7 @@ struct TextFind {
     }
     
     
-    /// Find all matches in the scopes.
+    /// Finds all matches in the scopes.
     ///
     /// - Parameters:
     ///   - block: The block enumerates the matches.
@@ -256,11 +256,10 @@ struct TextFind {
         
         for range in self.scopeRanges {
             self.enumerateMatches(in: range) { (matchedRange, match, stop) in
-                let matches: [NSRange]
-                if let match {
-                    matches = (0..<match.numberOfRanges).map(match.range(at:))
+                let matches: [NSRange] = if let match {
+                    (0..<match.numberOfRanges).map(match.range(at:))
                 } else {
-                    matches = [matchedRange]
+                    [matchedRange]
                 }
                 
                 block(matches, &stop)
@@ -269,7 +268,7 @@ struct TextFind {
     }
     
     
-    /// Replace all matches in the scopes.
+    /// Replaces all matches in the scopes.
     ///
     /// - Parameters:
     ///   - replacementString: The string with which to replace.
@@ -291,7 +290,7 @@ struct TextFind {
             
             // replace string
             switch self.mode {
-                case let .textual(options: options, fullWord: fullWord) where !fullWord:
+                case .textual(options: let options, fullWord: let fullWord) where !fullWord:
                     // replace at once for performance
                     let count = scopeString.replaceOccurrences(of: self.findString, with: replacementString, options: options, range: scopeString.range)
                     block(scopeRange, count, &ioStop)
@@ -339,7 +338,7 @@ struct TextFind {
     
     // MARK: Private Methods
     
-    /// Unescape the given string for replacement string as needed.
+    /// Unescapes the given string for replacement string as needed.
     ///
     /// - Parameters:
     ///   - string: The string to use as the replacement template.
@@ -355,7 +354,7 @@ struct TextFind {
     }
     
     
-    /// Check if the given range is a range of whole word.
+    /// Checks if the given range is a range of whole word.
     ///
     /// - Parameters:
     ///   - range: The character range to test.
@@ -368,7 +367,7 @@ struct TextFind {
     }
     
     
-    /// Enumerate matches in string using current settings.
+    /// Enumerates matches in string using current settings.
     ///
     /// - Parameters:
     ///   - range: The range of the string to search.
@@ -384,7 +383,7 @@ struct TextFind {
     }
     
     
-    /// Enumerate matches in string using textual search.
+    /// Enumerates matches in string using textual search.
     ///
     /// - Parameters:
     ///   - range: The range of the string to search.
@@ -416,7 +415,7 @@ struct TextFind {
     }
     
     
-    /// Enumerate matches in string using regular expression.
+    /// Enumerates matches in string using regular expression.
     ///
     /// - Parameters:
     ///   - range: The range of the string to search.

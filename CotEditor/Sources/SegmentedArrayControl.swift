@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,13 +38,16 @@ final class SegmentedArrayControl: NSSegmentedControl {
             self.target = self
             self.action = #selector(addRemove)
             
-            self.arrayObservers.removeAll()
-            arrayController?.publisher(for: \.canAdd, options: .initial)
-                .sink { [weak self] in self?.setEnabled($0, forSegment: 0) }
-                .store(in: &self.arrayObservers)
-            arrayController?.publisher(for: \.canRemove, options: .initial)
-                .sink { [weak self] in self?.setEnabled($0, forSegment: 1) }
-                .store(in: &self.arrayObservers)
+            if let arrayController {
+                self.arrayObservers = [
+                    arrayController.publisher(for: \.canAdd, options: .initial)
+                        .sink { [weak self] in self?.setEnabled($0, forSegment: 0) },
+                    arrayController.publisher(for: \.canRemove, options: .initial)
+                        .sink { [weak self] in self?.setEnabled($0, forSegment: 1) },
+                ]
+            } else {
+                self.arrayObservers.removeAll()
+            }
         }
     }
     

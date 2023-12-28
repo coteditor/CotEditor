@@ -32,7 +32,7 @@ struct DelegateContext {
     var contextInfo: UnsafeMutableRawPointer?
     
     
-    /// Manually invoke the original delegate method stored as a DelegateContext.
+    /// Manually invokes the original delegate method stored as a DelegateContext.
     ///
     /// - SeeAlso: *Advice for Overriders of Methods that Follow the delegate:didSomethingSelector:contextInfo: Pattern* in
     ///   <https://developer.apple.com/library/archive/releasenotes/AppKit/RN-AppKitOlderNotes/>.

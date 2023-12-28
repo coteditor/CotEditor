@@ -25,7 +25,7 @@
 
 extension Collection {
     
-    /// Find the index of the element first greater than or equal to the compared value by binary search.
+    /// Finds the index of the element first greater than or equal to the compared value by binary search.
     ///
     /// - Parameters:
     ///   - range: The range to find in.

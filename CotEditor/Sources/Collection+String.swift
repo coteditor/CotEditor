@@ -36,35 +36,60 @@ struct StringComparisonOptions: OptionSet {
 }
 
 
-extension MutableCollection where Self: RandomAccessCollection<String> {
+extension MutableCollection where Self: RandomAccessCollection {
     
-    /// Sort the collection in place, using the string value that the given key path refers as the comparison between elements.
+    /// Sorts the collection in place, using the string value that the given key path refers as the comparison between elements.
     ///
     /// - Parameters:
     ///   - keyPath: The key path to the string to compare.
     ///   - options: The strategy to compare strings.
-    mutating func sort(_ keyPath: KeyPath<Element, String> = \Element.self, options: StringComparisonOptions) {
+    mutating func sort(_ keyPath: KeyPath<Element, String>, options: StringComparisonOptions) {
         
         let compare = compareFunction(options: options)
         
         self.sort { compare($0[keyPath: keyPath], $1[keyPath: keyPath]) == .orderedAscending }
     }
+    
+    
+    /// Sorts the collection, using the desired string comparison strategy.
+    ///
+    /// - Parameters:
+    ///   - options: The strategy to compare strings.
+    mutating func sort(options: StringComparisonOptions) where Element == String {
+        
+        let compare = compareFunction(options: options)
+        
+        self.sort { compare($0, $1) == .orderedAscending }
+    }
 }
 
 
-extension Sequence<String> {
+extension Sequence {
     
-    /// Return the elements of the sequence, sorted using the string value that the given key path refers with the desired string comparison strategy.
+    /// Returns the elements of the sequence, sorted using the string value that the given key path refers with the desired string comparison strategy.
     ///
     /// - Parameters:
     ///   - keyPath: The key path to the string to compare.
     ///   - options: The strategy to compare strings.
     /// - Returns: A sorted array of the sequence’s elements.
-    func sorted(_ keyPath: KeyPath<Element, String> = \Element.self, options: StringComparisonOptions) -> [Element] {
+    func sorted(_ keyPath: KeyPath<Element, String>, options: StringComparisonOptions) -> [Element] {
         
         let compare = compareFunction(options: options)
         
         return self.sorted { compare($0[keyPath: keyPath], $1[keyPath: keyPath]) == .orderedAscending }
+    }
+    
+    
+    /// Returns the elements of the sequence, sorted with the desired string comparison strategy.
+    ///
+    /// - Parameters:
+    ///   - options: The strategy to compare strings.
+    /// - Returns: A sorted array of the sequence’s elements.
+    func sorted(options: StringComparisonOptions) -> [Element] where Element == String {
+        
+        let compare = compareFunction(options: options)
+        
+        return self.sorted { compare($0, $1) == .orderedAscending }
     }
 }
 
@@ -91,7 +116,7 @@ private func compareFunction(options: StringComparisonOptions) -> (String, Strin
 
 extension Collection<String> {
     
-    /// Create a unique name from the receiver's elements by adding the suffix and also a number if needed.
+    /// Creates a unique name from the receiver's elements by adding the suffix and also a number if needed.
     ///
     /// - Parameters:
     ///   - proposedName: The name candidate.

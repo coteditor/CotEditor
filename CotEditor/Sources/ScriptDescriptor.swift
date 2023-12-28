@@ -81,7 +81,7 @@ private struct ScriptInfo: Decodable {
     }
     
     
-    /// Load from Info.plist in the script bundle.
+    /// Loads from Info.plist in the script bundle.
     ///
     /// - Parameter bundleURL: The URL to the script bundle.
     init(scriptBundle bundleURL: URL) throws {
@@ -117,7 +117,7 @@ struct ScriptDescriptor {
     // MARK: -
     // MARK: Lifecycle
     
-    /// Create a descriptor that represents a user script at the given URL.
+    /// Creates a descriptor that represents a user script at the given URL.
     ///
     /// `Contents/Info.plist` in the script at `url` will be read if they exist.
     ///
@@ -153,7 +153,7 @@ struct ScriptDescriptor {
     
     // MARK: Public Methods
     
-    /// Create and return a user script instance.
+    /// Creates and returns a user script instance.
     ///
     /// - Returns: An instance of `Script` created by the receiver.
     func makeScript() throws -> any Script {

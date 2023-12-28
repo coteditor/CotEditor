@@ -133,14 +133,14 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
     /// The area the receiver located in the superview.
     @MainActor private var preferredEdge: Edge? {
         
-        self.superview.flatMap { (superview) in
+        self.superview.flatMap { superview in
             Edge(horizontal: superview.frame.width/2 < self.frame.midX ? .right : .left,
                  vertical: superview.frame.height/2 < self.frame.midY ? .top : .bottom)
         }
     }
     
     
-    /// Keep position to be inside of the parent frame.
+    /// Keeps position to be inside of the parent frame.
     @MainActor private func adjustPosition() {
         
         guard let superFrame = self.superview?.frame else { return assertionFailure() }

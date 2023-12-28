@@ -31,7 +31,6 @@
 "Start" = "開始";
 "Restore Defaults" = "回復預設值";
 "Delete" = "刪除";
-"Restore" = "還原";
 
 
 // words with symbols
@@ -101,6 +100,23 @@
 // find results in input fields
 "Not found" = "未找到";
 "Not replaced" = "沒有進行取代";
+
+// pairs of checkbox label and its tooltip
+"Regular Expression" = "常規表示式";
+"Select to search with regular expression." = "選中以啟用常規表示式尋找。";
+
+"Ignore Case" = "忽略大小寫";
+"Select to ignore character case on search." = "選中以忽略大小寫。";
+
+"In Selection" = "所選範圍";
+"Select to search text only from selection." = "選中僅在選擇範圍內進行文字尋找。";
+
+// tooltip for regex help button
+"Show quick reference for regular expression syntax." = "顯示常規表示式快速參考。";
+
+// pair of accessibility label for a image button and its tooltip
+"Advanced options" = "進階選項";
+"Show advanced options" = "顯示進階選項";
 
 // pairs of button label and its tooltip
 "Close" = "關閉";
@@ -499,6 +515,7 @@
 "Delete Duplicate Lines" = "移除重複行";
 "Duplicate Line" = "複製行";
 "Delete Line" = "刪除行";
+"Join Lines" = "加入文字行";
 "Trim Trailing Whitespace" = "移除行尾空白";
 
 // Contextual menu items
@@ -812,6 +829,11 @@
 
 
 
+/* MARK: Quick Action Bar */
+"Quick Actions" = "快速動作";
+
+
+
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "拖拽的檔案絕對路徑";
@@ -845,6 +867,33 @@
 // error messages ("pattern" is a regular expression pattern)
 "Invalid pattern" = "不合法的範式";
 "Empty pattern" = "空白範式";
+
+"Sample:" = "示例：";
+// tooltip
+"Sample line to check which part in a line will be used for sort comparison." = "檢查行中哪個部分將被用於比較排序的示例行。";
+
+"Sort key:" = "排序鍵：";
+"Entire line" = "整行";
+"Column" = "列";
+"Regular expression" = "常規表示式";
+
+"Sort option:" = "排序選項：";
+"Ignore Case" = "忽略大小寫";
+"Respect language rules" = "遵守語言規則";
+"Treat numbers as numeric value" = "將陣列視為數值";
+"Keep the first line at the top" = "首行置頂";
+"In descending order" = "降序";
+
+"Delimiter:" = "分界符：";
+"Position:" = "位置：";
+
+"Pattern:" = "模式：";
+"Regular Expression" = "常規表示式";
+"Ignore case" = "忽略大小寫";
+"Use captured group:" = "使用捕獲組：";
+
+// button label
+"Sort" = "排序";
 
 
 
@@ -911,6 +960,13 @@
 "Version:" = "版本:";
 // badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
 "deprecated" = "已廢棄";
+
+
+
+/* MARK: LiveTextInsertionView */
+// error messages
+"No text detected" = "沒能偵測到文字";
+"Detection failed" = "偵測失敗";
 
 
 

@@ -52,7 +52,7 @@ struct FilePermissionsFormatStyle: Codable {
 
 extension FilePermissionsFormatStyle: FormatStyle {
     
-    /// Format permission number to human readable permission expression.
+    /// Formats permission number to human readable permission expression.
     func format(_ value: UInt16) -> String {
         
         let permissions = FilePermissions(mask: value)
@@ -75,7 +75,7 @@ extension FormatStyle where Self == FilePermissionsFormatStyle {
     static var filePermissions: FilePermissionsFormatStyle { self.filePermissions() }
     
     
-    /// Format POSIX permission mask in String.
+    /// Formats POSIX permission mask in String.
     ///
     /// - Parameters:
     ///   - style: The format style.

@@ -73,7 +73,7 @@ extension MultipleReplace {
     
     // MARK: Public Methods
     
-    /// Batch-find in the given string.
+    /// Batch-finds in the given string.
     ///
     /// - Parameters:
     ///   - string: The string to find in.
@@ -114,7 +114,7 @@ extension MultipleReplace {
     }
     
     
-    /// Batch-replace matches in the given string.
+    /// Batch-replaces matches in the given string.
     ///
     /// - Parameters:
     ///   - string: The string to replace.
@@ -166,7 +166,7 @@ extension MultipleReplace {
 
 private extension MultipleReplace.Replacement {
     
-    /// Create TextFind.Mode with Replacement.
+    /// Creates a TextFind.Mode with Replacement.
     ///
     /// - Parameter settings: The replacement settings to obtain the mode.
     /// - Returns: A TextFind.Mode.
@@ -191,7 +191,7 @@ private extension MultipleReplace.Replacement {
 
 extension MultipleReplace.Replacement {
     
-    /// Check if replacement rule is valid.
+    /// Checks if replacement rule is valid.
     ///
     /// - Throws: `TextFind.Error`
     func validate(regexOptions: NSRegularExpression.Options = []) throws {

@@ -62,7 +62,7 @@ struct PersistentOSAScript: EventScript {
     
     // MARK: Script Methods
     
-    /// Execute the script by sending it the given Apple event.
+    /// Executes the script by sending it the given Apple event.
     ///
     /// - Parameters:
     ///   - event: The Apple event.

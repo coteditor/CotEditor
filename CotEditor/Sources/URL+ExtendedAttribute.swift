@@ -27,7 +27,7 @@ import Foundation
 
 extension URL {
     
-    /// get extended attribute
+    /// Gets extended attribute
     func extendedAttribute(for name: String) throws -> Data {
         
         try self.withUnsafeFileSystemRepresentation { fileSystemPath -> Data in
@@ -49,7 +49,7 @@ extension URL {
     }
     
     
-    /// set extended attribute
+    /// Sets extended attribute
     func setExtendedAttribute(data: Data?, for name: String) throws {
         
         // remove if nil is passed
@@ -67,7 +67,7 @@ extension URL {
     }
     
     
-    /// remove extended attribute
+    /// Removes extended attribute
     private func removeExtendedAttribute(for name: String) throws {
         
         try self.withUnsafeFileSystemRepresentation { fileSystemPath in

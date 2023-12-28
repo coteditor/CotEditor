@@ -26,7 +26,7 @@
 import SwiftUI
 import AppKit.NSColor
 
-@MainActor private final class ThemeObject: ObservableObject {
+private final class ThemeObject: ObservableObject {
     
     private let name: String?
     
@@ -84,25 +84,25 @@ import AppKit.NSColor
     var theme: Theme {
         
         var theme = Theme(name: self.name)
-        theme.text.color = NSColor(self.text)
-        theme.invisibles.color = NSColor(self.invisibles)
-        theme.insertionPoint.color = NSColor(self.insertionPoint)
+        theme.text.color = NSColor(self.text).componentBased
+        theme.invisibles.color = NSColor(self.invisibles).componentBased
+        theme.insertionPoint.color = NSColor(self.insertionPoint).componentBased
         theme.insertionPoint.usesSystemSetting = self.usesInsertionPointSystemSetting
-        theme.background.color = NSColor(self.background)
-        theme.lineHighlight.color = NSColor(self.lineHighlight)
-        theme.selection.color = NSColor(self.selection)
+        theme.background.color = NSColor(self.background).componentBased
+        theme.lineHighlight.color = NSColor(self.lineHighlight).componentBased
+        theme.selection.color = NSColor(self.selection).componentBased
         theme.selection.usesSystemSetting = self.usesSelectionSystemSetting
         
-        theme.keywords.color = NSColor(self.keywords)
-        theme.commands.color = NSColor(self.commands)
-        theme.types.color = NSColor(self.types)
-        theme.attributes.color = NSColor(self.attributes)
-        theme.variables.color = NSColor(self.variables)
-        theme.values.color = NSColor(self.values)
-        theme.numbers.color = NSColor(self.numbers)
-        theme.strings.color = NSColor(self.strings)
-        theme.characters.color = NSColor(self.characters)
-        theme.comments.color = NSColor(self.comments)
+        theme.keywords.color = NSColor(self.keywords).componentBased
+        theme.commands.color = NSColor(self.commands).componentBased
+        theme.types.color = NSColor(self.types).componentBased
+        theme.attributes.color = NSColor(self.attributes).componentBased
+        theme.variables.color = NSColor(self.variables).componentBased
+        theme.values.color = NSColor(self.values).componentBased
+        theme.numbers.color = NSColor(self.numbers).componentBased
+        theme.strings.color = NSColor(self.strings).componentBased
+        theme.characters.color = NSColor(self.characters).componentBased
+        theme.comments.color = NSColor(self.comments).componentBased
         
         theme.metadata = self.metadata.isEmpty ? nil : self.metadata
         
@@ -257,17 +257,17 @@ private struct ThemeMetadataView: View {
         
         Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 4) {
             GridRow {
-                self.itemView("Author:", text: $metadata.author.bound)
+                self.itemView("Author:", text: $metadata.author ?? "")
             }
             GridRow {
-                self.itemView("URL:", text: $metadata.distributionURL.bound)
-                LinkButton(url: self.metadata.distributionURL.bound)
+                self.itemView("URL:", text: $metadata.distributionURL ?? "")
+                LinkButton(url: self.metadata.distributionURL ?? "")
             }
             GridRow {
-                self.itemView("License:", text: $metadata.license.bound)
+                self.itemView("License:", text: $metadata.license ?? "")
             }
             GridRow {
-                self.itemView("Description:", text: $metadata.description.bound, lineLimit: 2...5)
+                self.itemView("Description:", text: $metadata.description ?? "", lineLimit: 2...5)
             }
         }
         .controlSize(.small)

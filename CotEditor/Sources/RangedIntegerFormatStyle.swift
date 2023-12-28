@@ -39,7 +39,7 @@ struct RangedIntegerFormatStyle: ParseableFormatStyle {
     
     func format(_ value: Int) -> String {
         
-        String(value.clamped(to: self.range))
+        value.clamped(to: self.range).formatted()
     }
 }
 
@@ -62,7 +62,7 @@ struct RangedIntegerParseStrategy: ParseStrategy {
 
 extension FormatStyle where Self == RangedIntegerFormatStyle {
     
-    /// Clamp the value in between the given range.
+    /// Clamps the value in between the given range.
     ///
     /// - Parameters:
     ///   - range: The condition which the value should be in between.

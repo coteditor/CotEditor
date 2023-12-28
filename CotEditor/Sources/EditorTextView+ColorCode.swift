@@ -29,21 +29,21 @@ extension EditorTextView: ColorCodeReceiver {
     
     // MARK: Action Messages
     
-    /// Show the Color panel with the color code control.
+    /// Shows the Color panel with the color code control.
     @IBAction func editColorCode(_ sender: Any?) {
         
         ColorCodePanelController.shared.showWindow(colorCode: self.selectedString)
     }
     
     
-    /// Avoid changing text color by the color panel.
+    /// Avoids changing text color by the color panel.
     @IBAction override func changeColor(_ sender: Any?) { }
     
     
     
     // MARK: Protocol
     
-    /// Insert color code from color code panel.
+    /// Inserts color code from color code panel.
     ///
     /// - Parameter colorCode: The color code to insert.
     func insertColorCode(_ colorCode: String) {

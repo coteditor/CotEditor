@@ -25,7 +25,7 @@
 
 extension Theme {
     
-    /// Return the theme style correspondent to the syntax type.
+    /// Returns the theme style correspondent to the syntax type.
     ///
     /// - Parameter type: The syntax type.
     /// - Returns: A theme style.

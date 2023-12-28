@@ -61,7 +61,7 @@ final class Atomic<T> {
     }
     
     
-    /// Thread-safe update of value.
+    /// Thread-safe updates of value.
     func mutate(_ transform: (inout T) -> Void) {
         
         self.queue.sync {

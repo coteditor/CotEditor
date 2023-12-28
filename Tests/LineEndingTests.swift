@@ -68,7 +68,7 @@ final class LineEndingTests: XCTestCase {
     func testReplacement() {
         
         XCTAssertEqual("foo\r\nbar\n".replacingLineEndings(with: .cr), "foo\rbar\r")
-        XCTAssertEqual("foo\r\nbar\n".replacingLineEndings([.lf], with: .cr), "foo\r\nbar\r")
+        XCTAssertEqual("foo\u{c}bar\n".replacingLineEndings(with: .cr), "foo\u{c}bar\r")
     }
 }
 

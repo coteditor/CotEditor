@@ -100,13 +100,15 @@ struct SyntaxMappingConflictsView: View {
 
 private struct ConflictTable: View {
     
+    typealias Item = FileMappingConflict
+    
     let name: LocalizedStringKey
-    @State var conflicts: [FileMappingConflict] = []
+    @State var conflicts: [Item] = []
     
-    @State private var sortOrder = [KeyPathComparator(\FileMappingConflict.name)]
+    @State private var sortOrder = [KeyPathComparator(\Item.name)]
     
     
-    init(_ name: LocalizedStringKey, conflicts: [FileMappingConflict]) {
+    init(_ name: LocalizedStringKey, conflicts: [Item]) {
         
         self.name = name
         self._conflicts = .init(wrappedValue: conflicts)

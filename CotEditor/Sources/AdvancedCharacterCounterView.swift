@@ -50,13 +50,13 @@ struct AdvancedCharacterCounterView: View {
                     .replacingAttributes(AttributeContainer.inlinePresentationIntent(.emphasized), with: attributes)
                 
                 Text(attributedCount)
-                    .foregroundColor(.secondaryLabel)
+                    .foregroundStyle(.secondary)
                 
             } else {
                 Label("failed", systemImage: "exclamationmark.triangle")
                     .symbolVariant(.fill)
                     .symbolRenderingMode(.multicolor)
-                    .foregroundColor(.secondaryLabel)
+                    .foregroundStyle(.secondary)
             }
             
             Spacer()
@@ -69,7 +69,7 @@ struct AdvancedCharacterCounterView: View {
                     .accessibilityLabel("Show options")
             }
             .buttonStyle(.plain)
-            .foregroundColor(.secondaryLabel)
+            .foregroundStyle(.secondary)
             .help("Show options")
             .popover(isPresented: self.$isSettingPresented) {
                 VStack {

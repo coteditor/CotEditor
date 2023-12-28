@@ -140,7 +140,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     // MARK: NSPrintPanelAccessorizing Protocol
     
-    /// List of key paths that affect to preview.
+    /// Returns a set of key paths that might affect the built-in print preview.
     func keyPathsForValuesAffectingPreview() -> Set<String> {
         
         [
@@ -165,7 +165,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     }
     
     
-    /// Localized descriptions for print settings.
+    /// Returns an array of dictionaries containing the localized user setting summary strings.
     func localizedSummaryItems() -> [[NSPrintPanel.AccessorySummaryKey: String]] {
         
         var items: [[NSPrintPanel.AccessorySummaryKey: String]] = [
@@ -209,14 +209,14 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     // MARK: Private Methods
     
-    /// Cast `representedObject` to `NSPrintInfo`.
+    /// Casts `representedObject` to `NSPrintInfo`.
     private var printInfo: NSPrintInfo? {
         
         self.representedObject as? NSPrintInfo
     }
     
     
-    /// Update the pop-up menu for the color setting.
+    /// Updates the pop-up menu for the color setting.
     private func setupColorMenu() {
         
         guard let popUpButton = self.colorPopUpButton else { return assertionFailure() }

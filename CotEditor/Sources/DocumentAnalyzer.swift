@@ -66,7 +66,9 @@ final class DocumentAnalyzer {
     
     // MARK: Public Methods
     
-    /// update editor info (only if really needed)
+    /// Updates editor info (only if really needed).
+    ///
+    /// - Parameter onlySelection: `true` to invalidate only the selection.
     func invalidate(onlySelection: Bool = false) {
         
         guard !self.requiredInfoTypes.isEmpty else { return }
@@ -90,15 +92,20 @@ final class DocumentAnalyzer {
         let delay: Duration = .milliseconds(self.needsCountWholeText ? 10 : 200)
         
         self.task?.cancel()
-        self.task = Task {
+        self.task = Task { [weak self, weak textView] in
             try await Task.sleep(for: delay, tolerance: .milliseconds(10))  // debounce
+            
+            guard let textView else { return }
             
             let string = await textView.string.immutable
             let selectedRanges = await textView.selectedRanges
                 .map(\.rangeValue)
                 .compactMap { Range($0, in: string) }
             
-            guard !selectedRanges.isEmpty else { return assertionFailure() }
+            try Task.checkCancellation()
+            
+            // selectedRanges can be empty when the document is already closed
+            guard !selectedRanges.isEmpty, let self else { return }
             
             let counter = EditorCounter(string: string, selectedRanges: selectedRanges, requiredInfo: self.requiredInfoTypes, countsWholeText: self.needsCountWholeText)
             

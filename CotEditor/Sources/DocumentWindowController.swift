@@ -70,7 +70,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     convenience init(document: Document) {
         
-        let window = DocumentWindow(contentViewController: WindowContentViewController())
+        let window = DocumentWindow(contentViewController: WindowContentViewController(document: document))
         window.styleMask.update(with: .fullSizeContentView)
         window.setFrameAutosaveName(Self.windowFrameName)
         
@@ -110,7 +110,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         // observe appearance setting change
         self.appearanceModeObserver = UserDefaults.standard.publisher(for: .documentAppearance, initial: true)
-            .map { (value) in
+            .map { value in
                 switch value {
                     case .default: nil
                     case .light:   NSAppearance(named: .aqua)
@@ -137,12 +137,11 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         }
         
         didSet {
-            // deliver represented object to child view controllers
-            for child in self.contentViewController!.children {
-                child.representedObject = document
-            }
-            
             guard let document = document as? Document else { return }
+            
+            if document != oldValue as? Document {
+                (self.contentViewController as? WindowContentViewController)?.document = document
+            }
             
             // observe document's syntax change
             self.documentSyntaxObserver = document.didChangeSyntax
@@ -200,14 +199,14 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Private Methods
     
-    /// Restore the window opacity.
+    /// Restores the window opacity.
     private func restoreWindowOpacity() {
         
         self.window?.isOpaque = (self.window as? DocumentWindow)?.backgroundAlpha == 1
     }
     
     
-    /// Build syntax popup menu in toolbar.
+    /// Builds syntax popup menu in toolbar.
     private func buildSyntaxPopUpButton() {
         
         guard let menu = self.syntaxPopUpButton?.menu else { return }
@@ -237,7 +236,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
-    /// Select the given syntax in the syntax pop-up button for the toolbar.
+    /// Selects the given syntax in the syntax pop-up button for the toolbar.
     ///
     /// - Parameter syntaxName: The name of the syntax to select.
     private func selectSyntaxPopUpItem(with syntaxName: String) {
@@ -388,7 +387,7 @@ extension DocumentWindowController: NSToolbarDelegate {
         switch itemIdentifier {
             case .syntax:
                 let popUpButton = NSPopUpButton()
-                popUpButton.bezelStyle = .texturedRounded
+                popUpButton.bezelStyle = .toolbar
                 popUpButton.menu?.autoenablesItems = false
                 self.syntaxPopUpButton = popUpButton
                 self.buildSyntaxPopUpButton()
@@ -529,7 +528,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
                 item.menu.items = [
                     .sectionHeader(title: String(localized: "Tab Width"))
-                ] + [2, 4, 8].map { (width) in
+                ] + [2, 4, 8].map { width in
                     let item = NSMenuItem(title: width.formatted(), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                     item.tag = width
                     return item

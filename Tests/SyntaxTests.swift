@@ -126,7 +126,7 @@ final class SyntaxTests: XCTestCase {
         self.outlineParseCancellable = parser.$outlineItems
             .compactMap { $0 }  // ignore the initial invocation
             .receive(on: RunLoop.main)
-            .sink { (outlineItems) in
+            .sink { outlineItems in
                 outlineParseExpectation.fulfill()
                 
                 XCTAssertEqual(outlineItems.count, 3)

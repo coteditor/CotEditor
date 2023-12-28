@@ -38,7 +38,7 @@ final class LineSortTests: XCTestCase {
     
     func testCSVSort() {
         
-        let pattern = CSVSortPattern()
+        var pattern = CSVSortPattern()
         pattern.column = 3
         
         let result = """
@@ -55,7 +55,7 @@ final class LineSortTests: XCTestCase {
     
     func testRegexSort() throws {
         
-        let pattern = RegularExpressionSortPattern()
+        var pattern = RegularExpressionSortPattern()
         pattern.searchPattern = ", ([0-9]),"
         
         let result = """
@@ -83,10 +83,10 @@ final class LineSortTests: XCTestCase {
     
     func testFuzzySort() {
         
-        let pattern = CSVSortPattern()
+        var pattern = CSVSortPattern()
         pattern.column = 4
         
-        let options = SortOptions()
+        var options = SortOptions()
         options.isLocalized = true
         
         let result = """
@@ -110,7 +110,7 @@ final class LineSortTests: XCTestCase {
             1
             """
         
-        let options = SortOptions()
+        var options = SortOptions()
         
         options.numeric = false
         XCTAssertEqual(pattern.sort(numbers, options: options), "1\n12\n3")
@@ -137,7 +137,7 @@ final class LineSortTests: XCTestCase {
         XCTAssertEqual(CSVSortPattern().range(for: ""), Range(NSRange(0..<0), in: ""))
         
         let csvString = " dog  , dog cow "
-        let pattern = CSVSortPattern()
+        var pattern = CSVSortPattern()
         pattern.column = 2
         XCTAssertEqual(pattern.range(for: csvString), Range(NSRange(8..<15), in: csvString))
         
@@ -151,7 +151,7 @@ final class LineSortTests: XCTestCase {
     
     func testNumberParse() throws {
         
-        let options = SortOptions()
+        var options = SortOptions()
         
         options.locale = .init(identifier: "en")
         XCTAssertTrue(options.isLocalized)

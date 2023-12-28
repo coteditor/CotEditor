@@ -26,14 +26,25 @@
 import AppKit
 import Combine
 
-/// outlineView column identifiers
+/// Column identifiers for outline view
 private extension NSUserInterfaceItemIdentifier {
     
     static let title = NSUserInterfaceItemIdentifier("title")
 }
 
 
-final class OutlineViewController: NSViewController {
+final class OutlineViewController: NSViewController, DocumentOwner {
+    
+    // MARK: Public Properties
+    
+    var document: Document {
+        
+        didSet {
+            self.observeDocument()
+            self.observeSyntax()
+        }
+    }
+    
     
     // MARK: Private Properties
     
@@ -65,15 +76,17 @@ final class OutlineViewController: NSViewController {
     // MARK: -
     // MARK: Lifecycle
     
-    override var representedObject: Any? {
+    required init?(document: Document, coder: NSCoder) {
         
-        didSet {
-            assert(representedObject == nil || representedObject is Document,
-                   "representedObject of \(self.className) must be an instance of \(Document.className())")
-            
-            self.observeDocument()
-            self.observeSyntax()
-        }
+        self.document = document
+        
+        super.init(coder: coder)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -104,7 +117,7 @@ final class OutlineViewController: NSViewController {
         
         self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)
             .map { $0.object as! NSTextView }
-            .filter { [weak self] in $0.textStorage == self?.document?.textStorage }
+            .filter { [weak self] in $0.textStorage == self?.document.textStorage }
             .filter { !$0.hasMarkedText() }
             // avoid updating outline item selection before finishing outline parse
             // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
@@ -124,6 +137,18 @@ final class OutlineViewController: NSViewController {
     }
     
     
+    override var representedObject: Any? {
+        
+        didSet {
+            assert(representedObject == nil || representedObject is Document,
+                   "representedObject of \(self.className) must be an instance of \(Document.className())")
+            
+            self.observeDocument()
+            self.observeSyntax()
+        }
+    }
+    
+    
     
     // MARK: Actions
     
@@ -134,7 +159,7 @@ final class OutlineViewController: NSViewController {
     }
     
     
-    /// Search field text did update.
+    /// The search field text did update.
     @IBAction func searchFieldDidUpdate(_ sender: NSSearchField) {
         
         self.filterItems(with: sender.stringValue)
@@ -143,13 +168,6 @@ final class OutlineViewController: NSViewController {
     
     
     // MARK: Private Methods
-    
-    /// Current outline items.
-    private var document: Document? {
-        
-        self.representedObject as? Document
-    }
-    
     
     /// User input string for filtering.
     private var filterString: String {
@@ -168,7 +186,7 @@ final class OutlineViewController: NSViewController {
     }()
     
     
-    /// Select correspondence range of the outline item in textView.
+    /// Selects correspondence range of the outline item in textView.
     ///
     /// - Parameter row: The index of the outline item to select.
     private func selectOutlineItem(at row: Int) {
@@ -182,7 +200,7 @@ final class OutlineViewController: NSViewController {
         
         // cancel if text became shorter than range to select
         guard
-            let textView = self.document?.textView,
+            let textView = self.document.textView,
             item.range.upperBound <= textView.string.length
         else { return }
         
@@ -191,26 +209,26 @@ final class OutlineViewController: NSViewController {
     }
     
     
-    /// Update document observation for syntax.
+    /// Updates document observation for syntax.
     private func observeDocument() {
         
-        self.documentObserver = self.document?.didChangeSyntax
+        self.documentObserver = self.document.didChangeSyntax
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in self?.observeSyntax() }
     }
     
     
-    /// Update syntax observation for outline.
+    /// Updates syntax observation for outline.
     private func observeSyntax() {
         
-        self.syntaxObserver = self.document?.syntaxParser.$outlineItems
+        self.syntaxObserver = self.document.syntaxParser.$outlineItems
             .compactMap { $0 }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in self?.outlineItems = $0 }
     }
     
     
-    /// Update row selection to synchronize with editor's cursor location.
+    /// Updates row selection to synchronize with editor's cursor location.
     ///
     /// - Parameter textView: The text view to apply the selection. when nil, the current focused editor will be used (the document can have multiple editors).
     private func invalidateCurrentLocation(textView: NSTextView? = nil) {
@@ -219,7 +237,7 @@ final class OutlineViewController: NSViewController {
         guard let outlineView = self.outlineView else { return }
         
         guard
-            let textView = textView ?? self.document?.textView,
+            let textView = textView ?? self.document.textView,
             let row = self.outlineItems.indexOfItem(at: textView.selectedRange.location),
             outlineView.numberOfRows > row
         else { return outlineView.deselectAll(nil) }
@@ -231,7 +249,7 @@ final class OutlineViewController: NSViewController {
     }
     
     
-    /// Filter outline items in table.
+    /// Filters outline items in table.
     ///
     /// - Parameter searchString: The string to search.
     private func filterItems(with searchString: String) {
@@ -245,7 +263,7 @@ final class OutlineViewController: NSViewController {
 
 extension OutlineViewController: NSOutlineViewDelegate {
     
-    /// selection changed
+    /// Invoked when selection changed.
     func outlineViewSelectionDidChange(_ notification: Notification) {
         
         guard
@@ -257,7 +275,7 @@ extension OutlineViewController: NSOutlineViewDelegate {
     }
     
     
-    /// avoid selecting separator item
+    /// Avoids selecting separator item.
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         
         (item as? OutlineItem)?.title != .separator
@@ -268,7 +286,7 @@ extension OutlineViewController: NSOutlineViewDelegate {
 
 extension OutlineViewController: NSOutlineViewDataSource {
     
-    /// return number of child items
+    /// Returns number of child items.
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
         if !self.filterString.isEmpty { return self.filteredOutlineItems.count }
@@ -277,14 +295,14 @@ extension OutlineViewController: NSOutlineViewDataSource {
     }
     
     
-    /// return if item is expandable
+    /// Returns if item is expandable.
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         
         false
     }
     
     
-    /// return child items
+    /// Returns child items.
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
         if !self.filterString.isEmpty { return self.filteredOutlineItems[index] }
@@ -293,7 +311,7 @@ extension OutlineViewController: NSOutlineViewDataSource {
     }
     
     
-    /// return suitable item for cell to display
+    /// Returns suitable item for cell to display.
     func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn: NSTableColumn?, byItem item: Any?) -> Any? {
         
         guard
@@ -305,21 +323,22 @@ extension OutlineViewController: NSOutlineViewDataSource {
             case .title:
                 let fontSize = UserDefaults.standard[.outlineViewFontSize]
                 let font = outlineView.font?.withSize(fontSize) ?? .systemFont(ofSize: fontSize)
-                let attrTitle = outlineItem.attributedTitle(for: font, attributes: [.paragraphStyle: self.itemParagraphStyle])
+                var attrTitle = outlineItem.attributedTitle(for: font, paragraphStyle: self.itemParagraphStyle)
                 
-                guard let ranges = outlineItem.filteredRanges else { return attrTitle }
+                guard let ranges = outlineItem.filteredRanges else { return NSAttributedString(attrTitle) }
                 
-                let mutableAttrTitle = attrTitle.mutable
-                let attributes: [NSAttributedString.Key: Any] = [
-                    .font: NSFont.systemFont(ofSize: fontSize, weight: .semibold),
-                    .backgroundColor: NSColor.findHighlightColor,
-                    .foregroundColor: NSColor.black.withAlphaComponent(0.9),  // for legibility in Dark Mode
-                ]
+                let attributes = AttributeContainer()
+                    .font(.systemFont(ofSize: fontSize, weight: .semibold))
+                    .backgroundColor(.findHighlightColor)
+                    .foregroundColor(.black.withAlphaComponent(0.9))  // for legibility in Dark Mode
+                
                 for range in ranges {
-                    mutableAttrTitle.addAttributes(attributes, range: range)
+                    guard let attrRange = Range(range, in: attrTitle) else { continue }
+                    
+                    attrTitle[attrRange].setAttributes(attributes)
                 }
                 
-                return mutableAttrTitle
+                return NSAttributedString(attrTitle)
                 
             default:
                 preconditionFailure()
@@ -331,14 +350,14 @@ extension OutlineViewController: NSOutlineViewDataSource {
 
 extension OutlineViewController {
     
-    /// Increase outline view's font size.
+    /// Increases outline view's font size.
     @IBAction func biggerFont(_ sender: Any?) {
         
         UserDefaults.standard[.outlineViewFontSize] += 1
     }
     
     
-    /// Decrease outline view's font size.
+    /// Decreases outline view's font size.
     @IBAction func smallerFont(_ sender: Any?) {
         
         guard UserDefaults.standard[.outlineViewFontSize] > NSFont.smallSystemFontSize else { return }
@@ -347,7 +366,7 @@ extension OutlineViewController {
     }
     
     
-    /// Restore outline view's font size to default.
+    /// Restores outline view's font size to default.
     @IBAction func resetFont(_ sender: Any?) {
         
         UserDefaults.standard.restore(key: .outlineViewFontSize)

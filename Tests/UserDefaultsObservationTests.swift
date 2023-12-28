@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2021 1024jp
+//  © 2019-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ final class UserDefaultsObservationTests: XCTestCase {
         UserDefaults.standard[key] = false
         
         let observer = UserDefaults.standard.publisher(for: key)
-            .sink { (value) in
+            .sink { value in
                 XCTAssertTrue(value)
                 XCTAssertEqual(OperationQueue.current, .main)
                 
@@ -66,7 +66,7 @@ final class UserDefaultsObservationTests: XCTestCase {
         UserDefaults.standard[key] = false
         
         let observer = UserDefaults.standard.publisher(for: key, initial: true)
-            .sink { (value) in
+            .sink { value in
                 XCTAssertFalse(value)
                 expectation.fulfill()
             }
@@ -90,7 +90,7 @@ final class UserDefaultsObservationTests: XCTestCase {
         
         let expectation = self.expectation(description: "UserDefaults observation for optional key")
         let observer = UserDefaults.standard.publisher(for: key)
-            .sink { (value) in
+            .sink { value in
                 XCTAssertNil(value)
                 expectation.fulfill()
             }
@@ -118,7 +118,7 @@ final class UserDefaultsObservationTests: XCTestCase {
         UserDefaults.standard[key] = .dog
         
         let observer = UserDefaults.standard.publisher(for: key)
-            .sink { (value) in
+            .sink { value in
                 XCTAssertEqual(value, .cow)
                 expectation.fulfill()
             }

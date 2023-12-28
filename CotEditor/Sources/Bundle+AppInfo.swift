@@ -27,28 +27,28 @@ import Foundation
 
 extension Bundle {
     
-    /// application name
+    /// The application name.
     final var bundleName: String {
         
         self.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
     }
     
     
-    /// human-friendly version expression (semantic versioning)
+    /// The human-friendly version expression (semantic versioning).
     final var shortVersion: String {
         
         self.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     }
     
     
-    /// build number
+    /// The build number.
     final var bundleVersion: String {
         
         self.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
     }
     
     
-    /// help book name
+    /// The help book name.
     final var helpBookName: String? {
         
         self.object(forInfoDictionaryKey: "CFBundleHelpBookName") as? String

@@ -99,7 +99,7 @@ final class TextSelection: NSObject {
     private override init() { }
     
     
-    /// return object name which is determined in the sdef file
+    /// Returns object name which is determined in the sdef file.
     override var objectSpecifier: NSScriptObjectSpecifier? {
         
         NSNameSpecifier(containerSpecifier: self.document!.objectSpecifier, key: "text selection")
@@ -109,7 +109,7 @@ final class TextSelection: NSObject {
     
     // MARK: AppleScript Accessors
     
-    /// string of the selection (Unicode text)
+    /// String of the selection (Unicode text).
     @objc var contents: Any? {
         
         get {
@@ -118,7 +118,7 @@ final class TextSelection: NSObject {
             let string = textView.selectedString
             let textStorage = NSTextStorage(string: string)
             
-            textStorage.observeDirectEditing { (editedString) in
+            textStorage.observeDirectEditing { editedString in
                 textView.insert(string: editedString, at: .replaceSelection)
             }
             
@@ -139,7 +139,7 @@ final class TextSelection: NSObject {
     }
     
     
-    /// character range (location and length) of the selection
+    /// Character range (location and length) of the selection.
     @objc var range: [Int]? {
         
         get {
@@ -162,7 +162,7 @@ final class TextSelection: NSObject {
     }
     
     
-    /// line range (location and length) of the selection (list type)
+    /// Line range (location and length) of the selection (list type).
     @objc var lineRange: [Int]? {
         
         get {
@@ -196,70 +196,70 @@ final class TextSelection: NSObject {
     
     // MARK: AppleScript Handlers
     
-    /// shift the selection to right
+    /// Shift the selection to right.
     @objc func handleShiftRight(_ command: NSScriptCommand) {
         
         self.textView?.shiftRight(command)
     }
     
     
-    /// shift the selection to left
+    /// Shifts the selection to left.
     @objc func handleShiftLeft(_ command: NSScriptCommand) {
         
         self.textView?.shiftLeft(command)
     }
     
     
-    /// swap selected lines with the line just above
+    /// Swaps selected lines with the line just above.
     @objc func handleMoveLineUp(_ command: NSScriptCommand) {
         
         self.textView?.moveLineUp(command)
     }
     
     
-    /// swap selected lines with the line just below
+    /// Swaps selected lines with the line just below.
     @objc func handleMoveLineDown(_ command: NSScriptCommand) {
         
         self.textView?.moveLineDown(command)
     }
     
     
-    /// sort selected lines ascending
+    /// Sorts selected lines ascending.
     @objc func handleSortLinesAscending(_ command: NSScriptCommand) {
         
         self.textView?.sortLinesAscending(command)
     }
     
     
-    /// reverse selected lines
+    /// Reverses selected lines.
     @objc func handleReverseLines(_ command: NSScriptCommand) {
         
         self.textView?.reverseLines(command)
     }
     
     
-    /// delete duplicate lines in selection
+    /// Deletes duplicate lines in the selection.
     @objc func handleDeleteDuplicateLine(_ command: NSScriptCommand) {
         
         self.textView?.deleteDuplicateLine(command)
     }
     
     
-    /// uncomment the selection
+    /// Uncomments the selection.
     @objc func handleCommentOut(_ command: NSScriptCommand) {
         
         self.textView?.commentOut(types: .both, fromLineHead: false)
     }
     
     
-    /// swap selected lines with the line just below
+    /// Swaps the selected lines with the line just below.
     @objc func handleUncomment(_ command: NSScriptCommand) {
         
         self.textView?.uncomment()
     }
     
     
-    /// convert letters in the selection to lowercase, uppercase or capitalized
+    /// Converts letters in the selection to lowercase, uppercase, or capitalized.
     @objc func handleChangeCase(_ command: NSScriptCommand) {
         
         guard
@@ -279,7 +279,7 @@ final class TextSelection: NSObject {
     }
     
     
-    /// convert half-width roman in the selection to full-width roman or vice versa
+    /// Converts half-width roman in the selection to full-width roman or vice versa.
     @objc func handleChangeWidthRoman(_ command: NSScriptCommand) {
         
         guard
@@ -297,7 +297,7 @@ final class TextSelection: NSObject {
     }
     
     
-    /// convert Japanese Hiragana in the selection to Katakana or vice versa
+    /// Converts Japanese Hiragana in the selection to Katakana or vice versa.
     @objc func handleChangeKana(_ command: NSScriptCommand) {
         
         guard
@@ -315,28 +315,28 @@ final class TextSelection: NSObject {
     }
     
     
-    /// convert straight quotes to typographical pairs
+    /// Converts straight quotes to typographical pairs.
     @objc func handleSmartenQuotes(_ command: NSScriptCommand) {
         
         self.textView?.perform(Selector(("replaceQuotesInSelection:")))
     }
     
     
-    /// convert typographical (curly) quotes to straight
+    /// Converts typographical (curly) quotes to straight.
     @objc func handleStraightenQuotes(_ command: NSScriptCommand) {
         
         self.textView?.straightenQuotesInSelection(command)
     }
     
     
-    /// convert double hyphens to em dashes (—)
+    /// Converts double hyphens to em dashes (—).
     @objc func handleSmartenDashes(_ command: NSScriptCommand) {
         
         self.textView?.perform(Selector(("replaceDashesInSelection:")))
     }
     
     
-    /// Unicode normalization
+    /// Performs Unicode normalization.
     @objc func handleNormalizeUnicode(_ command: NSScriptCommand) {
         
         guard

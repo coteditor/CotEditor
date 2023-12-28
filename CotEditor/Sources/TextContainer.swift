@@ -49,7 +49,7 @@ final class TextContainer: NSTextContainer {
         
         didSet {
             self.typingAttributesObserver = textView?.publisher(for: \.typingAttributes, options: .initial)
-                .sink { [weak self] (typingAttributes) in
+                .sink { [weak self] typingAttributes in
                     // -> The font can differ from the specified text font while typing marked text.
                     guard self?.textView?.hasMarkedText() != true else { return }
                     
@@ -123,7 +123,7 @@ final class TextContainer: NSTextContainer {
     
     // MARK: Private Methods
     
-    /// Let layoutManager invalidate the entire layout.
+    /// Lets layoutManager invalidate the entire layout.
     private func invalidateLayout() {
         
         guard let layoutManager = self.layoutManager else { return }

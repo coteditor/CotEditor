@@ -46,7 +46,7 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     
     // MARK: Collection Methods
     
-    /// return the element at the specified position.
+    /// Returns the element at the specified position.
     subscript(_ index: Index) -> Element {
         
         self.elements[index]
@@ -86,7 +86,7 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     }
     
     
-    /// return a new set with the elements that are common to both this set and the given sequence.
+    /// Returns a new set with the elements that are common to both this set and the given sequence.
     func intersection(_ other: some Sequence<Element>) -> Self {
         
         var set = OrderedSet()
@@ -99,7 +99,7 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     
     // MARK: Mutating Methods
     
-    /// insert the given element in the set if it is not already present.
+    /// Inserts the given element in the set if it is not already present.
     mutating func append(_ element: Element) {
         
         guard !self.elements.contains(element) else { return }
@@ -108,7 +108,7 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     }
     
     
-    /// insert the given elements in the set only which it is not already present.
+    /// Inserts the given elements in the set only which it is not already present.
     mutating func append(contentsOf elements: some Sequence<Element>) {
         
         for element in elements {
@@ -117,7 +117,7 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     }
     
     
-    /// insert the given element at the desired position.
+    /// Inserts the given element at the desired position.
     mutating func insert(_ element: Element, at index: Index) {
         
         guard !self.elements.contains(element) else { return }
@@ -126,14 +126,14 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     }
     
     
-    /// remove the elements of the set that aren’t also in the given sequence.
+    /// Removes the elements of the set that aren’t also in the given sequence.
     mutating func formIntersection(_ other: some Sequence<Element>) {
         
         self.elements.removeAll { !other.contains($0) }
     }
     
     
-    /// remove the the element at the position from the set.
+    /// Removes the the element at the position from the set.
     @discardableResult
     mutating func remove(at index: Index) -> Element {
         
@@ -141,7 +141,7 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     }
     
     
-    /// remove the specified element from the set.
+    /// Removes the specified element from the set.
     @discardableResult
     mutating func remove(_ element: Element) -> Element? {
         

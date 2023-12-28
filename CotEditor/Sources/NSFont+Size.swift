@@ -28,7 +28,7 @@ import CoreText.CTFont
 
 extension NSFont {
     
-    /// Calculate the width of given character in the receiver.
+    /// Calculates the width of given character in the receiver.
     ///
     /// - Precondition: The given character is assumed to consist of a single UniChar.
     ///
@@ -57,7 +57,7 @@ extension NSFont {
 
 extension CTFont {
     
-    /// Create CGGlyph from a character.
+    /// Creates CGGlyph from a character.
     ///
     /// - Parameter character: The character to extract glyph.
     /// - Returns: A CGGlyph for passed-in character based on the receiver font.
@@ -73,7 +73,7 @@ extension CTFont {
     }
     
     
-    /// Get advancement of a glyph.
+    /// Gets the advancement of a glyph.
     ///
     /// - Parameters:
     ///   - glyph: The glyph to calculate advancement.

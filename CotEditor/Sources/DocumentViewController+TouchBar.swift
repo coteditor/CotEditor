@@ -98,7 +98,7 @@ extension DocumentViewController: NSTouchBarDelegate {
     }
     
     
-    /// Toggle the visibility of invisible characters in the text views.
+    /// Toggles the visibility of invisible characters in the text views.
     @IBAction private func toggleInvisibleCharsViaTouchBar(_ sender: NSButton) {
         
         self.toggleInvisibleChars(sender)
@@ -106,7 +106,7 @@ extension DocumentViewController: NSTouchBarDelegate {
     }
     
     
-    /// Toggle the visibility of invisible characters in the text views.
+    /// Toggles the visibility of invisible characters in the text views.
     @IBAction private func toggleIndentGuidesViaTouchBar(_ sender: NSButton) {
         
         self.toggleIndentGuides(sender)
@@ -114,7 +114,7 @@ extension DocumentViewController: NSTouchBarDelegate {
     }
     
     
-    /// Toggle if lines wrap at the window edge.
+    /// Toggles if lines wrap at the window edge.
     @IBAction private func toggleLineWrapViaTouchBar(_ sender: NSButton) {
         
         self.toggleLineWrap(sender)
@@ -125,7 +125,7 @@ extension DocumentViewController: NSTouchBarDelegate {
     
     // MARK: Private Methods
     
-    /// Update UI manually.
+    /// Updates UI manually.
     ///
     /// Workaround for the issue where UI doesn't update on a touch bar event. (2017-01 macOS 10.12.2 SDK)
     private func validateUserInterfaceForTouchBarEvent() {
@@ -166,7 +166,7 @@ extension DocumentViewController: NSSharingServicePickerTouchBarItemDelegate {
     
     public func items(for pickerTouchBarItem: NSSharingServicePickerTouchBarItem) -> [Any] {
         
-        [self.document].compactMap { $0 }
+        [self.document]
     }
 }
 

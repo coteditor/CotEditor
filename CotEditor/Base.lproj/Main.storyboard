@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -225,6 +225,9 @@ Gw
                                             <connections>
                                                 <action selector="showUnicodeInputPanel:" target="Ady-hI-5gd" id="c4v-c9-nMK"/>
                                             </connections>
+                                        </menuItem>
+                                        <menuItem title="Insert from iPhone or iPad" identifier="NSMenuItemImportFromDeviceIdentifier" id="srI-0X-faq">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="660"/>
                                         <menuItem title="Spelling and Grammar" id="2QI-XD-7pJ">
@@ -606,6 +609,12 @@ Gw
                                                 <action selector="toggleStatusBar:" target="Ady-hI-5gd" id="pjH-8E-CJp"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="WNT-nz-Qhz"/>
+                                        <menuItem title="Show Quick Actions…" keyEquivalent="k" id="7Su-OV-TgR">
+                                            <connections>
+                                                <action selector="showQuickActions:" target="Ady-hI-5gd" id="6AA-OS-m64"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="366"/>
                                         <menuItem title="Split Editor" id="793">
                                             <string key="keyEquivalent" base64-UTF8="YES">
@@ -851,6 +860,11 @@ CA
                                                         <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                                         <connections>
                                                             <action selector="deleteLine:" target="Ady-hI-5gd" id="vej-dU-Adx"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Join Lines" keyEquivalent="J" id="te2-4F-YwD">
+                                                        <connections>
+                                                            <action selector="joinLines:" target="Ady-hI-5gd" id="EVv-9z-tX9"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>

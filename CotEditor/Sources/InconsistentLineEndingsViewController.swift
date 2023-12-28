@@ -26,7 +26,7 @@
 import AppKit
 import Combine
 
-/// Table column identifiers
+/// Column identifiers for table view.
 private extension NSUserInterfaceItemIdentifier {
     
     static let line = Self("Line")
@@ -34,11 +34,15 @@ private extension NSUserInterfaceItemIdentifier {
 }
 
 
-final class InconsistentLineEndingsViewController: NSViewController {
+final class InconsistentLineEndingsViewController: NSViewController, DocumentOwner {
+    
+    // MARK: Public Properties
+    
+    var document: Document
+    
     
     // MARK: Private Properties
     
-    private var document: Document?  { self.representedObject as? Document }
     private var lineEndings: [ValueRange<LineEnding>] = []
     private var documentLineEnding: LineEnding = .lf
     
@@ -51,29 +55,42 @@ final class InconsistentLineEndingsViewController: NSViewController {
     
     // MARK: Lifecycle
     
+    required init?(document: Document, coder: NSCoder) {
+        
+        self.document = document
+        
+        super.init(coder: coder)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func viewWillAppear() {
         
         super.viewWillAppear()
         
-        self.document?.lineEndingScanner.$inconsistentLineEndings
-            .removeDuplicates()
-            .receive(on: RunLoop.main)
-            .sink { [unowned self] in
-                self.lineEndings = $0.sorted(using: self.tableView?.sortDescriptors ?? [])
-                self.tableView?.enclosingScrollView?.isHidden = $0.isEmpty
-                self.tableView?.reloadData()
-                self.updateMessage()
-            }
-            .store(in: &self.observers)
-        
-        self.document?.$lineEnding
-            .removeDuplicates()
-            .receive(on: RunLoop.main)
-            .sink { [unowned self] in
-                self.documentLineEnding = $0
-                self.updateMessage()
-            }
-            .store(in: &self.observers)
+        self.observers = [
+            self.document.lineEndingScanner.$inconsistentLineEndings
+                .removeDuplicates()
+                .receive(on: RunLoop.main)
+                .sink { [unowned self] in
+                    self.lineEndings = $0.sorted(using: self.tableView?.sortDescriptors ?? [])
+                    self.tableView?.enclosingScrollView?.isHidden = $0.isEmpty
+                    self.tableView?.reloadData()
+                    self.updateMessage()
+                },
+            self.document.$lineEnding
+                .removeDuplicates()
+                .receive(on: RunLoop.main)
+                .sink { [unowned self] in
+                    self.documentLineEnding = $0
+                    self.updateMessage()
+                },
+        ]
     }
     
     
@@ -98,7 +115,7 @@ final class InconsistentLineEndingsViewController: NSViewController {
     
     // MARK: Private Methods
     
-    /// Update the result message above the table.
+    /// Updates the result message above the table.
     @MainActor private func updateMessage() {
         
         guard let messageField = self.messageField else { return assertionFailure() }
@@ -114,14 +131,14 @@ final class InconsistentLineEndingsViewController: NSViewController {
     }
     
     
-    /// Select correspondence range of the item in the editor.
+    /// Selects correspondence range of the item in the editor.
     ///
     /// - Parameter row: The index of items to select.
     @MainActor private func selectItem(at row: Int) {
         
         guard
             let item = self.lineEndings[safe: row],
-            let textView = self.document?.textView
+            let textView = self.document.textView
         else { return }
         
         textView.selectedRange = item.range
@@ -161,7 +178,7 @@ extension InconsistentLineEndingsViewController: NSTableViewDataSource {
         switch identifier {
             case .line:
                 // calculate the line number first at this point to postpone the high cost processing as much as possible
-                return self.document?.lineEndingScanner.lineNumber(at: lineEnding.location).formatted()
+                return self.document.lineEndingScanner.lineNumber(at: lineEnding.location).formatted()
             case .lineEnding:
                 return lineEnding.value.name
             default:

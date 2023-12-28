@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,17 +34,17 @@ struct LinkButton: View {
     
     var body: some View {
         
-        Button {
-            guard let url = URL(string: self.url) else { return NSSound.beep() }
-            self.openURL(url)
-        } label: {
-            Image(systemName: "arrow.forward")
-                .symbolVariant(.circle)
-                .contentShape(.focusEffect, Circle())
-                .accessibilityLabel("Jump to URL")
+        if let url = URL(string: self.url) {
+            Button {
+                self.openURL(url)
+            } label: {
+                Image(systemName: "arrow.forward")
+                    .symbolVariant(.circle)
+                    .contentShape(.focusEffect, Circle())
+                    .accessibilityLabel("Jump to URL")
+            }
+            .buttonStyle(.borderless)
+            .help("Jump to URL")
         }
-        .buttonStyle(.borderless)
-        .disabled(self.url.isEmpty)
-        .help("Jump to URL")
     }
 }

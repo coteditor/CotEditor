@@ -31,7 +31,6 @@
 "Start" = "Başlangıç";
 "Restore Defaults" = "Saptanmışlara Dön";
 "Delete" = "Sil";
-"Restore" = "Geri Yükle";
 
 
 // words with symbols
@@ -101,6 +100,23 @@
 // find results in input fields
 "Not found" = "Bulunamadı";
 "Not replaced" = "Değiştirilmedi";
+
+// pairs of checkbox label and its tooltip
+"Regular Expression" = "Düzenli İfade";
+"Select to search with regular expression." = "Düzenli ifade kullanarak aramak için seçin.";
+
+"Ignore Case" = "Büyük-Küçük Harf Fark Etmez";
+"Select to ignore character case on search." = "Seçimde BÜYÜK/küçük harf yok saymak için seçin.";
+
+"In Selection" = "Seçimde Bul";
+"Select to search text only from selection." = "Yalnızca seçimden arama yapmak için seçin.";
+
+// tooltip for regex help button
+"Show quick reference for regular expression syntax." = "Düzenli ifade sözdizimi için hızlı başvuruyu göster.";
+
+// pair of accessibility label for a image button and its tooltip
+"Advanced options" = "Gelişmiş seçenekler";
+"Show advanced options" = "Gelişmiş seçenekleri göster";
 
 // pairs of button label and its tooltip
 "Close" = "Kapat";
@@ -499,6 +515,7 @@
 "Delete Duplicate Lines" = "Çoğaltılan Satırları Sil";
 "Duplicate Line" = "Satır Yinele";
 "Delete Line" = "Satın Sil";
+"Join Lines" = "Satırları Birleştir";
 "Trim Trailing Whitespace" = "İzleyen Boşluğu Kırp";
 
 // Contextual menu items
@@ -812,6 +829,11 @@
 
 
 
+/* MARK: Quick Action Bar */
+"Quick Actions" = "Hızlı Eylemler";
+
+
+
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Bırakılan dosya mutlak yolu.";
@@ -845,6 +867,33 @@
 // error messages ("pattern" is a regular expression pattern)
 "Invalid pattern" = "Geçersiz dizgi";
 "Empty pattern" = "Boş dizgi";
+
+"Sample:" = "Örnek:";
+// tooltip
+"Sample line to check which part in a line will be used for sort comparison." = "Sıralama karşılaştırması için bir satırdaki hangi kısmın kullanılacağını denetlemek için örnek satır.";
+
+"Sort key:" = "Sıralama anahtarı:";
+"Entire line" = "Tüm satır";
+"Column" = "Sütun";
+"Regular expression" = "Düzenli ifade";
+
+"Sort option:" = "Sıralama seçeneği:";
+"Ignore Case" = "Büyük-Küçük Harf Fark Etmez";
+"Respect language rules" = "Dil kurallarına uy";
+"Treat numbers as numeric value" = "Sayıları rakamsal değer olarak kullan";
+"Keep the first line at the top" = "Üstteki ilk satırı tut";
+"In descending order" = "Azalan sıralamada";
+
+"Delimiter:" = "Sınırlandırıcı:";
+"Position:" = "Konum:";
+
+"Pattern:" = "Dizgi:";
+"Regular Expression" = "Düzenli İfade";
+"Ignore case" = "Büyük-Küçük Harf Fark Etmez";
+"Use captured group:" = "Yakalanan grup kullan:";
+
+// button label
+"Sort" = "Sırala";
 
 
 
@@ -911,6 +960,13 @@
 "Version:" = "Sürüm:";
 // badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
 "deprecated" = "kullanımdan kaldırıldı";
+
+
+
+/* MARK: LiveTextInsertionView */
+// error messages
+"No text detected" = "Algılanan metin yok";
+"Detection failed" = "Algılama başarısız";
 
 
 

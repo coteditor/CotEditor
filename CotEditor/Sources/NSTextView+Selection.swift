@@ -27,7 +27,7 @@ import AppKit
 
 extension NSTextView {
     
-    /// The first selected string
+    /// The first selected string.
     final var selectedString: String {
         
         (self.string as NSString).substring(with: self.selectedRange)
@@ -43,7 +43,7 @@ extension NSTextView {
     }
     
     
-    /// character just before the given range
+    /// Returns the character just before the given range.
     final func character(before range: NSRange) -> Unicode.Scalar? {
         
         guard range.lowerBound > 0 else { return nil }
@@ -54,7 +54,7 @@ extension NSTextView {
     }
     
     
-    /// character just after the given range
+    /// Returns the character just after the given range.
     final func character(after range: NSRange) -> Unicode.Scalar? {
         
         let index = String.UnicodeScalarIndex(utf16Offset: range.upperBound, in: self.string)
@@ -63,7 +63,7 @@ extension NSTextView {
     }
     
     
-    /// location of the beginning of the current visual line considering indent
+    /// Returns the location of the beginning of the current visual line considering indent.
     final func locationOfBeginningOfLine(for location: Int) -> Int {
         
         let string = self.string as NSString
@@ -85,7 +85,7 @@ extension NSTextView {
     }
     
     
-    /// Select the given range with visual feedback.
+    /// Selects the given range with visual feedback.
     ///
     /// - Parameter range: The character range to select.
     final func select(range: NSRange) {

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,25 +35,13 @@ final class FindPanelTextClipView: NSClipView {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    required init?(coder: NSCoder) {
-        
-        super.init(coder: coder)
-        
-        // make sure frame to be initialized (Otherwise, input area can be arranged in a wrong place.)
-        let frame = self.frame
-        self.frame = frame
-    }
-    
-    
-    
     // MARK: View Methods
     
-    /// add paddings
     override var frame: NSRect {
         
         didSet {
+            // add paddings
+            // -> Just setting .contentInsets doesn't work with the pinch-zoom (macOS 14, 2023-11).
             let leftPadding = self.userInterfaceLayoutDirection == .leftToRight ? self.leadingPadding : self.trailingPadding
             
             guard frame.minX < leftPadding else { return }  // avoid infinity loop

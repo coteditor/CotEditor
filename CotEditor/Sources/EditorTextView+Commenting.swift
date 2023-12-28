@@ -38,7 +38,7 @@ extension EditorTextView: Commenting {
     
     // MARK: Action Messages
     
-    /// Toggle the comment state of the selections.
+    /// Toggles the comment state of the selections.
     @IBAction func toggleComment(_ sender: Any?) {
         
         if self.canUncomment(partly: false) {
@@ -49,28 +49,28 @@ extension EditorTextView: Commenting {
     }
     
     
-    /// Comment out the selections by appending comment delimiters.
+    /// Comments out the selections by appending comment delimiters.
     @IBAction func commentOut(_ sender: Any?) {
         
         self.commentOut(types: .both, fromLineHead: false)
     }
     
     
-    /// Comment out the selections by appending block comment delimiters.
+    /// Comments out the selections by appending block comment delimiters.
     @IBAction func blockCommentOut(_ sender: Any?) {
         
         self.commentOut(types: .block, fromLineHead: false)
     }
     
     
-    /// Comment out the selections by appending inline comment delimiters.
+    /// Comments out the selections by appending inline comment delimiters.
     @IBAction func inlineCommentOut(_ sender: Any?) {
         
         self.commentOut(types: .inline, fromLineHead: false)
     }
     
     
-    /// Uncomment the selections by removing comment delimiters.
+    /// Uncomments the selections by removing comment delimiters.
     @IBAction func uncomment(_ sender: Any?) {
         
         self.uncomment()
@@ -105,7 +105,7 @@ extension Commenting {
     
     // MARK: Public Methods
     
-    /// Comment out the selections by appending comment delimiters.
+    /// Comments out the selections by appending comment delimiters.
     ///
     /// - Parameters:
     ///   - types: The type of commenting-out. When, `.both`, inline-style takes priority over block-style.
@@ -143,7 +143,7 @@ extension Commenting {
     }
     
     
-    /// Uncomment the selections by removing comment delimiters.
+    /// Uncomments the selections by removing comment delimiters.
     func uncomment() {
         
         guard
@@ -179,7 +179,7 @@ extension Commenting {
     }
     
     
-    /// Whether the selected ranges can be uncommented.
+    /// Returns whether the selected ranges can be uncommented.
     ///
     /// - Parameter partly: When `true`, the method returns `true` when a part of selections is commented-out,
     ///                     otherwise only when the entire selections can be commented out.
@@ -216,7 +216,7 @@ extension Commenting {
 
 extension String {
     
-    /// Return the editing information to comment out the given `ranges` by appending inline-style comment delimiters
+    /// Returns the editing information to comment out the given `ranges` by appending inline-style comment delimiters
     /// and spacers after delimiters.
     ///
     /// - Parameters:
@@ -235,7 +235,7 @@ extension String {
     }
     
     
-    /// Return the editing information to comment out the given `ranges` by appending block-style comment delimiters
+    /// Returns the editing information to comment out the given `ranges` by appending block-style comment delimiters
     /// and spacers between string and delimiters.
     ///
     /// - Parameters:
@@ -252,7 +252,7 @@ extension String {
     }
     
     
-    /// Find inline-style delimiters in `ranges` as well as spacers between the content and a delimiter if any.
+    /// Finds inline-style delimiters in `ranges` as well as spacers between the content and a delimiter if any.
     ///
     /// - Parameters:
     ///   - delimiter: The inline delimiter to find.
@@ -279,7 +279,7 @@ extension String {
     }
     
     
-    /// Find block-style delimiters in `ranges` as well as spacers between the content and a delimiter if any.
+    /// Finds block-style delimiters in `ranges` as well as spacers between the content and a delimiter if any.
     ///
     /// - Note: This method matches a block only when one of the given `ranges` fits exactly.
     ///

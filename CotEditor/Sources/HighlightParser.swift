@@ -75,7 +75,7 @@ struct HighlightParser {
     }
     
     
-    /// Extract all highlight ranges in the parse range.
+    /// Extracts all highlight ranges in the parse range.
     ///
     /// - Parameters:
     ///   - string: The string to parse.
@@ -105,7 +105,7 @@ struct HighlightParser {
     
     // MARK: Private Methods
     
-    /// Extract ranges of nestable items such as comments and quotes in the parse range.
+    /// Extracts ranges of nestable items such as comments and quotes in the parse range.
     ///
     /// - Parameters:
     ///   - string: The string to parse.
@@ -186,7 +186,7 @@ struct HighlightParser {
     }
     
     
-    /// Remove overlapped ranges and convert to sorted Highlights.
+    /// Removes overlapped ranges and converts to sorted Highlights.
     ///
     /// - Note:
     /// This sanitization reduces the performance time of `SyntaxParser.apply(highlights:range:)` significantly.

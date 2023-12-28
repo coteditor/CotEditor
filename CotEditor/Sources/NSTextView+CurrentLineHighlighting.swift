@@ -28,8 +28,8 @@ import AppKit
 @MainActor protocol CurrentLineHighlighting: NSTextView {
     
     var needsUpdateLineHighlight: Bool { get set }
-    var lineHighLightRects: [NSRect] { get set }
-    var lineHighLightColor: NSColor? { get }
+    var lineHighlightRects: [NSRect] { get set }
+    var lineHighlightColor: NSColor? { get }
 }
 
 
@@ -38,24 +38,35 @@ extension CurrentLineHighlighting {
     
     // MARK: Public Methods
     
-    /// draw current line highlight
+    /// Draws the highlight for the lines where the insertion points locate.
+    ///
+    /// - Parameter dirtyRect: The A rectangle defining the portion of the view that requires redrawing.
     func drawCurrentLine(in dirtyRect: NSRect) {
         
-        if self.needsUpdateLineHighlight {
-            self.lineHighLightRects = self.calculateLineHighLightRects()
-            self.needsUpdateLineHighlight = false
+        // calculate rects but only when needed
+        // to avoid unneeded high-cost calculation for a latter part of a large document
+        if self.needsUpdateLineHighlight, let dirtyRange = self.range(for: dirtyRect) {
+            let lineRanges = self.selectedLineRanges()
+            
+            if lineRanges.contains(where: { $0.intersects(dirtyRange) }) {
+                self.lineHighlightRects = lineRanges.map(self.lineRect(for:))
+                self.needsUpdateLineHighlight = false
+            } else {
+                // remove outdated rects anyway
+                self.lineHighlightRects.removeAll()
+            }
         }
         
         let fontSize = self.font?.pointSize ?? NSFont.systemFontSize
         let radius = fontSize / 4
-        let paths = self.lineHighLightRects
+        let paths = self.lineHighlightRects
             .filter { $0.intersects(dirtyRect) }
             .map { self.centerScanRect($0) }
             .map { NSBezierPath(roundedRect: $0, xRadius: radius, yRadius: radius) }
         
         guard
             !paths.isEmpty,
-            let color = self.lineHighLightColor
+            let color = self.lineHighlightColor
         else { return }
         
         NSGraphicsContext.saveGraphicsState()
@@ -70,10 +81,10 @@ extension CurrentLineHighlighting {
     
     // MARK: Private Methods
     
-    /// Calculate highlight rects for all insertion points.
+    /// Returns the character ranges for the lines where the insertion points locate.
     ///
-    /// - Returns: Rects for current line highlight.
-    private func calculateLineHighLightRects() -> [NSRect] {
+    /// - Returns: Ranges for the current line highlight.
+    private func selectedLineRanges() -> [NSRange] {
         
         guard let editingRanges = self.rangesForUserTextChange else { return [] }
         
@@ -89,11 +100,10 @@ extension CurrentLineHighlighting {
                     ranges.append(range)
                 }
             }
-            .map { self.lineRect(for: $0) }
     }
     
     
-    /// Return rect for the line that contains the given range.
+    /// Returns rect for the line that contains the given range.
     ///
     /// - Parameter range: The range to obtain line rect.
     /// - Returns: Line rect in view coordinate.

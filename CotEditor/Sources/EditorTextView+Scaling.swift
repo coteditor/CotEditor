@@ -29,7 +29,7 @@ extension EditorTextView {
     
     // MARK: View Methods
     
-    /// change scale by pinch gesture
+    /// Changes scale by pinch gesture.
     override func magnify(with event: NSEvent) {
         
         if event.phase.contains(.began) {
@@ -70,7 +70,7 @@ extension EditorTextView {
     }
     
     
-    /// reset scale by two-finger double tap
+    /// Resets scale by two-finger double tapping.
     override func smartMagnify(with event: NSEvent) {
         
         let scale = (self.scale == 1.0) ? 1.5 : 1.0
@@ -83,7 +83,7 @@ extension EditorTextView {
     
     // MARK: Action Messages
     
-    /// change scale from segmented control button
+    /// Changes scale from segmented control button.
     @IBAction func changeTextSize(_ sender: NSSegmentedControl) {
         
         switch sender.selectedSegment {
@@ -97,21 +97,21 @@ extension EditorTextView {
     }
     
     
-    /// scale up
+    /// Scales up.
     @IBAction func biggerFont(_ sender: Any?) {
         
         self.setScaleKeepingVisibleArea(self.scale * 1.1)
     }
     
     
-    /// scale down
+    /// Scales down.
     @IBAction func smallerFont(_ sender: Any?) {
         
         self.setScaleKeepingVisibleArea(self.scale / 1.1)
     }
     
     
-    /// reset scale and font to default
+    /// Resets scale and font to default.
     @IBAction func resetFont(_ sender: Any?) {
         
         self.font = UserDefaults.standard.font(for: self.preferredFontType)

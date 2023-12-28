@@ -44,7 +44,7 @@ extension NSRange {
     }
     
     
-    /// Check if the given index is in the receiver or touches to one of the receiver's bounds.
+    /// Checks if the given index is in the receiver or touches to one of the receiver's bounds.
     ///
     /// - Parameter index: The index to test.
     func touches(_ index: Int) -> Bool {
@@ -53,7 +53,7 @@ extension NSRange {
     }
     
     
-    /// Return a boolean indicating whether the specified range intersects the receiver’s range.
+    /// Returns a boolean indicating whether the specified range intersects the receiver’s range.
     ///
     /// - Parameter other: The other range.
     func intersects(_ other: NSRange) -> Bool {
@@ -62,7 +62,7 @@ extension NSRange {
     }
     
     
-    /// Check if the two ranges overlap or touch each other.
+    /// Checks if the two ranges overlap or touch each other.
     ///
     /// - Parameter range: The range to test.
     /// - Note: Unlike Swift.Range's `overlaps(_:)`, this method returns `true` when a range length is 0.
@@ -77,7 +77,7 @@ extension NSRange {
     }
     
     
-    /// Return a copied NSRange but whose location is shifted toward the given `offset`.
+    /// Returns a copied NSRange but whose location is shifted toward the given `offset`.
     ///
     /// - Parameter offset: The offset to shift.
     /// - Returns: A new NSRange.
@@ -99,7 +99,7 @@ extension NSRange {
     }
     
     
-    /// Return a new range by assuming the indices of the given items are inserted.
+    /// Returns a new range by assuming the indices of the given items are inserted.
     ///
     /// - Parameter items: Insertion items to be inserted.
     /// - Returns: A new range that the receiver moved.
@@ -119,7 +119,7 @@ extension NSRange {
     }
     
     
-    /// Return a new range by assuming the indexes in the given ranges are removed.
+    /// Returns a new range by assuming the indexes in the given ranges are removed.
     ///
     /// - Parameter ranges: An array of NSRange where the indexes are removed.
     /// - Returns: A new range that the receiver moved.
@@ -151,7 +151,7 @@ extension Sequence<NSRange> {
 
 extension IndexSet {
     
-    /// Initialize an index set with multiple NSRanges.
+    /// Initializes an index set with multiple NSRanges.
     ///
     /// - Parameter ranges: The ranges to insert.
     init(integersIn ranges: [NSRange]) {

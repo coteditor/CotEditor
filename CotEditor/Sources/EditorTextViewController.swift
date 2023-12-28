@@ -28,7 +28,7 @@ import AppKit
 import Combine
 import SwiftUI
 
-final class EditorTextViewController: NSViewController, NSTextViewDelegate {
+final class EditorTextViewController: NSViewController, NSServicesMenuRequestor, NSTextViewDelegate {
     
     // MARK: Enums
     
@@ -53,7 +53,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     private var orientationObserver: AnyCancellable?
     private var writingDirectionObserver: AnyCancellable?
-    private var defaultsObserver: Set<AnyCancellable> = []
+    private var defaultsObservers: Set<AnyCancellable> = []
     
     
     
@@ -93,7 +93,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         // observe text orientation for line number view
         self.orientationObserver = self.textView!.publisher(for: \.layoutOrientation, options: .initial)
-            .sink { [weak self] (orientation) in
+            .sink { [weak self] orientation in
                 guard let self else { return assertionFailure() }
                 
                 self.stackView?.orientation = switch orientation {
@@ -109,7 +109,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         self.writingDirectionObserver = self.textView!.publisher(for: \.baseWritingDirection)
             .removeDuplicates()
             .map { $0 == .rightToLeft }
-            .sink { [weak self] (isRTL) in
+            .sink { [weak self] isRTL in
                 guard
                     let stackView = self?.stackView,
                     let lineNumberView = self?.lineNumberView
@@ -130,9 +130,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             }
         
         // toggle visibility of the separator of the line number view
-        UserDefaults.standard.publisher(for: .showLineNumberSeparator, initial: true)
-            .assign(to: \.drawsSeparator, on: self.lineNumberView!)
-            .store(in: &self.defaultsObserver)
+        self.defaultsObservers = [
+            UserDefaults.standard.publisher(for: .showLineNumberSeparator, initial: true)
+                .assign(to: \.drawsSeparator, on: self.lineNumberView!),
+        ]
     }
     
     
@@ -153,6 +154,41 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         if coder.decodeBool(forKey: SerializationKey.showsAdvancedCounter) {
             self.showAdvancedCharacterCounter()
         }
+    }
+    
+    
+    
+    // MARK: View Controller
+    
+    override func validRequestor(forSendType sendType: NSPasteboard.PasteboardType?, returnType: NSPasteboard.PasteboardType?) -> Any? {
+        
+        // accept continuity camera
+        //   - Take Photo: .jpeg, .tiff
+        //   - Scan Documents: .pdf, .tiff
+        //   - Sketch: .png
+        if let returnType, NSImage.imageTypes.contains(returnType.rawValue) {
+            return (returnType != .png) ? self : nil
+        }
+        
+        return super.validRequestor(forSendType: sendType, returnType: returnType)
+    }
+    
+    
+    
+    // MARK: Services Menu Requestor
+    
+    func readSelection(from pboard: NSPasteboard) -> Bool {
+        
+        // scan from continuity camera
+        if pboard.canReadItem(withDataConformingToTypes: NSImage.imageTypes),
+           let image = NSImage(pasteboard: pboard)
+        {
+            self.popoverLiveText(image: image)
+            
+            return true
+        }
+        
+        return false
     }
     
     
@@ -208,7 +244,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Action Messages
     
-    /// Show the Go To sheet.
+    /// Shows the Go To sheet.
     @IBAction func gotoLocation(_ sender: Any?) {
         
         guard let textView = self.textView else { return assertionFailure() }
@@ -218,7 +254,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         let lineCount = (string as NSString).substring(with: textView.selectedRange).numberOfLines
         let lineRange = FuzzyRange(location: lineNumber, length: lineCount)
         
-        let view = GoToLineView(lineRange: lineRange) { (lineRange) in
+        let view = GoToLineView(lineRange: lineRange) { lineRange in
             guard let range = textView.string.rangeForLine(in: lineRange) else { return false }
             
             textView.select(range: range)
@@ -232,12 +268,12 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    /// Show the Unicode input view.
+    /// Shows the Unicode input view.
     @IBAction func showUnicodeInputPanel(_ sender: Any?) {
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        let view = UnicodeInputView { [unowned textView] (character) in
+        let view = UnicodeInputView { [unowned textView] character in
             // flag to skip line ending sanitization
             textView.isApprovedTextChange = true
             defer { textView.isApprovedTextChange = false }
@@ -255,7 +291,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    /// Show the advanced counter.
+    /// Shows the advanced counter.
     @IBAction func toggleAdvancedCounter(_ sender: Any?) {
         
         // hide counter
@@ -274,7 +310,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    /// Show the character information by popover.
+    /// Shows the character information by popover.
     @IBAction func showSelectionInfo(_ sender: Any?) {
         
         guard
@@ -310,7 +346,29 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Methods
     
-    /// Hide existing advanced character counter.
+    /// Shows a popover indicating the given image and live text detection.
+    ///
+    /// - Parameter image: The image to scan text.
+    private func popoverLiveText(image: NSImage) {
+        
+        guard let textView = self.textView else { return assertionFailure() }
+        
+        let rootView = LiveTextInsertionView(image: image) { [weak textView] string in
+            guard let textView else { return }
+            textView.replace(with: string, range: textView.selectedRange, selectedRange: nil)
+        }
+        let viewController = NSHostingController(rootView: rootView)
+        viewController.sizingOptions = .preferredContentSize
+        viewController.rootView.parent = viewController
+        
+        let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -1, dy: -1) ?? .zero
+        
+        textView.scrollRangeToVisible(textView.selectedRange)
+        self.present(viewController, asPopoverRelativeTo: positioningRect, of: textView, preferredEdge: .maxY, behavior: .transient)
+    }
+    
+    
+    /// Hides the existing advanced character counter.
     ///
     /// - Parameter counterView: The advanced character counter to dismiss.
     private func dismissAdvancedCharacterCounter() {
@@ -327,7 +385,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    /// Setup and show advanced character counter.
+    /// Sets and shows advanced character counter.
     private func showAdvancedCharacterCounter() {
         
         guard let textView = self.textView else { return assertionFailure() }
@@ -381,7 +439,7 @@ extension EditorTextViewController: NSFontChanging {
     
     // MARK: Font Changing Methods
     
-    /// Restrict items in the font panel toolbar.
+    /// Restricts items in the font panel toolbar.
     func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
         
         [.collection, .face, .size]

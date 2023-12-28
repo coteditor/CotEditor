@@ -18,6 +18,137 @@
 
 <article>
 	<header>
+		<h1>CotEditor 4.7.1</h1>
+		<p>release: <time>2023-12-12</time></p>
+	</header>
+
+
+	<section>
+		<h2>New Features</h2>
+
+		<ul>
+			<li>Add “Join Lines” command to the Text menu.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue on CotEditor 4.7.0 that documents did not update when the file was modified by a command-line process.</li>
+			<li>Fix an issue on CotEditor 4.7.0 that the last letter of some script names with a period could be wrongly interpreted as shortcut keys.</li>
+			<li>Fix an issue on CotEditor 4.7.0 that some kinds of actions, such as scripts, could not performed via the Quick Action bar.</li>
+			<li>Fix an issue on CotEditor 4.7.0 that the Quick Actions bar dropped to draw the Shift key in some shortcuts.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
+		<h1>CotEditor 4.7.0</h1>
+		<p>release: <time>2023-12-09</time></p>
+	</header>
+
+
+	<section>
+		<h2>New Features</h2>
+
+		<ul>
+			<li>Add <a href="howto_quick_action.html">Quick Action bar</a> which can launch by the <kbd>Command</kbd>-<kbd>K</kbd> keys.</li>
+			<li><a href="howto_insert_camera_text.html">Insert scanned text</a> in a photo taken by iPhone or iPad.</li>
+			<li>Add <code>--syntax</code> (<code>-s</code>) option to the <code>cot</code> command-line tool to set desired syntax to the documents just opened.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Enable the “Input Backslash” and “Input Yen Mark” menu commands in all text fields in the application.</li>
+			<li>Optimize the performance of the normalization of inconsistent line endings.</li>
+			<li>Improve stability.</li>
+			<li><span class="trivial">trivial</span>: Increase the default font size and line height.</li>
+			<li><span class="trivial">trivial</span>: Add a stepper to the custom tab width sheet.</li>
+			<li><span class="trivial">trivial</span>: Add shortcut symbols for special keys not on common keyboards.</li>
+			<li><span class="trivial">dev</span>: Update the build environment to Xcode 15.1.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fixed an issue that the “unescape replacement string” option could not unescape consecutive backslashes correctly.</li>
+			<li>Fix an issue that the Forward Delete key could not be correctly assigned as a custom shortcut key.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
+		<h1>CotEditor 4.6.5</h1>
+		<p>release: <time>2023-11-10</time></p>
+	</header>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Optimize the performance of the incompatible character scan.</li>
+			<li><span class="trivial">trivial</span>: Add a tooltip to font fields in the Appearance settings pane.</li>
+			<li><span class="trivial">dev</span>: Migrate the custom sort pattern view to SwiftUI.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue that changes in the multiple replacement definition editor did not save.</li>
+			<li>Fix an issue that the application could hang when opening a large document without line breaks.</li>
+			<li>Fix an issue that a label was not localized.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
+		<h1>CotEditor 4.6.4</h1>
+		<p>release: <time>2023-11-02</time></p>
+	</header>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li><span class="trivial">trivial</span>: Dim the switcher buttons in the inspector when the window is inactive.</li>
+			<li><span class="trivial">trivial</span>: Improve the style of the pop-up buttons in the print panel.</li>
+			<li><span class="trivial">trivial</span>: Adjust the layout of the regular expression syntax reference.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue that the initial width of the line number view did not grow although the document is large.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
 		<h1>CotEditor 4.6.3</h1>
 		<p>release: <time>2023-10-17</time></p>
 	</header>
@@ -1068,7 +1199,7 @@
 		<ul>
 			<li>Ability to handle documents holding multiple types of line endings.</li>
 			<li>Alert inconsistent line endings in the document when opening or reloading.</li>
-			<li>List up the inconsistent line endings in the Warnings pane in the inspector.</li>
+			<li>List the inconsistent line endings in the Warnings pane in the inspector.</li>
 			<li>Minor line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either when pressing the <kbd>Option</kbd> key or when the document’s line ending is one of these).</li>
 			<li>Add the hidden Paste Exactly command (<kbd>Command</kbd>-<kbd>Option</kbd>-<kbd>V</kbd>) that pastes text in the clipboard without any modification, such as adjusting line endings to the document setting.</li>
 			<li>Add an option Selection to the Pages section in the Print dialog to print only the selected text in the document.</li>

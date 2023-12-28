@@ -31,7 +31,6 @@
 "Start" = "Démarrer";
 "Restore Defaults" = "Réglages par défaut";
 "Delete" = "Supprimer";
-"Restore" = "Restaurer";
 
 
 // words with symbols
@@ -101,6 +100,23 @@
 // find results in input fields
 "Not found" = "Introuvable";
 "Not replaced" = "Non remplacé";
+
+// pairs of checkbox label and its tooltip
+"Regular Expression" = "Expression régulière";
+"Select to search with regular expression." = "Sélectionnez pour rechercher à l’aide d’une expression régulière.";
+
+"Ignore Case" = "Ignorer la casse";
+"Select to ignore character case on search." = "Sélectionnez pour ignorer la casse lors de la recherche.";
+
+"In Selection" = "Dans la sélection";
+"Select to search text only from selection." = "Sélectionnez pour rechercher le texte seulement dans la sélection.";
+
+// tooltip for regex help button
+"Show quick reference for regular expression syntax." = "Affiche un pense-bête pour les expressions régulières";
+
+// pair of accessibility label for a image button and its tooltip
+"Advanced options" = "Options avancées";
+"Show advanced options" = "Afficher les options avancées";
 
 // pairs of button label and its tooltip
 "Close" = "Fermer";
@@ -499,6 +515,7 @@
 "Delete Duplicate Lines" = "Supprimer les lignes en double";
 "Duplicate Line" = "Dupliquer la ligne";
 "Delete Line" = "Supprimer la ligne";
+"Join Lines" = "Joindre des lignes";
 "Trim Trailing Whitespace" = "Rogner les espaces aux extrémités";
 
 // Contextual menu items
@@ -813,6 +830,11 @@
 
 
 
+/* MARK: Quick Action Bar */
+"Quick Actions" = "Actions rapides";
+
+
+
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Le chemin absolu du fichier déposé.";
@@ -847,6 +869,33 @@
 "Invalid pattern" = "Pattern invalide";
 "Empty pattern" = "Pattern vide";
 
+"Sample:" = "Echantillon :";
+// tooltip
+"Sample line to check which part in a line will be used for sort comparison." = "Ligne d’exemple pour vérifier quelle section sera utilisée pour la comparaison.";
+
+"Sort key:" = "Clé de tri :";
+"Entire line" = "Ligne entière";
+"Column" = "Colonne";
+"Regular expression" = "Expression régulière";
+
+"Sort option:" = "Options de tri :";
+"Ignore Case" = "Ignorer la casse";
+"Respect language rules" = "Respecter les règles de la langue";
+"Treat numbers as numeric value" = "Traiter les nombres comme des valeurs numériques";
+"Keep the first line at the top" = "Garder la première ligne en haut";
+"In descending order" = "Ordre descendant";
+
+"Delimiter:" = "Délimiteur :";
+"Position:" = "Position :";
+
+"Pattern:" = "Pattern :";
+"Regular Expression" = "Expression régulière";
+"Ignore case" = "Ignorer la casse";
+"Use captured group:" = "Utiliser le groupe de capture :";
+
+// button label
+"Sort" = "Trier";
+
 
 
 /* MARK: Encoding List View */
@@ -859,7 +908,7 @@
 
 /* MARK: Syntax Mapping Conflicts View */
 "Syntax Mapping Conflicts" = "Conflits des Associations de Syntaxes";
-"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "Les règles d'association de fichiers suivantes sont déclarées dans plusieurs syntaxes. CotEditor utilise la première syntaxe automatiquement. Pour résoudre les conflits, éditez  chaque syntaxe.";
+"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "Les règles d'association de fichiers suivantes sont déclarées dans plusieurs syntaxes. CotEditor utilise la première syntaxe automatiquement. Pour résoudre les conflits, éditez chaque syntaxe.";
 "Extension" = "Extension";
 "Filename" = "Nom du fichier";
 "Interpreter" = "Interpréteur";
@@ -912,6 +961,13 @@
 "Version:" = "Version :";
 // badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
 "deprecated" = "déprécié";
+
+
+
+/* MARK: LiveTextInsertionView */
+// error messages
+"No text detected" = "Aucun texte détecté";
+"Detection failed" = "Échec de la détection";
 
 
 

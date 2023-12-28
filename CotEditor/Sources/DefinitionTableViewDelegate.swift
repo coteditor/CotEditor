@@ -30,7 +30,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
     
     // MARK: Delegate
     
-    /// selection did change
+    /// Invoked when the selection did change.
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         guard let tableView = notification.object as? NSTableView, tableView.numberOfRows > 0 else { return }
@@ -42,7 +42,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
             row + 1 == tableView.numberOfRows,  // the last row is selected
             let rowView = tableView.rowView(atRow: row, makeIfNecessary: true),
             let (column, textField) = (0 ..< rowView.numberOfColumns).lazy  // find the leftmost text field column
-                .compactMap({ (column) -> (Int, NSTextField)? in
+                .compactMap({ column -> (Int, NSTextField)? in
                     guard let textField = (rowView.view(atColumn: column) as? NSTableCellView)?.textField else { return nil }
                     return (column, textField)
                 }).first,
@@ -57,7 +57,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
     
     // MARK: Action Messages
     
-    /// update all selected checkboxes in the same column
+    /// Updates all the selected checkboxes in the same column.
     @IBAction func didCheckboxClicked(_ checkbox: NSButton) {
         
         // find tableView

@@ -28,7 +28,7 @@ import AppKit.NSFont
 
 struct DefaultSettings {
     
-    static let defaults: [DefaultKeys: Any] = [
+    static let defaults: [DefaultKeys: Any?] = [
         .quitAlwaysKeepsWindows: true,
         .noDocumentOnLaunchOption: NoDocumentOnLaunchOption.untitledDocument.rawValue,
         .enablesAutosaveInPlace: true,
@@ -36,19 +36,19 @@ struct DefaultSettings {
         .suppressesInconsistentLineEndingAlert: false,
         .checksUpdatesForBeta: false,
         
+        .font: try? NSFont.userFont(ofSize: 13)?.archivedData,
         .fontPreference: FontPreference.automatic.rawValue,
         .shouldAntialias: true,
         .ligature: true,
+        .monospacedFont: try? NSFont.userFixedPitchFont(ofSize: 13)?.archivedData,
         .monospacedShouldAntialias: true,
         .monospacedLigature: false,
-        .lineHeight: 1.2,
+        .lineHeight: 1.3,
         .documentAppearance: AppearanceMode.default.rawValue,
         .windowAlpha: 1.0,
         .theme: "Anura",
         
         .windowTabbing: -1,  // = Respect System Setting
-//        .windowWidth: 600.0,
-//        .windowHeight: 620.0,
         .showNavigationBar: true,
         .showLineNumbers: true,
         .showLineNumberSeparator: false,
@@ -57,7 +57,7 @@ struct DefaultSettings {
         .showInvisibleTab: true,
         .showInvisibleSpace: false,
         .showInvisibleWhitespaces: true,
-        .showInvisibleControl: false,
+        .showInvisibleControl: true,
         .showIndentGuides: false,
         .showPageGuide: false,
         .pageGuideColumn: 80,

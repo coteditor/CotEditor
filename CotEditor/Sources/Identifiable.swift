@@ -1,10 +1,10 @@
 //
-//  Optional.swift
+//  Identifiable.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2023-08-13.
+//  Created by 1024jp on 2023-11-12.
 //
 //  ---------------------------------------------------------------------------
 //
@@ -23,12 +23,10 @@
 //  limitations under the License.
 //
 
-extension Optional where Wrapped == String {
+extension Sequence where Element: Identifiable {
     
-    /// Non-optional bound for binding.
-    var bound: String {
+    func filter(with ids: Set<Element.ID>) -> [Element] {
         
-        get { self ?? "" }
-        set { self = newValue.isEmpty ? nil : newValue }
+        self.filter { ids.contains($0.id) }
     }
 }

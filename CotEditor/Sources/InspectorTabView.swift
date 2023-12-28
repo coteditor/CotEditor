@@ -27,7 +27,7 @@ import AppKit
 
 protocol InspectorTabViewDelegate: NSTabViewDelegate {
     
-    /// Provide custom image for selected tab view item.
+    /// Provides custom image for selected tab view item.
     ///
     /// - Parameters:
     ///   - tabView: The tab view that sent the request.
@@ -151,7 +151,7 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Private Methods
     
-    /// Update the private control every time when the line-up of  tab items changed.
+    /// Updates the private control every time when the line-up of tab items changed.
     private func rebuildSegmentedControl() {
         
         self.segmentedControl.segmentCount = self.numberOfTabViewItems

@@ -85,30 +85,26 @@ final class NavigationBarController: NSViewController {
             let textView = self.textView
         else { return assertionFailure() }
         
-        self.viewObservers.removeAll()
-        
-        splitViewController.splitView.publisher(for: \.isVertical)
-            .map { NSImage(resource: $0 ? .splitAddVertical : .splitAdd) }
-            .assign(to: \.image, on: self.openSplitButton!)
-            .store(in: &self.viewObservers)
-        splitViewController.$canCloseSplitItem
-            .sink { [weak self] in self?.showsCloseButton = $0 }
-            .store(in: &self.viewObservers)
-        
-        textView.publisher(for: \.layoutOrientation, options: .initial)
-            .sink { [weak self] in self?.updateTextOrientation(to: $0) }
-            .store(in: &self.viewObservers)
-        
-        NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
-            .map { $0.object as! NSTextView }
-            .filter { !$0.hasMarkedText() }
-            // avoid updating outline item selection before finishing outline parse
-            // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
-            //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
-            .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
-            .debounce(for: .seconds(0.05), scheduler: RunLoop.main)
-            .sink { [weak self] _ in self?.invalidateOutlineMenuSelection() }
-            .store(in: &self.viewObservers)
+        self.viewObservers = [
+            splitViewController.splitView.publisher(for: \.isVertical)
+                .map { NSImage(resource: $0 ? .splitAddVertical : .splitAdd) }
+                .assign(to: \.image, on: self.openSplitButton!),
+            splitViewController.$canCloseSplitItem
+                .sink { [weak self] in self?.showsCloseButton = $0 },
+            
+            textView.publisher(for: \.layoutOrientation, options: .initial)
+                .sink { [weak self] in self?.updateTextOrientation(to: $0) },
+            
+            NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
+                .map { $0.object as! NSTextView }
+                .filter { !$0.hasMarkedText() }
+                // avoid updating outline item selection before finishing outline parse
+                // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
+                //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
+                .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
+                .debounce(for: .seconds(0.05), scheduler: RunLoop.main)
+                .sink { [weak self] _ in self?.invalidateOutlineMenuSelection() }
+        ]
         
         self.updateOutlineMenu()
     }
@@ -143,7 +139,7 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// Show the menu items of the outline menu.
+    /// Shows the menu items of the outline menu.
     func openOutlineMenu() {
         
         guard let popUpButton = self.outlineMenu else { return }
@@ -155,7 +151,7 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Action Messages
     
-    /// Select outline item from the popup menu.
+    /// Selects outline item from the popup menu.
     @IBAction func selectOutlineMenuItem(_ sender: NSMenuItem) {
         
         guard
@@ -207,7 +203,7 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// Build outline menu from `outlineItems`.
+    /// Builds outline menu using `outlineItems`.
     private func updateOutlineMenu() {
         
         self.isParsingOutline = (self.outlineItems == nil)
@@ -217,7 +213,7 @@ final class NavigationBarController: NSViewController {
         guard let outlineMenu = self.outlineMenu?.menu else { return assertionFailure() }
         
         outlineMenu.items = outlineItems
-            .flatMap { (outlineItem) -> [NSMenuItem] in
+            .flatMap { outlineItem in
                 switch outlineItem.title {
                     case .separator:
                         // dummy item to avoid merging sequential separators into a single separator
@@ -229,7 +225,8 @@ final class NavigationBarController: NSViewController {
                         
                     default:
                         let menuItem = NSMenuItem()
-                        menuItem.attributedTitle = outlineItem.attributedTitle(for: outlineMenu.font, attributes: [.paragraphStyle: self.menuItemParagraphStyle])
+                        let title = outlineItem.attributedTitle(for: outlineMenu.font, paragraphStyle: self.menuItemParagraphStyle)
+                        menuItem.attributedTitle = NSAttributedString(title)
                         menuItem.representedObject = outlineItem.range
                         
                         return [menuItem]
@@ -240,7 +237,7 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// Select the proper item in outline menu based on the current selection in the text view.
+    /// Selects the proper item in outline menu based on the current selection in the text view.
     private func invalidateOutlineMenuSelection() {
         
         guard
@@ -265,7 +262,7 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// Update the direction of the menu item arrows.
+    /// Updates the direction of the menu item arrows.
     ///
     /// - Parameter orientation: The text orientation in the text view.
     private func updateTextOrientation(to orientation: NSLayoutManager.TextLayoutOrientation) {

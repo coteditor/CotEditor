@@ -38,7 +38,7 @@ extension EditorTextView: SnippetInsertable {
 
 extension NSTextView {
     
-    /// Insert the given snippet to the insertion points.
+    /// Inserts the given snippet to the insertion points.
     ///
     /// - Parameter snippet: The snippet to insert.
     final func insert(snippet: Snippet) {

@@ -63,7 +63,7 @@ struct Theme {
     
     // MARK: Public Properties
     
-    /// name of the theme
+    /// Name of the theme
     var name: String?
     
     // basic colors

@@ -93,7 +93,7 @@ extension Snippet {
     }
     
     
-    /// Return strings to insert.
+    /// Returns strings to insert.
     ///
     /// - Parameters:
     ///   - string: The whole content string where to insert the snippet.
@@ -102,7 +102,7 @@ extension Snippet {
     func insertions(for string: String, ranges: [NSRange]) -> (strings: [String], selectedRanges: [NSRange]?) {
         
         var offset = 0
-        let insertions = ranges.map { (range) in
+        let insertions = ranges.map { range in
             let selectedString = (string as NSString).substring(with: range)
             let indent = string.rangeOfIndent(at: range.location)
                 .flatMap { (string as NSString).substring(with: $0) } ?? ""
@@ -119,7 +119,7 @@ extension Snippet {
     }
     
     
-    /// Return a string to insert.
+    /// Returns a string to insert.
     ///
     /// - Parameters:
     ///   - selectedString: The selected string.
@@ -130,7 +130,7 @@ extension Snippet {
         assert(indent.allSatisfy(\.isWhitespace))
         
         let format = self.format
-            .replacingOccurrences(of: "(?<=\\R)", with: indent, options: .regularExpression)  // indent
+            .replacing(/\R/) { $0.output + indent }  // indent
             .replacing(Variable.selection.token, with: selectedString)  // selection
         
         let cursors = (format as NSString).ranges(of: Variable.cursor.token)

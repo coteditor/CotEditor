@@ -50,7 +50,7 @@ struct OutlineExtractor {
     }
     
     
-    /// Extract outline items in the given string.
+    /// Extracts outline items in the given string.
     ///
     /// - Parameters:
     ///   - string: The string to parse.

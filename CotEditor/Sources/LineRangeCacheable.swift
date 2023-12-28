@@ -30,7 +30,7 @@ protocol LineRangeCacheable: AnyObject {
     var string: NSString { get }
     var lineRangeCache: LineRangeCache { get set }
     
-    /// Invalidate the line range cache.
+    /// Invalidates the line range cache.
     ///
     /// This method must be invoked every time when the receiver's `.string` is updated.
     ///
@@ -54,7 +54,7 @@ extension LineRangeCacheable {
     
     // MARK: Public Methods
     
-    /// Return the 1-based line number at the given character index.
+    /// Returns the 1-based line number at the given character index.
     ///
     /// - Parameter index: The character index.
     /// - Returns: The 1-based line number.
@@ -68,7 +68,7 @@ extension LineRangeCacheable {
     }
     
     
-    /// Return the range of the line touched by the given index.
+    /// Returns the range of the line touched by the given index.
     ///
     /// Because this method count up all the line ranges up to the given index when not cached yet,
     /// there is a large performance disadvantage when just a single line range is needed.
@@ -81,7 +81,7 @@ extension LineRangeCacheable {
     }
     
     
-    /// Return the range of the lines including the given range.
+    /// Returns the range of the lines including the given range.
     ///
     /// Because this method count up all the line ranges up to the given index when not cached yet,
     /// there is a large performance disadvantage when just a single line range is needed.
@@ -104,7 +104,7 @@ extension LineRangeCacheable {
     }
     
     
-    /// Return the range of the content lines including the given range.
+    /// Returns the range of the content lines including the given range.
     ///
     /// Because this method count up all the line ranges up to the given index when not cached yet,
     /// there is a large performance disadvantage when just a single line range is needed.
@@ -126,7 +126,7 @@ extension LineRangeCacheable {
     }
     
     
-    /// Return the index of the first character of the line touched by the given index.
+    /// Returns the index of the first character of the line touched by the given index.
     ///
     /// Because this method count up all the line ranges up to the given index when not cached yet,
     /// there is a large performance disadvantage when just a single line start index is needed.
@@ -143,7 +143,7 @@ extension LineRangeCacheable {
     }
     
     
-    /// Invalidate the line range cache.
+    /// Invalidates the line range cache.
     ///
     /// This method must be invoked every time when the receiver's `.string` is updated.
     ///
@@ -159,7 +159,7 @@ extension LineRangeCacheable {
     
     // MARK: Private Methods
     
-    /// Calculate and cache line ranges up to the line that contains the given character index, if it has not already done so.
+    /// Calculates and caches line ranges up to the line that contains the given character index, if it has not already done so.
     ///
     /// - Parameter endIndex: The character index where needs the line number.
     private func ensureLineRanges(upTo endIndex: Int) {
@@ -186,14 +186,14 @@ extension LineRangeCacheable {
             self.lineRangeCache.lineStartIndexes.insert(index)
         }
         self.lineRangeCache.parsedIndexes.insert(integersIn: lowerParseBound..<index)
-        self.lineRangeCache.invalidateFirstUncountedIndex()
+        self.lineRangeCache.firstUncountedIndex = index
     }
 }
 
 
 private extension LineRangeCache {
     
-    /// Invalidate the cache.
+    /// Invalidates the cache.
     ///
     /// - Parameters:
     ///   - newRange: The range in the final string that was edited.
@@ -210,13 +210,12 @@ private extension LineRangeCache {
     }
     
     
-    /// Update the first uncounted index.
-    mutating func invalidateFirstUncountedIndex() {
+    /// Updates the first uncounted index.
+    private mutating func invalidateFirstUncountedIndex() {
         
         let firstInvalidIndex = self.parsedIndexes.contains(0)
-            ? self.parsedIndexes.rangeView.first?.last.flatMap { $0 + 1 } ?? 0
+            ? self.parsedIndexes.rangeView.first?.upperBound ?? 0
             : 0
-        
         self.firstUncountedIndex = self.lineStartIndexes.integerLessThanOrEqualTo(firstInvalidIndex) ?? 0
     }
 }

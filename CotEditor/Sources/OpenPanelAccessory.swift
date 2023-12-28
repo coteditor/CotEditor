@@ -69,7 +69,7 @@ struct OpenPanelAccessory: View {
                         openPanel.treatsFilePackagesAsDirectories = shows
                         openPanel.validateVisibleColumns()
                     }
-            }.fixedSize(horizontal: true, vertical: true)
+            }.fixedSize()
         }.padding()
     }
 }

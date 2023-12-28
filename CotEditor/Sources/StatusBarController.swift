@@ -30,11 +30,11 @@ import Combine
     
     // MARK: Public Properties
     
-    weak var document: Document? {
+    var document: Document {
         
         didSet {
-            if let document, self.isViewShown {
-                self.subscribe(document)
+            if self.isViewShown {
+                self.observeDocument()
             }
         }
     }
@@ -55,7 +55,21 @@ import Combine
     
     
     // MARK: -
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
+    
+    init?(document: Document, coder: NSCoder) {
+        
+        self.document = document
+        
+        super.init(coder: coder)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         
@@ -80,7 +94,7 @@ import Combine
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in self?.buildEncodingPopUpButton() }
         
-        // observe change in defaults
+        // observe changes in defaults
         let editorDefaultKeys: [DefaultKey<Bool>] = [
             .showStatusBarLines,
             .showStatusBarChars,
@@ -98,9 +112,7 @@ import Combine
                 self?.editorStatus = self?.statusAttributedString(result: document.analyzer.result, types: $0)
             }
         
-        guard let document = self.document else { return assertionFailure() }
-        
-        self.subscribe(document)
+        self.observeDocument()
     }
     
     
@@ -111,7 +123,7 @@ import Combine
         self.encodingListObserver = nil
         self.defaultsObserver = nil
         
-        self.document?.analyzer.statusBarRequirements = []
+        self.document.analyzer.statusBarRequirements = []
         self.documentObservers.removeAll()
     }
     
@@ -119,48 +131,40 @@ import Combine
     
     // MARK: Private Methods
     
-    /// Synchronize UI with related document values.
-    ///
-    /// - Parameter document: The document to observe.
-    private func subscribe(_ document: Document) {
+    /// Synchronizes UI with related document values.
+    private func observeDocument() {
         
-        document.analyzer.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
-        document.analyzer.invalidate()
+        self.document.analyzer.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
+        self.document.analyzer.invalidate()
         
-        self.documentObservers.removeAll()
-        
-        // observe editor info update
-        document.analyzer.$result
-            .removeDuplicates()
-            .map { [weak self] in self?.statusAttributedString(result: $0, types: UserDefaults.standard.statusBarEditorInfo) }
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in self?.editorStatus = $0 }
-            .store(in: &self.documentObservers)
-        
-        // observe file size
-        document.$fileAttributes
-            .map { $0?[.size] as? UInt64 }
-            .removeDuplicates()
-            .map { $0?.formatted(.byteCount(style: .file, spellsOutZero: false)) }
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in self?.fileSize = $0 }
-            .store(in: &self.documentObservers)
-        
-        // observe document status change
-        document.$fileEncoding
-            .map(\.tag)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in self?.encodingPopUpButton?.selectItem(withTag: $0) }
-            .store(in: &self.documentObservers)
-        document.$lineEnding
-            .map(\.index)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in self?.lineEndingPopUpButton?.selectItem(withTag: $0) }
-            .store(in: &self.documentObservers)
+        self.documentObservers = [
+            // observe editor info update
+            self.document.analyzer.$result
+                .removeDuplicates()
+                .map { [weak self] in self?.statusAttributedString(result: $0, types: UserDefaults.standard.statusBarEditorInfo) }
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] in self?.editorStatus = $0 },
+            
+            // observe file size
+            self.document.$fileAttributes
+                .map { $0?[.size] as? UInt64 }
+                .removeDuplicates()
+                .map { $0?.formatted(.byteCount(style: .file, spellsOutZero: false)) }
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] in self?.fileSize = $0 },
+            
+            // observe document status change
+            self.document.$fileEncoding
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] in self?.encodingPopUpButton?.selectItem(withTag: $0.tag) },
+            self.document.$lineEnding
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] in self?.lineEndingPopUpButton?.selectItem(withTag: $0.index) },
+        ]
     }
     
     
-    /// Build the left side text.
+    /// Builds the left side text.
     ///
     /// - Parameters:
     ///   - result: The editor count result.
@@ -206,7 +210,7 @@ import Combine
     }
     
     
-    /// Build the encoding pop-up button.
+    /// Builds the encoding pop-up button.
     @MainActor private func buildEncodingPopUpButton() {
         
         guard
@@ -216,13 +220,11 @@ import Combine
         
         EncodingManager.shared.updateChangeEncodingMenu(menu)
         
-        if let fileEncoding = self.document?.fileEncoding {
-            popUpButton.selectItem(withTag: fileEncoding.tag)
-        }
+        popUpButton.selectItem(withTag: self.document.fileEncoding.tag)
     }
     
     
-    /// Build the line ending pop-up menu.
+    /// Builds the line ending pop-up menu.
     @MainActor private func buildLineEndingPopUpButton() {
         
         guard let menu = self.lineEndingPopUpButton?.menu else { return assertionFailure() }
@@ -263,21 +265,21 @@ private extension UserDefaults {
 
 private extension NSAttributedString {
     
-    /// Formatted state for status bar.
+    /// Returns formatted state for status bar.
     ///
     /// - Parameter state: The content string.
     /// - Returns: An attributed string.
     static func formatted(state: String?) -> Self {
         
         if let state {
-            return Self(string: state)
+            Self(string: state)
         } else {
-            return Self(string: "-", attributes: [.foregroundColor: NSColor.disabledControlTextColor])
+            Self(string: "-", attributes: [.foregroundColor: NSColor.disabledControlTextColor])
         }
     }
     
     
-    /// Formatted label for status bar.
+    /// Returns formatted label for status bar.
     ///
     /// - Parameter label: Localized label.
     /// - Returns: An attributed string.

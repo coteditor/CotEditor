@@ -68,7 +68,7 @@ final class SnippetManager {
     
     // MARK: Public Methods
     
-    /// Create a new snippet.
+    /// Creates a new snippet.
     ///
     /// - Returns: the snippet created.
     func createUntitledSetting() -> Snippet {
@@ -79,7 +79,7 @@ final class SnippetManager {
     }
     
     
-    /// Return a snippet corresponding to the given conditions.
+    /// Returns a snippet corresponding to the given conditions.
     ///
     /// - Parameters:
     ///   - shortcut: The shortcut.
@@ -93,7 +93,7 @@ final class SnippetManager {
     }
     
     
-    /// Save the given snippets and update UI.
+    /// Saves the given snippets and updates UI.
     ///
     /// - Parameter snippets: The snippets to save.
     func save(_ snippets: [Snippet]) {
@@ -109,7 +109,7 @@ final class SnippetManager {
     
     // MARK: Private Methods
     
-    /// Update the Snippet menu in the main menu.
+    /// Updates the Snippet menu in the main menu.
     @MainActor private func updateMenu() {
         
         guard let menu else { return assertionFailure() }
@@ -169,7 +169,7 @@ private extension SnippetManager {
     }
     
     
-    /// Migrate old format user snippet settings if exists (CotEditor 4.5.0, 2023-02).
+    /// Migrates old format user snippet settings if exists (CotEditor 4.5.0, 2023-02).
     func migrateIfNeeded() {
         
         let defaultKey = "insertCustomTextArray"

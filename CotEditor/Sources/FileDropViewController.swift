@@ -49,13 +49,12 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
         super.viewDidLoad()
         
         // setup add/remove button
-        self.arrayObservers.removeAll()
-        self.fileDropController?.publisher(for: \.canAdd, options: .initial)
-            .sink { [weak self] in self?.addRemoveButton?.setEnabled($0, forSegment: 0) }
-            .store(in: &self.arrayObservers)
-        self.fileDropController?.publisher(for: \.canRemove, options: .initial)
-            .sink { [weak self] in self?.addRemoveButton?.setEnabled($0, forSegment: 1) }
-            .store(in: &self.arrayObservers)
+        self.arrayObservers = [
+            self.fileDropController!.publisher(for: \.canAdd, options: .initial)
+                .sink { [weak self] in self?.addRemoveButton?.setEnabled($0, forSegment: 0) },
+            self.fileDropController!.publisher(for: \.canRemove, options: .initial)
+                .sink { [weak self] in self?.addRemoveButton?.setEnabled($0, forSegment: 1) },
+        ]
         
         // setup variable menu
         if let menu = self.variableInsertionMenu?.menu {
@@ -96,7 +95,7 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
     
     // MARK: Delegate
     
-    /// extension field was edited
+    /// The extension field was edited.
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
         guard control.identifier?.rawValue == FileDropItem.CodingKeys.extensions.rawValue else { return true }
@@ -110,7 +109,7 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
-    /// setup scope popup menu
+    /// Sets the scope popup menu.
     func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
         
         guard
@@ -144,7 +143,7 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
     
     // MARK: Text View Delegate (format text view)
     
-    /// insertion format text view was edited
+    /// Invoked when the insertion format text view was edited.
     func textDidEndEditing(_ notification: Notification) {
         
         guard
@@ -180,7 +179,7 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
     
     // MARK: Private Methods
     
-    /// write back file drop settings to UserDefaults
+    /// Writes back the file drop settings to UserDefaults.
     private func saveSetting() {
         
         guard let content = self.fileDropController?.content as? [[String: String]] else { return }
@@ -191,7 +190,7 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
             .filter { $0[FileDropItem.CodingKeys.format] != nil }
         
         // check if the new setting is different from the default
-        let defaultSetting = UserDefaults.standard.registeredValue(for: .fileDropArray)
+        let defaultSetting = UserDefaults.standard[initial: .fileDropArray]
         if defaultSetting == sanitized {
             UserDefaults.standard.restore(key: .fileDropArray)
         } else {
@@ -200,7 +199,7 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
-    /// set file drop settings to ArrayController
+    /// Sets the file drop settings to ArrayController.
     private func loadSetting() {
         
         // load/save settings manually rather than binding directly to UserDefaults
@@ -213,11 +212,14 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
-    /// trim extension string format
+    /// Sanitize the extensions string by trimming extra spaces.
+    ///
+    /// - Parameter extensionsString: The string to sanitize.
+    /// - Returns: A formatted sting of file extensions.
     private static func sanitize(extensionsString: String) -> String {
         
         extensionsString
-            .components(separatedBy: CharacterSet.alphanumerics.inverted)  // separator + typical invalid characters
+            .components(separatedBy: .alphanumerics.inverted)  // separator + typical invalid characters
             .filter { !$0.isEmpty }
             .map { $0.lowercased() }
             .joined(separator: ", ")

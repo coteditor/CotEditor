@@ -29,7 +29,7 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
     
     // MARK: Table Data Source Protocol
     
-    /// start dragging
+    /// Starts dragging.
     func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> (any NSPasteboardWriting)? {
         
         tableView.registerForDraggedTypes([.string])
@@ -41,7 +41,7 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
     }
     
     
-    /// validate when dragged items come to tableView
+    /// Validates when dragged items come to tableView.
     func tableView(_ tableView: NSTableView, validateDrop info: any NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // accept only self drag-and-drop
@@ -55,7 +55,7 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
     }
     
     
-    /// check acceptability of dragged items and insert them to table
+    /// Checks acceptability of dragged items and insert them to table.
     func tableView(_ tableView: NSTableView, acceptDrop info: any NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         // accept only self drag-and-drop

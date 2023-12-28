@@ -50,7 +50,7 @@ extension NSString {
     }
     
     
-    /// Return NSRange-based character index where just before the given character index
+    /// Returns NSRange-based character index where just before the given character index
     /// by taking grapheme clusters into account.
     ///
     /// - Parameter location: NSRange-based character index to refer.
@@ -68,7 +68,7 @@ extension NSString {
     }
     
     
-    /// Return NSRange-based character index where just after the given character index
+    /// Returns NSRange-based character index where just after the given character index
     /// by taking grapheme clusters into account.
     ///
     /// - Parameter location: NSRange-based character index to refer.
@@ -86,7 +86,7 @@ extension NSString {
     }
     
     
-    /// Find and return ranges of passed-in substring with the given range of receiver.
+    /// Finds and returns ranges of passed-in substring with the given range of receiver.
     ///
     /// - Parameters:
     ///   - searchString: The string for which to search.
@@ -112,21 +112,21 @@ extension NSString {
     }
     
     
-    /// line range containing a given location
+    /// Returns line range containing a given location.
     func lineRange(at location: Int) -> NSRange {
         
         self.lineRange(for: NSRange(location: location, length: 0))
     }
     
     
-    /// line range containing a given location
+    /// Returns line content range containing a given location.
     func lineContentsRange(at location: Int) -> NSRange {
         
         self.lineContentsRange(for: NSRange(location: location, length: 0))
     }
     
     
-    /// Return line range excluding last line ending character if exists.
+    /// Returns line range excluding last line ending character if exists.
     ///
     /// - Parameters:
     ///   - range: A range within the receiver.
@@ -141,7 +141,7 @@ extension NSString {
     }
     
     
-    /// Return the index of the first character of the line touched by the given index.
+    /// Returns the index of the first character of the line touched by the given index.
     ///
     /// - Parameters:
     ///   - index: The index of character for finding the line start.
@@ -155,7 +155,7 @@ extension NSString {
     }
     
     
-    /// Return the index of the last character before the line ending of the line touched by the given index.
+    /// Returns the index of the last character before the line ending of the line touched by the given index.
     ///
     /// - Parameters:
     ///   - index: The index of character for finding the line contents end.
@@ -169,7 +169,7 @@ extension NSString {
     }
     
     
-    /// Calculate line-by-line ranges that given ranges include.
+    /// Calculates line-by-line ranges that given ranges include.
     ///
     /// - Parameters:
     ///   - ranges: Ranges to include.
@@ -230,7 +230,7 @@ extension NSString {
     }
     
     
-    /// Find the widest character range that contains the given `index` and not contains given character set.
+    /// Finds the widest character range that contains the given `index` and not contains given character set.
     ///
     /// - Parameters:
     ///   - set: The character set to end expanding range.
@@ -253,7 +253,7 @@ extension NSString {
     }
     
     
-    /// Return the lower bound of the composed character sequence by moving the bound in the head direction by counting offset in composed character sequences.
+    /// Returns the lower bound of the composed character sequence by moving the bound in the head direction by counting offset in composed character sequences.
     ///
     /// - Parameters:
     ///   - index: The reference character index in UTF-16.

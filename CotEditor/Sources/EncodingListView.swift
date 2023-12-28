@@ -27,7 +27,7 @@ import SwiftUI
 
 private struct EncodingItem: Identifiable {
     
-    /// Return every time  a new instance with a different id.
+    /// Returns every time a new instance with a different id.
     static var separator: Self  { Self(encoding: kCFStringEncodingInvalidId) }
     
     let id = UUID()
@@ -42,7 +42,7 @@ struct EncodingListView: View {
     weak var parent: NSHostingController<Self>?
     
     @State private var encodingItems: [EncodingItem] = UserDefaults.standard[.encodingList].map(EncodingItem.init(encoding:))
-    @State private var selectedItems: Set<EncodingItem.ID> = []
+    @State private var selection: Set<EncodingItem.ID> = []
     
     
     var body: some View {
@@ -50,7 +50,7 @@ struct EncodingListView: View {
         VStack(alignment: .leading) {
             Text("Drag encodings to change the order:")
             
-            List(selection: $selectedItems) {
+            List(selection: $selection) {
                 ForEach(self.encodingItems) { item in
                     VStack(alignment: .leading, spacing: 8) {
                         if item.isSeparator {
@@ -111,37 +111,37 @@ struct EncodingListView: View {
     /// Whether the current order differs from the default.
     private var canRestore: Bool {
         
-        self.encodingItems.map(\.encoding) != UserDefaults.standard.registeredValue(for: .encodingList)
+        self.encodingItems.map(\.encoding) != UserDefaults.standard[initial: .encodingList]
     }
     
     
     /// Whether the selection contains separators.
     private var canDeleteSeparators: Bool {
         
-        self.selectedItems
-            .compactMap { id in self.encodingItems.first { $0.id == id } }
+        self.encodingItems
+            .filter(with: self.selection)
             .contains(where: \.isSeparator)
     }
     
     
-    /// Restore encodings setting list in the view to the default.
+    /// Restores encodings setting list in the view to the default.
     private func restore() {
         
-        self.encodingItems = UserDefaults.standard.registeredValue(for: .encodingList).map(EncodingItem.init)
+        self.encodingItems = UserDefaults.standard[initial: .encodingList].map(EncodingItem.init)
     }
     
     
-    /// Save the current encodings to the user default.
+    /// Saves the current encodings to the user default.
     private func save() {
         
         UserDefaults.standard[.encodingList] = self.encodingItems.map(\.encoding)
     }
     
     
-    /// Add a separator below the last selection.
+    /// Adds a separator below the last selection.
     private func addSeparator() {
         
-        let index = self.encodingItems.lastIndex { self.selectedItems.contains($0.id) }
+        let index = self.encodingItems.lastIndex { self.selection.contains($0.id) }
         
         withAnimation {
             self.encodingItems.insert(.separator, at: index?.advanced(by: 1) ?? 0)
@@ -149,11 +149,11 @@ struct EncodingListView: View {
     }
     
     
-    /// Delete separators in the selection.
+    /// Deletes separators in the selection.
     private func deleteSeparators() {
         
         withAnimation {
-            self.encodingItems.removeAll { $0.isSeparator && self.selectedItems.contains($0.id) }
+            self.encodingItems.removeAll { $0.isSeparator && self.selection.contains($0.id) }
         }
     }
 }
@@ -170,7 +170,7 @@ private struct EncodingView: View {
         HStack(alignment: .firstTextBaseline) {
             Text(self.name)
             Text(verbatim: self.ianaCharsetName)
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }.frame(height: 13)
     }
     

@@ -99,7 +99,7 @@ final class SyntaxParser {
 
 extension SyntaxParser {
     
-    /// Parse outline.
+    /// Parses outline.
     func invalidateOutline() {
         
         self.outlineParseTask?.cancel()
@@ -135,7 +135,7 @@ extension SyntaxParser {
 
 extension SyntaxParser {
     
-    /// Update highlights around passed-in range.
+    /// Updates highlights around passed-in range.
     ///
     /// - Parameters:
     ///   - editedRange: The character range that was edited, or `nil` to highlight the entire range.
@@ -215,7 +215,7 @@ extension SyntaxParser {
     
     // MARK: Private Methods
     
-    /// perform highlighting
+    /// Performs highlighting.
     private func parse(string: String, range: NSRange) {
         
         assert(!(string as NSString).className.contains("Mutable"))
@@ -243,7 +243,7 @@ extension SyntaxParser {
     }
     
     
-    /// apply highlights to all the layoutManagers.
+    /// Applies highlights to all the layoutManagers..
     @MainActor private func apply(highlights: [Highlight], range: NSRange) {
         
         for layoutManager in self.textStorage.layoutManagers {
@@ -256,7 +256,7 @@ extension SyntaxParser {
 
 extension NSLayoutManager {
     
-    /// Extract all syntax highlights in the given range.
+    /// Extracts all syntax highlights in the given range.
     ///
     /// - Returns: An array of Highlights in order.
     @MainActor final func syntaxHighlights() -> [Highlight] {
@@ -264,9 +264,7 @@ extension NSLayoutManager {
         let targetRange = self.attributedString().range
         
         var highlights: [Highlight] = []
-        self.enumerateTemporaryAttribute(.syntaxType, in: targetRange) { (type, range, _) in
-            guard let type = type as? SyntaxType else { return }
-            
+        self.enumerateTemporaryAttribute(.syntaxType, type: SyntaxType.self, in: targetRange) { (type, range, _) in
             highlights.append(Highlight(value: type, range: range))
         }
         
@@ -274,7 +272,7 @@ extension NSLayoutManager {
     }
     
     
-    /// Apply highlights as temporary attributes.
+    /// Applies highlights as temporary attributes.
     ///
     /// - Note: Sanitize the `highlights` before so that the ranges do not overlap each other.
     ///
@@ -305,7 +303,7 @@ extension NSLayoutManager {
     }
     
     
-    /// Apply the theme based on the current `syntaxType` attributes.
+    /// Applies the theme based on the current `syntaxType` attributes.
     ///
     /// - Parameters:
     ///   - theme: The theme to apply.
@@ -316,9 +314,7 @@ extension NSLayoutManager {
         guard self.hasTemporaryAttribute(.syntaxType, in: targetRange) else { return }
         
         self.groupTemporaryAttributesUpdate(in: targetRange) {
-            self.enumerateTemporaryAttribute(.syntaxType, in: targetRange) { (type, range, _) in
-                guard let type = type as? SyntaxType else { return }
-                
+            self.enumerateTemporaryAttribute(.syntaxType, type: SyntaxType.self, in: targetRange) { (type, range, _) in
                 if let color = theme.style(for: type)?.color {
                     self.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
                 } else {

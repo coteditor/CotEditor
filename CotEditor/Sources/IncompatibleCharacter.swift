@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import Foundation
+import Foundation.NSRange
 
 struct IncompatibleCharacter: Equatable {
     
@@ -36,62 +36,27 @@ struct IncompatibleCharacter: Equatable {
 }
 
 
-
-// MARK: -
-
 extension String {
     
-    /// list-up characters cannot be converted to the passed-in encoding
+    /// Lists characters cannot be converted to the passed-in encoding.
     ///
+    /// - Parameter encoding: The string encoding to test compatibility.
+    /// - Returns: An array of IncompatibleCharacter.
     /// - Throws: `CancellationError`
-    func scanIncompatibleCharacters(with encoding: String.Encoding) throws -> [IncompatibleCharacter] {
+    func charactersIncompatible(with encoding: String.Encoding) throws -> [IncompatibleCharacter] {
         
         guard !self.canBeConverted(to: encoding) else { return [] }
         
-        guard
-            let data = self.data(using: encoding, allowLossyConversion: true),  // lossy conversion must always success
-            let convertedString = String(data: data, encoding: encoding)
-        else { assertionFailure(); return [] }
-        
-        try Task.checkCancellation()
-        
-        if self.length == convertedString.length, self.length > 10_000 {
-            return try self.quickIncompatibleFind(with: convertedString)
-        }
-        
-        return try convertedString.difference(from: self).removals.lazy
-            .map { (change) in
-                guard case let .remove(offset, character, _) = change else { preconditionFailure() }
-                
+        return try zip(self.indices, self).lazy
+            .compactMap { (index, character) in
                 try Task.checkCancellation()
                 
-                let converted: String? = String(character)
-                    .data(using: encoding, allowLossyConversion: true)
-                    .flatMap { String(data: $0, encoding: encoding) }
-                let location = self.index(self.startIndex, offsetBy: offset).utf16Offset(in: self)
+                let string = String(character)
+                let converted = String(data: string.data(using: encoding, allowLossyConversion: true)!, encoding: encoding)
                 
-                return IncompatibleCharacter(character: character,
-                                             convertedCharacter: converted,
-                                             location: location)
-            }
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    private func quickIncompatibleFind(with convertedString: String) throws -> [IncompatibleCharacter] {
-        
-        try zip(self, convertedString).enumerated().lazy
-            .filter { $1.0 != $1.1 }
-            .map { (offset, characters) in
-                let location = self.index(self.startIndex, offsetBy: offset).utf16Offset(in: self)
+                guard converted != string else { return nil }
                 
-                try Task.checkCancellation()
-                
-                return IncompatibleCharacter(character: characters.0,
-                                             convertedCharacter: String(characters.1),
-                                             location: location)
+                return IncompatibleCharacter(character: character, convertedCharacter: converted, location: index.utf16Offset(in: self))
             }
     }
 }

@@ -39,7 +39,7 @@ final actor UserUnixTask {
     
     // MARK: Public Methods
     
-    /// Create an Unix script task with a script file in the user domain.
+    /// Creates an Unix script task with a script file in the user domain.
     ///
     /// - Parameter url: The script file URL.
     init(url: URL) throws {
@@ -51,7 +51,7 @@ final actor UserUnixTask {
     }
     
     
-    /// Execute the user script.
+    /// Executes the user script.
     ///
     /// - Parameter arguments: An array of Strings containing the script arguments.
     func execute(arguments: [String] = []) async throws {
@@ -68,14 +68,14 @@ final actor UserUnixTask {
         }
     }
     
-    /// Send the input as the standard input to the script.
+    /// Sends the input as the standard input to the script.
     ///
     /// - Parameter input: The string to input.
     func pipe(input: String) {
         
         let data = Data(input.utf8)
         
-        self.inputPipe.fileHandleForWriting.writeabilityHandler = { (handle) in
+        self.inputPipe.fileHandleForWriting.writeabilityHandler = { handle in
             do {
                 try handle.write(contentsOf: data)
                 try handle.close()
@@ -117,11 +117,11 @@ final actor UserUnixTask {
 
 private extension Pipe {
     
-    /// Create asynchronous stream for the standard output.
+    /// Creates asynchronous stream for the standard output.
     var readingStream: AsyncStream<Data> {
         
-        AsyncStream { (continuation) in
-            self.fileHandleForReading.readabilityHandler = { (handle) in
+        AsyncStream { continuation in
+            self.fileHandleForReading.readabilityHandler = { handle in
                 let data = handle.availableData
                 if data.isEmpty {
                     handle.readabilityHandler = nil

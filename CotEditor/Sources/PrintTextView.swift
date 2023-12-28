@@ -156,7 +156,7 @@ final class PrintTextView: NSTextView, Themable {
     }
     
     
-    /// return the number of pages available for printing
+    /// Returns the number of pages available for printing.
     override func knowsPageRange(_ range: NSRangePointer) -> Bool {
         
         if let printInfo = NSPrintOperation.current?.printInfo {
@@ -267,7 +267,7 @@ final class PrintTextView: NSTextView, Themable {
     
     // MARK: Private Methods
     
-    /// Parse current print settings in printInfo.
+    /// Parses the current print settings in printInfo.
     private func applyPrintSettings() {
         
         guard
@@ -313,7 +313,7 @@ final class PrintTextView: NSTextView, Themable {
     }
     
     
-    /// Return the attributed string for header/footer.
+    /// Returns the attributed string for header/footer.
     ///
     /// - Parameter type: Whether the string is for header or footer.
     /// - Returns: The attributed string for header/footer.
@@ -359,7 +359,7 @@ final class PrintTextView: NSTextView, Themable {
     }
     
     
-    /// Return attributes for header/footer string.
+    /// Returns the attributes for header/footer string.
     ///
     /// - Parameter alignment: The text alignment.
     /// - Returns: The attributes for NSAttributedString.
@@ -383,7 +383,7 @@ final class PrintTextView: NSTextView, Themable {
     }
     
     
-    /// Create the string for header/footer.
+    /// Returns the string for header/footer.
     ///
     /// - Parameter type: Whether the string is for header or footer.
     /// - Returns: The string for given info type.

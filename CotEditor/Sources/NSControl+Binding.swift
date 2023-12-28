@@ -27,7 +27,7 @@ import AppKit
 
 extension NSControl {
     
-    /// Bind receiver's nullPlaceholder with initial value of correspondent UserDefaults key.
+    /// Binds receiver's nullPlaceholder with initial value of correspondent UserDefaults key.
     ///
     /// - Parameter binding: The target property of the receiver to bind.
     final func bindNullPlaceholderToUserDefaults(_ binding: NSBindingName = .value) {
@@ -54,7 +54,7 @@ extension NSControl {
 
 private extension NSObject {
     
-    /// update binding options
+    /// Updates binding options.
     func rebind(_ binding: NSBindingName, updateHandler: (_ options: inout [NSBindingOption: Any]) -> Void) {
         
         guard

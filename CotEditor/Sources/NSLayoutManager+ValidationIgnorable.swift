@@ -34,7 +34,7 @@ protocol ValidationIgnorable: NSLayoutManager {
 
 extension NSLayoutManager {
     
-    /// Perform batch task updating temporary attributes performance efficiently by disabling display validation between each process.
+    /// Performs batch task updating temporary attributes performance efficiently by disabling display validation between each process.
     ///
     /// By using this method, conforming to `ValidationIgnorable` protocol is expected;
     /// otherwise, just run `work` block and no optimization is performed.

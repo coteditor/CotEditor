@@ -43,7 +43,7 @@ extension String {
     
     // MARK: Public Methods
     
-    /// detected indent style
+    /// Detected indent style.
     var detectedIndentStyle: IndentStyle? {
         
         guard !self.isEmpty else { return nil }
@@ -84,7 +84,7 @@ extension String {
     }
     
     
-    /// standardize indent style
+    /// Standardizes indent style.
     func standardizingIndent(to indentStyle: IndentStyle, tabWidth: Int) -> String {
         
         let spaces = String(repeating: " ", count: tabWidth)
@@ -100,7 +100,7 @@ extension String {
     }
     
     
-    /// detect indent level of line at the location
+    /// Detects indent level of line at the location.
     func indentLevel(at index: String.Index, tabWidth: Int) -> Int {
         
         assert(tabWidth > 0)
@@ -114,7 +114,7 @@ extension String {
     }
     
     
-    /// range of indent characters in line at the location
+    /// Returns the range of indent characters in line at the location.
     func rangeOfIndent(at location: Int) -> NSRange? {
         
         let lineRange = (self as NSString).lineRange(at: location)
@@ -126,14 +126,14 @@ extension String {
     }
     
     
-    /// range of indent characters in line at the location
+    /// Returns the range of indent characters in line at the location.
     func rangeOfIndent(at index: String.Index) -> Range<String.Index>? {
         
         self[self.lineRange(at: index)].firstRange(of: /^[ \t]++/)
     }
     
     
-    /// Range for deleting soft-tab or nil if the character to delete is not a space.
+    /// Returns the range for deleting soft-tab or nil if the character to delete is not a space.
     ///
     /// - Parameters:
     ///   - range: The range of selection.
@@ -164,7 +164,7 @@ extension String {
     }
     
     
-    /// Soft-tab to add.
+    /// Returns the oft-tab string to add.
     ///
     /// - Parameters:
     ///   - location: The location of insertion point.
@@ -185,7 +185,7 @@ extension String {
     
     // MARK: Private Methods
     
-    /// calculate column number at location in the line expanding tab (\t) character
+    /// Calculates column number at location in the line expanding tab (\t) character.
     private func column(of location: Int, tabWidth: Int) -> Int {
         
         assert(tabWidth > 0)

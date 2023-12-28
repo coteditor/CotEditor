@@ -31,7 +31,6 @@
 "Start" = "開始";
 "Restore Defaults" = "デフォルトに戻す";
 "Delete" = "削除";
-"Restore" = "元に戻す";
 
 
 // words with symbols
@@ -101,6 +100,23 @@
 // find results in input fields
 "Not found" = "見つかりません";
 "Not replaced" = "見つかりません";
+
+// pairs of checkbox label and its tooltip
+"Regular Expression" = "正規表現";
+"Select to search with regular expression." = "検索に正規表現を使う場合に選択";
+
+"Ignore Case" = "大文字/小文字を無視";
+"Select to ignore character case on search." = "大文字/小文字を区別せずに検索する場合に選択";
+
+"In Selection" = "選択範囲のみ";
+"Select to search text only from selection." = "現在の選択範囲のみを検索対象とする場合に選択";
+
+// tooltip for regex help button
+"Show quick reference for regular expression syntax." = "正規表現文法の簡易用語集を表示";
+
+// pair of accessibility label for a image button and its tooltip
+"Advanced options" = "詳細オプション";
+"Show advanced options" = "詳細オプションを表示";
 
 // pairs of button label and its tooltip
 "Close" = "閉じる";
@@ -499,6 +515,7 @@
 "Delete Duplicate Lines" = "重複行を削除";
 "Duplicate Line" = "行を複製";
 "Delete Line" = "行を削除";
+"Join Lines" = "行を結合";
 "Trim Trailing Whitespace" = "行末の空白を削除";
 
 // Contextual menu items
@@ -739,7 +756,7 @@
 "Export As:" = "名前:";
 
 // Syntax validation
-"Block comment needs both begin delimiter and end delimiter." = "ブロックコメントは開始文字と終了文字の両方を必要とします。";
+"Block comment needs both begin delimiter and end delimiter." = "ブロックコメントは開始と終了の両方の文字列が必要です。";
 "Begin string" = "開始文字列";
 "End string" = "終了文字列";
 "The same word is registered multiple times." = "重複して登録されています。";
@@ -812,6 +829,11 @@
 
 
 
+/* MARK: Quick Action Bar */
+"Quick Actions" = "クイックアクション";
+
+
+
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "ドロップ元ファイルの絶対パス";
@@ -845,6 +867,34 @@
 // error messages ("pattern" is a regular expression pattern)
 "Invalid pattern" = "無効なパターン";
 "Empty pattern" = "空のパターン";
+
+"Sample:" = "サンプル:";
+// tooltip
+"Sample line to check which part in a line will be used for sort comparison." = "比較に使用される部分を確認するためのサンプル行です。";
+
+"Sort key:" = "並び替えキー:";
+"Entire line" = "行全体";
+"Column" = "列";
+"Regular expression" = "正規表現";
+
+"Sort option:" = "並び替えオプション:";
+"Ignore Case" = "大文字/小文字を無視";
+"Respect language rules" = "言語ルールに従う";
+"Treat numbers as numeric value" = "数字を数値として扱う";
+"Keep the first line at the top" = "1行目は並び替えない";
+"In descending order" = "降順";
+
+"Delimiter:" = "区切り文字:";
+"Position:" = "位置:";
+
+"Pattern:" = "パターン:";
+"Regular Expression" = "正規表現";
+"Ignore case" = "大文字/小文字を無視";
+"Use captured group:" = "キャプチャされたグループを使用:";
+
+// button label
+"Sort" = "並び替え";
+
 
 
 
@@ -911,6 +961,13 @@
 "Version:" = "バージョン:";
 // badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
 "deprecated" = "非推奨";
+
+
+
+/* MARK: LiveTextInsertionView */
+// error messages
+"No text detected" = "テキストが検出されませんでした";
+"Detection failed" = "検出に失敗しました";
 
 
 

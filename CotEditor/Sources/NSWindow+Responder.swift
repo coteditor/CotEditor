@@ -27,7 +27,7 @@ import AppKit
 
 extension NSViewController {
     
-    /// Safely end the current editing.
+    /// Safely ends the current editing.
     ///
     /// - Returns: `true` when the operation is successful; otherwise, `false`.
     @discardableResult

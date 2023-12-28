@@ -34,7 +34,14 @@ extension NSColor {
 
 extension NSColor {
     
-    /// Create desired number of well distributed colors from the receiver.
+    /// The component-based (such as RGB) color converted from a semantic color.
+    var componentBased: NSColor {
+        
+        self.usingType(.componentBased) ?? self
+    }
+    
+    
+    /// Creates desired number of well distributed colors from the receiver.
     ///
     /// - Parameter number: The required number of colors.
     /// - Returns: An array of created colors.

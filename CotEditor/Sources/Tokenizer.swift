@@ -85,7 +85,7 @@ final class Tokenizer: Sendable {
     
     // MARK: Public Methods
     
-    /// Tokenize given string.
+    /// Tokenizes given string.
     ///
     /// - Parameters:
     ///   - string: The string.

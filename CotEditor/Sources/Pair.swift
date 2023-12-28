@@ -67,7 +67,7 @@ extension Pair where T == Character {
 
 extension StringProtocol {
     
-    /// Find the mate of a brace pair.
+    /// Finds the mate of a brace pair.
     ///
     /// - Parameters:
     ///   - index: The character index of the brace character to find the mate.
@@ -97,7 +97,7 @@ extension StringProtocol {
     }
     
     
-    /// Find character index of matched opening brace before a given index.
+    /// Finds character index of matched opening brace before a given index.
     ///
     /// This method ignores escaped characters.
     ///
@@ -148,7 +148,7 @@ extension StringProtocol {
     }
     
     
-    /// Find character index of matched closing brace after a given index.
+    /// Finds character index of matched closing brace after a given index.
     ///
     /// This method ignores escaped characters.
     ///

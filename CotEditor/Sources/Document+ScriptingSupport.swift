@@ -67,13 +67,13 @@ extension Document {
     
     // MARK: AppleScript Accessors
     
-    /// whole document string (text (NSTextStorage))
+    /// Whole document string (text (NSTextStorage).)
     @objc var scriptTextStorage: Any {
         
         get {
             let textStorage = NSTextStorage(string: self.textStorage.string)
             
-            textStorage.observeDirectEditing { [weak self] (editedString) in
+            textStorage.observeDirectEditing { [weak self] editedString in
                 self?.textView?.insert(string: editedString, at: .replaceAll)
             }
             
@@ -96,7 +96,7 @@ extension Document {
     }
     
     
-    /// document string (text (NSTextStorage))
+    /// The document string (text (NSTextStorage)).
     @objc var contents: Any {
         
         get {
@@ -109,14 +109,14 @@ extension Document {
     }
     
     
-    /// selection-object (TextSelection)
+    /// Selection-object (TextSelection).
     @objc var selectionObject: TextSelection {
         
         self.selection
     }
     
     
-    /// length of document in UTF-16 (integer)
+    /// Length of the document in UTF-16 (integer).
     ///
     /// - Note: deprecated in CotEditor 4.4.0 (2022-10).
     @objc var length: Int {
@@ -125,7 +125,7 @@ extension Document {
     }
     
     
-    /// new line code (enum type)
+    /// New line code (enum type).
     @objc var lineEndingChar: FourCharCode {
         
         get {
@@ -140,20 +140,21 @@ extension Document {
     }
     
     
-    /// encoding name (Unicode text)
+    /// Encoding name (Unicode text).
     @objc var encodingName: String {
         
         String.localizedName(of: self.fileEncoding.encoding)
     }
     
     
-    /// encoding in IANA CharSet name (Unicode text)
+    /// Encoding in IANA CharSet name (Unicode text).
     @objc var IANACharSetName: String {
         
         self.fileEncoding.encoding.ianaCharSetName ?? ""
     }
     
     
+    /// Whether the document has an encoding BOM.
     @objc var hasBOM: Bool {
         
         self.fileEncoding.withUTF8BOM ||
@@ -162,7 +163,7 @@ extension Document {
     }
     
     
-    /// syntax name (Unicode text)
+    /// Syntax name (Unicode text).
     @objc var coloringStyle: String {
         
         get {
@@ -175,7 +176,7 @@ extension Document {
     }
     
     
-    /// state of text wrapping (bool)
+    /// State of text wrapping (bool).
     @objc var wrapsLines: Bool {
         
         get {
@@ -188,7 +189,7 @@ extension Document {
     }
     
     
-    /// tab width (integer)
+    /// Tab width (integer).
     @objc var tabWidth: Int {
         
         get {
@@ -201,7 +202,7 @@ extension Document {
     }
     
     
-    /// whether replace tab with spaces
+    /// Whether replace tab with spaces.
     @objc var expandsTab: Bool {
         
         get {
@@ -217,7 +218,7 @@ extension Document {
     
     // MARK: AppleScript Handler
     
-    /// handle the Convert AppleScript by changing the text encoding and converting the text
+    /// Handles the Convert AppleScript by changing the text encoding and converting the text.
     @objc func handleConvert(_ command: NSScriptCommand) -> NSNumber {
         
         guard
@@ -251,7 +252,7 @@ extension Document {
     }
     
     
-    /// handle the Convert AppleScript by changing the text encoding and reinterpreting the text
+    /// Handles the Convert AppleScript by changing the text encoding and reinterpreting the text.
     @objc func handleReinterpret(_ command: NSScriptCommand) -> NSNumber {
         
         guard
@@ -276,7 +277,7 @@ extension Document {
     }
     
     
-    /// handle the Find AppleScript command
+    /// Handles the Find AppleScript command.
     @objc func handleFind(_ command: NSScriptCommand) -> NSNumber {
         
         guard
@@ -300,7 +301,7 @@ extension Document {
     }
     
     
-    /// handle the Replace AppleScript command
+    /// Handles the Replace AppleScript command.
     @objc func handleReplace(_ command: NSScriptCommand) -> NSNumber {
         
         guard
@@ -371,14 +372,14 @@ extension Document {
     }
     
     
-    /// handle the Scroll AppleScript command by scrolling the text view to make selection visible
+    /// Handles the Scroll AppleScript command by scrolling the text view to make selection visible.
     @objc func handleScroll(_ command: NSScriptCommand) {
         
         self.textView?.centerSelectionInVisibleArea(nil)
     }
     
     
-    /// handle the Jump AppleScript command by moving the cursor to the specified line and scrolling the text view to make it visible
+    /// Handles the Jump AppleScript command by moving the cursor to the specified line and scrolling the text view to make it visible.
     @objc func handleJump(_ command: NSScriptCommand) {
         
         guard
@@ -407,7 +408,7 @@ extension Document {
     }
     
     
-    /// return string in the specified range
+    /// Returns string in the specified range.
     @objc func handleString(_ command: NSScriptCommand) -> String? {
         
         guard
@@ -434,7 +435,7 @@ extension Document {
     
     // MARK: Private Methods
     
-    /// Set the value to DocumentViewController but lazily by waiting the DocumentViewController is attached if it is not available yet.
+    /// Sets the value to DocumentViewController but lazily by waiting the DocumentViewController is attached if it is not available yet.
     ///
     /// When document's properties are set in the document creation phase like in the following code,
     /// those setters are invoked while `self.viewController` is still `nil`.
@@ -496,7 +497,7 @@ private extension NSString.CompareOptions {
 
 private extension NSString {
     
-    /// Find the range of the first occurrence starting from the given selectedRange.
+    /// Finds the range of the first occurrence starting from the given selectedRange.
     ///
     /// - Parameters:
     ///   - searchString: The string to search for.

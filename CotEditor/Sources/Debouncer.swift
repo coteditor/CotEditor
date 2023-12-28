@@ -72,7 +72,7 @@ final class Debouncer {
     
     // MARK: Public Methods
     
-    /// Invoke the action after when `delay` time have passed since last call.
+    /// Invokes the action after when `delay` time have passed since last call.
     ///
     /// - Parameters:
     ///   - delay: The time to wait for fire. If nil, receiver's default delay is used.
@@ -91,7 +91,7 @@ final class Debouncer {
     }
     
     
-    /// Perform the action immediately.
+    /// Performs the action immediately.
     func perform() {
         
         self.currentWorkItem?.cancel()
@@ -99,14 +99,14 @@ final class Debouncer {
     }
     
     
-    /// Perform the action immediately if scheduled.
+    /// Performs the action immediately if scheduled.
     func fireNow() {
         
         self.currentWorkItem?.perform()
     }
     
     
-    /// Cancel the action if scheduled.
+    /// Cancels the action if scheduled.
     func cancel() {
         
         self.currentWorkItem?.cancel()

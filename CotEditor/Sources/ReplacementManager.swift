@@ -62,7 +62,11 @@ final class ReplacementManager: SettingFileManaging {
     
     // MARK: Public Methods
     
-    /// save setting file
+    /// Saves the given setting file.
+    ///
+    /// - Parameters:
+    ///   - setting: The setting to save.
+    ///   - name: The name of the setting to save.
     func save(setting: Setting, name: String) throws {
         
         let encoder = JSONEncoder()
@@ -83,7 +87,7 @@ final class ReplacementManager: SettingFileManaging {
     }
     
     
-    /// create a new untitled setting
+    /// Creates a new untitled setting.
     ///
     /// - Returns: The setting name created.
     @discardableResult
@@ -100,7 +104,7 @@ final class ReplacementManager: SettingFileManaging {
     
     // MARK: Setting File Managing
     
-    /// Load setting from the file at the given URL.
+    /// Loads the setting from the file at the given URL.
     func loadSetting(at fileURL: URL) throws -> Setting {
         
         let decoder = JSONDecoder()
@@ -110,7 +114,7 @@ final class ReplacementManager: SettingFileManaging {
     }
     
     
-    /// Load settings in the user domain.
+    /// Loads the settings in the user domain.
     func loadUserSettings() {
         
         // get user setting names if exists

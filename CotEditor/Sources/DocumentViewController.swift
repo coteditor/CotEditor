@@ -31,11 +31,22 @@ import SwiftUI
 private let maximumNumberOfSplitEditors = 4
 
 
-final class DocumentViewController: NSSplitViewController, ThemeChanging, NSToolbarItemValidation {
+final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeChanging, NSToolbarItemValidation {
     
     private enum SerializationKey {
         
         static let theme = "theme"
+    }
+    
+    
+    // MARK: Public Properties
+    
+    var document: Document  {
+        
+        didSet {
+            self.statusBarViewController.document = document
+            self.updateDocument()
+        }
     }
     
     
@@ -54,8 +65,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     ]
     
     private lazy var splitViewController = SplitViewController()
-    private lazy var statusBarViewController: StatusBarController = NSStoryboard(name: "StatusBar", bundle: nil).instantiateInitialController()!
-    
+    private lazy var statusBarViewController: StatusBarController = NSStoryboard(name: "StatusBar", bundle: nil)
+        .instantiateInitialController { StatusBarController(document: self.document, coder: $0) }!
     private weak var statusBarItem: NSSplitViewItem?
     
     private var documentSyntaxObserver: AnyCancellable?
@@ -64,12 +75,34 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     private var defaultsObservers: Set<AnyCancellable> = []
     private var themeChangeObserver: AnyCancellable?
     
-    private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.syntaxParser?.invalidateOutline() }
+    private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.syntaxParser.invalidateOutline() }
     
     
     
     // MARK: -
     // MARK: Lifecycle
+    
+    init(document: Document) {
+        
+        self.document = document
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        self.updateDocument()
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: EditorTextView.didLiveChangeSelectionNotification, object: nil)
+    }
+    
     
     override func viewDidLoad() {
         
@@ -129,7 +162,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         // observe appearance change for theme toggle
         self.appearanceObserver = self.view.publisher(for: \.effectiveAppearance)
-            .sink { [weak self] (appearance) in
+            .sink { [weak self] appearance in
                 guard
                     let self,
                     !UserDefaults.standard[.pinsThemeAppearance],
@@ -198,23 +231,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     // MARK: Split View Controller Methods
     
-    /// deliver document to child view controllers
-    override var representedObject: Any? {
-        
-        willSet {
-            self.documentSyntaxObserver = nil
-            self.outlineObserver = nil
-        }
-        
-        didSet {
-            guard let document = representedObject as? Document else { return }
-            
-            // This setter can be invoked twice if the view was initially made for a transient document.
-            self.replace(document: document)
-        }
-    }
-    
-    
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
         // avoid showing draggable cursor for the status bar boundary
@@ -222,7 +238,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// apply current state to related toolbar items
     func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
         
         // manually pass toolbar items to `validateUserInterfaceItem(_:)`,
@@ -354,7 +369,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     // MARK: Notifications
     
-    /// Text was edited (invoked right **before** notifying layout managers).
+    /// Invoked when the text was edited (invoked right **before** notifying layout managers).
     override func textStorageDidProcessEditing(_ notification: Notification) {
         
         let textStorage = notification.object as! NSTextStorage
@@ -364,48 +379,39 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             self.focusedTextView?.hasMarkedText() != true
         else { return }
         
-        self.document?.analyzer.invalidate()
-        self.document?.incompatibleCharacterScanner.invalidate()
+        self.document.analyzer.invalidate()
+        self.document.incompatibleCharacterScanner.invalidate()
         self.outlineParseDebouncer.schedule()
         
         // -> Perform in the next run loop to give layoutManagers time to update their values.
         let editedRange = textStorage.editedRange
         DispatchQueue.main.async { [weak self] in
-            self?.syntaxParser?.highlight(around: editedRange)
+            self?.syntaxParser.highlight(around: editedRange)
         }
     }
     
     
-    /// The selection did change.
+    /// Invoked when the selection did change.
     @objc private func textViewDidLiveChangeSelection(_ notification: Notification) {
         
-        self.document?.analyzer.invalidate(onlySelection: true)
+        self.document.analyzer.invalidate(onlySelection: true)
     }
     
     
     /// The document updated its syntax.
     private func didChangeSyntax() {
         
-        guard let syntaxParser = self.syntaxParser else { return assertionFailure() }
-        
         for viewController in self.editorViewControllers {
-            viewController.apply(syntax: syntaxParser.syntax)
+            viewController.apply(syntax: self.syntaxParser.syntax)
         }
         
         self.outlineParseDebouncer.perform()
-        syntaxParser.highlight()
+        self.syntaxParser.highlight()
     }
     
     
     
     // MARK: Public Methods
-    
-    /// The represented document.
-    var document: Document? {
-        
-        self.representedObject as? Document
-    }
-    
     
     /// The text view currently focused on.
     var focusedTextView: EditorTextView? {
@@ -487,7 +493,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     @objc dynamic var verticalLayoutOrientation: Bool = false {
         
         didSet {
-            self.document?.isVerticalText = verticalLayoutOrientation
+            self.document.isVerticalText = verticalLayoutOrientation
             
             let orientation: NSLayoutManager.TextLayoutOrientation = verticalLayoutOrientation ? .vertical : .horizontal
             
@@ -539,7 +545,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// Apply editor styles to the text storage and update editor views.
+    /// Applies editor styles to the text storage and update editor views.
     func invalidateStyleInTextStorage() {
         
         assert(Thread.isMainThread)
@@ -562,63 +568,63 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     // MARK: Action Messages
     
-    /// Recolor whole document.
+    /// Recolors whole document.
     @IBAction func recolorAll(_ sender: Any?) {
         
-        self.syntaxParser?.highlight()
+        self.syntaxParser.highlight()
     }
     
     
-    /// Set new theme from a menu item.
+    /// Sets new theme from a menu item.
     @IBAction func changeTheme(_ sender: NSMenuItem) {
         
         self.setTheme(name: sender.title)
     }
     
     
-    /// Toggle the visibility of the line number views.
+    /// Toggles the visibility of the line number views.
     @IBAction func toggleLineNumber(_ sender: Any?) {
         
         self.showsLineNumber.toggle()
     }
     
     
-    /// Toggle the visibility of status bar with fancy animation (sync all documents).
+    /// Toggles the visibility of status bar with fancy animation (sync all documents).
     @IBAction func toggleStatusBar(_ sender: Any?) {
         
         UserDefaults.standard[.showStatusBar].toggle()
     }
     
     
-    /// Toggle the visibility of page guide line in the text views.
+    /// Toggles the visibility of page guide line in the text views.
     @IBAction func togglePageGuide(_ sender: Any?) {
         
         self.showsPageGuide.toggle()
     }
     
     
-    /// Toggle the visibility of indent guides in the text views.
+    /// Toggles the visibility of indent guides in the text views.
     @IBAction func toggleIndentGuides(_ sender: Any?) {
         
         self.showsIndentGuides.toggle()
     }
     
     
-    /// Toggle if lines wrap at the window edge.
+    /// Toggles if lines wrap at the window edge.
     @IBAction func toggleLineWrap(_ sender: Any?) {
         
         self.wrapsLines.toggle()
     }
     
     
-    /// Toggle the visibility of invisible characters in the text views.
+    /// Toggles the visibility of invisible characters in the text views.
     @IBAction func toggleInvisibleChars(_ sender: Any?) {
         
         self.showsInvisibles.toggle()
     }
     
     
-    /// Toggle if antialias text in the text views.
+    /// Toggles if antialias text in the text views.
     @IBAction func toggleAntialias(_ sender: Any?) {
         
         for textView in self.editorViewControllers.compactMap(\.textView) {
@@ -627,7 +633,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// Toggle the ligature mode in the text views.
+    /// Toggles the ligature mode in the text views.
     @IBAction func toggleLigatures(_ sender: Any?) {
         
         for textView in self.editorViewControllers.compactMap(\.textView) {
@@ -636,24 +642,24 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// Toggle if the text views expand tab input.
+    /// Toggles if the text views expand tab input.
     @IBAction func toggleAutoTabExpand(_ sender: Any?) {
         
         self.isAutoTabExpandEnabled.toggle()
     }
     
     
-    /// Change the tab width from a menu item.
+    /// Changes the tab width from a menu item.
     @IBAction func changeTabWidth(_ sender: NSMenuItem) {
         
         self.tabWidth = sender.tag
     }
     
     
-    /// Change the tab width to desired number through a sheet.
+    /// Changes the tab width to desired number through a sheet.
     @IBAction func customizeTabWidth(_ sender: Any?) {
         
-        let view = CustomTabWidthView(tabWidth: self.tabWidth) { [weak self] (tabWidth) in
+        let view = CustomTabWidthView(tabWidth: self.tabWidth) { [weak self] tabWidth in
             self?.tabWidth = tabWidth
         }
         let viewController = NSHostingController(rootView: view)
@@ -663,7 +669,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// Change the font to the user's standard font.
+    /// Changes the font to the user's standard font.
     @IBAction func makeFontStandard(_ sender: Any?) {
         
         for textView in self.editorViewControllers.compactMap(\.textView) {
@@ -672,7 +678,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// Change the font to the user's monospaced font.
+    /// Changes the font to the user's monospaced font.
     @IBAction func makeFontMonospaced(_ sender: Any?) {
         
         for textView in self.editorViewControllers.compactMap(\.textView) {
@@ -681,28 +687,28 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// Make text layout orientation horizontal.
+    /// Makes text layout orientation horizontal.
     @IBAction func makeLayoutOrientationHorizontal(_ sender: Any?) {
         
         self.verticalLayoutOrientation = false
     }
     
     
-    /// Make the text layout orientation vertical.
+    /// Makes the text layout orientation vertical.
     @IBAction func makeLayoutOrientationVertical(_ sender: Any?) {
         
         self.verticalLayoutOrientation = true
     }
     
     
-    /// Make the entire writing direction left-to-right.
+    /// Makes the entire writing direction left-to-right.
     @IBAction func makeWritingDirectionLeftToRight(_ sender: Any?) {
         
         self.writingDirection = .leftToRight
     }
     
     
-    /// Make the entire writing direction right-to-left.
+    /// Makes the entire writing direction right-to-left.
     @IBAction func makeWritingDirectionRightToLeft(_ sender: Any?) {
         
         self.verticalLayoutOrientation = false
@@ -710,21 +716,21 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// Change writing direction by a grouped toolbar item.
+    /// Changes writing direction by a grouped toolbar item.
     @IBAction func changeWritingDirection(_ sender: NSToolbarItemGroup) {
         
         assertionFailure("This is a dummy action designed to be used just for the segmentation selection validation.")
     }
     
     
-    /// Change layout orientation by a grouped toolbar item.
+    /// Changes layout orientation by a grouped toolbar item.
     @IBAction func changeOrientation(_ sender: NSToolbarItemGroup) {
         
         assertionFailure("This is a dummy action designed to be used just for the segmentation selection validation.")
     }
     
     
-    /// Show the editor opacity slider as popover.
+    /// Shows the editor opacity slider as popover.
     @IBAction func showOpacitySlider(_ sender: Any?) {
         
         let opacityView = OpacityView(window: self.view.window as? DocumentWindow)
@@ -744,7 +750,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// Split editor view.
+    /// Splits editor view.
     @IBAction func openSplitTextView(_ sender: Any?) {
         
         guard self.splitViewController.splitViewItems.count < maximumNumberOfSplitEditors else { return NSSound.beep() }
@@ -757,7 +763,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         NSTextInputContext.current?.discardMarkedText()
         
         let newEditorViewController = self.addEditorView(below: currentEditorViewController)
-        self.replace(document: self.document!, in: newEditorViewController)
+        self.replace(document: self.document, in: newEditorViewController)
         
         // copy parsed syntax highlight
         if let textView = newEditorViewController.textView,
@@ -779,7 +785,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// Close one of the split editors.
+    /// Closes one of the split editors.
     @IBAction func closeSplitTextView(_ sender: Any?) {
         
         assert(self.splitViewController.splitViewItems.count > 1)
@@ -811,9 +817,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     // MARK: Private Methods
     
     /// The document's syntax parser.
-    private var syntaxParser: SyntaxParser? {
+    private var syntaxParser: SyntaxParser {
         
-        self.document?.syntaxParser
+        self.document.syntaxParser
     }
     
     
@@ -824,20 +830,16 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// Setup the receiver and its children with the given document.
-    ///
-    /// - Parameter document: The new document.
-    private func replace(document: Document) {
-        
-        self.statusBarViewController.document = document
+    /// Sets the receiver and its children with the given document.
+    private func updateDocument() {
         
         for editorViewController in self.editorViewControllers {
-            self.replace(document: document, in: editorViewController)
+            self.replace(document: self.document, in: editorViewController)
         }
         
         // detect indent style
         if UserDefaults.standard[.detectsIndentStyle],
-           let indentStyle = document.textStorage.string.detectedIndentStyle
+           let indentStyle = self.document.textStorage.string.detectedIndentStyle
         {
             self.isAutoTabExpandEnabled = switch indentStyle {
                 case .tab: false
@@ -847,28 +849,28 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         // start parsing syntax for highlighting and outlines
         self.outlineParseDebouncer.perform()
-        document.syntaxParser.highlight()
+        self.document.syntaxParser.highlight()
         
         NotificationCenter.default.addObserver(self, selector: #selector(textStorageDidProcessEditing),
                                                name: NSTextStorage.didProcessEditingNotification,
-                                               object: document.textStorage)
+                                               object: self.document.textStorage)
         
         // observe syntax change
-        self.documentSyntaxObserver = document.didChangeSyntax
+        self.documentSyntaxObserver = self.document.didChangeSyntax
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in self?.didChangeSyntax() }
         
         // observe syntaxParser for outline update
-        self.outlineObserver = document.syntaxParser.$outlineItems
+        self.outlineObserver = self.document.syntaxParser.$outlineItems
             .removeDuplicates()
             .receive(on: RunLoop.main)
-            .sink { [weak self] (outlineItems) in
+            .sink { [weak self] outlineItems in
                 self?.editorViewControllers.forEach { $0.outlineItems = outlineItems }
             }
     }
     
     
-    /// Create a new split editor.
+    /// Creates a new split editor.
     ///
     /// - Parameter otherViewController: The view controller of the reference editor located above the editor to add.
     /// - Returns: The editor view controller created.
@@ -915,7 +917,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// Replace the document in the editorViewController with the given document.
+    /// Replaces the document in the editorViewController with the given document.
     ///
     /// - Parameters:
     ///   - document: The new document to be replaced with.
@@ -928,7 +930,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// Apply the given theme to child text views.
+    /// Applies the given theme to child text views.
     ///
     /// - Parameter name: The name of the theme to apply.
     private func setTheme(name: String) {
@@ -946,7 +948,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// Find the base `EditorViewController` for split editor management actions.
+    /// Finds the base `EditorViewController` for split editor management actions.
     ///
     /// - Parameter sender: The action sender.
     /// - Returns: An editor view controller, or `nil` if not found.

@@ -44,7 +44,6 @@ opt_in_rules:
   - nimble_operator
   - optional_enum_case_matching
   - overridden_super_call
-  - pattern_matching_keywords
   - prefer_self_type_over_type_of_self
   - prefer_zero_over_explicit_init
   - private_outlet
@@ -58,7 +57,6 @@ opt_in_rules:
   - required_enum_case
   - single_test_class
   - sorted_first_last
-  - static_operator
   - toggle_bool
   - vertical_parameter_alignment_on_call
   - xct_specific_matcher

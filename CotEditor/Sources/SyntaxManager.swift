@@ -111,7 +111,12 @@ final class SyntaxManager: SettingFileManaging {
     
     // MARK: Public Methods
     
-    /// return syntax name corresponding to given variables
+    /// Returns the syntax name corresponding to given variables.
+    ///
+    /// - Parameters:
+    ///   - fileName: The  file name of the document to detect the corresponding syntax name.
+    ///   - content: The content of the document.
+    /// - Returns: A setting name.
     func settingName(documentFileName fileName: String, content: String) -> SettingName {
         
         self.settingName(documentFileName: fileName)
@@ -120,7 +125,11 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// return syntax name corresponding to filename
+    /// Returns the syntax name corresponding to filename.
+    ///
+    /// - Parameters:
+    ///   - fileName: The  file name of the document to detect the corresponding syntax name.
+    /// - Returns: A setting name, or `nil` if not exists.
     func settingName(documentFileName fileName: String) -> SettingName? {
         
         let mappingTables = self.mappingTables
@@ -150,7 +159,11 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// return syntax name scanning shebang in document content
+    /// Returns the syntax name scanning shebang in document content.
+    ///
+    /// - Parameters:
+    ///   - content: The content of the document.
+    /// - Returns: A setting name, or `nil` if not exists.
     func settingName(documentContent content: String) -> SettingName? {
         
         if let interpreter = content.scanInterpreterInShebang(),
@@ -167,7 +180,10 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// syntax dictionary list corresponding to syntax name
+    /// Returns the syntax dictionary list corresponding to syntax name.
+    ///
+    /// - Parameter name: The setting name.
+    /// - Returns: A syntax dictionary, or `nil` if not exists.
     func settingDictionary(name: SettingName) -> SyntaxDictionary? {
         
         if name == BundledSyntaxName.none {
@@ -183,7 +199,10 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// return bundled version syntax dictionary or nil if not exists
+    /// Returns the bundled version of syntax dictionary.
+    ///
+    /// - Parameter name: The setting name.
+    /// - Returns: A syntax dictionary, or `nil` if not exists.
     func bundledSettingDictionary(name: SettingName) -> SyntaxDictionary? {
         
         guard
@@ -195,7 +214,12 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// save setting file
+    /// Saves the given setting file to the user domain.
+    ///
+    /// - Parameters:
+    ///   - settingDictionary: The setting dictionary to save.
+    ///   - name: The setting name to save.
+    ///   - oldName: The old setting name if any exists.
     func save(settingDictionary: SyntaxDictionary, name: SettingName, oldName: SettingName?) throws {
         
         // sort items
@@ -245,7 +269,7 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// conflicted maps
+    /// The map for the conflicted settings.
     var mappingConflicts: [SyntaxKey: [String: [SettingName]]] {
         
         self.mappingTables
@@ -254,7 +278,7 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// empty syntax dictionary
+    /// An empty syntax dictionary.
     var blankSettingDictionary: SyntaxDictionary {
         
         [
@@ -282,7 +306,7 @@ final class SyntaxManager: SettingFileManaging {
     
     // MARK: Setting File Managing
     
-    /// return setting instance corresponding to the given setting name
+    /// Returns the setting instance corresponding to the given setting name.
     func setting(name: SettingName) -> Setting? {
         
         if name == BundledSyntaxName.none {
@@ -313,7 +337,7 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// Load setting from the file at the given URL.
+    /// Loads setting from the file at the given URL.
     func loadSetting(at fileURL: URL) throws -> Setting {
         
         let dictionary = try self.loadSettingDictionary(at: fileURL)
@@ -323,7 +347,7 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// Load settings in the user domain.
+    /// Loads settings in the user domain.
     func loadUserSettings() {
         
         // load mapping definitions from syntax files in user domain
@@ -361,7 +385,7 @@ final class SyntaxManager: SettingFileManaging {
     
     // MARK: Private Methods
     
-    /// Standardize the file extensions of user setting files.
+    /// Standardizes the file extensions of user setting files.
     ///
     /// - Note: The file extension for syntax definition files are changed from `.yaml` to `.yml` in CotEditor 4.2.0 released in 2022-05.
     private func sanitizeUserSettings() throws {
@@ -378,7 +402,7 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// Load SyntaxDictionary at file URL.
+    /// Loads SyntaxDictionary at file URL.
     ///
     /// - Parameter fileURL: URL to a setting file.
     /// - Throws: `CocoaError`
@@ -395,7 +419,12 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// return whether contents of given highlight definition is the same as bundled one
+    /// Returns whether contents of given highlight definition is the same as bundled one.
+    ///
+    /// - Parameters:
+    ///   - syntax: The syntax dictionary to test.
+    ///   - name: The name of the syntax.
+    /// - Returns: A bool value.
     private func isEqualToBundledSetting(_ syntax: SyntaxDictionary, name: SettingName) -> Bool {
         
         guard let bundledSyntax = self.bundledSettingDictionary(name: name) else { return false }
@@ -408,7 +437,7 @@ final class SyntaxManager: SettingFileManaging {
 
 private extension StringProtocol {
     
-    /// Extract interpreter from the shebang line.
+    /// Extracts interpreter from the shebang line.
     func scanInterpreterInShebang() -> String? {
         
         guard self.hasPrefix("#!") else { return nil }
@@ -439,14 +468,14 @@ private extension StringProtocol {
 
 private extension SyntaxManager.SyntaxDictionary {
     
-    /// Convert to NSObject-based collection for Cocoa-Bindings recursively.
+    /// Converts to NSObject-based collection for Cocoa-Bindings recursively.
     var cocoaBindable: Self {
         
         self.mapValues(Self.convertToCocoaBindable)
     }
     
     
-    /// Convert to YAML serialization compatible collection recursively.
+    /// Converts to YAML serialization compatible collection recursively.
     var yamlEncodable: Self {
         
         self.mapValues(Self.convertToYAMLEncodable)
@@ -502,7 +531,7 @@ private extension SyntaxManager.SyntaxDictionary {
     
     // MARK: Private Methods
     
-    /// Check the equitability recursively.
+    /// Checks the equitability recursively.
     ///
     /// This comparison is designed and valid only for SyntaxDictionary.
     private static func areEqual(_ lhs: Any, _ rhs: Any) -> Bool {

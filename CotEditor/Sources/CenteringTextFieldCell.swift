@@ -27,7 +27,7 @@ import AppKit
 
 final class CenteringTextFieldCell: NSTextFieldCell {
     
-    /// rect of content text
+    /// Returns the rect of content text.
     override func titleRect(forBounds rect: NSRect) -> NSRect {
         
         var titleRect = super.titleRect(forBounds: rect)
@@ -40,7 +40,7 @@ final class CenteringTextFieldCell: NSTextFieldCell {
     }
     
     
-    /// draw inside of field
+    /// Draws inside of the field.
     override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
         
         self.attributedStringValue.draw(in: self.titleRect(forBounds: cellFrame))

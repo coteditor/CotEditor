@@ -1,8 +1,141 @@
+# Change Log
 
-Change Log
-==========================
+4.7.2 (unreleased)
+--------------------------
 
-4.6.4 (unreleased)
+### Improvements
+
+- [trivial] Deprecate the feature for theme/syntax settings to delete a setting by swiping on the setting name in the Settings.
+- [non-AppStore ver.] Update Sparkle from 2.5.1 to 2.5.2.
+
+
+### Fixes
+
+- Fix an issue that the application could not open a document containing a specific pattern of letters.
+
+
+
+4.7.1 (623)
+--------------------------
+
+### New Features
+
+- Add “Join Lines” command to the Text menu.
+
+
+### Fixes
+
+- Fix an issue on CotEditor 4.7.0 that documents did not update when the file was modified by a command-line process.
+- Fix an issue on CotEditor 4.7.0 that the last letter of some script names with a period could be wrongly interpreted as shortcut keys.
+- Fix an issue on CotEditor 4.7.0 that some kinds of actions, such as scripts, could not performed via the Quick Action bar.
+- Fix an issue on CotEditor 4.7.0 that the Quick Actions bar dropped to draw the Shift key in some shortcuts.
+
+
+
+4.7.0 (621)
+--------------------------
+
+### Improvements
+
+- [dev] Update the build environment to Xcode 15.1.
+- [rc.2] Remove hidden actions from Quick Action candidates.
+- [rc.2] Update the User Guide.
+
+
+
+4.7.0-rc.2 (617)
+--------------------------
+
+### New Features
+
+- Add `--syntax` (`-s`) option to the `cot` command-line tool to set desired syntax to the documents just opened.
+
+
+### Improvements
+
+- [trivial] Add shortcut symbols for special keys not on common keyboards.
+- [rc] Display the Globe symbol instead of “fn” for shortcuts in the Quick Action bar if the user keyboard is supposed to have the Globe key (thanks to Katsumi Kishikawa!).
+
+
+
+4.7.0-rc (615)
+--------------------------
+
+### Improvements
+
+- Enable the “Input Backslash” and “Input Yen Mark” menu commands in all text fields in the application.
+- [trivial] Add a stepper to the custom tab width sheet.
+- [beta] Use the same shortcut symbols as the menu display in the Quick Action bar.
+- [beta] Adjust the layout of the Quick Action bar.
+- [beta.2] Update some localized text.
+
+
+### Fixes
+
+- Fixed an issue that the “unescape replacement string” option could not unescape consecutive backslashes correctly.
+- [beta] Fix an issue that some active actions were not listed in the Quick Action bar.
+- [beta] Fix an issue that keyboard shortcuts that include the Globe/fn key were not displayed in the Quick Action view.
+
+
+
+4.7.0-beta.2 (613)
+--------------------------
+
+### Improvements
+
+- Optimize the performance of the normalization of inconsistent line endings.
+- Improve stability.
+- [trivial] Increase the default font size and line height.
+- [beta] Add device name to quick actions related to Continuity Camera.
+- [beta] Localize strings added on CotEditor 4.7.0.
+
+
+### Fixes
+
+- [beta] Fix an issue that disabled menu items were listed as the quick action candidates.
+- [beta] Fix an issue that some actions were not performed properly by the Quick Action.
+
+
+
+4.7.0-beta (611)
+--------------------------
+
+### New Features
+
+- Add Quick Action bar which can launch by the Command-K keys.
+- Insert scanned text in a photo taken by iPhone or iPad.
+
+
+### Fixes
+
+- Fix an issue that the Forward Delete key could not be correctly assigned as a custom shortcut key.
+
+
+### TODO
+
+- Some text are not localized yet.
+
+
+
+4.6.5 (601)
+--------------------------
+
+### Improvements
+
+- Optimize the performance of the incompatible character scan.
+- [trivial] Add a tooltip to font fields in the Appearance settings pane.
+- [dev] Migrate the custom sort pattern view to SwiftUI.
+
+
+### Fixes
+
+- Fix an issue that changes in the multiple replacement definition editor did not save.
+- Fix an issue that the application could hang when opening a large document without line breaks.
+- Fix an issue that a label was not localized.
+
+
+
+4.6.4 (599)
 --------------------------
 
 ### New Features
@@ -14,11 +147,12 @@ Change Log
 
 - [trivial] Dim the switcher buttons in the inspector when the window is inactive.
 - [trivial] Improve the style of the pop-up buttons in the print panel.
+- [trivial] Adjust the layout of the regular expression syntax reference.
 
 
 ### Fixes
 
-- Fix an issue that the initial width of the line number view did not grow even the document is large.
+- Fix an issue that the initial width of the line number view did not grow although the document is large.
 
 
 
@@ -937,7 +1071,7 @@ Change Log
 
 - Ability to handle documents holding multiple types of line endings.
 - Alert inconsistent line endings in the document when opening or reloading.
-- List up the inconsistent line endings in the Warnings pane in the inspector.
+- List the inconsistent line endings in the Warnings pane in the inspector.
 - Minor line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either when pressing the Option key or when the document's line ending is one of these).
 - Add the hidden Paste Exactly command (Command-Option-V) that pastes text in the clipboard without any modification, such as adjusting line endings to the document setting.
 - Add an option Selection to the Pages section in the Print dialog to print only the selected text in the document.

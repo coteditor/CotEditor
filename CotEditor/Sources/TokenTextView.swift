@@ -59,7 +59,7 @@ final class TokenTextView: NSTextView {
     }
     
     
-    /// delete whole token if cursor located at the end of a token
+    /// Deletes whole token if cursor located at the end of a token.
     override func deleteBackward(_ sender: Any?) {
         
         guard
@@ -73,7 +73,7 @@ final class TokenTextView: NSTextView {
     }
     
     
-    /// draw token capsule
+    /// Draws token capsule.
     override func drawBackground(in rect: NSRect) {
         
         super.drawBackground(in: rect)
@@ -82,7 +82,7 @@ final class TokenTextView: NSTextView {
     }
     
     
-    /// select token by selecting word
+    /// Selects token by selecting word.
     override func selectionRange(forProposedRange proposedCharRange: NSRange, granularity: NSSelectionGranularity) -> NSRange {
         
         guard
@@ -94,7 +94,7 @@ final class TokenTextView: NSTextView {
     }
     
     
-    /// validate insertion menu
+    /// Validates insertion menu.
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
@@ -111,7 +111,7 @@ final class TokenTextView: NSTextView {
     
     // MARK: Actions
     
-    /// variable insertion menu was selected
+    /// The variable insertion menu was selected.
     @IBAction func insertVariable(_ sender: NSMenuItem) {
         
         guard let title = sender.representedObject as? String else { return }
@@ -129,7 +129,7 @@ final class TokenTextView: NSTextView {
     
     // MARK: Private Method
     
-    /// find tokens in contents and mark-up them
+    /// Finds tokens in contents and mark-up them.
     private func invalidateTokens() {
         
         guard
@@ -159,7 +159,7 @@ final class TokenTextView: NSTextView {
 
 extension TokenRepresentable {
     
-    /// Return a menu item to insert variable to TokenTextView.
+    /// Returns a menu item to insert variable to TokenTextView.
     ///
     /// - Parameter target: The action target.
     /// - Returns: A menu item.
@@ -186,15 +186,15 @@ extension TokenRepresentable {
 
 private extension NSColor {
     
-    static let tokenTextColor = NSColor(name: nil) { (appearance) in
+    static let tokenTextColor = NSColor(name: nil) { appearance in
         NSColor.selectedControlColor.blended(withFraction: 0.7, of: appearance.isDark ? .white : .black)!
     }
     
-    static let tokenBracketColor = NSColor(name: nil) { (appearance) in
+    static let tokenBracketColor = NSColor(name: nil) { appearance in
         NSColor.selectedControlColor.blended(withFraction: 0.3, of: appearance.isDark ? .white : .black)!
     }
     
-    static let tokenBackgroundColor = NSColor(name: nil) { (appearance) in
+    static let tokenBackgroundColor = NSColor(name: nil) { appearance in
         NSColor.selectedControlColor.withAlphaComponent(appearance.isDark ? 0.5 : 0.3)
     }
 }

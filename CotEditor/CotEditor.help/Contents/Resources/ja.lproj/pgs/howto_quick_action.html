@@ -1,0 +1,44 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="quick action, クイックアクション, コマンドバー, メニューコマンド"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<script defer src="../../Shared/js/toc.js"></script>
+	
+	<title>CotEditorでキー入力でアクションを実行する</title>
+</head>
+
+<body>
+
+<h1>CotEditorでキー入力でアクションを実行する</h1>
+
+<p>クイックアクション機能を使えば、キーボードから手を離すことなくメニューコマンドを実行できます。</p>
+
+<figure>
+	<img src="../gfx/quickActionBar@2x.png" width="460"/>
+</figure>
+
+<p>コマンドバーからクイックアクションを実行するには以下のようにします。</p>
+
+<ol>
+	<li>メニューから「表示」&gt;「クイックアクションを表示」を選択するか<kbd>Command</kbd>+<kbd>K</kbd>キーを入力して、コマンドバーを表示させます。</li>
+	<li>コマンドバーに文字を入力します。逐次、現在の入力にマッチするアクションが入力フィールドの下に表示されます。<ul>
+		<li>入力されたすべての文字をその順番で中間のサブメニューと自身のタイトルに持つメニュー項目がマッチします。</li>
+	</ul></li>
+	<li><kbd aria-label="下矢印">↓</kbd>キーと<kbd aria-label="上矢印">↑</kbd>キーでリストから実行するアクションを選択します。</li>
+	<li><kbd>Return</kbd>キーを押して選択されたアクションを実行します。</li>
+</ol>
+
+
+<p>コマンドを実行せずにコマンドバーを閉じるには以下のようにします。</p>
+
+<ul>
+	<li><kbd>Esc</kbd>キーか<kbd>Command</kbd>+<kbd area-label="period">.</kbd>キーを押す。</li>
+	<li>アクションの候補が何も表示されていない状態で<kbd>Return</kbd>キーを押す。</li>
+	<li>コマンドバー以外のどこかをクリックする。</li>
+</ul>
+
+
+</body>
+</html>

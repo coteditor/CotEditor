@@ -36,7 +36,7 @@ struct SubmitButtonGroup: View {
     
     // MARK: View
     
-    /// Create two buttons with the same width; one is the cancel button and another is the submit button.
+    /// Creates two buttons with the same width; one is the cancel button and another is the submit button.
     ///
     /// - Parameters:
     ///   - submitLabel: The label to be displayed in the submit button.

@@ -57,7 +57,7 @@ struct UnicodeInputView: View {
                     .inset(.leading, 18)
                     .monospacedDigit()
                 
-                Menu("") {
+                Menu {
                     let scalars = UserDefaults.standard[.unicodeHistory]
                         .compactMap(UTF32.CodeUnit.init(codePoint:))
                         .compactMap(UnicodeScalar.init)
@@ -79,9 +79,12 @@ struct UnicodeInputView: View {
                     if !scalars.isEmpty {
                         Button("Clear Recents", role: .destructive, action: self.clearRecents)
                     }
+                } label: {
+                    EmptyView()
                 }
                 .menuStyle(.borderlessButton)
                 .frame(width: 16)
+                .padding(.leading, 4)
             }
         }
         .padding(10)
@@ -111,7 +114,7 @@ struct UnicodeInputView: View {
     }
     
     
-    /// Input Unicode character to the parent text view.
+    /// Inputs Unicode character to the parent text view.
     private func submit() {
         
         guard let character = self.character else { return NSSound.beep() }
@@ -137,7 +140,7 @@ struct UnicodeInputView: View {
 
 private extension UTF32.CodeUnit {
     
-    /// Initialize from a possible Unicode code point representation, such as `U+1F600`, `1f600`, and `0x1F600`.
+    /// Initializes from a possible Unicode code point representation, such as `U+1F600`, `1f600`, and `0x1F600`.
     init?(codePoint: String) {
         
         guard let hexString = codePoint.wholeMatch(of: /(U\+|0x|\\u)?(?<number>[0-9a-f]{1,5})/.ignoresCase())?.number else { return nil }

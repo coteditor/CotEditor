@@ -35,7 +35,7 @@ protocol TouchBarItemValidations: AnyObject {
 
 extension NSTouchBar {
     
-    /// flag to enable automatic touch bar item validation
+    /// Flag to enable automatic touch bar item validation
     static var isAutomaticValidationEnabled = false {
         
         didSet {
@@ -45,7 +45,7 @@ extension NSTouchBar {
     
     
     
-    /// validate currently visible touch bar items
+    /// Validates currently visible touch bar items
     final func validateVisibleItems() {
         
         guard self.isVisible else { return }
@@ -125,7 +125,7 @@ extension NSTouchBar {
     
     // MARK: Private Methods
     
-    /// validate current touch bar
+    /// Validates the current touch bar from a timer.
     @objc private func validateTouchBar(timer: Timer?) {
         
         self.validationTimer?.invalidate()
@@ -140,7 +140,7 @@ extension NSTouchBar {
     }
     
     
-    /// check necessity of touch bar validation and schedule with a delay if needed
+    /// Checks necessity of touch bar validation and schedule with a delay if needed.
     private func validateTouchBarIfNeeded() {
         
         assert(self.isEnabled)
@@ -193,7 +193,7 @@ extension NSTouchBar {
 
 extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
     
-    /// validate item if content view is NSControl
+    /// Validates item if content view is NSControl.
     fileprivate func validate() {
         
         // validate content control

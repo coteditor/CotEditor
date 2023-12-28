@@ -28,7 +28,7 @@ import SwiftUI
 
 extension NSTextView {
     
-    /// Highlight all matches in the textView.
+    /// Highlights all matches in the textView.
     ///
     /// - Parameters:
     ///   - definition: The text view where highlighting text.
@@ -77,7 +77,7 @@ extension NSTextView {
         
         let message = (progress.count == 0)
             ? String(localized: "Not found")
-            : String(localized: "\(progress.count) found")
+            : String(localized: "\(progress.count) found", table: "Count")
         
         self.requestAccessibilityAnnouncement(message)
         
@@ -85,7 +85,7 @@ extension NSTextView {
     }
     
     
-    /// Replace all matches in the textView.
+    /// Replaces all matches in the textView.
     ///
     /// - Parameters:
     ///   - definition: The text view where highlighting text.

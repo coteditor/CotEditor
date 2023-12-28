@@ -32,7 +32,7 @@ struct WidthGetter<Key: PreferenceKey>: View where Key.Value == CGFloat {
     
     var body: some View {
         
-        GeometryReader { (geometry) in
+        GeometryReader { geometry in
             Color.clear.preference(key: self.key.self, value: geometry.size.width)
         }
     }

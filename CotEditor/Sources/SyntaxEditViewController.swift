@@ -50,7 +50,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     // MARK: -
     // MARK: Lifecycle
     
-    /// Initialize view from a storyboard with the given mode.
+    /// Initializes the view from a storyboard with the given mode.
     ///
     /// - Parameters:
     ///   - coder: The coder to instantiate the view from a storyboard.
@@ -132,7 +132,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     // NSTextFieldDelegate  < syntaxNameField
     
-    /// syntax name did change
+    /// A syntax name did change.
     func controlTextDidChange(_ obj: Notification) {
         
         guard let field = obj.object as? NSTextField, field == self.syntaxNameField else { return }
@@ -180,7 +180,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     // MARK: Action Messages
     
-    /// update style kind
+    /// Updates the style kind.
     @IBAction func setKind(_ sender: NSPopUpButton) {
         
         guard let identifier = sender.selectedItem?.identifier?.rawValue else { return assertionFailure() }
@@ -189,7 +189,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     }
     
     
-    /// restore current settings in editor to default
+    /// Restores the current settings in editor to the user default.
     @IBAction func setToFactoryDefaults(_ sender: Any?) {
         
         guard
@@ -204,7 +204,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     }
     
     
-    /// jump to syntax's distribution URL
+    /// Open the syntax's distribution URL in the default browser.
     @IBAction func jumpToURL(_ sender: Any?) {
         
         guard
@@ -217,7 +217,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     }
     
     
-    /// save edit and close editor
+    /// Saves the edit and closes the editor.
     @IBAction func save(_ sender: Any?) {
         
         // fix current input
@@ -263,7 +263,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     // MARK: Private Methods
     
-    /// Validate the passed-in syntax name.
+    /// Validates the passed-in syntax name.
     ///
     /// - Parameter syntaxName: The syntax name to test.
     /// - Returns: `true` if the syntax name is valid.

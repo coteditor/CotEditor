@@ -27,7 +27,7 @@ import struct Foundation.IndexSet
 
 extension RangeReplaceableCollection where Index == Int {
     
-    /// Remove elements with IndexSet
+    /// Removes elements with IndexSet
     mutating func remove(in indexes: IndexSet) {
         
         for index in indexes.reversed() {
@@ -36,7 +36,7 @@ extension RangeReplaceableCollection where Index == Int {
     }
     
     
-    /// Return subset at IndexSet
+    /// Returns subset at IndexSet
     func elements(at indexes: IndexSet) -> [Element] {
         
         assert((indexes.max() ?? .max) <= self.endIndex)
@@ -47,7 +47,7 @@ extension RangeReplaceableCollection where Index == Int {
     }
     
     
-    /// Insert elements at indexes
+    /// Inserts elements at indexes
     mutating func insert(_ elements: [Element], at indexes: IndexSet) {
         
         assert(elements.count == indexes.count)

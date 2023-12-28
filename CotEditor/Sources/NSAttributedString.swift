@@ -34,7 +34,7 @@ extension NSAttributedString {
     }
     
     
-    /// Concatenate attributed strings.
+    /// Concatenates attributed strings.
     static func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
         
         let result = NSMutableAttributedString(attributedString: lhs)
@@ -44,7 +44,7 @@ extension NSAttributedString {
     }
     
     
-    /// Append another attributed string.
+    /// Appends another attributed string.
     static func += (lhs: inout NSAttributedString, rhs: NSAttributedString) {
         
         let result = NSMutableAttributedString(attributedString: lhs)
@@ -54,7 +54,27 @@ extension NSAttributedString {
     }
     
     
-    /// Check if at least one attribute for the given attribute key exists.
+    /// Enumerates range and value of the given temporary attribute key.
+    ///
+    /// - Parameters:
+    ///   - attrName: The name of the temporary attribute to enumerate.
+    ///   - Type:The type of the value.
+    ///   - enumerationRange: The range over which the attribute values are enumerated.
+    ///   - options: The options used by the enumeration. For possible values, see NSAttributedString.EnumerationOptions.
+    ///   - block: A closure to apply to ranges of the specified attribute in the receiver.
+    ///   - value: The value for the specified attribute.
+    ///   - range: The range of the attribute value in the receiver.
+    ///   - stop: A reference to a Boolean value, which you can set to true within the closure to stop further processing of the attribute enumeration.
+    final func enumerateAttribute<T>(_ attrName: NSAttributedString.Key, type: T.Type, in enumerationRange: NSRange, options: EnumerationOptions = [], using block: (_ value: T, _ range: NSRange, _ stop: UnsafeMutablePointer<ObjCBool>) -> Void) {
+        
+        self.enumerateAttribute(attrName, in: enumerationRange, options: options) { (value, range, stop) in
+            guard let value = value as? T else { return }
+            block(value, range, stop)
+        }
+    }
+    
+    
+    /// Checks if at least one attribute for the given attribute key exists.
     ///
     /// - Parameters:
     ///   - attrName: The name of the attribute key to check.
@@ -75,7 +95,7 @@ extension NSAttributedString {
     }
     
     
-    /// Truncate head with an ellipsis symbol until the specific `location` if the length before the location is the longer than the `offset`.
+    /// Truncates head with an ellipsis symbol until the specific `location` if the length before the location is the longer than the `offset`.
     ///
     /// - Parameters:
     ///   - location: The character index to start truncation.
@@ -93,14 +113,14 @@ extension NSAttributedString {
 
 extension NSMutableAttributedString {
     
-    /// Append another attributed string.
+    /// Appends another attributed string.
     static func += (lhs: inout NSMutableAttributedString, rhs: NSAttributedString) {
         
         lhs.append(rhs)
     }
     
     
-    /// Truncate head with an ellipsis symbol until the specific `location` if the length before the location is the longer than the `offset`.
+    /// Truncates head with an ellipsis symbol until the specific `location` if the length before the location is the longer than the `offset`.
     ///
     /// - Parameters:
     ///   - location: The character index to start truncation.
@@ -125,7 +145,7 @@ extension NSMutableAttributedString {
 
 extension Sequence<NSAttributedString> {
     
-    /// Return a new attributed string by concatenating the elements of the sequence, adding the given separator between each element.
+    /// Returns a new attributed string by concatenating the elements of the sequence, adding the given separator between each element.
     ///
     /// - Parameter separator: An attributed string to insert between each of the elements in this sequence.
     /// - Returns: A single, concatenated attributed string.
@@ -149,7 +169,7 @@ extension Sequence<NSAttributedString> {
     }
     
     
-    /// Return a new attributed string by concatenating the elements of the sequence, adding the given separator between each element.
+    /// Returns a new attributed string by concatenating the elements of the sequence, adding the given separator between each element.
     ///
     /// - Parameter separator: A string to insert between each of the elements in this sequence.
     /// - Returns: A single, concatenated attributed string.

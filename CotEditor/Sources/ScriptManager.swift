@@ -62,7 +62,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         self.syntaxObserver = (DocumentController.shared as! DocumentController).$currentSyntaxName
             .removeDuplicates()
-            .sink { [unowned self] (styleName) in Task { @MainActor in self.currentContext = styleName } }
+            .sink { [unowned self] styleName in Task { @MainActor in self.currentContext = styleName } }
     }
     
     
@@ -119,7 +119,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Start observing the scripts directory.
+    /// Starts observing the scripts directory.
     ///
     /// This method should be called only once.
     func observeScriptsDirectory() {
@@ -143,7 +143,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Dispatch an Apple event that notifies the given document was opened.
+    /// Dispatches an Apple event that notifies the given document was opened.
     ///
     /// - Parameters:
     ///   - eventType: The event trigger to perform script.
@@ -165,7 +165,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Action Message
     
-    /// launch script (invoked by menu item).
+    /// Launches a script (invoked by menu item).
     @IBAction func launchScript(_ sender: NSMenuItem) {
         
         guard let script = sender.representedObject as? any Script else { return assertionFailure() }
@@ -200,7 +200,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Open Script menu folder in the Finder.
+    /// Opens the Script menu folder in the Finder.
     @IBAction func openScriptFolder(_ sender: Any?) {
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
@@ -219,7 +219,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Build the Script menu and scan script handlers.
+    /// Builds the Script menu and scan script handlers.
     @MainActor private func buildScriptMenu() async {
         
         self.debounceTask?.cancel()
@@ -247,7 +247,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Present the given error in the ordinary way by taking the error type in the consideration.
+    /// Presents the given error in the ordinary way by taking the error type in the consideration.
     ///
     /// - Parameters:
     ///   - error: The error to present.
@@ -265,7 +265,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Create an Apple event caused by the given `Document`.
+    /// Creates an Apple event caused by the given `Document`.
     ///
     /// - Bug:
     ///   NSScriptObjectSpecifier.descriptor can be nil.
@@ -293,7 +293,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Cause the given Apple event to be dispatched to AppleScripts at given URLs.
+    /// Causes the given Apple event to be dispatched to AppleScripts at given URLs.
     ///
     /// - Parameters:
     ///   - event: The Apple event to be dispatched.
@@ -314,7 +314,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Read files recursively and create menu items.
+    /// Reads files recursively and creates menu items.
     ///
     /// - Parameters:
     ///   - directoryURL: The directory where to find files recursively.
@@ -353,7 +353,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Apply the keyboard shortcuts to the Script menu items.
+    /// Applies the keyboard shortcuts to the Script menu items.
     @MainActor private func applyShortcuts() {
         
         guard let menu = self.scriptMenu else { return assertionFailure() }
@@ -378,7 +378,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
 
 private extension NSMenuItem {
     
-    /// Remove all keyboard shortcuts recursively.
+    /// Removes all keyboard shortcuts recursively.
     func removeAllShortcuts() {
         
         self.shortcut = nil
@@ -386,7 +386,7 @@ private extension NSMenuItem {
     }
     
     
-    /// Apply the keyboard shortcut determined in `Script` struct stored in the receiver's `.representedObject`.
+    /// Applies the keyboard shortcut determined in `Script` struct stored in the receiver's `.representedObject`.
     ///
     /// - Parameters:
     ///   - recursively: When `true`, apply shortcuts also to the menu items in the `submenu` recursively.
@@ -424,7 +424,7 @@ private enum ScriptMenuItem: Sendable {
     case separator
     
     
-    /// Create NSMenuItem instance from ScriptMenuItem.
+    /// Creates NSMenuItem instance from ScriptMenuItem.
     ///
     /// - Parameters:
     ///   - action: The action selector to launch the script.
@@ -433,7 +433,7 @@ private enum ScriptMenuItem: Sendable {
     func menuItem(action: Selector, target: AnyObject?) -> NSMenuItem {
         
         switch self {
-            case let .script(name, script):
+            case .script(let name, let script):
                 let item = NSMenuItem(title: name, action: action, keyEquivalent: "")
                 // -> Shortcut will be applied later in `applyShortcuts()`.
                 item.representedObject = script
@@ -441,7 +441,7 @@ private enum ScriptMenuItem: Sendable {
                 item.toolTip = String(localized: "Option-click to open script in editor.")
                 return item
                 
-            case let .folder(name, items):
+            case .folder(let name, let items):
                 let menu = NSMenu(title: name)
                 menu.items = items.map { $0.menuItem(action: action, target: target) }
                 let item = NSMenuItem(title: name, action: nil, keyEquivalent: "")
@@ -458,10 +458,10 @@ private enum ScriptMenuItem: Sendable {
     var scripts: [any Script] {
         
         switch self {
-            case let .script(_, script):
+            case .script(_, let script):
                 [script]
                 
-            case let .folder(_, items):
+            case .folder(_, let items):
                 items.flatMap(\.scripts)
                 
             case .separator:

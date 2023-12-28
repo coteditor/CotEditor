@@ -28,7 +28,7 @@ import Foundation
 
 final class SyntaxValidator {
     
-    /// model object for syntax validation result
+    /// Model object for syntax validation result.
     struct Error: LocalizedError {
         
         enum ErrorKind {
@@ -79,7 +79,7 @@ final class SyntaxValidator {
     
     // MARK: Public Methods
     
-    /// Check syntax and update `errors`.
+    /// Checks syntax and update `errors`.
     ///
     /// - Returns: `true` when the syntax is valid; otherwise `false`.``
     @discardableResult

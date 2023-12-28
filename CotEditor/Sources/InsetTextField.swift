@@ -31,14 +31,14 @@ struct InsetTextField: NSViewRepresentable {
     typealias NSViewType = PaddingTextField
     
     @Binding private var text: String
-    private let prompt: String?
+    private let prompt: LocalizedStringResource?
     
     private var insets: EdgeInsets = .init()
     private var usesMonospacedDigit = false
     private var onSubmit: () -> Void = {}
     
     
-    init(text: Binding<String>, prompt: String? = nil) {
+    init(text: Binding<String>, prompt: LocalizedStringResource? = nil) {
         
         self._text = text
         self.prompt = prompt
@@ -51,7 +51,7 @@ struct InsetTextField: NSViewRepresentable {
         textField.leadingPadding = self.insets.leading
         textField.trailingPadding = self.insets.trailing
         textField.delegate = context.coordinator
-        textField.placeholderString = self.prompt
+        textField.placeholderString = self.prompt.flatMap(String.init(localized:))
         textField.isEditable = true
         
         return textField
@@ -120,7 +120,7 @@ extension InsetTextField {
     }
     
     
-    /// Set the inset value inside the field.
+    /// Sets the inset value inside the field.
     ///
     /// - Parameters:
     ///   - edges: The set of edges to inset for this view.
@@ -141,7 +141,7 @@ extension InsetTextField {
     }
     
     
-    /// Set an action to perform when the user submits a value to this view.
+    /// Sets an action to perform when the user submits a value to this view.
     ///
     /// - Parameter action: The action to perform on submission of a value.
     func onSubmit(_ action: @escaping () -> Void) -> Self {
@@ -152,7 +152,7 @@ extension InsetTextField {
     }
     
     
-    /// Modify the font to use fixed-width digits.
+    /// Modifies the font to use fixed-width digits.
     func monospacedDigit() -> Self {
         
         var view = self

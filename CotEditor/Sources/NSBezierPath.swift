@@ -35,7 +35,7 @@ public extension NSBezierPath {
         
         self.init()
         
-        cgPath.applyWithBlock { (pointer) in
+        cgPath.applyWithBlock { pointer in
             let element = pointer.pointee
             
             switch element.type {

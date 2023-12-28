@@ -29,7 +29,7 @@ extension EditorTextView: Indenting {
     
     // MARK: Action Messages
     
-    /// increase indent level
+    /// Increases indent level.
     @IBAction func shiftRight(_ sender: Any?) {
         
         if self.baseWritingDirection == .rightToLeft {
@@ -42,7 +42,7 @@ extension EditorTextView: Indenting {
     }
     
     
-    /// decrease indent level
+    /// Decreases indent level.
     @IBAction func shiftLeft(_ sender: Any?) {
         
         if self.baseWritingDirection == .rightToLeft {
@@ -55,7 +55,7 @@ extension EditorTextView: Indenting {
     }
     
     
-    /// shift selection from segmented control button
+    /// Shifts selection from segmented control button.
     @IBAction func shift(_ sender: NSSegmentedControl) {
         
         switch sender.selectedSegment {
@@ -69,14 +69,14 @@ extension EditorTextView: Indenting {
     }
     
     
-    /// standardize indentation in selection to spaces
+    /// Standardizes indentation in selection to spaces.
     @IBAction func convertIndentationToSpaces(_ sender: Any?) {
         
         self.convertIndentation(style: .space)
     }
     
     
-    /// standardize indentation in selection to tabs
+    /// Standardizes indentation in selection to tabs.
     @IBAction func convertIndentationToTabs(_ sender: Any?) {
         
         self.convertIndentation(style: .tab)
@@ -96,7 +96,7 @@ protocol Indenting: NSTextView {
 
 extension Indenting {
     
-    /// increase indent level
+    /// Increases indent level.
     @discardableResult
     func indent() -> Bool {
         
@@ -131,7 +131,7 @@ extension Indenting {
     }
     
     
-    /// decrease indent level
+    /// Decreases indent level.
     @discardableResult
     func outdent() -> Bool {
         
@@ -182,7 +182,7 @@ extension Indenting {
     }
     
     
-    /// standardize indentation of given ranges
+    /// Standardizes indentation of given ranges.
     func convertIndentation(style: IndentStyle) {
         
         guard !self.string.isEmpty else { return }

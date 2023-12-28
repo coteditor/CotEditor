@@ -154,6 +154,10 @@ final class EncodingDetectionTests: XCTestCase {
         
         XCTAssertEqual("<meta charset=\"utf-8\"/>".scanEncodingDeclaration(upTo: 128, suggestedCFEncodings: [utf8, shiftJISX0213, shiftJIS]),
                        .utf8)
+        
+        // Swift.Regex with non-simple word boundaries never returns when the given string contains a specific pattern of letters (2023-12 on Swift 5.9).
+        XCTAssertNil("ﾀﾏｺﾞ,1,".scanEncodingDeclaration(upTo: 128, suggestedCFEncodings: []))
+        XCTAssertNil(try /\ba/.wordBoundaryKind(.simple).firstMatch(in: "ﾀﾏｺﾞ,1,"))
     }
     
     
@@ -169,7 +173,7 @@ final class EncodingDetectionTests: XCTestCase {
     }
     
     
-    /// Make sure the behaviors around Shift-JIS.
+    /// Makes sure the behaviors around Shift-JIS.
     func testShiftJIS() {
         
         let shiftJIS = CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)
@@ -214,14 +218,18 @@ final class EncodingDetectionTests: XCTestCase {
     
     func testYenConversion() {
         
-        XCTAssertTrue(String.Encoding.utf8.canConvertYenSign)
-        XCTAssertTrue(String.Encoding(cfEncodings: .shiftJIS).canConvertYenSign)
-        XCTAssertFalse(String.Encoding.japaneseEUC.canConvertYenSign)  // ? (U+003F)
-        XCTAssertFalse(String.Encoding.ascii.canConvertYenSign)  // Y (U+0059)
+        XCTAssertTrue("¥".canBeConverted(to: .utf8))
+        XCTAssertTrue("¥".canBeConverted(to: String.Encoding(cfEncodings: .shiftJIS)))
+        XCTAssertFalse("¥".canBeConverted(to: .shiftJIS))
+        XCTAssertFalse("¥".canBeConverted(to: .japaneseEUC))  // ? (U+003F)
+        XCTAssertFalse("¥".canBeConverted(to: .ascii))  // Y (U+0059)
         
-        let string = "yen \\ ¥ yen"
-        XCTAssertEqual(string.convertingYenSign(for: .utf8), "yen \\ ¥ yen")
-        XCTAssertEqual(string.convertingYenSign(for: .ascii), "yen \\ \\ yen")
+        let string = "\\ ¥ yen"
+        XCTAssertEqual(string.convertingYenSign(for: .utf8), string)
+        XCTAssertEqual(string.convertingYenSign(for: String.Encoding(cfEncodings: .shiftJIS)), string)
+        XCTAssertEqual(string.convertingYenSign(for: .shiftJIS), "\\ \\ yen")
+        XCTAssertEqual(string.convertingYenSign(for: .japaneseEUC), "\\ \\ yen")
+        XCTAssertEqual(string.convertingYenSign(for: .ascii), "\\ \\ yen")
     }
     
     

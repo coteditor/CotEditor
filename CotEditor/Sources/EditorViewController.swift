@@ -83,9 +83,10 @@ final class EditorViewController: NSSplitViewController {
         
         // set user defaults
         navigationBarItem.isCollapsed = !UserDefaults.standard[.showNavigationBar]
-        UserDefaults.standard.publisher(for: .showNavigationBar)
-            .sink { [weak self] in self?.navigationBarItem?.animator().isCollapsed = !$0 }
-            .store(in: &self.defaultObservers)
+        self.defaultObservers = [
+            UserDefaults.standard.publisher(for: .showNavigationBar)
+                .sink { [weak self] in self?.navigationBarItem?.animator().isCollapsed = !$0 },
+        ]
         
         // set accessibility
         self.view.setAccessibilityElement(true)
@@ -141,7 +142,7 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
-    /// Set textStorage to the inner text view.
+    /// Sets textStorage to the inner text view.
     ///
     /// - Parameter textStorage: The text storage to set.
     func setTextStorage(_ textStorage: NSTextStorage) {
@@ -152,7 +153,7 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
-    /// Apply syntax to the inner text view.
+    /// Applies syntax to the inner text view.
     ///
     /// - Parameter syntax: The syntax to apply.
     func apply(syntax: Syntax) {
@@ -169,14 +170,14 @@ final class EditorViewController: NSSplitViewController {
     
     // MARK: Action Messages
     
-    /// Toggle visibility of navigation bar with fancy animation (sync all documents).
+    /// Toggles visibility of navigation bar with fancy animation (sync all documents).
     @IBAction func toggleNavigationBar(_ sender: Any?) {
         
         UserDefaults.standard[.showNavigationBar].toggle()
     }
     
     
-    /// Show the menu items of the outline menu in the navigation bar.
+    /// Shows the menu items of the outline menu in the navigation bar.
     @IBAction func openOutlineMenu(_ sender: Any) {
         
         self.navigationBarItem?.isCollapsed = false
@@ -184,7 +185,7 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
-    /// Select the previous outline item.
+    /// Selects the previous outline item.
     @IBAction func selectPrevItemOfOutlineMenu(_ sender: Any?) {
         
         guard
@@ -196,7 +197,7 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
-    /// Select the next outline item.
+    /// Selects the next outline item.
     @IBAction func selectNextItemOfOutlineMenu(_ sender: Any?) {
         
         guard
