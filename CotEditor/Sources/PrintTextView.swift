@@ -41,9 +41,9 @@ final class PrintTextView: NSTextView, Themable {
     
     static let margin = NSEdgeInsets(top: 56, left: 24, bottom: 56, right: 24)
     
-    private let lineFragmentPadding = 18.0
-    private let lineNumberPadding = 10.0
-    private let headerFooterFontSize = 9.0
+    private let lineFragmentPadding: Double = 18
+    private let lineNumberPadding: Double = 10
+    private let headerFooterFontSize: Double = 9
     
     
     // MARK: Public Properties
@@ -229,28 +229,25 @@ final class PrintTextView: NSTextView, Themable {
             let options: NSTextView.LineEnumerationOptions = isVerticalText ? [.bySkippingWrappedLine] : []
             let range = (self.layoutManager as? PrintLayoutManager)?.visibleRange
             self.enumerateLineFragments(in: dirtyRect, for: range, options: options.union(.bySkippingExtraLine)) { (lineRect, line, lineNumber) in
-                let numberString: String = {
-                    switch line {
-                        case .new:
-                            if isVerticalText, lineNumber != 1, !lineNumber.isMultiple(of: 5) {
-                                return "·"  // draw number only every 5 times
-                            }
-                            return String(lineNumber)
-                            
-                        case .wrapped:
-                            return "-"
-                    }
-                }()
+                let numberString: String = switch line {
+                    case .new:
+                        if isVerticalText, lineNumber != 1, !lineNumber.isMultiple(of: 5) {
+                            "·"  // draw number only every 5 times
+                        } else {
+                            String(lineNumber)
+                        }
+                    case .wrapped:
+                        "-"
+                }
                 
                 // adjust position to draw
                 let width = CGFloat(numberString.count) * numberSize.width
-                let point: NSPoint
-                if isVerticalText {
-                    point = NSPoint(x: -lineRect.midY - width / 2,
-                                    y: horizontalOrigin - numberSize.height)
+                let point: NSPoint = if isVerticalText {
+                    NSPoint(x: -lineRect.midY - width / 2,
+                            y: horizontalOrigin - numberSize.height)
                 } else {
-                    point = NSPoint(x: horizontalOrigin - width,  // - width to align to right
-                                    y: lineRect.minY + baselineOffset - numberAscender)
+                    NSPoint(x: horizontalOrigin - width,  // - width to align to right
+                            y: lineRect.minY + baselineOffset - numberAscender)
                 }
                 
                 // draw number
