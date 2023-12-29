@@ -12,6 +12,7 @@
 ### Fixes
 
 - Fix an issue that the application could not open a document containing a specific pattern of letters.
+- Fix an issue that the validation error message in the syntax editor did not change even when errors were found.
 
 
 

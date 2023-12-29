@@ -30,6 +30,7 @@ struct SyntaxValidationView: View {
     let validator: SyntaxValidator
     
     @State private var errors: [SyntaxValidator.Error] = []
+    @State private var selection: Int?
     
     
     // MARK: View
@@ -38,7 +39,7 @@ struct SyntaxValidationView: View {
         
         VStack(alignment: .leading) {
             MessageView(count: self.errors.count)
-            List(Array(self.errors.enumerated()), id: \.offset) { (_, error) in
+            List(Array(self.errors.enumerated()), id: \.offset, selection: $selection) { (_, error) in
                 ErrorView(error: error)
             }
         }
@@ -56,7 +57,7 @@ struct SyntaxValidationView: View {
     
     private struct MessageView: View {
         
-        @State var count: Int
+        var count: Int
         
         
         var body: some View {
@@ -105,7 +106,6 @@ struct SyntaxValidationView: View {
                             .controlSize(.small)
                     }
                 }
-                .foregroundColor(.label)
                 .textSelection(.enabled)
             } icon: {
                 Image(systemName: "exclamationmark.triangle")
@@ -130,5 +130,10 @@ struct SyntaxValidationView: View {
     let syntax = NSMutableDictionary(dictionary: dictionary)
     
     return SyntaxValidationView(validator: .init(syntax: syntax))
+        .frame(width: 400)
+}
+
+#Preview("No Error") {
+    SyntaxValidationView(validator: .init(syntax: [:]))
         .frame(width: 400)
 }
