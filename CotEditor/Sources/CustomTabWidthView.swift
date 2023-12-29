@@ -54,12 +54,14 @@ struct CustomTabWidthView: View {
         VStack(alignment: .trailing) {
             LabeledContent("Tab width:") {
                 StepperNumberField(value: $value, default: self.defaultWidth, in: 1...99)
-                    .onSubmit(self.submit)
+                    .onSubmit { self.submit() }
             }
             
             HStack {
                 Spacer(minLength: 0)
-                SubmitButtonGroup(action: self.submit) {
+                SubmitButtonGroup {
+                    self.submit()
+                } cancelAction: {
                     self.parent?.dismiss(nil)
                 }
             }
@@ -71,7 +73,7 @@ struct CustomTabWidthView: View {
     // MARK: Private Methods
     
     /// Submits the current input.
-    private func submit() {
+    @MainActor private func submit() {
         
         self.completionHandler(self.value)
         self.parent?.dismiss(nil)

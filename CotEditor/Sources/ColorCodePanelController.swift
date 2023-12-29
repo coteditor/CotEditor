@@ -147,8 +147,10 @@ private struct ColorCodePanelAccessory: View {
                 .onChange(of: self.type, perform: self.apply(type:))
                 .labelsHidden()
                 
-                Button("Insert", action: self.submit)
-                    .keyboardShortcut(.defaultAction)
+                Button("Insert") {
+                    self.submit()
+                }
+                .keyboardShortcut(.defaultAction)
             }.controlSize(.small)
         }
         .onReceive(self.panel.publisher(for: \.color), perform: self.apply(color:))
@@ -161,7 +163,7 @@ private struct ColorCodePanelAccessory: View {
     // MARK: Private Methods
     
     /// Inserts the color code to the selection of the frontmost document.
-    private func submit() {
+    @MainActor private func submit() {
         
         self.apply(colorCode: self.colorCode)
         

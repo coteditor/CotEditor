@@ -64,20 +64,22 @@ struct CustomSurroundStringView: View {
             HStack(alignment: .firstTextBaseline) {
                 LabeledContent("Begin:") {
                     TextField(text: $pair.begin, label: EmptyView.init)
-                        .onSubmit(self.submit)
+                        .onSubmit { self.submit() }
                         .frame(width: 48)
                 }.padding(.trailing)
                 
                 LabeledContent("End:") {
                     TextField(text: $pair.end, prompt: Text(verbatim: self.pair.begin), label: EmptyView.init)
-                        .onSubmit(self.submit)
+                        .onSubmit { self.submit() }
                         .frame(width: 48)
                 }
             }.fixedSize()
             
             HStack {
                 Spacer()
-                SubmitButtonGroup(action: self.submit) {
+                SubmitButtonGroup {
+                    self.submit()
+                } cancelAction: {
                     self.parent?.dismiss(nil)
                 }
             }
@@ -90,7 +92,7 @@ struct CustomSurroundStringView: View {
     // MARK: Private Methods
     
     /// Submits the current input.
-    private func submit() {
+    @MainActor private func submit() {
         
         self.parent?.commitEditing()
         

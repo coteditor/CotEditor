@@ -53,7 +53,7 @@ struct UnicodeInputView: View {
             
             ZStack(alignment: .leadingFirstTextBaseline) {
                 InsetTextField(text: $codePoint, prompt: "U+1F600")
-                    .onSubmit(self.submit)
+                    .onSubmit { self.submit() }
                     .inset(.leading, 18)
                     .monospacedDigit()
                 
@@ -115,7 +115,7 @@ struct UnicodeInputView: View {
     
     
     /// Inputs Unicode character to the parent text view.
-    private func submit() {
+    @MainActor private func submit() {
         
         guard let character = self.character else { return NSSound.beep() }
         

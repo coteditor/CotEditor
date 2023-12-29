@@ -162,7 +162,7 @@ struct FindPanelResultView: View {
     /// Selects the match in the target text view.
     ///
     /// - Parameter id: The identifier of the match to select.
-    private func selectMatch(_ id: Match.ID) {
+    @MainActor private func selectMatch(_ id: Match.ID) {
         
         // abandon if text becomes shorter than range to select
         guard

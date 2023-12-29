@@ -45,7 +45,7 @@ struct GoToLineView: View {
                 TextField("Line:", value: $lineRange, format: .fuzzyRange, prompt: Text("Line Number"))
                     .monospacedDigit()
                     .multilineTextAlignment(.trailing)
-                    .onSubmit(self.submit)
+                    .onSubmit { self.submit() }
             }
             
             HStack {
@@ -53,7 +53,9 @@ struct GoToLineView: View {
                 
                 Spacer()
                 
-                SubmitButtonGroup("Go", action: self.submit) {
+                SubmitButtonGroup("Go") {
+                    self.submit()
+                } cancelAction: {
                     self.parent?.dismiss(nil)
                 }
             }
@@ -66,7 +68,7 @@ struct GoToLineView: View {
     // MARK: Private Methods
     
     /// Submits the current input.
-    private func submit() {
+    @MainActor private func submit() {
         
         guard
             self.completionHandler(self.lineRange)
