@@ -818,7 +818,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     /// Changes the text encoding by asking options to the user.
     ///
     /// - Parameter fileEncoding: The file encoding to change.
-    func changeEncoding(to fileEncoding: FileEncoding) {
+    @MainActor func changeEncoding(to fileEncoding: FileEncoding) {
         
         assert(Thread.isMainThread)
         
@@ -904,7 +904,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     ///   - fileEncoding: The text encoding to change with.
     ///   - lossy: Whether the change is lossy.
     /// - Throws: `EncodingError` (Kind.lossyConversion) can be thrown but only if `lossy` flag is `false`.
-    func changeEncoding(to fileEncoding: FileEncoding, lossy: Bool) throws {
+    @MainActor func changeEncoding(to fileEncoding: FileEncoding, lossy: Bool) throws {
         
         assert(Thread.isMainThread)
         
@@ -940,7 +940,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     /// Change line endings and register the process to the undo manager.
     ///
     /// - Parameter lineEnding: The line ending type to change with.
-    func changeLineEnding(to lineEnding: LineEnding) {
+    @MainActor func changeLineEnding(to lineEnding: LineEnding) {
         
         assert(Thread.isMainThread)
         
@@ -1110,7 +1110,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     
     /// Checks if can save safely with the current encoding and ask if not.
-    private func askSavingSafety(completionHandler: @escaping (Bool) -> Void) {
+    @MainActor private func askSavingSafety(completionHandler: @escaping (Bool) -> Void) {
         
         assert(Thread.isMainThread)
         
@@ -1135,7 +1135,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     
     /// Displays an alert about inconsistent line endings.
-    private func showInconsistentLineEndingAlert() {
+    @MainActor private func showInconsistentLineEndingAlert() {
         
         assert(Thread.isMainThread)
         
@@ -1331,7 +1331,9 @@ private struct EncodingError: LocalizedError, RecoverableError {
             case .lossySaving:
                 switch recoveryOptionIndex {
                     case 0:  // == Show Incompatible Characters
-                        self.showIncompatibleCharacters()
+                        Task { @MainActor in
+                            self.showIncompatibleCharacters()
+                        }
                         return false
                     case 1:  // == Save
                         return true
@@ -1344,8 +1346,10 @@ private struct EncodingError: LocalizedError, RecoverableError {
             case .lossyConversion:
                 switch recoveryOptionIndex {
                     case 0:  // == Change Encoding
-                        try? self.attempter.changeEncoding(to: self.fileEncoding, lossy: true)
-                        self.showIncompatibleCharacters()
+                        Task { @MainActor in
+                            try? self.attempter.changeEncoding(to: self.fileEncoding, lossy: true)
+                            self.showIncompatibleCharacters()
+                        }
                         return true
                     case 1:  // == Cancel
                         return false
@@ -1356,7 +1360,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
     }
     
     
-    private func showIncompatibleCharacters() {
+    @MainActor private func showIncompatibleCharacters() {
         
         weak var windowContentController = self.attempter.windowControllers.first?.contentViewController as? WindowContentViewController
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
