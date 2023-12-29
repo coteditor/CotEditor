@@ -25,7 +25,7 @@
 
 import Foundation
 
-final class FindProgress: ObservableObject {
+final class FindProgress: ObservableObject, @unchecked Sendable {
     
     private(set) var count = 0
     var completedUnit = 0

@@ -667,7 +667,7 @@ extension NSTextView {
 
 // MARK: -
 
-private final class LineCounter: LineRangeCacheable {
+private final class LineCounter: LineRangeCacheable, @unchecked Sendable {
     
     let string: NSString
     var lineRangeCache = LineRangeCache()
