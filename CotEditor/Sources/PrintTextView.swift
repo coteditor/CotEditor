@@ -161,7 +161,7 @@ final class PrintTextView: NSTextView, Themable {
         
         if let printInfo = NSPrintOperation.current?.printInfo {
             // set scope to print
-            (self.layoutManager as? PrintLayoutManager)?.showsSelectionOnly = printInfo.isSelectionOnly
+            (self.layoutManager as? PrintLayoutManager)?.visibleRange = printInfo.isSelectionOnly ? self.selectedRange : nil
             
             // adjust content size based on print setting
             let paperContentSize = printInfo.paperContentSize
@@ -227,7 +227,7 @@ final class PrintTextView: NSTextView, Themable {
             }
             
             let options: NSTextView.LineEnumerationOptions = isVerticalText ? [.bySkippingWrappedLine] : []
-            let range = ((self.layoutManager as? PrintLayoutManager)?.showsSelectionOnly == true) ? self.selectedRange : nil
+            let range = (self.layoutManager as? PrintLayoutManager)?.visibleRange
             self.enumerateLineFragments(in: dirtyRect, for: range, options: options.union(.bySkippingExtraLine)) { (lineRect, line, lineNumber) in
                 let numberString: String = {
                     switch line {
@@ -432,10 +432,10 @@ private extension NSLayoutManager {
 
 private final class PrintLayoutManager: LayoutManager {
     
-    var showsSelectionOnly = false {
+    var visibleRange: NSRange? {
         
         didSet {
-            guard showsSelectionOnly != oldValue else { return }
+            guard visibleRange != oldValue else { return }
             
             let range = self.attributedString().range
             self.invalidateGlyphs(forCharacterRange: range, changeInLength: 0, actualCharacterRange: nil)
@@ -450,12 +450,11 @@ private final class PrintLayoutManager: LayoutManager {
         
         // hide unselected glyphs if set so
         guard
-            self.showsSelectionOnly,
-            let selectedRange = layoutManager.firstTextView?.selectedRange,
-            self.attributedString().length != selectedRange.length
+            let visibleRange = self.visibleRange,
+            self.attributedString().length != visibleRange.length
         else { return 0 }  // return 0 for the default processing
         
-        let glyphIndexesToHide = (0..<glyphRange.length).filter { !selectedRange.contains(characterIndexes[$0]) }
+        let glyphIndexesToHide = (0..<glyphRange.length).filter { !visibleRange.contains(characterIndexes[$0]) }
         
         guard !glyphIndexesToHide.isEmpty else { return 0 }
         
@@ -473,10 +472,7 @@ private final class PrintLayoutManager: LayoutManager {
     override func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {
         
         // zero width for folded characters
-        if self.showsSelectionOnly,
-           let selectedRange = layoutManager.firstTextView?.selectedRange,
-           !selectedRange.contains(charIndex)
-        {
+        if self.visibleRange?.contains(charIndex) == false {
             return .zeroAdvancement
         }
         
