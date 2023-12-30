@@ -152,7 +152,9 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         super.restoreState(with: coder)
         
         if coder.decodeBool(forKey: SerializationKey.showsAdvancedCounter) {
-            self.showAdvancedCharacterCounter()
+            Task { @MainActor in
+                self.showAdvancedCharacterCounter()
+            }
         }
     }
     
@@ -349,7 +351,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// Shows a popover indicating the given image and live text detection.
     ///
     /// - Parameter image: The image to scan text.
-    private func popoverLiveText(image: NSImage) {
+    @MainActor private func popoverLiveText(image: NSImage) {
         
         guard let textView = self.textView else { return assertionFailure() }
         
@@ -371,7 +373,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// Hides the existing advanced character counter.
     ///
     /// - Parameter counterView: The advanced character counter to dismiss.
-    private func dismissAdvancedCharacterCounter() {
+    @MainActor private func dismissAdvancedCharacterCounter() {
         
         guard let counterView = self.advancedCounterView else { return assertionFailure() }
         
@@ -386,7 +388,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     
     /// Sets and shows advanced character counter.
-    private func showAdvancedCharacterCounter() {
+    @MainActor private func showAdvancedCharacterCounter() {
         
         guard let textView = self.textView else { return assertionFailure() }
         

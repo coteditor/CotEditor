@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Improve stability.
 - [trivial] Deprecate the feature for theme/syntax settings to delete a setting by swiping on the setting name in the Settings.
 - [non-AppStore ver.] Update Sparkle from 2.5.1 to 2.5.2.
 
