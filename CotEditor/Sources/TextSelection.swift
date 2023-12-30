@@ -85,7 +85,6 @@ final class TextSelection: NSObject {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     required init(document: Document) {

@@ -113,7 +113,6 @@ final class LineNumberView: NSView {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     init(textView: NSTextView) {

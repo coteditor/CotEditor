@@ -52,7 +52,7 @@ final class DocumentController: NSDocumentController {
     private var syntaxObserver: AnyCancellable?
     
     
-    // MARK: -
+    
     // MARK: Lifecycle
     
     override init() {

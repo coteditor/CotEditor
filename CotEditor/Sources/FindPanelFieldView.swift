@@ -79,7 +79,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     
-    // MARK: -
     // MARK: View Controller Methods
     
     override func viewDidLoad() {

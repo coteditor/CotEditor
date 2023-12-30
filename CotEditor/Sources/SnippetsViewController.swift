@@ -55,7 +55,6 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     
     
     
-    // MARK: -
     // MARK: View Controller Methods
     
     override func viewDidLoad() {

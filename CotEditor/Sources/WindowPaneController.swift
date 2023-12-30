@@ -43,7 +43,6 @@ final class WindowPaneController: NSViewController {
     
     
     
-    // MARK: -
     // MARK: View Controller Methods
     
     override func viewDidLoad() {

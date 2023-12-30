@@ -46,7 +46,6 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     override init() {

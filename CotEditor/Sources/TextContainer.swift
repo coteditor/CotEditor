@@ -42,7 +42,6 @@ final class TextContainer: NSTextContainer {
     
     
     
-    // MARK: -
     // MARK: Text Container Methods
     
     override weak var textView: NSTextView? {

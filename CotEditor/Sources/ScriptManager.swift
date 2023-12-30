@@ -53,7 +53,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     private override init() {

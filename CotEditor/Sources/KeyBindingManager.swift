@@ -41,7 +41,6 @@ final class KeyBindingManager {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     private init() {

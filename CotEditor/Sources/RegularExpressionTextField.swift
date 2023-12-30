@@ -57,7 +57,6 @@ final class RegularExpressionTextField: NSTextField {
     
     
     
-    // MARK: -
     // MARK: Text Field Methods
     
     override class var cellClass: AnyClass? {

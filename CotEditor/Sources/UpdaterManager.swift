@@ -41,7 +41,6 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     private override init() {

@@ -62,7 +62,6 @@ final class PrintTextView: NSTextView, Themable {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     init(info: DocumentInfo) {

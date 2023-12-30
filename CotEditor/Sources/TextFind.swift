@@ -90,7 +90,6 @@ struct TextFind {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     /// Returns a TextFind instance with the specified options.

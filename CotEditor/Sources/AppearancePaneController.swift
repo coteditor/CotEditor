@@ -58,7 +58,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     
-    // MARK: -
     // MARK: View Controller Methods
     
     override func viewDidLoad() {

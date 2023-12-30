@@ -46,7 +46,7 @@ final class ColorCodePanelController: NSObject, NSWindowDelegate {
         }
     
     
-    // MARK: -
+    
     // MARK: Window Delegate
     
     func windowWillClose(_ notification: Notification) {

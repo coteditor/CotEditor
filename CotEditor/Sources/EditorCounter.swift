@@ -89,7 +89,6 @@ final actor EditorCounter {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     init(string: String, selectedRanges: [Range<String.Index>], requiredInfo: EditorInfoTypes, countsWholeText: Bool) {

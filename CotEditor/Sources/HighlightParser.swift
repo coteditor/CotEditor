@@ -66,7 +66,6 @@ struct HighlightParser {
     
     
     
-    // MARK: -
     // MARK: Public Methods
     
     var isEmpty: Bool {

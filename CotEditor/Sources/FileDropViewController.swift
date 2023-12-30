@@ -41,7 +41,6 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
     
     
     
-    // MARK: -
     // MARK: View Controller Methods
     
     override func viewDidLoad() {

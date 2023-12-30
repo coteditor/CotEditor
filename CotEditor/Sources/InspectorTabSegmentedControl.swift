@@ -34,7 +34,6 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
     
     
     
-    // MARK: -
     // MARK: Segmented Control Methods
     
     override func viewWillDraw() {

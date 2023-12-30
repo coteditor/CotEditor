@@ -42,7 +42,6 @@ final class RegularExpressionFormatter: Formatter {
     
     
     
-    // MARK: -
     // MARK: Formatter Function
     
     /// Converts to plain string

@@ -47,7 +47,6 @@ final class InspectorTabView: NSTabView {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     override init(frame frameRect: NSRect) {

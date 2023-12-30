@@ -38,7 +38,6 @@ class FindPanelTextView: NSTextView {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     required init?(coder: NSCoder) {

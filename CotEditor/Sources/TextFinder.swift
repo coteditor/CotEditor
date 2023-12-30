@@ -145,7 +145,6 @@ final class TextFinder {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     deinit {

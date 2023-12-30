@@ -60,7 +60,6 @@ final class NavigationBarController: NSViewController {
     
     
     
-    // MARK: -
     // MARK: View Controller Methods
     
     override func viewDidLoad() {

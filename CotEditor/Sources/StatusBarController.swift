@@ -54,7 +54,6 @@ import Combine
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     init?(document: Document, coder: NSCoder) {

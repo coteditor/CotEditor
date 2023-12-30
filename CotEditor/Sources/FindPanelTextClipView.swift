@@ -34,7 +34,6 @@ final class FindPanelTextClipView: NSClipView {
     
     
     
-    // MARK: -
     // MARK: View Methods
     
     override var frame: NSRect {

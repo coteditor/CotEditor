@@ -35,7 +35,6 @@ final class PaddingTextFieldCell: NSTextFieldCell {
     
     
     
-    // MARK: -
     // MARK: Cell Methods
     
     /// Adds padding to area to draw text.

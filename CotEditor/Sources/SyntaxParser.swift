@@ -71,7 +71,6 @@ final class SyntaxParser {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     init(textStorage: NSTextStorage, syntax: Syntax) {

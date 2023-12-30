@@ -66,7 +66,6 @@ struct DocumentFile {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     /// Reads file at the given URL and initialize.

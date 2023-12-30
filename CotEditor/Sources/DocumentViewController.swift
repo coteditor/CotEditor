@@ -79,7 +79,6 @@ final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeC
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     init(document: Document) {

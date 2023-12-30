@@ -46,7 +46,6 @@ final class KeyBindingsPaneController: NSViewController, NSOutlineViewDataSource
     
     
     
-    // MARK: -
     // MARK: View Controller Methods
     
     override func viewWillAppear() {

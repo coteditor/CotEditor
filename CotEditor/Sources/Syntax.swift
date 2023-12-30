@@ -55,7 +55,6 @@ struct Syntax: Equatable {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     private init(name: String, kind: Kind) {

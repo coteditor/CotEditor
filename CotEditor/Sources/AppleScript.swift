@@ -36,7 +36,6 @@ struct AppleScript: EventScript {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     init(url: URL, name: String, shortcut: Shortcut?) throws {

@@ -152,7 +152,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     convenience init() {

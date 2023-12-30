@@ -40,7 +40,6 @@ final class OpacitySampleView: NSView {
     
     
     
-    // MARK: -
     // MARK: View Methods
     
     override func draw(_ dirtyRect: NSRect) {

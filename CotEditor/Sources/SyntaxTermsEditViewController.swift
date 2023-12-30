@@ -34,7 +34,6 @@ final class SyntaxTermsEditViewController: NSViewController {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     override func viewWillAppear() {

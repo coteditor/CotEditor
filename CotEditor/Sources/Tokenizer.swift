@@ -63,7 +63,6 @@ final class Tokenizer: Sendable {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     init(tokens: [String], prefix: String, suffix: String) {

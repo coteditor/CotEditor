@@ -34,7 +34,6 @@ final class StatableToolbarItem: NSToolbarItem, StatableItem {
     
     
     
-    // MARK: -
     // MARK: Toolbar Item Methods
     
     override var image: NSImage? {

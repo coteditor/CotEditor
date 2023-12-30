@@ -31,7 +31,6 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     init() { }

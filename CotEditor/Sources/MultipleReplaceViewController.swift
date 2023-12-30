@@ -47,7 +47,6 @@ final class MultipleReplaceViewController: NSViewController {
     
     
     
-    // MARK: -
     // MARK: View Controller Methods
     
     override func viewDidLoad() {

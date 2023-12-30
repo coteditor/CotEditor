@@ -114,7 +114,6 @@ struct ScriptDescriptor {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     /// Creates a descriptor that represents a user script at the given URL.

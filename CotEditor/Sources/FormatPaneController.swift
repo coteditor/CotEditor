@@ -50,7 +50,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     
     
-    // MARK: -
     // MARK: View Controller Methods
     
     override func viewDidLoad() {

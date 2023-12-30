@@ -44,7 +44,6 @@ final class IncompatibleCharacterScanner {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     required init(document: Document) {

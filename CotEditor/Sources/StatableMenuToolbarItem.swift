@@ -34,7 +34,6 @@ final class StatableMenuToolbarItem: NSMenuToolbarItem, StatableItem, Validatabl
     
     
     
-    // MARK: -
     // MARK: Toolbar Item Methods
     
     override var image: NSImage? {

@@ -49,7 +49,6 @@ final class DocumentAnalyzer {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     required init(document: Document) {

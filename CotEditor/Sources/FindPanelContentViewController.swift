@@ -40,7 +40,6 @@ final class FindPanelContentViewController: NSSplitViewController {
     
     
     
-    // MARK: -
     // MARK: Split View Controller Methods
     
     override func loadView() {

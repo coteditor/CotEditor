@@ -73,7 +73,6 @@ final class DocumentInspectorViewController: NSViewController, DocumentOwner {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     required init?(document: Document, coder: NSCoder) {

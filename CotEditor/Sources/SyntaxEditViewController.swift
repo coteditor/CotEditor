@@ -47,7 +47,6 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     /// Initializes the view from a storyboard with the given mode.

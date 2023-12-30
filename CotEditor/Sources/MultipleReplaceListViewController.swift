@@ -43,7 +43,6 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     
     
     
-    // MARK: -
     // MARK: View Controller Methods
     
     override func viewDidLoad() {

@@ -53,7 +53,6 @@ final class CommandLineToolManager: Sendable {
     
     
     
-    // MARK: -
     // MARK: Public Methods
     
     init(bundle: Bundle) {

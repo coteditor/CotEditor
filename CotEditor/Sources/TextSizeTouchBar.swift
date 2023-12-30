@@ -43,7 +43,6 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     init(textView: NSTextView, forPressAndHold: Bool = false) {

@@ -65,7 +65,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     convenience init(document: Document) {

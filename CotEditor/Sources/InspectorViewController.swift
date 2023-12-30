@@ -42,7 +42,6 @@ final class InspectorViewController: NSTabViewController, DocumentOwner {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     init(document: Document) {

@@ -49,7 +49,6 @@ final class LineEndingScanner {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     required init(textStorage: NSTextStorage, lineEnding: LineEnding) {

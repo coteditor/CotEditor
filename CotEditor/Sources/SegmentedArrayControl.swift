@@ -53,7 +53,6 @@ final class SegmentedArrayControl: NSSegmentedControl {
     
     
     
-    // MARK: -
     // MARK: Action Messages
     
     @IBAction func addRemove(_ sender: NSSegmentedControl) {

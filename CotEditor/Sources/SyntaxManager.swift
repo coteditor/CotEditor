@@ -84,7 +84,6 @@ final class SyntaxManager: SettingFileManaging {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     private init() {

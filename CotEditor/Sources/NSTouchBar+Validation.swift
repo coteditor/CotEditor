@@ -111,7 +111,6 @@ extension NSTouchBar {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     private init() { }

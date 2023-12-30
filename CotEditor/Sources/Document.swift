@@ -87,7 +87,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     override init() {

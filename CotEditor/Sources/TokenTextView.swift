@@ -40,7 +40,6 @@ final class TokenTextView: NSTextView {
     
     
     
-    // MARK: -
     // MARK: Text View Methods
     
     override var string: String {

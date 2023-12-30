@@ -62,7 +62,6 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
     
     
     
-    // MARK: -
     // MARK: View Methods
     
     override var frame: NSRect {

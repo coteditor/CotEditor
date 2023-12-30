@@ -75,7 +75,6 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     
     
-    // MARK: -
     // MARK: View Controller Method
     
     override func viewDidLoad() {

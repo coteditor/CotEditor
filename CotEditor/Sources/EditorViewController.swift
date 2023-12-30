@@ -52,7 +52,6 @@ final class EditorViewController: NSSplitViewController {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     deinit {

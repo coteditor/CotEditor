@@ -40,7 +40,6 @@ final class Atomic<T> {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     /// Initializer for propertyWrapper.

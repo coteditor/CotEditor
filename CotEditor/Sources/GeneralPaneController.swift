@@ -39,7 +39,6 @@ final class GeneralPaneController: NSViewController {
     
     
     
-    // MARK: -
     // MARK: View Controller Methods
     
     override func viewWillAppear() {

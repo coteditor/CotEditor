@@ -57,7 +57,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     override func loadView() {

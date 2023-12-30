@@ -58,7 +58,6 @@ final class DocumentWindow: NSWindow {
     
     
     
-    // MARK: -
     // MARK: Window Methods
     
     override class var restorableStateKeyPaths: [String] {

@@ -50,7 +50,7 @@ final class EncodingManager {
     private var encodingListObserver: AnyCancellable?
     
     
-    // MARK: -
+    
     // MARK: Lifecycle
     
     private init() {

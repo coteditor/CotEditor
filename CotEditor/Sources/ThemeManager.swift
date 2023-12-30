@@ -60,7 +60,6 @@ final class ThemeManager: SettingFileManaging {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     private init() {

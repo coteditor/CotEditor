@@ -35,7 +35,6 @@ final class RegexFindPanelTextView: FindPanelTextView {
     private(set) var isValid = true
     
     
-    // MARK: -
     // MARK: Text View Methods
     
     /// The content string did update.

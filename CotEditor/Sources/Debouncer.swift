@@ -47,7 +47,6 @@ final class Debouncer {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     /// Returns a new `Debouncer` initialized with given values.

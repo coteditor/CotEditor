@@ -35,7 +35,6 @@ final class DotView: NSView {
     
     
     
-    // MARK: -
     // MARK: View Methods
     
     override var intrinsicContentSize: NSSize {

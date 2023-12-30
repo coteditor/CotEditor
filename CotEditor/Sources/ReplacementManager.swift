@@ -50,7 +50,6 @@ final class ReplacementManager: SettingFileManaging {
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     private init() {

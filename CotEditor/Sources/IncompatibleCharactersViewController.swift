@@ -61,7 +61,6 @@ final class IncompatibleCharactersViewController: NSViewController, DocumentOwne
     
     
     
-    // MARK: -
     // MARK: Lifecycle
     
     required init?(document: Document, coder: NSCoder) {

@@ -48,7 +48,6 @@ final class WindowContentViewController: NSSplitViewController, DocumentOwner {
     
     
     
-    // MARK: -
     // MARK: Split View Controller Methods
     
     init(document: Document) {
