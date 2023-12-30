@@ -78,7 +78,7 @@ struct DocumentFile {
         
         guard fileURL.isFileURL else { throw CocoaError(.fileReadUnknown) }
         
-        let data = try Data(contentsOf: fileURL, options: [.mappedIfSafe])  // FILE_READ
+        let data = try Data(contentsOf: fileURL)  // FILE_READ
         let attributes = try FileManager.default.attributesOfItem(atPath: fileURL.path)  // FILE_READ
         
         // check extended attributes

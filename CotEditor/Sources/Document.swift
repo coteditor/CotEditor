@@ -707,7 +707,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 guard modificationDate != self.fileModificationDate else { return }
                 
                 // check if file contents was changed from the stored file data
-                let data = try Data(contentsOf: newURL, options: [.mappedIfSafe])
+                let data = try Data(contentsOf: newURL)
                 didChange = data != self.fileData
             } catch {
                 assertionFailure(error.localizedDescription)
