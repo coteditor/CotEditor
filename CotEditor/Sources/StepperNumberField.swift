@@ -79,7 +79,7 @@ struct StepperNumberField: View {
         } else if let promptText {
             Text(promptText)
         } else {
-             nil
+            nil
         }
     }
     
