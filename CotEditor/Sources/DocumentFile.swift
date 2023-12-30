@@ -76,6 +76,8 @@ struct DocumentFile {
     ///   - encodingStrategy: The text encoding to read the file.
     init(fileURL: URL, encodingStrategy: EncodingStrategy) throws {
         
+        guard fileURL.isFileURL else { throw CocoaError(.fileReadUnknown) }
+        
         let data = try Data(contentsOf: fileURL, options: [.mappedIfSafe])  // FILE_READ
         let attributes = try FileManager.default.attributesOfItem(atPath: fileURL.path)  // FILE_READ
         
