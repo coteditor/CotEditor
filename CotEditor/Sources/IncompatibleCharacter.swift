@@ -52,7 +52,9 @@ extension String {
                 try Task.checkCancellation()
                 
                 let string = String(character)
-                let converted = String(data: string.data(using: encoding, allowLossyConversion: true)!, encoding: encoding)
+                let converted = string
+                    .data(using: encoding, allowLossyConversion: true)
+                    .flatMap { String(data: $0, encoding: encoding) }
                 
                 guard converted != string else { return nil }
                 
