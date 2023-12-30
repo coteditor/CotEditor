@@ -1,6 +1,6 @@
 # CotEditor
 
-CotEditor is a lightweight plain-text editor for macOS. The project aims to provide a general plain-text editor for everyone with intuitive macOS-native user interface.
+CotEditor is a lightweight plain-text editor for macOS. The project aims to provide a general plain-text editor for everyone with an intuitive macOS-native user interface.
 
 - __Requirement__: macOS 13 Ventura or later
 - __Web Site__: <https://coteditor.com>
@@ -13,7 +13,7 @@ CotEditor is a lightweight plain-text editor for macOS. The project aims to prov
 
 ## Source Code
 
-CotEditor is a purely macOS native application written in Swift. It adopts Cocoa's document-based application architecture.
+CotEditor is a purely macOS native application written in Swift. It adopts Cocoa's document-based application architecture and respects the power of `NSTextView`.
 
 
 ### Development Environment
