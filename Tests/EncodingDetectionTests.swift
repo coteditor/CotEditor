@@ -45,6 +45,9 @@ final class EncodingDetectionTests: XCTestCase {
         
         XCTAssertEqual(string, "0")
         XCTAssertEqual(encoding, .utf8)
+        
+        XCTAssertEqual(String(bomCapableData: Data(Unicode.BOM.utf8.sequence), encoding: .utf8), "")
+        XCTAssertEqual(String(bomCapableData: Data(), encoding: .utf8), "")
     }
     
     
