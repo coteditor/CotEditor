@@ -14,6 +14,7 @@
 
 - Fix an issue that the application could not open a document containing a specific pattern of letters.
 - Fix a possible crash when opening a corrupt file.
+- Fix a possible crash when moving the cursor in the editor.
 - Fix an issue that the validation error message in the syntax editor did not change even when errors were found.
 
 

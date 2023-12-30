@@ -37,8 +37,8 @@ extension NSTextView {
         
         let cursorIndexes = selectedRanges
             .filter { $0.isEmpty }
-            .filter { $0.location > 0 }
             .map { String.Index(utf16Offset: $0.lowerBound, in: self.string) }
+            .filter { $0 > self.string.startIndex }
         
         guard
             !cursorIndexes.isEmpty,
