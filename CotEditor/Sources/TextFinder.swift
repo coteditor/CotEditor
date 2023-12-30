@@ -545,7 +545,8 @@ final class TextFinder {
                     let lineString = (textFind.string as NSString).substring(with: lineRange)
                     let attrLineString = NSMutableAttributedString(string: lineString)
                     for (color, range) in zip(highlightColors, matches) where !range.isEmpty {
-                        attrLineString.addAttribute(.backgroundColor, value: color, range: range.shifted(by: -lineRange.location))
+                        guard let inlineRange = range.shifted(by: -lineRange.location).intersection(attrLineString.range) else { continue }
+                        attrLineString.addAttribute(.backgroundColor, value: color, range: inlineRange)
                     }
                     
                     resultMatches.append(.init(range: matchedRange, lineLocation: matchedRange.location - lineRange.location, attributedLineString: attrLineString))
