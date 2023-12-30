@@ -146,6 +146,7 @@ private struct ScalarDetailView: View {
             if self.items.contains(.block) {
                 GridRow {
                     Text("Block:")
+                        .gridColumnAlignment(.trailing)
                     
                     if let blockName = self.scalar.localizedBlockName {
                         Text(blockName)
