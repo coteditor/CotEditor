@@ -6,16 +6,16 @@
 ### Improvements
 
 - Improve stability.
-- [trivial] Deprecate the feature for theme/syntax settings to delete a setting by swiping on the setting name in the Settings.
+- [trivial] Deprecate the feature for theme/syntax settings to delete a setting by swiping on the setting name in Settings.
 - [non-AppStore ver.] Update Sparkle from 2.5.1 to 2.5.2.
 
 
 ### Fixes
 
 - Fix an issue that the application could not open a document containing a specific pattern of letters.
+- Fix an issue that the validation error message in the syntax editor did not change even when errors exist.
 - Fix a possible crash when opening a corrupt file.
 - Fix a possible crash when moving the cursor in the editor.
-- Fix an issue that the validation error message in the syntax editor did not change even when errors were found.
 
 
 
