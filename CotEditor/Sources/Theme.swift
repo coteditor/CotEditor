@@ -199,7 +199,10 @@ extension Theme.Style: Codable {
     
     func encode(to encoder: any Encoder) throws {
         
-        guard let color = self.color.usingColorSpace(.genericRGB) else { throw CocoaError(.coderInvalidValue) }
+        guard let color = self.color.usingColorSpace(.genericRGB) else {
+            throw EncodingError.invalidValue(self.color, .init(codingPath: [CodingKeys.color],
+                                                               debugDescription: "The color could not be converted to the generic color space."))
+        }
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         
@@ -233,7 +236,10 @@ extension Theme.SystemDefaultStyle: Codable {
     
     func encode(to encoder: any Encoder) throws {
         
-        guard let color = self.color.usingColorSpace(.genericRGB) else { throw CocoaError(.coderInvalidValue) }
+        guard let color = self.color.usingColorSpace(.genericRGB) else {
+            throw EncodingError.invalidValue(self.color, .init(codingPath: [CodingKeys.color],
+                                                               debugDescription: "The color could not be converted to the generic color space."))
+        }
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         
