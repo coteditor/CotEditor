@@ -826,7 +826,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // change encoding immediately if there is nothing to worry about
         if self.fileURL == nil || self.textStorage.string.isEmpty || fileEncoding.encoding == .utf8 {
             // -> Lossy change must success.
-            return try! self.changeEncoding(to: fileEncoding, lossy: false)
+            return try! self.changeEncoding(to: fileEncoding, lossy: true)
         }
         
         // change encoding interactively
