@@ -68,6 +68,8 @@ final class IncompatibleCharactersViewController: NSViewController, DocumentOwne
         self.document = document
         
         super.init(coder: coder)
+        
+        self.updateDocument()
     }
     
     
@@ -126,31 +128,31 @@ final class IncompatibleCharactersViewController: NSViewController, DocumentOwne
     
     // MARK: Private Methods
     
+    /// Updates and observes the scanner.
     private func updateDocument() {
         
-        let scanner = self.scanner
-        
-        scanner.shouldScan = self.isViewShown
-        scanner.invalidate()
+        self.scanner.shouldScan = self.isViewShown
+        self.scanner.invalidate()
         
         self.scannerObservers = [
-            scanner.$incompatibleCharacters
+            self.scanner.$incompatibleCharacters
                 .removeDuplicates()
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] in self?.didUpdateIncompatibleCharacters($0) },
-            scanner.$isScanning
+            self.scanner.$isScanning
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] in self?.updateMessage(isScanning: $0) },
         ]
     }
     
     
+    /// Invoked when the incompatible characters are updated.
+    ///
+    /// - Parameter incompatibleCharacters: The new incompatible characters.
     @MainActor private func didUpdateIncompatibleCharacters(_ incompatibleCharacters: [IncompatibleCharacter]) {
         
-        let textStorage = self.document.textStorage
-        
         if !self.incompatibleCharacters.isEmpty {
-            textStorage.clearAllMarkup()
+            self.document.textStorage.clearAllMarkup()
         }
         
         if self.isViewShown, incompatibleCharacters.isEmpty != self.incompatibleCharacters.isEmpty {
@@ -161,7 +163,7 @@ final class IncompatibleCharactersViewController: NSViewController, DocumentOwne
         self.tableView?.reloadData()
         
         self.updateMessage(isScanning: false)
-        textStorage.markup(ranges: incompatibleCharacters.map(\.range))
+        self.document.textStorage.markup(ranges: incompatibleCharacters.map(\.range))
     }
     
     
