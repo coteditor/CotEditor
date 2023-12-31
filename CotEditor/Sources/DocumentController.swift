@@ -330,7 +330,7 @@ final class DocumentController: NSDocumentController {
            !type.conforms(to: .svg),  // SVG is plain-text (except SVGZ)
            url.pathExtension != "ts"  // "ts" extension conflicts between MPEG-2 streamclip file and TypeScript
         {
-            throw DocumentReadError(kind: .binaryFile(type: type), url: url)
+            throw DocumentReadError(.binaryFile(type: type), url: url)
         }
         
         // check if the file is enormously large
@@ -339,7 +339,7 @@ final class DocumentController: NSDocumentController {
            let fileSize = (try? url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize,
            fileSize > fileSizeThreshold
         {
-            throw DocumentReadError(kind: .tooLarge(size: fileSize), url: url)
+            throw DocumentReadError(.tooLarge(size: fileSize), url: url)
         }
     }
     
@@ -370,19 +370,26 @@ final class DocumentController: NSDocumentController {
 
 private struct DocumentReadError: LocalizedError, RecoverableError {
     
-    enum ErrorKind {
+    enum Code {
+        
         case binaryFile(type: UTType)
         case tooLarge(size: Int)
     }
     
+    var code: Code
+    var url: URL
     
-    let kind: ErrorKind
-    let url: URL
+    
+    init(_ code: Code, url: URL) {
+        
+        self.code = code
+        self.url = url
+    }
     
     
     var errorDescription: String? {
         
-        switch self.kind {
+        switch self.code {
             case .binaryFile:
                 return String(localized: "The file “\(self.url.lastPathComponent)” doesn’t appear to be text data.")
                 
@@ -395,7 +402,7 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
     
     var recoverySuggestion: String? {
         
-        switch self.kind {
+        switch self.code {
             case .binaryFile(let type):
                 let localizedTypeName = type.localizedDescription ?? "unknown file type"
                 return String(localized: "The file appears to be \(localizedTypeName).\n\nDo you really want to open the file?")

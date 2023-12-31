@@ -31,7 +31,7 @@ final class SyntaxValidator {
     /// Model object for syntax validation result.
     struct Error: LocalizedError {
         
-        enum ErrorKind {
+        enum Code {
             
             case duplicated
             case regularExpression
@@ -46,10 +46,19 @@ final class SyntaxValidator {
         }
         
         
-        let kind: ErrorKind
-        let type: String
-        let role: Role?
-        let string: String
+        var code: Code
+        var type: String
+        var role: Role?
+        var string: String
+        
+        
+        init(_ code: Code, type: String, role: Role?, string: String) {
+            
+            self.code = code
+            self.type = type
+            self.role = role
+            self.string = string
+        }
     }
     
     
@@ -120,10 +129,7 @@ final class SyntaxValidator {
                     definition.beginString != lastDefinition?.beginString ||
                     definition.endString != lastDefinition?.endString
                 else {
-                    self.errors.append(Error(kind: .duplicated,
-                                             type: key,
-                                             role: .begin,
-                                             string: definition.beginString))
+                    self.errors.append(Error(.duplicated, type: key, role: .begin, string: definition.beginString))
                     continue
                 }
                 
@@ -131,20 +137,14 @@ final class SyntaxValidator {
                     do {
                         _ = try NSRegularExpression(pattern: definition.beginString)
                     } catch {
-                        self.errors.append(Error(kind: .regularExpression,
-                                                 type: key,
-                                                 role: .begin,
-                                                 string: definition.beginString))
+                        self.errors.append(Error(.regularExpression, type: key, role: .begin, string: definition.beginString))
                     }
                     
                     if let endString = definition.endString {
                         do {
                             _ = try NSRegularExpression(pattern: endString)
                         } catch {
-                            self.errors.append(Error(kind: .regularExpression,
-                                                     type: key,
-                                                     role: .end,
-                                                     string: endString))
+                            self.errors.append(Error(.regularExpression, type: key, role: .end, string: endString))
                         }
                     }
                 }
@@ -153,10 +153,7 @@ final class SyntaxValidator {
                     do {
                         _ = try NSRegularExpression(pattern: definition.beginString)
                     } catch {
-                        self.errors.append(Error(kind: .regularExpression,
-                                                 type: "outline",
-                                                 role: nil,
-                                                 string: definition.beginString))
+                        self.errors.append(Error(.regularExpression, type: "outline", role: nil, string: definition.beginString))
                     }
                 }
             }
@@ -169,8 +166,7 @@ final class SyntaxValidator {
             let beginDelimiterExists = !(beginDelimiter?.isEmpty ?? true)
             let endDelimiterExists = !(endDelimiter?.isEmpty ?? true)
             if beginDelimiterExists != endDelimiterExists {
-                self.errors.append(Error(kind: .blockComment,
-                                         type: "comments",
+                self.errors.append(Error(.blockComment, type: "comments",
                                          role: beginDelimiterExists ? .begin : .end,
                                          string: beginDelimiter ?? endDelimiter!))
             }
@@ -191,7 +187,7 @@ extension SyntaxValidator.Error {
     
     var failureReason: String? {
         
-        switch self.kind {
+        switch self.code {
             case .duplicated:
                 String(localized: "The same word is registered multiple times.")
             case .regularExpression:
@@ -212,7 +208,7 @@ extension SyntaxValidator.Error {
         
         switch self.role {
             case .begin: String(localized: "Begin string")
-            case .end:   String(localized: "End string")
+            case .end: String(localized: "End string")
             case .none: nil
         }
     }

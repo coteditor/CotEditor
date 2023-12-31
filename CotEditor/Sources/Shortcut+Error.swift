@@ -28,34 +28,28 @@ import Foundation
 
 extension Shortcut {
     
-    struct CustomizationError: LocalizedError {
+    enum CustomizationError: LocalizedError {
         
-        enum Kind {
-            
-            case singleType
-            case alreadyTaken(name: String)
-            case shiftOnlyModifier
-            case unsupported
-        }
-        
-        var kind: Kind
-        var shortcut: Shortcut
+        case singleType
+        case alreadyTaken(Shortcut, name: String)
+        case shiftOnlyModifier
+        case unsupported(Shortcut)
         
         
         var errorDescription: String? {
             
-            switch self.kind {
+            switch self {
                 case .singleType:
                     String(localized: "Single type is invalid for a shortcut.")
                     
-                case .alreadyTaken(let name):
-                    String(localized: "“\(self.shortcut.symbol)” is already taken by the “\(name)” command.")
+                case .alreadyTaken(let shortcut, let name):
+                    String(localized: "“\(shortcut.symbol)” is already taken by the “\(name)” command.")
                     
                 case .shiftOnlyModifier:
                     String(localized: "The Shift key can be used only with another modifier key.")
                     
-                case .unsupported:
-                    String(localized: "The combination “\(self.shortcut.symbol)” is not supported for the shortcut customization.")
+                case .unsupported(let shortcut):
+                    String(localized: "The combination “\(shortcut.symbol)” is not supported for the shortcut customization.")
             }
         }
     }
@@ -68,23 +62,23 @@ extension Shortcut {
         
         // Tab or Backtab
         if self.keyEquivalent == "\u{9}" || self.keyEquivalent == "\u{19}" {
-            throw CustomizationError(kind: .unsupported, shortcut: self)
+            throw CustomizationError.unsupported(self)
         }
         
         // avoid Shift-only modifier with a letter
         // -> typing Shift + letter inserting an uppercase letter instead of invoking a shortcut
         if self.modifiers == .shift, self.keyEquivalent.contains(where: \.isLetter) {
-            throw CustomizationError(kind: .shiftOnlyModifier, shortcut: self)
+            throw CustomizationError.shiftOnlyModifier
         }
         
         // single key is invalid
         if !self.isValid {
-            throw CustomizationError(kind: .singleType, shortcut: self)
+            throw CustomizationError.singleType
         }
         
         // duplication check
         if let duplicatedName = NSApp.mainMenu?.commandName(for: self) {
-            throw CustomizationError(kind: .alreadyTaken(name: duplicatedName), shortcut: self)
+            throw CustomizationError.alreadyTaken(self, name: duplicatedName)
         }
     }
 }

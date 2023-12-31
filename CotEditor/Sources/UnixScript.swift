@@ -81,13 +81,13 @@ struct UnixScript: Script {
     func run() async throws {
         
         guard self.url.isReachable else {
-            throw ScriptFileError(kind: .existence, url: self.url)
+            throw ScriptFileError(.existence, url: self.url)
         }
         guard try self.url.resourceValues(forKeys: [.isExecutableKey]).isExecutable ?? false else {
-            throw ScriptFileError(kind: .permission, url: self.url)
+            throw ScriptFileError(.permission, url: self.url)
         }
         guard let script = try? String(contentsOf: self.url), !script.isEmpty else {
-            throw ScriptFileError(kind: .read, url: self.url)
+            throw ScriptFileError(.read, url: self.url)
         }
         
         weak var document = await NSDocumentController.shared.currentDocument as? Document

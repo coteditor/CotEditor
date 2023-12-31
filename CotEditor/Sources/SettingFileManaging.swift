@@ -239,7 +239,7 @@ extension SettingFileManaging {
         do {
             try FileManager.default.trashItem(at: url, resultingItemURL: nil)
         } catch {
-            throw SettingFileError(kind: .deletionFailed, name: name, error: error as NSError)
+            throw SettingFileError(.deletionFailed, name: name, underlyingError: error as NSError)
         }
         
         self.cachedSettings[name] = nil
@@ -272,7 +272,7 @@ extension SettingFileManaging {
         let newName = self.savableSettingName(for: name, appendingCopySuffix: true)
         
         guard let sourceURL = self.urlForUsedSetting(name: name) else {
-            throw SettingFileError(kind: .noSourceFile, name: name, error: nil)
+            throw SettingFileError(.noSourceFile, name: name)
         }
         
         let destURL = self.preparedURLForUserSetting(name: newName)
@@ -351,7 +351,7 @@ extension SettingFileManaging {
             guard name.caseInsensitiveCompare(importName) == .orderedSame else { continue }
             
             guard self.urlForUserSetting(name: name) == nil else {  // duplicated
-                throw ImportDuplicationError(name: name, type: self.fileType, replacingClosure: { [unowned self] in
+                throw ImportDuplicationError(name: name, type: self.fileType, continuationHandler: { [unowned self] in
                     try self.overwriteSetting(fileURL: fileURL)
                 })
             }
@@ -428,7 +428,7 @@ extension SettingFileManaging {
         }
         
         if let error = writingError ?? coordinationError {
-            throw SettingFileError(kind: .importFailed, name: name, error: error)
+            throw SettingFileError(.importFailed, name: name, underlyingError: error)
         }
         
         // update internal cache
@@ -476,21 +476,29 @@ enum InvalidNameError: LocalizedError {
 
 struct SettingFileError: LocalizedError {
     
-    enum ErrorKind {
+    enum Code {
         
         case deletionFailed
         case importFailed
         case noSourceFile
     }
     
-    var kind: ErrorKind
+    var code: Code
     var name: String
-    var error: NSError?
+    var underlyingError: NSError?
+    
+    
+    init(_ code: Code, name: String, underlyingError: NSError? = nil) {
+        
+        self.code = code
+        self.name = name
+        self.underlyingError = underlyingError
+    }
     
     
     var errorDescription: String? {
         
-        switch self.kind {
+        switch self.code {
             case .deletionFailed:
                 String(localized: "“\(self.name)” couldn’t be deleted.")
             case .importFailed:
@@ -503,7 +511,7 @@ struct SettingFileError: LocalizedError {
     
     var recoverySuggestion: String? {
         
-        self.error?.localizedRecoverySuggestion
+        self.underlyingError?.localizedRecoverySuggestion
     }
 }
 
@@ -513,7 +521,7 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
     
     var name: String
     var type: UTType
-    var replacingClosure: (() throws -> Void)
+    var continuationHandler: (() throws -> Void)
     
     
     var errorDescription: String? {
@@ -561,7 +569,7 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
                 
             case 1:  // == Replace
                 do {
-                    try self.replacingClosure()
+                    try self.continuationHandler()
                 } catch {
                     NSApp.presentError(error)
                     return false

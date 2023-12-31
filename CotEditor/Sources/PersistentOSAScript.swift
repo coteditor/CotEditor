@@ -49,7 +49,7 @@ struct PersistentOSAScript: EventScript {
         guard
             let script = OSAScript(contentsOf: url, error: nil),
             let data = script.compiledData(forType: url.pathExtension, error: nil)
-        else { throw ScriptFileError(kind: .read, url: url) }
+        else { throw ScriptFileError(.read, url: url) }
         
         self.url = url
         self.name = name

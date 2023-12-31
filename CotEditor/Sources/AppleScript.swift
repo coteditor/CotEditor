@@ -57,7 +57,7 @@ struct AppleScript: EventScript {
     func run(withAppleEvent event: NSAppleEventDescriptor?) async throws {
         
         guard self.url.isReachable else {
-            throw ScriptFileError(kind: .existence, url: self.url)
+            throw ScriptFileError(.existence, url: self.url)
         }
         
         let task = try NSUserAppleScriptTask(url: self.url)

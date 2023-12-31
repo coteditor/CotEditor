@@ -902,7 +902,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     /// - Parameters:
     ///   - fileEncoding: The text encoding to change with.
     ///   - lossy: Whether the change is lossy.
-    /// - Throws: `EncodingError` (Kind.lossyConversion) can be thrown but only if `lossy` flag is `false`.
+    /// - Throws: `EncodingError` (`Code.lossyConversion`) can be thrown but only if `lossy` flag is `false`.
     @MainActor func changeEncoding(to fileEncoding: FileEncoding, lossy: Bool) throws {
         
         assert(Thread.isMainThread)
@@ -911,7 +911,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // check if conversion is lossy
         guard lossy || self.textStorage.string.canBeConverted(to: fileEncoding.encoding) else {
-            throw EncodingError(kind: .lossyConversion, fileEncoding: fileEncoding, attempter: self)
+            throw EncodingError(.lossyConversion, fileEncoding: fileEncoding, attempter: self)
         }
         
         // register undo
@@ -1125,10 +1125,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     
     /// Checks if the content can be saved with the current text encoding.
+    ///
+    /// - Throws: `EncodingError` (`Code.lossySaving`)
     private func checkSavingSafetyForConverting() throws {
         
         guard self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) else {
-            throw EncodingError(kind: .lossySaving, fileEncoding: self.fileEncoding, attempter: self)
+            throw EncodingError(.lossySaving, fileEncoding: self.fileEncoding, attempter: self)
         }
     }
     
@@ -1279,16 +1281,23 @@ private enum ReinterpretationError: LocalizedError {
 
 private struct EncodingError: LocalizedError, RecoverableError {
     
-    enum ErrorKind {
+    enum Code {
         
         case lossySaving
         case lossyConversion
     }
     
-    let kind: ErrorKind
-    let fileEncoding: FileEncoding
-    let attempter: Document
+    var code: Code
+    var fileEncoding: FileEncoding
+    var attempter: Document
     
+    
+    init(_ code: Code, fileEncoding: FileEncoding, attempter: Document) {
+        
+        self.code = code
+        self.fileEncoding = fileEncoding
+        self.attempter = attempter
+    }
     
     
     var errorDescription: String? {
@@ -1299,7 +1308,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
     
     var recoverySuggestion: String? {
         
-        switch self.kind {
+        switch self.code {
             case .lossySaving:
                 String(localized: "Do you want to continue processing?")
                 
@@ -1311,10 +1320,10 @@ private struct EncodingError: LocalizedError, RecoverableError {
     
     var recoveryOptions: [String] {
         
-        switch self.kind {
+        switch self.code {
             case .lossySaving:
-                [String(localized: "Show Incompatible Characters"),
-                 String(localized: "Save Available Text"),
+                [String(localized: "Save Available Text"),
+                 String(localized: "Show Incompatible Characters"),
                  String(localized: "Cancel")]
                 
             case .lossyConversion:
@@ -1326,16 +1335,16 @@ private struct EncodingError: LocalizedError, RecoverableError {
     
     func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
         
-        switch self.kind {
+        switch self.code {
             case .lossySaving:
                 switch recoveryOptionIndex {
-                    case 0:  // == Show Incompatible Characters
+                    case 0:  // == Save
+                        return true
+                    case 1:  // == Show Incompatible Characters
                         Task { @MainActor in
                             self.showIncompatibleCharacters()
                         }
                         return false
-                    case 1:  // == Save
-                        return true
                     case 2:  // == Cancel
                         return false
                     default:

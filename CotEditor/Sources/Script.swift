@@ -74,20 +74,28 @@ extension EventScript {
 
 struct ScriptFileError: LocalizedError {
     
-    enum ErrorKind {
+    enum Code {
+        
         case existence
         case read
         case open
         case permission
     }
     
-    let kind: ErrorKind
-    let url: URL
+    var code: Code
+    var url: URL
+    
+    
+    init(_ code: Code, url: URL) {
+        
+        self.code = code
+        self.url = url
+    }
     
     
     var errorDescription: String? {
         
-        switch self.kind {
+        switch self.code {
             case .existence:
                 String(localized: "The script “\(self.url.lastPathComponent)” does not exist.")
             case .read:
@@ -102,7 +110,7 @@ struct ScriptFileError: LocalizedError {
     
     var recoverySuggestion: String? {
         
-        switch self.kind {
+        switch self.code {
             case .permission:
                 String(localized: "Check the permission of the script file.")
             default:

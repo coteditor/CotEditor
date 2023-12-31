@@ -175,12 +175,12 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 switch NSEvent.modifierFlags {
                     case [.option]:  // open
                         guard NSWorkspace.shared.open(script.url) else {
-                            throw ScriptFileError(kind: .open, url: script.url)
+                            throw ScriptFileError(.open, url: script.url)
                         }
                         
                     case [.option, .shift]:  // reveal
                         guard script.url.isReachable else {
-                            throw ScriptFileError(kind: .existence, url: script.url)
+                            throw ScriptFileError(.existence, url: script.url)
                         }
                         NSWorkspace.shared.activateFileViewerSelecting([script.url])
                         
