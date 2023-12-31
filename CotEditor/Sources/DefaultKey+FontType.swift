@@ -55,7 +55,7 @@ extension UserDefaults {
     ///
     /// - Parameter type: The font type.
     /// - Returns: An NSFont.
-    func font(for type: FontType) -> NSFont {
+    final func font(for type: FontType) -> NSFont {
         
         guard
             let data = self[.fontKey(for: type)],

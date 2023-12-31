@@ -31,7 +31,7 @@ extension NSViewController {
     ///
     /// - Returns: `true` when the operation is successful; otherwise, `false`.
     @discardableResult
-    func endEditing() -> Bool {
+    final func endEditing() -> Bool {
         
         guard self.isViewLoaded, let window = self.view.window else { return true }
         

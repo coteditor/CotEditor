@@ -35,7 +35,7 @@ extension NSColor {
 extension NSColor {
     
     /// The component-based (such as RGB) color converted from a semantic color.
-    var componentBased: NSColor {
+    final var componentBased: NSColor {
         
         self.usingType(.componentBased) ?? self
     }
