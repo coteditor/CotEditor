@@ -441,6 +441,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // [caution] This method may be called from a background thread due to async-saving.
         
+        // check if the content can be saved with the current text encoding.
+        guard saveOperation.isAutosave || self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) else {
+            throw SavingError.lossyEncoding(self.fileEncoding, attempter: self)
+        }
+        
         try super.writeSafely(to: url, ofType: typeName, for: saveOperation)
         
         if saveOperation != .autosaveElsewhereOperation {
@@ -675,6 +680,16 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             textView.selectedRanges = ranges as [NSValue]
             textView.scrollRangeToVisible(textView.selectedRange)
         }
+    }
+    
+    
+    override func presentError(_ error: any Error, modalFor window: NSWindow, delegate: Any?, didPresent didPresentSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+        
+        // remove wrapped NSError to make RecoverableError work
+        // cf. [How to use RecoverableError to retry?](https://stackoverflow.com/questions/40352975/how-to-use-recoverableerror-to-retry)
+        let underlyingError = (error as NSError).userInfo[NSUnderlyingErrorKey] as? any Error ?? error
+        
+        super.presentError(underlyingError, modalFor: window, delegate: delegate, didPresent: didPresentSelector, contextInfo: contextInfo)
     }
     
     
@@ -1010,28 +1025,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     // MARK: Action Messages
     
-    /// Saves the document.
-    @IBAction override func save(_ sender: Any?) {
-        
-        self.askSavingSafety { (continuesSaving: Bool) in
-            guard continuesSaving else { return }
-            
-            super.save(sender)
-        }
-    }
-    
-    
-    /// Saves the document to a new location.
-    @IBAction override func saveAs(_ sender: Any?) {
-        
-        self.askSavingSafety { (continuesSaving: Bool) in
-            guard continuesSaving else { return }
-            
-            super.saveAs(sender)
-        }
-    }
-    
-    
     /// Changes the document text encoding wit sender's tag.
     @IBAction func changeEncoding(_ sender: NSMenuItem) {
         
@@ -1116,33 +1109,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                     .delay(for: .seconds(0.15), scheduler: RunLoop.main)  // wait for window open animation
                     .sink { [weak self] _ in self?.showInconsistentLineEndingAlert() }
             }
-        }
-    }
-    
-    
-    /// Checks if can save safely with the current encoding and ask if not.
-    @MainActor private func askSavingSafety(completionHandler: @escaping (Bool) -> Void) {
-        
-        assert(Thread.isMainThread)
-        
-        // check text encoding for conversion and ask user how to solve
-        do {
-            try self.checkSavingSafetyForEncoding()
-        } catch {
-            return self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
-        }
-        
-        completionHandler(true)
-    }
-    
-    
-    /// Checks if the content can be saved with the current text encoding.
-    ///
-    /// - Throws: `SavingError.lossyEncoding`
-    private func checkSavingSafetyForEncoding() throws {
-        
-        guard self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) else {
-            throw SavingError.lossyEncoding(self.fileEncoding, attempter: self)
         }
     }
     
