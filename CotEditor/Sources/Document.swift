@@ -1215,7 +1215,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         do {
             try self.revert(toContentsOf: fileURL, ofType: fileType)
         } catch {
-            self.presentErrorAsSheetSafely(error)
+            self.presentErrorAsSheet(error)
         }
     }
     
