@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -841,96 +841,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Changes the text encoding by asking options to the user.
-    ///
-    /// - Parameter fileEncoding: The file encoding to change.
-    @MainActor func askChangingEncoding(to fileEncoding: FileEncoding) {
-        
-        assert(Thread.isMainThread)
-        
-        guard fileEncoding != self.fileEncoding else { return }
-        
-        // change encoding immediately if there is nothing to worry about
-        if self.fileURL == nil || self.textStorage.string.isEmpty || fileEncoding.encoding == .utf8 {
-            return self.changeEncoding(to: fileEncoding)
-        }
-        
-        // change encoding interactively
-        self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
-            let completionHandler = { [weak self] didChange in
-                if !didChange, let self {
-                    // reset status bar selection for in case when the operation was invoked from the popup button in the status bar
-                    self.fileEncoding = self.fileEncoding
-                }
-                activityCompletionHandler()
-            }
-            
-            // ask whether just change the encoding or reinterpret document file
-            let alert = NSAlert()
-            alert.messageText = String(localized: "Text encoding")
-            alert.informativeText = String(localized: "Do you want to convert or reinterpret this document using “\(fileEncoding.localizedName)”?")
-            alert.addButton(withTitle: String(localized: "Convert"))
-            alert.addButton(withTitle: String(localized: "Reinterpret"))
-            alert.addButton(withTitle: String(localized: "Cancel"))
-            
-            let documentWindow = self.windowForSheet!
-            Task {
-                let returnCode = await alert.beginSheetModal(for: documentWindow)
-                switch returnCode {
-                    case .alertFirstButtonReturn:  // = Convert
-                        do {
-                            try self.checkEncodingCompatibility(with: fileEncoding)
-                        } catch {
-                            self.presentErrorAsSheet(error) { [unowned self] didRecover in
-                                if didRecover {
-                                    self.changeEncoding(to: fileEncoding)
-                                    self.showWarningInspector()
-                                }
-                                completionHandler(didRecover)
-                            }
-                            return
-                        }
-                        self.changeEncoding(to: fileEncoding)
-                        completionHandler(true)
-                        
-                    case .alertSecondButtonReturn:  // = Reinterpret
-                        // ask whether discard unsaved changes
-                        if self.isDocumentEdited {
-                            let alert = NSAlert()
-                            alert.messageText = String(localized: "The document has unsaved changes.")
-                            alert.informativeText = String(localized: "Do you want to discard the changes and reopen the document using “\(fileEncoding.localizedName)”?",
-                                                           comment: "%@ is an encoding name")
-                            alert.addButton(withTitle: String(localized: "Cancel"))
-                            alert.addButton(withTitle: String(localized: "Discard Changes"))
-                            alert.buttons.last?.hasDestructiveAction = true
-                            
-                            let returnCode = await alert.beginSheetModal(for: documentWindow)
-                            
-                            guard returnCode == .alertSecondButtonReturn else {  // = Discard Changes
-                                completionHandler(false)
-                                return
-                            }
-                        }
-                        
-                        // reinterpret
-                        do {
-                            try self.reinterpret(encoding: fileEncoding.encoding)
-                            completionHandler(true)
-                        } catch {
-                            NSSound.beep()
-                            self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
-                        }
-                        
-                    case .alertThirdButtonReturn:  // = Cancel
-                        completionHandler(false)
-                        
-                    default: preconditionFailure()
-                }
-            }
-        }
-    }
-    
-    
     /// Changes the text encoding and registers the process to the undo manager.
     ///
     /// - Parameters:
@@ -1108,6 +1018,96 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                     .first { $0 }
                     .delay(for: .seconds(0.15), scheduler: RunLoop.main)  // wait for window open animation
                     .sink { [weak self] _ in self?.showInconsistentLineEndingAlert() }
+            }
+        }
+    }
+    
+    
+    /// Changes the text encoding by asking options to the user.
+    ///
+    /// - Parameter fileEncoding: The file encoding to change.
+    @MainActor private func askChangingEncoding(to fileEncoding: FileEncoding) {
+        
+        assert(Thread.isMainThread)
+        
+        guard fileEncoding != self.fileEncoding else { return }
+        
+        // change encoding immediately if there is nothing to worry about
+        if self.fileURL == nil || self.textStorage.string.isEmpty || fileEncoding.encoding == .utf8 {
+            return self.changeEncoding(to: fileEncoding)
+        }
+        
+        // change encoding interactively
+        self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
+            let completionHandler = { [weak self] didChange in
+                if !didChange, let self {
+                    // reset status bar selection for in case when the operation was invoked from the popup button in the status bar
+                    self.fileEncoding = self.fileEncoding
+                }
+                activityCompletionHandler()
+            }
+            
+            // ask whether just change the encoding or reinterpret document file
+            let alert = NSAlert()
+            alert.messageText = String(localized: "Text encoding")
+            alert.informativeText = String(localized: "Do you want to convert or reinterpret this document using “\(fileEncoding.localizedName)”?")
+            alert.addButton(withTitle: String(localized: "Convert"))
+            alert.addButton(withTitle: String(localized: "Reinterpret"))
+            alert.addButton(withTitle: String(localized: "Cancel"))
+            
+            let documentWindow = self.windowForSheet!
+            Task {
+                let returnCode = await alert.beginSheetModal(for: documentWindow)
+                switch returnCode {
+                    case .alertFirstButtonReturn:  // = Convert
+                        do {
+                            try self.checkEncodingCompatibility(with: fileEncoding)
+                        } catch {
+                            self.presentErrorAsSheet(error) { [unowned self] didRecover in
+                                if didRecover {
+                                    self.changeEncoding(to: fileEncoding)
+                                    self.showWarningInspector()
+                                }
+                                completionHandler(didRecover)
+                            }
+                            return
+                        }
+                        self.changeEncoding(to: fileEncoding)
+                        completionHandler(true)
+                        
+                    case .alertSecondButtonReturn:  // = Reinterpret
+                        // ask whether discard unsaved changes
+                        if self.isDocumentEdited {
+                            let alert = NSAlert()
+                            alert.messageText = String(localized: "The document has unsaved changes.")
+                            alert.informativeText = String(localized: "Do you want to discard the changes and reopen the document using “\(fileEncoding.localizedName)”?",
+                                                           comment: "%@ is an encoding name")
+                            alert.addButton(withTitle: String(localized: "Cancel"))
+                            alert.addButton(withTitle: String(localized: "Discard Changes"))
+                            alert.buttons.last?.hasDestructiveAction = true
+                            
+                            let returnCode = await alert.beginSheetModal(for: documentWindow)
+                            
+                            guard returnCode == .alertSecondButtonReturn else {  // = Discard Changes
+                                completionHandler(false)
+                                return
+                            }
+                        }
+                        
+                        // reinterpret
+                        do {
+                            try self.reinterpret(encoding: fileEncoding.encoding)
+                            completionHandler(true)
+                        } catch {
+                            NSSound.beep()
+                            self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
+                        }
+                        
+                    case .alertThirdButtonReturn:  // = Cancel
+                        completionHandler(false)
+                        
+                    default: preconditionFailure()
+                }
             }
         }
     }
