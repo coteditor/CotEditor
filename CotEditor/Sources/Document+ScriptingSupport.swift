@@ -234,19 +234,20 @@ extension Document {
         let withBOM = arguments["BOM"] as? Bool ?? false
         let fileEncoding = FileEncoding(encoding: encoding, withUTF8BOM: withBOM)
         
-        if fileEncoding == self.fileEncoding {
-            return true
-        }
+        guard fileEncoding != self.fileEncoding else { return true }
         
         let lossy = (arguments["lossy"] as? Bool) ?? false
-        
-        do {
-            try self.changeEncoding(to: fileEncoding, lossy: lossy)
-        } catch {
-            command.scriptErrorNumber = errOSAGeneralError
-            command.scriptErrorString = error.localizedDescription
-            return false
+        if !lossy {
+            do {
+                try self.checkEncodingCompatibility(with: fileEncoding)
+            } catch {
+                command.scriptErrorNumber = errOSAGeneralError
+                command.scriptErrorString = error.localizedDescription
+                return false
+            }
         }
+        
+        self.changeEncoding(to: fileEncoding)
         
         return true
     }

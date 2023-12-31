@@ -788,6 +788,18 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
+    /// Checks if the content can be converted to the given text encoding.
+    ///
+    /// - Parameter fileEncoding: The text encoding to change with.
+    /// - Throws: `EncodingError`
+    func checkEncodingCompatibility(with fileEncoding: FileEncoding) throws {
+        
+        guard self.textStorage.string.canBeConverted(to: fileEncoding.encoding) else {
+            throw EncodingError(encoding: fileEncoding)
+        }
+    }
+    
+    
     /// Reinterprets the document file with the desired encoding.
     ///
     /// - Parameter encoding: The text encoding to read.
@@ -817,7 +829,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     /// Changes the text encoding by asking options to the user.
     ///
     /// - Parameter fileEncoding: The file encoding to change.
-    @MainActor func changeEncoding(to fileEncoding: FileEncoding) {
+    @MainActor func askChangingEncoding(to fileEncoding: FileEncoding) {
         
         assert(Thread.isMainThread)
         
@@ -825,8 +837,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // change encoding immediately if there is nothing to worry about
         if self.fileURL == nil || self.textStorage.string.isEmpty || fileEncoding.encoding == .utf8 {
-            // -> Lossy change must success.
-            return try! self.changeEncoding(to: fileEncoding, lossy: true)
+            return self.changeEncoding(to: fileEncoding)
         }
         
         // change encoding interactively
@@ -853,11 +864,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 switch returnCode {
                     case .alertFirstButtonReturn:  // = Convert
                         do {
-                            try self.changeEncoding(to: fileEncoding, lossy: false)
-                            completionHandler(true)
+                            try self.checkEncodingCompatibility(with: fileEncoding)
                         } catch {
-                            self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
+                            self.presentErrorAsSheet(error) { [unowned self] didRecover in
+                                if didRecover {
+                                    self.changeEncoding(to: fileEncoding)
+                                    self.showWarningInspector()
+                                }
+                                completionHandler(didRecover)
+                            }
+                            return
                         }
+                        self.changeEncoding(to: fileEncoding)
+                        completionHandler(true)
                         
                     case .alertSecondButtonReturn:  // = Reinterpret
                         // ask whether discard unsaved changes
@@ -901,18 +920,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     ///
     /// - Parameters:
     ///   - fileEncoding: The text encoding to change with.
-    ///   - lossy: Whether the change is lossy.
-    /// - Throws: `EncodingError` (`Code.lossyConversion`) can be thrown but only if `lossy` flag is `false`.
-    @MainActor func changeEncoding(to fileEncoding: FileEncoding, lossy: Bool) throws {
+    @MainActor func changeEncoding(to fileEncoding: FileEncoding) {
         
         assert(Thread.isMainThread)
         
         guard fileEncoding != self.fileEncoding else { return }
-        
-        // check if conversion is lossy
-        guard lossy || self.textStorage.string.canBeConverted(to: fileEncoding.encoding) else {
-            throw EncodingError(.lossyConversion, fileEncoding: fileEncoding, attempter: self)
-        }
         
         // register undo
         if let undoManager = self.undoManager {
@@ -922,7 +934,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 target.incompatibleCharacterScanner.invalidate()
                 
                 // register redo
-                target.undoManager?.registerUndo(withTarget: target) { try? $0.changeEncoding(to: fileEncoding, lossy: lossy) }
+                target.undoManager?.registerUndo(withTarget: target) { $0.changeEncoding(to: fileEncoding) }
             }
             undoManager.setActionName(String(localized: "Encoding to “\(fileEncoding.localizedName)”"))
         }
@@ -1025,7 +1037,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         let fileEncoding = FileEncoding(tag: sender.tag)
         
-        self.changeEncoding(to: fileEncoding)
+        self.askChangingEncoding(to: fileEncoding)
     }
     
     
@@ -1115,7 +1127,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // check text encoding for conversion and ask user how to solve
         do {
-            try self.checkSavingSafetyForConverting()
+            try self.checkSavingSafetyForEncoding()
         } catch {
             return self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
         }
@@ -1126,11 +1138,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     /// Checks if the content can be saved with the current text encoding.
     ///
-    /// - Throws: `EncodingError` (`Code.lossySaving`)
-    private func checkSavingSafetyForConverting() throws {
+    /// - Throws: `SavingError.lossyEncoding`
+    private func checkSavingSafetyForEncoding() throws {
         
         guard self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) else {
-            throw EncodingError(.lossySaving, fileEncoding: self.fileEncoding, attempter: self)
+            throw SavingError.lossyEncoding(self.fileEncoding, attempter: self)
         }
     }
     
@@ -1176,8 +1188,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 case .alertFirstButtonReturn:  // == Convert
                     self.changeLineEnding(to: self.lineEnding)
                 case .alertSecondButtonReturn:  // == Review
-                    (self.windowControllers.first?.contentViewController as? WindowContentViewController)?
-                        .showInspector(pane: .warnings)
+                    self.showWarningInspector()
                 case .alertThirdButtonReturn:  // == Ignore
                     break
                 default:
@@ -1241,11 +1252,18 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             self.presentErrorAsSheetSafely(error)
         }
     }
+    
+    
+    /// Shows the warning inspector in the document window.
+    @MainActor fileprivate func showWarningInspector() {
+        
+        (self.windowControllers.first?.contentViewController as? WindowContentViewController)?.showInspector(pane: .warnings)
+    }
 }
 
 
 
-// MARK: - Error
+// MARK: - Errors
 
 private enum ReinterpretationError: LocalizedError {
     
@@ -1281,53 +1299,62 @@ private enum ReinterpretationError: LocalizedError {
 
 private struct EncodingError: LocalizedError, RecoverableError {
     
-    enum Code {
-        
-        case lossySaving
-        case lossyConversion
-    }
-    
-    var code: Code
-    var fileEncoding: FileEncoding
-    var attempter: Document
-    
-    
-    init(_ code: Code, fileEncoding: FileEncoding, attempter: Document) {
-        
-        self.code = code
-        self.fileEncoding = fileEncoding
-        self.attempter = attempter
-    }
+    var encoding: FileEncoding
     
     
     var errorDescription: String? {
         
-        String(localized: "Some characters would have to be changed or deleted in saving as “\(self.fileEncoding.localizedName).”")
+        String(localized: "Some characters would have to be changed or deleted in saving as “\(self.encoding.localizedName).”")
     }
     
     
     var recoverySuggestion: String? {
         
-        switch self.code {
-            case .lossySaving:
-                String(localized: "Do you want to continue processing?")
-                
-            case .lossyConversion:
-                String(localized: "Do you want to change encoding and show incompatible characters?")
-        }
+        String(localized: "Do you want to change encoding and show incompatible characters?")
     }
     
     
     var recoveryOptions: [String] {
         
-        switch self.code {
-            case .lossySaving:
+        [String(localized: "Change Encoding"),
+         String(localized: "Cancel")]
+    }
+    
+    
+    func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
+        
+        (recoveryOptionIndex == 0)
+    }
+}
+
+
+
+private enum SavingError: LocalizedError, RecoverableError {
+    
+    case lossyEncoding(FileEncoding, attempter: Document)
+    
+    
+    var errorDescription: String? {
+        
+        switch self {
+            case .lossyEncoding(let fileEncoding, _):
+                String(localized: "Some characters would have to be changed or deleted in saving as “\(fileEncoding.localizedName).”")
+        }
+    }
+    
+    
+    var recoverySuggestion: String? {
+        
+        String(localized: "Do you want to continue processing?")
+    }
+    
+    
+    var recoveryOptions: [String] {
+        
+        switch self {
+            case .lossyEncoding:
                 [String(localized: "Save Available Text"),
                  String(localized: "Show Incompatible Characters"),
-                 String(localized: "Cancel")]
-                
-            case .lossyConversion:
-                [String(localized: "Change Encoding"),
                  String(localized: "Cancel")]
         }
     }
@@ -1335,14 +1362,14 @@ private struct EncodingError: LocalizedError, RecoverableError {
     
     func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
         
-        switch self.code {
-            case .lossySaving:
+        switch self {
+            case .lossyEncoding(_, let attempter):
                 switch recoveryOptionIndex {
                     case 0:  // == Save
                         return true
                     case 1:  // == Show Incompatible Characters
                         Task { @MainActor in
-                            self.showIncompatibleCharacters()
+                            attempter.showWarningInspector()
                         }
                         return false
                     case 2:  // == Cancel
@@ -1350,29 +1377,6 @@ private struct EncodingError: LocalizedError, RecoverableError {
                     default:
                         preconditionFailure()
                 }
-                
-            case .lossyConversion:
-                switch recoveryOptionIndex {
-                    case 0:  // == Change Encoding
-                        Task { @MainActor in
-                            try? self.attempter.changeEncoding(to: self.fileEncoding, lossy: true)
-                            self.showIncompatibleCharacters()
-                        }
-                        return true
-                    case 1:  // == Cancel
-                        return false
-                    default:
-                        preconditionFailure()
-                }
-        }
-    }
-    
-    
-    @MainActor private func showIncompatibleCharacters() {
-        
-        weak var windowContentController = self.attempter.windowControllers.first?.contentViewController as? WindowContentViewController
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            windowContentController?.showInspector(pane: .warnings)
         }
     }
 }
