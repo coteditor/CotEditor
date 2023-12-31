@@ -33,7 +33,7 @@ import ColorCode
 }
 
 
-final class ColorCodePanelController: NSObject, NSWindowDelegate {
+@MainActor final class ColorCodePanelController: NSObject, NSWindowDelegate {
     
     static let shared = ColorCodePanelController()
     
@@ -144,7 +144,7 @@ private struct ColorCodePanelAccessory: View {
                 } label: {
                     EmptyView()
                 }
-                .onChange(of: self.type, perform: self.apply(type:))
+                .onChange(of: self.type) { self.apply(type: $0) }
                 .labelsHidden()
                 
                 Button("Insert") {
@@ -177,7 +177,7 @@ private struct ColorCodePanelAccessory: View {
     /// Sets the color representing the given code to the color panel and selects the corresponding color code type.
     ///
     /// - Parameter colorCode: The color code of the color to set.
-    private func apply(colorCode: String) {
+    @MainActor private func apply(colorCode: String) {
         
         var type: ColorCodeType?
         guard
@@ -193,7 +193,7 @@ private struct ColorCodePanelAccessory: View {
     /// Converts the color code to the specified code type.
     ///
     /// - Parameter rawValue: The rawValue of ColorCodeType.
-    private func apply(type rawValue: Int) {
+    @MainActor private func apply(type rawValue: Int) {
         
         guard
             let type = ColorCodeType(rawValue: rawValue),

@@ -40,7 +40,7 @@ extension View {
 
 
 @propertyWrapper
-final class FirstResponder {
+@MainActor final class FirstResponder {
     
     fileprivate weak var sender: NSControl?
     

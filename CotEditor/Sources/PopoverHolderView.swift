@@ -77,7 +77,7 @@ private struct PopoverHolderView<T: View>: NSViewRepresentable {
     
     
     
-    final class Coordinator: NSObject, NSPopoverDelegate {
+    @MainActor final class Coordinator: NSObject, NSPopoverDelegate {
         
         private let popover: NSPopover
         private let state: Binding<Bool>

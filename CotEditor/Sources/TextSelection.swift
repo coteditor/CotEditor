@@ -77,7 +77,7 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
 
 // MARK: -
 
-final class TextSelection: NSObject {
+@MainActor final class TextSelection: NSObject {
     
     // MARK: Private Properties
     

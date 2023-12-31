@@ -64,7 +64,7 @@ struct CommandBarView: View {
             HStack(alignment: .firstTextBaseline) {
                 Image(systemName: "magnifyingglass")
                 TextField("Quick Actions", text: $input)
-                    .onSubmit(self.perform)
+                    .onSubmit { self.perform() }
                     .fontWeight(.light)
                     .textFieldStyle(.plain)
             }
@@ -158,7 +158,7 @@ struct CommandBarView: View {
     
     
     /// Performs the selected command and closes the view.
-    private func perform() {
+    @MainActor private func perform() {
         
         // first close the command bar and then take the action
         // so that the action is delivered to the correct (first) responder.
