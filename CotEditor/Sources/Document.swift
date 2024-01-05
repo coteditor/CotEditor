@@ -62,7 +62,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     private(set) lazy var selection = TextSelection(document: self)
     private(set) lazy var analyzer = DocumentAnalyzer(document: self)
     private(set) lazy var incompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
-    private(set) lazy var urlDetector = URLDetector(textStorage: self.textStorage)
     
     let didChangeSyntax = PassthroughSubject<String, Never>()
     
@@ -79,6 +78,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     private var suppressesInconsistentLineEndingAlert = false
     private var isExternalUpdateAlertShown = false
     fileprivate var allowsLossySaving = false
+    
+    private lazy var urlDetector = URLDetector(textStorage: self.textStorage)
     
     private var syntaxUpdateObserver: AnyCancellable?
     private var textStorageObserver: AnyCancellable?
