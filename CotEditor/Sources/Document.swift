@@ -209,7 +209,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// The backup file URL for autosaveElsewhere.
     override var autosavedContentsFileURL: URL? {
         
         get {
@@ -234,7 +233,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 let maxIdentifierLength = Int(NAME_MAX) - (baseFileName + " ()." + fileURL.pathExtension).length
                 let fileName = baseFileName + " (" + UUID().uuidString.prefix(maxIdentifierLength) + ")"
                 
-                super.autosavedContentsFileURL =  AutosaveDirectory.url.appending(component: fileName).appendingPathExtension(fileURL.pathExtension)
+                super.autosavedContentsFileURL =  AutosaveDirectory.url
+                    .appending(component: fileName)
+                    .appendingPathExtension(fileURL.pathExtension)
             }
             
             return super.autosavedContentsFileURL
