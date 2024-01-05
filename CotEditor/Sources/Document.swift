@@ -949,7 +949,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     // MARK: Action Messages
     
-    /// Changes the document text encoding wit sender's tag.
+    /// Changes the document text encoding with sender's tag.
     @IBAction func changeEncoding(_ sender: NSMenuItem) {
         
         let fileEncoding = FileEncoding(tag: sender.tag)
