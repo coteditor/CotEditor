@@ -62,7 +62,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     private(set) lazy var selection = TextSelection(document: self)
     private(set) lazy var analyzer = DocumentAnalyzer(document: self)
     private(set) lazy var incompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
-    let urlDetector: URLDetector
+    private(set) lazy var urlDetector = URLDetector(textStorage: self.textStorage)
     
     let didChangeSyntax = PassthroughSubject<String, Never>()
     
@@ -108,16 +108,18 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // observe for inconsistent line endings
         self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
         
-        // auto-link URLs in the content
-        self.urlDetector = URLDetector(textStorage: self.textStorage)
-        self.defaultObservers = [
-            UserDefaults.standard.publisher(for: .autoLinkDetection, initial: true)
-                .assign(to: \.isEnabled, on: self.urlDetector),
-        ]
-        
         super.init()
         
         self.lineEndingScanner.observe(lineEnding: self.$lineEnding)
+        
+        // auto-link URLs in the content
+        if UserDefaults.standard[.autoLinkDetection] {
+            self.urlDetector.isEnabled = true
+        }
+        self.defaultObservers = [
+            UserDefaults.standard.publisher(for: .autoLinkDetection)
+                .sink { [weak self] in self?.urlDetector.isEnabled = $0 }
+        ]
         
         // observe syntax update
         self.syntaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
