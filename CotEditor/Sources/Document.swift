@@ -36,8 +36,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     private enum SerializationKey {
         
         static let allowsLossySaving = "allowsLossySaving"
-        static let isVerticalText = "isVerticalText"
         static let isTransient = "isTransient"
+        static let isVerticalText = "isVerticalText"
         static let suppressesInconsistentLineEndingAlert = "suppressesInconsistentLineEndingAlert"
         static let syntax = "syntax"
         static let originalContentString = "originalContentString"
@@ -46,8 +46,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     // MARK: Public Properties
     
-    var isVerticalText = false
     var isTransient = false  // untitled & empty document that was created automatically
+    var isVerticalText = false
     
     
     // MARK: Readonly Properties
@@ -131,8 +131,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
         
         coder.encode(self.allowsLossySaving, forKey: SerializationKey.allowsLossySaving)
-        coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
         coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
+        coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
         coder.encode(self.suppressesInconsistentLineEndingAlert, forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
         coder.encode(self.syntaxParser.syntax.name, forKey: SerializationKey.syntax)
         
@@ -150,18 +150,16 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         if coder.containsValue(forKey: SerializationKey.allowsLossySaving) {
             self.allowsLossySaving = coder.decodeBool(forKey: SerializationKey.allowsLossySaving)
         }
-        if coder.containsValue(forKey: SerializationKey.isVerticalText) {
-            self.isVerticalText = coder.decodeBool(forKey: SerializationKey.isVerticalText)
-        }
         if coder.containsValue(forKey: SerializationKey.isTransient) {
             self.isTransient = coder.decodeBool(forKey: SerializationKey.isTransient)
+        }
+        if coder.containsValue(forKey: SerializationKey.isVerticalText) {
+            self.isVerticalText = coder.decodeBool(forKey: SerializationKey.isVerticalText)
         }
         if coder.containsValue(forKey: SerializationKey.suppressesInconsistentLineEndingAlert) {
             self.suppressesInconsistentLineEndingAlert = coder.decodeBool(forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
         }
-        if let syntaxName = coder.decodeObject(of: NSString.self, forKey: SerializationKey.syntax) as? String,
-           self.syntaxParser.syntax.name != syntaxName
-        {
+        if let syntaxName = coder.decodeObject(of: NSString.self, forKey: SerializationKey.syntax) as? String {
             self.setSyntax(name: syntaxName)
         }
         
