@@ -682,7 +682,7 @@ numbers:
   regularExpression: true
   ignoreCase: true
   description: "integer"
-- beginString: "\\b-?\\d+\\.\\d+(e[-+]?\\d+)?l?\\b"
+- beginString: "\\b-?\\d+\\.\\df+(e[-+]?\\d+)?l?\\b"
   regularExpression: true
   ignoreCase: true
   description: "float"
