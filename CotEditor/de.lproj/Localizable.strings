@@ -899,7 +899,7 @@
 
 /* MARK: Encoding List View */
 "Drag encodings to change the order:" = "Ziehe die Codierungen, um die Reihenfolge zu ändern:";
-"This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Diese Reihenfolge wird für das Kodierungsmenü und die Kodierungserkennung beim Öffnen der Datei verwendet. Bei der Erkennung werden die höheren Codierungen stärker priorisiert.";
+"This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Diese Reihenfolge wird für das Codierungsmenü und die Codierungserkennung beim Öffnen der Datei verwendet. Bei der Erkennung werden die höheren Codierungen stärker priorisiert.";
 "Add Separator" = "Separator hinzufügen";
 "Delete Separator" = "Separator löschen";
 
