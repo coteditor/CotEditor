@@ -140,7 +140,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         coder.encode(self.syntaxParser.syntax.name, forKey: SerializationKey.syntax)
         
         // store unencoded string but only when incompatible
-        if !self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) {
+        if !self.canBeConverted() {
             coder.encode(self.textStorage.string, forKey: SerializationKey.originalContentString)
         }
     }
@@ -388,7 +388,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             .data(using: fileEncoding.encoding, allowLossyConversion: true)!
         
         // reset `allowsLossySaving` flag if the compatibility issue is solved
-        if self.allowsLossySaving, self.textStorage.string.canBeConverted(to: fileEncoding.encoding) {
+        if self.allowsLossySaving, self.canBeConverted() {
             self.allowsLossySaving = false
         }
         
@@ -455,7 +455,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // [caution] This method may be called from a background thread due to async-saving.
         
         // check if the content can be saved with the current text encoding.
-        guard saveOperation.isAutosave || self.allowsLossySaving || self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) else {
+        guard saveOperation.isAutosave || self.allowsLossySaving || self.canBeConverted() else {
             throw SavingError.lossyEncoding(self.fileEncoding, attempter: self)
         }
         
@@ -696,13 +696,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    override func presentError(_ error: any Error, modalFor window: NSWindow, delegate: Any?, didPresent didPresentSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+    override func willPresentError(_ error: any Error) -> any Error {
         
         // remove wrapped NSError to make RecoverableError work
         // cf. [How to use RecoverableError to retry?](https://stackoverflow.com/questions/40352975/how-to-use-recoverableerror-to-retry)
-        let underlyingError = (error as NSError).userInfo[NSUnderlyingErrorKey] as? any Error ?? error
+        let error = (error as NSError).userInfo[NSUnderlyingErrorKey] as? SavingError ?? error
         
-        super.presentError(underlyingError, modalFor: window, delegate: delegate, didPresent: didPresentSelector, contextInfo: contextInfo)
+        return super.willPresentError(error)
     }
     
     
@@ -816,15 +816,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Checks if the content can be converted to the given text encoding.
+    /// Checks if the content can be converted in the given encoding without loss of information.
     ///
-    /// - Parameter fileEncoding: The text encoding to change with.
-    /// - Throws: `EncodingError`
-    func checkEncodingCompatibility(with fileEncoding: FileEncoding) throws {
+    /// - Parameter fileEncoding: The text encoding to test, or `nil` to test with the current file encoding.
+    /// - Returns: `true` if the content can be encoded in encoding without loss of information; otherwise, `false`.
+    func canBeConverted(to fileEncoding: FileEncoding? = nil) -> Bool {
         
-        guard self.textStorage.string.canBeConverted(to: fileEncoding.encoding) else {
-            throw EncodingError(encoding: fileEncoding)
-        }
+        self.textStorage.string.canBeConverted(to: (fileEncoding ?? self.fileEncoding).encoding)
     }
     
     
@@ -1075,9 +1073,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 let returnCode = await alert.beginSheetModal(for: documentWindow)
                 switch returnCode {
                     case .alertFirstButtonReturn:  // = Convert
-                        do {
-                            try self.checkEncodingCompatibility(with: fileEncoding)
-                        } catch {
+                        if !self.canBeConverted(to: fileEncoding) {
+                            let error = LossyEncodingError(encoding: fileEncoding)
                             self.presentErrorAsSheet(error) { [unowned self] didRecover in
                                 if didRecover {
                                     self.changeEncoding(to: fileEncoding)
@@ -1278,7 +1275,7 @@ private enum ReinterpretationError: LocalizedError {
 
 
 
-private struct EncodingError: LocalizedError, RecoverableError {
+struct LossyEncodingError: LocalizedError, RecoverableError {
     
     var encoding: FileEncoding
     

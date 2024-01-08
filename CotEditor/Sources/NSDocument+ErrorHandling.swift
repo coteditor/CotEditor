@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import AppKit.NSDocument
 
 extension NSDocument.SaveOperationType {
     
+    /// The save operation is a kind of an autosave.
     var isAutosave: Bool {
         
         switch self {
