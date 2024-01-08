@@ -700,7 +700,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // remove wrapped NSError to make RecoverableError work
         // cf. [How to use RecoverableError to retry?](https://stackoverflow.com/questions/40352975/how-to-use-recoverableerror-to-retry)
-        let error = (error as NSError).userInfo[NSUnderlyingErrorKey] as? SavingError ?? error
+        let error = (error as NSError).underlyingErrors.first ?? error
         
         return super.willPresentError(error)
     }
@@ -1046,7 +1046,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         guard fileEncoding != self.fileEncoding else { return }
         
         // change encoding immediately if there is nothing to worry about
-        if self.fileURL == nil || self.textStorage.string.isEmpty || fileEncoding.encoding == .utf8 {
+        if self.fileURL == nil || self.textStorage.string.isEmpty {
             return self.changeEncoding(to: fileEncoding)
         }
         

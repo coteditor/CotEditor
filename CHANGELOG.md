@@ -8,6 +8,12 @@
 - Suppress displaying the dialog for saving in an incompatible encoding when once allowed.
 
 
+### Fixes
+
+- Fix an issue that the encoding reinterpretation option dialog is not displayed when the user changes a document encoding to UTF-8.
+
+
+
 4.7.2 (625)
 --------------------------
 
