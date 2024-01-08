@@ -272,30 +272,31 @@
 "Line Endings to %@" = "Satır Sonları: %@";
 
 // Convert or reinterpret encoding alert
-"Text encoding" = "Metin kodlaması";
+"Text encoding change" = "Metin kodlaması";  // FIXME: updated
 "Do you want to convert or reinterpret this document using “%@”?" = "Bu belgeyi “%@” kullanarak dönüştürmek veya yeniden yorumlamak istiyor musunuz?";
 "Convert" = "Dönüştür";
 "Reinterpret" = "Yeniden Yorumla";
 
-// Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@.”" = "“%@” olarak kaydederken bazı karakterler değiştirilmek veya silinmek zorunda olabilir.";
-"Do you want to continue processing?" = "İşlemi sürdürmek istiyor musunuz?";
+// Encoding alarts
+"The document contains characters incompatible with “%@.”" = "The document contains characters incompatible with “%@.”";  // FIXME: changed
+
+// Lossy saving alert
+"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Incompatible characters are substituted or deleted in saving. İşlemi sürdürmek istiyor musunuz?";  // FIXME: updated
 "Save Available Text" = "Kullanılabilir Metni Kaydet";
-"Show Incompatible Characters" = "Uyumsuz Karakterleri Göster";
+"Review Incompatible Characters" = "Uyumsuz Karakterleri Göster";  // FIXME: updated
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "Belgede kaydedilmemiş değişiklikler var.";
-"Do you want to discard the changes and reopen the document using “%@”?" = "Değişiklikleri atıp belgeyi、“%@” kullanarak yeniden açmak istiyor musunuz?";
+"Are you sure you want to discard the changes and reopen the document using “%@”?" = "Değişiklikleri atıp belgeyi、“%@” kullanarak yeniden açmak istiyor musunuz?";  // %@ is an encoding name.  // FIXME: updated
 "Discard Changes" = "Değişiklikleri At";
 
 // Reinterpretation failed alert
-"The document doesn’t have a file to reinterpret." = "Belgede yeniden yorumlanacak bir dosya yok.";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "“%1$@” dosyası, “%2$@” metin kodlaması kullanarak yeniden yorumlanamadı.";
-"The file may have been saved using a different text encoding, or it may not be a text file." = "Dosya, başka bir metin kodlaması kullanarak kaydedilmiş olabilir veya bir metin dosyası olmayabilir.";
+"The document doesn’t have a file to reinterpret." = "Belge yeniden yorumlanacak bir dosya yok.";
+"The document could not be reinterpreted using text encoding “%@.”" = "Belge, “%@” metin kodlaması kullanarak yeniden yorumlanamadı.";
+"The document may have been saved using a different text encoding, or it may not be a text file." = "Belge, başka bir metin kodlaması kullanarak kaydedilmiş olabilir veya bir metin dosyası olmayabilir.";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@.”" = "“%@” olarak kaydederken bazı karakterler değiştirilmek veya silinmek zorunda olabilir.";
-"Do you want to change encoding and show incompatible characters?" = "Kodlamayı değiştirmek ve uyumsuz karakterleri göstermek istiyor musunuz?";
+"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Incompatible characters are substituted or deleted in saving. Kodlamayı değiştirmek ve uyumsuz karakterleri göstermek istiyor musunuz?";  // FIXME: updated
 "Change Encoding" = "Kodlamayı Değiştir";
 
 // Inconsistent line ending alert

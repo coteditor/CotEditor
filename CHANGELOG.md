@@ -6,6 +6,13 @@
 ### Improvements
 
 - Suppress displaying the dialog for saving in an incompatible encoding when once allowed.
+- [trivial] Improve alert messages for incompatible text encodings.
+
+
+### TODO
+
+- Some text are not localized yet.
+
 
 
 ### Fixes
