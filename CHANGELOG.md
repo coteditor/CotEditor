@@ -10,6 +10,7 @@
 
 ### Fixes
 
+- Fix an issue that the application crashed when editing a specific pattern of color code.
 - Fix an issue that the encoding reinterpretation option dialog is not displayed when the user changes a document encoding to UTF-8.
 
 
