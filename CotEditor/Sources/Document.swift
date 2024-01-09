@@ -457,7 +457,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // check if the content can be saved with the current text encoding.
         guard saveOperation.isAutosave || self.allowsLossySaving || self.canBeConverted() else {
-            throw SavingError.lossyEncoding(self.fileEncoding, attempter: self)
+            throw SavingError(.lossyEncoding(self.fileEncoding), attempter: self)
         }
         
         try super.writeSafely(to: url, ofType: typeName, for: saveOperation)
@@ -1308,15 +1308,29 @@ struct LossyEncodingError: LocalizedError, RecoverableError {
 
 
 
-private enum SavingError: LocalizedError, RecoverableError {
+private struct SavingError: LocalizedError, RecoverableError {
     
-    case lossyEncoding(FileEncoding, attempter: Document)
+    enum Code {
+        
+        case lossyEncoding(FileEncoding)
+    }
+    
+    
+    var code: Code
+    var attempter: Document
+    
+    
+    init(_ code: Code, attempter: Document) {
+        
+        self.code = code
+        self.attempter = attempter
+    }
     
     
     var errorDescription: String? {
         
-        switch self {
-            case .lossyEncoding(let fileEncoding, _):
+        switch self.code {
+            case .lossyEncoding(let fileEncoding):
                 String(localized: "Some characters would have to be changed or deleted in saving as “\(fileEncoding.localizedName).”")
         }
     }
@@ -1330,7 +1344,7 @@ private enum SavingError: LocalizedError, RecoverableError {
     
     var recoveryOptions: [String] {
         
-        switch self {
+        switch self.code {
             case .lossyEncoding:
                 [String(localized: "Save Available Text"),
                  String(localized: "Show Incompatible Characters"),
@@ -1341,15 +1355,15 @@ private enum SavingError: LocalizedError, RecoverableError {
     
     func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
         
-        switch self {
-            case .lossyEncoding(_, let attempter):
+        switch self.code {
+            case .lossyEncoding:
                 switch recoveryOptionIndex {
                     case 0:  // == Save
-                        attempter.allowsLossySaving = true
+                        self.attempter.allowsLossySaving = true
                         return true
                     case 1:  // == Show Incompatible Characters
                         Task { @MainActor in
-                            attempter.showWarningInspector()
+                            self.attempter.showWarningInspector()
                         }
                         return false
                     case 2:  // == Cancel
