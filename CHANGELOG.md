@@ -5,20 +5,20 @@
 
 ### Improvements
 
-- Suppress displaying the dialog for saving in an incompatible encoding when once allowed.
+- When the file encoding is incompatible with the document content, display a notification instead of silently overwriting the document file with lossy data in autosaving until the user explicitly allows it.
+- Suppress displaying the dialog for saving in an incompatible encoding when the user once allowed it.
 - [trivial] Improve alert messages for incompatible text encodings.
-
-
-### TODO
-
-- Some text are not localized yet.
-
 
 
 ### Fixes
 
 - Fix an issue that the application crashed when editing a specific pattern of color code.
 - Fix an issue that the encoding reinterpretation option dialog is not displayed when the user changes a document encoding to UTF-8.
+
+
+### TODO
+
+- Some text is not localized yet.
 
 
 
