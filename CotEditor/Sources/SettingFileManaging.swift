@@ -341,7 +341,7 @@ extension SettingFileManaging {
     
     /// Imports setting at passed-in URL.
     ///
-    /// - Throws: `SettingFileError`
+    /// - Throws: `SettingFileError` or `ImportDuplicationError`
     func importSetting(fileURL: URL) throws {
         
         let importName = self.settingName(from: fileURL)
