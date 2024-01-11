@@ -691,8 +691,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     override func attemptRecovery(fromError error: any Error, optionIndex recoveryOptionIndex: Int, delegate: Any?, didRecoverSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
-        assert(Thread.isMainThread)
-        
         guard (error as NSError).domain == SavingError.errorDomain else {
             return super.attemptRecovery(fromError: error, optionIndex: recoveryOptionIndex, delegate: delegate, didRecoverSelector: didRecoverSelector, contextInfo: contextInfo)
         }
