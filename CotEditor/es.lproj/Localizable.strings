@@ -272,30 +272,31 @@
 "Line Endings to %@" = "Finales de línea a %@";
 
 // Convert or reinterpret encoding alert
-"Text encoding" = "Codificación de texto";
+"Text encoding change" = "Codificación de texto";  // FIXME: updated
 "Do you want to convert or reinterpret this document using “%@”?" = "¿Quieres convertir o reinterpretar este documento usando “%@”?";
 "Convert" = "Convertir";
 "Reinterpret" = "Reinterpretación";
 
-// Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@.”" = "Algunos caracteres tendrían que cambiarse o eliminarse al guardar como “%@”.";
-"Do you want to continue processing?" = "¿Quieres continuar con el procesamiento?";
+// Encoding alarts
+"The document contains characters incompatible with “%@.”" = "The document contains characters incompatible with “%@.”";  // FIXME: changed
+
+// Lossy saving alert
+"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Algunos caracteres tendrían que cambiarse o eliminarse al guardarse. ¿Quieres continuar con el procesamiento?";  // FIXME: updated
 "Save Available Text" = "Guardar texto disponible";
-"Show Incompatible Characters" = "Mostrar caracteres incompatibles";
+"Review Incompatible Characters" = "Mostrar caracteres incompatibles";  // FIXME: updated
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "The document has unsaved changes.";
-"Do you want to discard the changes and reopen the document using “%@”?" = "¿Quieres descartar los cambios y volver a abrir el documento usando “%@”?";
+"Are you sure you want to discard the changes and reopen the document using “%@”?" = "¿Quieres descartar los cambios y volver a abrir el documento usando “%@”?";  // %@ is an encoding name.  // FIXME: updated
 "Discard Changes" = "Descartar los cambios";
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "El documento no tiene un archivo para reinterpretar.";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "El archivo “%@” no se podía reinterpretar usando codificación de texto “%@”.";
-"The file may have been saved using a different text encoding, or it may not be a text file." = "Es posible que el archivo se haya guardado utilizando una codificación de texto diferente, o puede que no sea un archivo de texto.";
+"The document could not be reinterpreted using text encoding “%@.”" = "El documento no se podía reinterpretar usando codificación de texto “%@”.";
+"The document may have been saved using a different text encoding, or it may not be a text file." = "Es posible que el documento se haya guardado utilizando una codificación de texto diferente, o puede que no sea un archivo de texto.";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@.”" = "Algunos caracteres tendrían que cambiarse o eliminarse al guardarse como “%@”.";
-"Do you want to change encoding and show incompatible characters?" = "¿Quieres cambiar la codificación y mostrar caracteres incompatibles?";
+"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Algunos caracteres tendrían que cambiarse o eliminarse al guardarse. ¿Quieres cambiar la codificación y mostrar caracteres incompatibles?";  // FIXME: updated
 "Change Encoding" = "Cambiar la codificación";
 
 // Inconsistent line ending alert

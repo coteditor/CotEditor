@@ -272,30 +272,31 @@
 "Line Endings to %@" = "改行コードを%@へ";
 
 // Convert or reinterpret encoding alert
-"Text encoding" = "テキストエンコーディング";
+"Text encoding change" = "テキストエンコーディングの変更";
 "Do you want to convert or reinterpret this document using “%@”?" = "“%@”を使って書類を変換または再解釈しますか?";
 "Convert" = "変換";
 "Reinterpret" = "再解釈";
 
-// Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@.”" = "“%@”で保存をすると、書類で使われている一部の文字が変更または削除されます。";
-"Do you want to continue processing?" = "保存を続けますか?";
+// Encoding alarts
+"The document contains characters incompatible with “%@.”" = "書類に“%@”と互換性のない文字が含まれています。";
+
+// Lossy saving alert
+"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "互換性のない文字は保存時に代替または削除されます。保存を続けますか?";
 "Save Available Text" = "有効なテキストを保存";
-"Show Incompatible Characters" = "非互換文字を表示";
+"Review Incompatible Characters" = "非互換文字を確認";
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "ファイル“%@”の変更内容は保存されていません。";
-"Do you want to discard the changes and reopen the document using “%@”?" = "変更内容を破棄し、“%@”で書類を開き直してもよろしいですか?";
+"Are you sure you want to discard the changes and reopen the document using “%@”?" = "変更を破棄して、“%@”で書類を開き直してもよろしいですか?";  // %@ is an encoding name.
 "Discard Changes" = "変更内容を破棄";
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "再解釈をするファイルがありません。";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "テキストエンコーディング“%1$@”でファイル“%2$@”を再解釈できませんでした。";
-"The file may have been saved using a different text encoding, or it may not be a text file." = "このファイルは、別のテキストエンコーディングで保存されているか、テキストファイルでない可能性があります。";
+"The document could not be reinterpreted using text encoding “%@.”" = "テキストエンコーディング“%@”で書類を再解釈できませんでした。";
+"The document may have been saved using a different text encoding, or it may not be a text file." = "この書類は、別のテキストエンコーディングで保存されているか、テキストファイルでない可能性があります。";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@.”" = "“%@”で保存をすると、書類で使われている一部の文字が変更または削除されます。";
-"Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか?";
+"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "互換性のない文字は保存時に代替または削除されます。エンコーディングを変更し非互換文字を確認しますか?";
 "Change Encoding" = "エンコーディングを変更";
 
 // Inconsistent line ending alert

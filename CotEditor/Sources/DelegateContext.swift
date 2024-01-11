@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -53,5 +53,28 @@ struct DelegateContext {
         let function = unsafeBitCast(method, to: Signature.self)
         
         function(delegate, selector, caller, flag, self.contextInfo)
+    }
+    
+    
+    /// Manually invokes the original delegate method stored as a DelegateContext.
+    ///
+    /// - SeeAlso: *Advice for Overriders of Methods that Follow the delegate:didSomethingSelector:contextInfo: Pattern* in
+    ///   <https://developer.apple.com/library/archive/releasenotes/AppKit/RN-AppKitOlderNotes/>.
+    ///
+    /// - Parameters:
+    ///   - flag: The boolean flag to tell the result state to the delegate.
+    func perform(flag: Bool) {
+        
+        guard
+            let delegate = self.delegate as? AnyObject,
+            let selector = self.selector,
+            let objcClass = objc_getClass(delegate.className) as? AnyClass,
+            let method = class_getMethodImplementation(objcClass, selector)
+        else { return assertionFailure() }
+        
+        typealias Signature = @convention(c) (AnyObject, Selector, Bool, UnsafeMutableRawPointer?) -> Void
+        let function = unsafeBitCast(method, to: Signature.self)
+        
+        function(delegate, selector, flag, self.contextInfo)
     }
 }

@@ -272,30 +272,31 @@
 "Line Endings to %@" = "行尾變更為%@";
 
 // Convert or reinterpret encoding alert
-"Text encoding" = "文字編碼";
+"Text encoding change" = "文字編碼";  // FIXME: updated
 "Do you want to convert or reinterpret this document using “%@”?" = "要使用「%@」進行轉換或者再次解釋這份文件嗎？";
 "Convert" = "轉換";
 "Reinterpret" = "再次解釋";
 
-// Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@.”" = "儲存為「%@」時一些字元可能需要被更改或者刪除。";
-"Do you want to continue processing?" = "繼續進行處理嗎？";
+// Encoding alarts
+"The document contains characters incompatible with “%@.”" = "The document contains characters incompatible with “%@.”";  // FIXME: changed
+
+// Lossy saving alert
+"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "儲存時一些字元可能需要被更改或者刪除。繼續進行處理嗎？";  // FIXME: updated
 "Save Available Text" = "儲存有效文字";
-"Show Incompatible Characters" = "顯示不兼容字元";
+"Review Incompatible Characters" = "檢查不兼容字元";
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "該文件中含有未儲存的修改。";
-"Do you want to discard the changes and reopen the document using “%@”?" = "你確認放棄更改，並使用「%@」重新開啟該文件嗎？";  // %@ is an encoding name.
+"Are you sure you want to discard the changes and reopen the document using “%@”?" = "確定要捨棄更改，並使用「%@」重新開啟該文件嗎？";  // %@ is an encoding name.  // FIXME: needs review
 "Discard Changes" = "放棄修改";
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "該文件沒有要用來再次解釋的檔案。";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "檔案「%@」無法使用「%@」編碼再次解釋。";
-"The file may have been saved using a different text encoding, or it may not be a text file." = "該檔案可能已使用了不同的文字編碼來存儲，或者可能不是文字檔案。";
+"The document could not be reinterpreted using text encoding “%@.”" = "文件無法使用「%@」編碼再次解釋。";
+"The document may have been saved using a different text encoding, or it may not be a text file." = "該文件可能已使用了不同的文字編碼來存儲，或者可能不是文字檔案。";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@.”" = "儲存為「%@」時一些字元可能需要被更改或者刪除。";
-"Do you want to change encoding and show incompatible characters?" = "改變編碼並顯示不兼容字元嗎？";
+"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "儲存時一些字元可能需要被更改或者刪除。改變編碼並顯示不兼容字元嗎？";  // FIXME: updated
 "Change Encoding" = "更改編碼";
 
 // Inconsistent line ending alert

@@ -39,6 +39,20 @@ extension NSDocument.SaveOperationType {
                 fatalError()
         }
     }
+    
+    
+    /// The save operation is an autosave but not overwrites the actual document file.
+    var isAutosaveElsewhere: Bool {
+        
+        switch self {
+            case .autosaveElsewhereOperation, .autosaveAsOperation:
+                true
+            case  .autosaveInPlaceOperation, .saveOperation, .saveAsOperation, .saveToOperation:
+                false
+            @unknown default:
+                fatalError()
+        }
+    }
 }
 
 

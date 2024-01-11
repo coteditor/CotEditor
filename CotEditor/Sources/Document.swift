@@ -77,7 +77,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     private let saveOptions = SaveOptions()
     private var suppressesInconsistentLineEndingAlert = false
     private var isExternalUpdateAlertShown = false
-    fileprivate var allowsLossySaving = false
+    private var allowsLossySaving = false
     
     private lazy var urlDetector = URLDetector(textStorage: self.textStorage)
     
@@ -450,7 +450,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     override func writeSafely(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) throws {  // nonisolated
         
         // check if the content can be saved with the current text encoding.
-        guard saveOperation.isAutosave || self.allowsLossySaving || self.canBeConverted() else {
+        guard saveOperation.isAutosaveElsewhere || self.allowsLossySaving || self.canBeConverted() else {
             throw SavingError(.lossyEncoding(self.fileEncoding), attempter: self)
         }
         
@@ -689,13 +689,29 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    override func willPresentError(_ error: any Error) -> any Error {
+    override func attemptRecovery(fromError error: any Error, optionIndex recoveryOptionIndex: Int, delegate: Any?, didRecoverSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
-        // remove wrapped NSError to make RecoverableError work
-        // cf. [How to use RecoverableError to retry?](https://stackoverflow.com/questions/40352975/how-to-use-recoverableerror-to-retry)
-        let error = (error as NSError).underlyingErrors.first ?? error
+        assert(Thread.isMainThread)
         
-        return super.willPresentError(error)
+        guard (error as NSError).domain == SavingError.errorDomain else {
+            return super.attemptRecovery(fromError: error, optionIndex: recoveryOptionIndex, delegate: delegate, didRecoverSelector: didRecoverSelector, contextInfo: contextInfo)
+        }
+        
+        switch recoveryOptionIndex {
+            case 0:  // == Save
+                self.allowsLossySaving = true
+            case 1:  // == Show Incompatible Characters
+                self.showWarningInspector()
+            case 2:  // == Cancel
+                break
+            default:
+                preconditionFailure()
+        }
+        
+        let didRecover = (recoveryOptionIndex == 0)
+        
+        DelegateContext(delegate: delegate, selector: didRecoverSelector, contextInfo: contextInfo)
+            .perform(flag: didRecover)
     }
     
     
@@ -838,7 +854,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         } catch {
             self.readingEncoding = nil
             
-            throw ReinterpretationError.reinterpretationFailed(fileURL: fileURL, encoding: encoding)
+            throw ReinterpretationError.reinterpretationFailed(encoding)
         }
     }
     
@@ -1029,7 +1045,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     /// Changes the text encoding by asking options to the user.
     ///
-    /// - Parameter fileEncoding: The file encoding to change.
+    /// - Parameter fileEncoding: The text encoding to change.
     @MainActor private func askChangingEncoding(to fileEncoding: FileEncoding) {
         
         assert(Thread.isMainThread)
@@ -1053,7 +1069,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             
             // ask whether just change the encoding or reinterpret document file
             let alert = NSAlert()
-            alert.messageText = String(localized: "Text encoding")
+            alert.messageText = String(localized: "Text encoding change")
             alert.informativeText = String(localized: "Do you want to convert or reinterpret this document using “\(fileEncoding.localizedName)”?")
             alert.addButton(withTitle: String(localized: "Convert"))
             alert.addButton(withTitle: String(localized: "Reinterpret"))
@@ -1083,7 +1099,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                         if self.isDocumentEdited {
                             let alert = NSAlert()
                             alert.messageText = String(localized: "The document has unsaved changes.")
-                            alert.informativeText = String(localized: "Do you want to discard the changes and reopen the document using “\(fileEncoding.localizedName)”?",
+                            alert.informativeText = String(localized: "Are you sure you want to discard the changes and reopen the document using “\(fileEncoding.localizedName)”?",
                                                            comment: "%@ is an encoding name")
                             alert.addButton(withTitle: String(localized: "Cancel"))
                             alert.addButton(withTitle: String(localized: "Discard Changes"))
@@ -1224,7 +1240,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     
     /// Shows the warning inspector in the document window.
-    @MainActor fileprivate func showWarningInspector() {
+    @MainActor private func showWarningInspector() {
         
         (self.windowControllers.first?.contentViewController as? WindowContentViewController)?.showInspector(pane: .warnings)
     }
@@ -1237,7 +1253,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
 private enum ReinterpretationError: LocalizedError {
     
     case noFile
-    case reinterpretationFailed(fileURL: URL, encoding: String.Encoding)
+    case reinterpretationFailed(String.Encoding)
     
     
     var errorDescription: String? {
@@ -1246,8 +1262,8 @@ private enum ReinterpretationError: LocalizedError {
             case .noFile:
                 String(localized: "The document doesn’t have a file to reinterpret.")
                 
-            case .reinterpretationFailed(let fileURL, let encoding):
-                String(localized: "The file “\(fileURL.lastPathComponent)” couldn’t be reinterpreted using text encoding “\(String.localizedName(of: encoding)).”")
+            case .reinterpretationFailed(let encoding):
+                String(localized: "The document could not be reinterpreted using text encoding “\(String.localizedName(of: encoding)).”")
         }
     }
     
@@ -1259,7 +1275,7 @@ private enum ReinterpretationError: LocalizedError {
                 nil
                 
             case .reinterpretationFailed:
-                String(localized: "The file may have been saved using a different text encoding, or it may not be a text file.")
+                String(localized: "The document may have been saved using a different text encoding, or it may not be a text file.")
         }
     }
 }
@@ -1273,13 +1289,13 @@ struct LossyEncodingError: LocalizedError, RecoverableError {
     
     var errorDescription: String? {
         
-        String(localized: "Some characters would have to be changed or deleted in saving as “\(self.encoding.localizedName).”")
+        String(localized: "The document contains characters incompatible with “\(self.encoding.localizedName).”")
     }
     
     
     var recoverySuggestion: String? {
         
-        String(localized: "Do you want to change encoding and show incompatible characters?")
+        String(localized: "Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?")
     }
     
     
@@ -1298,13 +1314,15 @@ struct LossyEncodingError: LocalizedError, RecoverableError {
 
 
 
-private struct SavingError: LocalizedError, RecoverableError {
+private struct SavingError: LocalizedError, CustomNSError {
     
     enum Code {
         
         case lossyEncoding(FileEncoding)
     }
     
+    
+    static let errorDomain: String = "CotEditor.SavingError"
     
     var code: Code
     var attempter: Document
@@ -1321,14 +1339,24 @@ private struct SavingError: LocalizedError, RecoverableError {
         
         switch self.code {
             case .lossyEncoding(let fileEncoding):
-                String(localized: "Some characters would have to be changed or deleted in saving as “\(fileEncoding.localizedName).”")
+                String(localized: "The document contains characters incompatible with “\(fileEncoding.localizedName).”")
+        }
+    }
+    
+    
+    var failureReason: String? {
+        
+        // shown when an autosave failed
+        switch self.code {
+            case .lossyEncoding(let fileEncoding):
+                String(localized: "The document contains characters incompatible with “\(fileEncoding.localizedName).”")
         }
     }
     
     
     var recoverySuggestion: String? {
         
-        String(localized: "Do you want to continue processing?")
+        String(localized: "Incompatible characters are substituted or deleted in saving. Do you want to continue processing?")
     }
     
     
@@ -1337,30 +1365,20 @@ private struct SavingError: LocalizedError, RecoverableError {
         switch self.code {
             case .lossyEncoding:
                 [String(localized: "Save Available Text"),
-                 String(localized: "Show Incompatible Characters"),
+                 String(localized: "Review Incompatible Characters"),
                  String(localized: "Cancel")]
         }
     }
     
     
-    func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
+    var errorUserInfo: [String: Any] {
         
-        switch self.code {
-            case .lossyEncoding:
-                switch recoveryOptionIndex {
-                    case 0:  // == Save
-                        self.attempter.allowsLossySaving = true
-                        return true
-                    case 1:  // == Show Incompatible Characters
-                        Task { @MainActor in
-                            self.attempter.showWarningInspector()
-                        }
-                        return false
-                    case 2:  // == Cancel
-                        return false
-                    default:
-                        preconditionFailure()
-                }
-        }
+        [
+            NSRecoveryAttempterErrorKey: self.attempter,
+            NSLocalizedDescriptionKey: self.errorDescription!,
+            NSLocalizedFailureErrorKey: self.failureReason!,
+            NSLocalizedRecoverySuggestionErrorKey: self.recoverySuggestion!,
+            NSLocalizedRecoveryOptionsErrorKey: self.recoveryOptions,
+        ]
     }
 }

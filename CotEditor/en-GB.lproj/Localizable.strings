@@ -272,30 +272,31 @@
 "Line Endings to %@" = "Line Endings to %@";
 
 // Convert or reinterpret encoding alert
-"Text encoding" = "Text encoding";
+"Text encoding change" = "Text encoding change";
 "Do you want to convert or reinterpret this document using “%@”?" = "Do you want to convert or reinterpret this document using “%@”?";
 "Convert" = "Convert";
 "Reinterpret" = "Reinterpret";
 
-// Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@.”" = "Some characters would have to be changed or deleted in saving as “%@”.";
-"Do you want to continue processing?" = "Do you want to continue processing?";
+// Encoding alarts
+"The document contains characters incompatible with “%@.”" = "The document contains characters incompatible with “%@.”";
+
+// Lossy saving alert
+"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Incompatible characters are substituted or deleted in saving. Do you want to continue processing?";
 "Save Available Text" = "Save Available Text";
-"Show Incompatible Characters" = "Show Incompatible Characters";
+"Review Incompatible Characters" = "Review Incompatible Characters";
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "The document has unsaved changes.";
-"Do you want to discard the changes and reopen the document using “%@”?" = "Do you want to discard the changes and reopen the document using “%@”?";
+"Are you sure you want to discard the changes and reopen the document using “%@”?" = "Are you sure you want to discard the changes and reopen the document using “%@”?";  // %@ is an encoding name.
 "Discard Changes" = "Discard Changes";
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "The document doesn’t have a file to reinterpret.";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "The file “%@” couldn’t be reinterpreted using text encoding “%@”.";
-"The file may have been saved using a different text encoding, or it may not be a text file." = "The file may have been saved using a different text encoding, or it may not be a text file.";
+"The document could not be reinterpreted using text encoding “%@.”" = "The document could not be reinterpreted using text encoding “%@.”";
+"The document may have been saved using a different text encoding, or it may not be a text file." = "The document may have been saved using a different text encoding, or it may not be a text file.";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@.”" = "Some characters would have to be changed or deleted in saving as “%@”.";
-"Do you want to change encoding and show incompatible characters?" = "Do you want to change encoding and show incompatible characters?";
+"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?";
 "Change Encoding" = "Change Encoding";
 
 // Inconsistent line ending alert
