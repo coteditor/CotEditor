@@ -209,7 +209,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    override var autosavedContentsFileURL: URL? {
+    override var autosavedContentsFileURL: URL? {  // nonisolated
         
         get {
             // modify place to create backup file to save backup file always in `~/Library/Autosaved Information/` directory.
@@ -269,7 +269,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    override func fileNameExtension(forType typeName: String, saveOperation: NSDocument.SaveOperationType) -> String? {
+    override func fileNameExtension(forType typeName: String, saveOperation: NSDocument.SaveOperationType) -> String? {  // nonisolated
         
         if !self.isDraft, let pathExtension = self.fileURL?.pathExtension {
             return pathExtension
@@ -280,8 +280,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     
     override func revert(toContentsOf url: URL, ofType typeName: String) throws {
-        
-        assert(Thread.isMainThread)
         
         // once force-close all sheets
         // -> Presented errors will be displayed again after the revert automatically. (since OS X 10.10)
@@ -313,7 +311,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    override func read(from url: URL, ofType typeName: String) throws {
+    override func read(from url: URL, ofType typeName: String) throws {  // nonisolated
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
@@ -378,7 +376,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     override func data(ofType typeName: String) throws -> Data {
         
-        // [caution] This method may be called from a background thread due to async-saving.
+        // [caution] Despite lack of the `nonisolated` label, this method can be called from a background thread in async-saving.
         
         let fileEncoding = self.fileEncoding
         
@@ -408,8 +406,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     
     override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping ((any Error)?) -> Void) {
-        
-        assert(Thread.isMainThread)
         
         // break undo grouping
         let textViews = self.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection)
@@ -451,9 +447,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    override func writeSafely(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) throws {
-        
-        // [caution] This method may be called from a background thread due to async-saving.
+    override func writeSafely(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) throws {  // nonisolated
         
         // check if the content can be saved with the current text encoding.
         guard saveOperation.isAutosave || self.allowsLossySaving || self.canBeConverted() else {
@@ -478,9 +472,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    override func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String: Any] {
-        
-        // [caution] This method may be called from a background thread due to async-saving.
+    override func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String: Any] {  // nonisolated
         
         var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
@@ -710,9 +702,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     // MARK: Protocols
     
-    override func presentedItemDidChange() {
-        
-        // [caution] This method can be called from any thread.
+    override func presentedItemDidChange() {  // nonisolated
         
         // [caution] DO NOT invoke `super.presentedItemDidChange()` that reverts document automatically if autosavesInPlace is enabled.
 //        super.presentedItemDidChange()
