@@ -79,10 +79,9 @@ final class AdvancedCharacterCounter: ObservableObject {
             .merge(with: self.setting.objectWillChange)
             .merge(with: Just(Void()))  // initial calculation
             .receive(on: DispatchQueue.main)
-            .compactMap { [weak self] in self?.textView }
-            .map { $0.string.immutable }
+            .compactMap { [weak self] in self.flatMap { ($0.textView.string.immutable, $0.setting.options) } }
             .receive(on: DispatchQueue.global())
-            .map { [unowned self] in $0.count(options: self.setting.options) }
+            .map { $0.count(options: $1) }
             .receive(on: DispatchQueue.main)
             .assign(to: &self.$entireCount)
         NotificationCenter.default.publisher(for: EditorTextView.didLiveChangeSelectionNotification, object: textView)
@@ -90,14 +89,13 @@ final class AdvancedCharacterCounter: ObservableObject {
             .merge(with: self.setting.objectWillChange)
             .merge(with: Just(Void()))  // initial calculation
             .receive(on: DispatchQueue.main)
-            .compactMap { [weak self] in self?.textView.selectedStrings }
+            .compactMap { [weak self] in self.flatMap { ($0.textView.selectedStrings, $0.setting.options) } }
             .receive(on: DispatchQueue.global())
-            .map { [unowned self] strings in
+            .map { (strings, options) in
                 strings
-                    .map { $0.count(options: self.setting.options) }
-                    .reduce(0) { (total, count) in
-                        guard let total, let count else { return nil }
-                        return total + count
+                    .map { $0.count(options: options) }
+                    .reduce(nil) { (total, count) in
+                        if let total, let count { total + count } else { total ?? count }
                     }
             }
             .receive(on: DispatchQueue.main)
