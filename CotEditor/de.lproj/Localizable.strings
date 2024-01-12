@@ -287,7 +287,7 @@
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "Das Dokument hat ungespeicherte Änderungen.";
-"Are you sure you want to discard the changes and reopen the document using “%@”?" = "Möchtest du die Änderungen wirklich verwerfen und das Dokument in der Codierung „%@“ erneut öffnen?";  // %@ is an encoding name.  // FIXME: updated
+"Are you sure you want to discard the changes and reopen the document using “%@”?" = "Möchtest du die Änderungen wirklich verwerfen und das Dokument in der Codierung „%@“ erneut öffnen?";  // %@ is an encoding name.
 "Discard Changes" = "Änderungen verwerfen";
 
 // Reinterpretation failed alert
