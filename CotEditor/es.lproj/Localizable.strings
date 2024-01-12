@@ -272,22 +272,22 @@
 "Line Endings to %@" = "Finales de línea a %@";
 
 // Convert or reinterpret encoding alert
-"Text encoding change" = "Codificación de texto";  // FIXME: updated
+"Text encoding change" = "Cambiar la codificación del texto";  // FIXME: needs review
 "Do you want to convert or reinterpret this document using “%@”?" = "¿Quieres convertir o reinterpretar este documento usando “%@”?";
 "Convert" = "Convertir";
 "Reinterpret" = "Reinterpretación";
 
 // Encoding alarts
-"The document contains characters incompatible with “%@.”" = "The document contains characters incompatible with “%@.”";  // FIXME: changed
+"The document contains characters incompatible with “%@.”" = "El documento contiene caracteres incompatibles con “%@.”";  // FIXME: needs review
 
 // Lossy saving alert
-"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Algunos caracteres tendrían que cambiarse o eliminarse al guardarse. ¿Quieres continuar con el procesamiento?";  // FIXME: updated
+"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Los caracteres incompatibles se sustituyen o eliminan al guardar. ¿Quieres continuar con el procesamiento?";  // FIXME: needs review
 "Save Available Text" = "Guardar texto disponible";
-"Review Incompatible Characters" = "Mostrar caracteres incompatibles";  // FIXME: updated
+"Review Incompatible Characters" = "Revisar caracteres incompatibles";  // FIXME: needs review
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "The document has unsaved changes.";
-"Are you sure you want to discard your changes and reopen the document using “%@”?" = "¿Quieres descartar los cambios y volver a abrir el documento usando “%@”?";  // %@ is an encoding name.  // FIXME: updated
+"Are you sure you want to discard your changes and reopen the document using “%@”?" = "¿QSeguro que quieres descartar los cambios y volver a abrir el documento usando “%@”?";  // %@ is an encoding name.  // FIXME: needs review
 "Discard Changes" = "Descartar los cambios";
 
 // Reinterpretation failed alert
@@ -296,7 +296,7 @@
 "The document may have been saved using a different text encoding, or it may not be a text file." = "Es posible que el documento se haya guardado utilizando una codificación de texto diferente, o puede que no sea un archivo de texto.";
 
 // incompatible characters alert
-"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Algunos caracteres tendrían que cambiarse o eliminarse al guardarse. ¿Quieres cambiar la codificación y mostrar caracteres incompatibles?";  // FIXME: updated
+"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Los caracteres incompatibles se sustituyen o eliminan al guardar. ¿Quieres cambiar la codificación y revisar caracteres incompatibles?";  // FIXME: needs review
 "Change Encoding" = "Cambiar la codificación";
 
 // Inconsistent line ending alert
@@ -304,7 +304,7 @@
 "Do you want to convert all line endings to %@, the most common line endings in this document?" = "¿Quieres convertir todos los finales de línea en %@, los finales de línea más comunes en este documento?";
 "Don’t ask again for this document" = "No vuelvas a pedir este documento";
 "Convert" = "Convertir";
-"Review" = "Revisión";
+"Review" = "Revisar";
 "Ignore" = "Ignorar";
 
 // Modified by an external application alert
