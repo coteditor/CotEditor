@@ -115,8 +115,8 @@
 "Show quick reference for regular expression syntax." = "Mostrar referencia rápida para la sintaxis de expresiones regulares.";
 
 // pair of accessibility label for a image button and its tooltip
-"Advanced options" = "Advanced options";  // FIXME: missing
-"Show advanced options" = "Show advanced options";  // FIXME: missing
+"Advanced options" = "Opciones avanzadas";  // FIXME: needs review
+"Show advanced options" = "Mostrar opciones avanzadas";  // FIXME: needs review
 
 // pairs of button label and its tooltip
 "Close" = "Cerrar";
@@ -922,14 +922,14 @@
 "<a letter consisting of %lld characters>" = "<una letra que consta de %lld caracteres>";  // %lld is always 2 or more.  // FIXME: needs review
 
 // Variation selectors
-"Emoji Style" = "Emoji Style";  // FIXME: missing
-"Text Style" = "Text Style";  // FIXME: missing
+"Emoji Style" = "Estilo Emoji";  // FIXME: needs review
+"Text Style" = "Estilo Texto";  // FIXME: needs review
 "Skin Tone I-II" = "Tono de piel I-II";
 "Skin Tone III" = "Tono de piel III";
 "Skin Tone IV" = "Tono de piel IV";
 "Skin Tone V" = "Tono de piel V";
 "Skin Tone VI" = "Tono de piel VI";
-"Variant" = "Variant";  // FIXME: missing
+"Variant" = "Variante";  // FIXME: needs review
 
 
 
