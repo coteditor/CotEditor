@@ -287,7 +287,7 @@
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "The document has unsaved changes.";
-"Are you sure you want to discard the changes and reopen the document using “%@”?" = "Are you sure you want to discard the changes and reopen the document using “%@”?";  // %@ is an encoding name.
+"Are you sure you want to discard your changes and reopen the document using “%@”?" = "Are you sure you want to discard your changes and reopen the document using “%@”?";  // %@ is an encoding name.
 "Discard Changes" = "Discard Changes";
 
 // Reinterpretation failed alert

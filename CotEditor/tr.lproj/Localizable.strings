@@ -287,7 +287,7 @@
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "Belgede kaydedilmemiş değişiklikler var.";
-"Are you sure you want to discard the changes and reopen the document using “%@”?" = "Değişiklikleri atıp belgeyi、“%@” kullanarak yeniden açmak istiyor musunuz?";  // %@ is an encoding name.  // FIXME: updated
+"Are you sure you want to discard your changes and reopen the document using “%@”?" = "Değişiklikleri atıp belgeyi、“%@” kullanarak yeniden açmak istiyor musunuz?";  // %@ is an encoding name.  // FIXME: updated
 "Discard Changes" = "Değişiklikleri At";
 
 // Reinterpretation failed alert

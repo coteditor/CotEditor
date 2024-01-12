@@ -287,7 +287,7 @@
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "该文稿中含有未保存的修改。";
-"Are you sure you want to discard the changes and reopen the document using “%@”?" = "你确定要放弃更改，并使用“%@”重新打开文稿吗？";  // %@ is an encoding name.  // FIXME: needs review
+"Are you sure you want to discard your changes and reopen the document using “%@”?" = "你确定要放弃更改，并使用“%@”重新打开文稿吗？";  // %@ is an encoding name.  // FIXME: needs review
 "Discard Changes" = "放弃更改";
 
 // Reinterpretation failed alert
