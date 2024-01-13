@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -147,9 +147,7 @@ final class DocumentController: NSDocumentController {
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
         do {
-            let type = UTType(typeName)
-            try self.checkOpeningSafetyOfDocument(at: url, type: type)
-            
+            try self.checkOpeningSafetyOfDocument(at: url, type: typeName)
         } catch {
             // ask user for opening file
             try DispatchQueue.syncOnMain {
@@ -317,15 +315,13 @@ final class DocumentController: NSDocumentController {
     ///
     /// - Parameters:
     ///   - url: The location of the new document object.
-    ///   - type: The type of the document.
+    ///   - typeName: The type of the document.
     /// - Throws: `DocumentReadError`
-    private func checkOpeningSafetyOfDocument(at url: URL, type: UTType?) throws {
-        
-        assert(type != nil)
+    private nonisolated func checkOpeningSafetyOfDocument(at url: URL, type typeName: String) throws {
         
         // check if the file is possible binary
         let binaryTypes: [UTType] = [.image, .audiovisualContent, .archive]
-        if let type,
+        if let type = UTType(typeName),
            binaryTypes.contains(where: type.conforms(to:)),
            !type.conforms(to: .svg),  // SVG is plain-text (except SVGZ)
            url.pathExtension != "ts"  // "ts" extension conflicts between MPEG-2 streamclip file and TypeScript
