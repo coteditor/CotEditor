@@ -272,22 +272,22 @@
 "Line Endings to %@" = "Satır Sonları: %@";
 
 // Convert or reinterpret encoding alert
-"Text encoding change" = "Metin kodlaması";  // FIXME: updated
+"Text encoding change" = "Metin kodlaması değişikliği";
 "Do you want to convert or reinterpret this document using “%@”?" = "Bu belgeyi “%@” kullanarak dönüştürmek veya yeniden yorumlamak istiyor musunuz?";
 "Convert" = "Dönüştür";
 "Reinterpret" = "Yeniden Yorumla";
 
 // Encoding alarts
-"The document contains characters incompatible with “%@.”" = "The document contains characters incompatible with “%@.”";  // FIXME: changed
+"The document contains characters incompatible with “%@.”" = "Belge, “%@” ile uyumsuz karakterler içeriyor"; // %@ is an encoding name.
 
 // Lossy saving alert
-"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Incompatible characters are substituted or deleted in saving. İşlemi sürdürmek istiyor musunuz?";  // FIXME: updated
+"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Uyumsuz karakterler kaydedilirken değiştirilirler veya silinirler. İşlemi sürdürmek istiyor musunuz?";
 "Save Available Text" = "Kullanılabilir Metni Kaydet";
-"Review Incompatible Characters" = "Uyumsuz Karakterleri Göster";  // FIXME: updated
+"Review Incompatible Characters" = "Uyumsuz Karakterleri Gözden Geçir";
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "Belgede kaydedilmemiş değişiklikler var.";
-"Are you sure you want to discard your changes and reopen the document using “%@”?" = "Değişiklikleri atıp belgeyi、“%@” kullanarak yeniden açmak istiyor musunuz?";  // %@ is an encoding name.  // FIXME: updated
+"Are you sure you want to discard your changes and reopen the document using “%@”?" = "Değişikliklerinizi atıp belgeyi “%@” kullanarak yeniden açmak istediğinizden emin misiniz?";  // %@ is an encoding name.
 "Discard Changes" = "Değişiklikleri At";
 
 // Reinterpretation failed alert
@@ -296,7 +296,7 @@
 "The document may have been saved using a different text encoding, or it may not be a text file." = "Belge, başka bir metin kodlaması kullanarak kaydedilmiş olabilir veya bir metin dosyası olmayabilir.";
 
 // incompatible characters alert
-"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Incompatible characters are substituted or deleted in saving. Kodlamayı değiştirmek ve uyumsuz karakterleri göstermek istiyor musunuz?";  // FIXME: updated
+"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Uyumsuz karakterler kaydedilirken değiştirilirler veya silinirler. Metin kodlamasını değiştirip uyumsuz karakterleri gözden geçirmek istiyor musunuz?";
 "Change Encoding" = "Kodlamayı Değiştir";
 
 // Inconsistent line ending alert

@@ -272,22 +272,22 @@
 "Line Endings to %@" = "行尾变更为%@";
 
 // Convert or reinterpret encoding alert
-"Text encoding change" = "文本编码";  // FIXME: updated
+"Text encoding change" = "变更文本编码";
 "Do you want to convert or reinterpret this document using “%@”?" = "要使用“%@”进行转换或者再次解释吗？";
 "Convert" = "转换";
 "Reinterpret" = "再次解释";
 
 // Encoding alarts
-"The document contains characters incompatible with “%@.”" = "The document contains characters incompatible with “%@.”";  // FIXME: changed
+"The document contains characters incompatible with “%@.”" = "文档中包含与 “%@” 编码不兼容的字符。";  // %@ is an encoding name.
 
 // Lossy saving alert
-"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "保存时一些字符可能需要被更改或者删除。继续进行处理吗？";  // FIXME: updated
+"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "保存时将替换或删除不兼容的字符。您确认要继续处理吗？";
 "Save Available Text" = "保存有效文本";
 "Review Incompatible Characters" = "检查不兼容字符";
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "该文稿中含有未保存的修改。";
-"Are you sure you want to discard your changes and reopen the document using “%@”?" = "你确定要放弃更改，并使用“%@”重新打开文稿吗？";  // %@ is an encoding name.  // FIXME: needs review
+"Are you sure you want to discard your changes and reopen the document using “%@”?" = "确定放弃您的修改并使用 “%@” 编码重新打开文档吗？";  // %@ is an encoding name.
 "Discard Changes" = "放弃更改";
 
 // Reinterpretation failed alert
@@ -296,7 +296,7 @@
 "The document may have been saved using a different text encoding, or it may not be a text file." = "该文稿可能已使用了不同的文本编码来存储，或者可能不是文本文件。";
 
 // incompatible characters alert
-"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "保存时一些字符可能需要被更改或者删除。改变编码并显示不兼容字符吗？";  // FIXME: updated
+"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "保存时将替换或删除不兼容的字符。您想要改变文本编码并检查不兼容字符吗？";
 "Change Encoding" = "更改编码";
 
 // Inconsistent line ending alert

@@ -272,22 +272,22 @@
 "Line Endings to %@" = "Termine riga a %@";
 
 // Convert or reinterpret encoding alert
-"Text encoding change" = "Codifica testo";  // FIXME: updated
+"Text encoding change" = "Cambio codifica testo";
 "Do you want to convert or reinterpret this document using “%@”?" = "Si desidera convertire o reinterpretare il documento usando “%@”?";
 "Convert" = "Converti";
 "Reinterpret" = "Reinterpreta";
 
 // Encoding alarts
-"The document contains characters incompatible with “%@.”" = "The document contains characters incompatible with “%@.”";  // FIXME: changed
+"The document contains characters incompatible with “%@.”" = "Il documento contiene caratteri non compatibili con la codifica “%@.”";  // %@ is an encoding name.
 
 // Lossy saving alert
-"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Alcuni caratteri dovranno essere cambiati o eliminati nel salvataggio. Si desidera continuare l’elaborazione?";  // FIXME: updated
+"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Il salvataggio cancellerà o sostituirà i caratteri non compatibili. Sei sicuro di voler continuare?";
 "Save Available Text" = "Salva le stringhe disponibili";
 "Review Incompatible Characters" = "Rivedi caratteri incompatibili";
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "Il documento ha delle modifiche non salvate.";
-"Are you sure you want to discard your changes and reopen the document using “%@”?" = "Si desidera annullare le modifiche e riaprire il documento usando “%@”?";  // %@ is an encoding name.  // FIXME: updated
+"Are you sure you want to discard your changes and reopen the document using “%@”?" = "Sei sicuro di voler annullare le modifiche e riaprire il documento usando “%@”?";  // %@ is an encoding name.
 "Discard Changes" = "Annulla modifiche";
 
 // Reinterpretation failed alert
@@ -296,7 +296,7 @@
 "The document may have been saved using a different text encoding, or it may not be a text file." = "Il documento potrebbe essere stato salvato usando una codifica di testo diversa, o potrebbe non essere un file di testo.";
 
 // incompatible characters alert
-"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Alcuni caratteri dovranno essere cambiati o eliminati nel salvataggio. Si desidera cambiare codifica e mostrare i caratteri incompatibili?";  // FIXME: updated
+"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Il salvataggio cancellerà o sostituirà i caratteri non compatibili. Vuoi modificare la codifica testo e rivedere i caratteri non compatibili?";
 "Change Encoding" = "Cambia modifica";
 
 // Inconsistent line ending alert
