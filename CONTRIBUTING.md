@@ -5,9 +5,9 @@
 Create a new issue on our [Issues page](https://github.com/coteditor/CotEditor/issues). You can write your feedback either in English (recommended) or in Japanese.
 
 
-### Bug reports
+### Issue reports
 
-Search for existing issues first. If you find your issue previously reported, post your case to that issue; otherwise, create a new one by filling up the "Bug report" template. Do not hesitate to post the same phenomenon to the existing issue as long as the cases are less than 10. Multiple instances help a lot to find out the cause. In that situation, include your environment (versions of both CotEditor and macOS) in your post.
+Search for existing issues first. If you find your issue previously reported, post your case to that issue; otherwise, create a new one by filling up the “Bug report” template. Do not hesitate to post the same phenomenon to the existing issue as long as the cases are less than 10. Multiple instances help a lot to find out the cause. In that situation, include your environment (versions of both CotEditor and macOS) in your post.
 
 If possible, attach screenshots/screencasts of the issue you face. It is also helpful to attach sample files that can reproduce the issue.
 
@@ -16,8 +16,8 @@ If your issue relates to the syntax highlight, include the sample code that can 
 
 ### Feature requests
 
-Search for existing requests first. If you find your feature previously requested, post your comment to that issue; otherwise, create a new one by filling up the "Feature request" template.
-Create an issue per feature instead of listing multiple features on one issue page.
+Search for existing requests first. If you find your feature previously requested, post your comment to that issue; otherwise, create a new one by filling up the “Feature request” template.
+Create an issue per feature instead of listing multiple features in a single post.
 
 
 
@@ -32,11 +32,11 @@ By adding code, please follow our coding style guide below.
 
 ### Localization
 
-_2023-08-01: CotEditor project now gradually migrates the localization format to the strings catalog that is newly introduced in Xcode 15. We will update the localization policy when the migration has completely done._
+_2023-08-01: CotEditor project now gradually migrates the localization format to the strings catalog that is newly introduced in Xcode 15. We will update the technical localization policy when the migration has completely done._
  
 Fixing/updating existing localizations is always welcome. The project team adds `FIXME:` tag as a comment in the localized strings files if there are updated strings to be localized.
 
-If your localization makes the Autolayout destroy, try first making the sentence shorter. However, if it's impossible, then just tell us about it with a screenshot when you make a pull-request. We'll update the storyboard file to layout your localized terms correctly.
+If your localization makes some layout in views destroy, try first making the sentence shorter. However, if it's impossible, then just tell us about it with a screenshot when you make a pull-request. We'll update the view to layout your localized text correctly.
 
 #### Good references for localization
 
@@ -48,15 +48,24 @@ Especially, follow the terms of the following applications.
 - Find panel in Pages.app
 - Some setting messages in ScriptEditor.app
 
-We recommend to utilize [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kishikawa Katsumi to find macOS-friendly expressions. This service enables us to search in the texts localized by Apple for macOS applications and frameworks.
+We recommend to utilize [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kishikawa Katsumi to find macOS-friendly expressions. This service enables us to search in the texts localized by Apple for macOS apps and frameworks.
 You also need to take care of how Apple treats punctuation characters and symbols. For example, regarding quotation marks, they normally prefer the typographer's ones.
 
 #### Submitting a new localization
 
 Copy one of a whole .lproj directory and use it as a template. We recommend using `CotEditor/en-GB.lproj/` directory because they are always up-to-date.
-Note that you don't need to localize the Unicode block names in the `UnicodeBlock.strings` file.
+Note that you don't need to localize the Unicode block names in the `UnicodeBlock.strings` file. It will be done by @1024jp based on the localization data by Apple.
 
-Continuous maintenance of the localization is highly recommended when providing a new localization. Please tell us if you also intend to be a localization maintainer when submitting a new localization. When we have new strings to be localized, we call the localization maintainers by creating an issue with the `@` mention on GitHub so that they can keep all their localized strings up to date.
+Currently, the CotEditor project only accepts a new localization for which the provider itself can continuously maintain the localization thereafter. Please explicitly tell us if you also intend to be a localization maintainer when submitting a new localization.
+
+A standard localization update proceeds as follows:
+
+1. When CotEditor has new strings to be localized, the CotEditor maintainer, @1024jp, creates a new ticket on GitHub Issues and mentions the localization maintainers in it so that they can keep all their localized strings up to date. The ticket includes all strings to be updated and their descriptions, sometime with screenshots. e.g. [#1519](https://github.com/coteditor/CotEditor/issues/1519).
+2. The localizers either post the localized strings to the thread or make a pull request on GitHub. The maintainers should localize the updated strings within about one week (the shorter period is, of course, welcome, but not required). All the responces must be done on GitHub. Not par email.
+3. The CotEditor maitainer reviews and merges the update provided by the localizers.
+
+Localization updates may happen once par few months, in general. If a maintainer wants to decline further ongoing maintenance for some reason, it would be kind to express their intentions to the maintainer via email or something. In that case, I will contact the community to find a new maintainer.
+
 Currently, we already have maintainers for:
 
 - Japanese
@@ -65,7 +74,6 @@ Currently, we already have maintainers for:
 - Italian
 - French
 - Portuguese
-- Spanish
 - Turkish
 - English (UK)
 
@@ -92,7 +100,7 @@ We don't accept pull requests adding bundled themes at the moment. You can distr
 
 ### Graphics Resources
 
-We don't accept pull requests for image resources. [1024jp](https://github.com/1024jp) enjoys creating and brushing up the graphics ;). Please just point out on the Issues page if a graphic resource has some kind of mistake to be fixed.
+We don't accept pull requests for image resources. @1024jp enjoys creating and brushing up the graphics ;). If you find a graphic resource having some kind of mistake to be fixed, please just point out on the Issues page.
 
 
 
@@ -103,7 +111,7 @@ Please follow the style of the existing codes in CotEditor.
 - Respect the existing coding style.
 - Leave reasonable comments.
 - Never omit `self` except in `willSet`/`didSet`.
-- Add `final` to classes by default.
+- Add `final` to classes and extension methods by default.
 - Insert a blank line after class/function statement line.
     ```Swift
     /// say moof.
