@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -286,7 +286,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
             self.applicationObserver = Publishers.Merge(
                 NotificationCenter.default.publisher(for: NSApplication.didResignActiveNotification, object: NSApp),
                 NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification, object: NSApp))
-            .filter { [unowned self] _ in self.window?.firstResponder == self }
+            .filter { [weak self] _ in self?.window?.firstResponder == self }
             .sink { [unowned self] _ in
                 for indicator in self.insertionIndicators {
                     indicator.displayMode = NSApp.isActive ? .automatic : .hidden
