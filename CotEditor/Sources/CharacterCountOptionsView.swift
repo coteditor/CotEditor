@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2021-2023 1024jp
+//  © 2021-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,6 +58,12 @@ struct CharacterCountOptionsView: View {
                     }.labelsHidden()
                         .fixedSize()
                     
+                    Text(self.setting.unit.description)
+                        .foregroundStyle(.secondary)
+                        .controlSize(.small)
+                        .frame(width: max(300, self.contentWidth ?? 0), alignment: .leading)
+                        .fixedSize()
+                    
                     if self.setting.unit == .byte {
                         Picker("Encoding:", selection: self.$setting.encoding) {
                             ForEach(String.sortedAvailableStringEncodings.indices, id: \.self) { index in
@@ -71,13 +77,6 @@ struct CharacterCountOptionsView: View {
                         }.fixedSize()
                             .background(WidthGetter(key: WidthKey.self))
                     }
-                    
-                    Text(self.setting.unit.description)
-                        .foregroundStyle(.secondary)
-                        .controlSize(.small)
-                        .frame(width: max(300, self.contentWidth ?? 0), alignment: .leading)
-                        .fixedSize()
-                    
                     
                     if self.setting.unit != .graphemeCluster {
                         HStack(alignment: .firstTextBaseline) {
