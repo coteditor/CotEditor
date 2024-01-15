@@ -17,13 +17,13 @@
 
 <table>
 	<thead>
-		<tr><th>Encoding name</th><th>Description</th></tr>
+		<tr><th>Encoding name</th><th>IANA character set name</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		<tr><th>Shift JIS</th><td>The most basic Shift JIS supporting JIS level 1 and 2 kanji characters.</td></tr>
-		<tr><th>Mac OS</th><td>Based on Shift JIS, with extended support for such as Mac-dependent characters. Being used in Mac OS 9 and earlier.</td></tr>
-		<tr><th>Windows, DOS</th><td>Based on Shift JIS, with extended support for such as Windows-dependent characters.</td></tr>
-		<tr><th>Shift JIS X0213</th><td>Support JIS X0213 character set, which includes JIS level 1 through 4 kanji characters.</td></tr>
+		<tr><th>Shift JIS</th><td>shift_jis</td><td>The most basic Shift JIS supporting JIS level 1 and 2 kanji characters.</td></tr>
+		<tr><th>Shift JIS X0213</th><td>Shift_JIS</td><td>Support JIS X0213 character set, which includes JIS level 1 through 4 kanji characters.</td></tr>
+		<tr><th>Mac OS</th><td>(x-mac-japanese)</td><td>Based on Shift JIS, with extended support for such as Mac-dependent characters. Being used in Mac OS 9 and earlier.</td></tr>
+		<tr><th>Windows, DOS</th><td>cp932</td><td>Based on Shift JIS, with extended support for such as Windows-dependent characters.</td></tr>
 	</tbody>
 </table>
 
@@ -35,14 +35,14 @@
 	</thead>
 	<tbody>
 		<tr><th>Shift JIS</th><td>Available</td><td>Replaced with fullwidth backslash</td><td>Not available</td></tr>
+		<tr><th>Shift JIS X0213</th><td>Available</td><td>Replaced with fullwidth backslash</td><td>Replaced with fullwidth tilde</td></tr>
 		<tr><th>Mac OS</th><td>Available</td><td>Available</td><td>Available</td></tr>
 		<tr><th>Windows, DOS</th><td>Replaced with halfwidth backslash</td><td>Available</td><td>Available</td></tr>
-		<tr><th>Shift JIS X0213</th><td>Available</td><td>Replaced with fullwidth backslash</td><td>Replaced with fullwidth tilde</td></tr>
 	</tbody>
 </table>
 
 <ul>
-	<li>You can inspect whether such encoding problematic characters are included in your document by choosing View &gt; Inspector &gt; Warnings.</li>
+	<li>You can inspect whether such encoding incompatible characters are included in your document by choosing View &gt; Inspector &gt; Warnings.</li>
 </ul>
 
 
