@@ -18,6 +18,37 @@
 
 <article>
 	<header>
+		<h1>CotEditor 4.7.3</h1>
+		<p>release: <time>2024-01</time></p>
+	</header>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Improve stability.</li>
+			<li>When the file encoding is incompatible with the document content, display a notification instead of silently overwriting the document file with lossy data in autosaving until the user explicitly allows it.</li>
+			<li>Suppress displaying the dialog for saving in an incompatible encoding when the user once allowed it.</li>
+			<li><span class="trivial">trivial</span>: Improve alert messages for incompatible text encodings.</li>
+
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue that the application crashed when editing a specific pattern of color code.</li>
+			<li>Fix an issue that the encoding reinterpretation option dialog is not displayed when the user changes a document encoding to UTF-8.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
 		<h1>CotEditor 4.7.2</h1>
 		<p>release: <time>2024-01-01</time></p>
 	</header>
