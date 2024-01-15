@@ -486,6 +486,7 @@
 		2A9C370B1D66E99400774BA4 /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C370A1D66E99400774BA4 /* Pair.swift */; };
 		2A9C370C1D66E99400774BA4 /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C370A1D66E99400774BA4 /* Pair.swift */; };
 		2A9C370E1D672A1F00774BA4 /* BracePairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C370D1D672A1F00774BA4 /* BracePairTests.swift */; };
+		2A9DE0132B55605300E8FD2A /* ShiftJISTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9DE0122B55605200E8FD2A /* ShiftJISTests.swift */; };
 		2AA056AD26FCA171000E0CB2 /* Arithmetics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA056AC26FCA171000E0CB2 /* Arithmetics.swift */; };
 		2AA056AE26FCA171000E0CB2 /* Arithmetics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA056AC26FCA171000E0CB2 /* Arithmetics.swift */; };
 		2AA106B02470F05F00979CB7 /* EncodingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE881D18FFDB00D5D74C /* EncodingListView.swift */; };
@@ -1174,6 +1175,7 @@
 		2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacterTests.swift; sourceTree = "<group>"; };
 		2A9C370A1D66E99400774BA4 /* Pair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		2A9C370D1D672A1F00774BA4 /* BracePairTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BracePairTests.swift; sourceTree = "<group>"; };
+		2A9DE0122B55605200E8FD2A /* ShiftJISTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftJISTests.swift; sourceTree = "<group>"; };
 		2AA056AC26FCA171000E0CB2 /* Arithmetics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arithmetics.swift; sourceTree = "<group>"; };
 		2AA14CF71FA47E8900EAF586 /* ScriptDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptDescriptor.swift; sourceTree = "<group>"; };
 		2AA14CFB1FA4983500EAF586 /* AppleScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleScript.swift; sourceTree = "<group>"; };
@@ -2259,6 +2261,7 @@
 				2A8E47E6299B2F5C006A40D8 /* NSRangeTests.swift */,
 				2AEBD259246BB4C200EC97A3 /* NSAttributedStringTests.swift */,
 				2A89160B2394B87100AC13EE /* NSLayoutManagerTests.swift */,
+				2A9DE0122B55605200E8FD2A /* ShiftJISTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -3146,6 +3149,7 @@
 				2A8E47E7299B2F5C006A40D8 /* NSRangeTests.swift in Sources */,
 				2A7B279924E435FE00F02304 /* OutlineTests.swift in Sources */,
 				2AFD328F2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift in Sources */,
+				2A9DE0132B55605300E8FD2A /* ShiftJISTests.swift in Sources */,
 				2ABFF6D71D02856A00BE2795 /* ShortcutTests.swift in Sources */,
 				2A04E9BB27FD6911008C82D8 /* SnippetTests.swift in Sources */,
 				2AE12DFE1E7DB7D200681F72 /* StringCollectionTests.swift in Sources */,

@@ -13,31 +13,31 @@
 
 <h1>Use four kinds of Shift JIS properly in CotEditor</h1>
 
-<p>The four kinds of Shift JIS are different from each other as described below:</p>
+<p>There are multiple variations of Japanese Shift JIS encoding, and CotEditor handles the four types of Japanese Shift JIS encoding as distinct with the names as described below. Although “Japanese (Mac OS)” and “Japanese (Windows, DOS)” do not include “Shift JIS” in their names, both are also extended versions of Shift JIS. Choosing an appropriate encoding varies from case to case, but it is normally safer to use the normal “Japanese (Shift JIS).”</p>
 
 <table>
 	<thead>
-		<tr><th>Encoding name</th><th>IANA character set name</th><th>Description</th></tr>
+		<tr><th>Encoding name</th><th>IANA charset name</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		<tr><th>Shift JIS</th><td>shift_jis</td><td>The most basic Shift JIS supporting JIS level 1 and 2 kanji characters.</td></tr>
-		<tr><th>Shift JIS X0213</th><td>Shift_JIS</td><td>Support JIS X0213 character set, which includes JIS level 1 through 4 kanji characters.</td></tr>
-		<tr><th>Mac OS</th><td>(x-mac-japanese)</td><td>Based on Shift JIS, with extended support for such as Mac-dependent characters. Being used in Mac OS 9 and earlier.</td></tr>
-		<tr><th>Windows, DOS</th><td>cp932</td><td>Based on Shift JIS, with extended support for such as Windows-dependent characters.</td></tr>
+		<tr><th>Japanese (Shift JIS)</th><td>shift_jis</td><td>The most basic Shift JIS supporting JIS level 1 and 2 kanji characters.</td></tr>
+		<tr><th>Japanese (Shift JIS X0213)</th><td>Shift_JIS</td><td>Support JIS X0213 character set, which includes JIS level 1 through 4 kanji characters.</td></tr>
+		<tr><th>Japanese (Mac OS)</th><td>(x-mac-japanese)</td><td>Based on Shift JIS, with extended support for such as Mac-dependent characters. Being used in Mac OS 9 and earlier.</td></tr>
+		<tr><th>Japanese (Windows, DOS)</th><td>cp932</td><td>Based on Shift JIS, with extended support for such as Windows-dependent characters.</td></tr>
 	</tbody>
 </table>
 
-<p>Though choosing an appropriate encoding varies from case to case, it is normally safer to use Japanese (Shift JIS). However, note that there are differences between these encodings in the way of dealing with particular characters as below:</p>
+<p>Even among members of the same Shift JIS family, there are differences between these encodings in the way of dealing with particular characters as below:</p>
 
 <table>
 	<thead>
 		<tr><td></td><th>Halfwidth Yen sign (&#x00A5;)</th><th>Halfwidth backslash (&#x005C;)</th><th>Halfwidth tilde (&#x007E;)</th></tr>
 	</thead>
 	<tbody>
-		<tr><th>Shift JIS</th><td>Available</td><td>Replaced with fullwidth backslash</td><td>Not available</td></tr>
-		<tr><th>Shift JIS X0213</th><td>Available</td><td>Replaced with fullwidth backslash</td><td>Replaced with fullwidth tilde</td></tr>
+		<tr><th>Shift JIS</th><td>Available</td><td>Replaced with fullwidth backslash (＼)</td><td>Replaced with question mark (?)</td></tr>
+		<tr><th>Shift JIS X0213</th><td>Available</td><td>Replaced with fullwidth backslash (＼)</td><td>Replaced with fullwidth tilde (〜)</td></tr>
 		<tr><th>Mac OS</th><td>Available</td><td>Available</td><td>Available</td></tr>
-		<tr><th>Windows, DOS</th><td>Replaced with halfwidth backslash</td><td>Available</td><td>Available</td></tr>
+		<tr><th>Windows, DOS</th><td>Replaced with backslash (\)</td><td>Available</td><td>Available</td></tr>
 	</tbody>
 </table>
 
