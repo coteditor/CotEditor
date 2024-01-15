@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,19 +35,19 @@ extension NSTextView {
             let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue)
         else { return }
         
-        let cursorIndexes = selectedRanges
+        let lastIndexes = selectedRanges
             .filter { $0.isEmpty }
             .map { String.Index(utf16Offset: $0.lowerBound, in: self.string) }
             .filter { $0 > self.string.startIndex }
+            .compactMap { self.string.index($0, offsetBy: -1, limitedBy: self.string.endIndex) }
         
         guard
-            !cursorIndexes.isEmpty,
+            !lastIndexes.isEmpty,
             let visibleRange = self.visibleRange,
             let range = Range(visibleRange, in: self.string)
         else { return }
         
-        cursorIndexes
-            .map { self.string.index(before: $0) }
+        lastIndexes
             .compactMap { self.string.indexOfBracePair(at: $0, candidates: candidates, in: range, ignoring: pairToIgnore) }
             .compactMap { pairIndex in
                 switch pairIndex {
