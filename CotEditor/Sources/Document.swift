@@ -795,7 +795,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     
     /// Opens an existing document file (alternative methods for `init(contentsOf:ofType:)`).
-    func didMakeDocumentForExistingFile(url: URL) {
+    nonisolated func didMakeDocumentForExistingFile(url: URL) {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         // -> This method won't be invoked on Resume. (2015-01-26)
