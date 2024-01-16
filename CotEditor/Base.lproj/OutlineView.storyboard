@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22152" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Wry-M9-Gep">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Wry-M9-Gep">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22152"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -107,6 +107,7 @@
                                 </searchFieldCell>
                                 <connections>
                                     <action selector="searchFieldDidUpdate:" target="Wry-M9-Gep" id="8Ai-wf-mk4"/>
+                                    <binding destination="Wry-M9-Gep" name="value" keyPath="filterString" id="yXy-6h-48P"/>
                                 </connections>
                             </searchField>
                             <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="moj-vY-NGR">
@@ -146,7 +147,6 @@
                     </view>
                     <connections>
                         <outlet property="outlineView" destination="LBW-lW-4ux" id="obz-UQ-pIL"/>
-                        <outlet property="searchField" destination="nSM-iY-aHb" id="nxc-Ov-j4f"/>
                     </connections>
                 </viewController>
                 <customObject id="yJT-Xy-p5x" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
