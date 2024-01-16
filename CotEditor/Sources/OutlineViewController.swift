@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,8 +40,9 @@ final class OutlineViewController: NSViewController, DocumentOwner {
     var document: Document {
         
         didSet {
-            self.observeDocument()
-            self.observeSyntax()
+            if self.isViewShown {
+                self.observeDocument()
+            }
         }
     }
     
@@ -108,6 +109,8 @@ final class OutlineViewController: NSViewController, DocumentOwner {
         // cf. [#1365](https://github.com/coteditor/CotEditor/pull/1365)
         self.outlineView?.sizeLastColumnToFit()
         
+        self.observeDocument()
+        
         self.fontSizeObserver = UserDefaults.standard.publisher(for: .outlineViewFontSize, initial: true)
             .sink { [weak self] _ in
                 self?.outlineView?.reloadData()
@@ -131,20 +134,10 @@ final class OutlineViewController: NSViewController, DocumentOwner {
         
         super.viewDidDisappear()
         
+        self.documentObserver = nil
+        self.syntaxObserver = nil
         self.selectionObserver = nil
         self.fontSizeObserver = nil
-    }
-    
-    
-    override var representedObject: Any? {
-        
-        didSet {
-            assert(representedObject == nil || representedObject is Document,
-                   "representedObject of \(self.className) must be an instance of \(Document.className())")
-            
-            self.observeDocument()
-            self.observeSyntax()
-        }
     }
     
     
@@ -212,18 +205,13 @@ final class OutlineViewController: NSViewController, DocumentOwner {
     private func observeDocument() {
         
         self.documentObserver = self.document.didChangeSyntax
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in self?.observeSyntax() }
-    }
-    
-    
-    /// Updates syntax observation for outline.
-    private func observeSyntax() {
-        
-        self.syntaxObserver = self.document.syntaxParser.$outlineItems
-            .compactMap { $0 }
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in self?.outlineItems = $0 }
+            .merge(with: Just(""))  // initial
+            .sink { [weak self] _ in
+                self?.syntaxObserver = self?.document.syntaxParser.$outlineItems
+                    .compactMap { $0 }
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in self?.outlineItems = $0 }
+            }
     }
     
     
