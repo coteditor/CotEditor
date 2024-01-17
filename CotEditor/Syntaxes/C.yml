@@ -6,9 +6,9 @@ metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
   license: "Same as CotEditor"
-  lastModified: "2023-05-05"
+  lastModified: "2024-01-18"
   description: "based on C99"
-  version: "1.1.0"
+  version: "1.1.1"
 keywords:
 - beginString: "auto"
 - beginString: "break"
@@ -678,19 +678,19 @@ values:
 numbers:
 - beginString: "0"
   description: "zero"
-- beginString: "\\b-?[1-9][0-9]*l?\\b"
+- beginString: "\\b-?[1-9][0-9]*[ul]{0,3}\\b"
   regularExpression: true
   ignoreCase: true
   description: "integer"
-- beginString: "\\b-?\\d+\\.\\d+(e[-+]?\\d+)?l?\\b"
+- beginString: "\\b-?\\d+(\\.\\d+)?(e[-+]?\\d+)?[fl]?\\b"
   regularExpression: true
   ignoreCase: true
   description: "float"
-- beginString: "\\b0[1-7][0-7]*+l?\\b"
+- beginString: "\\b0[1-7][0-7]*+[ul]{0,3}\\b"
   regularExpression: true
   ignoreCase: true
   description: "octal"
-- beginString: "\\b0x[0-9a-f]+l?\\b"
+- beginString: "\\b0x[0-9a-f]+[ul]{0,3}\\b"
   regularExpression: true
   ignoreCase: true
   description: "hex"

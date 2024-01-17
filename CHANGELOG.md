@@ -8,6 +8,7 @@
 - Improve stability.
 - When the file encoding is incompatible with the document content, display a notification instead of silently overwriting the document file with lossy data in autosaving until the user explicitly allows it.
 - Suppress displaying the dialog for saving in an incompatible encoding when the user once allowed it.
+- Update the C syntax to improve highlighting numbers.
 - [trivial] Improve alert messages for incompatible text encodings.
 
 
