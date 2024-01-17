@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -555,7 +555,14 @@ private extension SyntaxManager.SyntaxDictionary {
                 }
                 return true
                 
+            case let (lhs, rhs) as (String, String):
+                return lhs == rhs
+                
+            case let (lhs, rhs) as (Bool, Bool):
+                return lhs == rhs
+                
             default:
+                assertionFailure("Comparing \(type(of: lhs)) and \(type(of: rhs))")
                 return type(of: lhs) == type(of: rhs) && String(describing: lhs) == String(describing: rhs)
         }
     }
