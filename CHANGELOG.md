@@ -5,10 +5,10 @@
 
 ### Improvements
 
-- Improve stability.
 - When the file encoding is incompatible with the document content, display a notification instead of silently overwriting the document file with lossy data in autosaving until the user explicitly allows it.
 - Suppress displaying the dialog for saving in an incompatible encoding when the user once allowed it.
 - Update the C syntax to improve highlighting numbers.
+- Improve stability.
 - [trivial] Improve alert messages for incompatible text encodings.
 
 
@@ -17,7 +17,7 @@
 - Fix an issue that the application crashed when editing a specific pattern of color code.
 - Fix an issue that the outline inspector was empty and not updated under certain circumstance.
 - Fix an issue that the encoding reinterpretation option dialog is not displayed when the user changes a document encoding to UTF-8.
-- Fix an issue that the saved user syntax definition file was not deleted when a syntax was restored to the default.
+- Fix an issue that the saved user syntax definition file was not deleted when a customized syntax was restored to the default.
 
 
 ### TODO
