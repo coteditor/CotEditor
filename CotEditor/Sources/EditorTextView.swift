@@ -877,16 +877,11 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         guard let menu = super.menu(for: event) else { return nil }
         
         // remove unwanted menu items
-        for item in menu.items {
-            guard
-                let submenu = item.submenu,
-                submenu.items.contains(where: {
-                    $0.action == #selector(changeLayoutOrientation) ||  // Layout Orientation submenu
-                    $0.action == #selector(NSFontManager.orderFrontFontPanel)  // Font submenu
-                })
-            else { continue }
-            
-            menu.removeItem(item)
+        menu.items.removeAll { item in
+            item.submenu?.items.contains {
+                $0.action == #selector(changeLayoutOrientation) ||  // Layout Orientation submenu
+                $0.action == #selector(NSFontManager.orderFrontFontPanel)  // Font submenu
+            } ?? false
         }
         
         // add "Copy as Rich Text" menu item
