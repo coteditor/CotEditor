@@ -96,7 +96,7 @@ final class EncodingDetectionTests: XCTestCase {
     }
     
     
-    func testSuggestedCFEncoding() throws {
+    func testSuggestedEncoding() throws {
         
         let data = try self.dataForFileName("UTF-8")
         
@@ -284,6 +284,15 @@ final class EncodingDetectionTests: XCTestCase {
 
 
 // MARK: Private Methods
+
+private extension String.Encoding {
+    
+    init(cfEncodings: CFStringEncodings) {
+        
+        self.init(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(cfEncodings.rawValue)))
+    }
+}
+   
 
 private extension EncodingDetectionTests {
     

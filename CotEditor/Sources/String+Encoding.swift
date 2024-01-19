@@ -67,32 +67,20 @@ extension Unicode {
 
 extension String.Encoding {
     
-    init(cfEncodings: CFStringEncodings) {
-        
-        self.init(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(cfEncodings.rawValue)))
-    }
-    
-    
     init(cfEncoding: CFStringEncoding) {
         
         self.init(rawValue: CFStringConvertEncodingToNSStringEncoding(cfEncoding))
     }
     
     
-    
     // MARK: Public Methods
-    
-    /// The Core Foundation encoding constant that is the closest mapping to a given Cocoa encoding.
-    var cfEncoding: CFStringEncoding {
-        
-        CFStringConvertNSStringEncodingToEncoding(self.rawValue)
-    }
-    
     
     /// The name of the IANA registry “charset” that is the closest mapping to the encoding.
     var ianaCharSetName: String? {
         
-        CFStringConvertEncodingToIANACharSetName(self.cfEncoding) as String?
+        let cfEncoding = CFStringConvertNSStringEncodingToEncoding(self.rawValue)
+        
+        return CFStringConvertEncodingToIANACharSetName(cfEncoding) as String?
     }
 }
 
@@ -215,16 +203,14 @@ extension Data {
         let components = string.split(separator: ";")
         
         guard
-            let cfEncoding: CFStringEncoding = {
-                if let cfEncodingNumber = components[safe: 1] {
-                    UInt32(cfEncodingNumber)
-                } else if let ianaCharSetName = components[safe: 0] {
-                    CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
-                } else {
-                    nil
-                }
-            }(),
-            cfEncoding != kCFStringEncodingInvalidId
+            let cfEncoding: CFStringEncoding = if let cfEncodingNumber = components[safe: 1] {
+                UInt32(cfEncodingNumber)
+            } else if let ianaCharSetName = components[safe: 0] {
+                CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
+            } else {
+                nil
+            },
+        cfEncoding != kCFStringEncodingInvalidId
         else { return nil }
         
         return String.Encoding(cfEncoding: cfEncoding)
