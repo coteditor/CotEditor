@@ -131,7 +131,8 @@ struct PatternSortView: View {
             HStack {
                 HelpButton(anchor: "howto_pattern_sort")
                 Spacer()
-                SubmitButtonGroup("Sort") { self.submit()
+                SubmitButtonGroup("Sort") { 
+                    self.submit()
                 } cancelAction: {
                     self.parent?.dismiss(nil)
                 }.disabled(self.error != nil)
