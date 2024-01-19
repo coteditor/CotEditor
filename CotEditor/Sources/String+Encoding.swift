@@ -82,13 +82,14 @@ extension String.Encoding {
     
     // MARK: Public Methods
     
+    /// The Core Foundation encoding constant that is the closest mapping to a given Cocoa encoding.
     var cfEncoding: CFStringEncoding {
         
         CFStringConvertNSStringEncodingToEncoding(self.rawValue)
     }
     
     
-    /// IANA charset name for the encoding.
+    /// The name of the IANA registry “charset” that is the closest mapping to the encoding.
     var ianaCharSetName: String? {
         
         CFStringConvertEncodingToIANACharSetName(self.cfEncoding) as String?
