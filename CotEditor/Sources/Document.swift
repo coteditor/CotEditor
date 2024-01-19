@@ -320,13 +320,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 return .specific(encoding)
             }
             
-            var encodingList = UserDefaults.standard[.encodingList]
+            var encodingPriority = EncodingManager.shared.encodings.compactMap { $0 }
             let isInitialOpen = (self.fileData == nil) && (self.textStorage.length == 0)
             if !isInitialOpen {  // prioritize the current encoding
-                encodingList.insert(self.fileEncoding.encoding.cfEncoding, at: 0)
+                encodingPriority.insert(self.fileEncoding.encoding, at: 0)
             }
             
-            return .automatic(priority: encodingList, refersToTag: UserDefaults.standard[.referToEncodingTag])
+            return .automatic(priority: encodingPriority, refersToTag: UserDefaults.standard[.referToEncodingTag])
         }()
         
         // .readingEncoding is only valid once

@@ -65,14 +65,6 @@ extension Unicode {
 
 // MARK: -
 
-private extension CFStringEncoding {
-    
-    static let shiftJIS = CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)
-    static let shiftJIS_X0213 = CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)
-}
-
-
-
 extension String.Encoding {
     
     init(cfEncodings: CFStringEncodings) {
@@ -141,10 +133,10 @@ extension String {
     ///
     /// - Parameters:
     ///   - data: The data object containing the string data.
-    ///   - suggestedCFEncodings: The prioritized list of encoding candidates.
+    ///   - suggestedEncodings: The prioritized list of encoding candidates.
     ///   - usedEncoding: The encoding used to interpret the data.
     /// - Throws: `CocoaError(.fileReadUnknownStringEncoding)`
-    init(data: Data, suggestedCFEncodings: [CFStringEncoding], usedEncoding: inout String.Encoding?) throws {
+    init(data: Data, suggestedEncodings: [String.Encoding], usedEncoding: inout String.Encoding?) throws {
         
         // detect encoding from so-called "magic numbers"
         for bom in Unicode.BOM.allCases {
@@ -159,11 +151,8 @@ extension String {
         }
         
         // try encodings in order from the top of the encoding list
-        for cfEncoding in suggestedCFEncodings {
-            let encoding = String.Encoding(cfEncoding: cfEncoding)
-            guard
-                let string = String(data: data, encoding: encoding)
-            else { continue }
+        for encoding in suggestedEncodings {
+            guard let string = String(data: data, encoding: encoding) else { continue }
             
             usedEncoding = encoding
             self = string
@@ -181,32 +170,19 @@ extension String {
     ///
     /// - Parameters:
     ///   - maxLength: The number of forward characters to be scanned.
-    ///   - suggestedCFEncodings: The priority of encodings to determine the user-preferred Shift JIS encoding.
     /// - Returns: A string encoding, or `nil` if not found.
-    func scanEncodingDeclaration(upTo maxLength: Int, suggestedCFEncodings: [CFStringEncoding]) -> String.Encoding? {
+    func scanEncodingDeclaration(upTo maxLength: Int) -> String.Encoding? {
         
         assert(maxLength > 0)
         
         guard !self.isEmpty else { return nil }
         
-        let regex = /\b(charset=|encoding=|@charset|encoding:|coding:) *["']? *(?<encoding>[-_a-zA-Z0-9]+)/.wordBoundaryKind(.simple)
+        let regex = /\b(charset=|encoding=|@charset|encoding:|coding:) *["']? *(?<encoding>[-_a-zA-Z0-9]+)/
+            .wordBoundaryKind(.simple)
         
         guard let ianaCharSetName = try? regex.firstMatch(in: self.prefix(maxLength))?.encoding else { return nil }
         
-        // convert IANA CharSet name to CFStringEncoding
-        let cfEncoding: CFStringEncoding = if ianaCharSetName.uppercased() == "SHIFT_JIS",
-            let cfEncoding = suggestedCFEncodings.first(where: { $0 == .shiftJIS || $0 == .shiftJIS_X0213 })
-        {
-            // pick user's preferred one for "Shift_JIS"
-            // -> CFStringConvertIANACharSetNameToEncoding() converts "SHIFT_JIS" to .shiftJIS regardless of the letter case.
-            //    Although this behavior is theoretically correct since the IANA charset name is case insensitive,
-            //    we treat them with care by respecting the user's priority.
-            //    FYI: CFStringConvertEncodingToIANACharSetName() converts .shiftJIS and .shiftJIS_X0213
-            //         to "shift_jis" and "Shift_JIS" respectively.
-            cfEncoding
-        } else {
-            CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
-        }
+        let cfEncoding = CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
         
         guard cfEncoding != kCFStringEncodingInvalidId else { return nil }
         

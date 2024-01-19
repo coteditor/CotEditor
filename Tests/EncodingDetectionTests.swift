@@ -75,12 +75,9 @@ final class EncodingDetectionTests: XCTestCase {
         
         let data = try self.dataForFileName("ISO 2022-JP")
         let encodings: [String.Encoding] = [.iso2022JP, .utf16]
-        let cfEncodings = encodings
-            .map(\.rawValue)
-            .map(CFStringConvertNSStringEncodingToEncoding)
         
         var encoding: String.Encoding?
-        let string = try String(data: data, suggestedCFEncodings: cfEncodings, usedEncoding: &encoding)
+        let string = try String(data: data, suggestedEncodings: encodings, usedEncoding: &encoding)
         
         XCTAssertEqual(string, "dog犬")
         XCTAssertEqual(encoding, .iso2022JP)
@@ -92,7 +89,7 @@ final class EncodingDetectionTests: XCTestCase {
         let data = try self.dataForFileName("UTF-8")
         
         var encoding: String.Encoding?
-        XCTAssertThrowsError(try String(data: data, suggestedCFEncodings: [], usedEncoding: &encoding)) { error in
+        XCTAssertThrowsError(try String(data: data, suggestedEncodings: [], usedEncoding: &encoding)) { error in
             XCTAssertEqual(error as? CocoaError, CocoaError(.fileReadUnknownStringEncoding))
         }
         XCTAssertNil(encoding)
@@ -104,9 +101,8 @@ final class EncodingDetectionTests: XCTestCase {
         let data = try self.dataForFileName("UTF-8")
         
         var encoding: String.Encoding?
-        let invalidInt = kCFStringEncodingInvalidId
-        let utf8Int = CFStringBuiltInEncodings.UTF8.rawValue
-        let string = try String(data: data, suggestedCFEncodings: [invalidInt, utf8Int], usedEncoding: &encoding)
+        let invalidEncoding = String.Encoding(cfEncoding: kCFStringEncodingInvalidId)
+        let string = try String(data: data, suggestedEncodings: [invalidEncoding, .utf8], usedEncoding: &encoding)
         
         XCTAssertEqual(string, "0")
         XCTAssertEqual(encoding, .utf8)
@@ -120,7 +116,7 @@ final class EncodingDetectionTests: XCTestCase {
         var encoding: String.Encoding?
         var string: String?
         
-        XCTAssertThrowsError(string = try String(data: data, suggestedCFEncodings: [], usedEncoding: &encoding)) { error in
+        XCTAssertThrowsError(string = try String(data: data, suggestedEncodings: [], usedEncoding: &encoding)) { error in
             XCTAssertEqual(error as? CocoaError, CocoaError(.fileReadUnknownStringEncoding))
         }
         
@@ -143,23 +139,13 @@ final class EncodingDetectionTests: XCTestCase {
     func testEncodingDeclarationScan() {
         
         let string = "<meta charset=\"Shift_JIS\"/>"
-        let utf8 = CFStringBuiltInEncodings.UTF8.rawValue
-        let shiftJIS = CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)
-        let shiftJISX0213 = CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)
+        XCTAssertNil(string.scanEncodingDeclaration(upTo: 16))
+        XCTAssertEqual(string.scanEncodingDeclaration(upTo: 128), String.Encoding(cfEncodings: .shiftJIS))
         
-        XCTAssertNil(string.scanEncodingDeclaration(upTo: 16, suggestedCFEncodings: [utf8, shiftJIS, shiftJISX0213]))
-        
-        XCTAssertEqual(string.scanEncodingDeclaration(upTo: 128, suggestedCFEncodings: [utf8, shiftJIS, shiftJISX0213]),
-                       String.Encoding(cfEncodings: CFStringEncodings.shiftJIS))
-        
-        XCTAssertEqual(string.scanEncodingDeclaration(upTo: 128, suggestedCFEncodings: [utf8, shiftJISX0213, shiftJIS]),
-                       String.Encoding(cfEncodings: CFStringEncodings.shiftJIS_X0213))
-        
-        XCTAssertEqual("<meta charset=\"utf-8\"/>".scanEncodingDeclaration(upTo: 128, suggestedCFEncodings: [utf8, shiftJISX0213, shiftJIS]),
-                       .utf8)
+        XCTAssertEqual("<meta charset=\"utf-8\"/>".scanEncodingDeclaration(upTo: 128), .utf8)
         
         // Swift.Regex with non-simple word boundaries never returns when the given string contains a specific pattern of letters (2023-12 on Swift 5.9).
-        XCTAssertNil("ﾀﾏｺﾞ,1,".scanEncodingDeclaration(upTo: 128, suggestedCFEncodings: []))
+        XCTAssertNil("ﾀﾏｺﾞ,1,".scanEncodingDeclaration(upTo: 128))
         XCTAssertNil(try /\ba/.wordBoundaryKind(.simple).firstMatch(in: "ﾀﾏｺﾞ,1,"))
     }
     
@@ -305,7 +291,7 @@ private extension EncodingDetectionTests {
         
         let data = try self.dataForFileName(fileName)
         
-        return try String(data: data, suggestedCFEncodings: [], usedEncoding: &usedEncoding)
+        return try String(data: data, suggestedEncodings: [], usedEncoding: &usedEncoding)
     }
     
     

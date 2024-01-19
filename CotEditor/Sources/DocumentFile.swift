@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ struct DocumentFile {
     
     enum EncodingStrategy {
         
-        case automatic(priority: [CFStringEncoding], refersToTag: Bool)
+        case automatic(priority: [String.Encoding], refersToTag: Bool)
         case specific(String.Encoding)
     }
     
@@ -92,7 +92,7 @@ struct DocumentFile {
         switch encodingStrategy {
             case .automatic(let priority, let refersToTag):
                 (content, encoding) = try Self.string(data: data, xattrEncoding: self.xattrEncoding,
-                                                      suggestedCFEncodings: priority,
+                                                      suggestedEncodings: priority,
                                                       refersToEncodingTag: refersToTag)
             case .specific(let readingEncoding):
                 encoding = readingEncoding
@@ -124,10 +124,10 @@ struct DocumentFile {
     /// - Parameters:
     ///   - data: The data to encode.
     ///   - xattrEncoding: The text encoding read from the file's extended attributes.
-    ///   - suggestedCFEncodings: The list of CSStringEncodings to test the encoding.
+    ///   - suggestedEncodings: The list of encodings to test the encoding.
     ///   - refersToEncodingTag: The boolean whether to refer encoding tag in the file content.
     /// - Returns: The decoded string and used encoding.
-    private static func string(data: Data, xattrEncoding: String.Encoding?, suggestedCFEncodings: [CFStringEncoding], refersToEncodingTag: Bool) throws -> (String, String.Encoding) {
+    private static func string(data: Data, xattrEncoding: String.Encoding?, suggestedEncodings: [String.Encoding], refersToEncodingTag: Bool) throws -> (String, String.Encoding) {
         
         // try interpreting with xattr encoding
         if let xattrEncoding {
@@ -139,11 +139,12 @@ struct DocumentFile {
         
         // detect encoding from data
         var usedEncoding: String.Encoding?
-        let string = try String(data: data, suggestedCFEncodings: suggestedCFEncodings, usedEncoding: &usedEncoding)
+        let string = try String(data: data, suggestedEncodings: suggestedEncodings, usedEncoding: &usedEncoding)
         
         // try reading encoding declaration and take priority of it if it seems well
         if refersToEncodingTag,
-           let scannedEncoding = string.scanEncodingDeclaration(upTo: self.maxEncodingScanLength, suggestedCFEncodings: suggestedCFEncodings),
+           let scannedEncoding = string.scanEncodingDeclaration(upTo: self.maxEncodingScanLength),
+           suggestedEncodings.contains(scannedEncoding),
            scannedEncoding != usedEncoding,
            let string = String(bomCapableData: data, encoding: scannedEncoding)
         {
