@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -228,11 +228,11 @@ final class EncodingDetectionTests: XCTestCase {
         XCTAssertFalse("¥".canBeConverted(to: .ascii))  // Y (U+0059)
         
         let string = "\\ ¥ yen"
-        XCTAssertEqual(string.convertingYenSign(for: .utf8), string)
-        XCTAssertEqual(string.convertingYenSign(for: String.Encoding(cfEncodings: .shiftJIS)), string)
-        XCTAssertEqual(string.convertingYenSign(for: .shiftJIS), "\\ \\ yen")
-        XCTAssertEqual(string.convertingYenSign(for: .japaneseEUC), "\\ \\ yen")
-        XCTAssertEqual(string.convertingYenSign(for: .ascii), "\\ \\ yen")
+        XCTAssertEqual(string.convertYenSign(for: .utf8), string)
+        XCTAssertEqual(string.convertYenSign(for: String.Encoding(cfEncodings: .shiftJIS)), string)
+        XCTAssertEqual(string.convertYenSign(for: .shiftJIS), "\\ \\ yen")
+        XCTAssertEqual(string.convertYenSign(for: .japaneseEUC), "\\ \\ yen")
+        XCTAssertEqual(string.convertYenSign(for: .ascii), "\\ \\ yen")
     }
     
     

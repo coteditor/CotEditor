@@ -69,13 +69,13 @@ final class ShiftJISTests: XCTestCase {
     
     func testYenConversion() {
         
-        XCTAssertEqual("¥".convertingYenSign(for: ShiftJIS.shiftJIS.encoding), "¥")
-        XCTAssertEqual("¥".convertingYenSign(for: ShiftJIS.shiftJIS_X0213.encoding), "¥")
-        XCTAssertEqual("¥".convertingYenSign(for: ShiftJIS.macJapanese.encoding), "¥")
-        XCTAssertEqual("¥".convertingYenSign(for: ShiftJIS.dosJapanese.encoding), "\\")
+        XCTAssertEqual("¥".convertYenSign(for: ShiftJIS.shiftJIS.encoding), "¥")
+        XCTAssertEqual("¥".convertYenSign(for: ShiftJIS.shiftJIS_X0213.encoding), "¥")
+        XCTAssertEqual("¥".convertYenSign(for: ShiftJIS.macJapanese.encoding), "¥")
+        XCTAssertEqual("¥".convertYenSign(for: ShiftJIS.dosJapanese.encoding), "\\")
         
         ShiftJIS.allCases
-            .forEach { XCTAssertEqual("¥".convertingYenSign(for: $0.encoding) == "¥", $0.encode("¥") == "¥") }
+            .forEach { XCTAssertEqual("¥".convertYenSign(for: $0.encoding) == "¥", $0.encode("¥") == "¥") }
     }
 }
 

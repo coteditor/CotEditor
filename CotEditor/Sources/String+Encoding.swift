@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -214,11 +214,11 @@ extension String {
     }
     
     
-    /// Converts Yen signs (U+00A5) in consideration of the encoding.
+    /// Converts Yen signs (`U+00A5`) in consideration of the encoding.
     ///
     /// - Parameter encoding: The text encoding to keep compatibility.
     /// - Returns: A new string converted all Yen signs.
-    func convertingYenSign(for encoding: String.Encoding) -> String {
+    func convertYenSign(for encoding: String.Encoding) -> String {
         
         "¥".canBeConverted(to: encoding) ? self : self.replacing("¥", with: "\\")
     }

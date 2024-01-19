@@ -383,7 +383,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // get data from string to save
         // -> .data(using:allowLossyConversion:) never returns nil as long as allowLossyConversion is true.
         var data = self.textStorage.string
-            .convertingYenSign(for: fileEncoding.encoding)
+            .convertYenSign(for: fileEncoding.encoding)
             .data(using: fileEncoding.encoding, allowLossyConversion: true)!
         
         // reset `allowsLossySaving` flag if the compatibility issue is solved
