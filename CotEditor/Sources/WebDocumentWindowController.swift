@@ -34,11 +34,7 @@ final class WebDocumentWindowController: NSWindowController {
         
         let viewController = WebDocumentViewController(fileURL: fileURL)
         let window = NSWindow(contentViewController: viewController)
-        window.setContentSize(NSSize(width: 480, height: 480))
-        window.styleMask = [.closable, .resizable, .titled]
-        window.titlebarAppearsTransparent = true
-        window.backgroundColor = .textBackgroundColor
-        window.center()
+        window.styleMask = [.closable, .resizable, .titled, .fullSizeContentView]
         
         self.init(window: window)
     }
@@ -78,6 +74,7 @@ private final class WebDocumentViewController: NSViewController {
         let webView = WKWebView()
         webView.navigationDelegate = self
         webView.isHidden = true
+        webView.frame.size = NSSize(width: 480, height: 480)
         webView.loadFileURL(self.fileURL, allowingReadAccessTo: self.fileURL)
         
         self.view = webView
