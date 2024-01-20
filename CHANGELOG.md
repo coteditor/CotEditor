@@ -1,6 +1,6 @@
 # Change Log
 
-4.7.3 (unreleased)
+4.7.3 (627)
 --------------------------
 
 ### Improvements
