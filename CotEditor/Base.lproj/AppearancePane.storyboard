@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -242,10 +242,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xjz-30-0d3">
-                                        <rect key="frame" x="160" y="-6" width="204" height="28"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="omH-ef-AAp"/>
-                                        </constraints>
+                                        <rect key="frame" x="160" y="-6" width="216" height="28"/>
                                         <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.20000000000000001" maxValue="1" doubleValue="0.90000000000000002" tickMarkPosition="below" numberOfTickMarks="9" sliderType="linear" id="MUF-gG-fiB">
                                             <font key="font" usesAppearanceFont="YES"/>
                                         </sliderCell>
@@ -255,7 +252,7 @@
                                         </connections>
                                     </slider>
                                     <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ey0-BL-08J" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="394" y="0.0" width="48" height="21"/>
+                                        <rect key="frame" x="406" y="0.0" width="48" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="2mO-EW-xD8"/>
                                         </constraints>
@@ -287,7 +284,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="NDr-Yf-V2q" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="370" y="2" width="16" height="16"/>
+                                        <rect key="frame" x="382" y="2" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="NDr-Yf-V2q" secondAttribute="height" multiplier="1:1" id="9Wa-kj-g29"/>
                                         </constraints>
@@ -371,6 +368,7 @@
                                     <constraint firstItem="Cfh-8I-pCg" firstAttribute="firstBaseline" secondItem="C0e-PH-i1L" secondAttribute="firstBaseline" id="sfd-h0-Ujb"/>
                                     <constraint firstItem="k1t-Xk-gYs" firstAttribute="leading" secondItem="PBB-XC-8pV" secondAttribute="trailing" constant="8" symbolic="YES" id="swM-YK-xv3"/>
                                     <constraint firstItem="4cD-mR-vJc" firstAttribute="firstBaseline" secondItem="I9r-vj-2gy" secondAttribute="firstBaseline" id="uyq-Ib-2OJ"/>
+                                    <constraint firstItem="NDr-Yf-V2q" firstAttribute="trailing" secondItem="wT1-jD-6aC" secondAttribute="trailing" id="vhb-1A-XI4"/>
                                     <constraint firstItem="xjz-30-0d3" firstAttribute="centerY" secondItem="3IH-by-XSu" secondAttribute="centerY" id="x9O-rT-kr6"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4cD-mR-vJc" secondAttribute="trailing" constant="20" symbolic="YES" id="yDG-8O-FQS"/>
                                     <constraint firstItem="ey0-BL-08J" firstAttribute="leading" secondItem="NDr-Yf-V2q" secondAttribute="trailing" constant="8" symbolic="YES" id="zgt-8r-RVi"/>
