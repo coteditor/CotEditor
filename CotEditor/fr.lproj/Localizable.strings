@@ -281,7 +281,7 @@
 "The document contains characters incompatible with “%@.”" = "Le document contient des caractères incompatibles avec « %@ ».";  // FIXME: needs review
 
 // Lossy saving alert
-"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Certains caractères devront être altérés ou supprimés en sauvegardant. Voulez-vous poursuivre ?";
+"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Certains caractères devront être altérés ou supprimés en sauvegardant. Voulez-vous poursuivre ?";  // FIXME: needs review
 "Save Available Text" = "Sauvegarder les caractères disponibles";
 "Review Incompatible Characters" = "Passer en revue les caractères incompatibles";  // FIXME: needs review
 
