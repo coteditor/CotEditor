@@ -16,7 +16,7 @@
 ### Fixes
 
 - Fix an issue that the application crashed when editing a specific pattern of color code.
-- Fix an issue that the outline inspector was empty and not updated under certain circumstance.
+- Fix an issue that the outline inspector was empty and not updated under certain circumstances.
 - Fix an issue that the encoding reinterpretation option dialog is not displayed when the user changes a document encoding to UTF-8.
 - Fix an issue that the saved user syntax definition file was not deleted when a customized syntax was restored to the default.
 - Fix an issue that the initial window size on the first launch was too small.
