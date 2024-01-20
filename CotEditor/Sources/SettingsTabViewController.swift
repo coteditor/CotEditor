@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -49,14 +49,8 @@ final class SettingsTabViewController: NSTabViewController {
         {
             self.selectedTabViewItemIndex = index
         }
-    }
-    
-    
-    override func viewWillAppear() {
         
-        super.viewWillAppear()
-        
-        self.view.window!.title = self.tabViewItems[self.selectedTabViewItemIndex].label
+        self.title = self.tabViewItems[self.selectedTabViewItemIndex].label
     }
     
     
@@ -92,7 +86,7 @@ final class SettingsTabViewController: NSTabViewController {
             
         } completionHandler: { [weak self] in
             self?.view.isHidden = false
-            window.title = tabViewItem.label
+            self?.title = tabViewItem.label
         }
     }
 }

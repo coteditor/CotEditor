@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -62,6 +62,8 @@ private final class WebDocumentViewController: NSViewController {
         self.fileURL = fileURL
         
         super.init(nibName: nil, bundle: nil)
+        
+        self.title = ""
     }
     
     
@@ -97,9 +99,7 @@ extension WebDocumentViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
-        if let title = webView.title {
-            webView.window?.title = title
-        }
+        self.title = webView.title
         
         // avoid flashing view on the first launch in Dark Mode
         webView.animator().isHidden = false
