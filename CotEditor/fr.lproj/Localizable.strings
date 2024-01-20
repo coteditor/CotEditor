@@ -272,18 +272,18 @@
 "Line Endings to %@" = "Fins de ligne en %@";
 
 // Convert or reinterpret encoding alert
-"Text encoding change" = "Encodage du texte";  // FIXME: updated
+"Text encoding change" = "Modification de l'encodage du texte";  // FIXME: needs review
 "Do you want to convert or reinterpret this document using “%@”?" = "Voulez-vous convertir le document ou bien le réinterpréter en utilisant « %@ » ?";
 "Convert" = "Convertir";
 "Reinterpret" = "Ré-interpréter";
 
 // Encoding alarts
-"The document contains characters incompatible with “%@.”" = "The document contains characters incompatible with “%@.”";  // FIXME: changed
+"The document contains characters incompatible with “%@.”" = "Le document contient des caractères incompatibles avec « %@ ».";  // FIXME: needs review
 
 // Lossy saving alert
 "Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Certains caractères devront être altérés ou supprimés en sauvegardant. Voulez-vous poursuivre ?";
 "Save Available Text" = "Sauvegarder les caractères disponibles";
-"Review Incompatible Characters" = "Montrer les caractères incompatibles";  // FIXME: updated
+"Review Incompatible Characters" = "Passer en revue les caractères incompatibles";  // FIXME: needs review
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "Le document contient des modifications non sauvegardées.";
@@ -296,7 +296,7 @@
 "The document may have been saved using a different text encoding, or it may not be a text file." = "Le document a peut-être été sauvegardé dans un encodage différent, ou bien il ne s’agit pas d’un fichier texte.";
 
 // incompatible characters alert
-"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Certains caractères devront être altérés ou supprimés en sauvegardant. Voulez-vous changer l’encodage et afficher les caractères incomptables ?";  // FIXME: updated
+"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Les caractères incompatibles sont remplacés ou supprimés lors de l'enregistrement. Voulez-vous modifier l'encodage du texte et revoir les caractères incompatibles ?";  // FIXME: needs review
 "Change Encoding" = "Changer l’encodage";
 
 // Inconsistent line ending alert

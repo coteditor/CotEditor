@@ -22,11 +22,6 @@
 - Fix an issue that the initial window size on the first launch was too small.
 
 
-### TODO
-
-- Some text is not localized in French yet.
-
-
 
 4.7.2 (625)
 --------------------------
