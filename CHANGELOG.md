@@ -3,6 +3,10 @@
 4.7.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- Tweak the background color of the “Anura (Dark)” theme.
+
 
 
 4.7.3 (627)
