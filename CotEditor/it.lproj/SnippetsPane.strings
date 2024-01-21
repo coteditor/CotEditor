@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 CotEditor Project
+//  © 2016-2024 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax"; ObjectID = "RqT-x4-YbN"; */
 "RqT-x4-YbN.headerCell.title" = "Sintassi";
-"RqT-x4-YbN.headerToolTip" = "Sintassi che utilizza le impostazioni del file trascinato nell’editor".;  /* Syntax in which this file drop setting is used. */
+"RqT-x4-YbN.headerToolTip" = "Sintassi che utilizza le impostazioni del file trascinato nell’editor.";  /* Syntax in which this file drop setting is used. */
 
 /* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
 "FAF-cL-AAk.headerCell.title" = "Estensioni";

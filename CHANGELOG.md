@@ -8,6 +8,11 @@
 - Tweak the background color of the “Anura (Dark)” theme.
 
 
+### Fixes
+
+- Fix an issue that Snippet settings pane was not localized in Italian.
+
+
 
 4.7.3 (627)
 --------------------------
