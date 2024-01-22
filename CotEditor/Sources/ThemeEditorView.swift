@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -139,7 +139,7 @@ struct ThemeEditorView: View {
             GridRow {
                 VStack(alignment: .trailing, spacing: 3) {
                     ColorPicker("Text:", selection: $theme.text, supportsOpacity: false)
-                    ColorPicker("Invisibles:", selection: $theme.invisibles, supportsOpacity: false)
+                    ColorPicker("Invisibles:", selection: $theme.invisibles)
                     if #available(macOS 14, *) {
                         SystemColorPicker("Cursor:", selection: $theme.insertionPoint, usesSystemSetting: $theme.usesInsertionPointSystemSetting, systemColor: Color(nsColor: .textInsertionPointColor))
                     } else {
@@ -150,7 +150,7 @@ struct ThemeEditorView: View {
                 VStack(alignment: .trailing, spacing: 3) {
                     ColorPicker("Background:", selection: $theme.background, supportsOpacity: false)
                     ColorPicker("Current Line:", selection: $theme.lineHighlight, supportsOpacity: false)
-                    SystemColorPicker("Selection:", selection: $theme.selection, usesSystemSetting: $theme.usesSelectionSystemSetting, systemColor: Color(nsColor: .selectedTextBackgroundColor))
+                    SystemColorPicker("Selection:", selection: $theme.selection, usesSystemSetting: $theme.usesSelectionSystemSetting, systemColor: Color(nsColor: .selectedTextBackgroundColor), supportsOpacity: false)
                 }
             }
             
@@ -163,19 +163,19 @@ struct ThemeEditorView: View {
             
             GridRow {
                 VStack(alignment: .trailing, spacing: 3) {
-                    ColorPicker("Keywords:", selection: $theme.keywords, supportsOpacity: false)
-                    ColorPicker("Commands:", selection: $theme.commands, supportsOpacity: false)
-                    ColorPicker("Types:", selection: $theme.types, supportsOpacity: false)
-                    ColorPicker("Attributes:", selection: $theme.attributes, supportsOpacity: false)
-                    ColorPicker("Variables:", selection: $theme.variables, supportsOpacity: false)
+                    ColorPicker("Keywords:", selection: $theme.keywords)
+                    ColorPicker("Commands:", selection: $theme.commands)
+                    ColorPicker("Types:", selection: $theme.types)
+                    ColorPicker("Attributes:", selection: $theme.attributes)
+                    ColorPicker("Variables:", selection: $theme.variables)
                 }
                 
                 VStack(alignment: .trailing, spacing: 3) {
-                    ColorPicker("Values:", selection: $theme.values, supportsOpacity: false)
-                    ColorPicker("Numbers:", selection: $theme.numbers, supportsOpacity: false)
-                    ColorPicker("Strings:", selection: $theme.strings, supportsOpacity: false)
-                    ColorPicker("Characters:", selection: $theme.characters, supportsOpacity: false)
-                    ColorPicker("Comments:", selection: $theme.comments, supportsOpacity: false)
+                    ColorPicker("Values:", selection: $theme.values)
+                    ColorPicker("Numbers:", selection: $theme.numbers)
+                    ColorPicker("Strings:", selection: $theme.strings)
+                    ColorPicker("Characters:", selection: $theme.characters)
+                    ColorPicker("Comments:", selection: $theme.comments)
                 }
             }
             
@@ -222,14 +222,16 @@ private struct SystemColorPicker: View {
     @Binding var selection: Color
     @Binding var usesSystemSetting: Bool
     var systemColor: Color
+    var supportsOpacity: Bool
     
     
-    init(_ label: LocalizedStringKey, selection: Binding<Color>, usesSystemSetting: Binding<Bool>, systemColor: Color) {
+    init(_ label: LocalizedStringKey, selection: Binding<Color>, usesSystemSetting: Binding<Bool>, systemColor: Color, supportsOpacity: Bool = true) {
         
         self.label = label
         self._selection = selection
         self._usesSystemSetting = usesSystemSetting
         self.systemColor = systemColor
+        self.supportsOpacity = supportsOpacity
     }
     
     
@@ -237,7 +239,7 @@ private struct SystemColorPicker: View {
         
         ColorPicker(self.label,
                     selection: self.usesSystemSetting ? .constant(self.systemColor) : $selection,
-                    supportsOpacity: false)
+                    supportsOpacity: self.supportsOpacity)
         .disabled(self.usesSystemSetting)
         Toggle("Use system color", isOn: $usesSystemSetting)
             .controlSize(.small)

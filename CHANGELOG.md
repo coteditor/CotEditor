@@ -3,6 +3,11 @@
 4.7.4 (unreleased)
 --------------------------
 
+### New Features
+
+- Support the alpha channel in theme settings (Custom themes using alpha channel are not compatible with CotEditor prior 4.7.4).
+
+
 ### Improvements
 
 - Add “Hexadecimal with Alpha” format to the Color Code panel.
