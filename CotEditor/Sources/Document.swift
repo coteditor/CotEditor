@@ -83,7 +83,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     private var syntaxUpdateObserver: AnyCancellable?
     private var textStorageObserver: AnyCancellable?
-    private var windowObserver: AnyCancellable?
     private var defaultObservers: Set<AnyCancellable> = []
     
     private var lastSavedData: Data?  // temporal data used only within saving process
@@ -1023,20 +1022,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         }
         
         // show alert if line endings are inconsistent
-        if !self.suppressesInconsistentLineEndingAlert,
-           !self.lineEndingScanner.inconsistentLineEndings.isEmpty,
-           !self.isBrowsingVersions
-        {
-            if self.windowForSheet?.isVisible == true {
-                self.showInconsistentLineEndingAlert()
-            } else {
-                // wait for the window to appear
-                self.windowObserver = self.windowForSheet?
-                    .publisher(for: \.isVisible)
-                    .first { $0 }
-                    .delay(for: .seconds(0.15), scheduler: RunLoop.main)  // wait for window open animation
-                    .sink { [weak self] _ in self?.showInconsistentLineEndingAlert() }
-            }
+        if !self.lineEndingScanner.inconsistentLineEndings.isEmpty, !self.isBrowsingVersions {
+            self.showInconsistentLineEndingAlert()
         }
     }
     
@@ -1139,6 +1126,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             !UserDefaults.standard[.suppressesInconsistentLineEndingAlert],
             !self.suppressesInconsistentLineEndingAlert
         else { return }
+        
         guard let documentWindow = self.windowForSheet else { return assertionFailure() }
         
         let alert = NSAlert()
