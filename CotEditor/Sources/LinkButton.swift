@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,22 +29,26 @@ struct LinkButton: View {
     
     let url: String
     
-    @Environment(\.openURL) private var openURL
-    
     
     var body: some View {
         
         if let url = URL(string: self.url) {
-            Button {
-                self.openURL(url)
-            } label: {
+            Link(destination: url) {
                 Image(systemName: "arrow.forward")
                     .symbolVariant(.circle)
-                    .contentShape(.focusEffect, Circle())
                     .accessibilityLabel("Jump to URL")
             }
             .buttonStyle(.borderless)
             .help("Jump to URL")
         }
     }
+}
+
+
+
+// MARK: - Preview
+
+#Preview {
+    LinkButton(url: "https://coteditor.com")
+        .padding()
 }
