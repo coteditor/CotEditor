@@ -108,7 +108,7 @@
 "Ignore Case" = "In selezione";
 "Select to ignore character case on search." = "Selezionare per ricercare testo solo all’interno della selezione.";
 
-"In Selection" = "In Selection";
+"In Selection" = "Limita alla selezione";
 "Select to search text only from selection." = "Mostra un riferimento rapido per la sintassi delle espressioni regolari.";
 
 // tooltip for regex help button
