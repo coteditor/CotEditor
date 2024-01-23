@@ -11,6 +11,7 @@
 ### Fixes
 
 - Fix an issue that Snippet settings pane was not localized in Italian.
+- Fix missing translation in Italian (Thanks to Roccobot!).
 
 
 
