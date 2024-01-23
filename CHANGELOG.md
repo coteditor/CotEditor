@@ -12,7 +12,7 @@
 
 - Fix an issue on macOS 13 that the stepper in the custom tab width view worked only once.
 - Fix an issue that Snippet settings pane was not localized in Italian.
-- Fix missing translation in Italian (Thanks to Roccobot!).
+- Fix missing translation in Italian (Thanks to Roccobot and DAnn2012!).
 
 
 
