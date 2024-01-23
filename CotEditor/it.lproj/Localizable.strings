@@ -102,17 +102,17 @@
 "Not replaced" = "Non sostituiti";
 
 // pairs of checkbox label and its tooltip
-"Regular Expression" = "Ignora maiuscole/minuscole";
-"Select to search with regular expression." = "Selezionare per ignorare maiuscole/minuscole nella ricerca.";
+"Regular Expression" = "Espressioni regolari";
+"Select to search with regular expression." = "Selezionare per ricercare con le espressioni regolari.";
 
-"Ignore Case" = "In selezione";
-"Select to ignore character case on search." = "Selezionare per ricercare testo solo all’interno della selezione.";
+"Ignore Case" = "Ignora maiuscole/minuscole";
+"Select to ignore character case on search." = "Selezionare per ignorare maiuscole/minuscole nella ricerca.";
 
-"In Selection" = "Limita alla selezione";
-"Select to search text only from selection." = "Mostra un riferimento rapido per la sintassi delle espressioni regolari.";
+"In Selection" = "In selezione";
+"Select to search text only from selection." = "Selezionare per ricercare testo solo all’interno della selezione.";
 
 // tooltip for regex help button
-"Show quick reference for regular expression syntax." = "Show quick reference for regular expression syntax.";
+"Show quick reference for regular expression syntax." = "Mostra un riferimento rapido per la sintassi delle espressioni regolari.";
 
 // pair of accessibility label for a image button and its tooltip
 "Advanced options" = "Opzioni avanzate";
@@ -135,7 +135,7 @@
 "Find previous match." = "Cerca l’occorrenza precedente.";
 
 "Find Next" = "Cerca successivo";
-"Find next match." = "Cerca l’occorrenza successivo.";
+"Find next match." = "Cerca l’occorrenza successiva.";
 
 
 
