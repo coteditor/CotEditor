@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -51,11 +51,7 @@ struct RangedIntegerParseStrategy: ParseStrategy {
     
     func parse(_ value: String) throws -> Int {
         
-        guard let number = Int(value) else {
-            return self.style.defaultValue ?? 0.clamped(to: self.style.range)
-        }
-        
-        return number.clamped(to: self.style.range)
+        (Int(value) ?? self.style.defaultValue ?? 0).clamped(to: self.style.range)
     }
 }
 
