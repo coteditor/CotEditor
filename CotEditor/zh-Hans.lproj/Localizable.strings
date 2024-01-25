@@ -278,7 +278,7 @@
 "Reinterpret" = "再次解释";
 
 // Encoding alarts
-"The document contains characters incompatible with “%@.”" = "文档中包含与 “%@” 编码不兼容的字符。";  // %@ is an encoding name.
+"The document contains characters incompatible with “%@.”" = "文档中包含与“%@”编码不兼容的字符。";  // %@ is an encoding name.
 
 // Lossy saving alert
 "Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "保存时将替换或删除不兼容的字符。您确认要继续处理吗？";
@@ -287,7 +287,7 @@
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "该文稿中含有未保存的修改。";
-"Are you sure you want to discard your changes and reopen the document using “%@”?" = "确定放弃您的修改并使用 “%@” 编码重新打开文档吗？";  // %@ is an encoding name.
+"Are you sure you want to discard your changes and reopen the document using “%@”?" = "确定放弃您的修改并使用“%@”编码重新打开文档吗？";  // %@ is an encoding name.
 "Discard Changes" = "放弃更改";
 
 // Reinterpretation failed alert
