@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -228,7 +228,7 @@ private struct ColorCodePanelAccessory: View {
 
 private extension ColorCodeType {
     
-    static let hexTypes: [Self] = [.hex, .shortHex]
+    static let hexTypes: [Self] = [.hex, .hexWithAlpha, .shortHex]
     static let cssTypes: [Self] = [.cssRGB, .cssRGBa, .cssHSL, .cssHSLa, .cssKeyword]
     
     
@@ -236,6 +236,7 @@ private extension ColorCodeType {
         
         switch self {
             case .hex: "Hexadecimal"
+            case .hexWithAlpha: "Hexadecimal with Alpha"
             case .shortHex: "Hexadecimal (Short)"
             case .cssRGB: "CSS RGB"
             case .cssRGBa: "CSS RGBa"

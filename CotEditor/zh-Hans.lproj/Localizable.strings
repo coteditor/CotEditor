@@ -590,6 +590,7 @@
 "Color Code" = "颜色码";
 
 "Hexadecimal" = "十六进制";
+"Hexadecimal with Alpha" = "含Alpha的十六进制";
 "Hexadecimal (Short)" = "十六进制（短）";
 "CSS RGB" = "CSS RGB";
 "CSS RGBa" = "CSS RGBa";

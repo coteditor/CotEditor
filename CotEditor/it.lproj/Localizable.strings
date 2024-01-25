@@ -590,6 +590,7 @@
 "Color Code" = "Codice colore";
 
 "Hexadecimal" = "Esadecimale";
+"Hexadecimal with Alpha" = "Hexadecimal con alpha";
 "Hexadecimal (Short)" = "Esadecimale (Breve)";
 "CSS RGB" = "CSS RGB";
 "CSS RGBa" = "CSS RGBa";

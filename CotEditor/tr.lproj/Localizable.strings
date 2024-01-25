@@ -590,6 +590,7 @@
 "Color Code" = "Renk Kodu";
 
 "Hexadecimal" = "Onaltılık";
+"Hexadecimal with Alpha" = "Alfa ile Onaltılık";
 "Hexadecimal (Short)" = "Onaltılık (Kısa)";
 "CSS RGB" = "CSS RGB";
 "CSS RGBa" = "CSS RGBa";

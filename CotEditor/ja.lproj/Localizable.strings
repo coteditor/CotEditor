@@ -590,6 +590,7 @@
 "Color Code" = "カラーコード";
 
 "Hexadecimal" = "16進数";
+"Hexadecimal with Alpha" = "16進数（アルファ値付き）";
 "Hexadecimal (Short)" = "16進数（ショート）";
 "CSS RGB" = "CSS RGB";
 "CSS RGBa" = "CSS RGBa";

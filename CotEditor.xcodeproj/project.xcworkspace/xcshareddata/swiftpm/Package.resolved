@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/1024jp/WFColorCode",
       "state" : {
-        "revision" : "6179b7922aaeaf7476e709bac24f9afcc4f61a96",
-        "version" : "2.9.1"
+        "revision" : "f256e6b832184953e0e9a1846b7836fff8d37888",
+        "version" : "2.10.0"
       }
     },
     {

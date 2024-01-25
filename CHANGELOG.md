@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Add “Hexadecimal with Alpha” format to the Color Code panel.
 - Tweak the background color of the “Anura (Dark)” theme.
 
 
