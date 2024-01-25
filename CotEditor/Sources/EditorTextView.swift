@@ -411,7 +411,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
             .sink { [weak self] in
                 self?.drawsBackground = $0
                 self?.enclosingScrollView?.drawsBackground = $0
-                self?.lineHighlightColor = self?.lineHighlightColor?.withAlphaComponent($0 ? 1.0 : 0.7)
+                self?.lineHighlightColor = self?.theme?.lineHighlightColor(forOpaqueBackground: $0)
             }
     }
     
@@ -1399,9 +1399,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         self.textColor = theme.text.color
         self.backgroundColor = theme.background.color
-        self.lineHighlightColor = self.isOpaque
-            ? theme.lineHighlight.color
-            : theme.lineHighlight.color.withAlphaComponent(0.7)
+        self.lineHighlightColor = theme.lineHighlightColor(forOpaqueBackground: self.isOpaque)
         self.insertionPointColor = theme.effectiveInsertionPointColor
         if #available(macOS 14, *) {
             for indicator in self.insertionIndicators {
