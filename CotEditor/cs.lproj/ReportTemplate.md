@@ -1,25 +1,25 @@
 
-Fill the following template, and post it on [GitHub Issues](https://github.com/coteditor/CotEditor/issues) or send to <coteditor.github@gmail.com>. Please note that the contents of the sent email can be shared on the Issue page. Please write the contents either in English or in Japanese.
+Vyplňte následující šablonu a odešlete ji na [GitHub Issues](https://github.com/coteditor/CotEditor/issues), nebo ji odešlete na <coteditor.github@gmail.com>. Upozorňujeme, že obsah odeslaného e-mailu může být sdílen na stránce problému (Issue page). Obsah napište buď v angličtině nebo v japonštině.
 
 -----------------------------------------------
 
-## Environment
+## Environment (Prostředí)
 
 - CotEditor: %SHORT_VERSION% (%BUNDLE_VERSION%)
 - System: macOS %SYSTEM_VERSION%
-- Language: English
+- Language: Czech
 
 
-## Short Description
+## Short Description (Krátký popis)
 
-<!-- put your comment here -->
-
-
-## Steps to Reproduce the Issue
-
-<!-- put your comment here -->
+<!-- Svůj komentář napište zde -->
 
 
-## Expected Result
+## Steps to Reproduce the Issue (Kroky k reprodukci problému)
 
-<!-- put your comment here -->
+<!-- Svůj komentář napište zde -->
+
+
+## Expected Result (Očekávaný výsledek)
+
+<!-- Svůj komentář napište zde -->

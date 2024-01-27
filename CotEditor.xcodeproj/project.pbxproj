@@ -1261,6 +1261,8 @@
 		2AC605AA2B64A3F600E93E5B /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = cs; path = cs.lproj/Credits.html; sourceTree = "<group>"; };
 		2AC605AB2B64A3F600E93E5B /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = cs; path = cs.lproj/Acknowledgments.html; sourceTree = "<group>"; };
 		2AC605AC2B64A3F600E93E5B /* cs */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = cs; path = cs.lproj/ReportTemplate.md; sourceTree = "<group>"; };
+		2AC605AD2B64CDDF00E93E5B /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2AC605AE2B64CDE300E93E5B /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/UnicodeBlock.strings; sourceTree = "<group>"; };
 		2AC6069A20416ADE00F9C839 /* OpenPanelAccessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPanelAccessory.swift; sourceTree = "<group>"; };
 		2AC6BFD021D00ABD00FF325C /* NSTextView+RegexParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+RegexParse.swift"; sourceTree = "<group>"; };
 		2AC7044724EBB76B00454706 /* NSToolbarItem+Validatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSToolbarItem+Validatable.swift"; sourceTree = "<group>"; };
@@ -3539,6 +3541,7 @@
 				57ED31711FFD892900F16CAD /* pt */,
 				99A8630E2A753A7400EEEE75 /* es */,
 				08C28FAF279CBE440016693E /* tr */,
+				2AC605AD2B64CDDF00E93E5B /* cs */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3816,6 +3819,7 @@
 				57ED31741FFD892900F16CAD /* pt */,
 				99A8630F2A753A8400EEEE75 /* es */,
 				08C28FB2279CBE530016693E /* tr */,
+				2AC605AE2B64CDE300E93E5B /* cs */,
 			);
 			name = UnicodeBlock.strings;
 			sourceTree = "<group>";
