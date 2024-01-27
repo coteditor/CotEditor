@@ -68,14 +68,15 @@ Localization updates may happen once par few months, in general. If a maintainer
 
 Currently, we already have maintainers for:
 
-- Japanese
+- English (UK)
 - Simplified Chinese
 - Traditional Chinese
-- Italian
 - French
+- German
+- Italian
+- Japanese
 - Portuguese
 - Turkish
-- English (UK)
 
 #### Localization for the App Store
 
