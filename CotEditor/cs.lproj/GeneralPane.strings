@@ -1,0 +1,66 @@
+
+/* Class = "NSButtonCell"; title = "Check for updates automatically"; ObjectID = "3423"; */
+"3423.title" = "Check for updates automatically";
+
+/* Class = "NSButtonCell"; title = "Update to pre-releases when available"; ObjectID = "4aT-ka-sbv"; */
+"4aT-ka-sbv.title" = "Update to pre-releases when available";
+
+/* Class = "NSButtonCell"; title = "Manage Warnings…"; ObjectID = "G2q-Im-jTO"; */
+"G2q-Im-jTO.title" = "Manage Warnings…";
+
+/* Class = "NSTextFieldCell"; title = "Dialog warnings:"; ObjectID = "Igx-ay-Cgz"; */
+"Igx-ay-Cgz.title" = "Dialog warnings:";
+
+/* Class = "NSButtonCell"; title = "Ask how to resolve"; ObjectID = "IkZ-EO-BSv"; */
+"IkZ-EO-BSv.title" = "Ask how to resolve";
+
+/* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
+"Ki4-3Y-AZL.title" = "Document save:";
+
+/* Class = "NSButtonCell"; title = "Reopen windows from last session"; ObjectID = "QX9-BI-SIL"; */
+"QX9-BI-SIL.title" = "Reopen windows from last session";
+
+/* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
+"SGo-FL-Pax.title" = "Enable Auto Save with Versions";
+
+/* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
+"c48-xK-Ag1.title" = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line.";
+
+/* Class = "NSTextFieldCell"; title = "Installed at /usr/local/bin/cot"; ObjectID = "cQh-Do-xZd"; */
+"cQh-Do-xZd.title" = "Installed at /usr/local/bin/cot";
+
+/* Class = "NSTextFieldCell"; title = "Regardless of this setting, new pre-releases are always included while using a pre-release."; ObjectID = "chR-VY-cuI"; */
+"chR-VY-cuI.title" = "Regardless of this setting, new pre-releases are always included while using a pre-release.";
+
+/* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */
+"geU-63-sAC.title" = "Software update:";
+
+/* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
+"hIX-mh-cG4.title" = "Show Open Dialog";
+
+/* Class = "NSMenuItem"; title = "Create New Document"; ObjectID = "i4c-DG-ADS"; */
+"i4c-DG-ADS.title" = "Create New Document";
+
+/* Class = "NSTextFieldCell"; title = "Command-line tool:"; ObjectID = "kQn-Uu-cqG"; */
+"kQn-Uu-cqG.title" = "Command-line tool:";
+
+/* Class = "NSButtonCell"; title = "Learn More"; ObjectID = "ltN-wn-m8M"; */
+"ltN-wn-m8M.title" = "Learn More";
+
+/* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "rpa-Di-f4s"; */
+"rpa-Di-f4s.title" = "Update to modified edition";
+
+/* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "sBH-MX-cTd"; */
+"sBH-MX-cTd.title" = "Keep CotEditor’s edition";
+
+/* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected quit."; ObjectID = "sOa-Ea-zt9"; */
+"sOa-Ea-zt9.title" = "A system feature that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected quit.";
+
+/* Class = "NSTextFieldCell"; title = "When nothing else is open:"; ObjectID = "wmw-xg-bSt"; */
+"wmw-xg-bSt.title" = "When nothing else is open:";
+
+/* Class = "NSTextFieldCell"; title = "When document is changed by another application:"; ObjectID = "x4n-2n-I3p"; */
+"x4n-2n-I3p.title" = "When document is changed by another application:";
+
+/* Class = "NSTextFieldCell"; title = "On startup:"; ObjectID = "zDW-aW-9G8"; */
+"zDW-aW-9G8.title" = "On startup:";
