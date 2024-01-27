@@ -899,7 +899,6 @@
 
 
 
-
 /* MARK: Encoding List View */
 "Drag encodings to change the order:" = "エンコーディングをドラッグして並び替えてください:";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "この順序はエンコーディングメニューや書類を開くときのエンコーディング認識で使われます。自動認識では上位のエンコーディングがより優先して適用されます。";
