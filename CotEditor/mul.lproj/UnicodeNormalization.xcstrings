@@ -4,6 +4,12 @@
     "Applying NFKC, CaseFolding, and removal of default-ignorable code points" : {
       "comment" : "description for NFKD Casefold",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Použití NFKC, CaseFolding a odstranění ignorovatelných kódových bodů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -69,6 +75,12 @@
     "Canonical Decomposition" : {
       "comment" : "description for NFD",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kanonická dekompozice"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -134,6 +146,12 @@
     "Canonical Decomposition, followed by Canonical Composition" : {
       "comment" : "description for NFC",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kanonická dekompozice, následovaná kanonickou kompozicí"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -199,6 +217,12 @@
     "Compatibility Decomposition" : {
       "comment" : "description for NFKD",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kompatibilní dekompozice"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -264,6 +288,12 @@
     "Compatibility Decomposition, followed by Canonical Composition" : {
       "comment" : "description for NFKC",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kompatibilní dekompozice, následovaná kanonickou kompozicí"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -328,6 +358,12 @@
     },
     "Modified NFC" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifikovaný NFC"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -392,6 +428,12 @@
     },
     "Modified NFD" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifikovaný NFD"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -456,6 +498,12 @@
     },
     "NFC" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFC"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -520,6 +568,12 @@
     },
     "NFD" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFD"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -584,6 +638,12 @@
     },
     "NFKC" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -648,6 +708,12 @@
     },
     "NFKC Casefold" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC Casefold"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -712,6 +778,12 @@
     },
     "NFKD" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKD"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -777,6 +849,12 @@
     "Unofficial NFC-based normalization form corresponding to Modified NFD" : {
       "comment" : "description for Modified NFC",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neoficiální standard založený na NFC, odpovídající modifikovanému NFD"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -842,6 +920,12 @@
     "Unofficial NFD-based normalization form used in HFS+" : {
       "comment" : "description for Modified NFD",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neoficiální standard založený na NFD, používaný v HFS+"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

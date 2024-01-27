@@ -5,6 +5,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"No Filter Results\"; ObjectID = \"98k-V7-rfu\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Žádné výsledky filtrování"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -77,6 +83,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Title\"; ObjectID = \"CSX-H0-nFf\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Název"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -149,6 +161,12 @@
       "comment" : "Class = \"NSSearchFieldCell\"; placeholderString = \"Filter\"; ObjectID = \"GmM-uR-pQ8\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtr"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -221,6 +239,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Item Title\"; ObjectID = \"opH-Sc-iu8\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -293,6 +317,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Outline\"; ObjectID = \"RyV-wo-tpY\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Osnova"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

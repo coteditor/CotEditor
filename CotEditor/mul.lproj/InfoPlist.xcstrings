@@ -3,6 +3,12 @@
   "strings" : {
     "BibTeX bibliography" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BibTeX Bibliografie"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -67,6 +73,12 @@
     },
     "C header" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C header"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -131,6 +143,12 @@
     },
     "C source" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdrojový kód C"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -195,6 +213,12 @@
     },
     "C# source" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdrojový kód C#"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -259,6 +283,12 @@
     },
     "C++ header" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C++ header"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -323,6 +353,12 @@
     },
     "C++ source" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdrojový kód C++"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -387,6 +423,12 @@
     },
     "Cascading Style Sheet" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -453,6 +495,12 @@
       "comment" : "Bundle name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -523,6 +571,12 @@
     },
     "Configuration" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konfigurace"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -587,6 +641,12 @@
     },
     "CotEditor Replacement Definition" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Definice nahrazení CotEditor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -651,6 +711,12 @@
     },
     "CotEditor Theme" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motiv CotEditoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -715,6 +781,12 @@
     },
     "D source" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdrojový kód D"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -779,6 +851,12 @@
     },
     "Dart script" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dart skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -843,6 +921,12 @@
     },
     "Diff" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diff"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -907,6 +991,12 @@
     },
     "Fortran source" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdrojový kód Fortran"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -971,6 +1061,12 @@
     },
     "Go script" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1035,6 +1131,12 @@
     },
     "Haskell script" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haskell skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1099,6 +1201,12 @@
     },
     "HTML document" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTML dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1163,6 +1271,12 @@
     },
     "INI" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INI"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1227,6 +1341,12 @@
     },
     "Java source" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdrojový kód Java"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1291,6 +1411,12 @@
     },
     "JavaScript" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JavaScript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1355,6 +1481,12 @@
     },
     "JSON document" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JSON dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1419,6 +1551,12 @@
     },
     "Julia script" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Julia skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1483,6 +1621,12 @@
     },
     "Kotlin script" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kotlin skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1547,6 +1691,12 @@
     },
     "Lisp script" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisp skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1611,6 +1761,12 @@
     },
     "Lua script" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lua skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1675,6 +1831,12 @@
     },
     "Markdown document" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markdown dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1739,6 +1901,12 @@
     },
     "Mojo script" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mojo skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1805,6 +1973,12 @@
       "comment" : "Privacy - AppleEvents Sending Usage Description",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor potřebuje souhlas uživatele k ovládání jiných aplikací pomocí AppleScriptu."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1877,6 +2051,12 @@
       "comment" : "Copyright (human-readable)",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "© 2005-2009 nakamuxu\n© 2011, 2014 usami-k\n© 2013-2024 1024jp"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1947,6 +2127,12 @@
     },
     "Perl script" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perl skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2011,6 +2197,12 @@
     },
     "PHP script" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PHP skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2075,6 +2267,12 @@
     },
     "Plain text document" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prostý text dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2139,6 +2337,12 @@
     },
     "Python script" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Python skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2203,6 +2407,12 @@
     },
     "reStructured Text document" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "reStructured Text dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2267,6 +2477,12 @@
     },
     "Ruby script" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ruby skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2331,6 +2547,12 @@
     },
     "Rust script" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rust skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2395,6 +2617,12 @@
     },
     "Scala source" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdrojový kód Scala"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2459,6 +2687,12 @@
     },
     "Scalable Vector Graphics" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SVG"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2523,6 +2757,12 @@
     },
     "Scheme script" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scheme skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2587,6 +2827,12 @@
     },
     "Shell script" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shell skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2651,6 +2897,12 @@
     },
     "SQL source" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdrojový kód SQL"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2715,6 +2967,12 @@
     },
     "Swift source" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdrojový kód Swift"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2779,6 +3037,12 @@
     },
     "TeX document" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TeX dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2843,6 +3107,12 @@
     },
     "Textile document" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Textile dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2907,6 +3177,12 @@
     },
     "TOML document" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TOML dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2971,6 +3247,12 @@
     },
     "Verilog source" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdrojový kód Verilog"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3035,6 +3317,12 @@
     },
     "VHDL source" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdrojový kód VHDL"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3099,6 +3387,12 @@
     },
     "XML document" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "XML dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3163,6 +3457,12 @@
     },
     "YAML document" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "YAML dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

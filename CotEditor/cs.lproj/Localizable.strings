@@ -1,0 +1,1007 @@
+//
+//  Localizable.strings (Czech)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Martin Růžička on 2024-01-26.
+//  Localized by Martin Růžička
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2022-2024 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+// Basic button titles
+"OK" = "OK";
+"Cancel" = "Zrušit";
+"Done" = "Hotovo";
+"Start" = "Start";
+"Restore Defaults" = "Výchozí hodnoty";
+"Delete" = "Smazat";
+
+
+// words with symbols
+" (%@)" = " (%@)";
+"(%@)" = " (%@)";
+"%@:" = "%@:";
+
+
+// Accessibility labels
+"Inspector" = "Inspektor";
+"Document Inspector" = "Inspektor dokumentu";
+"Outline" = "Osnova";
+"Warnings" = "Varování";
+"Incompatible Characters" = "Nekompatibilní znaky";
+"Filter" = "Filtr";
+"Status Bar" = "Stavový řádek";
+"Editor" = "Editor";
+"Navigation Bar" = "Panel navigace";
+"Line Numbers" = "Čísla řádků";
+"Find Result" = "Najít výsledek";
+
+
+// warning message occurs in multiple places
+"Are you sure you want to delete “%@”?" = "Určitě chcete smazat „%@“?";
+"This action cannot be undone." = "Tuto akci nelze odvolat.";
+
+
+
+/* MARK: AppDelegate */
+// Importing theme
+"“%@” is a CotEditor theme file." = "„%@“ je soubor motivu CotEditor.";
+"Do you want to install this theme?" = "Chcete nainstalovat tento motiv?";
+"Install" = "Instalovat";
+"Open as Text File" = "Otevřít jako textový soubor";
+"A new theme named “%@” has been successfully installed." = "Nový motiv s názvem „%@“ byl úspěšně nainstalován.";
+
+// Window title of issue report
+"Issue Report" = "Hlášení o problému";
+
+
+
+/* MARK: Text Finder */
+"Replace" = "Nahradit";
+"Find All" = "Hledat vše";
+"Replace All" = "Nahradit vše";
+"Highlight All" = "Zvýraznit vše";
+"Searching in text…" = "Hledání v textu…";
+"%lld string found." = "%lld řetězec nalezen.";
+"%lld strings found." = "%lld řetězce nalezeny.";
+"%lld string replaced." = "%lld řetězec nahrazen.";
+"%lld strings replaced." = "%lld řetězce nahrazeny.";
+"Invalid regular expression" = "Neplatný regulární výraz";
+"Empty find string" = "Prázdný řetězec hledání";
+"The option “in selection” is selected, although nothing is selected." = "Je vybrána volba „Ve výběru“, ačkoli není nic vybráno.";
+"Input text to find." = "Zadejte hledaný text.";
+"Select the search scope in the document or turn off the “in selection” option." = "Vyberte v dokumentu rozsah hledání, nebo zrušte volbu „Ve výběru“.";
+
+// accessibility announcement
+"Search wrapped." = "Hledání dokončeno.";  // announced when the search restarted from the beginning.
+
+
+
+/* MARK: Find Panel */
+// window title
+"Find & Replace" = "Hledat a nahradit";
+
+// find results in input fields
+"Not found" = "Nenalezeno";
+"Not replaced" = "Nenahrazeno";
+
+// pairs of checkbox label and its tooltip
+"Regular Expression" = "Regulární výraz";
+"Select to search with regular expression." = "Chcete-li hledat pomocí regulárního výrazu vyberte tuto volbu.";
+
+"Ignore Case" = "Ignorovat velikost písmen";
+"Select to ignore character case on search." = "Chcete-li při hledání ignorovat velikost písmen vyberte tuto volbu.";
+
+"In Selection" = "Ve výběru";
+"Select to search text only from selection." = "Chcete-li hledat text pouze ve výběru vyberte tuto volbu.";
+
+// tooltip for regex help button
+"Show quick reference for regular expression syntax." = "Zobrazit stručný přehled syntaxe regulárního výrazu.";
+
+// pair of accessibility label for a image button and its tooltip
+"Advanced options" = "Pokročilé volby";
+"Show advanced options" = "Zobrazit pokročilé volby";
+
+// pairs of button label and its tooltip
+"Close" = "Zavřít";
+"Close find result." = "Zavřít výsledek hledání.";
+
+"Find All" = "Hledat vše";
+"Find and list all matches." = "Vyhledat a vypsat všechny shody.";
+
+"Replace All" = "Nahradit vše";
+"Replace all matches with the replacement text." = "Nahradit všechny shody nahrazovaným textem.";
+
+"Replace" = "Nahradit";
+"Replace the current selection with the replacement text, then find the next match." = "Nahradit aktuální výběr nahrazovacím textem a poté najít další shodu.";
+
+"Find Previous" = "Hledat předchozí";
+"Find previous match." = "Hledat předchozí shodu.";
+
+"Find Next" = "Hledat další";
+"Find next match." = "Hledat další shodu.";
+
+
+
+/* MARK: Find Panel Result View */
+"Find string: %@" = "Hledaný řetězec: %@";
+// Find result (“%@” is filename)
+"No strings found in “%@.”" = "V souboru „%@“ nebyl nalezen žádný řetězec.";
+"Found one string in “%@.”" = "V souboru „%@“ byl nalezen jeden řetězec.";
+"Found %lld strings in “%@.”" = "Počet nalezených řetězců: %lld, v souboru: %@.";
+
+// Column header
+"Line" = "Řádek";
+"Found String" = "Nalezené řetězce";
+
+
+
+/* MARK: Regular Expression Reference */
+"Basic Regular Expression Syntax" = "Základní syntaxe regulárního výrazu";
+
+"Characters" = "Znaky";
+"any character" = "Jakýkoli znak";
+"new line character" = "Odřádkování";
+"tab character" = "Tabulátor";
+"word character" = "Výraz";
+"whitespace character" = "Mezera";
+"non-whitespace character" = "Znak nepředstavující mezeru";
+"decimal number" = "Číslice";
+"any character in range A to Z" = "Libovolný znak v rozsahu A až Z";
+"any character not in range A to Z" = "Libovolný znak mimo rozsah A až Z";
+
+"Anchors" = "Kotvy";
+"beginning of the line" = "Začátek řádku";
+"end of the line" = "Konec řádku";
+"word boundary" = "Hranice slova";
+
+"Quantifiers" = "Kvantifikátor";
+"1 or 0 times" = "Žádný nebo jeden";
+"0 or more times" = "Žádný nebo více";
+"1 or more times" = "Jeden nebo více";
+"at least n but not more than m times" = "Alespoň n krát, ale ne více než m krát";
+"at least n times" = "Alespoň n krát";
+"at least 0 but not more than n times" = "Alespoň 0, ale ne více než n krát";
+"n times" = "n krát";
+
+"Extended Groups" = "Rozšířené skupiny";
+"look-ahead" = "look-ahead";
+"look-behind" = "look-behind";
+
+"Back Reference" = "Zpětný odkaz";
+"first match" = "První shoda";
+
+"The syntax conforms to the %@ specifications." = "Syntaxe odpovídá specifikacím %@.";  // %@ is the name of the regex engine below (ICU Regular Expressions)
+"ICU Regular Expressions" = "Regulární výrazy ICU";
+
+
+
+/* MARK: Find Settings View */
+"Advanced Find Options" = "Pokročilé volby hledání";
+
+// checkbox labels
+"Wrap search around" = "Hledat dokola";
+"Search incrementally" = "Hledat postupně";
+
+
+"Textual Search" = "Hledání v textu";
+
+// pairs of checkbox label and its tooltip
+"Match only whole word" = "Porovnat pouze celá slova";
+"Restrict search results to the whole words." = "Omezit výsledky hledání na celá slova.";
+
+"Distinguish characters strictly" = "Přísně rozlišovat znaky";
+"Exact character-by-character equivalence." = "Přesná ekvivalence mezi jednotlivými znaky.";
+
+"Ignore diacritical marks" = "Ignorovat diakritiku";
+"Search ignores diacritical marks (e.g. ö = o)." = "Hledání ignoruje diakritická znaménka (např. ö = o).";
+
+"Ignore width differences" = "Ignorovat rozdíly šířky";
+"Search ignores width differences in character forms (e.g. ａ = a)." = "Hledání ignoruje rozdíly šířky ve formátech znaků (např. ａ = a).";
+
+
+"Regular Expression Search" = "Hledání regulárním výrazem";
+
+// pairs of checkbox label and its tooltip
+"Dot matches line separators" = "Tečka odpovídá oddělovačům řádků";
+"Allow . to match any character, including newline characters (singleline)." = "Povolit . tak, aby odpovídala libovolnému znaku, včetně znaků nového řádku (singleline).";
+
+"Anchors match lines" = "Kotvy odpovídají řádkům";
+"Allow ^ and $ to match the start and end of lines (multiline)." = "Povolit ^ a $ tak, aby odpovídaly začátku a konci řádků (víceřádkové).";
+
+"Use Unicode word boundaries" = "Použít hranice slov Unicode";
+"Use Unicode TR#29 to specify word boundaries" = "Určit hranice slov pomocí kódování Unicode TR#29.";
+
+"Unescape replacement string" = "Unescapovat nahrazovací řetězec";
+"Unescape meta characters with backslash in replacement string." = "Unescapovat meta znaky se zpětným lomítkem v nahrazovacím řetězci.";
+
+
+
+/* MARK: Multiple Replace Panel */
+// window title
+"Multiple Replace" = "Vícenásobné nahrazení";
+
+// Undo action names
+"Insert Rule" = "Přidat pravidlo";
+"Delete Rules" = "Smazat pravidla";
+"Edit Rule" = "Upravit pravidlo";
+"Move Rules" = "Přesunout pravidla";
+
+
+
+/* MARK: Open Panel Accessory */
+"Text encoding:" = "Kódování textu:";
+"Show invisible files" = "Zobrazit neviditelné soubory";
+
+
+
+/* MARK: Document Controller */
+// File open accessory's menu item title
+"Automatic" = "Automatický";
+
+// Binary file alert
+"The file “%@” doesn’t appear to be text data." = "Soubor „%@” se nezdá být textovým.";
+"The file appears to be %@.\n\nDo you really want to open the file?" = "Zdá se, že soubor je %@.\n\nUrčitě chcete soubor otevřít?";
+
+// Large file alert
+"The file “%@” has a size of %@." = "Soubor „%@“ má velikost %@.";
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "Otevření tak velkého souboru může způsobit zpomalenou, nebo nereagující aplikaci.\n\nUrčitě chcete soubor otevřít?";
+"Open" = "Otevřít";
+
+
+
+/* MARK: Document */
+// Undo action names
+"Encoding to “%@”" = "Kódování do „%@“";
+"Line Endings to %@" = "Konce řádků do „%@“";
+
+// Convert or reinterpret encoding alert
+"Text encoding change" = "Změna kódování textu";
+"Do you want to convert or reinterpret this document using “%@”?" = "Chcete tento dokument převést nebo reinterpretovat pomocí „%@“?";
+"Convert" = "Převést";
+"Reinterpret" = "Reinterpretovat";
+
+// Encoding alarts
+"The document contains characters incompatible with “%@.”" = "Dokument obsahuje nekompatibilní znaky s „%@“.";
+
+// Lossy saving alert
+"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Při ukládání jsou nahrazeny nebo odstraněny nekompatibilní znaky. Chcete pokračovat ve zpracování?";
+"Save Available Text" = "Uložit dostupný text";
+"Review Incompatible Characters" = "Prohlédnout nekompatibilní znaky";
+
+// Encoding change with unsaved changes alert
+"The document has unsaved changes." = "Dokument obsahuje neuložené změny.";
+"Are you sure you want to discard your changes and reopen the document using “%@”?" = "Určitě chcete zahodit změny a znovu otevřít dokument pomocí „%@“?";  // %@ is an encoding name.
+"Discard Changes" = "Zahodit změny";
+
+// Reinterpretation failed alert
+"The document doesn’t have a file to reinterpret." = "Dokument nemá soubor k reinterpretaci.";
+"The document could not be reinterpreted using text encoding “%@.”" = "Dokument nelze znovu interpretovat pomocí kódování „%@“.";
+"The document may have been saved using a different text encoding, or it may not be a text file." = "Dokument byl pravděpodobně uložen pomocí jiného kódování textu, nebo se nejedná o textový soubor.";
+
+// incompatible characters alert
+"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Při ukládání jsou nahrazeny nebo odstraněny nekompatibilní znaky. Chcete změnit kódování textu a zkontrolovat nekompatibilní znaky?";
+"Change Encoding" = "Změnit kódování";
+
+// Inconsistent line ending alert
+"The document has inconsistent line endings." = "Dokument má nekonzistentní konce řádků.";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Chcete převést všechny konce řádků do %@, což jsou nejčastější konce řádků v tomto dokumentu?";
+"Don’t ask again for this document" = "Neptat se znovu na tento dokument";
+"Convert" = "Převést";
+"Review" = "Prohlédnout";
+"Ignore" = "Ignorovat";
+
+// Modified by an external application alert
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "Soubor byl změněn v jiné aplikaci. V CotEditoru jsou také neuložené změny.";
+"The file has been changed by another application." = "Soubor byl změněn v jiné aplikaci.";
+"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Chcete zachovat verzi CotEditoru nebo ho aktualizovat na upravenou verzi?";
+"Keep CotEditor’s Edition" = "Zachovat verzi CotEditoru";
+"Update" = "Aktualizovat";
+
+// Save panel options
+"Make file executable" = "Vytvořit spustitelný soubor";
+
+
+
+/* MARK: Document Window */
+// tooltip for the "edited" indicator in the window tab
+"Document has unsaved changes" = "Dokument obsahuje neuložené změny";
+
+
+
+/* MARK: Toolbar */
+"Syntax" = "Syntaxe";
+// tooltip
+"Change syntax" = "Změnit syntaxi";
+// menu item title
+"Recently Used" = "Naposledy použité";
+"Deleted" = "Odstraněné";
+
+"Inspector" = "Inspektor";
+// tooltip
+"Show document information" = "Zobrazit informace o dokumentu";
+
+"Text Size" = "Velikost textu";
+"Smaller" = "Zmenšit";
+"Bigger" = "Zvětšit";
+// tooltip
+"Change text size" = "Změnit velikost textu";
+"Decrease text size" = "Zmenšit velikost textu";
+"Increase text size" = "Zvětšit velikost textu";
+
+"Writing Direction" = "Směr psaní";
+"Left to Right" = "Zleva doprava";
+"Right to Left" = "Zprava doleva";
+// tooltip
+"Change writing direction" = "Změnit směr psaní";
+"Left to right" = "Zleva doprava";
+"Right to left" = "Zprava doleva";
+
+"Text Orientation" = "Orientace textu";
+"Horizontal" = "Vodorovně";
+"Vertical" = "Svisle";
+// tooltip
+"Switch text orientation" = "Přepnout svislou/vodorovnou orientaci textu";
+
+"Indent" = "Odsazení";
+"Shift Left" = "Posunout doleva";
+"Shift Right" = "Posunout doprava";
+// tooltip
+"Indent selection" = "Odsazení výběru";
+"Shift lines to left" = "Posunout řádky doleva";
+"Shift lines to right" = "Posunout řádky doprava";
+
+"Comment" = "Komentář";
+// tooltip
+"Comment-out or uncomment selection" = "Zakomentovat nebo odkomentovat výběr";
+
+"Tab Style" = "Styl tabulátoru";
+// tooltip
+"Use tabs for indentation" = "Použít tabulátory pro odsazení";
+"Use spaces for indentation" = "Použít mezery pro odsazení";
+// menu
+"Tab Width" = "Šířka tabulátoru";
+"Custom…" = "Vlastní…";
+"Use Spaces for Indentation" = "Použít mezery pro odsazení";
+
+"Line Wrapping" = "Zalamování řádků";
+// tooltip
+"Unwrap lines" = "Nezalamovat řádky";
+"Wrap lines" = "Zalamovat řádky";
+
+"Invisibles" = "Neviditelné";
+// tooltip
+"Hide invisible characters" = "Skrýt neviditelné znaky";
+"Show invisible characters" = "Zobrazit neviditelné znaky";
+
+"Indent Guides" = "Vodítka odsazení";
+// tooltip
+"Hide indent guide lines" = "Skrýt vodítka odsazení";
+"Show indent guide lines" = "Zobrazit vodítka odsazení";
+
+"Keep on Top" = "Zachovat navrchu";
+// tooltip
+"Keep the window always on top" = "Zachovat okno vždy navrchu";
+
+"Opacity" = "Neprůhlednost";
+// tooltip
+"Change editor’s opacity" = "Změnit neprůhlednost editoru";
+
+"Spell Check" = "Kontrola pravopisu";
+// tooltip
+"Show spelling and grammar" = "Zobrazit pravopis a gramatiku";
+
+"Emoji & Symbols" = "Emotikony a symboly";
+// tooltip
+"Show Emoji & Symbols palette" = "Zobrazit paletu emotikonů a symbolů";
+
+"Find" = "Hledat";
+// tooltip
+"Show Find & Replace" = "Zobrazit hledat a nahradit";
+
+"Print" = "Tisknout";
+// tooltip
+"Print document" = "Vytisknout dokument";
+
+// tooltip
+// -> The toolbar label for "Share" is set automatically.
+"Share document file" = "Sdílet soubor dokumentu";
+
+"Fonts" = "Písma";
+// tooltip
+"Change Font" = "Změnit písmo";
+// menu items
+"Font Type" = "Typ písma";
+"Standard" = "Standardní";
+"Monospaced" = "Neproporcionální";
+"Show Fonts" = "Zobrazit písma";
+
+
+
+/* MARK: Touch Bar */
+// Touch bar item labels -Text Size
+"Actual Size" = "Skutečná velikost";
+
+
+
+/* MARK: PrintTextView */
+// header/footer
+"Printed on %@" = "Vytištěno %@";  // %@ is date
+"Last modified on %@" = "Poslední změna dne %@";  // %@ is date
+
+
+
+/* MARK: PrintAccessoryViewController */
+"Theme" = "Motiv";
+
+// Content of headers/footers
+"Syntax Name" = "Název syntaxe";
+"Document Name" = "Název dokumentu";
+"File Path" = "Cesta k souboru";
+"Print Date" = "Datum tisku";
+"Last Modified Date" = "Datum poslední změny";
+"Page Number" = "Číslo stránky";
+
+// Segmented control tooltips
+"Align Left" = "Zarovnat doleva";
+"Center" = "Zarovnat na střed";
+"Align Right" = "Zarovnat doprava";
+
+// Summary item names
+"Font Size" = "Velikost písma";
+"Color" = "Barva";
+"Print Backgrounds" = "Tisknout pozadí";
+"Line Number" = "Čísla řádků";
+"Invisibles" = "Neviditelné";
+"Header" = "Záhlaví";
+"Footer" = "Zápatí";
+
+// Summary item values
+"%@ pt" = "%@ pt";
+"On" = "Zapnuto";
+"Black and White" = "Černobíle";
+
+
+
+/* MARK: Inspector */
+// Outline
+"Recent Filters" = "Poslední filtry";
+"Clear Recent Filters" = "Smazat poslední filtry";
+"No Recent Filter" = "Žádný poslední filtr";
+
+// Warnings
+"No issues found." = "Nebyly nalezeny žádné problémy.";
+
+// Incompatible characters
+"Scanning incompatible characters…" = "Skenování nekompatibilních znaků…";
+"Found an incompatible character." = "Nalezen nekompatibilní znak.";
+"Found %lld incompatible characters." = "Nalezeny nekompatibilní znaky (celkem %lld).";  // %lld is the number of characters
+
+// Inconsistent line endings
+"Found a line ending other than %@." = "Nalezen jiný konec řádku než %@.";  // %@ is a line ending type, such as LF
+"Found %lld line endings other than %@." = "Nalezeny jiné konce řádků (celkem %lld) než %@.";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
+
+
+
+/* MARK: EditorTextView */
+// Undo action names
+"Insert Text" = "Vložit text";
+"Insert Snippet" = "Vložit fragment kódu";
+"Shift Right" = "Posunout doprava";
+"Shift Left" = "Posunout doleva";
+"Convert Indentation" = "Převést odsazení";
+"Comment Out" = "Zakomentovat";
+"Uncomment" = "Odkomentovat";
+"Inspect Character" = "Zkontrolovat znak";
+"Move Line" = "Přesunout řádek";
+"Sort Lines" = "Seřadit řádky";
+"Reverse Lines" = "Zaměnit řádky";
+"Shuffle Lines" = "Promíchat řádky";
+"Delete Duplicate Lines" = "Smazat duplicitní řádky";
+"Duplicate Line" = "Duplicitní řádek";
+"Delete Line" = "Smazat řádek";
+"Join Lines" = "Spojit řádky";
+"Trim Trailing Whitespace" = "Oříznout koncové mezery";
+
+// Contextual menu items
+"Copy as Rich Text" = "Kopírovat jako RTF";
+"Select All" = "Vybrat vše";
+"Straighten Quotes" = "Rovné uvozovky";
+"Script" = "Skript";
+
+
+
+/* MARK: DocumentViewController */
+// Menu items
+"Hide Inspector" = "Skrýt inspektora";
+"Show Inspector" = "Zobrazit inspektora";
+"Hide Line Numbers" = "Skrýt čísla řádků";
+"Show Line Numbers" = "Zobrazit čísla řádků";
+"Hide Status Bar" = "Skrýt stavový řádek";
+"Show Status Bar" = "Zobrazit stavový řádek";
+"Hide Navigation Bar" = "Skrýt panel navigace";
+"Show Navigation Bar" = "Zobrazit panel navigace";
+"Hide Invisibles" = "Skrýt neviditelné";
+"Show Invisibles" = "Zobrazit neviditelné";
+"Hide Page Guide" = "Skrýt boční vodítko stránky";
+"Show Page Guide" = "Zobrazit boční vodítko stránky";
+"Hide Indent Guides" = "Skrýt vodítka odsazení";
+"Show Indent Guides" = "Zobrazit vodítka odsazení";
+"Unwrap Lines" = "Zrušit zalamování řádků";
+"Wrap Lines" = "Zalamovat řádky";
+
+// Tooltip for “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled
+"To show invisible characters, set them in the Window settings" = "Chcete-li zobrazit neviditelné znaky, nastavte jejich zobrazení v nastavení „Okno“";
+
+
+
+/* MARK: SplitViewController */
+// Menu items
+"Stack Editors Horizontally" = "Seskupit editory vodorovně";
+"Stack Editors Vertically" = "Seskupit editory svisle";
+
+
+
+/* MARK: StatusBarController */
+"Lines: " = "Řádky: ";
+"Characters: " = "Znaky: ";
+"Words: " = "Slova: ";
+"Location: " = "Pozice: ";
+"Line: " = "Řádek: ";
+"Column: " = "Sloupec: ";
+
+
+
+/* MARK: NavigationBarController */
+// Outline menu title
+"Jump to previous outline item" = "Přejít na předchozí položku osnovy";
+"Jump to next outline item" = "Přejít na další položku osnovy";
+// Accessibility labels
+"Previous" = "Předchozí";
+"Next" = "Další";
+
+
+
+/* MARK: Opacity View */
+"Editor’s Opacity" = "Neprůhlednost editoru";
+"Transparent" = "Průhledné";
+"Opaque" = "Neprůhledné";
+
+
+
+/* MARK: ColorCodePanelAccessory */
+// placeholder
+"Color Code" = "Kód barvy";
+
+"Hexadecimal" = "Hexadecimální";
+"Hexadecimal (Short)" = "Hexadecimální (krátký)";
+"Hexadecimal with Alpha" = "Hexadecimální s alfa kanálem";
+"CSS RGB" = "CSS RGB";
+"CSS RGBa" = "CSS RGBa";
+"CSS HSL" = "CSS HSL";
+"CSS HSLa" = "CSS HSLa";
+"CSS Keyword" = "CSS klíčové slovo";
+
+// button
+"Insert" = "Vložit";
+// Color list name
+"Stylesheet Keywords" = "CSS klíčová slova";
+// Undo action name
+"Insert Color Code" = "Vložit kód barvy";
+
+
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "Poslední použité";
+"Clear Recents" = "Smazat poslední";
+"Invalid code" = "Neplatný kód";
+
+
+
+/* MARK: Settings */
+// Panes
+"General" = "Obecné";
+"Window" = "Okno";
+"Appearance" = "Vzhled";
+"Edit" = "Úpravy";
+"Format" = "Formát";
+"Snippets" = "Fragmenty kódů";
+"Key Bindings" = "Kláv. zkratky";
+
+
+// General pane
+// Autosave setting update alert
+"The change will be applied first on the next launch." = "Změna bude použita při příštím spuštění.";
+"Do you want to restart CotEditor now?" = "Chcete nyní restartovat CotEditor?";
+"Restart Now" = "Restartovat";
+"Later" = "Později";
+// command-line tool
+"installed at %@" = "instalováno v %@";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "Aktuální symbolický odkaz 'cot' není zaměřen na spuštěný CotEditor.";
+"The current 'cot' symbolic link may target an invalid path." = "Aktuální symbolický odkaz 'cot' může být zaměřen na neplatnou cestu.";
+
+// warnings setting
+"Suppress following warnings:" = "Potlačit následující varování:";
+"Inconsistent line endings" = "Nekonzistentní konce řádků";
+
+
+// Appearance pane
+// alert message
+"The selected font doesn’t seem to be monospaced." = "Zdá se, že vybrané písmo není neproporcionální.";
+"Do you want to use it for the monospaced font?" = "Chcete ho použít pro neproporcionální písmo?";  // “it” is the selected font.
+
+// Contextual menu items
+"Rename “%@”" = "Přejmenovat „%@“";
+"Duplicate “%@”" = "Duplikovat „%@“";
+"Restore “%@”" = "Obnovit „%@“";
+"Reveal “%@” in Finder" = "Zobrazit „%@“ ve Finderu";
+
+/* Theme View */
+"Text:" = "Text:";
+"Cursor:" = "Kurzor:";
+"Invisibles:" = "Neviditelné:";
+"Background:" = "Pozadí:";
+"Current Line:" = "Aktuální řádek:";
+"Selection:" = "Výběr:";
+"Use system color" = "Použít systémové barvy";
+
+"Syntax" = "Syntaxe";
+"Keywords:" = "Klíčová slovo:";
+"Commands:" = "Příkazy:";
+"Types:" = "Typy:";
+"Attributes:" = "Atributy:";
+"Variables:" = "Proměnné:";
+"Values:" = "Hodnoty:";
+"Numbers:" = "Čísla:";
+"Strings:" = "Řetězce:";
+"Comments:" = "Komentáře:";
+"Characters:" = "Znaky:";
+
+"Show theme file information" = "Zobrazit informace o souboru motivu";
+
+// Theme metadata
+"Author:" = "Autor:";
+"URL:" = "URL:";
+"License:" = "Licence:";
+"Description:" = "Popis:";
+// placeholder
+"Not defined" = "Není definováno";
+// tooltip
+"Jump to URL" = "Přejít na URL";
+
+
+// Format pane
+// Installed syntaxes action menu items
+"Duplicate “%@”" = "Duplikovat „%@“";
+"Export “%@”…" = "Exportovat „%@“…";
+"Reveal “%@” in Finder" = "Zobrazit „%@“ ve Finderu";
+
+
+// Snippets pane
+// placeholder text
+"Select a snippet to edit." = "Vyberte fragment kódu, který chcete upravit.";
+
+
+
+/* MARK: SyntaxEditViewController */
+// Menu items
+"Keywords" = "Klíčová slova";
+"Commands" = "Příkazy";
+"Types" = "Typy";
+"Attributes" = "Atributy";
+"Variables" = "Proměnné";
+"Values" = "Hodnoty";
+"Numbers" = "Čísla";
+"Strings" = "Řetězce";
+"Characters" = "Znaky";
+"Comments" = "Komentáře";
+"Outline" = "Osnova";
+"Completion List" = "Seznam dokončení";
+"File Mapping" = "Mapování souborů";
+"Syntax Information" = "Informace o syntaxi";
+"Syntax Validation" = "Ověření syntaxe";
+
+// Syntax validation results
+"No error found." = "Nebyla nalezena žádná chyba.";
+"An error found." = "Byla nalezena chyba.";
+"%lld errors found." = "Byly nalezeny chyby (celkem %lld).";
+
+
+
+/* MARK: SettingFileManager */
+"“%@” couldn’t be deleted." = "„%@“ nelze smazat.";
+"“%@” couldn’t be imported." = "„%@“ nelze importovat.";
+"No original file for “%@” was found." = "Pro „%@“ nebyl nalezen žádný původní soubor.";
+
+// Setting filename warnings
+"Choose another name." = "Zvolte jiný název.";
+"Name can’t be empty." = "Název nemůže být prázdný.";
+"Name can’t contain “/”." = "Název nesmí obsahovat znak „/“.";
+"Name can’t begin with “.”." = "Název nesmí začínat tečkou „.“.";
+"The name “%@” is already taken." = "Název „%@“ je již používán.";
+
+
+
+/* MARK: SyntaxManager */
+// Syntax name
+"None" = "Žádný";
+
+// Description for editing bundled syntax
+"Bundled syntaxes can’t be renamed." = "Předdefinované syntaxe nelze přejmenovat.";
+
+// Suffix of copied syntax
+"copy" = "Kopírovat";
+
+// Import syntax file choose openPanel button
+"Import" = "Importovat";
+// Importing same name syntax alert
+"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "Bude nainstalována nová syntaxe s názvem „%@“, ale vlastní syntaxe se stejným názvem již existuje.";
+"Do you want to replace it?\nReplaced syntax can’t be restored." = "Chcete ji nahradit?\nNahrazenou syntaxi nelze obnovit.";
+
+// Export syntax file savePanel label
+"Export As:" = "Exportovat jako:";
+
+// Syntax validation
+"Block comment needs both begin delimiter and end delimiter." = "Blokové komentáře vyžadují počáteční i koncový řetězec.";
+"Begin string" = "Počáteční řetězec";
+"End string" = "Koncový řetězec";
+"The same word is registered multiple times." = "Stejné slovo je registrováno vícekrát.";
+"Invalid regular expression." = "Neplatný regulární výraz.";
+
+
+
+/* MARK: ThemeManager */
+// Theme names
+"Untitled" = "Bez názvu";
+
+// Theme import duplicated alert
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Bude nainstalován nový motiv s názvem „%@“, ale vlastní motiv se stejným názvem již existuje.";
+"Do you want to replace it?\nReplaced theme can’t be restored." = "Chcete ho nahradit?\nNahrazený motiv nelze obnovit.";
+
+
+
+/* MARK: ReplacementManager */
+// Replacements import duplicated alert
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "Bude nainstalována nová náhradní definice s názvem „%@“, ale definice se stejným názvem již existuje.";
+"Do you want to replace it?\nReplaced definition can’t be restored." = "Chcete ji nahradit?\nNahrazenou definici nelze obnovit.";
+
+
+
+/* MARK: KeyBindingManager */
+// Label for snippet commands (deprecated)
+"Insert Text %lld" = "Vložit text %lld";
+
+// Keyboard key name
+"Space" = "Mezerník";
+
+// Warning messages
+"“%@” is already taken by the “%@” command." = "„%@“ je již obsazeno příkazem „%@“.";
+"The Shift key can be used only with another modifier key." = "Klávesu Shift lze použít pouze s jinou modifikační klávesou.";
+"The combination “%@” is not supported for the shortcut customization." = "Kombinace „%@“ není pro přizpůsobení zkratky podporována.";
+"Single type is invalid for a shortcut." = "Jednotlivou klávesu nelze pro zkratku použít.";
+
+
+
+/* MARK: ScriptManager */
+// Menu items
+"Open Scripts Folder" = "Otevřít složku skriptů";
+
+// Script menu item tooltips
+"Option-click to open script in editor." = "Pro otevření skriptu v editoru stiskněte „Option“ a „klikněte“.";
+
+
+
+/* MARK: Script */
+// No script target document errors
+"No document to get input." = "Žádný dokument k získání vstupu.";
+"No document to put output." = "Žádný dokument, který by dal výstup.";
+
+// Script file error description
+"The script “%@” does not exist." = "Skript „%@“ neexistuje.";
+"The script file “%@” couldn’t be opened." = "Soubor skriptu „%@“ nelze otevřít.";
+"The script “%@” can’t be executed because you don’t have the execute permission." = "Skript „%@“ nelze spustit, protože nemáte oprávnění ke spuštění.";
+"The script “%@” couldn’t be read." = "Skript „%@“ nelze přečíst.";
+
+// Script file error recovery suggestions
+"Check the script file." = "Zkontrolujte soubor skriptu.";
+"Check the permission of the script file." = "Zkontrolujte oprávnění souboru skriptu.";
+
+
+
+/* MARK: Console */
+"Console" = "Konzola";
+"Clear Log" = "Smazat protokol";
+"Clear error log" = "Smazat protokol chyb";
+
+
+
+/* MARK: Quick Action Bar */
+"Quick Actions" = "Rychlé akce";
+
+
+
+/* MARK: FileDropItem */
+// Descriptions about variables in the file drop feature
+"The dropped file absolute path." = "Absolutní cesta přetaženého souboru.";
+"The relative path between the dropped file and the document." = "Relativní cesta mezi přetaženým souborem a dokumentem.";
+"The dropped file’s name including extension (if exists)." = "Název přetažených souborů včetně přípony (pokud existuje).";
+"The dropped file’s name without extension." = "Název přetažených souborů bez přípony.";
+"The dropped file’s extension." = "Přípona přetažených souborů.";
+"The dropped file’s extension (converted to lowercase)." = "Přípona přetažených souborů (převedeno na malá písmena).";
+"The dropped file’s extension (converted to uppercase)." = "Přípona přetažených souborů (převedeno na velká písmena).";
+"The parent directory name of dropped file." = "Název nadřazeného adresáře přetaženého souboru.";
+"(If the dropped file is an image) image width." = "Šířka obrázku (pokud je přetažený soubor obrázkem).";
+"(If the dropped file is an image) image height." = "Výška obrázku (pokud je přetažený soubor obrázkem).";
+"(If the dropped file is a text file) file content." = "Obsah souboru (pokud je přetažený soubor textový soubor).";
+
+
+
+/* MARK: Snippet */
+// Descriptions about variables in the snippet feature
+"The insertion point after inserting the snippet." = "Pozice kurzoru po vložení fragmentu kódu.";
+"The selected text." = "Vybraný text.";
+
+
+
+/* MARK: String extension */
+// Encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
+"%@ with BOM" = "%@ s BOM";
+
+
+
+/* MARK: Pattern Sort View */
+// error messages ("pattern" is a regular expression pattern)
+"Invalid pattern" = "Neplatný vzor";
+"Empty pattern" = "Prázdný vzor";
+
+"Sample:" = "Vzorek:";
+// tooltip
+"Sample line to check which part in a line will be used for sort comparison." = "Vzorový řádek pro kontrolu, která část řádku bude použita pro porovnání řazení.";
+
+"Sort key:" = "Klíč řazení:";
+"Entire line" = "Celý řádek";
+"Column" = "Sloupec";
+"Regular expression" = "Regulární výraz";
+
+"Sort option:" = "Volby řazení:";
+"Ignore Case" = "Ignorovat velikost písmen";
+"Respect language rules" = "Respektovat jazyková pravidla";
+"Treat numbers as numeric value" = "Zacházet s čísly jako s číselnou hodnotou";
+"Keep the first line at the top" = "První řádek ponechat nahoře";
+"In descending order" = "V sestupném pořadí";
+
+"Delimiter:" = "Oddělovač:";
+"Position:" = "Pozice:";
+
+"Pattern:" = "Vzor:";
+"Regular Expression" = "Regulární výraz";
+"Ignore case" = "Ignorovat velikost písmen";
+"Use captured group:" = "Použít zachycenou skupinu:";
+
+// button label
+"Sort" = "Seřadit";
+
+
+
+/* MARK: Encoding List View */
+"Drag encodings to change the order:" = "Pořadí kódování změníte přetažením:";
+"This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Toto pořadí se týká nabídky kódování a detekce kódování při otevření souboru. Při detekci mají vyšší položky vyšší prioritu.";
+"Add Separator" = "Přidat oddělovač";
+"Delete Separator" = "Smazat oddělovač";
+
+
+
+/* MARK: Syntax Mapping Conflicts View */
+"Syntax Mapping Conflicts" = "Konflikty mapování syntaxe";
+"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "Následující pravidla mapování souborů jsou registrována ve více syntaxích. CotEditor automaticky použije první syntaxi. Chcete-li vyřešit konflikty, upravte každou definici syntaxe.";
+"Extension" = "Přípona";
+"Filename" = "Název souboru";
+"Interpreter" = "Interpretr";
+// table column headers
+"Used syntax" = "Použitá syntaxe";
+"Duplicated syntaxes" = "Duplikované syntaxe";
+
+
+
+/* MARK: Character Info */
+"<a letter consisting of %lld characters>" = "<písmeno složené z %lld znaků>";  // %lld is always 2 or more.
+
+// Variation selectors
+"Emoji Style" = "Styl emotikony";
+"Text Style" = "Styl textu";
+"Skin Tone I-II" = "Skin Tone I-II";
+"Skin Tone III" = "Skin Tone III";
+"Skin Tone IV" = "Skin Tone IV";
+"Skin Tone V" = "Skin Tone V";
+"Skin Tone VI" = "Skin Tone VI";
+"Variant" = "Varianta";
+
+
+
+/* MARK: Go to Line View */
+"Line:" = "Řádek:";  // label
+"Line Number" = "Číslo řádku";  // placeholder
+"Go" = "Přejít";  // submit button
+
+
+
+/* MARK: Custom Tab Width View */
+"Tab width:" = "Šířka tabulátoru:";  // label
+
+
+
+/* MARK: Custom Surround String View */
+"Surround with:" = "Obklopit s:";
+"Begin:" = "Začátek:";
+"End:" = "Konec:";
+
+
+
+/* MARK: Character Inspector View */
+"Unknown" = "Neznámý";
+"No Block" = "Žádný blok";
+"Code Point:" = "Kódový bod:";
+"Block:" = "Blok:";
+"Category:" = "Kategorie:";
+"Version:" = "Verze:";
+// badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
+"deprecated" = "zastaralé";
+
+
+
+/* MARK: LiveTextInsertionView */
+// error messages
+"No text detected" = "Nebyl zjištěn žádný text";
+"Detection failed" = "Detekce selhala";
+
+
+
+/* MARK: AdvancedCharacterCounterView */
+// menu labels
+"Advanced Character Count…" = "Pokročilé počítání znaků…";
+"Stop Advanced Character Count" = "Zastavit pokročilé počítání znaků";
+// error message when counting failed
+"failed" = "selhání";
+// tooltip
+"Show options" = "Zobrazit volby";
+// context menu item labels
+"Copy" = "Kopírovat";
+"Stop Count" = "Zastavit počítání";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
+
+
+
+/* MARK: CharacterCountOptionsView */
+"Whitespace:" = "Mezery:";
+"Ignore line endings" = "Ignorovat konce řádků";
+"Ignore whitespace" = "Ignorovat mezery";
+"Treat consecutive whitespace as one space" = "Považovat po sobě jdoucí prázdné znaky za jednu mezeru";
+
+"Unit:" = "Jednotka:";
+"Grapheme cluster" = "Klastr grafémů";  // technical term defined in Unicode
+"Unicode scalar" = "Skalár Unicode";
+"UTF-16" = "UTF-16";
+"Byte" = "Bajty";
+
+"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Počítat intuitivním způsobem definovaným v Unicode. Znak složený z více kódových bodů Unicode, například emotikony, se počítá jako jeden znak.";
+"Count Unicode code points. Same as counting UTF-32." = "Počítat kódové body Unicode. Stejné jako počítání UTF-32.";
+"Count Unicode code points but a surrogate pair as two characters." = "Počítat kódové body Unicode, ale náhradní dvojici jako dva znaky.";
+"Count bytes of the text encoded with the specified encoding." = "Počítat bajty textu kódovaného zadaným kódováním.";
+
+"Encoding:" = "Kódování:";
+"Normalization:" = "Normalizace:";

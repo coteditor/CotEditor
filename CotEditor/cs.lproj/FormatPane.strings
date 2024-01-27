@@ -1,0 +1,91 @@
+//
+//  FormatPane.strings (Czech)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Martin Růžička on 2024-01-26.
+//  Localized by Martin Růžička
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2023-2024 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSTextFieldCell"; title = "Default line endings:"; ObjectID = "3273"; */
+"3273.title" = "Výchozí konce řádků:";
+
+/* Class = "NSMenuItem"; title = "macOS / Unix (LF)"; ObjectID = "15"; */
+"15.title" = "macOS / Unix (LF)";
+/* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "14"; */
+"14.title" = "Klasický Mac OS (CR)";
+/* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "12"; */
+"12.title" = "Windows (CRLF)";
+
+/* Class = "NSTextFieldCell"; title = "Default encoding:"; ObjectID = "3278"; */
+"3278.title" = "Výchozí kódování:";
+
+/* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
+"3277.title" = "Priorita kódování:";
+/* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
+"3275.title" = "Upravit seznam…";
+/* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
+"3280.title" = "Odkazovat na deklaraci kódování v dokumentu";
+
+
+/* Class = "NSTextFieldCell"; title = "Default syntax:"; ObjectID = "3329"; */
+"3329.title" = "Výchozí syntaxe:";
+
+/* Class = "NSTextFieldCell"; title = "Available syntaxes:"; ObjectID = "vlw-Tc-sLl"; */
+"vlw-Tc-sLl.title" = "Dostupné syntaxe:";
+
+/* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
+"cbJ-XK-bnG.ibShadowedToolTip" = "Tento styl je přizpůsoben.";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Remove selected syntax"; ObjectID = "dI1-Dk-Mce"; */
+"dI1-Dk-Mce.ibShadowedToolTip" = "Odebrat vybranou syntaxi";
+/* Class = "NSButton"; ibShadowedToolTip = "Add empty syntax"; ObjectID = "Hma-8v-2gu"; */
+"Hma-8v-2gu.ibShadowedToolTip" = "Přidat prázdnou syntaxi";
+/* Class = "NSButton"; ibShadowedToolTip = "Edit selected syntax"; ObjectID = "Q0c-oI-um3"; */
+"Q0c-oI-um3.ibShadowedToolTip" = "Upravit vybranou syntaxi";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Edit"; ObjectID = "Q0c-oI-um3"; */
+"Q0c-oI-um3.ibExternalAccessibilityDescription" = "Upravit";
+
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */
+"1lj-x8-ouD.title" = "Importovat…";
+/* Class = "NSMenuItem"; title = "Share…"; ObjectID = "xRA-ND-YIE"; */
+"xRA-ND-YIE.title" = "Sdílet…";
+/* Class = "NSMenuItem"; title = "Reload All Syntaxes"; ObjectID = "FhP-Hj-cWE"; */
+"FhP-Hj-cWE.title" = "Znovu načíst všechny syntaxe";
+/* Class = "NSMenuItem"; title = "Show File Mapping Conflicts"; ObjectID = "hyN-4W-57i"; */
+"hyN-4W-57i.title" = "Zobrazit konflikty mapování souborů";
+
+
+/* contextual menu */
+
+/* Class = "NSMenuItem"; title = "Edit…"; ObjectID = "371-P0-KPK"; */
+"371-P0-KPK.title" = "Upravit…";
+/* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "5oN-VC-ot9"; */
+"5oN-VC-ot9.title" = "Duplikovat";
+/* Class = "NSMenuItem"; title = "Restore"; ObjectID = "Zox-Ve-mru"; */
+"Zox-Ve-mru.title" = "Obnovit";
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "NDE-r5-xAF"; */
+"NDE-r5-xAF.title" = "Smazat";
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "Qwp-u8-Urf"; */
+"Qwp-u8-Urf.title" = "Exportovat…";
+/* Class = "NSMenuItem"; title = "Share…"; ObjectID = "Rh3-kc-Gte"; */
+"Rh3-kc-Gte.title" = "Sdílet…";
+/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "AkE-0P-0FC"; */
+"AkE-0P-0FC.title" = "Zobrazit ve Finderu";

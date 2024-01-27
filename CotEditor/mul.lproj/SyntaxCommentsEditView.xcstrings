@@ -5,6 +5,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Begin String\"; ObjectID = \"1an-HZ-pD7\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Počáteční řetězec"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -77,6 +83,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; placeholderString = \"Not defined\"; ObjectID = \"4qu-tU-wgL\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nedefinováno"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -149,6 +161,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"End with:\"; ObjectID = \"5bm-Fa-IZj\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Končí na:"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -221,6 +239,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Begin with:\"; ObjectID = \"508-hG-5PG\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Začíná na:"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -293,6 +317,12 @@
       "comment" : "Class = \"CocoaBindingsConnection\"; ibShadowedIsNilPlaceholder = \"Not defined\"; ObjectID = \"a3u-7k-1dd\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nedefinováno"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -365,6 +395,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Inline comment:\"; ObjectID = \"b3O-ZW-iIp\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Řádkový komentář:"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -437,6 +473,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Description\"; ObjectID = \"Bla-xg-t6E\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Popis"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -509,6 +551,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Block comment:\"; ObjectID = \"bUT-iW-c0x\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blokový komentář:"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -581,6 +629,12 @@
       "comment" : "Class = \"CocoaBindingsConnection\"; ibShadowedIsNilPlaceholder = \"Not defined\"; ObjectID = \"dwo-oN-tBR\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nedefinováno"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -653,6 +707,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; placeholderString = \"Not defined\"; ObjectID = \"lMx-HP-1U1\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nedefinováno"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -725,6 +785,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"IC\"; ObjectID = \"oI5-31-pDw\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IV"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -797,6 +863,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerToolTip = \"Ignore Case (case-insensitive)\"; ObjectID = \"oI5-31-pDw\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorovat velikost písmen"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -869,6 +941,12 @@
       "comment" : "Class = \"CocoaBindingsConnection\"; ibShadowedIsNilPlaceholder = \"Not defined\"; ObjectID = \"Pcv-9r-6km\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nedefinováno"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -941,6 +1019,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; placeholderString = \"Not defined\"; ObjectID = \"TSS-rl-L2D\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nedefinováno"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1013,6 +1097,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"End String\"; ObjectID = \"XJa-sc-hM6\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koncový řetězec"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1085,6 +1175,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"RE\"; ObjectID = \"XJj-U2-0se\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RV"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1157,6 +1253,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerToolTip = \"Regular Expression\"; ObjectID = \"XJj-U2-0se\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regulární výraz"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1229,6 +1331,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Begin with:\"; ObjectID = \"xWF-yX-yz5\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Začíná na:"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

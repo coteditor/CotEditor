@@ -3,6 +3,12 @@
   "strings" : {
     "Classic Mac OS" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klasický Mac OS"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -67,6 +73,12 @@
     },
     "macOS / Unix" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -132,6 +144,12 @@
     "Unix Line Separator" : {
       "comment" : "This item is preferably as-is because of the unfamiliarity.",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -197,6 +215,12 @@
     "Unix Next Line" : {
       "comment" : "This item is preferably as-is because of the unfamiliarity.",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -262,6 +286,12 @@
     "Unix Paragraph Separator" : {
       "comment" : "This item is preferably as-is because of the unfamiliarity.",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -326,6 +356,12 @@
     },
     "Windows" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

@@ -4,6 +4,12 @@
     "New CotEditor Document with Selection" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nový dokument CotEditoru s výběrem"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -69,6 +75,12 @@
     "Open File in CotEditor" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít soubor v CotEditoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

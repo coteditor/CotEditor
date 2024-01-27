@@ -1,0 +1,94 @@
+//
+//  SnippetsPane.strings (Czech)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Martin Růžička on 2024-01-26.
+//  Localized by Martin Růžička
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2023-2024 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSViewController"; title = "Command"; ObjectID = "Jku-3h-OhR"; */
+"Jku-3h-OhR.title" = "Příkaz";
+/* Class = "NSViewController"; title = "File Drop"; ObjectID = "UtY-fi-jOg"; */
+"UtY-fi-jOg.title" = "Přetažení souboru";
+
+
+
+/* Class = "NSTextFieldCell"; title = "Text to be inserted by a command in the menu or by keyboard shortcut:"; ObjectID = "o3A-71-iGh"; */
+"o3A-71-iGh.title" = "Text, který má být vložen pomocí příkazu v nabídce nebo klávesovou zkratkou:";
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Syntax"; ObjectID = "pbJ-4Q-CE2"; */
+"pbJ-4Q-CE2.headerCell.title" = "Syntaxe";
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "cMF-G3-bl6"; */
+"cMF-G3-bl6.headerCell.title" = "Název";
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "wer-OB-X46"; */
+"wer-OB-X46.headerCell.title" = "Zkratka";
+
+/* Class = "NSMenuItem"; title = "All"; ObjectID = "vXM-oG-cI7"; */
+"vXM-oG-cI7.title" = "Vše";
+
+/* Class = "NSSegmentedCell"; t2r-oN-Xpf.ibShadowedToolTips[0] = "Add"; ObjectID = "t2r-oN-Xpf"; */
+"t2r-oN-Xpf.ibShadowedToolTips[0]" = "Přidat";
+/* Class = "NSSegmentedCell"; t2r-oN-Xpf.ibShadowedToolTips[1] = "Delete"; ObjectID = "t2r-oN-Xpf"; */
+"t2r-oN-Xpf.ibShadowedToolTips[1]" = "Odebrat";
+
+/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "PaR-eN-FFs"; */
+"PaR-eN-FFs.title" = "Formát vložení:";
+/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "vOg-Tt-3ZZ"; */
+"vOg-Tt-3ZZ.title" = "Vložit proměnnou";
+
+
+
+/* Class = "NSTextFieldCell"; title = "Text to be inserted by dropping files to the editor:"; ObjectID = "JRQ-2g-t49"; */
+"JRQ-2g-t49.title" = "Text, který má být vložen přetažením (upuštěním) souborů do editoru:";
+
+/* Class = "NSTableColumn"; headerCell.title = "Syntax"; ObjectID = "RqT-x4-YbN"; */
+"RqT-x4-YbN.headerCell.title" = "Syntaxe";
+/* Class = "NSTableColumn"; headerToolTip = "Syntax in which this file drop setting is used."; ObjectID = "RqT-x4-YbN"; */
+"RqT-x4-YbN.headerToolTip" = "Syntaxe, ve kterém se používá toto nastavení při přetažení souboru.";
+
+/* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
+"FAF-cL-AAk.headerCell.title" = "Přípony";
+/* Class = "NSTableColumn"; headerToolTip = "Filename extensions of dropped file (comma separated)."; ObjectID = "FAF-cL-AAk"; */
+"FAF-cL-AAk.headerToolTip" = "Přípony přetažených souborů (oddělené čárkou).";
+
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "p2m-Qi-6k3"; */
+"p2m-Qi-6k3.headerCell.title" = "Popis";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "All"; ObjectID = "hY5-0z-qN6"; */
+"hY5-0z-qN6.ibShadowedIsNilPlaceholder" = "Všechny";  // displays if no scope extension is specified
+/* Class = "NSMenuItem"; title = "All"; ObjectID = "W3Z-PB-IUJ"; */
+"W3Z-PB-IUJ.title" = "Všechny";  // displays if no scope syntax is specified
+
+/* Class = "NSSegmentedCell"; oXA-8G-UhH.ibShadowedToolTips[0] = "Add"; ObjectID = "oXA-8G-UhH"; */
+"oXA-8G-UhH.ibShadowedToolTips[0]" = "Přidat";
+/* Class = "NSSegmentedCell"; oXA-8G-UhH.ibShadowedToolTips[1] = "Delete"; ObjectID = "oXA-8G-UhH"; */
+"oXA-8G-UhH.ibShadowedToolTips[1]" = "Odebrat";
+
+
+/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "3332"; */
+"3332.title" = "Formát vložení:";
+
+/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "541"; */
+"541.title" = "Vložit proměnnou";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select a snippet to edit."; ObjectID = "EZ8-ej-Fvr"; */
+"EZ8-ej-Fvr.ibShadowedNoSelectionPlaceholder" = "Vyberte fragment kódu, který chcete upravit.";

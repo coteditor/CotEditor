@@ -4,6 +4,12 @@
     "2AE-nU-rdc.headerCell.title" : {
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Converted\"; ObjectID = \"2AE-nU-rdc\";",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Převedeno"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -75,6 +81,12 @@
     "Nhb-U5-BOF.headerCell.title" : {
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Character\"; ObjectID = \"Nhb-U5-BOF\";",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znak"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -146,6 +158,12 @@
     "Ntt-M1-b4I.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"bar\"; ObjectID = \"Ntt-M1-b4I\";",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -217,6 +235,12 @@
     "v00-eq-cAi.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"128\"; ObjectID = \"v00-eq-cAi\";",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -288,6 +312,12 @@
     "W1c-aP-XZa.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Incompatible Characters\"; ObjectID = \"W1c-aP-XZa\";",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nekompatibilní znaky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -359,6 +389,12 @@
     "weY-lf-jGz.headerCell.title" : {
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Line\"; ObjectID = \"weY-lf-jGz\";",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Řádek"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -430,6 +466,12 @@
     "wsL-BG-Ii8.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Found an incompatible character.\"; ObjectID = \"wsL-BG-Ii8\";",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

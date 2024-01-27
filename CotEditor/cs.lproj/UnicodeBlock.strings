@@ -1,0 +1,371 @@
+//
+//  UnicodeBlock.strings (Czech)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2023-09-28.
+//  Localized by 1024jp
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2023-2024 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+// -> You don't need to translate the terms in this file
+//    since they are auto-generated from CharacterPaletteIM.lg in the Apple's glossaries.
+//    release date of the used glossary: 2020-01-15
+// cf. <https://developer.apple.com/download/all/?q=glossaries>
+
+"Cuneiform" = "Klínové písmo";
+"Variation Selectors" = "Selektory variací";
+"Latin Extended-B" = "Latinka rozšířená – B";
+"Brahmi" = "Bráhmí";
+"Enclosed Alphanumerics" = "Alfanumerický systém";
+"Linear B Syllabary" = "Lineární B abecední";
+"Arabic Mathematical Alphabetic Symbols" = "Arabské matematické abecední symboly";  // "Math" -> "Mathematical"
+"Ugaritic" = "Ugaritština";
+"Bamum Supplement" = "Bamum - dodatek";
+"Alphabetic Presentation Forms" = "Způsoby zápisu abecedy";
+"Early Dynastic Cuneiform" = "Klínové písmo rané dynastie";
+"Miao" = "Pollardova fonetická abeceda";
+"Mongolian" = "Mongolština";
+"CJK Radicals Supplement" = "Základní znaky CJK - dodatek";
+"Arabic" = "Arabština";
+"Khudawadi" = "Khudawadi";
+"Control Pictures" = "Řídící obrázky";
+"Inscriptional Parthian" = "Psané partské písmo";
+"Meroitic Hieroglyphs" = "Meroitské hieroglyfy";
+"Linear A" = "Lineární A";
+"Phaistos Disc" = "Faistský disk";
+"Siddham" = "Siddham";
+"Geometric Shapes" = "Geometrické tvary";
+"CJK Unified Ideographs" = "Sjednocené ideogramy CJK";
+"Greek and Coptic" = "Řečtina a koptština";
+"Ancient Greek Musical Notation" = "Starověká řecká hudební notace";
+"Basic Latin" = "Základní latinka";
+"Inscriptional Pahlavi" = "Psané pehlevské písmo";
+"Braille Patterns" = "Braillovy vzory";
+"Javanese" = "Javánština";
+"Old South Arabian" = "Staré jihoarabské písmo";
+"Hebrew" = "Hebrejština";
+"Specials" = "Speciální";
+"Anatolian Hieroglyphs" = "Anatolské hieroglyfy";
+"Variation Selectors Supplement" = "Alternativní selektory - dodatek";
+"Ornamental Dingbats" = "Ornamenty";
+"Miscellaneous Technical" = "Různé technické";
+"Sundanese Supplement" = "Sundánština - dodatek";
+"Aegean Numbers" = "Egejská čísla";
+"General Punctuation" = "Obecná interpunkce";
+"Latin Extended-D" = "Latinka rozšířená – D";
+"CJK Compatibility Ideographs" = "Kompatibilní ideogramy CJK";
+"Bopomofo" = "Bopomofo";
+"Myanmar Extended-B" = "Myanmar rozšíření - B";
+"Buhid" = "Buhid";
+"Khojki" = "Khojki";
+"Chakma" = "Čakma";
+"Bengali" = "Bengálština";
+"Shorthand Format Controls" = "Řízení těsnopisného formátu";
+"Grantha" = "Grantha";
+"New Tai Lue" = "Nové Tai Lue";
+"Linear B Ideograms" = "Lineární B ideogramy";
+"Coptic Epact Numbers" = "Koptské číslice";
+"Unified Canadian Aboriginal Syllabics" = "Písma kanadských původních obyvatel";
+"Low Surrogates" = "Druhé části kódů náhradních znaků";
+"Ethiopic" = "Etiopština";
+"Vertical Forms" = "Vertikální tvary";
+"Block Elements" = "Prvky bloků";
+"Supplemental Symbols and Pictographs" = "Doplňkové symboly a piktogramy";
+"Pahawh Hmong" = "Pahawh Hmong";
+"Currency Symbols" = "Symboly měn";
+"Bamum" = "Bamum";
+"Superscripts and Subscripts" = "Horní a dolní indexy";
+"Arabic Presentation Forms-A" = "Způsoby zápisu arabštiny ‑ A";
+"Shavian" = "Shawovo";
+"CJK Unified Ideographs Ext. B" = "Sjednocené ideogramy CJK – rozšíření B";
+"Enclosed Ideographic Supplement" = "Uzavřené ideogramy - dodatek";
+"Combining Diacritical Marks Extended" = "Diakritická znaménka rozšířená";
+"Ancient Symbols" = "Starověké symboly";
+"Cyrillic Extended-B" = "Cyrilice rozšířená – B";
+"Saurashtra" = "Saurashtra";
+"Vedic Extensions" = "Védská rozšíření";
+"Old Hungarian" = "Staromaďarské";
+"Cyrillic" = "Cyrilice";
+"Arrows" = "Šipky";
+"Thai" = "Thajština";
+"Supplemental Arrows-B" = "Šipky, doplňkové – B";
+"Ancient Greek Numbers" = "Starověká řecká čísla";
+"Cham" = "Cham";
+"Tai Tham" = "Tai Tham";
+"Bopomofo Extended" = "Bopomofo rozšířené";
+"Warang Citi" = "Warang Citi";
+"Phonetic Extensions Supplement" = "Dodatek fonetických rozšíření";
+"Meroitic Cursive" = "Meroitské kurzivní písmo";
+"Sora Sompeng" = "Sora Sompeng";
+"Ol Chiki" = "Ol Chiki";
+"Cuneiform Numbers and Punctuation" = "Čísla a interpunkce klínového písma";
+"Phags-pa" = "Phags-pa";
+"Devanagari Extended" = "Dévanágarí rozšířené";
+"Devanagari" = "Dévanágarí";
+"Greek Extended" = "Řečtina rozšířená";
+"Thaana" = "Thaana";
+"Telugu" = "Telugština";
+"Hiragana" = "Hiragana";
+"CJK Compatibility Ideographs Supp." = "Kompatibilní ideogramy CJK - dodatek";
+"Katakana" = "Katakana";
+"Mathematical Operators" = "Matematické operátory";
+"Mahjong Tiles" = "Kostky hry Mahjong";
+"Batak" = "Batačtina";
+"Vai" = "Vai";
+"Phonetic Extensions" = "Fonetická rozšíření";
+"Malayalam" = "Malajálamština";
+"Optical Character Recognition" = "Optické rozpoznávání znaků";
+"Hangul Jamo Extended-A" = "Hangul džamo rozšířené - A";
+"Geometric Shapes Extended" = "Geometrické tvary rozšířené";
+"Supplemental Mathematical Operators" = "Dodatečné matematické operátory";  // "Math" -> "Mathematical"
+"Common Indic Number Forms" = "Společné indické číselné tvary";
+"Enclosed Alphanumeric Supplement" = "Alfanumerický systém - dodatek";
+"Kaithi" = "Kaithi";
+"Imperial Aramaic" = "Imperiální aramejské písmo";
+"Hatran" = "Hatranské";
+"Modifier Tone Letters" = "Tonální modifikátory";
+"Sharada" = "Šarada";
+"Kayah Li" = "Kayah Li";
+"Tamil" = "Tamilština";
+"Small Form Variants" = "Varianty s poloviční šířkou";
+"CJK Unified Ideographs Ext. D" = "Sjednocené ideogramy CJK – rozšíření D";
+"Caucasian Albanian" = "Kavkazskoalbánské";
+"Tifinagh" = "Tifinagh";
+"Miscellaneous Symbols and Pictographs" = "Různé symboly a piktogramy";  // "And" -> "and"
+"Meetei Mayek Extensions" = "Meetei Mayek - rozšíření";
+"Miscellaneous Mathematical Symbols-B" = "Různé matematické symboly - B";  // "Math" -> "Mathematical"
+"Mahajani" = "Mahájánské";
+"Yi Radicals" = "Základní znaky Yi";
+"Lydian" = "Lydijské písmo";
+"Unified Canadian Aboriginal Syllabics Extended" = "Písma kanadských původních obyvatel rozšířená";
+"Supplementary Private Use Area-B" = "Dodatečné místo pro vlastní znaky - B";
+"Private Use Area" = "Místo pro vlastní znaky";
+"Glagolitic" = "Hlaholice";
+"Osmanya" = "Osmanya";
+"Yijing Hexagram Symbols" = "Symboly hexagramů Yijing";
+"Latin Extended-A" = "Latinka rozšířená – A";
+"Cyrillic Supplement" = "Cyrilice - dodatek";
+"Box Drawing" = "Kreslení rámečků";
+"Letterlike Symbols" = "Písmenné symboly";
+"Sinhala" = "Sinhálština";
+"Supplemental Punctuation" = "Dodatečná interpunkce";
+"Mathematical Alphanumeric Symbols" = "Matematické alfanumerické symboly";  // "Math" -> "Mathematical"
+"Cypriot Syllabary" = "Kyperská abeceda";
+"Gurmukhi" = "Gurmukhí";
+"Gothic" = "Gotické";
+"Cherokee" = "Čerokézské";
+"CJK Compatibility Forms" = "Kompatibilní tvary CJK";
+"Mro" = "Mro";
+"Latin Extended-C" = "Latinka rozšířená – C";
+"Old Turkic" = "Stará turečtina";
+"Mende Kikakui" = "Mende Kikakui";
+"Domino Tiles" = "Kostky domina";
+"Khmer Symbols" = "Khmérské symboly";
+"Khmer" = "Khmerština";
+"Syloti Nagri" = "Syloti Nagri";
+"Runic" = "Runové písmo";
+"Enclosed CJK Letters and Months" = "Orámované znaky a měsíce CJK";
+"Byzantine Musical Symbols" = "Byzantské hudební symboly";
+"N’Ko" = "N'Ko";
+"CJK Strokes" = "Tahy CJK";
+"Latin Extended-E" = "Latinka rozšířená – E";
+"Miscellaneous Symbols" = "Různé symboly";
+"Tai Le" = "Tai Le";
+"Katakana Phonetic Extensions" = "Katakana - fonetická rozšíření";
+"Tagalog" = "Tagalština";
+"Kharoshthi" = "Kharóšthí";
+"Dingbats" = "Dingbats";
+"Sundanese" = "Sundánština";
+"Combining Diacritical Marks for Symbols" = "Diakritická znaménka pro symboly";
+"Samaritan" = "Samaritánské písmo";
+"Old Italic" = "Etruské písmo";
+"CJK Symbols and Punctuation" = "Symboly a interpunkce CJK";
+"Kangxi Radicals" = "Základní znaky Kangxi";
+"Buginese" = "Buginština";
+"Phoenician" = "Féničtina";
+"Bassa Vah" = "Bassa Vah";
+"Tagbanwa" = "Tagbanwa";
+"Ethiopic Supplement" = "Etiopština - dodatek";
+"Lisu" = "Lisu";
+"IPA Extensions" = "Rozšíření IPA";
+"Yi Syllables" = "Slabiky Yi";
+"Kannada" = "Kannadština";
+"Egyptian Hieroglyphs" = "Egyptské hieroglyfy";
+"Myanmar Extended-A" = "Myanmar rozšíření - A";
+"Rumi Numeral Symbols" = "Číselné symboly rumi";
+"Hangul Jamo" = "Hangul džamo";
+"Lepcha" = "Lepčské písmo";
+"Meetei Mayek" = "Meetei Mayek";
+"Hangul Syllables" = "Slabiky hangul";
+"Arabic Supplement" = "Arabština - dodatek";
+"Sutton SignWriting" = "Suttonský znakopis";
+"Kanbun" = "Kanbun";
+"Combining Diacritical Marks" = "Diakritická znaménka";
+"Latin-1 Supplement" = "Západoevropská latinka – dodatek";
+"Takri" = "Takri";
+"Tirhuta" = "Tirhuta";
+"Supplemental Arrows-C" = "Šipky, doplňkové – C";
+"Deseret" = "Deseret";
+"Hangul Compatibility Jamo" = "Džamo kompatibilní s hangul";
+"Arabic Presentation Forms-B" = "Způsoby zápisu arabštiny ‑ B";
+"CJK Unified Ideographs Ext. A" = "Sjednocené ideogramy CJK – rozšíření A";
+"Cyrillic Extended-A" = "Cyrilice rozšířená – A";
+"Armenian" = "Arménština";
+"Ethiopic Extended" = "Etiopština rozšířená";
+"Lycian" = "Lycijské písmo";
+"Manichaean" = "Manichejské";
+"Syriac" = "Syrština";
+"Coptic" = "Koptština";
+"Nabataean" = "Nabatejské";
+"High Surrogates" = "První části kódů náhradních znaků";
+"Limbu" = "Limbu";
+"Avestan" = "Avestánština";
+"Old Persian" = "Stará perština";
+"Ogham" = "Ogam";
+"Supplemental Arrows-A" = "Šipky, doplňkové – A";
+"Sinhala Archaic Numbers" = "Sinhálská archaická čísla";
+"Psalter Pahlavi" = "Pehlevské žaltářové";
+"CJK Unified Ideographs Ext. C" = "Sjednocené ideogramy CJK – rozšíření C";
+"Palmyrene" = "Palmyrenské";
+"Ideographic Desc. Characters" = "Ideografické popisné znaky";
+"Rejang" = "Rejang";
+"Alchemical Symbols" = "Alchymistické symboly";
+"Pau Cin Hau" = "Pau Cin Hau";
+"Tags" = "Značky";
+"Emoticons" = "Smajlíky";
+"Balinese" = "Balijština";
+"Myanmar" = "Myanmar";
+"Musical Symbols" = "Hudební symboly";
+"Ethiopic Extended-A" = "Etiopština rozšířená - A";
+"Mandaic" = "Mandajské jazyky";
+"Spacing Modifier Letters" = "Znaky pro úpravu mezer";
+"Carian" = "Karijské písmo";
+"Number Forms" = "Číselné tvary";
+"CJK Compatibility" = "Kompatibilita CJK";
+"CJK Unified Ideographs Ext. E" = "Sjednocené ideogramy CJK – rozšíření E";
+"Modi" = "Modi";
+"Halfwidth and Fullwidth Forms" = "Tvary s poloviční a plnou šířkou";
+"Playing Cards" = "Hrací karty";
+"Cherokee Supplement" = "Čerokézské - dodatek";
+"Miscellaneous Symbols and Arrows" = "Různé symboly a šipky";
+"Old North Arabian" = "Severoarabské nápisové";
+"Transport and Map Symbols" = "Symboly dopravy a map";  // "And" -> "and"
+"Lao" = "Laoština";
+"Multani" = "Multanské";
+"Hangul Jamo Extended-B" = "Hangul džamo rozšířené - B";
+"Tibetan" = "Tibetština";
+"Old Permic" = "Staropermské";
+"Georgian Supplement" = "Gruzínština - dodatek";
+"Duployan" = "Duployého";
+"Tai Viet" = "Tai Viet";
+"Arabic Extended-A" = "Arabština rozšířená - A";
+"Elbasan" = "Elbasanské";
+"Combining Diacritical Marks Supplement" = "Diakritická znaménka - dodatek";
+"Hanunoo" = "Hanunoo";
+"Oriya" = "Urijština";
+"Latin Extended Additional" = "Latinka rozšířená doplňková";
+"Georgian" = "Gruzínština";
+"Miscellaneous Mathematical Symbols-A" = "Různé matematické symboly - A";  // "Math" -> "Mathematical"
+"Combining Half Marks" = "Kombinované poloviční znaky";
+"Counting Rod Numerals" = "Číslice počítacích válečků";
+"Ahom" = "Ahom";
+"Gujarati" = "Gudžarátština";
+"Tai Xuan Jing Symbols" = "Symboly Tai Xuan Jing";
+"Kana Supplement" = "Kana - dodatek";
+"Supplementary Private Use Area-A" = "Dodatečné místo pro vlastní znaky - A";
+
+
+// The following blocks are (mostly newly added to Unicode and therefore) not in the glossaries.
+"Syriac Supplement" = "Syrské – dodatek";
+"Cyrillic Extended-C" = "Cyrilice rozšířená – C";
+"High Private Use Surrogates" = "High Private Use Surrogates";
+"Georgian Extended" = "Gruzínština – rozšíření";
+"Osage" = "Osedžské";
+"Hanifi Rohingya" = "Hanifovo rohingské";
+"Yezidi" = "Jezídské";
+"Old Sogdian" = "Staré sogdské";
+"Sogdian" = "Sogdské";
+"Chorasmian" = "Chórezmské";
+"Elymaic" = "Elamské";
+"Newa" = "Névárské";
+"Mongolian Supplement" = "Mongolské – dodatek";
+"Dogra" = "Dogarské";
+"Dives Akuru" = "Divehi akuru";
+"Nandinagari" = "Nandinagari";
+"Zanabazar Square" = "Dzanabadzarovo čtvercové";
+"Soyombo" = "Sojombo";
+"Bhaiksuki" = "Bhaiksuki";
+"Marchen" = "Marchen";
+"Masaram Gondi" = "Masaramovo góndské";
+"Gunjala Gondi" = "Gundžalské góndské";
+"Makasar" = "Makasarské";
+"Lisu Supplement" = "Lisu – dodatek";
+"Tamil Supplement" = "Tamilské – dodatek";
+"Egyptian Hieroglyph Format Controls" = "Řízení formátu egyptských hieroglyfů";
+"Medefaidrin" = "Medefaidrin";
+"Ideographic Symbols and Punctuation" = "Ideografické symboly a interpunkce";
+"Tangut" = "Tangutské";
+"Tangut Components" = "Tangutské – komponenty";
+"Khitan Small Script" = "Malé kitanské psací";
+"Tangut Supplement" = "Tangutské – dodatek";
+"Kana Extended-A" = "Kana rozšířená – A";
+"Small Kana Extension" = "Malá kana rozšířená";
+"Nushu" = "Nü‑šu";
+"Mayan Numerals" = "Mayské číslice";
+"Glagolitic Supplement" = "Hlaholice – dodatek";
+"Nyiakeng Puachue Hmong" = "Nyiakeng Puachue Hmong";
+"Wancho" = "Wancho";
+"Adlam" = "Adlam";
+"Indic Siyaq Numbers" = "Indické číslovky Siyaq";
+"Ottoman Siyaq Numbers" = "Osmanské číslovky Siyaq";
+"Chess Symbols" = "Šachové symboly";
+"Symbols and Pictographs Extended-A" = "Symboly a piktogramy rozšířené – A";
+"Symbols for Legacy Computing" = "Symboly pro starší výpočetní techniku";
+"CJK Unified Ideographs Ext. F" = "Sjednocené ideogramy CJK – rozšíření F";
+"CJK Unified Ideographs Ext. G" = "Sjednocené ideogramy CJK – rozšíření G";
+
+
+// Blocks added in Unicode 14.0.0 (2021-01)
+"Arabic Extended-B" = "Arabština rozšířená - B";
+"Latin Extended-F" = "Latinka rozšířená – F";
+"Vithkuqi" = "Vithkuqi";
+"Old Uyghur" = "Old Uyghur";
+"Unified Canadian Aboriginal Syllabics Extended-A" = "Písma kanadských původních obyvatel rozšířená – A";
+"Cypro-Minoan" = "Cypro-Minoan";
+"Tangsa" = "Tangsa";
+"Kana Extended-B" = "Kana Extended-B";
+"Znamenny Musical Notation" = "Znamenny Musical Notation";
+"Latin Extended-G" = "Latinka rozšířená – G";
+"Toto" = "Toto";
+"Ethiopic Extended-B" = "Etiopština rozšířená - B";
+
+
+// Blocks added in Unicode 15.0.0 (2022-01)
+"Arabic Extended-C" = "Arabština rozšířená - C";
+"Devanagari Extended-A" = "Devanagari Extended-A";
+"Kawi" = "Kawi";
+"Kaktovik Numerals" = "Kaktovik Numerals";
+"Cyrillic Extended-D" = "Cyrilice rozšířená – D";
+"Nag Mundari" = "Nag Mundari";
+"CJK Unified Ideographs Ext. H" = "Sjednocené ideogramy CJK – rozšíření H";
+
+
+// Blocks added in Unicode 15.1.0 (2023-09)
+"CJK Unified Ideographs Ext. I" = "Sjednocené ideogramy CJK – rozšíření I";

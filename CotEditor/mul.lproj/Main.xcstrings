@@ -5,6 +5,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select Word\"; ObjectID = \"0HX-j9-5jF\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat slovo"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -77,6 +83,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Monospaced\"; ObjectID = \"1Po-QB-StY\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neproporcionální"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -149,6 +161,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Enter Full Screen\"; ObjectID = \"2da-fK-Nkg\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spustit režim celé obrazovky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -221,6 +239,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Spelling and Grammar\"; ObjectID = \"2QI-XD-7pJ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pravopis a gramatika"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -293,6 +317,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Stop Speaking\"; ObjectID = \"2rV-Ut-h4x\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastavit předčítání"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -365,6 +395,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Substitutions\"; ObjectID = \"2wy-A5-6kZ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Záměny"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -437,6 +473,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"URL Decode\"; ObjectID = \"3VB-Bg-Ker\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dekódování adresy URL"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -509,6 +551,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Custom…\"; ObjectID = \"3VX-DL-PgT\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vlastní…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -581,6 +629,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Indentation\"; ObjectID = \"4h9-iu-ehP\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odsazení"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -653,6 +707,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Start Speaking\"; ObjectID = \"4mJ-DV-Qjz\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spustit předčítání"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -725,6 +785,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Move Up\"; ObjectID = \"4t7-IA-1r3\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přesunout nahoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -797,6 +863,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Bring All to Front\"; ObjectID = \"5\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Převést vše do popředí"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -869,6 +941,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Check Grammar With Spelling\"; ObjectID = \"5eg-wx-S4p\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontrolovat gramatiku a pravopis"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -941,6 +1019,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Replace All\"; ObjectID = \"5HV-xo-NTK\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nahradit vše"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1013,6 +1097,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Unhighlight\"; ObjectID = \"5is-7G-OVT\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zrušit zvýraznění"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1085,6 +1175,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Orientation\"; ObjectID = \"6eV-nI-heo\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orientace"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1157,6 +1253,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Replace Quotes\"; ObjectID = \"7NX-1r-Wq7\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nahradit uvozovky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1229,6 +1331,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Left to Right\"; ObjectID = \"7pw-5S-ekC\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zleva doprava"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1301,6 +1409,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Quick Actions…\"; ObjectID = \"7Su-OV-TgR\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit rychlé akce…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1373,6 +1487,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Theme\"; ObjectID = \"8z7-Jc-agP\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motiv"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1445,6 +1565,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Surround Selection With\"; ObjectID = \"9dv-Zb-W60\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obklopit výběr"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1517,6 +1643,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"8\"; ObjectID = \"9e0-Q5-Oqh\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1589,6 +1721,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Straighten Quotes\"; ObjectID = \"9gl-1h-Yit\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rovné uvozovky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1661,6 +1799,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select Previous Outline Item\"; ObjectID = \"9Lf-39-x5S\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat předchozí položku osnovy"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1733,6 +1877,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Check Spelling While Typing\"; ObjectID = \"9ny-sN-pmO\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontrolovat pravopis při psaní"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1805,6 +1955,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Inspector\"; ObjectID = \"10j-rd-fWr\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspektor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1877,6 +2033,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Insert Snippet\"; ObjectID = \"15m-xz-4oB\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vložit fragment kódu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1949,6 +2111,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Window\"; ObjectID = \"19\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okno"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2021,6 +2189,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Minimize\"; ObjectID = \"23\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minimalizovat"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2093,6 +2267,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Window\"; ObjectID = \"24\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okno"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2165,6 +2345,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Main Menu\"; ObjectID = \"29\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hlavní nabídka"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2237,6 +2423,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"CotEditor\"; ObjectID = \"56\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2309,6 +2501,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"CotEditor\"; ObjectID = \"57\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2381,6 +2579,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"About CotEditor\"; ObjectID = \"58\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O CotEditoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2453,6 +2657,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Open…\"; ObjectID = \"72\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2525,6 +2735,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Close\"; ObjectID = \"73\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zavřít"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2597,6 +2813,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Save\"; ObjectID = \"75\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uložit"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2669,6 +2891,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Page Setup…\"; ObjectID = \"77\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vzhled stránky…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2741,6 +2969,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Print…\"; ObjectID = \"78\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tisknout…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2813,6 +3047,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Save As…\"; ObjectID = \"80\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uložit jako…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2885,6 +3125,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"File\"; ObjectID = \"81\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Soubor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2957,6 +3203,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"New\"; ObjectID = \"82\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nový"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3029,6 +3281,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"File\"; ObjectID = \"83\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Soubor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3101,6 +3359,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Help\"; ObjectID = \"103\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nápověda"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3173,6 +3437,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Help\"; ObjectID = \"106\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nápověda"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3245,6 +3515,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"CotEditor Help\"; ObjectID = \"111\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nápověda pro CotEditor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3317,6 +3593,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Revert to Saved\"; ObjectID = \"112\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vrátit se k uloženému"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3389,6 +3671,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Open Recent\"; ObjectID = \"124\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít poslední"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3461,6 +3749,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Open Recent\"; ObjectID = \"125\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít poslední"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3533,6 +3827,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Clear Menu\"; ObjectID = \"126\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyprázdnit nabídku"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3605,6 +3905,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Settings…\"; ObjectID = \"129\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nastavení…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3677,6 +3983,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Services\"; ObjectID = \"130\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Služby"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3749,6 +4061,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Services\"; ObjectID = \"131\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Služby"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3821,6 +4139,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Hide CotEditor\"; ObjectID = \"134\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skrýt CotEditor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3893,6 +4217,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Quit CotEditor\"; ObjectID = \"136\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukončit CotEditor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3965,6 +4295,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Hide Others\"; ObjectID = \"145\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skrýt ostatní"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4037,6 +4373,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show All\"; ObjectID = \"150\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit vše"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4109,6 +4451,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Copy\"; ObjectID = \"157\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopírovat"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4181,6 +4529,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Undo\"; ObjectID = \"158\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odvolat akci"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4253,6 +4607,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Cut\"; ObjectID = \"160\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyjmout"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4325,6 +4685,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Edit\"; ObjectID = \"163\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Úpravy"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4397,6 +4763,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Delete\"; ObjectID = \"164\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smazat"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4469,6 +4841,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Theme\"; ObjectID = \"165-HJ-Xty\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motiv"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4541,6 +4919,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Edit\"; ObjectID = \"169\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Úpravy"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4613,6 +4997,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Paste\"; ObjectID = \"171\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vložit"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4685,6 +5075,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select All\"; ObjectID = \"172\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat vše"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4757,6 +5153,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Redo\"; ObjectID = \"173\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opakovat akci"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4829,6 +5231,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Zoom\"; ObjectID = \"203\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přepnout velikost"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4901,6 +5309,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Format\"; ObjectID = \"246\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Formát"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4973,6 +5387,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Format\"; ObjectID = \"247\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Formát"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5045,6 +5465,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Wrap Lines\"; ObjectID = \"286\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zalamovat řádky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5117,6 +5543,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Line Endings\"; ObjectID = \"294\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konce řádků"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5189,6 +5621,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Line Endings\"; ObjectID = \"296\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konce řádků"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5261,6 +5699,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Text Encoding\"; ObjectID = \"299\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódování textu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5333,6 +5777,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Text Encoding\"; ObjectID = \"300\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódování textu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5405,6 +5855,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Syntax\"; ObjectID = \"302\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxe"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5477,6 +5933,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Syntax\"; ObjectID = \"304\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxe"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5549,6 +6011,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"View\"; ObjectID = \"322\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazení"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5621,6 +6089,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Line Numbers\"; ObjectID = \"323\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit čísla řádků"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5693,6 +6167,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"View\"; ObjectID = \"324\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazení"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5765,6 +6245,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Status Bar\"; ObjectID = \"325\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit stavový řádek"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5837,6 +6323,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Change Editor’s Opacity…\"; ObjectID = \"367\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Změnit neprůhlednost editoru…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5909,6 +6401,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Smaller\"; ObjectID = \"404\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zmenšit"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5981,6 +6479,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Bigger\"; ObjectID = \"405\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zvětšit"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6053,6 +6557,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Font\"; ObjectID = \"410\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Písmo"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6125,6 +6635,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Font\"; ObjectID = \"418\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Písmo"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6197,6 +6713,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Fonts\"; ObjectID = \"424\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit písma"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6269,6 +6791,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Shift Right\"; ObjectID = \"454\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posunout doprava"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6341,6 +6869,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Shift Left\"; ObjectID = \"455\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posunout doleva"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6413,6 +6947,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Recolor All\"; ObjectID = \"458\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přebarvit vše"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6485,6 +7025,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Find\"; ObjectID = \"538\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hledání"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6557,6 +7103,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Document Inspector\"; ObjectID = \"564\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspektor dokumentu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6629,6 +7181,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Reset to Default\"; ObjectID = \"574\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nastavit výchozí"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6701,6 +7259,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Text\"; ObjectID = \"578\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6773,6 +7337,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Text\"; ObjectID = \"579\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6845,6 +7415,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"ASCII to Full-width ASCII\"; ObjectID = \"586\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ASCII do Full-width ASCII"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6917,6 +7493,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Full-width ASCII to ASCII\"; ObjectID = \"588\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Full-width ASCII do ASCII"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6989,6 +7571,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Hiragana to Katakana\"; ObjectID = \"592\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiragana do Katakana"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7061,6 +7649,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Katakana to Hiragana\"; ObjectID = \"594\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Katakana do Hiragana"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7133,6 +7727,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Unicode Normalizations\"; ObjectID = \"599\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalizace Unicode"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7205,6 +7805,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Unicode Normalizations\"; ObjectID = \"600\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalizace Unicode"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7277,6 +7883,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Hide Toolbar\"; ObjectID = \"612\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skrýt panel nástrojů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7349,6 +7961,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Customize Toolbar…\"; ObjectID = \"613\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přizpůsobit panel nástrojů…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7421,6 +8039,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Script\"; ObjectID = \"616\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7493,6 +8117,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Script\"; ObjectID = \"617\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7565,6 +8195,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"AppleScript Dictionary\"; ObjectID = \"620\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slovník AppleScript"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7637,6 +8273,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Input Backslash\"; ObjectID = \"631\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zadat zpětné lomítko"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7709,6 +8351,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Input Yen Mark\"; ObjectID = \"633\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zadat znak jenu (¥)"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7781,6 +8429,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Edit Color Code…\"; ObjectID = \"641\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upravit kód barvy…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7853,6 +8507,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Console\"; ObjectID = \"653\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konzola"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7925,6 +8585,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Warnings\"; ObjectID = \"679\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varování"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7997,6 +8663,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Navigation Bar\"; ObjectID = \"681\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit navigační panel"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8069,6 +8741,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Antialias\"; ObjectID = \"745\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antialiasing"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8141,6 +8819,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Page Guide\"; ObjectID = \"749\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit boční vodítko stránky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8213,6 +8897,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Invisibles\"; ObjectID = \"788\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit neviditelné"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8285,6 +8975,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Split Editor\"; ObjectID = \"793\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozdělit editor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8357,6 +9053,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Focus on Next Split Editor\"; ObjectID = \"794\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fokus na další rozdělený editor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8429,6 +9131,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Focus on Previous Split Editor\"; ObjectID = \"795\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fokus na předchozí rozdělený editor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8501,6 +9209,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Close Split Editor\"; ObjectID = \"796\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zavřít rozdělený editor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8573,6 +9287,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Release Notes\"; ObjectID = \"822\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poznámky k verzi"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8645,6 +9365,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Acknowledgments\"; ObjectID = \"824\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poděkování"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8717,6 +9443,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Surround Selection With\"; ObjectID = \"AUq-CT-rPl\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obklopit výběr"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8789,6 +9521,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Transformations\"; ObjectID = \"b36-nH-7po\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transformace"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8861,6 +9599,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Delete Duplicates\"; ObjectID = \"bjv-m0-tZq\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smazat duplicity"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8933,6 +9677,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Report Issue\"; ObjectID = \"Bk3-xx-uft\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nahlásit problém"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9005,6 +9755,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Replace\"; ObjectID = \"bnD-BP-sPi\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nahradit"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9077,6 +9833,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Lines\"; ObjectID = \"BSD-be-CV9\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Řádky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9149,6 +9911,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Vertical\"; ObjectID = \"bTd-nG-jjc\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svisle"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9221,6 +9989,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Keep on Top\"; ObjectID = \"caZ-qh-5JE\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachovat na vrchu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9293,6 +10067,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Smart Dashes\"; ObjectID = \"cIp-rb-QPk\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inteligentní pomlčky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9365,6 +10145,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Right to Left\"; ObjectID = \"clG-Ph-Iyz\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zprava doleva"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9437,6 +10223,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Brackets\"; ObjectID = \"cTU-2P-7Tp\"; Note = \"[]\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hranaté závorky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9509,6 +10301,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"New Window\"; ObjectID = \"cTV-Rh-597\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nové okno"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9581,6 +10379,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select Line\"; ObjectID = \"Cwp-ys-LJc\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat řádek"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9653,6 +10457,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"What’s New in CotEditor\"; ObjectID = \"DCW-Ij-540\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Co je nového v CotEditoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9725,6 +10535,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Tab Width\"; ObjectID = \"djM-fI-MkN\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Šířka tabulátoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9797,6 +10613,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Uncomment\"; ObjectID = \"dob-yj-jf3\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zrušit komentář"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9869,6 +10691,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Half-width to Full-width\"; ObjectID = \"dVK-1s-xJq\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Half-width do Full-width"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9941,6 +10769,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Insert Snippet\"; ObjectID = \"dZy-7n-iCq\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vložit fragment kódu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10013,6 +10847,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Go to Line…\"; ObjectID = \"eIc-Sj-2mO\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přejít na řádek…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10085,6 +10925,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Convert Indentation to Spaces\"; ObjectID = \"EOT-3u-f0a\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Převést odsazení na mezery"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10157,6 +11003,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Find…\"; ObjectID = \"eP6-ss-sUG\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hledat…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10229,6 +11081,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Comment\"; ObjectID = \"EYa-d3-sUR\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komentář"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10301,6 +11159,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Make Snake Case\"; ObjectID = \"F0I-F4-srF\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Převést na SnakeCase"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10373,6 +11237,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Inline Comment\"; ObjectID = \"F6P-7N-LSf\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Řádkový komentář"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10445,6 +11315,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"4\"; ObjectID = \"fwb-zD-hBp\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10517,6 +11393,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Parentheses\"; ObjectID = \"G3o-1h-GwR\"; Note = \"()\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kulaté závorky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10589,6 +11471,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"CotEditor Website\"; ObjectID = \"g34-YV-E6o\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Webové stránky CotEditoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10661,6 +11549,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Speech\"; ObjectID = \"gBe-fO-wVv\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Řeč"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10733,6 +11627,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Outline\"; ObjectID = \"Gch-XD-tRl\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Osnova"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10805,6 +11705,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Custom…\"; ObjectID = \"gMO-5n-fiJ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vlastní…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10877,6 +11783,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Substitutions\"; ObjectID = \"gqI-2M-XIx\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit záměny"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10949,6 +11861,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Transformations\"; ObjectID = \"GXo-ds-ygp\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transformace"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11021,6 +11939,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Trim Trailing Whitespace\"; ObjectID = \"hBJ-Ge-278\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oříznout koncové mezery"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11093,6 +12017,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Find All\"; ObjectID = \"HgR-ke-6gq\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hledat vše"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11165,6 +12095,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Check Document Now\"; ObjectID = \"hIk-Nu-0X3\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zkontrolovat dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11237,6 +12173,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Replace Dashes\"; ObjectID = \"hMS-qd-BCS\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nahradit pomlčky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11309,6 +12251,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Use Spaces for Indentation\"; ObjectID = \"hsG-8k-OKX\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Použít mezery pro odsazení"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11381,6 +12329,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Use Selection for Find\"; ObjectID = \"hTx-ef-3T2\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Použít výběr pro hledání"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11453,6 +12407,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Writing Direction\"; ObjectID = \"hxr-2A-KYT\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Směr psaní"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11525,6 +12485,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Speech\"; ObjectID = \"HZ8-G2-f8d\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Řeč"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11597,6 +12563,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Inspector\"; ObjectID = \"I2p-KB-gxR\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit inspektora"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11669,6 +12641,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Direction\"; ObjectID = \"ICu-yD-nVi\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Směr"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11741,6 +12719,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Create Issue Report\"; ObjectID = \"iHn-Ed-A8u\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vytvořit hlášení o problému"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11813,6 +12797,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Copy as Rich Text\"; ObjectID = \"j3t-7l-xSy\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopírovat jako RTF"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11885,6 +12875,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Move Down\"; ObjectID = \"J59-OR-kzC\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přesunout dolů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11957,6 +12953,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Highlight All\"; ObjectID = \"JAO-3o-fRo\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zvýraznit vše"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12029,6 +13031,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Horizontal\"; ObjectID = \"jQ7-hG-AjA\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vodorovně"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12101,6 +13109,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Lines\"; ObjectID = \"Kb8-QD-tYZ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Řádky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12173,6 +13187,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Find\"; ObjectID = \"kGA-vM-cdL\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hledání"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12245,6 +13265,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Correct Spelling Automatically\"; ObjectID = \"kQ8-FM-Cgx\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automaticky opravovat pravopis"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12317,6 +13343,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Replace and Find Next\"; ObjectID = \"KrV-3z-r5B\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nahradit a hledat další"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12389,6 +13421,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Use Selection for Replace\"; ObjectID = \"kwa-lu-0Fz\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Použít výběr pro nahrazení"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12461,6 +13499,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Capitalize\"; ObjectID = \"LC4-lg-eO0\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velká počáteční písmena"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12533,6 +13577,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Toggle Comment\"; ObjectID = \"LLy-Yx-tXI\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přepnout komentář"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12605,6 +13655,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Sort by Pattern…\"; ObjectID = \"lNH-Mh-pIE\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seřadit podle vzoru…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12677,6 +13733,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"CotEditor Scripting Guide\"; ObjectID = \"M1N-Fg-Bo4\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor - Průvodce skriptováním"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12749,6 +13811,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Shuffle\"; ObjectID = \"M8V-zi-g4l\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Náhodně"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12821,6 +13889,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Duplicate Line\"; ObjectID = \"m48-5E-yia\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duplikovat řádek"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12893,6 +13967,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Writing Direction\"; ObjectID = \"mEh-BD-ZlV\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Směr psaní"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12965,6 +14045,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Paste Exactly\"; ObjectID = \"MTm-Qg-WjY\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vložit přesně"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13037,6 +14123,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Font Type\"; ObjectID = \"Nfx-qA-gK4\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typ písma"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13109,6 +14201,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Make Camel Case\"; ObjectID = \"nlp-Gj-W9G\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Převést na CamelCase"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13181,6 +14279,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Find Next\"; ObjectID = \"NwE-Cf-L9F\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hledat další"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13253,6 +14357,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Multiple Replace…\"; ObjectID = \"o7K-sI-KJA\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vícenásobné nahrazení…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13325,6 +14435,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Double Quotes\"; ObjectID = \"O8z-C9-ECD\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dvojité uvozovky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13397,6 +14513,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"CotEditor Scripting Guide\"; ObjectID = \"OLa-Mb-rXS\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor - Průvodce skriptováním"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13469,6 +14591,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Edit Snippets…\"; ObjectID = \"OmB-Ve-DEy\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upravit fragmenty kódů…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13541,6 +14669,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Sort\"; ObjectID = \"OQl-Uo-yfn\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seřadit"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13613,6 +14747,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Jump to Selection\"; ObjectID = \"p4A-mE-Ve3\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přejít na výběr"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13685,6 +14825,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Open Outline Menu\"; ObjectID = \"PmT-ho-UU7\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít nabídku osnovy"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13757,6 +14903,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Text Replacement\"; ObjectID = \"PSn-PG-o9k\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nahrazovat text"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13829,6 +14981,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select Next Outline Item\"; ObjectID = \"PWZ-Om-OhX\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat další položku osnovy"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13901,6 +15059,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Convert Indentation to Tabs\"; ObjectID = \"q32-Jm-eR3\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Převést odsazení na tabulátory"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13973,6 +15137,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Complete\"; ObjectID = \"Qa9-dA-CF1\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doplnit"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14045,6 +15215,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Smart Copy/Paste\"; ObjectID = \"QKD-ue-EQp\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inteligentní kopírování/vkládání"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14117,6 +15293,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Indent Guides\"; ObjectID = \"Qqu-pI-Xz6\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit vodítka odsazení"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14189,6 +15371,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"2\"; ObjectID = \"qs3-we-YzU\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14261,6 +15449,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"New Document\"; ObjectID = \"qTb-gl-0V3\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nový dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14333,6 +15527,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Standard\"; ObjectID = \"qTY-rj-A3z\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standardní"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14405,6 +15605,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Spelling\"; ObjectID = \"rKZ-vK-0OH\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pravopis"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14477,6 +15683,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Make Upper Case\"; ObjectID = \"RX2-gg-n33\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Převést na velká písmena"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14549,6 +15761,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Delete Line\"; ObjectID = \"sFn-3j-pY5\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smazat řádek"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14621,6 +15839,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Full-width to Half-width\"; ObjectID = \"Skr-vI-7VN\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Full-width do Half-width"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14693,6 +15917,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Advanced Character Count…\"; ObjectID = \"SPF-Mw-eZP\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokročilé počítání znaků…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14765,6 +15995,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Insert from iPhone or iPad\"; ObjectID = \"srI-0X-faq\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vložit z iPhonu nebo iPadu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14837,6 +16073,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Single Quotes\"; ObjectID = \"Srp-eD-10Q\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jednoduché uvozovky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14909,6 +16151,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Inspector\"; ObjectID = \"sYa-2o-iPk\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspektor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14981,6 +16229,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Smart Quotes\"; ObjectID = \"sza-9T-f4h\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inteligentní uvozovky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15053,6 +16307,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Join Lines\"; ObjectID = \"te2-4F-YwD\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spojit řádky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15125,6 +16385,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Share…\"; ObjectID = \"TNF-pL-CAZ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sdílet…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15197,6 +16463,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Inspect Character\"; ObjectID = \"ToR-yH-ahH\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit informace o znaku"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15269,6 +16541,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Input in Unicode Code Point…\"; ObjectID = \"tWx-pj-3PL\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zadat bod kódu Unicode…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15341,6 +16619,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"About Scripting\"; ObjectID = \"u2o-8v-WPL\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O skriptování"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15413,6 +16697,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Block Comment\"; ObjectID = \"U5v-4k-2tq\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blokový komentář"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15485,6 +16775,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Stack Editors Vertically\"; ObjectID = \"u46-te-4c4\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seskupit editory svisle"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15557,6 +16853,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Replace Text\"; ObjectID = \"ue7-85-H8l\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nahradit text"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15629,6 +16931,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select All Find Matches\"; ObjectID = \"ULf-cT-Xvb\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat všechny shody hledání"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15701,6 +17009,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Spelling and Grammar\"; ObjectID = \"uXu-vF-RqZ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit pravopis a gramatiku"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15773,6 +17087,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Ligatures\"; ObjectID = \"viH-Eo-wKz\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligatury"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15845,6 +17165,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"New Tab\"; ObjectID = \"WCp-4v-OPR\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nový panel"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15917,6 +17243,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Find Previous\"; ObjectID = \"wiV-Hh-7xU\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hledat předchozí"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15989,6 +17321,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Make Pascal Case\"; ObjectID = \"x1F-KX-2de\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Převést na PascalCase"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16061,6 +17399,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Tab Width\"; ObjectID = \"xAm-b4-9CY\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Šířka tabulátoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16133,6 +17477,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Reverse\"; ObjectID = \"xhf-NR-D2Q\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obrácené pořadí"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16205,6 +17555,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Braces\"; ObjectID = \"Xoq-43-C1z\"; Note = \"{}\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Složené závorky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16277,6 +17633,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Japanese Text\"; ObjectID = \"XWV-by-mnw\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Japonský text"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16349,6 +17711,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"URL Encode\"; ObjectID = \"xxp-UD-STx\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódování adresy URL"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16421,6 +17789,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Substitutions\"; ObjectID = \"yN3-iT-4Lq\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Záměny"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16493,6 +17867,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Indentation\"; ObjectID = \"YOd-Hk-eIa\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odsazení"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16565,6 +17945,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Comment\"; ObjectID = \"yph-qH-qNE\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komentář"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16637,6 +18023,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Make Lower Case\"; ObjectID = \"ZrR-aL-1eB\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Převést na malá písmena"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

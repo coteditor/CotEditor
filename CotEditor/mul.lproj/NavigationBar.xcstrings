@@ -5,6 +5,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Extracting Outline…\"; ObjectID = \"aUE-uy-XLQ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extrahování osnovy…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -77,6 +83,12 @@
       "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Close split editor\"; ObjectID = \"Bmo-XE-CCn\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zavřít rozdělený editor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -149,6 +161,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Stack Editors Vertically\"; ObjectID = \"IhS-iT-L1i\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -221,6 +239,12 @@
       "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Split editor\"; ObjectID = \"syK-XU-x2I\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozdělit editor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
