@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,8 +45,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
     // MARK: Private Properties
     
     private var scriptsDirectoryURL: URL?
-    private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
     private var currentContext: String?  { didSet { Task { await self.applyShortcuts() } } }
+    @Atomic private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
     
     private var debounceTask: Task<Void, any Error>?
     private var syntaxObserver: AnyCancellable?
@@ -222,7 +222,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     @MainActor private func buildScriptMenu() async {
         
         self.debounceTask?.cancel()
-        self.scriptHandlersTable.removeAll()
+        self.$scriptHandlersTable.mutate { $0.removeAll() }
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
         
@@ -232,7 +232,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
         let eventScripts = scriptMenuItems.flatMap(\.scripts)
             .compactMap { $0 as? any EventScript }
         for type in ScriptingEventType.allCases {
-            self.scriptHandlersTable[type] = eventScripts.filter { $0.eventTypes.contains(type) }
+            self.$scriptHandlersTable.mutate {
+                $0[type] = eventScripts.filter { $0.eventTypes.contains(type) }
+            }
         }
         
         let menuItems = scriptMenuItems.map { $0.menuItem(action: #selector(launchScript), target: self) }
