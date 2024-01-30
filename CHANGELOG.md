@@ -18,6 +18,7 @@
 ### Fixes
 
 - Fix an issue on macOS 13 that the stepper in the custom tab width view worked only once.
+- Fix an issue that a part of the Portuguese localization was not applied.
 - Fix Italian localization (Thanks to Roccobot and DAnn2012!).
 
 

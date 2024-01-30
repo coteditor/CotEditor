@@ -283,7 +283,7 @@
 // Lossy saving alert
 "Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Caracteres incompatíveis são substituídos ou excluídos ao salvar. Você deseja continuar o processamento?";
 "Save Available Text" = "Salvar Strings Disponíveis";
-"Review Incompatible Characters" = "Revisão de Caracteres Incompatíveis";;
+"Review Incompatible Characters" = "Revisão de Caracteres Incompatíveis";
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "O documento tem alterações não salvas.";
