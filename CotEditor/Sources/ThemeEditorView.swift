@@ -311,20 +311,24 @@ private extension Theme.Metadata {
 
 // MARK: - Preview
 
-#Preview {
+@available(macOS 14, *)
+#Preview(traits: .fixedLayout(width: 360, height: 280)) {
     ThemeEditorView(ThemeManager.shared.setting(name: "Anura")!, isBundled: false) { _ in }
-        .frame(width: 360, height: 280)
 }
 
 #Preview("Metadata (editable)") {
-    ThemeMetadataView(metadata: .constant(.init(
+    @State var metadata = Theme.Metadata(
         author: "Clarus",
         distributionURL: "https://coteditor.com"
-    )), isEditable: true)
+    )
+    
+    return ThemeMetadataView(metadata: $metadata, isEditable: true)
 }
 
 #Preview("Metadata (fixed)") {
-    ThemeMetadataView(metadata: .constant(.init(
+    @State var metadata = Theme.Metadata(
         author: "Claus"
-    )), isEditable: false)
+    )
+    
+    return ThemeMetadataView(metadata: $metadata, isEditable: false)
 }

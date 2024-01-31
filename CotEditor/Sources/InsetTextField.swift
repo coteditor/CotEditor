@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -190,7 +190,9 @@ final class PaddingTextField: NSTextField {
 // MARK: - Preview
 
 #Preview {
-    InsetTextField(text: .constant(""), prompt: "Prompt")
+    @State var text = ""
+    
+    return InsetTextField(text: $text, prompt: "Prompt")
         .inset(.leading, 20)
         .frame(width: 160)
 }

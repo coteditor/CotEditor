@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -122,6 +122,8 @@ struct RegexTextField: NSViewRepresentable {
 // MARK: - Preview
 
 #Preview {
-    RegexTextField(text: .constant("[^abc]def"))
+    @State var text = "[^abc]def"
+    
+    return RegexTextField(text: $text)
         .leadingInset(20)
 }

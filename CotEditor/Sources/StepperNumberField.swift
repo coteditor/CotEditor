@@ -115,10 +115,8 @@ private extension Binding where Value == Int {
 
 // MARK: - Preview
 
-struct StepperNumberField_Previews: PreviewProvider {
+#Preview {
+    @State var value = 4
     
-    static var previews: some View {
-        
-        StepperNumberField(value: .constant(4), in: 0...10)
-    }
+    return StepperNumberField(value: $value, in: 0...10)
 }
