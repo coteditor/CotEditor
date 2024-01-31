@@ -143,7 +143,7 @@ struct ThemeEditorView: View {
                     if #available(macOS 14, *) {
                         SystemColorPicker("Cursor:", selection: $theme.insertionPoint, usesSystemSetting: $theme.usesInsertionPointSystemSetting, systemColor: Color(nsColor: .textInsertionPointColor))
                     } else {
-                        ColorPicker("Cursor:", selection: $theme.insertionPoint, supportsOpacity: false)
+                        ColorPicker("Cursor:", selection: $theme.insertionPoint)
                     }
                 }
                 
