@@ -56,7 +56,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     let syntaxParser: SyntaxParser
     @Published private(set) var fileEncoding: FileEncoding
     @Published private(set) var lineEnding: LineEnding
-    @Published private(set) var fileAttributes: [FileAttributeKey: Any]?
+    @Published private(set) var fileAttributes: DocumentFile.Attributes?
     
     let lineEndingScanner: LineEndingScanner
     private(set) lazy var selection = TextSelection(document: self)
@@ -341,7 +341,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         //    for example on resuming an unsaved document.
         if self.fileURL != nil {
             self.fileAttributes = file.attributes
-            self.isExecutable = file.permissions.user.contains(.execute)
+            self.isExecutable = file.attributes.permissions.user.contains(.execute)
         }
         
         // do not save `com.apple.TextEncoding` extended attribute if it doesn't exists
@@ -458,7 +458,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         if saveOperation != .autosaveElsewhereOperation {
             // get the latest file attributes
             do {
-                self.fileAttributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_ACCESS
+                let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_ACCESS
+                self.fileAttributes = DocumentFile.Attributes(dictionary: attributes)
             } catch {
                 assertionFailure(error.localizedDescription)
             }
@@ -477,7 +478,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // give the execute permission if user requested
         if self.saveOptions.isExecutable, !saveOperation.isAutosave {
-            let permissions: UInt16 = (self.fileAttributes?[.posixPermissions] as? UInt16) ?? 0o644  // ???: Is the default permission really always 644?
+            let permissions = self.fileAttributes?.permissions.mask ?? 0o644  // ???: Is the default permission really always 644?
             attributes[FileAttributeKey.posixPermissions] = permissions | S_IXUSR
         }
         

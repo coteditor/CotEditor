@@ -49,6 +49,26 @@ struct DocumentFile {
     }
     
     
+    struct Attributes {
+        
+        var creationDate: Date?
+        var modificationDate: Date?
+        var size: UInt64
+        var permissions: FilePermissions
+        var owner: String?
+        
+        
+        init(dictionary: [FileAttributeKey: Any]) {
+            
+            self.creationDate = dictionary[.creationDate] as? Date
+            self.modificationDate = dictionary[.modificationDate] as? Date
+            self.size = dictionary[.size] as? UInt64 ?? 0
+            self.permissions = FilePermissions(mask: dictionary[.posixPermissions] as? UInt16 ?? 0)
+            self.owner = dictionary[.ownerAccountName] as? String
+        }
+    }
+    
+    
     /// Maximal length to scan encoding declaration
     private static let maxEncodingScanLength = 2000
     
@@ -57,10 +77,9 @@ struct DocumentFile {
     
     let data: Data
     let string: String
-    let attributes: [FileAttributeKey: Any]
+    let attributes: Attributes
     let fileEncoding: FileEncoding
     let xattrEncoding: String.Encoding?
-    let permissions: FilePermissions
     let isVerticalText: Bool
     let allowsInconsistentLineEndings: Bool
     
@@ -95,24 +114,19 @@ struct DocumentFile {
                                                       suggestedEncodings: priority,
                                                       refersToEncodingTag: refersToTag)
             case .specific(let readingEncoding):
-                encoding = readingEncoding
-                if !data.isEmpty {
-                    guard let string = String(bomCapableData: data, encoding: encoding) else {
-                        throw CocoaError.error(.fileReadInapplicableStringEncoding, userInfo: [NSStringEncodingErrorKey: encoding.rawValue], url: fileURL)
-                    }
-                    content = string
-                } else {
-                    content = ""
+                guard let string = String(bomCapableData: data, encoding: readingEncoding) else {
+                    throw CocoaError.error(.fileReadInapplicableStringEncoding, userInfo: [NSStringEncodingErrorKey: readingEncoding.rawValue])
                 }
+                content = string
+                encoding = readingEncoding
         }
         
         // set properties
         self.data = data
-        self.attributes = attributes
         self.string = content
+        self.attributes = Attributes(dictionary: attributes)
         self.fileEncoding = FileEncoding(encoding: encoding,
                                          withUTF8BOM: (encoding == .utf8) && data.starts(with: Unicode.BOM.utf8.sequence))
-        self.permissions = FilePermissions(mask: attributes[.posixPermissions] as? UInt16 ?? 0)
     }
     
     

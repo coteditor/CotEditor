@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -146,11 +146,11 @@ final class DocumentInspectorViewController: NSViewController, DocumentOwner {
                     
                     let dateFormat = Date.FormatStyle(date: .abbreviated, time: .shortened)
                     
-                    info.creationDate = (attributes?[.creationDate] as? Date)?.formatted(dateFormat)
-                    info.modificationDate = (attributes?[.modificationDate] as? Date)?.formatted(dateFormat)
-                    info.fileSize = (attributes?[.size] as? UInt64)?.formatted(.byteCount(style: .file, includesActualByteCount: true))
-                    info.owner = attributes?[.ownerAccountName] as? String
-                    info.permission = (attributes?[.posixPermissions] as? UInt16)?.formatted(.filePermissions)
+                    info.creationDate = attributes?.creationDate?.formatted(dateFormat)
+                    info.modificationDate = attributes?.modificationDate?.formatted(dateFormat)
+                    info.fileSize = attributes?.size.formatted(.byteCount(style: .file, includesActualByteCount: true))
+                    info.owner = attributes?.owner
+                    info.permission = attributes?.permissions.mask.formatted()
                 },
             
             self.document.$fileEncoding
