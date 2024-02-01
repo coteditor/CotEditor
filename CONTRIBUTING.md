@@ -45,7 +45,7 @@ Currently, the CotEditor project only accepts new localizations whose provider c
 To create a new localization, copy one of a whole .lproj directory and use it as a template. We recommend using `CotEditor/en-GB.lproj/` directory because they are always up-to-date. In addition, add localization also to the .xcstrings files in the `mul.lproj` directory.
 Note that you don't need to localize the Unicode block names in the `UnicodeBlock.strings` file. It will be done by @1024jp based on the localization data by Apple.
 
-### Localization maintenance process
+#### Localization maintenance process
 
 A standard localization update proceeds as follows:
 
@@ -90,7 +90,7 @@ You also need to take care of how Apple treats punctuation characters and symbol
 
 #### Adding a new bundled syntax
 
-Put just your new syntax into `/CotEditor/syntaxes/` directory. You don't need to modify `SyntaxMap.json` file. It's generated automatically on the build.
+Put just your new syntax into `/CotEditor/syntaxes/` directory. You don't need to modify `SyntaxMap.json` file because it will be automatically generated on the build.
 
 The license for the bundled syntaxes must be "Same as CotEditor".
 
@@ -102,9 +102,9 @@ If the syntax language is relatively minor, we recommend you not to bundle it to
 We don't accept pull requests adding bundled themes at the moment. You can distribute yours as an additional theme in your own way, and add a link to our [wiki page](https://github.com/coteditor/CotEditor/wiki/Additional-Themes).
 
 
-### Graphics Resources
+### Graphic Resources
 
-We don't accept pull requests for image resources. @1024jp enjoys creating and brushing up the graphics ;). If you find a graphic resource having some kind of mistake to be fixed, please just point out on the Issues page.
+We don't accept pull requests for image resources. @1024jp enjoys creating and brushing up the graphics ;). If you find a graphic resource having some kind of issues to be fixed, please just point out on the Issues page.
 
 
 
