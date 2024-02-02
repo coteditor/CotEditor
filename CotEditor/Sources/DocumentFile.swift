@@ -53,7 +53,7 @@ struct DocumentFile {
         
         var creationDate: Date?
         var modificationDate: Date?
-        var size: UInt64
+        var size: Int64
         var permissions: FilePermissions
         var owner: String?
         
@@ -62,7 +62,7 @@ struct DocumentFile {
             
             self.creationDate = dictionary[.creationDate] as? Date
             self.modificationDate = dictionary[.modificationDate] as? Date
-            self.size = dictionary[.size] as? UInt64 ?? 0
+            self.size = dictionary[.size] as? Int64 ?? 0
             self.permissions = FilePermissions(mask: dictionary[.posixPermissions] as? UInt16 ?? 0)
             self.owner = dictionary[.ownerAccountName] as? String
         }
