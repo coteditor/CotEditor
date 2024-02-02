@@ -150,7 +150,7 @@ final class DocumentInspectorViewController: NSViewController, DocumentOwner {
                     info.modificationDate = attributes?.modificationDate?.formatted(dateFormat)
                     info.fileSize = attributes?.size.formatted(.byteCount(style: .file, includesActualByteCount: true))
                     info.owner = attributes?.owner
-                    info.permission = attributes?.permissions.mask.formatted()
+                    info.permission = attributes?.permissions.formatted()
                 },
             
             self.document.$fileEncoding

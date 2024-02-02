@@ -707,8 +707,8 @@
 		2AE144C52B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144C32B0222DB005E8CF1 /* LiveTextInsertionView.swift */; };
 		2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */; };
 		2AE3F3191D3F8A1F005B8724 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */; };
-		2AE52F1B1D17493B00D60A32 /* FilePermissionsFormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatStyle.swift */; };
-		2AE52F1C1D17493B00D60A32 /* FilePermissionsFormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatStyle.swift */; };
+		2AE52F1B1D17493B00D60A32 /* FilePermissions+FormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F1A1D17493B00D60A32 /* FilePermissions+FormatStyle.swift */; };
+		2AE52F1C1D17493B00D60A32 /* FilePermissions+FormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F1A1D17493B00D60A32 /* FilePermissions+FormatStyle.swift */; };
 		2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
 		2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
 		2AE73EC8203520E000D8903B /* Acknowledgments.css in Resources */ = {isa = PBXBuildFile; fileRef = 2AE73EC6203520E000D8903B /* Acknowledgments.css */; };
@@ -1316,7 +1316,7 @@
 		2AE439D720A1280800EED807 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/MultipleReplacePanel.strings; sourceTree = "<group>"; };
 		2AE4658627A5A7CE00D2904F /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		2AE4658727A6BDCF00D2904F /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePermissionsFormatStyle.swift; sourceTree = "<group>"; };
+		2AE52F1A1D17493B00D60A32 /* FilePermissions+FormatStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FilePermissions+FormatStyle.swift"; sourceTree = "<group>"; };
 		2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelSplitView.swift; sourceTree = "<group>"; };
 		2AE56CC6265F2F4C00B8A278 /* AdvancedCharacterCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCharacterCounterView.swift; sourceTree = "<group>"; };
 		2AE73EC7203520E000D8903B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = Base; path = Base.lproj/Acknowledgments.css; sourceTree = "<group>"; };
@@ -1917,7 +1917,7 @@
 				2AEB8B432726220000C2F3DD /* IncompatibleCharacterFormatter.swift */,
 				2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */,
 				2A505C042988D44E002080AA /* ShortcutFormatter.swift */,
-				2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatStyle.swift */,
+				2AE52F1A1D17493B00D60A32 /* FilePermissions+FormatStyle.swift */,
 				2A57B98E294ED75900771696 /* RangedIntegerFormatStyle.swift */,
 			);
 			name = Formatters;
@@ -2906,7 +2906,7 @@
 				2A91C3221D1C40E4007CF8BE /* FileDropViewController.swift in Sources */,
 				2A8E25BB24DC59C400FCC33A /* FileEncoding.swift in Sources */,
 				2A86C47C20371DBE00B9357C /* FilePermissions.swift in Sources */,
-				2AE52F1C1D17493B00D60A32 /* FilePermissionsFormatStyle.swift in Sources */,
+				2AE52F1C1D17493B00D60A32 /* FilePermissions+FormatStyle.swift in Sources */,
 				2A0A602B27ABD74500725B70 /* FilterField.swift in Sources */,
 				2A5D13461D1FE66300D38E6A /* FindPanelButtonView.swift in Sources */,
 				2ACFE58C1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
@@ -3272,7 +3272,7 @@
 				2A91C3211D1C40E4007CF8BE /* FileDropViewController.swift in Sources */,
 				2A8E25BC24DC59C400FCC33A /* FileEncoding.swift in Sources */,
 				2A86C47B20371DBE00B9357C /* FilePermissions.swift in Sources */,
-				2AE52F1B1D17493B00D60A32 /* FilePermissionsFormatStyle.swift in Sources */,
+				2AE52F1B1D17493B00D60A32 /* FilePermissions+FormatStyle.swift in Sources */,
 				2A0A602C27ABD74500725B70 /* FilterField.swift in Sources */,
 				2A5D13451D1FE66300D38E6A /* FindPanelButtonView.swift in Sources */,
 				2ACFE58B1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
