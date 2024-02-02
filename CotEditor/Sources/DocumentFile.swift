@@ -56,16 +56,6 @@ struct DocumentFile {
         var size: Int64
         var permissions: FilePermissions
         var owner: String?
-        
-        
-        init(dictionary: [FileAttributeKey: Any]) {
-            
-            self.creationDate = dictionary[.creationDate] as? Date
-            self.modificationDate = dictionary[.modificationDate] as? Date
-            self.size = dictionary[.size] as? Int64 ?? 0
-            self.permissions = FilePermissions(mask: dictionary[.posixPermissions] as? UInt16 ?? 0)
-            self.owner = dictionary[.ownerAccountName] as? String
-        }
     }
     
     
@@ -170,5 +160,18 @@ struct DocumentFile {
         }
         
         return (string, encoding)
+    }
+}
+
+
+extension DocumentFile.Attributes {
+    
+    init(dictionary: [FileAttributeKey: Any]) {
+        
+        self.creationDate = dictionary[.creationDate] as? Date
+        self.modificationDate = dictionary[.modificationDate] as? Date
+        self.size = dictionary[.size] as? Int64 ?? 0
+        self.permissions = FilePermissions(mask: dictionary[.posixPermissions] as? UInt16 ?? 0)
+        self.owner = dictionary[.ownerAccountName] as? String
     }
 }
