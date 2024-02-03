@@ -46,7 +46,7 @@ final class IncompatibleCharactersViewController: NSViewController, DocumentOwne
     // MARK: Private Properties
     
     private var scanner: IncompatibleCharacterScanner  { self.document.incompatibleCharacterScanner }
-    private var incompatibleCharacters: [IncompatibleCharacter] = []
+    private var incompatibleCharacters: [ValueRange<IncompatibleCharacter>] = []
     
     private var scannerObservers: Set<AnyCancellable> = []
     
@@ -149,7 +149,7 @@ final class IncompatibleCharactersViewController: NSViewController, DocumentOwne
     /// Invoked when the incompatible characters are updated.
     ///
     /// - Parameter incompatibleCharacters: The new incompatible characters.
-    @MainActor private func didUpdateIncompatibleCharacters(_ incompatibleCharacters: [IncompatibleCharacter]) {
+    @MainActor private func didUpdateIncompatibleCharacters(_ incompatibleCharacters: [ValueRange<IncompatibleCharacter>]) {
         
         if !self.incompatibleCharacters.isEmpty {
             self.document.textStorage.clearAllMarkup()
@@ -268,11 +268,11 @@ extension IncompatibleCharactersViewController: NSTableViewDataSource {
         
         switch identifier {
             case .line:
-                return self.document.lineEndingScanner.lineNumber(at: incompatibleCharacter.location).formatted()
+                return self.document.lineEndingScanner.lineNumber(at: incompatibleCharacter.range.location).formatted()
             case .character:
-                return String(incompatibleCharacter.character)
+                return String(incompatibleCharacter.value.character)
             case .converted:
-                return incompatibleCharacter.convertedCharacter
+                return incompatibleCharacter.value.converted
             default:
                 fatalError()
         }
@@ -293,19 +293,19 @@ extension IncompatibleCharactersViewController: NSTableViewDataSource {
 
 
 
-extension IncompatibleCharacter: KeySortable {
+extension ValueRange<IncompatibleCharacter>: KeySortable {
     
     func compare(with other: Self, key: String) -> ComparisonResult {
         
         switch key {
             case "location":
-                return self.location.compare(other.location)
+                return self.range.location.compare(other.range.location)
                 
             case "character":
-                return String(self.character).localizedStandardCompare(String(other.character))
+                return String(self.value.character).localizedStandardCompare(String(other.value.character))
                 
             case "convertedCharacter":
-                switch (self.convertedCharacter, other.convertedCharacter) {
+                switch (self.value.converted, other.value.converted) {
                     case let (.some(converted0), .some(converted1)):
                         return converted0.localizedStandardCompare(converted1)
                     case (.some, .none):
