@@ -1767,7 +1767,7 @@ extension EditorTextView {
             }
             if movement == NSIllegalTextMovement,
                let character = event.characters?.utf16.first,
-               character < 0xF700, character != UInt16(NSDeleteCharacter)
+               character < 0xF700, character != Int16(NSDeleteCharacter)
             {  // standard key-input
                 self.needsRecompletion = true
             }

@@ -478,8 +478,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // give the execute permission if user requested
         if self.saveOptions.isExecutable, !saveOperation.isAutosave {
-            let permissions = self.fileAttributes?.permissions.mask ?? 0o644  // ???: Is the default permission really always 644?
-            attributes[FileAttributeKey.posixPermissions] = permissions | S_IXUSR
+            var permissions = self.fileAttributes?.permissions ?? FilePermissions(mask: 0o644)  // ???: Is the default permission really always 644?
+            permissions.user.insert(.execute)
+            attributes[FileAttributeKey.posixPermissions] = permissions.mask
         }
         
         // save document state to the extended file attributes

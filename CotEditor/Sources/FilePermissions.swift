@@ -32,7 +32,7 @@ struct FilePermissions: Equatable {
     
     struct Permission: OptionSet {
         
-        let rawValue: UInt16
+        let rawValue: Int16
         
         static let read    = Self(rawValue: 0b100)
         static let write   = Self(rawValue: 0b010)
@@ -48,7 +48,7 @@ struct FilePermissions: Equatable {
     }
     
     
-    init(mask: UInt16) {
+    init(mask: Int16) {
         
         self.user   = Permission(rawValue: (mask & 0b111 << 6) >> 6)
         self.group  = Permission(rawValue: (mask & 0b111 << 3) >> 3)
@@ -56,7 +56,8 @@ struct FilePermissions: Equatable {
     }
     
     
-    var mask: UInt16 {
+    /// The `Int16` value.
+    var mask: Int16 {
         
         let userMask = self.user.rawValue << 6
         let groupMask = self.group.rawValue << 3
@@ -66,14 +67,14 @@ struct FilePermissions: Equatable {
     }
     
     
-    /// The human-readable permission expression like "rwxr--r--"
+    /// The human-readable permission expression like “rwxr--r--”.
     var symbolic: String {
         
         self.user.symbolic + self.group.symbolic + self.others.symbolic
     }
     
     
-    /// The octal value expression like "644"
+    /// The octal value expression like “644”.
     var octal: String {
         
         String(self.mask, radix: 8)

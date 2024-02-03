@@ -171,7 +171,7 @@ extension DocumentFile.Attributes {
         self.creationDate = dictionary[.creationDate] as? Date
         self.modificationDate = dictionary[.modificationDate] as? Date
         self.size = dictionary[.size] as? Int64 ?? 0
-        self.permissions = FilePermissions(mask: dictionary[.posixPermissions] as? UInt16 ?? 0)
+        self.permissions = FilePermissions(mask: dictionary[.posixPermissions] as? Int16 ?? 0)
         self.owner = dictionary[.ownerAccountName] as? String
     }
 }

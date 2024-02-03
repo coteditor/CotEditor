@@ -44,4 +44,14 @@ final class FilePermissionTests: XCTestCase {
         XCTAssertEqual(FilePermissions(mask: 0o777).formatted(.filePermissions(.full)), "777 (-rwxrwxrwx)")
         XCTAssertEqual(FilePermissions(mask: 0o643).formatted(.filePermissions(.full)), "643 (-rw-r---wx)")
     }
+    
+    
+    func testCalculation() {
+        
+        var permissions = FilePermissions(mask: 0o644)
+        permissions.user.insert(.execute)
+        
+        XCTAssertTrue(permissions.user.contains(.execute))
+        XCTAssertEqual(permissions.mask, 0o744)
+    }
 }
