@@ -30,7 +30,7 @@ extension NSFont: @unchecked Sendable { }
 extension NSParagraphStyle: @unchecked Sendable { }
 
 
-struct OutlineItem: Equatable {
+struct OutlineItem: Equatable, Identifiable {
     
     struct Style: OptionSet {
         
@@ -41,6 +41,7 @@ struct OutlineItem: Equatable {
         static let underline = Self(rawValue: 1 << 2)
     }
     
+    let id = UUID()
     
     var title: String
     var range: NSRange
@@ -78,18 +79,38 @@ extension OutlineItem {
         
         return AttributedString(self.title, attributes: attributes)
     }
+    
+    
+    var attributedTitle: AttributedString {
+        
+        var attrTitle = AttributedString(self.title)
+        
+        guard let ranges = self.filteredRanges else { return attrTitle }
+        
+        let attributes = AttributeContainer()
+            .backgroundColor(.findHighlightColor)
+            .foregroundColor(.black.withAlphaComponent(0.9))  // for legibility in Dark Mode
+        
+        for range in ranges {
+            guard let attrRange = Range(range, in: attrTitle) else { continue }
+            
+            attrTitle[attrRange].setAttributes(attributes)
+        }
+        
+        return attrTitle
+    }
 }
 
 
 extension BidirectionalCollection<OutlineItem> {
     
-    /// Returns the index of element for the given range.
+    /// Returns the element for the given range.
     ///
     /// - Parameter range: The character range to refer.
-    /// - Returns: The index of the corresponding outline item, or `nil` if not exist.
-    func indexOfItem(at location: Int, allowsSeparator: Bool = false) -> Index? {
+    /// - Returns: The corresponding outline item, or `nil` if not exist.
+    func item(at location: Int) -> Element? {
         
-        self.lastIndex { $0.range.location <= location && (allowsSeparator || !$0.isSeparator) }
+        self.last { $0.range.location <= location && !$0.isSeparator }
     }
     
     
@@ -127,10 +148,12 @@ extension BidirectionalCollection<OutlineItem> {
     /// Filters matched outline items abbreviatedly.
     ///
     /// - Parameter searchString: The string to search.
-    /// - Returns: Matched items.
+    /// - Returns: Matched items, or all if the searchString is empty.
     func filterItems(with searchString: String) -> [OutlineItem] {
         
-        self.compactMap { item in
+        guard !searchString.isEmpty else { return Array(self) }
+        
+        return self.compactMap { item in
             item.title.abbreviatedMatch(with: searchString).flatMap { (item: item, result: $0) }
         }
         .filter { $0.result.remaining.isEmpty }
@@ -139,5 +162,15 @@ extension BidirectionalCollection<OutlineItem> {
             item.filteredRanges = $0.result.ranges
             return item
         }
+    }
+    
+    
+    /// Returns the index of element for the given range.
+    ///
+    /// - Parameter range: The character range to refer.
+    /// - Returns: The index of the corresponding outline item, or `nil` if not exist.
+    private func indexOfItem(at location: Int) -> Index? {
+        
+        self.lastIndex { $0.range.location <= location && !$0.isSeparator }
     }
 }

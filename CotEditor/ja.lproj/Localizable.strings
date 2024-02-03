@@ -41,7 +41,6 @@
 
 // Accessibility labels
 "Outline" = "アウトライン";
-"Filter" = "フィルタ";
 "Status Bar" = "ステータスバー";
 "Editor" = "エディタ";
 "Navigation Bar" = "ナビゲーションバー";
@@ -424,6 +423,7 @@
 
 
 /* MARK: FilterField */
+"Filter" = "フィルタ";
 // Menu items
 "Recent Filters" = "最近のフィルタ";
 "Clear Recent Filters" = "フィルタ履歴を消去";

@@ -41,7 +41,6 @@
 
 // Accessibility labels
 "Outline" = "Osnova";
-"Filter" = "Filtr";
 "Status Bar" = "Stavový řádek";
 "Editor" = "Editor";
 "Navigation Bar" = "Panel navigace";
@@ -424,6 +423,7 @@
 
 
 /* MARK: FilterField */
+"Filter" = "Filtr";
 // Menu items
 "Recent Filters" = "Poslední filtry";
 "Clear Recent Filters" = "Smazat poslední filtry";

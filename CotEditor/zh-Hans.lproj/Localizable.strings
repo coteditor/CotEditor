@@ -41,7 +41,6 @@
 
 // Accessibility labels
 "Outline" = "大纲";
-"Filter" = "过滤";
 "Status Bar" = "状态栏";
 "Editor" = "编辑器";
 "Navigation Bar" = "导航栏";
@@ -424,6 +423,7 @@
 
 
 /* MARK: FilterField */
+"Filter" = "过滤";
 // Menu items
 "Recent Filters" = "最近的过滤";
 "Clear Recent Filters" = "清除最近记录";

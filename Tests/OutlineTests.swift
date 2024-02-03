@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2022 1024jp
+//  © 2020-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,16 +44,16 @@ final class OutlineTests: XCTestCase {
     
     func testIndex() throws {
         
-        XCTAssertNil(self.emptyItems.indexOfItem(at: 10))
+        XCTAssertNil(self.emptyItems.item(at: 10))
         
-        XCTAssertNil(self.items.indexOfItem(at: 9))
-        XCTAssertEqual(self.items.indexOfItem(at: 10), 0)
-        XCTAssertEqual(self.items.indexOfItem(at: 18), 0)
-        XCTAssertEqual(self.items.indexOfItem(at: 20), 0)
-        XCTAssertEqual(self.items.indexOfItem(at: 40), 3)
-        XCTAssertEqual(self.items.indexOfItem(at: 50), 3)
-        XCTAssertEqual(self.items.indexOfItem(at: 59), 3)
-        XCTAssertEqual(self.items.indexOfItem(at: 60), 5)
+        XCTAssertNil(self.items.item(at: 9))
+        XCTAssertEqual(self.items.item(at: 10), self.items[0])
+        XCTAssertEqual(self.items.item(at: 18), self.items[0])
+        XCTAssertEqual(self.items.item(at: 20), self.items[0])
+        XCTAssertEqual(self.items.item(at: 40), self.items[3])
+        XCTAssertEqual(self.items.item(at: 50), self.items[3])
+        XCTAssertEqual(self.items.item(at: 59), self.items[3])
+        XCTAssertEqual(self.items.item(at: 60), self.items[5])
     }
     
     
@@ -82,7 +82,7 @@ final class OutlineTests: XCTestCase {
     
     func testFilter() throws {
         
-        XCTAssertEqual(self.items.filterItems(with: "").count, 0)
+        XCTAssertEqual(self.items.filterItems(with: "").count, 7)
         XCTAssertEqual(self.items.filterItems(with: "cat").count, 0)
         XCTAssertEqual(self.items.filterItems(with: "dog").count, 2)
         XCTAssertEqual(self.items.filterItems(with: "dow").count, 1)

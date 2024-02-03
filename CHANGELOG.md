@@ -14,6 +14,7 @@
 
 - Add “Hexadecimal with Alpha” format to the Color Code panel.
 - Tweak the background color of the “Anura (Dark)” theme.
+- [dev] Migrate the inspector pane to SwiftUI.
 
 
 ### Fixes

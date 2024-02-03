@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,14 +23,89 @@
 //  limitations under the License.
 //
 
+import SwiftUI
 import AppKit
 
-final class FilterField: NSSearchField {
+struct FilterField: NSViewRepresentable {
+    
+    typealias NSViewType = NSSearchField
+    
+    @Binding private var text: String
+    
+    private var autosaveName: String?
+    
+    
+    init(text: Binding<String>) {
+        
+        self._text = text
+    }
+    
+    
+    func makeNSView(context: Context) -> NSSearchField {
+        
+        let searchField = InnerFilterField()
+        searchField.delegate = context.coordinator
+        searchField.placeholderString = String(localized: "Filter", comment: "placeholder for filter field")
+        searchField.sendsSearchStringImmediately = true
+
+        return searchField
+    }
+    
+    
+    func updateNSView(_ nsView: NSSearchField, context: Context) {
+        
+        nsView.stringValue = self.text
+        nsView.delegate = context.coordinator
+        nsView.recentsAutosaveName = self.autosaveName
+    }
+    
+    
+    func makeCoordinator() -> Coordinator {
+        
+        Coordinator(text: $text)
+    }
+    
+    
+    /// The name under which the search field automatically archives the list of recent search strings.
+    ///
+    /// - Parameter autosaveName: The unique name for saving recent search strings.
+    func autosaveName(_ autosaveName: String?) -> some View {
+        
+        var view = self
+        view.autosaveName = autosaveName
+        return view
+    }
+    
+    
+    
+    final class Coordinator: NSObject, NSSearchFieldDelegate {
+        
+        @Binding private var text: String
+        
+        
+        init(text: Binding<String>) {
+            
+            self._text = text
+        }
+        
+        
+        func controlTextDidChange(_ obj: Notification) {
+            
+            guard let textField = obj.object as? NSTextField else { return }
+            
+            self.text = textField.stringValue
+        }
+    }
+}
+
+
+private final class InnerFilterField: NSSearchField {
     
     // MARK: Private Properties
     
     private let image: NSImage = .init(systemSymbolName: "line.3.horizontal.decrease.circle",
                                        accessibilityDescription: String(localized: "Filter"))!
+        .tinted(with: .secondaryLabelColor)
     private let filteringImage: NSImage = .init(systemSymbolName: "line.3.horizontal.decrease.circle.fill",
                                                 accessibilityDescription: String(localized: "Filter"))!
         .tinted(with: .controlAccentColor)
@@ -39,16 +114,16 @@ final class FilterField: NSSearchField {
     
     // MARK: Lifecycle
     
-    required init?(coder: NSCoder) {
+    required init() {
         
-        super.init(coder: coder)
+        super.init(frame: .zero)
         
         self.validateImage()
         
         // workaround the cancel button color is .labelColor (2022-09, macOS 13)
         if let cancelButtonCell = (self.cell as? NSSearchFieldCell)?.cancelButtonCell {
             cancelButtonCell.image = cancelButtonCell.image?
-                .withSymbolConfiguration(.init(paletteColors: [.secondaryLabelColor]))
+                .tinted(with: .secondaryLabelColor)
         }
         
         self.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
@@ -64,6 +139,12 @@ final class FilterField: NSSearchField {
         searchMenu.addItem(withTitle: String(localized: "No Recent Filter"), action: nil, keyEquivalent: "")
             .tag = NSSearchField.noRecentsMenuItemTag
         self.searchMenuTemplate = searchMenu
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -105,4 +186,15 @@ final class FilterField: NSSearchField {
         
         buttonCell.image = self.stringValue.isEmpty ? self.image : self.filteringImage
     }
+}
+
+
+
+// MARK: - Preview
+
+#Preview {
+    @State var text = ""
+    return FilterField(text: $text)
+        .frame(width: 160)
+        .padding()
 }

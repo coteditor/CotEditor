@@ -41,7 +41,6 @@
 
 // Accessibility labels
 "Outline" = "Outline";
-"Filter" = "Filter";
 "Status Bar" = "Status Bar";
 "Editor" = "Editor";
 "Navigation Bar" = "Navigation Bar";
@@ -424,6 +423,7 @@
 
 
 /* MARK: FilterField */
+"Filter" = "Filter";
 // Menu items
 "Recent Filters" = "Recent Filters";
 "Clear Recent Filters" = "Clear Recent Filters";

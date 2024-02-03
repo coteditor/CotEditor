@@ -177,12 +177,8 @@ private extension InspectorPane {
         switch self {
             case .document:
                 DocumentInspectorViewController(document: document)
-                
             case .outline:
-                NSStoryboard(name: "OutlineView").instantiateInitialController { coder in
-                    OutlineViewController(document: document, coder: coder)
-                }!
-                
+                OutlineInspectorViewController(document: document)
             case .warnings:
                 WarningInspectorViewController(document: document)
         }

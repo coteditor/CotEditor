@@ -41,7 +41,6 @@
 
 // Accessibility labels
 "Outline" = "大綱";
-"Filter" = "濾波器";
 "Status Bar" = "狀態列";
 "Editor" = "編輯器";
 "Navigation Bar" = "導覽列";
@@ -424,6 +423,7 @@
 
 
 /* MARK: FilterField */
+"Filter" = "濾波器";
 // Menu items
 "Recent Filters" = "最近的過濾";
 "Clear Recent Filters" = "清除最近記錄";

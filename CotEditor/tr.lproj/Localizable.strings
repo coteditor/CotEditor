@@ -41,7 +41,6 @@
 
 // Accessibility labels
 "Outline" = "Ana Hat";
-"Filter" = "Filtre";
 "Status Bar" = "Durum Çubuğu";
 "Editor" = "Düzenleyici";
 "Navigation Bar" = "Dolaşım Çubuğu";
@@ -424,6 +423,7 @@
 
 
 /* MARK: FilterField */
+"Filter" = "Filtre";
 // Menu items
 "Recent Filters" = "Son Filtreler";
 "Clear Recent Filters" = "Son Filtreleri Temizle";
