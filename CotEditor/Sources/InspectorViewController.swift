@@ -183,7 +183,7 @@ private extension InspectorPane {
                     OutlineViewController(document: document, coder: coder)
                 }!
             case .warnings:
-                WarningsViewController(document: document)
+                WarningInspectorViewController(document: document)
         }
     }
     

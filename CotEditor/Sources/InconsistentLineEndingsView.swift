@@ -58,24 +58,24 @@ struct InconsistentLineEndingsView: View {
     var body: some View {
         
         VStack(alignment: .leading, spacing: 8) {
-            Text("Inconsistent Line Endings", tableName: "WarningsView", comment: "section title")
+            Text("Inconsistent Line Endings", tableName: "Inspector", comment: "section title")
                 .font(.system(size: 12, weight: .bold))
                 .foregroundStyle(.secondary)
             
             // message
             if self.model.items.isEmpty {
-                Text("No issues found.", tableName: "WarningsView")
+                Text("No issues found.", tableName: "Inspector")
                     .foregroundStyle(.secondary)
             } else {
                 Text("Found \(self.model.items.count) line endings other than \(self.model.current.name).",
-                     tableName: "WarningsView",
+                     tableName: "Inspector",
                      comment: "%lld is the number of inconsistent line endings and %@ is a line ending type, such as LF")
             }
             
             // table
             if !self.model.items.isEmpty {
                 Table(self.model.items, selection: $selection, sortOrder: $sortOrder) {
-                    TableColumn(String(localized: "Line", table: "WarningsView", comment: "table column"), value: \.location) {
+                    TableColumn(String(localized: "Line", table: "Inspector", comment: "table column"), value: \.location) {
                         // calculate the line number first at this point to postpone the high cost processing as much as possible
                         let line = self.model.document.lineEndingScanner.lineNumber(at: $0.location)
                         Text(line, format: .number)
@@ -83,7 +83,7 @@ struct InconsistentLineEndingsView: View {
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     
-                    TableColumn(String(localized: "Line Ending", table: "WarningsView", comment: "table column"), value: \.value.rawValue) {
+                    TableColumn(String(localized: "Line Ending", table: "Inspector", comment: "table column"), value: \.value.rawValue) {
                         Text($0.value.name)
                     }
                 }
@@ -104,7 +104,7 @@ struct InconsistentLineEndingsView: View {
             self.model.isAppeared = false
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(Text("Inconsistent Line Endings", tableName: "WarningsView"))
+        .accessibilityLabel(Text("Inconsistent Line Endings", tableName: "Inspector"))
         .controlSize(.small)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }

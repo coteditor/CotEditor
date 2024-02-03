@@ -1,5 +1,5 @@
 //
-//  WarningsView.swift
+//  WarningInspectorView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 
 import SwiftUI
 
-final class WarningsViewController: NSHostingController<WarningsView>, DocumentOwner {
+final class WarningInspectorViewController: NSHostingController<WarningInspectorView>, DocumentOwner {
     
     private let incompatibleCharactersModel: IncompatibleCharactersView.Model
     private let inconsistentLineEndingsModel: InconsistentLineEndingsView.Model
@@ -51,8 +51,10 @@ final class WarningsViewController: NSHostingController<WarningsView>, DocumentO
         
         self.document = document
         
-        super.init(rootView: WarningsView(incompatibleCharactersModel: self.incompatibleCharactersModel,
-                                          inconsistentLineEndingsModel: self.inconsistentLineEndingsModel))
+        super.init(rootView: WarningInspectorView(
+            incompatibleCharactersModel: self.incompatibleCharactersModel,
+            inconsistentLineEndingsModel: self.inconsistentLineEndingsModel)
+        )
     }
     
     
@@ -81,7 +83,7 @@ final class WarningsViewController: NSHostingController<WarningsView>, DocumentO
 }
 
 
-struct WarningsView: View {
+struct WarningInspectorView: View {
     
     @ObservedObject var incompatibleCharactersModel: IncompatibleCharactersView.Model
     @ObservedObject var inconsistentLineEndingsModel: InconsistentLineEndingsView.Model
@@ -111,6 +113,8 @@ struct WarningsView: View {
     let document = Document()
     document.textStorage.replaceContent(with: "  \r \n \r")
     
-    return WarningsView(incompatibleCharactersModel: .init(document: document),
-                        inconsistentLineEndingsModel: .init(document: document))
+    return WarningInspectorView(
+        incompatibleCharactersModel: .init(document: document),
+        inconsistentLineEndingsModel: .init(document: document)
+    )
 }
