@@ -148,46 +148,6 @@
 
 
 
-/* MARK: Regular Expression Reference */
-"Basic Regular Expression Syntax" = "基本常規表示式文法";
-
-"Characters" = "字元";
-"any character" = "任意字元";
-"new line character" = "換行符";
-"tab character" = "定位符號";
-"word character" = "單字字元";
-"whitespace character" = "空格字元";
-"non-whitespace character" = "非空格字元";
-"decimal number" = "數字";
-"any character in range A to Z" = "A到Z範圍內的任意字元";
-"any character not in range A to Z" = "不在A到Z範圍內的任意字元";
-
-"Anchors" = "錨點";
-"beginning of the line" = "行首";
-"end of the line" = "行末";
-"word boundary" = "單字邊界";
-
-"Quantifiers" = "數量";
-"1 or 0 times" = "1次或0次";
-"0 or more times" = "0次或更多";
-"1 or more times" = "1次或更多";
-"at least n but not more than m times" = "至少n次但不超過m次";
-"at least n times" = "至少n次";
-"at least 0 but not more than n times" = "至少0次但不超過n次";
-"n times" = "n次";
-
-"Extended Groups" = "擴展分組";
-"look-ahead" = "前向";
-"look-behind" = "後向";
-
-"Back Reference" = "回溯引用";
-"first match" = "首字匹配";
-
-"The syntax conforms to the %@ specifications." = "該文法遵循「%@」引擎之規範。";  // %@ is the name of the regex engine below (ICU Regular Expressions)
-"ICU Regular Expressions" = "ICU Regular Expressions";
-
-
-
 /* MARK: Find Settings View */
 "Advanced Find Options" = "進階尋找選項";
 

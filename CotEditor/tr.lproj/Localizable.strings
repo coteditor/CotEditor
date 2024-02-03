@@ -148,46 +148,6 @@
 
 
 
-/* MARK: Regular Expression Reference */
-"Basic Regular Expression Syntax" = "Yalın Düzenli İfade Sözdizimi";
-
-"Characters" = "Karakterler";
-"any character" = "herhangi bir karakter";
-"new line character" = "yeni satır karakteri";
-"tab character" = "sekme karakteri";
-"word character" = "sözcük karakteri";
-"whitespace character" = "boşluk karakteri";
-"non-whitespace character" = "boşluk olmayan karakter";
-"decimal number" = "onluk sayı";
-"any character in range A to Z" = "A-Z erimindeki herhangi bir karakter";
-"any character not in range A to Z" = "A-Z eriminde bulunmayan herhangi bir karakter";
-
-"Anchors" = "Çapalar";
-"beginning of the line" = "satır başlangıcı";
-"end of the line" = "satır sonu";
-"word boundary" = "sözcük sınırı";
-
-"Quantifiers" = "Niceleyiciler";
-"1 or 0 times" = "1 veya 0 kez";
-"0 or more times" = "0 veya daha çok kez";
-"1 or more times" = "1 veya daha çok kez";
-"at least n but not more than m times" = "en az n; ancak m’den fazla değil";
-"at least n times" = "en az n kez";
-"at least 0 but not more than n times" = "en az 0; ancak n’den fazla değil";
-"n times" = "n kez";
-
-"Extended Groups" = "Genişletilmiş Gruplar";
-"look-ahead" = "öne bak";
-"look-behind" = "arkaya bak";
-
-"Back Reference" = "Geri Başvuru";
-"first match" = "ilk eşleşme";
-
-"The syntax conforms to the %@ specifications." = "Sözdizim, %@ belirtimine uyar.";  // %@ is the name of the regex engine below (ICU Regular Expressions)
-"ICU Regular Expressions" = "ICU Regular Expressions";
-
-
-
 /* MARK: Find Settings View */
 "Advanced Find Options" = "Upřesňující možnosti hledání";  // FIXME:
 

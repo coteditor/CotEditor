@@ -148,46 +148,6 @@
 
 
 
-/* MARK: Regular Expression Reference */
-"Basic Regular Expression Syntax" = "Sintaxis básica de la expresión regular";
-
-"Characters" = "Caracteres";
-"any character" = "Cualquier carácter";
-"new line character" = "Carácter de nueva línea";
-"tab character" = "Carácter tabulación";
-"word character" = "Carácter de la palabra";
-"whitespace character" = "Carácter de espacio en blanco";
-"non-whitespace character" = "Carácter no espacios en blanco";
-"decimal number" = "Número decimal";
-"any character in range A to Z" = "Cualquier carácter en el rango de A a Z";
-"any character not in range A to Z" = "Cualquier carácter que no entre en el rango de A a Z";
-
-"Anchors" = "Anclas";
-"beginning of the line" = "Comienzo de la línea";
-"end of the line" = "Final de la línea";
-"word boundary" = "Límites de las palabras";
-
-"Quantifiers" = "Cuantificadores";
-"1 or 0 times" = "1 o 0 veces";
-"0 or more times" = "0 o más veces";
-"1 or more times" = "1 o más veces";
-"at least n but not more than m times" = "Al menos n, pero no más de m veces";
-"at least n times" = "Al menos n veces";
-"at least 0 but not more than n times" = "Al menos 0 pero no más de n veces";
-"n times" = "n veces";
-
-"Extended Groups" = "Grupos extendidos";
-"look-ahead" = "Mirar hacia adelante";
-"look-behind" = "Mirar hacia atrás";
-
-"Back Reference" = "Referencia posterior";
-"first match" = "Primer coincidencia";
-
-"The syntax conforms to the %@ specifications." = "La sintaxis se ajusta a las %@ especificaciones.";  // %@ is the name of the regex engine below (ICU Regular Expressions)
-"ICU Regular Expressions" = "Expresiones regulares ICU";
-
-
-
 /* MARK: Find Settings View */
 "Advanced Find Options" = "Opciones de búsqueda avanzada";
 

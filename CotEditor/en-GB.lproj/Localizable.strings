@@ -148,46 +148,6 @@
 
 
 
-/* MARK: Regular Expression Reference */
-"Basic Regular Expression Syntax" = "Basic Regular Expression Syntax";
-
-"Characters" = "Characters";
-"any character" = "any character";
-"new line character" = "new line character";
-"tab character" = "tab character";
-"word character" = "word character";
-"whitespace character" = "whitespace character";
-"non-whitespace character" = "non-whitespace character";
-"decimal number" = "decimal number";
-"any character in range A to Z" = "any character in range A to Z";
-"any character not in range A to Z" = "any character not in range A to Z";
-
-"Anchors" = "Anchors";
-"beginning of the line" = "beginning of the line";
-"end of the line" = "end of the line";
-"word boundary" = "word boundary";
-
-"Quantifiers" = "Quantifiers";
-"1 or 0 times" = "1 or 0 times";
-"0 or more times" = "0 or more times";
-"1 or more times" = "1 or more times";
-"at least n but not more than m times" = "at least n but not more than m times";
-"at least n times" = "at least n times";
-"at least 0 but not more than n times" = "at least 0 but not more than n times";
-"n times" = "n times";
-
-"Extended Groups" = "Extended Groups";
-"look-ahead" = "look-ahead";
-"look-behind" = "look-behind";
-
-"Back Reference" = "Back Reference";
-"first match" = "first match";
-
-"The syntax conforms to the %@ specifications." = "The syntax conforms to the %@ specifications.";  // %@ is the name of the regex engine below (ICU Regular Expressions)
-"ICU Regular Expressions" = "ICU Regular Expressions";
-
-
-
 /* MARK: Find Settings View */
 "Advanced Find Options" = "Advanced Find Options";
 

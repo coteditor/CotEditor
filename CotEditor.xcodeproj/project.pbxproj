@@ -616,6 +616,8 @@
 		2AC72EA2253478D5001D3CA0 /* FileDropItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */; };
 		2AC94B222B6E26F40086F9F2 /* Inspector.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */; };
 		2AC94B232B6E26F40086F9F2 /* Inspector.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */; };
+		2AC94B3B2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC94B3A2B6EAAE90086F9F2 /* RegexReference.xcstrings */; };
+		2AC94B3C2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC94B3A2B6EAAE90086F9F2 /* RegexReference.xcstrings */; };
 		2ACA0C9D21A2A47500723073 /* NSStoryboard+Instantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACA0C9C21A2A47500723073 /* NSStoryboard+Instantiation.swift */; };
 		2ACA0C9E21A2A47500723073 /* NSStoryboard+Instantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACA0C9C21A2A47500723073 /* NSStoryboard+Instantiation.swift */; };
 		2ACC21B21E52B7920078241F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B11E52B7920078241F /* DefaultOptions.swift */; };
@@ -1263,6 +1265,7 @@
 		2AC72E8025342726001D3CA0 /* SegmentedArrayControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedArrayControl.swift; sourceTree = "<group>"; };
 		2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropItemTests.swift; sourceTree = "<group>"; };
 		2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Inspector.xcstrings; path = mul.lproj/Inspector.xcstrings; sourceTree = "<group>"; };
+		2AC94B3A2B6EAAE90086F9F2 /* RegexReference.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = RegexReference.xcstrings; path = mul.lproj/RegexReference.xcstrings; sourceTree = "<group>"; };
 		2ACA0C9C21A2A47500723073 /* NSStoryboard+Instantiation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSStoryboard+Instantiation.swift"; sourceTree = "<group>"; };
 		2ACC21B11E52B7920078241F /* DefaultOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultOptions.swift; sourceTree = "<group>"; };
 		2ACC21B41E52B8C50078241F /* DefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultKeys.swift; sourceTree = "<group>"; };
@@ -2250,6 +2253,7 @@
 				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
 				2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */,
 				2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */,
+				2AC94B3A2B6EAAE90086F9F2 /* RegexReference.xcstrings */,
 				2AA2E0111BFE12620087BDD6 /* UnicodeBlock.strings */,
 				2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */,
 			);
@@ -2629,6 +2633,7 @@
 				2A5E6FC72A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
 				2A954B242AB28B010070FB74 /* Count.xcstrings in Resources */,
 				2AC94B222B6E26F40086F9F2 /* Inspector.xcstrings in Resources */,
+				2AC94B3B2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */,
 				2AA2E0141BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
 				2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */,
 				2ACDE28D2406B9C000FC31EC /* AppearancePane.storyboard in Resources */,
@@ -2689,6 +2694,7 @@
 				2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
 				2A954B252AB28B010070FB74 /* Count.xcstrings in Resources */,
 				2AC94B232B6E26F40086F9F2 /* Inspector.xcstrings in Resources */,
+				2AC94B3C2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */,
 				2A36E36F2AF9ED0B00A73534 /* Sparkle.xcstrings in Resources */,
 				2AA2E0131BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
 				2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */,

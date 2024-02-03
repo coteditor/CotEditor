@@ -148,46 +148,6 @@
 
 
 
-/* MARK: Regular Expression Reference */
-"Basic Regular Expression Syntax" = "Základní syntaxe regulárního výrazu";
-
-"Characters" = "Znaky";
-"any character" = "Jakýkoli znak";
-"new line character" = "Odřádkování";
-"tab character" = "Tabulátor";
-"word character" = "Výraz";
-"whitespace character" = "Mezera";
-"non-whitespace character" = "Znak nepředstavující mezeru";
-"decimal number" = "Číslice";
-"any character in range A to Z" = "Libovolný znak v rozsahu A až Z";
-"any character not in range A to Z" = "Libovolný znak mimo rozsah A až Z";
-
-"Anchors" = "Kotvy";
-"beginning of the line" = "Začátek řádku";
-"end of the line" = "Konec řádku";
-"word boundary" = "Hranice slova";
-
-"Quantifiers" = "Kvantifikátor";
-"1 or 0 times" = "Žádný nebo jeden";
-"0 or more times" = "Žádný nebo více";
-"1 or more times" = "Jeden nebo více";
-"at least n but not more than m times" = "Alespoň n krát, ale ne více než m krát";
-"at least n times" = "Alespoň n krát";
-"at least 0 but not more than n times" = "Alespoň 0, ale ne více než n krát";
-"n times" = "n krát";
-
-"Extended Groups" = "Rozšířené skupiny";
-"look-ahead" = "look-ahead";
-"look-behind" = "look-behind";
-
-"Back Reference" = "Zpětný odkaz";
-"first match" = "První shoda";
-
-"The syntax conforms to the %@ specifications." = "Syntaxe odpovídá specifikacím %@.";  // %@ is the name of the regex engine below (ICU Regular Expressions)
-"ICU Regular Expressions" = "Regulární výrazy ICU";
-
-
-
 /* MARK: Find Settings View */
 "Advanced Find Options" = "Pokročilé volby hledání";
 
