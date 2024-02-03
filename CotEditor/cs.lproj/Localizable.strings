@@ -485,18 +485,6 @@
 "Clear Recent Filters" = "Smazat poslední filtry";
 "No Recent Filter" = "Žádný poslední filtr";
 
-// Warnings
-"No issues found." = "Nebyly nalezeny žádné problémy.";
-
-// Incompatible characters
-"Scanning incompatible characters…" = "Skenování nekompatibilních znaků…";
-"Found an incompatible character." = "Nalezen nekompatibilní znak.";
-"Found %lld incompatible characters." = "Nalezeny nekompatibilní znaky (celkem %lld).";  // %lld is the number of characters
-
-// Inconsistent line endings
-"Found a line ending other than %@." = "Nalezen jiný konec řádku než %@.";  // %@ is a line ending type, such as LF
-"Found %lld line endings other than %@." = "Nalezeny jiné konce řádků (celkem %lld) než %@.";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
-
 
 
 /* MARK: EditorTextView */

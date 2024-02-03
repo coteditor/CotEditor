@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -214,10 +214,9 @@ final class IncompatibleCharactersViewController: NSViewController, DocumentOwne
         
         self.messageField?.textColor = self.incompatibleCharacters.isEmpty ? .secondaryLabelColor : .labelColor
         self.messageField?.stringValue = switch self.incompatibleCharacters.count {
-            case _ where isScanning: String(localized: "Scanning incompatible characters…")
-            case 0:  String(localized: "No issues found.")
-            case 1:  String(localized: "Found an incompatible character.")
-            default: String(localized: "Found \(self.incompatibleCharacters.count) incompatible characters.",
+            case _ where isScanning: String(localized: "Scanning incompatible characters…", table: "WarningsView")
+            case 0:  String(localized: "No issues found.", table: "WarningsView")
+            default: String(localized: "Found \(self.incompatibleCharacters.count) incompatible characters.", table: "WarningsView",
                             comment: "%lld is the number of characters.")
         }
     }

@@ -617,6 +617,8 @@
 		2AC72E8125342726001D3CA0 /* SegmentedArrayControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC72E8025342726001D3CA0 /* SegmentedArrayControl.swift */; };
 		2AC72E8225342726001D3CA0 /* SegmentedArrayControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC72E8025342726001D3CA0 /* SegmentedArrayControl.swift */; };
 		2AC72EA2253478D5001D3CA0 /* FileDropItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */; };
+		2AC94B222B6E26F40086F9F2 /* WarningsView.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC94B212B6E26F40086F9F2 /* WarningsView.xcstrings */; };
+		2AC94B232B6E26F40086F9F2 /* WarningsView.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC94B212B6E26F40086F9F2 /* WarningsView.xcstrings */; };
 		2ACA0C9D21A2A47500723073 /* NSStoryboard+Instantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACA0C9C21A2A47500723073 /* NSStoryboard+Instantiation.swift */; };
 		2ACA0C9E21A2A47500723073 /* NSStoryboard+Instantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACA0C9C21A2A47500723073 /* NSStoryboard+Instantiation.swift */; };
 		2ACC21B21E52B7920078241F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B11E52B7920078241F /* DefaultOptions.swift */; };
@@ -1270,6 +1272,7 @@
 		2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
 		2AC72E8025342726001D3CA0 /* SegmentedArrayControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedArrayControl.swift; sourceTree = "<group>"; };
 		2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropItemTests.swift; sourceTree = "<group>"; };
+		2AC94B212B6E26F40086F9F2 /* WarningsView.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = WarningsView.xcstrings; path = mul.lproj/WarningsView.xcstrings; sourceTree = "<group>"; };
 		2ACA0C9C21A2A47500723073 /* NSStoryboard+Instantiation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSStoryboard+Instantiation.swift"; sourceTree = "<group>"; };
 		2ACC21B11E52B7920078241F /* DefaultOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultOptions.swift; sourceTree = "<group>"; };
 		2ACC21B41E52B8C50078241F /* DefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultKeys.swift; sourceTree = "<group>"; };
@@ -1874,14 +1877,7 @@
 			children = (
 				2A1EB5C319AD469500C1E37E /* Assets.xcassets */,
 				2A149DC91902BC3900A9D6EF /* Storyboards */,
-				259C2316077678DE00BA61C5 /* Localizable.strings */,
-				2A954B232AB28B010070FB74 /* Count.xcstrings */,
-				2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */,
-				2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */,
-				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
-				2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */,
-				2AA2E0111BFE12620087BDD6 /* UnicodeBlock.strings */,
-				2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */,
+				2AC94B262B6E2E110086F9F2 /* Localizables */,
 				2A80C65C1CEE33C100AA664D /* Credits.html */,
 				2A80C6661CEE540F00AA664D /* Acknowledgments.html */,
 				2A456C421A1EDCFC00395158 /* ReportTemplate.md */,
@@ -2258,6 +2254,22 @@
 			path = Tests;
 			sourceTree = SOURCE_ROOT;
 		};
+		2AC94B262B6E2E110086F9F2 /* Localizables */ = {
+			isa = PBXGroup;
+			children = (
+				259C2316077678DE00BA61C5 /* Localizable.strings */,
+				2A954B232AB28B010070FB74 /* Count.xcstrings */,
+				2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */,
+				2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */,
+				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
+				2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */,
+				2AC94B212B6E26F40086F9F2 /* WarningsView.xcstrings */,
+				2AA2E0111BFE12620087BDD6 /* UnicodeBlock.strings */,
+				2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */,
+			);
+			name = Localizables;
+			sourceTree = "<group>";
+		};
 		2ACC652F1C9802CB000574DC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2630,6 +2642,7 @@
 				2A5E6FC42A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
 				2A5E6FC72A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
 				2A954B242AB28B010070FB74 /* Count.xcstrings in Resources */,
+				2AC94B222B6E26F40086F9F2 /* WarningsView.xcstrings in Resources */,
 				2AA2E0141BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
 				2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */,
 				2ACDE28D2406B9C000FC31EC /* AppearancePane.storyboard in Resources */,
@@ -2691,6 +2704,7 @@
 				2A5E6FC52A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
 				2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
 				2A954B252AB28B010070FB74 /* Count.xcstrings in Resources */,
+				2AC94B232B6E26F40086F9F2 /* WarningsView.xcstrings in Resources */,
 				2A36E36F2AF9ED0B00A73534 /* Sparkle.xcstrings in Resources */,
 				2AA2E0131BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
 				2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */,
