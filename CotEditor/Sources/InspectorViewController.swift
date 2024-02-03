@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import SwiftUI
 
 enum InspectorPane: Int, CaseIterable {
     
@@ -175,13 +176,13 @@ private extension InspectorPane {
         
         switch self {
             case .document:
-                NSStoryboard(name: "DocumentInspectorView").instantiateInitialController { coder in
-                    DocumentInspectorViewController(document: document, coder: coder)
-                }!
+                DocumentInspectorViewController(document: document)
+                
             case .outline:
                 NSStoryboard(name: "OutlineView").instantiateInitialController { coder in
                     OutlineViewController(document: document, coder: coder)
                 }!
+                
             case .warnings:
                 WarningInspectorViewController(document: document)
         }
