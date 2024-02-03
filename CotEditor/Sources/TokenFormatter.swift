@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,16 +32,15 @@ final class TokenFormatter: Formatter {
     /// Converts to plain string.
     override func string(for obj: Any?) -> String? {
         
-        obj as? String
+        (obj as? [String])?.formatted(.list(type: .and, width: .narrow))
     }
     
     
     /// Creates attributed string from object.
     override func attributedString(for obj: Any, withDefaultAttributes attrs: [NSAttributedString.Key: Any]? = nil) -> NSAttributedString? {
         
-        self.string(for: obj)?
-            .split(separator: ", ")
-            .map { NSAttributedString(attachment: .init(token: String($0), attributes: attrs)) }
+        (obj as? [String])?
+            .map { NSAttributedString(attachment: .init(token: $0, attributes: attrs)) }
             .joined(separator: .init(string: " ", attributes: attrs))
     }
     

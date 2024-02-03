@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="NoI-km-aN6">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="NoI-km-aN6">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -389,7 +389,7 @@
                                             </textFieldCell>
                                             <connections>
                                                 <accessibilityConnection property="title" destination="UJf-4P-eSh" id="usV-O8-Rmy"/>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.unicode" id="sru-km-SZJ">
+                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.codePoints" id="CDW-n5-3Zf">
                                                     <dictionary key="options">
                                                         <string key="NSNullPlaceholder">Not selected</string>
                                                     </dictionary>

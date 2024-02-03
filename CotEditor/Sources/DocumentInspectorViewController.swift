@@ -47,7 +47,7 @@ final class EditorInfo: NSObject {
     @objc dynamic var line: String?      // current line
     @objc dynamic var column: String?    // cursor location from the beginning of line
     
-    @objc dynamic var unicode: String?   // Unicode of selected single character (or surrogate-pair)
+    @objc dynamic var codePoints: [String]?  // code points of selected single character
 }
 
 
@@ -172,7 +172,7 @@ final class DocumentInspectorViewController: NSViewController, DocumentOwner {
                     info.location = result.location?.formatted()
                     info.line = result.line?.formatted()
                     info.column = result.column?.formatted()
-                    info.unicode = result.unicode
+                    info.codePoints = result.character?.unicodeScalars.map(\.codePoint)
                 },
         ]
     }
