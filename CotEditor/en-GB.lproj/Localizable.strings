@@ -485,18 +485,6 @@
 "Clear Recent Filters" = "Clear Recent Filters";
 "No Recent Filter" = "No Recent Filter";
 
-// Warnings
-"No issues found." = "No issues found.";
-
-// Incompatible characters
-"Scanning incompatible characters…" = "Scanning incompatible characters…";
-"Found an incompatible character." = "Found an incompatible character.";
-"Found %lld incompatible characters." = "Found %lld incompatible characters.";  // %lld is the number of characters
-
-// Inconsistent line endings
-"Found a line ending other than %@." = "Found a line ending other than %@.";  // %@ is a line ending type, such as LF
-"Found %lld line endings other than %@." = "Found %lld line endings other than %@.";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
-
 
 
 /* MARK: EditorTextView */

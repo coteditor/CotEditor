@@ -485,18 +485,6 @@
 "Clear Recent Filters" = "清除最近記錄";
 "No Recent Filter" = "沒有最近的過濾";
 
-// Warnings
-"No issues found." = "沒有發現問題。";
-
-// Incompatible characters
-"Scanning incompatible characters…" = "掃描不兼容字元⋯";
-"Found an incompatible character." = "發現1處不兼容字元。";
-"Found %lld incompatible characters." = "發現%lld處不兼容字元。";  // %lld is the number of characters
-
-// Inconsistent line endings
-"Found a line ending other than %@." = "發現1處不是%@的換行符";  // %@ is a line ending type, such as LF
-"Found %lld line endings other than %@." = "發現%lld處不是%@的換行符";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
-
 
 
 /* MARK: EditorTextView */

@@ -485,18 +485,6 @@
 "Clear Recent Filters" = "フィルタ履歴を消去";
 "No Recent Filter" = "フィルタ履歴がありません";
 
-// Warnings
-"No issues found." = "問題は見つかりませんでした。";
-
-// Incompatible characters
-"Scanning incompatible characters…" = "非互換文字を走査中…";
-"Found an incompatible character." = "1個の非互換文字が見つかりました。";
-"Found %lld incompatible characters." = "%lld個の非互換文字が見つかりました。";  // %lld is the number of characters
-
-// Inconsistent line endings
-"Found a line ending other than %@." = "1個の%@でない改行コードが見つかりました。";  // %@ is a line ending type, such as LF
-"Found %lld line endings other than %@." = "%lld個の%@でない改行コードが見つかりました。";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
-
 
 
 /* MARK: EditorTextView */

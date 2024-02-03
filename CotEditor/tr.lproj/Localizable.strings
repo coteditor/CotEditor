@@ -485,18 +485,6 @@
 "Clear Recent Filters" = "Son Filtreleri Temizle";
 "No Recent Filter" = "Son Filtre Yok";
 
-// Warnings
-"No issues found." = "Sorun bulunamadı.";
-
-// Incompatible characters
-"Scanning incompatible characters…" = "Uyumsuz karakterler taranıyor…";
-"Found an incompatible character." = "Bir uyumsuz karakter bulundu.";
-"Found %lld incompatible characters." = "%lld uyumsuz karakter bulundu.";  // %lld is the number of characters
-
-// Inconsistent line endings
-"Found a line ending other than %@." = "%@ dışında başka bir satır sonu bulundu.";  // %@ is a line ending type, such as LF
-"Found %lld line endings other than %@." = "%@ dışında %lld başka satır sonu bulundu.";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
-
 
 
 /* MARK: EditorTextView */

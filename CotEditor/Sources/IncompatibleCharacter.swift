@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,13 +26,10 @@
 
 import Foundation.NSRange
 
-struct IncompatibleCharacter: Equatable {
+struct IncompatibleCharacter: Equatable, Hashable {
     
-    let character: Character
-    let convertedCharacter: String?
-    let location: Int
-    
-    var range: NSRange  { NSRange(location: self.location, length: self.character.utf16.count) }
+    var character: Character
+    var converted: String?
 }
 
 
@@ -43,7 +40,7 @@ extension String {
     /// - Parameter encoding: The string encoding to test compatibility.
     /// - Returns: An array of IncompatibleCharacter.
     /// - Throws: `CancellationError`
-    func charactersIncompatible(with encoding: String.Encoding) throws -> [IncompatibleCharacter] {
+    func charactersIncompatible(with encoding: String.Encoding) throws -> [ValueRange<IncompatibleCharacter>] {
         
         guard !self.canBeConverted(to: encoding) else { return [] }
         
@@ -58,7 +55,8 @@ extension String {
                 
                 guard converted != string else { return nil }
                 
-                return IncompatibleCharacter(character: character, convertedCharacter: converted, location: index.utf16Offset(in: self))
+                return ValueRange(value: IncompatibleCharacter(character: character, converted: converted),
+                                  range: NSRange(location: index.utf16Offset(in: self), length: character.utf16.count))
             }
     }
 }

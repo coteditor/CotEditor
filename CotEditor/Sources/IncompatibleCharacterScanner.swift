@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ final class IncompatibleCharacterScanner {
     
     // MARK: Public Properties
     
-    @Published private(set) var incompatibleCharacters: [IncompatibleCharacter] = []  // line endings applied
+    @Published private(set) var incompatibleCharacters: [ValueRange<IncompatibleCharacter>] = []  // line endings applied
     @Published private(set) var isScanning = false
     
     var shouldScan = false

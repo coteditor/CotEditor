@@ -485,18 +485,6 @@
 "Clear Recent Filters" = "Cancella recenti";
 "No Recent Filter" = "Nessun filtro recente";
 
-// Warnings
-"No issues found." = "Nessun problema rilevato.";
-
-// Incompatible characters
-"Scanning incompatible characters…" = "Scansione dei caratteri incompatibili…";
-"Found an incompatible character." = "Rilevato un carattere incompatibile.";
-"Found %lld incompatible characters." = "Rilevati %lld caratteri incompatibili.";  // %lld is the number of characters
-
-// Inconsistent line endings
-"Found a line ending other than %@." = "Rilevata una riga che non termina con %@.";  // %@ is a line ending type, such as LF
-"Found %lld line endings other than %@." = "Rilevate %lld righe che non terminano con %@.";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
-
 
 
 /* MARK: EditorTextView */
