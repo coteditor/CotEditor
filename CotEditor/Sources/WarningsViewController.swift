@@ -55,9 +55,7 @@ final class WarningsViewController: NSSplitViewController, DocumentOwner {
         self.splitView.isVertical = false
         
         self.children = [
-            NSStoryboard(name: "IncompatibleCharactersView").instantiateInitialController { coder in
-                IncompatibleCharactersViewController(document: self.document, coder: coder)
-            }!,
+            IncompatibleCharactersViewController(document: self.document),
             InconsistentLineEndingsViewController(document: self.document),
         ]
         
