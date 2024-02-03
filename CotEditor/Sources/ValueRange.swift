@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -55,3 +55,8 @@ struct ValueRange<Value> {
 
 extension ValueRange: Equatable where Value: Equatable { }
 extension ValueRange: Hashable where Value: Hashable { }
+
+extension ValueRange: Identifiable where Self: Hashable {
+    
+    var id: Int { self.hashValue }
+}

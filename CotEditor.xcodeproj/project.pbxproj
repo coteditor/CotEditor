@@ -191,7 +191,6 @@
 		2A3F8F682429E04000CBBA89 /* DebouncerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3F8F672429E04000CBBA89 /* DebouncerTests.swift */; };
 		2A40D28A2AA8AEF000402373 /* FindPanelOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A40D2892AA8AEF000402373 /* FindPanelOptionView.swift */; };
 		2A40D28B2AA8AEF000402373 /* FindPanelOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A40D2892AA8AEF000402373 /* FindPanelOptionView.swift */; };
-		2A4144B8201397150061F653 /* InconsistentLineEndingsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144B6201397150061F653 /* InconsistentLineEndingsView.storyboard */; };
 		2A4144BC201397D70061F653 /* DocumentInspectorView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144BA201397D70061F653 /* DocumentInspectorView.storyboard */; };
 		2A41EC1A1DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */; };
 		2A41EC1B1DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */; };
@@ -651,7 +650,6 @@
 		2ACDE29A2406B9C000FC31EC /* FindPanelFieldView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D13401D1FE34F00D38E6A /* FindPanelFieldView.storyboard */; };
 		2ACDE29C2406B9C000FC31EC /* FormatPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1361E715E5B0027192A /* FormatPane.storyboard */; };
 		2ACDE29D2406B9C000FC31EC /* GeneralPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC20A6F1E70819E0093B9C6 /* GeneralPane.storyboard */; };
-		2ACDE2A02406B9C000FC31EC /* InconsistentLineEndingsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144B6201397150061F653 /* InconsistentLineEndingsView.storyboard */; };
 		2ACDE2A22406B9C000FC31EC /* KeyBindingsPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1081E708CDF0027192A /* KeyBindingsPane.storyboard */; };
 		2ACDE2A32406B9C000FC31EC /* MultipleReplacePanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* MultipleReplacePanel.storyboard */; };
 		2ACDE2A52406B9C000FC31EC /* OutlineView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE7A8D420450C0000830830 /* OutlineView.storyboard */; };
@@ -762,8 +760,8 @@
 		2AF5D0E5286D9AB3000BE826 /* ArithmeticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5D0E4286D9AB3000BE826 /* ArithmeticsTests.swift */; };
 		2AF63BA82A6FA4D900E1258E /* NSTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF63BA72A6FA4D900E1258E /* NSTableView.swift */; };
 		2AF63BA92A6FA4D900E1258E /* NSTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF63BA72A6FA4D900E1258E /* NSTableView.swift */; };
-		2AF6A5C728053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */; };
-		2AF6A5C828053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */; };
+		2AF6A5C728053179005F580B /* InconsistentLineEndingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6A5C528053179005F580B /* InconsistentLineEndingsView.swift */; };
+		2AF6A5C828053179005F580B /* InconsistentLineEndingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6A5C528053179005F580B /* InconsistentLineEndingsView.swift */; };
 		2AF98CAB294B9488009AD47F /* FindSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF98CAA294B9488009AD47F /* FindSettingsView.swift */; };
 		2AF98CAC294B9488009AD47F /* FindSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF98CAA294B9488009AD47F /* FindSettingsView.swift */; };
 		2AF98CAF294C0670009AD47F /* MultipleReplaceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF98CAE294C0670009AD47F /* MultipleReplaceSettingsView.swift */; };
@@ -989,7 +987,6 @@
 		2A401FE71D9AF0A300ACE036 /* it */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2A401FE81D9AF7CA00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/UnicodeBlock.strings; sourceTree = "<group>"; };
 		2A40D2892AA8AEF000402373 /* FindPanelOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPanelOptionView.swift; sourceTree = "<group>"; };
-		2A4144B7201397150061F653 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/InconsistentLineEndingsView.storyboard; sourceTree = "<group>"; };
 		2A4144BB201397D70061F653 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DocumentInspectorView.storyboard; sourceTree = "<group>"; };
 		2A4144C02013A90B0061F653 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
 		2A4144C12013A90D0061F653 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DocumentInspectorView.strings"; sourceTree = "<group>"; };
@@ -1062,7 +1059,6 @@
 		2A5E6FEA2A73452100E33EA7 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SyntaxCommentsEditView.xcstrings; sourceTree = "<group>"; };
 		2A5E6FEB2A73469400E33EA7 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SyntaxTermsEditView.xcstrings; sourceTree = "<group>"; };
 		2A5EA1612A88E8B000D16730 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/StatusBar.xcstrings; sourceTree = "<group>"; };
-		2A5EA1622A88E9D500D16730 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/InconsistentLineEndingsView.xcstrings; sourceTree = "<group>"; };
 		2A5EA1632A88EAC100D16730 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/OutlineView.xcstrings; sourceTree = "<group>"; };
 		2A5EA1662A88F54800D16730 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/PrintPanelAccessory.xcstrings; sourceTree = "<group>"; };
 		2A5EA1672A88F70C00D16730 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Main.xcstrings; sourceTree = "<group>"; };
@@ -1352,7 +1348,7 @@
 		2AF4F57F1DE60B4200703525 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.html"; sourceTree = "<group>"; };
 		2AF5D0E4286D9AB3000BE826 /* ArithmeticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArithmeticsTests.swift; sourceTree = "<group>"; };
 		2AF63BA72A6FA4D900E1258E /* NSTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTableView.swift; sourceTree = "<group>"; };
-		2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InconsistentLineEndingsViewController.swift; sourceTree = "<group>"; };
+		2AF6A5C528053179005F580B /* InconsistentLineEndingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InconsistentLineEndingsView.swift; sourceTree = "<group>"; };
 		2AF98CAA294B9488009AD47F /* FindSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindSettingsView.swift; sourceTree = "<group>"; };
 		2AF98CAE294C0670009AD47F /* MultipleReplaceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleReplaceSettingsView.swift; sourceTree = "<group>"; };
 		2AF9961F235ACDD60041872E /* NSPrintInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPrintInfo.swift; sourceTree = "<group>"; };
@@ -2004,7 +2000,6 @@
 				2A4144BA201397D70061F653 /* DocumentInspectorView.storyboard */,
 				2AE7A8D420450C0000830830 /* OutlineView.storyboard */,
 				2A0259172A80D7EF002B7C20 /* IncompatibleCharactersView.storyboard */,
-				2A4144B6201397150061F653 /* InconsistentLineEndingsView.storyboard */,
 				2A6602CE1D05BD72003E8D87 /* StatusBar.storyboard */,
 				2A5F7CA31D152589001D83BC /* NavigationBar.storyboard */,
 			);
@@ -2352,7 +2347,7 @@
 				2AE7A8D820450FE600830830 /* OutlineViewController.swift */,
 				2A2B085F28046E3B0028D733 /* WarningsViewController.swift */,
 				2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */,
-				2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */,
+				2AF6A5C528053179005F580B /* InconsistentLineEndingsView.swift */,
 			);
 			name = Inspector;
 			sourceTree = "<group>";
@@ -2652,7 +2647,6 @@
 				2ACDE29C2406B9C000FC31EC /* FormatPane.storyboard in Resources */,
 				2ACDE29D2406B9C000FC31EC /* GeneralPane.storyboard in Resources */,
 				2A0259192A80D7F0002B7C20 /* IncompatibleCharactersView.storyboard in Resources */,
-				2ACDE2A02406B9C000FC31EC /* InconsistentLineEndingsView.storyboard in Resources */,
 				2ACDE2A22406B9C000FC31EC /* KeyBindingsPane.storyboard in Resources */,
 				2ACDE2A32406B9C000FC31EC /* MultipleReplacePanel.storyboard in Resources */,
 				2ACDE2962406B9C000FC31EC /* NavigationBar.storyboard in Resources */,
@@ -2715,7 +2709,6 @@
 				2A10D1381E715E5B0027192A /* FormatPane.storyboard in Resources */,
 				2AC20A711E70819E0093B9C6 /* GeneralPane.storyboard in Resources */,
 				2A02591A2A80D7F0002B7C20 /* IncompatibleCharactersView.storyboard in Resources */,
-				2A4144B8201397150061F653 /* InconsistentLineEndingsView.storyboard in Resources */,
 				2A10D10A1E708CDF0027192A /* KeyBindingsPane.storyboard in Resources */,
 				2A3D63FB1E769DDF00F538E1 /* MultipleReplacePanel.storyboard in Resources */,
 				2A5F7CA51D152589001D83BC /* NavigationBar.storyboard in Resources */,
@@ -2957,7 +2950,7 @@
 				2AEB8B442726220000C2F3DD /* IncompatibleCharacterFormatter.swift in Sources */,
 				2A8C338D1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
-				2AF6A5C728053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */,
+				2AF6A5C728053179005F580B /* InconsistentLineEndingsView.swift in Sources */,
 				2A1083F02944837E00751DAE /* InsetTextField.swift in Sources */,
 				2ACDC0A41D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
 				2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */,
@@ -3323,7 +3316,7 @@
 				2AEB8B452726220000C2F3DD /* IncompatibleCharacterFormatter.swift in Sources */,
 				2A8C338C1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
-				2AF6A5C828053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */,
+				2AF6A5C828053179005F580B /* InconsistentLineEndingsView.swift in Sources */,
 				2A1083F12944837E00751DAE /* InsetTextField.swift in Sources */,
 				2ACDC0A31D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
 				2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */,
@@ -3681,15 +3674,6 @@
 				2AC605A82B64A3F600E93E5B /* cs */,
 			);
 			name = MultipleReplacePanel.storyboard;
-			sourceTree = "<group>";
-		};
-		2A4144B6201397150061F653 /* InconsistentLineEndingsView.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A4144B7201397150061F653 /* Base */,
-				2A5EA1622A88E9D500D16730 /* mul */,
-			);
-			name = InconsistentLineEndingsView.storyboard;
 			sourceTree = "<group>";
 		};
 		2A4144BA201397D70061F653 /* DocumentInspectorView.storyboard */ = {

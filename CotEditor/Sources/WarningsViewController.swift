@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,9 +58,7 @@ final class WarningsViewController: NSSplitViewController, DocumentOwner {
             NSStoryboard(name: "IncompatibleCharactersView").instantiateInitialController { coder in
                 IncompatibleCharactersViewController(document: self.document, coder: coder)
             }!,
-            NSStoryboard(name: "InconsistentLineEndingsView").instantiateInitialController { coder in
-                InconsistentLineEndingsViewController(document: self.document, coder: coder)
-            }!,
+            InconsistentLineEndingsViewController(document: self.document),
         ]
         
         // set accessibility
