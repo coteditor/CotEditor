@@ -66,9 +66,11 @@ extension EditorCountResult.Count {
     var formatted: String? {
         
         if self.selected == 0 {
-            return self.entire?.formatted()
+            self.entire?.formatted()
+        } else if let entire {
+            "\(entire.formatted()) (\(self.selected.formatted()))"
         } else {
-            return "\(self.entire?.formatted() ?? "-") (\(self.selected.formatted()))"
+            nil
         }
     }
 }
