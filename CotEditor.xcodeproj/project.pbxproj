@@ -1515,7 +1515,6 @@
 				2A3A759719E77E4C001DAB88 /* Syntax Edit Sheet */,
 				2A2D6C1A1A602D7E002451FF /* Text Finder */,
 				2A436DDC1A426EAE00275FD4 /* Document Window */,
-				2AAEA6A01A4342A800A930CA /* Document Accessories */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -1977,6 +1976,7 @@
 				2AE7A8D420450C0000830830 /* OutlineView.storyboard */,
 				2A6602CE1D05BD72003E8D87 /* StatusBar.storyboard */,
 				2A5F7CA31D152589001D83BC /* NavigationBar.storyboard */,
+				2A7F4E022871F46D0029CE66 /* PrintPanelAccessory.storyboard */,
 			);
 			name = "Document Window";
 			sourceTree = "<group>";
@@ -2166,14 +2166,6 @@
 				2A1235452121B106002E9C53 /* Unicode.UTF32.CodeUnit+BlockName.swift */,
 			);
 			name = Character;
-			sourceTree = "<group>";
-		};
-		2AAEA6A01A4342A800A930CA /* Document Accessories */ = {
-			isa = PBXGroup;
-			children = (
-				2A7F4E022871F46D0029CE66 /* PrintPanelAccessory.storyboard */,
-			);
-			name = "Document Accessories";
 			sourceTree = "<group>";
 		};
 		2AB1BD21287D752300C6FEAF /* Views */ = {
