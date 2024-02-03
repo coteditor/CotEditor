@@ -26,40 +26,6 @@
 import SwiftUI
 import Combine
 
-final class InconsistentLineEndingsViewController: NSHostingController<InconsistentLineEndingsView>, DocumentOwner {
-    
-    // MARK: Public Properties
-    
-    var document: Document  {
-        
-        get { self.model.document }
-        set { self.model.document = newValue }
-    }
-    
-    
-    // MARK: Private Properties
-    
-    private let model: InconsistentLineEndingsView.Model
-    
-    
-    
-    // MARK: Lifecycle
-    
-    required init(document: Document) {
-        
-        self.model = InconsistentLineEndingsView.Model(document: document)
-        
-        super.init(rootView: InconsistentLineEndingsView(model: self.model))
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-
 struct InconsistentLineEndingsView: View {
     
     typealias Item = ValueRange<LineEnding>
@@ -141,9 +107,6 @@ struct InconsistentLineEndingsView: View {
         .accessibilityLabel(Text("Inconsistent Line Endings", tableName: "WarningsView"))
         .controlSize(.small)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .padding(.top, 8)
-        .padding(.horizontal, 12)
-        .padding(.bottom, 12)
     }
     
     
@@ -194,9 +157,11 @@ private extension InconsistentLineEndingsView.Model {
     document.textStorage.replaceContent(with: "  \r \n \r")
     
     return InconsistentLineEndingsView(model: .init(document: document))
+        .padding(12)
 }
 
 @available(macOS 14, *)
 #Preview("Empty", traits: .fixedLayout(width: 240, height: 300)) {
     InconsistentLineEndingsView(model: .init(document: .init()))
+        .padding(12)
 }

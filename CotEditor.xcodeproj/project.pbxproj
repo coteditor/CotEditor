@@ -145,8 +145,8 @@
 		2A2792961D1DBDAC00F3FC5D /* String+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */; };
 		2A2792981D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */; };
 		2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */; };
-		2A2B086028046E3B0028D733 /* WarningsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2B085F28046E3B0028D733 /* WarningsViewController.swift */; };
-		2A2B086128046E3B0028D733 /* WarningsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2B085F28046E3B0028D733 /* WarningsViewController.swift */; };
+		2A2B086028046E3B0028D733 /* WarningsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2B085F28046E3B0028D733 /* WarningsView.swift */; };
+		2A2B086128046E3B0028D733 /* WarningsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2B085F28046E3B0028D733 /* WarningsView.swift */; };
 		2A30C7DB2B1380BE002F6381 /* ShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C7DA2B1380BE002F6381 /* ShortcutView.swift */; };
 		2A30C7DC2B1380BE002F6381 /* ShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C7DA2B1380BE002F6381 /* ShortcutView.swift */; };
 		2A33D07E1D1C75B8005977B9 /* SyntaxValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D07D1D1C75B8005977B9 /* SyntaxValidationView.swift */; };
@@ -950,7 +950,7 @@
 		2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearancePaneController.swift; sourceTree = "<group>"; };
 		2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Constants.swift"; sourceTree = "<group>"; };
 		2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatPaneController.swift; sourceTree = "<group>"; };
-		2A2B085F28046E3B0028D733 /* WarningsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningsViewController.swift; sourceTree = "<group>"; };
+		2A2B085F28046E3B0028D733 /* WarningsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningsView.swift; sourceTree = "<group>"; };
 		2A30C7DA2B1380BE002F6381 /* ShortcutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutView.swift; sourceTree = "<group>"; };
 		2A33D07D1D1C75B8005977B9 /* SyntaxValidationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxValidationView.swift; sourceTree = "<group>"; };
 		2A33D0801D1C7935005977B9 /* SyntaxTermsEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTermsEditViewController.swift; sourceTree = "<group>"; };
@@ -2336,7 +2336,7 @@
 				2AAB4BFE1D2444930049A68B /* InspectorViewController.swift */,
 				2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */,
 				2AE7A8D820450FE600830830 /* OutlineViewController.swift */,
-				2A2B085F28046E3B0028D733 /* WarningsViewController.swift */,
+				2A2B085F28046E3B0028D733 /* WarningsView.swift */,
 				2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersView.swift */,
 				2AF6A5C528053179005F580B /* InconsistentLineEndingsView.swift */,
 			);
@@ -3124,7 +3124,7 @@
 				2A91C31C1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */,
 				2A7FCC46280A367C0070EAB3 /* ValueRange.swift in Sources */,
 				2A9710932A9C7BAE00CE9CDD /* WarningsSettingView.swift in Sources */,
-				2A2B086028046E3B0028D733 /* WarningsViewController.swift in Sources */,
+				2A2B086028046E3B0028D733 /* WarningsView.swift in Sources */,
 				2A78BFB11D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
@@ -3490,7 +3490,7 @@
 				2A91C31B1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */,
 				2A7FCC47280A367C0070EAB3 /* ValueRange.swift in Sources */,
 				2A9710942A9C7BAE00CE9CDD /* WarningsSettingView.swift in Sources */,
-				2A2B086128046E3B0028D733 /* WarningsViewController.swift in Sources */,
+				2A2B086128046E3B0028D733 /* WarningsView.swift in Sources */,
 				2A78BFB01D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,

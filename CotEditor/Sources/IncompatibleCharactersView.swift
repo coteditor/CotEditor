@@ -27,40 +27,6 @@ import SwiftUI
 import AppKit.NSTextStorage
 import Combine
 
-final class IncompatibleCharactersViewController: NSHostingController<IncompatibleCharactersView>, DocumentOwner {
-    
-    // MARK: Public Properties
-    
-    var document: Document  {
-        
-        get { self.model.document }
-        set { self.model.document = newValue }
-    }
-    
-    
-    // MARK: Private Properties
-    
-    private let model: IncompatibleCharactersView.Model
-    
-    
-    
-    // MARK: Lifecycle
-    
-    required init(document: Document) {
-        
-        self.model = IncompatibleCharactersView.Model(document: document)
-        
-        super.init(rootView: IncompatibleCharactersView(model: self.model))
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-
 struct IncompatibleCharactersView: View {
     
     typealias Item = ValueRange<IncompatibleCharacter>
@@ -159,9 +125,6 @@ struct IncompatibleCharactersView: View {
         .accessibilityLabel(Text("Incompatible Characters", tableName: "WarningsView"))
         .controlSize(.small)
         .frame(maxWidth: .infinity, minHeight: self.model.items.isEmpty ? 60 : 120, alignment: .topLeading)
-        .padding(.top, 8)
-        .padding(.horizontal, 12)
-        .padding(.bottom, 12)
     }
     
     
@@ -269,9 +232,11 @@ private extension NSTextStorage {
     document.textStorage.replaceContent(with: "  ~ \n ~ \\")
     
     return IncompatibleCharactersView(model: .init(document: document))
+        .padding(12)
 }
 
 @available(macOS 14, *)
 #Preview("Empty", traits: .fixedLayout(width: 240, height: 300)) {
     IncompatibleCharactersView(model: .init(document: .init()))
+        .padding(12)
 }
