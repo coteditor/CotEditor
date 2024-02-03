@@ -91,10 +91,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         didSet {
             self.needsUpdateInsertionIndicators = true
-            
-            if ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 14 {
-                self.updateInsertionPointTimer()
-            }
+            self.updateInsertionPointTimer()
         }
     }
     var selectionOrigins: [Int] = []

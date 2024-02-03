@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -229,6 +229,7 @@ extension NSLayoutManager {
     ///
     /// - Parameter characterIndex: The character index.
     /// - Returns: One-pixel-width rects to draw insertion point in the layout manager coordinate.
+    @available(macOS, deprecated: 14)
     final func insertionPointRects(at characterIndex: Int) -> [NSRect] {
         
         guard
@@ -247,27 +248,13 @@ extension NSLayoutManager {
     }
     
     
-    /// Returns the character indexes for the insertion points in the same line fragment of the given character index in display order.
-    ///
-    /// - Parameter characterIndex: The character index of one character within the line fragment.
-    /// - Returns: An array contains character indexes in display order.
-    private func lineFragmentInsertionPointIndexes(forCharacterAt characterIndex: Int) -> [Int] {
-        
-        let count = self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: false, inDisplayOrder: true, positions: nil, characterIndexes: nil)
-        var characterIndexes = [Int](repeating: 0, count: count)
-        self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: false, inDisplayOrder: true, positions: nil, characterIndexes: &characterIndexes)
-        
-        return characterIndexes
-    }
-    
-    
     /// Returns a rect to draw insertion point for the given character index.
     ///
     /// - Parameters:
     ///   - characterIndex: The character index.
     ///   - alternate: If `true`, the secondary insertion point rect for split cursor will be returned.
     /// - Returns: An one-pixel-width rect to draw the insertion point in the layout manager coordinate, or `nil` if no alternate insertion point is provided.
-    private func insertionPointRect(at characterIndex: Int, alternate: Bool) -> NSRect? {
+    final func insertionPointRect(at characterIndex: Int, alternate: Bool = false) -> NSRect? {
         
         assert(characterIndex >= 0)
         
@@ -294,12 +281,27 @@ extension NSLayoutManager {
         
         return NSRect(x: lineFragment.minX + position, y: lineFragment.minY, width: 1, height: lineFragment.height)
     }
+    
+    
+    /// Returns the character indexes for the insertion points in the same line fragment of the given character index in display order.
+    ///
+    /// - Parameter characterIndex: The character index of one character within the line fragment.
+    /// - Returns: An array contains character indexes in display order.
+    private func lineFragmentInsertionPointIndexes(forCharacterAt characterIndex: Int) -> [Int] {
+        
+        let count = self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: false, inDisplayOrder: true, positions: nil, characterIndexes: nil)
+        var characterIndexes = [Int](repeating: 0, count: count)
+        self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: false, inDisplayOrder: true, positions: nil, characterIndexes: &characterIndexes)
+        
+        return characterIndexes
+    }
 }
 
 
 private extension UserDefaults {
     
     /// Whether the user enables the system-wide "Use split cursor" option in System Settings > Keyboard > Text Input > Input Source.
+    @available(macOS, deprecated: 14)
     var useSplitCursor: Bool  { self.bool(forKey: "NSUseSplitCursor") }
 }
 
