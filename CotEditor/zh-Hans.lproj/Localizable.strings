@@ -40,11 +40,7 @@
 
 
 // Accessibility labels
-"Inspector" = "检查器";
-"Document Inspector" = "文稿信息";
 "Outline" = "大纲";
-"Warnings" = "警告";
-"Incompatible Characters" = "不兼容字符";
 "Filter" = "过滤";
 "Status Bar" = "状态栏";
 "Editor" = "编辑器";
@@ -479,8 +475,8 @@
 
 
 
-/* MARK: Inspector */
-// Outline
+/* MARK: FilterField */
+// Menu items
 "Recent Filters" = "最近的过滤";
 "Clear Recent Filters" = "清除最近记录";
 "No Recent Filter" = "没有最近的过滤";

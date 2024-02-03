@@ -40,11 +40,7 @@
 
 
 // Accessibility labels
-"Inspector" = "Inspecteur";
-"Document Inspector" = "Inspecteur de document";
 "Outline" = "Structure";
-"Warnings" = "Avertissements";
-"Incompatible Characters" = "Caractères incompatibles";
 "Filter" = "Filter";
 "Status Bar" = "Barre d’état";
 "Editor" = "Éditeur";
@@ -479,8 +475,8 @@
 
 
 
-/* MARK: Inspector */
-// Outline
+/* MARK: FilterField */
+// Menu items
 "Recent Filters" = "Filtres récents";
 "Clear Recent Filters" = "Effacer l’historique";
 "No Recent Filter" = "Aucun filtre récent";

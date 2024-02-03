@@ -40,11 +40,7 @@
 
 
 // Accessibility labels
-"Inspector" = "インスペクタ";
-"Document Inspector" = "書類情報";
 "Outline" = "アウトライン";
-"Warnings" = "警告";
-"Incompatible Characters" = "非互換文字";
 "Filter" = "フィルタ";
 "Status Bar" = "ステータスバー";
 "Editor" = "エディタ";
@@ -479,8 +475,8 @@
 
 
 
-/* MARK: Inspector */
-// Outline
+/* MARK: FilterField */
+// Menu items
 "Recent Filters" = "最近のフィルタ";
 "Clear Recent Filters" = "フィルタ履歴を消去";
 "No Recent Filter" = "フィルタ履歴がありません";

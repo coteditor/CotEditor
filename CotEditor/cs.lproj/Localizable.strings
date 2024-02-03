@@ -40,11 +40,7 @@
 
 
 // Accessibility labels
-"Inspector" = "Inspektor";
-"Document Inspector" = "Inspektor dokumentu";
 "Outline" = "Osnova";
-"Warnings" = "Varování";
-"Incompatible Characters" = "Nekompatibilní znaky";
 "Filter" = "Filtr";
 "Status Bar" = "Stavový řádek";
 "Editor" = "Editor";
@@ -479,8 +475,8 @@
 
 
 
-/* MARK: Inspector */
-// Outline
+/* MARK: FilterField */
+// Menu items
 "Recent Filters" = "Poslední filtry";
 "Clear Recent Filters" = "Smazat poslední filtry";
 "No Recent Filter" = "Žádný poslední filtr";

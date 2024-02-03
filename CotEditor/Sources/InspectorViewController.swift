@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -107,7 +107,7 @@ final class InspectorViewController: NSTabViewController, DocumentOwner {
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel(String(localized: "Inspector"))
+        self.view.setAccessibilityLabel(String(localized: "Inspector", table: "Inspector", comment: "accessibility label"))
     }
     
     
@@ -164,9 +164,9 @@ private extension InspectorPane {
     var name: String {
         
         switch self {
-            case .document: String(localized: "Document Inspector")
-            case .outline: String(localized: "Outline")
-            case .warnings: String(localized: "Warnings")
+            case .document: String(localized: "Document Inspector", table: "Inspector", comment: "pane title")
+            case .outline: String(localized: "Outline", table: "Inspector", comment: "pane title")
+            case .warnings: String(localized: "Warnings", table: "Inspector", comment: "pane title")
         }
     }
     

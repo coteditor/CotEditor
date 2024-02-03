@@ -100,7 +100,7 @@ struct WarningInspectorView: View {
                 .padding(.bottom, 12)
         }
         .padding(.horizontal, 12)
-        .accessibilityLabel("Warnings")
+        .accessibilityLabel(Text("Warnings", tableName: "Inspector"))
     }
 }
 
