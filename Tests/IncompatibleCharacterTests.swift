@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,14 +38,14 @@ final class IncompatibleCharacterTests: XCTestCase {
         
         let backslash = try XCTUnwrap(incompatibles.first)
         
-        XCTAssertEqual(backslash.character, "\\")
-        XCTAssertEqual(backslash.convertedCharacter, "＼")
+        XCTAssertEqual(backslash.value.character, "\\")
+        XCTAssertEqual(backslash.value.converted, "＼")
         XCTAssertEqual(backslash.location, 3)
         
         let tilde = incompatibles[1]
         
-        XCTAssertEqual(tilde.character, "~")
-        XCTAssertEqual(tilde.convertedCharacter, "?")
+        XCTAssertEqual(tilde.value.character, "~")
+        XCTAssertEqual(tilde.value.converted, "?")
         XCTAssertEqual(tilde.location, 11)
     }
     
@@ -59,8 +59,8 @@ final class IncompatibleCharacterTests: XCTestCase {
         
         let tilde = incompatibles[1]
         
-        XCTAssertEqual(tilde.character, "~")
-        XCTAssertEqual(tilde.convertedCharacter, "?")
+        XCTAssertEqual(tilde.value.character, "~")
+        XCTAssertEqual(tilde.value.converted, "?")
         XCTAssertEqual(tilde.location, 1)
     }
     
@@ -72,12 +72,12 @@ final class IncompatibleCharacterTests: XCTestCase {
         
         XCTAssertEqual(incompatibles.count, 2)
         
-        XCTAssertEqual(incompatibles[0].character, "👨‍👨‍👦")
-        XCTAssertEqual(incompatibles[0].convertedCharacter, "????????")
+        XCTAssertEqual(incompatibles[0].value.character, "👨‍👨‍👦")
+        XCTAssertEqual(incompatibles[0].value.converted, "????????")
         XCTAssertEqual(incompatibles[0].location, 7)
         
-        XCTAssertEqual(incompatibles[1].character, "🐕")
-        XCTAssertEqual(incompatibles[1].convertedCharacter, "??")
+        XCTAssertEqual(incompatibles[1].value.character, "🐕")
+        XCTAssertEqual(incompatibles[1].value.converted, "??")
         XCTAssertEqual(incompatibles[1].location, 21)
     }
 }
