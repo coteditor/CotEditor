@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 1024jp
+//  © 2015-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -130,15 +130,21 @@ struct FindPanelResultView: View {
                     }
                 }
                 
-                guard newValue.count == 1, let id = newValue.first else { return }
-                self.selectMatch(id)
+                guard newValue.count == 1 else { return }
+                self.selectMatch(newValue.first)
             }
             .onChange(of: self.sortOrder) { newOrder in
                 self.model.matches.sort(using: newOrder)
             }
-            .onCommand(#selector(EditorTextView.biggerFont), perform: self.biggerFont)
-            .onCommand(#selector(EditorTextView.smallerFont), perform: self.smallerFont)
-            .onCommand(#selector(EditorTextView.resetFont), perform: self.resetFont)
+            .onCommand(#selector(EditorTextView.biggerFont)) {
+                self.fontSize += 1
+            }
+            .onCommand(#selector(EditorTextView.smallerFont)) {
+                self.fontSize = max(self.fontSize - 1, NSFont.smallSystemFontSize)
+            }
+            .onCommand(#selector(EditorTextView.resetFont)) {
+                UserDefaults.standard.restore(key: .findResultViewFontSize)
+            }
         }
         .controlSize(.small)
         .padding(.top, 8)
@@ -162,40 +168,17 @@ struct FindPanelResultView: View {
     /// Selects the match in the target text view.
     ///
     /// - Parameter id: The identifier of the match to select.
-    @MainActor private func selectMatch(_ id: Match.ID) {
+    @MainActor private func selectMatch(_ id: Match.ID?) {
         
         // abandon if text becomes shorter than range to select
         guard
-            let textView = self.model.target,
             let range = self.model.matches.first(where: { $0.id == id })?.range,
+            let textView = self.model.target,
             textView.string.nsRange.upperBound >= range.upperBound
         else { return }
         
         textView.select(range: range)
         textView.showFindIndicator(for: range)
-    }
-    
-    
-    /// Increases the result's font size.
-    private func biggerFont() {
-        
-        self.fontSize += 1
-    }
-    
-    
-    /// Decreases the result's font size.
-    private func smallerFont() {
-        
-        guard self.fontSize > NSFont.smallSystemFontSize else { return }
-        
-        self.fontSize -= 1
-    }
-    
-    
-    /// Restores the result's font size to default.
-    private func resetFont() {
-        
-        UserDefaults.standard.restore(key: .findResultViewFontSize)
     }
 }
 
