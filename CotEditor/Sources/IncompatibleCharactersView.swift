@@ -109,7 +109,9 @@ struct IncompatibleCharactersView: View {
                     self.selectItem(id: newValue)
                 }
                 .onChange(of: self.sortOrder) { newOrder in
-                    self.model.items.sort(using: newOrder)
+                    withAnimation {
+                        self.model.items.sort(using: newOrder)
+                    }
                 }
                 .tableStyle(.bordered)
                 .border(Color(nsColor: .gridColor))
@@ -135,7 +137,8 @@ struct IncompatibleCharactersView: View {
         
         guard
             let item = self.model.items.first(where: { $0.id == id }),
-            let textView = self.model.document.textView
+            let textView = self.model.document.textView,
+            textView.string.nsRange.upperBound >= item.range.upperBound
         else { return }
         
         textView.selectedRange = item.range
