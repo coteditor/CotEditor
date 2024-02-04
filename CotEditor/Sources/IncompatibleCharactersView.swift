@@ -40,6 +40,7 @@ struct IncompatibleCharactersView: View {
         @Published var items: [Item] = []
         @Published var isScanning = false
         
+        private var scanner: IncompatibleCharacterScanner?
         private var observers: Set<AnyCancellable> = []
         
         
@@ -151,16 +152,14 @@ private extension IncompatibleCharactersView.Model {
     
     func invalidateObservation() {
         
-        let scanner = self.document.incompatibleCharacterScanner
-        
-        scanner.shouldScan = self.isAppeared
-        scanner.invalidate()
-        
-        if !self.isAppeared, !self.items.isEmpty {
-            self.document.textStorage.clearAllMarkup()
-        }
-        
         if self.isAppeared {
+            let scanner = if let scanner, scanner.document == self.document {
+                scanner
+            } else {
+                IncompatibleCharacterScanner(document: self.document)
+            }
+            self.scanner = scanner
+            
             self.observers = [
                 scanner.$incompatibleCharacters
                     .removeDuplicates()
@@ -174,7 +173,12 @@ private extension IncompatibleCharactersView.Model {
                     .sink { [weak self] in self?.isScanning = $0 },
             ]
         } else {
+            if !self.items.isEmpty {
+                self.document.textStorage.clearAllMarkup()
+            }
+            
             self.observers.removeAll()
+            self.scanner = nil
         }
     }
     

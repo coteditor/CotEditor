@@ -30,25 +30,26 @@ final class IncompatibleCharacterScanner {
     
     // MARK: Public Properties
     
-    @Published private(set) var incompatibleCharacters: [ValueRange<IncompatibleCharacter>] = []  // line endings applied
-    @Published private(set) var isScanning = false
+    let document: Document
     
-    var shouldScan = false
+    @Published private(set) var incompatibleCharacters: [ValueRange<IncompatibleCharacter>] = []
+    @Published private(set) var isScanning = false
     
     
     // MARK: Private Properties
     
-    private weak var document: Document?  // weak to avoid cycle retain
-    
     private var task: Task<Void, any Error>?
+    private var observers: AnyCancellable?
     
     
     
     // MARK: Lifecycle
     
-    required init(document: Document) {
+    init(document: Document) {
         
         self.document = document
+        
+        self.observe()
     }
     
     
@@ -58,30 +59,46 @@ final class IncompatibleCharacterScanner {
     
     
     
-    // MARK: Public Methods
+    // MARK: Private Methods
     
-    /// Scans only when needed.
-    func invalidate() {
+    /// Observes the document.
+    private func observe() {
         
-        guard self.shouldScan else { return }
+        self.observers = Publishers.Merge3(
+            Just(Void()),  // initial scan
+            NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: self.document.textStorage)
+                .map { $0.object as! NSTextStorage }
+                .filter { $0.editedMask.contains(.editedCharacters) }
+                .debounce(for: .seconds(0.3), scheduler: RunLoop.current)
+                .eraseToVoid(),
+            self.document.$fileEncoding
+                .map(\.encoding)
+                .debounce(for: .seconds(0.1), scheduler: RunLoop.current)
+                .removeDuplicates()
+                .eraseToVoid()
+        )
+        .sink { [weak self] _ in self?.scan() }
+    }
+    
+    
+    /// Scans the characters incompatible with the current encoding in the document contents.
+    private func scan() {
         
         self.task?.cancel()
         
-        guard let document = self.document else { return assertionFailure() }
-        let encoding = document.fileEncoding.encoding
+        let encoding = self.document.fileEncoding.encoding
         
-        guard !document.textStorage.string.canBeConverted(to: encoding) else {
+        guard !self.document.textStorage.string.canBeConverted(to: encoding) else {
             self.incompatibleCharacters = []
             return
         }
         
+        let document = self.document
         self.isScanning = true
-        self.task = Task { [weak self] in
-            defer { self?.isScanning = false }
-            try await Task.sleep(for: .seconds(0.4), tolerance: .seconds(0.1))  // debounce
-            
+        self.task = Task {
+            defer { self.isScanning = false }
             let string = await MainActor.run { document.textStorage.string.immutable }
-            self?.incompatibleCharacters = try string.charactersIncompatible(with: encoding)
+            self.incompatibleCharacters = try string.charactersIncompatible(with: encoding)
         }
     }
 }

@@ -61,7 +61,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     let lineEndingScanner: LineEndingScanner
     private(set) lazy var selection = TextSelection(document: self)
     private(set) lazy var analyzer = DocumentAnalyzer(document: self)
-    private(set) lazy var incompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
     
     let didChangeSyntax = PassthroughSubject<String, Never>()
     
@@ -874,7 +873,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 target.fileEncoding = currentFileEncoding
                 target.shouldSaveEncodingXattr = shouldSaveEncodingXattr
                 target.allowsLossySaving = false
-                target.incompatibleCharacterScanner.invalidate()
                 
                 // register redo
                 target.undoManager?.registerUndo(withTarget: target) { $0.changeEncoding(to: fileEncoding) }
@@ -886,9 +884,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         self.fileEncoding = fileEncoding
         self.shouldSaveEncodingXattr = true
         self.allowsLossySaving = false
-        
-        // update incompatible characters inspector
-        self.incompatibleCharacterScanner.invalidate()
     }
     
     
@@ -1011,9 +1006,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     /// Transfers the file information to UI.
     private func applyContentToWindow() {
-        
-        // update incompatible characters if pane is visible
-        self.incompatibleCharacterScanner.invalidate()
         
         guard let viewController = self.viewController else { return }
         
