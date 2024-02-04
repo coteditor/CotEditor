@@ -52,7 +52,7 @@ struct InconsistentLineEndingsView: View {
     @ObservedObject var model: Model
     
     @State private var selection: Item.ID?
-    @State private var sortOrder = [KeyPathComparator(\Item.location)]
+    @State private var sortOrder: [KeyPathComparator<Item>] = []
     
     
     var body: some View {
