@@ -174,7 +174,7 @@ struct FindPanelResultView: View {
         guard
             let range = self.model.matches.first(where: { $0.id == id })?.range,
             let textView = self.model.target,
-            textView.string.nsRange.upperBound >= range.upperBound
+            textView.string.length >= range.upperBound
         else { return }
         
         textView.select(range: range)

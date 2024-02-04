@@ -138,7 +138,7 @@ struct IncompatibleCharactersView: View {
         guard
             let item = self.model.items.first(where: { $0.id == id }),
             let textView = self.model.document.textView,
-            textView.string.nsRange.upperBound >= item.range.upperBound
+            textView.string.length >= item.range.upperBound
         else { return }
         
         textView.selectedRange = item.range
