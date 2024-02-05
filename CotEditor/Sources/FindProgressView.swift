@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -65,29 +65,21 @@ struct FindProgressView: View {
     
     var body: some View {
         
-        VStack {
-            Text(self.label)
-                .fontWeight(.semibold)
-            
-            HStack {
-                ProgressView(value: self.progress.fractionCompleted)
-                    .progressViewStyle(.linear)
-                
-                Button(role: .cancel) {
-                    self.progress.cancel()
-                } label: {
-                    Image(systemName: "xmark")
-                        .symbolVariant(.circle)
-                        .symbolVariant(.fill)
-                        .accessibilityLabel("Cancel")
-                }.buttonStyle(.borderless)
+        HStack {
+            ProgressView(value: self.progress.fractionCompleted) {
+                Text(self.label)
+            } currentValueLabel: {
+                Text(self.description)
             }
             
-            Text(self.description)
-                .monospacedDigit()
-                .foregroundStyle(.secondary)
-                .controlSize(.small)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            Button(role: .cancel) {
+                self.progress.cancel()
+            } label: {
+                Image(systemName: "xmark")
+                    .symbolVariant(.circle)
+                    .symbolVariant(.fill)
+                    .accessibilityLabel("Cancel")
+            }.buttonStyle(.borderless)
         }
         .onAppear {
             self.updateDescription()
@@ -113,7 +105,7 @@ struct FindProgressView: View {
     
     // MARK: Private Methods
     
-    /// Updates the progress description.
+    /// Updates the current value label.
     private func updateDescription() {
         
         self.description = String(localized: self.unit.format(self.progress.count))
