@@ -74,10 +74,6 @@
 "Replace All" = "Nahradit vše";
 "Highlight All" = "Zvýraznit vše";
 "Searching in text…" = "Hledání v textu…";
-"%lld string found." = "%lld řetězec nalezen.";
-"%lld strings found." = "%lld řetězce nalezeny.";
-"%lld string replaced." = "%lld řetězec nahrazen.";
-"%lld strings replaced." = "%lld řetězce nahrazeny.";
 "Invalid regular expression" = "Neplatný regulární výraz";
 "Empty find string" = "Prázdný řetězec hledání";
 "The option “in selection” is selected, although nothing is selected." = "Je vybrána volba „Ve výběru“, ačkoli není nic vybráno.";
@@ -92,10 +88,6 @@
 /* MARK: Find Panel */
 // window title
 "Find & Replace" = "Hledat a nahradit";
-
-// find results in input fields
-"Not found" = "Nenalezeno";
-"Not replaced" = "Nenahrazeno";
 
 // pairs of checkbox label and its tooltip
 "Regular Expression" = "Regulární výraz";
@@ -137,10 +129,6 @@
 
 /* MARK: Find Panel Result View */
 "Find string: %@" = "Hledaný řetězec: %@";
-// Find result (“%@” is filename)
-"No strings found in “%@.”" = "V souboru „%@“ nebyl nalezen žádný řetězec.";
-"Found one string in “%@.”" = "V souboru „%@“ byl nalezen jeden řetězec.";
-"Found %lld strings in “%@.”" = "Počet nalezených řetězců: %lld, v souboru: %@.";
 
 // Column header
 "Line" = "Řádek";
@@ -660,11 +648,6 @@
 "File Mapping" = "Mapování souborů";
 "Syntax Information" = "Informace o syntaxi";
 "Syntax Validation" = "Ověření syntaxe";
-
-// Syntax validation results
-"No error found." = "Nebyla nalezena žádná chyba.";
-"An error found." = "Byla nalezena chyba.";
-"%lld errors found." = "Byly nalezeny chyby (celkem %lld).";
 
 
 

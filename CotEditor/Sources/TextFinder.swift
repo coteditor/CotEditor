@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 1024jp
+//  © 2015-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,24 +54,28 @@ enum TextFindResult {
     }
     
     
-    /// Short result message for user.
+    /// Short result message for the user.
     var message: String {
         
         switch self {
             case .found:
                 switch self.count {
                     case ...0:
-                        String(localized: "Not found")
+                        String(localized: "Not found", table: "Count",
+                               comment: "short result message for Find All")
                     default:
-                        String(localized: "\(self.count) found", table: "Count", comment: "%lld is number of founds")
+                        String(localized: "\(self.count) found", table: "Count",
+                               comment: "short result message for Find All (%lld is number of found)")
                 }
                 
             case .replaced:
                 switch self.count {
                     case ...0:
-                        String(localized: "Not replaced")
+                        String(localized: "Not replaced", table: "Count",
+                               comment: "short result message for Replace All")
                     default:
-                        String(localized: "\(self.count) replaced", table: "Count", comment: "%lld is number of replaced")
+                        String(localized: "\(self.count) replaced", table: "Count",
+                               comment: "short result message for Replace All (%lld is number of replaced)")
                 }
         }
     }

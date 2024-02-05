@@ -74,10 +74,6 @@
 "Replace All" = "Tümünü Değiştir";
 "Highlight All" = "Tümünü Vurgula";
 "Searching in text…" = "Metinde aranıyor…";
-"%lld string found." = "%lld dizi bulundu.";
-"%lld strings found." = "%lld dizi bulundu.";
-"%lld string replaced." = "%lld dizi değiştirildi.";
-"%lld strings replaced." = "%lld dizi değiştirildi.";
 "Invalid regular expression" = "Geçersiz düzenli ifade";
 "Empty find string" = "Bulunacak dizi boş";
 "The option “in selection” is selected, although nothing is selected." = "“seçimde” seçeneği etkin; ancak hiçbir şey seçilmemiş.";
@@ -92,10 +88,6 @@
 /* MARK: Find Panel */
 // window title
 "Find & Replace" = "Bul ve Değiştir";
-
-// find results in input fields
-"Not found" = "Bulunamadı";
-"Not replaced" = "Değiştirilmedi";
 
 // pairs of checkbox label and its tooltip
 "Regular Expression" = "Düzenli İfade";
@@ -137,10 +129,6 @@
 
 /* MARK: Find Panel Result View */
 "Find string: %@" = "Diziyi bul: %@";
-// Find result (“%@” is filename)
-"No strings found in “%@.”" = "%@ içinde dizi bulunamadı.";
-"Found one string in “%@.”" = "%@ içinde bir dizi bulundu.";
-"Found %lld strings in “%@.”" = "%2$@ içinde %1$lld dizi bulundu.";
 
 // Column header
 "Line" = "Satır";
@@ -660,11 +648,6 @@
 "File Mapping" = "Dosya Eşlemleme";
 "Syntax Information" = "Sözdizim Bilgisi";
 "Syntax Validation" = "Sözdizim Doğrulama";
-
-// Syntax validation results
-"No error found." = "Hata bulunamadı.";
-"An error found." = "Bir hata bulundu.";
-"%lld errors found." = "%lld hata bulundu.";
 
 
 

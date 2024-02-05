@@ -74,10 +74,6 @@
 "Replace All" = "すべて置換";
 "Highlight All" = "すべてハイライト";
 "Searching in text…" = "テキストを検索しています…";
-"%lld string found." = "%lld件見つかりました。";
-"%lld strings found." = "%lld件見つかりました。";
-"%lld string replaced." = "%lld件置換しました。";
-"%lld strings replaced." = "%lld件置換しました。";
 "Invalid regular expression" = "無効な正規表現です。";
 "Empty find string" = "検索文字列が空です。";
 "The option “in selection” is selected, although nothing is selected." = "”選択範囲のみ”オプションが有効になっていますが、何も選択されていません。";
@@ -92,10 +88,6 @@
 /* MARK: Find Panel */
 // window title
 "Find & Replace" = "検索と置換";
-
-// find results in input fields
-"Not found" = "見つかりません";
-"Not replaced" = "見つかりません";
 
 // pairs of checkbox label and its tooltip
 "Regular Expression" = "正規表現";
@@ -137,10 +129,6 @@
 
 /* MARK: Find Panel Result View */
 "Find string: %@" = "検索文字列: %@";
-// Find result (“%@” is filename)
-"No strings found in “%@.”" = "“%@”内に見つかりませんでした。";
-"Found one string in “%@.”" = "“%@”内に1件見つかりました。";
-"Found %lld strings in “%@.”" = "“%2$@”内に%1$lld件見つかりました。";
 
 // Column header
 "Line" = "行";
@@ -660,11 +648,6 @@
 "File Mapping" = "ファイル関連付け";
 "Syntax Information" = "シンタックス情報";
 "Syntax Validation" = "シンタックスの検証";
-
-// Syntax validation results
-"No error found." = "エラーはありません。";
-"An error found." = "1個のエラーがあります。";
-"%lld errors found." = "%lld個のエラーがあります。";
 
 
 

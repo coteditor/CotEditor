@@ -74,10 +74,6 @@
 "Replace All" = "Replace All";
 "Highlight All" = "Highlight All";
 "Searching in text…" = "Searching in text…";
-"%lld string found." = "%lld string found.";
-"%lld strings found." = "%lld strings found.";
-"%lld string replaced." = "%lld string replaced.";
-"%lld strings replaced." = "%lld strings replaced.";
 "Invalid regular expression" = "Invalid regular expression";
 "Empty find string" = "Empty find string";
 "The option “in selection” is selected, although nothing is selected." = "The option “in selection” is selected, although nothing is selected.";
@@ -92,10 +88,6 @@
 /* MARK: Find Panel */
 // window title
 "Find & Replace" = "Find & Replace";
-
-// find results in input fields
-"Not found" = "Not found";
-"Not replaced" = "Not replaced";
 
 // pairs of checkbox label and its tooltip
 "Regular Expression" = "Regular Expression";
@@ -137,10 +129,6 @@
 
 /* MARK: Find Panel Result View */
 "Find string: %@" = "Find string: %@";
-// Find result (“%@” is filename)
-"No strings found in “%@.”" = "No strings found in “%@”.";
-"Found one string in “%@.”" = "Found one string in “%@”.";
-"Found %lld strings in “%@.”" = "Found %lld strings in “%@”.";
 
 // Column header
 "Line" = "Line";
@@ -660,11 +648,6 @@
 "File Mapping" = "File Mapping";
 "Syntax Information" = "Syntax Information";
 "Syntax Validation" = "Syntax Validation";
-
-// Syntax validation results
-"No error found." = "No error found.";
-"An error found." = "An error found.";
-"%lld errors found." = "%lld errors found.";
 
 
 

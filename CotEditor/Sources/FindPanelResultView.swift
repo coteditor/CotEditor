@@ -157,11 +157,11 @@ struct FindPanelResultView: View {
         
         let documentName = self.model.target?.documentName ?? "Unknown"  // This should never be nil.
         
-        return switch self.model.matches.count {
-            case 0:  String(localized: "No strings found in “\(documentName).”")
-            case 1:  String(localized: "Found one string in “\(documentName).”")
-            default: String(localized: "Found \(self.model.matches.count) strings in “\(documentName).”")
-        }
+        return self.model.matches.isEmpty
+            ? String(localized: "No strings found in “\(documentName).”", table: "Count",
+                     comment: "message in the Find All result view (“%@” is filename)")
+            : String(localized: "Found \(self.model.matches.count) strings in “\(documentName).”", table: "Count",
+                     comment: "message in the Find All result view (“%@” is filename)")
     }
     
     

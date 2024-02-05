@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -70,13 +70,13 @@ struct SyntaxValidationView: View {
         }
         
         
-        private var message: LocalizedStringKey {
+        private var message: String {
             
-            switch self.count {
-                case 0: "No error found."
-                case 1: "An error found."
-                default: "\(self.count) errors found."
-            }
+            (self.count == 0)
+                ? String(localized: "No error found.", table: "Count",
+                         comment: "message in the validation pane in the syntax editor")
+                : String(localized: "\(self.count) errors found.", table: "Count",
+                         comment: "message in the validation pane in the syntax editor")
         }
     }
     

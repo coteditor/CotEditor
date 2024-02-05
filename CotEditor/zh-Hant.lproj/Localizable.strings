@@ -74,10 +74,6 @@
 "Replace All" = "全部取代";
 "Highlight All" = "全部高亮";
 "Searching in text…" = "正在文字中搜索⋯";
-"%lld string found." = "找到%lld個匹配";
-"%lld strings found." = "找到%lld個匹配";
-"%lld string replaced." = "已取代%lld個匹配";
-"%lld strings replaced." = "已取代%lld個匹配";
 "Invalid regular expression" = "無效的常規表示式";
 "Empty find string" = "空的搜索字元串";
 "The option “in selection” is selected, although nothing is selected." = "「在選擇中搜索」選項被激活，但是並沒有內容被選中。";
@@ -92,10 +88,6 @@
 /* MARK: Find Panel */
 // window title
 "Find & Replace" = "尋找與取代";
-
-// find results in input fields
-"Not found" = "未找到";
-"Not replaced" = "沒有進行取代";
 
 // pairs of checkbox label and its tooltip
 "Regular Expression" = "常規表示式";
@@ -137,10 +129,6 @@
 
 /* MARK: Find Panel Result View */
 "Find string: %@" = "尋找字串：%@";
-// Find result (“%@” is filename)
-"No strings found in “%@.”" = "在「%@」中沒有找到字元串。";
-"Found one string in “%@.”" = "在「%@」中找到一個字元串。";
-"Found %lld strings in “%@.”" = "%lld個字元串在「%@」中被找到。";
 
 // Column header
 "Line" = "行";
@@ -660,11 +648,6 @@
 "File Mapping" = "檔案關聯";
 "Syntax Information" = "文法資訊";
 "Syntax Validation" = "文法驗證";
-
-// Syntax validation results
-"No error found." = "沒有發現錯誤。";
-"An error found." = "發現1個錯誤。";
-"%lld errors found." = "發現%lld個錯誤。";
 
 
 

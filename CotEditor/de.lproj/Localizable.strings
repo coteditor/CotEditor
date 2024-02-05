@@ -74,10 +74,6 @@
 "Replace All" = "Alles ersetzen";
 "Highlight All" = "Alles markieren";
 "Searching in text…" = "Im Text suchen …";
-"%lld string found." = "%lld Zeichenkette gefunden.";
-"%lld strings found." = "%lld Zeichenketten gefunden.";
-"%lld string replaced." = "%lld Zeichenkette ersetzt.";
-"%lld strings replaced." = "%lld Zeichenketten ersetzt.";
 "Invalid regular expression" = "Ungültiger regulärer Ausdruck";
 "Empty find string" = "Leerer Suchbegriff";
 "The option “in selection” is selected, although nothing is selected." = "Die Option „In Auswahl“ ist aktiviert, obwohl nichts ausgewählt ist.";
@@ -92,10 +88,6 @@
 /* MARK: Find Panel */
 // window title
 "Find & Replace" = "Suchen & Ersetzen";
-
-// find results in input fields
-"Not found" = "Nicht gefunden";
-"Not replaced" = "Nicht ersetzt";
 
 // pairs of checkbox label and its tooltip
 "Regular Expression" = "Regulärer Ausdruck";
@@ -137,10 +129,6 @@
 
 /* MARK: Find Panel Result View */
 "Find string: %@" = "Suchbegriff: %@";
-// Find result (“%@” is filename)
-"No strings found in “%@.”" = "Keine Zeichenketten in „%@“ gefunden.";
-"Found one string in “%@.”" = "Eine Zeichenkette in „%@“ gefunden.";
-"Found %lld strings in “%@.”" = "%lld Zeichenketten „%@” in gefunden.";
 
 // Column header
 "Line" = "Zeile";
@@ -660,11 +648,6 @@
 "File Mapping" = "Dateizuordnung";
 "Syntax Information" = "Syntax-Info";
 "Syntax Validation" = "Syntaxvalidierung";
-
-// Syntax validation results
-"No error found." = "Kein Fehler wurde gefunden.";
-"An error found." = "Ein Fehler wurde gefunden.";
-"%lld errors found." = "%lld Fehler wurden gefunden.";
 
 
 

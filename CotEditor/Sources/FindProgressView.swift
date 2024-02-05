@@ -108,32 +108,24 @@ struct FindProgressView: View {
     /// Updates the current value label.
     private func updateDescription() {
         
-        self.description = String(localized: self.unit.format(self.progress.count))
+        self.description = self.unit.format(self.progress.count)
     }
 }
 
 
 private extension FindProgressView.Unit {
     
-    func format(_ count: Int) -> String.LocalizationValue {
+    func format(_ count: Int) -> String {
         
-        switch count {
-            case 0:
-                "Searching in text…"
-            case 1:
-                switch self {
-                    case .find:
-                        "\(count) string found."
-                    case .replacement:
-                        "\(count) string replaced."
-                }
-            default:
-                switch self {
-                    case .find:
-                        "\(count) strings found."
-                    case .replacement:
-                        "\(count) strings replaced."
-                }
+        switch self {
+            case _ where count == 0:
+                String(localized: "Searching in text…")
+            case .find:
+                String(localized: "\(count) strings found.", table: "Count",
+                       comment: "progress report in find progress dialog")
+            case .replacement:
+                String(localized: "\(count) strings replaced.", table: "Count",
+                       comment: "progress report in find progress dialog")
         }
     }
 }
