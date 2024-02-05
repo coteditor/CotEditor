@@ -35,18 +35,23 @@ struct IncompatibleCharactersView: View {
     @MainActor final class Model: ObservableObject {
         
         var document: Document  { didSet { self.invalidateObservation() } }
-        var isAppeared = false  { didSet { self.invalidateObservation() } }
+        var isAppeared = false  { didSet { if isAppeared != oldValue { self.invalidateObservation() } } }
         
         @Published var items: [Item] = []
         @Published var isScanning = false
         
-        private var scanner: IncompatibleCharacterScanner?
-        private var observers: Set<AnyCancellable> = []
+        private var observer: AnyCancellable?
+        private var task: Task<Void, any Error>?
         
         
         init(document: Document) {
             
             self.document = document
+        }
+        
+        
+        deinit {
+            self.task?.cancel()
         }
     }
     
@@ -153,42 +158,65 @@ private extension IncompatibleCharactersView.Model {
     func invalidateObservation() {
         
         if self.isAppeared {
-            let scanner = if let scanner, scanner.document == self.document {
-                scanner
-            } else {
-                IncompatibleCharacterScanner(document: self.document)
-            }
-            self.scanner = scanner
-            
-            self.observers = [
-                scanner.$incompatibleCharacters
+            self.observer = Publishers.Merge3(
+                Just(Void()),  // initial scan
+                NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: self.document.textStorage)
+                    .map { $0.object as! NSTextStorage }
+                    .filter { $0.editedMask.contains(.editedCharacters) }
+                    .debounce(for: .seconds(0.3), scheduler: RunLoop.current)
+                    .eraseToVoid(),
+                self.document.$fileEncoding
+                    .map(\.encoding)
                     .removeDuplicates()
-                    .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in
-                        self?.updateMarkup($0)
-                        self?.items = $0
-                    },
-                scanner.$isScanning
-                    .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in self?.isScanning = $0 },
-            ]
-        } else {
-            if !self.items.isEmpty {
-                self.document.textStorage.clearAllMarkup()
+                    .eraseToVoid()
+            )
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                self.task?.cancel()
+                self.task = Task {
+                    let items = try await self.scan()
+                    self.updateMarkup(items)
+                    self.items = items
+                }
             }
             
-            self.observers.removeAll()
-            self.scanner = nil
+        } else {
+            self.observer = nil
+            self.task?.cancel()
+            self.updateMarkup([])
         }
     }
     
     
     // MARK: Private Methods
     
-    /// Update mark up in the editors.
+    /// Scans the characters incompatible with the current encoding in the document contents.
+    ///
+    /// - Returns: An array of Item.
+    /// - Throws: `CancellationError`
+    @MainActor private func scan() async throws -> [ValueRange<IncompatibleCharacter>] {
+        
+        assert(Thread.isMainThread)
+        
+        let string = self.document.textStorage.string
+        let encoding = self.document.fileEncoding.encoding
+        
+        guard !string.canBeConverted(to: encoding) else { return [] }
+        
+        self.isScanning = true
+        defer { self.isScanning = false }
+        
+        return try await Task.detached { [string = string.immutable] in
+            try string.charactersIncompatible(with: encoding)
+        }.value
+    }
+    
+    
+    /// Update markup in the editors.
     ///
     /// - Parameter items: The new incompatible characters.
-    private func updateMarkup(_ items: [ValueRange<IncompatibleCharacter>]) {
+    @MainActor private func updateMarkup(_ items: [ValueRange<IncompatibleCharacter>]) {
         
         if !self.items.isEmpty {
             self.document.textStorage.clearAllMarkup()
