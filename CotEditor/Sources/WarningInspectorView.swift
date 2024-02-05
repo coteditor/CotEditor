@@ -62,24 +62,6 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
         
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        self.incompatibleCharactersModel.isAppeared = true
-        self.inconsistentLineEndingsModel.isAppeared = true
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.incompatibleCharactersModel.isAppeared = false
-        self.inconsistentLineEndingsModel.isAppeared = false
-    }
 }
 
 
@@ -93,13 +75,11 @@ struct WarningInspectorView: View {
         
         VSplitView {
             IncompatibleCharactersView(model: self.incompatibleCharactersModel)
-                .padding(.top, 8)
                 .padding(.bottom, 12)
             InconsistentLineEndingsView(model: self.inconsistentLineEndingsModel)
                 .padding(.top, 8)
-                .padding(.bottom, 12)
         }
-        .padding(.horizontal, 12)
+        .padding(EdgeInsets(top: 8, leading: 12, bottom: 12, trailing: 12))
         .accessibilityLabel(Text("Warnings", tableName: "Inspector"))
     }
 }

@@ -57,22 +57,6 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
         
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        self.model.isAppeared = true
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.model.isAppeared = false
-    }
 }
 
 
@@ -114,9 +98,7 @@ struct DocumentInspectorView: View {
                 Divider()
                 CharacterPaneView(character: self.model.countResult.character)
             }
-            .padding(.top, 4)
-            .padding(.horizontal, 12)
-            .padding(.bottom, 12)
+            .padding(EdgeInsets(top: 4, leading: 12, bottom: 12, trailing: 12))
             .disclosureGroupStyle(InspectorDisclosureGroupStyle())
             .labeledContentStyle(InspectorLabeledContentStyle())
         }
@@ -212,6 +194,7 @@ private struct CountLocationView: View {
                 OptionalLabeledContent(String(localized: "Column", table: "Inspector"),
                                        value: self.result.column?.formatted())
             }
+            .monospacedDigit()
             .frame(maxWidth: .infinity, alignment: .leading)
         }
     }

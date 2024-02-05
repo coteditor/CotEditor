@@ -56,22 +56,6 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
         
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        self.model.isAppeared = true
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.model.isAppeared = false
-    }
 }
 
 
@@ -160,9 +144,7 @@ struct OutlineInspectorView: View {
         .accessibilityElement(children: .contain)
         .accessibilityLabel(Text("Outline", tableName: "Inspector"))
         .controlSize(.small)
-        .padding(.top, 8)
-        .padding(.horizontal, 12)
-        .padding(.bottom, 12)
+        .padding(EdgeInsets(top: 8, leading: 12, bottom: 12, trailing: 12))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
     
@@ -256,7 +238,6 @@ private struct OutlineRowView: View {
                 .fontWeight(self.item.style.contains(.bold) ? .semibold : nil)
                 .italic(self.item.style.contains(.italic))
                 .underline(self.item.style.contains(.underline))
-                .truncationMode(.tail)
         }
     }
 }

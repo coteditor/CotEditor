@@ -24,8 +24,8 @@
 //
 
 import SwiftUI
-import AppKit.NSTextStorage
 import Combine
+import AppKit.NSTextStorage
 
 struct IncompatibleCharactersView: View {
     
@@ -35,7 +35,7 @@ struct IncompatibleCharactersView: View {
     @MainActor final class Model: ObservableObject {
         
         var document: Document  { didSet { self.invalidateObservation() } }
-        var isAppeared = false  { didSet { if isAppeared != oldValue { self.invalidateObservation() } } }
+        var isAppeared = false  { didSet { self.invalidateObservation() } }
         
         @Published var items: [Item] = []
         @Published var isScanning = false
