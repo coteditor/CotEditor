@@ -221,7 +221,7 @@
 "Convert" = "Convert";
 "Reinterpret" = "Reinterpret";
 
-// Encoding alarts
+// Encoding alerts
 "The document contains characters incompatible with “%@.”" = "The document contains characters incompatible with “%@.”";
 
 // Lossy saving alert

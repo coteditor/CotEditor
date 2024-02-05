@@ -221,7 +221,7 @@
 "Convert" = "Convertir";
 "Reinterpret" = "Ré-interpréter";
 
-// Encoding alarts
+// Encoding alerts
 "The document contains characters incompatible with “%@.”" = "Le document contient des caractères incompatibles avec « %@ ».";  // FIXME: needs review
 
 // Lossy saving alert

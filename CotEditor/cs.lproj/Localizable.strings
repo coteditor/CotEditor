@@ -221,7 +221,7 @@
 "Convert" = "Převést";
 "Reinterpret" = "Reinterpretovat";
 
-// Encoding alarts
+// Encoding alerts
 "The document contains characters incompatible with “%@.”" = "Dokument obsahuje nekompatibilní znaky s „%@“.";
 
 // Lossy saving alert
