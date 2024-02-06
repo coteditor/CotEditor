@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2021-2023 1024jp
+//  © 2021-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,15 +27,15 @@ import SwiftUI
 
 struct CharacterInspectorView: View {
     
-    @State var info: CharacterInfo
+    var info: CharacterInfo
     
     
     var body: some View {
         
         HStack(alignment: .top) {
-            CharacterView(info: $info)
+            CharacterView(info: self.info)
                 .frame(minWidth: 64)
-            CharacterDetailView(info: $info)
+            CharacterDetailView(info: self.info)
         }
         .padding(10)
     }
@@ -45,7 +45,7 @@ struct CharacterInspectorView: View {
 
 private struct CharacterDetailView: View {
     
-    @Binding var info: CharacterInfo
+    var info: CharacterInfo
     
     
     var body: some View {
@@ -58,7 +58,7 @@ private struct CharacterDetailView: View {
                     .textSelection(.enabled)
             } else {
                 Text("Unknown")
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
             
             if !self.info.isComplex {
@@ -68,25 +68,25 @@ private struct CharacterDetailView: View {
             }
             
             if self.info.character.unicodeScalars.count > 1 {
-                ForEach(Array(self.info.character.unicodeScalars.enumerated()), id: \.offset) { (_, scalar) in
-                    DisclosureGroup {
-                        HStack(alignment: .top) {
-                            Text(String(scalar))
-                                .font(.system(size: 28, design: .serif))
-                                .frame(minWidth: 30, idealWidth: 30)
-                                .border(.primary.opacity(0.1))
-                            ScalarDetailView(scalar: scalar, items: [.block, .category])
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.bottom, 4)
-                        
-                    } label: {
-                        Text(scalar.codePoint)
-                            .monospacedDigit()
-                            .frame(minWidth: 44, alignment: .leading)
-                        if let name = scalar.name {
-                            Text(name)
-                                .fontWeight(.medium)
+                VStack(spacing: 4) {
+                    ForEach(Array(self.info.character.unicodeScalars.enumerated()), id: \.offset) { (_, scalar) in
+                        DisclosureGroup {
+                            HStack(alignment: .top) {
+                                Text(String(scalar))
+                                    .font(.system(size: 28, design: .serif))
+                                    .frame(minWidth: 30, idealWidth: 30)
+                                    .border(.primary.opacity(0.1))
+                                ScalarDetailView(scalar: scalar, items: [.block, .category])
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        } label: {
+                            Text(scalar.codePoint)
+                                .monospacedDigit()
+                                .frame(minWidth: 44, alignment: .leading)
+                            if let name = scalar.name {
+                                Text(name)
+                                    .fontWeight(.medium)
+                            }
                         }
                     }
                 }
@@ -187,7 +187,7 @@ private struct CharacterView: NSViewRepresentable {
     
     typealias NSViewType = NSTextField
     
-    @Binding var info: CharacterInfo
+    var info: CharacterInfo
     
     private let fontSize: CGFloat = 64
     

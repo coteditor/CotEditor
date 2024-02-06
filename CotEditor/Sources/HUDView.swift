@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -62,9 +62,9 @@ struct HUDView: View {
     }
     
     
+    var symbol: Symbol
     fileprivate weak var parent: NSHostingView<Self>?
     
-    @State var symbol: Symbol
     @State private var isPresented = true
     
     
