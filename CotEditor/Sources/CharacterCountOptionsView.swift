@@ -53,7 +53,7 @@ struct CharacterCountOptionsView: View {
                 VStack(alignment: .leading) {
                     Picker("Unit:", selection: $setting.unit.animation()) {
                         ForEach(CharacterCountOptions.CharacterUnit.allCases, id: \.self) {
-                            Text($0.label).tag($0)
+                            Text($0.label)
                         }
                     }.labelsHidden()
                         .fixedSize()
@@ -84,13 +84,13 @@ struct CharacterCountOptionsView: View {
                             Picker("Normalization:", selection: $setting.normalizationForm) {
                                 Section {
                                     ForEach(UnicodeNormalizationForm.standardForms, id: \.self) { form in
-                                        Text(form.localizedName).tag(form)
+                                        Text(form.localizedName)
                                             .help(form.localizedDescription)
                                     }
                                 }
                                 Section {
                                     ForEach(UnicodeNormalizationForm.modifiedForms, id: \.self) { form in
-                                        Text(form.localizedName).tag(form)
+                                        Text(form.localizedName)
                                             .help(form.localizedDescription)
                                     }
                                 }

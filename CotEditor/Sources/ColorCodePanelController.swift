@@ -154,9 +154,7 @@ private struct ColorCodePanelAccessory: View {
             }.controlSize(.small)
         }
         .onReceive(self.panel.publisher(for: \.color), perform: self.apply(color:))
-        .padding(.top, 8)
-        .padding(.horizontal, 10)
-        .padding(.bottom, 16)
+        .padding(EdgeInsets(top: 8, leading: 10, bottom: 16, trailing: 10))
     }
     
     
