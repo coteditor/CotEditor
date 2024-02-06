@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,11 +45,6 @@ final class EncodingManager {
     @Published private(set) var encodings: [String.Encoding?] = []
     
     
-    // MARK: Private Properties
-    
-    private var encodingListObserver: AnyCancellable?
-    
-    
     
     // MARK: Lifecycle
     
@@ -61,9 +56,9 @@ final class EncodingManager {
             self.sanitizeEncodingListSetting()
         }
         
-        self.encodingListObserver = UserDefaults.standard.publisher(for: .encodingList, initial: true)
+        UserDefaults.standard.publisher(for: .encodingList, initial: true)
             .map { $0.map { $0 != kCFStringEncodingInvalidId ? String.Encoding(cfEncoding: $0) : nil } }
-            .sink { [weak self] in self?.encodings = $0 }
+            .assign(to: &self.$encodings)
     }
     
     
