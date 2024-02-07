@@ -31,13 +31,13 @@ struct RegexTextField: NSViewRepresentable {
     typealias NSViewType = NSTextField
     
     @Binding private var text: String
-    private let prompt: LocalizedStringResource?
+    private let prompt: String?
     private let onSubmit: () -> Void
     
     private var leadingInset: Double = 0
     
     
-    init(text: Binding<String>, prompt: LocalizedStringResource? = nil, onSubmit: @escaping () -> Void = {}) {
+    init(text: Binding<String>, prompt: String? = nil, onSubmit: @escaping () -> Void = {}) {
         
         self._text = text
         self.prompt = prompt
@@ -62,7 +62,7 @@ struct RegexTextField: NSViewRepresentable {
         
         let textField = RegularExpressionTextField()
         textField.delegate = context.coordinator
-        textField.placeholderString = self.prompt.flatMap(String.init(localized:))
+        textField.placeholderString = self.prompt
         textField.isEditable = true
         textField.lineBreakMode = .byTruncatingTail
         (textField.cell as? PaddingTextFieldCell)?.leadingPadding = self.leadingInset

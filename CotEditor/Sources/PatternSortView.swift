@@ -245,7 +245,7 @@ struct RegularExpressionSortPatternView: View {
                 Text("Pattern:")
                 VStack(alignment: .leading) {
                     ZStack(alignment: .leadingFirstTextBaseline) {
-                        RegexTextField(text: $pattern.searchPattern, prompt: "Regular Expression")
+                        RegexTextField(text: $pattern.searchPattern, prompt: String(localized: "Regular Expression"))
                             .leadingInset(18)
                         Menu {
                             let patterns = UserDefaults.standard[.regexPatternSortHistory]
