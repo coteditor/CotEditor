@@ -631,26 +631,6 @@
 
 
 
-/* MARK: SyntaxEditViewController */
-// Menu items
-"Keywords" = "關鍵字";
-"Commands" = "命令";
-"Types" = "類型";
-"Attributes" = "標記";
-"Variables" = "變數";
-"Values" = "值";
-"Numbers" = "數字";
-"Strings" = "字元串";
-"Characters" = "字元";
-"Comments" = "註釋";
-"Outline" = "大綱";
-"Completion List" = "補全列表";
-"File Mapping" = "檔案關聯";
-"Syntax Information" = "文法資訊";
-"Syntax Validation" = "文法驗證";
-
-
-
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "「%@」無法刪除。";
 "“%@” couldn’t be imported." = "「%@」無法輸入。";
@@ -668,9 +648,6 @@
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "無";
-
-// Description for editing bundled syntax
-"Bundled syntaxes can’t be renamed." = "原廠文法無法被更名。";
 
 // Suffix of copied syntax
 "copy" = "拷貝";

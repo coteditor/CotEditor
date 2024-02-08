@@ -631,26 +631,6 @@
 
 
 
-/* MARK: SyntaxEditViewController */
-// Menu items
-"Keywords" = "关键字";
-"Commands" = "命令";
-"Types" = "类型";
-"Attributes" = "标记";
-"Variables" = "变量";
-"Values" = "值";
-"Numbers" = "数字";
-"Strings" = "字符串";
-"Characters" = "字符";
-"Comments" = "注释";
-"Outline" = "大纲";
-"Completion List" = "补全列表";
-"File Mapping" = "文件关联";
-"Syntax Information" = "语法信息";
-"Syntax Validation" = "语法验证";
-
-
-
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”无法删除。";
 "“%@” couldn’t be imported." = "“%@”无法导入。";
@@ -668,9 +648,6 @@
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "无";
-
-// Description for editing bundled syntax
-"Bundled syntaxes can’t be renamed." = "内置语法的名称不能改变。";
 
 // Suffix of copied syntax
 "copy" = "拷贝";

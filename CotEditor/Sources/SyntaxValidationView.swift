@@ -73,10 +73,10 @@ struct SyntaxValidationView: View {
         private var message: String {
             
             (self.count == 0)
-                ? String(localized: "No error found.", table: "Count",
-                         comment: "message in the validation pane in the syntax editor")
-                : String(localized: "\(self.count) errors found.", table: "Count",
-                         comment: "message in the validation pane in the syntax editor")
+                ? String(localized: "No error found.", table: "SyntaxEdit",
+                         comment: "message in the Validation pane")
+                : String(localized: "\(self.count) errors found.", table: "SyntaxEdit",
+                         comment: "message in the Validation pane")
         }
     }
     

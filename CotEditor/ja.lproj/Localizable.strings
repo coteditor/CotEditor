@@ -631,26 +631,6 @@
 
 
 
-/* MARK: SyntaxEditViewController */
-// Menu items
-"Keywords" = "キーワード";
-"Commands" = "コマンド";
-"Types" = "タイプ";
-"Attributes" = "属性";
-"Variables" = "変数";
-"Values" = "値";
-"Numbers" = "数値";
-"Strings" = "文字列";
-"Characters" = "文字";
-"Comments" = "コメント";
-"Outline" = "アウトライン";
-"Completion List" = "入力補完リスト";
-"File Mapping" = "ファイル関連付け";
-"Syntax Information" = "シンタックス情報";
-"Syntax Validation" = "シンタックスの検証";
-
-
-
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”を削除できませんでした。";
 "“%@” couldn’t be imported." = "“%@”を読み込めませんでした。";
@@ -668,9 +648,6 @@
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "なし";
-
-// Description for editing bundled syntax
-"Bundled syntaxes can’t be renamed." = "バンドルされているシンタックスの名前は変更できません。";
 
 // Suffix of copied syntax
 "copy" = "コピー";

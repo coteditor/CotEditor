@@ -631,26 +631,6 @@
 
 
 
-/* MARK: SyntaxEditViewController */
-// Menu items
-"Keywords" = "Palavras-chave";
-"Commands" = "Comandos";
-"Types" = "Tipos";
-"Attributes" = "Atributos";
-"Variables" = "Variáveis";
-"Values" = "Valores";
-"Numbers" = "Números";
-"Strings" = "Strings";
-"Characters" = "Caracteres";
-"Comments" = "Comentários";
-"Outline" = "Plano";
-"Completion List" = "Lista de Preenchimento";
-"File Mapping" = "Mapeamento de Arquivo";
-"Syntax Information" = "Informação de Sintaxe";
-"Syntax Validation" = "Validação da Sintaxe";
-
-
-
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@” não pôde ser apagado.";
 "“%@” couldn’t be imported." = "“%@” não pôde ser importado.";
@@ -668,9 +648,6 @@
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "Nenhum";
-
-// Description for editing bundled syntax
-"Bundled syntaxes can’t be renamed." = "Não é possível renomear pacotes de sintaxe.";
 
 // Suffix of copied syntax
 "copy" = "(cópia)";

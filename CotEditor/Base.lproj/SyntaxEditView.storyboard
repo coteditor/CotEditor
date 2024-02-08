@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Mx-zQ-ItP">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Mx-zQ-ItP">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--DUMMY-->
+        <!--View Controller-->
         <scene sceneID="Mm5-sp-9au">
             <objects>
                 <customObject id="wI0-WG-Ij4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController title="DUMMY" id="aQl-En-Wbe" sceneMemberID="viewController">
+                <viewController id="aQl-En-Wbe" sceneMemberID="viewController">
                     <view key="view" id="9Ly-SZ-bCu">
                         <rect key="frame" x="0.0" y="0.0" width="80" height="10"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -74,22 +74,22 @@
                 <customObject id="j4H-R3-7lo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <tabViewController selectedTabViewItemIndex="0" tabStyle="unspecified" canPropagateSelectedChildViewControllerTitle="NO" id="EHY-tm-pM1" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem label="Keywords" identifier="keywords" id="uqx-or-XYz"/>
-                        <tabViewItem label="Commands" identifier="commands" id="tfF-J0-u6p"/>
-                        <tabViewItem label="Types" identifier="types" id="9BI-tq-pk1"/>
-                        <tabViewItem label="Attributes" identifier="attributes" id="sGO-8m-mUV"/>
-                        <tabViewItem label="Variables" identifier="variables" id="Egv-zN-8g0"/>
-                        <tabViewItem label="Values" identifier="values" id="fgN-Dc-ahn"/>
-                        <tabViewItem label="Numbers" identifier="numbers" id="Vjv-S9-4f4"/>
-                        <tabViewItem label="Strings" identifier="strings" id="Zi6-hI-i1f"/>
-                        <tabViewItem label="Characters" identifier="characters" id="QAb-cv-ACH"/>
-                        <tabViewItem label="Comments" identifier="comments" id="pPI-Zd-YoY"/>
-                        <tabViewItem label="-" id="WmN-tw-W91"/>
-                        <tabViewItem label="Outline" id="h3G-VQ-reZ"/>
-                        <tabViewItem label="Completion List" id="hkH-bj-kzN"/>
-                        <tabViewItem label="File Mapping" id="zFQ-sy-EQR"/>
-                        <tabViewItem label="-" id="cmd-Pi-Czf"/>
-                        <tabViewItem label="Syntax Information" id="ijG-Rs-ukM"/>
+                        <tabViewItem identifier="keywords" id="uqx-or-XYz" userLabel="Keywords"/>
+                        <tabViewItem identifier="commands" id="tfF-J0-u6p" userLabel="Commands"/>
+                        <tabViewItem identifier="types" id="9BI-tq-pk1" userLabel="Types"/>
+                        <tabViewItem identifier="attributes" id="sGO-8m-mUV" userLabel="Attributes"/>
+                        <tabViewItem identifier="variables" id="Egv-zN-8g0" userLabel="Variables"/>
+                        <tabViewItem identifier="values" id="fgN-Dc-ahn" userLabel="Values"/>
+                        <tabViewItem identifier="numbers" id="Vjv-S9-4f4" userLabel="Numbers"/>
+                        <tabViewItem identifier="strings" id="Zi6-hI-i1f" userLabel="Strings"/>
+                        <tabViewItem identifier="characters" id="QAb-cv-ACH" userLabel="Characters"/>
+                        <tabViewItem identifier="comments" id="pPI-Zd-YoY" userLabel="Comments"/>
+                        <tabViewItem id="WmN-tw-W91" userLabel="-"/>
+                        <tabViewItem id="h3G-VQ-reZ" userLabel="Outline"/>
+                        <tabViewItem id="hkH-bj-kzN" userLabel="Completion List"/>
+                        <tabViewItem id="zFQ-sy-EQR" userLabel="File Mapping"/>
+                        <tabViewItem id="cmd-Pi-Czf" userLabel="-"/>
+                        <tabViewItem id="ijG-Rs-ukM" userLabel="Syntax Information"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" type="noTabsBezelBorder" id="Xkl-Ua-3Wq">
@@ -149,7 +149,7 @@
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="hXg-gA-Vm1">
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" id="hXg-gA-Vm1">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -163,7 +163,7 @@
                                                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="dg7-ML-g7m" customClass="SeparatorTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="152" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Keywords" id="2yS-5b-mse">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="DUMMY" id="2yS-5b-mse">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -299,8 +299,8 @@ DQ
                                 </connections>
                             </imageView>
                             <textField hidden="YES" focusRingType="none" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Mlh-TL-DXQ">
-                                <rect key="frame" x="251" y="405" width="100" height="21"/>
-                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="ERROR MESSAGE." id="d7M-En-Qx0">
+                                <rect key="frame" x="251" y="405" width="97" height="21"/>
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="ERROR MESSAGE" id="d7M-En-Qx0">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -385,7 +385,7 @@ DQ
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="evB-SF-2md"/>
-        <segue reference="oWW-tk-Ap2"/>
+        <segue reference="zM9-LR-mh8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.backward.circle.fill" catalog="system" width="13" height="13"/>

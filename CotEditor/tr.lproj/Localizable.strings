@@ -631,26 +631,6 @@
 
 
 
-/* MARK: SyntaxEditViewController */
-// Menu items
-"Keywords" = "Anahtar Sözcükler";
-"Commands" = "Komutlar";
-"Types" = "Türler";
-"Attributes" = "Öznitelikler";
-"Variables" = "Değişkenler";
-"Values" = "Değerler";
-"Numbers" = "Sayılar";
-"Strings" = "Diziler";
-"Characters" = "Karakterler";
-"Comments" = "Yorumlar";
-"Outline" = "Ana Hat";
-"Completion List" = "Tamamlama Listesi";
-"File Mapping" = "Dosya Eşlemleme";
-"Syntax Information" = "Sözdizim Bilgisi";
-"Syntax Validation" = "Sözdizim Doğrulama";
-
-
-
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”, silinemedi.";
 "“%@” couldn’t be imported." = "“%@”, içe aktarılamadı.";
@@ -668,9 +648,6 @@
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "Hiçbiri";
-
-// Description for editing bundled syntax
-"Bundled syntaxes can’t be renamed." = "Uygulama ile gelen sözdizimler yeniden adlandırılamaz.";
 
 // Suffix of copied syntax
 "copy" = "kopyası";

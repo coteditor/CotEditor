@@ -631,26 +631,6 @@
 
 
 
-/* MARK: SyntaxEditViewController */
-// Menu items
-"Keywords" = "Klíčová slova";
-"Commands" = "Příkazy";
-"Types" = "Typy";
-"Attributes" = "Atributy";
-"Variables" = "Proměnné";
-"Values" = "Hodnoty";
-"Numbers" = "Čísla";
-"Strings" = "Řetězce";
-"Characters" = "Znaky";
-"Comments" = "Komentáře";
-"Outline" = "Osnova";
-"Completion List" = "Seznam dokončení";
-"File Mapping" = "Mapování souborů";
-"Syntax Information" = "Informace o syntaxi";
-"Syntax Validation" = "Ověření syntaxe";
-
-
-
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "„%@“ nelze smazat.";
 "“%@” couldn’t be imported." = "„%@“ nelze importovat.";
@@ -668,9 +648,6 @@
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "Žádný";
-
-// Description for editing bundled syntax
-"Bundled syntaxes can’t be renamed." = "Předdefinované syntaxe nelze přejmenovat.";
 
 // Suffix of copied syntax
 "copy" = "Kopírovat";

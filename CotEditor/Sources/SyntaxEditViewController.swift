@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,7 +36,6 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     private let validator: SyntaxValidator
     @objc private let isBundledSyntax: Bool
     
-    private var menuTitles: [String] = []
     @objc private dynamic var message: String?
     
     private var tabViewController: NSTabViewController?
@@ -89,12 +88,9 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             let validationView = SyntaxValidationView(validator: self.validator)
             let validationTabItem = NSTabViewItem(viewController: NSHostingController(rootView: validationView))
             validationTabItem.identifier = "validation"
-            validationTabItem.label = String(localized: "Syntax Validation")
             tabViewController.addTabViewItem(validationTabItem)
             
             self.tabViewController = tabViewController
-            self.menuTitles = tabViewController.tabViewItems.map(\.label)
-                .map { String(localized: String.LocalizationValue($0)) }
             tabViewController.children.forEach { $0.representedObject = self.syntax }
         }
     }
@@ -115,7 +111,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             syntaxNameField.isSelectable = false
             syntaxNameField.isEditable = false
             syntaxNameField.isBordered = true
-            syntaxNameField.toolTip = String(localized: "Bundled syntaxes can’t be renamed.")
+            syntaxNameField.toolTip = String(localized: "Bundled syntaxes can’t be renamed.", table: "SyntaxEdit",
+                                             comment: "description for syntax name field for bundled syntax")
         }
         
         if let kind = self.syntax[SyntaxKey.kind.rawValue] as? String,
@@ -147,13 +144,13 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        self.menuTitles.count
+        SyntaxEditPane.allCases.count
     }
     
     
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
-        self.menuTitles[safe: row]
+        SyntaxEditPane.allCases[safe: row]?.name
     }
     
     
@@ -172,7 +169,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         
         // separator cannot be selected
-        (self.menuTitles[row] != .separator)
+        !SyntaxEditPane.allCases[row].isSeparator
     }
     
     
@@ -281,5 +278,79 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         }
         
         return true
+    }
+}
+
+
+private enum SyntaxEditPane: CaseIterable {
+    
+    case keyboards
+    case commands
+    case types
+    case attributes
+    case variables
+    case values
+    case numbers
+    case strings
+    case characters
+    case comments
+    
+    case separator1
+    
+    case outline
+    case completion
+    case fileMapping
+    
+    case separator2
+    
+    case metadata
+    case validation
+    
+    
+    var name: String {
+        
+        switch self {
+            case .keyboards:
+                String(localized: "Keywords", table: "SyntaxEdit", comment: "menu item in sidebar")
+            case .commands:
+                String(localized: "Commands", table: "SyntaxEdit", comment: "menu item in sidebar")
+            case .types:
+                String(localized: "Types", table: "SyntaxEdit", comment: "menu item in sidebar")
+            case .attributes:
+                String(localized: "Attributes", table: "SyntaxEdit", comment: "menu item in sidebar")
+            case .variables:
+                String(localized: "Variables", table: "SyntaxEdit", comment: "menu item in sidebar")
+            case .values:
+                String(localized: "Values", table: "SyntaxEdit", comment: "menu item in sidebar")
+            case .numbers:
+                String(localized: "Numbers", table: "SyntaxEdit", comment: "menu item in sidebar")
+            case .strings:
+                String(localized: "Strings", table: "SyntaxEdit", comment: "menu item in sidebar")
+            case .characters:
+                String(localized: "Characters", table: "SyntaxEdit", comment: "menu item in sidebar")
+            case .comments:
+                String(localized: "Comments", table: "SyntaxEdit", comment: "menu item in sidebar")
+            case .outline:
+                String(localized: "Outline", table: "SyntaxEdit", comment: "menu item in sidebar")
+            case .completion:
+                String(localized: "Completion List", table: "SyntaxEdit", comment: "menu item in sidebar")
+            case .fileMapping:
+                String(localized: "File Mapping", table: "SyntaxEdit", comment: "menu item in sidebar")
+            case .metadata:
+                String(localized: "Syntax Information", table: "SyntaxEdit", comment: "menu item in sidebar")
+            case .validation:
+                String(localized: "Syntax Validation", table: "SyntaxEdit", comment: "menu item in sidebar")
+                
+            case .separator1, .separator2: "-"
+        }
+    }
+    
+    
+    var isSeparator: Bool {
+        
+        switch self {
+            case .separator1, .separator2: true
+            default: false
+        }
     }
 }
