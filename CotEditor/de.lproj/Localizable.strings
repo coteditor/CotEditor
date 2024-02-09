@@ -502,8 +502,8 @@
 
 /* MARK: NavigationBarController */
 // Outline menu title
-"Jump to previous outline item" = "Zum vorherigen Gliederungsposten";
-"Jump to next outline item" = "Zum nächsten Gliederungsposten";
+"Jump to previous outline item" = "Zum vorherigen Gliederungselement";
+"Jump to next outline item" = "Zum nächsten Gliederungselement";
 // Accessibility labels
 "Previous" = "Zurück";
 "Next" = "Weiter";

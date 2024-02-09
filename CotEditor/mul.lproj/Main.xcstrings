@@ -1808,7 +1808,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vorherigen Gliederungsposten auswählen"
+            "value" : "Vorheriges Gliederungselement auswählen"
           }
         },
         "en" : {
@@ -14990,7 +14990,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nächsten Gliederungsposten auswählen"
+            "value" : "Nächstes Gliederungselement auswählen"
           }
         },
         "en" : {
