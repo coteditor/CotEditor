@@ -67,7 +67,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     // MARK: Private Properties
     
-    private lazy var printPanelAccessoryController: PrintPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory").instantiateInitialController()!
+    private lazy var printPanelAccessoryController: PrintPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory", bundle: nil).instantiateInitialController()!
     
     private var readingEncoding: String.Encoding?  // encoding to read document file
     private var fileData: Data?
