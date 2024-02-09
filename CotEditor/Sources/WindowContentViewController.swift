@@ -25,13 +25,7 @@
 
 import AppKit
 
-protocol DocumentOwner: NSViewController {
-    
-    var document: Document { get set }
-}
-
-
-final class WindowContentViewController: NSSplitViewController, DocumentOwner {
+final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Public Properties
     

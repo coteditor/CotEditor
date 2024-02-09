@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Character" : {
-      "comment" : "table column\nsection title",
+      "comment" : "section title\ntable column header",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -283,7 +283,7 @@
       }
     },
     "Converted" : {
-      "comment" : "table column for converted character",
+      "comment" : "table column header for converted character",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1396,7 +1396,7 @@
       }
     },
     "Line" : {
-      "comment" : "table column",
+      "comment" : "table column header",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1467,7 +1467,7 @@
       }
     },
     "Line Ending" : {
-      "comment" : "table column",
+      "comment" : "table column header",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1819,7 +1819,7 @@
       }
     },
     "No Filter Results" : {
-      "comment" : "display on list when no results in filtering outline items",
+      "comment" : "display on the list when no results in filtering outline items",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

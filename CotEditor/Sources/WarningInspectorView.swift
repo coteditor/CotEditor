@@ -62,6 +62,24 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
         
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        self.incompatibleCharactersModel.isAppeared = true
+        self.inconsistentLineEndingsModel.isAppeared = true
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.incompatibleCharactersModel.isAppeared = false
+        self.inconsistentLineEndingsModel.isAppeared = false
+    }
 }
 
 

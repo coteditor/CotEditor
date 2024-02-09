@@ -29,16 +29,16 @@ import AppKit.NSTextStorage
 
 struct IncompatibleCharactersView: View {
     
-    typealias Item = ValueRange<IncompatibleCharacter>
-    
-    
     @MainActor final class Model: ObservableObject {
         
-        var document: Document  { didSet { self.invalidateObservation() } }
-        var isAppeared = false  { didSet { self.invalidateObservation() } }
+        typealias Item = ValueRange<IncompatibleCharacter>
+        
         
         @Published var items: [Item] = []
         @Published var isScanning = false
+        
+        var document: Document  { didSet { self.invalidateObservation() } }
+        var isAppeared = false  { didSet { self.invalidateObservation() } }
         
         private var observer: AnyCancellable?
         private var task: Task<Void, any Error>?
@@ -58,19 +58,17 @@ struct IncompatibleCharactersView: View {
     
     @ObservedObject var model: Model
     
-    @State private var selection: Item.ID?
-    @State private var sortOrder: [KeyPathComparator<Item>] = []
+    @State private var selection: Model.Item.ID?
+    @State private var sortOrder: [KeyPathComparator<Model.Item>] = []
     
     
     var body: some View {
         
         VStack(alignment: .leading, spacing: 8) {
-            Text("Incompatible Characters", tableName: "Inspector",
-                 comment: "section title")
+            Text("Incompatible Characters", tableName: "Inspector", comment: "section title")
             .font(.system(size: 12, weight: .bold))
             .foregroundStyle(.secondary)
             
-            // message
             if self.model.isScanning {
                 Text("Scanning incompatible characters…", tableName: "Inspector")
             } else if self.model.items.isEmpty {
@@ -81,10 +79,9 @@ struct IncompatibleCharactersView: View {
                      comment: "%lld is the number of characters.")
             }
             
-            // table
             if !self.model.items.isEmpty {
                 Table(self.model.items, selection: $selection, sortOrder: $sortOrder) {
-                    TableColumn(String(localized: "Line", table: "Inspector", comment: "table column"), value: \.location) {
+                    TableColumn(String(localized: "Line", table: "Inspector", comment: "table column header"), value: \.location) {
                         // calculate the line number first at this point to postpone the high cost processing as much as possible
                         let line = self.model.document.lineEndingScanner.lineNumber(at: $0.location)
                         Text(line, format: .number)
@@ -92,7 +89,7 @@ struct IncompatibleCharactersView: View {
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     
-                    TableColumn(String(localized: "Character", table: "Inspector", comment: "table column"), value: \.value.character) {
+                    TableColumn(String(localized: "Character", table: "Inspector", comment: "table column header"), value: \.value.character) {
                         let character = $0.value.character
                         let invisibleCategories: Set<Unicode.GeneralCategory> = [.control, .spaceSeparator, .lineSeparator]
                         
@@ -105,14 +102,14 @@ struct IncompatibleCharactersView: View {
                         }
                     }
                     
-                    TableColumn(String(localized: "Converted", table: "Inspector", comment: "table column for converted character")) {
+                    TableColumn(String(localized: "Converted", table: "Inspector", comment: "table column header for converted character")) {
                         if let converted = $0.value.converted {
                             Text(converted)
                         }
                     }
                 }
                 .onChange(of: self.selection) { newValue in
-                    self.selectItem(id: newValue)
+                    self.model.selectItem(id: newValue)
                 }
                 .onChange(of: self.sortOrder) { newOrder in
                     withAnimation {
@@ -123,37 +120,31 @@ struct IncompatibleCharactersView: View {
                 .border(Color(nsColor: .gridColor))
             }
         }
-        .onAppear {
-            self.model.isAppeared = true
-        }
-        .onDisappear {
-            self.model.isAppeared = false
-        }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(Text("Incompatible Characters", tableName: "Inspector"))
         .controlSize(.small)
         .frame(maxWidth: .infinity, minHeight: self.model.items.isEmpty ? 60 : 120, alignment: .topLeading)
     }
-    
+}
+
+
+private extension IncompatibleCharactersView.Model {
     
     /// Selects correspondence range of the item in the editor.
     ///
-    /// - Parameter row: The index of items to select.
-    @MainActor private func selectItem(id: Item.ID?) {
+    /// - Parameter id: The `id` of the item to select.
+    func selectItem(id: Item.ID?) {
         
         guard
-            let item = self.model.items.first(where: { $0.id == id }),
-            let textView = self.model.document.textView,
+            let item = self.items.first(where: { $0.id == id }),
+            let textView = self.document.textView,
             textView.string.length >= item.range.upperBound
         else { return }
         
         textView.selectedRange = item.range
         textView.centerSelectionInVisibleArea(self)
     }
-}
-
-
-private extension IncompatibleCharactersView.Model {
+    
     
     func invalidateObservation() {
         

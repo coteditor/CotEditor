@@ -56,24 +56,39 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
         
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        self.model.isAppeared = true
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.model.isAppeared = false
+    }
 }
 
 
 struct OutlineInspectorView: View {
     
-    typealias Item = OutlineItem
-    
-    
     @MainActor final class Model: ObservableObject {
+        
+        typealias Item = OutlineItem
+        
+        
+        @Published var items: [Item] = []
+        @Published var selection: Item.ID?
         
         var document: Document  { didSet { self.invalidateObservation() } }
         var isAppeared = false  { didSet { self.invalidateObservation() } }
         
-        @Published var items: [Item] = []
-        @Published var selection: Item.ID?
-        @Published var filterString: String = ""
-        
-        var isOwnSelectionChange = false
+        private var isOwnSelectionChange = false
         private var documentObserver: AnyCancellable?
         private var syntaxObserver: AnyCancellable?
         private var selectionObserver: AnyCancellable?
@@ -90,16 +105,18 @@ struct OutlineInspectorView: View {
     
     @AppStorage(.outlineViewFontSize) private var fontSize: Double
     
+    @State var filterString: String = ""
+    
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading) {
             Text("Outline", tableName: "Inspector", comment: "section title")
                 .font(.system(size: 12, weight: .bold))
                 .foregroundStyle(.secondary)
             
             ZStack {
-                let items = self.model.items.filterItems(with: self.model.filterString)
+                let items = self.model.items.filterItems(with: self.filterString)
                 
                 List(items, selection: $model.selection) { item in
                     OutlineRowView(item: item)
@@ -108,8 +125,8 @@ struct OutlineInspectorView: View {
                         .frame(height: self.fontSize)
                 }
                 .onReceive(self.model.$selection) { id in
-                    // use .onReceive instead of .onChange to control the timing
-                    self.selectItem(id: id)
+                    // use .onReceive(_:) instead of .onChange(of:) to control the timing
+                    self.model.selectItem(id: id)
                 }
                 .onCommand(#selector(EditorTextView.biggerFont)) {
                     self.fontSize += 1
@@ -120,54 +137,69 @@ struct OutlineInspectorView: View {
                 .onCommand(#selector(EditorTextView.resetFont)) {
                     UserDefaults.standard.restore(key: .outlineViewFontSize)
                 }
-                .listStyle(.inset)
-                .border(Color(nsColor: .gridColor))
+                .border(.separator)
                 .environment(\.defaultMinListRowHeight, self.fontSize)
                 
-                if !self.model.filterString.isEmpty, items.isEmpty {
-                    Text("No Filter Results", tableName: "Inspector", comment: "display on list when no results in filtering outline items")
+                if !self.filterString.isEmpty, items.isEmpty {
+                    Text("No Filter Results", tableName: "Inspector", comment: "display on the list when no results in filtering outline items")
                         .foregroundStyle(.secondary)
                         .controlSize(.regular)
                 }
             }
             
-            FilterField(text: $model.filterString)
+            FilterField(text: $filterString)
                 .autosaveName("OutlineSearch")
                 .controlSize(.regular)
-        }
-        .onAppear {
-            self.model.isAppeared = true
-        }
-        .onDisappear {
-            self.model.isAppeared = false
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(Text("Outline", tableName: "Inspector"))
         .controlSize(.small)
         .padding(EdgeInsets(top: 8, leading: 12, bottom: 12, trailing: 12))
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
+}
+
+
+private struct OutlineRowView: View {
     
+    var item: OutlineItem
+    
+    
+    var body: some View {
+        
+        if self.item.isSeparator {
+            if #available(macOS 14, *) {
+                Divider().selectionDisabled()
+            } else {
+                Divider()
+            }
+        } else {
+            Text(self.item.attributedTitle)
+                .bold(self.item.style.contains(.bold))
+                .italic(self.item.style.contains(.italic))
+                .underline(self.item.style.contains(.underline))
+        }
+    }
+}
+
+
+private extension OutlineInspectorView.Model {
     
     /// Selects correspondence range of the item in the editor.
     ///
     /// - Parameter id: The `id` of the item to select.
-    @MainActor private func selectItem(id: Item.ID?) {
+    func selectItem(id: Item.ID?) {
         
         guard
-            !self.model.isOwnSelectionChange,
-            let item = self.model.items.first(where: { $0.id == id }),
-            let textView = self.model.document.textView,
+            !self.isOwnSelectionChange,
+            let item = self.items.first(where: { $0.id == id }),
+            let textView = self.document.textView,
             textView.string.length >= item.range.upperBound
         else { return }
         
         textView.selectedRange = item.range
         textView.centerSelectionInVisibleArea(self)
     }
-}
-
-
-private extension OutlineInspectorView.Model {
+    
     
     func invalidateObservation() {
         
@@ -209,7 +241,6 @@ private extension OutlineInspectorView.Model {
     private func invalidateCurrentItem(in textView: NSTextView? = nil) {
         
         guard
-            self.filterString.isEmpty,
             let textView = textView ?? self.document.textView,
             let item = self.items.item(at: textView.selectedRange.location)
         else { return }
@@ -221,28 +252,6 @@ private extension OutlineInspectorView.Model {
 }
 
 
-private struct OutlineRowView: View {
-    
-    var item: OutlineItem
-    
-    var body: some View {
-        
-        if self.item.isSeparator {
-            if #available(macOS 14, *) {
-                Divider().selectionDisabled()
-            } else {
-                Divider()
-            }
-        } else {
-            Text(self.item.attributedTitle)
-                .fontWeight(self.item.style.contains(.bold) ? .semibold : nil)
-                .italic(self.item.style.contains(.italic))
-                .underline(self.item.style.contains(.underline))
-        }
-    }
-}
-
-
 
 // MARK: - Preview
 
@@ -250,7 +259,7 @@ private struct OutlineRowView: View {
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
     let model = OutlineInspectorView.Model(document: .init())
     model.items = [
-        OutlineItem(title: "Hello", range: .notFound),
+        OutlineItem(title: "Hallo", range: .notFound),
         OutlineItem(title: "Guten Tag!", range: .notFound, style: [.bold]),
         OutlineItem(title: "-", range: .notFound),
         OutlineItem(title: "Hund", range: .notFound, style: [.underline]),

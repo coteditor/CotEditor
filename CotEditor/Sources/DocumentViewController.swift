@@ -31,7 +31,7 @@ import SwiftUI
 private let maximumNumberOfSplitEditors = 4
 
 
-final class DocumentViewController: NSSplitViewController, DocumentOwner, ThemeChanging, NSToolbarItemValidation {
+final class DocumentViewController: NSSplitViewController, ThemeChanging, NSToolbarItemValidation {
     
     private enum SerializationKey {
         

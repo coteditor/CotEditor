@@ -34,7 +34,13 @@ enum InspectorPane: Int, CaseIterable {
 }
 
 
-final class InspectorViewController: NSTabViewController, DocumentOwner {
+protocol DocumentOwner: NSViewController {
+    
+    var document: Document { get set }
+}
+
+
+final class InspectorViewController: NSTabViewController {
     
     // MARK: Public Properties
     

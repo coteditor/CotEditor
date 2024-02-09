@@ -57,6 +57,22 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
         
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        self.model.isAppeared = true
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.model.isAppeared = false
+    }
 }
 
 
@@ -64,14 +80,14 @@ struct DocumentInspectorView: View {
     
     @MainActor final class Model: ObservableObject {
         
-        var document: Document  { didSet { self.invalidateObservation() } }
-        var isAppeared = false  { didSet { self.invalidateObservation() } }
-        
         @Published var attributes: DocumentFile.Attributes?
         @Published var fileURL: URL?
         @Published var encoding: FileEncoding = FileEncoding(encoding: .utf8)
         @Published var lineEnding: LineEnding = .lf
         @Published var countResult: EditorCountResult = .init()
+        
+        var document: Document  { didSet { self.invalidateObservation() } }
+        var isAppeared = false  { didSet { self.invalidateObservation() } }
         
         private var observers: Set<AnyCancellable> = []
         
@@ -101,12 +117,6 @@ struct DocumentInspectorView: View {
             .padding(EdgeInsets(top: 4, leading: 12, bottom: 12, trailing: 12))
             .disclosureGroupStyle(InspectorDisclosureGroupStyle())
             .labeledContentStyle(InspectorLabeledContentStyle())
-        }
-        .onAppear {
-            self.model.isAppeared = true
-        }
-        .onDisappear {
-            self.model.isAppeared = false
         }
         .accessibilityLabel(Text("Document Inspector", tableName: "Inspector"))
         .controlSize(.small)
@@ -254,8 +264,11 @@ private struct OptionalLabeledContent: View {
         LabeledContent(self.title) {
             if let value {
                 Text(value)
+                    .textSelection(.enabled)
+                    .foregroundStyle(.primary)
             } else {
-                Text(verbatim: "–").foregroundStyle(Color.tertiaryLabel)
+                Text(verbatim: "–")
+                    .foregroundStyle(Color.tertiaryLabel)
             }
         }
     }
