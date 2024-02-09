@@ -369,6 +369,8 @@
 		2A72DA11209B778B005242B9 /* NSTextView+MultiCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A72DA0F209B778B005242B9 /* NSTextView+MultiCursor.swift */; };
 		2A733E8920BBB4AC0090D7CB /* String+Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A733E8820BBB4AC0090D7CB /* String+Case.swift */; };
 		2A733E8A20BBB4AC0090D7CB /* String+Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A733E8820BBB4AC0090D7CB /* String+Case.swift */; };
+		2A73A87C2B76158600E64C44 /* AddRemoveButton.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A73A87A2B76158600E64C44 /* AddRemoveButton.xcstrings */; };
+		2A73A87D2B76158600E64C44 /* AddRemoveButton.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A73A87A2B76158600E64C44 /* AddRemoveButton.xcstrings */; };
 		2A73B5B61D4675350025337F /* Unicode.Scalar+ControlCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5B31D4675350025337F /* Unicode.Scalar+ControlCharacter.swift */; };
 		2A73B5B71D4675350025337F /* Unicode.Scalar+ControlCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5B31D4675350025337F /* Unicode.Scalar+ControlCharacter.swift */; };
 		2A73B5BC1D468DD30025337F /* Unicode.Scalar+Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5BB1D468DD30025337F /* Unicode.Scalar+Information.swift */; };
@@ -692,6 +694,8 @@
 		2AD8D74B2064AD83000BEFDB /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD8D7492064AD83000BEFDB /* NumberTextField.swift */; };
 		2ADA15EE21C5073D00C6608B /* Collection+IndexSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */; };
 		2ADA15EF21C5073D00C6608B /* Collection+IndexSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */; };
+		2ADB04AC2A89F14D00C4F562 /* AddRemoveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADB04AB2A89F14D00C4F562 /* AddRemoveButton.swift */; };
+		2ADB04AD2A89F14D00C4F562 /* AddRemoveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADB04AB2A89F14D00C4F562 /* AddRemoveButton.swift */; };
 		2ADBC91521C9F30000B884FF /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADBC91421C9F30000B884FF /* Atomic.swift */; };
 		2ADBC91621C9F30000B884FF /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADBC91421C9F30000B884FF /* Atomic.swift */; };
 		2ADD0AD8217A967200F78732 /* NSTextView+LineNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */; };
@@ -1045,6 +1049,7 @@
 		2A71BC7D1DDC70A80085AE1C /* NSImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		2A72DA0F209B778B005242B9 /* NSTextView+MultiCursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+MultiCursor.swift"; sourceTree = "<group>"; };
 		2A733E8820BBB4AC0090D7CB /* String+Case.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Case.swift"; sourceTree = "<group>"; };
+		2A73A87B2B76158600E64C44 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/AddRemoveButton.xcstrings; sourceTree = "<group>"; };
 		2A73B5B31D4675350025337F /* Unicode.Scalar+ControlCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Unicode.Scalar+ControlCharacter.swift"; sourceTree = "<group>"; };
 		2A73B5BB1D468DD30025337F /* Unicode.Scalar+Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Unicode.Scalar+Information.swift"; sourceTree = "<group>"; };
 		2A73B9322A8F6620002F3A16 /* RegexTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexTextField.swift; sourceTree = "<group>"; };
@@ -1227,6 +1232,7 @@
 		2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentAnalyzer.swift; sourceTree = "<group>"; };
 		2AD8D7492064AD83000BEFDB /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
 		2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+IndexSet.swift"; sourceTree = "<group>"; };
+		2ADB04AB2A89F14D00C4F562 /* AddRemoveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRemoveButton.swift; sourceTree = "<group>"; };
 		2ADBC91421C9F30000B884FF /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+LineNumber.swift"; sourceTree = "<group>"; };
 		2ADD0AEA2184AB6F00F78732 /* NSControl+Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSControl+Binding.swift"; sourceTree = "<group>"; };
@@ -2141,7 +2147,8 @@
 				2ACDA2752B81D85700B2EBA8 /* PatternSort.xcstrings */,
 				2A55D5D72B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings */,
 				2ACDA2882B81E2AC00B2EBA8 /* ColorCode.xcstrings */,
-				2ACDA29F2B81E8C300B2EBA8 /* IssueReport.xcstrings */,
+				2A55D5E62B7A85E30092DE48 /* IssueReport.xcstrings */,
+				2A73A87A2B76158600E64C44 /* AddRemoveButton.xcstrings */,
 				2AA2E0111BFE12620087BDD6 /* UnicodeBlock.strings */,
 				2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */,
 			);
@@ -2253,6 +2260,7 @@
 				2A1083EF2944837E00751DAE /* InsetTextField.swift */,
 				2A59B7022957089A0094F03B /* LinkButton.swift */,
 				2A4A7D122856FF340085D2E7 /* HelpButton.swift */,
+				2ADB04AB2A89F14D00C4F562 /* AddRemoveButton.swift */,
 				2A2615882977FCF6008C2240 /* SubmitButtonGroup.swift */,
 				2ACDA24F2B81201A00B2EBA8 /* OpacitySlider.swift */,
 				2A5D13121D1EE8FF00D38E6A /* HUDView.swift */,
@@ -2535,6 +2543,7 @@
 				2ACDA2892B81E2AC00B2EBA8 /* ColorCode.xcstrings in Resources */,
 				2A65EC3B2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */,
 				2ACDA29D2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */,
+				2A73A87C2B76158600E64C44 /* AddRemoveButton.xcstrings in Resources */,
 				2AA2E0141BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
 				2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */,
 				2ACDE28D2406B9C000FC31EC /* AppearancePane.storyboard in Resources */,
@@ -2602,6 +2611,7 @@
 				2ACDA28A2B81E2B100B2EBA8 /* ColorCode.xcstrings in Resources */,
 				2A65EC3C2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */,
 				2ACDA29E2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */,
+				2A73A87D2B76158600E64C44 /* AddRemoveButton.xcstrings in Resources */,
 				2A36E36F2AF9ED0B00A73534 /* Sparkle.xcstrings in Resources */,
 				2AA2E0131BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
 				2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */,
@@ -2729,6 +2739,7 @@
 			files = (
 				2A39F15726F74C2500B52876 /* AccessibleStepper.swift in Sources */,
 				2A5E410B2B0B559300D5EA20 /* ActionCommand.swift in Sources */,
+				2ADB04AC2A89F14D00C4F562 /* AddRemoveButton.swift in Sources */,
 				2AF29EC42882EE7700DF31D2 /* AdvancedCharacterCounter.swift in Sources */,
 				2A04E9C327FEFA86008C82D8 /* AdvancedCharacterCounterView.swift in Sources */,
 				2ACDC09B1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
@@ -3092,6 +3103,7 @@
 			files = (
 				2A39F15826F74C2500B52876 /* AccessibleStepper.swift in Sources */,
 				2A5E410C2B0B559400D5EA20 /* ActionCommand.swift in Sources */,
+				2ADB04AD2A89F14D00C4F562 /* AddRemoveButton.swift in Sources */,
 				2AF29EC52882EE7700DF31D2 /* AdvancedCharacterCounter.swift in Sources */,
 				2A04E9C427FEFA87008C82D8 /* AdvancedCharacterCounterView.swift in Sources */,
 				2ACDC09A1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
@@ -3506,6 +3518,14 @@
 				2A5EA1612A88E8B000D16730 /* mul */,
 			);
 			name = StatusBar.storyboard;
+			sourceTree = "<group>";
+		};
+		2A73A87A2B76158600E64C44 /* AddRemoveButton.xcstrings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A73A87B2B76158600E64C44 /* mul */,
+			);
+			name = AddRemoveButton.xcstrings;
 			sourceTree = "<group>";
 		};
 		2A7F4E022871F46D0029CE66 /* PrintPanelAccessory.storyboard */ = {
