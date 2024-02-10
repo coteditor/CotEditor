@@ -37,22 +37,10 @@ struct IncompatibleCharactersView: View {
         @Published var items: [Item] = []
         @Published var isScanning = false
         
-        var document: Document  { didSet { self.invalidateObservation() } }
-        var isAppeared = false  { didSet { self.invalidateObservation() } }
+        var document: Document?  { didSet { self.invalidateObservation() } }
         
         private var observer: AnyCancellable?
         private var task: Task<Void, any Error>?
-        
-        
-        init(document: Document) {
-            
-            self.document = document
-        }
-        
-        
-        deinit {
-            self.task?.cancel()
-        }
     }
     
     
@@ -83,10 +71,11 @@ struct IncompatibleCharactersView: View {
                 Table(self.model.items, selection: $selection, sortOrder: $sortOrder) {
                     TableColumn(String(localized: "Line", table: "Inspector", comment: "table column header"), value: \.location) {
                         // calculate the line number first at this point to postpone the high cost processing as much as possible
-                        let line = self.model.document.lineEndingScanner.lineNumber(at: $0.location)
-                        Text(line, format: .number)
-                            .monospacedDigit()
-                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        if let line = self.model.document?.lineEndingScanner.lineNumber(at: $0.location) {
+                            Text(line, format: .number)
+                                .monospacedDigit()
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                        }
                     }
                     
                     TableColumn(String(localized: "Character", table: "Inspector", comment: "table column header"), value: \.value.character) {
@@ -137,7 +126,7 @@ private extension IncompatibleCharactersView.Model {
         
         guard
             let item = self.items.first(where: { $0.id == id }),
-            let textView = self.document.textView,
+            let textView = self.document?.textView,
             textView.string.length >= item.range.upperBound
         else { return }
         
@@ -148,15 +137,15 @@ private extension IncompatibleCharactersView.Model {
     
     func invalidateObservation() {
         
-        if self.isAppeared {
+        if let document {
             self.observer = Publishers.Merge3(
                 Just(Void()),  // initial scan
-                NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: self.document.textStorage)
+                NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: document.textStorage)
                     .map { $0.object as! NSTextStorage }
                     .filter { $0.editedMask.contains(.editedCharacters) }
                     .debounce(for: .seconds(0.3), scheduler: RunLoop.current)
                     .eraseToVoid(),
-                self.document.$fileEncoding
+                document.$fileEncoding
                     .map(\.encoding)
                     .removeDuplicates()
                     .eraseToVoid()
@@ -190,8 +179,10 @@ private extension IncompatibleCharactersView.Model {
         
         assert(Thread.isMainThread)
         
-        let string = self.document.textStorage.string
-        let encoding = self.document.fileEncoding.encoding
+        guard let document else { return [] }
+        
+        let string = document.textStorage.string
+        let encoding = document.fileEncoding.encoding
         
         guard !string.canBeConverted(to: encoding) else { return [] }
         
@@ -210,9 +201,9 @@ private extension IncompatibleCharactersView.Model {
     @MainActor private func updateMarkup(_ items: [ValueRange<IncompatibleCharacter>]) {
         
         if !self.items.isEmpty {
-            self.document.textStorage.clearAllMarkup()
+            self.document?.textStorage.clearAllMarkup()
         }
-        self.document.textStorage.markup(ranges: items.map(\.range))
+        self.document?.textStorage.markup(ranges: items.map(\.range))
     }
 }
 
@@ -253,16 +244,18 @@ private extension NSTextStorage {
 
 @available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
-    let document = Document()
-    document.changeEncoding(to: FileEncoding(encoding: .shiftJIS))
-    document.textStorage.replaceContent(with: "  ~ \n ~ \\")
+    let model = IncompatibleCharactersView.Model()
+    model.items = [
+        .init(value: .init(character: "~", converted: "-"), range: .notFound),
+        .init(value: .init(character: " ", converted: "?"), range: .notFound),
+    ]
     
-    return IncompatibleCharactersView(model: .init(document: document))
+    return IncompatibleCharactersView(model: model)
         .padding(12)
 }
 
 @available(macOS 14, *)
 #Preview("Empty", traits: .fixedLayout(width: 240, height: 300)) {
-    IncompatibleCharactersView(model: .init(document: .init()))
+    IncompatibleCharactersView(model: .init())
         .padding(12)
 }

@@ -32,14 +32,17 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
     
     var document: Document {
         
-        get { self.model.document }
-        set { self.model.document = newValue }
+        didSet {
+            if self.isViewShown {
+                self.model.document = document
+            }
+        }
     }
     
     
     // MARK: Private Properties
     
-    private let model: DocumentInspectorView.Model
+    private let model = DocumentInspectorView.Model()
     
     
     
@@ -47,7 +50,7 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
     
     required init(document: Document) {
         
-        self.model = .init(document: document)
+        self.document = document
         
         super.init(rootView: DocumentInspectorView(model: self.model))
     }
@@ -63,7 +66,7 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
         
         super.viewWillAppear()
         
-        self.model.isAppeared = true
+        self.model.document = self.document
     }
     
     
@@ -71,7 +74,7 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
         
         super.viewDidDisappear()
         
-        self.model.isAppeared = false
+        self.model.document = nil
     }
 }
 
@@ -86,16 +89,9 @@ struct DocumentInspectorView: View {
         @Published var lineEnding: LineEnding = .lf
         @Published var countResult: EditorCountResult = .init()
         
-        var document: Document  { didSet { self.invalidateObservation() } }
-        var isAppeared = false  { didSet { self.invalidateObservation() } }
+        var document: Document?  { willSet { self.invalidateObservation(document: newValue) } }
         
         private var observers: Set<AnyCancellable> = []
-        
-        
-        init(document: Document) {
-            
-            self.document = document
-        }
     }
     
     
@@ -308,28 +304,28 @@ private struct InspectorLabeledContentStyle: LabeledContentStyle {
 
 private extension DocumentInspectorView.Model {
     
-    func invalidateObservation() {
+    func invalidateObservation(document: Document?) {
         
-        let analyzer = self.document.analyzer
+        self.document?.analyzer.updatesAll = false
         
-        analyzer.updatesAll = self.isAppeared
-        
-        if self.isAppeared {
-            analyzer.invalidate()
+        if let document {
+            document.analyzer.updatesAll = true
+            document.analyzer.invalidate()
+            
             self.observers = [
-                self.document.publisher(for: \.fileURL, options: .initial)
+                document.publisher(for: \.fileURL, options: .initial)
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] in self?.fileURL = $0 },
-                self.document.$fileAttributes
+                document.$fileAttributes
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] in self?.attributes = $0 },
-                self.document.$fileEncoding
+                document.$fileEncoding
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] in self?.encoding = $0 },
-                self.document.$lineEnding
+                document.$lineEnding
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] in self?.lineEnding = $0 },
-                self.document.analyzer.$result
+                document.analyzer.$result
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] in self?.countResult = $0 },
             ]
@@ -345,7 +341,7 @@ private extension DocumentInspectorView.Model {
 
 @available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 240, height: 500)) {
-    let model = DocumentInspectorView.Model(document: .init())
+    let model = DocumentInspectorView.Model()
     model.attributes = .init(
         creationDate: .now,
         modificationDate: .now,

@@ -27,8 +27,8 @@ import SwiftUI
 
 final class WarningInspectorViewController: NSHostingController<WarningInspectorView>, DocumentOwner {
     
-    private let incompatibleCharactersModel: IncompatibleCharactersView.Model
-    private let inconsistentLineEndingsModel: InconsistentLineEndingsView.Model
+    private let incompatibleCharactersModel = IncompatibleCharactersView.Model()
+    private let inconsistentLineEndingsModel = InconsistentLineEndingsView.Model()
     
     
     // MARK: Public Properties
@@ -36,8 +36,10 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
     var document: Document {
         
         didSet {
-            self.incompatibleCharactersModel.document = self.document
-            self.inconsistentLineEndingsModel.document = self.document
+            if self.isViewShown {
+                self.incompatibleCharactersModel.document = self.document
+                self.inconsistentLineEndingsModel.document = self.document
+            }
         }
     }
     
@@ -46,15 +48,12 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
     
     init(document: Document) {
         
-        self.incompatibleCharactersModel = .init(document: document)
-        self.inconsistentLineEndingsModel = .init(document: document)
-        
         self.document = document
         
         super.init(rootView: WarningInspectorView(
             incompatibleCharactersModel: self.incompatibleCharactersModel,
-            inconsistentLineEndingsModel: self.inconsistentLineEndingsModel)
-        )
+            inconsistentLineEndingsModel: self.inconsistentLineEndingsModel
+        ))
     }
     
     
@@ -68,8 +67,8 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
         
         super.viewWillAppear()
         
-        self.incompatibleCharactersModel.isAppeared = true
-        self.inconsistentLineEndingsModel.isAppeared = true
+        self.incompatibleCharactersModel.document = self.document
+        self.inconsistentLineEndingsModel.document = self.document
     }
     
     
@@ -77,8 +76,8 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
         
         super.viewDidDisappear()
         
-        self.incompatibleCharactersModel.isAppeared = false
-        self.inconsistentLineEndingsModel.isAppeared = false
+        self.incompatibleCharactersModel.document = nil
+        self.inconsistentLineEndingsModel.document = nil
     }
 }
 
@@ -108,11 +107,8 @@ struct WarningInspectorView: View {
 
 @available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
-    let document = Document()
-    document.textStorage.replaceContent(with: "  \r \n \r")
-    
-    return WarningInspectorView(
-        incompatibleCharactersModel: .init(document: document),
-        inconsistentLineEndingsModel: .init(document: document)
+    WarningInspectorView(
+        incompatibleCharactersModel: .init(),
+        inconsistentLineEndingsModel: .init()
     )
 }

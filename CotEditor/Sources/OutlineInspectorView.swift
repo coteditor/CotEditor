@@ -32,23 +32,26 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
     
     var document: Document {
         
-        get { self.model.document }
-        set { self.model.document = newValue }
+        didSet {
+            if self.isViewShown {
+                self.model.document = document
+            }
+        }
     }
     
     
     // MARK: Private Properties
     
-    private let model: OutlineInspectorView.Model
+    private let model = OutlineInspectorView.Model()
     
     
     // MARK: Lifecycle
     
     required init(document: Document) {
         
-        self.model = OutlineInspectorView.Model(document: document)
+        self.document = document
         
-        super.init(rootView: OutlineInspectorView(model: model))
+        super.init(rootView: OutlineInspectorView(model: self.model))
     }
     
     
@@ -62,7 +65,7 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
         
         super.viewWillAppear()
         
-        self.model.isAppeared = true
+        self.model.document = self.document
     }
     
     
@@ -70,7 +73,7 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
         
         super.viewDidDisappear()
         
-        self.model.isAppeared = false
+        self.model.document = nil
     }
 }
 
@@ -85,19 +88,12 @@ struct OutlineInspectorView: View {
         @Published var items: [Item] = []
         @Published var selection: Item.ID?
         
-        var document: Document  { didSet { self.invalidateObservation() } }
-        var isAppeared = false  { didSet { self.invalidateObservation() } }
+        var document: Document?  { didSet { self.invalidateObservation() } }
         
         private var isOwnSelectionChange = false
         private var documentObserver: AnyCancellable?
         private var syntaxObserver: AnyCancellable?
         private var selectionObserver: AnyCancellable?
-        
-        
-        init(document: Document) {
-            
-            self.document = document
-        }
     }
     
     
@@ -192,7 +188,7 @@ private extension OutlineInspectorView.Model {
         guard
             !self.isOwnSelectionChange,
             let item = self.items.first(where: { $0.id == id }),
-            let textView = self.document.textView,
+            let textView = self.document?.textView,
             textView.string.length >= item.range.upperBound
         else { return }
         
@@ -203,11 +199,11 @@ private extension OutlineInspectorView.Model {
     
     func invalidateObservation() {
         
-        if self.isAppeared {
-            self.documentObserver = self.document.didChangeSyntax
+        if let document {
+            self.documentObserver = document.didChangeSyntax
                 .merge(with: Just(""))  // initial
                 .sink { [weak self] _ in
-                    self?.syntaxObserver = self?.document.syntaxParser.$outlineItems
+                    self?.syntaxObserver = self?.document?.syntaxParser.$outlineItems
                         .compactMap { $0 }
                         .receive(on: DispatchQueue.main)
                         .sink { [weak self] in
@@ -218,14 +214,14 @@ private extension OutlineInspectorView.Model {
             
             self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)
                 .map { $0.object as! NSTextView }
-                .filter { [weak self] in $0.textStorage == self?.document.textStorage }
+                .filter { [weak self] in $0.textStorage == self?.document?.textStorage }
                 .filter { !$0.hasMarkedText() }
                 // avoid updating outline item selection before finishing outline parse
                 // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
                 //    You can ignore text selection change at this time point because the outline selection will be updated when the parse finished.
                 .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
                 .debounce(for: .seconds(0.05), scheduler: RunLoop.main)
-                .sink { self.invalidateCurrentItem(in: $0) }
+                .sink { [weak self] in self?.invalidateCurrentItem(in: $0) }
             
         } else {
             self.documentObserver = nil
@@ -241,7 +237,7 @@ private extension OutlineInspectorView.Model {
     private func invalidateCurrentItem(in textView: NSTextView? = nil) {
         
         guard
-            let textView = textView ?? self.document.textView,
+            let textView = textView ?? self.document?.textView,
             let item = self.items.item(at: textView.selectedRange.location)
         else { return }
         
@@ -257,7 +253,7 @@ private extension OutlineInspectorView.Model {
 
 @available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
-    let model = OutlineInspectorView.Model(document: .init())
+    let model = OutlineInspectorView.Model()
     model.items = [
         OutlineItem(title: "Hallo", range: .notFound),
         OutlineItem(title: "Guten Tag!", range: .notFound, style: [.bold]),

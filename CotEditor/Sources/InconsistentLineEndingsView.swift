@@ -36,16 +36,9 @@ struct InconsistentLineEndingsView: View {
         @Published var items: [Item] = []
         @Published var lineEnding: LineEnding = .lf
         
-        var document: Document  { didSet { self.invalidateObservation() } }
-        var isAppeared = false  { didSet { self.invalidateObservation() } }
+        var document: Document?  { didSet { self.invalidateObservation() } }
         
         private var observers: Set<AnyCancellable> = []
-        
-        
-        init(document: Document) {
-            
-            self.document = document
-        }
     }
     
     
@@ -75,10 +68,11 @@ struct InconsistentLineEndingsView: View {
                 Table(self.model.items, selection: $selection, sortOrder: $sortOrder) {
                     TableColumn(String(localized: "Line", table: "Inspector", comment: "table column header"), value: \.location) {
                         // calculate the line number first at this point to postpone the high cost processing as much as possible
-                        let line = self.model.document.lineEndingScanner.lineNumber(at: $0.location)
-                        Text(line, format: .number)
-                            .monospacedDigit()
-                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        if let line = self.model.document?.lineEndingScanner.lineNumber(at: $0.location) {
+                            Text(line, format: .number)
+                                .monospacedDigit()
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                        }
                     }
                     
                     TableColumn(String(localized: "Line Ending", table: "Inspector", comment: "table column header"), value: \.value.rawValue) {
@@ -114,7 +108,7 @@ private extension InconsistentLineEndingsView.Model {
         
         guard
             let item = self.items.first(where: { $0.id == id }),
-            let textView = self.document.textView,
+            let textView = self.document?.textView,
             textView.string.length >= item.range.upperBound
         else { return }
         
@@ -125,13 +119,13 @@ private extension InconsistentLineEndingsView.Model {
     
     func invalidateObservation() {
         
-        if self.isAppeared {
+        if let document {
             self.observers = [
-                self.document.lineEndingScanner.$inconsistentLineEndings
+                document.lineEndingScanner.$inconsistentLineEndings
                     .removeDuplicates()
                     .receive(on: RunLoop.main)
                     .sink { [weak self] in self?.items = $0 },
-                self.document.$lineEnding
+                document.$lineEnding
                     .removeDuplicates()
                     .receive(on: RunLoop.main)
                     .sink { [weak self] in self?.lineEnding = $0 },
@@ -148,15 +142,17 @@ private extension InconsistentLineEndingsView.Model {
 
 @available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
-    let document = Document()
-    document.textStorage.replaceContent(with: "  \r \n \r")
+    let model = InconsistentLineEndingsView.Model()
+    model.items = [
+        .init(value: .cr, range: .notFound)
+    ]
     
-    return InconsistentLineEndingsView(model: .init(document: document))
+    return InconsistentLineEndingsView(model: model)
         .padding(12)
 }
 
 @available(macOS 14, *)
 #Preview("Empty", traits: .fixedLayout(width: 240, height: 300)) {
-    InconsistentLineEndingsView(model: .init(document: .init()))
+    InconsistentLineEndingsView(model: .init())
         .padding(12)
 }
