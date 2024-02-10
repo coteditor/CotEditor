@@ -54,8 +54,8 @@ struct IncompatibleCharactersView: View {
         
         VStack(alignment: .leading, spacing: 8) {
             Text("Incompatible Characters", tableName: "Inspector", comment: "section title")
-            .font(.system(size: 12, weight: .bold))
-            .foregroundStyle(.secondary)
+                .font(.system(size: 12, weight: .bold))
+                .foregroundStyle(.secondary)
             
             if self.model.isScanning {
                 Text("Scanning incompatible characters…", tableName: "Inspector")

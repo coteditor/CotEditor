@@ -45,6 +45,7 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
     private let model = OutlineInspectorView.Model()
     
     
+    
     // MARK: Lifecycle
     
     required init(document: Document) {
