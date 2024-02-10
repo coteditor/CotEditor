@@ -733,13 +733,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Es wurde ein inkompatibles Zeichen gefunden."
+                  "value" : "Ein inkompatibles Zeichen gefunden."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Es wurden %lld inkompatiblen Zeichen gefunden."
+                  "value" : "%lld inkompatiblen Zeichen gefunden."
                 }
               }
             }
@@ -936,13 +936,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Es wurde ein anderes Zeilenende als %2$@ gefunden."
+                  "value" : "Ein Zeilenende außer %2$@ gefunden."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Es wurden %1$lld andere Zeilenenden als %2$@ gefunden."
+                  "value" : "%1$lld Zeilenenden außer %2$@ gefunden."
                 }
               }
             }
