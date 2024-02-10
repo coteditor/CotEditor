@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -244,30 +244,30 @@ struct RegularExpressionSortPatternView: View {
             GridRow {
                 Text("Pattern:")
                 VStack(alignment: .leading) {
-                    ZStack(alignment: .leadingFirstTextBaseline) {
-                        RegexTextField(text: $pattern.searchPattern, prompt: String(localized: "Regular Expression"))
-                            .leadingInset(18)
-                        Menu {
-                            let patterns = UserDefaults.standard[.regexPatternSortHistory]
-                            
-                            Section("Recents") {
-                                ForEach(patterns, id: \.self) { pattern in
-                                    Button(pattern) {
-                                        self.pattern.searchPattern = pattern
+                    RegexTextField(text: $pattern.searchPattern, prompt: String(localized: "Regular Expression"))
+                        .leadingInset(18)
+                        .overlay(alignment: .leadingLastTextBaseline) {
+                            Menu {
+                                let patterns = UserDefaults.standard[.regexPatternSortHistory]
+                                
+                                Section("Recents") {
+                                    ForEach(patterns, id: \.self) { pattern in
+                                        Button(pattern) {
+                                            self.pattern.searchPattern = pattern
+                                        }
                                     }
                                 }
+                                
+                                if !patterns.isEmpty {
+                                    Button("Clear Recents", role: .destructive, action: self.clearRecents)
+                                }
+                            } label: {
+                                EmptyView()
                             }
-                            
-                            if !patterns.isEmpty {
-                                Button("Clear Recents", role: .destructive, action: self.clearRecents)
-                            }
-                        } label: {
-                            EmptyView()
+                            .menuStyle(.borderlessButton)
+                            .frame(width: 16)
+                            .padding(.leading, 4)
                         }
-                        .menuStyle(.borderlessButton)
-                        .frame(width: 16)
-                        .padding(.leading, 4)
-                    }
                     
                     HStack {
                         Toggle("Ignore case", isOn: $pattern.ignoresCase)

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,14 +46,12 @@ struct LiveTextInsertionView: View {
     var body: some View {
         
         VStack(alignment: .center, spacing: 0) {
-            ZStack {
-                Image(nsImage: self.image)
-                    .resizable()
-                    .scaledToFit()
-                OverlayView(result: self.result)
-            }
-            .frame(width: !self.image.isPortrait ? self.length : nil,
-                   height: self.image.isPortrait ? self.length : nil)
+            Image(nsImage: self.image)
+                .resizable()
+                .scaledToFit()
+                .overlay { OverlayView(result: self.result) }
+                .frame(width: !self.image.isPortrait ? self.length : nil,
+                       height: self.image.isPortrait ? self.length : nil)
             
             Divider()
             

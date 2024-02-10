@@ -111,37 +111,36 @@ struct OutlineInspectorView: View {
                 .font(.system(size: 12, weight: .bold))
                 .foregroundStyle(.secondary)
             
-            ZStack {
-                let items = self.model.items.filterItems(with: self.filterString)
-                
-                List(items, selection: $model.selection) { item in
-                    OutlineRowView(item: item)
-                        .listRowSeparator(.hidden)
-                        .font(.system(size: self.fontSize))
-                        .frame(height: self.fontSize)
-                }
-                .onReceive(self.model.$selection) { id in
-                    // use .onReceive(_:) instead of .onChange(of:) to control the timing
-                    self.model.selectItem(id: id)
-                }
-                .onCommand(#selector(EditorTextView.biggerFont)) {
-                    self.fontSize += 1
-                }
-                .onCommand(#selector(EditorTextView.smallerFont)) {
-                    self.fontSize = max(self.fontSize - 1, NSFont.smallSystemFontSize)
-                }
-                .onCommand(#selector(EditorTextView.resetFont)) {
-                    UserDefaults.standard.restore(key: .outlineViewFontSize)
-                }
-                .border(.separator)
-                .environment(\.defaultMinListRowHeight, self.fontSize)
-                
+            let items = self.model.items.filterItems(with: self.filterString)
+            
+            List(items, selection: $model.selection) { item in
+                OutlineRowView(item: item)
+                    .listRowSeparator(.hidden)
+                    .font(.system(size: self.fontSize))
+                    .frame(height: self.fontSize)
+            }
+            .overlay {
                 if !self.filterString.isEmpty, items.isEmpty {
                     Text("No Filter Results", tableName: "Inspector", comment: "display on the list when no results in filtering outline items")
                         .foregroundStyle(.secondary)
                         .controlSize(.regular)
                 }
             }
+            .onReceive(self.model.$selection) { id in
+                // use .onReceive(_:) instead of .onChange(of:) to control the timing
+                self.model.selectItem(id: id)
+            }
+            .onCommand(#selector(EditorTextView.biggerFont)) {
+                self.fontSize += 1
+            }
+            .onCommand(#selector(EditorTextView.smallerFont)) {
+                self.fontSize = max(self.fontSize - 1, NSFont.smallSystemFontSize)
+            }
+            .onCommand(#selector(EditorTextView.resetFont)) {
+                UserDefaults.standard.restore(key: .outlineViewFontSize)
+            }
+            .border(.separator)
+            .environment(\.defaultMinListRowHeight, self.fontSize)
             
             FilterField(text: $filterString)
                 .autosaveName("OutlineSearch")

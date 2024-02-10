@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -51,41 +51,40 @@ struct UnicodeInputView: View {
             }
             .foregroundColor(self.unicodeName != nil ? .label : .secondaryLabel)
             
-            ZStack(alignment: .leadingFirstTextBaseline) {
-                InsetTextField(text: $codePoint, prompt: "U+1F600")
-                    .onSubmit { self.submit() }
-                    .inset(.leading, 18)
-                    .monospacedDigit()
-                
-                Menu {
-                    let scalars = UserDefaults.standard[.unicodeHistory]
-                        .compactMap(UTF32.CodeUnit.init(codePoint:))
-                        .compactMap(UnicodeScalar.init)
-                    
-                    Section("Recents") {
-                        ForEach(scalars, id: \.self) { scalar in
-                            Button {
-                                self.codePoint = scalar.codePoint
-                            } label: {
-                                Text(scalar.codePoint.padding(toLength: 9, withPad: " ", startingAt: 0))
-                                    .monospacedDigit() +
-                                Text(scalar.name ?? "–")
-                                    .font(.system(size: NSFont.smallSystemFontSize))
-                                    .foregroundColor(.secondaryLabel)
+            InsetTextField(text: $codePoint, prompt: "U+1F600")
+                .onSubmit { self.submit() }
+                .inset(.leading, 18)
+                .monospacedDigit()
+                .overlay(alignment: .leadingFirstTextBaseline) {
+                    Menu {
+                        let scalars = UserDefaults.standard[.unicodeHistory]
+                            .compactMap(UTF32.CodeUnit.init(codePoint:))
+                            .compactMap(UnicodeScalar.init)
+                        
+                        Section("Recents") {
+                            ForEach(scalars, id: \.self) { scalar in
+                                Button {
+                                    self.codePoint = scalar.codePoint
+                                } label: {
+                                    Text(scalar.codePoint.padding(toLength: 9, withPad: " ", startingAt: 0))
+                                        .monospacedDigit() +
+                                    Text(scalar.name ?? "–")
+                                        .font(.system(size: NSFont.smallSystemFontSize))
+                                        .foregroundColor(.secondaryLabel)
+                                }
                             }
                         }
+                        
+                        if !scalars.isEmpty {
+                            Button("Clear Recents", role: .destructive, action: self.clearRecents)
+                        }
+                    } label: {
+                        EmptyView()
                     }
-                    
-                    if !scalars.isEmpty {
-                        Button("Clear Recents", role: .destructive, action: self.clearRecents)
-                    }
-                } label: {
-                    EmptyView()
+                    .menuStyle(.borderlessButton)
+                    .frame(width: 16)
+                    .padding(.leading, 4)
                 }
-                .menuStyle(.borderlessButton)
-                .frame(width: 16)
-                .padding(.leading, 4)
-            }
         }
         .padding(10)
         .frame(width: 200)
