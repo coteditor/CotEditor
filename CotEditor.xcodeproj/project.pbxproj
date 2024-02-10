@@ -145,6 +145,8 @@
 		2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */; };
 		2A2B086028046E3B0028D733 /* WarningInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2B085F28046E3B0028D733 /* WarningInspectorView.swift */; };
 		2A2B086128046E3B0028D733 /* WarningInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2B085F28046E3B0028D733 /* WarningInspectorView.swift */; };
+		2A2EEF182B778BB1001FEDFB /* WrappingHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2EEF172B778BB1001FEDFB /* WrappingHStack.swift */; };
+		2A2EEF192B778BB1001FEDFB /* WrappingHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2EEF172B778BB1001FEDFB /* WrappingHStack.swift */; };
 		2A30C7DB2B1380BE002F6381 /* ShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C7DA2B1380BE002F6381 /* ShortcutView.swift */; };
 		2A30C7DC2B1380BE002F6381 /* ShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C7DA2B1380BE002F6381 /* ShortcutView.swift */; };
 		2A33D07E1D1C75B8005977B9 /* SyntaxValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D07D1D1C75B8005977B9 /* SyntaxValidationView.swift */; };
@@ -933,6 +935,7 @@
 		2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Constants.swift"; sourceTree = "<group>"; };
 		2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatPaneController.swift; sourceTree = "<group>"; };
 		2A2B085F28046E3B0028D733 /* WarningInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningInspectorView.swift; sourceTree = "<group>"; };
+		2A2EEF172B778BB1001FEDFB /* WrappingHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingHStack.swift; sourceTree = "<group>"; };
 		2A30C7DA2B1380BE002F6381 /* ShortcutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutView.swift; sourceTree = "<group>"; };
 		2A33D07D1D1C75B8005977B9 /* SyntaxValidationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxValidationView.swift; sourceTree = "<group>"; };
 		2A33D0801D1C7935005977B9 /* SyntaxTermsEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTermsEditViewController.swift; sourceTree = "<group>"; };
@@ -2308,6 +2311,7 @@
 				2A5D13121D1EE8FF00D38E6A /* HUDView.swift */,
 				2AA175F92AC5634500F6462C /* PopoverHolderView.swift */,
 				2AE144C32B0222DB005E8CF1 /* LiveTextInsertionView.swift */,
+				2A2EEF172B778BB1001FEDFB /* WrappingHStack.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3068,6 +3072,7 @@
 				2A78BFB11D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
+				2A2EEF182B778BB1001FEDFB /* WrappingHStack.swift in Sources */,
 				2AEE84B31E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3430,6 +3435,7 @@
 				2A78BFB01D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
+				2A2EEF192B778BB1001FEDFB /* WrappingHStack.swift in Sources */,
 				2AEE84B21E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

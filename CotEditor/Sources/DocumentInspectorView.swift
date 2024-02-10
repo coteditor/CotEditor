@@ -220,14 +220,15 @@ private struct CharacterPaneView: View {
             Form {
                 if let character {
                     LabeledContent(String(localized: "Code Points", table: "Inspector")) {
-                        ForEach(Array(character.unicodeScalars.enumerated()), id: \.offset) { (_, scalar) in
-                            Text(scalar.codePoint)
-                                .monospacedDigit()
-                                .textSelection(.enabled)
-                                .padding(.horizontal, 2)
-                                .overlay(RoundedRectangle(cornerRadius: 3.5).inset(by: 0.5)
-                                    .stroke(Color.tertiaryLabel))
-                                .fixedSize()
+                        WrappingHStack {
+                            ForEach(Array(character.unicodeScalars.enumerated()), id: \.offset) { (_, scalar) in
+                                Text(scalar.codePoint)
+                                    .monospacedDigit()
+                                    .textSelection(.enabled)
+                                    .padding(.horizontal, 2)
+                                    .overlay(RoundedRectangle(cornerRadius: 3.5).inset(by: 0.5)
+                                        .stroke(Color.tertiaryLabel))
+                            }
                         }
                     }
                 } else {
@@ -340,16 +341,16 @@ private extension DocumentInspectorView.Model {
 // MARK: - Preview
 
 @available(macOS 14, *)
-#Preview(traits: .fixedLayout(width: 240, height: 500)) {
+#Preview(traits: .fixedLayout(width: 240, height: 540)) {
     let model = DocumentInspectorView.Model()
     model.attributes = .init(
         creationDate: .now,
         modificationDate: .now,
         size: 1024,
         permissions: FilePermissions(mask: 0o420),
-        owner: "1024jp"
+        owner: "clarus"
     )
-    model.fileURL = URL(filePath: "/User/Claus/Desktop/My Script.py")
+    model.fileURL = URL(filePath: "/Users/clarus/Desktop/My Script.py")
     model.encoding = .init(encoding: .utf8, withUTF8BOM: true)
     model.countResult = .init(
         lines: .init(entire: 10, selected: 4),
