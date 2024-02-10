@@ -65,8 +65,8 @@ private struct WrappingHStackLayout: Layout {
         let minHeight = subviews
             .map { $0.sizeThatFits(proposal).height }
             .reduce(0) { max($0, $1).rounded(.up) }
-        
         var point = bounds.origin
+        
         for subview in subviews {
             let width = subview.sizeThatFits(proposal).width
             
@@ -90,8 +90,8 @@ private struct WrappingHStackLayout: Layout {
     private func countRows(for subviews: Subviews, in containerWidth: Double) -> Int {
         
         var count = 0
-        
         var x: Double = 0
+        
         for subview in subviews {
             let width = subview.sizeThatFits(.unspecified).width
             
@@ -115,10 +115,8 @@ private struct WrappingHStackLayout: Layout {
 // MARK: - Preview
 
 #Preview {
-    let words = ["Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "sed", "do"]
-    
-    return WrappingHStack {
-        ForEach(words, id: \.self) {
+    WrappingHStack {
+        ForEach(["Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "sed", "do"], id: \.self) {
             Text($0)
                 .monospacedDigit()
                 .padding(.horizontal, 2)
