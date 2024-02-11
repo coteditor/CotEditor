@@ -5,24 +5,24 @@
 
 ### New Features
 
-- Support the alpha channel in theme settings (Custom themes using alpha channel are not compatible with CotEditor prior 4.7.4).
+- Support the alpha channel in theme settings (Custom themes using alpha channel are not compatible with CotEditor prior to version 4.7.4).
 - Make sections in the document inspector collapsable.
+- Add “Hexadecimal with Alpha” format to the Color Code panel.
 - Add Czech localization (Thanks to Martin Růžička!).
 
 
 ### Improvements
 
-- Add “Hexadecimal with Alpha” format to the Color Code panel.
 - Tweak the background color of the “Anura (Dark)” theme.
-- [dev] Migrate the inspector pane to SwiftUI.
+- [dev] Migrate all the inspector panes to SwiftUI.
 
 
 ### Fixes
 
 - Fix an issue on macOS 13 that the stepper in the custom tab width view worked only once.
-- Fix an issue that the character code point display in the document inspector could be broken when the application is localized.
+- Fix an issue that the character code point displayed in the document inspector could be broken when the application is localized.
 - Fix an issue that the custom font size for the outline inspector was not fully applied.
-- Fix an issue that the Syntax toolbar item could select both the current and previous ones.
+- Fix an issue that the menu of the Syntax toolbar item could also check the previous one.
 - Fix an issue that a part of the Portuguese localization was not applied.
 - Fix Italian localization (Thanks to Roccobot and DAnn2012!).
 
