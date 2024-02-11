@@ -346,10 +346,10 @@ extension MultiCursorEditing {
         // get base selection rects in the origin line
         let baseIndex = (affinity == .downstream) ? glyphRanges.last!.lowerBound : glyphRanges.first!.upperBound
         let safeBaseIndex = layoutManager.isValidGlyphIndex(baseIndex) ? baseIndex : baseIndex - 1
-        var baseLineRange: NSRange = .notFound
-        layoutManager.lineFragmentRect(forGlyphAt: safeBaseIndex, effectiveRange: &baseLineRange, withoutAdditionalLayout: true)
+        var baseLineFragmentRange: NSRange = .notFound
+        layoutManager.lineFragmentRect(forGlyphAt: safeBaseIndex, effectiveRange: &baseLineFragmentRange, withoutAdditionalLayout: true)
         let rowBounds = glyphRanges
-            .filter { baseLineRange.intersects($0) }
+            .filter { baseLineFragmentRange.intersects($0) }
             .map { layoutManager.minimumRowBounds(of: $0, in: textContainer) }
         
         let newRanges = (lineFragmentUsedRects + [newLineRect])
