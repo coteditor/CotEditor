@@ -465,8 +465,8 @@
 		2A938AD0297E4D7B007FBE5F /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A938ACE297E4D7B007FBE5F /* SettingsWindowController.swift */; };
 		2A94FC791BE225A200B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
 		2A94FC7B1BE225F000B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
-		2A954B242AB28B010070FB74 /* Count.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A954B232AB28B010070FB74 /* Count.xcstrings */; };
-		2A954B252AB28B010070FB74 /* Count.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A954B232AB28B010070FB74 /* Count.xcstrings */; };
+		2A954B242AB28B010070FB74 /* TextFind.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A954B232AB28B010070FB74 /* TextFind.xcstrings */; };
+		2A954B252AB28B010070FB74 /* TextFind.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A954B232AB28B010070FB74 /* TextFind.xcstrings */; };
 		2A9710932A9C7BAE00CE9CDD /* WarningsSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9710922A9C7BAE00CE9CDD /* WarningsSettingView.swift */; };
 		2A9710942A9C7BAE00CE9CDD /* WarningsSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9710922A9C7BAE00CE9CDD /* WarningsSettingView.swift */; };
 		2A9AC937244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */; };
@@ -1098,7 +1098,7 @@
 		2A938ACB297E4BA9007FBE5F /* SettingsPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPane.swift; sourceTree = "<group>"; };
 		2A938ACE297E4D7B007FBE5F /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = cot/cot; sourceTree = SOURCE_ROOT; };
-		2A954B232AB28B010070FB74 /* Count.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Count.xcstrings; path = mul.lproj/Count.xcstrings; sourceTree = "<group>"; };
+		2A954B232AB28B010070FB74 /* TextFind.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = TextFind.xcstrings; path = mul.lproj/TextFind.xcstrings; sourceTree = "<group>"; };
 		2A9710922A9C7BAE00CE9CDD /* WarningsSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningsSettingView.swift; sourceTree = "<group>"; };
 		2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+InvisibleDrawing.swift"; sourceTree = "<group>"; };
 		2A9B134D27E2D84E009954A4 /* NSDraggingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDraggingInfo.swift; sourceTree = "<group>"; };
@@ -2116,7 +2116,7 @@
 			isa = PBXGroup;
 			children = (
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
-				2A954B232AB28B010070FB74 /* Count.xcstrings */,
+				2A954B232AB28B010070FB74 /* TextFind.xcstrings */,
 				2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */,
 				2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */,
 				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
@@ -2504,7 +2504,7 @@
 				2A5E6FC12A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
 				2A5E6FC42A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
 				2A5E6FC72A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
-				2A954B242AB28B010070FB74 /* Count.xcstrings in Resources */,
+				2A954B242AB28B010070FB74 /* TextFind.xcstrings in Resources */,
 				2AC94B222B6E26F40086F9F2 /* Inspector.xcstrings in Resources */,
 				2AC94B3B2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */,
 				2A6566E92B73BBB400008669 /* SyntaxEdit.xcstrings in Resources */,
@@ -2566,7 +2566,7 @@
 				2A5E6FC22A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
 				2A5E6FC52A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
 				2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
-				2A954B252AB28B010070FB74 /* Count.xcstrings in Resources */,
+				2A954B252AB28B010070FB74 /* TextFind.xcstrings in Resources */,
 				2AC94B232B6E26F40086F9F2 /* Inspector.xcstrings in Resources */,
 				2AC94B3C2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */,
 				2AA6E0C82B75AC4900E536F8 /* SyntaxEdit.xcstrings in Resources */,

@@ -61,20 +61,20 @@ enum TextFindResult {
             case .found:
                 switch self.count {
                     case ...0:
-                        String(localized: "Not found", table: "Count",
+                        String(localized: "Not found", table: "TextFind",
                                comment: "short result message for Find All")
                     default:
-                        String(localized: "\(self.count) found", table: "Count",
+                        String(localized: "\(self.count) found", table: "TextFind",
                                comment: "short result message for Find All (%lld is number of found)")
                 }
                 
             case .replaced:
                 switch self.count {
                     case ...0:
-                        String(localized: "Not replaced", table: "Count",
+                        String(localized: "Not replaced", table: "TextFind",
                                comment: "short result message for Replace All")
                     default:
-                        String(localized: "\(self.count) replaced", table: "Count",
+                        String(localized: "\(self.count) replaced", table: "TextFind",
                                comment: "short result message for Replace All (%lld is number of replaced)")
                 }
         }

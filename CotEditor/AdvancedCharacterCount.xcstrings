@@ -467,7 +467,7 @@
       }
     },
     "CharacterUnit.byte.description" : {
-      "comment" : "description for byte count",
+      "comment" : "description for byte",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -623,7 +623,7 @@
       }
     },
     "CharacterUnit.graphemeCluster.description" : {
-      "comment" : "description for grapheme cluster count",
+      "comment" : "description for grapheme cluster",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -779,7 +779,7 @@
       }
     },
     "CharacterUnit.unicodeScalar.description" : {
-      "comment" : "description for unicode scalar count",
+      "comment" : "description for unicode scalar",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -935,7 +935,7 @@
       }
     },
     "CharacterUnit.utf16.description" : {
-      "comment" : "description for UTF-16 count",
+      "comment" : "description for UTF-16",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

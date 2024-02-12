@@ -121,10 +121,10 @@ private extension FindProgressView.Unit {
             case _ where count == 0:
                 String(localized: "Searching in text…")
             case .find:
-                String(localized: "\(count) strings found.", table: "Count",
+                String(localized: "\(count) strings found.", table: "TextFind",
                        comment: "progress report in find progress dialog")
             case .replacement:
-                String(localized: "\(count) strings replaced.", table: "Count",
+                String(localized: "\(count) strings replaced.", table: "TextFind",
                        comment: "progress report in find progress dialog")
         }
     }
