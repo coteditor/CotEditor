@@ -3,6 +3,10 @@
 4.7.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- Make the encoding priority view undoable.
+
 
 
 4.7.4 (630)

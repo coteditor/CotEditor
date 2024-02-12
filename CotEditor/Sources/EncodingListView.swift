@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,10 +39,32 @@ private struct EncodingItem: Identifiable {
 
 struct EncodingListView: View {
     
+    fileprivate final class Model: ObservableObject {
+        
+        typealias Item = EncodingItem
+        
+        
+        @Published var items: [Item]
+        
+        private let defaults: UserDefaults
+        
+        
+        init(defaults: UserDefaults = .standard) {
+            
+            self.items = defaults[.encodingList].map(Item.init(encoding:))
+            self.defaults = defaults
+        }
+    }
+    
+    
     weak var parent: NSHostingController<Self>?
     
-    @State private var encodingItems: [EncodingItem] = UserDefaults.standard[.encodingList].map(EncodingItem.init(encoding:))
+    
+    @StateObject private var model = Model()
+    @Environment(\.undoManager) private var undoManager
+    
     @State private var selection: Set<EncodingItem.ID> = []
+    
     
     
     var body: some View {
@@ -51,7 +73,7 @@ struct EncodingListView: View {
             Text("Drag encodings to change the order:")
             
             List(selection: $selection) {
-                ForEach(self.encodingItems) { item in
+                ForEach(self.model.items) { item in
                     VStack(alignment: .leading, spacing: 8) {
                         if item.isSeparator {
                             Divider()
@@ -63,9 +85,7 @@ struct EncodingListView: View {
                         }
                     }.listRowSeparator(.hidden)
                 }.onMove { (indexes, index) in
-                    withAnimation {
-                        self.encodingItems.move(fromOffsets: indexes, toOffset: index)
-                    }
+                    self.model.move(fromOffsets: indexes, toOffset: index, undoManager: self.undoManager)
                 }
             }
             .listStyle(.bordered)
@@ -74,9 +94,13 @@ struct EncodingListView: View {
                 
             HStack {
                 Spacer()
-                Button("Add Separator", action: self.addSeparator)
-                Button("Delete Separator", action: self.deleteSeparators)
-                    .disabled(!self.canDeleteSeparators)
+                Button("Add Separator") {
+                    self.model.addSeparator(after: self.selection, undoManager: self.undoManager)
+                }
+                Button("Delete Separator") {
+                    self.model.deleteSeparators(in: self.selection, undoManager: self.undoManager)
+                }
+                .disabled(!self.model.containSeparators(in: self.selection))
             }.controlSize(.small)
             
             Text("This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized.")
@@ -87,13 +111,15 @@ struct EncodingListView: View {
             HStack {
                 HelpButton(anchor: "howto_customize_encoding_order")
                 
-                Button("Restore Defaults", action: self.restore)
-                    .disabled(!self.canRestore)
+                Button("Restore Defaults") {
+                    self.model.restore()
+                }
+                .disabled(!self.model.canRestore)
                 
                 Spacer()
                 
                 SubmitButtonGroup {
-                    self.save()
+                    self.model.save()
                     self.parent?.dismiss(nil)
                 } cancelAction: {
                     self.parent?.dismiss(nil)
@@ -102,59 +128,6 @@ struct EncodingListView: View {
         }
         .scenePadding()
         .frame(minWidth: 360)
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// Whether the current order differs from the default.
-    private var canRestore: Bool {
-        
-        self.encodingItems.map(\.encoding) != UserDefaults.standard[initial: .encodingList]
-    }
-    
-    
-    /// Whether the selection contains separators.
-    private var canDeleteSeparators: Bool {
-        
-        self.encodingItems
-            .filter(with: self.selection)
-            .contains(where: \.isSeparator)
-    }
-    
-    
-    /// Restores encodings setting list in the view to the default.
-    private func restore() {
-        
-        self.encodingItems = UserDefaults.standard[initial: .encodingList].map(EncodingItem.init)
-    }
-    
-    
-    /// Saves the current encodings to the user default.
-    private func save() {
-        
-        UserDefaults.standard[.encodingList] = self.encodingItems.map(\.encoding)
-    }
-    
-    
-    /// Adds a separator below the last selection.
-    private func addSeparator() {
-        
-        let index = self.encodingItems.lastIndex { self.selection.contains($0.id) }
-        
-        withAnimation {
-            self.encodingItems.insert(.separator, at: index?.advanced(by: 1) ?? 0)
-        }
-    }
-    
-    
-    /// Deletes separators in the selection.
-    private func deleteSeparators() {
-        
-        withAnimation {
-            self.encodingItems.removeAll { $0.isSeparator && self.selection.contains($0.id) }
-        }
     }
 }
 
@@ -189,6 +162,114 @@ private struct EncodingView: View {
 }
 
 
+extension EncodingListView.Model {
+    
+    func move(fromOffsets source: IndexSet, toOffset destination: Int, undoManager: UndoManager? = nil) {
+        
+        self.registerUndo(to: undoManager)
+        
+        withAnimation {
+            self.items.move(fromOffsets: source, toOffset: destination)
+        }
+    }
+    
+    
+    /// Whether the current order differs from the default.
+    var canRestore: Bool {
+        
+        self.items.map(\.encoding) != self.defaults[initial: .encodingList]
+    }
+    
+    
+    /// Returns whether the items of given ids contain separators.
+    ///
+    /// - Parameter ids: The item ids to check.
+    /// - Returns: A `Bool` value.
+    func containSeparators(in ids: Set<Item.ID>) -> Bool {
+        
+        self.items
+            .filter(with: ids)
+            .contains(where: \.isSeparator)
+    }
+    
+    
+    /// Restores the list to the default.
+    func restore() {
+        
+        self.items = self.defaults[initial: .encodingList].map(EncodingItem.init)
+    }
+    
+    
+    /// Saves the current encodings to the user default.
+    func save() {
+        
+        self.defaults[.encodingList] = self.items.map(\.encoding)
+    }
+    
+    
+    /// Adds a separator below the last of the given items.
+    ///
+    /// - Parameters:
+    ///   - ids: The selection ids.
+    ///   - undoManager: The undo manager.
+    func addSeparator(after ids: Set<Item.ID>, undoManager: UndoManager? = nil) {
+        
+        self.registerUndo(to: undoManager)
+        
+        let index = self.items.lastIndex { ids.contains($0.id) }
+        
+        withAnimation {
+            self.items.insert(.separator, at: index?.advanced(by: 1) ?? 0)
+        }
+    }
+    
+    
+    /// Deletes separators in the selection.
+    ///
+    /// - Parameters:
+    ///   - ids: The selection ids.
+    ///   - undoManager: The undo manager.
+    func deleteSeparators(in ids: Set<Item.ID>, undoManager: UndoManager? = nil) {
+        
+        self.registerUndo(to: undoManager)
+        
+        withAnimation {
+            self.items.removeAll { $0.isSeparator && ids.contains($0.id) }
+        }
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Registers the current state by allowing undo/redo.
+    ///
+    /// - Parameter undoManager: The undo manager.
+    private func registerUndo(to undoManager: UndoManager?) {
+        
+        undoManager?.registerUndo(withTarget: self) { [items = self.items] target in
+            target.update(items: items, undoManager: undoManager)
+        }
+    }
+    
+    
+    /// Updates the items and registers the current state to the undo manager.
+    ///
+    /// - Parameters:
+    ///   - items: The new items.
+    ///   - undoManager: The undo manager.
+    private func update(items: [Item], undoManager: UndoManager?) {
+        
+        undoManager?.registerUndo(withTarget: self) { [items = self.items] target in
+            target.update(items: items, undoManager: undoManager)
+        }
+        
+        withAnimation {
+            self.items = items
+        }
+    }
+}
+
+
 private extension CFStringEncoding {
     
     static let utf8 = CFStringEncoding(CFStringBuiltInEncodings.UTF8.rawValue)
@@ -198,6 +279,7 @@ private extension CFStringEncoding {
 
 // MARK: - Preview
 
-#Preview {
+@available(macOS 14, *)
+#Preview(traits: .fixedLayout(width: 300, height: 400)) {
     EncodingListView()
 }
