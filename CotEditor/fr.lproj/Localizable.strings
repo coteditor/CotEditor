@@ -28,7 +28,6 @@
 "OK" = "OK";
 "Cancel" = "Annuler";
 "Done" = "OK";
-"Start" = "Démarrer";
 "Restore Defaults" = "Réglages par défaut";
 "Delete" = "Supprimer";
 
@@ -874,39 +873,3 @@
 // error messages
 "No text detected" = "Aucun texte détecté";
 "Detection failed" = "Échec de la détection";
-
-
-
-/* MARK: AdvancedCharacterCounterView */
-// menu labels
-"Advanced Character Count…" = "Comptage de caractères avancé…";
-"Stop Advanced Character Count" = "Arrêter le comptage de caractères avancé";
-// error message when counting failed
-"failed" = "échec";
-// tooltip
-"Show options" = "Afficher les options";
-// context menu item labels
-"Copy" = "Copier";
-"Stop Count" = "Arrêter le comptage";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
-
-
-
-/* MARK: CharacterCountOptionsView */
-"Whitespace:" = "Espaces :";
-"Ignore line endings" = "Ignorer les fins de lignes";
-"Ignore whitespace" = "Ignorer les espaces";
-"Treat consecutive whitespace as one space" = "Compter les espaces consécutifs comme un seul";
-
-"Unit:" = "Unité :";
-"Grapheme cluster" = "Grapheme cluster";  // technical term defined in Unicode
-"Unicode scalar" = "Scalaire Unicode";
-"UTF-16" = "UTF-16";
-"Byte" = "Byte";
-
-"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Comptage intuitif tel que défini par Unicode. Un caractère comprenant plusieurs points de code Unicode, par exemple un emoji, sont comptés comme un seul caractère.";
-"Count Unicode code points. Same as counting UTF-32." = "Count Unicode code points. Same as counting UTF-32.";
-"Count Unicode code points but a surrogate pair as two characters." = "Compter les points de code Unicode, mais les paires de caractères de substitution comme deux caractères.";
-"Count bytes of the text encoded with the specified encoding." = "Compter les bytes de texte encodé selon l’encodage spécifié.";
-
-"Encoding:" = "Encodage :";
-"Normalization:" = "Normalisation :";

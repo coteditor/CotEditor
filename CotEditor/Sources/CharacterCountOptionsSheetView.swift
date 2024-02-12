@@ -44,7 +44,7 @@ struct CharacterCountOptionsSheetView: View {
                 
                 Spacer()
                 
-                SubmitButtonGroup(String(localized: "Start")) {
+                SubmitButtonGroup(String(localized: "Start", table: "AdvancedCharacterCount", comment: "button label")) {
                     self.completionHandler()
                     self.parent?.dismiss(nil)
                 } cancelAction: {

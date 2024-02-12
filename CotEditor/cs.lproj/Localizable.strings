@@ -28,7 +28,6 @@
 "OK" = "OK";
 "Cancel" = "Zrušit";
 "Done" = "Hotovo";
-"Start" = "Start";
 "Restore Defaults" = "Výchozí hodnoty";
 "Delete" = "Smazat";
 
@@ -873,39 +872,3 @@
 // error messages
 "No text detected" = "Nebyl zjištěn žádný text";
 "Detection failed" = "Detekce selhala";
-
-
-
-/* MARK: AdvancedCharacterCounterView */
-// menu labels
-"Advanced Character Count…" = "Pokročilé počítání znaků…";
-"Stop Advanced Character Count" = "Zastavit pokročilé počítání znaků";
-// error message when counting failed
-"failed" = "selhání";
-// tooltip
-"Show options" = "Zobrazit volby";
-// context menu item labels
-"Copy" = "Kopírovat";
-"Stop Count" = "Zastavit počítání";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
-
-
-
-/* MARK: CharacterCountOptionsView */
-"Whitespace:" = "Mezery:";
-"Ignore line endings" = "Ignorovat konce řádků";
-"Ignore whitespace" = "Ignorovat mezery";
-"Treat consecutive whitespace as one space" = "Považovat po sobě jdoucí prázdné znaky za jednu mezeru";
-
-"Unit:" = "Jednotka:";
-"Grapheme cluster" = "Klastr grafémů";  // technical term defined in Unicode
-"Unicode scalar" = "Skalár Unicode";
-"UTF-16" = "UTF-16";
-"Byte" = "Bajty";
-
-"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Počítat intuitivním způsobem definovaným v Unicode. Znak složený z více kódových bodů Unicode, například emotikony, se počítá jako jeden znak.";
-"Count Unicode code points. Same as counting UTF-32." = "Počítat kódové body Unicode. Stejné jako počítání UTF-32.";
-"Count Unicode code points but a surrogate pair as two characters." = "Počítat kódové body Unicode, ale náhradní dvojici jako dva znaky.";
-"Count bytes of the text encoded with the specified encoding." = "Počítat bajty textu kódovaného zadaným kódováním.";
-
-"Encoding:" = "Kódování:";
-"Normalization:" = "Normalizace:";

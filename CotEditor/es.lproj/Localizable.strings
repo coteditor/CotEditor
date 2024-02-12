@@ -28,7 +28,6 @@
 "OK" = "OK";
 "Cancel" = "Cancelar";
 "Done" = "OK";
-"Start" = "Iniciar";
 "Restore Defaults" = "Restaurar valores por omisión";
 "Delete" = "Eliminar";
 
@@ -873,39 +872,3 @@
 // error messages
 "No text detected" = "No se detectó texto";  // FIXME: needs review
 "Detection failed" = "La detección falló";  // FIXME: needs review
-
-
-
-/* MARK: AdvancedCharacterCounterView */
-// menu labels
-"Advanced Character Count…" = "Recuento avanzado de caracteres…";
-"Stop Advanced Character Count" = "Detener el recuento avanzado de caracteres";
-// error message when counting failed
-"failed" = "Falló";
-// tooltip
-"Show options" = "Mostrar opciones";
-// context menu item labels
-"Copy" = "Copiar";
-"Stop Count" = "Parar cuenta";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
-
-
-
-/* MARK: CharacterCountOptionsView */
-"Whitespace:" = "Espacio en blanco:";
-"Ignore line endings" = "Ignorar los finales de línea";
-"Ignore whitespace" = "Ignorar los espacios en blanco";
-"Treat consecutive whitespace as one space" = "Trata los espacios en blanco consecutivos como un solo espacio";
-
-"Unit:" = "Unidad:";
-"Grapheme cluster" = "Grupo de Grafemas";  // technical term defined in Unicode
-"Unicode scalar" = "Unicode escalar";
-"UTF-16" = "UTF-16";
-"Byte" = "Byte";
-
-"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Cuenta de la manera intuitiva definida en Unicode. Un carácter que consta de múltiples puntos de código Unicode, como emojis, se cuenta como un carácter.";
-"Count Unicode code points. Same as counting UTF-32." = "Cuenta los puntos de código Unicode. Igual que contar UTF-32.";
-"Count Unicode code points but a surrogate pair as two characters." = "Cuenta los puntos de código Unicode, pero un par sustituto como dos caracteres.";
-"Count bytes of the text encoded with the specified encoding." = "Contar los bytes del texto codificado con la codificación especificada.";
-
-"Encoding:" = "Codificación:";
-"Normalization:" = "Normalización:";

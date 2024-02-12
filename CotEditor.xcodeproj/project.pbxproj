@@ -240,6 +240,8 @@
 		2A53F56727585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */; };
 		2A53F56827585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */; };
 		2A54BE2C1D40EB24000816B0 /* LineEndingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */; };
+		2A55D5D82B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A55D5D72B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings */; };
+		2A55D5D92B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A55D5D72B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings */; };
 		2A57B98F294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A57B98E294ED75900771696 /* RangedIntegerFormatStyle.swift */; };
 		2A57B990294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A57B98E294ED75900771696 /* RangedIntegerFormatStyle.swift */; };
 		2A57B992294EDD9600771696 /* FormatStylesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A57B991294EDD9600771696 /* FormatStylesTests.swift */; };
@@ -956,6 +958,7 @@
 		2A50AA61204D513500D10A10 /* DocumentFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentFile.swift; sourceTree = "<group>"; };
 		2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionReferenceView.swift; sourceTree = "<group>"; };
 		2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineEndingTests.swift; sourceTree = "<group>"; };
+		2A55D5D72B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AdvancedCharacterCount.xcstrings; sourceTree = "<group>"; };
 		2A57B98E294ED75900771696 /* RangedIntegerFormatStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangedIntegerFormatStyle.swift; sourceTree = "<group>"; };
 		2A57B991294EDD9600771696 /* FormatStylesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatStylesTests.swift; sourceTree = "<group>"; };
 		2A59B7022957089A0094F03B /* LinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkButton.swift; sourceTree = "<group>"; };
@@ -2121,6 +2124,7 @@
 				2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */,
 				2AC94B3A2B6EAAE90086F9F2 /* RegexReference.xcstrings */,
 				2AA6E0B82B744FF300E536F8 /* SyntaxEdit.xcstrings */,
+				2A55D5D72B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings */,
 				2AA2E0111BFE12620087BDD6 /* UnicodeBlock.strings */,
 				2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */,
 			);
@@ -2504,6 +2508,7 @@
 				2AC94B222B6E26F40086F9F2 /* Inspector.xcstrings in Resources */,
 				2AC94B3B2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */,
 				2A6566E92B73BBB400008669 /* SyntaxEdit.xcstrings in Resources */,
+				2A55D5D82B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */,
 				2AA2E0141BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
 				2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */,
 				2ACDE28D2406B9C000FC31EC /* AppearancePane.storyboard in Resources */,
@@ -2565,6 +2570,7 @@
 				2AC94B232B6E26F40086F9F2 /* Inspector.xcstrings in Resources */,
 				2AC94B3C2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */,
 				2AA6E0C82B75AC4900E536F8 /* SyntaxEdit.xcstrings in Resources */,
+				2A55D5D92B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */,
 				2A36E36F2AF9ED0B00A73534 /* Sparkle.xcstrings in Resources */,
 				2AA2E0131BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
 				2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */,

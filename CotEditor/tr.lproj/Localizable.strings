@@ -28,7 +28,6 @@
 "OK" = "Tamam";
 "Cancel" = "Vazgeç";
 "Done" = "Bitti";
-"Start" = "Başlangıç";
 "Restore Defaults" = "Výchozí hodnoty";
 "Delete" = "Sil";
 
@@ -873,39 +872,3 @@
 // error messages
 "No text detected" = "Algılanan metin yok";
 "Detection failed" = "Algılama başarısız";
-
-
-
-/* MARK: AdvancedCharacterCounterView */
-// menu labels
-"Advanced Character Count…" = "Gelişmiş Karakter Sayımı…";
-"Stop Advanced Character Count" = "Gelişmiş Karakter Sayımını Durdur";
-// error message when counting failed
-"failed" = "başarısız";
-// tooltip
-"Show options" = "Seçenekleri göster";
-// context menu item labels
-"Copy" = "Kopyala";
-"Stop Count" = "Sayımı Durdur";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
-
-
-
-/* MARK: CharacterCountOptionsView */
-"Whitespace:" = "Boşluk:";
-"Ignore line endings" = "Satır sonlarını yok say";
-"Ignore whitespace" = "Boşlukları yok say";
-"Treat consecutive whitespace as one space" = "Ardışık boşluklara tek boşluk olarak davran";
-
-"Unit:" = "Birim:";
-"Grapheme cluster" = "Yazıbirim demeti";
-"Unicode scalar" = "Unicode sayılı";
-"UTF-16" = "UTF-16";
-"Byte" = "Bayt";
-
-"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Unicode’da tanımlandığı üzere sezgisel olarak say. Birden çok Unicode kod noktasından oluşan bir karakter; örneğin Emojiler, bir karakter olarak sayılır.";
-"Count Unicode code points. Same as counting UTF-32." = "Unicode kod noktalarını say. UTF-32 sayma ile aynıdır.";
-"Count Unicode code points but a surrogate pair as two characters." = "Unicode kod noktalarını say; ancak vekil çifti iki karakter olarak say.";
-"Count bytes of the text encoded with the specified encoding." = "Belirtilen kodlama ile kodlanmış metnin baytlarını say.";
-
-"Encoding:" = "Kodlama:";
-"Normalization:" = "Olağanlaştırma:";

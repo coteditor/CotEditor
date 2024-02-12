@@ -28,7 +28,6 @@
 "OK" = "OK";
 "Cancel" = "キャンセル";
 "Done" = "完了";
-"Start" = "開始";
 "Restore Defaults" = "デフォルトに戻す";
 "Delete" = "削除";
 
@@ -873,39 +872,3 @@
 // error messages
 "No text detected" = "テキストが検出されませんでした";
 "Detection failed" = "検出に失敗しました";
-
-
-
-/* MARK: AdvancedCharacterCounterView */
-// menu labels
-"Advanced Character Count…" = "高度な文字カウント…";
-"Stop Advanced Character Count" = "高度な文字カウントを停止";
-// error message when counting failed
-"failed" = "失敗";
-// tooltip
-"Show options" = "オプションを表示";
-// context menu item labels
-"Copy" = "コピー";
-"Stop Count" = "カウントを停止";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
-
-
-
-/* MARK: CharacterCountOptionsView */
-"Whitespace:" = "空白:";
-"Ignore line endings" = "改行を無視";
-"Ignore whitespace" = "空白を無視";
-"Treat consecutive whitespace as one space" = "連続する空白を1文字として扱う";
-
-"Unit:" = "単位:";
-"Grapheme cluster" = "書記素クラスタ";
-"Unicode scalar" = "Unicodeスカラー";
-"UTF-16" = "UTF-16";
-"Byte" = "バイト";
-
-"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Unicodeで定義されている人の感覚に近い単位でカウントします。絵文字など複数のUnicodeコードポイントから成る文字も1文字で数えます。";
-"Count Unicode code points. Same as counting UTF-32." = "Unicodeコードポイント単位でカウントします。UTF-32のカウントと同一です。";
-"Count Unicode code points but a surrogate pair as two characters." = "Unicodeコードポイント単位でカウントしますがサロゲートペアは2文字でカウントします。";
-"Count bytes of the text encoded with the specified encoding." = "指定したエンコーディングでエンコードしたときのバイト長をカウントします。";
-
-"Encoding:" = "エンコーディング:";
-"Normalization:" = "正規化:";

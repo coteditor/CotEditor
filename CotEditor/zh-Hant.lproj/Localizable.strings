@@ -28,7 +28,6 @@
 "OK" = "好";
 "Cancel" = "取消";
 "Done" = "完成";
-"Start" = "開始";
 "Restore Defaults" = "回復預設值";
 "Delete" = "刪除";
 
@@ -873,39 +872,3 @@
 // error messages
 "No text detected" = "沒能偵測到文字";
 "Detection failed" = "偵測失敗";
-
-
-
-/* MARK: AdvancedCharacterCounterView */
-// menu labels
-"Advanced Character Count…" = "進階字元統計⋯";
-"Stop Advanced Character Count" = "停止進階字元統計";
-// error message when counting failed
-"failed" = "已失敗";
-// tooltip
-"Show options" = "顯示選項";
-// context menu item labels
-"Copy" = "複製";
-"Stop Count" = "停止統計";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
-
-
-
-/* MARK: CharacterCountOptionsView */
-"Whitespace:" = "空白字元：";
-"Ignore line endings" = "忽略行尾";
-"Ignore whitespace" = "忽略空白字元";
-"Treat consecutive whitespace as one space" = "將多個空白字元視為同一個";
-
-"Unit:" = "單位：";
-"Grapheme cluster" = "書寫元素集";  // technical term defined in Unicode
-"Unicode scalar" = "Unicode 純量";
-"UTF-16" = "UTF-16";
-"Byte" = "位元組";
-
-"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "以萬國碼的直觀方式來統計文字數量。哪怕像是繪文字這樣的高萬字，也都按照單個文字來計算。";
-"Count Unicode code points. Same as counting UTF-32." = "統計萬國碼碼點數量（以 UTF-32 的方式）。";
-"Count Unicode code points but a surrogate pair as two characters." = "統計萬國碼碼點數量，但將代理配對分別統計成兩個碼點。";
-"Count bytes of the text encoded with the specified encoding." = "以文本自身的編碼、來統計該文本的位元組數量。";
-
-"Encoding:" = "編碼：";
-"Normalization:" = "標準化：";

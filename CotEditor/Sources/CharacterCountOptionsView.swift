@@ -36,36 +36,40 @@ struct CharacterCountOptionsView: View {
         
         Grid(alignment: .topLeading) {
             GridRow {
-                Text("Whitespace:")
+                Text("Whitespace:", tableName: "AdvancedCharacterCount", comment: "label")
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading, spacing: 6) {
-                    Toggle("Ignore line endings", isOn: $setting.ignoresNewlines)
-                    Toggle("Ignore whitespace", isOn: $setting.ignoresWhitespaces)
-                    Toggle("Treat consecutive whitespace as one space", isOn: $setting.treatsConsecutiveWhitespaceAsSingle)
-                        .disabled(self.setting.ignoresNewlines && self.setting.ignoresWhitespaces)
+                    Toggle(String(localized: "Ignore line endings", table: "AdvancedCharacterCount", comment: "setting option"),
+                           isOn: $setting.ignoresNewlines)
+                    Toggle(String(localized: "Ignore whitespace", table: "AdvancedCharacterCount", comment: "setting option"),
+                           isOn: $setting.ignoresWhitespaces)
+                    Toggle(String(localized: "Treat consecutive whitespace as one space", table: "AdvancedCharacterCount", comment: "setting option"),
+                           isOn: $setting.treatsConsecutiveWhitespaceAsSingle)
+                    .disabled(self.setting.ignoresNewlines && self.setting.ignoresWhitespaces)
                 }
             }.fixedSize()
             
             GridRow {
-                Text("Unit:")
+                Text("Unit:", tableName: "AdvancedCharacterCount", comment: "label")
                 
                 VStack(alignment: .leading) {
-                    Picker("Unit:", selection: $setting.unit.animation()) {
+                    Picker(selection: $setting.unit.animation()) {
                         ForEach(CharacterCountOptions.CharacterUnit.allCases, id: \.self) {
                             Text($0.label)
                         }
-                    }.labelsHidden()
-                        .fixedSize()
+                    } label: {
+                        EmptyView()
+                    }.fixedSize()
+
                     
                     Text(self.setting.unit.description)
                         .foregroundStyle(.secondary)
                         .controlSize(.small)
                         .frame(width: max(300, self.contentWidth ?? 0), alignment: .leading)
-                        .fixedSize()
                     
                     if self.setting.unit == .byte {
-                        Picker("Encoding:", selection: self.$setting.encoding) {
+                        Picker(String(localized: "Encoding:", table: "AdvancedCharacterCount", comment: "label"), selection: self.$setting.encoding) {
                             ForEach(String.sortedAvailableStringEncodings.indices, id: \.self) { index in
                                 if let encoding = String.sortedAvailableStringEncodings[index] {
                                     Text(String.localizedName(of: encoding))
@@ -80,8 +84,8 @@ struct CharacterCountOptionsView: View {
                     
                     if self.setting.unit != .graphemeCluster {
                         HStack(alignment: .firstTextBaseline) {
-                            Toggle("Normalization:", isOn: $setting.normalizes)
-                            Picker("Normalization:", selection: $setting.normalizationForm) {
+                            Toggle(String(localized: "Normalization:", table: "AdvancedCharacterCount", comment: "label"), isOn: $setting.normalizes)
+                            Picker(selection: $setting.normalizationForm) {
                                 Section {
                                     ForEach(UnicodeNormalizationForm.standardForms, id: \.self) { form in
                                         Text(form.localizedName)
@@ -94,8 +98,9 @@ struct CharacterCountOptionsView: View {
                                             .help(form.localizedDescription)
                                     }
                                 }
+                            } label: {
+                                EmptyView()
                             }
-                            .labelsHidden()
                             .disabled(!self.setting.normalizes)
                         }.fixedSize()
                     }
@@ -113,28 +118,56 @@ struct CharacterCountOptionsView: View {
 
 private extension CharacterCountOptions.CharacterUnit {
     
-    var label: LocalizedStringKey {
+    var label: String {
         
         switch self {
-            case .graphemeCluster: "Grapheme cluster"
-            case .unicodeScalar: "Unicode scalar"
-            case .utf16: "UTF-16"
-            case .byte: "Byte"
+            case .graphemeCluster:
+                String(localized: "CharacterUnit.graphemeCluster.label",
+                       defaultValue: "Grapheme cluster",
+                       table: "AdvancedCharacterCount",
+                       comment: "count unit (technical term defined in Unicode)")
+            case .unicodeScalar:
+                String(localized: "CharacterUnit.unicodeScalar.label",
+                       defaultValue: "Unicode scalar",
+                       table: "AdvancedCharacterCount",
+                       comment: "count unit")
+            case .utf16:
+                String(localized: "CharacterUnit.utf16.label",
+                       defaultValue: "UTF-16",
+                       table: "AdvancedCharacterCount",
+                       comment: "count unit")
+            case .byte:
+                String(localized: "CharacterUnit.byte.label",
+                       defaultValue: "Byte",
+                       table: "AdvancedCharacterCount",
+                       comment: "count unit")
         }
     }
     
     
-    var description: LocalizedStringKey {
+    var description: String {
         
         switch self {
             case .graphemeCluster:
-                "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character."
+                String(localized: "CharacterUnit.graphemeCluster.description",
+                       defaultValue: "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character.",
+                       table: "AdvancedCharacterCount",
+                       comment: "description for grapheme cluster")
             case .unicodeScalar:
-                "Count Unicode code points. Same as counting UTF-32."
+                String(localized: "CharacterUnit.unicodeScalar.description",
+                       defaultValue: "Count Unicode code points. Same as counting UTF-32.",
+                       table: "AdvancedCharacterCount",
+                       comment: "description for unicode scalar")
             case .utf16:
-                "Count Unicode code points but a surrogate pair as two characters."
+                String(localized: "CharacterUnit.utf16.description",
+                       defaultValue: "Count Unicode code points but a surrogate pair as two characters.",
+                       table: "AdvancedCharacterCount",
+                       comment: "description for UTF-16")
             case .byte:
-                "Count bytes of the text encoded with the specified encoding."
+                String(localized: "CharacterUnit.byte.description",
+                       defaultValue: "Count bytes of the text encoded with the specified encoding.",
+                       table: "AdvancedCharacterCount",
+                       comment: "description for byte")
         }
     }
 }
@@ -145,4 +178,5 @@ private extension CharacterCountOptions.CharacterUnit {
 
 #Preview {
     CharacterCountOptionsView()
+        .scenePadding()
 }

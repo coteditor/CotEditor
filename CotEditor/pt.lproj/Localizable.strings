@@ -28,7 +28,6 @@
 "OK" = "OK";
 "Cancel" = "Cancelar";
 "Done" = "OK";
-"Start" = "Iniciar";
 "Restore Defaults" = "Restaurar Padrões";
 "Delete" = "Apagar";
 
@@ -873,39 +872,3 @@
 // error messages
 "No text detected" = "Texto não detectado";
 "Detection failed" = "Falha na detecção";
-
-
-
-/* MARK: AdvancedCharacterCounterView */
-// menu labels
-"Advanced Character Count…" = "Contagem avançada de caracteres…";
-"Stop Advanced Character Count" = "Parar Contagem Avançada de Caracteres";
-// error message when counting failed
-"failed" = "falhou";
-// tooltip
-"Show options" = "Mostrar opções";
-// context menu item labels
-"Copy" = "Copiar";
-"Stop Count" = "Parar Contagem";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
-
-
-
-/* MARK: CharacterCountOptionsView */
-"Whitespace:" = "Espaços em branco:";
-"Ignore line endings" = "Ignorar finais de linha";
-"Ignore whitespace" = "Ignorar espaços em branco";
-"Treat consecutive whitespace as one space" = "Tratar espaços em branco consecutivos como um espaço";
-
-"Unit:" = "Unidade:";
-"Grapheme cluster" = "Agrupamentos de Grapheme";  // technical term defined in Unicode
-"Unicode scalar" = "Unicode escalar";
-"UTF-16" = "UTF-16";
-"Byte" = "Byte";
-
-"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Conte da maneira intuitiva definida em Unicode. Um caractere que consiste em vários pontos de código Unicode, como emojis, é contado como um caractere.";
-"Count Unicode code points. Same as counting UTF-32." = "Contar pontos de código Unicode. O mesmo que contar UTF-32.";
-"Count Unicode code points but a surrogate pair as two characters." = "Conte os pontos de código Unicode, mas um par substituto como dois caracteres.";
-"Count bytes of the text encoded with the specified encoding." = "Contar bytes do texto codificado com a codificação especificada.";
-
-"Encoding:" = "Codificação:";
-"Normalization:" = "Normalização:";

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -418,8 +418,8 @@ extension EditorTextViewController: NSUserInterfaceValidations {
         switch item.action {
             case #selector(toggleAdvancedCounter):
                 (item as? NSMenuItem)?.title = (self.advancedCounterView == nil)
-                    ? String(localized: "Advanced Character Count…")
-                    : String(localized: "Stop Advanced Character Count")
+                    ? String(localized: "Advanced Character Count…", table: "AdvancedCharacterCount", comment: "menu item")
+                    : String(localized: "Stop Advanced Character Count", table: "AdvancedCharacterCount", comment: "menu item")
                 return true
                 
             case #selector(showSelectionInfo):

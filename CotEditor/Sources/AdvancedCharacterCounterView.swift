@@ -38,10 +38,10 @@ struct AdvancedCharacterCounterView: View {
         HStack(alignment: .firstTextBaseline) {
             if let count = self.count {
                 let markdown: AttributedString = switch self.counter.setting.unit {
-                    case .byte: .init(localized: "*\(count)* byte(s)", table: "Count", locale: .current,
-                                      comment: "Counter for Advanced Character Count")
-                    default:    .init(localized: "*\(count)* character(s)", table: "Count", locale: .current,
-                                      comment: "Counter for Advanced Character Count")
+                    case .byte: .init(localized: "*\(count)* byte(s)", table: "AdvancedCharacterCount", locale: .current,
+                                      comment: "counter for advanced character count")
+                    default:    .init(localized: "*\(count)* character(s)", table: "AdvancedCharacterCount", locale: .current,
+                                      comment: "counter for advanced character count")
                 }
                 let attributes = AttributeContainer
                     .font(.body.monospacedDigit().weight(.medium))
@@ -53,7 +53,7 @@ struct AdvancedCharacterCounterView: View {
                     .foregroundStyle(.secondary)
                 
             } else {
-                Label("failed", systemImage: "exclamationmark.triangle")
+                Label(String(localized: "failed", table: "AdvancedCharacterCount", comment: "error message when count failed"), systemImage: "exclamationmark.triangle")
                     .symbolVariant(.fill)
                     .symbolRenderingMode(.multicolor)
                     .foregroundStyle(.secondary)
@@ -66,11 +66,11 @@ struct AdvancedCharacterCounterView: View {
             } label: {
                 Image(systemName: "gearshape")
                     .symbolVariant(.fill)
-                    .accessibilityLabel("Show options")
+                    .accessibilityLabel(String(localized: "Show options", table: "AdvancedCharacterCount"))
             }
             .buttonStyle(.plain)
             .foregroundStyle(.secondary)
-            .help("Show options")
+            .help(String(localized: "Show options", table: "AdvancedCharacterCount", comment: "tooltip"))
             .popover(isPresented: self.$isSettingPresented) {
                 VStack {
                     CharacterCountOptionsView()
@@ -87,13 +87,16 @@ struct AdvancedCharacterCounterView: View {
         .onTapGesture { }  // avoid clicking through
         .contextMenu {
             if let count = self.count {
-                Button("Copy") {
+                Button(String(localized: "Copy", table: "AdvancedCharacterCount", comment: "menu item")) {
                     NSPasteboard.general.clearContents()
                     NSPasteboard.general.setString(String(count), forType: .string)
                 }
                 Divider()
             }
-            Button("Stop Count", action: self.dismissAction)
+            Button(String(localized: "Stop Count", table: "AdvancedCharacterCount",
+                          comment: "menu item (This “Stop” should be translated the same as it is in the “Stop Advanced Character Count” menu label.)")) {
+                self.dismissAction()
+            }
         }
     }
     
