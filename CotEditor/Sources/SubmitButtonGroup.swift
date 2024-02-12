@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import SwiftUI
 
 struct SubmitButtonGroup: View {
     
-    private let submitLabel: LocalizedStringKey
+    private let submitLabel: String
     private let submitAction: () -> Void
     private let cancelAction: () -> Void
     
@@ -39,12 +39,12 @@ struct SubmitButtonGroup: View {
     /// Creates two buttons with the same width; one is the cancel button and another is the submit button.
     ///
     /// - Parameters:
-    ///   - submitLabel: The label to be displayed in the submit button.
+    ///   - submitLabel: The label to be displayed in the submit button, or `nil` for the default "OK."
     ///   - action: The action invoked when the submit button was pressed.
     ///   - cancelAction: The action invoked when the cancel button was pressed.
-    init(_ submitLabel: LocalizedStringKey = "OK", action: @escaping () -> Void, cancelAction: @escaping () -> Void) {
+    init(_ submitLabel: String? = nil, action: @escaping () -> Void, cancelAction: @escaping () -> Void) {
         
-        self.submitLabel = submitLabel
+        self.submitLabel = submitLabel ?? String(localized: "OK")
         self.submitAction = action
         self.cancelAction = cancelAction
     }
@@ -54,7 +54,7 @@ struct SubmitButtonGroup: View {
         
         HStack {
             Button(role: .cancel, action: self.cancelAction) {
-                Text("Cancel")
+                Text(String(localized: "Cancel"))
                     .background(WidthGetter(key: WidthKey.self))
                     .frame(width: self.buttonWidth)
             }.keyboardShortcut(.cancelAction)

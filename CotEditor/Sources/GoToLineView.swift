@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ struct GoToLineView: View {
                 
                 Spacer()
                 
-                SubmitButtonGroup("Go") {
+                SubmitButtonGroup(String(localized: "Go")) {
                     self.submit()
                 } cancelAction: {
                     self.parent?.dismiss(nil)
