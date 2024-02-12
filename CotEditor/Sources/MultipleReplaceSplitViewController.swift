@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2023 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,10 +37,8 @@ final class MultipleReplaceSplitViewController: NSSplitViewController {
         self.splitView.identifier = NSUserInterfaceItemIdentifier("MultipleReplaceSplitView")
         self.splitView.autosaveName = "MultipleReplaceSplitView"
         
-        let storyboard = NSStoryboard(name: "MultipleReplacePanel", bundle: nil)
-        
-        let listViewController = storyboard.instantiateController(withIdentifier: "ListViewController") as! NSViewController
-        let detailViewController = storyboard.instantiateController(withIdentifier: "DetailViewController") as! NSViewController
+        let listViewController: NSViewController = NSStoryboard(name: "MultipleReplaceListView", bundle: nil).instantiateInitialController()!
+        let detailViewController: NSViewController = NSStoryboard(name: "MultipleReplaceView", bundle: nil).instantiateInitialController()!
         
         self.splitViewItems = [
             NSSplitViewItem(contentListWithViewController: listViewController),
