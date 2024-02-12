@@ -38,7 +38,7 @@ struct FindProgressView: View {
     
     @ObservedObject private var progress: FindProgress
     private let unit: Unit
-    private let label: LocalizedStringKey
+    private let label: String
     
     private let timer = Timer.publish(every: 0.1, tolerance: 0.1, on: .main, in: .common).autoconnect()
     @State private var description: String = ""
@@ -52,7 +52,7 @@ struct FindProgressView: View {
     ///   - label: The text to display as the label of the indicator.
     ///   - progress: The progress instance to indicate.
     ///   - unit: The unit to count results in the description.
-    init(_ label: LocalizedStringKey, progress: FindProgress, unit: Unit) {
+    init(_ label: String, progress: FindProgress, unit: Unit) {
         
         assert(!progress.isCancelled)
         assert(!progress.isFinished)

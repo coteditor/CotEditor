@@ -507,7 +507,7 @@ final class TextFinder {
     /// - Parameters:
     ///   - showsList: Whether shows the result view when finished.
     ///   - actionName: The name of the action to display in the progress sheet.
-    @MainActor private func findAll(showsList: Bool, actionName: LocalizedStringKey) async {
+    @MainActor private func findAll(showsList: Bool, actionName: String.LocalizationValue) async {
         
         guard let textFind = self.prepareTextFind() else { return }
         
@@ -519,7 +519,7 @@ final class TextFinder {
         
         // setup progress sheet
         let progress = FindProgress(scope: textFind.scopeRange)
-        let indicatorView = FindProgressView(actionName, progress: progress, unit: .find)
+        let indicatorView = FindProgressView(String(localized: actionName), progress: progress, unit: .find)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         client.viewControllerForSheet?.presentAsSheet(indicator)
@@ -606,7 +606,7 @@ final class TextFinder {
         
         // setup progress sheet
         let progress = FindProgress(scope: textFind.scopeRange)
-        let indicatorView = FindProgressView("Replace All", progress: progress, unit: .replacement)
+        let indicatorView = FindProgressView(String(localized: "Replace All"), progress: progress, unit: .replacement)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         client.viewControllerForSheet?.presentAsSheet(indicator)

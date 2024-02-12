@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ extension NSTextView {
         
         // setup progress sheet
         let progress = FindProgress(scope: 0..<definition.replacements.count)
-        let indicatorView = FindProgressView("Highlight All", progress: progress, unit: .find)
+        let indicatorView = FindProgressView(String(localized: "Highlight All"), progress: progress, unit: .find)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         self.viewControllerForSheet?.presentAsSheet(indicator)
@@ -102,7 +102,7 @@ extension NSTextView {
         
         // setup progress sheet
         let progress = FindProgress(scope: 0..<definition.replacements.count)
-        let indicatorView = FindProgressView("Replace All", progress: progress, unit: .replacement)
+        let indicatorView = FindProgressView(String(localized: "Replace All"), progress: progress, unit: .replacement)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         self.viewControllerForSheet?.presentAsSheet(indicator)
