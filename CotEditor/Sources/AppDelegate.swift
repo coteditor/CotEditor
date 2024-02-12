@@ -403,22 +403,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// Opens a new bug report window.
     @IBAction func createBugReport(_ sender: Any?) {
         
-        // load template file
-        guard
-            let url = Bundle.main.url(forResource: "ReportTemplate", withExtension: "md"),
-            let template = try? String(contentsOf: url)
-        else { return assertionFailure() }
-        
-        // fill template with user environment info
-        let title = String(localized: "Issue Report", comment: "document title")
-        let report = template
-            .replacing("%BUNDLE_VERSION%", with: Bundle.main.bundleVersion)
-            .replacing("%SHORT_VERSION%", with: Bundle.main.shortVersion)
-            .replacing("%SYSTEM_VERSION%", with: ProcessInfo.processInfo.operatingSystemVersionString)
+        let report = IssueReport()
         
         // open as document
         do {
-            let document = try (NSDocumentController.shared as! DocumentController).openUntitledDocument(content: report, title: title, display: true)
+            let document = try (NSDocumentController.shared as! DocumentController).openUntitledDocument(content: report.template, title: report.title, display: true)
             document.setSyntax(name: BundledSyntaxName.markdown)
         } catch {
             NSApp.presentError(error)

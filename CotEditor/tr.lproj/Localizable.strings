@@ -61,9 +61,6 @@
 "Open as Text File" = "Metin Dosyası Olarak Aç";
 "A new theme named “%@” has been successfully installed." = "Yeni tema “%@” başarıyla yüklendi.";
 
-// Window title of issue report
-"Issue Report" = "Hata Bildir";
-
 
 
 /* MARK: Text Finder */

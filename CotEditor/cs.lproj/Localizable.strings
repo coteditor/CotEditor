@@ -61,9 +61,6 @@
 "Open as Text File" = "Otevřít jako textový soubor";
 "A new theme named “%@” has been successfully installed." = "Nový motiv s názvem „%@“ byl úspěšně nainstalován.";
 
-// Window title of issue report
-"Issue Report" = "Hlášení o problému";
-
 
 
 /* MARK: Text Finder */

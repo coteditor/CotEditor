@@ -61,9 +61,6 @@
 "Open as Text File" = "Als Textdatei öffnen";
 "A new theme named “%@” has been successfully installed." = "Ein neues Thema mit dem Namen „%@“ wurde erfolgreich installiert.";
 
-// Window title of issue report
-"Issue Report" = "Fehlerbericht";
-
 
 
 /* MARK: Text Finder */
