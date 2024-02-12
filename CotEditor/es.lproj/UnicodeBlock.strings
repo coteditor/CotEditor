@@ -123,7 +123,7 @@
 "Thaana" = "Thaana";
 "Telugu" = "Telugu";
 "Hiragana" = "Hiragana";
-"CJK Compatibility Ideographs Supp." = "Suplemento de ideogramas de compatibilidad CJK";
+"CJK Compatibility Ideographs Supplement" = "Suplemento de ideogramas de compatibilidad CJK";
 "Katakana" = "Katakana";
 "Mathematical Operators" = "Operadores matemáticos";
 "Mahjong Tiles" = "Fichas mahjong";
@@ -266,7 +266,7 @@
 "Cherokee Supplement" = "Suplemento cherokee";
 "Miscellaneous Symbols and Arrows" = "Flechas y símbolos diversos";
 "Old North Arabian" = "Nordarábigo antiguo";
-"Transport And Map Symbols" = "Símbolos de transportes y mapas";
+"Transport and Map Symbols" = "Símbolos de transportes y mapas";
 "Lao" = "Laosiano";
 "Multani" = "Multani";
 "Hangul Jamo Extended-B" = "Hangul Jamo ampliado-B";

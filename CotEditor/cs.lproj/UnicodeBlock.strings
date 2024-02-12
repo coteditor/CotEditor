@@ -123,7 +123,7 @@
 "Thaana" = "Thaana";
 "Telugu" = "Telugština";
 "Hiragana" = "Hiragana";
-"CJK Compatibility Ideographs Supp." = "Kompatibilní ideogramy CJK - dodatek";
+"CJK Compatibility Ideographs Supplement" = "Kompatibilní ideogramy CJK - dodatek";
 "Katakana" = "Katakana";
 "Mathematical Operators" = "Matematické operátory";
 "Mahjong Tiles" = "Kostky hry Mahjong";
@@ -183,7 +183,7 @@
 "Runic" = "Runové písmo";
 "Enclosed CJK Letters and Months" = "Orámované znaky a měsíce CJK";
 "Byzantine Musical Symbols" = "Byzantské hudební symboly";
-"N’Ko" = "N'Ko";
+"NKo" = "N'Ko";
 "CJK Strokes" = "Tahy CJK";
 "Latin Extended-E" = "Latinka rozšířená – E";
 "Miscellaneous Symbols" = "Různé symboly";
