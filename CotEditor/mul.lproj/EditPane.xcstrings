@@ -1,2665 +1,2576 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Character" : {
-      "comment" : "table column header\nsection title",
+    "1v9-7i-9RL.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Words defined in syntax\"; ObjectID = \"1v9-7i-9RL\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Znak"
+            "value" : "Slova definovaná v syntaxi"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeichen"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Converted"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Carácter"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Caractère"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Carattere"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文字"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Caractere"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Karakter"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "字符"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "字元"
-          }
-        }
-      }
-    },
-    "Characters" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Znaky"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeichen"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Characters"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Caracteres"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Caractères"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Caratteri"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文字"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Caracteres"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Karakter"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "字符"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "字元"
-          }
-        }
-      }
-    },
-    "Code Points" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kódové body"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Codepunkten"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Code Points"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Puntos de código"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Points de code"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Punti di Codice"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "コードポイント"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pontos de Código"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kod Noktaları"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "码点"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "碼點"
-          }
-        }
-      }
-    },
-    "Column" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sloupec"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spalte"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Column"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Columna"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Colonne"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Colonna"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "列"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coluna"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sütun"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "列"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "列"
-          }
-        }
-      }
-    },
-    "Converted" : {
-      "comment" : "table column header for converted character",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Převedeno"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Umgewandelt"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Converted"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Convertida"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Converti"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Convertito"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "変換後"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Convertido"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dönüştürülen"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "转换后"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "轉換後"
-          }
-        }
-      }
-    },
-    "Count" : {
-      "comment" : "section title",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Počet"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anzahl"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Count"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cuenta"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compteurs"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Conteggio"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "カウント"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contagem"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sayım"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "计数"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "計數"
-          }
-        }
-      }
-    },
-    "Created" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vytvořeno"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erstellt"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Created"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Creado"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crée le"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Creato"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "作成日時"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Criado"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Oluşturma"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "创建于"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "建立於"
-          }
-        }
-      }
-    },
-    "Document File" : {
-      "comment" : "section title",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Soubor dokumentu"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dokumentdatei"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Document File"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Archivo del documento"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fichier"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "File del documento"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "書類ファイル"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Arquivo do Documento"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Belge"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文稿文件"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文件檔案"
-          }
-        }
-      }
-    },
-    "Document Inspector" : {
-      "comment" : "pane title",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inspektor dokumentu"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dokument-Informationen"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Document Inspector"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inspector de documentos"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inspecteur de document"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ispettore del documento"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "書類情報"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inspetor do Documento"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Belge Denetçisi"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文稿信息"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文件檢閱器"
-          }
-        }
-      }
-    },
-    "Encoding" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kódování"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Codierung"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Encoding"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Codificación"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Encodage"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Codifica"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "エンコーディング"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Codificação"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kodlama"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "编码"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "編碼"
-          }
-        }
-      }
-    },
-    "Found %lld incompatible characters." : {
-      "comment" : "%lld is the number of characters.",
-      "localizations" : {
-        "cs" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Nalezen nekompatibilní znak."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Nalezeny nekompatibilní znaky (celkem %lld)."
-                }
-              }
-            }
-          }
-        },
-        "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Ein inkompatibles Zeichen gefunden."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld inkompatiblen Zeichen gefunden."
-                }
-              }
-            }
+            "value" : "Wörter, die in der Syntax definiert sind"
           }
         },
         "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Found an incompatible character."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "new",
-                  "value" : "Found %lld incompatible characters."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Words defined in syntax"
           }
         },
         "en-GB" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Found an incompatible character."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Found %lld incompatible characters."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Words defined in syntax"
           }
         },
         "es" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Encontré un carácter incompatible."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Encontré %lld caracteres incompatibles."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Palabras definidas en sintaxis"
           }
         },
         "fr" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Caractère incompatible trouvé."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld caractères incompatibles trouvés."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mots définis dans la syntaxe"
           }
         },
         "it" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Rilevato un carattere incompatibile."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Rilevati %lld caratteri incompatibili."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parole definite nella sintassi"
           }
         },
         "ja" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld個の非互換文字が見つかりました。"
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "シンタックスで定義された単語"
           }
         },
         "pt" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Encontrado caracter incompatível."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Encontrados %lld caracteres incompatíveis."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Palavras definidas na sintaxe"
           }
         },
         "tr" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Bir uyumsuz karakter bulundu."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld uyumsuz karakter bulundu."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sözdizimde tanımlı sözcükler"
           }
         },
         "zh-Hans" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "发现%lld处不兼容字符。"
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "语法中包含的单词"
           }
         },
         "zh-Hant" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "發現%lld處不兼容字元。"
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "被程式文法所定義的單字"
           }
         }
       }
     },
-    "Found %lld line endings other than %@." : {
-      "comment" : "%lld is the number of inconsistent line endings and %@ is a line ending type, such as LF",
+    "6Dw-5M-Gv0.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Append a space to comment delimiter\"; ObjectID = \"6Dw-5M-Gv0\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Nalezen jiný konec řádku než %2$@."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Nalezeny jiné konce řádků (celkem %1$lld) než %2$@."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přidat mezery do oddělovačů komentáře"
           }
         },
         "de" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Ein Zeilenende außer %2$@ gefunden."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%1$lld Zeilenenden außer %2$@ gefunden."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leerzeichen zu Kommentartrennzeichen hinzufügen"
           }
         },
         "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Found a line ending other than %2$@."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "new",
-                  "value" : "Found %1$lld line endings other than %2$@."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Append a space to comment delimiter"
           }
         },
         "en-GB" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Found a line ending other than %2$@."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Found %1$lld line endings other than %2$@."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Append a space to comment delimiter"
           }
         },
         "es" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Encontré un final de línea distinto de %2$@."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Encontré %1$lld finales de línea distintos de %2$@."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir un espacio en el delimitador de comentario"
           }
         },
         "fr" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Fin de ligne autre que %2$@ trouvée."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%1$lld fins de ligne autres que %2$@ trouvées."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter un espace après le symbole de commentaire"
           }
         },
         "it" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Rilevata una riga che non termina con %2$@."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Rilevate %1$lld righe che non terminano con %2$@."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi uno spazio al delimitatore del commento"
           }
         },
         "ja" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%1$lld個の%2$@でない改行コードが見つかりました。"
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コメント記号にスペースを追加"
           }
         },
         "pt" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Foi encontrado um final de linha diferente de %2$@."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Foram encontrados %1$lld finais de linha diferentes de %2$@."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anexar espaço ao delimitador de comentários"
           }
         },
         "tr" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%2$@ dışında başka bir satır sonu bulundu."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%2$@ dışında %1$lld başka satır sonu bulundu."
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yorum sınırlayıcısına bir boşluk iliştir"
           }
         },
         "zh-Hans" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "发现%1$lld处不是%2$@的换行符"
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在注释符号后追加空格"
           }
         },
         "zh-Hant" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "發現%1$lld處不是%2$@的換行符"
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在註釋符號後追加空格"
           }
         }
       }
     },
-    "Full Path" : {
+    "9bX-ei-1x8.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Indentation:\"; ObjectID = \"9bX-ei-1x8\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Úplná cesta"
+            "value" : "Odsazení:"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vollst. Pfad"
+            "value" : "Einrückung:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Indentation:"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Full Path"
+            "value" : "Indentation:"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ruta completa"
+            "value" : "Sangría:"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chemin complet"
+            "value" : "Indentation :"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Percorso"
+            "value" : "Rientro:"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "フルパス"
+            "value" : "インデント:"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Caminho Completo"
+            "value" : "Recuo:"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tam Yol"
+            "value" : "Girintileme:"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "完整路径"
+            "value" : "缩进："
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "完整路徑"
+            "value" : "縮排："
           }
         }
       }
     },
-    "Incompatible Characters" : {
-      "comment" : "section title",
+    "3285.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Automatically indent while typing\"; ObjectID = \"3285\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nekompatibilní znaky"
+            "value" : "Automaticky odsazovat při psaní"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inkompatible Zeichen"
+            "value" : "Während der Texteingabe automatisch einrücken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Automatically indent while typing"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Incompatible Characters"
+            "value" : "Automatically indent while typing"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Caracteres incompatibles"
+            "value" : "Sangrar automáticamente al escribir"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Caractères incompatibles"
+            "value" : "Indenter automatiquement lors de la frappe"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Caratteri incompatibili"
+            "value" : "Rientro automatico durante la digitazione"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "非互換文字"
+            "value" : "入力中に自動でインデント"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Caracteres Incompatíveis"
+            "value" : "Indentar automaticamente ao escrever"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uyumsuz Karakterler"
+            "value" : "Yazarken kendiliğinden girintile"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "不兼容字符"
+            "value" : "键入时自动缩进"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "不相容字元"
+            "value" : "在鍵入時自動縮進"
           }
         }
       }
     },
-    "Inconsistent Line Endings" : {
-      "comment" : "section title",
+    "3287.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Indent width:\"; ObjectID = \"3287\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nekonzistentní konce řádků"
+            "value" : "Šířka odsazení:"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inkonsistente Zeilenenden"
+            "value" : "Einzugsweite:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Indent width:"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inconsistent Line Endings"
+            "value" : "Indent width:"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Finales de línea inconsistentes"
+            "value" : "Ancho de sangría:"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fins de ligne inconsistantes"
+            "value" : "Largeur :"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fine riga non coerenti"
+            "value" : "Ampiezza rientro:"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "改行コードの混在"
+            "value" : "インデント幅:"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Finais de Linha Inconsistentes"
+            "value" : "Largura do recuo:"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tutarsız Satır Sonları"
+            "value" : "Girintileme genişliği:"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "换行符不一致"
+            "value" : "以"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "換行符不一致"
+            "value" : "以"
           }
         }
       }
     },
-    "Inspector" : {
-      "comment" : "accessibility label",
+    "3300.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Check spelling while typing\"; ObjectID = \"3300\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inspektor"
+            "value" : "Kontrolovat pravopis při psaní"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Infofenster"
+            "value" : "Rechtschreibung während der Texteingabe prüfen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Check spelling while typing"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inspector"
+            "value" : "Check spelling while typing"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inspector"
+            "value" : "Comprobar ortografía mientras se escribe"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inspecteur"
+            "value" : "Vérifier le document lors de la saisie"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ispettore"
+            "value" : "Controlla ortografia mentre scrivo"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "インスペクタ"
+            "value" : "入力中にスペルをチェック"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inspetor"
+            "value" : "Verificar Ortografia Durante Digitação"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Denetçi"
+            "value" : "Yazarken yazım denetimi yap"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "检查器"
+            "value" : "键入时检查拼写"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "檢閱器"
+            "value" : "在輸入時同步檢查拼字"
           }
         }
       }
     },
-    "Line" : {
-      "comment" : "table column header",
+    "3302.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Smart copy/paste\"; ObjectID = \"3302\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Řádek"
+            "value" : "Inteligentní kopírování/vkládání"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeile"
+            "value" : "Intelligentes Kopieren/Ersetzen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Smart copy/paste"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Line"
+            "value" : "Smart copy/paste"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Línea"
+            "value" : "Copiado/pegado inteligente"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ligne"
+            "value" : "Copier-coller intelligent"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Riga"
+            "value" : "Copia/incolla smart"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "行"
+            "value" : "スマートコピー/ペースト"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Linha"
+            "value" : "Copiar/colar inteligente"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Satır"
+            "value" : "Akıllı kopyala/yapıştır"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "行"
+            "value" : "智能拷贝/粘贴"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "行"
+            "value" : "智慧型拷貝/貼上"
           }
         }
       }
     },
-    "Line Ending" : {
-      "comment" : "table column header",
+    "Abx-fM-gyc.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Smart quotes\"; ObjectID = \"Abx-fM-gyc\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Konce řádků"
+            "value" : "Inteligentní uvozovky"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeilenende"
+            "value" : "Intelligente Anführungszeichen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Smart quotes"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Line Ending"
+            "value" : "Smart quotes"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Final de línea"
+            "value" : "Comillas tipográficas"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fin de ligne"
+            "value" : "Guillemets courbes"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fine riga"
+            "value" : "Virgolette smart"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "改行コード"
+            "value" : "スマート引用符"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Final de Linha"
+            "value" : "Aspas Inteligentes"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Satır Sonu"
+            "value" : "Akıllı Tırnaklar"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "换行"
+            "value" : "智能引号"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "換行"
+            "value" : "智慧型引號"
           }
         }
       }
     },
-    "Line Endings" : {
-      "extractionState" : "manual",
+    "al9-WE-Rqy.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Highlight “<>”\"; ObjectID = \"al9-WE-Rqy\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Konce řádků"
+            "value" : "Zvýraznit <>"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeilenenden"
+            "value" : "„<>“ markieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Highlight “<>”"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Line Endings"
+            "value" : "Highlight “<>”"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Finales de línea"
+            "value" : "Resaltar “<>”"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fins de ligne"
+            "value" : "Surligner “<>”"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fine riga"
+            "value" : "Evidenzia “<>”"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "改行コード"
+            "value" : "“<>”をハイライト"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Finais de Linha"
+            "value" : "Destacar “<>”"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Satır Sonları"
+            "value" : "“<>” ayraçlarını vurgula"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "行尾"
+            "value" : "高亮“<>”"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "行尾"
+            "value" : "高亮「<>」"
           }
         }
       }
     },
-    "Lines" : {
+    "as9-us-CuG.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"spaces\"; ObjectID = \"as9-us-CuG\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Řádky"
+            "value" : "mezery"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeilen"
+            "value" : "Leerzeichen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "spaces"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lines"
+            "value" : "spaces"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Líneas"
+            "value" : "espacios"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lignes"
+            "value" : "espaces"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Righe"
+            "value" : "spazi"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "行"
+            "value" : "スペース"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Linhas"
+            "value" : "espaços"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Satır"
+            "value" : "boşluk"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "行"
+            "value" : "个空格缩进"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "行"
+            "value" : "個空格縮排"
           }
         }
       }
     },
-    "Location" : {
+    "aVn-PD-hen.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Indent selection with Tab key\"; ObjectID = \"aVn-PD-hen\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pozice"
+            "value" : "Odsadit výběr pomocí klávesy tabulátoru"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Position"
+            "value" : "Auswahl mit der Tabulatortaste einrücken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Indent selection with Tab key"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Location"
+            "value" : "Indent selection with Tab key"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Posición"
+            "value" : "Selección de sangría con la tecla tabulación"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Position"
+            "value" : "Indenter la sélection avec la touche Tabulation"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Posizione"
+            "value" : "Rientra la selezione con il tasto Tab"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "位置"
+            "value" : "Tabキーで選択範囲をインデント"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Localização"
+            "value" : "Recuar seleção com a tecla Tab"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Konum"
+            "value" : "Seçimi Sekme düğmesi ile girintile"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "位置"
+            "value" : "使用Tab键对选择进行缩进"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "位置"
+            "value" : "使用Tab鍵對選擇進行縮排"
           }
         }
       }
     },
-    "Modified" : {
+    "c5j-0N-f2R.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Standard words\"; ObjectID = \"c5j-0N-f2R\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Změněno"
+            "value" : "Standardní slova"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geändert"
+            "value" : "Normale Wörter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Standard words"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modified"
+            "value" : "Standard words"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modificado"
+            "value" : "Palabras estándar"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modifié le"
+            "value" : "Mots courants"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modificato"
+            "value" : "Parole standard"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "変更日時"
+            "value" : "一般単語"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modificado"
+            "value" : "Palavras padrão"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Değiştirme"
+            "value" : "Standart sözcükler"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最后编辑"
+            "value" : "标准单词"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最後編輯"
+            "value" : "標準單字"
           }
         }
       }
     },
-    "No Filter Results" : {
-      "comment" : "display on the list when no results in filtering outline items",
+    "Cte-hW-0M3.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Detect indent style on document opening\"; ObjectID = \"Cte-hW-0M3\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Žádné výsledky filtrování"
+            "value" : "Zjistit styl odsazení při otevření dokumentu"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keine Filtertreffer"
+            "value" : "Einzugsstil beim Öffnen ermitteln"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Detect indent style on document opening"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No Filter Results"
+            "value" : "Detect indent style on document opening"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No hay resultados de filtro"
+            "value" : "Detectar el estilo de sangría al abrir el documento"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aucun filtre trouvé"
+            "value" : "Détecter le style d’indentation à l’ouverture du document"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nessun risultato del filtro"
+            "value" : "Rileva il tipo di rientro all’apertura del documento"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "フィルタ結果なし"
+            "value" : "書類を開くときにインデントスタイルを自動判定"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nenhum Resultado do Filtro"
+            "value" : "Detectar estilo de recuo ao abrir documentos"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Filtre Sonucu Yok"
+            "value" : "Belge açılışında girintileme biçemini algıla"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无过滤结果"
+            "value" : "在打开文稿时检测缩进格式"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無過濾結果"
+            "value" : "在開啟文件時檢測縮排格式"
           }
         }
       }
     },
-    "No issues found." : {
+    "dLj-Kh-KtX.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Completion list includes:\"; ObjectID = \"dLj-Kh-KtX\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nebyly nalezeny žádné problémy."
+            "value" : "Zahrnout seznam pro dokončování:"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keine Probleme gefunden."
+            "value" : "Vervollständigungsliste enthält:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Completion list includes:"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No issues found."
+            "value" : "Completion list includes:"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se han encontrado problemas."
+            "value" : "La lista de autocompletado incluye:"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aucun problème trouvé."
+            "value" : "La liste de complétion inclue :"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nessun problema rilevato."
+            "value" : "La lista di completamento include:"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "問題は見つかりませんでした。"
+            "value" : "入力補完候補リストに含む単語:"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nenhum problema encontrado."
+            "value" : "Lista de preenchimento inclui:"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sorun bulunamadı."
+            "value" : "Tamamlama listesi şunları içerir:"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "没有发现问题。"
+            "value" : "补全列表包括："
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "沒有發現問題。"
+            "value" : "補全列表包括："
           }
         }
       }
     },
-    "Not selected" : {
-      "comment" : "placeholder",
+    "dmb-pc-4M5.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Select at least one item to enable completion.\"; ObjectID = \"dmb-pc-4M5\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Není vybrán"
+            "value" : "Výběrem alespoň jedné položky povolte dokončování."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nicht ausgewählt"
+            "value" : "Wähle mindestens ein Element, um die Vervollständigung zu aktivieren."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Select at least one item to enable completion."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Not selected"
+            "value" : "Select at least one item to enable completion."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No seleccionado"
+            "value" : "Seleccione al menos un elemento para permitir el completado."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pas de sélection"
+            "value" : "Sélectionnez au moins un élément pour activer la complétion."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nessuna selezione"
+            "value" : "Selezionare almeno un elemento per azionare il completamento."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "未選択"
+            "value" : "入力補完を有効にするためには1つ以上の項目を選択する必要があります。"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não selecionado"
+            "value" : "Selecione ao menos um item para ativar o preenchimento."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seçili karakter yok"
+            "value" : "Tamamlamayı etkinleştirmek için en az bir öge seçin."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "未选中"
+            "value" : "至少选择一个条目来激活补全。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "未選中"
+            "value" : "至少選擇一個條目來啟用補全。"
           }
         }
       }
     },
-    "Outline" : {
-      "comment" : "pane title",
+    "ebJ-vk-RME.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"seconds\"; ObjectID = \"ebJ-vk-RME\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Osnova"
+            "value" : "sekundy"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gliederung"
+            "value" : "Sekunden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "seconds"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Outline"
+            "value" : "seconds"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tabla de contenido"
+            "value" : "segundos"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Structure"
+            "value" : "secondes"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Outline"
+            "value" : "secondi"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "アウトライン"
+            "value" : "秒"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Plano"
+            "value" : "segundos"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ana Hat"
+            "value" : "saniye"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "大纲"
+            "value" : "秒"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "大綱"
+            "value" : "秒"
           }
         }
       }
     },
-    "Owner" : {
+    "EDl-AJ-1dK.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Comment:\"; ObjectID = \"EDl-AJ-1dK\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vlastník"
+            "value" : "Komentář:"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eigentümer"
+            "value" : "Kommentar:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Comment:"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Owner"
+            "value" : "Comment:"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Propietario"
+            "value" : "Comentario:"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Propriétaire"
+            "value" : "Commentaires :"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Proprietario"
+            "value" : "Commento:"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "オーナー"
+            "value" : "コメント:"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Proprietário"
+            "value" : "Comentário:"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sahip"
+            "value" : "Yorum:"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "拥有者"
+            "value" : "注释："
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "擁有者"
+            "value" : "註釋："
           }
         }
       }
     },
-    "Permissions" : {
+    "EJZ-N6-54G.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Words in document\"; ObjectID = \"EJZ-N6-54G\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oprávnění"
+            "value" : "Slova v dokumentu"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zugriffsrechte"
+            "value" : "Wörter im Dokument"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Words in document"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Permissions"
+            "value" : "Words in document"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Permisos"
+            "value" : "Palabras en el documento"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Permissions"
+            "value" : "Mots du document"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Permessi"
+            "value" : "Parole del documento"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "アクセス権"
+            "value" : "書類に含まれる単語"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Permissões"
+            "value" : "Palavras no documento"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "İzinler"
+            "value" : "Belgedeki sözcükler"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "权限"
+            "value" : "文稿中的单词"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "許可權"
+            "value" : "文件中的單字"
           }
         }
       }
     },
-    "Scanning incompatible characters…" : {
+    "gDN-SU-sZH.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Completion:\"; ObjectID = \"gDN-SU-sZH\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Skenování nekompatibilních znaků…"
+            "value" : "Dokončování:"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inkompatible Zeichen scannen …"
+            "value" : "Vervollständigung:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Completion:"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scanning incompatible characters…"
+            "value" : "Completion:"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Escaneo de caracteres incompatibles…"
+            "value" : "Autocompletado:"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recherche de caractères incompatibles…"
+            "value" : "Complétion :"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scansione dei caratteri incompatibili…"
+            "value" : "Completamento:"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "非互換文字を走査中…"
+            "value" : "入力補完:"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Escaneando caracteres incompatíveis…"
+            "value" : "Preenchimento:"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uyumsuz karakterler taranıyor…"
+            "value" : "Tamamlama:"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "扫描不兼容字符…"
+            "value" : "补全："
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "掃描不兼容字元⋯"
+            "value" : "補全："
           }
         }
       }
     },
-    "Select a single character to show Unicode information." : {
-      "comment" : "help",
+    "GRh-V2-hmW.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Automatically insert closing brackets and quotes\"; ObjectID = \"GRh-V2-hmW\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pro zobrazení informací Unicode vyberte jeden znak."
+            "value" : "Automaticky vkládat uzavírací závorky a uvozovky"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wähle ein einzelnes Zeichen aus, um Unicode-Information einzublenden."
+            "value" : "Klammern und Anführungszeichen automatisch schließen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Automatically insert closing brackets and quotes"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select a single character to show Unicode information."
+            "value" : "Automatically insert closing brackets and quotes"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleccione un solo carácter para mostrar la información de Unicode."
+            "value" : "Inserte automáticamente los corchetes de cierre y las comillas"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sélectionnez un et un seul caractère pour afficher ses informations Unicode."
+            "value" : "Insérer automatiquement les parenthèses et guillemets fermants"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selezionare un solo carattere per visualizzarne le informazioni Unicode."
+            "value" : "Inserisci automaticamente parentesi e virgolette di chiusura"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode情報を表示するには文字を1つだけ選択してください"
+            "value" : "括弧と引用符を自動的に閉じる"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selecione um único caractere para mostrar informações Unicode."
+            "value" : "Inserir chaves e aspas finais automaticamente"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode bilgisini göstermek için tek bir karakter seçin."
+            "value" : "Kapatma ayraçlarını ve tırnaklarını kendiliğinden ekle"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "选中一个字符以显示Unicode信息。"
+            "value" : "自动补全括号和引号"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選中一個字元以顯示Unicode資訊。"
+            "value" : "自動補全括弧和引號"
           }
         }
       }
     },
-    "Size" : {
+    "J1B-wA-rdr.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Suggest completions while typing\"; ObjectID = \"J1B-wA-rdr\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Velikost"
+            "value" : "Navrhovat dokončování textu při psaní"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Größe"
+            "value" : "Während der Texteingabe Vervollständigungen vorschlagen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Suggest completions while typing"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Size"
+            "value" : "Suggest completions while typing"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tamaño"
+            "value" : "Sugerir terminaciones mientras se escribe"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Taille"
+            "value" : "Afficher des suggestions pendant la saisie"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dimensioni"
+            "value" : "Suggerisci completamento durante l’inserimento"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "サイズ"
+            "value" : "入力中に補完候補を表示"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tamanho"
+            "value" : "Sugerir preenchimento ao digitar"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Boyut"
+            "value" : "Yazarken tamamlamaları öner"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "大小"
+            "value" : "键入时提供补齐建议"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "大小"
+            "value" : "在輸入時建議關聯字"
           }
         }
       }
     },
-    "Text Settings" : {
-      "comment" : "section title",
+    "jdu-bS-Jk1.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Prefer using\"; ObjectID = \"jdu-bS-Jk1\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nastavení textu"
+            "value" : "Preferovat:"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Texteinstellungen"
+            "value" : "Einrückung mit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Prefer using"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Text Settings"
+            "value" : "Prefer using:"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configuración del texto"
+            "state" : "needs_review",
+            "value" : "Prefiero usar"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Paramètres du texte"
+            "value" : "Préférer :"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impostazioni testo"
+            "value" : "Preferisci l'uso di:"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "テキスト設定"
+            "value" : "使用する文字:"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajustes do Texto"
+            "value" : "Preferir usando:"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Metin Ayarları"
+            "value" : "Şunu tercih et"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文本设定"
+            "value" : "偏好使用"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文字設定"
+            "value" : "縮進專用字元:"
           }
         }
       }
     },
-    "Warnings" : {
-      "comment" : "pane title",
+    "lVY-WF-4Yh.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Tabs\"; ObjectID = \"lVY-WF-4Yh\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Varování"
+            "value" : "Tabulátory"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vorwarnungen"
+            "value" : "Tabulatoren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Tabs"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Warnings"
+            "value" : "Tabs"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Avisos"
+            "state" : "needs_review",
+            "value" : "Pestañas"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avertissements"
+            "value" : "Tabulations"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avvisi"
+            "value" : "Tabulazioni"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "警告"
+            "value" : "タブ"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avisos"
+            "value" : "Tabulações"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uyarılar"
+            "value" : "Sekmeler"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "警告"
+            "value" : "制表符"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "警告"
+            "value" : "定位符號"
           }
         }
       }
     },
-    "Words" : {
+    "lzy-Ei-xlT.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Content parse:\"; ObjectID = \"lzy-Ei-xlT\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Slova"
+            "value" : "Analýza obsahu:"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wörter"
+            "value" : "Inhaltsanalyse:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Content parse:"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Words"
+            "value" : "Content parse:"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Palabras"
+            "value" : "Análisis de contenido:"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mots"
+            "value" : "Parsing :"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parole"
+            "value" : "Analizza il contenuto:"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "単語"
+            "value" : "内容解析:"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Palavras"
+            "value" : "Análise de conteúdo:"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözcük"
+            "value" : "İçerik ayrıştırma:"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "字"
+            "value" : "内容解析："
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "字"
+            "value" : "內容解析："
+          }
+        }
+      }
+    },
+    "noP-hx-YeQ.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Automatically trim trailing whitespace\"; ObjectID = \"noP-hx-YeQ\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automaticky odstranit mezery na konci řádku"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leerzeichen am Zeilenende automatisch entfernen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Automatically trim trailing whitespace"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatically trim trailing whitespace"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recortar automáticamente los espacios en blanco finales"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retirer automatiquement les espaces en fin de ligne"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rimuovi automaticamente spazi a fine riga"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行末の空白を自動的に削除"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apagar espaço em branco à direita automaticamente"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sondaki boşlukları kendiliğinden kırp"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自动去除末尾空格"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動去除末尾空格"
+          }
+        }
+      }
+    },
+    "nr1-0X-aBY.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Smart dashes\"; ObjectID = \"nr1-0X-aBY\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inteligentní pomlčky"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intelligente Bindestriche"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Smart dashes"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smart dashes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guiones inteligentes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tirets intelligents"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trattini smart"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "スマートダッシュ記号"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hifens Inteligentes"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akıllı Tireler"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "智能破折号"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "智慧型破折號"
+          }
+        }
+      }
+    },
+    "Rcq-1K-8nz.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Highlight instances of selected text\"; ObjectID = \"Rcq-1K-8nz\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zvýraznit instance vybraného textu"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instanzen des ausgewählten Textes markieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Highlight instances of selected text"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Highlight instances of selected text"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resaltar las instancias del texto seleccionado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surligner les autres instances du texte sélectionné"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Evidenzia le istanze del testo selezionato"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択した文字をハイライト"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Destacar instâncias do texto selecionado"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçili metni vurgula"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高亮选中文本"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高亮選中文字"
+          }
+        }
+      }
+    },
+    "rOw-DD-kV5.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Delay:\"; ObjectID = \"rOw-DD-kV5\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zpoždění:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verzögerung:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delay:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delay:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retardo:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Délai :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ritardo:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遅延:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atraso:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gecikme:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "延迟："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "延遲："
+          }
+        }
+      }
+    },
+    "RrC-LL-hid.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Highlight matching braces “()” “[]” “{}”\"; ObjectID = \"RrC-LL-hid\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zvýraznit odpovídající závorky (), [], {}"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passende Klammern „()“ „[]“ „{}“ markieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Highlight matching braces “()” “[]” “{}”"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Highlight matching braces “()” “[]” “{}”"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resaltar “()” “[]” “{}”"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surligner les “()” “[]” “{}” associés"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Evidenzia le parentesi “()” “[]” “{}” accoppiate"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "対応する括弧“()” “[]” “{}”をハイライト"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Destacar pares de chaves “()” “[]” “{}”"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eşleşen “()” “[]” “{}” ayraçlarını vurgula"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高亮配对括号“()” “[]” “{}”"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高亮配對括弧「()」「[]」「{}」"
+          }
+        }
+      }
+    },
+    "SqI-BC-ar9.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Substitution:\"; ObjectID = \"SqI-BC-ar9\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nahrazení:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ersetzung:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Substitution:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Substitution:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sustitución:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Substitution :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sostituzione:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動置換:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Substituição:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Değişimler:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "替换："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取代："
+          }
+        }
+      }
+    },
+    "Tma-Oh-F7v.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Including whitespace-only lines\"; ObjectID = \"Tma-Oh-F7v\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahrnout řádky skládající se pouze z mezer"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur aus Leerzeichen bestehende Zeilen einschließen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Including whitespace-only lines"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Including whitespace-only lines"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incluyendo líneas con solo espacios en blanco"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Même les lignes composées uniquement d’espaces"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Includere le righe di solo spazio bianco"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空白のみの行を含める"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incluindo linhas somente com espaços em branco"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yalnızca boşluk olan satırlar içeriliyor"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "包含只有空格的行"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "包含只有空格的行"
+          }
+        }
+      }
+    },
+    "tPy-Ox-YpP.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Link URLs in document\"; ObjectID = \"tPy-Ox-YpP\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktivní odkazy URL"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URLs im Dokument verlinken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Link URLs in document"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Link URLs in document"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enlaces URL en el documento"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lier les URLs dans le document"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Collegamenti agli URL nel documento"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書類中のURLをリンク"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Criar links de URLs no documento"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belgedeki URL’leri bağlantıya dönüştür"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "链接文稿中的 URL"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "連結文件中的URL"
+          }
+        }
+      }
+    },
+    "ZKV-jL-cQV.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Spaces\"; ObjectID = \"ZKV-jL-cQV\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mezery"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leerzeichen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Spaces"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spaces"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Espacios"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Espaces"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spazi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "スペース"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Espaços"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boşluklar"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空格"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空格"
           }
         }
       }
