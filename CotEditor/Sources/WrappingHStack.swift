@@ -120,7 +120,7 @@ private struct WrappingHStackLayout: Layout {
             Text($0)
                 .monospacedDigit()
                 .padding(.horizontal, 2)
-                .overlay(RoundedRectangle(cornerRadius: 3).fill(Color.accentColor.opacity(0.2)))
+                .background(.selection, in: RoundedRectangle(cornerRadius: 3))
         }
     }
     .border(.separator)

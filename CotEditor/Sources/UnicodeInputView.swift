@@ -49,7 +49,7 @@ struct UnicodeInputView: View {
                     .lineLimit(2)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            .foregroundColor(self.unicodeName != nil ? .label : .secondaryLabel)
+            .foregroundStyle(self.unicodeName != nil ? .primary : .secondary)
             
             InsetTextField(text: $codePoint, prompt: "U+1F600")
                 .onSubmit { self.submit() }
@@ -70,7 +70,7 @@ struct UnicodeInputView: View {
                                         .monospacedDigit() +
                                     Text(scalar.name ?? "–")
                                         .font(.system(size: NSFont.smallSystemFontSize))
-                                        .foregroundColor(.secondaryLabel)
+                                        .foregroundColor(.secondary)
                                 }
                             }
                         }

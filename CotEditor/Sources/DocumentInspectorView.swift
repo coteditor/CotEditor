@@ -227,13 +227,13 @@ private struct CharacterPaneView: View {
                                     .textSelection(.enabled)
                                     .padding(.horizontal, 2)
                                     .overlay(RoundedRectangle(cornerRadius: 3.5).inset(by: 0.5)
-                                        .stroke(Color.tertiaryLabel))
+                                        .stroke(.tertiary))
                             }
                         }
                     }
                 } else {
                     Text("Not selected", tableName: "Inspector", comment: "placeholder")
-                        .foregroundStyle(Color.tertiaryLabel)
+                        .foregroundStyle(.tertiary)
                         .help(String(localized: "Select a single character to show Unicode information.", table: "Inspector", comment: "help"))
                 }
             }
@@ -265,7 +265,7 @@ private struct OptionalLabeledContent: View {
                     .foregroundStyle(.primary)
             } else {
                 Text(verbatim: "–")
-                    .foregroundStyle(Color.tertiaryLabel)
+                    .foregroundStyle(.tertiary)
             }
         }
     }

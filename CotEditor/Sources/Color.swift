@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,8 +28,6 @@ import AppKit.NSColor
 
 extension Color {
     
+    @available(macOS, deprecated: 14, message: "Use .primary instead.")
     static let label = Color(nsColor: .labelColor)
-    static let secondaryLabel = Color(nsColor: .secondaryLabelColor)
-    static let tertiaryLabel = Color(nsColor: .tertiaryLabelColor)
-    static let quaternaryLabel = Color(nsColor: .quaternaryLabelColor)
 }

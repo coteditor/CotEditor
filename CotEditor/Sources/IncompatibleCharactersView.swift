@@ -85,7 +85,7 @@ struct IncompatibleCharactersView: View {
                         if let unicode = character.unicodeScalars.first,
                            invisibleCategories.contains(unicode.properties.generalCategory) {
                             Text(unicode.codePoint)
-                                .foregroundStyle(Color.tertiaryLabel)
+                                .foregroundStyle(.tertiary)
                         } else {
                             Text(String(character))
                         }

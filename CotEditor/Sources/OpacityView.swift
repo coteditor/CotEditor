@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -155,7 +155,7 @@ private struct OpacitySample: View {
                 
                 RoundedRectangle(cornerRadius: radius, style: .continuous)
                     .inset(by: 0.5)
-                    .stroke(.primary.opacity(0.25), lineWidth: 1)
+                    .stroke(.tertiary, lineWidth: 1)
             }
         }
     }

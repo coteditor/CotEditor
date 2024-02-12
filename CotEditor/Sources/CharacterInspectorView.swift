@@ -75,7 +75,7 @@ private struct CharacterDetailView: View {
                                 Text(String(scalar))
                                     .font(.system(size: 28, design: .serif))
                                     .frame(minWidth: 30, idealWidth: 30)
-                                    .border(.primary.opacity(0.1))
+                                    .border(.separator)
                                 ScalarDetailView(scalar: scalar, items: [.block, .category])
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)

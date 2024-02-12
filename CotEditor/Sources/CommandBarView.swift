@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -198,7 +198,7 @@ private struct ActionCommandView: View {
                     ForEach(Array(self.matches.enumerated()), id: \.offset) { (offset, match) in
                         if offset > 0 {
                             Image(systemName: "chevron.compact.right")
-                                .opacity(0.4)
+                                .foregroundStyle(.tertiary)
                         }
                         Text(self.attributed(match.string, in: match.ranges, font: .body))
                             .frame(minWidth: 20)
@@ -211,7 +211,7 @@ private struct ActionCommandView: View {
                     ForEach(Array(self.command.paths.enumerated()), id: \.offset) { (offset, path) in
                         if offset > 0 {
                             Image(systemName: "chevron.compact.right")
-                                .opacity(0.4)
+                                .foregroundStyle(.tertiary)
                         }
                         Text(path)
                             .layoutPriority((offset == 0) ? 10 : Double(offset))

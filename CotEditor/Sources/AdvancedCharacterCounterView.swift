@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2021-2023 1024jp
+//  © 2021-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ struct AdvancedCharacterCounterView: View {
                 }
                 let attributes = AttributeContainer
                     .font(.body.monospacedDigit().weight(.medium))
-                    .foregroundColor(.label)
+                    .foregroundColor(.primary)
                 let attributedCount = markdown
                     .replacingAttributes(AttributeContainer.inlinePresentationIntent(.emphasized), with: attributes)
                 
