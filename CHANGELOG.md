@@ -8,6 +8,11 @@
 - Make the encoding priority view undoable.
 
 
+### Fixes
+
+- Fix missing German localization.
+
+
 
 4.7.4 (630)
 --------------------------
