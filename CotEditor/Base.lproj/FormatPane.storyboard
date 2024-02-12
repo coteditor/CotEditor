@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -118,11 +118,7 @@
                                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="smt-3X-ADr">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
-                                            <menu key="menu" id="f5Z-Wj-Ths">
-                                                <items>
-                                                    <menuItem title=" " id="ALs-fV-C5A"/>
-                                                </items>
-                                            </menu>
+                                            <menu key="menu" id="f5Z-Wj-Ths"/>
                                         </popUpButtonCell>
                                         <connections>
                                             <accessibilityConnection property="title" destination="Koi-2N-36K" id="D3h-KC-zY7"/>
@@ -137,7 +133,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <box boxType="custom" borderType="line" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="FjK-rw-YKz">
+                                    <box boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="FjK-rw-YKz">
                                         <rect key="frame" x="158" y="20" width="260" height="137"/>
                                         <view key="contentView" id="Vqp-DU-cnj">
                                             <rect key="frame" x="1" y="1" width="258" height="135"/>
@@ -157,11 +153,11 @@
                                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                 <tableColumns>
                                                                     <tableColumn editable="NO" width="246" minWidth="40" maxWidth="1000" id="Tsu-pA-ACl">
-                                                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Syntax Name">
+                                                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </tableHeaderCell>
-                                                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="oKF-f1-aVQ">
+                                                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" id="oKF-f1-aVQ">
                                                                             <font key="font" metaFont="system"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -195,7 +191,7 @@
                                                                                     </customView>
                                                                                     <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B3Y-Nj-FSx">
                                                                                         <rect key="frame" x="14" y="0.0" width="241" height="16"/>
-                                                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="7hV-jt-xSx">
+                                                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="SYNTAX NAME" id="7hV-jt-xSx">
                                                                                             <font key="font" metaFont="system"/>
                                                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -289,12 +285,12 @@
                                                 </button>
                                                 <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="gNn-jg-1Xr">
                                                     <rect key="frame" x="216" y="0.0" width="40" height="24"/>
-                                                    <popUpButtonCell key="cell" type="smallSquare" title="Syntax Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="yBI-dh-jpV">
+                                                    <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="yBI-dh-jpV">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="menu"/>
                                                         <menu key="menu" id="AYn-mG-LBH">
                                                             <items>
-                                                                <menuItem title="Syntax Action" state="on" image="NSActionTemplate" hidden="YES" id="sRJ-x0-fo7"/>
+                                                                <menuItem state="on" image="NSActionTemplate" hidden="YES" id="sRJ-x0-fo7"/>
                                                                 <menuItem title="Duplicate" id="A7t-Ca-nZi">
                                                                     <connections>
                                                                         <action selector="duplicateSyntax:" target="Lgm-sL-YIF" id="IEZ-CW-Pf6"/>
@@ -509,6 +505,11 @@
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="cbJ-XK-bnG">
+            <size key="intrinsicContentSize" width="16" height="16"/>
+        </designable>
+    </designables>
     <resources>
         <image name="NSActionTemplate" width="20" height="20"/>
         <image name="NSAddTemplate" width="18" height="17"/>

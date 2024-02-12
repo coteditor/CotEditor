@@ -30,7 +30,7 @@
                                             <constraint firstAttribute="width" priority="750" constant="260" id="Ssa-FC-qrT"/>
                                             <constraint firstAttribute="height" constant="22" id="iwx-p0-N12"/>
                                         </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="Font Name 12" drawsBackground="YES" id="toV-fU-j7j" customClass="CenteringTextFieldCell" customModule="CotEditor" customModuleProvider="target">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="FONT NAME 12" drawsBackground="YES" id="toV-fU-j7j" customClass="CenteringTextFieldCell" customModule="CotEditor" customModuleProvider="target">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -88,7 +88,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="yke-nV-fMx"/>
                                         </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="1.2" drawsBackground="YES" usesSingleLineMode="YES" id="IyJ-IR-fVa">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" usesSingleLineMode="YES" id="IyJ-IR-fVa">
                                             <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2" minimumFractionDigits="1" maximumFractionDigits="2" id="d5U-8W-wLX">
                                                 <real key="minimum" value="0.10000000000000001"/>
                                                 <real key="maximum" value="10"/>
@@ -174,7 +174,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" priority="750" constant="260" id="1NH-gY-fav"/>
                                         </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" title="Font Name 12" drawsBackground="YES" id="Rqy-Su-cwW" customClass="CenteringTextFieldCell" customModule="CotEditor" customModuleProvider="target">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" title="FONT NAME 12" drawsBackground="YES" id="Rqy-Su-cwW" customClass="CenteringTextFieldCell" customModule="CotEditor" customModuleProvider="target">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -256,7 +256,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="2mO-EW-xD8"/>
                                         </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="100%" drawsBackground="YES" id="z0a-bE-CA0">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" drawsBackground="YES" id="z0a-bE-CA0">
                                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="percent" lenient="YES" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" id="51u-ho-vNA">
                                                 <integer key="multiplier" value="100"/>
                                                 <real key="minimum" value="0.20000000000000001"/>
@@ -374,7 +374,7 @@
                                     <constraint firstItem="ey0-BL-08J" firstAttribute="leading" secondItem="NDr-Yf-V2q" secondAttribute="trailing" constant="8" symbolic="YES" id="zgt-8r-RVi"/>
                                 </constraints>
                             </customView>
-                            <box horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" boxType="custom" borderType="line" title="Theme" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="B3l-Yn-4KT">
+                            <box horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" boxType="custom" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="B3l-Yn-4KT">
                                 <rect key="frame" x="20" y="52" width="181" height="280"/>
                                 <view key="contentView" id="Btf-Bu-KOk">
                                     <rect key="frame" x="1" y="1" width="179" height="278"/>
@@ -398,7 +398,7 @@
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </tableHeaderCell>
-                                                                <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="dK4-Cd-J4F">
+                                                                <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" id="dK4-Cd-J4F">
                                                                     <font key="font" metaFont="system"/>
                                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -412,7 +412,7 @@
                                                                             <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="jVT-ne-6NT">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="176" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Dendrobates" id="sRo-2c-Ydn">
+                                                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="THEME NAME" id="sRo-2c-Ydn">
                                                                                     <font key="font" metaFont="system"/>
                                                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -489,12 +489,12 @@
                                         </button>
                                         <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="IcH-In-axb">
                                             <rect key="frame" x="136" y="1" width="41" height="23"/>
-                                            <popUpButtonCell key="cell" type="smallSquare" title="Theme Action" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="LkE-Zl-odd">
+                                            <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="LkE-Zl-odd">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
                                                 <menu key="menu" id="HHh-e3-GD4">
                                                     <items>
-                                                        <menuItem title="Theme Action" state="on" image="NSActionTemplate" hidden="YES" id="4m4-1Z-aml"/>
+                                                        <menuItem state="on" image="NSActionTemplate" hidden="YES" id="4m4-1Z-aml"/>
                                                         <menuItem title="Rename" id="8h0-Xi-AHB">
                                                             <connections>
                                                                 <action selector="renameTheme:" target="WBM-EY-ENr" id="sco-hn-q1t"/>
