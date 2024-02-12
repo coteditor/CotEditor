@@ -29,6 +29,7 @@ import AppKit.NSColor
 private final class ThemeObject: ObservableObject {
     
     private let name: String?
+    let isBundled: Bool
     
     @Published var text: Color
     @Published var invisibles: Color
@@ -53,9 +54,10 @@ private final class ThemeObject: ObservableObject {
     @Published var metadata: Theme.Metadata
     
     
-    init(_ theme: Theme) {
+    init(_ theme: Theme, isBundled: Bool) {
         
         self.name = theme.name
+        self.isBundled = isBundled
         
         self.text = Color(nsColor: theme.text.color)
         self.invisibles = Color(nsColor: theme.invisibles.color)
@@ -115,7 +117,6 @@ private final class ThemeObject: ObservableObject {
 struct ThemeEditorView: View {
     
     @StateObject private var theme: ThemeObject
-    @State private var isBundled: Bool
     
     private let didUpdateHandler: (Theme) -> Void
     
@@ -127,8 +128,7 @@ struct ThemeEditorView: View {
     
     init(_ theme: Theme, isBundled: Bool, didUpdateHandler: @escaping (Theme) -> Void) {
         
-        self._theme = .init(wrappedValue: ThemeObject(theme))
-        self.isBundled = isBundled
+        self._theme = .init(wrappedValue: ThemeObject(theme, isBundled: isBundled))
         self.didUpdateHandler = didUpdateHandler
     }
     
@@ -190,7 +190,7 @@ struct ThemeEditorView: View {
                 }
                 .help("Show theme file information")
                 .popover(isPresented: self.$isMetadataPresenting, arrowEdge: .trailing) {
-                    ThemeMetadataView(metadata: $theme.metadata, isEditable: !self.isBundled)
+                    ThemeMetadataView(metadata: $theme.metadata, isEditable: !self.theme.isBundled)
                 }
                 .buttonStyle(.borderless)
             }
