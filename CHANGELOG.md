@@ -10,7 +10,7 @@
 
 ### Fixes
 
-- Fix missing German localization.
+- Fix missing localizations.
 
 
 
