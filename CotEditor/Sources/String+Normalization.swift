@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 1024jp
+//  © 2015-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,19 +44,33 @@ enum UnicodeNormalizationForm: String, CaseIterable {
         
         switch self {
             case .nfd:
-                String(localized: "NFD", table: "UnicodeNormalization")
+                String(localized: "UnicodeNormalization.nfd.label",
+                       defaultValue: "NFD",
+                       table: "UnicodeNormalization")
             case .nfc:
-                String(localized: "NFC", table: "UnicodeNormalization")
+                String(localized: "UnicodeNormalization.nfc.label",
+                       defaultValue: "NFC",
+                       table: "UnicodeNormalization")
             case .nfkd:
-                String(localized: "NFKD", table: "UnicodeNormalization")
+                String(localized: "UnicodeNormalization.nfkd.label",
+                       defaultValue: "NFKD",
+                       table: "UnicodeNormalization")
             case .nfkc:
-                String(localized: "NFKC", table: "UnicodeNormalization")
+                String(localized: "UnicodeNormalization.nfkc.label",
+                       defaultValue: "NFKC",
+                       table: "UnicodeNormalization")
             case .nfkcCasefold:
-                String(localized: "NFKC Casefold", table: "UnicodeNormalization")
+                String(localized: "UnicodeNormalization.nfkcCasefold.label",
+                       defaultValue: "NFKC Casefold",
+                       table: "UnicodeNormalization")
             case .modifiedNFD:
-                String(localized: "Modified NFD", table: "UnicodeNormalization")
+                String(localized: "UnicodeNormalization.modifiedNFD.label",
+                       defaultValue: "Modified NFD",
+                       table: "UnicodeNormalization")
             case .modifiedNFC:
-                String(localized: "Modified NFC", table: "UnicodeNormalization")
+                String(localized: "UnicodeNormalization.modifiedNFC.label",
+                       defaultValue: "Modified NFC",
+                       table: "UnicodeNormalization")
         }
     }
     
@@ -66,26 +80,40 @@ enum UnicodeNormalizationForm: String, CaseIterable {
         
         switch self {
             case .nfd:
-                String(localized: "Canonical Decomposition",
-                       table: "UnicodeNormalization", comment: "description for NFD")
+                String(localized: "UnicodeNormalization.nfd.description",
+                       defaultValue: "Canonical Decomposition",
+                       table: "UnicodeNormalization",
+                       comment: "description for NFD")
             case .nfc:
-                String(localized: "Canonical Decomposition, followed by Canonical Composition",
-                       table: "UnicodeNormalization", comment: "description for NFC")
+                String(localized: "UnicodeNormalization.nfc.description",
+                       defaultValue: "Canonical Decomposition, followed by Canonical Composition",
+                       table: "UnicodeNormalization",
+                       comment: "description for NFC")
             case .nfkd:
-                String(localized: "Compatibility Decomposition",
-                       table: "UnicodeNormalization", comment: "description for NFKD")
+                String(localized: "UnicodeNormalization.nfkd.description",
+                       defaultValue: "Compatibility Decomposition",
+                       table: "UnicodeNormalization",
+                       comment: "description for NFKD")
             case .nfkc:
-                String(localized: "Compatibility Decomposition, followed by Canonical Composition",
-                       table: "UnicodeNormalization", comment: "description for NFKC")
+                String(localized: "UnicodeNormalization.nfkc.description",
+                       defaultValue: "Compatibility Decomposition, followed by Canonical Composition",
+                       table: "UnicodeNormalization",
+                       comment: "description for NFKC")
             case .nfkcCasefold:
-                String(localized: "Applying NFKC, CaseFolding, and removal of default-ignorable code points",
-                       table: "UnicodeNormalization", comment: "description for NFKD Casefold")
+                String(localized: "UnicodeNormalization.nfkcCasefold.description",
+                       defaultValue: "Applying NFKC, CaseFolding, and removal of default-ignorable code points",
+                       table: "UnicodeNormalization",
+                       comment: "description for NFKD Casefold")
             case .modifiedNFD:
-                String(localized: "Unofficial NFD-based normalization form used in HFS+",
-                       table: "UnicodeNormalization", comment: "description for Modified NFD")
+                String(localized: "UnicodeNormalization.modifiedNFD.description",
+                       defaultValue: "Unofficial NFD-based normalization form used in HFS+",
+                       table: "UnicodeNormalization",
+                       comment: "description for Modified NFD")
             case .modifiedNFC:
-                String(localized: "Unofficial NFC-based normalization form corresponding to Modified NFD",
-                       table: "UnicodeNormalization", comment: "description for Modified NFC")
+                String(localized: "UnicodeNormalization.modifiedNFC.description",
+                       defaultValue: "Unofficial NFC-based normalization form corresponding to Modified NFD",
+                       table: "UnicodeNormalization",
+                       comment: "description for Modified NFC")
         }
     }
     

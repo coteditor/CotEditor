@@ -1,362 +1,86 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Applying NFKC, CaseFolding, and removal of default-ignorable code points" : {
-      "comment" : "description for NFKD Casefold",
+    "UnicodeNormalization.modifiedNFC.description" : {
+      "comment" : "description for Modified NFC",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Použití NFKC, CaseFolding a odstranění ignorovatelných kódových bodů"
+            "value" : "Neoficiální standard založený na NFC, odpovídající modifikovanému NFD"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC anwenden, in Kleinbuchstaben umwandeln und standardmäßig ignorierbaren Codepunkten entfernen"
+            "value" : "Inoffizielles NFC-basiertes Normalisierungsformular entsprechend die modifizierte NFC"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Unofficial NFC-based normalization form corresponding to Modified NFD"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Applying NFKC, CaseFolding, and removal of default-ignorable code points"
+            "value" : "Unofficial NFC-based normalisation form corresponding to Modified NFD"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aplicación de NFKC, plegado y eliminación de puntos de código ignorables por defecto"
+            "value" : "Formulario de normalización no oficial basado en NFC correspondiente a NFD modificado"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Application de NFKC, CaseFolding et suppression des points de code ignorables."
+            "value" : "Normalisation non officielle basée sur NFC, correspondant au NFD modifié"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Applicare NFKC, CaseFolding, e rimuovere i punti di codice ignorabili di default"
+            "value" : "Form di normalizzazione non ufficiale basata su NFD, corrispondente a NFD Modificato"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKCを適用しすべて小文字に変換したのち、デフォルトの無視できるコードポイントを削除"
+            "value" : "修正NFDに対応するNFCを基にした非公式の正規化形式"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aplicando NFKC, case-folding e remoção de pontos de código ignorados por padrão"
+            "value" : "Forma de normalização não oficial baseada em NFC que corresponde a NFD Modificado"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC, Biçim Kıvırması ve öntanımlı olarak yok sayılabilen kod noktalarının kaldırılması uygulanıyor"
+            "value" : "Değiştirilmiş NFD’ye karşılık gelen resmi olmayan NFC tabanlı olağanlaştırma biçimi"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "正在NFKC, CaseFolding, 并移除默认可忽略编码点"
+            "value" : "非官方的基于NFD的标准化形式与修改后的NFD对应"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "正在NFKC, CaseFolding, 並移除預設可忽略編碼點"
+            "value" : "非官方的基於NFD的標準化形式與修改後的NFD對應"
           }
         }
       }
     },
-    "Canonical Decomposition" : {
-      "comment" : "description for NFD",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kanonická dekompozice"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kanonische Dekomposition"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Canonical Decomposition"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descomposición canónica"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Décomposition canonique"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Decomposizione canonica"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "正準等価によって分解"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Decomposição Canônica"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kurallara Uygun Kompozisyon"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以標準等價方式來分解"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以標準等價方式來分解"
-          }
-        }
-      }
-    },
-    "Canonical Decomposition, followed by Canonical Composition" : {
-      "comment" : "description for NFC",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kanonická dekompozice, následovaná kanonickou kompozicí"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kanonische Dekomposition gefolgt von einer kanonischen Komposition"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Canonical Decomposition, followed by Canonical Composition"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descomposición canónica, seguida de composición canónica"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Décomposition canonique"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Decomposizione canonica, seguita dalla composizione canonica"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "正準等価によって分解し、正準等価によって合成"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Decomposição Canônica, seguida de Composição Canônica"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kurallara Uygun Dekompozisyon, sonrasında Kurallara Uygun Kompozisyon"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以標準等價方式來分解，然後以標準等價重組之"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以標準等價方式來分解，然後以標準等價重組之"
-          }
-        }
-      }
-    },
-    "Compatibility Decomposition" : {
-      "comment" : "description for NFKD",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kompatibilní dekompozice"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kompatible Dekomposition"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compatibility Decomposition"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descomposición de compatibilidad"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Décomposition de compatibilité"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Decomposizione compatibile"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "互換性等価によって分解"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Decomposição de Compatibilidade"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uyumluluk Dekompozisyonu"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以相容等價方式來分解"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以相容等價方式來分解"
-          }
-        }
-      }
-    },
-    "Compatibility Decomposition, followed by Canonical Composition" : {
-      "comment" : "description for NFKC",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kompatibilní dekompozice, následovaná kanonickou kompozicí"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kompatible Dekomposition gefolgt von einer kanonischen Komposition"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compatibility Decomposition, followed by Canonical Composition"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descomposición de compatibilidad, seguida de la composición canónica"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Décomposition de compatibilité"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Decomposizione compatibile, seguita dalla composizione canonica"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "互換性等価によって分解し、正準等価によって合成"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Decomposição de Compatibilidade, seguida de Composição Canônica"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uyumluluk Dekompozisyonu, sonrasında Kurallara Uygun Kompozisyon"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以相容等價方式來分解，然後以標準等價重組之"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以相容等價方式來分解，然後以標準等價重組之"
-          }
-        }
-      }
-    },
-    "Modified NFC" : {
+    "UnicodeNormalization.modifiedNFC.label" : {
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -368,6 +92,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modifizierte NFC"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Modified NFC"
           }
         },
         "en-GB" : {
@@ -426,7 +156,86 @@
         }
       }
     },
-    "Modified NFD" : {
+    "UnicodeNormalization.modifiedNFD.description" : {
+      "comment" : "description for Modified NFD",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neoficiální standard založený na NFD, používaný v HFS+"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inoffizielles NFD-basiertes Normalisierungsformular, das im HFS+ verwendet wird"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Unofficial NFD-based normalization form used in HFS+"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unofficial NFD-based normalisation form used in HFS+"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Formulario de normalización no oficial basado en NFD utilizado en HFS+"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalisation non officielle basée sur NFD, utilisée dans HFS+"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Form di normalizzazione non ufficiale basata su NFD, usata in HFS+"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HFS+で使用されているNFDを基にした非公式の正規化形式"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forma de normalização não oficial baseada em NFD usada em HFS+"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HFS+’da resmi olmayan NFD tabanlı olağanlaştırma biçimi kullanılır"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在HFS+中使用了非官方的基于NFD的标准化形式。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在HFS+中使用了非官方的基於NFD的標準化形式。"
+          }
+        }
+      }
+    },
+    "UnicodeNormalization.modifiedNFD.label" : {
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -438,6 +247,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modifizierte NFD"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Modified NFD"
           }
         },
         "en-GB" : {
@@ -496,7 +311,86 @@
         }
       }
     },
-    "NFC" : {
+    "UnicodeNormalization.nfc.description" : {
+      "comment" : "description for NFC",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kanonická dekompozice, následovaná kanonickou kompozicí"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kanonische Dekomposition gefolgt von einer kanonischen Komposition"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Canonical Decomposition, followed by Canonical Composition"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canonical Decomposition, followed by Canonical Composition"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descomposición canónica, seguida de composición canónica"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Décomposition canonique"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decomposizione canonica, seguita dalla composizione canonica"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正準等価によって分解し、正準等価によって合成"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decomposição Canônica, seguida de Composição Canônica"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kurallara Uygun Dekompozisyon, sonrasında Kurallara Uygun Kompozisyon"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以標準等價方式來分解，然後以標準等價重組之"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以標準等價方式來分解，然後以標準等價重組之"
+          }
+        }
+      }
+    },
+    "UnicodeNormalization.nfc.label" : {
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -507,6 +401,12 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "NFC"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "NFC"
           }
         },
@@ -566,7 +466,86 @@
         }
       }
     },
-    "NFD" : {
+    "UnicodeNormalization.nfd.description" : {
+      "comment" : "description for NFD",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kanonická dekompozice"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kanonische Dekomposition"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Canonical Decomposition"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canonical Decomposition"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descomposición canónica"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Décomposition canonique"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decomposizione canonica"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正準等価によって分解"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decomposição Canônica"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kurallara Uygun Kompozisyon"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以標準等價方式來分解"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以標準等價方式來分解"
+          }
+        }
+      }
+    },
+    "UnicodeNormalization.nfd.label" : {
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -577,6 +556,12 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "NFD"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "NFD"
           }
         },
@@ -636,7 +621,86 @@
         }
       }
     },
-    "NFKC" : {
+    "UnicodeNormalization.nfkc.description" : {
+      "comment" : "description for NFKC",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kompatibilní dekompozice, následovaná kanonickou kompozicí"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kompatible Dekomposition gefolgt von einer kanonischen Komposition"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Compatibility Decomposition, followed by Canonical Composition"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compatibility Decomposition, followed by Canonical Composition"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descomposición de compatibilidad, seguida de la composición canónica"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Décomposition de compatibilité"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decomposizione compatibile, seguita dalla composizione canonica"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "互換性等価によって分解し、正準等価によって合成"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decomposição de Compatibilidade, seguida de Composição Canônica"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uyumluluk Dekompozisyonu, sonrasında Kurallara Uygun Kompozisyon"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以相容等價方式來分解，然後以標準等價重組之"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以相容等價方式來分解，然後以標準等價重組之"
+          }
+        }
+      }
+    },
+    "UnicodeNormalization.nfkc.label" : {
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -647,6 +711,12 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "NFKC"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "NFKC"
           }
         },
@@ -706,7 +776,86 @@
         }
       }
     },
-    "NFKC Casefold" : {
+    "UnicodeNormalization.nfkcCasefold.description" : {
+      "comment" : "description for NFKD Casefold",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Použití NFKC, CaseFolding a odstranění ignorovatelných kódových bodů"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC anwenden, in Kleinbuchstaben umwandeln und standardmäßig ignorierbaren Codepunkten entfernen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Applying NFKC, CaseFolding, and removal of default-ignorable code points"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Applying NFKC, CaseFolding, and removal of default-ignorable code points"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aplicación de NFKC, plegado y eliminación de puntos de código ignorables por defecto"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Application de NFKC, CaseFolding et suppression des points de code ignorables."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Applicare NFKC, CaseFolding, e rimuovere i punti di codice ignorabili di default"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKCを適用しすべて小文字に変換したのち、デフォルトの無視できるコードポイントを削除"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aplicando NFKC, case-folding e remoção de pontos de código ignorados por padrão"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC, Biçim Kıvırması ve öntanımlı olarak yok sayılabilen kod noktalarının kaldırılması uygulanıyor"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在NFKC, CaseFolding, 并移除默认可忽略编码点"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在NFKC, CaseFolding, 並移除預設可忽略編碼點"
+          }
+        }
+      }
+    },
+    "UnicodeNormalization.nfkcCasefold.label" : {
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -717,6 +866,12 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "NFKC Casefold"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "NFKC Casefold"
           }
         },
@@ -776,214 +931,157 @@
         }
       }
     },
-    "NFKD" : {
+    "UnicodeNormalization.nfkd.description" : {
+      "comment" : "description for NFKD",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKD"
+            "value" : "Kompatibilní dekompozice"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKD"
+            "value" : "Kompatible Dekomposition"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Compatibility Decomposition"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKD"
+            "value" : "Compatibility Decomposition"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKD"
+            "value" : "Descomposición de compatibilidad"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKD"
+            "value" : "Décomposition de compatibilité"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKD"
+            "value" : "Decomposizione compatibile"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKD"
+            "value" : "互換性等価によって分解"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKD"
+            "value" : "Decomposição de Compatibilidade"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKD"
+            "value" : "Uyumluluk Dekompozisyonu"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKD"
+            "value" : "以相容等價方式來分解"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKD"
+            "value" : "以相容等價方式來分解"
           }
         }
       }
     },
-    "Unofficial NFC-based normalization form corresponding to Modified NFD" : {
-      "comment" : "description for Modified NFC",
+    "UnicodeNormalization.nfkd.label" : {
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neoficiální standard založený na NFC, odpovídající modifikovanému NFD"
+            "value" : "NFKD"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inoffizielles NFC-basiertes Normalisierungsformular entsprechend die modifizierte NFC"
+            "value" : "NFKD"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "NFKD"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unofficial NFC-based normalisation form corresponding to Modified NFD"
+            "value" : "NFKD"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Formulario de normalización no oficial basado en NFC correspondiente a NFD modificado"
+            "value" : "NFKD"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Normalisation non officielle basée sur NFC, correspondant au NFD modifié"
+            "value" : "NFKD"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Form di normalizzazione non ufficiale basata su NFD, corrispondente a NFD Modificato"
+            "value" : "NFKD"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "修正NFDに対応するNFCを基にした非公式の正規化形式"
+            "value" : "NFKD"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Forma de normalização não oficial baseada em NFC que corresponde a NFD Modificado"
+            "value" : "NFKD"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Değiştirilmiş NFD’ye karşılık gelen resmi olmayan NFC tabanlı olağanlaştırma biçimi"
+            "value" : "NFKD"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "非官方的基于NFD的标准化形式与修改后的NFD对应"
+            "value" : "NFKD"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "非官方的基於NFD的標準化形式與修改後的NFD對應"
-          }
-        }
-      }
-    },
-    "Unofficial NFD-based normalization form used in HFS+" : {
-      "comment" : "description for Modified NFD",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Neoficiální standard založený na NFD, používaný v HFS+"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inoffizielles NFD-basiertes Normalisierungsformular, das im HFS+ verwendet wird"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unofficial NFD-based normalisation form used in HFS+"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Formulario de normalización no oficial basado en NFD utilizado en HFS+"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Normalisation non officielle basée sur NFD, utilisée dans HFS+"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Form di normalizzazione non ufficiale basata su NFD, usata in HFS+"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HFS+で使用されているNFDを基にした非公式の正規化形式"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Forma de normalização não oficial baseada em NFD usada em HFS+"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HFS+’da resmi olmayan NFD tabanlı olağanlaştırma biçimi kullanılır"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在HFS+中使用了非官方的基于NFD的标准化形式。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在HFS+中使用了非官方的基於NFD的標準化形式。"
+            "value" : "NFKD"
           }
         }
       }
