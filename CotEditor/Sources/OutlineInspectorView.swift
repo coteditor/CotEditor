@@ -169,10 +169,10 @@ private struct OutlineRowView: View {
                 Divider()
             }
         } else {
-            Text(self.item.attributedTitle)
-                .bold(self.item.style.contains(.bold))
-                .italic(self.item.style.contains(.italic))
-                .underline(self.item.style.contains(.underline))
+            Text(self.item.attributedTitle(.init()
+                .backgroundColor(.findHighlightColor)
+                .foregroundColor(.black.withAlphaComponent(0.9))  // for legibility in Dark Mode
+            ))
         }
     }
 }
@@ -257,7 +257,7 @@ private extension OutlineInspectorView.Model {
     model.items = [
         OutlineItem(title: "Hallo", range: .notFound),
         OutlineItem(title: "Guten Tag!", range: .notFound, style: [.bold]),
-        OutlineItem(title: "-", range: .notFound),
+        OutlineItem(title: .separator, range: .notFound),
         OutlineItem(title: "Hund", range: .notFound, style: [.underline]),
     ]
     

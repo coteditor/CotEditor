@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import SwiftUI
 import AppKit.NSFont
 import struct Foundation.NSRange
 
@@ -41,6 +42,7 @@ struct OutlineItem: Equatable, Identifiable {
         static let underline = Self(rawValue: 1 << 2)
     }
     
+    
     let id = UUID()
     
     var title: String
@@ -48,16 +50,18 @@ struct OutlineItem: Equatable, Identifiable {
     var style: Style = []
     fileprivate(set) var filteredRanges: [Range<String.Index>]?
     
-    
-    var isSeparator: Bool {
-        
-        self.title == .separator
-    }
+    var isSeparator: Bool  { self.title == .separator }
 }
 
 
 extension OutlineItem {
     
+    /// Returns styled title for a view in AppKit.
+    ///
+    /// - Parameters:
+    ///   - baseFont: The base font of change.
+    ///   - paragraphStyle: The paragraph style to apply.
+    /// - Returns: An AttributedString.
     func attributedTitle(for baseFont: NSFont, paragraphStyle: NSParagraphStyle) -> AttributedString {
         
         var attributes = AttributeContainer().paragraphStyle(paragraphStyle)
@@ -81,20 +85,33 @@ extension OutlineItem {
     }
     
     
-    var attributedTitle: AttributedString {
+    /// Returns styled title applying the filter match highlight for a view in SwiftUI.
+    ///
+    /// - Parameter attributes: The attributes for the matched parts of filtering.
+    /// - Returns: An AttributedString.
+    func attributedTitle(_ attributes: AttributeContainer? = nil) -> AttributedString {
         
         var attrTitle = AttributedString(self.title)
+        var font: Font = .body
         
-        guard let ranges = self.filteredRanges else { return attrTitle }
+        if self.style.contains(.bold) {
+            font = font.bold()
+        }
+        if self.style.contains(.italic) {
+            font = font.italic()
+        }
+        if self.style.contains(.underline) {
+            attrTitle.underlineStyle = .single
+        }
         
-        let attributes = AttributeContainer()
-            .backgroundColor(.findHighlightColor)
-            .foregroundColor(.black.withAlphaComponent(0.9))  // for legibility in Dark Mode
+        attrTitle.font = font
+        
+        guard let ranges = self.filteredRanges, let attributes else { return attrTitle }
         
         for range in ranges {
             guard let attrRange = Range(range, in: attrTitle) else { continue }
             
-            attrTitle[attrRange].setAttributes(attributes)
+            attrTitle[attrRange].mergeAttributes(attributes)
         }
         
         return attrTitle
