@@ -10,14 +10,14 @@
         <scene sceneID="oau-eS-BHv">
             <objects>
                 <viewController id="WBM-EY-ENr" customClass="AppearancePaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="LgU-un-VaX">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="568"/>
+                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LgU-un-VaX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="567"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="ADB-Wp-iDy">
-                                <rect key="frame" x="53" y="348" width="495" height="220"/>
+                                <rect key="frame" x="53" y="348" width="495" height="218"/>
                                 <subviews>
                                     <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="icl-ar-8yG">
-                                        <rect key="frame" x="18" y="154" width="114" height="16"/>
+                                        <rect key="frame" x="18" y="153" width="114" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="right" title="Standard font:" usesSingleLineMode="YES" id="Z85-S9-uID">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -25,10 +25,9 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wT1-jD-6aC" customClass="AntialiasingTextField" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="138" y="151" width="260" height="22"/>
+                                        <rect key="frame" x="138" y="150" width="260" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="750" constant="260" id="Ssa-FC-qrT"/>
-                                            <constraint firstAttribute="height" constant="22" id="iwx-p0-N12"/>
                                         </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="FONT NAME 12" drawsBackground="YES" id="toV-fU-j7j" customClass="CenteringTextFieldCell" customModule="CotEditor" customModuleProvider="target">
                                             <font key="font" metaFont="system"/>
@@ -40,7 +39,7 @@
                                         </connections>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uMj-Iu-oCy">
-                                        <rect key="frame" x="399" y="145" width="83" height="32"/>
+                                        <rect key="frame" x="399" y="144" width="83" height="32"/>
                                         <buttonCell key="cell" type="push" title="Select…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3289">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -54,7 +53,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I9r-vj-2gy">
-                                        <rect key="frame" x="137" y="132" width="66" height="16"/>
+                                        <rect key="frame" x="137" y="131" width="66" height="16"/>
                                         <buttonCell key="cell" type="check" title="Antialias" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="3290">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -65,7 +64,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4cD-mR-vJc">
-                                        <rect key="frame" x="210" y="132" width="70" height="16"/>
+                                        <rect key="frame" x="210" y="131" width="70" height="16"/>
                                         <buttonCell key="cell" type="check" title="Ligatures" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="g3S-3v-6ZA">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
@@ -170,7 +169,7 @@
                                         </connections>
                                     </button>
                                     <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fcc-rL-m1T" customClass="AntialiasingTextField" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="138" y="103" width="260" height="22"/>
+                                        <rect key="frame" x="138" y="103" width="260" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" priority="750" constant="260" id="1NH-gY-fav"/>
                                         </constraints>
@@ -208,7 +207,7 @@
                                         </connections>
                                     </button>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k1t-Xk-gYs">
-                                        <rect key="frame" x="135" y="177" width="121" height="25"/>
+                                        <rect key="frame" x="135" y="175" width="121" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="Automatically" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="XcC-5y-bLG" id="xL0-Za-Olv">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -226,7 +225,7 @@
                                         </connections>
                                     </popUpButton>
                                     <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="PBB-XC-8pV">
-                                        <rect key="frame" x="23" y="184" width="109" height="16"/>
+                                        <rect key="frame" x="23" y="182" width="109" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Prefer font using:" usesSingleLineMode="YES" id="XQO-YW-cqZ">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -335,7 +334,6 @@
                                     <constraint firstItem="Fcc-rL-m1T" firstAttribute="centerY" secondItem="ZHd-UF-pkx" secondAttribute="centerY" id="RCo-rU-m4T"/>
                                     <constraint firstItem="ey0-BL-08J" firstAttribute="baseline" secondItem="HDH-L4-Ss3" secondAttribute="baseline" id="S0a-ur-MUh"/>
                                     <constraint firstItem="C0e-PH-i1L" firstAttribute="leading" secondItem="ZHd-UF-pkx" secondAttribute="trailing" constant="8" symbolic="YES" id="V8g-sy-xjE"/>
-                                    <constraint firstItem="Fcc-rL-m1T" firstAttribute="height" secondItem="wT1-jD-6aC" secondAttribute="height" id="Vzc-QN-svh"/>
                                     <constraint firstItem="C0e-PH-i1L" firstAttribute="top" secondItem="Fcc-rL-m1T" secondAttribute="bottom" constant="4" id="XLX-B0-BhH"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="I9r-vj-2gy" secondAttribute="trailing" constant="20" symbolic="YES" id="YQF-EN-qdM"/>
                                     <constraint firstItem="Tqw-t1-w9R" firstAttribute="firstBaseline" secondItem="rE0-DL-xRG" secondAttribute="firstBaseline" id="YcJ-G1-i8m"/>
