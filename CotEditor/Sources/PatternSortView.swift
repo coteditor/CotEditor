@@ -264,6 +264,7 @@ struct RegularExpressionSortPatternView: View {
                             } label: {
                                 EmptyView()
                             }
+                            .accessibilityLabel(String(localized: "Recents"))
                             .menuStyle(.borderlessButton)
                             .frame(width: 16)
                             .padding(.leading, 4)
