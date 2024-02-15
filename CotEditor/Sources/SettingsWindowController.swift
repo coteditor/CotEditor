@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import SwiftUI
 
 final class SettingsWindowController: NSWindowController {
     
@@ -66,7 +67,7 @@ private extension SettingsPane {
     private enum ViewType {
         
         case storyboard(NSStoryboard.Name)
-        case swiftUI
+        case swiftUI(AnyView)
     }
     
     
@@ -85,10 +86,12 @@ private extension SettingsPane {
         
         switch self.viewType {
             case .storyboard(let name):
-                NSStoryboard(name: name, bundle: nil).instantiateInitialController()!
+                return NSStoryboard(name: name, bundle: nil).instantiateInitialController()!
                 
-            case .swiftUI:
-                preconditionFailure()
+            case .swiftUI(let view):
+                let controller = NSHostingController(rootView: view)
+                controller.sizingOptions = .preferredContentSize
+                return controller
         }
     }
     
