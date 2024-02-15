@@ -186,8 +186,8 @@ struct ThemeEditorView: View {
                 } label: {
                     Image(systemName: "info")
                         .symbolVariant(.circle)
-                        .accessibilityLabel("Show theme file information")
                 }
+                .accessibilityLabel("Show theme file information")
                 .help("Show theme file information")
                 .popover(isPresented: self.$isMetadataPresenting, arrowEdge: .trailing) {
                     ThemeMetadataView(metadata: $theme.metadata, isEditable: !self.theme.isBundled)
@@ -272,9 +272,9 @@ private struct ThemeMetadataView: View {
                 self.itemView("Description:", text: $metadata.description ?? "", lineLimit: 2...5)
             }
         }
-        .controlSize(.small)
         .padding(10)
-        .frame(width: 300)
+        .controlSize(.small)
+        .frame(width: 300, alignment: .leading)
     }
     
     
@@ -292,7 +292,6 @@ private struct ThemeMetadataView: View {
             Text(text.wrappedValue)
                 .foregroundColor(.label)
                 .textSelection(.enabled)
-                .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
