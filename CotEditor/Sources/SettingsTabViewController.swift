@@ -54,9 +54,9 @@ final class SettingsTabViewController: NSTabViewController {
     }
     
     
-    override func tabView(_ tabView: NSTabView, willSelect tabViewItem: NSTabViewItem?) {
+    override func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
         
-        super.tabView(tabView, willSelect: tabViewItem)
+        super.tabView(tabView, didSelect: tabViewItem)
         
         guard let tabViewItem else { return assertionFailure() }
         
