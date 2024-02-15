@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -93,7 +93,7 @@ struct SyntaxMappingConflictsView: View {
             self.parent?.dismiss(nil)
         }
         .scenePadding()
-        .frame(width: 400, height: 500, alignment: .trailing)
+        .frame(width: 400, height: 500)
     }
 }
 
@@ -105,6 +105,7 @@ private struct ConflictTable: View {
     let name: LocalizedStringKey
     @State var conflicts: [Item] = []
     
+    @State private var selection: Item.ID?
     @State private var sortOrder = [KeyPathComparator(\Item.name)]
     
     
@@ -117,7 +118,7 @@ private struct ConflictTable: View {
     var body: some View {
         
         Section {
-            Table(self.conflicts, sortOrder: $sortOrder) {
+            Table(self.conflicts, selection: $selection, sortOrder: $sortOrder) {
                 TableColumn(self.name, value: \.name)
                 TableColumn("Used syntax", value: \.primarySyntax) {
                     Text($0.primarySyntax).fontWeight(.semibold)
