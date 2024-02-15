@@ -27,29 +27,28 @@ import Foundation
 
 struct IssueReport {
     
-    var locale: Locale = .current
-    
+    // MARK: Public Methods
     
     /// The generic report title.
     var title: String {
         
-        String(localized: "IssueReport.title", defaultValue: "Issue Report", table: "IssueReport", locale: self.locale, comment: "document title")
+        String(localized: "IssueReport.title", defaultValue: "Issue Report", table: "IssueReport", comment: "document title")
     }
     
     
-    /// Report template with user environment info.
+    /// The plain-text report template with user environment.
     var template: String {
         
         [[self.description,
           String(repeating: "-", count: 25),
-          Heading.environment.display(for: self.locale),
+          Heading.environment.display(),
           self.environment,
          ].joined(separator: String(repeating: "\n", count: 2)),
          
          Heading.allCases[1...]
-            .map { $0.display(for: self.locale) }
+            .map { $0.display() }
             .joined(separator: String(repeating: "\n", count: 3))
-        ].joined(separator: String(repeating: "\n", count: 3))
+        ].joined(separator: String(repeating: "\n", count: 3)) + "\n"
     }
     
     
@@ -62,7 +61,7 @@ struct IssueReport {
     private var description: String {
         
         String(localized: "IssueReport.description",
-               defaultValue: "Fill the following template, and post it on \(Self.issueLink) or send to \(Self.mail) Please note that the contents of the sent email can be shared on the Issue page. Please write the contents either in English or in Japanese.",
+               defaultValue: "Fill the following template, and post it on \(Self.issueLink) or send to \(Self.mail). Please note that the contents of the sent email can be shared on the Issue page. Please write the contents either in English or in Japanese.",
                table: "IssueReport",
                comment: "%1$@ is a link to a web page and %2$@ is an e-mail")
     }
@@ -81,7 +80,7 @@ struct IssueReport {
     /// The current app localization in English.
     private var appLanguage: String? {
         
-        self.locale.language.languageCode.flatMap { Locale.en.localizedString(forLanguageCode: $0.identifier) }
+        Locale(languageCode: .english).localizedString(forLanguageCode: Locale.current.language.maximalIdentifier)
     }
 }
 
@@ -96,13 +95,15 @@ private extension IssueReport {
         case expectedResult
         
         
-        func display(for locale: Locale) -> String {
+        func display(for locale: Locale = .current) -> String {
             
-            (locale == .en) ? "## \(self.label(locale: locale))" : "## \(self.label(locale: .en)) (\(self.label(locale: locale)))"
+            (locale.language.languageCode == .english)
+                ? "## \(self.label(locale: locale))"
+                : "## \(self.label(locale: Locale(languageCode: .english))) (\(self.label(locale: locale)))"
         }
         
         
-        private func label(locale: Locale) -> String {
+        private func label(locale: Locale = .current) -> String {
             
             switch self {
                 case .environment:
@@ -124,10 +125,4 @@ private extension IssueReport {
             }
         }
     }
-}
-
-
-private extension Locale {
-    
-    static let en = Locale(identifier: "en")
 }

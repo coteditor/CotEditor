@@ -20,7 +20,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Fill the following template, and post it on %1$@ or send to %2$@ Please note that the contents of the sent email can be shared on the Issue page. Please write the contents either in English or in Japanese."
+            "value" : "Fill the following template, and post it on %1$@ or send to %2$@. Please note that the contents of the sent email can be shared on the Issue page. Please write the contents either in English or in Japanese."
           }
         },
         "en-GB" : {
