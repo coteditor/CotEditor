@@ -446,7 +446,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <gridView verticalHuggingPriority="750" xPlacement="leading" yPlacement="top" rowAlignment="firstBaseline" columnSpacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DnL-UN-PAA">
-                                        <rect key="frame" x="136" y="20" width="255" height="60"/>
+                                        <rect key="frame" x="136" y="20" width="253" height="60"/>
                                         <rows>
                                             <gridRow id="A5a-1R-KNS"/>
                                             <gridRow id="f5f-3D-cza"/>
@@ -522,8 +522,8 @@
                                             </gridCell>
                                             <gridCell row="aTU-TR-NnE" column="hlS-CI-3S4" id="Czg-oC-RJ8">
                                                 <button key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FLk-vp-SAl">
-                                                    <rect key="frame" x="133" y="-1" width="122" height="18"/>
-                                                    <buttonCell key="cell" type="check" title="Current Column" bezelStyle="regularSquare" imagePosition="left" inset="2" id="SR0-Bx-Nh6">
+                                                    <rect key="frame" x="133" y="-1" width="120" height="18"/>
+                                                    <buttonCell key="cell" type="check" title="Current column" bezelStyle="regularSquare" imagePosition="left" inset="2" id="SR0-Bx-Nh6">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>

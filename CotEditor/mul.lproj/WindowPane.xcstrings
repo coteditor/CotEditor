@@ -2654,7 +2654,7 @@
       }
     },
     "SR0-Bx-Nh6.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Current Column\"; ObjectID = \"SR0-Bx-Nh6\";",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Current column\"; ObjectID = \"SR0-Bx-Nh6\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -2672,7 +2672,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Current Column"
+            "value" : "Current column"
           }
         },
         "en-GB" : {
