@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -62,6 +62,20 @@ extension AppStorage {
     
     
     init(_ key: DefaultKey<Value>, store: UserDefaults? = nil) where Value == Double {
+        
+        let defaultValue = (store ?? UserDefaults.standard)[initial: key]
+        
+        self.init(wrappedValue: defaultValue, key.rawValue, store: store)
+    }
+    
+    
+    init(_ key: DefaultKey<Value>, store: UserDefaults? = nil) where Value == Double? {
+        
+        self.init(key.rawValue, store: store)
+    }
+    
+    
+    init(_ key: DefaultKey<Value>, store: UserDefaults? = nil) where Value: RawRepresentable, Value.RawValue == Int {
         
         let defaultValue = (store ?? UserDefaults.standard)[initial: key]
         

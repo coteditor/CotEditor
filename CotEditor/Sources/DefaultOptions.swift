@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2023 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ enum DocumentConflictOption: Int {
 }
 
 
-enum WritingDirection: Int {
+enum WritingDirection: Int, CaseIterable {
     
     case leftToRight
     case rightToLeft

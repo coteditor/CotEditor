@@ -101,7 +101,7 @@ private extension SettingsPane {
         switch self {
             case .general: .storyboard("GeneralPane")
             case .appearance: .storyboard("AppearancePane")
-            case .window: .storyboard("WindowPane")
+            case .window: .swiftUI(AnyView(WindowSettingsView()))
             case .edit: .swiftUI(AnyView(EditSettingsView()))
             case .format: .storyboard("FormatPane")
             case .snippets: .storyboard("SnippetsPane")

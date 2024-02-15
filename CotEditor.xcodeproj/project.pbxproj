@@ -47,7 +47,6 @@
 		2A10C5F81FD19237002AB5AE /* KeyBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10C5F61FD19237002AB5AE /* KeyBinding.swift */; };
 		2A10C5FA1FD25D04002AB5AE /* Selector+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10C5F91FD25D04002AB5AE /* Selector+Codable.swift */; };
 		2A10C5FB1FD25D04002AB5AE /* Selector+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10C5F91FD25D04002AB5AE /* Selector+Codable.swift */; };
-		2A10D1001E7088B00027192A /* WindowPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1031E7088B00027192A /* WindowPane.storyboard */; };
 		2A10D10A1E708CDF0027192A /* KeyBindingsPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1081E708CDF0027192A /* KeyBindingsPane.storyboard */; };
 		2A10D1281E714D230027192A /* AppearancePane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1261E714D230027192A /* AppearancePane.storyboard */; };
 		2A10D1381E715E5B0027192A /* FormatPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1361E715E5B0027192A /* FormatPane.storyboard */; };
@@ -383,8 +382,8 @@
 		2A7646ED1D49035500350674 /* SettingFileManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E91D48ECD100350674 /* SettingFileManaging.swift */; };
 		2A7725641D50401300A53C09 /* SyntaxValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7725631D50401300A53C09 /* SyntaxValidator.swift */; };
 		2A7725651D50401300A53C09 /* SyntaxValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7725631D50401300A53C09 /* SyntaxValidator.swift */; };
-		2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */; };
-		2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */; };
+		2A78BFA41D1B02ED00A583D2 /* WindowSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA31D1B02ED00A583D2 /* WindowSettingsView.swift */; };
+		2A78BFA51D1B02ED00A583D2 /* WindowSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA31D1B02ED00A583D2 /* WindowSettingsView.swift */; };
 		2A78BFA71D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */; };
 		2A78BFA81D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */; };
 		2A78BFB01D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */; };
@@ -583,6 +582,8 @@
 		2AB541DB20A5B6A400367DD5 /* NSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView.swift */; };
 		2AB9E4B52B7E452F004E5BDC /* EditSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4B32B7E452F004E5BDC /* EditSettings.xcstrings */; };
 		2AB9E4B62B7E452F004E5BDC /* EditSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4B32B7E452F004E5BDC /* EditSettings.xcstrings */; };
+		2AB9E4B92B7E77B8004E5BDC /* WindowSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4B72B7E77B8004E5BDC /* WindowSettings.xcstrings */; };
+		2AB9E4BA2B7E77B8004E5BDC /* WindowSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4B72B7E77B8004E5BDC /* WindowSettings.xcstrings */; };
 		2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
 		2ABBACA21E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
@@ -657,7 +658,6 @@
 		2ACDE2B12406B9C000FC31EC /* SyntaxInfoEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2241221A7CDEF00F6201F /* SyntaxInfoEditView.storyboard */; };
 		2ACDE2B32406B9C000FC31EC /* SyntaxOutlineEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2243321A7D78400F6201F /* SyntaxOutlineEditView.storyboard */; };
 		2ACDE2B42406B9C000FC31EC /* SyntaxTermsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2244821A7DB9B00F6201F /* SyntaxTermsEditView.storyboard */; };
-		2ACDE2B82406B9C000FC31EC /* WindowPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1031E7088B00027192A /* WindowPane.storyboard */; };
 		2ACF23AE26302A4C002B5E10 /* Theme+Syntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF23AD26302A4C002B5E10 /* Theme+Syntax.swift */; };
 		2ACF23AF26302A4C002B5E10 /* Theme+Syntax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF23AD26302A4C002B5E10 /* Theme+Syntax.swift */; };
 		2ACFE5871D2037800005233A /* DetachablePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */; };
@@ -844,7 +844,6 @@
 		2A10B6F421450A3B00B4205E /* NSAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppearance.swift; sourceTree = "<group>"; };
 		2A10C5F61FD19237002AB5AE /* KeyBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBinding.swift; sourceTree = "<group>"; };
 		2A10C5F91FD25D04002AB5AE /* Selector+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Selector+Codable.swift"; sourceTree = "<group>"; };
-		2A10D1021E7088B00027192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WindowPane.storyboard; sourceTree = "<group>"; };
 		2A10D1091E708CDF0027192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/KeyBindingsPane.storyboard; sourceTree = "<group>"; };
 		2A10D1271E714D230027192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AppearancePane.storyboard; sourceTree = "<group>"; };
 		2A10D1371E715E5B0027192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FormatPane.storyboard; sourceTree = "<group>"; };
@@ -1044,7 +1043,7 @@
 		2A7646E91D48ECD100350674 /* SettingFileManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingFileManaging.swift; sourceTree = "<group>"; };
 		2A7725631D50401300A53C09 /* SyntaxValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxValidator.swift; sourceTree = "<group>"; };
 		2A7846DA18FE035E006BDF00 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
-		2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowPaneController.swift; sourceTree = "<group>"; };
+		2A78BFA31D1B02ED00A583D2 /* WindowSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowSettingsView.swift; sourceTree = "<group>"; };
 		2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPaneController.swift; sourceTree = "<group>"; };
 		2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebDocumentWindowController.swift; sourceTree = "<group>"; };
 		2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdaterManager.swift; sourceTree = "<group>"; };
@@ -1164,6 +1163,7 @@
 		2AB541D920A5B6A400367DD5 /* NSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSView.swift; sourceTree = "<group>"; };
 		2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxManager.swift; sourceTree = "<group>"; };
 		2AB9E4B42B7E452F004E5BDC /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/EditSettings.xcstrings; sourceTree = "<group>"; };
+		2AB9E4B82B7E77B8004E5BDC /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/WindowSettings.xcstrings; sourceTree = "<group>"; };
 		2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+ScriptingSupport.swift"; sourceTree = "<group>"; };
 		2ABEFB6923DC0CA0008769F4 /* EditorInfoCountOperationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorInfoCountOperationTests.swift; sourceTree = "<group>"; };
 		2ABF49E2221A54AD00239278 /* TextClipping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextClipping.swift; sourceTree = "<group>"; };
@@ -1251,7 +1251,6 @@
 		2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Document+ScriptingSupport.swift"; sourceTree = "<group>"; };
 		2AF1229E2B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/AppearancePane.xcstrings; sourceTree = "<group>"; };
 		2AF1229F2B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/KeyBindingsPane.xcstrings; sourceTree = "<group>"; };
-		2AF122A12B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/WindowPane.xcstrings; sourceTree = "<group>"; };
 		2AF122A22B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/FormatPane.xcstrings; sourceTree = "<group>"; };
 		2AF122A32B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/GeneralPane.xcstrings; sourceTree = "<group>"; };
 		2AF122A42B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SnippetsPane.xcstrings; sourceTree = "<group>"; };
@@ -1376,7 +1375,6 @@
 			children = (
 				2AC20A6F1E70819E0093B9C6 /* GeneralPane.storyboard */,
 				2A10D1261E714D230027192A /* AppearancePane.storyboard */,
-				2A10D1031E7088B00027192A /* WindowPane.storyboard */,
 				2A10D1361E715E5B0027192A /* FormatPane.storyboard */,
 				2ADF3BFF1E6D7345009125BB /* SnippetsPane.storyboard */,
 				2A10D1081E708CDF0027192A /* KeyBindingsPane.storyboard */,
@@ -1389,7 +1387,7 @@
 			children = (
 				2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */,
 				2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */,
-				2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */,
+				2A78BFA31D1B02ED00A583D2 /* WindowSettingsView.swift */,
 				2AFFA7C52B170097005652CD /* EditSettingsView.swift */,
 				2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */,
 				2AA4D3731D1AA0AC001D261D /* KeyBindingsPaneController.swift */,
@@ -2109,6 +2107,7 @@
 				2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */,
 				2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */,
 				2AB9E4B32B7E452F004E5BDC /* EditSettings.xcstrings */,
+				2AB9E4B72B7E77B8004E5BDC /* WindowSettings.xcstrings */,
 				2A954B232AB28B010070FB74 /* TextFind.xcstrings */,
 				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
 				2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */,
@@ -2516,13 +2515,13 @@
 				2ACDE2992406B9C000FC31EC /* SnippetsPane.storyboard in Resources */,
 				2ACDE2952406B9C000FC31EC /* StatusBar.storyboard in Resources */,
 				2ACDE2AD2406B9C000FC31EC /* SyntaxCommentsEditView.storyboard in Resources */,
+				2AB9E4B92B7E77B8004E5BDC /* WindowSettings.xcstrings in Resources */,
 				2ACDE2AE2406B9C000FC31EC /* SyntaxCompletionsEditView.storyboard in Resources */,
 				2ACDE2AF2406B9C000FC31EC /* SyntaxEditView.storyboard in Resources */,
 				2ACDE2B02406B9C000FC31EC /* SyntaxFileMappingEditView.storyboard in Resources */,
 				2ACDE2B12406B9C000FC31EC /* SyntaxInfoEditView.storyboard in Resources */,
 				2ACDE2B32406B9C000FC31EC /* SyntaxOutlineEditView.storyboard in Resources */,
 				2ACDE2B42406B9C000FC31EC /* SyntaxTermsEditView.storyboard in Resources */,
-				2ACDE2B82406B9C000FC31EC /* WindowPane.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2549,6 +2548,7 @@
 				2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */,
 				2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */,
 				2A80C65E1CEE33C100AA664D /* Credits.html in Resources */,
+				2AB9E4BA2B7E77B8004E5BDC /* WindowSettings.xcstrings in Resources */,
 				2AE73ECC2035223100D8903B /* Credits.css in Resources */,
 				2A80C6681CEE540F00AA664D /* Acknowledgments.html in Resources */,
 				2AE73EC8203520E000D8903B /* Acknowledgments.css in Resources */,
@@ -2585,7 +2585,6 @@
 				2AB2241421A7CDEF00F6201F /* SyntaxInfoEditView.storyboard in Resources */,
 				2AB2243521A7D78400F6201F /* SyntaxOutlineEditView.storyboard in Resources */,
 				2AB2244A21A7DB9B00F6201F /* SyntaxTermsEditView.storyboard in Resources */,
-				2A10D1001E7088B00027192A /* WindowPane.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2997,7 +2996,7 @@
 				2A9710932A9C7BAE00CE9CDD /* WarningsSettingView.swift in Sources */,
 				2A78BFB11D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
-				2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
+				2A78BFA51D1B02ED00A583D2 /* WindowSettingsView.swift in Sources */,
 				2A2EEF182B778BB1001FEDFB /* WrappingHStack.swift in Sources */,
 				2AEE84B31E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */,
 			);
@@ -3361,7 +3360,7 @@
 				2A9710942A9C7BAE00CE9CDD /* WarningsSettingView.swift in Sources */,
 				2A78BFB01D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
-				2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
+				2A78BFA41D1B02ED00A583D2 /* WindowSettingsView.swift in Sources */,
 				2A2EEF192B778BB1001FEDFB /* WrappingHStack.swift in Sources */,
 				2AEE84B21E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */,
 			);
@@ -3407,15 +3406,6 @@
 				2AC605AD2B64CDDF00E93E5B /* cs */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		2A10D1031E7088B00027192A /* WindowPane.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A10D1021E7088B00027192A /* Base */,
-				2AF122A12B7A3D50004BA1FF /* mul */,
-			);
-			name = WindowPane.storyboard;
 			sourceTree = "<group>";
 		};
 		2A10D1081E708CDF0027192A /* KeyBindingsPane.storyboard */ = {
@@ -3638,6 +3628,14 @@
 				2AB9E4B42B7E452F004E5BDC /* mul */,
 			);
 			name = EditSettings.xcstrings;
+			sourceTree = "<group>";
+		};
+		2AB9E4B72B7E77B8004E5BDC /* WindowSettings.xcstrings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AB9E4B82B7E77B8004E5BDC /* mul */,
+			);
+			name = WindowSettings.xcstrings;
 			sourceTree = "<group>";
 		};
 		2AC20A6F1E70819E0093B9C6 /* GeneralPane.storyboard */ = {

@@ -70,7 +70,7 @@ extension DefaultKeys {
     static let enablesHangingIndent = DefaultKey<Bool>("enableHangingIndent")
     static let hangingIndentWidth = DefaultKey<Int>("hangingIndentWidth")
     static let writingDirection = RawRepresentableDefaultKey<WritingDirection>("writingDirection")
-    static let overscrollRate = DefaultKey<CGFloat>("overscrollRate")
+    static let overscrollRate = DefaultKey<Double>("overscrollRate")
     static let showStatusBarLines = DefaultKey<Bool>("showStatusBarLines")
     static let showStatusBarChars = DefaultKey<Bool>("showStatusBarChars")
     static let showStatusBarWords = DefaultKey<Bool>("showStatusBarWords")
