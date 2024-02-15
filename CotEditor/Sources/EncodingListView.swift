@@ -85,10 +85,12 @@ struct EncodingListView: View {
                         }
                     }.listRowSeparator(.hidden)
                 }.onMove { (indexes, index) in
-                    self.model.move(fromOffsets: indexes, toOffset: index, undoManager: self.undoManager)
+                    self.model.move(from: indexes, to: index, undoManager: self.undoManager)
                 }
             }
-            .listStyle(.bordered)
+            .onDeleteCommand {
+                self.model.deleteSeparators(in: self.selection, undoManager: self.undoManager)
+            }
             .environment(\.defaultMinListRowHeight, 14)
             .frame(minHeight: 250, idealHeight: 250)
                 
@@ -142,7 +144,7 @@ private struct EncodingView: View {
         
         HStack(alignment: .firstTextBaseline) {
             Text(self.name)
-            Text(verbatim: self.ianaCharsetName)
+            Text(self.ianaCharsetName)
                 .foregroundStyle(.secondary)
         }.frame(height: 13)
     }
@@ -162,9 +164,12 @@ private struct EncodingView: View {
 }
 
 
+
+// MARK: -
+
 extension EncodingListView.Model {
     
-    func move(fromOffsets source: IndexSet, toOffset destination: Int, undoManager: UndoManager? = nil) {
+    func move(from source: IndexSet, to destination: Int, undoManager: UndoManager? = nil) {
         
         self.registerUndo(to: undoManager)
         
