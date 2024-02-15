@@ -102,7 +102,7 @@ private extension SettingsPane {
             case .general: .storyboard("GeneralPane")
             case .appearance: .storyboard("AppearancePane")
             case .window: .storyboard("WindowPane")
-            case .edit: .storyboard("EditPane")
+            case .edit: .swiftUI(AnyView(EditSettingsView()))
             case .format: .storyboard("FormatPane")
             case .snippets: .storyboard("SnippetsPane")
             case .keyBindings: .storyboard("KeyBindingsPane")

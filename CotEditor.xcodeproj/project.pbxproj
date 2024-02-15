@@ -50,7 +50,6 @@
 		2A10D1001E7088B00027192A /* WindowPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1031E7088B00027192A /* WindowPane.storyboard */; };
 		2A10D10A1E708CDF0027192A /* KeyBindingsPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1081E708CDF0027192A /* KeyBindingsPane.storyboard */; };
 		2A10D1281E714D230027192A /* AppearancePane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1261E714D230027192A /* AppearancePane.storyboard */; };
-		2A10D1301E7152F30027192A /* EditPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D12E1E7152F30027192A /* EditPane.storyboard */; };
 		2A10D1381E715E5B0027192A /* FormatPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1361E715E5B0027192A /* FormatPane.storyboard */; };
 		2A10D1481E7477D30027192A /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10D1471E7477D30027192A /* StyledButton.swift */; };
 		2A10D1491E7477D30027192A /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10D1471E7477D30027192A /* StyledButton.swift */; };
@@ -388,8 +387,6 @@
 		2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */; };
 		2A78BFA71D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */; };
 		2A78BFA81D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */; };
-		2A78BFAD1D1B138D00A583D2 /* EditPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAC1D1B138D00A583D2 /* EditPaneController.swift */; };
-		2A78BFAE1D1B138D00A583D2 /* EditPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAC1D1B138D00A583D2 /* EditPaneController.swift */; };
 		2A78BFB01D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */; };
 		2A78BFB11D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */; };
 		2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */; };
@@ -584,6 +581,8 @@
 		2AB2913F245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2913D245AAD74004CC203 /* Unicode.GeneralCategory.swift */; };
 		2AB541DA20A5B6A400367DD5 /* NSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView.swift */; };
 		2AB541DB20A5B6A400367DD5 /* NSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView.swift */; };
+		2AB9E4B52B7E452F004E5BDC /* EditSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4B32B7E452F004E5BDC /* EditSettings.xcstrings */; };
+		2AB9E4B62B7E452F004E5BDC /* EditSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4B32B7E452F004E5BDC /* EditSettings.xcstrings */; };
 		2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
 		2ABBACA21E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
@@ -645,7 +644,6 @@
 		2ACDE28D2406B9C000FC31EC /* AppearancePane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1261E714D230027192A /* AppearancePane.storyboard */; };
 		2ACDE2952406B9C000FC31EC /* StatusBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602CE1D05BD72003E8D87 /* StatusBar.storyboard */; };
 		2ACDE2962406B9C000FC31EC /* NavigationBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F7CA31D152589001D83BC /* NavigationBar.storyboard */; };
-		2ACDE2972406B9C000FC31EC /* EditPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D12E1E7152F30027192A /* EditPane.storyboard */; };
 		2ACDE2992406B9C000FC31EC /* SnippetsPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3BFF1E6D7345009125BB /* SnippetsPane.storyboard */; };
 		2ACDE29A2406B9C000FC31EC /* FindPanelFieldView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D13401D1FE34F00D38E6A /* FindPanelFieldView.storyboard */; };
 		2ACDE29C2406B9C000FC31EC /* FormatPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1361E715E5B0027192A /* FormatPane.storyboard */; };
@@ -780,6 +778,8 @@
 		2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE848522AE71130001C4ED /* TextContainer.swift */; };
 		2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
 		2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
+		2AFFA7C62B170097005652CD /* EditSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFA7C52B170097005652CD /* EditSettingsView.swift */; };
+		2AFFA7C72B170097005652CD /* EditSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFFA7C52B170097005652CD /* EditSettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -847,7 +847,6 @@
 		2A10D1021E7088B00027192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WindowPane.storyboard; sourceTree = "<group>"; };
 		2A10D1091E708CDF0027192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/KeyBindingsPane.storyboard; sourceTree = "<group>"; };
 		2A10D1271E714D230027192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AppearancePane.storyboard; sourceTree = "<group>"; };
-		2A10D12F1E7152F30027192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditPane.storyboard; sourceTree = "<group>"; };
 		2A10D1371E715E5B0027192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FormatPane.storyboard; sourceTree = "<group>"; };
 		2A10D1471E7477D30027192A /* StyledButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
 		2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRangeCacheableTests.swift; sourceTree = "<group>"; };
@@ -1047,7 +1046,6 @@
 		2A7846DA18FE035E006BDF00 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
 		2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowPaneController.swift; sourceTree = "<group>"; };
 		2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPaneController.swift; sourceTree = "<group>"; };
-		2A78BFAC1D1B138D00A583D2 /* EditPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPaneController.swift; sourceTree = "<group>"; };
 		2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebDocumentWindowController.swift; sourceTree = "<group>"; };
 		2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdaterManager.swift; sourceTree = "<group>"; };
 		2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesProvider.swift; sourceTree = "<group>"; };
@@ -1165,6 +1163,7 @@
 		2AB2913D245AAD74004CC203 /* Unicode.GeneralCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unicode.GeneralCategory.swift; sourceTree = "<group>"; };
 		2AB541D920A5B6A400367DD5 /* NSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSView.swift; sourceTree = "<group>"; };
 		2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxManager.swift; sourceTree = "<group>"; };
+		2AB9E4B42B7E452F004E5BDC /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/EditSettings.xcstrings; sourceTree = "<group>"; };
 		2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+ScriptingSupport.swift"; sourceTree = "<group>"; };
 		2ABEFB6923DC0CA0008769F4 /* EditorInfoCountOperationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorInfoCountOperationTests.swift; sourceTree = "<group>"; };
 		2ABF49E2221A54AD00239278 /* TextClipping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextClipping.swift; sourceTree = "<group>"; };
@@ -1252,7 +1251,6 @@
 		2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Document+ScriptingSupport.swift"; sourceTree = "<group>"; };
 		2AF1229E2B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/AppearancePane.xcstrings; sourceTree = "<group>"; };
 		2AF1229F2B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/KeyBindingsPane.xcstrings; sourceTree = "<group>"; };
-		2AF122A02B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/EditPane.xcstrings; sourceTree = "<group>"; };
 		2AF122A12B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/WindowPane.xcstrings; sourceTree = "<group>"; };
 		2AF122A22B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/FormatPane.xcstrings; sourceTree = "<group>"; };
 		2AF122A32B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/GeneralPane.xcstrings; sourceTree = "<group>"; };
@@ -1278,6 +1276,7 @@
 		2AFD328E2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionSyntaxTests.swift; sourceTree = "<group>"; };
 		2AFE848522AE71130001C4ED /* TextContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextContainer.swift; sourceTree = "<group>"; };
 		2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppInfo.swift"; sourceTree = "<group>"; };
+		2AFFA7C52B170097005652CD /* EditSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsView.swift; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5454B928243C81C6009275BC /* CodeSigning-AdHoc.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "CodeSigning-AdHoc.xcconfig"; sourceTree = "<group>"; };
 		5454B929243C81C7009275BC /* CodeSigning-Default.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "CodeSigning-Default.xcconfig"; sourceTree = "<group>"; };
@@ -1378,7 +1377,6 @@
 				2AC20A6F1E70819E0093B9C6 /* GeneralPane.storyboard */,
 				2A10D1261E714D230027192A /* AppearancePane.storyboard */,
 				2A10D1031E7088B00027192A /* WindowPane.storyboard */,
-				2A10D12E1E7152F30027192A /* EditPane.storyboard */,
 				2A10D1361E715E5B0027192A /* FormatPane.storyboard */,
 				2ADF3BFF1E6D7345009125BB /* SnippetsPane.storyboard */,
 				2A10D1081E708CDF0027192A /* KeyBindingsPane.storyboard */,
@@ -1392,7 +1390,7 @@
 				2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */,
 				2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */,
 				2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */,
-				2A78BFAC1D1B138D00A583D2 /* EditPaneController.swift */,
+				2AFFA7C52B170097005652CD /* EditSettingsView.swift */,
 				2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */,
 				2AA4D3731D1AA0AC001D261D /* KeyBindingsPaneController.swift */,
 			);
@@ -2110,6 +2108,7 @@
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
 				2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */,
 				2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */,
+				2AB9E4B32B7E452F004E5BDC /* EditSettings.xcstrings */,
 				2A954B232AB28B010070FB74 /* TextFind.xcstrings */,
 				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
 				2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */,
@@ -2493,6 +2492,7 @@
 				2AE73EC9203520E100D8903B /* Acknowledgments.css in Resources */,
 				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
 				2A5E6FC42A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
+				2AB9E4B52B7E452F004E5BDC /* EditSettings.xcstrings in Resources */,
 				2AAF93562A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A5E6FC12A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
 				2A5E6FC72A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
@@ -2505,7 +2505,6 @@
 				2AA2E0141BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
 				2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */,
 				2ACDE28D2406B9C000FC31EC /* AppearancePane.storyboard in Resources */,
-				2ACDE2972406B9C000FC31EC /* EditPane.storyboard in Resources */,
 				2ACDE29A2406B9C000FC31EC /* FindPanelFieldView.storyboard in Resources */,
 				2ACDE29C2406B9C000FC31EC /* FormatPane.storyboard in Resources */,
 				2ACDE29D2406B9C000FC31EC /* GeneralPane.storyboard in Resources */,
@@ -2555,6 +2554,7 @@
 				2AE73EC8203520E000D8903B /* Acknowledgments.css in Resources */,
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
 				2A5E6FC52A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
+				2AB9E4B62B7E452F004E5BDC /* EditSettings.xcstrings in Resources */,
 				2AAF93572A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A5E6FC22A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
 				2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
@@ -2568,7 +2568,6 @@
 				2AA2E0131BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
 				2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */,
 				2A10D1281E714D230027192A /* AppearancePane.storyboard in Resources */,
-				2A10D1301E7152F30027192A /* EditPane.storyboard in Resources */,
 				2A5D13421D1FE34F00D38E6A /* FindPanelFieldView.storyboard in Resources */,
 				2A10D1381E715E5B0027192A /* FormatPane.storyboard in Resources */,
 				2AC20A711E70819E0093B9C6 /* GeneralPane.storyboard in Resources */,
@@ -2769,7 +2768,7 @@
 				2A9BF3C51D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */,
 				2A6FD9D21D38933100A59784 /* EditorTextViewController.swift in Sources */,
 				2AA45A4C1D2E871900A1A401 /* EditorViewController.swift in Sources */,
-				2A78BFAE1D1B138D00A583D2 /* EditPaneController.swift in Sources */,
+				2AFFA7C62B170097005652CD /* EditSettingsView.swift in Sources */,
 				2A5DCE8A1D18FFDB00D5D74C /* EncodingListView.swift in Sources */,
 				2A4257A81D22E0660086DAAD /* EncodingManager.swift in Sources */,
 				2A4682B31D2F6B580005410E /* FileDropItem.swift in Sources */,
@@ -3133,7 +3132,7 @@
 				2A9BF3C41D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */,
 				2A6FD9D11D38933100A59784 /* EditorTextViewController.swift in Sources */,
 				2AA45A4B1D2E871900A1A401 /* EditorViewController.swift in Sources */,
-				2A78BFAD1D1B138D00A583D2 /* EditPaneController.swift in Sources */,
+				2AFFA7C72B170097005652CD /* EditSettingsView.swift in Sources */,
 				2AA106B02470F05F00979CB7 /* EncodingListView.swift in Sources */,
 				2A4257A71D22E0660086DAAD /* EncodingManager.swift in Sources */,
 				2A4682B21D2F6B580005410E /* FileDropItem.swift in Sources */,
@@ -3437,15 +3436,6 @@
 			name = AppearancePane.storyboard;
 			sourceTree = "<group>";
 		};
-		2A10D12E1E7152F30027192A /* EditPane.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A10D12F1E7152F30027192A /* Base */,
-				2AF122A02B7A3D50004BA1FF /* mul */,
-			);
-			name = EditPane.storyboard;
-			sourceTree = "<group>";
-		};
 		2A10D1361E715E5B0027192A /* FormatPane.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3640,6 +3630,14 @@
 				2AA6E0BC2B7467E200E536F8 /* mul */,
 			);
 			name = SyntaxEditView.storyboard;
+			sourceTree = "<group>";
+		};
+		2AB9E4B32B7E452F004E5BDC /* EditSettings.xcstrings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AB9E4B42B7E452F004E5BDC /* mul */,
+			);
+			name = EditSettings.xcstrings;
 			sourceTree = "<group>";
 		};
 		2AC20A6F1E70819E0093B9C6 /* GeneralPane.storyboard */ = {
