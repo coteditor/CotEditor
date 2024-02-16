@@ -2080,6 +2080,15 @@
 			name = "Advanced Character Count";
 			sourceTree = "<group>";
 		};
+		2AB9E4BB2B7F2378004E5BDC /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2AB9E4B32B7E452F004E5BDC /* EditSettings.xcstrings */,
+				2AB9E4B72B7E77B8004E5BDC /* WindowSettings.xcstrings */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		2AC6BFCF21D00A8500FF325C /* Regex Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -2106,8 +2115,7 @@
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
 				2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */,
 				2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */,
-				2AB9E4B32B7E452F004E5BDC /* EditSettings.xcstrings */,
-				2AB9E4B72B7E77B8004E5BDC /* WindowSettings.xcstrings */,
+				2AB9E4BB2B7F2378004E5BDC /* Settings */,
 				2A954B232AB28B010070FB74 /* TextFind.xcstrings */,
 				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
 				2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */,
