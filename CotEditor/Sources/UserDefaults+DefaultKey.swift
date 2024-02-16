@@ -86,6 +86,13 @@ extension UserDefaults {
     }
     
     
+    subscript(key: DefaultKey<Double?>) -> Double? {
+        
+        get { self.double(forKey: key.rawValue) }
+        set { self.set(newValue, forKey: key.rawValue) }
+    }
+    
+    
     subscript(key: DefaultKey<CGFloat>) -> CGFloat {
         
         get { self.double(forKey: key.rawValue) }

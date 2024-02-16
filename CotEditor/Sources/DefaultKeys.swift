@@ -51,8 +51,8 @@ extension DefaultKeys {
     
     // Window
     static let windowTabbing = DefaultKey<Int>("windowTabbing")
-    static let windowWidth = DefaultKey<CGFloat>("windowWidth")
-    static let windowHeight = DefaultKey<CGFloat>("windowHeight")
+    static let windowWidth = DefaultKey<Double?>("windowWidth")
+    static let windowHeight = DefaultKey<Double?>("windowHeight")
     static let showNavigationBar = DefaultKey<Bool>("showNavigationBar")
     static let showLineNumbers = DefaultKey<Bool>("showLineNumbers")
     static let showLineNumberSeparator = DefaultKey<Bool>("showLineNumberSeparator")

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2023 1024jp
+//  © 2013-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -74,8 +74,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         window.setFrameAutosaveName(Self.windowFrameName)
         
         // set window size
-        let width = UserDefaults.standard[.windowWidth]
-        let height = UserDefaults.standard[.windowHeight]
+        let width = UserDefaults.standard[.windowWidth] ?? 0
+        let height = UserDefaults.standard[.windowHeight] ?? 0
         if width > 0 || height > 0 {
             let frameSize = NSSize(width: width > window.minSize.width ? width : window.frame.width,
                                    height: height > window.minSize.height ? height : window.frame.height)
