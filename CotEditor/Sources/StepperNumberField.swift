@@ -31,7 +31,7 @@ struct StepperNumberField: View {
     private var defaultValue: Int?
     private var bounds: ClosedRange<Int>
     private var step: Int.Stride
-    private var promptText: LocalizedStringKey?
+    private var promptText: String?
     
     private var fieldWidth: CGFloat? = 32
     
@@ -44,7 +44,7 @@ struct StepperNumberField: View {
     ///   - bounds: A closed range that describes the upper and lower bounds permitted by the stepper.
     ///   - step: The amount to increment or decrement value each time the user clicks or taps the stepper.
     ///   - prompt: A Text which provides users with guidance on what to type into the text field.
-    init(value: Binding<Int>, default defaultValue: Int? = nil, in bounds: ClosedRange<Int>, step: Int.Stride = 1, prompt: LocalizedStringKey? = nil) {
+    init(value: Binding<Int>, default defaultValue: Int? = nil, in bounds: ClosedRange<Int>, step: Int.Stride = 1, prompt: String? = nil) {
         
         self._value = value
         self.defaultValue = defaultValue
@@ -57,16 +57,12 @@ struct StepperNumberField: View {
     var body: some View {
         
         HStack(spacing: 4) {
-            TextField(text: $value.string(in: self.bounds, defaultValue: self.defaultValue), prompt: self.prompt) {
-                EmptyView()
-            }
+            TextField(text: $value.string(in: self.bounds, defaultValue: self.defaultValue), prompt: self.prompt, label: EmptyView.init)
             .monospacedDigit()
             .multilineTextAlignment(.trailing)
             .frame(width: self.fieldWidth)
             
-            Stepper(value: $value, in: self.bounds, step: self.step) {
-                EmptyView()
-            }
+            Stepper(value: $value, in: self.bounds, step: self.step, label: EmptyView.init)
         }
         .labelsHidden()
         .fixedSize()
@@ -102,11 +98,11 @@ struct StepperNumberField: View {
 private extension Binding where Value == Int {
     
     /// Workarounds the issue on macOS 13 that Stepper cannot share its bound value with another controllers.
-    func string(in bounds: ClosedRange<Int>, defaultValue: Int? = nil) -> Binding<String> {
+    func string(in bounds: ClosedRange<Value>, defaultValue: Value? = nil) -> Binding<String> {
         
         Binding<String>(
-            get: { self.wrappedValue.formatted() },
-            set: { self.wrappedValue = (Int($0) ?? defaultValue ?? 0).clamped(to: bounds) }
+            get: { self.wrappedValue.formatted(.number) },
+            set: { self.wrappedValue = ((try? Value($0, format: .number)) ?? defaultValue ?? 0).clamped(to: bounds) }
         )
     }
 }
