@@ -564,36 +564,6 @@
 "Restore “%@”" = "Obnovit „%@“";
 "Reveal “%@” in Finder" = "Zobrazit „%@“ ve Finderu";
 
-/* Theme View */
-"Text:" = "Text:";
-"Cursor:" = "Kurzor:";
-"Invisibles:" = "Neviditelné:";
-"Background:" = "Pozadí:";
-"Current Line:" = "Aktuální řádek:";
-"Selection:" = "Výběr:";
-"Use system color" = "Použít systémové barvy";
-
-"Syntax" = "Syntaxe";
-"Keywords:" = "Klíčová slovo:";
-"Commands:" = "Příkazy:";
-"Types:" = "Typy:";
-"Attributes:" = "Atributy:";
-"Variables:" = "Proměnné:";
-"Values:" = "Hodnoty:";
-"Numbers:" = "Čísla:";
-"Strings:" = "Řetězce:";
-"Comments:" = "Komentáře:";
-"Characters:" = "Znaky:";
-
-"Show theme file information" = "Zobrazit informace o souboru motivu";
-
-// Theme metadata
-"Author:" = "Autor:";
-"URL:" = "URL:";
-"License:" = "Licence:";
-"Description:" = "Popis:";
-// placeholder
-"Not defined" = "Není definováno";
 // tooltip
 "Jump to URL" = "Přejít na URL";
 

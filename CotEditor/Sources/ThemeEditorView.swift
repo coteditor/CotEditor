@@ -138,24 +138,36 @@ struct ThemeEditorView: View {
         Grid(alignment: .trailingFirstTextBaseline, verticalSpacing: 4) {
             GridRow {
                 VStack(alignment: .trailing, spacing: 3) {
-                    ColorPicker("Text:", selection: $theme.text, supportsOpacity: false)
-                    ColorPicker("Invisibles:", selection: $theme.invisibles)
+                    ColorPicker(String(localized: "Text:", table: "ThemeEditor"),
+                                selection: $theme.text, supportsOpacity: false)
+                    ColorPicker(String(localized: "Invisibles:", table: "ThemeEditor"),
+                                selection: $theme.invisibles)
                     if #available(macOS 14, *) {
-                        SystemColorPicker("Cursor:", selection: $theme.insertionPoint, usesSystemSetting: $theme.usesInsertionPointSystemSetting, systemColor: Color(nsColor: .textInsertionPointColor))
+                        SystemColorPicker(String(localized: "Cursor:", table: "ThemeEditor"),
+                                          selection: $theme.insertionPoint,
+                                          usesSystemSetting: $theme.usesInsertionPointSystemSetting,
+                                          systemColor: Color(nsColor: .textInsertionPointColor))
                     } else {
-                        ColorPicker("Cursor:", selection: $theme.insertionPoint)
+                        ColorPicker(String(localized: "Cursor:", table: "ThemeEditor"),
+                                    selection: $theme.insertionPoint)
                     }
                 }
                 
                 VStack(alignment: .trailing, spacing: 3) {
-                    ColorPicker("Background:", selection: $theme.background, supportsOpacity: false)
-                    ColorPicker("Current Line:", selection: $theme.lineHighlight, supportsOpacity: false)
-                    SystemColorPicker("Selection:", selection: $theme.selection, usesSystemSetting: $theme.usesSelectionSystemSetting, systemColor: Color(nsColor: .selectedTextBackgroundColor), supportsOpacity: false)
+                    ColorPicker(String(localized: "Background:", table: "ThemeEditor"),
+                                selection: $theme.background, supportsOpacity: false)
+                    ColorPicker(String(localized: "Current Line:", table: "ThemeEditor"),
+                                selection: $theme.lineHighlight, supportsOpacity: false)
+                    SystemColorPicker(String(localized: "Selection:", table: "ThemeEditor"),
+                                      selection: $theme.selection,
+                                      usesSystemSetting: $theme.usesSelectionSystemSetting,
+                                      systemColor: Color(nsColor: .selectedTextBackgroundColor),
+                                      supportsOpacity: false)
                 }
             }
             
             GridRow {
-                Text("Syntax")
+                Text("Syntax", tableName: "ThemeEditor")
                     .fontWeight(.bold)
                     .gridCellColumns(2)
                     .gridCellAnchor(.leading)
@@ -163,19 +175,29 @@ struct ThemeEditorView: View {
             
             GridRow {
                 VStack(alignment: .trailing, spacing: 3) {
-                    ColorPicker("Keywords:", selection: $theme.keywords)
-                    ColorPicker("Commands:", selection: $theme.commands)
-                    ColorPicker("Types:", selection: $theme.types)
-                    ColorPicker("Attributes:", selection: $theme.attributes)
-                    ColorPicker("Variables:", selection: $theme.variables)
+                    ColorPicker(String(localized: "Keywords:", table: "ThemeEditor"),
+                                selection: $theme.keywords)
+                    ColorPicker(String(localized: "Commands:", table: "ThemeEditor"),
+                                selection: $theme.commands)
+                    ColorPicker(String(localized: "Types:", table: "ThemeEditor"),
+                                selection: $theme.types)
+                    ColorPicker(String(localized: "Attributes:", table: "ThemeEditor"),
+                                selection: $theme.attributes)
+                    ColorPicker(String(localized: "Variables:", table: "ThemeEditor"),
+                                selection: $theme.variables)
                 }
                 
                 VStack(alignment: .trailing, spacing: 3) {
-                    ColorPicker("Values:", selection: $theme.values)
-                    ColorPicker("Numbers:", selection: $theme.numbers)
-                    ColorPicker("Strings:", selection: $theme.strings)
-                    ColorPicker("Characters:", selection: $theme.characters)
-                    ColorPicker("Comments:", selection: $theme.comments)
+                    ColorPicker(String(localized: "Values:", table: "ThemeEditor"),
+                                selection: $theme.values)
+                    ColorPicker(String(localized: "Numbers:", table: "ThemeEditor"),
+                                selection: $theme.numbers)
+                    ColorPicker(String(localized: "Strings:", table: "ThemeEditor"),
+                                selection: $theme.strings)
+                    ColorPicker(String(localized: "Characters:", table: "ThemeEditor"),
+                                selection: $theme.characters)
+                    ColorPicker(String(localized: "Comments:", table: "ThemeEditor"),
+                                selection: $theme.comments)
                 }
             }
             
@@ -187,8 +209,8 @@ struct ThemeEditorView: View {
                     Image(systemName: "info")
                         .symbolVariant(.circle)
                 }
-                .accessibilityLabel("Show theme file information")
-                .help("Show theme file information")
+                .accessibilityLabel(String(localized: "Show theme file information", table: "ThemeEditor"))
+                .help(String(localized: "Show theme file information", table: "ThemeEditor", comment: "tooltip"))
                 .popover(isPresented: self.$isMetadataPresenting, arrowEdge: .trailing) {
                     ThemeMetadataView(metadata: $theme.metadata, isEditable: !self.theme.isBundled)
                 }
@@ -218,14 +240,14 @@ struct ThemeEditorView: View {
 
 private struct SystemColorPicker: View {
     
-    let label: LocalizedStringKey
+    let label: String
     @Binding var selection: Color
     @Binding var usesSystemSetting: Bool
     var systemColor: Color
     var supportsOpacity: Bool
     
     
-    init(_ label: LocalizedStringKey, selection: Binding<Color>, usesSystemSetting: Binding<Bool>, systemColor: Color, supportsOpacity: Bool = true) {
+    init(_ label: String, selection: Binding<Color>, usesSystemSetting: Binding<Bool>, systemColor: Color, supportsOpacity: Bool = true) {
         
         self.label = label
         self._selection = selection
@@ -241,7 +263,7 @@ private struct SystemColorPicker: View {
                     selection: self.usesSystemSetting ? .constant(self.systemColor) : $selection,
                     supportsOpacity: self.supportsOpacity)
         .disabled(self.usesSystemSetting)
-        Toggle("Use system color", isOn: $usesSystemSetting)
+        Toggle(String(localized: "Use system color", table: "ThemeEditor", comment: "toggle button label"), isOn: $usesSystemSetting)
             .controlSize(.small)
     }
 }
@@ -259,17 +281,21 @@ private struct ThemeMetadataView: View {
         
         Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 4) {
             GridRow {
-                self.itemView("Author:", text: $metadata.author ?? "")
+                self.itemView(String(localized: "Author:", table: "ThemeEditor"),
+                              text: $metadata.author ?? "")
             }
             GridRow {
-                self.itemView("URL:", text: $metadata.distributionURL ?? "")
+                self.itemView(String(localized: "URL:", table: "ThemeEditor"),
+                              text: $metadata.distributionURL ?? "")
                 LinkButton(url: self.metadata.distributionURL ?? "")
             }
             GridRow {
-                self.itemView("License:", text: $metadata.license ?? "")
+                self.itemView(String(localized: "License:", table: "ThemeEditor"),
+                              text: $metadata.license ?? "")
             }
             GridRow {
-                self.itemView("Description:", text: $metadata.description ?? "", lineLimit: 2...5)
+                self.itemView(String(localized: "Description:", table: "ThemeEditor"),
+                              text: $metadata.description ?? "", lineLimit: 2...5)
             }
         }
         .padding(10)
@@ -278,14 +304,14 @@ private struct ThemeMetadataView: View {
     }
     
     
-    @ViewBuilder private func itemView(_ title: LocalizedStringKey, text: Binding<String>, lineLimit: ClosedRange<Int> = 1...1) -> some View {
+    @ViewBuilder private func itemView(_ title: String, text: Binding<String>, lineLimit: ClosedRange<Int> = 1...1) -> some View {
         
         Text(title)
             .fontWeight(.bold)
             .gridColumnAlignment(.trailing)
         
         if self.isEditable {
-            TextField(title, text: text, prompt: Text("Not defined"), axis: .vertical)
+            TextField(title, text: text, prompt: Text("Not defined", tableName: "ThemeEditor", comment: "placeholder"), axis: .vertical)
                 .lineLimit(lineLimit)
                 .textFieldStyle(.plain)
         } else {

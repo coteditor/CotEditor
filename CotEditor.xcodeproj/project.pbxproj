@@ -322,6 +322,8 @@
 		2A6566E92B73BBB400008669 /* SyntaxEdit.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6E0B82B744FF300E536F8 /* SyntaxEdit.xcstrings */; };
 		2A657D1D2033ED6B00C2611C /* DefaultInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */; };
 		2A657D1E2033ED6B00C2611C /* DefaultInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */; };
+		2A65EC3B2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */; };
+		2A65EC3C2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */; };
 		2A6602D01D05BD72003E8D87 /* StatusBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602CE1D05BD72003E8D87 /* StatusBar.storyboard */; };
 		2A685F6A2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */; };
 		2A685F6B2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */; };
@@ -1007,6 +1009,7 @@
 		2A64F2471D26327C001B229F /* Shortcut+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Shortcut+Error.swift"; sourceTree = "<group>"; };
 		2A64F24A1D26615A001B229F /* KeyBindingItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingItem.swift; sourceTree = "<group>"; };
 		2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInitializable.swift; sourceTree = "<group>"; };
+		2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = ThemeEditor.xcstrings; path = CotEditor/ThemeEditor.xcstrings; sourceTree = "<group>"; };
 		2A6602CF1D05BD72003E8D87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/StatusBar.storyboard; sourceTree = "<group>"; };
 		2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAppleEventManager+Additions.swift"; sourceTree = "<group>"; };
 		2A68722E288A5C44006D6B41 /* DraggableHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableHostingView.swift; sourceTree = "<group>"; };
@@ -2111,6 +2114,7 @@
 				2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */,
 				2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */,
 				2AB9E4BB2B7F2378004E5BDC /* Settings */,
+				2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */,
 				2A954B232AB28B010070FB74 /* TextFind.xcstrings */,
 				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
 				2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */,
@@ -2494,8 +2498,9 @@
 				2AE73EC9203520E100D8903B /* Acknowledgments.css in Resources */,
 				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
 				2A5E6FC42A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
-				2AB9E4B52B7E452F004E5BDC /* EditSettings.xcstrings in Resources */,
 				2AAFA7B62B7A21DA00A2B228 /* GeneralSettings.xcstrings in Resources */,
+				2AB9E4B92B7E77B8004E5BDC /* WindowSettings.xcstrings in Resources */,
+				2AB9E4B52B7E452F004E5BDC /* EditSettings.xcstrings in Resources */,
 				2AAF93562A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A5E6FC12A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
 				2A5E6FC72A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
@@ -2504,6 +2509,7 @@
 				2AC94B3B2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */,
 				2A6566E92B73BBB400008669 /* SyntaxEdit.xcstrings in Resources */,
 				2A55D5D82B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */,
+				2A65EC3B2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */,
 				2A55D5E82B7A85E30092DE48 /* IssueReport.xcstrings in Resources */,
 				2AA2E0141BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
 				2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */,
@@ -2518,7 +2524,6 @@
 				2ACDE2992406B9C000FC31EC /* SnippetsPane.storyboard in Resources */,
 				2ACDE2952406B9C000FC31EC /* StatusBar.storyboard in Resources */,
 				2ACDE2AD2406B9C000FC31EC /* SyntaxCommentsEditView.storyboard in Resources */,
-				2AB9E4B92B7E77B8004E5BDC /* WindowSettings.xcstrings in Resources */,
 				2ACDE2AE2406B9C000FC31EC /* SyntaxCompletionsEditView.storyboard in Resources */,
 				2ACDE2AF2406B9C000FC31EC /* SyntaxEditView.storyboard in Resources */,
 				2ACDE2B02406B9C000FC31EC /* SyntaxFileMappingEditView.storyboard in Resources */,
@@ -2551,14 +2556,14 @@
 				2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */,
 				2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */,
 				2A80C65E1CEE33C100AA664D /* Credits.html in Resources */,
-				2AB9E4BA2B7E77B8004E5BDC /* WindowSettings.xcstrings in Resources */,
 				2AE73ECC2035223100D8903B /* Credits.css in Resources */,
 				2A80C6681CEE540F00AA664D /* Acknowledgments.html in Resources */,
 				2AE73EC8203520E000D8903B /* Acknowledgments.css in Resources */,
 				259C2318077678DE00BA61C5 /* Localizable.strings in Resources */,
 				2A5E6FC52A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
-				2AB9E4B62B7E452F004E5BDC /* EditSettings.xcstrings in Resources */,
 				2AAFA7B72B7A21DA00A2B228 /* GeneralSettings.xcstrings in Resources */,
+				2AB9E4B62B7E452F004E5BDC /* EditSettings.xcstrings in Resources */,
+				2AB9E4BA2B7E77B8004E5BDC /* WindowSettings.xcstrings in Resources */,
 				2AAF93572A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A5E6FC22A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
 				2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
@@ -2567,6 +2572,7 @@
 				2AC94B3C2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */,
 				2AA6E0C82B75AC4900E536F8 /* SyntaxEdit.xcstrings in Resources */,
 				2A55D5D92B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */,
+				2A65EC3C2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */,
 				2A55D5EC2B7A90500092DE48 /* IssueReport.xcstrings in Resources */,
 				2A36E36F2AF9ED0B00A73534 /* Sparkle.xcstrings in Resources */,
 				2AA2E0131BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,

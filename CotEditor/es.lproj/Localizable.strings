@@ -564,36 +564,6 @@
 "Restore “%@”" = "Restaurar “%@”";
 "Reveal “%@” in Finder" = "Mostrar “%@” en el Finder";
 
-/* Theme View */
-"Text:" = "Texto:";
-"Cursor:" = "Cursor:";
-"Invisibles:" = "Invisibles:";
-"Background:" = "Fondo:";
-"Current Line:" = "Línea actual:";
-"Selection:" = "Selección:";
-"Use system color" = "Usa el color del sistema";
-
-"Syntax" = "Sintaxis";
-"Keywords:" = "Palabras clave:";
-"Commands:" = "Comandos:";
-"Types:" = "Tipos:";
-"Attributes:" = "Atributos:";
-"Variables:" = "Variables:";
-"Values:" = "Valores:";
-"Numbers:" = "Números:";
-"Strings:" = "Cadenas:";
-"Comments:" = "Comentarios:";
-"Characters:" = "Caracteres:";
-
-"Show theme file information" = "Mostrar información del archivo del tema";
-
-// Theme metadata
-"Author:" = "Autor:";
-"URL:" = "URL:";
-"License:" = "Licencia:";
-"Description:" = "Descripción:";
-// placeholder
-"Not defined" = "No definido";
 // tooltip
 "Jump to URL" = "Saltar a la URL";
 
