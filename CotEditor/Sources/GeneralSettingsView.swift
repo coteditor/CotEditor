@@ -254,6 +254,34 @@ private struct UpdaterView: View {
 }
 
 
+private struct WarningsSettingView: View {
+    
+    @Environment(\.dismiss) private var dismiss
+    
+    @AppStorage(.suppressesInconsistentLineEndingAlert) private var suppressesInconsistentLineEndingAlert: Bool
+    
+    
+    var body: some View {
+        
+        VStack {
+            Form {
+                Text("Suppress following warnings:", tableName: "GeneralSettings")
+                Toggle(String(localized: "Inconsistent line endings", table: "GeneralSettings"), isOn: $suppressesInconsistentLineEndingAlert)
+            }
+            
+            HStack {
+                HelpButton(anchor: "howto_manage_warnings")
+                Spacer()
+                Button("Done") {
+                    self.dismiss()
+                }.keyboardShortcut(.defaultAction)
+            }.padding(.top)
+        }
+        .scenePadding()
+    }
+}
+
+
 private extension CommandLineToolManager.Status {
     
     var imageStatus: Image.Status {
