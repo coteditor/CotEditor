@@ -325,6 +325,8 @@
 		2A657D1E2033ED6B00C2611C /* DefaultInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */; };
 		2A65EC3B2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */; };
 		2A65EC3C2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */; };
+		2A65EC262B80C01B008096C5 /* FontPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A65EC252B80C01B008096C5 /* FontPicker.swift */; };
+		2A65EC272B80C01B008096C5 /* FontPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A65EC252B80C01B008096C5 /* FontPicker.swift */; };
 		2A6602D01D05BD72003E8D87 /* StatusBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602CE1D05BD72003E8D87 /* StatusBar.storyboard */; };
 		2A685F6A2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */; };
 		2A685F6B2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */; };
@@ -1007,6 +1009,7 @@
 		2A64F24A1D26615A001B229F /* KeyBindingItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingItem.swift; sourceTree = "<group>"; };
 		2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInitializable.swift; sourceTree = "<group>"; };
 		2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = ThemeEditor.xcstrings; path = mul.lproj/ThemeEditor.xcstrings; sourceTree = "<group>"; };
+		2A65EC252B80C01B008096C5 /* FontPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPicker.swift; sourceTree = "<group>"; };
 		2A6602CF1D05BD72003E8D87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/StatusBar.storyboard; sourceTree = "<group>"; };
 		2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAppleEventManager+Additions.swift"; sourceTree = "<group>"; };
 		2A68722E288A5C44006D6B41 /* DraggableHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableHostingView.swift; sourceTree = "<group>"; };
@@ -2219,6 +2222,7 @@
 				2A73B9322A8F6620002F3A16 /* RegexTextField.swift */,
 				2A26156D2977B87F008C2240 /* StepperNumberField.swift */,
 				2A1083EF2944837E00751DAE /* InsetTextField.swift */,
+				2A65EC252B80C01B008096C5 /* FontPicker.swift */,
 				2A59B7022957089A0094F03B /* LinkButton.swift */,
 				2A4A7D122856FF340085D2E7 /* HelpButton.swift */,
 				2ADB04AB2A89F14D00C4F562 /* AddRemoveButton.swift */,
@@ -2788,6 +2792,7 @@
 				2AF98CAB294B9488009AD47F /* FindSettingsView.swift in Sources */,
 				2A6876AE296505BC006257A6 /* FirstResponder.swift in Sources */,
 				2AFFA7C32B16E93B005652CD /* FormatSettingsView.swift in Sources */,
+				2A65EC262B80C01B008096C5 /* FontPicker.swift in Sources */,
 				2A19AF862AE0D15300EFFDCB /* FormPopUpButton.swift in Sources */,
 				2AF0C1261D3DA44900B6FCB6 /* FourCharCode.swift in Sources */,
 				2AAD61F11D2B0856008FE772 /* FuzzyRange.swift in Sources */,
@@ -3150,6 +3155,7 @@
 				2A5D13101D1EE66500D38E6A /* FindProgressView.swift in Sources */,
 				2AF98CAC294B9488009AD47F /* FindSettingsView.swift in Sources */,
 				2A6876AF296505BC006257A6 /* FirstResponder.swift in Sources */,
+				2A65EC272B80C01B008096C5 /* FontPicker.swift in Sources */,
 				2A19AF872AE0D15300EFFDCB /* FormPopUpButton.swift in Sources */,
 				2AFFA7C42B16E93B005652CD /* FormatSettingsView.swift in Sources */,
 				2AF0C1251D3DA44900B6FCB6 /* FourCharCode.swift in Sources */,
