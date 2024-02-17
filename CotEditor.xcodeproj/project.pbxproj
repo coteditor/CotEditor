@@ -635,6 +635,10 @@
 		2ACD02BF22A87F0400893051 /* ColorCode in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACD02BE22A87F0400893051 /* ColorCode */; };
 		2ACDA2502B81201A00B2EBA8 /* OpacitySlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDA24F2B81201A00B2EBA8 /* OpacitySlider.swift */; };
 		2ACDA2512B81201A00B2EBA8 /* OpacitySlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDA24F2B81201A00B2EBA8 /* OpacitySlider.swift */; };
+		2ACDA2532B813FA500B2EBA8 /* SnippetsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDA2522B813FA500B2EBA8 /* SnippetsSettingsView.swift */; };
+		2ACDA2542B813FA500B2EBA8 /* SnippetsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDA2522B813FA500B2EBA8 /* SnippetsSettingsView.swift */; };
+		2ACDA2572B8142B800B2EBA8 /* SnippetsSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA2552B8142B800B2EBA8 /* SnippetsSettings.xcstrings */; };
+		2ACDA2582B8142B800B2EBA8 /* SnippetsSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2ACDA2552B8142B800B2EBA8 /* SnippetsSettings.xcstrings */; };
 		2ACDC0911D1726BD009B72D6 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0901D1726BD009B72D6 /* DotView.swift */; };
 		2ACDC0921D1726BD009B72D6 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0901D1726BD009B72D6 /* DotView.swift */; };
 		2ACDC0971D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0961D172B2A009B72D6 /* PaddingTextFieldCell.swift */; };
@@ -1196,6 +1200,8 @@
 		2ACC5E401E7B08D300109ABC /* MultipleReplaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceViewController.swift; sourceTree = "<group>"; };
 		2ACC65311C98033D000574DC /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
 		2ACDA24F2B81201A00B2EBA8 /* OpacitySlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacitySlider.swift; sourceTree = "<group>"; };
+		2ACDA2522B813FA500B2EBA8 /* SnippetsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetsSettingsView.swift; sourceTree = "<group>"; };
+		2ACDA2562B8142B800B2EBA8 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SnippetsSettings.xcstrings; sourceTree = "<group>"; };
 		2ACDC0901D1726BD009B72D6 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		2ACDC0961D172B2A009B72D6 /* PaddingTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingTextFieldCell.swift; sourceTree = "<group>"; };
 		2ACDC0991D172CDE009B72D6 /* AntialiasingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntialiasingTextField.swift; sourceTree = "<group>"; };
@@ -1388,6 +1394,7 @@
 				2A78BFA31D1B02ED00A583D2 /* WindowSettingsView.swift */,
 				2AFFA7C52B170097005652CD /* EditSettingsView.swift */,
 				2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */,
+				2ACDA2522B813FA500B2EBA8 /* SnippetsSettingsView.swift */,
 				2AA4D3731D1AA0AC001D261D /* KeyBindingsPaneController.swift */,
 			);
 			name = Panes;
@@ -2005,7 +2012,6 @@
 		2A91C3231D1C5840007CF8BE /* Other Views */ = {
 			isa = PBXGroup;
 			children = (
-				2A9710922A9C7BAE00CE9CDD /* WarningsSettingView.swift */,
 				2A63FBE21D1D90E70081C84E /* ThemeEditorView.swift */,
 				2A5DCE881D18FFDB00D5D74C /* EncodingListView.swift */,
 				2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsView.swift */,
@@ -2083,6 +2089,7 @@
 				2AAFA7B42B7A21DA00A2B228 /* GeneralSettings.xcstrings */,
 				2AB9E4B32B7E452F004E5BDC /* EditSettings.xcstrings */,
 				2AB9E4B72B7E77B8004E5BDC /* WindowSettings.xcstrings */,
+				2ACDA2552B8142B800B2EBA8 /* SnippetsSettings.xcstrings */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2502,6 +2509,7 @@
 				2AAFA7B62B7A21DA00A2B228 /* GeneralSettings.xcstrings in Resources */,
 				2AB9E4B92B7E77B8004E5BDC /* WindowSettings.xcstrings in Resources */,
 				2AB9E4B52B7E452F004E5BDC /* EditSettings.xcstrings in Resources */,
+				2ACDA2572B8142B800B2EBA8 /* SnippetsSettings.xcstrings in Resources */,
 				2AAF93562A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A5E6FC12A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
 				2A5E6FC72A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
@@ -2565,6 +2573,7 @@
 				2AAFA7B72B7A21DA00A2B228 /* GeneralSettings.xcstrings in Resources */,
 				2AB9E4B62B7E452F004E5BDC /* EditSettings.xcstrings in Resources */,
 				2AB9E4BA2B7E77B8004E5BDC /* WindowSettings.xcstrings in Resources */,
+				2ACDA2582B8142B800B2EBA8 /* SnippetsSettings.xcstrings in Resources */,
 				2AAF93572A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A5E6FC22A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
 				2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
@@ -2823,6 +2832,7 @@
 				2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2AAB4C001D2444930049A68B /* InspectorViewController.swift in Sources */,
 				2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */,
+				2A55D5EA2B7A86190092DE48 /* IssueReport.swift in Sources */,
 				2A10C5F81FD19237002AB5AE /* KeyBinding.swift in Sources */,
 				2A64F24C1D26615A001B229F /* KeyBindingItem.swift in Sources */,
 				2A64F2431D256FCB001B229F /* KeyBindingManager.swift in Sources */,
@@ -2894,7 +2904,6 @@
 				2A359DFF1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */,
 				2AD8D74B2064AD83000BEFDB /* NumberTextField.swift in Sources */,
 				2AC3845420C929950003F213 /* OpacitySampleView.swift in Sources */,
-				2A55D5EA2B7A86190092DE48 /* IssueReport.swift in Sources */,
 				2ACDA2502B81201A00B2EBA8 /* OpacitySlider.swift in Sources */,
 				2A158C222945F54B000A4EC1 /* OpacityView.swift in Sources */,
 				2AC6069C20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */,
@@ -2944,6 +2953,7 @@
 				2AB1BD1F287D747200C6FEAF /* SizeGetter.swift in Sources */,
 				2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A64F2461D259E49001B229F /* SnippetManager.swift in Sources */,
+				2ACDA2532B813FA500B2EBA8 /* SnippetsSettingsView.swift in Sources */,
 				2A505C09298A88DD002080AA /* SnippetsViewController.swift in Sources */,
 				2A6FD9E11D393F9100A59784 /* SplitViewController.swift in Sources */,
 				2AD551EB20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */,
@@ -3095,7 +3105,6 @@
 				2A5E41092B0AF62100D5EA20 /* CommandBarWindowController.swift in Sources */,
 				2AC13A0A24F112D800799A93 /* CommandLineToolManager.swift in Sources */,
 				2A885E331D5C3A1B00288723 /* Comparable.swift in Sources */,
-				2A55D5EB2B7A86190092DE48 /* IssueReport.swift in Sources */,
 				2A5D130A1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
 				2AE12E071E7DDF0700681F72 /* CustomSurroundStringView.swift in Sources */,
 				2A25C52820F06BE80003AE1A /* CustomTabWidthView.swift in Sources */,
@@ -3186,6 +3195,7 @@
 				2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2AAB4BFF1D2444930049A68B /* InspectorViewController.swift in Sources */,
 				2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */,
+				2A55D5EB2B7A86190092DE48 /* IssueReport.swift in Sources */,
 				2A10C5F71FD19237002AB5AE /* KeyBinding.swift in Sources */,
 				2A64F24B1D26615A001B229F /* KeyBindingItem.swift in Sources */,
 				2A64F2421D256FCB001B229F /* KeyBindingManager.swift in Sources */,
@@ -3306,6 +3316,7 @@
 				2AB1BD20287D747200C6FEAF /* SizeGetter.swift in Sources */,
 				2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A64F2451D259E49001B229F /* SnippetManager.swift in Sources */,
+				2ACDA2542B813FA500B2EBA8 /* SnippetsSettingsView.swift in Sources */,
 				2A505C0A298A88DD002080AA /* SnippetsViewController.swift in Sources */,
 				2A6FD9E01D393F9100A59784 /* SplitViewController.swift in Sources */,
 				2AD551EA20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */,
@@ -3652,6 +3663,14 @@
 				2AB9E4B82B7E77B8004E5BDC /* mul */,
 			);
 			name = WindowSettings.xcstrings;
+			sourceTree = "<group>";
+		};
+		2ACDA2552B8142B800B2EBA8 /* SnippetsSettings.xcstrings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2ACDA2562B8142B800B2EBA8 /* mul */,
+			);
+			name = SnippetsSettings.xcstrings;
 			sourceTree = "<group>";
 		};
 		2ADF3BFF1E6D7345009125BB /* SnippetsPane.storyboard */ = {

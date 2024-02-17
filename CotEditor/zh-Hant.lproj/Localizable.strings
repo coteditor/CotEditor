@@ -577,11 +577,6 @@
 "Jump to URL" = "跳轉到URL";
 
 
-// Snippets pane
-// placeholder text
-"Select a snippet to edit." = "請選擇一個程式碼片段以編輯。";
-
-
 
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "「%@」無法刪除。";

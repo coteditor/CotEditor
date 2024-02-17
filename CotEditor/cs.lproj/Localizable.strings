@@ -577,11 +577,6 @@
 "Jump to URL" = "Přejít na URL";
 
 
-// Snippets pane
-// placeholder text
-"Select a snippet to edit." = "Vyberte fragment kódu, který chcete upravit.";
-
-
 
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "„%@“ nelze smazat.";

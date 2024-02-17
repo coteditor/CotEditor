@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -362,7 +362,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
         } else {
             textView.isEditable = false
             textView.textColor = .disabledControlTextColor
-            textView.string = String(localized: "Select a snippet to edit.")
+            textView.string = String(localized: "Select a snippet to edit.", table: "SnippetsSettings", comment: "placeholder for insertion format field")
         }
         
         self.addRemoveButton?.setEnabled(!tableView.selectedRowIndexes.isEmpty, forSegment: 1)

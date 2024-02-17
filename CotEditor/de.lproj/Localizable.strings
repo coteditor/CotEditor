@@ -577,11 +577,6 @@
 "Jump to URL" = "URL öffnen";
 
 
-// Snippets pane
-// placeholder text
-"Select a snippet to edit." = "Wähle ein zu bearbeitendes Snippet.";
-
-
 
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "„%@“ konnte nicht gelöscht werden.";

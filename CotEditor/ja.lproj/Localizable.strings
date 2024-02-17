@@ -578,11 +578,6 @@
 "Jump to URL" = "URLにジャンプ";
 
 
-// Snippets pane
-// placeholder text
-"Select a snippet to edit." = "編集するスニペットを選択してください。";
-
-
 
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”を削除できませんでした。";

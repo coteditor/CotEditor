@@ -577,11 +577,6 @@
 "Jump to URL" = "URL’ye Atla";
 
 
-// Snippets pane
-// placeholder text
-"Select a snippet to edit." = "Düzenlenecek bir kod parçacığı seçin.";
-
-
 
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”, silinemedi.";

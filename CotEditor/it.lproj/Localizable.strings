@@ -577,11 +577,6 @@
 "Jump to URL" = "Vai all’URL";
 
 
-// Snippets pane
-// placeholder text
-"Select a snippet to edit." = "Selezionare un ritaglio da modificare.";
-
-
 
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "Impossibile cancellare “%@”.";

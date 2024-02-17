@@ -104,7 +104,7 @@ private extension SettingsPane {
             case .window: .swiftUI(AnyView(WindowSettingsView()))
             case .edit: .swiftUI(AnyView(EditSettingsView()))
             case .format: .storyboard("FormatPane")
-            case .snippets: .storyboard("SnippetsPane")
+            case .snippets: .swiftUI(AnyView(SnippetsSettingsView()))
             case .keyBindings: .storyboard("KeyBindingsPane")
         }
     }

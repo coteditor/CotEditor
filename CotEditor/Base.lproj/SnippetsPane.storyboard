@@ -1,80 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8L1-iP-mOW">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Jku-3h-OhR">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="k2s-73-fbg">
-            <objects>
-                <viewController id="8L1-iP-mOW" sceneMemberID="viewController">
-                    <view key="view" id="5bv-m9-nez">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="440"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <button identifier="settings_snippets" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kV3-Ig-n3x">
-                                <rect key="frame" x="557" y="16" width="25" height="25"/>
-                                <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gOO-ru-gDn">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="openHelpAnchor:" target="1X9-4Z-niC" id="Qgb-DK-GzA"/>
-                                </connections>
-                            </button>
-                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="S7M-ag-ikd">
-                                <rect key="frame" x="20" y="52" width="560" height="378"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="378" id="Q3e-Zm-PmG"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="gEe-a7-TzV" kind="embed" id="nd7-Ir-vrS"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="S7M-ag-ikd" firstAttribute="top" secondItem="5bv-m9-nez" secondAttribute="top" constant="10" id="M8r-sd-dj6"/>
-                            <constraint firstAttribute="trailing" secondItem="S7M-ag-ikd" secondAttribute="trailing" constant="20" symbolic="YES" id="Rfj-N5-Dux"/>
-                            <constraint firstItem="S7M-ag-ikd" firstAttribute="leading" secondItem="5bv-m9-nez" secondAttribute="leading" constant="20" symbolic="YES" id="SSa-OD-ESC"/>
-                            <constraint firstAttribute="bottom" secondItem="kV3-Ig-n3x" secondAttribute="bottom" constant="20" symbolic="YES" id="g4c-Og-KHa"/>
-                            <constraint firstItem="kV3-Ig-n3x" firstAttribute="top" secondItem="S7M-ag-ikd" secondAttribute="bottom" constant="12" symbolic="YES" id="nMO-AA-XIL"/>
-                            <constraint firstItem="kV3-Ig-n3x" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5bv-m9-nez" secondAttribute="leading" constant="20" symbolic="YES" id="oAa-wx-VIj"/>
-                            <constraint firstAttribute="trailing" secondItem="kV3-Ig-n3x" secondAttribute="trailing" constant="20" symbolic="YES" id="pt3-Ug-ow3"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <customObject id="1X9-4Z-niC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-421" y="203"/>
-        </scene>
-        <!--Tab View Controller-->
-        <scene sceneID="U29-ND-aiS">
-            <objects>
-                <tabViewController selectedTabViewItemIndex="0" tabStyle="unspecified" id="gEe-a7-TzV" sceneMemberID="viewController">
-                    <tabViewItems>
-                        <tabViewItem id="QbH-HM-hwJ"/>
-                        <tabViewItem id="SXo-Mh-X1Z"/>
-                    </tabViewItems>
-                    <tabView key="tabView" misplaced="YES" id="OvP-Cg-Kd2">
-                        <rect key="frame" x="0.0" y="0.0" width="560" height="378"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <font key="font" metaFont="message"/>
-                        <connections>
-                            <outlet property="delegate" destination="gEe-a7-TzV" id="DKk-QA-JqN"/>
-                        </connections>
-                    </tabView>
-                    <connections>
-                        <outlet property="tabView" destination="OvP-Cg-Kd2" id="HuL-sW-Err"/>
-                        <segue destination="Jku-3h-OhR" kind="relationship" relationship="tabItems" id="KQr-1s-8A3"/>
-                        <segue destination="UtY-fi-jOg" kind="relationship" relationship="tabItems" id="POu-ie-psl"/>
-                    </connections>
-                </tabViewController>
-                <customObject id="fKW-ej-gXg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-421" y="728"/>
-        </scene>
         <!--Command-->
         <scene sceneID="08h-d7-riI">
             <objects>
@@ -1058,7 +989,7 @@
         <!--File Drop-->
         <scene sceneID="HD1-eZ-pHa">
             <objects>
-                <viewController title="File Drop" showSeguePresentationStyle="single" id="UtY-fi-jOg" customClass="FileDropViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="File Drop" storyboardIdentifier="FileDropView" showSeguePresentationStyle="single" id="UtY-fi-jOg" customClass="FileDropViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="Gi6-Rx-eMY">
                         <rect key="frame" x="0.0" y="0.0" width="554" height="330"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

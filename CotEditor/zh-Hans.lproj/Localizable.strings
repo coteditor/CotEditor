@@ -577,11 +577,6 @@
 "Jump to URL" = "跳转到URL";
 
 
-// Snippets pane
-// placeholder text
-"Select a snippet to edit." = "选择片段进行编辑。";
-
-
 
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”无法删除。";
