@@ -684,8 +684,6 @@
 		2ADA15EF21C5073D00C6608B /* Collection+IndexSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */; };
 		2ADBC91521C9F30000B884FF /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADBC91421C9F30000B884FF /* Atomic.swift */; };
 		2ADBC91621C9F30000B884FF /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADBC91421C9F30000B884FF /* Atomic.swift */; };
-		2ADCBBBB24F8952800A67DB2 /* DisableableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADCBBBA24F8952800A67DB2 /* DisableableTextField.swift */; };
-		2ADCBBBC24F8952800A67DB2 /* DisableableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADCBBBA24F8952800A67DB2 /* DisableableTextField.swift */; };
 		2ADD0AD8217A967200F78732 /* NSTextView+LineNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */; };
 		2ADD0AD9217A967200F78732 /* NSTextView+LineNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */; };
 		2ADD0AEB2184AB6F00F78732 /* NSControl+Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AEA2184AB6F00F78732 /* NSControl+Binding.swift */; };
@@ -1213,7 +1211,6 @@
 		2AD8D7492064AD83000BEFDB /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
 		2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+IndexSet.swift"; sourceTree = "<group>"; };
 		2ADBC91421C9F30000B884FF /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
-		2ADCBBBA24F8952800A67DB2 /* DisableableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisableableTextField.swift; sourceTree = "<group>"; };
 		2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+LineNumber.swift"; sourceTree = "<group>"; };
 		2ADD0AEA2184AB6F00F78732 /* NSControl+Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSControl+Binding.swift"; sourceTree = "<group>"; };
 		2ADF3C001E6D7345009125BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SnippetsPane.storyboard; sourceTree = "<group>"; };
@@ -1454,7 +1451,6 @@
 				2ACDC0901D1726BD009B72D6 /* DotView.swift */,
 				2AC3845220C929950003F213 /* OpacitySampleView.swift */,
 				2A0DD6321E655C4A001CAAA3 /* TokenTextView.swift */,
-				2ADCBBBA24F8952800A67DB2 /* DisableableTextField.swift */,
 				2ACDC0991D172CDE009B72D6 /* AntialiasingTextField.swift */,
 				2AD8D7492064AD83000BEFDB /* NumberTextField.swift */,
 				2A12C7FE1D1843B50069C60B /* SeparatorTextField.swift */,
@@ -2745,7 +2741,6 @@
 				2A38FB011D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */,
 				2AA4EE3D28D55CE80014B045 /* DelegateContext.swift in Sources */,
 				2ACFE5881D2037800005233A /* DetachablePopoverViewController.swift in Sources */,
-				2ADCBBBB24F8952800A67DB2 /* DisableableTextField.swift in Sources */,
 				2AC52BDC1D48CC0E007D6371 /* DispatchQueue.swift in Sources */,
 				2A1679E71D3CE07100E8261D /* Document.swift in Sources */,
 				2AF0C12E1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */,
@@ -3109,7 +3104,6 @@
 				2A38FB001D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */,
 				2AA4EE3E28D55CE80014B045 /* DelegateContext.swift in Sources */,
 				2ACFE5871D2037800005233A /* DetachablePopoverViewController.swift in Sources */,
-				2ADCBBBC24F8952800A67DB2 /* DisableableTextField.swift in Sources */,
 				2AC52BDB1D48CC0E007D6371 /* DispatchQueue.swift in Sources */,
 				2A1679E61D3CE07100E8261D /* Document.swift in Sources */,
 				2AF0C12D1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */,
