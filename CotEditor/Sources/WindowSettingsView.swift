@@ -168,7 +168,7 @@ struct WindowSettingsView: View {
                     Toggle(String(localized: "Wrap lines to editor width", table: "WindowSettings"), isOn: $wrapLines)
                     Toggle(isOn: $enablesHangingIndent) {
                         HStack {
-                            Text("Indent wrapped lines by")
+                            Text("Indent wrapped lines by", tableName: "WindowSettings")
                             StepperNumberField(value: $hangingIndentWidth, default: UserDefaults.standard[initial: .hangingIndentWidth], in: 0...99)
                                 .disabled(!self.enablesHangingIndent)
                             Text("spaces", tableName: "WindowSettings", comment: "unit for indentation")
@@ -241,11 +241,17 @@ private extension NSWindow.UserTabbingPreference {
         
         switch self {
             case .manual:
-                String(localized: "Never", table: "WindowSettings", comment: "window tabbing option")
+                String(localized: "Never",
+                       table: "WindowSettings",
+                       comment: "window tabbing option")
             case .always:
-                String(localized: "Always", table: "WindowSettings", comment: "window tabbing option")
+                String(localized: "Always",
+                       table: "WindowSettings",
+                       comment: "window tabbing option")
             case .inFullScreen:
-                String(localized: "Automatically", table: "WindowSettings", comment: "window tabbing option")
+                String(localized: "Automatically",
+                       table: "WindowSettings",
+                       comment: "window tabbing option")
             @unknown default:
                 fatalError()
         }
@@ -259,11 +265,20 @@ private extension WritingDirection {
         
         switch self {
             case .leftToRight:
-                String(localized: "Left to right", table: "WindowSettings", comment: "writing direction option")
+                String(localized: "WritingDirection.leftToRight.label",
+                       defaultValue: "Left to right",
+                       table: "WindowSettings",
+                       comment: "writing direction option")
             case .rightToLeft:
-                String(localized: "Right to left", table: "WindowSettings", comment: "writing direction option")
+                String(localized: "WritingDirection.rightToLeft.label",
+                       defaultValue: "Right to left",
+                       table: "WindowSettings",
+                       comment: "writing direction option")
             case .vertical:
-                String(localized: "Vertical", table: "WindowSettings", comment: "writing direction option")
+                String(localized: "WritingDirection.vertical.label",
+                       defaultValue: "Vertical",
+                       table: "WindowSettings",
+                       comment: "writing direction option")
         }
     }
 }

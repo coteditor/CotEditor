@@ -25,7 +25,7 @@
 
 import Foundation.NSObjCRuntime
 
-enum NoDocumentOnLaunchOption: Int {
+enum NoDocumentOnLaunchOption: Int, CaseIterable {
     
     case untitledDocument
     case openPanel

@@ -72,10 +72,9 @@ struct GeneralSettingsView: View {
                     
                     Text("When nothing else is open:", tableName: "GeneralSettings")
                     Picker(selection: $noDocumentOnLaunchOption) {
-                        Text("Create New Document", tableName: "GeneralSettings")
-                            .tag(NoDocumentOnLaunchOption.untitledDocument)
-                        Text("Show Open Dialog", tableName: "GeneralSettings")
-                            .tag(NoDocumentOnLaunchOption.openPanel)
+                        ForEach(NoDocumentOnLaunchOption.allCases, id: \.self) {
+                            Text($0.label)
+                        }
                     } label: {
                         EmptyView()
                     }
@@ -301,9 +300,30 @@ private extension CommandLineToolManager.Status {
             case .none, .validTarget:
                 nil
             case .differentTarget:
-                String(localized: "The current `cot` symbolic link doesn’t target the running CotEditor.", table: "GeneralSettings")
+                String(localized: "CommandLineToolManager.Status.differentTarget.message",
+                       defaultValue: "The current `cot` symbolic link doesn’t target the running CotEditor.",
+                       table: "GeneralSettings")
             case .invalidTarget:
-                String(localized: "The current `cot` symbolic link may target an invalid path.", table: "GeneralSettings")
+                String(localized: "CommandLineToolManager.Status.invalidTarget.message",
+                       defaultValue: "The current `cot` symbolic link may target an invalid path.", table: "GeneralSettings")
+        }
+    }
+}
+
+
+private extension NoDocumentOnLaunchOption {
+    
+    var label: String {
+        
+        switch self {
+            case .untitledDocument:
+                String(localized: "NoDocumentOnLaunchOption.untitledDocument.label",
+                       defaultValue: "Create New Document",
+                       table: "GeneralSettings")
+            case .openPanel:
+                String(localized: "NoDocumentOnLaunchOption.openPanel.label",
+                       defaultValue: "Show Open Dialog",
+                       table: "GeneralSettings")
         }
     }
 }
@@ -315,11 +335,17 @@ private extension DocumentConflictOption {
         
         switch self {
             case .ignore:
-                String(localized: "Keep CotEditor’s edition", table: "GeneralSettings")
+                String(localized: "DocumentConflictOption.ignore.label",
+                       defaultValue: "Keep CotEditor’s edition",
+                       table: "GeneralSettings")
             case .notify:
-                String(localized: "Ask how to resolve", table: "GeneralSettings")
+                String(localized: "DocumentConflictOption.notify.label",
+                       defaultValue: "Ask how to resolve",
+                       table: "GeneralSettings")
             case .revert:
-                String(localized: "Update to modified edition", table: "GeneralSettings")
+                String(localized: "DocumentConflictOption.revert.label",
+                       defaultValue: "Update to modified edition",
+                       table: "GeneralSettings")
         }
     }
 }
