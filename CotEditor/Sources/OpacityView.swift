@@ -58,7 +58,6 @@ import SwiftUI
 }
 
 
-
 struct OpacityView: View {
     
     weak var window: DocumentWindow?
@@ -72,7 +71,6 @@ struct OpacityView: View {
             Text("Editor’s Opacity")
                 .fontWeight(.semibold)
                 .foregroundStyle(.secondary)
-                .labelsHidden()
             
             OpacitySlider(value: $opacity)
                 .onChange(of: self.opacity) { newValue in
@@ -93,97 +91,8 @@ struct OpacityView: View {
 
 
 
-private struct OpacitySlider: View {
-    
-    @Binding private var value: Double
-    
-    private let bounds: ClosedRange<Double>
-    private let label: LocalizedStringKey?
-    
-    
-    init(_ label: LocalizedStringKey? = nil, value: Binding<Double>, in bounds: ClosedRange<Double> = 0.2...1) {
-        
-        self._value = value
-        self.bounds = bounds
-        self.label = label
-    }
-    
-    
-    var body: some View {
-        
-        Slider(value: $value, in: self.bounds) {
-            if let label {
-                Text(label)
-            } else {
-                EmptyView()
-            }
-        } minimumValueLabel: {
-            OpacitySample(opacity: self.bounds.lowerBound)
-                .help("Transparent")
-                .frame(width: 16, height: 16)
-        } maximumValueLabel: {
-            OpacitySample(opacity: self.bounds.upperBound)
-                .help("Opaque")
-                .frame(width: 16, height: 16)
-        }
-    }
-}
-
-
-
-private struct OpacitySample: View {
-    
-    let opacity: Double
-    
-    private let inset: Double = 3
-    
-    
-    var body: some View {
-        
-        GeometryReader { geometry in
-            let radius = geometry.size.height / 4
-            
-            ZStack {
-                RoundedRectangle(cornerRadius: radius, style: .continuous)
-                    .fill(.background)
-                
-                Triangle()
-                    .fill(.primary)
-                    .opacity(1 - self.opacity)
-                    .clipShape(RoundedRectangle(cornerRadius: radius, style: .continuous)
-                        .inset(by: self.inset))
-                
-                RoundedRectangle(cornerRadius: radius, style: .continuous)
-                    .inset(by: 0.5)
-                    .stroke(.tertiary, lineWidth: 1)
-            }
-        }
-    }
-    
-    
-    private struct Triangle: Shape {
-        
-        func path(in rect: CGRect) -> Path {
-            
-            Path { path in
-                path.move(to: CGPoint(x: rect.minX, y: rect.maxY))
-                path.addLine(to: CGPoint(x: rect.minX, y: rect.minY))
-                path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
-                path.closeSubpath()
-            }
-        }
-    }
-}
-
-
-
 // MARK: - Preview
 
 #Preview {
     OpacityView()
-}
-
-#Preview("OpacitySample") {
-    OpacitySample(opacity: 0.5)
-        .frame(width: 16, height: 16)
 }
