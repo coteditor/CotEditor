@@ -83,9 +83,8 @@ struct CharacterCountOptionsView: View {
                     }
                     
                     if self.setting.unit != .graphemeCluster {
-                        HStack(alignment: .firstTextBaseline) {
-                            Toggle(String(localized: "Normalization:", table: "AdvancedCharacterCount", comment: "label"), isOn: $setting.normalizes)
-                            Picker(selection: $setting.normalizationForm) {
+                        Toggle(isOn: $setting.normalizes) {
+                            Picker(String(localized: "Normalization:", table: "AdvancedCharacterCount", comment: "label"), selection: $setting.normalizationForm) {
                                 Section {
                                     ForEach(UnicodeNormalizationForm.standardForms, id: \.self) { form in
                                         Text(form.localizedName)
@@ -98,11 +97,10 @@ struct CharacterCountOptionsView: View {
                                             .help(form.localizedDescription)
                                     }
                                 }
-                            } label: {
-                                EmptyView()
                             }
                             .disabled(!self.setting.normalizes)
-                        }.fixedSize()
+                            .fixedSize()
+                        }
                     }
                 }
             }

@@ -99,7 +99,7 @@ private extension SettingsPane {
     private var viewType: ViewType {
         
         switch self {
-            case .general: .storyboard("GeneralPane")
+            case .general: .swiftUI(AnyView(GeneralSettingsView()))
             case .appearance: .storyboard("AppearancePane")
             case .window: .swiftUI(AnyView(WindowSettingsView()))
             case .edit: .swiftUI(AnyView(EditSettingsView()))

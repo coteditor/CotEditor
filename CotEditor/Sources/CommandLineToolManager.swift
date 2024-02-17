@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2023 1024jp
+//  © 2020-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -84,22 +84,6 @@ final class CommandLineToolManager: Sendable {
         { return .validTarget }
         
         return .differentTarget
-    }
-}
-
-
-extension CommandLineToolManager.Status {
-    
-    var message: String? {
-        
-        switch self {
-            case .none, .validTarget:
-                nil
-            case .differentTarget:
-                String(localized: "The current 'cot' symbolic link doesn’t target the running CotEditor.")
-            case .invalidTarget:
-                String(localized: "The current 'cot' symbolic link may target an invalid path.")
-        }
     }
 }
 

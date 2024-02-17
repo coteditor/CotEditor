@@ -553,22 +553,6 @@
 "Key Bindings" = "Atalhos";
 
 
-// General pane
-// Autosave setting update alert
-"The change will be applied first on the next launch." = "A alteração será aplicada quando o aplicativo for reaberto.";
-"Do you want to restart CotEditor now?" = "Deseja reabrir o CotEditor agora?";
-"Restart Now" = "Reabrir Agora";
-"Later" = "Mais Tarde";
-// command-line tool
-"installed at %@" = "instalada em %@";
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "O destino do link simbólico ‘cot’ atual não é o CotEditor em execução.";
-"The current 'cot' symbolic link may target an invalid path." = "O destino do link simbólico ‘cot’ atual pode ser um caminho inválido.";
-
-// warnings setting
-"Suppress following warnings:" = "Omitir os seguintes avisos:";
-"Inconsistent line endings" = "Fim de linha inconsistente";
-
-
 // Appearance pane
 // alert message
 "The selected font doesn’t seem to be monospaced." = "A fonte selecionada não parace ser monoespaçada.";

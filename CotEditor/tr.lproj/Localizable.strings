@@ -553,22 +553,6 @@
 "Key Bindings" = "Düğme Bağıntıları";
 
 
-// General pane
-// Autosave setting update alert
-"The change will be applied first on the next launch." = "Değişiklikler bir sonraki çalıştırmada uygulanacak.";
-"Do you want to restart CotEditor now?" = "CotEditor’ü şimdi yeniden başlatmak istiyor musunuz?";
-"Restart Now" = "Şimdi Yeniden Başlat";
-"Later" = "Daha Sonra";
-// command-line tool
-"installed at %@" = "%@ konumuna yüklendi";
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "Geçerli 'cot' sembolik bağı, çalışan CotEditor’ü hedeflemiyor.";
-"The current 'cot' symbolic link may target an invalid path." = "Geçerli 'cot' sembolik bağı, geçersiz bir yolu hedefleyebilir.";
-
-// warnings setting
-"Suppress following warnings:" = "Aşağıdaki uyarıları sustur";
-"Inconsistent line endings" = "Tutarsız satır sonları";
-
-
 // Appearance pane
 // alert message
 "The selected font doesn’t seem to be monospaced." = "Seçili font, sabit genişlikli değil gibi görünüyor";

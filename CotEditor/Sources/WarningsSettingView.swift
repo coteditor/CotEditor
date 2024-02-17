@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,8 +27,7 @@ import SwiftUI
 
 struct WarningsSettingView: View {
     
-    weak var parent: NSHostingController<Self>?
-    
+    @Environment(\.dismiss) private var dismiss
     
     @AppStorage(.suppressesInconsistentLineEndingAlert) private var suppressesInconsistentLineEndingAlert: Bool
     
@@ -37,15 +36,15 @@ struct WarningsSettingView: View {
         
         VStack {
             Form {
-                Text("Suppress following warnings:")
-                Toggle("Inconsistent line endings", isOn: $suppressesInconsistentLineEndingAlert)
+                Text("Suppress following warnings:", tableName: "GeneralSettings")
+                Toggle(String(localized: "Inconsistent line endings", table: "GeneralSettings"), isOn: $suppressesInconsistentLineEndingAlert)
             }
             
             HStack {
                 HelpButton(anchor: "howto_manage_warnings")
                 Spacer()
                 Button("Done") {
-                    self.parent?.dismiss(nil)
+                    self.dismiss()
                 }.keyboardShortcut(.defaultAction)
             }.padding(.top)
         }

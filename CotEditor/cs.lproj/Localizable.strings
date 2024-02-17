@@ -553,22 +553,6 @@
 "Key Bindings" = "Kláv. zkratky";
 
 
-// General pane
-// Autosave setting update alert
-"The change will be applied first on the next launch." = "Změna bude použita při příštím spuštění.";
-"Do you want to restart CotEditor now?" = "Chcete nyní restartovat CotEditor?";
-"Restart Now" = "Restartovat";
-"Later" = "Později";
-// command-line tool
-"installed at %@" = "instalováno v %@";
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "Aktuální symbolický odkaz 'cot' není zaměřen na spuštěný CotEditor.";
-"The current 'cot' symbolic link may target an invalid path." = "Aktuální symbolický odkaz 'cot' může být zaměřen na neplatnou cestu.";
-
-// warnings setting
-"Suppress following warnings:" = "Potlačit následující varování:";
-"Inconsistent line endings" = "Nekonzistentní konce řádků";
-
-
 // Appearance pane
 // alert message
 "The selected font doesn’t seem to be monospaced." = "Zdá se, že vybrané písmo není neproporcionální.";
