@@ -47,9 +47,24 @@
 "Find Result" = "Find Result";
 
 
+// Contextual menu items
+"Rename “%@”" = "Rename “%@”";
+"Duplicate “%@”" = "Duplicate “%@”";
+"Restore “%@”" = "Restore “%@”";
+"Export “%@”…" = "Export “%@”…";
+"Reveal “%@” in Finder" = "Reveal “%@” in Finder";
+
+
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "Are you sure you want to delete “%@”?";
 "This action cannot be undone." = "This action cannot be undone.";
+
+
+// filename field label variation for save panel
+"Export As:" = "Export As:";
+
+// button label for open panel
+"Import" = "Import";
 
 
 
@@ -60,9 +75,6 @@
 "Install" = "Install";
 "Open as Text File" = "Open as Text File";
 "A new theme named “%@” has been successfully installed." = "A new theme named “%@” has been successfully installed.";
-
-// Window title of issue report
-"Issue Report" = "Issue Report";
 
 
 
@@ -561,21 +573,8 @@
 "The selected font doesn’t seem to be monospaced." = "The selected font doesn’t seem to be monospaced.";
 "Do you want to use it for the monospaced font?" = "Do you want to use it for the monospaced font?";  // “it” is the selected font.
 
-// Contextual menu items
-"Rename “%@”" = "Rename “%@”";
-"Duplicate “%@”" = "Duplicate “%@”";
-"Restore “%@”" = "Restore “%@”";
-"Reveal “%@” in Finder" = "Reveal “%@” in Finder";
-
 // tooltip
 "Jump to URL" = "Jump to URL";
-
-
-// Format pane
-// Installed syntaxes action menu items
-"Duplicate “%@”" = "Duplicate “%@”";
-"Export “%@”…" = "Export “%@”…";
-"Reveal “%@” in Finder" = "Reveal “%@” in Finder";
 
 
 // Snippets pane
@@ -596,23 +595,21 @@
 "Name can’t begin with “.”." = "Name can’t begin with “.”.";
 "The name “%@” is already taken." = "The name “%@” is already taken.";
 
+// default filename
+"Untitled" = "Untitled";
+
+// filename suffix of copied file
+"copy" = "copy";
+
 
 
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "None";
 
-// Suffix of copied syntax
-"copy" = "copy";
-
-// Import syntax file choose openPanel button
-"Import" = "Import";
 // Importing same name syntax alert
 "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists.";
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "Do you want to replace it?\nReplaced syntax can’t be restored.";
-
-// Export syntax file savePanel label
-"Export As:" = "Export As:";
 
 // Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "Block comment needs both begin delimiter and end delimiter.";
@@ -624,9 +621,6 @@
 
 
 /* MARK: ThemeManager */
-// Theme names
-"Untitled" = "Untitled";
-
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "A new theme named “%@” will be installed, but a custom theme with the same name already exists.";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "Do you want to replace it?\nReplaced theme can’t be restored.";

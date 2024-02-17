@@ -47,9 +47,24 @@
 "Find Result" = "Najít výsledek";
 
 
+// Contextual menu items
+"Rename “%@”" = "Přejmenovat „%@“";
+"Duplicate “%@”" = "Duplikovat „%@“";
+"Restore “%@”" = "Obnovit „%@“";
+"Export “%@”…" = "Exportovat „%@“…";
+"Reveal “%@” in Finder" = "Zobrazit „%@“ ve Finderu";
+
+
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "Určitě chcete smazat „%@“?";
 "This action cannot be undone." = "Tuto akci nelze odvolat.";
+
+
+// filename field label variation for save panel
+"Export As:" = "Exportovat jako:";
+
+// button label for open panel
+"Import" = "Importovat";
 
 
 
@@ -558,21 +573,8 @@
 "The selected font doesn’t seem to be monospaced." = "Zdá se, že vybrané písmo není neproporcionální.";
 "Do you want to use it for the monospaced font?" = "Chcete ho použít pro neproporcionální písmo?";  // “it” is the selected font.
 
-// Contextual menu items
-"Rename “%@”" = "Přejmenovat „%@“";
-"Duplicate “%@”" = "Duplikovat „%@“";
-"Restore “%@”" = "Obnovit „%@“";
-"Reveal “%@” in Finder" = "Zobrazit „%@“ ve Finderu";
-
 // tooltip
 "Jump to URL" = "Přejít na URL";
-
-
-// Format pane
-// Installed syntaxes action menu items
-"Duplicate “%@”" = "Duplikovat „%@“";
-"Export “%@”…" = "Exportovat „%@“…";
-"Reveal “%@” in Finder" = "Zobrazit „%@“ ve Finderu";
 
 
 // Snippets pane
@@ -593,23 +595,21 @@
 "Name can’t begin with “.”." = "Název nesmí začínat tečkou „.“.";
 "The name “%@” is already taken." = "Název „%@“ je již používán.";
 
+// default filename
+"Untitled" = "Bez názvu";
+
+// filename suffix of copied file
+"copy" = "Kopírovat";
+
 
 
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "Žádný";
 
-// Suffix of copied syntax
-"copy" = "Kopírovat";
-
-// Import syntax file choose openPanel button
-"Import" = "Importovat";
 // Importing same name syntax alert
 "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "Bude nainstalována nová syntaxe s názvem „%@“, ale vlastní syntaxe se stejným názvem již existuje.";
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "Chcete ji nahradit?\nNahrazenou syntaxi nelze obnovit.";
-
-// Export syntax file savePanel label
-"Export As:" = "Exportovat jako:";
 
 // Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "Blokové komentáře vyžadují počáteční i koncový řetězec.";
@@ -621,9 +621,6 @@
 
 
 /* MARK: ThemeManager */
-// Theme names
-"Untitled" = "Bez názvu";
-
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Bude nainstalován nový motiv s názvem „%@“, ale vlastní motiv se stejným názvem již existuje.";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "Chcete ho nahradit?\nNahrazený motiv nelze obnovit.";

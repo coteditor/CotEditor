@@ -47,9 +47,24 @@
 "Find Result" = "查找结果";
 
 
+// Contextual menu items
+"Rename “%@”" = "给“%@”重新命名";
+"Duplicate “%@”" = "拷贝“%@”";
+"Restore “%@”" = "还原“%@”";
+"Export “%@”…" = "导出“%@”…";
+"Reveal “%@” in Finder" = "在访达中显示“%@”";
+
+
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "你确定要删除“%@”吗？";
 "This action cannot be undone." = "此操作不能撤销。";
+
+
+// filename field label variation for save panel
+"Export As:" = "导出为：";
+
+// button label for open panel
+"Import" = "导入";
 
 
 
@@ -558,21 +573,8 @@
 "The selected font doesn’t seem to be monospaced." = "所选字体似乎不是等宽字体。";
 "Do you want to use it for the monospaced font?" = "确定将其选定为等宽字体？";  // “it” is the selected font.
 
-// Contextual menu items
-"Rename “%@”" = "给“%@”重新命名";
-"Duplicate “%@”" = "拷贝“%@”";
-"Restore “%@”" = "还原“%@”";
-"Reveal “%@” in Finder" = "在访达中显示“%@”";
-
 // tooltip
 "Jump to URL" = "跳转到URL";
-
-
-// Format pane
-// Installed syntaxes action menu items
-"Duplicate “%@”" = "拷贝“%@”";
-"Export “%@”…" = "导出“%@”…";
-"Reveal “%@” in Finder" = "在访达中显示“%@”";
 
 
 // Snippets pane
@@ -593,23 +595,21 @@
 "Name can’t begin with “.”." = "名称不能含有“.”。";
 "The name “%@” is already taken." = "“%@”已经在使用中。";
 
+// default filename
+"Untitled" = "未命名";
+
+// filename suffix of copied file
+"copy" = "拷贝";
+
 
 
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "无";
 
-// Suffix of copied syntax
-"copy" = "拷贝";
-
-// Import syntax file choose openPanel button
-"Import" = "导入";
 // Importing same name syntax alert
 "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "将要安装名为“%@”的新语法，但是已经存在同名的自定义语法。";
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "要替换语法吗？\n被替换的语法将无法恢复。";
-
-// Export syntax file savePanel label
-"Export As:" = "导出为：";
 
 // Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "块注释需要同时有起始符号和终止符号。";
@@ -621,9 +621,6 @@
 
 
 /* MARK: ThemeManager */
-// Theme names
-"Untitled" = "未命名";
-
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "将要安装名为“%@”的新主题，但是已经存在同名的自定义主题。";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "要覆盖原主题吗？\n主题删除后将无法还原。";

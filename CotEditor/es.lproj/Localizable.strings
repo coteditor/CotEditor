@@ -47,9 +47,24 @@
 "Find Result" = "Buscar resultado";
 
 
+// Contextual menu items
+"Rename “%@”" = "Renombrar “%@”";
+"Duplicate “%@”" = "Duplicar “%@”";
+"Restore “%@”" = "Restaurar “%@”";
+"Export “%@”…" = "Exportar “%@”…";
+"Reveal “%@” in Finder" = "Mostrar “%@” en el Finder";
+
+
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "¿Seguro que quieres eliminar “%@”?";
 "This action cannot be undone." = "Esta operación no puede deshacerse.";
+
+
+// filename field label variation for save panel
+"Export As:" = "Exportar como:";
+
+// button label for open panel
+"Import" = "Importar";
 
 
 
@@ -558,21 +573,8 @@
 "The selected font doesn’t seem to be monospaced." = "La fuente seleccionada no parece ser monoespaciada.";  // FIXME: needs review
 "Do you want to use it for the monospaced font?" = "¿Quieres usarlo para la fuente monoespaciada?";  // “it” is the selected font.  // FIXME: needs review
 
-// Contextual menu items
-"Rename “%@”" = "Renombrar “%@”";
-"Duplicate “%@”" = "Duplicar “%@”";
-"Restore “%@”" = "Restaurar “%@”";
-"Reveal “%@” in Finder" = "Mostrar “%@” en el Finder";
-
 // tooltip
 "Jump to URL" = "Saltar a la URL";
-
-
-// Format pane
-// Installed syntaxes action menu items
-"Duplicate “%@”" = "Duplicar “%@”";
-"Export “%@”…" = "Exportar “%@”…";
-"Reveal “%@” in Finder" = "Mostrar “%@” en el Finder";
 
 
 // Snippets pane
@@ -593,23 +595,21 @@
 "Name can’t begin with “.”." = "El nombre no puede comenzar con “.”.";  // FIXME: needs review
 "The name “%@” is already taken." = "El nombre “%@” ya está tomado.";
 
+// default filename
+"Untitled" = "Sin título";
+
+// filename suffix of copied file
+"copy" = "copiar";
+
 
 
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "Nada";
 
-// Suffix of copied syntax
-"copy" = "copiar";
-
-// Import syntax file choose openPanel button
-"Import" = "Importar";
 // Importing same name syntax alert
 "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "Una nueva sintaxis llamada “%@” se instalará, pero ya existe una sintaxis personalizada con el mismo nombre.";  // FIXME: needs review
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "¿Quieres reemplazarlo?\nLa sintaxis reemplazada no se puede restaurar.";  // FIXME: needs review
-
-// Export syntax file savePanel label
-"Export As:" = "Exportar como:";
 
 // Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "El comentario de bloque necesita tanto el delimitador inicial como el delimitador final.";
@@ -621,9 +621,6 @@
 
 
 /* MARK: ThemeManager */
-// Theme names
-"Untitled" = "Sin título";
-
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Un nuevo tema llamado “%@” se instalará, pero ya existe un tema personalizado con el mismo nombre.";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "¿Quieres reemplazarlo?\nEl tema reemplazado no se puede restaurar.";

@@ -47,9 +47,24 @@
 "Find Result" = "Arama Sonucu";
 
 
+// Contextual menu items
+"Rename “%@”" = "“%@” Ögesini Yeniden Adlandır";
+"Duplicate “%@”" = "“%@” Ögesini Çoğalt";
+"Restore “%@”" = "“%@” Ögesini Geri Yükle";
+"Export “%@”…" = "“%@” Ögesini Dışa Aktar";
+"Reveal “%@” in Finder" = "“%@” Ögesini Finder’da Göster";
+
+
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "“%@” öğesini silmek istediğinizden emin misiniz?";
 "This action cannot be undone." = "Bu eylem geri alınamaz.";
+
+
+// filename field label variation for save panel
+"Export As:" = "Farklı Dışa Aktar:";
+
+// button label for open panel
+"Import" = "İçe Aktar";
 
 
 
@@ -558,21 +573,8 @@
 "The selected font doesn’t seem to be monospaced." = "Seçili font, sabit genişlikli değil gibi görünüyor";
 "Do you want to use it for the monospaced font?" = "Sabit genişlikli font olarak kullanmak istiyor musunuz?";  // “it” is the selected font.
 
-// Contextual menu items
-"Rename “%@”" = "“%@” Ögesini Yeniden Adlandır";
-"Duplicate “%@”" = "“%@” Ögesini Çoğalt";
-"Restore “%@”" = "“%@” Ögesini Geri Yükle";
-"Reveal “%@” in Finder" = "“%@” Ögesini Finder’da Göster";
-
 // tooltip
 "Jump to URL" = "URL’ye Atla";
-
-
-// Format pane
-// Installed syntaxes action menu items
-"Duplicate “%@”" = "“%@” Ögesini Çoğalt";
-"Export “%@”…" = "“%@” Ögesini Dışa Aktar";
-"Reveal “%@” in Finder" = "“%@” Ögesini Finder’da Göster";
 
 
 // Snippets pane
@@ -593,23 +595,21 @@
 "Name can’t begin with “.”." = "Ad “.” ile başlayamaz.";
 "The name “%@” is already taken." = "“%@” adı halihazırda kullanılıyor.";
 
+// default filename
+"Untitled" = "Adsız";
+
+// filename suffix of copied file
+"copy" = "kopyası";
+
 
 
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "Hiçbiri";
 
-// Suffix of copied syntax
-"copy" = "kopyası";
-
-// Import syntax file choose openPanel button
-"Import" = "İçe Aktar";
 // Importing same name syntax alert
 "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "“%@” adlı yeni bir sözdizim yüklenecek; ancak aynı adlı başka bir sözdizim halihazırda var.";
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "Yeni sözdizimle değiştirmek istiyor musunuz?\nDeğiştirilen sözdizim geri yüklenemez.";
-
-// Export syntax file savePanel label
-"Export As:" = "Farklı Dışa Aktar:";
 
 // Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "Blok yorumlar hem başlangıç hem bitiş sınırlayıcısı gerektirir.";
@@ -621,9 +621,6 @@
 
 
 /* MARK: ThemeManager */
-// Theme names
-"Untitled" = "Adsız";
-
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "“%@” adlı yeni bir tema yüklenecek; ancak aynı adlı başka bir tema halihazırda var.";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "Yeni temayla değiştirmek istiyor musunuz?\nDeğiştirilen tema geri yüklenemez.";

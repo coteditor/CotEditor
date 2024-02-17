@@ -47,9 +47,24 @@
 "Find Result" = "查找結果";
 
 
+// Contextual menu items
+"Rename “%@”" = "給「%@」重新命名";
+"Duplicate “%@”" = "拷貝「%@」";
+"Restore “%@”" = "還原「%@」";
+"Export “%@”…" = "輸出「%@」⋯";
+"Reveal “%@” in Finder" = "顯示「%@」於Finder";
+
+
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "確定要刪除「%@」嗎？";
 "This action cannot be undone." = "此動作無法還原。";
+
+
+// filename field label variation for save panel
+"Export As:" = "輸出為：";
+
+// button label for open panel
+"Import" = "輸入";
 
 
 
@@ -558,21 +573,8 @@
 "The selected font doesn’t seem to be monospaced." = "當前選中的字體似乎並非等寬字體。";
 "Do you want to use it for the monospaced font?" = "您真的要將這個字體作為等寬字體來使用嗎？";  // “it” is the selected font.
 
-// Contextual menu items
-"Rename “%@”" = "給「%@」重新命名";
-"Duplicate “%@”" = "拷貝「%@」";
-"Restore “%@”" = "還原「%@」";
-"Reveal “%@” in Finder" = "顯示「%@」於Finder";
-
 // tooltip
 "Jump to URL" = "跳轉到URL";
-
-
-// Format pane
-// Installed syntaxes action menu items
-"Duplicate “%@”" = "拷貝「%@」";
-"Export “%@”…" = "輸出「%@」⋯";
-"Reveal “%@” in Finder" = "顯示「%@」於Finder";
 
 
 // Snippets pane
@@ -593,23 +595,21 @@
 "Name can’t begin with “.”." = "名稱不能含有「.」。";
 "The name “%@” is already taken." = "「%@」已經在使用中。";
 
+// default filename
+"Untitled" = "未命名";
+
+// filename suffix of copied file
+"copy" = "拷貝";
+
 
 
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "無";
 
-// Suffix of copied syntax
-"copy" = "拷貝";
-
-// Import syntax file choose openPanel button
-"Import" = "輸入";
 // Importing same name syntax alert
 "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "即將安裝新的文法定義「%@」，但目前已經有另一筆同名文法定義登記在庫。";
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "真的要取而代之嗎？\n被取代的文法定義將會永遠丟失、無法找回。";
-
-// Export syntax file savePanel label
-"Export As:" = "輸出為：";
 
 // Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "塊註釋需要同時有起始符號和終止符號。";
@@ -621,9 +621,6 @@
 
 
 /* MARK: ThemeManager */
-// Theme names
-"Untitled" = "未命名";
-
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "將要安裝名為「%@」的新主題，但是已經存在同名的自訂主題。";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "要覆蓋原主題嗎？\n主題刪除後將無法還原。";

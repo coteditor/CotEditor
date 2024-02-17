@@ -47,9 +47,24 @@
 "Find Result" = "Risultati di ricerca";
 
 
+// Contextual menu items
+"Rename “%@”" = "Rinomina “%@”";
+"Duplicate “%@”" = "Duplica “%@”";
+"Restore “%@”" = "Ripristina “%@”";
+"Export “%@”…" = "Esporta “%@”…";
+"Reveal “%@” in Finder" = "Mostra “%@” nel Finder";
+
+
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "Confermi di voler eliminare “%@”?";
 "This action cannot be undone." = "L’azione è irreversibile.";
+
+
+// filename field label variation for save panel
+"Export As:" = "Esporta come:";
+
+// button label for open panel
+"Import" = "Importa";
 
 
 
@@ -558,21 +573,8 @@
 "The selected font doesn’t seem to be monospaced." = "La font selezionata non sembra a spaziatura fissa.";
 "Do you want to use it for the monospaced font?" = "La vuoi usare come font a spaziatura fissa?";  // “it” is the selected font.
 
-// Contextual menu items
-"Rename “%@”" = "Rinomina “%@”";
-"Duplicate “%@”" = "Duplica “%@”";
-"Restore “%@”" = "Ripristina “%@”";
-"Reveal “%@” in Finder" = "Mostra “%@” nel Finder";
-
 // tooltip
 "Jump to URL" = "Vai all’URL";
-
-
-// Format pane
-// Installed syntaxes action menu items
-"Duplicate “%@”" = "Duplica “%@”";
-"Export “%@”…" = "Esporta “%@”…";
-"Reveal “%@” in Finder" = "Mostra “%@” nel Finder";
 
 
 // Snippets pane
@@ -593,23 +595,21 @@
 "Name can’t begin with “.”." = "Il nome non può iniziare con “.”.";
 "The name “%@” is already taken." = "Il nome “%@” è già utilizzato.";
 
+// default filename
+"Untitled" = "Senza titolo";
+
+// filename suffix of copied file
+"copy" = "Copia";
+
 
 
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "Nessuno";
 
-// Suffix of copied syntax
-"copy" = "Copia";
-
-// Import syntax file choose openPanel button
-"Import" = "Importa";
 // Importing same name syntax alert
 "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "Verrà installata una nuova sintassi col nome “%@”, ma esiste già una sintassi personalizzata con lo stesso nome.";
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "Desideri sostituirla?\nUna sintassi sostituita non potrà essere ripristinata.";
-
-// Export syntax file savePanel label
-"Export As:" = "Esporta come:";
 
 // Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "Un blocco di commento richiede un delimitatore iniziale ed uno finale.";
@@ -621,9 +621,6 @@
 
 
 /* MARK: ThemeManager */
-// Theme names
-"Untitled" = "Senza titolo";
-
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Un nuovo tema dal nome “%@” sarà installato, ma esiste già un tema personalizzato con lo stesso nome.";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "Si desidera sostituirlo?\nI temi sostituiti non possono essere recuperati.";

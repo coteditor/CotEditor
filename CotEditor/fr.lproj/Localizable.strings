@@ -47,6 +47,33 @@
 "Find Result" = "Résultat de la recherche";
 
 
+// Contextual menu items
+"Rename “%@”" = "Renommer « %@ »";
+"Duplicate “%@”" = "Dupliquer « %@ »";
+"Restore “%@”" = "Restaurer « %@ »";
+"Export “%@”…" = "Export de « %@ »…";
+"Reveal “%@” in Finder" = "Afficher « %@ » dans le Finder";
+
+
+// warning message occurs in multiple places
+"Are you sure you want to delete “%@”?" = "Voulez-vous vraiment supprimer « %@ » ?";
+"This action cannot be undone." = "Cette action est irréversible.";
+
+
+// filename field label variation for save panel
+"Export As:" = "Exporter sous :";
+
+// button label for open panel
+"Import" = "Importer";
+
+
+// Theme names
+"Untitled" = "Sans titre";
+
+// Suffix of copied syntax
+"copy" = "copie";
+
+
 
 /* MARK: AppDelegate */
 // Importing theme
@@ -55,11 +82,6 @@
 "Install" = "Installer";
 "Open as Text File" = "Ouvrir en tant que fichier texte";
 "A new theme named “%@” has been successfully installed." = "Un nouveau thème nommé « %@ » a été installé avec succès.";
-
-
-// warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "Voulez-vous vraiment supprimer « %@ » ?";
-"This action cannot be undone." = "Cette action est irréversible.";
 
 
 
@@ -558,21 +580,8 @@
 "The selected font doesn’t seem to be monospaced." = "La police sélectionnée ne semble pas être monochasse.";
 "Do you want to use it for the monospaced font?" = "Voulez-vous l'utiliser comme police monochasse ?";  // “it” is the selected font.
 
-// Contextual menu items
-"Rename “%@”" = "Renommer « %@ »";
-"Duplicate “%@”" = "Dupliquer « %@ »";
-"Restore “%@”" = "Restaurer « %@ »";
-"Reveal “%@” in Finder" = "Afficher « %@ » dans le Finder";
-
 // tooltip
 "Jump to URL" = "Ouvrir l’URL";
-
-
-// Format pane
-// Installed syntaxes action menu items
-"Duplicate “%@”" = "Duplication de « %@ »";
-"Export “%@”…" = "Export de « %@ »…";
-"Reveal “%@” in Finder" = "Afficher « %@ » dans le Finder";
 
 
 // Snippets pane
@@ -593,24 +602,21 @@
 "Name can’t begin with “.”." = "Le nom ne peut pas commencer par « . ».";
 "The name “%@” is already taken." = "Le nom « %@ » est déjà utilisé.";
 
+// default filename
+"Untitled" = "未命名";
+
+// filename suffix of copied file
+"copy" = "拷貝";
+
 
 
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "Aucun";
 
-// Suffix of copied syntax
-"copy" = "copie";
-
-// Import syntax file choose openPanel button
-"Import" = "Importer";
 // Importing same name syntax alert
 "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "Une nouvelle syntaxe nommée « %@ » va être installée, mais une autre syntaxe personnalisée du même nom existe déjà.";
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "Voulez-vous la remplacer?\nLa syntaxe remplacée ne pourra pas être restaurée.";
-
-
-// Export syntax file savePanel label
-"Export As:" = "Exporter sous :";
 
 // Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "Les commentaires en bloc ont besoin d’un délimiteur de début et de fin.";
@@ -622,9 +628,6 @@
 
 
 /* MARK: ThemeManager */
-// Theme names
-"Untitled" = "Sans titre";
-
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Un nouveau thème nommé « %@ » va être installé, mais un thème personnalisé avec le même nom existe déjà.";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "Voulez-vous le remplacer ?\nLe thème d’origine ne pourra pas être restauré.";

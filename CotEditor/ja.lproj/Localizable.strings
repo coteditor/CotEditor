@@ -47,9 +47,25 @@
 "Find Result" = "検索結果";
 
 
+// Contextual menu items
+"Rename “%@”" = "“%@”を名称変更";
+"Duplicate “%@”" = "“%@”を複製";
+"Restore “%@”" = "“%@”を元に戻す";
+"Export “%@”…" = "“%@”を書き出す…";
+"Reveal “%@” in Finder" = "“%@”をFinderに表示";
+
+
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "“%@”を削除してもよろしいですか?";
 "This action cannot be undone." = "この操作は取り消せません。";
+
+
+// filename field label variation for save panel
+"Export As:" = "名前:";
+
+// button label for open panel
+"Import" = "読み込む";
+
 
 
 
@@ -558,21 +574,8 @@
 "The selected font doesn’t seem to be monospaced." = "選択したフォントは等幅フォントではないようです。";
 "Do you want to use it for the monospaced font?" = "選択したフォントを等幅フォントとして使用しますか？";  // “it” is the selected font.
 
-// Contextual menu items
-"Rename “%@”" = "“%@”を名称変更";
-"Duplicate “%@”" = "“%@”を複製";
-"Restore “%@”" = "“%@”を元に戻す";
-"Reveal “%@” in Finder" = "“%@”をFinderに表示";
-
 // tooltip
 "Jump to URL" = "URLにジャンプ";
-
-
-// Format pane
-// Installed syntaxes action menu items
-"Duplicate “%@”" = "“%@”を複製";
-"Export “%@”…" = "“%@”を書き出す…";
-"Reveal “%@” in Finder" = "“%@”をFinderに表示";
 
 
 // Snippets pane
@@ -593,23 +596,21 @@
 "Name can’t begin with “.”." = "名前を“.”から始めることはできません。";
 "The name “%@” is already taken." = "“%@”はすでに使用されています。";
 
+// default filename
+"Untitled" = "名称未設定";
+
+// filename suffix of copied file
+"copy" = "コピー";
+
 
 
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "なし";
 
-// Suffix of copied syntax
-"copy" = "コピー";
-
-// Import syntax file choose openPanel button
-"Import" = "読み込む";
 // Importing same name syntax alert
 "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "新しいシンタックス“%@”のインストールを試みましたが、同名のカスタムシンタックスがすでに存在しています。";
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "シンタックスを置き換えますか?\n置き換えたシンタックスは元に戻せません。";
-
-// Export syntax file savePanel label
-"Export As:" = "名前:";
 
 // Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "ブロックコメントは開始と終了の両方の文字列が必要です。";
@@ -621,9 +622,6 @@
 
 
 /* MARK: ThemeManager */
-// Theme names
-"Untitled" = "名称未設定";
-
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "テーマを置き換えますか?\n削除したテーマは元に戻せません。";
