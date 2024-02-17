@@ -289,12 +289,14 @@ struct RegularExpressionSortPatternView: View {
             }
         }
         
-        HStack {
-            Toggle("Use captured group:", isOn: $pattern.usesCaptureGroup)
-            StepperNumberField(value: $pattern.group, default: 1,
-                               in: 0...self.pattern.numberOfCaptureGroups)
+        Toggle(isOn: $pattern.usesCaptureGroup) {
+            HStack(alignment: .firstTextBaseline) {
+                Text("Use captured group:")
+                StepperNumberField(value: $pattern.group, default: 1,
+                                   in: 0...self.pattern.numberOfCaptureGroups)
                 .disabled(!self.pattern.usesCaptureGroup)
-        }.fixedSize()
+            }
+        }
     }
     
     
