@@ -318,7 +318,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 return .specific(encoding)
             }
             
-            var encodingPriority = EncodingManager.shared.encodings.compactMap { $0 }
+            var encodingPriority = EncodingManager.shared.fileEncodings.compactMap { $0?.encoding }
             let isInitialOpen = (self.fileData == nil) && (self.textStorage.length == 0)
             if !isInitialOpen {  // prioritize the current encoding
                 encodingPriority.insert(self.fileEncoding.encoding, at: 0)

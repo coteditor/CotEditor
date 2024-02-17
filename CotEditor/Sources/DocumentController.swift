@@ -176,7 +176,7 @@ final class DocumentController: NSDocumentController {
     override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?) async -> Int {
         
         let options = OpenOptions()
-        let accessory = OpenPanelAccessory(options: options, openPanel: openPanel, encodings: EncodingManager.shared.encodings)
+        let accessory = OpenPanelAccessory(options: options, openPanel: openPanel, fileEncodings: EncodingManager.shared.fileEncodings)
         let accessoryView = NSHostingView(rootView: accessory)
         accessoryView.sizingOptions = .intrinsicContentSize
         

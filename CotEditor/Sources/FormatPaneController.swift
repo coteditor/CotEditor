@@ -70,9 +70,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         super.viewWillAppear()
         
-        self.encodingChangeObserver = EncodingManager.shared.$encodings
+        self.encodingChangeObserver = EncodingManager.shared.$fileEncodings
             .receive(on: RunLoop.main)
-            .sink { [weak self] _ in self?.setupEncodingMenu() }
+            .sink { [weak self] in self?.setupEncodingMenu(fileEncodings: $0) }
         
         self.syntaxChangeObserver = Publishers.Merge(SyntaxManager.shared.$settingNames.eraseToVoid(),
                                                      SyntaxManager.shared.didUpdateSetting.eraseToVoid())
@@ -441,14 +441,11 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     // MARK: Private Methods
     
     /// Builds the encoding menu.
-    private func setupEncodingMenu() {
+    private func setupEncodingMenu(fileEncodings: [FileEncoding?]) {
         
-        guard
-            let popUpButton = self.encodingPopUpButton,
-            let menu = popUpButton.menu
-        else { return assertionFailure() }
+        guard let popUpButton = self.encodingPopUpButton else { return assertionFailure() }
         
-        EncodingManager.shared.updateChangeEncodingMenu(menu)
+        popUpButton.menu?.items = fileEncodings.menuItems
         popUpButton.selectItem(withTag: EncodingManager.shared.defaultEncoding.tag)
     }
     

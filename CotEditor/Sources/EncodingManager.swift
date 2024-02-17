@@ -33,6 +33,24 @@ import Combine
 }
 
 
+extension Array<FileEncoding?> {
+    
+    /// Creates menu items for available encodings with action `changeEncoding(_:)`.
+    var menuItems: [NSMenuItem] {
+        
+        self.map { fileEncoding in
+            if let fileEncoding {
+                let item = NSMenuItem(title: fileEncoding.localizedName, action: #selector((any EncodingChanging).changeEncoding), keyEquivalent: "")
+                item.tag = fileEncoding.tag
+                return item
+            } else {
+                return .separator()
+            }
+        }
+    }
+}
+
+
 
 // MARK: -
 
@@ -42,7 +60,7 @@ final class EncodingManager {
     
     static let shared = EncodingManager()
     
-    @Published private(set) var encodings: [String.Encoding?] = []
+    @Published private(set) var fileEncodings: [FileEncoding?] = []
     
     
     
@@ -58,7 +76,20 @@ final class EncodingManager {
         
         UserDefaults.standard.publisher(for: .encodingList, initial: true)
             .map { $0.map { $0 != kCFStringEncodingInvalidId ? String.Encoding(cfEncoding: $0) : nil } }
-            .assign(to: &self.$encodings)
+            .map {
+                $0.flatMap { encoding -> [FileEncoding?] in
+                    if encoding == .utf8 {
+                        // add "UTF-8 with BOM" item just after the normal UTF-8
+                        [FileEncoding(encoding: .utf8),
+                         FileEncoding(encoding: .utf8, withUTF8BOM: true)]
+                    } else if let encoding {
+                        [FileEncoding(encoding: encoding)]
+                    } else {
+                        [nil]
+                    }
+                }
+            }
+            .assign(to: &self.$fileEncodings)
     }
     
     
@@ -89,8 +120,9 @@ final class EncodingManager {
     /// - Returns: A string encoding or nil.
     func encoding(name encodingName: String) -> String.Encoding? {
         
-        self.encodings.lazy
+        self.fileEncodings.lazy
             .compactMap { $0 }
+            .map(\.encoding)
             .first { encodingName == String.localizedName(of: $0) }
     }
     
@@ -101,35 +133,10 @@ final class EncodingManager {
     /// - Returns: A string encoding or nil.
     func encoding(ianaCharSetName: String) -> String.Encoding? {
         
-        self.encodings.lazy
+        self.fileEncodings.lazy
             .compactMap { $0 }
+            .map(\.encoding)
             .first { $0.ianaCharSetName?.caseInsensitiveCompare(ianaCharSetName) == .orderedSame }
-    }
-    
-    
-    /// Sets available encoding menu items with action `changeEncoding(_:)` to the passed-in menu.
-    ///
-    /// - Parameter menu: The menu to update its items.
-    func updateChangeEncodingMenu(_ menu: NSMenu) {
-        
-        var fileEncodings = self.encodings.map { $0.flatMap { FileEncoding(encoding: $0) } }
-        
-        // add "UTF-8 with BOM" item just after the normal UTF-8
-        if let index = fileEncodings.firstIndex(where: { $0?.encoding == .utf8 }) {
-            fileEncodings.insert(FileEncoding(encoding: .utf8, withUTF8BOM: true), at: index + 1)
-        }
-        
-        let action = #selector((any EncodingChanging).changeEncoding)
-        
-        menu.items.removeAll { $0.action == action }
-        menu.items += fileEncodings.map { encoding in
-            guard let encoding else { return .separator() }
-            
-            let item = NSMenuItem(title: encoding.localizedName, action: action, keyEquivalent: "")
-            item.tag = encoding.tag
-            
-            return item
-        }
     }
     
     

@@ -37,7 +37,7 @@ struct OpenPanelAccessory: View {
     @ObservedObject var options: OpenOptions
     
     weak var openPanel: NSOpenPanel?
-    let encodings: [String.Encoding?]
+    let fileEncodings: [FileEncoding?]
     
     @State private var showsHiddenFiles = false
     
@@ -53,9 +53,9 @@ struct OpenPanelAccessory: View {
                         .tag(String.Encoding?.none)
                     Divider()
                     
-                    ForEach(Array(self.encodings.enumerated()), id: \.offset) { (_, encoding) in
-                        if let encoding {
-                            Text(String.localizedName(of: encoding)).tag(String.Encoding?.some(encoding))
+                    ForEach(Array(self.fileEncodings.enumerated()), id: \.offset) { (_, fileEncoding) in
+                        if let fileEncoding {
+                            Text(fileEncoding.localizedName).tag(fileEncoding.encoding)
                         } else {
                             Divider()
                         }
@@ -80,5 +80,5 @@ struct OpenPanelAccessory: View {
 // MARK: - Preview
 
 #Preview {
-    OpenPanelAccessory(options: .init(), encodings: [.utf8])
+    OpenPanelAccessory(options: .init(), fileEncodings: [FileEncoding(encoding: .utf8)])
 }

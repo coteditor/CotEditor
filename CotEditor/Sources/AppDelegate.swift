@@ -117,12 +117,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         self.menuUpdateObservers.removeAll()
         
         // sync menus with setting list updates
-        EncodingManager.shared.$encodings
+        EncodingManager.shared.$fileEncodings
             .receive(on: RunLoop.main)
-            .sink { [weak self] _ in
-                guard let menu = self?.encodingsMenu else { return }
-                EncodingManager.shared.updateChangeEncodingMenu(menu)
-            }
+            .map(\.menuItems)
+            .assign(to: \.items, on: self.encodingsMenu!)
             .store(in: &self.menuUpdateObservers)
         
         self.lineEndingsMenu?.items = LineEnding.allCases.map { lineEnding in
