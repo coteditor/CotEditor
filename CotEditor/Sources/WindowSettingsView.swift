@@ -140,10 +140,12 @@ struct WindowSettingsView: View {
                     .fixedSize()
                     
                     Toggle(String(localized: "Indent guides", table: "WindowSettings"), isOn: $showIndentGuides)
-                    HStack(alignment: .firstTextBaseline) {
-                        Toggle(String(localized: "Page guide at column:", table: "WindowSettings"), isOn: $showPageGuide)
-                        StepperNumberField(value: $pageGuideColumn, default: UserDefaults.standard[initial: .pageGuideColumn], in: 1...999)
-                            .disabled(!self.showPageGuide)
+                    Toggle(isOn: $showPageGuide) {
+                        HStack(alignment: .firstTextBaseline) {
+                            Text("Page guide at column:", tableName: "WindowSettings")
+                            StepperNumberField(value: $pageGuideColumn, default: UserDefaults.standard[initial: .pageGuideColumn], in: 1...999)
+                                .disabled(!self.showPageGuide)
+                        }
                     }
                 }
             }
@@ -164,11 +166,13 @@ struct WindowSettingsView: View {
                 
                 VStack(alignment: .leading, spacing: 6) {
                     Toggle(String(localized: "Wrap lines to editor width", table: "WindowSettings"), isOn: $wrapLines)
-                    HStack(alignment: .firstTextBaseline) {
-                        Toggle(String(localized: "Indent wrapped lines by", table: "WindowSettings"), isOn: $enablesHangingIndent)
-                        StepperNumberField(value: $hangingIndentWidth, default: UserDefaults.standard[initial: .hangingIndentWidth], in: 0...99)
-                            .disabled(!self.enablesHangingIndent)
-                        Text("spaces", tableName: "WindowSettings", comment: "unit for indentation")
+                    Toggle(isOn: $enablesHangingIndent) {
+                        HStack {
+                            Text("Indent wrapped lines by")
+                            StepperNumberField(value: $hangingIndentWidth, default: UserDefaults.standard[initial: .hangingIndentWidth], in: 0...99)
+                                .disabled(!self.enablesHangingIndent)
+                            Text("spaces", tableName: "WindowSettings", comment: "unit for indentation")
+                        }
                     }
                 }
             }
