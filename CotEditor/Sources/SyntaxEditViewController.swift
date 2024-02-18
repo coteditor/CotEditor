@@ -29,10 +29,14 @@ import SwiftUI
 
 final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate, NSTableViewDataSource {
     
+    typealias SaveAction = (_ dictionary: SyntaxManager.SyntaxDictionary, _ name: String) throws -> Void
+    
+    
     // MARK: Private Properties
     
     private let originalName: String?
     private let syntax: NSMutableDictionary
+    private let saveAction: SaveAction
     private let validator: SyntaxValidator
     @objc private let isBundledSyntax: Bool
     
@@ -52,22 +56,17 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     ///
     /// - Parameters:
     ///   - coder: The coder to instantiate the view from a storyboard.
+    ///   - syntax: The dictionary type syntax definition to edit.
     ///   - state: The setting state to edit, or nil for a new setting.
-    init?(coder: NSCoder, state: SettingState?) {
+    ///   - saveAction: The action to save edited dictionary.
+    init?(coder: NSCoder, syntax: SyntaxManager.SyntaxDictionary, state: SettingState?, saveAction: @escaping SaveAction) {
         
         self.originalName = state?.name
-        self.isBundledSyntax = state?.isBundled ?? false
-        
-        let manager = SyntaxManager.shared
-        
-        let syntax: SyntaxManager.SyntaxDictionary = if let state {
-            manager.settingDictionary(name: state.name) ?? manager.blankSettingDictionary
-        } else {
-            manager.blankSettingDictionary
-        }
         self.syntax = NSMutableDictionary(dictionary: syntax)
-        
+        self.saveAction = saveAction
         self.validator = SyntaxValidator(syntax: self.syntax)
+        
+        self.isBundledSyntax = state?.isBundled ?? false
         
         super.init(coder: coder)
     }
@@ -247,7 +246,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         }
         
         do {
-            try SyntaxManager.shared.save(settingDictionary: syntaxDictionary, name: syntaxName, oldName: self.originalName)
+            try self.saveAction(syntaxDictionary, syntaxName)
         } catch {
             print(error)
         }
