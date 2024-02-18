@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -99,7 +99,7 @@ struct DefaultSettings {
         
         .lineEndCharCode: 0,
         .encodingList: DefaultSettings.encodings.map(UInt.init),
-        .encodingInNew: String.Encoding.utf8.rawValue,
+        .encoding: String.Encoding.utf8.rawValue,
         .saveUTF8BOM: false,
         .referToEncodingTag: true,
         .syntax: "Plain Text",
