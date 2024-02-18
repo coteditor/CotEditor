@@ -463,6 +463,7 @@
 "Delete Line" = "刪除行";
 "Join Lines" = "加入文字行";
 "Trim Trailing Whitespace" = "移除行尾空白";
+"Insert Color Code" = "插入顏色代碼";
 
 // Contextual menu items
 "Copy as Rich Text" = "以富文字拷貝";
@@ -527,28 +528,6 @@
 "Editor’s Opacity" = "編輯器透明度";
 "Transparent" = "透明";
 "Opaque" = "不透明";
-
-
-
-/* MARK: ColorCodePanelAccessory */
-// placeholder
-"Color Code" = "顏色碼";
-
-"Hexadecimal" = "十六進位";
-"Hexadecimal with Alpha" = "帶有Alpha的十六進位";
-"Hexadecimal (Short)" = "十六進位（短）";
-"CSS RGB" = "CSS RGB";
-"CSS RGBa" = "CSS RGBa";
-"CSS HSL" = "CSS HSL";
-"CSS HSLa" = "CSS HSLa";
-"CSS Keyword" = "CSS關鍵字";
-
-// button
-"Insert" = "插入";
-// Color list name
-"Stylesheet Keywords" = "樣式表關鍵字";
-// Undo action name
-"Insert Color Code" = "插入顏色代碼";
 
 
 

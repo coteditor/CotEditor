@@ -464,6 +464,7 @@
 "Delete Line" = "行を削除";
 "Join Lines" = "行を結合";
 "Trim Trailing Whitespace" = "行末の空白を削除";
+"Insert Color Code" = "カラーコードを挿入";
 
 // Contextual menu items
 "Copy as Rich Text" = "リッチテキストとしてコピー";
@@ -528,28 +529,6 @@
 "Editor’s Opacity" = "エディタの不透明度";
 "Transparent" = "透明";
 "Opaque" = "不透明";
-
-
-
-/* MARK: ColorCodePanelAccessory */
-// placeholder
-"Color Code" = "カラーコード";
-
-"Hexadecimal" = "16進数";
-"Hexadecimal with Alpha" = "16進数（アルファ値付き）";
-"Hexadecimal (Short)" = "16進数（ショート）";
-"CSS RGB" = "CSS RGB";
-"CSS RGBa" = "CSS RGBa";
-"CSS HSL" = "CSS HSL";
-"CSS HSLa" = "CSS HSLa";
-"CSS Keyword" = "CSSキーワード";
-
-// button
-"Insert" = "挿入";
-// Color list name
-"Stylesheet Keywords" = "スタイルシートキーワード";
-// Undo action name
-"Insert Color Code" = "カラーコードを挿入";
 
 
 

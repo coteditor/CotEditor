@@ -463,6 +463,7 @@
 "Delete Line" = "Smazat řádek";
 "Join Lines" = "Spojit řádky";
 "Trim Trailing Whitespace" = "Oříznout koncové mezery";
+"Insert Color Code" = "Vložit kód barvy";
 
 // Contextual menu items
 "Copy as Rich Text" = "Kopírovat jako RTF";
@@ -527,28 +528,6 @@
 "Editor’s Opacity" = "Neprůhlednost editoru";
 "Transparent" = "Průhledné";
 "Opaque" = "Neprůhledné";
-
-
-
-/* MARK: ColorCodePanelAccessory */
-// placeholder
-"Color Code" = "Kód barvy";
-
-"Hexadecimal" = "Hexadecimální";
-"Hexadecimal (Short)" = "Hexadecimální (krátký)";
-"Hexadecimal with Alpha" = "Hexadecimální s alfa kanálem";
-"CSS RGB" = "CSS RGB";
-"CSS RGBa" = "CSS RGBa";
-"CSS HSL" = "CSS HSL";
-"CSS HSLa" = "CSS HSLa";
-"CSS Keyword" = "CSS klíčové slovo";
-
-// button
-"Insert" = "Vložit";
-// Color list name
-"Stylesheet Keywords" = "CSS klíčová slova";
-// Undo action name
-"Insert Color Code" = "Vložit kód barvy";
 
 
 

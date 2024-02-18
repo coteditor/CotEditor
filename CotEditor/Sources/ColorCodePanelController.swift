@@ -41,7 +41,7 @@ import ColorCode
     // MARK: Private Properties
     
     private let stylesheetColorList: NSColorList = KeywordColor.stylesheetColors
-        .reduce(into: NSColorList(name: String(localized: "Stylesheet Keywords"))) {
+        .reduce(into: NSColorList(name: String(localized: "Stylesheet Keywords", table: "ColorCode", comment: "color list name"))) {
             $0.setColor(NSColor(hex: $1.value)!, forKey: $1.keyword)
         }
     
@@ -122,7 +122,7 @@ private struct ColorCodePanelAccessory: View {
     var body: some View {
         
         VStack {
-            TextField("Color Code", text: $colorCode)
+            TextField(String(localized: "Color Code", table: "ColorCode", comment: "placeholder"), text: $colorCode)
                 .font(.system(size: 14, design: .monospaced))
                 .multilineTextAlignment(.center)
                 .onSubmit {
@@ -147,7 +147,7 @@ private struct ColorCodePanelAccessory: View {
                 .onChange(of: self.type) { self.apply(type: $0) }
                 .labelsHidden()
                 
-                Button("Insert") {
+                Button(String(localized: "Insert", table: "ColorCode", comment: "button label")) {
                     self.submit()
                 }
                 .keyboardShortcut(.defaultAction)
@@ -230,17 +230,41 @@ private extension ColorCodeType {
     static let cssTypes: [Self] = [.cssRGB, .cssRGBa, .cssHSL, .cssHSLa, .cssKeyword]
     
     
-    var label: LocalizedStringKey {
+    var label: String {
         
         switch self {
-            case .hex: "Hexadecimal"
-            case .hexWithAlpha: "Hexadecimal with Alpha"
-            case .shortHex: "Hexadecimal (Short)"
-            case .cssRGB: "CSS RGB"
-            case .cssRGBa: "CSS RGBa"
-            case .cssHSL: "CSS HSL"
-            case .cssHSLa: "CSS HSLa"
-            case .cssKeyword: "CSS Keyword"
+            case .hex:
+                String(localized: "ColorCodeType.hex.label",
+                       defaultValue: "Hexadecimal",
+                       table: "ColorCode")
+            case .hexWithAlpha:
+                String(localized: "ColorCodeType.hexWithAlpha.label",
+                       defaultValue: "Hexadecimal with Alpha",
+                       table: "ColorCode")
+            case .shortHex:
+                String(localized: "ColorCodeType.shortHex.label",
+                       defaultValue: "Hexadecimal (Short)",
+                       table: "ColorCode")
+            case .cssRGB:
+                String(localized: "ColorCodeType.cssRGB.label",
+                       defaultValue: "CSS RGB",
+                       table: "ColorCode")
+            case .cssRGBa:
+                String(localized: "ColorCodeType.cssRGBa.label",
+                       defaultValue: "CSS RGBa",
+                       table: "ColorCode")
+            case .cssHSL:
+                String(localized: "ColorCodeType.cssHSL.label",
+                       defaultValue: "CSS HSL",
+                       table: "ColorCode")
+            case .cssHSLa:
+                String(localized: "ColorCodeType.cssHSLa.label",
+                       defaultValue: "CSS HSLa",
+                       table: "ColorCode")
+            case .cssKeyword:
+                String(localized: "ColorCodeType.cssKeyword.label",
+                       defaultValue: "CSS Keyword",
+                       table: "ColorCode")
         }
     }
 }

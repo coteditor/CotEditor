@@ -463,6 +463,7 @@
 "Delete Line" = "Satın Sil";
 "Join Lines" = "Satırları Birleştir";
 "Trim Trailing Whitespace" = "İzleyen Boşluğu Kırp";
+"Insert Color Code" = "Renk Kodu Ekle";
 
 // Contextual menu items
 "Copy as Rich Text" = "Zengin Metin Olarak Kopyala";
@@ -527,28 +528,6 @@
 "Editor’s Opacity" = "Düzenleyici Matlığı";
 "Transparent" = "Saydam";
 "Opaque" = "Mat";
-
-
-
-/* MARK: ColorCodePanelAccessory */
-// placeholder
-"Color Code" = "Renk Kodu";
-
-"Hexadecimal" = "Onaltılık";
-"Hexadecimal with Alpha" = "Alfa ile Onaltılık";
-"Hexadecimal (Short)" = "Onaltılık (Kısa)";
-"CSS RGB" = "CSS RGB";
-"CSS RGBa" = "CSS RGBa";
-"CSS HSL" = "CSS HSL";
-"CSS HSLa" = "CSS HSLa";
-"CSS Keyword" = "CSS Anahtar Sözcük";
-
-// button
-"Insert" = "Ekle";
-// Color list name
-"Stylesheet Keywords" = "Stil Sayfası Anahtar Sözcükleri";
-// Undo action name
-"Insert Color Code" = "Renk Kodu Ekle";
 
 
 

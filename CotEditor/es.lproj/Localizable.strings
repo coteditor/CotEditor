@@ -463,6 +463,7 @@
 "Delete Line" = "Eliminar línea";
 "Join Lines" = "Unir líneas";
 "Trim Trailing Whitespace" = "Recortar espacios en blanco finales";
+"Insert Color Code" = "Insertar código de color";
 
 // Contextual menu items
 "Copy as Rich Text" = "Copiar como texto enriquecido";
@@ -527,28 +528,6 @@
 "Editor’s Opacity" = "Opacidad del editor";
 "Transparent" = "Transparente";
 "Opaque" = "Opaco";
-
-
-
-/* MARK: ColorCodePanelAccessory */
-// placeholder
-"Color Code" = "código de color";
-
-"Hexadecimal" = "Hexadecimal";
-"Hexadecimal with Alpha" = "Hexadecimal con alfa";
-"Hexadecimal (Short)" = "Hexadecimal (corto)";
-"CSS RGB" = "CSS RGB";
-"CSS RGBa" = "CSS RGBa";
-"CSS HSL" = "CSS HSL";
-"CSS HSLa" = "CSS HSLa";
-"CSS Keyword" = "CSS Palabra clave";
-
-// button
-"Insert" = "Inserción";
-// Color list name
-"Stylesheet Keywords" = "Palabras clave de la hoja de estilo";
-// Undo action name
-"Insert Color Code" = "Insertar código de color";
 
 
 
