@@ -284,7 +284,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
 
 private enum SyntaxEditPane: CaseIterable {
     
-    case keyboards
+    case keywords
     case commands
     case types
     case attributes
@@ -310,7 +310,7 @@ private enum SyntaxEditPane: CaseIterable {
     var name: String {
         
         switch self {
-            case .keyboards:
+            case .keywords:
                 String(localized: "Keywords", table: "SyntaxEdit", comment: "menu item in sidebar")
             case .commands:
                 String(localized: "Commands", table: "SyntaxEdit", comment: "menu item in sidebar")
