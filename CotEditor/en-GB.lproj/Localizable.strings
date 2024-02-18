@@ -203,12 +203,17 @@
 "Text encoding:" = "Text encoding:";
 "Show invisible files" = "Show invisible files";
 
+// menu item title for automatic encoding detection
+"Automatic" = "Automatic";
+
+
+
+/* MARK: Save Panel Accessory */
+"Make file executable" = "Make file executable";
+
 
 
 /* MARK: Document Controller */
-// File open accessory's menu item title
-"Automatic" = "Automatic";
-
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "The file “%@” doesn’t appear to be text data.";
 "The file appears to be %@.\n\nDo you really want to open the file?" = "The file appears to be %@.\n\nDo you really want to open the file?";
@@ -267,9 +272,6 @@
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Do you want to keep CotEditor’s edition or update it to the modified edition?";
 "Keep CotEditor’s Edition" = "Keep CotEditor’s Edition";
 "Update" = "Update";
-
-// Save panel options
-"Make file executable" = "Make file executable";
 
 
 

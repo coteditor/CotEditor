@@ -203,12 +203,17 @@
 "Text encoding:" = "Metin kodlaması:";
 "Show invisible files" = "Gizli dosyaları göster";
 
+// menu item title for automatic encoding detection
+"Automatic" = "Otomatik";
+
+
+
+/* MARK: Save Panel Accessory */
+"Make file executable" = "Dosyayı çalıştırılabilir yap";
+
 
 
 /* MARK: Document Controller */
-// File open accessory's menu item title
-"Automatic" = "Otomatik";
-
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "“%@” dosyası metin verisi gibi görünmüyor.";
 "The file appears to be %@.\n\nDo you really want to open the file?" = "Dosya %@ gibi görünüyor.\n\nDosyayı gerçekten açmak istiyor musunuz?";
@@ -267,9 +272,6 @@
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "CotEditor’da yapılan değişiklikler mi kullanılsın veya daha önce değiştirilen sürüme mi güncellensin?";
 "Keep CotEditor’s Edition" = "CotEditor Değişikliklerini Tut";
 "Update" = "Güncelle";
-
-// Save panel options
-"Make file executable" = "Dosyayı çalıştırılabilir yap";
 
 
 

@@ -67,13 +67,6 @@
 "Import" = "Importer";
 
 
-// Theme names
-"Untitled" = "Sans titre";
-
-// Suffix of copied syntax
-"copy" = "copie";
-
-
 
 /* MARK: AppDelegate */
 // Importing theme
@@ -210,12 +203,17 @@
 "Text encoding:" = "Encodage du texte :";
 "Show invisible files" = "Afficher les fichiers cachés";
 
+// menu item title for automatic encoding detection
+"Automatic" = "Automatique";
+
+
+
+/* MARK: Save Panel Accessory */
+"Make file executable" = "Rendre ce fichier exécutable";
+
 
 
 /* MARK: Document Controller */
-// File open accessory's menu item title
-"Automatic" = "Automatique";
-
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "Le fichier « %@ » ne semble pas être dans un format textuel.";
 "The file appears to be %@.\n\nDo you really want to open the file?" = "Le ficher semble être de type %@.\n\nVoulez-vous vraiment ouvrir le fichier ?";
@@ -274,9 +272,6 @@
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Voulez-vous garder la version dans CotEditor ou rafraîchir vers la version modifiée ?";
 "Keep CotEditor’s Edition" = "Garder la version dans CotEditor";
 "Update" = "Rafraîchir";
-
-// Save panel options
-"Make file executable" = "Rendre ce fichier exécutable";
 
 
 
@@ -598,10 +593,10 @@
 "The name “%@” is already taken." = "Le nom « %@ » est déjà utilisé.";
 
 // default filename
-"Untitled" = "未命名";
+"Untitled" = "Sans titre";
 
 // filename suffix of copied file
-"copy" = "拷貝";
+"copy" = "copie";
 
 
 

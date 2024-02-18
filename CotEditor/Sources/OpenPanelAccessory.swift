@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -49,7 +49,8 @@ struct OpenPanelAccessory: View {
         VStack(alignment: .center) {
             Form {
                 Picker("Text encoding:", selection: $options.encoding) {
-                    Text("Automatic").tag(String.Encoding?.none)
+                    Text("Automatic", comment: "menu item title for automatic encoding detection")
+                        .tag(String.Encoding?.none)
                     Divider()
                     
                     ForEach(Array(self.encodings.enumerated()), id: \.offset) { (_, encoding) in

@@ -203,12 +203,18 @@
 "Text encoding:" = "文本编码：";
 "Show invisible files" = "显示不可见的文件";
 
+// menu item title for automatic encoding detection
+"Automatic" = "自动";
+
+
+
+/* MARK: Save Panel Accessory */
+"Make file executable" = "使文件可执行";
+
+
 
 
 /* MARK: Document Controller */
-// File open accessory's menu item title
-"Automatic" = "自动";
-
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "文件“%@”不是文本数据";
 "The file appears to be %@.\n\nDo you really want to open the file?" = "该文件看起来是%@。\n\n确定要打开该文件？";
@@ -267,9 +273,6 @@
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "保留CotEditor的版本还是更新至被编辑过的版本？";
 "Keep CotEditor’s Edition" = "保留CotEditor编辑的内容";
 "Update" = "更新";
-
-// Save panel options
-"Make file executable" = "使文件可执行";
 
 
 

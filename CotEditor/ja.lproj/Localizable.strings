@@ -204,12 +204,17 @@
 "Text encoding:" = "テキストエンコーディング:";
 "Show invisible files" = "不可視ファイルを表示";
 
+// menu item title for automatic encoding detection
+"Automatic" = "自動";
+
+
+
+/* MARK: Save Panel Accessory */
+"Make file executable" = "実行可能ファイルにする";
+
 
 
 /* MARK: Document Controller */
-// File open accessory's menu item title
-"Automatic" = "自動";
-
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "ファイル“%@”はテキストデータではないようです。";
 "The file appears to be %@.\n\nDo you really want to open the file?" = "このファイルは%@のようです。\n\n本当にファイルを開きますか?";
@@ -268,9 +273,6 @@
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "CotEditorでの編集内容を保持しますか、それとも変更された内容に更新しますか?";
 "Keep CotEditor’s Edition" = "CotEditorの編集内容を保持";
 "Update" = "更新";
-
-// Save panel options
-"Make file executable" = "実行可能ファイルにする";
 
 
 

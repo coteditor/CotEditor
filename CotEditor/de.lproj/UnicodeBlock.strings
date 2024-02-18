@@ -24,8 +24,8 @@
 //  limitations under the License.
 //
 
-// -> You don't need to translate the terms in this file
-//    since they are auto-generated from CharacterPaletteIM.lg in the Apple's glossaries.
+// -> Localizer doesn't need to translate this file
+//    because it is programmatically generated from CharacterPaletteIM.lg in the Apple's glossaries.
 //    release date of the used glossary: 2020-01-15
 // cf. <https://developer.apple.com/download/all/?q=glossaries>
 
