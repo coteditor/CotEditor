@@ -74,7 +74,6 @@ struct RegexTextField: NSViewRepresentable {
     func updateNSView(_ nsView: NSTextField, context: Context) {
         
         nsView.stringValue = self.text
-        nsView.delegate = context.coordinator
     }
     
     

@@ -55,7 +55,6 @@ struct FilterField: NSViewRepresentable {
     func updateNSView(_ nsView: NSSearchField, context: Context) {
         
         nsView.stringValue = self.text
-        nsView.delegate = context.coordinator
         nsView.recentsAutosaveName = self.autosaveName
     }
     
