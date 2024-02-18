@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,9 +34,13 @@ enum SortPatternError: LocalizedError {
         
         switch self {
             case .emptyPattern:
-                String(localized: "Empty pattern")
+                String(localized: "Empty pattern",
+                       table: "PatternSort",
+                       comment: "error message (“pattern” is a regular expression pattern)")
             case .invalidRegularExpressionPattern:
-                String(localized: "Invalid pattern")
+                String(localized: "Invalid pattern",
+                       table: "PatternSort",
+                       comment: "error message (“pattern” is a regular expression pattern)")
         }
     }
 }

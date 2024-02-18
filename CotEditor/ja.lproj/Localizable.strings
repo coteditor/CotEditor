@@ -714,40 +714,6 @@
 
 
 
-/* MARK: Pattern Sort View */
-// error messages ("pattern" is a regular expression pattern)
-"Invalid pattern" = "無効なパターン";
-"Empty pattern" = "空のパターン";
-
-"Sample:" = "サンプル:";
-// tooltip
-"Sample line to check which part in a line will be used for sort comparison." = "比較に使用される部分を確認するためのサンプル行です。";
-
-"Sort key:" = "並び替えキー:";
-"Entire line" = "行全体";
-"Column" = "列";
-"Regular expression" = "正規表現";
-
-"Sort option:" = "並び替えオプション:";
-"Ignore Case" = "大文字/小文字を無視";
-"Respect language rules" = "言語ルールに従う";
-"Treat numbers as numeric value" = "数字を数値として扱う";
-"Keep the first line at the top" = "1行目は並び替えない";
-"In descending order" = "降順";
-
-"Delimiter:" = "区切り文字:";
-"Position:" = "位置:";
-
-"Pattern:" = "パターン:";
-"Regular Expression" = "正規表現";
-"Ignore case" = "大文字/小文字を無視";
-"Use captured group:" = "キャプチャされたグループを使用:";
-
-// button label
-"Sort" = "並び替え";
-
-
-
 /* MARK: Encoding List View */
 "Drag encodings to change the order:" = "エンコーディングをドラッグして並び替えてください:";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "この順序はエンコーディングメニューや書類を開くときのエンコーディング認識で使われます。自動認識では上位のエンコーディングがより優先して適用されます。";

@@ -713,40 +713,6 @@
 
 
 
-/* MARK: Pattern Sort View */
-// error messages ("pattern" is a regular expression pattern)
-"Invalid pattern" = "Patrón no válido";
-"Empty pattern" = "Patrón vacío";
-
-"Sample:" = "Ejemplo:";
-// tooltip
-"Sample line to check which part in a line will be used for sort comparison." = "Línea de muestra para comprobar qué parte de una línea se utilizará para la comparación de clasificación.";
-
-"Sort key:" = "Ordenar clave:";
-"Entire line" = "Toda la línea";
-"Column" = "Columna";
-"Regular expression" = "Expresión regular";
-
-"Sort option:" = "Ordenar opción:";
-"Ignore Case" = "Ignorar mayúsculas";
-"Respect language rules" = "Respeta las reglas del lenguaje";
-"Treat numbers as numeric value" = "Tratar los números como valor numérico";
-"Keep the first line at the top" = "Mantén la primera línea en la parte superior";
-"In descending order" = "En orden descendente";
-
-"Delimiter:" = "Delimitador:";
-"Position:" = "Posición:";
-
-"Pattern:" = "Patrón:";
-"Regular Expression" = "Expresión regular";
-"Ignore case" = "Ignorar capitalización";
-"Use captured group:" = "Usar grupo capturado:";
-
-// button label
-"Sort" = "Ordenar";
-
-
-
 /* MARK: Encoding List View */
 "Drag encodings to change the order:" = "Arrastra las codificaciones para cambiar el orden:";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Este orden es para el menú de codificación y la detección de codificación al abrir el archivo. Según la detección, los elementos más altos tienen más prioridad.";

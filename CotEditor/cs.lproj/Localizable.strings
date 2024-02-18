@@ -713,40 +713,6 @@
 
 
 
-/* MARK: Pattern Sort View */
-// error messages ("pattern" is a regular expression pattern)
-"Invalid pattern" = "Neplatný vzor";
-"Empty pattern" = "Prázdný vzor";
-
-"Sample:" = "Vzorek:";
-// tooltip
-"Sample line to check which part in a line will be used for sort comparison." = "Vzorový řádek pro kontrolu, která část řádku bude použita pro porovnání řazení.";
-
-"Sort key:" = "Klíč řazení:";
-"Entire line" = "Celý řádek";
-"Column" = "Sloupec";
-"Regular expression" = "Regulární výraz";
-
-"Sort option:" = "Volby řazení:";
-"Ignore Case" = "Ignorovat velikost písmen";
-"Respect language rules" = "Respektovat jazyková pravidla";
-"Treat numbers as numeric value" = "Zacházet s čísly jako s číselnou hodnotou";
-"Keep the first line at the top" = "První řádek ponechat nahoře";
-"In descending order" = "V sestupném pořadí";
-
-"Delimiter:" = "Oddělovač:";
-"Position:" = "Pozice:";
-
-"Pattern:" = "Vzor:";
-"Regular Expression" = "Regulární výraz";
-"Ignore case" = "Ignorovat velikost písmen";
-"Use captured group:" = "Použít zachycenou skupinu:";
-
-// button label
-"Sort" = "Seřadit";
-
-
-
 /* MARK: Encoding List View */
 "Drag encodings to change the order:" = "Pořadí kódování změníte přetažením:";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Toto pořadí se týká nabídky kódování a detekce kódování při otevření souboru. Při detekci mají vyšší položky vyšší prioritu.";

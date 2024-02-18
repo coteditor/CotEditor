@@ -713,40 +713,6 @@
 
 
 
-/* MARK: Pattern Sort View */
-// error messages ("pattern" is a regular expression pattern)
-"Invalid pattern" = "Geçersiz dizgi";
-"Empty pattern" = "Boş dizgi";
-
-"Sample:" = "Örnek:";
-// tooltip
-"Sample line to check which part in a line will be used for sort comparison." = "Sıralama karşılaştırması için bir satırdaki hangi kısmın kullanılacağını denetlemek için örnek satır.";
-
-"Sort key:" = "Sıralama anahtarı:";
-"Entire line" = "Tüm satır";
-"Column" = "Sütun";
-"Regular expression" = "Düzenli ifade";
-
-"Sort option:" = "Sıralama seçeneği:";
-"Ignore Case" = "Büyük-Küçük Harf Fark Etmez";
-"Respect language rules" = "Dil kurallarına uy";
-"Treat numbers as numeric value" = "Sayıları rakamsal değer olarak kullan";
-"Keep the first line at the top" = "Üstteki ilk satırı tut";
-"In descending order" = "Azalan sıralamada";
-
-"Delimiter:" = "Sınırlandırıcı:";
-"Position:" = "Konum:";
-
-"Pattern:" = "Dizgi:";
-"Regular Expression" = "Düzenli İfade";
-"Ignore case" = "Büyük-Küçük Harf Fark Etmez";
-"Use captured group:" = "Yakalanan grup kullan:";
-
-// button label
-"Sort" = "Sırala";
-
-
-
 /* MARK: Encoding List View */
 "Drag encodings to change the order:" = "Sıralamayı değiştirmek için kodlamaları sürükleyin:";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Bu sıralama, kodlama menüsü ve dosya açılışındaki kodlama algılaması içindir. Algılama ile, daha yüksek olasılıklı ögelere öncelik verilir.";
