@@ -712,6 +712,8 @@
 		2AE12E081E7DDF0700681F72 /* CustomSurroundStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE12E061E7DDF0700681F72 /* CustomSurroundStringView.swift */; };
 		2AE144B62B00A963005E8CF1 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144B52B00A963005E8CF1 /* Identifiable.swift */; };
 		2AE144B72B00A963005E8CF1 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144B52B00A963005E8CF1 /* Identifiable.swift */; };
+		2AE144B92B00DCB7005E8CF1 /* View+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144B82B00DCB7005E8CF1 /* View+Alert.swift */; };
+		2AE144BA2B00DCB7005E8CF1 /* View+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144B82B00DCB7005E8CF1 /* View+Alert.swift */; };
 		2AE144C42B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144C32B0222DB005E8CF1 /* LiveTextInsertionView.swift */; };
 		2AE144C52B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144C32B0222DB005E8CF1 /* LiveTextInsertionView.swift */; };
 		2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */; };
@@ -1242,6 +1244,7 @@
 		2AE12DFF1E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+SurroundSelection.swift"; sourceTree = "<group>"; };
 		2AE12E061E7DDF0700681F72 /* CustomSurroundStringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSurroundStringView.swift; sourceTree = "<group>"; };
 		2AE144B52B00A963005E8CF1 /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
+		2AE144B82B00DCB7005E8CF1 /* View+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Alert.swift"; sourceTree = "<group>"; };
 		2AE144C32B0222DB005E8CF1 /* LiveTextInsertionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTextInsertionView.swift; sourceTree = "<group>"; };
 		2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		2AE4658627A5A7CE00D2904F /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
@@ -1375,6 +1378,7 @@
 			children = (
 				2AFD328829482D53000ED1C5 /* Color.swift */,
 				2A8321732980C41600F87D35 /* Image+Status.swift */,
+				2AE144B82B00DCB7005E8CF1 /* View+Alert.swift */,
 				2A231A271E7BD82700C2A909 /* Binding.swift */,
 				2AE144B52B00A963005E8CF1 /* Identifiable.swift */,
 			);
@@ -1714,6 +1718,7 @@
 				2A3F18F8203270BE002F1CA7 /* UI Tests */,
 				2A8544E6267872E0006EF01A /* SyntaxMapBuilder */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
+				2ACD89912B82571500F625C3 /* Recovered References */,
 			);
 			name = CotEditor;
 			sourceTree = "<group>";
@@ -2147,7 +2152,6 @@
 				2ACDA2752B81D85700B2EBA8 /* PatternSort.xcstrings */,
 				2A55D5D72B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings */,
 				2ACDA2882B81E2AC00B2EBA8 /* ColorCode.xcstrings */,
-				2A55D5E62B7A85E30092DE48 /* IssueReport.xcstrings */,
 				2A73A87A2B76158600E64C44 /* AddRemoveButton.xcstrings */,
 				2AA2E0111BFE12620087BDD6 /* UnicodeBlock.strings */,
 				2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */,
@@ -2217,6 +2221,14 @@
 				2A18A5BE1C4A746A00BAD817 /* Encodings */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		2ACD89912B82571500F625C3 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				2ACDA29F2B81E8C300B2EBA8 /* IssueReport.xcstrings */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		2AD2861919856F3100C9342F /* Editor */ = {
@@ -3041,6 +3053,7 @@
 				2AFD218A27E0434100E83E88 /* UTType.swift in Sources */,
 				2A91C31C1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */,
 				2A7FCC46280A367C0070EAB3 /* ValueRange.swift in Sources */,
+				2AE144B92B00DCB7005E8CF1 /* View+Alert.swift in Sources */,
 				2A2B086028046E3B0028D733 /* WarningInspectorView.swift in Sources */,
 				2A78BFB11D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
@@ -3406,6 +3419,7 @@
 				2AFD218B27E0434100E83E88 /* UTType.swift in Sources */,
 				2A91C31B1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */,
 				2A7FCC47280A367C0070EAB3 /* ValueRange.swift in Sources */,
+				2AE144BA2B00DCB7005E8CF1 /* View+Alert.swift in Sources */,
 				2A2B086128046E3B0028D733 /* WarningInspectorView.swift in Sources */,
 				2A78BFB01D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
