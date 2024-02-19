@@ -158,8 +158,8 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     func save(definition: SyntaxDefinition, name: SettingName, oldName: SettingName?) throws {
         
         // sort elements
-        for type in SyntaxType.allCases {
-            definition[type: type].sort(\.begin)
+        for keyPath in SyntaxDefinition.termKeyPaths {
+            definition[keyPath: keyPath].sort(\.begin)
         }
         definition.outlines.sort(\.pattern, options: .caseInsensitive)
         definition.completions.sort(\.value, options: .caseInsensitive)

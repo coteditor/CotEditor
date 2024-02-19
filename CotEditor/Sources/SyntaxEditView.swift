@@ -263,86 +263,146 @@ private extension Syntax.Kind {
 
 private extension SyntaxEditView.Pane {
     
+    /// The localized label.
     var label: String {
         
         switch self {
             case .keywords:
-                String(localized: "SyntaxEditView.Pane.keywords.label",
-                       defaultValue: "Keywords",
-                       table: "SyntaxEdit",
-                       comment: "menu item in sidebar")
+                (\SyntaxDefinition.keywords).label
             case .commands:
-                String(localized: "SyntaxEditView.Pane.commands.label",
-                       defaultValue: "Commands",
-                       table: "SyntaxEdit",
-                       comment: "menu item in sidebar")
+                (\SyntaxDefinition.commands).label
             case .types:
-                String(localized: "SyntaxEditView.Pane.types.label",
-                       defaultValue: "Types",
-                       table: "SyntaxEdit",
-                       comment: "menu item in sidebar")
+                (\SyntaxDefinition.types).label
             case .attributes:
-                String(localized: "SyntaxEditView.Pane.attributes.label",
-                       defaultValue: "Attributes",
-                       table: "SyntaxEdit",
-                       comment: "menu item in sidebar")
+                (\SyntaxDefinition.attributes).label
             case .variables:
-                String(localized: "SyntaxEditView.Pane.variables.label",
-                       defaultValue: "Variables",
-                       table: "SyntaxEdit",
-                       comment: "menu item in sidebar")
+                (\SyntaxDefinition.variables).label
             case .values:
-                String(localized: "SyntaxEditView.Pane.values.label",
-                       defaultValue: "Values",
-                       table: "SyntaxEdit",
-                       comment: "menu item in sidebar")
+                (\SyntaxDefinition.values).label
             case .numbers:
-                String(localized: "SyntaxEditView.Pane.numbers.label",
-                       defaultValue: "Numbers",
-                       table: "SyntaxEdit",
-                       comment: "menu item in sidebar")
+                (\SyntaxDefinition.numbers).label
             case .strings:
-                String(localized: "SyntaxEditView.Pane.strings.label",
-                       defaultValue: "Strings",
-                       table: "SyntaxEdit",
-                       comment: "menu item in sidebar")
+                (\SyntaxDefinition.strings).label
             case .characters:
-                String(localized: "SyntaxEditView.Pane.characters.label",
-                       defaultValue: "Characters",
-                       table: "SyntaxEdit",
-                       comment: "menu item in sidebar")
+                (\SyntaxDefinition.characters).label
             case .comments:
-                String(localized: "SyntaxEditView.Pane.comments.label",
-                       defaultValue: "Comments",
-                       table: "SyntaxEdit",
-                       comment: "menu item in sidebar")
+                (\SyntaxDefinition.comments).label
                 
             case .outline:
-                String(localized: "SyntaxEditView.Pane.outline.label",
-                       defaultValue: "Outline",
-                       table: "SyntaxEdit",
-                       comment: "menu item in sidebar")
+                (\SyntaxDefinition.outlines).label
             case .completion:
-                String(localized: "SyntaxEditView.Pane.completion.label",
-                       defaultValue: "Completion List",
-                       table: "SyntaxEdit",
-                       comment: "menu item in sidebar")
+                (\SyntaxDefinition.completions).label
             case .fileMapping:
-                String(localized: "SyntaxEditView.Pane.fileMapping.label",
-                       defaultValue: "File Mapping",
+                String(localized: "File Mapping",
                        table: "SyntaxEdit",
                        comment: "menu item in sidebar")
                 
             case .syntaxInfo:
-                String(localized: "SyntaxEditView.Pane.syntaxInfo.label",
-                       defaultValue: "Information",
+                String(localized: "Information",
                        table: "SyntaxEdit",
                        comment: "menu item in sidebar")
             case .validation:
-                String(localized: "SyntaxEditView.Pane.validation.label",
-                       defaultValue: "Validation",
+                String(localized: "Validation",
                        table: "SyntaxEdit",
                        comment: "menu item in sidebar")
+        }
+    }
+    
+    
+    private var keyPath: PartialKeyPath<SyntaxDefinition>? {
+        
+        switch self {
+            case .keywords: \.keywords
+            case .commands: \.commands
+            case .types: \.types
+            case .attributes: \.attributes
+            case .variables: \.variables
+            case .values: \.variables
+            case .numbers: \.numbers
+            case .strings: \.strings
+            case .characters: \.characters
+            case .comments: \.comments
+                
+            case .outline: \.outlines
+            case .completion: \.completions
+            default: nil
+        }
+    }
+}
+
+
+extension PartialKeyPath<SyntaxDefinition> {
+    
+    /// The localized label for the root definition keys.
+    ///
+    /// Not all key paths are localized.
+    var label: String {
+        
+        switch self {
+            case \.keywords:
+                String(localized: "Syntax.key.keywords.label",
+                       defaultValue: "Keywords",
+                       table: "SyntaxEdit",
+                       comment: "syntax highlight type")
+            case \.commands:
+                String(localized: "Syntax.key.commands.label",
+                       defaultValue: "Commands",
+                       table: "SyntaxEdit",
+                       comment: "syntax highlight type")
+            case \.types:
+                String(localized: "Syntax.key.types.label",
+                       defaultValue: "Types",
+                       table: "SyntaxEdit",
+                       comment: "syntax highlight type")
+            case \.attributes:
+                String(localized: "Syntax.key.attributes.label",
+                       defaultValue: "Attributes",
+                       table: "SyntaxEdit",
+                       comment: "syntax highlight type")
+            case \.variables:
+                String(localized: "Syntax.key.variables.label",
+                       defaultValue: "Variables",
+                       table: "SyntaxEdit",
+                       comment: "syntax highlight type")
+            case \.values:
+                String(localized: "Syntax.key.values.label",
+                       defaultValue: "Values",
+                       table: "SyntaxEdit",
+                       comment: "syntax highlight type")
+            case \.numbers:
+                String(localized: "Syntax.key.numbers.label",
+                       defaultValue: "Numbers",
+                       table: "SyntaxEdit",
+                       comment: "syntax highlight type")
+            case \.strings:
+                String(localized: "Syntax.key.strings.label",
+                       defaultValue: "Strings",
+                       table: "SyntaxEdit",
+                       comment: "syntax highlight type")
+            case \.characters:
+                String(localized: "Syntax.key.characters.label",
+                       defaultValue: "Characters",
+                       table: "SyntaxEdit",
+                       comment: "syntax highlight type")
+            case \.comments:
+                String(localized: "Syntax.key.comments.label",
+                       defaultValue: "Comments",
+                       table: "SyntaxEdit",
+                       comment: "syntax highlight type")
+                
+            case \.outlines:
+                String(localized: "Syntax.key.outline.label",
+                       defaultValue: "Outline",
+                       table: "SyntaxEdit",
+                       comment: "syntax definition type")
+            case \.completions:
+                String(localized: "Syntax.key.completion.label",
+                       defaultValue: "Completion",
+                       table: "SyntaxEdit",
+                       comment: "syntax definition type")
+                
+            default:
+                "\(self)"
         }
     }
 }

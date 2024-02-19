@@ -85,29 +85,43 @@ struct SyntaxValidationView: View {
         var body: some View {
             
             Label {
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack(alignment: .firstTextBaseline, spacing: 6) {
-                        Text("\(self.error.localizedType):")
-                            .fontWeight(.semibold)
+                VStack(alignment: .leading, spacing: 2) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text("\(self.error.type.label):", tableName: "SyntaxEdit")
+                            .fontWeight(.medium)
                         Text(self.error.string)
                             .help(self.error.string)
                             .lineLimit(1)
-                        if let role = self.error.localizedRole {
-                            Text("(\(role))")
-                                .foregroundStyle(.secondary)
-                        }
                     }
-                    if let failureReason = self.error.failureReason {
-                        Text(failureReason)
-                            .controlSize(.small)
-                    }
+                    Text(self.error.localizedDescription)
+                        .controlSize(.small)
+                        .foregroundStyle(.secondary)
                 }
                 .textSelection(.enabled)
             } icon: {
                 Image(systemName: "exclamationmark.triangle")
                     .symbolVariant(.fill)
                     .symbolRenderingMode(.multicolor)
-            }
+            }.padding(.vertical, 2)
+        }
+    }
+}
+
+
+private extension SyntaxDefinition.Error {
+    
+    var localizedDescription: String {
+        
+        switch self.code {
+            case .duplicated:
+                String(localized: "The same word is registered multiple times.",
+                       table: "SyntaxEdit")
+            case .regularExpression:
+                String(localized: "Invalid regular expression.",
+                       table: "SyntaxEdit")
+            case .blockComment:
+                String(localized: "Block comment needs both begin and end delimiters.",
+                       table: "SyntaxEdit")
         }
     }
 }
@@ -118,9 +132,9 @@ struct SyntaxValidationView: View {
 
 #Preview {
     let errors: [SyntaxDefinition.Error] = [
-        .init(.blockComment, location: .comment, role: .end, string: "bb"),
-        .init(.duplicated, location: .term(.values, UUID()), role: .begin, string: "bb"),
-        .init(.regularExpression, location: .outline(UUID()), role: .begin, string: "[]"),
+        .init(.duplicated, type: \.values, string: "bb"),
+        .init(.regularExpression, type: \.outlines, string: "[]"),
+        .init(.blockComment, type: \.comments, string: "bb"),
     ]
     
     return SyntaxValidationView(errors: errors)

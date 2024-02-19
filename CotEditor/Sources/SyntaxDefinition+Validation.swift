@@ -28,48 +28,28 @@ import Foundation
 
 extension SyntaxDefinition {
     
-    /// Model object for syntax validation result.
-    struct Error {
+    struct Error: Swift.Error {
         
         enum Code {
             
             case duplicated
-            case empty
             case regularExpression
             case blockComment
         }
         
         
-        enum Role {
-            
-            case begin
-            case end
-        }
-        
-        
-        enum Location {
-            
-            case term(SyntaxType, UUID)
-            case outline(UUID)
-            case comment
-        }
-        
-        
         var code: Code
-        var location: Location
-        var role: Role?
+        var type: PartialKeyPath<SyntaxDefinition>
         var string: String
         
         
-        init(_ code: Code, location: Location, role: Role? = nil, string: String) {
+        init(_ code: Code, type: PartialKeyPath<SyntaxDefinition>, string: String) {
             
             self.code = code
-            self.location = location
-            self.role = role
+            self.type = type
             self.string = string
         }
     }
-    
     
     
     // MARK: Public Methods
@@ -79,8 +59,8 @@ extension SyntaxDefinition {
         
         var errors: [Error] = []
         
-        for type in SyntaxType.allCases {
-            let terms = self[type: type]
+        for keyPath in Self.termKeyPaths {
+            let terms = self[keyPath: keyPath]
                 .sorted {  // sort for duplication check
                     if $0.begin != $1.begin {
                         $0.begin < $1.begin
@@ -100,7 +80,7 @@ extension SyntaxDefinition {
                 }
                 
                 guard term.begin != lastTerm?.begin || term.end != lastTerm?.end else {
-                    errors.append(Error(.duplicated, location: .term(type, term.id), role: .begin, string: term.begin))
+                    errors.append(Error(.duplicated, type: keyPath, string: term.begin))
                     continue
                 }
                 
@@ -108,14 +88,14 @@ extension SyntaxDefinition {
                     do {
                         _ = try NSRegularExpression(pattern: term.begin)
                     } catch {
-                        errors.append(Error(.regularExpression, location: .term(type, term.id), role: .begin, string: term.begin))
+                        errors.append(Error(.regularExpression, type: keyPath, string: term.begin))
                     }
                     
                     if let end = term.end {
                         do {
                             _ = try NSRegularExpression(pattern: end)
                         } catch {
-                            errors.append(Error(.regularExpression, location: .term(type, term.id), role: .end, string: end))
+                            errors.append(Error(.regularExpression, type: keyPath, string: end))
                         }
                     }
                 }
@@ -123,14 +103,10 @@ extension SyntaxDefinition {
         }
         
         for outline in self.outlines {
-            if outline.pattern.isEmpty {
-                errors.append(Error(.empty, location: .outline(outline.id), string: outline.pattern))
-            }
-            
             do {
                 _ = try NSRegularExpression(pattern: outline.pattern)
             } catch {
-                errors.append(Error(.regularExpression, location: .outline(outline.id), string: outline.pattern))
+                errors.append(Error(.regularExpression, type: \.outlines, string: outline.pattern))
             }
         }
         
@@ -139,58 +115,9 @@ extension SyntaxDefinition {
         let beginDelimiterExists = !(delimiters.blockBegin?.isEmpty ?? true)
         let endDelimiterExists = !(delimiters.blockEnd?.isEmpty ?? true)
         if beginDelimiterExists != endDelimiterExists {
-            errors.append(Error(.blockComment, location: .comment,
-                                role: beginDelimiterExists ? .begin : .end,
-                                string: delimiters.blockBegin ?? delimiters.blockEnd!))
+            errors.append(Error(.blockComment, type: \.commentDelimiters, string: delimiters.blockBegin ?? delimiters.blockEnd!))
         }
         
         return errors
-    }
-}
-
-
-extension SyntaxDefinition.Error: LocalizedError {
-    
-    var errorDescription: String? {
-        
-        self.localizedType + ": " + self.string
-    }
-    
-    
-    var failureReason: String? {
-        
-        switch self.code {
-            case .duplicated:
-                String(localized: "The same word is registered multiple times.")
-            case .empty:
-                String(localized: "The extraction pattern is empty.")
-            case .regularExpression:
-                String(localized: "Invalid regular expression.")
-            case .blockComment:
-                String(localized: "Block comment needs both begin delimiter and end delimiter.")
-        }
-    }
-    
-    
-    var localizedType: String {
-        
-        switch self.location {
-            case .term(let syntaxType, _):
-                String(localized: String.LocalizationValue(syntaxType.rawValue.capitalized))
-            case .outline:
-                String(localized: "Outline")
-            case .comment:
-                String(localized: "Comment")
-        }
-    }
-    
-    
-    var localizedRole: String? {
-        
-        switch self.role {
-            case .begin: String(localized: "Begin string")
-            case .end: String(localized: "End string")
-            case .none: nil
-        }
     }
 }

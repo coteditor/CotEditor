@@ -34,8 +34,6 @@
 
 // words with symbols
 " (%@)" = " (%@)";
-"(%@)" = " (%@)";
-"%@:" = "%@:";
 
 
 // Accessibility labels
@@ -586,13 +584,6 @@
 // Importing same name syntax alert
 "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists.";
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "Do you want to replace it?\nReplaced syntax can’t be restored.";
-
-// Syntax validation
-"Block comment needs both begin delimiter and end delimiter." = "Block comment needs both begin delimiter and end delimiter.";
-"Begin string" = "Begin string";
-"End string" = "End string";
-"The same word is registered multiple times." = "The same word is registered multiple times.";
-"Invalid regular expression." = "Invalid regular expression.";
 
 
 

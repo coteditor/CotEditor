@@ -81,6 +81,20 @@ final class SyntaxDefinition: ObservableObject {
     }
     
     
+    static let termKeyPaths: [ReferenceWritableKeyPath<SyntaxDefinition, [Term]>] = [
+        \.keywords,
+         \.commands,
+         \.types,
+         \.types,
+         \.attributes,
+         \.variables,
+         \.values,
+         \.numbers,
+         \.strings,
+         \.characters,
+         \.comments
+    ]
+    
     @Published var kind: Syntax.Kind = .general
     
     @Published var keywords: [Term] = []
@@ -103,33 +117,6 @@ final class SyntaxDefinition: ObservableObject {
     @Published var interpreters: [IdentifiedString] = []
     
     @Published var metadata: Metadata = Metadata()
-    
-    
-    /// Accesses Term type values with a correspondent SyntaxType key.
-    ///
-    /// - Parameter type: The syntax type key.
-    subscript(type type: SyntaxType) -> [Term] {
-        
-        get { self[keyPath: Self.keyPath(for: type)] }
-        set { self[keyPath: Self.keyPath(for: type)] = newValue }
-    }
-    
-    
-    private static func keyPath(for type: SyntaxType) -> ReferenceWritableKeyPath<SyntaxDefinition, [Term]> {
-        
-        switch type {
-            case .keywords: \.keywords
-            case .commands: \.commands
-            case .types: \.types
-            case .attributes: \.attributes
-            case .variables: \.variables
-            case .values: \.values
-            case .numbers: \.numbers
-            case .strings: \.strings
-            case .characters: \.characters
-            case .comments: \.commands
-        }
-    }
 }
 
 
@@ -140,7 +127,7 @@ extension SyntaxDefinition: Equatable {
     
     static func == (lhs: SyntaxDefinition, rhs: SyntaxDefinition) -> Bool {
         
-        SyntaxType.allCases.allSatisfy({ lhs[type: $0] == rhs[type: $0] }) &&
+        SyntaxDefinition.termKeyPaths.allSatisfy({ lhs[keyPath: $0] == rhs[keyPath: $0] }) &&
         lhs.kind == rhs.kind &&
         lhs.commentDelimiters == rhs.commentDelimiters &&
         lhs.outlines == rhs.outlines &&

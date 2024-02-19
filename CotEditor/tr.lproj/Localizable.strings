@@ -34,8 +34,6 @@
 
 // words with symbols
 " (%@)" = " (%@)";
-"(%@)" = "(%@)";
-"%@:" = "%@:";
 
 
 // Accessibility labels
@@ -586,13 +584,6 @@
 // Importing same name syntax alert
 "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "“%@” adlı yeni bir sözdizim yüklenecek; ancak aynı adlı başka bir sözdizim halihazırda var.";
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "Yeni sözdizimle değiştirmek istiyor musunuz?\nDeğiştirilen sözdizim geri yüklenemez.";
-
-// Syntax validation
-"Block comment needs both begin delimiter and end delimiter." = "Blok yorumlar hem başlangıç hem bitiş sınırlayıcısı gerektirir.";
-"Begin string" = "Başlangıç dizisi";
-"End string" = "Bitiş dizisi";
-"The same word is registered multiple times." = "Aynı sözcük birden çok kez kayıt edilmiş.";
-"Invalid regular expression." = "Geçersiz düzenli ifade.";
 
 
 

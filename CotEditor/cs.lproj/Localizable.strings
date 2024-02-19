@@ -34,8 +34,6 @@
 
 // words with symbols
 " (%@)" = " (%@)";
-"(%@)" = " (%@)";
-"%@:" = "%@:";
 
 
 // Accessibility labels
@@ -586,13 +584,6 @@
 // Importing same name syntax alert
 "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "Bude nainstalována nová syntaxe s názvem „%@“, ale vlastní syntaxe se stejným názvem již existuje.";
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "Chcete ji nahradit?\nNahrazenou syntaxi nelze obnovit.";
-
-// Syntax validation
-"Block comment needs both begin delimiter and end delimiter." = "Blokové komentáře vyžadují počáteční i koncový řetězec.";
-"Begin string" = "Počáteční řetězec";
-"End string" = "Koncový řetězec";
-"The same word is registered multiple times." = "Stejné slovo je registrováno vícekrát.";
-"Invalid regular expression." = "Neplatný regulární výraz.";
 
 
 

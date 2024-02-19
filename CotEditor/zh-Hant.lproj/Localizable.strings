@@ -34,8 +34,6 @@
 
 // words with symbols
 " (%@)" = "（%@）";
-"(%@)" = "（%@）";
-"%@:" = "%@：";
 
 
 // Accessibility labels
@@ -586,13 +584,6 @@
 // Importing same name syntax alert
 "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "即將安裝新的文法定義「%@」，但目前已經有另一筆同名文法定義登記在庫。";
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "真的要取而代之嗎？\n被取代的文法定義將會永遠丟失、無法找回。";
-
-// Syntax validation
-"Block comment needs both begin delimiter and end delimiter." = "塊註釋需要同時有起始符號和終止符號。";
-"Begin string" = "開始字元串";
-"End string" = "結束字元串";
-"The same word is registered multiple times." = "重複註冊。";
-"Invalid regular expression." = "無效的常規表示式。";
 
 
 

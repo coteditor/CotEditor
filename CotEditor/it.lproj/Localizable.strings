@@ -34,8 +34,6 @@
 
 // words with symbols
 " (%@)" = " (%@)";
-"(%@)" = "(%@)";
-"%@:" = "%@:";
 
 
 // Accessibility labels
@@ -586,13 +584,6 @@
 // Importing same name syntax alert
 "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "Verrà installata una nuova sintassi col nome “%@”, ma esiste già una sintassi personalizzata con lo stesso nome.";
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "Desideri sostituirla?\nUna sintassi sostituita non potrà essere ripristinata.";
-
-// Syntax validation
-"Block comment needs both begin delimiter and end delimiter." = "Un blocco di commento richiede un delimitatore iniziale ed uno finale.";
-"Begin string" = "Inizio stringa";
-"End string" = "Fine stringa";
-"The same word is registered multiple times." = "La stessa parola risulta registrata più volte.";
-"Invalid regular expression." = "Espressione regolare non valida.";
 
 
 
