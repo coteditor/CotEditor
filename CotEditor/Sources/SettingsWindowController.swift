@@ -67,7 +67,7 @@ private extension SettingsPane {
     private enum ViewType {
         
         case storyboard(NSStoryboard.Name)
-        case swiftUI(AnyView)
+        case swiftUI(any View)
     }
     
     
@@ -89,7 +89,7 @@ private extension SettingsPane {
                 return NSStoryboard(name: name, bundle: nil).instantiateInitialController()!
                 
             case .swiftUI(let view):
-                let controller = NSHostingController(rootView: view)
+                let controller = NSHostingController(rootView: AnyView(view))
                 controller.sizingOptions = .preferredContentSize
                 return controller
         }
@@ -99,12 +99,12 @@ private extension SettingsPane {
     private var viewType: ViewType {
         
         switch self {
-            case .general: .swiftUI(AnyView(GeneralSettingsView()))
+            case .general: .swiftUI(GeneralSettingsView())
             case .appearance: .storyboard("AppearancePane")
-            case .window: .swiftUI(AnyView(WindowSettingsView()))
-            case .edit: .swiftUI(AnyView(EditSettingsView()))
-            case .format: .swiftUI(AnyView(FormatSettingsView()))
-            case .snippets: .swiftUI(AnyView(SnippetsSettingsView()))
+            case .window: .swiftUI(WindowSettingsView())
+            case .edit: .swiftUI(EditSettingsView())
+            case .format: .swiftUI(FormatSettingsView())
+            case .snippets: .swiftUI(SnippetsSettingsView())
             case .keyBindings: .storyboard("KeyBindingsPane")
         }
     }
