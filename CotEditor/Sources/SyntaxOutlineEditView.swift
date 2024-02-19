@@ -41,7 +41,7 @@ struct SyntaxOutlineEditView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Text("Outline extraction rules", tableName: "SyntaxEdit", comment: "label")
+            Text("Outline extraction rules:", tableName: "SyntaxEdit", comment: "label")
             
             Table($outlines, selection: $selection) {
                 TableColumn(String(localized: "IC", table: "SyntaxEdit", comment: "table column header (IC for Ignore Case)")) { item in
@@ -116,17 +116,15 @@ struct SyntaxOutlineEditView: View {
         }
         
         
-        private var prompt: String? {
+        private var prompt: String {
             
             switch self.error {
                 case .noSelection:
                     String(localized: "No item selected", table: "SyntaxEdit", comment: "placeholder")
                 case .multipleSelection:
                     String(localized: "Multiple items selected", table: "SyntaxEdit", comment: "placeholder")
-                case .none where self.outline.template.isEmpty:
-                    String(localized: "Entire match", table: "SyntaxEdit", comment: "placeholder")
                 case .none:
-                    nil
+                    String(localized: "Entire match", table: "SyntaxEdit", comment: "placeholder")
             }
         }
     }
@@ -145,7 +143,8 @@ enum SelectionError: Error {
 
 #Preview {
     @State var outlines: [SyntaxDefinition.Outline] = [
-        .init(pattern: "abc")
+        .init(pattern: "abc"),
+        .init(pattern: "def", ignoreCase: true, italic: true),
     ]
     
     return SyntaxOutlineEditView(outlines: $outlines)

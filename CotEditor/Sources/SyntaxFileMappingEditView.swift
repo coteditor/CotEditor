@@ -40,7 +40,7 @@ struct SyntaxFileMappingEditView: View {
             GridRow {
                 EditTable($extensions) {
                     HStack {
-                        Text("Extensions:", tableName: "SyntaxEdit", comment: "label")
+                        Text("Extensions:", tableName: "SyntaxEdit", comment: "label for file extensions")
                         Text("(without dot)", tableName: "SyntaxEdit", comment: "additional label to “Extensions:”")
                             .fontWeight(.regular)
                             .foregroundStyle(.secondary)
@@ -95,8 +95,6 @@ struct SyntaxFileMappingEditView: View {
             
             VStack(alignment: .leading) {
                 self.label()
-                    .fontWeight(.medium)
-                    .padding(.bottom, -4)
                 
                 List(selection: $selection) {
                     ForEach($items) {

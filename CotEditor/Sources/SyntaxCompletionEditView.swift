@@ -41,7 +41,7 @@ struct SyntaxCompletionEditView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Text("If no word, the completion list will be generated from coloring settings.", tableName: "SyntaxEdit", comment: "message")
+            Text("If not specified, the completion list is generated based on the highlighting settings.", tableName: "SyntaxEdit", comment: "message")
                 .controlSize(.small)
             
             Table($completions, selection: $selection) {

@@ -53,7 +53,6 @@ private struct CommentDelimitersEditView: View {
         HStack(alignment: .firstTextBaseline, spacing: 32) {
             VStack(alignment: .leading) {
                 Text("Inline comment:", tableName: "SyntaxEdit", comment: "label")
-                    .fontWeight(.medium)
                 Form {
                     TextField(String(localized: "Begin with:", table: "SyntaxEdit", comment: "label"),
                               text: $comment.inline ?? "", prompt: Self.placeholder)
@@ -62,7 +61,6 @@ private struct CommentDelimitersEditView: View {
             
             VStack(alignment: .leading) {
                 Text("Block comment:", tableName: "SyntaxEdit", comment: "label")
-                    .fontWeight(.medium)
                 Form {
                     TextField(String(localized: "Begin with:", table: "SyntaxEdit", comment: "label"),
                               text: $comment.blockBegin ?? "", prompt: Self.placeholder)

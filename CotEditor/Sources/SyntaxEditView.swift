@@ -75,7 +75,7 @@ struct SyntaxEditView: View {
         
         NavigationSplitView(columnVisibility: .constant(.all)) {
             List(selection: $pane) {
-                Section(String(localized: "Highlight", table: "SyntaxEdit", comment: "section header in sidebar")) {
+                Section(String(localized: "Highlighting", table: "SyntaxEdit", comment: "section header in sidebar")) {
                     ForEach(Pane.terms, id: \.self) { pane in
                         Text(pane.label)
                     }
@@ -103,7 +103,7 @@ struct SyntaxEditView: View {
                         TextField(text: $name, label: EmptyView.init)
                             .focused($isNameFieldFocused)
                             .fontWeight(.medium)
-                            .frame(maxWidth: 160)
+                            .frame(minWidth: 80, maxWidth: 160)
                             .onChange(of: self.name) { newValue in
                                 self.validate(name: newValue)
                             }

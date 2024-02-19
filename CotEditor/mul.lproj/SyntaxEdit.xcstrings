@@ -43,7 +43,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "（空白は一致した全文字列）"
+            "value" : "（空欄は一致した全文字列）"
           }
         },
         "pt" : {
@@ -846,6 +846,12 @@
     "Definition" : {
       "comment" : "section header in sidebar",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Definition"
+          }
+        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1216,10 +1222,30 @@
       }
     },
     "Entire match" : {
-      "comment" : "placeholder"
+      "comment" : "placeholder",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ganze Übereinstimmung"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entire match"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一致した全文字列"
+          }
+        }
+      }
     },
     "Extensions:" : {
-      "comment" : "label",
+      "comment" : "label for file extensions",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1292,6 +1318,12 @@
     "Features" : {
       "comment" : "section header in sidebar",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funktionen"
+          }
+        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1377,13 +1409,19 @@
         }
       }
     },
-    "Highlight" : {
+    "Highlighting" : {
       "comment" : "section header in sidebar",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hervorhebung"
+          }
+        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Highlight"
+            "value" : "Highlighting"
           }
         },
         "ja" : {
@@ -1465,72 +1503,72 @@
         }
       }
     },
-    "If no word, the completion list will be generated from coloring settings." : {
+    "If not specified, the completion list is generated based on the highlighting settings." : {
       "comment" : "message",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Pokud není uvedeno žádné slovo, seznam dokončení se vygeneruje z nastavení barev."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wenn leer, wird die Vervollständigungsliste aus den Einstellungen für das Hervorheben erzeugt."
+            "value" : "Wenn nichts angegeben ist, wird die Vervollständigungsliste aus den Einstellungen für das Hervorheben erstellt."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "If no word, the completion list is generated from coloring settings."
+            "value" : "If not specified, the completion list is generated based on the highlighting settings."
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Si no se encuentra la palabra, la lista final se generará de los ajustes de coloración."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Si cette liste est vide, la liste de complétion sera générée à partir de la définition de la coloration syntaxique."
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "In assenza di parole, la lista di completamento verrà generata partendo dalle impostazioni di colorazione."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "設定がないときはカラーリング設定から補完リストが生成されます。"
+            "value" : "設定がないときはハイライト設定から補完リストが生成されます。"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Se em branco, a lista será gerada a partir dos ajustes de coloração."
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Sözcük yoksa tamamlama listesi renklendirme listesinden çıkarılır."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "如果没有单词，补全列表将由高亮设置生成。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "如果沒有單字，補全列表將由高亮設定生成。"
           }
         }
@@ -2220,25 +2258,25 @@
         }
       }
     },
-    "Outline extraction rules" : {
+    "Outline extraction rules:" : {
       "comment" : "label",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Extraktionsregeln der Gliederung"
+            "value" : "Extraktionsregeln der Gliederung:"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Outline extraction rules"
+            "value" : "Outline extraction rules:"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "アウトライン抽出ルール"
+            "value" : "アウトライン抽出ルール:"
           }
         }
       }
@@ -2396,8 +2434,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Regulärer Ausdruck"
+            "state" : "translated",
+            "value" : "Muster des reguläreren Ausdrucks"
           }
         },
         "en-GB" : {
