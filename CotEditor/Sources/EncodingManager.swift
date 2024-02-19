@@ -75,19 +75,11 @@ final class EncodingManager: ObservableObject {
         }
         
         UserDefaults.standard.publisher(for: .encodingList, initial: true)
-            .map { $0.map { $0 != kCFStringEncodingInvalidId ? String.Encoding(cfEncoding: $0) : nil } }
-            .map {
-                $0.flatMap { encoding -> [FileEncoding?] in
-                    if encoding == .utf8 {
+            .map { $0.map { $0 != kCFStringEncodingInvalidId ? FileEncoding(encoding: String.Encoding(cfEncoding: $0)) : nil }
+                    .flatMap {
                         // add "UTF-8 with BOM" item just after the normal UTF-8
-                        [FileEncoding(encoding: .utf8),
-                         FileEncoding(encoding: .utf8, withUTF8BOM: true)]
-                    } else if let encoding {
-                        [FileEncoding(encoding: encoding)]
-                    } else {
-                        [nil]
+                        ($0?.encoding == .utf8) ? [$0, FileEncoding(encoding: .utf8, withUTF8BOM: true)] : [$0]
                     }
-                }
             }
             .assign(to: &self.$fileEncodings)
     }
