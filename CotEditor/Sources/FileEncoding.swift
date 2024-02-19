@@ -43,19 +43,3 @@ struct FileEncoding: Equatable, Hashable {
             : localizedName
     }
 }
-
-
-extension FileEncoding {
-    
-    init(tag: Int) {
-        
-        self.encoding = String.Encoding(rawValue: UInt(abs(tag)))
-        self.withUTF8BOM = (self.encoding == .utf8) && (tag < 0)
-    }
-    
-    
-    var tag: Int {
-        
-        (self.withUTF8BOM ? -1 : 1) * Int(self.encoding.rawValue)
-    }
-}

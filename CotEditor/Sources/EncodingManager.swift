@@ -41,7 +41,7 @@ extension Array<FileEncoding?> {
         self.map { fileEncoding in
             if let fileEncoding {
                 let item = NSMenuItem(title: fileEncoding.localizedName, action: #selector((any EncodingChanging).changeEncoding), keyEquivalent: "")
-                item.tag = fileEncoding.tag
+                item.representedObject = fileEncoding
                 return item
             } else {
                 return .separator()

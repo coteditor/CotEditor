@@ -779,7 +779,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         switch menuItem.action {
             case #selector(changeEncoding(_:)):
-                menuItem.state = (menuItem.tag == self.fileEncoding.tag) ? .on : .off
+                menuItem.state = (menuItem.representedObject as? FileEncoding == self.fileEncoding) ? .on : .off
                 
             case #selector(changeLineEnding(_:)):
                 menuItem.state = (menuItem.tag == self.lineEnding.index) ? .on : .off
@@ -952,7 +952,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     /// Changes the document text encoding with sender's tag.
     @IBAction func changeEncoding(_ sender: NSMenuItem) {
         
-        let fileEncoding = FileEncoding(tag: sender.tag)
+        guard let fileEncoding = sender.representedObject as? FileEncoding else { return assertionFailure() }
         
         self.askChangingEncoding(to: fileEncoding)
     }

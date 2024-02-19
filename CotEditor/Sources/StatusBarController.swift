@@ -155,7 +155,7 @@ import Combine
             // observe document status change
             self.document.$fileEncoding
                 .receive(on: DispatchQueue.main)
-                .sink { [weak self] in self?.encodingPopUpButton?.selectItem(withTag: $0.tag) },
+                .sink { [weak self] in self?.encodingPopUpButton?.selectItem(withTitle: $0.localizedName) },
             self.document.$lineEnding
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] in self?.lineEndingPopUpButton?.selectItem(withTag: $0.index) },
@@ -220,7 +220,7 @@ import Combine
         menu.items.removeAll { !$0.isSectionHeader }
         menu.items += fileEncodings.menuItems
         
-        popUpButton.selectItem(withTag: self.document.fileEncoding.tag)
+        popUpButton.selectItem(withTitle: self.document.fileEncoding.localizedName)
     }
     
     
