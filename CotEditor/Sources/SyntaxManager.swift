@@ -159,7 +159,7 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
         
         // sort elements
         for keyPath in SyntaxDefinition.termKeyPaths {
-            definition[keyPath: keyPath].sort(\.begin)
+            definition[keyPath: keyPath].sort(\.begin, options: .caseInsensitive)
         }
         definition.outlines.sort(\.pattern, options: .caseInsensitive)
         definition.completions.sort(\.value, options: .caseInsensitive)
