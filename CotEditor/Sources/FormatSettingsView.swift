@@ -92,7 +92,7 @@ struct FormatSettingsView: View {
                 } label: {
                     EmptyView()
                 }
-                .fixedSize()
+                .frame(maxWidth: 260)
             }
             
             GridRow {
@@ -155,16 +155,16 @@ struct FormatSettingsView: View {
 
 private struct SyntaxListView: NSViewControllerRepresentable {
     
-    typealias NSViewControllerType = SyntaxListViewController
+    typealias NSViewControllerType = NSViewController
     
     
-    func makeNSViewController(context: Context) -> SyntaxListViewController {
+    func makeNSViewController(context: Context) -> NSViewController {
         
         NSStoryboard(name: "SyntaxListView", bundle: nil).instantiateInitialController()!
     }
     
     
-    func updateNSViewController(_ nsViewController: SyntaxListViewController, context: Context) {
+    func updateNSViewController(_ nsViewController: NSViewController, context: Context) {
         
     }
 }

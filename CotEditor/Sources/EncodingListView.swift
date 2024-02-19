@@ -89,6 +89,9 @@ struct EncodingListView: View {
             .onDeleteCommand {
                 self.model.deleteSeparators(in: self.selection, undoManager: self.undoManager)
             }
+            .border(.separator)
+            .scrollContentBackground(.hidden)
+            .background(.primary.opacity(0.02))
             .environment(\.defaultMinListRowHeight, 14)
             .frame(minHeight: 250, idealHeight: 250)
                 
@@ -128,7 +131,7 @@ struct EncodingListView: View {
             }
         }
         .scenePadding()
-        .frame(minWidth: 360, idealWidth: 360)
+        .frame(idealWidth: 380, maxHeight: 450)
     }
 }
 
