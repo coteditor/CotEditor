@@ -35,7 +35,7 @@ struct IncompatibleCharactersView: View {
         
         
         @Published var items: [Item] = []
-        @Published var isScanning = false
+        @Published private(set) var isScanning = false
         
         var document: Document?  { didSet { self.invalidateObservation() } }
         
