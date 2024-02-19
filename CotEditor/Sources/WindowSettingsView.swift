@@ -197,7 +197,7 @@ struct WindowSettingsView: View {
                 Text("Overscroll:", tableName: "WindowSettings")
                     .gridColumnAlignment(.trailing)
                 
-                Stepper(value: $overscrollRate, in: 0...1, step: 0.1, format: .percent, label: EmptyView.init)
+                Stepper(value: $overscrollRate, in: 0...1, step: 0.1, format: .percent.precision(.fractionLength(0)), label: EmptyView.init)
                     .monospacedDigit()
                     .multilineTextAlignment(.trailing)
             }
