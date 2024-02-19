@@ -122,60 +122,47 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     }
     
     
-    /// Returns the syntax dictionary list corresponding to syntax name.
+    /// Returns the syntax definition corresponding to syntax name.
     ///
     /// - Parameter name: The setting name.
-    /// - Returns: A syntax dictionary, or `nil` if not exists.
-    func settingDictionary(name: SettingName) -> SyntaxDictionary? {
-        
-        if name == BundledSyntaxName.none {
-            return self.blankSettingDictionary
-        }
+    /// - Returns: A syntax definition, or `nil` if not exists.
+    func settingDefinition(name: SettingName) -> SyntaxDefinition? {
         
         guard
-            let url = self.urlForUsedSetting(name: name),
-            let dictionary = try? self.loadSettingDictionary(at: url)
+            let url = SyntaxManager.shared.urlForUsedSetting(name: name),
+            let syntax = try? self.loadSettingDefinition(at: url)
         else { return nil }
         
-        return dictionary.cocoaBindable
+        return syntax
     }
     
     
-    /// Returns the bundled version of syntax dictionary.
+    /// Returns bundled version syntax definition, or `nil` if not exists.
     ///
     /// - Parameter name: The setting name.
-    /// - Returns: A syntax dictionary, or `nil` if not exists.
-    func bundledSettingDictionary(name: SettingName) -> SyntaxDictionary? {
+    /// - Returns: A syntax definition, or `nil` if not exists.
+    func bundledDefinition(name: SettingName) -> SyntaxDefinition? {
         
-        guard
-            let url = self.urlForBundledSetting(name: name),
-            let dictionary = try? self.loadSettingDictionary(at: url)
-        else { return nil }
+        guard let url = self.urlForBundledSetting(name: name) else { return nil }
         
-        return dictionary.cocoaBindable
+        return try? self.loadSettingDefinition(at: url)
     }
     
     
     /// Saves the given setting file to the user domain.
     ///
     /// - Parameters:
-    ///   - settingDictionary: The setting dictionary to save.
+    ///   - definition: The setting to save.
     ///   - name: The setting name to save.
     ///   - oldName: The old setting name if any exists.
-    func save(settingDictionary: SyntaxDictionary, name: SettingName, oldName: SettingName?) throws {
+    func save(definition: SyntaxDefinition, name: SettingName, oldName: SettingName?) throws {
         
-        // sort items
-        let beginStringSort = NSSortDescriptor(key: SyntaxDefinitionKey.beginString.rawValue, ascending: true,
-                                               selector: #selector(NSString.caseInsensitiveCompare))
-        for key in SyntaxType.allCases {
-            (settingDictionary[key.rawValue] as? NSMutableArray)?.sort(using: [beginStringSort])
+        // sort elements
+        for type in SyntaxType.allCases {
+            definition[type: type].sort(\.begin)
         }
-        
-        let keyStringSort = NSSortDescriptor(key: SyntaxDefinitionKey.keyString.rawValue, ascending: true,
-                                             selector: #selector(NSString.caseInsensitiveCompare))
-        for key in [SyntaxKey.outlineMenu, .completions] {
-            (settingDictionary[key.rawValue] as? NSMutableArray)?.sort(using: [keyStringSort])
-        }
+        definition.outlines.sort(\.pattern, options: .caseInsensitive)
+        definition.completions.sort(\.value, options: .caseInsensitive)
         
         let fileURL = self.preparedURLForUserSetting(name: name)
         
@@ -186,13 +173,15 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
         
         // just remove the current custom setting file in the user domain if new syntax is just the same as bundled one
         // so that application uses bundled one
-        if self.isEqualToBundledSetting(settingDictionary, name: name) {
+        if definition == self.bundledDefinition(name: name) {
             if fileURL.isReachable {
                 try FileManager.default.removeItem(at: fileURL)
             }
         } else {
             // save file to user domain
-            let yamlString = try Yams.dump(object: settingDictionary.yamlEncodable, allowUnicode: true)
+            let encoder = YAMLEncoder()
+            encoder.options.allowUnicode = true
+            let yamlString = try encoder.encode(definition)
             let data = Data(yamlString.utf8)
             
             try FileManager.default.createIntermediateDirectories(to: fileURL)
@@ -217,31 +206,6 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
         self.mappingTables
             .mapValues { $0.filter { $0.value.count > 1 } }
             .filter { !$0.value.isEmpty }
-    }
-    
-    
-    /// An empty syntax dictionary.
-    var blankSettingDictionary: SyntaxDictionary {
-        
-        [
-            SyntaxKey.metadata.rawValue: NSMutableDictionary(),
-            SyntaxKey.extensions.rawValue: NSMutableArray(),
-            SyntaxKey.filenames.rawValue: NSMutableArray(),
-            SyntaxKey.interpreters.rawValue: NSMutableArray(),
-            SyntaxType.keywords.rawValue: NSMutableArray(),
-            SyntaxType.commands.rawValue: NSMutableArray(),
-            SyntaxType.types.rawValue: NSMutableArray(),
-            SyntaxType.attributes.rawValue: NSMutableArray(),
-            SyntaxType.variables.rawValue: NSMutableArray(),
-            SyntaxType.values.rawValue: NSMutableArray(),
-            SyntaxType.numbers.rawValue: NSMutableArray(),
-            SyntaxType.strings.rawValue: NSMutableArray(),
-            SyntaxType.characters.rawValue: NSMutableArray(),
-            SyntaxType.comments.rawValue: NSMutableArray(),
-            SyntaxKey.outlineMenu.rawValue: NSMutableArray(),
-            SyntaxKey.completions.rawValue: NSMutableArray(),
-            SyntaxKey.commentDelimiters.rawValue: NSMutableDictionary(),
-        ]
     }
     
     
@@ -347,6 +311,17 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     /// Loads SyntaxDictionary at file URL.
     ///
     /// - Parameter fileURL: URL to a setting file.
+    private func loadSettingDefinition(at fileURL: URL) throws -> SyntaxDefinition {
+        
+        let data = try Data(contentsOf: fileURL)
+        
+        return try YAMLDecoder().decode(SyntaxDefinition.self, from: data)
+    }
+    
+    
+    /// Load SyntaxDictionary at file URL.
+    ///
+    /// - Parameter fileURL: URL to a setting file.
     /// - Throws: `CocoaError`
     private func loadSettingDictionary(at fileURL: URL) throws -> SyntaxDictionary {
         
@@ -358,20 +333,6 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
         }
         
         return syntaxDictionary
-    }
-    
-    
-    /// Returns whether contents of given highlight definition is the same as bundled one.
-    ///
-    /// - Parameters:
-    ///   - syntax: The syntax dictionary to test.
-    ///   - name: The name of the syntax.
-    /// - Returns: A bool value.
-    private func isEqualToBundledSetting(_ syntax: SyntaxDictionary, name: SettingName) -> Bool {
-        
-        guard let bundledSyntax = self.bundledSettingDictionary(name: name) else { return false }
-        
-        return syntax == bundledSyntax
     }
     
     
@@ -457,113 +418,5 @@ private extension StringProtocol {
         }
         
         return String(interpreter)
-    }
-}
-
-
-
-// MARK: - Cocoa Bindings Support
-
-private extension SyntaxManager.SyntaxDictionary {
-    
-    /// Converts to NSObject-based collection for Cocoa-Bindings recursively.
-    var cocoaBindable: Self {
-        
-        self.mapValues(Self.convertToCocoaBindable)
-    }
-    
-    
-    /// Converts to YAML serialization compatible collection recursively.
-    var yamlEncodable: Self {
-        
-        self.mapValues(Self.convertToYAMLEncodable)
-    }
-    
-    
-    // MARK: Private Methods
-    
-    private static func convertToYAMLEncodable(_ item: Any) -> Any {
-        
-        switch item {
-            case let dictionary as [String: Any]:
-                return dictionary.mapValues(Self.convertToYAMLEncodable)
-            case let array as [Any]:
-                return array.map(Self.convertToYAMLEncodable)
-            case let bool as Bool:
-                return bool
-            case let string as String:
-                return string
-            default:
-                assertionFailure("\(type(of: item))")
-                return item
-        }
-    }
-    
-    
-    private static func convertToCocoaBindable(_ item: Any) -> Any {
-        
-        switch item {
-            case let dictionary as [String: Any]:
-                NSMutableDictionary(dictionary: dictionary.mapValues(Self.convertToCocoaBindable))
-            case let array as [Any]:
-                NSMutableArray(array: array.map(Self.convertToCocoaBindable))
-            case let date as Date:
-                date.formatted(.iso8601.year().month().day())
-            default:
-                item
-        }
-    }
-}
-
-
-
-// MARK: - Equitability Support
-
-private extension SyntaxManager.SyntaxDictionary {
-    
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        
-        areEqual(lhs, rhs)
-    }
-    
-    
-    // MARK: Private Methods
-    
-    /// Checks the equitability recursively.
-    ///
-    /// This comparison is designed and valid only for SyntaxDictionary.
-    private static func areEqual(_ lhs: Any, _ rhs: Any) -> Bool {
-        
-        switch (lhs, rhs) {
-            case let (lhs, rhs) as (Dictionary, Dictionary):
-                guard lhs.count == rhs.count else { return false }
-                
-                return lhs.allSatisfy { (key, lhsValue) -> Bool in
-                    guard let rhsValue = rhs[key] else { return false }
-                    
-                    return areEqual(lhsValue, rhsValue)
-                }
-                
-            case let (lhs, rhs) as ([Any], [Any]):
-                guard lhs.count == rhs.count else { return false }
-                
-                // check elements equitability by ignoring the order
-                var rhs = rhs
-                for lhsValue in lhs {
-                    guard let rhsIndex = rhs.firstIndex(where: { areEqual(lhsValue, $0) }) else { return false }
-                    rhs.remove(at: rhsIndex)
-                }
-                return true
-                
-            case let (lhs, rhs) as (String, String):
-                return lhs == rhs
-                
-            case let (lhs, rhs) as (Bool, Bool):
-                return lhs == rhs
-                
-            default:
-                assertionFailure("Comparing \(type(of: lhs)) and \(type(of: rhs))")
-                return type(of: lhs) == type(of: rhs) && String(describing: lhs) == String(describing: rhs)
-        }
     }
 }

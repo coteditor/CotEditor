@@ -1,236 +1,286 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "1Xc-SV-RAk.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"string\"; ObjectID = \"1Xc-SV-RAk\"; Note = \"Dummy\";",
-      "extractionState" : "extracted_with_value",
+    "Add" : {
+      "comment" : "button label",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Přidat"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "string"
+            "value" : "Hinzufügen"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Add"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "cadena"
+            "value" : "Añadir"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Ajouter"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Aggiungi"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "追加"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Adicionar"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "Ekle"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "添加"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "加入"
           }
         }
       }
     },
-    "fJg-PK-TBB.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"If no word, the completion list is generated from coloring settings.\"; ObjectID = \"fJg-PK-TBB\";",
-      "extractionState" : "extracted_with_value",
+    "Add new item" : {
+      "comment" : "tooltip",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pokud není uvedeno žádné slovo, seznam dokončení se vygeneruje z nastavení barev."
+            "value" : "Přidat novou položku"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wenn leer, wird die Vervollständigungsliste aus den Einstellungen für das Hervorheben erzeugt."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "If no word, the completion list is generated from coloring settings."
+            "value" : "Neues Objekt hinzufügen"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "If no word, the completion list is generated from coloring settings."
+            "value" : "Add new item"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Si no se encuentra la palabra, la lista final se generará de los ajustes de coloración."
+            "value" : "Añadir nuevo ítem"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Si cette liste est vide, la liste de complétion sera générée à partir de la définition de la coloration syntaxique."
+            "value" : "Ajouter un nouvel élément"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "In assenza di parole, la lista di completamento verrà generata partendo dalle impostazioni di colorazione."
+            "value" : "Aggiungi nuovo elemento"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "設定がないときはカラーリング設定から補完リストが生成されます。"
+            "value" : "新しい項目を追加"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Se em branco, a lista será gerada a partir dos ajustes de coloração."
+            "value" : "Adicionar Novo Item"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözcük yoksa tamamlama listesi renklendirme listesinden çıkarılır."
+            "value" : "Yeni Öğe Ekle"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果没有单词，补全列表将由高亮设置生成。"
+            "value" : "添加新项目"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果沒有單字，補全列表將由高亮設定生成。"
+            "value" : "加入新項目"
           }
         }
       }
     },
-    "uGV-wD-V9T.headerCell.title" : {
-      "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Completions\"; ObjectID = \"uGV-wD-V9T\";",
-      "extractionState" : "extracted_with_value",
+    "Remove" : {
+      "comment" : "button label",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokončení"
+            "value" : "Odstranit"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vervollständigung"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Completions"
+            "value" : "Entfernen"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Completions"
+            "value" : "Remove"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Autocompletados"
+            "value" : "Eliminar"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Complétions"
+            "value" : "Supprimer"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Completamenti"
+            "value" : "Rimuovi"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "入力補完"
+            "value" : "削除"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Preenchimentos"
+            "value" : "Remover"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tamamlamalar"
+            "value" : "Sil"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "补全"
+            "value" : "移除"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "補全"
+            "value" : "移除"
+          }
+        }
+      }
+    },
+    "Remove selected items" : {
+      "comment" : "tooltip",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odstranit vybraných položek"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausgewählte Objekte entfernen"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove selected items"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar ítems seleccionados"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer les éléments sélectionnés"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rimuovi elementi selezionati"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択した項目を削除"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remover Items Selecionados"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçili Öğeleri Sil"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移除所选项目"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移除所選項目"
           }
         }
       }

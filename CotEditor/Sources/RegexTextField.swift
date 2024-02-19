@@ -30,18 +30,34 @@ struct RegexTextField: NSViewRepresentable {
     
     typealias NSViewType = NSTextField
     
+    enum Style {
+        
+        case automatic
+        case table
+    }
+    
     @Binding private var text: String
+    private var isHighlighted: Bool = true
+    private let mode: RegularExpressionParseMode
+    private let showsError: Bool
+    private let showsInvisibles: Bool
+    
     private let prompt: String?
     private let onSubmit: () -> Void
     
     private var leadingInset: Double = 0
+    private var style: Style = .automatic
     
     
-    init(text: Binding<String>, prompt: String? = nil, onSubmit: @escaping () -> Void = {}) {
+    init(text: Binding<String>, mode: RegularExpressionParseMode = .search, showsError: Bool = true, showsInvisible: Bool = true, prompt: String? = nil, onSubmit: @escaping () -> Void = {}) {
         
         self._text = text
         self.prompt = prompt
         self.onSubmit = onSubmit
+        
+        self.mode = mode
+        self.showsError = showsError
+        self.showsInvisibles = showsInvisible
     }
     
     
@@ -58,14 +74,46 @@ struct RegexTextField: NSViewRepresentable {
     }
     
     
+    /// Sets the field style.
+    ///
+    /// - Parameters:
+    ///   - style: The field style.
+    func style(_ style: Style) -> Self {
+        
+        var view = self
+        view.style = style
+        
+        return view
+    }
+    
+    
+    /// Adds a condition that controls whether enabled syntax highlighting.
+    ///
+    /// - Parameter highlighted: A Boolean value that determines whether enabled syntax highlighting.
+    /// - Returns: A view that controls whether enabled syntax highlighting.
+    func regexHighlighted(_ highlighted: Bool) -> Self {
+        
+        var view = self
+        view.isHighlighted = highlighted
+        return view
+    }
+    
+    
     func makeNSView(context: Context) -> NSTextField {
         
-        let textField = RegularExpressionTextField()
+        let textField = RegexNSTextField(string: self.text, mode: self.mode, showsError: self.showsError, showsInvisibles: self.showsInvisibles)
         textField.delegate = context.coordinator
         textField.placeholderString = self.prompt
         textField.isEditable = true
         textField.lineBreakMode = .byTruncatingTail
         (textField.cell as? PaddingTextFieldCell)?.leadingPadding = self.leadingInset
+        switch self.style {
+            case .automatic:
+                break
+            case .table:
+                textField.isBordered = false
+                textField.drawsBackground = false
+        }
         
         return textField
     }
@@ -74,6 +122,7 @@ struct RegexTextField: NSViewRepresentable {
     func updateNSView(_ nsView: NSTextField, context: Context) {
         
         nsView.stringValue = self.text
+        (nsView as! RegexNSTextField).isRegexHighlighted = self.isHighlighted
     }
     
     
@@ -118,6 +167,99 @@ struct RegexTextField: NSViewRepresentable {
 
 
 
+private final class RegexNSTextField: NSTextField {
+    
+    // MARK: Public Properties
+    
+    var isRegexHighlighted = true {
+        
+        didSet {
+            self.regexFormatter.parsesRegularExpression = isRegexHighlighted
+            self.invalidateFieldEditor()
+            self.needsDisplay = true
+        }
+    }
+    
+    
+    // MARK: Private Properties
+    
+    private let regexFormatter: RegularExpressionFormatter
+    
+    
+    
+    // MARK: Text Field Methods
+    
+    init(string: String = "", mode: RegularExpressionParseMode, showsError: Bool, showsInvisibles: Bool) {
+        
+        let formatter = RegularExpressionFormatter()
+        formatter.mode = mode
+        formatter.showsError = showsError
+        formatter.showsInvisibles = showsInvisibles
+        self.regexFormatter = formatter
+        
+        super.init(frame: .zero)
+        
+        self.formatter = formatter
+        self.stringValue = string
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    override class var cellClass: AnyClass? {
+        
+        get { PaddingTextFieldCell.self }
+        set { _ = newValue }
+    }
+    
+    
+    /// Invoked when the receiver was focused to edit content.
+    override func becomeFirstResponder() -> Bool {
+        
+        guard super.becomeFirstResponder() else { return false }
+        
+        self.invalidateFieldEditor()
+        
+        return true
+    }
+    
+    
+    /// Invoked when the text (in the field editor) was just changed.
+    override func textDidChange(_ notification: Notification) {
+        
+        super.textDidChange(notification)
+        
+        self.invalidateFieldEditor()
+    }
+    
+    
+    /// Invoked when the string value was directly changed.
+    override var objectValue: Any? {
+        
+        didSet {
+            self.invalidateFieldEditor()
+        }
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// Updates the syntax highlight in the field editor.
+    private func invalidateFieldEditor() {
+        
+        guard let editor = self.currentEditor() as? NSTextView else { return }
+        
+        editor.highlightAsRegularExpressionPattern(mode: self.regexFormatter.mode, enabled: self.isRegexHighlighted)
+    }
+}
+
+
+
 // MARK: - Preview
 
 #Preview {
@@ -125,4 +267,8 @@ struct RegexTextField: NSViewRepresentable {
     
     return RegexTextField(text: $text)
         .leadingInset(20)
+}
+
+#Preview("Error") {
+    RegexTextField(text: .constant("[]def"))
 }

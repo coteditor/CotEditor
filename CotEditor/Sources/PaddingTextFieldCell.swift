@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,13 +25,12 @@
 
 import AppKit
 
-@IBDesignable
 final class PaddingTextFieldCell: NSTextFieldCell {
     
     // MARK: Public Properties
     
-    @IBInspectable var leadingPadding: CGFloat = 0
-    @IBInspectable var trailingPadding: CGFloat = 0
+    var leadingPadding: CGFloat = 0
+    var trailingPadding: CGFloat = 0
     
     
     
