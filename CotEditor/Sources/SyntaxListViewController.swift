@@ -526,18 +526,16 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     /// - Parameter state: The setting state to edit, or `nil` for a new setting.
     private func presentSyntaxEditor(state: SettingState? = nil) {
         
-        let manager = SyntaxManager.shared
-        let syntax: SyntaxManager.SyntaxDictionary = if let state {
-            manager.settingDictionary(name: state.name) ?? manager.blankSettingDictionary
-        } else {
-            manager.blankSettingDictionary
+        let syntax = state.flatMap { SyntaxManager.shared.settingDefinition(name: $0.name) } ?? SyntaxDefinition()
+        let isBundled = state?.isBundled ?? false
+        
+        let view = SyntaxEditView(syntax: syntax, originalName: state?.name, isBundled: isBundled) { (definition, name) in
+            try SyntaxManager.shared.save(definition: definition, name: name, oldName: state?.name)
         }
         
-        let viewController = NSStoryboard(name: "SyntaxEditView", bundle: nil).instantiateInitialController { coder in
-            SyntaxEditViewController(coder: coder, syntax: syntax, state: state) { (dictionary, name) in
-                try SyntaxManager.shared.save(settingDictionary: dictionary, name: name, oldName: state?.name)
-            }
-        }!
+        let viewController = NSHostingController(rootView: view)
+        viewController.rootView.parent = viewController
+        viewController.view.frame.size = NSSize(width: 680, height: 450)
         
         self.presentAsSheet(viewController)
     }

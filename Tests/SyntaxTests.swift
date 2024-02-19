@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ final class SyntaxTests: XCTestCase {
     
     private let syntaxDirectoryName = "Syntaxes"
     
-    private var syntaxDicts: [String: SyntaxManager.SyntaxDictionary] = [:]
+    private var definitions: [String: SyntaxDefinition] = [:]
     private var htmlSyntax: Syntax?
     private var htmlSource: String?
     
@@ -46,18 +46,22 @@ final class SyntaxTests: XCTestCase {
         try super.setUpWithError()
         
         let bundle = Bundle(for: type(of: self))
+        let urls = try XCTUnwrap(bundle.urls(forResourcesWithExtension: "yml", subdirectory: syntaxDirectoryName))
         
         // load syntaxes
-        let urls = try XCTUnwrap(bundle.urls(forResourcesWithExtension: "yml", subdirectory: syntaxDirectoryName))
-        self.syntaxDicts = try urls.reduce(into: [:]) { (dict, url) in
-            let string = try String(contentsOf: url)
+        
+        let decoder = YAMLDecoder()
+        self.definitions = try urls.reduce(into: [:]) { (dict, url) in
+            let data = try Data(contentsOf: url)
             let name = url.deletingPathExtension().lastPathComponent
             
-            dict[name] = try XCTUnwrap(Yams.load(yaml: string) as? [String: Any])
+            dict[name] = try decoder.decode(SyntaxDefinition.self, from: data)
         }
         
         // create HTML syntax
-        let htmlDict = try XCTUnwrap(self.syntaxDicts["HTML"])
+        let htmlURL = try XCTUnwrap(urls.first { $0.lastPathComponent.contains("HTML") })
+        let string = try String(contentsOf: htmlURL)
+        let htmlDict = try XCTUnwrap(Yams.load(yaml: string) as? [String: Any])
         self.htmlSyntax = Syntax(dictionary: htmlDict, name: "HTML")
         
         XCTAssertNotNil(self.htmlSyntax)
@@ -72,11 +76,11 @@ final class SyntaxTests: XCTestCase {
     
     func testAllSyntaxes() {
         
-        for (name, dict) in self.syntaxDicts {
-            let validator = SyntaxValidator(syntax: .init(dictionary: dict))
-            XCTAssert(validator.validate())
+        for (name, definition) in self.definitions {
+            let errors = definition.validate()
             
-            for error in validator.errors {
+            XCTAssert(errors.isEmpty)
+            for error in errors {
                 XCTFail("\(name): \(error)")
             }
         }
@@ -141,5 +145,17 @@ final class SyntaxTests: XCTestCase {
             }
         parser.invalidateOutline()
         self.waitForExpectations(timeout: 1)
+    }
+    
+    
+    func testTermEquality() throws {
+        
+        let termA = SyntaxDefinition.Term(begin: "abc", end: "def")
+        let termB = SyntaxDefinition.Term(begin: "abc", end: "def")
+        let termC = SyntaxDefinition.Term(begin: "abc")
+        
+        XCTAssertEqual(termA, termB)
+        XCTAssertNotEqual(termA, termC)
+        XCTAssertNotEqual(termA.id, termB.id)
     }
 }

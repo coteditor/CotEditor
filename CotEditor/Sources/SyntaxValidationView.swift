@@ -27,9 +27,8 @@ import SwiftUI
 
 struct SyntaxValidationView: View {
     
-    let validator: SyntaxValidator
+    var errors: [SyntaxDefinition.Error]
     
-    @State private var errors: [SyntaxValidator.Error] = []
     @State private var selection: Int?
     
     
@@ -39,17 +38,14 @@ struct SyntaxValidationView: View {
         
         VStack(alignment: .leading) {
             MessageView(count: self.errors.count)
-            List(Array(self.errors.enumerated()), id: \.offset, selection: $selection) { (_, error) in
-                ErrorView(error: error)
+            
+            if !self.errors.isEmpty {
+                List(Array(self.errors.enumerated()), id: \.offset, selection: $selection) { (_, error) in
+                    ErrorView(error: error)
+                }
+                .border(.separator)
             }
-        }
-        .onReceive(self.validator.$errors) { errors in
-            self.errors = errors
-        }
-        .onAppear {
-            self.validator.validate()
-        }
-        .padding(8)
+        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
     
     
@@ -83,7 +79,7 @@ struct SyntaxValidationView: View {
     
     private struct ErrorView: View {
         
-        var error: SyntaxValidator.Error
+        var error: SyntaxDefinition.Error
         
         
         var body: some View {
@@ -121,19 +117,19 @@ struct SyntaxValidationView: View {
 // MARK: - Preview
 
 #Preview {
-    let dictionary: [String: [[String: Any]]] = [
-        "keywords": [["beginString": "abc"],
-                     ["beginString": "abc"]],
-        "commands": [["beginString": "Lorem ipsum dolor sit amet, consectetur[",
-                      "regularExpression": true]],
+    let errors: [SyntaxDefinition.Error] = [
+        .init(.blockComment, location: .comment, role: .end, string: "bb"),
+        .init(.duplicated, location: .term(.values, UUID()), role: .begin, string: "bb"),
+        .init(.regularExpression, location: .outline(UUID()), role: .begin, string: "[]"),
     ]
-    let syntax = NSMutableDictionary(dictionary: dictionary)
     
-    return SyntaxValidationView(validator: .init(syntax: syntax))
+    return SyntaxValidationView(errors: errors)
         .frame(width: 400)
+        .padding()
 }
 
 #Preview("No Error") {
-    SyntaxValidationView(validator: .init(syntax: [:]))
+    SyntaxValidationView(errors: [])
         .frame(width: 400)
+        .padding()
 }
