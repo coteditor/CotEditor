@@ -1,5 +1,5 @@
 //
-//  FormatPaneController.swift
+//  SyntaxListViewController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -30,23 +30,19 @@ import Combine
 import SwiftUI
 import UniformTypeIdentifiers
 
-final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, EncodingChanging {
+final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate {
     
     // MARK: Private Properties
     
     private var syntaxNames: [String] = []
     @objc private dynamic var isBundled = false  // bound to remove button
     
-    private var encodingChangeObserver: AnyCancellable?
     private var syntaxChangeObserver: AnyCancellable?
     private lazy var filePromiseQueue = OperationQueue()
-    
-    @IBOutlet private weak var encodingPopUpButton: NSPopUpButton?
     
     @IBOutlet private var syntaxTableMenu: NSMenu?
     @IBOutlet private weak var syntaxTableView: NSTableView?
     @IBOutlet private weak var syntaxTableActionButton: NSButton?
-    @IBOutlet private weak var syntaxDefaultPopUpButton: NSPopUpButton?
     
     
     
@@ -70,10 +66,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         super.viewWillAppear()
         
-        self.encodingChangeObserver = EncodingManager.shared.$fileEncodings
-            .receive(on: RunLoop.main)
-            .sink { [weak self] in self?.setupEncodingMenu(fileEncodings: $0) }
-        
         self.syntaxChangeObserver = Publishers.Merge(SyntaxManager.shared.$settingNames.eraseToVoid(),
                                                      SyntaxManager.shared.didUpdateSetting.eraseToVoid())
             .debounce(for: 0, scheduler: RunLoop.main)
@@ -86,7 +78,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         super.viewDidDisappear()
         
         // stop observations for UI update
-        self.encodingChangeObserver = nil
         self.syntaxChangeObserver = nil
     }
     
@@ -275,24 +266,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     // MARK: Action Messages
     
-    /// Saves the default text encoding.
-    @IBAction func changeEncoding(_ sender: NSMenuItem) {
-        
-        EncodingManager.shared.defaultEncoding = FileEncoding(tag: sender.tag)
-    }
-    
-    
-    /// Shows the encoding list sheet.
-    @IBAction func showEncodingList(_ sender: Any?) {
-        
-        let view = EncodingListView()
-        let viewController = NSHostingController(rootView: view)
-        viewController.rootView.parent = viewController
-        
-        self.presentAsSheet(viewController)
-    }
-    
-    
     /// Shows the syntax mapping conflict error sheet.
     @IBAction func openSyntaxMappingConflictSheet(_ sender: Any?) {
         
@@ -440,16 +413,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     // MARK: Private Methods
     
-    /// Builds the encoding menu.
-    private func setupEncodingMenu(fileEncodings: [FileEncoding?]) {
-        
-        guard let popUpButton = self.encodingPopUpButton else { return assertionFailure() }
-        
-        popUpButton.menu?.items = fileEncodings.menuItems
-        popUpButton.selectItem(withTag: EncodingManager.shared.defaultEncoding.tag)
-    }
-    
-    
     /// Builds the syntax menus.
     private func setupSyntaxMenus() {
         
@@ -461,21 +424,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         self.syntaxTableView?.reloadData()
         if let index = syntaxNames.firstIndex(of: selectedSyntaxName) {
             self.syntaxTableView?.selectRowIndexes([index], byExtendingSelection: false)
-        }
-        
-        // update default syntax popup menu
-        if let popUpButton = self.syntaxDefaultPopUpButton {
-            popUpButton.removeAllItems()
-            popUpButton.addItem(withTitle: BundledSyntaxName.none)
-            popUpButton.menu?.addItem(.separator())
-            popUpButton.addItems(withTitles: syntaxNames)
-            
-            // select menu item for the current setting manually although Cocoa-Bindings are used on this menu
-            // -> Because items were actually added after Cocoa-Binding selected the item.
-            let defaultSyntax = UserDefaults.standard[.syntax]
-            let selectedSyntax = syntaxNames.contains(defaultSyntax) ? defaultSyntax : BundledSyntaxName.none
-            
-            popUpButton.selectItem(withTitle: selectedSyntax)
         }
     }
     

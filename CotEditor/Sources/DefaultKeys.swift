@@ -105,7 +105,7 @@ extension DefaultKeys {
     // Format
     static let lineEndCharCode = DefaultKey<Int>("defaultLineEndCharCode")
     static let encodingList = DefaultKey<[CFStringEncoding]>("encodingList")
-    static let encoding = DefaultKey<UInt>("encodingInNew")
+    static let encoding = DefaultKey<Int>("encodingInNew")
     static let saveUTF8BOM = DefaultKey<Bool>("saveUTF8BOM")
     static let referToEncodingTag = DefaultKey<Bool>("referToEncodingTag")
     static let syntax = DefaultKey<String>("defaultColoringStyleName")

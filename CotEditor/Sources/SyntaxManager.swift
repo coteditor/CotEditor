@@ -48,7 +48,7 @@ enum BundledSyntaxName {
 
 // MARK: -
 
-final class SyntaxManager: SettingFileManaging {
+final class SyntaxManager: SettingFileManaging, ObservableObject {
     
     typealias Setting = Syntax
     

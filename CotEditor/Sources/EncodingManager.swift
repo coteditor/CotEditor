@@ -54,7 +54,7 @@ extension Array<FileEncoding?> {
 
 // MARK: -
 
-final class EncodingManager {
+final class EncodingManager: ObservableObject {
     
     // MARK: Public Properties
     
@@ -100,7 +100,7 @@ final class EncodingManager {
     var defaultEncoding: FileEncoding {
         
         get {
-            let encoding = String.Encoding(rawValue: UserDefaults.standard[.encoding])
+            let encoding = String.Encoding(rawValue: UInt(UserDefaults.standard[.encoding]))
             let availableEncoding = String.availableStringEncodings.contains(encoding) ? encoding : .utf8
             let withBOM = (availableEncoding == .utf8) && UserDefaults.standard[.saveUTF8BOM]
             
@@ -108,7 +108,7 @@ final class EncodingManager {
         }
         
         set {
-            UserDefaults.standard[.encoding] = newValue.encoding.rawValue
+            UserDefaults.standard[.encoding] = Int(newValue.encoding.rawValue)
             UserDefaults.standard[.saveUTF8BOM] = newValue.withUTF8BOM
         }
     }

@@ -7,7 +7,7 @@
 
 - Make the encoding priority view undoable.
 - [trivial] Enable delete selected separators in the encoding priority view with the Delete key.
-- [dev] Migrate General, Window, and Edit settings panes to SwiftUI.
+- [dev] Migrate General, Window, Edit, and Format settings panes to SwiftUI.
 
 
 ### Fixes

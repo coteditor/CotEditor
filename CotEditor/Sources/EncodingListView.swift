@@ -57,11 +57,9 @@ struct EncodingListView: View {
     }
     
     
-    weak var parent: NSHostingController<Self>?
-    
-    
     @StateObject private var model = Model()
     @Environment(\.undoManager) private var undoManager
+    @Environment(\.dismiss) private var dismiss
     
     @State private var selection: Set<EncodingItem.ID> = []
     
@@ -117,19 +115,20 @@ struct EncodingListView: View {
                     self.model.restore()
                 }
                 .disabled(!self.model.canRestore)
+                .fixedSize()
                 
                 Spacer()
                 
                 SubmitButtonGroup {
                     self.model.save()
-                    self.parent?.dismiss(nil)
+                    self.dismiss()
                 } cancelAction: {
-                    self.parent?.dismiss(nil)
+                    self.dismiss()
                 }
             }
         }
         .scenePadding()
-        .frame(minWidth: 360)
+        .frame(minWidth: 360, idealWidth: 360)
     }
 }
 
@@ -285,6 +284,6 @@ private extension CFStringEncoding {
 // MARK: - Preview
 
 @available(macOS 14, *)
-#Preview(traits: .fixedLayout(width: 300, height: 400)) {
+#Preview(traits: .fixedLayout(width: 400, height: 400)) {
     EncodingListView()
 }

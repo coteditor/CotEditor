@@ -75,6 +75,14 @@ extension AppStorage {
     }
     
     
+    init(_ key: DefaultKey<Value>, store: UserDefaults? = nil) where Value == String {
+        
+        let defaultValue = (store ?? UserDefaults.standard)[initial: key]
+        
+        self.init(wrappedValue: defaultValue, key.rawValue, store: store)
+    }
+    
+    
     init(_ key: DefaultKey<Value>, store: UserDefaults? = nil) where Value: RawRepresentable, Value.RawValue == Int {
         
         let defaultValue = (store ?? UserDefaults.standard)[initial: key]
