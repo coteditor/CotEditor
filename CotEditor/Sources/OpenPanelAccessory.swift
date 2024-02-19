@@ -80,5 +80,5 @@ struct OpenPanelAccessory: View {
 // MARK: - Preview
 
 #Preview {
-    OpenPanelAccessory(options: .init(), fileEncodings: [FileEncoding(encoding: .utf8)])
+    OpenPanelAccessory(options: .init(), fileEncodings: [.utf8])
 }

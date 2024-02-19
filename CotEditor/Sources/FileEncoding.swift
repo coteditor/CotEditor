@@ -25,6 +25,8 @@
 
 struct FileEncoding: Equatable, Hashable {
     
+    static let utf8 = FileEncoding(encoding: .utf8)
+    
     var encoding: String.Encoding
     var withUTF8BOM: Bool = false
     

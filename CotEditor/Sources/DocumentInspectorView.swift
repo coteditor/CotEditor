@@ -85,7 +85,7 @@ struct DocumentInspectorView: View {
         
         @Published var attributes: DocumentFile.Attributes?
         @Published var fileURL: URL?
-        @Published var encoding: FileEncoding = FileEncoding(encoding: .utf8)
+        @Published var encoding: FileEncoding = .utf8
         @Published var lineEnding: LineEnding = .lf
         @Published var countResult: EditorCountResult = .init()
         
