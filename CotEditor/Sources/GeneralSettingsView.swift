@@ -23,7 +23,6 @@
 //  limitations under the License.
 //
 
-import AppKit
 import SwiftUI
 
 struct GeneralSettingsView: View {
