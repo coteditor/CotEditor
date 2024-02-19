@@ -759,6 +759,8 @@
 
 
 /* MARK: LiveTextInsertionView */
+// button label
+"Insert" = "Inserción";
 // error messages
 "No text detected" = "No se detectó texto";  // FIXME: needs review
 "Detection failed" = "La detección falló";  // FIXME: needs review

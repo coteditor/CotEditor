@@ -760,6 +760,8 @@
 
 
 /* MARK: LiveTextInsertionView */
+// button label
+"Insert" = "挿入";
 // error messages
 "No text detected" = "テキストが検出されませんでした";
 "Detection failed" = "検出に失敗しました";

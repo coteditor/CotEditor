@@ -759,6 +759,8 @@
 
 
 /* MARK: LiveTextInsertionView */
+// button label
+"Insert" = "Ekle";
 // error messages
 "No text detected" = "Algılanan metin yok";
 "Detection failed" = "Algılama başarısız";

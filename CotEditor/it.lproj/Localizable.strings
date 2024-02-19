@@ -759,6 +759,8 @@
 
 
 /* MARK: LiveTextInsertionView */
+// button label
+"Insert" = "Inserisci";
 // error messages
 "No text detected" = "Nessun testo individuato";
 "Detection failed" = "Individuazione fallita";

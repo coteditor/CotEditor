@@ -759,6 +759,8 @@
 
 
 /* MARK: LiveTextInsertionView */
+// button label
+"Insert" = "Vložit";
 // error messages
 "No text detected" = "Nebyl zjištěn žádný text";
 "Detection failed" = "Detekce selhala";

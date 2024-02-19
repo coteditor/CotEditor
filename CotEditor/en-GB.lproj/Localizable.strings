@@ -759,6 +759,8 @@
 
 
 /* MARK: LiveTextInsertionView */
+// button label
+"Insert" = "Insert";
 // error messages
 "No text detected" = "No text detected";
 "Detection failed" = "Detection failed";

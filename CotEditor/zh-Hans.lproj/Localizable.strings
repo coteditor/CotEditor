@@ -760,6 +760,8 @@
 
 
 /* MARK: LiveTextInsertionView */
+// button label
+"Insert" = "插入";
 // error messages
 "No text detected" = "没有检测到文本";
 "Detection failed" = "检测失败";
