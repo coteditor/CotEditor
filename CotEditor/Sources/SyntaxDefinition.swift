@@ -83,16 +83,16 @@ final class SyntaxDefinition: ObservableObject {
     
     static let termKeyPaths: [ReferenceWritableKeyPath<SyntaxDefinition, [Term]>] = [
         \.keywords,
-         \.commands,
-         \.types,
-         \.types,
-         \.attributes,
-         \.variables,
-         \.values,
-         \.numbers,
-         \.strings,
-         \.characters,
-         \.comments
+        \.commands,
+        \.types,
+        \.types,
+        \.attributes,
+        \.variables,
+        \.values,
+        \.numbers,
+        \.strings,
+        \.characters,
+        \.comments
     ]
     
     @Published var kind: Syntax.Kind = .general
