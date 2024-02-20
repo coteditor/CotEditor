@@ -64,6 +64,7 @@ struct SyntaxEditView: View {
     @State private var name: String = ""
     @State private var message: String?
     
+    @State private var columnVisibility: NavigationSplitViewVisibility = .all
     @State private var pane: Pane = .keywords
     @State private var errors: [SyntaxDefinition.Error] = []
     @State private var error: (any Error)?
@@ -73,7 +74,7 @@ struct SyntaxEditView: View {
     
     var body: some View {
         
-        NavigationSplitView(columnVisibility: .constant(.all)) {
+        NavigationSplitView(columnVisibility: $columnVisibility) {
             List(selection: $pane) {
                 Section(String(localized: "Highlighting", table: "SyntaxEdit", comment: "section header in sidebar")) {
                     ForEach(Pane.terms, id: \.self) { pane in
@@ -90,11 +91,23 @@ struct SyntaxEditView: View {
                         Text(pane.label)
                     }
                 }
-            }.navigationSplitViewColumnWidth(160)
+            }
             
         } detail: {
             VStack(spacing: 16) {
                 HStack(alignment: .firstTextBaseline) {
+                    if self.columnVisibility == .detailOnly {
+                        Button {
+                            withAnimation {
+                                self.columnVisibility = .all
+                            }
+                        } label: {
+                            Image(systemName: "sidebar.leading")
+                                .accessibilityLabel(String(localized: "Show Sidebar", table: "SyntaxEdit"))
+                        }
+                        .buttonStyle(.borderless)
+                    }
+                    
                     if self.isBundled {
                         Text(self.name)
                             .fontWeight(.medium)
