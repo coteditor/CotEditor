@@ -215,6 +215,8 @@
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "檔案「%@」不是文字資料";
 "The file appears to be %@.\n\nDo you really want to open the file?" = "該檔案看起來是%@。\n\n確定要開啟該檔案？";
+// string that is inserted as the variable (%@) in the binary file alert when the type of file cannot be determined
+"an unknown type" = "an unknown type";  // FIXME: added
 
 // Large file alert
 "The file “%@” has a size of %@." = "「%@」檔案尺寸為%@。";

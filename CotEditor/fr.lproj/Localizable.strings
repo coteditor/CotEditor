@@ -215,6 +215,8 @@
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "Le fichier « %@ » ne semble pas être dans un format textuel.";
 "The file appears to be %@.\n\nDo you really want to open the file?" = "Le ficher semble être de type %@.\n\nVoulez-vous vraiment ouvrir le fichier ?";
+// string that is inserted as the variable (%@) in the binary file alert when the type of file cannot be determined
+"an unknown type" = "an unknown type";  // FIXME: added
 
 // Large file alert
 "The file “%@” has a size of %@." = "Le fichier « %@ » a une taille de %@.";

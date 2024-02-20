@@ -449,7 +449,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // check if the content can be saved with the current text encoding.
         guard saveOperation.isAutosaveElsewhere || self.allowsLossySaving || self.canBeConverted() else {
-            throw SavingError(.lossyEncoding(self.fileEncoding), attempter: self)
+            throw DocumentSavingError(.lossyEncoding(self.fileEncoding), attempter: self)
         }
         
         try super.writeSafely(to: url, ofType: typeName, for: saveOperation)
@@ -691,7 +691,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     override func attemptRecovery(fromError error: any Error, optionIndex recoveryOptionIndex: Int, delegate: Any?, didRecoverSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
-        guard (error as NSError).domain == SavingError.errorDomain else {
+        guard (error as NSError).domain == DocumentSavingError.errorDomain else {
             return super.attemptRecovery(fromError: error, optionIndex: recoveryOptionIndex, delegate: delegate, didRecoverSelector: didRecoverSelector, contextInfo: contextInfo)
         }
         
@@ -1294,7 +1294,7 @@ struct LossyEncodingError: LocalizedError, RecoverableError {
 
 
 
-private struct SavingError: LocalizedError, CustomNSError {
+private struct DocumentSavingError: LocalizedError, CustomNSError {
     
     enum Code {
         
@@ -1302,7 +1302,7 @@ private struct SavingError: LocalizedError, CustomNSError {
     }
     
     
-    static let errorDomain: String = "CotEditor.SavingError"
+    static let errorDomain: String = "CotEditor.DocumentSavingError"
     
     var code: Code
     var attempter: Document
@@ -1327,10 +1327,7 @@ private struct SavingError: LocalizedError, CustomNSError {
     var failureReason: String? {
         
         // shown when an autosave failed
-        switch self.code {
-            case .lossyEncoding(let fileEncoding):
-                String(localized: "The document contains characters incompatible with “\(fileEncoding.localizedName).”")
-        }
+        self.errorDescription
     }
     
     

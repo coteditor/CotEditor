@@ -216,6 +216,8 @@
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "ファイル“%@”はテキストデータではないようです。";
 "The file appears to be %@.\n\nDo you really want to open the file?" = "このファイルは%@のようです。\n\n本当にファイルを開きますか?";
+// string that is inserted as the variable (%@) in the binary file alert when the type of file cannot be determined
+"an unknown type" = "不明なタイプ";
 
 // Large file alert
 "The file “%@” has a size of %@." = "ファイル“%@”はファイルサイズが%@あります。";

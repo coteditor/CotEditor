@@ -316,7 +316,7 @@ final class DocumentController: NSDocumentController {
     /// - Parameters:
     ///   - url: The location of the new document object.
     ///   - typeName: The type of the document.
-    /// - Throws: `DocumentReadError`
+    /// - Throws: `DocumentOpeningError`
     private nonisolated func checkOpeningSafetyOfDocument(at url: URL, type typeName: String) throws {
         
         // check if the file is possible binary
@@ -326,7 +326,7 @@ final class DocumentController: NSDocumentController {
            !type.conforms(to: .svg),  // SVG is plain-text (except SVGZ)
            url.pathExtension != "ts"  // "ts" extension conflicts between MPEG-2 streamclip file and TypeScript
         {
-            throw DocumentReadError(.binaryFile(type: type), url: url)
+            throw DocumentOpeningError(.binaryFile(type: type), url: url)
         }
         
         // check if the file is enormously large
@@ -335,7 +335,7 @@ final class DocumentController: NSDocumentController {
            let fileSize = (try? url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize,
            fileSize > fileSizeThreshold
         {
-            throw DocumentReadError(.tooLarge(size: fileSize), url: url)
+            throw DocumentOpeningError(.tooLarge(size: Int64(fileSize)), url: url)
         }
     }
     
@@ -364,12 +364,12 @@ final class DocumentController: NSDocumentController {
 
 // MARK: - Error
 
-private struct DocumentReadError: LocalizedError, RecoverableError {
+private struct DocumentOpeningError: LocalizedError, RecoverableError {
     
     enum Code {
         
         case binaryFile(type: UTType)
-        case tooLarge(size: Int)
+        case tooLarge(size: Int64)
     }
     
     var code: Code
@@ -387,11 +387,10 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         
         switch self.code {
             case .binaryFile:
-                return String(localized: "The file “\(self.url.lastPathComponent)” doesn’t appear to be text data.")
+                String(localized: "The file “\(self.url.lastPathComponent)” doesn’t appear to be text data.")
                 
             case .tooLarge(let size):
-                let byteSize = size.formatted(.byteCount(style: .file))
-                return String(localized: "The file “\(self.url.lastPathComponent)” has a size of \(byteSize).")
+                String(localized: "The file “\(self.url.lastPathComponent)” has a size of \(size, format: .byteCount(style: .file)).")
         }
     }
     
@@ -400,8 +399,9 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         
         switch self.code {
             case .binaryFile(let type):
-                let localizedTypeName = type.localizedDescription ?? "unknown file type"
-                return String(localized: "The file appears to be \(localizedTypeName).\n\nDo you really want to open the file?")
+                let localizedTypeName = type.localizedDescription ?? String(localized: "an unknown type", comment: "string that is inserted as the variable (%@) in the binary file alert when the type of file cannot be determined")
+                return String(localized: "The file appears to be \(localizedTypeName).\n\nDo you really want to open the file?",
+                              comment: "%@ is a file type")
                 
             case .tooLarge:
                 return String(localized: "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?")
