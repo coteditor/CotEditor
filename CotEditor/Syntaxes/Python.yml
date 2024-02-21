@@ -9,8 +9,8 @@ interpreters:
 - keyString: "python2"
 - keyString: "python3"
 metadata:
-  version: "2.8.0"
-  lastModified: "2023-05-05"
+  version: "2.8.1"
+  lastModified: "2024-02-21"
   distributionURL: "https://coteditor.com"
   author: "1024jp, nanasiya"
   license: "Same as CotEditor"
@@ -26,8 +26,8 @@ outlineMenu:
 keywords:
 - beginString: "and"
 - beginString: "as"
-- beginString: "async"
 - beginString: "assert"
+- beginString: "async"
 - beginString: "await"
 - beginString: "break"
 - beginString: "case"
