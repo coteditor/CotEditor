@@ -24,8 +24,8 @@
 //  limitations under the License.
 //
 
-import Combine
 import Foundation
+import Combine
 import AppKit.NSMenuItem
 import UniformTypeIdentifiers
 import Yams
@@ -92,9 +92,8 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
         // load bundled syntax list
         let url = Bundle.main.url(forResource: "SyntaxMap", withExtension: "json")!
         let data = try! Data(contentsOf: url)
-        let maps = try! JSONDecoder().decode([SettingName: SyntaxMap].self, from: data)
-        self.bundledMaps = maps
-        self.bundledSettingNames = maps.keys.sorted(options: [.localized, .caseInsensitive])
+        self.bundledMaps = try! JSONDecoder().decode([SettingName: SyntaxMap].self, from: data)
+        self.bundledSettingNames = self.bundledMaps.keys.sorted(options: [.localized, .caseInsensitive])
         
         // sanitize user setting file extensions
         try? self.sanitizeUserSettings()

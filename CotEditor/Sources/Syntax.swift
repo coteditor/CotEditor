@@ -80,12 +80,19 @@ struct Syntax: Equatable {
     
     struct Comment: Equatable, Codable {
         
+        private enum CodingKeys: String, CodingKey {
+            
+            case inline = "inlineDelimiter"
+            case blockBegin = "beginDelimiter"
+            case blockEnd = "endDelimiter"
+        }
+        
+        
         var inline: String?
         var blockBegin: String?
         var blockEnd: String?
         
-        
-        var blockPair: Pair<String>? {
+        var block: Pair<String>? {
             
             if let begin = self.blockBegin, let end = self.blockEnd { Pair(begin, end) } else { nil }
         }
@@ -206,7 +213,7 @@ struct Syntax: Equatable {
             .mapValues { $0.compactMap { try? $0.extractor } }
             .filter { !$0.value.isEmpty }
         
-        if let blockCommentDelimiters = self.commentDelimiters.blockPair {
+        if let blockCommentDelimiters = self.commentDelimiters.block {
             nestables[.pair(blockCommentDelimiters)] = .comments
         }
         if let inlineCommentDelimiter = self.commentDelimiters.inline {

@@ -43,7 +43,7 @@ extension Syntax: Codable {
         case comments
         
         case commentDelimiters
-        case outlines
+        case outlines = "outlineMenu"
         case completions
         
         case filenames
@@ -139,7 +139,9 @@ extension Syntax.Highlight: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encode(self.begin, forKey: .begin)
-        try container.encode(self.end, forKey: .end)
+        if self.end?.isEmpty == false {
+            try container.encode(self.end, forKey: .end)
+        }
         if self.isRegularExpression {
             try container.encode(true, forKey: .isRegularExpression)
         }
@@ -172,7 +174,7 @@ extension Syntax.Outline: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.pattern = try container.decode(String.self, forKey: .pattern)
-        self.template = try container.decode(String.self, forKey: .template)
+        self.template = try container.decodeIfPresent(String.self, forKey: .template) ?? ""
         self.ignoreCase = try container.decodeIfPresent(Bool.self, forKey: .ignoreCase) ?? false
         self.bold = try container.decodeIfPresent(Bool.self, forKey: .bold) ?? false
         self.italic = try container.decodeIfPresent(Bool.self, forKey: .italic) ?? false

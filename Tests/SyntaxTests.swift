@@ -46,10 +46,9 @@ final class SyntaxTests: XCTestCase {
         try super.setUpWithError()
         
         let bundle = Bundle(for: type(of: self))
-        let urls = try XCTUnwrap(bundle.urls(forResourcesWithExtension: "yml", subdirectory: syntaxDirectoryName))
+        let urls = try XCTUnwrap(bundle.urls(forResourcesWithExtension: "yml", subdirectory: self.syntaxDirectoryName))
         
         // load syntaxes
-        
         let decoder = YAMLDecoder()
         self.syntaxes = try urls.reduce(into: [:]) { (dict, url) in
             let data = try Data(contentsOf: url)
@@ -57,12 +56,7 @@ final class SyntaxTests: XCTestCase {
             
             dict[name] = try decoder.decode(Syntax.self, from: data)
         }
-        
-        // create HTML syntax
-        let htmlURL = try XCTUnwrap(urls.first { $0.lastPathComponent.contains("HTML") })
-        let string = try String(contentsOf: htmlURL)
-        let htmlDict = try XCTUnwrap(Yams.load(yaml: string) as? [String: Any])
-        self.htmlSyntax = Syntax(dictionary: htmlDict, name: "HTML")
+        self.htmlSyntax = try XCTUnwrap(self.syntaxes["HTML"])
         
         XCTAssertNotNil(self.htmlSyntax)
         
@@ -98,11 +92,10 @@ final class SyntaxTests: XCTestCase {
         
         let syntax = Syntax.none
         
-        XCTAssertEqual(syntax.name, "None")
         XCTAssertEqual(syntax.kind, .code)
         XCTAssert(syntax.highlightParser.isEmpty)
         XCTAssertNil(syntax.commentDelimiters.inline)
-        XCTAssertNil(syntax.commentDelimiters.blockPair)
+        XCTAssertNil(syntax.commentDelimiters.block)
     }
     
     
@@ -110,10 +103,9 @@ final class SyntaxTests: XCTestCase {
         
         let syntax = try XCTUnwrap(self.htmlSyntax)
         
-        XCTAssertEqual(syntax.name, "HTML")
         XCTAssertFalse(syntax.highlightParser.isEmpty)
         XCTAssertNil(syntax.commentDelimiters.inline)
-        XCTAssertEqual(syntax.commentDelimiters.blockPair, Pair("<!--", "-->"))
+        XCTAssertEqual(syntax.commentDelimiters.block, Pair("<!--", "-->"))
     }
     
     
@@ -123,7 +115,7 @@ final class SyntaxTests: XCTestCase {
         let source = try XCTUnwrap(self.htmlSource)
         
         let textStorage = NSTextStorage(string: source)
-        let parser = SyntaxParser(textStorage: textStorage, syntax: syntax)
+        let parser = SyntaxParser(textStorage: textStorage, syntax: syntax, name: "HTML")
         
         // test outline parsing with publisher
         let outlineParseExpectation = self.expectation(description: "didParseOutline")

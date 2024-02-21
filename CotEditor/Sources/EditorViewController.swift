@@ -161,7 +161,7 @@ final class EditorViewController: NSSplitViewController {
         
         textView.syntaxKind = syntax.kind
         textView.inlineCommentDelimiter = syntax.commentDelimiters.inline
-        textView.blockCommentDelimiters = syntax.commentDelimiters.blockPair
+        textView.blockCommentDelimiters = syntax.commentDelimiters.block
         textView.syntaxCompletionWords = syntax.completionWords
     }
     
