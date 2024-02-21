@@ -107,7 +107,7 @@ struct SyntaxFileMappingEditView: View {
                         }
                     }
                 }
-                .listStyle(.bordered)
+                .listStyle(.bordered(alternatesRowBackgrounds: true))
                 .border(Color(nsColor: .gridColor))
                 
                 AddRemoveButton($items, selection: $selection, focus: $focusedField)
