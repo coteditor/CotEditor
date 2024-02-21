@@ -1065,7 +1065,7 @@
 		2A836F7F1D572A5D0044E8EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2A8458922A073C5F0056B1EA /* HighlightDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightDefinition.swift; sourceTree = "<group>"; };
 		2A8458952A073C830056B1EA /* OutlineDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineDefinition.swift; sourceTree = "<group>"; };
-		2A8544E6267872E0006EF01A /* SyntaxMapBuilder */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SyntaxMapBuilder; sourceTree = "<group>"; };
+		2A8544E6267872E0006EF01A /* SyntaxMap */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SyntaxMap; sourceTree = "<group>"; };
 		2A86C47A20371DBE00B9357C /* FilePermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePermissions.swift; sourceTree = "<group>"; };
 		2A885E321D5C3A1B00288723 /* Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
 		2A88E7701E81A2C7000019C6 /* OrderedSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedSet.swift; sourceTree = "<group>"; };
@@ -1689,7 +1689,7 @@
 				2A37F4AFFDCFA73011CA2CEA /* Scripts */,
 				2AC71DE01BF0BDBC002E1434 /* Tests */,
 				2A3F18F8203270BE002F1CA7 /* UI Tests */,
-				2A8544E6267872E0006EF01A /* SyntaxMapBuilder */,
+				2A8544E6267872E0006EF01A /* SyntaxMap */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
 			name = CotEditor;
