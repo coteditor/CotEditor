@@ -56,8 +56,6 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     typealias SettingName = String
     typealias MappingTable = [KeyPath<SyntaxMap, [String]>: [String: [SettingName]]]
     
-    private typealias SyntaxDictionary = [String: Any]
-    
     
     // MARK: Public Properties
     
@@ -125,45 +123,33 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     }
     
     
-    /// Returns the syntax definition corresponding to syntax name.
+    /// Returns the bundled version of the setting, or `nil` if not exists.
     ///
     /// - Parameter name: The setting name.
-    /// - Returns: A syntax definition, or `nil` if not exists.
-    func settingDefinition(name: SettingName) -> SyntaxDefinition? {
-        
-        guard let url = self.urlForUsedSetting(name: name) else { return nil }
-        
-        return try? self.loadSettingDefinition(at: url)
-    }
-    
-    
-    /// Returns bundled version syntax definition, or `nil` if not exists.
-    ///
-    /// - Parameter name: The setting name.
-    /// - Returns: A syntax definition, or `nil` if not exists.
-    func bundledDefinition(name: SettingName) -> SyntaxDefinition? {
+    /// - Returns: A setting, or `nil` if not exists.
+    func bundledSetting(name: SettingName) -> Setting? {
         
         guard let url = self.urlForBundledSetting(name: name) else { return nil }
         
-        return try? self.loadSettingDefinition(at: url)
+        return try? self.loadSetting(at: url)
     }
     
     
     /// Saves the given setting file to the user domain.
     ///
     /// - Parameters:
-    ///   - definition: The setting to save.
+    ///   - setting: The setting to save.
     ///   - name: The setting name to save.
     ///   - oldName: The old setting name if any exists.
-    func save(definition: SyntaxDefinition, name: SettingName, oldName: SettingName?) throws {
+    func save(setting: Setting, name: SettingName, oldName: SettingName?) throws {
         
         // sort elements
-        var definition = definition
-        for keyPath in SyntaxType.allCases.map(SyntaxDefinition.highlightKeyPath(for:)) {
-            definition[keyPath: keyPath].sort(\.begin, options: .caseInsensitive)
+        var setting = setting
+        for keyPath in SyntaxType.allCases.map(Syntax.highlightKeyPath(for:)) {
+            setting[keyPath: keyPath].sort(\.begin, options: .caseInsensitive)
         }
-        definition.outlines.sort(\.pattern, options: .caseInsensitive)
-        definition.completions.sort(\.keyString, options: .caseInsensitive)
+        setting.outlines.sort(\.pattern, options: .caseInsensitive)
+        setting.completions.sort(\.keyString, options: .caseInsensitive)
         
         let fileURL = self.preparedURLForUserSetting(name: name)
         
@@ -174,7 +160,7 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
         
         // just remove the current custom setting file in the user domain if new syntax is just the same as bundled one
         // so that application uses bundled one
-        if definition == self.bundledDefinition(name: name) {
+        if setting == self.bundledSetting(name: name) {
             if fileURL.isReachable {
                 try FileManager.default.removeItem(at: fileURL)
             }
@@ -182,7 +168,7 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
             // save file to user domain
             let encoder = YAMLEncoder()
             encoder.options.allowUnicode = true
-            let yamlString = try encoder.encode(definition)
+            let yamlString = try encoder.encode(setting)
             let data = Data(yamlString.utf8)
             
             try FileManager.default.createIntermediateDirectories(to: fileURL)
@@ -247,9 +233,10 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     /// Loads setting from the file at the given URL.
     func loadSetting(at fileURL: URL) throws -> Setting {
         
-        let dictionary = try self.loadSettingDictionary(at: fileURL)
+        let decoder = YAMLDecoder()
+        let data = try Data(contentsOf: fileURL)
         
-        return Syntax(dictionary: dictionary)
+        return try decoder.decode(Setting.self, from: data)
     }
     
     
@@ -294,34 +281,6 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
             
             try FileManager.default.moveItem(at: url, to: newURL)
         }
-    }
-    
-    
-    /// Loads SyntaxDefinition at file URL.
-    ///
-    /// - Parameter fileURL: URL to a setting file.
-    private func loadSettingDefinition(at fileURL: URL) throws -> SyntaxDefinition {
-        
-        let data = try Data(contentsOf: fileURL)
-        
-        return try YAMLDecoder().decode(SyntaxDefinition.self, from: data)
-    }
-    
-    
-    /// Loads SyntaxDictionary at file URL.
-    ///
-    /// - Parameter fileURL: URL to a setting file.
-    /// - Throws: `CocoaError`
-    private func loadSettingDictionary(at fileURL: URL) throws -> SyntaxDictionary {
-        
-        let string = try String(contentsOf: fileURL)
-        let yaml = try Yams.load(yaml: string)
-        
-        guard let syntaxDictionary = yaml as? SyntaxDictionary else {
-            throw CocoaError.error(.fileReadCorruptFile, url: fileURL)
-        }
-        
-        return syntaxDictionary
     }
     
     

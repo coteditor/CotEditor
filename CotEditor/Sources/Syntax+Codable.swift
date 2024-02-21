@@ -1,5 +1,5 @@
 //
-//  SyntaxDefinition+Codable.swift
+//  Syntax+Codable.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 
 import Foundation
 
-extension SyntaxDefinition: Codable {
+extension Syntax: Codable {
     
     private enum CodingKeys: String, CodingKey {
         
@@ -58,9 +58,7 @@ extension SyntaxDefinition: Codable {
         
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.init()
-        
-        self.kind = try values.decodeIfPresent(Syntax.Kind.self, forKey: .kind) ?? .general
+        self.kind = try values.decodeIfPresent(Kind.self, forKey: .kind) ?? .general
         self.keywords = try values.decodeIfPresent([Highlight].self, forKey: .keywords) ?? []
         self.commands = try values.decodeIfPresent([Highlight].self, forKey: .commands) ?? []
         self.types = try values.decodeIfPresent([Highlight].self, forKey: .types) ?? []
@@ -80,7 +78,7 @@ extension SyntaxDefinition: Codable {
         self.extensions = try values.decodeIfPresent([KeyString].self, forKey: .extensions) ?? []
         self.interpreters = try values.decodeIfPresent([KeyString].self, forKey: .interpreters) ?? []
         
-        self.metadata = try values.decodeIfPresent(SyntaxDefinition.Metadata.self, forKey: .metadata) ?? .init()
+        self.metadata = try values.decodeIfPresent(Metadata.self, forKey: .metadata) ?? .init()
     }
     
     
@@ -112,7 +110,7 @@ extension SyntaxDefinition: Codable {
 }
 
 
-extension SyntaxDefinition.Highlight: Codable {
+extension Syntax.Highlight: Codable {
     
     private enum CodingKeys: String, CodingKey {
         
@@ -155,7 +153,7 @@ extension SyntaxDefinition.Highlight: Codable {
 }
 
 
-extension SyntaxDefinition.Outline: Codable {
+extension Syntax.Outline: Codable {
     
     private enum CodingKeys: String, CodingKey {
         

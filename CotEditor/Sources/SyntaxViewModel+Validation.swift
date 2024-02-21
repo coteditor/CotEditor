@@ -1,5 +1,5 @@
 //
-//  SyntaxDefinition+Validation.swift
+//  SyntaxViewModel+Validation.swift
 //
 //  CotEditor
 //  https://coteditor.com

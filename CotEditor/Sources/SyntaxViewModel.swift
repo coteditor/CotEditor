@@ -1,5 +1,5 @@
 //
-//  SyntaxDefinition.swift
+//  SyntaxViewModel.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,107 +25,10 @@
 
 import Foundation
 
-struct SyntaxDefinition: Equatable {
-    
-    struct Highlight: Equatable {
-        
-        var begin: String = ""
-        var end: String?
-        var isRegularExpression: Bool = false
-        var ignoreCase: Bool = false
-        var description: String?
-    }
-    
-    
-    struct Outline: Equatable {
-        
-        var pattern: String = ""
-        var template: String = ""
-        var ignoreCase: Bool = false
-        var bold: Bool = false
-        var italic: Bool = false
-        var underline: Bool = false
-        var description: String?
-    }
-    
-    
-    struct KeyString: Equatable, Codable {
-        
-        var keyString: String
-    }
-    
-    
-    struct Comment: Equatable, Codable {
-        
-        var inline: String?
-        var blockBegin: String?
-        var blockEnd: String?
-        
-        
-        var blockPair: Pair<String>? {
-            
-            if let begin = self.blockBegin, let end = self.blockEnd { Pair(begin, end) } else { nil }
-        }
-    }
-    
-    
-    struct Metadata: Equatable, Codable {
-        
-        var version: String?
-        var lastModified: String?
-        var distributionURL: String?
-        var author: String?
-        var license: String?
-        var description: String?
-    }
-    
-    var kind: Syntax.Kind = .general
-    
-    var keywords: [Highlight] = []
-    var commands: [Highlight] = []
-    var types: [Highlight] = []
-    var attributes: [Highlight] = []
-    var variables: [Highlight] = []
-    var values: [Highlight] = []
-    var numbers: [Highlight] = []
-    var strings: [Highlight] = []
-    var characters: [Highlight] = []
-    var comments: [Highlight] = []
-    
-    var commentDelimiters: Comment = Comment()
-    var outlines: [Outline] = []
-    var completions: [KeyString] = []
-    
-    var filenames: [KeyString] = []
-    var extensions: [KeyString] = []
-    var interpreters: [KeyString] = []
-    
-    var metadata: Metadata = Metadata()
-    
-    
-    static func highlightKeyPath(for type: SyntaxType) -> WritableKeyPath<SyntaxDefinition, [Highlight]> {
-        
-        switch type {
-            case .keywords: \.keywords
-            case .commands: \.commands
-            case .types: \.types
-            case .attributes: \.attributes
-            case .variables: \.variables
-            case .values: \.values
-            case .numbers: \.numbers
-            case .strings: \.strings
-            case .characters: \.characters
-            case .comments: \.comments
-        }
-    }
-}
-
-
-
 final class SyntaxViewModel: ObservableObject {
     
-    typealias Comment = SyntaxDefinition.Comment
-    typealias Metadata = SyntaxDefinition.Metadata
+    typealias Comment = Syntax.Comment
+    typealias Metadata = Syntax.Metadata
     
     
     struct Highlight: Identifiable, EmptyInitializable {
@@ -209,7 +112,7 @@ final class SyntaxViewModel: ObservableObject {
 
 extension SyntaxViewModel {
     
-    typealias Value = SyntaxDefinition
+    typealias Value = Syntax
     
     convenience init(value: Value? = nil) {
         
@@ -274,7 +177,7 @@ extension SyntaxViewModel {
 
 extension SyntaxViewModel.Highlight {
     
-    typealias Value = SyntaxDefinition.Highlight
+    typealias Value = Syntax.Highlight
     
     init(value: Value) {
         
@@ -299,7 +202,7 @@ extension SyntaxViewModel.Highlight {
 
 extension SyntaxViewModel.Outline {
     
-    typealias Value = SyntaxDefinition.Outline
+    typealias Value = Syntax.Outline
     
     init(value: Value) {
         
@@ -328,7 +231,7 @@ extension SyntaxViewModel.Outline {
 
 extension SyntaxViewModel.KeyString {
     
-    typealias Value = SyntaxDefinition.KeyString
+    typealias Value = Syntax.KeyString
     
     init(value: Value) {
         

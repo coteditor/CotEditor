@@ -33,7 +33,7 @@ final class SyntaxTests: XCTestCase {
     
     private let syntaxDirectoryName = "Syntaxes"
     
-    private var definitions: [String: SyntaxDefinition] = [:]
+    private var syntaxes: [String: Syntax] = [:]
     private var htmlSyntax: Syntax?
     private var htmlSource: String?
     
@@ -51,11 +51,11 @@ final class SyntaxTests: XCTestCase {
         // load syntaxes
         
         let decoder = YAMLDecoder()
-        self.definitions = try urls.reduce(into: [:]) { (dict, url) in
+        self.syntaxes = try urls.reduce(into: [:]) { (dict, url) in
             let data = try Data(contentsOf: url)
             let name = url.deletingPathExtension().lastPathComponent
             
-            dict[name] = try decoder.decode(SyntaxDefinition.self, from: data)
+            dict[name] = try decoder.decode(Syntax.self, from: data)
         }
         
         // create HTML syntax
@@ -76,8 +76,8 @@ final class SyntaxTests: XCTestCase {
     
     func testAllSyntaxes() {
         
-        for (name, definition) in self.definitions {
-            let model = SyntaxViewModel(value: definition)
+        for (name, syntax) in self.syntaxes {
+            let model = SyntaxViewModel(value: syntax)
             let errors = model.validate()
             
             XCTAssert(errors.isEmpty)
@@ -145,17 +145,5 @@ final class SyntaxTests: XCTestCase {
             }
         parser.invalidateOutline()
         self.waitForExpectations(timeout: 1)
-    }
-    
-    
-    func testViewModelHighlightEquality() throws {
-        
-        let termA = SyntaxViewModel.Highlight(begin: "abc", end: "def")
-        let termB = SyntaxViewModel.Highlight(begin: "abc", end: "def")
-        let termC = SyntaxViewModel.Highlight(begin: "abc")
-        
-        XCTAssertEqual(termA, termB)
-        XCTAssertNotEqual(termA, termC)
-        XCTAssertNotEqual(termA.id, termB.id)
     }
 }

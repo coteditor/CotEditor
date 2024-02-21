@@ -27,7 +27,7 @@ import SwiftUI
 
 struct SyntaxEditView: View {
     
-    typealias SaveAction = (_ syntax: SyntaxDefinition, _ name: String) throws -> Void
+    typealias SaveAction = (_ syntax: Syntax, _ name: String) throws -> Void
     
     fileprivate enum Pane {
         
@@ -74,9 +74,9 @@ struct SyntaxEditView: View {
     @FocusState private var isNameFieldFocused: Bool
     
     
-    init(definition: SyntaxDefinition? = nil, originalName: String? = nil, isBundled: Bool = false, saveAction: @escaping SaveAction) {
+    init(syntax: Syntax? = nil, originalName: String? = nil, isBundled: Bool = false, saveAction: @escaping SaveAction) {
         
-        self._syntax = StateObject(wrappedValue: SyntaxViewModel(value: definition))
+        self._syntax = StateObject(wrappedValue: SyntaxViewModel(value: syntax))
         self.originalName = originalName
         self.isBundled = isBundled
         self.saveAction = saveAction
@@ -253,10 +253,10 @@ struct SyntaxEditView: View {
         
         guard
             self.isBundled,
-            let definition = SyntaxManager.shared.bundledDefinition(name: self.name)
+            let syntax = SyntaxManager.shared.bundledSetting(name: self.name)
         else { return }
         
-        self.syntax.update(with: definition)
+        self.syntax.update(with: syntax)
         self.errors = self.syntax.validate()
     }
     

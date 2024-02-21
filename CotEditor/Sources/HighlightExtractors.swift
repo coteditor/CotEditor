@@ -31,7 +31,7 @@ protocol HighlightExtractable: Sendable {
 }
 
 
-extension HighlightDefinition {
+extension Syntax.Highlight {
     
     var extractor: any HighlightExtractable {
         

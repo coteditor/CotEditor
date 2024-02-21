@@ -32,7 +32,7 @@ struct OutlineExtractor {
     var style: OutlineItem.Style
     
     
-    init(definition: OutlineDefinition) throws {
+    init(definition: Syntax.Outline) throws {
         
         // compile to regex object
         var options: NSRegularExpression.Options = .anchorsMatchLines
