@@ -57,9 +57,9 @@ struct SyntaxMappingConflictsView: View {
     
     init(table: SyntaxManager.MappingTable) {
         
-        self.extensionConflicts = table[.extensions]?.map { .init(name: $0.key, syntaxes: $0.value) } ?? []
-        self.filenameConflicts = table[.filenames]?.map { .init(name: $0.key, syntaxes: $0.value) } ?? []
-        self.interpreterConflicts = table[.interpreters]?.map { .init(name: $0.key, syntaxes: $0.value) } ?? []
+        self.extensionConflicts = table[\.extensions]?.map { .init(name: $0.key, syntaxes: $0.value) } ?? []
+        self.filenameConflicts = table[\.filenames]?.map { .init(name: $0.key, syntaxes: $0.value) } ?? []
+        self.interpreterConflicts = table[\.interpreters]?.map { .init(name: $0.key, syntaxes: $0.value) } ?? []
     }
     
     
@@ -143,7 +143,7 @@ private struct ConflictTable: View {
 
 #Preview {
     SyntaxMappingConflictsView(table: [
-        .extensions: ["svg": ["SVG", "XML"]],
-        .filenames: ["foo": ["SVG", "XML", "Foo"]],
+        \.extensions: ["svg": ["SVG", "XML"]],
+        \.filenames: ["foo": ["SVG", "XML", "Foo"]],
     ])
 }
