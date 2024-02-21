@@ -913,28 +913,6 @@
         }
       }
     },
-    "Comment" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kommentar"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comment"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "コメント"
-          }
-        }
-      }
-    },
     "Completion" : {
       "comment" : "table column header",
       "localizations" : {
@@ -3355,7 +3333,7 @@
         }
       }
     },
-    "Syntax.key.completion.label" : {
+    "Syntax.key.completions.label" : {
       "comment" : "syntax definition type",
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -3589,7 +3567,7 @@
         }
       }
     },
-    "Syntax.key.outline.label" : {
+    "Syntax.key.outlines.label" : {
       "comment" : "syntax definition type",
       "extractionState" : "extracted_with_value",
       "localizations" : {

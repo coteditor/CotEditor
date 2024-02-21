@@ -426,19 +426,19 @@ extension PartialKeyPath<SyntaxObject> {
                        defaultValue: "Characters",
                        table: "SyntaxEdit",
                        comment: "syntax highlight type")
-            case \.comments:
+            case \.comments, \.commentDelimiters:
                 String(localized: "Syntax.key.comments.label",
                        defaultValue: "Comments",
                        table: "SyntaxEdit",
                        comment: "syntax highlight type")
                 
             case \.outlines:
-                String(localized: "Syntax.key.outline.label",
+                String(localized: "Syntax.key.outlines.label",
                        defaultValue: "Outline",
                        table: "SyntaxEdit",
                        comment: "syntax definition type")
             case \.completions:
-                String(localized: "Syntax.key.completion.label",
+                String(localized: "Syntax.key.completions.label",
                        defaultValue: "Completion",
                        table: "SyntaxEdit",
                        comment: "syntax definition type")
