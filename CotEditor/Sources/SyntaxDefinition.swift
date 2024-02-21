@@ -85,21 +85,6 @@ final class SyntaxDefinition: ObservableObject {
         var description: String?
     }
     
-    
-    static let highlightKeyPaths: [ReferenceWritableKeyPath<SyntaxDefinition, [Highlight]>] = [
-        \.keywords,
-        \.commands,
-        \.types,
-        \.types,
-        \.attributes,
-        \.variables,
-        \.values,
-        \.numbers,
-        \.strings,
-        \.characters,
-        \.comments
-    ]
-    
     @Published var kind: Syntax.Kind = .general
     
     @Published var keywords: [Highlight] = []
@@ -122,6 +107,23 @@ final class SyntaxDefinition: ObservableObject {
     @Published var interpreters: [KeyString] = []
     
     @Published var metadata: Metadata = Metadata()
+    
+    
+    static func highlightKeyPath(for type: SyntaxType) -> ReferenceWritableKeyPath<SyntaxDefinition, [Highlight]> {
+        
+        switch type {
+            case .keywords: \.keywords
+            case .commands: \.commands
+            case .types: \.types
+            case .attributes: \.attributes
+            case .variables: \.variables
+            case .values: \.values
+            case .numbers: \.numbers
+            case .strings: \.strings
+            case .characters: \.characters
+            case .comments: \.comments
+        }
+    }
 }
 
 
@@ -132,7 +134,7 @@ extension SyntaxDefinition: Equatable {
     
     static func == (lhs: SyntaxDefinition, rhs: SyntaxDefinition) -> Bool {
         
-        SyntaxDefinition.highlightKeyPaths.allSatisfy({ lhs[keyPath: $0] == rhs[keyPath: $0] }) &&
+        SyntaxType.allCases.map(Self.highlightKeyPath(for:)).allSatisfy({ lhs[keyPath: $0] == rhs[keyPath: $0] }) &&
         lhs.kind == rhs.kind &&
         lhs.commentDelimiters == rhs.commentDelimiters &&
         lhs.outlines == rhs.outlines &&

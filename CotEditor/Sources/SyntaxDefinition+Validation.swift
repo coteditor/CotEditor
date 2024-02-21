@@ -59,7 +59,7 @@ extension SyntaxDefinition {
         
         var errors: [Error] = []
         
-        for keyPath in Self.highlightKeyPaths {
+        for keyPath in SyntaxType.allCases.map(Self.highlightKeyPath(for:)) {
             let highlights = self[keyPath: keyPath]
                 .sorted {  // sort for duplication check
                     if $0.begin != $1.begin {
