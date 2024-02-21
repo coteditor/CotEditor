@@ -71,7 +71,7 @@ final class SyntaxTests: XCTestCase {
     func testAllSyntaxes() {
         
         for (name, syntax) in self.syntaxes {
-            let model = SyntaxViewModel(value: syntax)
+            let model = SyntaxObject(value: syntax)
             let errors = model.validate()
             
             XCTAssert(errors.isEmpty)

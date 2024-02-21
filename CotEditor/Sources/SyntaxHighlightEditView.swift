@@ -27,7 +27,7 @@ import SwiftUI
 
 struct SyntaxHighlightEditView: View {
     
-    typealias Item = SyntaxViewModel.Highlight
+    typealias Item = SyntaxObject.Highlight
     
     
     @Binding var items: [Item]
@@ -103,7 +103,7 @@ struct SyntaxHighlightEditView: View {
 // MARK: - Preview
 
 #Preview {
-    @State var items: [SyntaxViewModel.Highlight] = [
+    @State var items: [SyntaxObject.Highlight] = [
         .init(begin: "(inu)", end: "(dog)"),
         .init(begin: "[Cc]at", end: "$0", isRegularExpression: true, description: "note"),
         .init(begin: "[]", isRegularExpression: true, ignoreCase: true),

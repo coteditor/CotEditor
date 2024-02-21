@@ -1,5 +1,5 @@
 //
-//  SyntaxViewModel+Validation.swift
+//  SyntaxObject+Validation.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,7 @@
 
 import Foundation
 
-extension SyntaxViewModel {
+extension SyntaxObject {
     
     struct Error: Swift.Error {
         
@@ -39,11 +39,11 @@ extension SyntaxViewModel {
         
         
         var code: Code
-        var type: PartialKeyPath<SyntaxViewModel>
+        var type: PartialKeyPath<SyntaxObject>
         var string: String
         
         
-        init(_ code: Code, type: PartialKeyPath<SyntaxViewModel>, string: String) {
+        init(_ code: Code, type: PartialKeyPath<SyntaxObject>, string: String) {
             
             self.code = code
             self.type = type

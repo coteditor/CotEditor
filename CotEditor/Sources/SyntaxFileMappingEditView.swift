@@ -27,9 +27,9 @@ import SwiftUI
 
 struct SyntaxFileMappingEditView: View {
     
-    @Binding var extensions: [SyntaxViewModel.KeyString]
-    @Binding var filenames: [SyntaxViewModel.KeyString]
-    @Binding var interpreters: [SyntaxViewModel.KeyString]
+    @Binding var extensions: [SyntaxObject.KeyString]
+    @Binding var filenames: [SyntaxObject.KeyString]
+    @Binding var interpreters: [SyntaxObject.KeyString]
     
     
     // MARK: View
@@ -74,7 +74,7 @@ struct SyntaxFileMappingEditView: View {
     
     struct EditTable<Label: View>: View {
         
-        typealias Item = SyntaxViewModel.KeyString
+        typealias Item = SyntaxObject.KeyString
         
         
         @Binding var items: [Item]
@@ -121,9 +121,9 @@ struct SyntaxFileMappingEditView: View {
 // MARK: - Preview
 
 #Preview {
-    @State var extensions: [SyntaxViewModel.KeyString] = [.init(string: "abc")]
-    @State var filenames: [SyntaxViewModel.KeyString] = []
-    @State var interpreters: [SyntaxViewModel.KeyString] = []
+    @State var extensions: [SyntaxObject.KeyString] = [.init(string: "abc")]
+    @State var filenames: [SyntaxObject.KeyString] = []
+    @State var interpreters: [SyntaxObject.KeyString] = []
     
     return SyntaxFileMappingEditView(extensions: $extensions,
                                      filenames: $filenames,

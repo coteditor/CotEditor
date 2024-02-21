@@ -1,5 +1,5 @@
 //
-//  SyntaxViewModel.swift
+//  SyntaxObject.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 
 import Foundation
 
-final class SyntaxViewModel: ObservableObject {
+final class SyntaxObject: ObservableObject {
     
     typealias Comment = Syntax.Comment
     typealias Metadata = Syntax.Metadata
@@ -89,7 +89,7 @@ final class SyntaxViewModel: ObservableObject {
     @Published var metadata: Metadata = Metadata()
     
     
-    static func highlightKeyPath(for type: SyntaxType) -> WritableKeyPath<SyntaxViewModel, [Highlight]> {
+    static func highlightKeyPath(for type: SyntaxType) -> WritableKeyPath<SyntaxObject, [Highlight]> {
         
         switch type {
             case .keywords: \.keywords
@@ -110,7 +110,7 @@ final class SyntaxViewModel: ObservableObject {
 
 // MARK: Definition Conversion
 
-extension SyntaxViewModel {
+extension SyntaxObject {
     
     typealias Value = Syntax
     
@@ -175,7 +175,7 @@ extension SyntaxViewModel {
 }
 
 
-extension SyntaxViewModel.Highlight {
+extension SyntaxObject.Highlight {
     
     typealias Value = Syntax.Highlight
     
@@ -200,7 +200,7 @@ extension SyntaxViewModel.Highlight {
 }
 
 
-extension SyntaxViewModel.Outline {
+extension SyntaxObject.Outline {
     
     typealias Value = Syntax.Outline
     
@@ -229,7 +229,7 @@ extension SyntaxViewModel.Outline {
 }
 
 
-extension SyntaxViewModel.KeyString {
+extension SyntaxObject.KeyString {
     
     typealias Value = Syntax.KeyString
     

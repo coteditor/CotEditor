@@ -27,7 +27,7 @@ import SwiftUI
 
 struct SyntaxValidationView: View {
     
-    var errors: [SyntaxViewModel.Error]
+    var errors: [SyntaxObject.Error]
     
     @State private var selection: Int?
     
@@ -79,7 +79,7 @@ struct SyntaxValidationView: View {
     
     private struct ErrorView: View {
         
-        var error: SyntaxViewModel.Error
+        var error: SyntaxObject.Error
         
         
         var body: some View {
@@ -108,7 +108,7 @@ struct SyntaxValidationView: View {
 }
 
 
-private extension SyntaxViewModel.Error {
+private extension SyntaxObject.Error {
     
     var localizedDescription: String {
         
@@ -131,7 +131,7 @@ private extension SyntaxViewModel.Error {
 // MARK: - Preview
 
 #Preview {
-    let errors: [SyntaxViewModel.Error] = [
+    let errors: [SyntaxObject.Error] = [
         .init(.duplicated, type: \.values, string: "bb"),
         .init(.regularExpression, type: \.outlines, string: "[]"),
         .init(.blockComment, type: \.comments, string: "bb"),
