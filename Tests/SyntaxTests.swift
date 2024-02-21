@@ -148,11 +148,11 @@ final class SyntaxTests: XCTestCase {
     }
     
     
-    func testTermEquality() throws {
+    func testViewModelHighlightEquality() throws {
         
-        let termA = SyntaxDefinition.Term(begin: "abc", end: "def")
-        let termB = SyntaxDefinition.Term(begin: "abc", end: "def")
-        let termC = SyntaxDefinition.Term(begin: "abc")
+        let termA = SyntaxDefinition.Highlight(begin: "abc", end: "def")
+        let termB = SyntaxDefinition.Highlight(begin: "abc", end: "def")
+        let termC = SyntaxDefinition.Highlight(begin: "abc")
         
         XCTAssertEqual(termA, termB)
         XCTAssertNotEqual(termA, termC)
