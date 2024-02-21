@@ -228,7 +228,7 @@ struct Syntax: Equatable {
         
         let completions = self.completions.map(\.keyString).filter { !$0.isEmpty }
         
-        return  if !completions.isEmpty {
+        return if !completions.isEmpty {
             // from completion definition
             completions
         } else {
