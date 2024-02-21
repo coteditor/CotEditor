@@ -79,7 +79,7 @@ extension SyntaxObject {
                     lastHighlight = highlight
                 }
                 
-                guard highlight.begin != lastHighlight?.begin || highlight.end != lastHighlight?.end else {
+                guard highlight == lastHighlight else {
                     errors.append(Error(.duplicated, type: keyPath, string: highlight.begin))
                     continue
                 }

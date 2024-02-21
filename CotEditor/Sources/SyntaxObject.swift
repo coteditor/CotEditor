@@ -244,3 +244,15 @@ extension SyntaxObject.KeyString {
         Value(keyString: self.string)
     }
 }
+
+
+extension SyntaxObject.Highlight: Equatable {
+    
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        
+        lhs.begin == rhs.begin &&
+        lhs.end == rhs.end &&
+        lhs.isRegularExpression == rhs.isRegularExpression &&
+        lhs.ignoreCase == rhs.ignoreCase
+    }
+}

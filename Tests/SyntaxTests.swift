@@ -138,4 +138,16 @@ final class SyntaxTests: XCTestCase {
         parser.invalidateOutline()
         self.waitForExpectations(timeout: 1)
     }
+    
+    
+    func testViewModelHighlightEquality() {
+        
+        let termA = SyntaxObject.Highlight(begin: "abc", end: "def")
+        let termB = SyntaxObject.Highlight(begin: "abc", end: "def")
+        let termC = SyntaxObject.Highlight(begin: "abc")
+        
+        XCTAssertEqual(termA, termB)
+        XCTAssertNotEqual(termA, termC)
+        XCTAssertNotEqual(termA.id, termB.id)
+    }
 }
