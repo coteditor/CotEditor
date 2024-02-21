@@ -27,9 +27,9 @@ import SwiftUI
 
 struct SyntaxFileMappingEditView: View {
     
-    @Binding var extensions: [SyntaxDefinition.IdentifiedString]
-    @Binding var filenames: [SyntaxDefinition.IdentifiedString]
-    @Binding var interpreters: [SyntaxDefinition.IdentifiedString]
+    @Binding var extensions: [SyntaxViewModel.KeyString]
+    @Binding var filenames: [SyntaxViewModel.KeyString]
+    @Binding var interpreters: [SyntaxViewModel.KeyString]
     
     
     // MARK: View
@@ -74,7 +74,7 @@ struct SyntaxFileMappingEditView: View {
     
     struct EditTable<Label: View>: View {
         
-        typealias Item = SyntaxDefinition.IdentifiedString
+        typealias Item = SyntaxViewModel.KeyString
         
         
         @Binding var items: [Item]
@@ -98,7 +98,7 @@ struct SyntaxFileMappingEditView: View {
                 
                 List(selection: $selection) {
                     ForEach($items) {
-                        TextField(text: $0.value, label: EmptyView.init)
+                        TextField(text: $0.string, label: EmptyView.init)
                             .focused($focusedField, equals: $0.id)
                     }
                     .onMove { (indexes, index) in
@@ -121,9 +121,9 @@ struct SyntaxFileMappingEditView: View {
 // MARK: - Preview
 
 #Preview {
-    @State var extensions: [SyntaxDefinition.IdentifiedString] = [.init(value: "abc")]
-    @State var filenames: [SyntaxDefinition.IdentifiedString] = []
-    @State var interpreters: [SyntaxDefinition.IdentifiedString] = []
+    @State var extensions: [SyntaxViewModel.KeyString] = [.init(string: "abc")]
+    @State var filenames: [SyntaxViewModel.KeyString] = []
+    @State var interpreters: [SyntaxViewModel.KeyString] = []
     
     return SyntaxFileMappingEditView(extensions: $extensions,
                                      filenames: $filenames,

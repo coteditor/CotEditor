@@ -27,7 +27,7 @@ import SwiftUI
 
 struct SyntaxMetadataEditView: View {
     
-    @Binding var metadata: SyntaxDefinition.Metadata
+    @Binding var metadata: SyntaxViewModel.Metadata
     
     
     // MARK: View

@@ -41,7 +41,9 @@ final class SyntaxParser {
     
     // MARK: Public Properties
     
-    var syntax: Syntax {
+    private(set) var name: String
+    
+    private(set) var syntax: Syntax {
         
         willSet {
             self.outlineParseTask?.cancel()
@@ -73,10 +75,11 @@ final class SyntaxParser {
     
     // MARK: Lifecycle
     
-    init(textStorage: NSTextStorage, syntax: Syntax) {
+    init(textStorage: NSTextStorage, syntax: Syntax, name: String) {
         
         self.textStorage = textStorage
         self.syntax = syntax
+        self.name = name
         
         // give up if the string is changed while parsing
         self.textEditingObserver = NotificationCenter.default.publisher(for: NSTextStorage.willProcessEditingNotification, object: textStorage)
@@ -89,6 +92,13 @@ final class SyntaxParser {
     deinit {
         self.outlineParseTask?.cancel()
         self.highlightParseTask?.cancel()
+    }
+    
+    
+    func update(syntax: Syntax, name: String) {
+        
+        self.syntax = syntax
+        self.name = name
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  SyntaxDefinition+Validation.swift
+//  SyntaxViewModel+Validation.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,7 @@
 
 import Foundation
 
-extension SyntaxDefinition {
+extension SyntaxViewModel {
     
     struct Error: Swift.Error {
         
@@ -39,11 +39,11 @@ extension SyntaxDefinition {
         
         
         var code: Code
-        var type: PartialKeyPath<SyntaxDefinition>
+        var type: PartialKeyPath<SyntaxViewModel>
         var string: String
         
         
-        init(_ code: Code, type: PartialKeyPath<SyntaxDefinition>, string: String) {
+        init(_ code: Code, type: PartialKeyPath<SyntaxViewModel>, string: String) {
             
             self.code = code
             self.type = type
@@ -59,7 +59,7 @@ extension SyntaxDefinition {
         
         var errors: [Error] = []
         
-        for keyPath in Self.highlightKeyPaths {
+        for keyPath in SyntaxType.allCases.map(Self.highlightKeyPath(for:)) {
             let highlights = self[keyPath: keyPath]
                 .sorted {  // sort for duplication check
                     if $0.begin != $1.begin {

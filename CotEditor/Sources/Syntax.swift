@@ -26,6 +26,21 @@
 
 import Foundation
 
+enum SyntaxType: String, CaseIterable {
+    
+    case keywords
+    case commands
+    case types
+    case attributes
+    case variables
+    case values
+    case numbers
+    case strings
+    case characters
+    case comments
+}
+
+
 struct Syntax: Equatable {
     
     enum Kind: String, CaseIterable, Codable {
@@ -35,84 +50,98 @@ struct Syntax: Equatable {
     }
     
     
-    // MARK: Public Properties
-    
-    static let none = Syntax(name: BundledSyntaxName.none, kind: .code)
-    
-    var name: String
-    var kind: Kind
-    var extensions: [String] = []
-    
-    var inlineCommentDelimiter: String?
-    var blockCommentDelimiters: Pair<String>?
-    var completionWords: [String] = []
-    
-    
-    // MARK: Private Properties
-    
-    private var highlightDefinitions: [SyntaxType: [HighlightDefinition]] = [:]
-    private var outlineDefinitions: [OutlineDefinition] = []
-    
-    
-    
-    // MARK: Lifecycle
-    
-    private init(name: String, kind: Kind) {
+    struct Highlight: Equatable {
         
-        self.name = name
-        self.kind = kind
+        var begin: String = ""
+        var end: String?
+        var isRegularExpression: Bool = false
+        var ignoreCase: Bool = false
+        var description: String?
     }
     
     
-    init(dictionary: [String: Any], name: String) {
+    struct Outline: Equatable {
         
-        self.name = name
-        self.kind = (dictionary[SyntaxKey.kind] as? String).flatMap(Kind.init(rawValue:)) ?? .general
-        self.extensions = (dictionary[SyntaxKey.extensions] as? [[String: String]])?
-            .compactMap { $0[SyntaxDefinitionKey.keyString] } ?? []
+        var pattern: String = ""
+        var template: String = ""
+        var ignoreCase: Bool = false
+        var bold: Bool = false
+        var italic: Bool = false
+        var underline: Bool = false
+        var description: String?
+    }
+    
+    
+    struct KeyString: Equatable, Codable {
         
-        // set comment delimiters
-        var inlineCommentDelimiter: String?
-        var blockCommentDelimiters: Pair<String>?
-        if let delimiters = dictionary[SyntaxKey.commentDelimiters] as? [String: String] {
-            if let delimiter = delimiters[DelimiterKey.inlineDelimiter], !delimiter.isEmpty {
-                inlineCommentDelimiter = delimiter
-            }
-            if let beginDelimiter = delimiters[DelimiterKey.beginDelimiter],
-               let endDelimiter = delimiters[DelimiterKey.endDelimiter],
-               !beginDelimiter.isEmpty, !endDelimiter.isEmpty
-            {
-                blockCommentDelimiters = Pair<String>(beginDelimiter, endDelimiter)
-            }
-        }
-        self.inlineCommentDelimiter = inlineCommentDelimiter
-        self.blockCommentDelimiters = blockCommentDelimiters
+        var keyString: String
+    }
+    
+    
+    struct Comment: Equatable, Codable {
         
-        // parse highlight definitions
-        self.highlightDefinitions = SyntaxType.allCases.reduce(into: [:]) { (dict, type) in
-            guard let wordDicts = dictionary[type] as? [[String: Any]] else { return }
+        var inline: String?
+        var blockBegin: String?
+        var blockEnd: String?
+        
+        
+        var blockPair: Pair<String>? {
             
-            dict[type] = wordDicts.compactMap { try? HighlightDefinition(dictionary: $0) }
+            if let begin = self.blockBegin, let end = self.blockEnd { Pair(begin, end) } else { nil }
         }
+    }
+    
+    
+    struct Metadata: Equatable, Codable {
         
-        // parse outline definitions
-        self.outlineDefinitions = (dictionary[SyntaxKey.outlineMenu] as? [[String: Any]])?.lazy
-            .compactMap { try? OutlineDefinition(dictionary: $0) } ?? []
+        var version: String?
+        var lastModified: String?
+        var distributionURL: String?
+        var author: String?
+        var license: String?
+        var description: String?
+    }
+    
+    
+    static let none = Syntax(kind: .code)
+    
+    var kind: Kind = .general
+    
+    var keywords: [Highlight] = []
+    var commands: [Highlight] = []
+    var types: [Highlight] = []
+    var attributes: [Highlight] = []
+    var variables: [Highlight] = []
+    var values: [Highlight] = []
+    var numbers: [Highlight] = []
+    var strings: [Highlight] = []
+    var characters: [Highlight] = []
+    var comments: [Highlight] = []
+    
+    var commentDelimiters: Comment = Comment()
+    var outlines: [Outline] = []
+    var completions: [KeyString] = []
+    
+    var filenames: [KeyString] = []
+    var extensions: [KeyString] = []
+    var interpreters: [KeyString] = []
+    
+    var metadata: Metadata = Metadata()
+    
+    
+    static func highlightKeyPath(for type: SyntaxType) -> WritableKeyPath<Syntax, [Highlight]> {
         
-        // create word-completion data set
-        self.completionWords = if let completionDicts = dictionary[SyntaxKey.completions] as? [[String: Any]], !completionDicts.isEmpty {
-            // from completion definition
-            completionDicts
-                .compactMap { $0[SyntaxDefinitionKey.keyString] as? String }
-                .filter { !$0.isEmpty }
-                .sorted()
-        } else {
-            // from normal highlighting words
-            self.highlightDefinitions.values.flatMap { $0 }
-                .filter { $0.end == nil && !$0.isRegularExpression }
-                .map { $0.begin.trimmingCharacters(in: .whitespacesAndNewlines) }
-                .filter { !$0.isEmpty }
-                .sorted()
+        switch type {
+            case .keywords: \.keywords
+            case .commands: \.commands
+            case .types: \.types
+            case .attributes: \.attributes
+            case .variables: \.variables
+            case .values: \.values
+            case .numbers: \.numbers
+            case .strings: \.strings
+            case .characters: \.characters
+            case .comments: \.comments
         }
     }
     
@@ -122,23 +151,26 @@ struct Syntax: Equatable {
     
     var outlineExtractors: [OutlineExtractor] {
         
-        self.outlineDefinitions.compactMap { try? OutlineExtractor(definition: $0) }
+        self.outlines.compactMap { try? OutlineExtractor(definition: $0) }
     }
     
     
     var highlightParser: HighlightParser {
         
         var nestables: [NestableToken: SyntaxType] = [:]
-        let extractors = self.highlightDefinitions
-            .reduce(into: [SyntaxType: [HighlightDefinition]]()) { (dict, item) in
-                var definitions: [HighlightDefinition] = []
+        let extractors = SyntaxType.allCases
+            .reduce(into: [:]) { (dict, type) in
+                dict[type] = self[keyPath: Syntax.highlightKeyPath(for: type)]
+            }
+            .reduce(into: [SyntaxType: [Syntax.Highlight]]()) { (dict, item) in
+                var highlights: [Syntax.Highlight] = []
                 var words: [String] = []
                 var caseInsensitiveWords: [String] = []
                 
-                for definition in item.value {
+                for highlight in item.value {
                     // extract paired delimiters such as quotes
-                    if !definition.isRegularExpression,
-                       let pair = definition.end.flatMap({ Pair(definition.begin, $0) }),
+                    if !highlight.isRegularExpression,
+                       let pair = highlight.end.flatMap({ Pair(highlight.begin, $0) }),
                        pair.begin == pair.end,
                        pair.begin.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
                        Set(pair.begin).count == 1,  // consists of the same characters
@@ -149,39 +181,58 @@ struct Syntax: Equatable {
                     }
                     
                     // extract simple words
-                    if !definition.isRegularExpression, definition.end == nil {
-                        if definition.ignoreCase {
-                            caseInsensitiveWords.append(definition.begin)
+                    if !highlight.isRegularExpression, highlight.end == nil {
+                        if highlight.ignoreCase {
+                            caseInsensitiveWords.append(highlight.begin)
                         } else {
-                            words.append(definition.begin)
+                            words.append(highlight.begin)
                         }
                         continue
                     }
                     
-                    definitions.append(definition)
+                    highlights.append(highlight)
                 }
                 
                 // transform simple word highlights to single regex for performance reasons
                 if !words.isEmpty {
-                    definitions.append(HighlightDefinition(words: words, ignoreCase: false))
+                    highlights.append(Syntax.Highlight(words: words, ignoreCase: false))
                 }
                 if !caseInsensitiveWords.isEmpty {
-                    definitions.append(HighlightDefinition(words: caseInsensitiveWords, ignoreCase: true))
+                    highlights.append(Syntax.Highlight(words: caseInsensitiveWords, ignoreCase: true))
                 }
                 
-                dict[item.key] = definitions
+                dict[item.key] = highlights
             }
             .mapValues { $0.compactMap { try? $0.extractor } }
             .filter { !$0.value.isEmpty }
         
-        if let blockCommentDelimiters = self.blockCommentDelimiters {
+        if let blockCommentDelimiters = self.commentDelimiters.blockPair {
             nestables[.pair(blockCommentDelimiters)] = .comments
         }
-        if let inlineCommentDelimiter = self.inlineCommentDelimiter {
+        if let inlineCommentDelimiter = self.commentDelimiters.inline {
             nestables[.inline(inlineCommentDelimiter)] = .comments
         }
         
         return .init(extractors: extractors, nestables: nestables)
+    }
+    
+    
+    var completionWords: [String] {
+        
+        let completions = self.completions.map(\.keyString).filter { !$0.isEmpty }
+        
+        return  if !completions.isEmpty {
+            // from completion definition
+            completions
+        } else {
+            // from normal highlighting words
+            SyntaxType.allCases.map(Self.highlightKeyPath(for:))
+                .flatMap { self[keyPath: $0] }
+                .filter { $0.end == nil && !$0.isRegularExpression }
+                .map { $0.begin.trimmingCharacters(in: .whitespacesAndNewlines) }
+                .filter { !$0.isEmpty }
+                .sorted()
+        }
     }
 }
 
@@ -194,5 +245,26 @@ extension Syntax.Kind {
             case .general: .standard
             case .code: .monospaced
         }
+    }
+}
+
+
+private extension Syntax.Highlight {
+    
+    /// Creates a regex type definition from simple words by considering non-word characters around words.
+    init(words: [String], ignoreCase: Bool) {
+        
+        assert(!words.isEmpty)
+        
+        let escapedWords = words.sorted().reversed().map(NSRegularExpression.escapedPattern(for:))  // reverse to precede longer word
+        let rawBoundary = String(Set(words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_").sorted())
+            .replacing(/\s/, with: "")
+        let boundary = NSRegularExpression.escapedPattern(for: rawBoundary)
+        let pattern = "(?<![" + boundary + "])" + "(?:" + escapedWords.joined(separator: "|") + ")" + "(?![" + boundary + "])"
+        
+        self.begin = pattern
+        self.end = nil
+        self.isRegularExpression = true
+        self.ignoreCase = ignoreCase
     }
 }

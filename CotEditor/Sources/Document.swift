@@ -97,8 +97,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         let lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
         self.lineEnding = lineEnding
         
-        let syntax = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntax]) ?? Syntax.none
-        self.syntaxParser = SyntaxParser(textStorage: self.textStorage, syntax: syntax)
+        var syntaxName = UserDefaults.standard[.syntax]
+        let syntax = SyntaxManager.shared.setting(name: syntaxName)
+        syntaxName = (syntax == nil) ? BundledSyntaxName.none : syntaxName
+        self.syntaxParser = SyntaxParser(textStorage: self.textStorage, syntax: syntax ?? Syntax.none, name: syntaxName)
         
         // use the encoding selected by the user in the open panel, if exists
         self.fileEncoding = EncodingManager.shared.defaultEncoding
@@ -122,7 +124,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // observe syntax update
         self.syntaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
-            .filter { [weak self] change in change.old == self?.syntaxParser.syntax.name }
+            .filter { [weak self] change in change.old == self?.syntaxParser.name }
             .sink { [weak self] change in self?.setSyntax(name: change.new ?? BundledSyntaxName.none) }
     }
     
@@ -135,7 +137,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
         coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
         coder.encode(self.suppressesInconsistentLineEndingAlert, forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
-        coder.encode(self.syntaxParser.syntax.name, forKey: SerializationKey.syntax)
+        coder.encode(self.syntaxParser.name, forKey: SerializationKey.syntax)
         
         // store unencoded string but only when incompatible
         if !self.canBeConverted() {
@@ -273,7 +275,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             return pathExtension
         }
         
-        return self.syntaxParser.syntax.extensions.first
+        return self.syntaxParser.syntax.extensions.map(\.keyString).first
     }
     
     
@@ -299,7 +301,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         let document = try super.duplicate() as! Document
         
-        document.setSyntax(name: self.syntaxParser.syntax.name)
+        document.setSyntax(name: self.syntaxParser.name)
         document.lineEnding = self.lineEnding
         document.fileEncoding = self.fileEncoding
         document.isVerticalText = self.isVerticalText
@@ -586,7 +588,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         let info = PrintTextView.DocumentInfo(name: self.displayName,
                                               fileURL: self.fileURL,
                                               lastModifiedDate: lastModifiedDate,
-                                              syntaxName: self.syntaxParser.syntax.name)
+                                              syntaxName: self.syntaxParser.name)
         let printView = PrintTextView(info: info)
         
         printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
@@ -785,7 +787,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 menuItem.state = (menuItem.tag == self.lineEnding.index) ? .on : .off
                 
             case #selector(changeSyntax(_:)):
-                menuItem.state = (menuItem.title == self.syntaxParser.syntax.name) ? .on : .off
+                menuItem.state = (menuItem.title == self.syntaxParser.name) ? .on : .off
                 
             default: break
         }
@@ -936,7 +938,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         else { return }
         
         // update
-        self.syntaxParser.syntax = syntax
+        self.syntaxParser.update(syntax: syntax, name: name)
         
         // skip notification when initial syntax was set on file open
         // to avoid redundant highlight parse due to async notification.

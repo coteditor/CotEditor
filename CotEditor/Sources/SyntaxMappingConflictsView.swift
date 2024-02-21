@@ -55,11 +55,11 @@ struct SyntaxMappingConflictsView: View {
     private var interpreterConflicts: [FileMappingConflict]
     
     
-    init(dictionary: [SyntaxKey: [String: [SyntaxManager.SettingName]]]) {
+    init(table: SyntaxManager.MappingTable) {
         
-        self.extensionConflicts = dictionary[.extensions]?.map { .init(name: $0.key, syntaxes: $0.value) } ?? []
-        self.filenameConflicts = dictionary[.filenames]?.map { .init(name: $0.key, syntaxes: $0.value) } ?? []
-        self.interpreterConflicts = dictionary[.interpreters]?.map { .init(name: $0.key, syntaxes: $0.value) } ?? []
+        self.extensionConflicts = table[\.extensions]?.map { .init(name: $0.key, syntaxes: $0.value) } ?? []
+        self.filenameConflicts = table[\.filenames]?.map { .init(name: $0.key, syntaxes: $0.value) } ?? []
+        self.interpreterConflicts = table[\.interpreters]?.map { .init(name: $0.key, syntaxes: $0.value) } ?? []
     }
     
     
@@ -142,8 +142,8 @@ private struct ConflictTable: View {
 // MARK: - Preview
 
 #Preview {
-    SyntaxMappingConflictsView(dictionary: [
-        .extensions: ["svg": ["SVG", "XML"]],
-        .filenames: ["foo": ["SVG", "XML", "Foo"]],
+    SyntaxMappingConflictsView(table: [
+        \.extensions: ["svg": ["SVG", "XML"]],
+        \.filenames: ["foo": ["SVG", "XML", "Foo"]],
     ])
 }
