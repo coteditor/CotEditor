@@ -54,7 +54,7 @@ extension SyntaxDefinition: Codable {
     }
     
     
-    convenience init(from decoder: any Decoder) throws {
+    init(from decoder: any Decoder) throws {
         
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -72,7 +72,7 @@ extension SyntaxDefinition: Codable {
         self.characters = try values.decodeIfPresent([Highlight].self, forKey: .characters) ?? []
         self.comments = try values.decodeIfPresent([Highlight].self, forKey: .comments) ?? []
         
-        self.commentDelimiters = try values.decodeIfPresent(SyntaxDefinition.Comment.self, forKey: .commentDelimiters) ?? .init()
+        self.commentDelimiters = try values.decodeIfPresent(Comment.self, forKey: .commentDelimiters) ?? .init()
         self.outlines = try values.decodeIfPresent([Outline].self, forKey: .outlines) ?? []
         self.completions = try values.decodeIfPresent([KeyString].self, forKey: .completions) ?? []
         
@@ -204,30 +204,5 @@ extension SyntaxDefinition.Outline: Codable {
         if let description = self.description {
             try container.encode(description, forKey: .description)
         }
-    }
-}
-
-
-extension SyntaxDefinition.KeyString: Codable {
-    
-    private enum CodingKeys: String, CodingKey {
-        
-        case string = "keyString"
-    }
-    
-    
-    init(from decoder: any Decoder) throws {
-        
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        self.string = try container.decode(String.self, forKey: .string)
-    }
-    
-    
-    func encode(to encoder: any Encoder) throws {
-        
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encode(self.string, forKey: .string)
     }
 }

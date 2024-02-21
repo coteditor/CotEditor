@@ -77,7 +77,8 @@ final class SyntaxTests: XCTestCase {
     func testAllSyntaxes() {
         
         for (name, definition) in self.definitions {
-            let errors = definition.validate()
+            let model = SyntaxViewModel(value: definition)
+            let errors = model.validate()
             
             XCTAssert(errors.isEmpty)
             for error in errors {
@@ -149,9 +150,9 @@ final class SyntaxTests: XCTestCase {
     
     func testViewModelHighlightEquality() throws {
         
-        let termA = SyntaxDefinition.Highlight(begin: "abc", end: "def")
-        let termB = SyntaxDefinition.Highlight(begin: "abc", end: "def")
-        let termC = SyntaxDefinition.Highlight(begin: "abc")
+        let termA = SyntaxViewModel.Highlight(begin: "abc", end: "def")
+        let termB = SyntaxViewModel.Highlight(begin: "abc", end: "def")
+        let termC = SyntaxViewModel.Highlight(begin: "abc")
         
         XCTAssertEqual(termA, termB)
         XCTAssertNotEqual(termA, termC)

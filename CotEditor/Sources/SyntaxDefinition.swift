@@ -25,7 +25,108 @@
 
 import Foundation
 
-final class SyntaxDefinition: ObservableObject {
+struct SyntaxDefinition: Equatable {
+    
+    struct Highlight: Equatable {
+        
+        var begin: String = ""
+        var end: String?
+        var isRegularExpression: Bool = false
+        var ignoreCase: Bool = false
+        var description: String?
+    }
+    
+    
+    struct Outline: Equatable {
+        
+        var pattern: String = ""
+        var template: String = ""
+        var ignoreCase: Bool = false
+        var bold: Bool = false
+        var italic: Bool = false
+        var underline: Bool = false
+        var description: String?
+    }
+    
+    
+    struct KeyString: Equatable, Codable {
+        
+        var keyString: String
+    }
+    
+    
+    struct Comment: Equatable, Codable {
+        
+        var inline: String?
+        var blockBegin: String?
+        var blockEnd: String?
+        
+        
+        var blockPair: Pair<String>? {
+            
+            if let begin = self.blockBegin, let end = self.blockEnd { Pair(begin, end) } else { nil }
+        }
+    }
+    
+    
+    struct Metadata: Equatable, Codable {
+        
+        var version: String?
+        var lastModified: String?
+        var distributionURL: String?
+        var author: String?
+        var license: String?
+        var description: String?
+    }
+    
+    var kind: Syntax.Kind = .general
+    
+    var keywords: [Highlight] = []
+    var commands: [Highlight] = []
+    var types: [Highlight] = []
+    var attributes: [Highlight] = []
+    var variables: [Highlight] = []
+    var values: [Highlight] = []
+    var numbers: [Highlight] = []
+    var strings: [Highlight] = []
+    var characters: [Highlight] = []
+    var comments: [Highlight] = []
+    
+    var commentDelimiters: Comment = Comment()
+    var outlines: [Outline] = []
+    var completions: [KeyString] = []
+    
+    var filenames: [KeyString] = []
+    var extensions: [KeyString] = []
+    var interpreters: [KeyString] = []
+    
+    var metadata: Metadata = Metadata()
+    
+    
+    static func highlightKeyPath(for type: SyntaxType) -> WritableKeyPath<SyntaxDefinition, [Highlight]> {
+        
+        switch type {
+            case .keywords: \.keywords
+            case .commands: \.commands
+            case .types: \.types
+            case .attributes: \.attributes
+            case .variables: \.variables
+            case .values: \.values
+            case .numbers: \.numbers
+            case .strings: \.strings
+            case .characters: \.characters
+            case .comments: \.comments
+        }
+    }
+}
+
+
+
+final class SyntaxViewModel: ObservableObject {
+    
+    typealias Comment = SyntaxDefinition.Comment
+    typealias Metadata = SyntaxDefinition.Metadata
+    
     
     struct Highlight: Identifiable, EmptyInitializable {
         
@@ -61,30 +162,6 @@ final class SyntaxDefinition: ObservableObject {
     }
     
     
-    struct Comment: Equatable, Codable {
-        
-        var inline: String?
-        var blockBegin: String?
-        var blockEnd: String?
-        
-        
-        var blockPair: Pair<String>? {
-            
-            if let begin = self.blockBegin, let end = self.blockEnd { Pair(begin, end) } else { nil }
-        }
-    }
-    
-    
-    struct Metadata: Equatable, Codable {
-        
-        var version: String?
-        var lastModified: String?
-        var distributionURL: String?
-        var author: String?
-        var license: String?
-        var description: String?
-    }
-    
     @Published var kind: Syntax.Kind = .general
     
     @Published var keywords: [Highlight] = []
@@ -109,7 +186,7 @@ final class SyntaxDefinition: ObservableObject {
     @Published var metadata: Metadata = Metadata()
     
     
-    static func highlightKeyPath(for type: SyntaxType) -> ReferenceWritableKeyPath<SyntaxDefinition, [Highlight]> {
+    static func highlightKeyPath(for type: SyntaxType) -> WritableKeyPath<SyntaxViewModel, [Highlight]> {
         
         switch type {
             case .keywords: \.keywords
@@ -128,57 +205,139 @@ final class SyntaxDefinition: ObservableObject {
 
 
 
-// MARK: Equatable
+// MARK: Definition Conversion
 
-extension SyntaxDefinition: Equatable {
+extension SyntaxViewModel {
     
-    static func == (lhs: SyntaxDefinition, rhs: SyntaxDefinition) -> Bool {
+    typealias Value = SyntaxDefinition
+    
+    convenience init(value: Value? = nil) {
         
-        SyntaxType.allCases.map(Self.highlightKeyPath(for:)).allSatisfy({ lhs[keyPath: $0] == rhs[keyPath: $0] }) &&
-        lhs.kind == rhs.kind &&
-        lhs.commentDelimiters == rhs.commentDelimiters &&
-        lhs.outlines == rhs.outlines &&
-        lhs.completions == rhs.completions &&
-        lhs.filenames == rhs.filenames &&
-        lhs.extensions == rhs.extensions &&
-        lhs.interpreters == rhs.interpreters &&
-        lhs.metadata == rhs.metadata
+        self.init()
+        
+        if let value {
+            self.update(with: value)
+        }
+    }
+    
+    
+    func update(with value: Value) {
+        
+        self.keywords = value.keywords.map { .init(value: $0) }
+        self.commands = value.commands.map { .init(value: $0) }
+        self.types = value.types.map { .init(value: $0) }
+        self.attributes = value.attributes.map { .init(value: $0) }
+        self.variables = value.variables.map { .init(value: $0) }
+        self.values = value.values.map { .init(value: $0) }
+        self.numbers = value.numbers.map { .init(value: $0) }
+        self.strings = value.strings.map { .init(value: $0) }
+        self.characters = value.characters.map { .init(value: $0) }
+        self.comments = value.comments.map { .init(value: $0) }
+        
+        self.commentDelimiters = value.commentDelimiters
+        self.outlines = value.outlines.map { .init(value: $0) }
+        self.completions = value.completions.map { .init(value: $0) }
+        
+        self.filenames = value.filenames.map { .init(value: $0) }
+        self.extensions = value.extensions.map { .init(value: $0) }
+        self.interpreters = value.interpreters.map { .init(value: $0) }
+        
+        self.metadata = value.metadata
+    }
+    
+    
+    var value: Value {
+        
+        Value(keywords: self.keywords.map(\.value),
+              commands: self.commands.map(\.value),
+              types: self.types.map(\.value),
+              attributes: self.attributes.map(\.value),
+              variables: self.variables.map(\.value),
+              values: self.values.map(\.value),
+              numbers: self.numbers.map(\.value),
+              strings: self.strings.map(\.value),
+              characters: self.characters.map(\.value),
+              comments: self.comments.map(\.value),
+              
+              commentDelimiters: self.commentDelimiters,
+              outlines: self.outlines.map(\.value),
+              completions: self.completions.map(\.value),
+              
+              filenames: self.filenames.map(\.value),
+              extensions: self.extensions.map(\.value),
+              interpreters: self.interpreters.map(\.value),
+              
+              metadata: self.metadata)
     }
 }
 
 
-extension SyntaxDefinition.Highlight: Equatable {
+extension SyntaxViewModel.Highlight {
     
-    static func == (lhs: Self, rhs: Self) -> Bool {
+    typealias Value = SyntaxDefinition.Highlight
+    
+    init(value: Value) {
         
-        lhs.begin == rhs.begin &&
-        lhs.end == rhs.end &&
-        lhs.isRegularExpression == rhs.isRegularExpression &&
-        lhs.ignoreCase == rhs.ignoreCase &&
-        lhs.description == rhs.description
+        self.begin = value.begin
+        self.end = value.end
+        self.isRegularExpression = value.isRegularExpression
+        self.ignoreCase = value.ignoreCase
+        self.description = value.description
+    }
+    
+    
+    var value: Value {
+        
+        Value(begin: self.begin,
+              end: self.end,
+              isRegularExpression: self.isRegularExpression,
+              ignoreCase: self.ignoreCase,
+              description: self.description)
     }
 }
 
 
-extension SyntaxDefinition.Outline: Equatable {
+extension SyntaxViewModel.Outline {
     
-    static func == (lhs: Self, rhs: Self) -> Bool {
+    typealias Value = SyntaxDefinition.Outline
+    
+    init(value: Value) {
         
-        lhs.pattern == rhs.pattern &&
-        lhs.template == rhs.template &&
-        lhs.ignoreCase == rhs.ignoreCase &&
-        lhs.bold == rhs.bold &&
-        lhs.italic == rhs.italic &&
-        lhs.underline == rhs.underline &&
-        lhs.description == rhs.description
+        self.pattern = value.pattern
+        self.template = value.template
+        self.ignoreCase = value.ignoreCase
+        self.bold = value.bold
+        self.italic = value.italic
+        self.underline = value.underline
+        self.description = value.description
+    }
+    
+    
+    var value: Value {
+        
+        Value(pattern: self.pattern,
+              template: self.template,
+              ignoreCase: self.ignoreCase,
+              bold: self.bold,
+              italic: self.italic,
+              underline: self.underline,
+              description: self.description)
     }
 }
 
 
-extension SyntaxDefinition.KeyString: Equatable {
+extension SyntaxViewModel.KeyString {
     
-    static func == (lhs: Self, rhs: Self) -> Bool {
+    typealias Value = SyntaxDefinition.KeyString
+    
+    init(value: Value) {
         
-        lhs.string == rhs.string
+        self.string = value.keyString
+    }
+    
+    
+    var value: Value {
+        
+        Value(keyString: self.string)
     }
 }

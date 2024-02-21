@@ -26,7 +26,7 @@
 
 import Foundation
 
-extension SyntaxDefinition {
+extension SyntaxViewModel {
     
     struct Error: Swift.Error {
         
@@ -39,11 +39,11 @@ extension SyntaxDefinition {
         
         
         var code: Code
-        var type: PartialKeyPath<SyntaxDefinition>
+        var type: PartialKeyPath<SyntaxViewModel>
         var string: String
         
         
-        init(_ code: Code, type: PartialKeyPath<SyntaxDefinition>, string: String) {
+        init(_ code: Code, type: PartialKeyPath<SyntaxViewModel>, string: String) {
             
             self.code = code
             self.type = type

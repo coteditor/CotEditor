@@ -27,7 +27,7 @@ import SwiftUI
 
 struct SyntaxCompletionEditView: View {
     
-    typealias Item = SyntaxDefinition.KeyString
+    typealias Item = SyntaxViewModel.KeyString
     
     
     @Binding var completions: [Item]
@@ -67,7 +67,7 @@ struct SyntaxCompletionEditView: View {
 // MARK: - Preview
 
 #Preview {
-    @State var items: [SyntaxDefinition.KeyString] = [.init(string: "abc")]
+    @State var items: [SyntaxViewModel.KeyString] = [.init(string: "abc")]
     
     return SyntaxCompletionEditView(completions: $items)
         .padding()

@@ -27,7 +27,7 @@ import SwiftUI
 
 struct SyntaxOutlineEditView: View {
     
-    typealias Item = SyntaxDefinition.Outline
+    typealias Item = SyntaxViewModel.Outline
     
     
     @Binding var outlines: [Item]
@@ -142,7 +142,7 @@ enum SelectionError: Error {
 // MARK: - Preview
 
 #Preview {
-    @State var outlines: [SyntaxDefinition.Outline] = [
+    @State var outlines: [SyntaxViewModel.Outline] = [
         .init(pattern: "abc"),
         .init(pattern: "def", ignoreCase: true, italic: true),
     ]

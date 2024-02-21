@@ -158,11 +158,12 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     func save(definition: SyntaxDefinition, name: SettingName, oldName: SettingName?) throws {
         
         // sort elements
+        var definition = definition
         for keyPath in SyntaxType.allCases.map(SyntaxDefinition.highlightKeyPath(for:)) {
             definition[keyPath: keyPath].sort(\.begin, options: .caseInsensitive)
         }
         definition.outlines.sort(\.pattern, options: .caseInsensitive)
-        definition.completions.sort(\.string, options: .caseInsensitive)
+        definition.completions.sort(\.keyString, options: .caseInsensitive)
         
         let fileURL = self.preparedURLForUserSetting(name: name)
         

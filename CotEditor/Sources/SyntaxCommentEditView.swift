@@ -27,8 +27,8 @@ import SwiftUI
 
 struct SyntaxCommentEditView: View {
     
-    @Binding var comment: SyntaxDefinition.Comment
-    @Binding var highlights: [SyntaxDefinition.Highlight]
+    @Binding var comment: SyntaxViewModel.Comment
+    @Binding var highlights: [SyntaxViewModel.Highlight]
     
     
     // MARK: View
@@ -45,7 +45,7 @@ struct SyntaxCommentEditView: View {
 
 private struct CommentDelimitersEditView: View {
     
-    @Binding var comment: SyntaxDefinition.Comment
+    @Binding var comment: SyntaxViewModel.Comment
     
     
     var body: some View {
@@ -83,8 +83,8 @@ private struct CommentDelimitersEditView: View {
 // MARK: - Preview
 
 #Preview {
-    @State var comment = SyntaxDefinition.Comment()
-    @State var highlights: [SyntaxDefinition.Highlight] = []
+    @State var comment = SyntaxViewModel.Comment()
+    @State var highlights: [SyntaxViewModel.Highlight] = []
     
     return SyntaxCommentEditView(comment: $comment, highlights: $highlights)
         .padding()

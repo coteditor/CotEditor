@@ -27,6 +27,8 @@ import SwiftUI
 
 struct SyntaxEditView: View {
     
+    typealias SaveAction = (_ syntax: SyntaxDefinition, _ name: String) throws -> Void
+    
     fileprivate enum Pane {
         
         case keywords
@@ -54,10 +56,10 @@ struct SyntaxEditView: View {
     }
     
     
-    @ObservedObject var syntax: SyntaxDefinition = .init()
+    @StateObject var syntax: SyntaxViewModel
     var originalName: String?
     var isBundled: Bool = false
-    let saveAction: (_ syntax: SyntaxDefinition, _ name: String) throws -> Void
+    let saveAction: SaveAction
     
     weak var parent: NSHostingController<Self>?
 
@@ -66,10 +68,19 @@ struct SyntaxEditView: View {
     
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
     @State private var pane: Pane = .keywords
-    @State private var errors: [SyntaxDefinition.Error] = []
+    @State private var errors: [SyntaxViewModel.Error] = []
     @State private var error: (any Error)?
     
     @FocusState private var isNameFieldFocused: Bool
+    
+    
+    init(definition: SyntaxDefinition? = nil, originalName: String? = nil, isBundled: Bool = false, saveAction: @escaping SaveAction) {
+        
+        self._syntax = StateObject(wrappedValue: SyntaxViewModel(value: definition))
+        self.originalName = originalName
+        self.isBundled = isBundled
+        self.saveAction = saveAction
+    }
     
     
     var body: some View {
@@ -222,7 +233,7 @@ struct SyntaxEditView: View {
         }
         
         do {
-            try self.saveAction(self.syntax, self.name)
+            try self.saveAction(self.syntax.value, self.name)
         } catch {
             self.error = error
             return
@@ -281,30 +292,30 @@ private extension SyntaxEditView.Pane {
         
         switch self {
             case .keywords:
-                (\SyntaxDefinition.keywords).label
+                (\SyntaxViewModel.keywords).label
             case .commands:
-                (\SyntaxDefinition.commands).label
+                (\SyntaxViewModel.commands).label
             case .types:
-                (\SyntaxDefinition.types).label
+                (\SyntaxViewModel.types).label
             case .attributes:
-                (\SyntaxDefinition.attributes).label
+                (\SyntaxViewModel.attributes).label
             case .variables:
-                (\SyntaxDefinition.variables).label
+                (\SyntaxViewModel.variables).label
             case .values:
-                (\SyntaxDefinition.values).label
+                (\SyntaxViewModel.values).label
             case .numbers:
-                (\SyntaxDefinition.numbers).label
+                (\SyntaxViewModel.numbers).label
             case .strings:
-                (\SyntaxDefinition.strings).label
+                (\SyntaxViewModel.strings).label
             case .characters:
-                (\SyntaxDefinition.characters).label
+                (\SyntaxViewModel.characters).label
             case .comments:
-                (\SyntaxDefinition.comments).label
+                (\SyntaxViewModel.comments).label
                 
             case .outline:
-                (\SyntaxDefinition.outlines).label
+                (\SyntaxViewModel.outlines).label
             case .completion:
-                (\SyntaxDefinition.completions).label
+                (\SyntaxViewModel.completions).label
             case .fileMapping:
                 String(localized: "File Mapping",
                        table: "SyntaxEdit",
@@ -322,7 +333,7 @@ private extension SyntaxEditView.Pane {
     }
     
     
-    private var keyPath: PartialKeyPath<SyntaxDefinition>? {
+    private var keyPath: PartialKeyPath<SyntaxViewModel>? {
         
         switch self {
             case .keywords: \.keywords
@@ -344,7 +355,7 @@ private extension SyntaxEditView.Pane {
 }
 
 
-extension PartialKeyPath<SyntaxDefinition> {
+extension PartialKeyPath<SyntaxViewModel> {
     
     /// The localized label for the root definition keys.
     ///
