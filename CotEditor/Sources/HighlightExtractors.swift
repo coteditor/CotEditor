@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,15 +36,15 @@ extension HighlightDefinition {
     var extractor: any HighlightExtractable {
         
         get throws {
-            switch (self.isRegularExpression, self.endString) {
-                case (true, .some(let endString)):
-                    try BeginEndRegularExpressionExtractor(beginPattern: self.beginString, endPattern: endString, ignoresCase: self.ignoreCase)
+            switch (self.isRegularExpression, self.end) {
+                case (true, .some(let end)):
+                    try BeginEndRegularExpressionExtractor(beginPattern: self.begin, endPattern: end, ignoresCase: self.ignoreCase)
                     
                 case (true, .none):
-                    try RegularExpressionExtractor(pattern: self.beginString, ignoresCase: self.ignoreCase)
+                    try RegularExpressionExtractor(pattern: self.begin, ignoresCase: self.ignoreCase)
                     
-                case (false, .some(let endString)):
-                    BeginEndStringExtractor(beginString: self.beginString, endString: endString, ignoresCase: self.ignoreCase)
+                case (false, .some(let end)):
+                    BeginEndStringExtractor(begin: self.begin, end: end, ignoresCase: self.ignoreCase)
                     
                 case (false, .none):
                     preconditionFailure("non-regex words should be preprocessed at Syntax.init()")
@@ -57,15 +57,15 @@ extension HighlightDefinition {
 
 private struct BeginEndStringExtractor: HighlightExtractable {
     
-    var beginString: String
-    var endString: String
+    var begin: String
+    var end: String
     var options: String.CompareOptions
     
     
-    init(beginString: String, endString: String, ignoresCase: Bool) {
+    init(begin: String, end: String, ignoresCase: Bool) {
         
-        self.beginString = beginString
-        self.endString = endString
+        self.begin = begin
+        self.end = end
         self.options = ignoresCase ? [.literal, .caseInsensitive] : [.literal]
     }
     
@@ -77,7 +77,7 @@ private struct BeginEndStringExtractor: HighlightExtractable {
         var location = range.lowerBound
         while location != NSNotFound {
             // find start string
-            let beginRange = (string as NSString).range(of: self.beginString, options: self.options, range: NSRange(location..<range.upperBound))
+            let beginRange = (string as NSString).range(of: self.begin, options: self.options, range: NSRange(location..<range.upperBound))
             location = beginRange.upperBound
             
             guard beginRange.location != NSNotFound else { break }
@@ -85,7 +85,7 @@ private struct BeginEndStringExtractor: HighlightExtractable {
             
             while location != NSNotFound {
                 // find end string
-                let endRange = (string as NSString).range(of: self.endString, options: self.options, range: NSRange(location..<range.upperBound))
+                let endRange = (string as NSString).range(of: self.end, options: self.options, range: NSRange(location..<range.upperBound))
                 location = endRange.upperBound
                 
                 guard endRange.location != NSNotFound else { break }

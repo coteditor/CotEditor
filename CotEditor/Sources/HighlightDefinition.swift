@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,8 +33,8 @@ struct HighlightDefinition: Equatable {
     }
     
     
-    var beginString: String = ""
-    var endString: String?
+    var begin: String = ""
+    var end: String?
     var isRegularExpression: Bool = false
     var ignoreCase: Bool = false
     
@@ -44,11 +44,11 @@ struct HighlightDefinition: Equatable {
     
     init(dictionary: [String: Any]) throws {
         
-        guard let beginString = dictionary[SyntaxDefinitionKey.beginString] as? String else { throw Error.invalidFormat }
+        guard let begin = dictionary[SyntaxDefinitionKey.beginString] as? String else { throw Error.invalidFormat }
         
-        self.beginString = beginString
-        if let endString = dictionary[SyntaxDefinitionKey.endString] as? String, !endString.isEmpty {
-            self.endString = endString
+        self.begin = begin
+        if let end = dictionary[SyntaxDefinitionKey.endString] as? String, !end.isEmpty {
+            self.end = end
         }
         self.isRegularExpression = (dictionary[SyntaxDefinitionKey.regularExpression] as? Bool) ?? false
         self.ignoreCase = (dictionary[SyntaxDefinitionKey.ignoreCase] as? Bool) ?? false
@@ -66,8 +66,8 @@ struct HighlightDefinition: Equatable {
         let boundary = NSRegularExpression.escapedPattern(for: rawBoundary)
         let pattern = "(?<![" + boundary + "])" + "(?:" + escapedWords.joined(separator: "|") + ")" + "(?![" + boundary + "])"
         
-        self.beginString = pattern
-        self.endString = nil
+        self.begin = pattern
+        self.end = nil
         self.isRegularExpression = true
         self.ignoreCase = ignoreCase
     }

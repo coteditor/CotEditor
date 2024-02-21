@@ -109,8 +109,8 @@ struct Syntax: Equatable {
         } else {
             // from normal highlighting words
             self.highlightDefinitions.values.flatMap { $0 }
-                .filter { $0.endString == nil && !$0.isRegularExpression }
-                .map { $0.beginString.trimmingCharacters(in: .whitespacesAndNewlines) }
+                .filter { $0.end == nil && !$0.isRegularExpression }
+                .map { $0.begin.trimmingCharacters(in: .whitespacesAndNewlines) }
                 .filter { !$0.isEmpty }
                 .sorted()
         }
@@ -138,7 +138,7 @@ struct Syntax: Equatable {
                 for definition in item.value {
                     // extract paired delimiters such as quotes
                     if !definition.isRegularExpression,
-                       let pair = definition.endString.flatMap({ Pair(definition.beginString, $0) }),
+                       let pair = definition.end.flatMap({ Pair(definition.begin, $0) }),
                        pair.begin == pair.end,
                        pair.begin.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
                        Set(pair.begin).count == 1,  // consists of the same characters
@@ -149,11 +149,11 @@ struct Syntax: Equatable {
                     }
                     
                     // extract simple words
-                    if !definition.isRegularExpression, definition.endString == nil {
+                    if !definition.isRegularExpression, definition.end == nil {
                         if definition.ignoreCase {
-                            caseInsensitiveWords.append(definition.beginString)
+                            caseInsensitiveWords.append(definition.begin)
                         } else {
-                            words.append(definition.beginString)
+                            words.append(definition.begin)
                         }
                         continue
                     }
