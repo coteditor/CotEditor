@@ -53,11 +53,11 @@ final class SyntaxDefinition: ObservableObject {
     }
     
     
-    struct IdentifiedString: Identifiable, EmptyInitializable {
+    struct KeyString: Identifiable, EmptyInitializable {
         
         let id = UUID()
         
-        var value: String = ""
+        var string: String = ""
     }
     
     
@@ -109,11 +109,11 @@ final class SyntaxDefinition: ObservableObject {
     
     @Published var commentDelimiters: Comment = Comment()
     @Published var outlines: [Outline] = []
-    @Published var completions: [IdentifiedString] = []
+    @Published var completions: [KeyString] = []
     
-    @Published var filenames: [IdentifiedString] = []
-    @Published var extensions: [IdentifiedString] = []
-    @Published var interpreters: [IdentifiedString] = []
+    @Published var filenames: [KeyString] = []
+    @Published var extensions: [KeyString] = []
+    @Published var interpreters: [KeyString] = []
     
     @Published var metadata: Metadata = Metadata()
 }
@@ -167,10 +167,10 @@ extension SyntaxDefinition.Outline: Equatable {
 }
 
 
-extension SyntaxDefinition.IdentifiedString: Equatable {
+extension SyntaxDefinition.KeyString: Equatable {
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         
-        lhs.value == rhs.value
+        lhs.string == rhs.string
     }
 }

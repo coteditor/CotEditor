@@ -27,7 +27,7 @@ import SwiftUI
 
 struct SyntaxCompletionEditView: View {
     
-    typealias Item = SyntaxDefinition.IdentifiedString
+    typealias Item = SyntaxDefinition.KeyString
     
     
     @Binding var completions: [Item]
@@ -46,7 +46,7 @@ struct SyntaxCompletionEditView: View {
             
             Table($completions, selection: $selection) {
                 TableColumn(String(localized: "Completion", table: "SyntaxEdit", comment: "table column header")) { item in
-                    TextField(text: item.value, label: EmptyView.init)
+                    TextField(text: item.string, label: EmptyView.init)
                         .focused($focusedField, equals: item.id)
                 }
             }
@@ -67,7 +67,7 @@ struct SyntaxCompletionEditView: View {
 // MARK: - Preview
 
 #Preview {
-    @State var items: [SyntaxDefinition.IdentifiedString] = [.init(value: "abc")]
+    @State var items: [SyntaxDefinition.KeyString] = [.init(string: "abc")]
     
     return SyntaxCompletionEditView(completions: $items)
         .padding()

@@ -74,11 +74,11 @@ extension SyntaxDefinition: Codable {
         
         self.commentDelimiters = try values.decodeIfPresent(SyntaxDefinition.Comment.self, forKey: .commentDelimiters) ?? .init()
         self.outlines = try values.decodeIfPresent([Outline].self, forKey: .outlines) ?? []
-        self.completions = try values.decodeIfPresent([IdentifiedString].self, forKey: .completions) ?? []
+        self.completions = try values.decodeIfPresent([KeyString].self, forKey: .completions) ?? []
         
-        self.filenames = try values.decodeIfPresent([IdentifiedString].self, forKey: .filenames) ?? []
-        self.extensions = try values.decodeIfPresent([IdentifiedString].self, forKey: .extensions) ?? []
-        self.interpreters = try values.decodeIfPresent([IdentifiedString].self, forKey: .interpreters) ?? []
+        self.filenames = try values.decodeIfPresent([KeyString].self, forKey: .filenames) ?? []
+        self.extensions = try values.decodeIfPresent([KeyString].self, forKey: .extensions) ?? []
+        self.interpreters = try values.decodeIfPresent([KeyString].self, forKey: .interpreters) ?? []
         
         self.metadata = try values.decodeIfPresent(SyntaxDefinition.Metadata.self, forKey: .metadata) ?? .init()
     }
@@ -208,11 +208,11 @@ extension SyntaxDefinition.Outline: Codable {
 }
 
 
-extension SyntaxDefinition.IdentifiedString: Codable {
+extension SyntaxDefinition.KeyString: Codable {
     
     private enum CodingKeys: String, CodingKey {
         
-        case value = "keyString"
+        case string = "keyString"
     }
     
     
@@ -220,7 +220,7 @@ extension SyntaxDefinition.IdentifiedString: Codable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.value = try container.decode(String.self, forKey: .value)
+        self.string = try container.decode(String.self, forKey: .string)
     }
     
     
@@ -228,6 +228,6 @@ extension SyntaxDefinition.IdentifiedString: Codable {
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        try container.encode(self.value, forKey: .value)
+        try container.encode(self.string, forKey: .string)
     }
 }

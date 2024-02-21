@@ -53,7 +53,9 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     typealias Setting = Syntax
     
     typealias SettingName = String
-    typealias SyntaxDictionary = [String: Any]
+    typealias MappingTable = [SyntaxKey: [String: [SettingName]]]
+    
+    private typealias SyntaxDictionary = [String: Any]
     
     
     // MARK: Public Properties
@@ -75,10 +77,10 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     
     // MARK: Private Properties
     
-    private let bundledMap: [SettingName: [String: [String]]]
-    @Atomic private var mappingTables: [SyntaxKey: [String: [SettingName]]] = [.extensions: [:],
-                                                                               .filenames: [:],
-                                                                               .interpreters: [:]]
+    private let bundledMaps: [SettingName: [String: [String]]]
+    @Atomic private var mappingTable: MappingTable = [.extensions: [:],
+                                                      .filenames: [:],
+                                                      .interpreters: [:]]
     
     private var settingUpdateObserver: AnyCancellable?
     
@@ -91,9 +93,8 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
         // load bundled syntax list
         let url = Bundle.main.url(forResource: "SyntaxMap", withExtension: "json")!
         let data = try! Data(contentsOf: url)
-        let map = try! JSONDecoder().decode([SettingName: [String: [String]]].self, from: data)
-        self.bundledMap = map
-        self.bundledSettingNames = map.keys.sorted(options: [.localized, .caseInsensitive])
+        self.bundledMaps = try! JSONDecoder().decode([SettingName: [String: [String]]].self, from: data)
+        self.bundledSettingNames = self.bundledMaps.keys.sorted(options: [.localized, .caseInsensitive])
         
         // sanitize user setting file extensions
         try? self.sanitizeUserSettings()
@@ -101,7 +102,7 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
         // cache user syntaxes
         self.loadUserSettings()
         
-        // update also .mappingTables
+        // update also .mappingTable
         self.settingUpdateObserver = self.didUpdateSetting
             .sink { [weak self] _ in self?.loadUserSettings() }
     }
@@ -128,12 +129,9 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     /// - Returns: A syntax definition, or `nil` if not exists.
     func settingDefinition(name: SettingName) -> SyntaxDefinition? {
         
-        guard
-            let url = SyntaxManager.shared.urlForUsedSetting(name: name),
-            let syntax = try? self.loadSettingDefinition(at: url)
-        else { return nil }
+        guard let url = self.urlForUsedSetting(name: name) else { return nil }
         
-        return syntax
+        return try? self.loadSettingDefinition(at: url)
     }
     
     
@@ -162,7 +160,7 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
             definition[keyPath: keyPath].sort(\.begin, options: .caseInsensitive)
         }
         definition.outlines.sort(\.pattern, options: .caseInsensitive)
-        definition.completions.sort(\.value, options: .caseInsensitive)
+        definition.completions.sort(\.string, options: .caseInsensitive)
         
         let fileURL = self.preparedURLForUserSetting(name: name)
         
@@ -201,9 +199,9 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     
     
     /// The map for the conflicted settings.
-    var mappingConflicts: [SyntaxKey: [String: [SettingName]]] {
+    var mappingConflicts: MappingTable {
         
-        self.mappingTables
+        self.mappingTable
             .mapValues { $0.filter { $0.value.count > 1 } }
             .filter { !$0.value.isEmpty }
     }
@@ -258,7 +256,7 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
         
         // load mapping definitions from syntax files in user domain
         let mappingKeys = SyntaxKey.mappingKeys.map(\.rawValue)
-        let userMap: [SettingName: [String: [String]]] = self.userSettingFileURLs.reduce(into: [:]) { (dict, url) in
+        let userMaps: [SettingName: [String: [String]]] = self.userSettingFileURLs.reduce(into: [:]) { (dict, url) in
             guard let syntax = try? self.loadSettingDictionary(at: url) else { return }
             let settingName = self.settingName(from: url)
             
@@ -267,18 +265,18 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
                 .mapValues { $0 as? [[String: String]] ?? [] }
                 .mapValues { $0.compactMap { $0[SyntaxDefinitionKey.keyString] } }
         }
-        let map = self.bundledMap.merging(userMap) { (_, new) in new }
+        let maps = self.bundledMaps.merging(userMaps) { (_, new) in new }
         
         // sort syntaxes alphabetically
-        self.settingNames = map.keys.sorted(options: [.localized, .caseInsensitive])
+        self.settingNames = maps.keys.sorted(options: [.localized, .caseInsensitive])
         // remove syntaxes not exist
         UserDefaults.standard[.recentSyntaxNames].removeAll { !self.settingNames.contains($0) }
         
         // update file mapping tables
         let settingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled syntaxes
-        self.mappingTables = SyntaxKey.mappingKeys.reduce(into: [:]) { (tables, key) in
+        self.mappingTable = SyntaxKey.mappingKeys.reduce(into: [:]) { (tables, key) in
             tables[key] = settingNames.reduce(into: [String: [SettingName]]()) { (table, settingName) in
-                guard let items = map[settingName]?[key.rawValue] else { return }
+                guard let items = maps[settingName]?[key.rawValue] else { return }
                 
                 for item in items {
                     table[item, default: []].append(settingName)
@@ -308,7 +306,7 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     }
     
     
-    /// Loads SyntaxDictionary at file URL.
+    /// Loads SyntaxDefinition at file URL.
     ///
     /// - Parameter fileURL: URL to a setting file.
     private func loadSettingDefinition(at fileURL: URL) throws -> SyntaxDefinition {
@@ -343,14 +341,14 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     /// - Returns: A setting name, or `nil` if not exists.
     private func settingName(documentName fileName: String) -> SettingName? {
         
-        let mappingTables = self.mappingTables
+        let mappingTable = self.mappingTable
         
-        if let settingName = mappingTables[.filenames]?[fileName]?.first {
+        if let settingName = mappingTable[.filenames]?[fileName]?.first {
             return settingName
         }
         
         if let pathExtension = fileName.split(separator: ".").last,
-           let extensionTable = mappingTables[.extensions]
+           let extensionTable = mappingTable[.extensions]
         {
             if let settingName = extensionTable[String(pathExtension)]?.first {
                 return settingName
@@ -378,7 +376,7 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     private func settingName(documentContent content: String) -> SettingName? {
         
         if let interpreter = content.scanInterpreterInShebang(),
-           let settingName = self.mappingTables[.interpreters]?[interpreter]?.first
+           let settingName = self.mappingTable[.interpreters]?[interpreter]?.first
         {
             return settingName
         }
