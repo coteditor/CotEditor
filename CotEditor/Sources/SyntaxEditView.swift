@@ -48,7 +48,7 @@ struct SyntaxEditView: View {
         case validation
         
         
-        static let terms: [Self] = [.keywords, .commands, .types, .attributes, .variables, .numbers, .strings, .characters, .comments]
+        static let highlights: [Self] = [.keywords, .commands, .types, .attributes, .variables, .numbers, .strings, .characters, .comments]
         static let others: [Self] = [.outline, .completion, .fileMapping]
         static let syntaxData: [Self] = [.syntaxInfo, .validation]
     }
@@ -77,7 +77,7 @@ struct SyntaxEditView: View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
             List(selection: $pane) {
                 Section(String(localized: "Highlighting", table: "SyntaxEdit", comment: "section header in sidebar")) {
-                    ForEach(Pane.terms, id: \.self) { pane in
+                    ForEach(Pane.highlights, id: \.self) { pane in
                         Text(pane.label)
                     }
                 }
@@ -168,25 +168,25 @@ struct SyntaxEditView: View {
         
         switch self.pane {
             case .keywords:
-                SyntaxTermEditView(terms: $syntax.keywords)
+                SyntaxHighlightEditView(items: $syntax.keywords)
             case .commands:
-                SyntaxTermEditView(terms: $syntax.commands)
+                SyntaxHighlightEditView(items: $syntax.commands)
             case .types:
-                SyntaxTermEditView(terms: $syntax.types)
+                SyntaxHighlightEditView(items: $syntax.types)
             case .attributes:
-                SyntaxTermEditView(terms: $syntax.attributes)
+                SyntaxHighlightEditView(items: $syntax.attributes)
             case .variables:
-                SyntaxTermEditView(terms: $syntax.variables)
+                SyntaxHighlightEditView(items: $syntax.variables)
             case .values:
-                SyntaxTermEditView(terms: $syntax.values)
+                SyntaxHighlightEditView(items: $syntax.values)
             case .numbers:
-                SyntaxTermEditView(terms: $syntax.numbers)
+                SyntaxHighlightEditView(items: $syntax.numbers)
             case .strings:
-                SyntaxTermEditView(terms: $syntax.strings)
+                SyntaxHighlightEditView(items: $syntax.strings)
             case .characters:
-                SyntaxTermEditView(terms: $syntax.characters)
+                SyntaxHighlightEditView(items: $syntax.characters)
             case .comments:
-                SyntaxCommentEditView(comment: $syntax.commentDelimiters, terms: $syntax.comments)
+                SyntaxCommentEditView(comment: $syntax.commentDelimiters, highlights: $syntax.comments)
             case .outline:
                 SyntaxOutlineEditView(outlines: $syntax.outlines)
             case .completion:

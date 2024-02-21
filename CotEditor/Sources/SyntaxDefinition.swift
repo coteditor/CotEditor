@@ -27,7 +27,7 @@ import Foundation
 
 final class SyntaxDefinition: ObservableObject {
     
-    struct Term: Identifiable, EmptyInitializable {
+    struct Highlight: Identifiable, EmptyInitializable {
         
         let id = UUID()
         
@@ -80,7 +80,7 @@ final class SyntaxDefinition: ObservableObject {
     }
     
     
-    static let termKeyPaths: [ReferenceWritableKeyPath<SyntaxDefinition, [Term]>] = [
+    static let highlightKeyPaths: [ReferenceWritableKeyPath<SyntaxDefinition, [Highlight]>] = [
         \.keywords,
         \.commands,
         \.types,
@@ -96,16 +96,16 @@ final class SyntaxDefinition: ObservableObject {
     
     @Published var kind: Syntax.Kind = .general
     
-    @Published var keywords: [Term] = []
-    @Published var commands: [Term] = []
-    @Published var types: [Term] = []
-    @Published var attributes: [Term] = []
-    @Published var variables: [Term] = []
-    @Published var values: [Term] = []
-    @Published var numbers: [Term] = []
-    @Published var strings: [Term] = []
-    @Published var characters: [Term] = []
-    @Published var comments: [Term] = []
+    @Published var keywords: [Highlight] = []
+    @Published var commands: [Highlight] = []
+    @Published var types: [Highlight] = []
+    @Published var attributes: [Highlight] = []
+    @Published var variables: [Highlight] = []
+    @Published var values: [Highlight] = []
+    @Published var numbers: [Highlight] = []
+    @Published var strings: [Highlight] = []
+    @Published var characters: [Highlight] = []
+    @Published var comments: [Highlight] = []
     
     @Published var commentDelimiters: Comment = Comment()
     @Published var outlines: [Outline] = []
@@ -126,7 +126,7 @@ extension SyntaxDefinition: Equatable {
     
     static func == (lhs: SyntaxDefinition, rhs: SyntaxDefinition) -> Bool {
         
-        SyntaxDefinition.termKeyPaths.allSatisfy({ lhs[keyPath: $0] == rhs[keyPath: $0] }) &&
+        SyntaxDefinition.highlightKeyPaths.allSatisfy({ lhs[keyPath: $0] == rhs[keyPath: $0] }) &&
         lhs.kind == rhs.kind &&
         lhs.commentDelimiters == rhs.commentDelimiters &&
         lhs.outlines == rhs.outlines &&
@@ -139,7 +139,7 @@ extension SyntaxDefinition: Equatable {
 }
 
 
-extension SyntaxDefinition.Term: Equatable {
+extension SyntaxDefinition.Highlight: Equatable {
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         

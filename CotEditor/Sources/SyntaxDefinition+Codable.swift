@@ -61,16 +61,16 @@ extension SyntaxDefinition: Codable {
         self.init()
         
         self.kind = try values.decodeIfPresent(Syntax.Kind.self, forKey: .kind) ?? .general
-        self.keywords = try values.decodeIfPresent([Term].self, forKey: .keywords) ?? []
-        self.commands = try values.decodeIfPresent([Term].self, forKey: .commands) ?? []
-        self.types = try values.decodeIfPresent([Term].self, forKey: .types) ?? []
-        self.attributes = try values.decodeIfPresent([Term].self, forKey: .attributes) ?? []
-        self.variables = try values.decodeIfPresent([Term].self, forKey: .variables) ?? []
-        self.values = try values.decodeIfPresent([Term].self, forKey: .values) ?? []
-        self.numbers = try values.decodeIfPresent([Term].self, forKey: .numbers) ?? []
-        self.strings = try values.decodeIfPresent([Term].self, forKey: .strings) ?? []
-        self.characters = try values.decodeIfPresent([Term].self, forKey: .characters) ?? []
-        self.comments = try values.decodeIfPresent([Term].self, forKey: .comments) ?? []
+        self.keywords = try values.decodeIfPresent([Highlight].self, forKey: .keywords) ?? []
+        self.commands = try values.decodeIfPresent([Highlight].self, forKey: .commands) ?? []
+        self.types = try values.decodeIfPresent([Highlight].self, forKey: .types) ?? []
+        self.attributes = try values.decodeIfPresent([Highlight].self, forKey: .attributes) ?? []
+        self.variables = try values.decodeIfPresent([Highlight].self, forKey: .variables) ?? []
+        self.values = try values.decodeIfPresent([Highlight].self, forKey: .values) ?? []
+        self.numbers = try values.decodeIfPresent([Highlight].self, forKey: .numbers) ?? []
+        self.strings = try values.decodeIfPresent([Highlight].self, forKey: .strings) ?? []
+        self.characters = try values.decodeIfPresent([Highlight].self, forKey: .characters) ?? []
+        self.comments = try values.decodeIfPresent([Highlight].self, forKey: .comments) ?? []
         
         self.commentDelimiters = try values.decodeIfPresent(SyntaxDefinition.Comment.self, forKey: .commentDelimiters) ?? .init()
         self.outlines = try values.decodeIfPresent([Outline].self, forKey: .outlines) ?? []
@@ -112,7 +112,7 @@ extension SyntaxDefinition: Codable {
 }
 
 
-extension SyntaxDefinition.Term: Codable {
+extension SyntaxDefinition.Highlight: Codable {
     
     private enum CodingKeys: String, CodingKey {
         

@@ -1,5 +1,5 @@
 //
-//  SyntaxTermEditView.swift
+//  SyntaxHighlightEditView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,12 +25,12 @@
 
 import SwiftUI
 
-struct SyntaxTermEditView: View {
+struct SyntaxHighlightEditView: View {
     
-    typealias Item = SyntaxDefinition.Term
+    typealias Item = SyntaxDefinition.Highlight
     
     
-    @Binding var terms: [Item]
+    @Binding var items: [Item]
     var helpAnchor: String = "syntax_highlight_settings"
     
     @State private var selection: Set<Item.ID> = []
@@ -42,13 +42,13 @@ struct SyntaxTermEditView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Table($terms, selection: $selection) {
+            Table($items, selection: $selection) {
                 TableColumn(String(localized: "RE", table: "SyntaxEdit", comment: "table column header (RE for Regular Expression)")) { item in
                     Toggle(isOn: item.isRegularExpression, label: EmptyView.init)
                         .help(String(localized: "Regular Expression", table: "SyntaxEdit", comment: "tooltip for RE checkbox"))
                         .onChange(of: item.isRegularExpression.wrappedValue) { newValue in
                             guard self.selection.contains(item.id) else { return }
-                            $terms
+                            $items
                                 .filter(with: self.selection)
                                 .filter { $0.id != item.id }
                                 .forEach { $0.isRegularExpression.wrappedValue = newValue }
@@ -61,7 +61,7 @@ struct SyntaxTermEditView: View {
                         .help(String(localized: "Ignore Case", table: "SyntaxEdit", comment: "tooltip for IC checkbox"))
                         .onChange(of: item.ignoreCase.wrappedValue) { newValue in
                             guard self.selection.contains(item.id) else { return }
-                            $terms
+                            $items
                                 .filter(with: self.selection)
                                 .filter { $0.id != item.id }
                                 .forEach { $0.ignoreCase.wrappedValue = newValue }
@@ -90,7 +90,7 @@ struct SyntaxTermEditView: View {
             .border(Color(nsColor: .gridColor))
             
             HStack {
-                AddRemoveButton($terms, selection: $selection, focus: $focusedField)
+                AddRemoveButton($items, selection: $selection, focus: $focusedField)
                 Spacer()
                 HelpButton(anchor: self.helpAnchor)
             }
@@ -103,12 +103,12 @@ struct SyntaxTermEditView: View {
 // MARK: - Preview
 
 #Preview {
-    @State var terms: [SyntaxDefinition.Term] = [
+    @State var items: [SyntaxDefinition.Highlight] = [
         .init(begin: "(inu)", end: "(dog)"),
         .init(begin: "[Cc]at", end: "$0", isRegularExpression: true, description: "note"),
         .init(begin: "[]", isRegularExpression: true, ignoreCase: true),
     ]
     
-    return SyntaxTermEditView(terms: $terms)
+    return SyntaxHighlightEditView(items: $items)
         .padding()
 }

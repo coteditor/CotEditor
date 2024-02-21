@@ -127,8 +127,8 @@
 		2A25C52920F06BE80003AE1A /* CustomTabWidthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */; };
 		2A26156E2977B87F008C2240 /* StepperNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A26156D2977B87F008C2240 /* StepperNumberField.swift */; };
 		2A26156F2977B87F008C2240 /* StepperNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A26156D2977B87F008C2240 /* StepperNumberField.swift */; };
-		2A2615742977CB48008C2240 /* SyntaxTermEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2615732977CB48008C2240 /* SyntaxTermEditView.swift */; };
-		2A2615752977CB48008C2240 /* SyntaxTermEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2615732977CB48008C2240 /* SyntaxTermEditView.swift */; };
+		2A2615742977CB48008C2240 /* SyntaxHighlightEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2615732977CB48008C2240 /* SyntaxHighlightEditView.swift */; };
+		2A2615752977CB48008C2240 /* SyntaxHighlightEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2615732977CB48008C2240 /* SyntaxHighlightEditView.swift */; };
 		2A2615772977D30E008C2240 /* SyntaxOutlineEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2615762977D30E008C2240 /* SyntaxOutlineEditView.swift */; };
 		2A2615782977D30E008C2240 /* SyntaxOutlineEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2615762977D30E008C2240 /* SyntaxOutlineEditView.swift */; };
 		2A26157A2977D5E8008C2240 /* SyntaxCommentEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2615792977D5E8008C2240 /* SyntaxCommentEditView.swift */; };
@@ -894,7 +894,7 @@
 		2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabWidthView.swift; sourceTree = "<group>"; };
 		2A25D74C2AA714FC004D6681 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/NavigationBar.xcstrings; sourceTree = "<group>"; };
 		2A26156D2977B87F008C2240 /* StepperNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperNumberField.swift; sourceTree = "<group>"; };
-		2A2615732977CB48008C2240 /* SyntaxTermEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxTermEditView.swift; sourceTree = "<group>"; };
+		2A2615732977CB48008C2240 /* SyntaxHighlightEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxHighlightEditView.swift; sourceTree = "<group>"; };
 		2A2615762977D30E008C2240 /* SyntaxOutlineEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxOutlineEditView.swift; sourceTree = "<group>"; };
 		2A2615792977D5E8008C2240 /* SyntaxCommentEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxCommentEditView.swift; sourceTree = "<group>"; };
 		2A26157C2977D706008C2240 /* SyntaxCompletionEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxCompletionEditView.swift; sourceTree = "<group>"; };
@@ -1587,7 +1587,7 @@
 			isa = PBXGroup;
 			children = (
 				2A2615852977F7E2008C2240 /* SyntaxEditView.swift */,
-				2A2615732977CB48008C2240 /* SyntaxTermEditView.swift */,
+				2A2615732977CB48008C2240 /* SyntaxHighlightEditView.swift */,
 				2A2615792977D5E8008C2240 /* SyntaxCommentEditView.swift */,
 				2A2615762977D30E008C2240 /* SyntaxOutlineEditView.swift */,
 				2A26157C2977D706008C2240 /* SyntaxCompletionEditView.swift */,
@@ -2956,13 +2956,13 @@
 				2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2A2615862977F7E2008C2240 /* SyntaxEditView.swift in Sources */,
 				2A2615802977DB20008C2240 /* SyntaxFileMappingEditView.swift in Sources */,
+				2A2615742977CB48008C2240 /* SyntaxHighlightEditView.swift in Sources */,
 				2A2792991D1E57DA00F3FC5D /* SyntaxListViewController.swift in Sources */,
 				2AC434F31D494EA700980E66 /* SyntaxManager.swift in Sources */,
 				2A5DCE871D1888D800D5D74C /* SyntaxMappingConflictsView.swift in Sources */,
 				2A2615832977F62D008C2240 /* SyntaxMetadataEditView.swift in Sources */,
 				2A2615772977D30E008C2240 /* SyntaxOutlineEditView.swift in Sources */,
 				2A4714E42093A2D40093E27F /* SyntaxParser.swift in Sources */,
-				2A2615742977CB48008C2240 /* SyntaxTermEditView.swift in Sources */,
 				2A33D07F1D1C75B8005977B9 /* SyntaxValidationView.swift in Sources */,
 				2ABF49E4221A54AD00239278 /* TextClipping.swift in Sources */,
 				2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */,
@@ -3322,13 +3322,13 @@
 				2A33D0871D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2A2615872977F7E2008C2240 /* SyntaxEditView.swift in Sources */,
 				2A2615812977DB20008C2240 /* SyntaxFileMappingEditView.swift in Sources */,
+				2A2615752977CB48008C2240 /* SyntaxHighlightEditView.swift in Sources */,
 				2A2792981D1E57DA00F3FC5D /* SyntaxListViewController.swift in Sources */,
 				2AC434F41D494EA800980E66 /* SyntaxManager.swift in Sources */,
 				2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictsView.swift in Sources */,
 				2A2615842977F62D008C2240 /* SyntaxMetadataEditView.swift in Sources */,
 				2A2615782977D30E008C2240 /* SyntaxOutlineEditView.swift in Sources */,
 				2A4714E32093A2D40093E27F /* SyntaxParser.swift in Sources */,
-				2A2615752977CB48008C2240 /* SyntaxTermEditView.swift in Sources */,
 				2A33D07E1D1C75B8005977B9 /* SyntaxValidationView.swift in Sources */,
 				2ABF49E3221A54AD00239278 /* TextClipping.swift in Sources */,
 				2AFE848622AE71130001C4ED /* TextContainer.swift in Sources */,

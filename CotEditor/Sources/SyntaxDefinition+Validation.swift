@@ -59,8 +59,8 @@ extension SyntaxDefinition {
         
         var errors: [Error] = []
         
-        for keyPath in Self.termKeyPaths {
-            let terms = self[keyPath: keyPath]
+        for keyPath in Self.highlightKeyPaths {
+            let highlights = self[keyPath: keyPath]
                 .sorted {  // sort for duplication check
                     if $0.begin != $1.begin {
                         $0.begin < $1.begin
@@ -71,27 +71,27 @@ extension SyntaxDefinition {
                     }
                 }
             
-            // allow appearing the same terms in different kinds
-            var lastTerm: Term?
+            // allow appearing the same highlights in different kinds
+            var lastHighlight: Highlight?
             
-            for term in terms {
+            for highlight in highlights {
                 defer {
-                    lastTerm = term
+                    lastHighlight = highlight
                 }
                 
-                guard term.begin != lastTerm?.begin || term.end != lastTerm?.end else {
-                    errors.append(Error(.duplicated, type: keyPath, string: term.begin))
+                guard highlight.begin != lastHighlight?.begin || highlight.end != lastHighlight?.end else {
+                    errors.append(Error(.duplicated, type: keyPath, string: highlight.begin))
                     continue
                 }
                 
-                if term.isRegularExpression {
+                if highlight.isRegularExpression {
                     do {
-                        _ = try NSRegularExpression(pattern: term.begin)
+                        _ = try NSRegularExpression(pattern: highlight.begin)
                     } catch {
-                        errors.append(Error(.regularExpression, type: keyPath, string: term.begin))
+                        errors.append(Error(.regularExpression, type: keyPath, string: highlight.begin))
                     }
                     
-                    if let end = term.end {
+                    if let end = highlight.end {
                         do {
                             _ = try NSRegularExpression(pattern: end)
                         } catch {
