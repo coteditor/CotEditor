@@ -37,9 +37,8 @@ struct Syntax: Equatable {
     
     // MARK: Public Properties
     
-    static let none = Syntax(name: BundledSyntaxName.none, kind: .code)
+    static let none = Syntax(kind: .code)
     
-    private(set) var name: String
     private(set) var kind: Kind
     private(set) var extensions: [String] = []
     
@@ -56,16 +55,14 @@ struct Syntax: Equatable {
     
     // MARK: Lifecycle
     
-    private init(name: String, kind: Kind) {
+    private init(kind: Kind) {
         
-        self.name = name
         self.kind = kind
     }
     
     
-    init(dictionary: [String: Any], name: String) {
+    init(dictionary: [String: Any]) {
         
-        self.name = name
         self.kind = (dictionary[SyntaxKey.kind] as? String).flatMap(Kind.init(rawValue:)) ?? .general
         self.extensions = (dictionary[SyntaxKey.extensions] as? [[String: String]])?
             .compactMap { $0[SyntaxDefinitionKey.keyString] } ?? []

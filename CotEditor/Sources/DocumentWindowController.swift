@@ -144,7 +144,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             
             // observe document's syntax change
             self.documentSyntaxObserver = document.didChangeSyntax
-                .merge(with: Just(document.syntaxParser.syntax.name))
+                .merge(with: Just(document.syntaxParser.name))
                 .receive(on: RunLoop.main)
                 .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
         }
@@ -229,7 +229,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         menu.items += syntaxNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
         
-        if let syntaxName = (self.document as? Document)?.syntaxParser.syntax.name {
+        if let syntaxName = (self.document as? Document)?.syntaxParser.name {
             self.selectSyntaxPopUpItem(with: syntaxName)
         }
     }

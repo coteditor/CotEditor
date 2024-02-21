@@ -247,9 +247,8 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     func loadSetting(at fileURL: URL) throws -> Setting {
         
         let dictionary = try self.loadSettingDictionary(at: fileURL)
-        let name = self.settingName(from: fileURL)
         
-        return Syntax(dictionary: dictionary, name: name)
+        return Syntax(dictionary: dictionary)
     }
     
     

@@ -167,7 +167,7 @@ extension Document {
     @objc var coloringStyle: String {
         
         get {
-            self.syntaxParser.syntax.name
+            self.syntaxParser.name
         }
         
         set {

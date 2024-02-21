@@ -65,7 +65,7 @@ final class DocumentController: NSDocumentController {
         self.mainWindowObserver = NSApp.publisher(for: \.mainWindow)
             .map { $0?.windowController?.document as? Document }
             .sink { [unowned self] in
-                self.currentSyntaxName = $0?.syntaxParser.syntax.name
+                self.currentSyntaxName = $0?.syntaxParser.name
                 self.syntaxObserver = $0?.didChangeSyntax
                     .sink { self.currentSyntaxName = $0 }
             }

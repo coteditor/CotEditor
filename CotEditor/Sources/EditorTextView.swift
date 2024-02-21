@@ -494,7 +494,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         if !self.hasMarkedText(),
            let shortcut = Shortcut(keyDownEvent: event),
            let document = self.document,
-           let snippet = SnippetManager.shared.snippet(for: shortcut, scope: document.syntaxParser.syntax.name)
+           let snippet = SnippetManager.shared.snippet(for: shortcut, scope: document.syntaxParser.name)
         {
             return self.insert(snippet: snippet)
         }
@@ -1529,7 +1529,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         let fileDropItems = UserDefaults.standard[.fileDropArray].map(FileDropItem.init(dictionary:))
         let documentURL = self.document?.fileURL
-        let syntax = self.document?.syntaxParser.syntax.name
+        let syntax = self.document?.syntaxParser.name
         
         let replacementString = urls.reduce(into: "") { (string, url) in
             if url.pathExtension == "textClipping", let textClipping = try? TextClipping(contentsOf: url) {
