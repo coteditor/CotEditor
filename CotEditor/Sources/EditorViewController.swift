@@ -160,8 +160,8 @@ final class EditorViewController: NSSplitViewController {
         guard let textView = self.textView else { return assertionFailure() }
         
         textView.syntaxKind = syntax.kind
-        textView.inlineCommentDelimiter = syntax.inlineCommentDelimiter
-        textView.blockCommentDelimiters = syntax.blockCommentDelimiters
+        textView.inlineCommentDelimiter = syntax.commentDelimiters.inline
+        textView.blockCommentDelimiters = syntax.commentDelimiters.blockPair
         textView.syntaxCompletionWords = syntax.completionWords
     }
     

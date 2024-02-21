@@ -39,13 +39,12 @@ struct Syntax: Equatable {
     
     static let none = Syntax(name: BundledSyntaxName.none, kind: .code)
     
-    var name: String
-    var kind: Kind
-    var extensions: [String] = []
+    private(set) var name: String
+    private(set) var kind: Kind
+    private(set) var extensions: [String] = []
     
-    var inlineCommentDelimiter: String?
-    var blockCommentDelimiters: Pair<String>?
-    var completionWords: [String] = []
+    private(set) var commentDelimiters: SyntaxDefinition.Comment = .init()
+    private(set) var completionWords: [String] = []
     
     
     // MARK: Private Properties
@@ -72,21 +71,17 @@ struct Syntax: Equatable {
             .compactMap { $0[SyntaxDefinitionKey.keyString] } ?? []
         
         // set comment delimiters
-        var inlineCommentDelimiter: String?
-        var blockCommentDelimiters: Pair<String>?
         if let delimiters = dictionary[SyntaxKey.commentDelimiters] as? [String: String] {
             if let delimiter = delimiters[DelimiterKey.inlineDelimiter], !delimiter.isEmpty {
-                inlineCommentDelimiter = delimiter
+                self.commentDelimiters.inline = delimiter
             }
-            if let beginDelimiter = delimiters[DelimiterKey.beginDelimiter],
-               let endDelimiter = delimiters[DelimiterKey.endDelimiter],
-               !beginDelimiter.isEmpty, !endDelimiter.isEmpty
-            {
-                blockCommentDelimiters = Pair<String>(beginDelimiter, endDelimiter)
+            if let delimiter = delimiters[DelimiterKey.beginDelimiter], !delimiter.isEmpty {
+                self.commentDelimiters.blockBegin = delimiter
+            }
+            if let delimiter = delimiters[DelimiterKey.endDelimiter], !delimiter.isEmpty {
+                self.commentDelimiters.blockEnd = delimiter
             }
         }
-        self.inlineCommentDelimiter = inlineCommentDelimiter
-        self.blockCommentDelimiters = blockCommentDelimiters
         
         // parse highlight definitions
         self.highlightDefinitions = SyntaxType.allCases.reduce(into: [:]) { (dict, type) in
@@ -174,10 +169,10 @@ struct Syntax: Equatable {
             .mapValues { $0.compactMap { try? $0.extractor } }
             .filter { !$0.value.isEmpty }
         
-        if let blockCommentDelimiters = self.blockCommentDelimiters {
+        if let blockCommentDelimiters = self.commentDelimiters.blockPair {
             nestables[.pair(blockCommentDelimiters)] = .comments
         }
-        if let inlineCommentDelimiter = self.inlineCommentDelimiter {
+        if let inlineCommentDelimiter = self.commentDelimiters.inline {
             nestables[.inline(inlineCommentDelimiter)] = .comments
         }
         

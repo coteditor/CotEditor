@@ -100,8 +100,8 @@ final class SyntaxTests: XCTestCase {
         XCTAssertEqual(syntax.name, "None")
         XCTAssertEqual(syntax.kind, .code)
         XCTAssert(syntax.highlightParser.isEmpty)
-        XCTAssertNil(syntax.inlineCommentDelimiter)
-        XCTAssertNil(syntax.blockCommentDelimiters)
+        XCTAssertNil(syntax.commentDelimiters.inline)
+        XCTAssertNil(syntax.commentDelimiters.blockPair)
     }
     
     
@@ -111,9 +111,8 @@ final class SyntaxTests: XCTestCase {
         
         XCTAssertEqual(syntax.name, "HTML")
         XCTAssertFalse(syntax.highlightParser.isEmpty)
-        XCTAssertNil(syntax.inlineCommentDelimiter)
-        XCTAssertEqual(syntax.blockCommentDelimiters?.begin, "<!--")
-        XCTAssertEqual(syntax.blockCommentDelimiters?.end, "-->")
+        XCTAssertNil(syntax.commentDelimiters.inline)
+        XCTAssertEqual(syntax.commentDelimiters.blockPair, Pair("<!--", "-->"))
     }
     
     

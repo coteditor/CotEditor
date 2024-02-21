@@ -66,6 +66,12 @@ final class SyntaxDefinition: ObservableObject {
         var inline: String?
         var blockBegin: String?
         var blockEnd: String?
+        
+        
+        var blockPair: Pair<String>? {
+            
+            if let begin = self.blockBegin, let end = self.blockEnd { Pair(begin, end) } else { nil }
+        }
     }
     
     
