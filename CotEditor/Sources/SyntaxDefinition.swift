@@ -49,7 +49,6 @@ final class SyntaxDefinition: ObservableObject {
         var bold: Bool = false
         var italic: Bool = false
         var underline: Bool = false
-        
         var description: String?
     }
     
