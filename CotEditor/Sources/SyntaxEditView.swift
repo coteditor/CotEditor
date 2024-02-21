@@ -97,7 +97,7 @@ struct SyntaxEditView: View {
                         Text(pane.label)
                     }
                 }
-                Section(String(localized: "Definition", table: "SyntaxEdit", comment: "section header in sidebar")) {
+                Section(String(localized: "Definition File", table: "SyntaxEdit", comment: "section header in sidebar")) {
                     ForEach(Pane.syntaxData, id: \.self) { pane in
                         Text(pane.label)
                     }
