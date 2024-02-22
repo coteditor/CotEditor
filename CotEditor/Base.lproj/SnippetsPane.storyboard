@@ -91,7 +91,7 @@
                                                             <rect key="frame" x="118" y="0.0" width="304" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zxQ-hR-j2t">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zxQ-hR-j2t">
                                                                     <rect key="frame" x="0.0" y="3" width="304" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" id="4d2-ZY-6Rc">
@@ -126,7 +126,7 @@
                                                             <rect key="frame" x="430" y="0.0" width="74" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" id="7e5-Al-qqJ" customClass="ShortcutField" customModule="CotEditor" customModuleProvider="target">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" id="7e5-Al-qqJ" customClass="ShortcutField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="3" width="64" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="right" id="gro-YE-m3e">
@@ -184,7 +184,7 @@
                                     <action selector="addRemove:" target="Jku-3h-OhR" id="3Wy-4X-3Bg"/>
                                 </connections>
                             </segmentedControl>
-                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K7g-Vp-Prr">
+                            <textField focusRingType="none" horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K7g-Vp-Prr">
                                 <rect key="frame" x="369" y="154" width="177" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="SHORTCUT WARNING MESSAGE" id="rUw-Mw-hR2">
                                     <font key="font" metaFont="smallSystem"/>
@@ -195,7 +195,7 @@
                                     <binding destination="Jku-3h-OhR" name="value" keyPath="warningMessage" id="icx-80-xfY"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6IG-gg-VIP">
+                            <textField focusRingType="none" horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6IG-gg-VIP">
                                 <rect key="frame" x="8" y="118" width="105" height="16"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Insertion format:" usesSingleLineMode="YES" id="PaR-eN-FFs">
                                     <font key="font" metaFont="system"/>
@@ -943,7 +943,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DUN-ho-Mkq">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DUN-ho-Mkq">
                                 <rect key="frame" x="8" y="310" width="538" height="16"/>
                                 <textFieldCell key="cell" title="Text to be inserted by a command in the menu or by keyboard shortcut:" id="o3A-71-iGh">
                                     <font key="font" metaFont="system"/>
@@ -1054,7 +1054,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="extensions" width="180" minWidth="40" maxWidth="1000" headerToolTip="Filename extensions of dropped file (comma separated)." id="FAF-cL-AAk">
+                                                <tableColumn identifier="extensions" width="180" minWidth="40" maxWidth="1000" headerToolTip="File extensions of dropped file (comma separated)." id="FAF-cL-AAk">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extensions">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
@@ -1070,7 +1070,7 @@
                                                             <rect key="frame" x="142" y="0.0" width="180" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField identifier="extensions" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="jIX-u0-ddX">
+                                                                <textField identifier="extensions" focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="jIX-u0-ddX">
                                                                     <rect key="frame" x="0.0" y="3" width="180" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" usesSingleLineMode="YES" id="caT-Gh-1x2">
@@ -1110,7 +1110,7 @@
                                                             <rect key="frame" x="330" y="0.0" width="198" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField identifier="description" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="RRF-15-RQ7">
+                                                                <textField identifier="description" focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="RRF-15-RQ7">
                                                                     <rect key="frame" x="0.0" y="3" width="198" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" usesSingleLineMode="YES" id="25Y-1h-PMq">
@@ -1166,7 +1166,7 @@
                                     <action selector="addRemove:" target="UtY-fi-jOg" id="EM2-wI-Ym8"/>
                                 </connections>
                             </segmentedControl>
-                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JWP-To-iJP">
+                            <textField focusRingType="none" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JWP-To-iJP">
                                 <rect key="frame" x="8" y="118" width="105" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Insertion format:" usesSingleLineMode="YES" id="3332">
                                     <font key="font" metaFont="system"/>
@@ -1228,7 +1228,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YcM-e0-LrE">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YcM-e0-LrE">
                                 <rect key="frame" x="8" y="310" width="538" height="16"/>
                                 <textFieldCell key="cell" title="Text to be inserted by dropping files to the editor:" id="JRQ-2g-t49">
                                     <font key="font" metaFont="system"/>

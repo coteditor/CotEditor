@@ -392,7 +392,7 @@
       }
     },
     "FAF-cL-AAk.headerToolTip" : {
-      "comment" : "Class = \"NSTableColumn\"; headerToolTip = \"Filename extensions of dropped file (comma separated).\"; ObjectID = \"FAF-cL-AAk\";",
+      "comment" : "Class = \"NSTableColumn\"; headerToolTip = \"File extensions of dropped file (comma separated).\"; ObjectID = \"FAF-cL-AAk\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -410,13 +410,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Filename extensions of dropped file (comma separated)."
+            "value" : "File extensions of dropped file (comma separated)."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Filename extensions of dropped file (comma separated)."
+            "value" : "File extensions of dropped file (comma separated)."
           }
         },
         "es" : {
