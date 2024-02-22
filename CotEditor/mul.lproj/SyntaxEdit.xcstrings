@@ -1721,7 +1721,7 @@
         }
       }
     },
-    "If not specified, the completion list is generated based on the highlighting settings." : {
+    "If not specified, syntax completion words are generated based on the highlighting settings." : {
       "comment" : "message",
       "localizations" : {
         "cs" : {
@@ -1733,13 +1733,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wenn nichts angegeben ist, wird die Vervollständigungsliste aus den Einstellungen für das Hervorheben erstellt."
+            "value" : "Wenn nichts angegeben ist, werden die Vervollständigungswörter für den Syntax aus den Einstellungen für das Hervorheben erstellt."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "If not specified, the completion list is generated based on the highlighting settings."
+            "value" : "If not specified, the syntax completion words are generated based on the highlighting settings."
           }
         },
         "es" : {
@@ -1763,7 +1763,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "設定がないときはハイライト設定から補完リストが生成されます。"
+            "value" : "設定がないときは、ハイライト設定からシンタックス補完単語が生成されます。"
           }
         },
         "pt" : {
@@ -3364,13 +3364,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Lista de autocompletado"
+            "value" : "Completado"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Autocomplétion"
+            "value" : "Complétage"
           }
         },
         "it" : {
@@ -3388,13 +3388,13 @@
         "pt" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Lista de Preenchimento"
+            "value" : "Preenchimento"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Tamamlama Listesi"
+            "value" : "Tamamlama"
           }
         },
         "zh-Hans" : {
