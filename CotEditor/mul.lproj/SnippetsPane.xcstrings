@@ -80,7 +80,7 @@
       }
     },
     "3332.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Insertion Format:\"; ObjectID = \"3332\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Insertion format:\"; ObjectID = \"3332\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -98,25 +98,25 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Insertion Format:"
+            "value" : "Insertion format:"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Insertion Format:"
+            "value" : "Insertion format:"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Insertar Formato:"
+            "value" : "Insertar formato:"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Format du texte à insérer :"
+            "value" : "Texte à insérer :"
           }
         },
         "it" : {
@@ -140,7 +140,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ekleme Biçimi:"
+            "value" : "Ekleme biçimi:"
           }
         },
         "zh-Hans" : {
@@ -1016,7 +1016,7 @@
       }
     },
     "PaR-eN-FFs.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Insertion Format:\"; ObjectID = \"PaR-eN-FFs\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Insertion format:\"; ObjectID = \"PaR-eN-FFs\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -1034,19 +1034,19 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Insertion Format:"
+            "value" : "Insertion format:"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Insertion Format:"
+            "value" : "Insertion format:"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Insertar Formato:"
+            "value" : "Insertar formato:"
           }
         },
         "fr" : {
@@ -1076,7 +1076,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ekleme Biçimi:"
+            "value" : "Ekleme biçimi:"
           }
         },
         "zh-Hans" : {
