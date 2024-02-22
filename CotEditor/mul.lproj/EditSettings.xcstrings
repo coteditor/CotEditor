@@ -319,12 +319,6 @@
             "value" : "Rechtschreibung während der Texteingabe prüfen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Check spelling while typing"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -393,12 +387,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kommentar:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Comment:"
           }
         },
         "en-GB" : {
@@ -471,12 +459,6 @@
             "value" : "Vervollständigungsliste enthält:"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Completion list includes:"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -545,12 +527,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vervollständigung:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Completion:"
           }
         },
         "en-GB" : {
@@ -623,12 +599,6 @@
             "value" : "Inhaltsanalyse:"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Content parse:"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -697,12 +667,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verzögerung:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Delay:"
           }
         },
         "en-GB" : {
@@ -775,12 +739,6 @@
             "value" : "Einzugsstil beim Öffnen ermitteln"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Detect indent style on document opening"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -849,12 +807,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "„<>“ markieren"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Highlight “<>”"
           }
         },
         "en-GB" : {
@@ -927,12 +879,6 @@
             "value" : "Instanzen des ausgewählten Textes markieren"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Highlight instances of selected text"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1001,12 +947,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Passende Klammern „()“ „[]“ „{}“ markieren"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Highlight matching braces “()” “[]” “{}”"
           }
         },
         "en-GB" : {
@@ -1079,12 +1019,6 @@
             "value" : "Nur aus Leerzeichen bestehende Zeilen einschließen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Including whitespace-only lines"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1153,12 +1087,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Auswahl mit der Tabulatortaste einrücken"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Indent selection with Tab key"
           }
         },
         "en-GB" : {
@@ -1231,12 +1159,6 @@
             "value" : "Einzugsweite:"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Indent width:"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1305,12 +1227,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Einrückung:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Indentation:"
           }
         },
         "en-GB" : {
@@ -1383,12 +1299,6 @@
             "value" : "URLs im Dokument verlinken"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Link URLs in document"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1457,12 +1367,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Einrückung mit"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Prefer using"
           }
         },
         "en-GB" : {
@@ -1536,12 +1440,6 @@
             "value" : "Sekunden"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "seconds"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1610,12 +1508,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wähle mindestens ein Element, um die Vervollständigung zu aktivieren."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Select at least one item to enable completion."
           }
         },
         "en-GB" : {
@@ -1688,12 +1580,6 @@
             "value" : "Intelligentes Kopieren/Ersetzen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Smart copy/paste"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1764,12 +1650,6 @@
             "value" : "Intelligente Bindestriche"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Smart dashes"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1838,12 +1718,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Intelligente Anführungszeichen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Smart quotes"
           }
         },
         "en-GB" : {
@@ -1917,12 +1791,6 @@
             "value" : "Leerzeichen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "spaces"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1992,12 +1860,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Leerzeichen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Spaces"
           }
         },
         "en-GB" : {
@@ -2070,12 +1932,6 @@
             "value" : "Normale Wörter"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Standard words"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2146,12 +2002,6 @@
             "value" : "Ersetzung:"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Substitution:"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2220,12 +2070,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Während der Texteingabe Vervollständigungen vorschlagen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Suggest completions while typing"
           }
         },
         "en-GB" : {
@@ -2299,12 +2143,6 @@
             "value" : "Tabulatoren"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Tabs"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2375,12 +2213,6 @@
             "value" : "Wörter, die in der Syntax definiert sind"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Words defined in syntax"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2449,12 +2281,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wörter im Dokument"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Words in document"
           }
         },
         "en-GB" : {

@@ -16,12 +16,6 @@
             "value" : "Immer"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Always"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -90,12 +84,6 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auto"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
             "value" : "Auto"
           }
         },
@@ -170,12 +158,6 @@
             "value" : "Automatisch"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Automatically"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -244,12 +226,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hintergrundfarbe ändern"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Change background color"
           }
         },
         "en-GB" : {
@@ -322,12 +298,6 @@
             "value" : "Zeichenanzahl"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Character count"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -396,12 +366,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aktuelle Spalte"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Current Column"
           }
         },
         "en-GB" : {
@@ -474,12 +438,6 @@
             "value" : "Aktuelle Zeile"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Current line"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -548,12 +506,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aktuelle Zeile:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Current line:"
           }
         },
         "en-GB" : {
@@ -626,12 +578,6 @@
             "value" : "Trennlinie zeichnen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Draw separator"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -700,12 +646,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Höhe"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Height"
           }
         },
         "en-GB" : {
@@ -778,12 +718,6 @@
             "value" : "Einzugshilfslinien"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Indent guides"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -852,12 +786,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Einzug bei Zeilenumbruch um"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Indent wrapped lines by"
           }
         },
         "en-GB" : {
@@ -930,12 +858,6 @@
             "value" : "Steuerzeichen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Invisible characters"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1004,12 +926,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zeilenanzahl"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Line count"
           }
         },
         "en-GB" : {
@@ -1083,12 +999,6 @@
             "value" : "Zeilenumbruch"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Line ending"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1157,12 +1067,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zeilennummern"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Line numbers"
           }
         },
         "en-GB" : {
@@ -1235,12 +1139,6 @@
             "value" : "Zeilenumbruch:"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Line wrapping:"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1309,12 +1207,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Position"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Location"
           }
         },
         "en-GB" : {
@@ -1388,12 +1280,6 @@
             "value" : "Nie"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Never"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1463,12 +1349,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Andere Steuerzeichen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Other control characters"
           }
         },
         "en-GB" : {
@@ -1542,12 +1422,6 @@
             "value" : "Andere Leerräumen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Other whitespaces"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1616,12 +1490,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Überscrollen:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Overscroll:"
           }
         },
         "en-GB" : {
@@ -1694,12 +1562,6 @@
             "value" : "Seitenhilfslinie bei Spalte:"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Page guide at column:"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1768,12 +1630,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tabs bevorzugen:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Prefer tabs:"
           }
         },
         "en-GB" : {
@@ -1847,12 +1703,6 @@
             "value" : "px"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "px"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1923,12 +1773,6 @@
             "value" : "Systemeinstellung befolgen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Respect System Setting"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1997,12 +1841,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anzeigen:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Show:"
           }
         },
         "en-GB" : {
@@ -2076,12 +1914,6 @@
             "value" : "Leerzeichen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Space"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2153,12 +1985,6 @@
             "value" : "Leerzeichen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "spaces"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2227,12 +2053,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Statusleiste zeigt:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Status bar shows:"
           }
         },
         "en-GB" : {
@@ -2306,12 +2126,6 @@
             "value" : "Tabulator"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Tab"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2380,12 +2194,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Breite"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Width"
           }
         },
         "en-GB" : {
@@ -2458,12 +2266,6 @@
             "value" : "Fenstergröße:"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Window size:"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2532,12 +2334,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wortanzahl"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Word count"
           }
         },
         "en-GB" : {
@@ -2610,12 +2406,6 @@
             "value" : "Zeilen an Editorbreite anpassen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Wrap lines to editor width"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2684,12 +2474,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schreibrichtung:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Writing direction:"
           }
         },
         "en-GB" : {

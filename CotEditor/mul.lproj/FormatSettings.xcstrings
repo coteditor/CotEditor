@@ -15,12 +15,6 @@
             "value" : "Verfügbare Syntaxen:"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Available syntaxes:"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -89,12 +83,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standardcodierung:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Default encoding:"
           }
         },
         "en-GB" : {
@@ -167,12 +155,6 @@
             "value" : "Standardzeilenenden:"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Default line endings:"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -241,12 +223,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standardsyntax:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Default syntax:"
           }
         },
         "en-GB" : {
@@ -319,12 +295,6 @@
             "value" : "Liste bearbeiten …"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Edit List…"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -395,12 +365,6 @@
             "value" : "Priorität der Codierungen:"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Priority of encodings:"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -469,12 +433,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Codierungsdeklaration im Dokument nachsehen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Refer to encoding declaration in document"
           }
         },
         "en-GB" : {

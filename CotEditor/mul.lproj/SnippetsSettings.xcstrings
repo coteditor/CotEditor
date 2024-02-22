@@ -16,12 +16,6 @@
             "value" : "Befehl"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Command"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -91,12 +85,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Datei-Drop"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "File Drop"
           }
         },
         "en-GB" : {
