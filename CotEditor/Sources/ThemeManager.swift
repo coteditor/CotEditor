@@ -78,6 +78,16 @@ final class ThemeManager: SettingFileManaging {
     
     // MARK: Public Methods
     
+    /// Returns whether given setting name is dark theme.
+    ///
+    /// - Parameter name: The setting name to test.
+    /// - Returns: A bool value.
+    static func isDark(name: String) -> Bool {
+        
+        name.hasSuffix("(Dark)")
+    }
+    
+    
     /// The default setting by taking the appearance state into consideration.
     var defaultSettingName: String {
         
@@ -164,16 +174,6 @@ final class ThemeManager: SettingFileManaging {
         try self.save(setting: Setting(), name: name)
         
         return name
-    }
-    
-    
-    /// Returns whether given setting name is dark theme.
-    ///
-    /// - Parameter name: The setting name to test.
-    /// - Returns: A bool value.
-    func isDark(name: String) -> Bool {
-        
-        name.hasSuffix("(Dark)")
     }
     
     

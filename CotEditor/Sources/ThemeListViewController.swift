@@ -1,5 +1,5 @@
 //
-//  ThemeViewController.swift
+//  ThemeListViewController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -30,24 +30,39 @@ import Combine
 import SwiftUI
 import UniformTypeIdentifiers
 
-final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSTextFieldDelegate {
+final class ThemeListViewController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSTextFieldDelegate {
     
     // MARK: Private Properties
+    
+    @Binding private var selection: String
     
     private var settingNames: [String] = []
     @objc private dynamic var isBundled = false  // bound to remove button
     
-    private var observers: Set<AnyCancellable> = []
+    private var observer: AnyCancellable?
     private lazy var filePromiseQueue = OperationQueue()
     
     @IBOutlet private weak var tableView: NSTableView?
     @IBOutlet private var actionButton: NSButton?
     @IBOutlet private var contextMenu: NSMenu?
-    @IBOutlet private var themeViewContainer: NSBox?
     
     
     
     // MARK: View Controller Methods
+    
+    init?(coder: NSCoder, selection: Binding<String>) {
+        
+        self._selection = selection
+        
+        super.init(coder: coder)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         
@@ -57,8 +72,6 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
         let receiverTypes = NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) }
         self.tableView?.registerForDraggedTypes([.fileURL] + receiverTypes)
         self.tableView?.setDraggingSourceOperationMask(.copy, forLocal: false)
-        
-        self.settingNames = ThemeManager.shared.settingNames
     }
     
     
@@ -66,27 +79,10 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
         
         super.viewWillAppear()
         
-        self.observers = [
-            ThemeManager.shared.$settingNames
-                .receive(on: RunLoop.main)
-                .sink { [weak self] _ in self?.updateList() },
-            ThemeManager.shared.didUpdateSetting
-                .compactMap(\.new)
-                .receive(on: RunLoop.main)
-                .filter { [weak self] in $0 == self?.selectedSettingName }
-                .sink { [weak self] name in
-                    guard let theme = try? ThemeManager.shared.setting(name: name) else { return }
-                    
-                    self?.setTheme(theme, name: name)
-                },
-            UserDefaults.standard.publisher(for: .documentAppearance)
-                .sink { [weak self] _ in
-                    let settingName = ThemeManager.shared.userDefaultSettingName
-                    let row = self?.settingNames.firstIndex(of: settingName) ?? 0
-                    
-                    self?.tableView?.selectRowIndexes([row], byExtendingSelection: false)
-                },
-        ]
+        self.observer = ThemeManager.shared.$settingNames
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.updateList() }
+        
         self.tableView?.scrollToBeginningOfDocument(nil)
     }
     
@@ -95,7 +91,16 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
         
         super.viewDidDisappear()
         
-        self.observers.removeAll()
+        self.observer = nil
+    }
+    
+    
+    // MARK: Public Methods
+    
+    func select(settingName: String) {
+        
+        let row = self.settingNames.firstIndex(of: settingName) ?? 0
+        self.tableView?.selectRowIndexes([row], byExtendingSelection: false)
     }
     
     
@@ -277,7 +282,7 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        self.setTheme(name: self.selectedSettingName)
+        self.selection = self.selectedSettingName
     }
     
     
@@ -317,9 +322,7 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
             return false
         }
         
-        if UserDefaults.standard[.theme] == oldName {
-            UserDefaults.standard[.theme] = newName
-        }
+        self.selection = newName
         
         return true
     }
@@ -506,54 +509,6 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
     }
     
     
-    /// Sets the given theme to the editor.
-    ///
-    /// - Parameter name: The theme name.
-    private func setTheme(name: String) {
-        
-        let theme: Theme
-        do {
-            theme = try ThemeManager.shared.setting(name: name)
-        } catch {
-            return self.presentErrorAsSheet(error)
-        }
-        
-        // update default theme setting
-        let isDarkTheme = ThemeManager.shared.isDark(name: name)
-        let usesDarkAppearance = ThemeManager.shared.usesDarkAppearance
-        UserDefaults.standard[.pinsThemeAppearance] = (isDarkTheme != usesDarkAppearance)
-        UserDefaults.standard[.theme] = name
-        
-        self.setTheme(theme, name: name)
-    }
-    
-    
-    /// Sets the given theme to theme view.
-    ///
-    /// - Parameters:
-    ///   - theme: The theme to set to the view.
-    ///   - name: The name of the theme.
-    private func setTheme(_ theme: Theme, name: String) {
-        
-        let isBundled = ThemeManager.shared.state(of: name)?.isBundled == true
-        
-        let view = ThemeEditorView(theme: theme, isBundled: isBundled) { theme in
-            do {
-                try ThemeManager.shared.save(setting: theme, name: name)
-            } catch {
-                assertionFailure(error.localizedDescription)
-            }
-        }
-        let hostingView = NSHostingView(rootView: view)
-        
-        self.themeViewContainer?.contentView = hostingView
-        self.isBundled = isBundled
-        
-        NSAccessibility.post(element: hostingView, notification: .valueChanged)
-        
-    }
-    
-    
     /// Tries to delete the given theme.
     ///
     /// - Parameter name: The name of the theme to delete.
@@ -620,18 +575,19 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
     /// - Parameter selectingName: The item name to select.
     private func updateList(bySelecting selectingName: String? = nil) {
         
-        let settingName = selectingName ?? ThemeManager.shared.userDefaultSettingName
-        
         self.settingNames = ThemeManager.shared.settingNames
         
         guard let tableView = self.tableView else { return }
+        
+        let settingName = selectingName ?? ThemeManager.shared.userDefaultSettingName
         
         tableView.reloadData()
         
         let row = self.settingNames.firstIndex(of: settingName) ?? 0
         
         tableView.selectRowIndexes([row], byExtendingSelection: false)
-        if selectingName != nil {
+        if let selectingName {
+            self.selection = selectingName
             tableView.scrollRowToVisible(row)
         }
     }

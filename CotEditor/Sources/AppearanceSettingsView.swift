@@ -197,22 +197,6 @@ private struct FontSettingView: View {
 }
 
 
-private struct ThemeView: NSViewControllerRepresentable {
-    
-    typealias NSViewControllerType = ThemeViewController
-    
-    
-    func makeNSViewController(context: Context) -> ThemeViewController {
-        
-        NSStoryboard(name: "ThemeView", bundle: nil).instantiateInitialController()!
-    }
-    
-    func updateNSViewController(_ nsViewController: ThemeViewController, context: Context) {
-        
-    }
-}
-
-
 private extension AppearanceMode {
     
     var label: String {

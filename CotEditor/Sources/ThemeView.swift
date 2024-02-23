@@ -1,5 +1,5 @@
 //
-//  ThemeEditorView.swift
+//  ThemeView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,14 +26,111 @@
 import SwiftUI
 import AppKit.NSColor
 
-struct ThemeEditorView: View {
+struct ThemeView: View {
     
-    @State var theme: Theme
+    @AppStorage(.theme) private var themeName
+    @AppStorage(.pinsThemeAppearance) private var pinsThemeAppearance
+    @AppStorage(.documentAppearance) private var documentAppearance
+    
+    @State private var theme: Theme = .init()
+    @State private var isBundled: Bool = false
+    
+    @State private var error: (any Error)?
+    
+    
+    var body: some View {
+        
+        HStack(spacing: 0) {
+            ThemeListView(selection: $themeName)
+            
+            Divider()
+            
+            ThemeEditorView(theme: $theme, isBundled: self.isBundled)
+                .frame(width: 360)
+                .onChange(of: self.theme) { (_, newValue) in
+                    do {
+                        try ThemeManager.shared.save(setting: newValue, name: self.themeName)
+                    } catch {
+                        self.error = error
+                    }
+                }
+        }
+        .onChange(of: self.documentAppearance, initial: true) {
+            self.themeName = ThemeManager.shared.userDefaultSettingName
+        }
+        .onChange(of: self.themeName, initial: true) { (_, newValue) in
+            self.setTheme(name: newValue)
+        }
+        .onReceive(ThemeManager.shared.didUpdateSetting) { change in
+            Task { @MainActor in
+                guard
+                    let name = change.new,
+                    name == self.themeName,
+                    let theme = try? ThemeManager.shared.setting(name: name)
+                else { return }
+                
+                self.theme = theme
+            }
+        }
+        .background()
+        .border(.separator)
+        .alert(error: $error)
+    }
+    
+    
+    /// Sets the given theme to the editor.
+    ///
+    /// - Parameter name: The theme name.
+    private func setTheme(name: String) {
+        
+        let theme: Theme
+        do {
+            theme = try ThemeManager.shared.setting(name: name)
+        } catch {
+            self.error = error
+            return
+        }
+        
+        // update default theme setting
+        let isDarkTheme = ThemeManager.isDark(name: name)
+        let usesDarkAppearance = ThemeManager.shared.usesDarkAppearance
+        self.pinsThemeAppearance = (isDarkTheme != usesDarkAppearance)
+        self.themeName = name
+        
+        self.isBundled = ThemeManager.shared.state(of: name)?.isBundled == true
+        self.theme = theme
+    }
+}
+
+
+private struct ThemeListView: NSViewControllerRepresentable {
+    
+    typealias NSViewControllerType = ThemeListViewController
+    
+    @Binding var selection: String
+    
+    
+    func makeNSViewController(context: Context) -> ThemeListViewController {
+        
+        NSStoryboard(name: "ThemeListView", bundle: nil).instantiateInitialController { coder in
+            ThemeListViewController(coder: coder, selection: $selection)
+        }!
+    }
+    
+    
+    func updateNSViewController(_ nsViewController: ThemeListViewController, context: Context) {
+        
+        nsViewController.select(settingName: self.selection)
+    }
+}
+
+
+private struct ThemeEditorView: View {
+    
+    @Binding var theme: Theme
     let isBundled: Bool
-    let onUpdate: (Theme) -> Void
     
     @State private var isMetadataPresenting = false
-    @State private var needsNotify = false
     
     
     // MARK: View
@@ -115,20 +212,6 @@ struct ThemeEditorView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Theme Editor", table: "ThemeEditor"))
-        .onChange(of: self.theme) { (_, newValue) in
-            if self.isMetadataPresenting {
-                // postpone notification to avoid closing the popover
-                self.needsNotify = true
-            } else {
-                self.onUpdate(newValue)
-            }
-        }
-        .onChange(of: self.isMetadataPresenting) { (_, newValue) in
-            guard !newValue, self.needsNotify else { return }
-            
-            self.onUpdate(self.theme)
-            self.needsNotify = false
-        }
         .padding(.vertical, 10)
         .padding(.horizontal, 14)
     }
@@ -161,6 +244,7 @@ private struct SystemColorPicker: View {
                 Text(self.label)
                     .accessibilityLabeledPair(role: .label, id: "color", in: self.accessibility)
             }
+            .disabled(self.selection.usesSystemSetting)
             Toggle(String(localized: "Use system color", table: "ThemeEditor", comment: "toggle button label"), isOn: $selection.usesSystemSetting)
                 .controlSize(.small)
                 .accessibilityLabeledPair(role: .content, id: "color", in: self.accessibility)
@@ -252,8 +336,14 @@ private extension Theme.SystemDefaultStyle {
 
 // MARK: - Preview
 
-#Preview(traits: .fixedLayout(width: 360, height: 280)) {
-    ThemeEditorView(theme: try! ThemeManager.shared.setting(name: "Anura"), isBundled: false) { _ in }
+#Preview(traits: .fixedLayout(width: 480, height: 280)) {
+    ThemeView()
+}
+
+#Preview("ThemeEditorView", traits: .fixedLayout(width: 360, height: 280)) {
+    @State var theme = try! ThemeManager.shared.setting(name: "Anura")
+    
+    return ThemeEditorView(theme: $theme, isBundled: false)
 }
 
 #Preview("Metadata (editable)") {
