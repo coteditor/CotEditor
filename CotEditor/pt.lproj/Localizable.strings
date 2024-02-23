@@ -549,11 +549,6 @@
 "Key Bindings" = "Atalhos";
 
 
-// Appearance pane
-// alert message
-"The selected font doesn’t seem to be monospaced." = "A fonte selecionada não parace ser monoespaçada.";
-"Do you want to use it for the monospaced font?" = "Você deseja usar a fonte selecionada como fonte monoespaçada?";  // “it” is the selected font.
-
 // tooltip
 "Jump to URL" = "Visite o URL";
 

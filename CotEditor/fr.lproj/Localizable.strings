@@ -549,11 +549,6 @@
 "Key Bindings" = "Raccourcis";
 
 
-// Appearance pane
-// alert message
-"The selected font doesn’t seem to be monospaced." = "La police sélectionnée ne semble pas être monochasse.";
-"Do you want to use it for the monospaced font?" = "Voulez-vous l'utiliser comme police monochasse ?";  // “it” is the selected font.
-
 // tooltip
 "Jump to URL" = "Ouvrir l’URL";
 

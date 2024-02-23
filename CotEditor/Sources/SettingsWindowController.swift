@@ -64,16 +64,11 @@ final class SettingsWindowController: NSWindowController {
 
 private extension SettingsPane {
     
-    private enum ViewType {
-        
-        case storyboard(NSStoryboard.Name)
-        case swiftUI(any View)
-    }
-    
-    
     var tabViewItem: NSTabViewItem {
         
-        let tabViewItem = NSTabViewItem(viewController: self.viewController)
+        let viewController = NSHostingController(rootView: AnyView(self.view))
+        viewController.sizingOptions = .preferredContentSize
+        let tabViewItem = NSTabViewItem(viewController: viewController)
         tabViewItem.label = self.label
         tabViewItem.image = NSImage(systemSymbolName: self.symbolName, accessibilityDescription: self.label)
         tabViewItem.identifier = self.rawValue
@@ -82,30 +77,16 @@ private extension SettingsPane {
     }
     
     
-    private var viewController: NSViewController {
-        
-        switch self.viewType {
-            case .storyboard(let name):
-                return NSStoryboard(name: name, bundle: nil).instantiateInitialController()!
-                
-            case .swiftUI(let view):
-                let controller = NSHostingController(rootView: AnyView(view))
-                controller.sizingOptions = .preferredContentSize
-                return controller
-        }
-    }
-    
-    
-    private var viewType: ViewType {
+    private var view: any View {
         
         switch self {
-            case .general: .swiftUI(GeneralSettingsView())
-            case .appearance: .storyboard("AppearancePane")
-            case .window: .swiftUI(WindowSettingsView())
-            case .edit: .swiftUI(EditSettingsView())
-            case .format: .swiftUI(FormatSettingsView())
-            case .snippets: .swiftUI(SnippetsSettingsView())
-            case .keyBindings: .swiftUI(KeyBindingsSettingsView())
+            case .general: GeneralSettingsView()
+            case .appearance: AppearanceSettingsView()
+            case .window: WindowSettingsView()
+            case .edit: EditSettingsView()
+            case .format: FormatSettingsView()
+            case .snippets: SnippetsSettingsView()
+            case .keyBindings: KeyBindingsSettingsView()
         }
     }
 }

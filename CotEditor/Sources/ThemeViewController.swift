@@ -1,5 +1,5 @@
 //
-//  AppearancePaneController.swift
+//  ThemeViewController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,30 +30,19 @@ import Combine
 import SwiftUI
 import UniformTypeIdentifiers
 
-final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSTextFieldDelegate {
+final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSTextFieldDelegate {
     
     // MARK: Private Properties
     
-    private var fontPanelTarget: FontType = .standard
-    private var themeNames: [String] = []
+    private var settingNames: [String] = []
     @objc private dynamic var isBundled = false  // bound to remove button
     
-    private var fontObservers: Set<AnyCancellable> = []
-    private var themeManagerObservers: Set<AnyCancellable> = []
+    private var observers: Set<AnyCancellable> = []
     private lazy var filePromiseQueue = OperationQueue()
     
-    @IBOutlet private weak var fontField: AntialiasingTextField?
-    @IBOutlet private weak var monospacedFontField: AntialiasingTextField?
-    @IBOutlet private weak var lineHeightField: NSTextField?
-    @IBOutlet private weak var editorOpacityField: NSTextField?
-    
-    @IBOutlet private weak var defaultAppearanceButton: NSButton?
-    @IBOutlet private weak var lightAppearanceButton: NSButton?
-    @IBOutlet private weak var darkAppearanceButton: NSButton?
-    
-    @IBOutlet private weak var themeTableView: NSTableView?
-    @IBOutlet private var themeTableActionButton: NSButton?
-    @IBOutlet private var themeTableMenu: NSMenu?
+    @IBOutlet private weak var tableView: NSTableView?
+    @IBOutlet private var actionButton: NSButton?
+    @IBOutlet private var contextMenu: NSMenu?
     @IBOutlet private var themeViewContainer: NSBox?
     
     
@@ -66,14 +55,10 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         // register drag & drop types
         let receiverTypes = NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) }
-        self.themeTableView?.registerForDraggedTypes([.fileURL] + receiverTypes)
-        self.themeTableView?.setDraggingSourceOperationMask(.copy, forLocal: false)
+        self.tableView?.registerForDraggedTypes([.fileURL] + receiverTypes)
+        self.tableView?.setDraggingSourceOperationMask(.copy, forLocal: false)
         
-        // set initial value as field's placeholder
-        self.lineHeightField?.bindNullPlaceholderToUserDefaults()
-        self.editorOpacityField?.bindNullPlaceholderToUserDefaults()
-        
-        self.themeNames = ThemeManager.shared.settingNames
+        self.settingNames = ThemeManager.shared.settingNames
     }
     
     
@@ -81,44 +66,22 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         super.viewWillAppear()
         
-        // setup font fields
-        self.fontObservers = [
-            UserDefaults.standard.publisher(for: .font, initial: true)
-                .sink { [weak self] _ in self?.fontField?.displayFontName(for: UserDefaults.standard.font(for: .standard)) },
-            UserDefaults.standard.publisher(for: .shouldAntialias, initial: true)
-                .sink { [weak self] in self?.fontField?.disablesAntialiasing = !$0 },
-            UserDefaults.standard.publisher(for: .monospacedFont, initial: true)
-                .sink { [weak self] _ in self?.monospacedFontField?.displayFontName(for: UserDefaults.standard.font(for: .monospaced)) },
-            UserDefaults.standard.publisher(for: .monospacedShouldAntialias, initial: true)
-                .sink { [weak self] in self?.monospacedFontField?.disablesAntialiasing = !$0 },
-        ]
-        
-        // select one of appearance radio buttons
-        switch UserDefaults.standard[.documentAppearance] {
-            case .default:
-                self.defaultAppearanceButton?.state = .on
-            case .light:
-                self.lightAppearanceButton?.state = .on
-            case .dark:
-                self.darkAppearanceButton?.state = .on
-        }
-        
-        // sync theme list change
-        self.themeManagerObservers = [
+        // sync list change
+        self.observers = [
             ThemeManager.shared.$settingNames
                 .receive(on: RunLoop.main)
-                .sink { [weak self] _ in self?.updateThemeList() },
+                .sink { [weak self] _ in self?.updateList() },
             ThemeManager.shared.didUpdateSetting
                 .compactMap(\.new)
                 .receive(on: RunLoop.main)
-                .filter { [weak self] in $0 == self?.selectedThemeName }
+                .filter { [weak self] in $0 == self?.selectedSettingName }
                 .sink { [weak self] name in
                     guard let theme = ThemeManager.shared.setting(name: name) else { return }
                     
                     self?.setTheme(theme, name: name)
                 },
         ]
-        self.themeTableView?.scrollToBeginningOfDocument(nil)
+        self.tableView?.scrollToBeginningOfDocument(nil)
     }
     
     
@@ -126,15 +89,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         super.viewDidDisappear()
         
-        // stop observations for UI update
-        self.fontObservers.removeAll()
-        self.themeManagerObservers.removeAll()
-        
-        // detach a possible font panel's target set in `showFonts(_:)`
-        if NSFontManager.shared.target === self {
-            NSFontManager.shared.target = nil
-            NSFontPanel.shared.close()
-        }
+        self.observers.removeAll()
     }
     
     
@@ -143,7 +98,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
-        let isContextMenu = (menuItem.menu == self.themeTableMenu)
+        let isContextMenu = (menuItem.menu == self.contextMenu)
         
         let settingName = self.representedSettingName(for: menuItem.menu)
         menuItem.representedObject = settingName
@@ -213,14 +168,14 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// The number of themes.
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        self.themeNames.count
+        self.settingNames.count
     }
     
     
     /// The content of the table cell.
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
-        self.themeNames[safe: row]
+        self.settingNames[safe: row]
     }
     
     
@@ -277,7 +232,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> (any NSPasteboardWriting)? {
         
         let provider = NSFilePromiseProvider(fileType: UTType.cotTheme.identifier, delegate: self)
-        provider.userInfo = self.themeNames[row]
+        provider.userInfo = self.settingNames[row]
         
         return provider
     }
@@ -312,13 +267,11 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     // MARK: Delegate
     
-    // NSTableViewDelegate  < themeTableView
+    // NSTableViewDelegate  < tableView
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard notification.object as? NSTableView == self.themeTableView else { return }
-        
-        self.setTheme(name: self.selectedThemeName)
+        self.setTheme(name: self.selectedSettingName)
     }
     
     
@@ -326,8 +279,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         guard let view = rowView.view(atColumn: 0) as? NSTableCellView else { return }
         
-        let themeName = self.themeNames[row]
-        let isBundled = ThemeManager.shared.state(of: themeName)?.isBundled == true
+        let settingName = self.settingNames[row]
+        let isBundled = ThemeManager.shared.state(of: settingName)?.isBundled == true
         
         view.textField?.isSelectable = false
         view.textField?.isEditable = !isBundled
@@ -344,7 +297,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         // finish if empty (The original name will be restored automatically)
         guard !newName.isEmpty else { return true }
         
-        let oldName = self.selectedThemeName
+        let oldName = self.selectedSettingName
         
         do {
             try ThemeManager.shared.renameSetting(name: oldName, to: newName)
@@ -369,18 +322,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     // MARK: Action Messages
     
-    /// A radio button for `documentAppearance` was clicked.
-    @IBAction func updateAppearanceSetting(_ sender: NSButton) {
-        
-        UserDefaults.standard[.documentAppearance] = AppearanceMode(rawValue: sender.tag)!
-        
-        let themeName = ThemeManager.shared.userDefaultSettingName
-        let row = self.themeNames.firstIndex(of: themeName) ?? 0
-        
-        self.themeTableView?.selectRowIndexes([row], byExtendingSelection: false)
-    }
-    
-    
     /// Adds a new theme.
     @IBAction func addTheme(_ sender: Any?) {
         
@@ -392,14 +333,14 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             return
         }
         
-        self.updateThemeList(bySelecting: settingName)
+        self.updateList(bySelecting: settingName)
     }
     
     
     /// Duplicates the selected theme.
     @IBAction func duplicateTheme(_ sender: Any?) {
         
-        let baseName = self.targetThemeName(for: sender)
+        let baseName = self.targetSettingName(for: sender)
         let settingName: String
         do {
             settingName = try ThemeManager.shared.duplicateSetting(name: baseName)
@@ -408,42 +349,42 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             return
         }
         
-        self.updateThemeList(bySelecting: settingName)
+        self.updateList(bySelecting: settingName)
     }
     
     
     /// Starts renaming a theme.
     @IBAction func renameTheme(_ sender: Any?) {
         
-        let themeName = self.targetThemeName(for: sender)
-        let row = self.themeNames.firstIndex(of: themeName) ?? 0
+        let settingName = self.targetSettingName(for: sender)
+        let row = self.settingNames.firstIndex(of: settingName) ?? 0
         
-        self.themeTableView?.editColumn(0, row: row, with: nil, select: false)
+        self.tableView?.editColumn(0, row: row, with: nil, select: false)
     }
     
     
     /// Deletes the selected theme.
     @IBAction func deleteTheme(_ sender: Any?) {
         
-        let themeName = self.targetThemeName(for: sender)
+        let settingName = self.targetSettingName(for: sender)
         
-        self.deleteTheme(name: themeName)
+        self.deleteTheme(name: settingName)
     }
     
     
     /// Restores the selected theme to original bundled one.
     @IBAction func restoreTheme(_ sender: Any?) {
         
-        let themeName = self.targetThemeName(for: sender)
+        let settingName = self.targetSettingName(for: sender)
         
-        self.restoreTheme(name: themeName)
+        self.restoreTheme(name: settingName)
     }
     
     
     /// Exports the selected theme.
     @IBAction func exportTheme(_ sender: Any?) {
         
-        let settingName = self.targetThemeName(for: sender)
+        let settingName = self.targetSettingName(for: sender)
         
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
@@ -488,16 +429,16 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// Shares the selected themes.
     @IBAction func shareTheme(_ sender: NSMenuItem) {
         
-        let themeName = self.targetThemeName(for: sender)
+        let settingName = self.targetSettingName(for: sender)
         
-        guard let url = ThemeManager.shared.urlForUserSetting(name: themeName) else { return }
+        guard let url = ThemeManager.shared.urlForUserSetting(name: settingName) else { return }
         
         let picker = NSSharingServicePicker(items: [url])
         
-        if let view = self.themeTableView?.clickedRowView {  // context menu
+        if let view = self.tableView?.clickedRowView {  // context menu
             picker.show(relativeTo: .zero, of: view, preferredEdge: .minX)
             
-        } else if let view = self.themeTableActionButton {  // action menu
+        } else if let view = self.actionButton {  // action menu
             picker.show(relativeTo: .zero, of: view, preferredEdge: .minY)
         }
     }
@@ -506,9 +447,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// Opens the theme directory in the Application Support directory in the Finder where the selected theme exists.
     @IBAction func revealThemeInFinder(_ sender: Any?) {
         
-        let themeName = self.targetThemeName(for: sender)
+        let settingName = self.targetSettingName(for: sender)
         
-        guard let url = ThemeManager.shared.urlForUserSetting(name: themeName) else { return }
+        guard let url = ThemeManager.shared.urlForUserSetting(name: settingName) else { return }
         
         NSWorkspace.shared.activateFileViewerSelecting([url])
     }
@@ -527,12 +468,12 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     // MARK: Private Methods
     
     /// Theme name which is currently selected in the list table.
-    private var selectedThemeName: String {
+    private var selectedSettingName: String {
         
-        guard let tableView = self.themeTableView, tableView.selectedRow >= 0 else {
+        guard let tableView = self.tableView, tableView.selectedRow >= 0 else {
             return ThemeManager.shared.userDefaultSettingName
         }
-        return self.themeNames[tableView.selectedRow]
+        return self.settingNames[tableView.selectedRow]
     }
     
     
@@ -540,24 +481,24 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     ///
     /// - Parameter sender: The sender to test.
     /// - Returns: The setting name.
-    private func targetThemeName(for sender: Any?) -> String {
+    private func targetSettingName(for sender: Any?) -> String {
         
         if let menuItem = sender as? NSMenuItem {
             return menuItem.representedObject as! String
         }
-        return self.selectedThemeName
+        return self.selectedSettingName
     }
     
     
     private func representedSettingName(for menu: NSMenu?) -> String? {
         
-        guard self.themeTableView?.menu == menu else {
-            return self.selectedThemeName
+        guard self.tableView?.menu == menu else {
+            return self.selectedSettingName
         }
         
-        guard let clickedRow = self.themeTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
+        guard let clickedRow = self.tableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
         
-        return self.themeNames[safe: clickedRow]
+        return self.settingNames[safe: clickedRow]
     }
     
     
@@ -663,17 +604,17 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// Updates the theme table and selects the desired item.
     ///
     /// - Parameter selectingName: The item name to select.
-    private func updateThemeList(bySelecting selectingName: String? = nil) {
+    private func updateList(bySelecting selectingName: String? = nil) {
         
-        let themeName = selectingName ?? ThemeManager.shared.userDefaultSettingName
+        let settingName = selectingName ?? ThemeManager.shared.userDefaultSettingName
         
-        self.themeNames = ThemeManager.shared.settingNames
+        self.settingNames = ThemeManager.shared.settingNames
         
-        guard let tableView = self.themeTableView else { return }
+        guard let tableView = self.tableView else { return }
         
         tableView.reloadData()
         
-        let row = self.themeNames.firstIndex(of: themeName) ?? 0
+        let row = self.settingNames.firstIndex(of: settingName) ?? 0
         
         tableView.selectRowIndexes([row], byExtendingSelection: false)
         if selectingName != nil {
@@ -685,90 +626,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// Updates the selection of the theme table.
     private func updateThemeSelection() {
         
-        let themeName = ThemeManager.shared.userDefaultSettingName
-        let row = self.themeNames.firstIndex(of: themeName) ?? 0
+        let settingName = ThemeManager.shared.userDefaultSettingName
+        let row = self.settingNames.firstIndex(of: settingName) ?? 0
         
-        self.themeTableView?.selectRowIndexes([row], byExtendingSelection: false)
-    }
-}
-
-
-
-// MARK: - Font Setting
-
-extension NSUserInterfaceItemIdentifier {
-    
-    static let monospacedFontButton = Self("monospacedFontButton")
-}
-
-
-extension AppearancePaneController: NSFontChanging {
-    
-    // MARK: Font Changing Methods
-    
-    /// Restricts items to display in the font panel.
-    func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
-        
-        [.collection, .face, .size]
-    }
-    
-    
-    /// Returns the font selection in the font panel did update.
-    func changeFont(_ sender: NSFontManager?) {
-        
-        guard let sender else { return assertionFailure() }
-        
-        let font = sender.convert(.systemFont(ofSize: 0))
-        let target = self.fontPanelTarget
-        
-        if target == .monospaced, !font.isFixedPitch {
-            let alert = NSAlert()
-            alert.alertStyle = .warning
-            alert.messageText = String(localized: "The selected font doesn’t seem to be monospaced.")
-            alert.informativeText = String(localized: "Do you want to use it for the monospaced font?", comment: "“it” is the selected font.")
-            alert.addButton(withTitle: String(localized: "OK"))
-            alert.addButton(withTitle: String(localized: "Cancel"))
-            
-            guard alert.runModal() == .alertFirstButtonReturn else { return }
-        }
-        
-        guard let data = try? font.archivedData else { return }
-        
-        UserDefaults.standard[.fontKey(for: target)] = data
-    }
-    
-    
-    
-    // MARK: Action Messages
-    
-    /// Shows the font panel.
-    @IBAction func showFonts(_ sender: NSButton) {
-        
-        self.fontPanelTarget = (sender.identifier == .monospacedFontButton) ? .monospaced : .standard
-        let font = UserDefaults.standard.font(for: self.fontPanelTarget)
-        
-        NSFontManager.shared.setSelectedFont(font, isMultiple: false)
-        NSFontManager.shared.orderFrontFontPanel(sender)
-        NSFontManager.shared.target = self
-    }
-}
-
-
-
-private extension NSTextField {
-    
-    /// Displays the font name and size in the manner of the given font setting.
-    ///
-    /// - Parameters:
-    ///   - font: The font to display.
-    func displayFontName(for font: NSFont) {
-        
-        let displayName = font.displayName ?? font.fontName
-        let size = font.pointSize
-        let maxDisplaySize = NSFont.systemFontSize(for: self.controlSize)
-        
-        self.stringValue = displayName + " " + size.formatted()
-        self.toolTip = self.stringValue
-        self.font = font.withSize(min(size, maxDisplaySize))
+        self.tableView?.selectRowIndexes([row], byExtendingSelection: false)
     }
 }

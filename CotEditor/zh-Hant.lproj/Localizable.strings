@@ -549,11 +549,6 @@
 "Key Bindings" = "按鍵繫結";
 
 
-// Appearance pane
-// alert message
-"The selected font doesn’t seem to be monospaced." = "當前選中的字體似乎並非等寬字體。";
-"Do you want to use it for the monospaced font?" = "您真的要將這個字體作為等寬字體來使用嗎？";  // “it” is the selected font.
-
 // tooltip
 "Jump to URL" = "跳轉到URL";
 
