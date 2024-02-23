@@ -1475,7 +1475,6 @@
 				2AA79C7721CB7251005AD6AD /* SettingsWindow.swift */,
 				2A938ACB297E4BA9007FBE5F /* SettingsPane.swift */,
 				2A149DC619018F9200A9D6EF /* Panes */,
-				2A2E03481A4BF820006ABE9F /* Snippets Pane */,
 				2A2E03471A4BF808006ABE9F /* Syntax Editor */,
 				2A91C3231D1C5840007CF8BE /* Other Views */,
 			);
@@ -1594,15 +1593,6 @@
 				2A33D07D1D1C75B8005977B9 /* SyntaxValidationView.swift */,
 			);
 			name = "Syntax Editor";
-			sourceTree = "<group>";
-		};
-		2A2E03481A4BF820006ABE9F /* Snippets Pane */ = {
-			isa = PBXGroup;
-			children = (
-				2A505C08298A88DD002080AA /* SnippetsViewController.swift */,
-				2A91C3201D1C40E4007CF8BE /* FileDropViewController.swift */,
-			);
-			name = "Snippets Pane";
 			sourceTree = "<group>";
 		};
 		2A3581931E597AFE00762AA5 /* Multiple Replace */ = {
@@ -1991,6 +1981,8 @@
 				2A2792971D1E57DA00F3FC5D /* SyntaxListViewController.swift */,
 				2A5DCE881D18FFDB00D5D74C /* EncodingListView.swift */,
 				2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsView.swift */,
+				2A505C08298A88DD002080AA /* SnippetsViewController.swift */,
+				2A91C3201D1C40E4007CF8BE /* FileDropViewController.swift */,
 			);
 			name = "Other Views";
 			sourceTree = "<group>";
