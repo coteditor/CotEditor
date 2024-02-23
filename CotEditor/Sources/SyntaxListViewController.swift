@@ -34,15 +34,15 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     
     // MARK: Private Properties
     
-    private var syntaxNames: [String] = []
+    private var settingNames: [String] = []
     @objc private dynamic var isBundled = false  // bound to remove button
     
-    private var syntaxChangeObserver: AnyCancellable?
+    private var observer: AnyCancellable?
     private lazy var filePromiseQueue = OperationQueue()
     
-    @IBOutlet private var syntaxTableMenu: NSMenu?
-    @IBOutlet private weak var syntaxTableView: NSTableView?
-    @IBOutlet private weak var syntaxTableActionButton: NSButton?
+    @IBOutlet private var contextMenu: NSMenu?
+    @IBOutlet private weak var tableView: NSTableView?
+    @IBOutlet private weak var actionButton: NSButton?
     
     
     
@@ -52,13 +52,13 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
         
         super.viewDidLoad()
         
-        self.syntaxTableView?.doubleAction = #selector(editSyntax)
-        self.syntaxTableView?.target = self
+        self.tableView?.doubleAction = #selector(editSetting)
+        self.tableView?.target = self
         
         // register drag & drop types
         let receiverTypes = NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) }
-        self.syntaxTableView?.registerForDraggedTypes([.fileURL] + receiverTypes)
-        self.syntaxTableView?.setDraggingSourceOperationMask(.copy, forLocal: false)
+        self.tableView?.registerForDraggedTypes([.fileURL] + receiverTypes)
+        self.tableView?.setDraggingSourceOperationMask(.copy, forLocal: false)
     }
     
     
@@ -66,10 +66,10 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
         
         super.viewWillAppear()
         
-        self.syntaxChangeObserver = Publishers.Merge(SyntaxManager.shared.$settingNames.eraseToVoid(),
-                                                     SyntaxManager.shared.didUpdateSetting.eraseToVoid())
-            .debounce(for: 0, scheduler: RunLoop.main)
-            .sink { [weak self] _ in self?.setupSyntaxMenus() }
+        self.observer = Publishers.Merge(SyntaxManager.shared.$settingNames.eraseToVoid(),
+                                         SyntaxManager.shared.didUpdateSetting.eraseToVoid())
+        .debounce(for: 0, scheduler: RunLoop.main)
+        .sink { [weak self] _ in self?.setupMenus() }
     }
     
     
@@ -77,8 +77,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
         
         super.viewDidDisappear()
         
-        // stop observations for UI update
-        self.syntaxChangeObserver = nil
+        self.observer = nil
     }
     
     
@@ -88,52 +87,49 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     /// Applies the current state to menu items.
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
-        let isContextualMenu = (menuItem.menu == self.syntaxTableMenu)
-        let representedSettingName = self.representedSettingName(for: menuItem.menu)
+        let isContextMenu = (menuItem.menu == self.contextMenu)
+        let settingName = self.representedSettingName(for: menuItem.menu)
         
-        // set syntax name as representedObject to menu items whose action is related to syntax
-        if NSStringFromSelector(menuItem.action!).contains("Syntax") {
-            menuItem.representedObject = representedSettingName
-        }
+        menuItem.representedObject = settingName
         
-        let itemSelected = (representedSettingName != nil)
-        let state = representedSettingName.flatMap(SyntaxManager.shared.state(of:))
+        let itemSelected = (settingName != nil)
+        let state = settingName.flatMap(SyntaxManager.shared.state(of:))
         
         // append target setting name to menu titles
         switch menuItem.action {
             case #selector(openSyntaxMappingConflictSheet(_:)):
                 return !SyntaxManager.shared.mappingConflicts.isEmpty
                 
-            case #selector(duplicateSyntax(_:)):
-                if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Duplicate “\(name)”")
+            case #selector(duplicateSetting(_:)):
+                if let settingName, !isContextMenu {
+                    menuItem.title = String(localized: "Duplicate “\(settingName)”")
                 }
                 menuItem.isHidden = !itemSelected
                 
-            case #selector(deleteSyntax(_:)):
+            case #selector(deleteSetting(_:)):
                 menuItem.isHidden = (state?.isBundled == true || !itemSelected)
                 
-            case #selector(restoreSyntax(_:)):
-                if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Restore “\(name)”")
+            case #selector(restoreSetting(_:)):
+                if let settingName, !isContextMenu {
+                    menuItem.title = String(localized: "Restore “\(settingName)”")
                 }
                 menuItem.isHidden = (state?.isBundled == false || !itemSelected)
                 return state?.isRestorable ?? false
                 
-            case #selector(exportSyntax(_:)):
-                if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Export “\(name)”…")
+            case #selector(exportSetting(_:)):
+                if let settingName, !isContextMenu {
+                    menuItem.title = String(localized: "Export “\(settingName)”…")
                 }
                 menuItem.isHidden = !itemSelected
                 return state?.isCustomized ?? false
                 
-            case #selector(shareStyle(_:)):
+            case #selector(shareSetting(_:)):
                 menuItem.isHidden = state?.isCustomized != true
                 return state?.isCustomized == true
                 
-            case #selector(revealSyntaxInFinder(_:)):
-                if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Reveal “\(name)” in Finder")
+            case #selector(revealSettingInFinder(_:)):
+                if let settingName, !isContextMenu {
+                    menuItem.title = String(localized: "Reveal “\(settingName)” in Finder")
                 }
                 return state?.isCustomized ?? false
                 
@@ -153,18 +149,18 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        self.syntaxNames.count
+        self.settingNames.count
     }
     
     
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
         guard
-            let name = self.syntaxNames[safe: row],
-            let state = SyntaxManager.shared.state(of: name)
+            let settingName = self.settingNames[safe: row],
+            let state = SyntaxManager.shared.state(of: settingName)
         else { return nil }
         
-        return ["name": name,
+        return ["name": settingName,
                 "state": state.isCustomized] as [String: Any]
     }
     
@@ -173,9 +169,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     /// Invoked when the selected syntax in the "Installed syntaxes" list table did change.
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard notification.object as? NSTableView == self.syntaxTableView else { return }
-        
-        self.isBundled = SyntaxManager.shared.state(of: self.selectedSyntaxName)?.isBundled == true
+        self.isBundled = SyntaxManager.shared.state(of: self.selectedSettingName)?.isBundled == true
     }
     
     
@@ -210,13 +204,13 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
                         self?.presentError(error)
                         return
                     }
-                    self?.importSyntax(fileURL: fileURL)
+                    self?.importSetting(fileURL: fileURL)
                 }
             }
             
         } else if let fileURLs = info.fileURLs(with: .yaml, for: tableView) {
             for fileURL in fileURLs {
-                self.importSyntax(fileURL: fileURL)
+                self.importSetting(fileURL: fileURL)
             }
             
         } else {
@@ -231,7 +225,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     
     func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> (any NSPasteboardWriting)? {
         
-        guard let settingName = self.syntaxNames[safe: row] else { return nil }
+        guard let settingName = self.settingNames[safe: row] else { return nil }
         
         let provider = NSFilePromiseProvider(fileType: UTType.yaml.identifier, delegate: self)
         provider.userInfo = settingName
@@ -278,19 +272,19 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     
     
     /// Shows the syntax edit sheet.
-    @IBAction func editSyntax(_ sender: Any?) {
+    @IBAction func editSetting(_ sender: Any?) {
         
-        let syntaxName = self.targetSyntaxName(for: sender)
-        let state = SyntaxManager.shared.state(of: syntaxName)!
+        let settingName = self.targetSettingName(for: sender)
+        let state = SyntaxManager.shared.state(of: settingName)!
         
         self.presentSyntaxEditor(state: state)
     }
     
     
     /// Duplicates the selected syntax.
-    @IBAction func duplicateSyntax(_ sender: Any?) {
+    @IBAction func duplicateSetting(_ sender: Any?) {
         
-        let baseName = self.targetSyntaxName(for: sender)
+        let baseName = self.targetSettingName(for: sender)
         let settingName: String
         do {
             settingName = try SyntaxManager.shared.duplicateSetting(name: baseName)
@@ -299,38 +293,39 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
             return
         }
         
-        self.updateSyntaxList(bySelecting: settingName)
+        self.updateList(bySelecting: settingName)
     }
     
     
     /// Shows the syntax edit sheet in new mode.
-    @IBAction func createSyntax(_ sender: Any?) {
+    @IBAction func addSetting(_ sender: Any?) {
         
         self.presentSyntaxEditor()
     }
     
+    
     /// Deletes the selected syntax.
-    @IBAction func deleteSyntax(_ sender: Any?) {
+    @IBAction func deleteSetting(_ sender: Any?) {
         
-        let syntaxName = self.targetSyntaxName(for: sender)
+        let settingName = self.targetSettingName(for: sender)
         
-        self.deleteSyntax(name: syntaxName)
+        self.deleteSetting(name: settingName)
     }
     
     
     /// Restores the selected syntax to original bundled one.
-    @IBAction func restoreSyntax(_ sender: Any?) {
+    @IBAction func restoreSetting(_ sender: Any?) {
         
-        let syntaxName = self.targetSyntaxName(for: sender)
+        let settingName = self.targetSettingName(for: sender)
         
-        self.restoreSyntax(name: syntaxName)
+        self.restoreSetting(name: settingName)
     }
     
     
     /// Exports the selected syntax.
-    @IBAction func exportSyntax(_ sender: Any?) {
+    @IBAction func exportSetting(_ sender: Any?) {
         
-        let settingName = self.targetSyntaxName(for: sender)
+        let settingName = self.targetSettingName(for: sender)
         
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
@@ -353,7 +348,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     
     
     /// Imports syntax files via the open panel.
-    @IBAction func importSyntax(_ sender: Any?) {
+    @IBAction func importSetting(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
         openPanel.prompt = String(localized: "Import")
@@ -366,43 +361,43 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
             guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }
             
             for url in openPanel.urls {
-                self.importSyntax(fileURL: url)
+                self.importSetting(fileURL: url)
             }
         }
     }
     
     
     /// Shares the selected syntax.
-    @IBAction func shareStyle(_ sender: NSMenuItem) {
+    @IBAction func shareSetting(_ sender: NSMenuItem) {
         
-        let styleName = self.targetSyntaxName(for: sender)
+        let settingName = self.targetSettingName(for: sender)
         
-        guard let url = SyntaxManager.shared.urlForUserSetting(name: styleName) else { return }
+        guard let url = SyntaxManager.shared.urlForUserSetting(name: settingName) else { return }
         
         let picker = NSSharingServicePicker(items: [url])
         
-        if let view = self.syntaxTableView?.clickedRowView {  // context menu
+        if let view = self.tableView?.clickedRowView {  // context menu
             picker.show(relativeTo: .zero, of: view, preferredEdge: .minX)
             
-        } else if let view = self.syntaxTableActionButton {  // action menu
+        } else if let view = self.actionButton {  // action menu
             picker.show(relativeTo: .zero, of: view, preferredEdge: .minY)
         }
     }
     
     
     /// Opens the syntax directory in the Application Support directory in the Finder where the selected syntax exists.
-    @IBAction func revealSyntaxInFinder(_ sender: Any?) {
+    @IBAction func revealSettingInFinder(_ sender: Any?) {
         
-        let syntaxName = self.targetSyntaxName(for: sender)
+        let settingName = self.targetSettingName(for: sender)
         
-        guard let url = SyntaxManager.shared.urlForUserSetting(name: syntaxName) else { return }
+        guard let url = SyntaxManager.shared.urlForUserSetting(name: settingName) else { return }
         
         NSWorkspace.shared.activateFileViewerSelecting([url])
     }
     
     
     /// Reloads all the syntaxes in the user domain.
-    @IBAction func reloadAllSyntaxes(_ sender: Any?) {
+    @IBAction func reloadAllSettings(_ sender: Any?) {
         
         Task.detached(priority: .utility) {
             SyntaxManager.shared.loadUserSettings()
@@ -414,27 +409,27 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     // MARK: Private Methods
     
     /// Builds the syntax menus.
-    private func setupSyntaxMenus() {
+    private func setupMenus() {
         
-        let syntaxNames = SyntaxManager.shared.settingNames
+        let settingNames = SyntaxManager.shared.settingNames
         
         // update installed syntax list table
-        let selectedSyntaxName = self.selectedSyntaxName
-        self.syntaxNames = syntaxNames
-        self.syntaxTableView?.reloadData()
-        if let index = syntaxNames.firstIndex(of: selectedSyntaxName) {
-            self.syntaxTableView?.selectRowIndexes([index], byExtendingSelection: false)
+        let selectedSettingName = self.selectedSettingName
+        self.settingNames = settingNames
+        self.tableView?.reloadData()
+        if let index = settingNames.firstIndex(of: selectedSettingName) {
+            self.tableView?.selectRowIndexes([index], byExtendingSelection: false)
         }
     }
     
     
     /// The syntax name which is currently selected in the list table.
-    private var selectedSyntaxName: String {
+    private var selectedSettingName: String {
         
-        guard let tableView = self.syntaxTableView, tableView.selectedRow >= 0 else {
+        guard let tableView = self.tableView, tableView.selectedRow >= 0 else {
             return UserDefaults.standard[.syntax]
         }
-        return self.syntaxNames[tableView.selectedRow]
+        return self.settingNames[tableView.selectedRow]
     }
     
     
@@ -442,31 +437,31 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     ///
     /// - Parameter sender: The sender to test.
     /// - Returns: The setting name.
-    private func targetSyntaxName(for sender: Any?) -> String {
+    private func targetSettingName(for sender: Any?) -> String {
         
         if let menuItem = sender as? NSMenuItem {
             return menuItem.representedObject as! String
         }
-        return self.selectedSyntaxName
+        return self.selectedSettingName
     }
     
     
     private func representedSettingName(for menu: NSMenu?) -> String? {
         
-        guard self.syntaxTableView?.menu == menu else {
-            return self.selectedSyntaxName
+        guard self.tableView?.menu == menu else {
+            return self.selectedSettingName
         }
         
-        guard let clickedRow = self.syntaxTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
+        guard let clickedRow = self.tableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
         
-        return self.syntaxNames[safe: clickedRow]
+        return self.settingNames[safe: clickedRow]
     }
     
     
     /// Tries to delete the given syntax.
     ///
     /// - Parameter name: The name of the syntax to delete.
-    private func deleteSyntax(name: String) {
+    private func deleteSetting(name: String) {
         
         let alert = NSAlert()
         alert.messageText = String(localized: "Are you sure you want to delete “\(name)”?")
@@ -497,7 +492,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     /// Tries to restore the given syntax.
     ///
     /// - Parameter name: The name of the syntax to restore.
-    private func restoreSyntax(name: String) {
+    private func restoreSetting(name: String) {
         
         do {
             try SyntaxManager.shared.restoreSetting(name: name)
@@ -510,7 +505,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     /// Tries to import the syntax files at the given URL.
     ///
     /// - Parameter fileURL: The file name of the syntax.
-    private func importSyntax(fileURL: URL) {
+    private func importSetting(fileURL: URL) {
         
         do {
             try SyntaxManager.shared.importSetting(fileURL: fileURL)
@@ -544,13 +539,13 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     /// Updates the syntax table and selects the desired item.
     ///
     /// - Parameter selectingName: The item name to select.
-    private func updateSyntaxList(bySelecting selectingName: String) {
+    private func updateList(bySelecting selectingName: String) {
         
-        self.syntaxNames = SyntaxManager.shared.settingNames
+        self.settingNames = SyntaxManager.shared.settingNames
         
         guard
-            let tableView = self.syntaxTableView,
-            let row = self.syntaxNames.firstIndex(of: selectingName)
+            let tableView = self.tableView,
+            let row = self.settingNames.firstIndex(of: selectingName)
         else { return assertionFailure() }
         
         tableView.reloadData()

@@ -128,7 +128,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="LZP-tF-Bxd"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="createSyntax:" target="Lgm-sL-YIF" id="klW-3f-iLH"/>
+                                    <action selector="addSetting:" target="Lgm-sL-YIF" id="dwJ-5Z-KhS"/>
                                 </connections>
                             </button>
                             <button toolTip="Remove selected syntax" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="If0-En-170">
@@ -138,7 +138,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="deleteSyntax:" target="Lgm-sL-YIF" id="lRQ-GO-2Le"/>
+                                    <action selector="deleteSetting:" target="Lgm-sL-YIF" id="q4k-BW-My1"/>
                                     <binding destination="Lgm-sL-YIF" name="enabled" keyPath="isBundled" id="I3S-bP-aAQ">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -154,7 +154,7 @@
                                 </buttonCell>
                                 <accessibility description="Edit"/>
                                 <connections>
-                                    <action selector="editSyntax:" target="Lgm-sL-YIF" id="jvM-Af-F87"/>
+                                    <action selector="editSetting:" target="Lgm-sL-YIF" id="vis-dF-aUn"/>
                                 </connections>
                             </button>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="ZbN-TL-KPB">
@@ -167,40 +167,40 @@
                                             <menuItem state="on" image="NSActionTemplate" hidden="YES" id="iox-c2-vjm"/>
                                             <menuItem title="Duplicate" id="i3A-oi-eAb">
                                                 <connections>
-                                                    <action selector="duplicateSyntax:" target="Lgm-sL-YIF" id="fTW-sO-Pim"/>
+                                                    <action selector="duplicateSetting:" target="Lgm-sL-YIF" id="4b4-za-rAZ"/>
                                                 </connections>
                                             </menuItem>
                                             <menuItem title="Restore" tag="1" id="v3t-l4-IIK">
                                                 <connections>
-                                                    <action selector="restoreSyntax:" target="Lgm-sL-YIF" id="LWh-OO-mV7"/>
+                                                    <action selector="restoreSetting:" target="Lgm-sL-YIF" id="HIf-Jj-7eq"/>
                                                 </connections>
                                             </menuItem>
                                             <menuItem title="Export…" id="F6k-ee-G8p">
                                                 <connections>
-                                                    <action selector="exportSyntax:" target="Lgm-sL-YIF" id="0VL-YB-Doa"/>
+                                                    <action selector="exportSetting:" target="Lgm-sL-YIF" id="nrm-Ok-e0f"/>
                                                 </connections>
                                             </menuItem>
                                             <menuItem title="Reveal in Finder" alternate="YES" id="u0I-WJ-45f">
                                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                                 <connections>
-                                                    <action selector="revealSyntaxInFinder:" target="Lgm-sL-YIF" id="bg7-vn-Uoj"/>
+                                                    <action selector="revealSettingInFinder:" target="Lgm-sL-YIF" id="ZQX-3W-nGi"/>
                                                 </connections>
                                             </menuItem>
                                             <menuItem title="Share…" id="Zi7-fT-M76">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                                 <connections>
-                                                    <action selector="shareStyle:" target="Lgm-sL-YIF" id="vYD-GA-Afk"/>
+                                                    <action selector="shareSetting:" target="Lgm-sL-YIF" id="SiP-GK-rhd"/>
                                                 </connections>
                                             </menuItem>
                                             <menuItem title="Import…" id="0ad-gc-fsH">
                                                 <connections>
-                                                    <action selector="importSyntax:" target="Lgm-sL-YIF" id="zX8-T5-kYQ"/>
+                                                    <action selector="importSetting:" target="Lgm-sL-YIF" id="MVa-Kh-iz9"/>
                                                 </connections>
                                             </menuItem>
                                             <menuItem title="Reload All Syntaxes" alternate="YES" id="j3a-oN-Koz">
                                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                                 <connections>
-                                                    <action selector="reloadAllSyntaxes:" target="Lgm-sL-YIF" id="UMh-95-NCV"/>
+                                                    <action selector="reloadAllSettings:" target="Lgm-sL-YIF" id="sF1-G7-gC5"/>
                                                 </connections>
                                             </menuItem>
                                             <menuItem isSeparatorItem="YES" id="EAw-ky-nu5"/>
@@ -242,9 +242,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="syntaxTableActionButton" destination="ZbN-TL-KPB" id="yLl-nh-4v7"/>
-                        <outlet property="syntaxTableMenu" destination="enl-Xp-NM4" id="go1-Qs-mtH"/>
-                        <outlet property="syntaxTableView" destination="BAM-wf-Klc" id="dy8-un-XUu"/>
+                        <outlet property="actionButton" destination="ZbN-TL-KPB" id="Fqe-cE-8Mp"/>
+                        <outlet property="contextMenu" destination="enl-Xp-NM4" id="mRc-v6-EKC"/>
+                        <outlet property="tableView" destination="BAM-wf-Klc" id="h2R-H4-cXz"/>
                     </connections>
                 </viewController>
                 <customObject id="vgQ-KV-Jhz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -252,39 +252,39 @@
                     <items>
                         <menuItem title="Edit…" state="on" id="371-P0-KPK">
                             <connections>
-                                <action selector="editSyntax:" target="Lgm-sL-YIF" id="rA0-nQ-INP"/>
+                                <action selector="editSetting:" target="Lgm-sL-YIF" id="FqD-Sv-a2f"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Duplicate" id="5oN-VC-ot9">
                             <connections>
-                                <action selector="duplicateSyntax:" target="Lgm-sL-YIF" id="G55-lb-Aef"/>
+                                <action selector="duplicateSetting:" target="Lgm-sL-YIF" id="dbW-ZP-BPP"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Restore" tag="1" id="Zox-Ve-mru">
                             <connections>
-                                <action selector="restoreSyntax:" target="Lgm-sL-YIF" id="eM5-dq-6hA"/>
+                                <action selector="restoreSetting:" target="Lgm-sL-YIF" id="k2j-7L-Qzc"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Delete" tag="1" id="NDE-r5-xAF">
                             <connections>
-                                <action selector="deleteSyntax:" target="Lgm-sL-YIF" id="fAI-8H-RKK"/>
+                                <action selector="deleteSetting:" target="Lgm-sL-YIF" id="vDg-s0-Uj5"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Export…" id="Qwp-u8-Urf">
                             <connections>
-                                <action selector="exportSyntax:" target="Lgm-sL-YIF" id="pco-Uv-Mr2"/>
+                                <action selector="exportSetting:" target="Lgm-sL-YIF" id="N1U-mF-hKx"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Reveal in Finder" alternate="YES" id="AkE-0P-0FC">
                             <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                             <connections>
-                                <action selector="revealSyntaxInFinder:" target="Lgm-sL-YIF" id="dwr-Co-ahP"/>
+                                <action selector="revealSettingInFinder:" target="Lgm-sL-YIF" id="ac1-sz-N7o"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Share…" id="Rh3-kc-Gte">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="shareStyle:" target="Lgm-sL-YIF" id="sfE-wd-X27"/>
+                                <action selector="shareSetting:" target="Lgm-sL-YIF" id="ocS-Rm-Duj"/>
                             </connections>
                         </menuItem>
                     </items>

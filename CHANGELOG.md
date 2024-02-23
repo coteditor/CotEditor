@@ -13,6 +13,7 @@
 
 ### Fixes
 
+- Fix the application crashed when tried to share a custom syntax.
 - Fix missing localizations.
 
 
