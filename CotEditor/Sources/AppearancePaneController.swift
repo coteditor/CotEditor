@@ -111,13 +111,11 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             ThemeManager.shared.didUpdateSetting
                 .compactMap(\.new)
                 .receive(on: RunLoop.main)
+                .filter { [weak self] in $0 == self?.selectedThemeName }
                 .sink { [weak self] name in
-                    guard
-                        name == self?.selectedThemeName,
-                        let latestTheme = ThemeManager.shared.setting(name: name)
-                    else { return }
+                    guard let theme = ThemeManager.shared.setting(name: name) else { return }
                     
-                    self?.setTheme(latestTheme, name: name)
+                    self?.setTheme(theme, name: name)
                 },
         ]
         self.themeTableView?.scrollToBeginningOfDocument(nil)
@@ -145,29 +143,29 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
-        let isContextualMenu = (menuItem.menu == self.themeTableMenu)
+        let isContextMenu = (menuItem.menu == self.themeTableMenu)
         
-        let representedSettingName = self.representedSettingName(for: menuItem.menu)
-        menuItem.representedObject = representedSettingName
+        let settingName = self.representedSettingName(for: menuItem.menu)
+        menuItem.representedObject = settingName
         
-        let itemSelected = (representedSettingName != nil)
-        let state = representedSettingName.flatMap(ThemeManager.shared.state(of:))
+        let itemSelected = (settingName != nil)
+        let state = settingName.flatMap(ThemeManager.shared.state(of:))
         
         // append target setting name to menu titles
         switch menuItem.action {
             case #selector(addTheme), #selector(importTheme(_:)):
-                menuItem.isHidden = (isContextualMenu && itemSelected)
+                menuItem.isHidden = (isContextMenu && itemSelected)
                 
             case #selector(renameTheme(_:)):
-                if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Rename “\(name)”")
+                if let settingName, !isContextMenu {
+                    menuItem.title = String(localized: "Rename “\(settingName)”")
                 }
                 menuItem.isHidden = !itemSelected
                 return state?.isBundled == false
                 
             case #selector(duplicateTheme(_:)):
-                if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Duplicate “\(name)”")
+                if let settingName, !isContextMenu {
+                    menuItem.title = String(localized: "Duplicate “\(settingName)”")
                 }
                 menuItem.isHidden = !itemSelected
                 
@@ -175,15 +173,15 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                 menuItem.isHidden = (state?.isBundled == true || !itemSelected)
                 
             case #selector(restoreTheme(_:)):
-                if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Restore “\(name)”")
+                if let settingName, !isContextMenu {
+                    menuItem.title = String(localized: "Restore “\(settingName)”")
                 }
                 menuItem.isHidden = (state?.isBundled == false || !itemSelected)
                 return state?.isRestorable == true
                 
             case #selector(exportTheme(_:)):
-                if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Export “\(name)”…")
+                if let settingName, !isContextMenu {
+                    menuItem.title = String(localized: "Export “\(settingName)”…")
                 }
                 menuItem.isHidden = !itemSelected
                 return state?.isCustomized == true
@@ -193,8 +191,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                 return state?.isCustomized == true
                 
             case #selector(revealThemeInFinder(_:)):
-                if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Reveal “\(name)” in Finder")
+                if let settingName, !isContextMenu {
+                    menuItem.title = String(localized: "Reveal “\(settingName)” in Finder")
                 }
                 return state?.isCustomized == true
                 
