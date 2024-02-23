@@ -44,11 +44,14 @@ struct KeyBindingsSettingsView: View {
             HStack(alignment: .firstTextBaseline) {
                 Button(String(localized: "Restore Defaults", table: "KeyBindingsSettings", comment: "button label")) {
                     self.model.restore()
-                }.disabled(!self.model.isRestorable)
+                }
+                .disabled(!self.model.isRestorable)
+                .fixedSize()
+                
                 Spacer()
                 
-                if let warning = self.model.warning {
-                    Text(warning)
+                if let error = self.model.error {
+                    Text(error.localizedDescription)
                         .foregroundStyle(.red)
                         .controlSize(.small)
                 }
@@ -70,7 +73,7 @@ private final class KeyBindingModel: ObservableObject {
     
     @Published var tree: [Item] = []
     @Published var isRestorable: Bool = false
-    @Published var warning: String?
+    @Published var error: (any Error)?
     
     @Published var rootIndex: Int?
     
@@ -90,7 +93,7 @@ private final class KeyBindingModel: ObservableObject {
         
         self.tree = KeyBindingManager.shared.menuTree
         self.isRestorable = false
-        self.warning = nil
+        self.error = nil
     }
     
     
@@ -283,7 +286,7 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
         let shortcut = sender.objectValue as? Shortcut
         
         // reset once warning
-        self.model.warning = nil
+        self.model.error = nil
         
         // not edited
         guard shortcut != oldShortcut else { return }
@@ -293,7 +296,7 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
                 try shortcut.checkCustomizationAvailability()
                 
             } catch {
-                self.model.warning = error.localizedDescription
+                self.model.error = error
                 sender.objectValue = oldShortcut  // reset text field
                 NSSound.beep()
                 
