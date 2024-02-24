@@ -1675,7 +1675,6 @@
 				2A3F18F8203270BE002F1CA7 /* UI Tests */,
 				2A8544E6267872E0006EF01A /* SyntaxMap */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
-				2ACAAC1A2B85E74C0041B095 /* Frameworks */,
 			);
 			name = CotEditor;
 			sourceTree = "<group>";
@@ -2105,13 +2104,6 @@
 				2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */,
 			);
 			name = Localizables;
-			sourceTree = "<group>";
-		};
-		2ACAAC1A2B85E74C0041B095 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		2ACC652F1C9802CB000574DC /* Extensions */ = {
