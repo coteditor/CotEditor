@@ -549,11 +549,6 @@
 "Key Bindings" = "Düğme Bağıntıları";
 
 
-// Appearance pane
-// alert message
-"The selected font doesn’t seem to be monospaced." = "Seçili font, sabit genişlikli değil gibi görünüyor";
-"Do you want to use it for the monospaced font?" = "Sabit genişlikli font olarak kullanmak istiyor musunuz?";  // “it” is the selected font.
-
 // tooltip
 "Jump to URL" = "URL’ye Atla";
 

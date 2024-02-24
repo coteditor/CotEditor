@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -59,8 +59,7 @@ extension UserDefaults {
         
         guard
             let data = self[.fontKey(for: type)],
-            let descriptor = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSFontDescriptor.self, from: data),
-            let font = NSFont(descriptor: descriptor, size: 0)
+            let font = NSFont(archivedData: data)
         else { return type.systemFont() }
         
         return font
@@ -69,6 +68,17 @@ extension UserDefaults {
 
 
 extension NSFont {
+    
+    /// Initializes a font from archived data.
+    ///
+    /// - Parameter data: Archived data of a font descriptor.
+    convenience init?(archivedData data: Data) {
+        
+        guard let descriptor = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSFontDescriptor.self, from: data) else { return nil }
+        
+        self.init(descriptor: descriptor, size: 0)
+    }
+    
     
     /// Keyed archived data of the font descriptor to store.
     final var archivedData: Data {

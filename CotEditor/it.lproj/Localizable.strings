@@ -549,11 +549,6 @@
 "Key Bindings" = "Abbreviazioni";
 
 
-// Appearance pane
-// alert message
-"The selected font doesn’t seem to be monospaced." = "La font selezionata non sembra a spaziatura fissa.";
-"Do you want to use it for the monospaced font?" = "La vuoi usare come font a spaziatura fissa?";  // “it” is the selected font.
-
 // tooltip
 "Jump to URL" = "Vai all’URL";
 

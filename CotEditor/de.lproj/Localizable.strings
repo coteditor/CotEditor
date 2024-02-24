@@ -549,11 +549,6 @@
 "Key Bindings" = "Kurzbefehle";
 
 
-// Appearance pane
-// alert message
-"The selected font doesn’t seem to be monospaced." = "Die ausgewählte Schrift scheint proportional.";
-"Do you want to use it for the monospaced font?" = "Möchtest du sie für die nichtproportionale Schrift verwenden?";  // “it” is the selected font.
-
 // tooltip
 "Jump to URL" = "URL öffnen";
 

@@ -549,11 +549,6 @@
 "Key Bindings" = "Atajos de teclado";
 
 
-// Appearance pane
-// alert message
-"The selected font doesn’t seem to be monospaced." = "La fuente seleccionada no parece ser monoespaciada.";  // FIXME: needs review
-"Do you want to use it for the monospaced font?" = "¿Quieres usarlo para la fuente monoespaciada?";  // “it” is the selected font.  // FIXME: needs review
-
 // tooltip
 "Jump to URL" = "Saltar a la URL";
 

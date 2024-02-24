@@ -549,11 +549,6 @@
 "Key Bindings" = "Key Bindings";
 
 
-// Appearance pane
-// alert message
-"The selected font doesn’t seem to be monospaced." = "The selected font doesn’t seem to be monospaced.";
-"Do you want to use it for the monospaced font?" = "Do you want to use it for the monospaced font?";  // “it” is the selected font.
-
 // tooltip
 "Jump to URL" = "Jump to URL";
 

@@ -44,9 +44,9 @@ extension DefaultKeys {
     static let monospacedFont = DefaultKey<Data?>("monospacedFont")
     static let monospacedShouldAntialias = DefaultKey<Bool>("monospacedShouldAntialias")
     static let monospacedLigature = DefaultKey<Bool>("monospacedLigature")
-    static let lineHeight = DefaultKey<CGFloat>("lineHeight")
+    static let lineHeight = DefaultKey<Double>("lineHeight")
     static let documentAppearance = RawRepresentableDefaultKey<AppearanceMode>("appearance")
-    static let windowAlpha = DefaultKey<CGFloat>("windowAlpha")
+    static let windowAlpha = DefaultKey<Double>("windowAlpha")
     static let theme = DefaultKey<String>("defaultTheme")
     
     // Window
@@ -115,7 +115,7 @@ extension DefaultKeys {
     static let fileDropArray = DefaultKey<[[String: String]]>("fileDropArray")
     
     // Print
-    static let printFontSize = DefaultKey<CGFloat>("printFontSize")
+    static let printFontSize = DefaultKey<Double>("printFontSize")
     static let printTheme = DefaultKey<String?>("printTheme")
     static let printBackground = DefaultKey<Bool>("printBackground")
     static let printHeaderAndFooter = DefaultKey<Bool>("printHeaderAndFooter")
@@ -151,12 +151,12 @@ extension DefaultKeys {
     static let pinsThemeAppearance = DefaultKey<Bool>("pinsThemeAppearance")
     static let lastSettingsPaneIdentifier = DefaultKey<String?>("lastPreferencesPaneIdentifier")
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
-    static let sidebarWidth = DefaultKey<CGFloat>("sidebarWidth")
+    static let sidebarWidth = DefaultKey<Double>("sidebarWidth")
     static let recentSyntaxNames = DefaultKey<[String]>("recentStyleNames")
     static let showStatusBar = DefaultKey<Bool>("showStatusArea")
     static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
     static let splitViewVertical = DefaultKey<Bool>("splitViewVertical")
-    static let consoleFontSize = DefaultKey<CGFloat>("consoleFontSize")
+    static let consoleFontSize = DefaultKey<Double>("consoleFontSize")
     static let outlineViewFontSize = DefaultKey<Double>("outlineViewFontSize")
     static let findResultViewFontSize = DefaultKey<Double>("findResultViewFontSize")
     static let selectedMultipleReplaceSettingName = DefaultKey<String?>("selectedMultipleReplaceSettingName")

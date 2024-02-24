@@ -549,11 +549,6 @@
 "Key Bindings" = "Kláv. zkratky";
 
 
-// Appearance pane
-// alert message
-"The selected font doesn’t seem to be monospaced." = "Zdá se, že vybrané písmo není neproporcionální.";
-"Do you want to use it for the monospaced font?" = "Chcete ho použít pro neproporcionální písmo?";  // “it” is the selected font.
-
 // tooltip
 "Jump to URL" = "Přejít na URL";
 

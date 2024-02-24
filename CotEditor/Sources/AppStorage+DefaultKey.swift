@@ -89,4 +89,10 @@ extension AppStorage {
         
         self.init(wrappedValue: defaultValue, key.rawValue, store: store)
     }
+    
+    
+    init(_ key: DefaultKey<Value>, store: UserDefaults? = nil) where Value == Data? {
+        
+        self.init(key.rawValue, store: store)
+    }
 }
