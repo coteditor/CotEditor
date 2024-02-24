@@ -1371,9 +1371,9 @@
 			isa = PBXGroup;
 			children = (
 				2A10D1261E714D230027192A /* AppearancePane.storyboard */,
+				2A10D1361E715E5B0027192A /* SyntaxListView.storyboard */,
 				2ADF3BFF1E6D7345009125BB /* SnippetsPane.storyboard */,
 				2A10D1081E708CDF0027192A /* KeyBindingTreeView.storyboard */,
-				2A10D1361E715E5B0027192A /* SyntaxListView.storyboard */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
