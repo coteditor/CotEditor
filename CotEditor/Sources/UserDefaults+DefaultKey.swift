@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -72,13 +72,6 @@ extension UserDefaults {
     }
     
     
-    subscript(key: DefaultKey<UInt>) -> UInt {
-        
-        get { UInt(exactly: self.integer(forKey: key.rawValue)) ?? 0 }
-        set { self.set(newValue, forKey: key.rawValue) }
-    }
-    
-    
     subscript(key: DefaultKey<Double>) -> Double {
         
         get { self.double(forKey: key.rawValue) }
@@ -87,13 +80,6 @@ extension UserDefaults {
     
     
     subscript(key: DefaultKey<Double?>) -> Double? {
-        
-        get { self.double(forKey: key.rawValue) }
-        set { self.set(newValue, forKey: key.rawValue) }
-    }
-    
-    
-    subscript(key: DefaultKey<CGFloat>) -> CGFloat {
         
         get { self.double(forKey: key.rawValue) }
         set { self.set(newValue, forKey: key.rawValue) }
