@@ -41,11 +41,11 @@ struct SyntaxCompletionEditView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Text("If not specified, syntax completion words are generated based on the highlighting settings.", tableName: "SyntaxEdit", comment: "message")
+            Text("If not specified, syntax completion words are generated based on the highlighting settings.", tableName: "SyntaxEditor", comment: "message")
                 .controlSize(.small)
             
             Table($completions, selection: $selection) {
-                TableColumn(String(localized: "Completion", table: "SyntaxEdit", comment: "table column header")) { item in
+                TableColumn(String(localized: "Completion", table: "SyntaxEditor", comment: "table column header")) { item in
                     TextField(text: item.string, label: EmptyView.init)
                         .focused($focusedField, equals: item.id)
                 }

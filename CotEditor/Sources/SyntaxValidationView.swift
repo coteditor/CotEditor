@@ -69,9 +69,9 @@ struct SyntaxValidationView: View {
         private var message: String {
             
             (self.count == 0)
-                ? String(localized: "No error found.", table: "SyntaxEdit",
+                ? String(localized: "No error found.", table: "SyntaxEditor",
                          comment: "message in the Validation pane")
-                : String(localized: "\(self.count) errors found.", table: "SyntaxEdit",
+                : String(localized: "\(self.count) errors found.", table: "SyntaxEditor",
                          comment: "message in the Validation pane")
         }
     }
@@ -87,7 +87,7 @@ struct SyntaxValidationView: View {
             Label {
                 VStack(alignment: .leading, spacing: 2) {
                     HStack(alignment: .firstTextBaseline) {
-                        Text("\(self.error.type.label):", tableName: "SyntaxEdit")
+                        Text("\(self.error.type.label):", tableName: "SyntaxEditor")
                             .fontWeight(.medium)
                         Text(self.error.string)
                             .help(self.error.string)
@@ -115,13 +115,13 @@ private extension SyntaxObject.Error {
         switch self.code {
             case .duplicated:
                 String(localized: "The same word is registered multiple times.",
-                       table: "SyntaxEdit")
+                       table: "SyntaxEditor")
             case .regularExpression:
                 String(localized: "Invalid regular expression.",
-                       table: "SyntaxEdit")
+                       table: "SyntaxEditor")
             case .blockComment:
                 String(localized: "Block comment needs both begin and end delimiters.",
-                       table: "SyntaxEdit")
+                       table: "SyntaxEditor")
         }
     }
 }

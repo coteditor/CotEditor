@@ -43,9 +43,9 @@ struct SyntaxHighlightEditView: View {
         
         VStack(alignment: .leading) {
             Table($items, selection: $selection) {
-                TableColumn(String(localized: "RE", table: "SyntaxEdit", comment: "table column header (RE for Regular Expression)")) { item in
+                TableColumn(String(localized: "RE", table: "SyntaxEditor", comment: "table column header (RE for Regular Expression)")) { item in
                     Toggle(isOn: item.isRegularExpression, label: EmptyView.init)
-                        .help(String(localized: "Regular Expression", table: "SyntaxEdit", comment: "tooltip for RE checkbox"))
+                        .help(String(localized: "Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
                         .onChange(of: item.isRegularExpression.wrappedValue) { newValue in
                             guard self.selection.contains(item.id) else { return }
                             $items
@@ -56,9 +56,9 @@ struct SyntaxHighlightEditView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                 }.width(20)
                 
-                TableColumn(String(localized: "IC", table: "SyntaxEdit", comment: "table column header (IC for Ignore Case)")) { item in
+                TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { item in
                     Toggle(isOn: item.ignoreCase, label: EmptyView.init)
-                        .help(String(localized: "Ignore Case", table: "SyntaxEdit", comment: "tooltip for IC checkbox"))
+                        .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
                         .onChange(of: item.ignoreCase.wrappedValue) { newValue in
                             guard self.selection.contains(item.id) else { return }
                             $items
@@ -69,20 +69,20 @@ struct SyntaxHighlightEditView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                 }.width(20)
                 
-                TableColumn(String(localized: "Begin String", table: "SyntaxEdit", comment: "table column header")) { item in
+                TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { item in
                     RegexTextField(text: item.begin, showsError: true, showsInvisible: true)
                         .regexHighlighted(item.isRegularExpression.wrappedValue)
                         .style(.table)
                         .focused($focusedField, equals: item.id)
                 }
                 
-                TableColumn(String(localized: "End String", table: "SyntaxEdit", comment: "table column header")) { item in
+                TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { item in
                     RegexTextField(text: item.end ?? "", showsError: true, showsInvisible: true)
                         .regexHighlighted(item.isRegularExpression.wrappedValue)
                         .style(.table)
                 }
                 
-                TableColumn(String(localized: "Description", table: "SyntaxEdit", comment: "table column header")) { item in
+                TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { item in
                     TextField(text: item.description ?? "", label: EmptyView.init)
                 }
             }

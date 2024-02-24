@@ -41,22 +41,22 @@ struct SyntaxOutlineEditView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Text("Outline extraction rules:", tableName: "SyntaxEdit", comment: "label")
+            Text("Outline extraction rules:", tableName: "SyntaxEditor", comment: "label")
             
             Table($outlines, selection: $selection) {
-                TableColumn(String(localized: "IC", table: "SyntaxEdit", comment: "table column header (IC for Ignore Case)")) { item in
+                TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { item in
                     Toggle(isOn: item.ignoreCase, label: EmptyView.init)
-                        .help(String(localized: "Ignore Case", table: "SyntaxEdit", comment: "tooltip for IC checkbox"))
+                        .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
                         .frame(maxWidth: .infinity, alignment: .center)
                 }.width(20)
                 
-                TableColumn(String(localized: "Regular Expression Pattern", table: "SyntaxEdit", comment: "table column header")) { item in
+                TableColumn(String(localized: "Regular Expression Pattern", table: "SyntaxEditor", comment: "table column header")) { item in
                     RegexTextField(text: item.pattern, showsError: true, showsInvisible: true)
                         .style(.table)
                         .focused($focusedField, equals: item.id)
                 }
                 
-                TableColumn(String(localized: "Description", table: "SyntaxEdit", comment: "table column header")) { item in
+                TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { item in
                     TextField(text: item.description ?? "", label: EmptyView.init)
                 }
             }
@@ -96,8 +96,8 @@ struct SyntaxOutlineEditView: View {
             
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Text("Title pattern:", tableName: "SyntaxEdit", comment: "label")
-                    Text("(Blank matches the whole string.)", tableName: "SyntaxEdit", comment: "label")
+                    Text("Title pattern:", tableName: "SyntaxEditor", comment: "label")
+                    Text("(Blank matches the whole string.)", tableName: "SyntaxEditor", comment: "label")
                         .controlSize(.small)
                         .foregroundColor(.secondary)
                 }
@@ -105,11 +105,11 @@ struct SyntaxOutlineEditView: View {
                 RegexTextField(text: $outline.template, mode: .replacement(unescapes: false), prompt: self.prompt)
                 
                 HStack {
-                    Toggle(String(localized: "Bold", table: "SyntaxEdit", comment: "checkbox label"), isOn: $outline.bold)
+                    Toggle(String(localized: "Bold", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.bold)
                         .bold()
-                    Toggle(String(localized: "Italic", table: "SyntaxEdit", comment: "checkbox label"), isOn: $outline.italic)
+                    Toggle(String(localized: "Italic", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.italic)
                         .italic()
-                    Toggle(String(localized: "Underline", table: "SyntaxEdit", comment: "checkbox label"), isOn: $outline.underline)
+                    Toggle(String(localized: "Underline", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.underline)
                         .underline()
                 }.controlSize(.small)
             }
@@ -120,11 +120,11 @@ struct SyntaxOutlineEditView: View {
             
             switch self.error {
                 case .noSelection:
-                    String(localized: "No item selected", table: "SyntaxEdit", comment: "placeholder")
+                    String(localized: "No item selected", table: "SyntaxEditor", comment: "placeholder")
                 case .multipleSelection:
-                    String(localized: "Multiple items selected", table: "SyntaxEdit", comment: "placeholder")
+                    String(localized: "Multiple items selected", table: "SyntaxEditor", comment: "placeholder")
                 case .none:
-                    String(localized: "Entire match", table: "SyntaxEdit", comment: "placeholder")
+                    String(localized: "Entire match", table: "SyntaxEditor", comment: "placeholder")
             }
         }
     }

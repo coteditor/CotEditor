@@ -35,11 +35,11 @@ struct SyntaxMetadataEditView: View {
     var body: some View {
         
         Form {
-            TextField(String(localized: "Version:", table: "SyntaxEdit", comment: "label"),
+            TextField(String(localized: "Version:", table: "SyntaxEditor", comment: "label"),
                       text: $metadata.version ?? "")
-            TextField(String(localized: "Last Modified:", table: "SyntaxEdit", comment: "label"),
+            TextField(String(localized: "Last Modified:", table: "SyntaxEditor", comment: "label"),
                       text: $metadata.lastModified ?? "")
-            LabeledContent(String(localized: "Distribution URL:", table: "SyntaxEdit", comment: "label")) {
+            LabeledContent(String(localized: "Distribution URL:", table: "SyntaxEditor", comment: "label")) {
                 InsetTextField(text: $metadata.distributionURL ?? "")
                     .inset(.trailing, 32)
                     .overlay(alignment: .trailing) {
@@ -47,11 +47,11 @@ struct SyntaxMetadataEditView: View {
                             .padding(.trailing, 4)
                     }
             }
-            TextField(String(localized: "Author:", table: "SyntaxEdit", comment: "label"),
+            TextField(String(localized: "Author:", table: "SyntaxEditor", comment: "label"),
                       text: $metadata.author ?? "")
-            TextField(String(localized: "License:", table: "SyntaxEdit", comment: "label"),
+            TextField(String(localized: "License:", table: "SyntaxEditor", comment: "label"),
                       text: $metadata.license ?? "")
-            TextField(String(localized: "Description:", table: "SyntaxEdit", comment: "label"),
+            TextField(String(localized: "Description:", table: "SyntaxEditor", comment: "label"),
                       text: $metadata.description ?? "", axis: .vertical)
                 .lineLimit(5, reservesSpace: true)
         }

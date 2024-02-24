@@ -52,19 +52,19 @@ private struct CommentDelimitersEditView: View {
         
         HStack(alignment: .firstTextBaseline, spacing: 32) {
             VStack(alignment: .leading) {
-                Text("Inline comment:", tableName: "SyntaxEdit", comment: "label")
+                Text("Inline comment:", tableName: "SyntaxEditor", comment: "label")
                 Form {
-                    TextField(String(localized: "Begin with:", table: "SyntaxEdit", comment: "label"),
+                    TextField(String(localized: "Begin with:", table: "SyntaxEditor", comment: "label"),
                               text: $comment.inline ?? "", prompt: Self.placeholder)
                 }
             }
             
             VStack(alignment: .leading) {
-                Text("Block comment:", tableName: "SyntaxEdit", comment: "label")
+                Text("Block comment:", tableName: "SyntaxEditor", comment: "label")
                 Form {
-                    TextField(String(localized: "Begin with:", table: "SyntaxEdit", comment: "label"),
+                    TextField(String(localized: "Begin with:", table: "SyntaxEditor", comment: "label"),
                               text: $comment.blockBegin ?? "", prompt: Self.placeholder)
-                    TextField(String(localized: "End with:", table: "SyntaxEdit", comment: "label"),
+                    TextField(String(localized: "End with:", table: "SyntaxEditor", comment: "label"),
                               text: $comment.blockEnd ?? "", prompt: Self.placeholder)
                 }
             }
@@ -74,7 +74,7 @@ private struct CommentDelimitersEditView: View {
     
     private static var placeholder: Text {
         
-        Text("Not defined", tableName: "SyntaxEdit", comment: "placeholder")
+        Text("Not defined", tableName: "SyntaxEditor", comment: "placeholder")
     }
 }
 

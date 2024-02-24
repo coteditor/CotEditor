@@ -40,25 +40,25 @@ struct SyntaxFileMappingEditView: View {
             GridRow {
                 EditTable($extensions) {
                     HStack {
-                        Text("Extensions:", tableName: "SyntaxEdit", comment: "label for file extensions")
-                        Text("(without dot)", tableName: "SyntaxEdit", comment: "additional label to “Extensions:”")
+                        Text("Extensions:", tableName: "SyntaxEditor", comment: "label for file extensions")
+                        Text("(without dot)", tableName: "SyntaxEditor", comment: "additional label to “Extensions:”")
                             .fontWeight(.regular)
                             .foregroundStyle(.secondary)
                     }
                 }
                 
                 EditTable($filenames) {
-                    Text("Filenames:", tableName: "SyntaxEdit", comment: "label")
+                    Text("Filenames:", tableName: "SyntaxEditor", comment: "label")
                 }
             }
             
             GridRow {
                 EditTable($interpreters) {
-                    Text("Interpreters:", tableName: "SyntaxEdit", comment: "label")
+                    Text("Interpreters:", tableName: "SyntaxEditor", comment: "label")
                 }
                 
                 VStack {
-                    Text("The interpreters are used to determine the syntax from the shebang in the document.", tableName: "SyntaxEdit", comment: "description")
+                    Text("The interpreters are used to determine the syntax from the shebang in the document.", tableName: "SyntaxEditor", comment: "description")
                         .controlSize(.small)
                         .padding(.top, 18)
                     Spacer()
