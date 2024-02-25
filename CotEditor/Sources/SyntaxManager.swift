@@ -148,7 +148,7 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
             setting[keyPath: keyPath].sort(\.begin, options: .caseInsensitive)
         }
         setting.outlines.sort(\.pattern, options: .caseInsensitive)
-        setting.completions.sort(\.keyString, options: .caseInsensitive)
+        setting.completions.sort(options: .caseInsensitive)
         
         let fileURL = self.preparedURLForUserSetting(name: name)
         

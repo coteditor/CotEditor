@@ -54,6 +54,12 @@ extension Syntax: Codable {
     }
     
     
+    private struct KeyString: Codable {
+        
+        var keyString: String
+    }
+    
+    
     init(from decoder: any Decoder) throws {
         
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -72,11 +78,11 @@ extension Syntax: Codable {
         
         self.commentDelimiters = try values.decodeIfPresent(Comment.self, forKey: .commentDelimiters) ?? .init()
         self.outlines = try values.decodeIfPresent([Outline].self, forKey: .outlines) ?? []
-        self.completions = try values.decodeIfPresent([KeyString].self, forKey: .completions) ?? []
+        self.completions = try values.decodeIfPresent([KeyString].self, forKey: .completions)?.map(\.keyString) ?? []
         
-        self.filenames = try values.decodeIfPresent([KeyString].self, forKey: .filenames) ?? []
-        self.extensions = try values.decodeIfPresent([KeyString].self, forKey: .extensions) ?? []
-        self.interpreters = try values.decodeIfPresent([KeyString].self, forKey: .interpreters) ?? []
+        self.filenames = try values.decodeIfPresent([KeyString].self, forKey: .filenames)?.map(\.keyString) ?? []
+        self.extensions = try values.decodeIfPresent([KeyString].self, forKey: .extensions)?.map(\.keyString) ?? []
+        self.interpreters = try values.decodeIfPresent([KeyString].self, forKey: .interpreters)?.map(\.keyString) ?? []
         
         self.metadata = try values.decodeIfPresent(Metadata.self, forKey: .metadata) ?? .init()
     }
@@ -99,11 +105,11 @@ extension Syntax: Codable {
         
         try container.encode(self.commentDelimiters, forKey: .commentDelimiters)
         try container.encode(self.outlines, forKey: .outlines)
-        try container.encode(self.completions, forKey: .completions)
+        try container.encode(self.completions.map(KeyString.init(keyString:)), forKey: .completions)
         
-        try container.encode(self.filenames, forKey: .filenames)
-        try container.encode(self.extensions, forKey: .extensions)
-        try container.encode(self.interpreters, forKey: .interpreters)
+        try container.encode(self.filenames.map(KeyString.init(keyString:)), forKey: .filenames)
+        try container.encode(self.extensions.map(KeyString.init(keyString:)), forKey: .extensions)
+        try container.encode(self.interpreters.map(KeyString.init(keyString:)), forKey: .interpreters)
         
         try container.encode(self.metadata, forKey: .metadata)
     }

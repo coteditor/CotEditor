@@ -72,12 +72,6 @@ struct Syntax: Equatable {
     }
     
     
-    struct KeyString: Equatable, Codable {
-        
-        var keyString: String
-    }
-    
-    
     struct Comment: Equatable, Codable {
         
         private enum CodingKeys: String, CodingKey {
@@ -127,11 +121,11 @@ struct Syntax: Equatable {
     
     var commentDelimiters: Comment = Comment()
     var outlines: [Outline] = []
-    var completions: [KeyString] = []
+    var completions: [String] = []
     
-    var filenames: [KeyString] = []
-    var extensions: [KeyString] = []
-    var interpreters: [KeyString] = []
+    var filenames: [String] = []
+    var extensions: [String] = []
+    var interpreters: [String] = []
     
     var metadata: Metadata = Metadata()
     
@@ -226,7 +220,7 @@ struct Syntax: Equatable {
     
     var completionWords: [String] {
         
-        let completions = self.completions.map(\.keyString).filter { !$0.isEmpty }
+        let completions = self.completions.filter { !$0.isEmpty }
         
         return if !completions.isEmpty {
             // from completion definition

@@ -231,17 +231,17 @@ extension SyntaxObject.Outline {
 
 extension SyntaxObject.KeyString {
     
-    typealias Value = Syntax.KeyString
+    typealias Value = String
     
     init(value: Value) {
         
-        self.string = value.keyString
+        self.string = value
     }
     
     
     var value: Value {
         
-        Value(keyString: self.string)
+        self.string
     }
 }
 

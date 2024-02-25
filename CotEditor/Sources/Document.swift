@@ -275,7 +275,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             return pathExtension
         }
         
-        return self.syntaxParser.syntax.extensions.map(\.keyString).first
+        return self.syntaxParser.syntax.extensions.first
     }
     
     
