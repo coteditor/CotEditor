@@ -441,6 +441,20 @@ private extension PrintInfoType {
     }
     
     
+    var label: String {
+        
+        switch self {
+            case .none: String(localized: "None")
+            case .syntaxName: String(localized: "Syntax Name")
+            case .documentName: String(localized: "Document Name")
+            case .filePath: String(localized: "File Path")
+            case .printDate: String(localized: "Print Date")
+            case .lastModifiedDate: String(localized: "Last Modified Date")
+            case .pageNumber: String(localized: "Page Number")
+        }
+    }
+    
+    
     private var menuItem: NSMenuItem {
         
         let item = NSMenuItem()
@@ -459,6 +473,26 @@ private extension AlignmentType {
             segmentedControl.setToolTip(type.help, forSegment: type.rawValue)
             segmentedControl.setTag(type.rawValue, forSegment: type.rawValue)
             segmentedControl.setImage(NSImage(systemSymbolName: type.symbolName, accessibilityDescription: type.help), forSegment: type.rawValue)
+        }
+    }
+    
+    
+    private var help: String {
+        
+        switch self {
+            case .left:   String(localized: "Align Left")
+            case .center: String(localized: "Center")
+            case .right:  String(localized: "Align Right")
+        }
+    }
+    
+    
+    private var symbolName: String {
+        
+        switch self {
+            case .left: "arrow.left.to.line"
+            case .center: "arrow.right.and.line.vertical.and.arrow.left"
+            case .right: "arrow.right.to.line"
         }
     }
 }

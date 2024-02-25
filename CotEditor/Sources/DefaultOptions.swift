@@ -75,20 +75,6 @@ enum AppearanceMode: Int, CaseIterable {
     case printDate
     case pageNumber
     case lastModifiedDate
-    
-    
-    var label: String {
-        
-        switch self {
-            case .none: String(localized: "None")
-            case .syntaxName: String(localized: "Syntax Name")
-            case .documentName: String(localized: "Document Name")
-            case .filePath: String(localized: "File Path")
-            case .printDate: String(localized: "Print Date")
-            case .lastModifiedDate: String(localized: "Last Modified Date")
-            case .pageNumber: String(localized: "Page Number")
-        }
-    }
 }
 
 
@@ -99,24 +85,4 @@ enum AppearanceMode: Int, CaseIterable {
     case left
     case center
     case right
-    
-    
-    var help: String {
-        
-        switch self {
-            case .left:   String(localized: "Align Left")
-            case .center: String(localized: "Center")
-            case .right:  String(localized: "Align Right")
-        }
-    }
-    
-    
-    var symbolName: String {
-        
-        switch self {
-            case .left: "arrow.left.to.line"
-            case .center: "arrow.right.and.line.vertical.and.arrow.left"
-            case .right: "arrow.right.to.line"
-        }
-    }
 }
