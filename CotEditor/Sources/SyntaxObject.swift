@@ -126,6 +126,8 @@ extension SyntaxObject {
     
     func update(with value: Value) {
         
+        self.kind = value.kind
+        
         self.keywords = value.keywords.map { .init(value: $0) }
         self.commands = value.commands.map { .init(value: $0) }
         self.types = value.types.map { .init(value: $0) }
@@ -151,7 +153,8 @@ extension SyntaxObject {
     
     var value: Value {
         
-        Value(keywords: self.keywords.map(\.value),
+        Value(kind: self.kind,
+              keywords: self.keywords.map(\.value),
               commands: self.commands.map(\.value),
               types: self.types.map(\.value),
               attributes: self.attributes.map(\.value),
