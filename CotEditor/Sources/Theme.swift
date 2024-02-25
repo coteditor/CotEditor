@@ -34,9 +34,9 @@ protocol Themable: AnyObject {
 
 
 
-struct Theme {
+struct Theme: Equatable {
     
-    struct Style {
+    struct Style: Equatable {
         
         var color: NSColor
         
@@ -44,19 +44,24 @@ struct Theme {
     }
     
     
-    struct SystemDefaultStyle {
+    struct SystemDefaultStyle: Equatable {
         
         var color: NSColor
         var usesSystemSetting: Bool
     }
     
     
-    struct Metadata: Codable {
+    struct Metadata: Equatable, Codable {
         
         var author: String?
         var distributionURL: String?
         var license: String?
         var description: String?
+        
+        var isEmpty: Bool {
+            
+            [self.author, self.distributionURL, self.license, self.description].compactMap({ $0 }).isEmpty
+        }
     }
     
     

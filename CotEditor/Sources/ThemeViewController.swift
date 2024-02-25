@@ -536,7 +536,7 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
         
         let isBundled = ThemeManager.shared.state(of: name)?.isBundled == true
         
-        let view = ThemeEditorView(theme, isBundled: isBundled) { theme in
+        let view = ThemeEditorView(theme: theme, isBundled: isBundled) { theme in
             do {
                 try ThemeManager.shared.save(setting: theme, name: name)
             } catch {
