@@ -44,10 +44,14 @@ struct SyntaxCompletionEditView: View {
             Text("If not specified, syntax completion words are generated based on the highlighting settings.", tableName: "SyntaxEditor", comment: "message")
                 .controlSize(.small)
             
-            Table($items, selection: $selection) {
-                TableColumn(String(localized: "Completion", table: "SyntaxEditor", comment: "table column header")) { item in
-                    TextField(text: item.string, label: EmptyView.init)
-                        .focused($focusedField, equals: item.id)
+            // create a table with wrapped values and then find the editable item again in each column
+            // to avoid taking time when leaving a pane with a large number of items. (2024-02-25 macOS 14)
+            Table(self.items, selection: $selection) {
+                TableColumn(String(localized: "Completion", table: "SyntaxEditor", comment: "table column header")) { wrappedItem in
+                    if let item = $items.first(where: { $0.id == wrappedItem.id }) {
+                        TextField(text: item.string, label: EmptyView.init)
+                            .focused($focusedField, equals: item.id)
+                    }
                 }
             }
             .tableStyle(.bordered)

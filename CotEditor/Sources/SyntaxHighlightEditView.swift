@@ -42,48 +42,60 @@ struct SyntaxHighlightEditView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Table($items, selection: $selection) {
-                TableColumn(String(localized: "RE", table: "SyntaxEditor", comment: "table column header (RE for Regular Expression)")) { item in
-                    Toggle(isOn: item.isRegularExpression, label: EmptyView.init)
-                        .help(String(localized: "Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
-                        .onChange(of: item.isRegularExpression.wrappedValue) { newValue in
-                            guard self.selection.contains(item.id) else { return }
-                            $items
-                                .filter(with: self.selection)
-                                .filter { $0.id != item.id }
-                                .forEach { $0.isRegularExpression.wrappedValue = newValue }
-                        }
-                        .frame(maxWidth: .infinity, alignment: .center)
+            // create a table with wrapped values and then find the editable item again in each column
+            // to avoid taking time when leaving a pane with a large number of items. (2024-02-25 macOS 14)
+            Table(self.items, selection: $selection) {
+                TableColumn(String(localized: "RE", table: "SyntaxEditor", comment: "table column header (RE for Regular Expression)")) { wrappedItem in
+                    if let item = $items.first(where: { $0.id == wrappedItem.id }) {
+                        Toggle(isOn: item.isRegularExpression, label: EmptyView.init)
+                            .help(String(localized: "Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
+                            .onChange(of: item.isRegularExpression.wrappedValue) { newValue in
+                                guard self.selection.contains(item.id) else { return }
+                                $items
+                                    .filter(with: self.selection)
+                                    .filter { $0.id != item.id }
+                                    .forEach { $0.isRegularExpression.wrappedValue = newValue }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .center)
+                    }
                 }.width(20)
                 
-                TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { item in
-                    Toggle(isOn: item.ignoreCase, label: EmptyView.init)
-                        .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
-                        .onChange(of: item.ignoreCase.wrappedValue) { newValue in
-                            guard self.selection.contains(item.id) else { return }
-                            $items
-                                .filter(with: self.selection)
-                                .filter { $0.id != item.id }
-                                .forEach { $0.ignoreCase.wrappedValue = newValue }
-                        }
-                        .frame(maxWidth: .infinity, alignment: .center)
+                TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { wrappedItem in
+                    if let item = $items.first(where: { $0.id == wrappedItem.id }) {
+                        Toggle(isOn: item.ignoreCase, label: EmptyView.init)
+                            .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
+                            .onChange(of: item.ignoreCase.wrappedValue) { newValue in
+                                guard self.selection.contains(item.id) else { return }
+                                $items
+                                    .filter(with: self.selection)
+                                    .filter { $0.id != item.id }
+                                    .forEach { $0.ignoreCase.wrappedValue = newValue }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .center)
+                    }
                 }.width(20)
                 
-                TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { item in
-                    RegexTextField(text: item.begin, showsError: true, showsInvisible: true)
-                        .regexHighlighted(item.isRegularExpression.wrappedValue)
-                        .style(.table)
-                        .focused($focusedField, equals: item.id)
+                TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { wrappedItem in
+                    if let item = $items.first(where: { $0.id == wrappedItem.id }) {
+                        RegexTextField(text: item.begin, showsError: true, showsInvisible: true)
+                            .regexHighlighted(item.isRegularExpression.wrappedValue)
+                            .style(.table)
+                            .focused($focusedField, equals: item.id)
+                    }
                 }
                 
-                TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { item in
-                    RegexTextField(text: item.end ?? "", showsError: true, showsInvisible: true)
-                        .regexHighlighted(item.isRegularExpression.wrappedValue)
-                        .style(.table)
+                TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { wrappedItem in
+                    if let item = $items.first(where: { $0.id == wrappedItem.id }) {
+                        RegexTextField(text: item.end ?? "", showsError: true, showsInvisible: true)
+                            .regexHighlighted(item.isRegularExpression.wrappedValue)
+                            .style(.table)
+                    }
                 }
                 
-                TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { item in
-                    TextField(text: item.description ?? "", label: EmptyView.init)
+                TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { wrappedItem in
+                    if let item = $items.first(where: { $0.id == wrappedItem.id }) {
+                        TextField(text: item.description ?? "", label: EmptyView.init)
+                    }
                 }
             }
             .tableStyle(.bordered)
