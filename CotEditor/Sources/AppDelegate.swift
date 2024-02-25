@@ -383,9 +383,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     /// Opens a specific page in the system Help viewer.
-    @IBAction func openHelpAnchor(_ sender: AnyObject) {
+    @IBAction func openHelpAnchor(_ sender: any NSUserInterfaceItemIdentification) {
         
-        guard let identifier = (sender as? any NSUserInterfaceItemIdentification)?.identifier else { return assertionFailure() }
+        guard let identifier = sender.identifier else { return assertionFailure() }
         
         NSHelpManager.shared.openHelpAnchor(identifier.rawValue, inBook: Bundle.main.helpBookName)
     }
