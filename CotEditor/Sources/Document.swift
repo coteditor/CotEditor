@@ -28,6 +28,7 @@ import AppKit
 import Combine
 import SwiftUI
 import UniformTypeIdentifiers
+import OSLog
 
 final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging {
     
@@ -553,7 +554,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 do {
                     try FileManager.default.removeItem(at: fileURL)  // FILE_ACCESS
                 } catch {
-                    Swift.print("Failed empty file deletion: \(error)")
+                    Logger.app.error("Failed empty file deletion: \(error)")
                     break suppression
                 }
             }

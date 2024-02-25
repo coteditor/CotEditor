@@ -26,6 +26,7 @@
 import SwiftUI
 import AppKit
 import Combine
+import OSLog
 
 struct KeyBindingsSettingsView: View {
     
@@ -108,7 +109,7 @@ private final class KeyBindingModel: ObservableObject {
         do {
             try KeyBindingManager.shared.saveKeyBindings(keyBindings)
         } catch {
-            Swift.print(error)
+            Logger.app.error("\(error.localizedDescription)")
         }
         
         self.isRestorable = KeyBindingManager.shared.isCustomized

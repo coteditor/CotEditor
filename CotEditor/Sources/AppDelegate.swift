@@ -27,6 +27,13 @@
 import AppKit
 import Combine
 import UniformTypeIdentifiers
+import OSLog
+
+extension Logger {
+    
+    static let app = Logger(subsystem: "com.coteditor.CotEditor", category: "application")
+}
+
 
 private extension NSSound {
     
@@ -79,7 +86,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @MainActor private let textKitObserver = NotificationCenter.default
         .publisher(for: NSTextView.didSwitchToNSLayoutManagerNotification)
         .compactMap { $0.object as? NSTextView }
-        .sink { print("⚠️ \($0.className) did switch to NSLayoutManager.") }
+        .sink { Logger.app.debug("\($0.className) did switch to NSLayoutManager.") }
     #endif
     
     

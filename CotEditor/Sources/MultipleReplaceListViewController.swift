@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2023 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import AppKit
 import AudioToolbox
 import Combine
 import UniformTypeIdentifiers
+import OSLog
 
 final class MultipleReplaceListViewController: NSViewController, NSMenuItemValidation {
     
@@ -415,7 +416,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         do {
             try ReplacementManager.shared.save(setting: setting, name: name)
         } catch {
-            print(error.localizedDescription)
+            Logger.app.error("\(error.localizedDescription)")
         }
     }
 }
