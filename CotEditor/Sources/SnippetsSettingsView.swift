@@ -31,11 +31,19 @@ struct SnippetsSettingsView: View {
         
         VStack {
             TabView {
-                CommandView()
-                    .tabItem { Text("Command", tableName: "SnippetsSettings", comment: "tab label") }
+                VStack(alignment: .leading) {
+                    Text("Text to be inserted by a command in the menu or by keyboard shortcut:", tableName: "SnippetsSettings")
+                    CommandView()
+                }
+                .padding(EdgeInsets(top: 4, leading: 10, bottom: 10, trailing: 10))
+                .tabItem { Text("Command", tableName: "SnippetsSettings", comment: "tab label") }
                 
-                FileDropView()
-                    .tabItem { Text("File Drop", tableName: "SnippetsSettings", comment: "tab label") }
+                VStack(alignment: .leading) {
+                    Text("Text to be inserted by dropping files to the editor:", tableName: "SnippetsSettings")
+                    FileDropView()
+                }
+                .padding(EdgeInsets(top: 4, leading: 10, bottom: 10, trailing: 10))
+                .tabItem { Text("File Drop", tableName: "SnippetsSettings", comment: "tab label") }
             }.frame(height: 400)
             
             HStack {
