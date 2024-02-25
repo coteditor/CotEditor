@@ -57,6 +57,11 @@ struct Syntax: Equatable {
         var isRegularExpression: Bool = false
         var ignoreCase: Bool = false
         var description: String?
+        
+        var isEmpty: Bool {
+            
+            self.begin.isEmpty && self.end?.isEmpty != false && self.description?.isEmpty != false
+        }
     }
     
     
@@ -69,6 +74,11 @@ struct Syntax: Equatable {
         var italic: Bool = false
         var underline: Bool = false
         var description: String?
+        
+        var isEmpty: Bool {
+            
+            self.pattern.isEmpty && self.pattern.isEmpty && self.description?.isEmpty != false
+        }
     }
     
     
@@ -149,6 +159,23 @@ struct Syntax: Equatable {
     
     
     // MARK: Public Methods
+    
+    /// Sorted and removed empty items for saving.
+    var sanitized: Self {
+        
+        var syntax = self
+        for keyPath in SyntaxType.allCases.map(Syntax.highlightKeyPath(for:)) {
+            syntax[keyPath: keyPath].removeAll { $0.isEmpty }
+            syntax[keyPath: keyPath].sort(\.begin, options: .caseInsensitive)
+        }
+        syntax.outlines.removeAll { $0.isEmpty }
+        syntax.outlines.sort(\.pattern, options: .caseInsensitive)
+        syntax.completions.removeAll { $0.isEmpty }
+        syntax.completions.sort(options: .caseInsensitive)
+        
+        return syntax
+    }
+    
     
     var outlineExtractors: [OutlineExtractor] {
         

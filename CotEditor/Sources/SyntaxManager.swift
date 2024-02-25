@@ -142,20 +142,14 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     ///   - oldName: The old setting name if any exists.
     func save(setting: Setting, name: SettingName, oldName: SettingName?) throws {
         
-        // sort elements
-        var setting = setting
-        for keyPath in SyntaxType.allCases.map(Syntax.highlightKeyPath(for:)) {
-            setting[keyPath: keyPath].sort(\.begin, options: .caseInsensitive)
-        }
-        setting.outlines.sort(\.pattern, options: .caseInsensitive)
-        setting.completions.sort(options: .caseInsensitive)
-        
         let fileURL = self.preparedURLForUserSetting(name: name)
         
         // move old file to new place to overwrite when syntax name is also changed
         if let oldName, name != oldName {
             try self.renameSetting(name: oldName, to: name)
         }
+        
+        let setting = setting.sanitized
         
         // just remove the current custom setting file in the user domain if new syntax is just the same as bundled one
         // so that application uses bundled one
