@@ -24,7 +24,6 @@
 //
 
 import Foundation
-import CoreGraphics
 
 extension DefaultKeys {
     

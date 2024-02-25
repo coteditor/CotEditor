@@ -36,11 +36,11 @@ struct DefaultSettings {
         .suppressesInconsistentLineEndingAlert: false,
         .checksUpdatesForBeta: false,
         
-        .font: try? NSFont.userFont(ofSize: 13)?.archivedData,
+        .font: try? FontType.standard.systemFont().archivedData,
         .fontPreference: FontPreference.automatic.rawValue,
         .shouldAntialias: true,
         .ligature: true,
-        .monospacedFont: try? NSFont.userFixedPitchFont(ofSize: 13)?.archivedData,
+        .monospacedFont: try? FontType.monospaced.systemFont().archivedData,
         .monospacedShouldAntialias: true,
         .monospacedLigature: false,
         .lineHeight: 1.3,
