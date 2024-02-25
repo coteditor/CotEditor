@@ -175,6 +175,8 @@
 		2A36E36F2AF9ED0B00A73534 /* Sparkle.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */; };
 		2A38FAFD1D1C67050032231A /* DraggableArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */; };
 		2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */; };
+		2A39AC472B8B5C9700E216C9 /* OutlineItem+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A39AC462B8B5C9700E216C9 /* OutlineItem+AttributedString.swift */; };
+		2A39AC482B8B5C9700E216C9 /* OutlineItem+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A39AC462B8B5C9700E216C9 /* OutlineItem+AttributedString.swift */; };
 		2A3A19DF2068A76600516DE4 /* NSTextView+MultipleReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplace.swift */; };
 		2A3A19E02068A76600516DE4 /* NSTextView+MultipleReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplace.swift */; };
 		2A3A19E2206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */; };
@@ -917,6 +919,7 @@
 		2A36CE7B1FF654C000020702 /* NSTextView+Snippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Snippet.swift"; sourceTree = "<group>"; };
 		2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Sparkle.xcstrings; path = mul.lproj/Sparkle.xcstrings; sourceTree = "<group>"; };
 		2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableArrayController.swift; sourceTree = "<group>"; };
+		2A39AC462B8B5C9700E216C9 /* OutlineItem+AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutlineItem+AttributedString.swift"; sourceTree = "<group>"; };
 		2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+MultipleReplace.swift"; sourceTree = "<group>"; };
 		2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+BracePair.swift"; sourceTree = "<group>"; };
 		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
@@ -1963,6 +1966,7 @@
 				2A4714E5209630510093E27F /* OutlineExtractor.swift */,
 				2AEAA8222096380C001A175C /* HighlightExtractors.swift */,
 				2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */,
+				2A39AC462B8B5C9700E216C9 /* OutlineItem+AttributedString.swift */,
 				2A26158B2979052C008C2240 /* SyntaxObject.swift */,
 				2A7725631D50401300A53C09 /* SyntaxObject+Validation.swift */,
 			);
@@ -2881,6 +2885,7 @@
 				2A4714E7209630510093E27F /* OutlineExtractor.swift in Sources */,
 				2AE7A8DA20450FE600830830 /* OutlineInspectorView.swift in Sources */,
 				2AAD61F51D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
+				2A39AC472B8B5C9700E216C9 /* OutlineItem+AttributedString.swift in Sources */,
 				2A63A9D824E8C8F70017ACBB /* OutlinePopUpButton.swift in Sources */,
 				2ACDC0981D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */,
 				2A9C370C1D66E99400774BA4 /* Pair.swift in Sources */,
@@ -3243,6 +3248,7 @@
 				2A4714E6209630510093E27F /* OutlineExtractor.swift in Sources */,
 				2AE7A8D920450FE600830830 /* OutlineInspectorView.swift in Sources */,
 				2AAD61F41D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
+				2A39AC482B8B5C9700E216C9 /* OutlineItem+AttributedString.swift in Sources */,
 				2A63A9D924E8C8F70017ACBB /* OutlinePopUpButton.swift in Sources */,
 				2ACDC0971D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */,
 				2A9C370B1D66E99400774BA4 /* Pair.swift in Sources */,

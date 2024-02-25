@@ -23,13 +23,7 @@
 //  limitations under the License.
 //
 
-import SwiftUI
-import AppKit.NSFont
-import struct Foundation.NSRange
-
-extension NSFont: @unchecked Sendable { }
-extension NSParagraphStyle: @unchecked Sendable { }
-
+import Foundation
 
 struct OutlineItem: Equatable, Identifiable {
     
@@ -51,71 +45,6 @@ struct OutlineItem: Equatable, Identifiable {
     fileprivate(set) var filteredRanges: [Range<String.Index>]?
     
     var isSeparator: Bool  { self.title == .separator }
-}
-
-
-extension OutlineItem {
-    
-    /// Returns styled title for a view in AppKit.
-    ///
-    /// - Parameters:
-    ///   - baseFont: The base font of change.
-    ///   - paragraphStyle: The paragraph style to apply.
-    /// - Returns: An AttributedString.
-    func attributedTitle(for baseFont: NSFont, paragraphStyle: NSParagraphStyle) -> AttributedString {
-        
-        var attributes = AttributeContainer().paragraphStyle(paragraphStyle)
-        var traits: NSFontDescriptor.SymbolicTraits = []
-        
-        if self.style.contains(.bold) {
-            traits.insert(.bold)
-        }
-        if self.style.contains(.italic) {
-            traits.insert(.italic)
-        }
-        if self.style.contains(.underline) {
-            attributes.underlineStyle = .single
-        }
-        
-        attributes.font = traits.isEmpty
-            ? baseFont
-            : NSFont(descriptor: baseFont.fontDescriptor.withSymbolicTraits(traits), size: baseFont.pointSize)
-        
-        return AttributedString(self.title, attributes: attributes)
-    }
-    
-    
-    /// Returns styled title applying the filter match highlight for a view in SwiftUI.
-    ///
-    /// - Parameter attributes: The attributes for the matched parts of filtering.
-    /// - Returns: An AttributedString.
-    func attributedTitle(_ attributes: AttributeContainer? = nil) -> AttributedString {
-        
-        var attrTitle = AttributedString(self.title)
-        var font: Font = .body
-        
-        if self.style.contains(.bold) {
-            font = font.bold()
-        }
-        if self.style.contains(.italic) {
-            font = font.italic()
-        }
-        if self.style.contains(.underline) {
-            attrTitle.underlineStyle = .single
-        }
-        
-        attrTitle.font = font
-        
-        guard let ranges = self.filteredRanges, let attributes else { return attrTitle }
-        
-        for range in ranges {
-            guard let attrRange = Range(range, in: attrTitle) else { continue }
-            
-            attrTitle[attrRange].mergeAttributes(attributes)
-        }
-        
-        return attrTitle
-    }
 }
 
 
