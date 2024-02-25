@@ -27,7 +27,6 @@
 // Basic button titles
 "OK" = "OK";
 "Cancel" = "Cancel";
-"Done" = "Done";
 "Restore Defaults" = "Restore Defaults";
 "Delete" = "Delete";
 
@@ -36,12 +35,8 @@
 " (%@)" = " (%@)";
 
 
-// Accessibility labels
-"Outline" = "Outline";
-"Status Bar" = "Status Bar";
-"Editor" = "Editor";
-"Navigation Bar" = "Navigation Bar";
-"Line Numbers" = "Line Numbers";
+// encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
+"%@ with BOM" = "%@ with BOM";
 
 
 // Contextual menu items
@@ -361,6 +356,10 @@
 "Straighten Quotes" = "Straighten Quotes";
 "Script" = "Script";
 
+// Accessibility labels
+"Editor" = "Editor";
+"Line Numbers" = "Line Numbers";
+
 
 
 /* MARK: DocumentViewController */
@@ -401,6 +400,8 @@
 "Location: " = "Location: ";
 "Line: " = "Line: ";
 "Column: " = "Column: ";
+// Accessibility labels
+"Status Bar" = "Status Bar";
 
 
 
@@ -409,24 +410,14 @@
 "Jump to previous outline item" = "Jump to previous outline item";
 "Jump to next outline item" = "Jump to next outline item";
 // Accessibility labels
+"Navigation Bar" = "Navigation Bar";
+"Outline" = "Outline";
 "Previous" = "Previous";
 "Next" = "Next";
 
 
 
-/* MARK: Opacity View */
-"Editor’s Opacity" = "Editor’s Opacity";
-"Transparent" = "Transparent";
-"Opaque" = "Opaque";
-
-
-
-/* MARK: Unicode Input View */
-"Recents" = "Recents";
-"Clear Recents" = "Clear Recents";
-"Invalid code" = "Invalid code";
-
-
+// MARK: -
 
 /* MARK: Settings */
 // Panes
@@ -539,11 +530,6 @@
 
 
 
-/* MARK: Quick Action Bar */
-"Quick Actions" = "Quick Actions";
-
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "The dropped file absolute path.";
@@ -567,12 +553,6 @@
 
 
 
-/* MARK: String extension */
-// Encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
-"%@ with BOM" = "%@ with BOM";
-
-
-
 /* MARK: Encoding List View */
 "Drag encodings to change the order:" = "Drag encodings to change the order:";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritised.";
@@ -590,6 +570,27 @@
 // table column headers
 "Used syntax" = "Used syntax";
 "Duplicated syntaxes" = "Duplicated syntaxes";
+
+
+
+// MARK: -
+
+/* MARK: Quick Action Bar */
+"Quick Actions" = "Quick Actions";
+
+
+
+/* MARK: Opacity View */
+"Editor’s Opacity" = "Editor’s Opacity";
+"Transparent" = "Transparent";
+"Opaque" = "Opaque";
+
+
+
+/* MARK: Unicode Input View */
+"Recents" = "Recents";
+"Clear Recents" = "Clear Recents";
+"Invalid code" = "Invalid code";
 
 
 

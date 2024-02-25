@@ -27,7 +27,6 @@
 // Basic button titles
 "OK" = "OK";
 "Cancel" = "Cancelar";
-"Done" = "OK";
 "Restore Defaults" = "Restaurar valores por omisión";
 "Delete" = "Eliminar";
 
@@ -36,12 +35,8 @@
 " (%@)" = " (%@)";
 
 
-// Accessibility labels
-"Outline" = "Tabla de contenido";
-"Status Bar" = "Barra de estado";
-"Editor" = "Editor";
-"Navigation Bar" = "Barra de navegación";
-"Line Numbers" = "Números de línea";
+// encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
+"%@ with BOM" = "%@ con BOM";
 
 
 // Contextual menu items
@@ -361,6 +356,10 @@
 "Straighten Quotes" = "Enderezar comillas";
 "Script" = "Script";
 
+// Accessibility labels
+"Editor" = "Editor";
+"Line Numbers" = "Números de línea";
+
 
 
 /* MARK: DocumentViewController */
@@ -401,6 +400,8 @@
 "Location: " = "Posición: ";
 "Line: " = "Línea: ";
 "Column: " = "Columna: ";
+// Accessibility labels
+"Status Bar" = "Barra de estado";
 
 
 
@@ -409,24 +410,14 @@
 "Jump to previous outline item" = "Saltar al elemento del esquema anterior";
 "Jump to next outline item" = "Saltar al siguiente elemento del esquema";
 // Accessibility labels
+"Navigation Bar" = "Barra de navegación";
+"Outline" = "Tabla de contenido";
 "Previous" = "Anterior";
 "Next" = "Siguiente";
 
 
 
-/* MARK: Opacity View */
-"Editor’s Opacity" = "Opacidad del editor";
-"Transparent" = "Transparente";
-"Opaque" = "Opaco";
-
-
-
-/* MARK: Unicode Input View Controller */
-"Recents" = "Recientes";
-"Clear Recents" = "Borrar recientes";
-"Invalid code" = "Código no válido";
-
-
+// MARK: -
 
 /* MARK: Settings */
 // Panes
@@ -539,11 +530,6 @@
 
 
 
-/* MARK: Quick Action Bar */
-"Quick Actions" = "Acciones rápidas";
-
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "La ruta absoluta del archivo eliminado.";
@@ -567,12 +553,6 @@
 
 
 
-/* MARK: String extension */
-// Encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
-"%@ with BOM" = "%@ con BOM";
-
-
-
 /* MARK: Encoding List View */
 "Drag encodings to change the order:" = "Arrastra las codificaciones para cambiar el orden:";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Este orden es para el menú de codificación y la detección de codificación al abrir el archivo. Según la detección, los elementos más altos tienen más prioridad.";
@@ -590,6 +570,27 @@
 // table column headers
 "Used syntax" = "Sintaxis usada";  // FIXME: needs review
 "Duplicated syntaxes" = "Sintaxis duplicadas";  // FIXME: needs review
+
+
+
+// MARK: -
+
+/* MARK: Quick Action Bar */
+"Quick Actions" = "Acciones rápidas";
+
+
+
+/* MARK: Opacity View */
+"Editor’s Opacity" = "Opacidad del editor";
+"Transparent" = "Transparente";
+"Opaque" = "Opaco";
+
+
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "Recientes";
+"Clear Recents" = "Borrar recientes";
+"Invalid code" = "Código no válido";
 
 
 

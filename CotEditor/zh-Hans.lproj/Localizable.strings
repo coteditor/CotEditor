@@ -27,7 +27,6 @@
 // Basic button titles
 "OK" = "好";
 "Cancel" = "取消";
-"Done" = "完成";
 "Restore Defaults" = "恢复默认";
 "Delete" = "删除";
 
@@ -36,12 +35,8 @@
 " (%@)" = "（%@）";
 
 
-// Accessibility labels
-"Outline" = "大纲";
-"Status Bar" = "状态栏";
-"Editor" = "编辑器";
-"Navigation Bar" = "导航栏";
-"Line Numbers" = "行号";
+// encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
+"%@ with BOM" = "%@ with BOM";  // No need to be translated because "UTF-8 with BOM" is acceptable in zh-Hans.
 
 
 // Contextual menu items
@@ -362,6 +357,10 @@
 "Straighten Quotes" = "直引号";
 "Script" = "脚本";
 
+// Accessibility labels
+"Editor" = "编辑器";
+"Line Numbers" = "行号";
+
 
 
 /* MARK: DocumentViewController */
@@ -402,6 +401,8 @@
 "Location: " = "位置：";
 "Line: " = "行：";
 "Column: " = "列：";
+// Accessibility labels
+"Status Bar" = "状态栏";
 
 
 
@@ -410,24 +411,14 @@
 "Jump to previous outline item" = "上一个提纲项目";
 "Jump to next outline item" = "下一个提纲项目";
 // Accessibility labels
+"Navigation Bar" = "导航栏";
+"Outline" = "大纲";
 "Previous" = "上一个";
 "Next" = "下一个";
 
 
 
-/* MARK: Opacity View */
-"Editor’s Opacity" = "编辑器透明度";
-"Transparent" = "透明";
-"Opaque" = "不透明";
-
-
-
-/* MARK: Unicode Input View */
-"Recents" = "最近";
-"Clear Recents" = "清除最近项目";
-"Invalid code" = "无效的代码";
-
-
+// MARK: -
 
 /* MARK: Settings */
 // Panes
@@ -540,11 +531,6 @@
 
 
 
-/* MARK: Quick Action Bar */
-"Quick Actions" = "快速操作";
-
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "拖拽的文件绝对路径";
@@ -568,12 +554,6 @@
 
 
 
-/* MARK: String extension */
-// Encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
-"%@ with BOM" = "%@ with BOM";  // No need to be translated because "UTF-8 with BOM" is acceptable in zh-Hans.
-
-
-
 /* MARK: Encoding List View */
 "Drag encodings to change the order:" = "拖拽以改变编码顺序：";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "这个列表是为编码菜单中的自动检测准备的。\n通过检测，较高的项目将获得较高的优先级。";
@@ -591,6 +571,27 @@
 // table column headers
 "Used syntax" = "已使用语法";
 "Duplicated syntaxes" = "重复的语法";
+
+
+
+// MARK: -
+
+/* MARK: Quick Action Bar */
+"Quick Actions" = "快速操作";
+
+
+
+/* MARK: Opacity View */
+"Editor’s Opacity" = "编辑器透明度";
+"Transparent" = "透明";
+"Opaque" = "不透明";
+
+
+
+/* MARK: Unicode Input View */
+"Recents" = "最近";
+"Clear Recents" = "清除最近项目";
+"Invalid code" = "无效的代码";
 
 
 

@@ -64,7 +64,7 @@ struct FormatSettingsView: View {
                 
                 Picker(selection: $lineEnding) {
                     ForEach(LineEnding.allCases.filter(\.isBasic), id: \.self) {
-                        Text("\($0.longName) (\($0.name))")
+                        Text(verbatim: "\($0.longName) (\($0.name))")
                             .tag($0.index)
                     }
                 } label: {

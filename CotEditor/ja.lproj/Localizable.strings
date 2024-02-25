@@ -27,7 +27,6 @@
 // Basic button titles
 "OK" = "OK";
 "Cancel" = "キャンセル";
-"Done" = "完了";
 "Restore Defaults" = "デフォルトに戻す";
 "Delete" = "削除";
 
@@ -36,12 +35,8 @@
 " (%@)" = "（%@）";
 
 
-// Accessibility labels
-"Outline" = "アウトライン";
-"Status Bar" = "ステータスバー";
-"Editor" = "エディタ";
-"Navigation Bar" = "ナビゲーションバー";
-"Line Numbers" = "行番号";
+// encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
+"%@ with BOM" = "%@BOM付き";
 
 
 // Contextual menu items
@@ -362,6 +357,10 @@
 "Straighten Quotes" = "引用符をまっすぐにする";
 "Script" = "スクリプト";
 
+// Accessibility labels
+"Editor" = "エディタ";
+"Line Numbers" = "行番号";
+
 
 
 /* MARK: DocumentViewController */
@@ -402,6 +401,8 @@
 "Location: " = "位置: ";
 "Line: " = "行: ";
 "Column: " = "列: ";
+// Accessibility labels
+"Status Bar" = "ステータスバー";
 
 
 
@@ -410,24 +411,14 @@
 "Jump to previous outline item" = "前の項目へ";
 "Jump to next outline item" = "次の項目へ";
 // Accessibility labels
+"Navigation Bar" = "ナビゲーションバー";
+"Outline" = "アウトライン";
 "Previous" = "前へ";
 "Next" = "次へ";
 
 
 
-/* MARK: Opacity View */
-"Editor’s Opacity" = "エディタの不透明度";
-"Transparent" = "透明";
-"Opaque" = "不透明";
-
-
-
-/* MARK: Unicode Input View */
-"Recents" = "最近の項目";
-"Clear Recents" = "履歴を消去";
-"Invalid code" = "無効なコード";
-
-
+// MARK: -
 
 /* MARK: Settings */
 // Panes
@@ -540,11 +531,6 @@
 
 
 
-/* MARK: Quick Action Bar */
-"Quick Actions" = "クイックアクション";
-
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "ドロップ元ファイルの絶対パス";
@@ -568,12 +554,6 @@
 
 
 
-/* MARK: String extension */
-// Encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
-"%@ with BOM" = "%@BOM付き";
-
-
-
 /* MARK: Encoding List View */
 "Drag encodings to change the order:" = "エンコーディングをドラッグして並び替えてください:";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "この順序はエンコーディングメニューや書類を開くときのエンコーディング認識で使われます。自動認識では上位のエンコーディングがより優先して適用されます。";
@@ -591,6 +571,27 @@
 // table column headers
 "Used syntax" = "使用するシンタックス";
 "Duplicated syntaxes" = "重複しているシンタックス";
+
+
+
+// MARK: -
+
+/* MARK: Quick Action Bar */
+"Quick Actions" = "クイックアクション";
+
+
+
+/* MARK: Opacity View */
+"Editor’s Opacity" = "エディタの不透明度";
+"Transparent" = "透明";
+"Opaque" = "不透明";
+
+
+
+/* MARK: Unicode Input View */
+"Recents" = "最近の項目";
+"Clear Recents" = "履歴を消去";
+"Invalid code" = "無効なコード";
 
 
 

@@ -27,7 +27,6 @@
 // Basic button titles
 "OK" = "Tamam";
 "Cancel" = "Vazgeç";
-"Done" = "Bitti";
 "Restore Defaults" = "Výchozí hodnoty";
 "Delete" = "Sil";
 
@@ -36,12 +35,8 @@
 " (%@)" = " (%@)";
 
 
-// Accessibility labels
-"Outline" = "Ana Hat";
-"Status Bar" = "Durum Çubuğu";
-"Editor" = "Düzenleyici";
-"Navigation Bar" = "Dolaşım Çubuğu";
-"Line Numbers" = "Satır Numaraları";
+// encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
+"%@ with BOM" = "BOM ile %@";
 
 
 // Contextual menu items
@@ -361,6 +356,10 @@
 "Straighten Quotes" = "Tırnakları Düzleştir";
 "Script" = "Betik";
 
+// Accessibility labels
+"Editor" = "Düzenleyici";
+"Line Numbers" = "Satır Numaraları";
+
 
 
 /* MARK: DocumentViewController */
@@ -401,6 +400,8 @@
 "Location: " = "Konum: ";
 "Line: " = "Satır: ";
 "Column: " = "Sütun: ";
+// Accessibility labels
+"Status Bar" = "Durum Çubuğu";
 
 
 
@@ -409,24 +410,14 @@
 "Jump to previous outline item" = "Bir önceki ana hat ögesine atla";
 "Jump to next outline item" = "Bir sonraki ana hat ögesine atla";
 // Accessibility labels
+"Navigation Bar" = "Dolaşım Çubuğu";
+"Outline" = "Ana Hat";
 "Previous" = "Önceki";
 "Next" = "Sonraki";
 
 
 
-/* MARK: Opacity View */
-"Editor’s Opacity" = "Düzenleyici Matlığı";
-"Transparent" = "Saydam";
-"Opaque" = "Mat";
-
-
-
-/* MARK: Unicode Input View */
-"Recents" = "Son Kullanılanlar";
-"Clear Recents" = "Son Kullanılanları Sil";
-"Invalid code" = "Geçersiz Kod";
-
-
+// MARK: -
 
 /* MARK: Settings */
 // Panes
@@ -539,11 +530,6 @@
 
 
 
-/* MARK: Quick Action Bar */
-"Quick Actions" = "Hızlı Eylemler";
-
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Bırakılan dosya mutlak yolu.";
@@ -567,12 +553,6 @@
 
 
 
-/* MARK: String extension */
-// Encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
-"%@ with BOM" = "BOM ile %@";
-
-
-
 /* MARK: Encoding List View */
 "Drag encodings to change the order:" = "Sıralamayı değiştirmek için kodlamaları sürükleyin:";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Bu sıralama, kodlama menüsü ve dosya açılışındaki kodlama algılaması içindir. Algılama ile, daha yüksek olasılıklı ögelere öncelik verilir.";
@@ -590,6 +570,27 @@
 // table column headers
 "Used syntax" = "Kullanılan Sözdizim";
 "Duplicated syntaxes" = "Yinelenmiş Sözdizimler";
+
+
+
+// MARK: -
+
+/* MARK: Quick Action Bar */
+"Quick Actions" = "Hızlı Eylemler";
+
+
+
+/* MARK: Opacity View */
+"Editor’s Opacity" = "Düzenleyici Matlığı";
+"Transparent" = "Saydam";
+"Opaque" = "Mat";
+
+
+
+/* MARK: Unicode Input View */
+"Recents" = "Son Kullanılanlar";
+"Clear Recents" = "Son Kullanılanları Sil";
+"Invalid code" = "Geçersiz Kod";
 
 
 

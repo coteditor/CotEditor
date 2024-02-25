@@ -27,7 +27,6 @@
 // Basic button titles
 "OK" = "好";
 "Cancel" = "取消";
-"Done" = "完成";
 "Restore Defaults" = "回復預設值";
 "Delete" = "刪除";
 
@@ -36,12 +35,8 @@
 " (%@)" = "（%@）";
 
 
-// Accessibility labels
-"Outline" = "大綱";
-"Status Bar" = "狀態列";
-"Editor" = "編輯器";
-"Navigation Bar" = "導覽列";
-"Line Numbers" = "行號";
+// encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
+"%@ with BOM" = "%@ with BOM";  // No need to be translated because "UTF-8 with BOM" is acceptable in zh-Hans.
 
 
 // Contextual menu items
@@ -361,6 +356,10 @@
 "Straighten Quotes" = "直引號";
 "Script" = "指令碼";
 
+// Accessibility labels
+"Editor" = "編輯器";
+"Line Numbers" = "行號";
+
 
 
 /* MARK: DocumentViewController */
@@ -401,6 +400,8 @@
 "Location: " = "位置：";
 "Line: " = "行：";
 "Column: " = "列：";
+// Accessibility labels
+"Status Bar" = "狀態列";
 
 
 
@@ -409,24 +410,14 @@
 "Jump to previous outline item" = "上一個提綱項目";
 "Jump to next outline item" = "下一個提綱項目";
 // Accessibility labels
+"Navigation Bar" = "導覽列";
+"Outline" = "大綱";
 "Previous" = "上一個";
 "Next" = "下一個";
 
 
 
-/* MARK: Opacity View */
-"Editor’s Opacity" = "編輯器透明度";
-"Transparent" = "透明";
-"Opaque" = "不透明";
-
-
-
-/* MARK: Unicode Input View */
-"Recents" = "最近";
-"Clear Recents" = "清除最近項目";
-"Invalid code" = "無效的代碼";
-
-
+// MARK: -
 
 /* MARK: Settings */
 // Panes
@@ -539,11 +530,6 @@
 
 
 
-/* MARK: Quick Action Bar */
-"Quick Actions" = "快速動作";
-
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "拖拽的檔案絕對路徑";
@@ -567,12 +553,6 @@
 
 
 
-/* MARK: String extension */
-// Encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
-"%@ with BOM" = "%@ with BOM";  // No need to be translated because "UTF-8 with BOM" is acceptable in zh-Hans.
-
-
-
 /* MARK: Encoding List View */
 "Drag encodings to change the order:" = "拖拽以改變編碼順序：";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "這個列表是為編碼選單中的自動檢測準備的。\n透過檢測，較高的條目將獲得較高的優先順序。";
@@ -590,6 +570,27 @@
 // table column headers
 "Used syntax" = "已使用的文法定義";
 "Duplicated syntaxes" = "重複的文法定義";
+
+
+
+// MARK: -
+
+/* MARK: Quick Action Bar */
+"Quick Actions" = "快速動作";
+
+
+
+/* MARK: Opacity View */
+"Editor’s Opacity" = "編輯器透明度";
+"Transparent" = "透明";
+"Opaque" = "不透明";
+
+
+
+/* MARK: Unicode Input View */
+"Recents" = "最近";
+"Clear Recents" = "清除最近項目";
+"Invalid code" = "無效的代碼";
 
 
 

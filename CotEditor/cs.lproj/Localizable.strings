@@ -27,7 +27,6 @@
 // Basic button titles
 "OK" = "OK";
 "Cancel" = "Zrušit";
-"Done" = "Hotovo";
 "Restore Defaults" = "Výchozí hodnoty";
 "Delete" = "Smazat";
 
@@ -36,12 +35,8 @@
 " (%@)" = " (%@)";
 
 
-// Accessibility labels
-"Outline" = "Osnova";
-"Status Bar" = "Stavový řádek";
-"Editor" = "Editor";
-"Navigation Bar" = "Panel navigace";
-"Line Numbers" = "Čísla řádků";
+// encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
+"%@ with BOM" = "%@ s BOM";
 
 
 // Contextual menu items
@@ -361,6 +356,10 @@
 "Straighten Quotes" = "Rovné uvozovky";
 "Script" = "Skript";
 
+// Accessibility labels
+"Editor" = "Editor";
+"Line Numbers" = "Čísla řádků";
+
 
 
 /* MARK: DocumentViewController */
@@ -401,6 +400,8 @@
 "Location: " = "Pozice: ";
 "Line: " = "Řádek: ";
 "Column: " = "Sloupec: ";
+// Accessibility labels
+"Status Bar" = "Stavový řádek";
 
 
 
@@ -409,24 +410,14 @@
 "Jump to previous outline item" = "Přejít na předchozí položku osnovy";
 "Jump to next outline item" = "Přejít na další položku osnovy";
 // Accessibility labels
+"Navigation Bar" = "Panel navigace";
+"Outline" = "Osnova";
 "Previous" = "Předchozí";
 "Next" = "Další";
 
 
 
-/* MARK: Opacity View */
-"Editor’s Opacity" = "Neprůhlednost editoru";
-"Transparent" = "Průhledné";
-"Opaque" = "Neprůhledné";
-
-
-
-/* MARK: Unicode Input View Controller */
-"Recents" = "Poslední použité";
-"Clear Recents" = "Smazat poslední";
-"Invalid code" = "Neplatný kód";
-
-
+// MARK: -
 
 /* MARK: Settings */
 // Panes
@@ -538,11 +529,6 @@
 
 
 
-/* MARK: Quick Action Bar */
-"Quick Actions" = "Rychlé akce";
-
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Absolutní cesta přetaženého souboru.";
@@ -566,12 +552,6 @@
 
 
 
-/* MARK: String extension */
-// Encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
-"%@ with BOM" = "%@ s BOM";
-
-
-
 /* MARK: Encoding List View */
 "Drag encodings to change the order:" = "Pořadí kódování změníte přetažením:";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Toto pořadí se týká nabídky kódování a detekce kódování při otevření souboru. Při detekci mají vyšší položky vyšší prioritu.";
@@ -589,6 +569,27 @@
 // table column headers
 "Used syntax" = "Použitá syntaxe";
 "Duplicated syntaxes" = "Duplikované syntaxe";
+
+
+
+// MARK: -
+
+/* MARK: Quick Action Bar */
+"Quick Actions" = "Rychlé akce";
+
+
+
+/* MARK: Opacity View */
+"Editor’s Opacity" = "Neprůhlednost editoru";
+"Transparent" = "Průhledné";
+"Opaque" = "Neprůhledné";
+
+
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "Poslední použité";
+"Clear Recents" = "Smazat poslední";
+"Invalid code" = "Neplatný kód";
 
 
 

@@ -27,7 +27,6 @@
 // Basic button titles
 "OK" = "OK";
 "Cancel" = "Abbrechen";
-"Done" = "Fertig";
 "Restore Defaults" = "Standard wiederherstellen";
 "Delete" = "Löschen";
 
@@ -36,12 +35,8 @@
 " (%@)" = " (%@)";
 
 
-// Accessibility labels
-"Outline" = "Gliederung";
-"Status Bar" = "Statusleiste";
-"Navigation Bar" = "Navigationsleiste";
-"Editor" = "Editor";
-"Line Numbers" = "Zeilennummern";
+// encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
+"%@ with BOM" = "%@ mit BOM";
 
 
 // Contextual menu items
@@ -361,6 +356,10 @@
 "Straighten Quotes" = "Anführungszeichen glätten";
 "Script" = "Skript";
 
+// Accessibility labels
+"Editor" = "Editor";
+"Line Numbers" = "Zeilennummern";
+
 
 
 /* MARK: DocumentViewController */
@@ -401,6 +400,8 @@
 "Location: " = "Position: ";
 "Line: " = "Zeile: ";
 "Column: " = "Spalte: ";
+// Accessibility labels
+"Status Bar" = "Statusleiste";
 
 
 
@@ -409,24 +410,14 @@
 "Jump to previous outline item" = "Zum vorherigen Gliederungselement";
 "Jump to next outline item" = "Zum nächsten Gliederungselement";
 // Accessibility labels
+"Navigation Bar" = "Navigationsleiste";
+"Outline" = "Gliederung";
 "Previous" = "Zurück";
 "Next" = "Weiter";
 
 
 
-/* MARK: Opacity View */
-"Editor’s Opacity" = "Deckkraft des Editors";
-"Transparent" = "Durchsichtig";
-"Opaque" = "Undurchsichtig";
-
-
-
-/* MARK: Unicode Input View */
-"Recents" = "Zuletzt benutzt";
-"Clear Recents" = "Verlauf löschen";
-"Invalid code" = "Ungültiger Code";
-
-
+// MARK: -
 
 /* MARK: Settings */
 // Panes
@@ -539,11 +530,6 @@
 
 
 
-/* MARK: Quick Action Bar */
-"Quick Actions" = "Schnellaktionen";
-
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Der absolute Pfad der abgelegten Datei.";
@@ -567,12 +553,6 @@
 
 
 
-/* MARK: String extension */
-// Encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
-"%@ with BOM" = "%@ mit BOM";
-
-
-
 /* MARK: Encoding List View */
 "Drag encodings to change the order:" = "Ziehe die Codierungen, um die Reihenfolge zu ändern:";
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Diese Reihenfolge wird für das Codierungsmenü und die Codierungserkennung beim Öffnen der Datei verwendet. Bei der Erkennung werden die höheren Codierungen stärker priorisiert.";
@@ -590,6 +570,27 @@
 // table column headers
 "Used syntax" = "Angewandte Syntax";
 "Duplicated syntaxes" = "Duplizierte Syntaxen";
+
+
+
+// MARK: -
+
+/* MARK: Quick Action Bar */
+"Quick Actions" = "Schnellaktionen";
+
+
+
+/* MARK: Opacity View */
+"Editor’s Opacity" = "Deckkraft des Editors";
+"Transparent" = "Durchsichtig";
+"Opaque" = "Undurchsichtig";
+
+
+
+/* MARK: Unicode Input View */
+"Recents" = "Zuletzt benutzt";
+"Clear Recents" = "Verlauf löschen";
+"Invalid code" = "Ungültiger Code";
 
 
 

@@ -270,7 +270,7 @@ private struct WarningsSettingView: View {
             HStack {
                 HelpButton(anchor: "howto_manage_warnings")
                 Spacer()
-                Button("Done") {
+                Button(String(localized: "Done", table: "GeneralSettings", comment: "button label")) {
                     self.dismiss()
                 }.keyboardShortcut(.defaultAction)
             }.padding(.top)

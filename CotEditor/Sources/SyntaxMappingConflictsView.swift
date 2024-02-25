@@ -72,13 +72,13 @@ struct SyntaxMappingConflictsView: View {
                 .controlSize(.small)
             
             if !self.extensionConflicts.isEmpty {
-                ConflictTable("Extension", conflicts: self.extensionConflicts)
+                ConflictTable(String(localized: "Extension"), conflicts: self.extensionConflicts)
             }
             if !self.filenameConflicts.isEmpty {
-                ConflictTable("Filename", conflicts: self.filenameConflicts)
+                ConflictTable(String(localized: "Filename"), conflicts: self.filenameConflicts)
             }
             if !self.interpreterConflicts.isEmpty {
-                ConflictTable("Interpreter", conflicts: self.interpreterConflicts)
+                ConflictTable(String(localized: "Interpreter"), conflicts: self.interpreterConflicts)
             }
             
             HStack {
@@ -102,14 +102,14 @@ private struct ConflictTable: View {
     
     typealias Item = FileMappingConflict
     
-    let name: LocalizedStringKey
+    let name: String
     @State var conflicts: [Item] = []
     
     @State private var selection: Item.ID?
     @State private var sortOrder = [KeyPathComparator(\Item.name)]
     
     
-    init(_ name: LocalizedStringKey, conflicts: [Item]) {
+    init(_ name: String, conflicts: [Item]) {
         
         self.name = name
         self._conflicts = .init(wrappedValue: conflicts)
