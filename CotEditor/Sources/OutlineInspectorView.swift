@@ -115,9 +115,8 @@ struct OutlineInspectorView: View {
             let items = self.model.items.filterItems(with: self.filterString)
             
             List(items, selection: $model.selection) { item in
-                OutlineRowView(item: item)
+                OutlineRowView(item: item, fontSize: self.fontSize)
                     .listRowSeparator(.hidden)
-                    .font(.system(size: self.fontSize))
                     .frame(height: self.fontSize)
             }
             .overlay {
@@ -158,6 +157,7 @@ struct OutlineInspectorView: View {
 private struct OutlineRowView: View {
     
     var item: OutlineItem
+    var fontSize: Double = 0
     
     
     var body: some View {
@@ -171,8 +171,8 @@ private struct OutlineRowView: View {
         } else {
             Text(self.item.attributedTitle(.init()
                 .backgroundColor(.findHighlightColor)
-                .foregroundColor(.black.withAlphaComponent(0.9))  // for legibility in Dark Mode
-            ))
+                .foregroundColor(.black.withAlphaComponent(0.9)),  // for legibility in Dark Mode
+                                           fontSize: self.fontSize))
         }
     }
 }

@@ -65,10 +65,10 @@ extension OutlineItem {
     ///
     /// - Parameter attributes: The attributes for the matched parts of filtering.
     /// - Returns: An AttributedString.
-    func attributedTitle(_ attributes: AttributeContainer? = nil) -> AttributedString {
+    func attributedTitle(_ attributes: AttributeContainer? = nil, fontSize: Double = 0) -> AttributedString {
         
         var attrTitle = AttributedString(self.title)
-        var font: Font = .body
+        var font: Font = .system(size: fontSize)
         
         if self.style.contains(.bold) {
             font = font.bold()
