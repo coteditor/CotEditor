@@ -30,7 +30,7 @@ struct SyntaxCompletionEditView: View {
     typealias Item = SyntaxObject.KeyString
     
     
-    @Binding var completions: [Item]
+    @Binding var items: [Item]
     
     @State private var selection: Set<Item.ID> = []
     @FocusState private var focusedField: Item.ID?
@@ -44,7 +44,7 @@ struct SyntaxCompletionEditView: View {
             Text("If not specified, syntax completion words are generated based on the highlighting settings.", tableName: "SyntaxEditor", comment: "message")
                 .controlSize(.small)
             
-            Table($completions, selection: $selection) {
+            Table($items, selection: $selection) {
                 TableColumn(String(localized: "Completion", table: "SyntaxEditor", comment: "table column header")) { item in
                     TextField(text: item.string, label: EmptyView.init)
                         .focused($focusedField, equals: item.id)
@@ -54,7 +54,7 @@ struct SyntaxCompletionEditView: View {
             .border(Color(nsColor: .gridColor))
             
             HStack {
-                AddRemoveButton($completions, selection: $selection, focus: $focusedField)
+                AddRemoveButton($items, selection: $selection, focus: $focusedField)
                 Spacer()
                 HelpButton(anchor: "syntax_highlight_settings")
             }
@@ -69,6 +69,6 @@ struct SyntaxCompletionEditView: View {
 #Preview {
     @State var items: [SyntaxObject.KeyString] = [.init(string: "abc")]
     
-    return SyntaxCompletionEditView(completions: $items)
+    return SyntaxCompletionEditView(items: $items)
         .padding()
 }

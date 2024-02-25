@@ -30,7 +30,7 @@ struct SyntaxOutlineEditView: View {
     typealias Item = SyntaxObject.Outline
     
     
-    @Binding var outlines: [Item]
+    @Binding var items: [Item]
     
     @State private var selection: Set<Item.ID> = []
     @FocusState private var focusedField: Item.ID?
@@ -43,7 +43,7 @@ struct SyntaxOutlineEditView: View {
         VStack(alignment: .leading) {
             Text("Outline extraction rules:", tableName: "SyntaxEditor", comment: "label")
             
-            Table($outlines, selection: $selection) {
+            Table($items, selection: $selection) {
                 TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { item in
                     Toggle(isOn: item.ignoreCase, label: EmptyView.init)
                         .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
@@ -63,14 +63,14 @@ struct SyntaxOutlineEditView: View {
             .tableStyle(.bordered)
             .border(Color(nsColor: .gridColor))
             
-            AddRemoveButton($outlines, selection: $selection, focus: $focusedField)
+            AddRemoveButton($items, selection: $selection, focus: $focusedField)
                 .padding(.bottom, 8)
             
             if self.selection.count > 1 {
                 PatternView(outline: .constant(.init()), error: .multipleSelection)
                     .disabled(true)
             } else if let selection = self.selection.first,
-               let outline = $outlines.first(where: { $0.id == selection })
+               let outline = $items.first(where: { $0.id == selection })
             {
                 PatternView(outline: outline)
             } else {
@@ -142,11 +142,11 @@ enum SelectionError: Error {
 // MARK: - Preview
 
 #Preview {
-    @State var outlines: [SyntaxObject.Outline] = [
+    @State var items: [SyntaxObject.Outline] = [
         .init(pattern: "abc"),
         .init(pattern: "def", ignoreCase: true, italic: true),
     ]
     
-    return SyntaxOutlineEditView(outlines: $outlines)
+    return SyntaxOutlineEditView(items: $items)
         .padding()
 }

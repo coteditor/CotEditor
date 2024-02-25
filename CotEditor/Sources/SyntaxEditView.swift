@@ -204,9 +204,9 @@ struct SyntaxEditView: View {
             case .comments:
                 SyntaxCommentEditView(comment: $syntax.commentDelimiters, highlights: $syntax.comments)
             case .outline:
-                SyntaxOutlineEditView(outlines: $syntax.outlines)
+                SyntaxOutlineEditView(items: $syntax.outlines)
             case .completion:
-                SyntaxCompletionEditView(completions: $syntax.completions)
+                SyntaxCompletionEditView(items: $syntax.completions)
             case .fileMapping:
                 SyntaxFileMappingEditView(extensions: $syntax.extensions, filenames: $syntax.filenames, interpreters: $syntax.interpreters)
             case .syntaxInfo:
