@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,45 +35,47 @@ struct FindPanelButtonView: View {
     var body: some View {
         
         HStack(alignment: .bottom) {
-            Menu("Find All") {
-                Button("Highlight All") {
+            Menu(String(localized: "Find All", table: "TextFind", comment: "button label")) {
+                Button(String(localized: "Highlight All", table: "TextFind", comment: "button label")) {
                     self.performAction(.highlight)
                 }
-                Button("Select All") {
+                Button(String(localized: "Select All", table: "TextFind", comment: "button label")) {
                     self.performAction(.selectAll)
                 }
             } primaryAction: {
                 self.performAction(.findAll)
             }
-            .help("Find and list all matches.")
+            .help(String(localized: "Find and list all matches.", table: "TextFind", comment: "tooltip"))
             .fixedSize()
             
-            Button("Replace All") {
+            Button(String(localized: "Replace All", table: "TextFind", comment: "button label")) {
                 self.performAction(.replaceAll)
             }
-            .help("Replace all matches with the replacement text.")
+            .help(String(localized: "Replace all matches with the replacement text.", table: "TextFind", comment: "tooltip"))
             .fixedSize()
             
             Spacer()
             
-            Button("Replace") {
+            Button(String(localized: "Replace", table: "TextFind", comment: "button label")) {
                 self.performAction(.replaceAndFind)
             }
-            .help("Replace the current selection with the replacement text, then find the next match.")
+            .help(String(localized: "Replace the current selection with the replacement text, then find the next match.", table: "TextFind", comment: "tooltip"))
             .fixedSize()
             
             ControlGroup {
                 Button {
                     self.performAction(.previousMatch)
                 } label: {
-                    Label("Find Previous", systemImage: "chevron.backward")
-                }.help("Find previous match.")
+                    Label(String(localized: "Find Previous", table: "TextFind", comment: "button label"),
+                          systemImage: "chevron.backward")
+                }.help(String(localized: "Find previous match.", table: "TextFind", comment: "tooltip"))
                 
                 Button {
                     self.performAction(.nextMatch)
                 } label: {
-                    Label("Find Next", systemImage: "chevron.forward")
-                }.help("Find next match.")
+                    Label(String(localized: "Find Next", table: "TextFind", comment: "button label"),
+                          systemImage: "chevron.forward")
+                }.help(String(localized: "Find next match.", table: "TextFind", comment: "tooltip"))
             }
             .labelStyle(.iconOnly)
             .frame(width: 70)

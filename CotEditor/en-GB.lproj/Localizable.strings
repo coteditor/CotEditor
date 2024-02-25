@@ -42,7 +42,6 @@
 "Editor" = "Editor";
 "Navigation Bar" = "Navigation Bar";
 "Line Numbers" = "Line Numbers";
-"Find Result" = "Find Result";
 
 
 // Contextual menu items
@@ -73,115 +72,6 @@
 "Install" = "Install";
 "Open as Text File" = "Open as Text File";
 "A new theme named “%@” has been successfully installed." = "A new theme named “%@” has been successfully installed.";
-
-
-
-/* MARK: Text Finder */
-"Replace" = "Replace";
-"Find All" = "Find All";
-"Replace All" = "Replace All";
-"Highlight All" = "Highlight All";
-"Searching in text…" = "Searching in text…";
-"Invalid regular expression" = "Invalid regular expression";
-"Empty find string" = "Empty find string";
-"The option “in selection” is selected, although nothing is selected." = "The option “in selection” is selected, although nothing is selected.";
-"Input text to find." = "Input text to find.";
-"Select the search scope in the document or turn off the “in selection” option." = "Select the search scope in the document or turn off the “in selection” option.";
-
-// accessibility announcement
-"Search wrapped." = "Search wrapped.";  // announced when the search restarted from the beginning.
-
-
-
-/* MARK: Find Panel */
-// window title
-"Find & Replace" = "Find & Replace";
-
-// pairs of checkbox label and its tooltip
-"Regular Expression" = "Regular Expression";
-"Select to search with regular expression." = "Select to search with regular expression.";
-
-"Ignore Case" = "Ignore Case";
-"Select to ignore character case on search." = "Select to ignore character case on search.";
-
-"In Selection" = "In Selection";
-"Select to search text only from selection." = "Select to search text only from selection.";
-
-// tooltip for regex help button
-"Show quick reference for regular expression syntax." = "Show quick reference for regular expression syntax.";
-
-// pair of accessibility label for a image button and its tooltip
-"Advanced options" = "Advanced options";
-"Show advanced options" = "Show advanced options";
-
-// pairs of button label and its tooltip
-"Close" = "Close";
-"Close find result." = "Close find result.";
-
-"Find All" = "Find All";
-"Find and list all matches." = "Find and list all matches.";
-
-"Replace All" = "Replace All";
-"Replace all matches with the replacement text." = "Replace all matches with the replacement text.";
-
-"Replace" = "Replace";
-"Replace the current selection with the replacement text, then find the next match." = "Replace the current selection with the replacement text, then find the next match.";
-
-"Find Previous" = "Find Previous";
-"Find previous match." = "Find previous match.";
-
-"Find Next" = "Find Next";
-"Find next match." = "Find next match.";
-
-
-
-/* MARK: Find Panel Result View */
-"Find string: %@" = "Find string: %@";
-
-// Column header
-"Line" = "Line";
-"Found String" = "Found String";
-
-
-
-/* MARK: Find Settings View */
-"Advanced Find Options" = "Advanced Find Options";
-
-// checkbox labels
-"Wrap search around" = "Wrap search around";
-"Search incrementally" = "Search incrementally";
-
-
-"Textual Search" = "Textual Search";
-
-// pairs of checkbox label and its tooltip
-"Match only whole word" = "Match only whole word";
-"Restrict search results to the whole words." = "Restrict search results to the whole words.";
-
-"Distinguish characters strictly" = "Distinguish characters strictly";
-"Exact character-by-character equivalence." = "Exact character-by-character equivalence.";
-
-"Ignore diacritical marks" = "Ignore diacritical marks";
-"Search ignores diacritical marks (e.g. ö = o)." = "Search ignores diacritical marks (e.g. ö = o).";
-
-"Ignore width differences" = "Ignore width differences";
-"Search ignores width differences in character forms (e.g. ａ = a)." = "Search ignores width differences in character forms (e.g. ａ = a).";
-
-
-"Regular Expression Search" = "Regular Expression Search";
-
-// pairs of checkbox label and its tooltip
-"Dot matches line separators" = "Dot matches line separators";
-"Allow . to match any character, including newline characters (singleline)." = "Allow . to match any character, including newline characters (singleline).";
-
-"Anchors match lines" = "Anchors match lines";
-"Allow ^ and $ to match the start and end of lines (multiline)." = "Allow ^ and $ to match the start and end of lines (multiline).";
-
-"Use Unicode word boundaries" = "Use Unicode word boundaries";
-"Use Unicode TR#29 to specify word boundaries" = "Use Unicode TR#29 to specify word boundaries";
-
-"Unescape replacement string" = "Unescape replacement string";
-"Unescape meta characters with backslash in replacement string." = "Unescape meta characters with backslash in replacement string.";
 
 
 
@@ -572,6 +462,9 @@
 // filename suffix of copied file
 "copy" = "copy";
 
+// alert option button
+"Replace" = "Replace";
+
 
 
 /* MARK: SyntaxManager */
@@ -749,6 +642,7 @@
 /* MARK: LiveTextInsertionView */
 // button label
 "Insert" = "Insert";
+"Close" = "Close";
 // error messages
 "No text detected" = "No text detected";
 "Detection failed" = "Detection failed";

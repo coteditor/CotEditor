@@ -45,7 +45,7 @@ extension NSTextView {
         
         // setup progress sheet
         let progress = FindProgress(scope: 0..<definition.replacements.count)
-        let indicatorView = FindProgressView(String(localized: "Highlight All"), progress: progress, unit: .find)
+        let indicatorView = FindProgressView(String(localized: "Highlight All", table: "TextFind"), progress: progress, unit: .find)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         self.viewControllerForSheet?.presentAsSheet(indicator)
@@ -102,7 +102,7 @@ extension NSTextView {
         
         // setup progress sheet
         let progress = FindProgress(scope: 0..<definition.replacements.count)
-        let indicatorView = FindProgressView(String(localized: "Replace All"), progress: progress, unit: .replacement)
+        let indicatorView = FindProgressView(String(localized: "Replace All", table: "TextFind"), progress: progress, unit: .replacement)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         self.viewControllerForSheet?.presentAsSheet(indicator)
@@ -116,7 +116,7 @@ extension NSTextView {
         
         if progress.count > 0 {
             // apply to the text view
-            self.replace(with: [result.string], ranges: [string.nsRange], selectedRanges: result.selectedRanges, actionName: String(localized: "Replace All"))
+            self.replace(with: [result.string], ranges: [string.nsRange], selectedRanges: result.selectedRanges, actionName: String(localized: "Replace All", table: "TextFind"))
         } else {
             NSSound.beep()
         }

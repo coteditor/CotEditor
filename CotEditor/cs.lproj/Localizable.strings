@@ -42,7 +42,6 @@
 "Editor" = "Editor";
 "Navigation Bar" = "Panel navigace";
 "Line Numbers" = "Čísla řádků";
-"Find Result" = "Najít výsledek";
 
 
 // Contextual menu items
@@ -73,115 +72,6 @@
 "Install" = "Instalovat";
 "Open as Text File" = "Otevřít jako textový soubor";
 "A new theme named “%@” has been successfully installed." = "Nový motiv s názvem „%@“ byl úspěšně nainstalován.";
-
-
-
-/* MARK: Text Finder */
-"Replace" = "Nahradit";
-"Find All" = "Hledat vše";
-"Replace All" = "Nahradit vše";
-"Highlight All" = "Zvýraznit vše";
-"Searching in text…" = "Hledání v textu…";
-"Invalid regular expression" = "Neplatný regulární výraz";
-"Empty find string" = "Prázdný řetězec hledání";
-"The option “in selection” is selected, although nothing is selected." = "Je vybrána volba „Ve výběru“, ačkoli není nic vybráno.";
-"Input text to find." = "Zadejte hledaný text.";
-"Select the search scope in the document or turn off the “in selection” option." = "Vyberte v dokumentu rozsah hledání, nebo zrušte volbu „Ve výběru“.";
-
-// accessibility announcement
-"Search wrapped." = "Hledání dokončeno.";  // announced when the search restarted from the beginning.
-
-
-
-/* MARK: Find Panel */
-// window title
-"Find & Replace" = "Hledat a nahradit";
-
-// pairs of checkbox label and its tooltip
-"Regular Expression" = "Regulární výraz";
-"Select to search with regular expression." = "Chcete-li hledat pomocí regulárního výrazu vyberte tuto volbu.";
-
-"Ignore Case" = "Ignorovat velikost písmen";
-"Select to ignore character case on search." = "Chcete-li při hledání ignorovat velikost písmen vyberte tuto volbu.";
-
-"In Selection" = "Ve výběru";
-"Select to search text only from selection." = "Chcete-li hledat text pouze ve výběru vyberte tuto volbu.";
-
-// tooltip for regex help button
-"Show quick reference for regular expression syntax." = "Zobrazit stručný přehled syntaxe regulárního výrazu.";
-
-// pair of accessibility label for a image button and its tooltip
-"Advanced options" = "Pokročilé volby";
-"Show advanced options" = "Zobrazit pokročilé volby";
-
-// pairs of button label and its tooltip
-"Close" = "Zavřít";
-"Close find result." = "Zavřít výsledek hledání.";
-
-"Find All" = "Hledat vše";
-"Find and list all matches." = "Vyhledat a vypsat všechny shody.";
-
-"Replace All" = "Nahradit vše";
-"Replace all matches with the replacement text." = "Nahradit všechny shody nahrazovaným textem.";
-
-"Replace" = "Nahradit";
-"Replace the current selection with the replacement text, then find the next match." = "Nahradit aktuální výběr nahrazovacím textem a poté najít další shodu.";
-
-"Find Previous" = "Hledat předchozí";
-"Find previous match." = "Hledat předchozí shodu.";
-
-"Find Next" = "Hledat další";
-"Find next match." = "Hledat další shodu.";
-
-
-
-/* MARK: Find Panel Result View */
-"Find string: %@" = "Hledaný řetězec: %@";
-
-// Column header
-"Line" = "Řádek";
-"Found String" = "Nalezené řetězce";
-
-
-
-/* MARK: Find Settings View */
-"Advanced Find Options" = "Pokročilé volby hledání";
-
-// checkbox labels
-"Wrap search around" = "Hledat dokola";
-"Search incrementally" = "Hledat postupně";
-
-
-"Textual Search" = "Hledání v textu";
-
-// pairs of checkbox label and its tooltip
-"Match only whole word" = "Porovnat pouze celá slova";
-"Restrict search results to the whole words." = "Omezit výsledky hledání na celá slova.";
-
-"Distinguish characters strictly" = "Přísně rozlišovat znaky";
-"Exact character-by-character equivalence." = "Přesná ekvivalence mezi jednotlivými znaky.";
-
-"Ignore diacritical marks" = "Ignorovat diakritiku";
-"Search ignores diacritical marks (e.g. ö = o)." = "Hledání ignoruje diakritická znaménka (např. ö = o).";
-
-"Ignore width differences" = "Ignorovat rozdíly šířky";
-"Search ignores width differences in character forms (e.g. ａ = a)." = "Hledání ignoruje rozdíly šířky ve formátech znaků (např. ａ = a).";
-
-
-"Regular Expression Search" = "Hledání regulárním výrazem";
-
-// pairs of checkbox label and its tooltip
-"Dot matches line separators" = "Tečka odpovídá oddělovačům řádků";
-"Allow . to match any character, including newline characters (singleline)." = "Povolit . tak, aby odpovídala libovolnému znaku, včetně znaků nového řádku (singleline).";
-
-"Anchors match lines" = "Kotvy odpovídají řádkům";
-"Allow ^ and $ to match the start and end of lines (multiline)." = "Povolit ^ a $ tak, aby odpovídaly začátku a konci řádků (víceřádkové).";
-
-"Use Unicode word boundaries" = "Použít hranice slov Unicode";
-"Use Unicode TR#29 to specify word boundaries" = "Určit hranice slov pomocí kódování Unicode TR#29.";
-
-"Unescape replacement string" = "Unescapovat nahrazovací řetězec";
-"Unescape meta characters with backslash in replacement string." = "Unescapovat meta znaky se zpětným lomítkem v nahrazovacím řetězci.";
 
 
 
@@ -572,6 +462,8 @@
 // filename suffix of copied file
 "copy" = "Kopírovat";
 
+// alert option button
+"Replace" = "Nahradit";
 
 
 /* MARK: SyntaxManager */
@@ -749,6 +641,7 @@
 /* MARK: LiveTextInsertionView */
 // button label
 "Insert" = "Vložit";
+"Close" = "Zavřít";
 // error messages
 "No text detected" = "Nebyl zjištěn žádný text";
 "Detection failed" = "Detekce selhala";

@@ -307,7 +307,7 @@ final class TextFinder {
     @MainActor private func findAll() {
         
         Task {
-            await self.findAll(showsList: true, actionName: "Find All")
+            await self.findAll(showsList: true, actionName: String(localized: "Find All", table: "TextFind"))
         }
     }
     
@@ -316,7 +316,7 @@ final class TextFinder {
     @MainActor private func highlight() {
         
         Task {
-            await self.findAll(showsList: false, actionName: "Highlight All")
+            await self.findAll(showsList: false, actionName: String(localized: "Highlight All", table: "TextFind"))
         }
     }
     
@@ -470,7 +470,7 @@ final class TextFinder {
             
             if result.wrapped {
                 client.enclosingScrollView?.superview?.showHUD(symbol: .wrap(flipped: !forward))
-                client.requestAccessibilityAnnouncement(String(localized: "Search wrapped.", comment: "Announced when the search restarted from the beginning."))
+                client.requestAccessibilityAnnouncement(String(localized: "Search wrapped.", table: "TextFind", comment: "Announced when the search restarted from the beginning."))
             }
         } else if !isIncremental {
             client.enclosingScrollView?.superview?.showHUD(symbol: forward ? .reachBottom : .reachTop)
@@ -498,7 +498,7 @@ final class TextFinder {
         return self.client.replace(with: result.value, range: result.range,
                                    selectedRange: NSRange(location: result.range.location,
                                                           length: result.value.length),
-                                   actionName: String(localized: "Replace"))
+                                   actionName: String(localized: "Replace", table: "TextFind"))
     }
     
     
@@ -507,7 +507,7 @@ final class TextFinder {
     /// - Parameters:
     ///   - showsList: Whether shows the result view when finished.
     ///   - actionName: The name of the action to display in the progress sheet.
-    @MainActor private func findAll(showsList: Bool, actionName: String.LocalizationValue) async {
+    @MainActor private func findAll(showsList: Bool, actionName: String) async {
         
         guard let textFind = self.prepareTextFind() else { return }
         
@@ -519,7 +519,7 @@ final class TextFinder {
         
         // setup progress sheet
         let progress = FindProgress(scope: textFind.scopeRange)
-        let indicatorView = FindProgressView(String(localized: actionName), progress: progress, unit: .find)
+        let indicatorView = FindProgressView(actionName, progress: progress, unit: .find)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         client.viewControllerForSheet?.presentAsSheet(indicator)
@@ -606,7 +606,7 @@ final class TextFinder {
         
         // setup progress sheet
         let progress = FindProgress(scope: textFind.scopeRange)
-        let indicatorView = FindProgressView(String(localized: "Replace All"), progress: progress, unit: .replacement)
+        let indicatorView = FindProgressView(String(localized: "Replace All", table: "TextFind"), progress: progress, unit: .replacement)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         client.viewControllerForSheet?.presentAsSheet(indicator)
@@ -630,7 +630,7 @@ final class TextFinder {
         if !replacementItems.isEmpty {
             // apply found strings to the text view
             client.replace(with: replacementItems.map(\.value), ranges: replacementItems.map(\.range), selectedRanges: selectedRanges,
-                           actionName: String(localized: "Replace All"))
+                           actionName: String(localized: "Replace All", table: "TextFind"))
         } else {
             NSSound.beep()
         }

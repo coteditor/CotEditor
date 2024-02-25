@@ -42,7 +42,6 @@
 "Editor" = "編輯器";
 "Navigation Bar" = "導覽列";
 "Line Numbers" = "行號";
-"Find Result" = "查找結果";
 
 
 // Contextual menu items
@@ -73,115 +72,6 @@
 "Install" = "安裝";
 "Open as Text File" = "以文字方式開啟";
 "A new theme named “%@” has been successfully installed." = "新主題「%@」安裝完成";
-
-
-
-/* MARK: Text Finder */
-"Replace" = "取代";
-"Find All" = "全部查找";
-"Replace All" = "全部取代";
-"Highlight All" = "全部高亮";
-"Searching in text…" = "正在文字中搜索⋯";
-"Invalid regular expression" = "無效的常規表示式";
-"Empty find string" = "空的搜索字元串";
-"The option “in selection” is selected, although nothing is selected." = "「在選擇中搜索」選項被激活，但是並沒有內容被選中。";
-"Input text to find." = "輸入文字以查找。";
-"Select the search scope in the document or turn off the “in selection” option." = "在文件中選擇搜索範圍，或者禁用「在選擇中搜索」。";
-
-// accessibility announcement
-"Search wrapped." = "已從頭搜索";  // announced when the search restarted from the beginning.
-
-
-
-/* MARK: Find Panel */
-// window title
-"Find & Replace" = "尋找與取代";
-
-// pairs of checkbox label and its tooltip
-"Regular Expression" = "常規表示式";
-"Select to search with regular expression." = "選中以啟用常規表示式尋找。";
-
-"Ignore Case" = "忽略大小寫";
-"Select to ignore character case on search." = "選中以忽略大小寫。";
-
-"In Selection" = "所選範圍";
-"Select to search text only from selection." = "選中僅在選擇範圍內進行文字尋找。";
-
-// tooltip for regex help button
-"Show quick reference for regular expression syntax." = "顯示常規表示式快速參考。";
-
-// pair of accessibility label for a image button and its tooltip
-"Advanced options" = "進階選項";
-"Show advanced options" = "顯示進階選項";
-
-// pairs of button label and its tooltip
-"Close" = "關閉";
-"Close find result." = "關閉尋找結果。";
-
-"Find All" = "尋找全部";
-"Find and list all matches." = "列出所有匹配。";
-
-"Replace All" = "全部取代";
-"Replace all matches with the replacement text." = "將所有匹配用取代文字取代。";
-
-"Replace" = "取代";
-"Replace the current selection with the replacement text, then find the next match." = "用取代文字取代當前選中內容，然後查找下一個匹配項目";
-
-"Find Previous" = "尋找上一個";
-"Find previous match." = "尋找前一個匹配。";
-
-"Find Next" = "尋找下一個";
-"Find next match." = "尋找後一個匹配。";
-
-
-
-/* MARK: Find Panel Result View */
-"Find string: %@" = "尋找字串：%@";
-
-// Column header
-"Line" = "行";
-"Found String" = "找到字串";
-
-
-
-/* MARK: Find Settings View */
-"Advanced Find Options" = "進階尋找選項";
-
-// checkbox labels
-"Wrap search around" = "折行尋找";
-"Search incrementally" = "增量尋找";
-
-
-"Textual Search" = "文字尋找";
-
-// pairs of checkbox label and its tooltip
-"Match only whole word" = "僅全字匹配";
-"Restrict search results to the whole words." = "將尋找結果限定於全字。";
-
-"Distinguish characters strictly" = "嚴格區分字元";
-"Exact character-by-character equivalence." = "逐字元相等尋找";
-
-"Ignore diacritical marks" = "忽略變音符號";
-"Search ignores diacritical marks (e.g. ö = o)." = "忽略變音符號進行尋找（例如ö = o）。";
-
-"Ignore width differences" = "忽略字元寬度";
-"Search ignores width differences in character forms (e.g. ａ = a)." = "忽略字元形式的寬度進行尋找（例如ａ = a）。";
-
-
-"Regular Expression Search" = "常規表示式尋找";
-
-// pairs of checkbox label and its tooltip
-"Dot matches line separators" = "使點匹配換行";
-"Allow . to match any character, including newline characters (singleline)." = "允許.匹配包括（單行）換行符在內的任意字元。";
-
-"Anchors match lines" = "使錨點匹配行";
-"Allow ^ and $ to match the start and end of lines (multiline)." = "允許^和$匹配（多行的）行首和行尾。";
-
-"Use Unicode word boundaries" = "使用Unicode字詞邊界";
-"Use Unicode TR#29 to specify word boundaries" = "使用Unicode TR#29指定字詞邊界";
-
-"Unescape replacement string" = "解碼取代字串";
-"Unescape meta characters with backslash in replacement string." = "使用反斜槓元字元解碼取代字串";
 
 
 
@@ -572,6 +462,9 @@
 // filename suffix of copied file
 "copy" = "拷貝";
 
+// alert option button
+"Replace" = "取代";
+
 
 
 /* MARK: SyntaxManager */
@@ -749,6 +642,7 @@
 /* MARK: LiveTextInsertionView */
 // button label
 "Insert" = "插入";
+"Close" = "關閉";
 // error messages
 "No text detected" = "沒能偵測到文字";
 "Detection failed" = "偵測失敗";

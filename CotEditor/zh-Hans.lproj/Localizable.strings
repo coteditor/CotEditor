@@ -42,7 +42,6 @@
 "Editor" = "编辑器";
 "Navigation Bar" = "导航栏";
 "Line Numbers" = "行号";
-"Find Result" = "查找结果";
 
 
 // Contextual menu items
@@ -73,115 +72,6 @@
 "Install" = "安装";
 "Open as Text File" = "以文本方式打开";
 "A new theme named “%@” has been successfully installed." = "新主题“%@”安装完成";
-
-
-
-/* MARK: Text Finder */
-"Replace" = "替换";
-"Find All" = "全部查找";
-"Replace All" = "全部替换";
-"Highlight All" = "全部高亮";
-"Searching in text…" = "正在文本中搜索…";
-"Invalid regular expression" = "无效的正则表达式";
-"Empty find string" = "空的搜索字符串";
-"The option “in selection” is selected, although nothing is selected." = "“在选择中搜索”选项被激活，但是并没有内容被选中。";
-"Input text to find." = "输入文本以查找。";
-"Select the search scope in the document or turn off the “in selection” option." = "在文稿中选择搜索范围，或者禁用“在选择中搜索”。";
-
-// accessibility announcement
-"Search wrapped." = "已从头搜索";  // announced when the search restarted from the beginning.
-
-
-
-/* MARK: Find Panel */
-// window title
-"Find & Replace" = "查找和替换";
-
-// pairs of checkbox label and its tooltip
-"Regular Expression" = "正则表达式";
-"Select to search with regular expression." = "选中以启用正则表达式查找。";
-
-"Ignore Case" = "忽略大小写";
-"Select to ignore character case on search." = "选中以忽略大小写。";
-
-"In Selection" = "所选内容";
-"Select to search text only from selection." = "选中仅在选择范围内进行文本查找。";
-
-// tooltip for regex help button
-"Show quick reference for regular expression syntax." = "显示正则表达式快速参考。";
-
-// pair of accessibility label for a image button and its tooltip
-"Advanced options" = "高级选项";
-"Show advanced options" = "显示高级选项";
-
-// pairs of button label and its tooltip
-"Close" = "关闭";
-"Close find result." = "关闭查找结果。";
-
-"Find All" = "全部查找";
-"Find and list all matches." = "列出所有匹配。";
-
-"Replace All" = "全部替换";
-"Replace all matches with the replacement text." = "将所有匹配用替换文本替换。";
-
-"Replace" = "替换";
-"Replace the current selection with the replacement text, then find the next match." = "用替换文本替换当前选中内容，然后查找下一个匹配项目";
-
-"Find Previous" = "查找上一个";
-"Find previous match." = "查找前一个匹配。";
-
-"Find Next" = "查找下一个";
-"Find next match." = "查找后一个匹配。";
-
-
-
-/* MARK: Find Panel Result View */
-"Find string: %@" = "查找字符串：%@";
-
-// Column header
-"Line" = "行";
-"Found String" = "找到字符串";
-
-
-
-/* MARK: Find Settings View */
-"Advanced Find Options" = "高级查找选项";
-
-// checkbox labels
-"Wrap search around" = "折行查找";
-"Search incrementally" = "增量搜索";
-
-
-"Textual Search" = "文本查找";
-
-// pairs of checkbox label and its tooltip
-"Match only whole word" = "仅全字匹配";
-"Restrict search results to the whole words." = "将查找结果限定于全字。";
-
-"Distinguish characters strictly" = "严格区分字符";
-"Exact character-by-character equivalence." = "逐字符相等查找";
-
-"Ignore diacritical marks" = "忽略变音符号";
-"Search ignores diacritical marks (e.g. ö = o)." = "忽略变音符号进行查找（例如ö = o）。";
-
-"Ignore width differences" = "忽略字符宽度";
-"Search ignores width differences in character forms (e.g. ａ = a)." = "忽略字符形式的宽度进行查找（例如ａ = a）。";
-
-
-"Regular Expression Search" = "正则表达式查找";
-
-// pairs of checkbox label and its tooltip
-"Dot matches line separators" = "使点匹配换行";
-"Allow . to match any character, including newline characters (singleline)." = "允许.匹配包括（单行）换行符在内的任意字符。";
-
-"Anchors match lines" = "使锚点匹配行";
-"Allow ^ and $ to match the start and end of lines (multiline)." = "允许^和$匹配（多行的）行首和行尾。";
-
-"Use Unicode word boundaries" = "使用Unicode字词边界";
-"Use Unicode TR#29 to specify word boundaries" = "使用Unicode TR#29指定字词边界";
-
-"Unescape replacement string" = "解码替换字符串";
-"Unescape meta characters with backslash in replacement string." = "使用反斜杠元字符解码替换字符串";
 
 
 
@@ -573,6 +463,9 @@
 // filename suffix of copied file
 "copy" = "拷贝";
 
+// alert option button
+"Replace" = "替换";
+
 
 
 /* MARK: SyntaxManager */
@@ -750,6 +643,7 @@
 /* MARK: LiveTextInsertionView */
 // button label
 "Insert" = "插入";
+"Close" = "关闭";
 // error messages
 "No text detected" = "没有检测到文本";
 "Detection failed" = "检测失败";

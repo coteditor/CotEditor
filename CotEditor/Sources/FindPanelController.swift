@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ final class FindPanelController: NSWindowController, NSWindowDelegate {
         window.level = .floating
         window.autorecalculatesKeyViewLoop = true
         window.standardWindowButton(.zoomButton)?.isEnabled = false
-        window.title = String(localized: "Find & Replace")
+        window.title = String(localized: "Find & Replace", table: "TextFind", comment: "window title")
         
         self.init(window: window)
         

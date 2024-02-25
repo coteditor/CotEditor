@@ -42,7 +42,6 @@
 "Editor" = "Editor";
 "Navigation Bar" = "Barra de navegación";
 "Line Numbers" = "Números de línea";
-"Find Result" = "Buscar resultado";
 
 
 // Contextual menu items
@@ -73,115 +72,6 @@
 "Install" = "Instalar";
 "Open as Text File" = "Abrir como archivo de texto";
 "A new theme named “%@” has been successfully installed." = "Un nuevo tema llamado “%@” ha sido instalado correctamente.";
-
-
-
-/* MARK: Text Finder */
-"Replace" = "Reemplazar";
-"Find All" = "Encontrar todo";
-"Replace All" = "Reemplazar todo";
-"Highlight All" = "Resaltar todo";
-"Searching in text…" = "Buscando en el texto…";
-"Invalid regular expression" = "Expresión regular no válida";
-"Empty find string" = "Cadena de búsqueda vacía";
-"The option “in selection” is selected, although nothing is selected." = "La opción “in selection” está seleccionada, aunque no se selecciona nada.";
-"Input text to find." = "Introduzca texto a encontrar.";
-"Select the search scope in the document or turn off the “in selection” option." = "Seleccione el ámbito de búsqueda en el documento o deshabilite la opción “in selection”.";
-
-// accessibility announcement
-"Search wrapped." = "Búsqueda terminada.";  // announced when the search restarted from the beginning.
-
-
-
-/* MARK: Find Panel */
-// window title
-"Find & Replace" = "Buscar y reemplazar";
-
-// pairs of checkbox label and its tooltip
-"Regular Expression" = "Expresión regular";
-"Select to search with regular expression." = "Seleccione para buscar con expresión regular.";
-
-"Ignore Case" = "Ignorar mayúsculas";
-"Select to ignore character case on search." = "Seleccione para ignorar las mayúsculas y minúsculas del carácter en la búsqueda.";
-
-"In Selection" = "En la selección";
-"Select to search text only from selection." = "Seleccione para buscar texto solo de la selección.";
-
-// tooltip for regex help button
-"Show quick reference for regular expression syntax." = "Mostrar referencia rápida para la sintaxis de expresiones regulares.";
-
-// pair of accessibility label for a image button and its tooltip
-"Advanced options" = "Opciones avanzadas";  // FIXME: needs review
-"Show advanced options" = "Mostrar opciones avanzadas";  // FIXME: needs review
-
-// pairs of button label and its tooltip
-"Close" = "Cerrar";
-"Close find result." = "Close find result.";
-
-"Find All" = "Encuentra todo";
-"Find and list all matches." = "Busca y enumera todas las coincidencias.";
-
-"Replace All" = "Reemplazar todo";
-"Replace all matches with the replacement text." = "Reemplaza todas las coincidencias con el texto de reemplazo.";
-
-"Replace" = "Reemplazar";
-"Replace the current selection with the replacement text, then find the next match." = "Reemplace la selección actual con el texto de reemplazo y, a continuación, busque la siguiente coincidencia.";
-
-"Find Previous" = "Buscar anterior";
-"Find previous match." = "Encuentra la coincidencia anterior.";
-
-"Find Next" = "Buscar siguiente";
-"Find next match." = "Encuentra la siguiente coincidencia.";
-
-
-
-/* MARK: Find Panel Result View */
-"Find string: %@" = "Buscar cadena: %@";
-
-// Column header
-"Line" = "Línea";
-"Found String" = "Cadena encontrada";
-
-
-
-/* MARK: Find Settings View */
-"Advanced Find Options" = "Opciones de búsqueda avanzada";
-
-// checkbox labels
-"Wrap search around" = "Envolver la búsqueda";
-"Search incrementally" = "Buscar de forma incremental";
-
-
-"Textual Search" = "Búsqueda textual";
-
-// pairs of checkbox label and its tooltip
-"Match only whole word" = "Empareja solo la palabra completa";
-"Restrict search results to the whole words." = "Restringir los resultados de la búsqueda a las palabras completas.";
-
-"Distinguish characters strictly" = "Distinguir estrictamente los caracteres";
-"Exact character-by-character equivalence." = "Equivalencia exacta carácter por carácter.";
-
-"Ignore diacritical marks" = "Ignorar las marcas diacríticas";
-"Search ignores diacritical marks (e.g. ö = o)." = "La búsqueda ignora las marcas diacríticas (ej: ö = o).";
-
-"Ignore width differences" = "Ignorar las diferencias de ancho";
-"Search ignores width differences in character forms (e.g. ａ = a)." = "La búsqueda ignora las diferencias de ancho en las formas de caracteres (ej: ａ = a).";
-
-
-"Regular Expression Search" = "Búsqueda de expresiones regulares";
-
-// pairs of checkbox label and its tooltip
-"Dot matches line separators" = "El punto coincide con los separadores de líneas";
-"Allow . to match any character, including newline characters (singleline)." = "Permitir que . coincida con cualquier carácter, incluidos los caracteres de nueva línea (una sola línea).";
-
-"Anchors match lines" = "Los anclajes coinciden con las líneas";
-"Allow ^ and $ to match the start and end of lines (multiline)." = "Permitir que ^ y $ coincidan con el inicio y el final de las líneas (multilínea).";
-
-"Use Unicode word boundaries" = "Usa los límites de las palabras Unicode";
-"Use Unicode TR#29 to specify word boundaries" = "Usa Unicode TR#29 para especificar los límites de las palabras";
-
-"Unescape replacement string" = "Cadena de reemplazo de Unescape";
-"Unescape meta characters with backslash in replacement string." = "Desvíe los meta caracteres con barra invertida en la cadena de reemplazo.";
 
 
 
@@ -572,6 +462,9 @@
 // filename suffix of copied file
 "copy" = "copiar";
 
+// alert option button
+"Replace" = "Reemplazar";
+
 
 
 /* MARK: SyntaxManager */
@@ -749,6 +642,7 @@
 /* MARK: LiveTextInsertionView */
 // button label
 "Insert" = "Inserción";
+"Close" = "Cerrar";
 // error messages
 "No text detected" = "No se detectó texto";  // FIXME: needs review
 "Detection failed" = "La detección falló";  // FIXME: needs review

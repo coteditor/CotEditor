@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ struct FindSettingsView: View {
     var body: some View {
         
         VStack {
-            Text("Advanced Find Options")
+            Text("Advanced Find Options", tableName: "TextFind")
                 .fontWeight(.semibold)
                 .foregroundStyle(.secondary)
                 .controlSize(.regular)
@@ -59,8 +59,14 @@ struct FindSettingsView: View {
             VStack(alignment: .leading, spacing: 14) {
                 VStack(alignment: .leading, spacing: 6) {
                     Section {
-                        Toggle("Wrap search around", isOn: $settings.findIsWrap)
-                        Toggle("Search incrementally", isOn: $settings.findSearchesIncrementally)
+                        Toggle(String(localized: "FindSettings.findIsWrap.label",
+                                      defaultValue: "Wrap search around",
+                                      table: "TextFind", comment: "toggle button label"),
+                               isOn: $settings.findIsWrap)
+                        Toggle(String(localized: "FindSettings.findSearchesIncrementally.label",
+                                      defaultValue: "Search incrementally",
+                                      table: "TextFind", comment: "toggle button label"),
+                               isOn: $settings.findSearchesIncrementally)
                     }
                 }
                 
@@ -103,16 +109,36 @@ struct FindTextualOptionsView: View {
         
         VStack(alignment: .leading, spacing: 6) {
             Section {
-                Toggle("Match only whole word", isOn: $matchesFullWord)
-                    .help("Restrict search results to the whole words.")
-                Toggle("Distinguish characters strictly", isOn: $isLiteralSearch)
-                    .help("Exact character-by-character equivalence.")
-                Toggle("Ignore diacritical marks", isOn: $ignoresDiacriticMarks)
-                    .help("Search ignores diacritical marks (e.g. ö = o).")
-                Toggle("Ignore width differences", isOn: $ignoresWidth)
-                    .help("Search ignores width differences in character forms (e.g. ａ = a).")
+                Toggle(String(localized: "FindSettings.matchesFullWord.label",
+                              defaultValue: "Match only whole word",
+                              table: "TextFind", comment: "toggle button label"),
+                       isOn: $matchesFullWord)
+                .help(String(localized: "FindSettings.matchesFullWord.description",
+                             defaultValue: "Restrict search results to the whole words.",
+                             table: "TextFind", comment: "tooltip"))
+                Toggle(String(localized: "FindSettings.isLiteralSearch.label",
+                              defaultValue: "Distinguish characters strictly",
+                              table: "TextFind", comment: "toggle button label"),
+                       isOn: $isLiteralSearch)
+                .help(String(localized: "FindSettings.isLiteralSearch.description",
+                             defaultValue: "Exact character-by-character equivalence.",
+                             table: "TextFind", comment: "tooltip"))
+                Toggle(String(localized: "FindSettings.findSearchesIncrementally.label",
+                              defaultValue: "Ignore diacritical marks",
+                              table: "TextFind", comment: "toggle button label"),
+                       isOn: $ignoresDiacriticMarks)
+                .help(String(localized: "FindSettings.ignoresDiacriticMarks.description",
+                             defaultValue: "Search ignores diacritical marks (e.g. ö = o).",
+                             table: "TextFind", comment: "tooltip"))
+                Toggle(String(localized: "FindSettings.ignoresWidth.label",
+                              defaultValue: "Ignore width differences",
+                              table: "TextFind", comment: "toggle button label"),
+                       isOn: $ignoresWidth)
+                .help(String(localized: "FindSettings.ignoresWidth.description",
+                             defaultValue: "Search ignores width differences in character forms (e.g. ａ = a).",
+                             table: "TextFind", comment: "tooltip"))
             } header: {
-                Text("Textual Search")
+                Text("Textual Search", tableName: "TextFind", comment: "heading")
                     .fontWeight(.semibold)
             }
         }
@@ -132,16 +158,36 @@ struct FindRegularExpressionOptionsView: View {
         
         VStack(alignment: .leading, spacing: 6) {
             Section {
-                Toggle("Dot matches line separators", isOn: $isSingleLine)
-                    .help("Allow . to match any character, including newline characters (singleline).")
-                Toggle("Anchors match lines", isOn: $isMultiline)
-                    .help("Allow ^ and $ to match the start and end of lines (multiline).")
-                Toggle("Use Unicode word boundaries", isOn: $usesUnicodeBoundaries)
-                    .help("Use Unicode TR#29 to specify word boundaries")
-                Toggle("Unescape replacement string", isOn: $unescapesReplacementString)
-                    .help("Unescape meta characters with backslash in replacement string.")
+                Toggle(String(localized: "FindSettings.isSingleLine.label",
+                              defaultValue: "Dot matches line separators",
+                              table: "TextFind", comment: "toggle button label"),
+                       isOn: $isSingleLine)
+                .help(String(localized: "FindSettings.isSingleLine.description",
+                             defaultValue: "Allow . to match any character, including newline characters (singleline).",
+                             table: "TextFind", comment: "tooltip"))
+                Toggle(String(localized: "FindSettings.isMultiline.label",
+                              defaultValue: "Anchors match lines",
+                              table: "TextFind", comment: "toggle button label"),
+                       isOn: $isMultiline)
+                .help(String(localized: "FindSettings.isMultiline.description",
+                             defaultValue: "Allow ^ and $ to match the start and end of lines (multiline).",
+                             table: "TextFind", comment: "tooltip"))
+                Toggle(String(localized: "FindSettings.usesUnicodeBoundaries.label",
+                              defaultValue: "Use Unicode word boundaries",
+                              table: "TextFind", comment: "toggle button label"),
+                       isOn: $usesUnicodeBoundaries)
+                .help(String(localized: "FindSettings.usesUnicodeBoundaries.description",
+                             defaultValue: "Use Unicode TR#29 to specify word boundaries",
+                             table: "TextFind", comment: "tooltip"))
+                Toggle(String(localized: "FindSettings.unescapesReplacementString.label",
+                              defaultValue: "Unescape replacement string",
+                              table: "TextFind", comment: "toggle button label"),
+                       isOn: $unescapesReplacementString)
+                .help(String(localized: "FindSettings.unescapesReplacementString.description",
+                             defaultValue: "Unescape meta characters with backslash in replacement string.",
+                             table: "TextFind", comment: "tooltip"))
             } header: {
-                Text("Regular Expression Search")
+                Text("Regular Expression Search", tableName: "TextFind", comment: "heading")
                     .fontWeight(.semibold)
             }
         }

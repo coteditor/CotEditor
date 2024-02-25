@@ -42,7 +42,6 @@
 "Editor" = "エディタ";
 "Navigation Bar" = "ナビゲーションバー";
 "Line Numbers" = "行番号";
-"Find Result" = "検索結果";
 
 
 // Contextual menu items
@@ -74,115 +73,6 @@
 "Install" = "インストール";
 "Open as Text File" = "テキストファイルとして開く";
 "A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
-
-
-
-/* MARK: Text Finder */
-"Replace" = "置換";
-"Find All" = "すべて検索";
-"Replace All" = "すべて置換";
-"Highlight All" = "すべてハイライト";
-"Searching in text…" = "テキストを検索しています…";
-"Invalid regular expression" = "無効な正規表現です。";
-"Empty find string" = "検索文字列が空です。";
-"The option “in selection” is selected, although nothing is selected." = "”選択範囲のみ”オプションが有効になっていますが、何も選択されていません。";
-"Input text to find." = "検索するテキストを入力してください。";
-"Select the search scope in the document or turn off the “in selection” option." = "検索範囲を選択するか”選択範囲のみ”オプションを無効にしてください。";
-
-// accessibility announcement
-"Search wrapped." = "検索が折り返されました。";  // announced when the search restarted from the beginning.
-
-
-
-/* MARK: Find Panel */
-// window title
-"Find & Replace" = "検索と置換";
-
-// pairs of checkbox label and its tooltip
-"Regular Expression" = "正規表現";
-"Select to search with regular expression." = "検索に正規表現を使う場合に選択";
-
-"Ignore Case" = "大文字/小文字を無視";
-"Select to ignore character case on search." = "大文字/小文字を区別せずに検索する場合に選択";
-
-"In Selection" = "選択範囲のみ";
-"Select to search text only from selection." = "現在の選択範囲のみを検索対象とする場合に選択";
-
-// tooltip for regex help button
-"Show quick reference for regular expression syntax." = "正規表現文法の簡易用語集を表示";
-
-// pair of accessibility label for a image button and its tooltip
-"Advanced options" = "詳細オプション";
-"Show advanced options" = "詳細オプションを表示";
-
-// pairs of button label and its tooltip
-"Close" = "閉じる";
-"Close find result." = "検索結果を閉じる";
-
-"Find All" = "すべて検索";
-"Find and list all matches." = "すべての一致を検索しリストアップ";
-
-"Replace All" = "すべて置換";
-"Replace all matches with the replacement text." = "すべての一致を置換テキストで置き換え";
-
-"Replace" = "置換";
-"Replace the current selection with the replacement text, then find the next match." = "現在の選択範囲を置換テキストで置き換えてから、次の一致を検索";
-
-"Find Previous" = "前を検索";
-"Find previous match." = "前の一致を検索";
-
-"Find Next" = "次を検索";
-"Find next match." = "次の一致を検索";
-
-
-
-/* MARK: Find Panel Result View */
-"Find string: %@" = "検索文字列: %@";
-
-// Column header
-"Line" = "行";
-"Found String" = "文字列";
-
-
-
-/* MARK: Find Settings View */
-"Advanced Find Options" = "詳細検索オプション";
-
-// checkbox labels
-"Wrap search around" = "検索を折り返す";
-"Search incrementally" = "インクリメンタルに検索";
-
-
-"Textual Search" = "テキスト検索";
-
-// pairs of checkbox label and its tooltip
-"Match only whole word" = "単語に完全一致";
-"Restrict search results to the whole words." = "入力した単語と完全に一致する単語のみに限定";
-
-"Distinguish characters strictly" = "文字を厳密に判別";
-"Exact character-by-character equivalence." = "バイトレベルで完全一致する文字列にのみ一致";
-
-"Ignore diacritical marks" = "発音区別記号を無視";
-"Search ignores diacritical marks (e.g. ö = o)." = "文字の発音記号を無視して検索（例: ö = o）";
-
-"Ignore width differences" = "全角/半角を無視";
-"Search ignores width differences in character forms (e.g. ａ = a)." = "文字の全角/半角を無視して検索（例: ａ = a）";
-
-
-"Regular Expression Search" = "正規表現検索";
-
-// pairs of checkbox label and its tooltip
-"Dot matches line separators" = "ドットが改行に一致";
-"Allow . to match any character, including newline characters (singleline)." = ".が改行記号を含むすべての文字に一致（単一行モード）";
-
-"Anchors match lines" = "アンカーが行頭/行末に一致";
-"Allow ^ and $ to match the start and end of lines (multiline)." = "^と$がそれぞれ行頭と行末にも一致（複数行モード）";
-
-"Use Unicode word boundaries" = "Unicode単語境界を使用";
-"Use Unicode TR#29 to specify word boundaries" = "単語の区切りにUnicode TR#29定義を使用";
-
-"Unescape replacement string" = "置換文字列のエスケープ文字を解釈";
-"Unescape meta characters with backslash in replacement string." = "置換文字列のバックスラッシュをエスケープ文字として解釈";
 
 
 
@@ -573,6 +463,9 @@
 // filename suffix of copied file
 "copy" = "コピー";
 
+// alert option button
+"Replace" = "置換";
+
 
 
 /* MARK: SyntaxManager */
@@ -750,6 +643,7 @@
 /* MARK: LiveTextInsertionView */
 // button label
 "Insert" = "挿入";
+"Close" = "閉じる";
 // error messages
 "No text detected" = "テキストが検出されませんでした";
 "Detection failed" = "検出に失敗しました";

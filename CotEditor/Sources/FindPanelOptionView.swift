@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,23 +42,23 @@ struct FindPanelOptionView: View {
         
         HStack(spacing: 12) {
             HStack(spacing: 4) {
-                Toggle("Regular Expression", isOn: $usesRegularExpression)
-                    .help("Select to search with regular expression.")
+                Toggle(String(localized: "Regular Expression", table: "TextFind", comment: "toggle button label"), isOn: $usesRegularExpression)
+                    .help(String(localized: "Select to search with regular expression.", table: "TextFind", comment: "tooltip"))
                     .fixedSize()
                 HelpButton {
                     self.isRegexReferencePresented.toggle()
                 }
-                .help("Show quick reference for regular expression syntax.")
+                .help(String(localized: "Show quick reference for regular expression syntax.", table: "TextFind", comment: "tooltip"))
                 .detachablePopover(isPresented: $isRegexReferencePresented, arrowEdge: .bottom) {
                     RegularExpressionReferenceView()
                 }
                 .controlSize(.mini)
             }
-            Toggle("Ignore Case", isOn: $ignoresCase)
-                .help("Select to ignore character case on search.")
+            Toggle(String(localized: "Ignore Case", table: "TextFind", comment: "toggle button label"), isOn: $ignoresCase)
+                .help(String(localized: "Select to ignore character case on search.", table: "TextFind", comment: "tooltip"))
                 .fixedSize()
-            Toggle("In Selection", isOn: $inSelection)
-                .help("Select to search text only from selection.")
+            Toggle(String(localized: "In Selection", table: "TextFind", comment: "toggle button label"), isOn: $inSelection)
+                .help(String(localized: "Select to search text only from selection.", table: "TextFind", comment: "tooltip"))
                 .fixedSize()
             
             Spacer()
@@ -71,8 +71,8 @@ struct FindPanelOptionView: View {
             .popover(isPresented: $isSettingsPresented, arrowEdge: .trailing) {
                 FindSettingsView()
             }
-            .accessibilityLabel("Advanced options")
-            .help("Show advanced options")
+            .accessibilityLabel(String(localized: "Advanced options", table: "TextFind", comment: "accessibility label"))
+            .help(String(localized: "Show advanced options", table: "TextFind", comment: "tooltip"))
         }
         .controlSize(.small)
     }

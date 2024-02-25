@@ -89,25 +89,25 @@ struct FindPanelResultView: View {
                         .fontWeight(.medium)
                         .imageScale(.small)
                 }
-                .accessibilityLabel("Close")
-                .help("Close find result.")
+                .accessibilityLabel(String(localized: "Close", table: "TextFind", comment: "button label"))
+                .help(String(localized: "Close find result.", table: "TextFind", comment: "tooltip"))
                 
                 Text(self.message)
                     .fontWeight(.bold)
             }.scenePadding(.horizontal)
             
-            Text("Find string: \(self.model.findString)")
+            Text("Find string: \(self.model.findString)", tableName: "TextFind")
                 .scenePadding(.horizontal)
             
             Table(self.model.matches, selection: $selection, sortOrder: $sortOrder) {
-                TableColumn("Line", value: \.range.location) {
+                TableColumn(String(localized: "Line", table: "TextFind", comment: "table column header"), value: \.range.location) {
                     Text(self.model.target?.lineNumber(at: $0.range.location) ?? 0, format: .number)
                         .monospacedDigit()
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(.vertical, -2)
                 }.width(ideal: 30, max: 64)
                 
-                TableColumn("Found String") {
+                TableColumn(String(localized: "Found String", table: "TextFind", comment: "table column header")) {
                     Text(AttributedString($0.attributedLineString(offset: 16)))
                         .truncationMode(.tail)
                         .padding(.vertical, -2)
@@ -149,7 +149,7 @@ struct FindPanelResultView: View {
         .controlSize(.small)
         .padding(.top, 8)
         .frame(minHeight: 0)
-        .accessibilityLabel("Find Result")
+        .accessibilityLabel(String(localized: "Find Result", table: "TextFind", comment: "accessibility label"))
     }
     
     

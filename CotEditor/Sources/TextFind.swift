@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 1024jp
+//  © 2015-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -48,11 +48,17 @@ struct TextFind {
             
             switch self {
                 case .regularExpression:
-                    String(localized: "Invalid regular expression")
+                    String(localized: "TextFind.Error.regularExpression.errorDescription",
+                           defaultValue: "Invalid regular expression",
+                           table: "TextFind")
                 case .emptyFindString:
-                    String(localized: "Empty find string")
+                    String(localized: "TextFind.Error.emptyFindString.errorDescription",
+                           defaultValue: "Empty find string",
+                           table: "TextFind")
                 case .emptyInSelectionSearch:
-                    String(localized: "The option “in selection” is selected, although nothing is selected.")
+                    String(localized: "TextFind.Error.emptyInSelectionSearch.errorDescription",
+                           defaultValue: "The option “in selection” is selected, although nothing is selected.",
+                           table: "TextFind")
             }
         }
         
@@ -63,9 +69,13 @@ struct TextFind {
                 case .regularExpression(let reason):
                     reason
                 case .emptyFindString:
-                    String(localized: "Input text to find.")
+                    String(localized: "TextFind.Error.emptyFindString.recoverySuggestion",
+                           defaultValue: "Input text to find.",
+                           table: "TextFind")
                 case .emptyInSelectionSearch:
-                    String(localized: "Select the search scope in the document or turn off the “in selection” option.")
+                    String(localized: "TextFind.Error.emptyInSelectionSearch.recoverySuggestion",
+                           defaultValue: "Select the search scope in the document or turn off the “in selection” option.",
+                           table: "TextFind")
             }
         }
     }

@@ -36,7 +36,7 @@ struct MultipleReplaceSettingsView: View {
     var body: some View {
         
         VStack {
-            Text("Advanced Find Options")
+            Text("Advanced Find Options", tableName: "TextFind")
                 .fontWeight(.semibold)
                 .foregroundStyle(.secondary)
                 .controlSize(.regular)
