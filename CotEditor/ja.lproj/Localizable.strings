@@ -580,13 +580,6 @@
 
 
 
-/* MARK: Unicode Input View */
-"Recents" = "最近の項目";
-"Clear Recents" = "履歴を消去";
-"Invalid code" = "無効なコード";
-
-
-
 /* MARK: Character Info */
 "<a letter consisting of %lld characters>" = "<%lld字から成る文字>";  // %lld is always 2 or more.
 

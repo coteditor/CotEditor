@@ -579,13 +579,6 @@
 
 
 
-/* MARK: Unicode Input View */
-"Recents" = "Son Kullanılanlar";
-"Clear Recents" = "Son Kullanılanları Sil";
-"Invalid code" = "Geçersiz Kod";
-
-
-
 /* MARK: Character Info */
 "<a letter consisting of %lld characters>" = "%lld karakterden oluşan bir harf";  // %lld is always 2 or more.
 

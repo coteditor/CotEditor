@@ -42,7 +42,7 @@ struct UnicodeInputView: View {
                     .font(.system(size: 26))
                     .frame(minWidth: 30, minHeight: 30)
                 
-                Text(self.unicodeName ?? String(localized: "Invalid code"))
+                Text(self.unicodeName ?? String(localized: "Invalid code", table: "UnicodeInput"))
                     .help(self.unicodeName ?? "")
                     .controlSize(.small)
                     .textSelection(.enabled)
@@ -61,7 +61,7 @@ struct UnicodeInputView: View {
                             .compactMap(UTF32.CodeUnit.init(codePoint:))
                             .compactMap(UnicodeScalar.init)
                         
-                        Section("Recents") {
+                        Section(String(localized: "Recents", table: "UnicodeInput", comment: "menu header")) {
                             ForEach(scalars, id: \.self) { scalar in
                                 Button {
                                     self.codePoint = scalar.codePoint
@@ -76,7 +76,8 @@ struct UnicodeInputView: View {
                         }
                         
                         if !scalars.isEmpty {
-                            Button("Clear Recents", role: .destructive, action: self.clearRecents)
+                            Button(String(localized: "Clear Recents", table: "UnicodeInput", comment: "button label"),
+                                   role: .destructive, action: self.clearRecents)
                         }
                     } label: {
                         EmptyView()

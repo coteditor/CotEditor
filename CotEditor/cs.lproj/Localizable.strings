@@ -578,13 +578,6 @@
 
 
 
-/* MARK: Unicode Input View Controller */
-"Recents" = "Poslední použité";
-"Clear Recents" = "Smazat poslední";
-"Invalid code" = "Neplatný kód";
-
-
-
 /* MARK: Character Info */
 "<a letter consisting of %lld characters>" = "<písmeno složené z %lld znaků>";  // %lld is always 2 or more.
 

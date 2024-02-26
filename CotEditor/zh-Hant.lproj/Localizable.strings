@@ -579,13 +579,6 @@
 
 
 
-/* MARK: Unicode Input View */
-"Recents" = "最近";
-"Clear Recents" = "清除最近項目";
-"Invalid code" = "無效的代碼";
-
-
-
 /* MARK: Character Info */
 "<a letter consisting of %lld characters>" = "<包含有%lld個字元>";  // %lld is always 2 or more.
 
