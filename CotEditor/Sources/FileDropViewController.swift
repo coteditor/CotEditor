@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,6 +33,8 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
     
     private var arrayObservers: Set<AnyCancellable> = []
     
+    @objc private dynamic var canRestore = false  // bound to Restore Defaults button
+    
     @IBOutlet private var fileDropController: NSArrayController?
     @IBOutlet private weak var tableView: NSTableView?
     @IBOutlet private weak var addRemoveButton: NSSegmentedControl?
@@ -54,6 +56,9 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
             self.fileDropController!.publisher(for: \.canRemove, options: .initial)
                 .sink { [weak self] in self?.addRemoveButton?.setEnabled($0, forSegment: 1) },
         ]
+        
+        // setup Restore Defaults button
+        self.canRestore = UserDefaults.standard[.fileDropArray] == UserDefaults.standard[initial: .fileDropArray]
         
         // setup variable menu
         if let menu = self.variableInsertionMenu?.menu {
@@ -175,6 +180,14 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
+    /// Reverts the file drop settings to default.
+    @IBAction func restoreDefaults(_ sender: Any?) {
+        
+        UserDefaults.standard.restore(key: .fileDropArray)
+        self.canRestore = false
+    }
+    
+    
     
     // MARK: Private Methods
     
@@ -189,11 +202,11 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
             .filter { $0[FileDropItem.CodingKeys.format] != nil }
         
         // check if the new setting is different from the default
-        let defaultSetting = UserDefaults.standard[initial: .fileDropArray]
-        if defaultSetting == sanitized {
-            UserDefaults.standard.restore(key: .fileDropArray)
-        } else {
+        self.canRestore = sanitized != UserDefaults.standard[initial: .fileDropArray]
+        if self.canRestore {
             UserDefaults.standard[.fileDropArray] = sanitized
+        } else {
+            UserDefaults.standard.restore(key: .fileDropArray)
         }
     }
     

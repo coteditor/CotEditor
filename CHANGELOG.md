@@ -3,6 +3,11 @@
 4.7.5 (unreleased)
 --------------------------
 
+### New Features
+
+- Add the Restore Defaults button to the File Drop settings.
+
+
 ### Improvements
 
 - Make the encoding priority view undoable.
