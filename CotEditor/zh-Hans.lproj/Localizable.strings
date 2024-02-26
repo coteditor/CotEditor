@@ -607,13 +607,6 @@
 
 
 
-/* MARK: Custom Surround String View */
-"Surround with:" = "进行环绕：";
-"Begin:" = "开头：";
-"End:" = "结尾：";
-
-
-
 /* MARK: Character Inspector View */
 "Unknown" = "未知";
 "No Block" = "无区块";

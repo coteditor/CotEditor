@@ -1,5 +1,5 @@
 //
-//  CustomSurroundStringView.swift
+//  CustomSurroundView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2023 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 
 import SwiftUI
 
-struct CustomSurroundStringView: View {
+struct CustomSurroundView: View {
     
     weak var parent: NSHostingController<Self>?
     
@@ -58,17 +58,17 @@ struct CustomSurroundStringView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Text("Surround with:")
+            Text("Surround with:", tableName: "CustomSurround")
                 .fontWeight(.semibold)
             
             HStack(alignment: .firstTextBaseline) {
-                LabeledContent("Begin:") {
+                LabeledContent(String(localized: "Begin:", table: "CustomSurround")) {
                     TextField(text: $pair.begin, label: EmptyView.init)
                         .onSubmit { self.submit() }
                         .frame(width: 48)
                 }.padding(.trailing)
                 
-                LabeledContent("End:") {
+                LabeledContent(String(localized: "End:", table: "CustomSurround")) {
                     TextField(text: $pair.end, prompt: Text(verbatim: self.pair.begin), label: EmptyView.init)
                         .onSubmit { self.submit() }
                         .frame(width: 48)
@@ -116,5 +116,5 @@ struct CustomSurroundStringView: View {
 // MARK: - Preview
 
 #Preview {
-    CustomSurroundStringView(pair: nil) { _ in }
+    CustomSurroundView(pair: nil) { _ in }
 }

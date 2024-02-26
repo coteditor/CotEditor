@@ -606,13 +606,6 @@
 
 
 
-/* MARK: Custom Surround String View */
-"Surround with:" = "Colocar entre:";
-"Begin:" = "Início:";
-"End:" = "Fim:";
-
-
-
 /* MARK: Character Inspector View */
 "Unknown" = "Desconhecido";
 "No Block" = "Nenhum Bloco";

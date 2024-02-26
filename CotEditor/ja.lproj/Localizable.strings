@@ -607,13 +607,6 @@
 
 
 
-/* MARK: Custom Surround String View */
-"Surround with:" = "文字で囲む:";
-"Begin:" = "開始:";
-"End:" = "終了:";
-
-
-
 /* MARK: Character Inspector View */
 "Unknown" = "不明";
 "No Block" = "ブロックなし";

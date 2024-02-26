@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2023 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -68,7 +68,7 @@ extension EditorTextView {
     /// Shows the custom surround sheet.
     @IBAction func surroundSelection(_ sender: Any?) {
         
-        let view = CustomSurroundStringView(pair: self.customSurroundPair) { [weak self] pair in
+        let view = CustomSurroundView(pair: self.customSurroundPair) { [weak self] pair in
             self?.surroundSelections(begin: pair.begin, end: pair.end)
             self?.customSurroundPair = pair
         }

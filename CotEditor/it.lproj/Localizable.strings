@@ -606,13 +606,6 @@
 
 
 
-/* MARK: Custom Surround String View */
-"Surround with:" = "Circonda con:";
-"Begin:" = "Inizio:";
-"End:" = "Fine:";
-
-
-
 /* MARK: Character Inspector View */
 "Unknown" = "Sconosciuta";
 "No Block" = "Nessun Blocco";

@@ -605,13 +605,6 @@
 
 
 
-/* MARK: Custom Surround String View */
-"Surround with:" = "Obklopit s:";
-"Begin:" = "Začátek:";
-"End:" = "Konec:";
-
-
-
 /* MARK: Character Inspector View */
 "Unknown" = "Neznámý";
 "No Block" = "Žádný blok";
