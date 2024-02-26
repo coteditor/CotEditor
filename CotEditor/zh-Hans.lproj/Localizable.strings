@@ -602,11 +602,6 @@
 
 
 
-/* MARK: Custom Tab Width View */
-"Tab width:" = "制表符宽度：";  // label
-
-
-
 /* MARK: Character Inspector View */
 "Unknown" = "未知";
 "No Block" = "无区块";

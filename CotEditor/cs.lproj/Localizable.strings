@@ -600,11 +600,6 @@
 
 
 
-/* MARK: Custom Tab Width View */
-"Tab width:" = "Šířka tabulátoru:";  // label
-
-
-
 /* MARK: Character Inspector View */
 "Unknown" = "Neznámý";
 "No Block" = "Žádný blok";

@@ -601,11 +601,6 @@
 
 
 
-/* MARK: Custom Tab Width View */
-"Tab width:" = "Larghezza Tab:";  // label
-
-
-
 /* MARK: Character Inspector View */
 "Unknown" = "Sconosciuta";
 "No Block" = "Nessun Blocco";

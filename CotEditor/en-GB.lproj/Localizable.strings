@@ -601,11 +601,6 @@
 
 
 
-/* MARK: Custom Tab Width View */
-"Tab width:" = "Tab width:";  // label
-
-
-
 /* MARK: Character Inspector View */
 "Unknown" = "Unknown";
 "No Block" = "No Block";

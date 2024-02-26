@@ -601,11 +601,6 @@
 
 
 
-/* MARK: Custom Tab Width View */
-"Tab width:" = "Largeur de tabulation :";  // label
-
-
-
 /* MARK: Character Inspector View */
 "Unknown" = "Inconnu";
 "No Block" = "Pas de bloc";

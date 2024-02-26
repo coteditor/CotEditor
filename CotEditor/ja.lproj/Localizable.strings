@@ -602,11 +602,6 @@
 
 
 
-/* MARK: Custom Tab Width View */
-"Tab width:" = "タブ幅:";  // label
-
-
-
 /* MARK: Character Inspector View */
 "Unknown" = "不明";
 "No Block" = "ブロックなし";

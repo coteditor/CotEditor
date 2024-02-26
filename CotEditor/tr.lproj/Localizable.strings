@@ -601,11 +601,6 @@
 
 
 
-/* MARK: Custom Tab Width View */
-"Tab width:" = "Sekme genişliği:";  // label
-
-
-
 /* MARK: Character Inspector View */
 "Unknown" = "Bilinmeyen";
 "No Block" = "Blok Yok";
