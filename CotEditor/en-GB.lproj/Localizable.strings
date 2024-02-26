@@ -601,13 +601,6 @@
 
 
 
-/* MARK: Go to Line View */
-"Line:" = "Line:";  // label
-"Line Number" = "Line Number";  // placeholder
-"Go" = "Go";  // submit button
-
-
-
 /* MARK: Custom Tab Width View */
 "Tab width:" = "Tab width:";  // label
 

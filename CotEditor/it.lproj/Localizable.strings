@@ -601,13 +601,6 @@
 
 
 
-/* MARK: Go to Line View */
-"Line:" = "Riga:";  // label
-"Line Number" = "Numero di riga";  // placeholder
-"Go" = "Vai";  // submit button
-
-
-
 /* MARK: Custom Tab Width View */
 "Tab width:" = "Larghezza Tab:";  // label
 

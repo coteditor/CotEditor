@@ -600,13 +600,6 @@
 
 
 
-/* MARK: Go to Line View */
-"Line:" = "Řádek:";  // label
-"Line Number" = "Číslo řádku";  // placeholder
-"Go" = "Přejít";  // submit button
-
-
-
 /* MARK: Custom Tab Width View */
 "Tab width:" = "Šířka tabulátoru:";  // label
 

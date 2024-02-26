@@ -601,13 +601,6 @@
 
 
 
-/* MARK: Go to Line View */
-"Line:" = "Línea:";  // label
-"Line Number" = "Número de línea";  // placeholder
-"Go" = "Ir";  // submit button
-
-
-
 /* MARK: Custom Tab Width View */
 "Tab width:" = "Anchura del tabulador:";  // label
 

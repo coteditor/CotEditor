@@ -42,7 +42,8 @@ struct GoToLineView: View {
         
         VStack {
             Form {
-                TextField("Line:", value: $lineRange, format: .fuzzyRange, prompt: Text("Line Number"))
+                TextField(String(localized: "Line:", table: "GoToLine"), value: $lineRange, format: .fuzzyRange,
+                          prompt: Text("Line Number", tableName: "GoToLine", comment: "placeholder"))
                     .monospacedDigit()
                     .multilineTextAlignment(.trailing)
                     .onSubmit { self.submit() }
@@ -53,7 +54,7 @@ struct GoToLineView: View {
                 
                 Spacer()
                 
-                SubmitButtonGroup(String(localized: "Go")) {
+                SubmitButtonGroup(String(localized: "Go", table: "GoToLine", comment: "button label")) {
                     self.submit()
                 } cancelAction: {
                     self.parent?.dismiss(nil)

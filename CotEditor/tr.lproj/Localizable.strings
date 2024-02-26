@@ -601,13 +601,6 @@
 
 
 
-/* MARK: Go to Line View */
-"Line:" = "Satır:";  // label
-"Line Number" = "Satır Numarası";  // placeholder
-"Go" = "Git";  // submit button
-
-
-
 /* MARK: Custom Tab Width View */
 "Tab width:" = "Sekme genişliği:";  // label
 

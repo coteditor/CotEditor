@@ -601,13 +601,6 @@
 
 
 
-/* MARK: Go to Line View */
-"Line:" = "行：";  // label
-"Line Number" = "行號";  // placeholder
-"Go" = "跳轉";  // submit button
-
-
-
 /* MARK: Custom Tab Width View */
 "Tab width:" = "定位符號寬度：";  // label
 
