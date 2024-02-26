@@ -30,6 +30,13 @@
 "Restore Defaults" = "デフォルトに戻す";
 "Delete" = "削除";
 
+// accessibility labels for opacity slider
+"Transparent" = "透明";
+"Opaque" = "不透明";
+
+// tooltip for link button in URL field
+"Jump to URL" = "URLにジャンプ";
+
 
 // words with symbols
 " (%@)" = "（%@）";
@@ -417,10 +424,6 @@
 "Key Bindings" = "キーバインド";
 
 
-// tooltip
-"Jump to URL" = "URLにジャンプ";
-
-
 
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”を削除できませんでした。";
@@ -561,8 +564,6 @@
 
 /* MARK: Opacity View */
 "Editor’s Opacity" = "エディタの不透明度";
-"Transparent" = "透明";
-"Opaque" = "不透明";
 
 
 

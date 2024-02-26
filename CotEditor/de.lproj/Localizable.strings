@@ -30,6 +30,13 @@
 "Restore Defaults" = "Standard wiederherstellen";
 "Delete" = "Löschen";
 
+// accessibility labels for opacity slider
+"Transparent" = "Durchsichtig";
+"Opaque" = "Undurchsichtig";
+
+// tooltip for link button in URL field
+"Jump to URL" = "URL öffnen";
+
 
 // words with symbols
 " (%@)" = " (%@)";
@@ -416,10 +423,6 @@
 "Key Bindings" = "Kurzbefehle";
 
 
-// tooltip
-"Jump to URL" = "URL öffnen";
-
-
 
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "„%@“ konnte nicht gelöscht werden.";
@@ -560,8 +563,6 @@
 
 /* MARK: Opacity View */
 "Editor’s Opacity" = "Deckkraft des Editors";
-"Transparent" = "Durchsichtig";
-"Opaque" = "Undurchsichtig";
 
 
 

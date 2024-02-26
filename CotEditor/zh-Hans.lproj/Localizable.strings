@@ -30,6 +30,13 @@
 "Restore Defaults" = "恢复默认";
 "Delete" = "删除";
 
+// accessibility labels for opacity slider
+"Transparent" = "透明";
+"Opaque" = "不透明";
+
+// tooltip for link button in URL field
+"Jump to URL" = "跳转到URL";
+
 
 // words with symbols
 " (%@)" = "（%@）";
@@ -417,10 +424,6 @@
 "Key Bindings" = "按键绑定";
 
 
-// tooltip
-"Jump to URL" = "跳转到URL";
-
-
 
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”无法删除。";
@@ -561,8 +564,6 @@
 
 /* MARK: Opacity View */
 "Editor’s Opacity" = "编辑器透明度";
-"Transparent" = "透明";
-"Opaque" = "不透明";
 
 
 

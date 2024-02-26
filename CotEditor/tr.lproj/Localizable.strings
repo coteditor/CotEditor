@@ -30,6 +30,13 @@
 "Restore Defaults" = "Výchozí hodnoty";
 "Delete" = "Sil";
 
+// accessibility labels for opacity slider
+"Transparent" = "Saydam";
+"Opaque" = "Mat";
+
+// tooltip for link button in URL field
+"Jump to URL" = "URL’ye Atla";
+
 
 // words with symbols
 " (%@)" = " (%@)";
@@ -416,10 +423,6 @@
 "Key Bindings" = "Düğme Bağıntıları";
 
 
-// tooltip
-"Jump to URL" = "URL’ye Atla";
-
-
 
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”, silinemedi.";
@@ -560,8 +563,6 @@
 
 /* MARK: Opacity View */
 "Editor’s Opacity" = "Düzenleyici Matlığı";
-"Transparent" = "Saydam";
-"Opaque" = "Mat";
 
 
 

@@ -30,6 +30,13 @@
 "Restore Defaults" = "Výchozí hodnoty";
 "Delete" = "Smazat";
 
+// accessibility labels for opacity slider
+"Transparent" = "Průhledné";
+"Opaque" = "Neprůhledné";
+
+// tooltip for link button in URL field
+"Jump to URL" = "Přejít na URL";
+
 
 // words with symbols
 " (%@)" = " (%@)";
@@ -416,10 +423,6 @@
 "Key Bindings" = "Kláv. zkratky";
 
 
-// tooltip
-"Jump to URL" = "Přejít na URL";
-
-
 
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "„%@“ nelze smazat.";
@@ -559,8 +562,6 @@
 
 /* MARK: Opacity View */
 "Editor’s Opacity" = "Neprůhlednost editoru";
-"Transparent" = "Průhledné";
-"Opaque" = "Neprůhledné";
 
 
 
