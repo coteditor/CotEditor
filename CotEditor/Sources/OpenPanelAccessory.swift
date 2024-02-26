@@ -48,8 +48,8 @@ struct OpenPanelAccessory: View {
         
         VStack(alignment: .center) {
             Form {
-                Picker("Text encoding:", selection: $options.encoding) {
-                    Text("Automatic", comment: "menu item title for automatic encoding detection")
+                Picker(String(localized: "Text encoding:", table: "OpenPanelAccessory"), selection: $options.encoding) {
+                    Text("Automatic", tableName: "OpenPanelAccessory", comment: "menu item title for automatic encoding detection")
                         .tag(String.Encoding?.none)
                     Divider()
                     
@@ -63,7 +63,7 @@ struct OpenPanelAccessory: View {
                     }
                 }
                 
-                Toggle("Show invisible files", isOn: $showsHiddenFiles)
+                Toggle(String(localized: "Show invisible files", table: "OpenPanelAccessory", comment: "toggle button label"), isOn: $showsHiddenFiles)
                     .onChange(of: self.showsHiddenFiles) { shows in
                         guard let openPanel = self.openPanel else { return }
                         

@@ -82,15 +82,6 @@
 
 
 
-/* MARK: Open Panel Accessory */
-"Text encoding:" = "Metin kodlaması:";
-"Show invisible files" = "Gizli dosyaları göster";
-
-// menu item title for automatic encoding detection
-"Automatic" = "Otomatik";
-
-
-
 /* MARK: Save Panel Accessory */
 "Make file executable" = "Dosyayı çalıştırılabilir yap";
 

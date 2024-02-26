@@ -82,15 +82,6 @@
 
 
 
-/* MARK: Open Panel Accessory */
-"Text encoding:" = "Kódování textu:";
-"Show invisible files" = "Zobrazit neviditelné soubory";
-
-// menu item title for automatic encoding detection
-"Automatic" = "Automatický";
-
-
-
 /* MARK: Save Panel Accessory */
 "Make file executable" = "Vytvořit spustitelný soubor";
 

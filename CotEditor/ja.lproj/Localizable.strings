@@ -83,15 +83,6 @@
 
 
 
-/* MARK: Open Panel Accessory */
-"Text encoding:" = "テキストエンコーディング:";
-"Show invisible files" = "不可視ファイルを表示";
-
-// menu item title for automatic encoding detection
-"Automatic" = "自動";
-
-
-
 /* MARK: Save Panel Accessory */
 "Make file executable" = "実行可能ファイルにする";
 

@@ -82,15 +82,6 @@
 
 
 
-/* MARK: Open Panel Accessory */
-"Text encoding:" = "Codificación del texto:";
-"Show invisible files" = "Mostrar archivos ocultos";
-
-// menu item title for automatic encoding detection
-"Automatic" = "Automático";
-
-
-
 /* MARK: Save Panel Accessory */
 "Make file executable" = "Hacer que el archivo sea ejecutable";
 
