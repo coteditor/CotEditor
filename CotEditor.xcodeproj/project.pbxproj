@@ -191,6 +191,8 @@
 		2A39ACD62B8CE97800E216C9 /* UnicodeInput.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACD42B8CE97700E216C9 /* UnicodeInput.xcstrings */; };
 		2A39ACE62B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACE52B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings */; };
 		2A39ACE72B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACE52B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings */; };
+		2A39ACF72B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACF62B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings */; };
+		2A39ACF82B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39ACF62B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings */; };
 		2A3A19DF2068A76600516DE4 /* NSTextView+MultipleReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplace.swift */; };
 		2A3A19E02068A76600516DE4 /* NSTextView+MultipleReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplace.swift */; };
 		2A3A19E2206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */; };
@@ -941,6 +943,7 @@
 		2A39ACC32B8CE76800E216C9 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/CustomTabWidth.xcstrings; sourceTree = "<group>"; };
 		2A39ACD42B8CE97700E216C9 /* UnicodeInput.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = UnicodeInput.xcstrings; sourceTree = "<group>"; };
 		2A39ACE52B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = OpenPanelAccessory.xcstrings; sourceTree = "<group>"; };
+		2A39ACF62B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = SavePanelAccessory.xcstrings; sourceTree = "<group>"; };
 		2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+MultipleReplace.swift"; sourceTree = "<group>"; };
 		2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+BracePair.swift"; sourceTree = "<group>"; };
 		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
@@ -1758,6 +1761,7 @@
 			isa = PBXGroup;
 			children = (
 				2A39ACE52B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings */,
+				2A39ACF62B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings */,
 				2A39AC912B8CE40400E216C9 /* GoToLine.xcstrings */,
 				2A39ACC22B8CE76800E216C9 /* CustomTabWidth.xcstrings */,
 				2A39ACB82B8CE6DE00E216C9 /* CustomSurround.xcstrings */,
@@ -2518,6 +2522,7 @@
 				2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */,
 				2A80C65F1CEE33C100AA664D /* Credits.html in Resources */,
 				2AE73ECD2035223100D8903B /* Credits.css in Resources */,
+				2A39ACF72B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */,
 				2A80C6691CEE540F00AA664D /* Acknowledgments.html in Resources */,
 				2AE73EC9203520E100D8903B /* Acknowledgments.css in Resources */,
 				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
@@ -2622,6 +2627,7 @@
 				2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */,
 				2A5D13421D1FE34F00D38E6A /* FindPanelFieldView.storyboard in Resources */,
 				2A10D1381E715E5B0027192A /* SyntaxListView.storyboard in Resources */,
+				2A39ACF82B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */,
 				2A10D10A1E708CDF0027192A /* KeyBindingTreeView.storyboard in Resources */,
 				2AAFA7BD2B7A2DB000A2B228 /* MultipleReplaceListView.storyboard in Resources */,
 				2A3D63FB1E769DDF00F538E1 /* MultipleReplaceView.storyboard in Resources */,

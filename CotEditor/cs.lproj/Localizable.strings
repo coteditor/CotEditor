@@ -82,11 +82,6 @@
 
 
 
-/* MARK: Save Panel Accessory */
-"Make file executable" = "Vytvořit spustitelný soubor";
-
-
-
 /* MARK: Document Controller */
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "Soubor „%@” se nezdá být textovým.";

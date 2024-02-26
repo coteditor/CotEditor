@@ -82,11 +82,6 @@
 
 
 
-/* MARK: Save Panel Accessory */
-"Make file executable" = "Rendi eseguibile il file";
-
-
-
 /* MARK: Document Controller */
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "Il file “%@” non sembra essere di testo.";

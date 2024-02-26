@@ -40,7 +40,7 @@ struct SavePanelAccessory: View {
     
     var body: some View {
         
-        Toggle("Make file executable", isOn: $options.isExecutable)
+        Toggle(String(localized: "Make file executable", table: "SavePanelAccessory", comment: "toggle button label"), isOn: $options.isExecutable)
             .padding(10)
     }
 }
