@@ -68,7 +68,7 @@ struct EncodingListView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Text("Drag encodings to change the order:")
+            Text("Drag encodings to change the order:", tableName: "EncodingList")
             
             List(selection: $selection) {
                 ForEach(self.model.items) { item in
@@ -97,16 +97,16 @@ struct EncodingListView: View {
                 
             HStack {
                 Spacer()
-                Button("Add Separator") {
+                Button(String(localized: "Add Separator", table: "EncodingList", comment: "button label")) {
                     self.model.addSeparator(after: self.selection, undoManager: self.undoManager)
                 }
-                Button("Delete Separator") {
+                Button(String(localized: "Delete Separator", table: "EncodingList", comment: "button label")) {
                     self.model.deleteSeparators(in: self.selection, undoManager: self.undoManager)
                 }
                 .disabled(!self.model.containSeparators(in: self.selection))
             }.controlSize(.small)
             
-            Text("This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized.")
+            Text("This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized.", tableName: "EncodingList")
                 .controlSize(.small)
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(.bottom)

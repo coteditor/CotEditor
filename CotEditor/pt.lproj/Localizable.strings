@@ -553,14 +553,6 @@
 
 
 
-/* MARK: Encoding List View */
-"Drag encodings to change the order:" = "Arraste codificações para alterar a ordem:";
-"This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Esta ordem é para o menu de Codificação do Arquivo e para a detecção ao abrir arquivos. Para a detecção, serão priorizados os items ao topo da lista.";
-"Add Separator" = "Adicionar Separador";
-"Delete Separator" = "Apagar Separador";
-
-
-
 /* MARK: Syntax Mapping Conflicts View */
 "Syntax Mapping Conflicts" = "Conflitos no mapeamento de sintaxes";
 "The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "As seguintes regras de mapeamento de arquivo estão registradas em várias sintaxes. O CotEditor utiliza automaticamente a primeira sintaxe. Para resolver os conflitos, edite cada definição de sintaxe.";

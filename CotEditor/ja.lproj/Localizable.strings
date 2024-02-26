@@ -554,14 +554,6 @@
 
 
 
-/* MARK: Encoding List View */
-"Drag encodings to change the order:" = "エンコーディングをドラッグして並び替えてください:";
-"This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "この順序はエンコーディングメニューや書類を開くときのエンコーディング認識で使われます。自動認識では上位のエンコーディングがより優先して適用されます。";
-"Add Separator" = "区切り線を追加";
-"Delete Separator" = "区切り線を削除";
-
-
-
 /* MARK: Syntax Mapping Conflicts View */
 "Syntax Mapping Conflicts" = "ファイル関連付けのコンフリクト";
 "The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "以下のファイル関連付けルールはいくつかのシンタックスで重複して登録されています。CotEditorは自動的に最初のシンタックスを使用します。解決するには、それぞれのシンタックス定義を編集してください。";

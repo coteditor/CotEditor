@@ -177,6 +177,8 @@
 		2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */; };
 		2A39AC472B8B5C9700E216C9 /* OutlineItem+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A39AC462B8B5C9700E216C9 /* OutlineItem+AttributedString.swift */; };
 		2A39AC482B8B5C9700E216C9 /* OutlineItem+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A39AC462B8B5C9700E216C9 /* OutlineItem+AttributedString.swift */; };
+		2A39AC812B8CDFC800E216C9 /* EncodingList.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39AC802B8CDFC800E216C9 /* EncodingList.xcstrings */; };
+		2A39AC822B8CDFCA00E216C9 /* EncodingList.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A39AC802B8CDFC800E216C9 /* EncodingList.xcstrings */; };
 		2A3A19DF2068A76600516DE4 /* NSTextView+MultipleReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplace.swift */; };
 		2A3A19E02068A76600516DE4 /* NSTextView+MultipleReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplace.swift */; };
 		2A3A19E2206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */; };
@@ -920,6 +922,7 @@
 		2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Sparkle.xcstrings; path = mul.lproj/Sparkle.xcstrings; sourceTree = "<group>"; };
 		2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableArrayController.swift; sourceTree = "<group>"; };
 		2A39AC462B8B5C9700E216C9 /* OutlineItem+AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutlineItem+AttributedString.swift"; sourceTree = "<group>"; };
+		2A39AC802B8CDFC800E216C9 /* EncodingList.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = EncodingList.xcstrings; sourceTree = "<group>"; };
 		2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+MultipleReplace.swift"; sourceTree = "<group>"; };
 		2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+BracePair.swift"; sourceTree = "<group>"; };
 		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
@@ -1388,8 +1391,8 @@
 				2A65EC292B80C168008096C5 /* AppearanceSettingsView.swift */,
 				2A78BFA31D1B02ED00A583D2 /* WindowSettingsView.swift */,
 				2AFFA7C52B170097005652CD /* EditSettingsView.swift */,
-				2ACDA2522B813FA500B2EBA8 /* SnippetsSettingsView.swift */,
 				2AFFA7C22B16E93B005652CD /* FormatSettingsView.swift */,
+				2ACDA2522B813FA500B2EBA8 /* SnippetsSettingsView.swift */,
 				2AA4D3731D1AA0AC001D261D /* KeyBindingsSettingsView.swift */,
 			);
 			name = Panes;
@@ -2094,6 +2097,7 @@
 				2AB9E4BB2B7F2378004E5BDC /* Settings */,
 				2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */,
 				2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */,
+				2A39AC802B8CDFC800E216C9 /* EncodingList.xcstrings */,
 				2A954B232AB28B010070FB74 /* TextFind.xcstrings */,
 				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
 				2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */,
@@ -2492,6 +2496,7 @@
 				2AB9E4C02B830902004E5BDC /* FormatSettings.xcstrings in Resources */,
 				2ACDA29A2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings in Resources */,
 				2A902A9D2B86DC140053FC96 /* KeyBindingsSettings.xcstrings in Resources */,
+				2A39AC812B8CDFC800E216C9 /* EncodingList.xcstrings in Resources */,
 				2AAF93562A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A5E6FC12A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
 				2A5E6FC72A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
@@ -2550,11 +2555,12 @@
 				2A5E6FC52A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
 				2ACDA2922B81E8B300B2EBA8 /* GeneralSettings.xcstrings in Resources */,
 				2ACDA2A62B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings in Resources */,
-				2ACDA2952B81E8B700B2EBA8 /* EditSettings.xcstrings in Resources */,
 				2ACDA2982B81E8BB00B2EBA8 /* WindowSettings.xcstrings in Resources */,
+				2ACDA2952B81E8B700B2EBA8 /* EditSettings.xcstrings in Resources */,
 				2AB9E4C12B830902004E5BDC /* FormatSettings.xcstrings in Resources */,
 				2ACDA29B2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings in Resources */,
 				2A1E7DCA2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings in Resources */,
+				2A39AC822B8CDFCA00E216C9 /* EncodingList.xcstrings in Resources */,
 				2AAF93572A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A5E6FC22A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
 				2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,

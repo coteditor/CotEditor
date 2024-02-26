@@ -552,14 +552,6 @@
 
 
 
-/* MARK: Encoding List View */
-"Drag encodings to change the order:" = "Pořadí kódování změníte přetažením:";
-"This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Toto pořadí se týká nabídky kódování a detekce kódování při otevření souboru. Při detekci mají vyšší položky vyšší prioritu.";
-"Add Separator" = "Přidat oddělovač";
-"Delete Separator" = "Smazat oddělovač";
-
-
-
 /* MARK: Syntax Mapping Conflicts View */
 "Syntax Mapping Conflicts" = "Konflikty mapování syntaxe";
 "The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "Následující pravidla mapování souborů jsou registrována ve více syntaxích. CotEditor automaticky použije první syntaxi. Chcete-li vyřešit konflikty, upravte každou definici syntaxe.";

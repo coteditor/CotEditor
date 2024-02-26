@@ -553,14 +553,6 @@
 
 
 
-/* MARK: Encoding List View */
-"Drag encodings to change the order:" = "拖拽以改變編碼順序：";
-"This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "這個列表是為編碼選單中的自動檢測準備的。\n透過檢測，較高的條目將獲得較高的優先順序。";
-"Add Separator" = "新增分隔線";
-"Delete Separator" = "刪除分隔線";
-
-
-
 /* MARK: Syntax Mapping Conflicts View */
 "Syntax Mapping Conflicts" = "文法定義映射衝突";
 "The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "下述檔案映射規則已登記於多個文法定義當中。CotEditor會自動使用最開頭的那筆文法定義。如欲解決這些衝突，請逐個編輯每一筆文法定義。";
