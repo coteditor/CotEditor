@@ -622,13 +622,3 @@
 "Version:" = "Versão:";
 // badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
 "deprecated" = "depreciado";
-
-
-
-/* MARK: LiveTextInsertionView */
-// button label
-"Insert" = "Inserir";
-"Close" = "Fechar";
-// error messages
-"No text detected" = "Texto não detectado";
-"Detection failed" = "Falha na detecção";

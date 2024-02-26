@@ -622,13 +622,3 @@
 "Version:" = "Versión:";  // FIXME: needs review
 // badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
 "deprecated" = "obsoleto";  // FIXME: needs review
-
-
-
-/* MARK: LiveTextInsertionView */
-// button label
-"Insert" = "Inserción";
-"Close" = "Cerrar";
-// error messages
-"No text detected" = "No se detectó texto";  // FIXME: needs review
-"Detection failed" = "La detección falló";  // FIXME: needs review

@@ -60,12 +60,12 @@ struct LiveTextInsertionView: View {
                 Spacer()
                 
                 if case .success(let analysis) = self.result, !analysis.transcript.isEmpty {
-                    Button("Insert") {
+                    Button(String(localized: "Insert", table: "LiveTextInsertion", comment: "button label")) {
                         self.actionHandler(analysis.transcript)
                         self.parent?.dismiss(nil)
                     }.keyboardShortcut(.defaultAction)
                 } else {
-                    Button("Close") {
+                    Button(String(localized: "Close", table: "LiveTextInsertion", comment: "button label")) {
                         self.parent?.dismiss(nil)
                     }
                 }
@@ -99,13 +99,13 @@ struct LiveTextInsertionView: View {
                     LiveTextOverlayView(analysis: analysis)
                     
                 case .success:
-                    Text("No text detected")
+                    Text("No text detected", tableName: "LiveTextInsertion")
                         .padding(.horizontal, 4)
                         .hudStyle()
                     
                 case .failure(let error):
                     VStack(spacing: 4) {
-                        Label("Detection failed", systemImage: "exclamationmark.triangle")
+                        Label(String(localized: "Detection failed", table: "LiveTextInsertion"), systemImage: "exclamationmark.triangle")
                             .symbolVariant(.fill)
                         Text(error.localizedDescription)
                             .lineLimit(nil)

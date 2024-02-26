@@ -622,13 +622,3 @@
 "Version:" = "Sürüm:";
 // badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
 "deprecated" = "kullanımdan kaldırıldı";
-
-
-
-/* MARK: LiveTextInsertionView */
-// button label
-"Insert" = "Ekle";
-"Close" = "Kapat";
-// error messages
-"No text detected" = "Algılanan metin yok";
-"Detection failed" = "Algılama başarısız";

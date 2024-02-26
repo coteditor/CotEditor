@@ -621,13 +621,3 @@
 "Version:" = "Verze:";
 // badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
 "deprecated" = "zastaralé";
-
-
-
-/* MARK: LiveTextInsertionView */
-// button label
-"Insert" = "Vložit";
-"Close" = "Zavřít";
-// error messages
-"No text detected" = "Nebyl zjištěn žádný text";
-"Detection failed" = "Detekce selhala";

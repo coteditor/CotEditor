@@ -623,13 +623,3 @@
 "Version:" = "バージョン:";
 // badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
 "deprecated" = "非推奨";
-
-
-
-/* MARK: LiveTextInsertionView */
-// button label
-"Insert" = "挿入";
-"Close" = "閉じる";
-// error messages
-"No text detected" = "テキストが検出されませんでした";
-"Detection failed" = "検出に失敗しました";

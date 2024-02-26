@@ -623,13 +623,3 @@
 "Version:" = "版本：";
 // badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
 "deprecated" = "已弃用";
-
-
-
-/* MARK: LiveTextInsertionView */
-// button label
-"Insert" = "插入";
-"Close" = "关闭";
-// error messages
-"No text detected" = "没有检测到文本";
-"Detection failed" = "检测失败";
