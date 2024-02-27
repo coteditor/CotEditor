@@ -485,10 +485,6 @@
 "Quick Actions" = "Rychlé akce";
 
 
-/* MARK: Opacity View */
-"Editor’s Opacity" = "Neprůhlednost editoru";
-
-
 /* MARK: Character Info */
 "<a letter consisting of %lld characters>" = "<písmeno složené z %lld znaků>";  // %lld is always 2 or more.
 

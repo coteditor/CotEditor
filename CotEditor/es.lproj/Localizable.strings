@@ -485,10 +485,6 @@
 "Quick Actions" = "Acciones rápidas";
 
 
-/* MARK: Opacity View */
-"Editor’s Opacity" = "Opacidad del editor";
-
-
 /* MARK: Character Info */
 "<a letter consisting of %lld characters>" = "<una letra que consta de %lld caracteres>";  // %lld is always 2 or more.  // FIXME: needs review
 

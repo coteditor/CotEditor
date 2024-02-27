@@ -487,10 +487,6 @@
 "Quick Actions" = "快速操作";
 
 
-/* MARK: Opacity View */
-"Editor’s Opacity" = "编辑器透明度";
-
-
 /* MARK: Character Info */
 "<a letter consisting of %lld characters>" = "<包含有%lld个字符>";  // %lld is always 2 or more.
 

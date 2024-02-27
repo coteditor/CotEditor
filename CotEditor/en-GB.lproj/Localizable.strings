@@ -485,10 +485,6 @@
 "Quick Actions" = "Quick Actions";
 
 
-/* MARK: Opacity View */
-"Editor’s Opacity" = "Editor’s Opacity";
-
-
 /* MARK: Character Info */
 "<a letter consisting of %lld characters>" = "<a letter consisting of %lld characters>";  // %lld is always 2 or more.
 

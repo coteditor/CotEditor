@@ -1,5 +1,5 @@
 //
-//  OpacityView.swift
+//  EditorOpacityView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,13 +26,13 @@
 import SwiftUI
 
 @available(macOS, deprecated: 14)
-@MainActor final class OpacityHostingView: NSHostingView<OpacityView> {
+@MainActor final class OpacityHostingView: NSHostingView<EditorOpacityView> {
     
     convenience init(window: DocumentWindow?) {
         
         assert(window != nil)
         
-        self.init(rootView: OpacityView(window: window))
+        self.init(rootView: EditorOpacityView(window: window))
         
         self.frame.size = self.intrinsicContentSize
     }
@@ -45,20 +45,20 @@ import SwiftUI
         let window = NSDocumentController.shared.currentDocument?.windowControllers.first?.window as? DocumentWindow
         assert(window != nil)
         
-        super.init(rootView: OpacityView(window: window))
+        super.init(rootView: EditorOpacityView(window: window))
         
         self.frame.size = self.intrinsicContentSize
     }
     
     
-    @MainActor required init(rootView: OpacityView) {
+    @MainActor required init(rootView: EditorOpacityView) {
         
         super.init(rootView: rootView)
     }
 }
 
 
-struct OpacityView: View {
+struct EditorOpacityView: View {
     
     weak var window: DocumentWindow?
     
@@ -68,7 +68,7 @@ struct OpacityView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Text("Editor’s Opacity")
+            Text("Editor’s Opacity", tableName: "EditorOpacity")
                 .fontWeight(.semibold)
                 .foregroundStyle(.secondary)
             
@@ -94,5 +94,5 @@ struct OpacityView: View {
 // MARK: - Preview
 
 #Preview {
-    OpacityView()
+    EditorOpacityView()
 }

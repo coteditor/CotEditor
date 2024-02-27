@@ -731,7 +731,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Shows the editor opacity slider as popover.
     @IBAction func showOpacitySlider(_ sender: Any?) {
         
-        let opacityView = OpacityView(window: self.view.window as? DocumentWindow)
+        let opacityView = EditorOpacityView(window: self.view.window as? DocumentWindow)
         let viewController = NSHostingController(rootView: opacityView)
         
         if #available(macOS 14, *), let toolbarItem = sender as? NSToolbarItem {

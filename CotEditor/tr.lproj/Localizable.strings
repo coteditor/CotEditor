@@ -485,10 +485,6 @@
 "Quick Actions" = "Hızlı Eylemler";
 
 
-/* MARK: Opacity View */
-"Editor’s Opacity" = "Düzenleyici Matlığı";
-
-
 /* MARK: Character Info */
 "<a letter consisting of %lld characters>" = "%lld karakterden oluşan bir harf";  // %lld is always 2 or more.
 

@@ -65,8 +65,8 @@
 		2A158C1D2945A6B1000A4EC1 /* HeadingMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A158C1B2945A6B1000A4EC1 /* HeadingMenuItem.swift */; };
 		2A158C1F2945E423000A4EC1 /* SavePanelAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A158C1E2945E423000A4EC1 /* SavePanelAccessory.swift */; };
 		2A158C202945E423000A4EC1 /* SavePanelAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A158C1E2945E423000A4EC1 /* SavePanelAccessory.swift */; };
-		2A158C222945F54B000A4EC1 /* OpacityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A158C212945F54B000A4EC1 /* OpacityView.swift */; };
-		2A158C232945F54B000A4EC1 /* OpacityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A158C212945F54B000A4EC1 /* OpacityView.swift */; };
+		2A158C222945F54B000A4EC1 /* EditorOpacityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A158C212945F54B000A4EC1 /* EditorOpacityView.swift */; };
+		2A158C232945F54B000A4EC1 /* EditorOpacityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A158C212945F54B000A4EC1 /* EditorOpacityView.swift */; };
 		2A1679E61D3CE07100E8261D /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1679E51D3CE07100E8261D /* Document.swift */; };
 		2A1679E71D3CE07100E8261D /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1679E51D3CE07100E8261D /* Document.swift */; };
 		2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17A3121D2D16F1001DD717 /* WindowContentViewController.swift */; };
@@ -112,6 +112,8 @@
 		2A1E7DE62B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */; };
 		2A1E7DFA2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */; };
 		2A1E7DFB2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */; };
+		2A1E7E192B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */; };
+		2A1E7E1A2B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */; };
 		2A1EB5C419AD469500C1E37E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Assets.xcassets */; };
 		2A1FAD5820A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
 		2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
@@ -879,7 +881,7 @@
 		2A1311D52127DCE1001D52C5 /* NSTextView+CurrentLineHighlighting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+CurrentLineHighlighting.swift"; sourceTree = "<group>"; };
 		2A158C1B2945A6B1000A4EC1 /* HeadingMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingMenuItem.swift; sourceTree = "<group>"; };
 		2A158C1E2945E423000A4EC1 /* SavePanelAccessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePanelAccessory.swift; sourceTree = "<group>"; };
-		2A158C212945F54B000A4EC1 /* OpacityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacityView.swift; sourceTree = "<group>"; };
+		2A158C212945F54B000A4EC1 /* EditorOpacityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorOpacityView.swift; sourceTree = "<group>"; };
 		2A1679E51D3CE07100E8261D /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		2A17A3121D2D16F1001DD717 /* WindowContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowContentViewController.swift; sourceTree = "<group>"; };
 		2A17A3151D2D4319001DD717 /* DocumentWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindow.swift; sourceTree = "<group>"; };
@@ -903,8 +905,9 @@
 		2A1ABCA727F07CED0054795D /* NSScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSScroller.swift; sourceTree = "<group>"; };
 		2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedScrollView.swift; sourceTree = "<group>"; };
 		2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = KeyBindingsSettings.xcstrings; path = mul.lproj/KeyBindingsSettings.xcstrings; sourceTree = "<group>"; };
-		2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = MultipleReplace.xcstrings; sourceTree = "<group>"; };
-		2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = PrintAccessory.xcstrings; sourceTree = "<group>"; };
+		2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = MultipleReplace.xcstrings; path = mul.lproj/MultipleReplace.xcstrings; sourceTree = "<group>"; };
+		2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = PrintAccessory.xcstrings; path = mul.lproj/PrintAccessory.xcstrings; sourceTree = "<group>"; };
+		2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = EditorOpacity.xcstrings; path = mul.lproj/EditorOpacity.xcstrings; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
@@ -1779,6 +1782,7 @@
 				2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */,
 				2A39ACE52B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings */,
 				2A39ACF62B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings */,
+				2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */,
 				2A39AC912B8CE40400E216C9 /* GoToLine.xcstrings */,
 				2A39ACFB2B8CED8B00E216C9 /* CustomTabWidth.xcstrings */,
 				2A39ACB82B8CE6DE00E216C9 /* CustomSurround.xcstrings */,
@@ -1966,7 +1970,7 @@
 			children = (
 				2AC6069A20416ADE00F9C839 /* OpenPanelAccessory.swift */,
 				2A158C1E2945E423000A4EC1 /* SavePanelAccessory.swift */,
-				2A158C212945F54B000A4EC1 /* OpacityView.swift */,
+				2A158C212945F54B000A4EC1 /* EditorOpacityView.swift */,
 				2A5D13151D1EF5AA00D38E6A /* GoToLineView.swift */,
 				2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */,
 				2AE12E061E7DDF0700681F72 /* CustomSurroundView.swift */,
@@ -2553,6 +2557,7 @@
 				2ACDA2892B81E2AC00B2EBA8 /* ColorCode.xcstrings in Resources */,
 				2A39ACB92B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACF92B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
+				2A1E7E192B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
 				2A39AC812B8CDFC800E216C9 /* EncodingList.xcstrings in Resources */,
 				2A39AC922B8CE40400E216C9 /* GoToLine.xcstrings in Resources */,
 				2AC94B222B6E26F40086F9F2 /* Inspector.xcstrings in Resources */,
@@ -2626,6 +2631,7 @@
 				2ACDA28A2B81E2B100B2EBA8 /* ColorCode.xcstrings in Resources */,
 				2A39ACBA2B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACFA2B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
+				2A1E7E1A2B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
 				2A39AC822B8CDFCA00E216C9 /* EncodingList.xcstrings in Resources */,
 				2A39AC932B8CE40400E216C9 /* GoToLine.xcstrings in Resources */,
 				2AC94B232B6E26F40086F9F2 /* Inspector.xcstrings in Resources */,
@@ -2824,6 +2830,7 @@
 				2A68722F288A5C44006D6B41 /* DraggableHostingView.swift in Sources */,
 				2A8E47E2299A2314006A40D8 /* EditedRangeSet.swift in Sources */,
 				2AF45E1F1E6C0D920030CD60 /* EditorCounter.swift in Sources */,
+				2A158C222945F54B000A4EC1 /* EditorOpacityView.swift in Sources */,
 				2AEC69C51D41A1BE0089F96F /* EditorTextView.swift in Sources */,
 				2A4257BA1D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */,
 				2A6FD9EB1D3A819500A59784 /* EditorTextView+Commenting.swift in Sources */,
@@ -2954,7 +2961,6 @@
 				2A359DFF1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */,
 				2AD8D74B2064AD83000BEFDB /* NumberTextField.swift in Sources */,
 				2ACDA2502B81201A00B2EBA8 /* OpacitySlider.swift in Sources */,
-				2A158C222945F54B000A4EC1 /* OpacityView.swift in Sources */,
 				2AC6069C20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */,
 				2A3E61BF27C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,
 				2A88E7721E81A2C7000019C6 /* OrderedSet.swift in Sources */,
@@ -3186,6 +3192,7 @@
 				2A38FAFD1D1C67050032231A /* DraggableArrayController.swift in Sources */,
 				2A687230288A5C44006D6B41 /* DraggableHostingView.swift in Sources */,
 				2A8E47E3299A2314006A40D8 /* EditedRangeSet.swift in Sources */,
+				2A158C232945F54B000A4EC1 /* EditorOpacityView.swift in Sources */,
 				2AF45E1E1E6C0D920030CD60 /* EditorCounter.swift in Sources */,
 				2AEC69C41D41A1BE0089F96F /* EditorTextView.swift in Sources */,
 				2A4257B91D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */,
@@ -3316,7 +3323,6 @@
 				2A05081323D6B9E900602F5E /* NSViewController.swift in Sources */,
 				2A359DFE1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */,
 				2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */,
-				2A158C232945F54B000A4EC1 /* OpacityView.swift in Sources */,
 				2ACDA2512B81201A00B2EBA8 /* OpacitySlider.swift in Sources */,
 				2AC6069B20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */,
 				2A3E61C027C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,

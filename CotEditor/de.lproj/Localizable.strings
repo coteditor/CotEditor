@@ -485,10 +485,6 @@
 "Quick Actions" = "Schnellaktionen";
 
 
-/* MARK: Opacity View */
-"Editor’s Opacity" = "Deckkraft des Editors";
-
-
 /* MARK: Character Info */
 "<a letter consisting of %lld characters>" = "<ein aus %lld Zeichen bestehender Buchstabe>";  // %lld is always 2 or more.
 
