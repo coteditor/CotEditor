@@ -468,17 +468,6 @@
 "The selected text." = "Seçilen metin.";
 
 
-/* MARK: Syntax Mapping Conflicts View */
-"Syntax Mapping Conflicts" = "Sözdizim Eşlemleme Çakışmaları";
-"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "Aşağıdaki dosya eşlemleme kuralları birden çok sözdizimde kayıtlıdır. CotEditor, kendiliğinden ilk sözdizimi kullanır. Çakışmaları çözmek için her bir sözdizim tanımını düzenleyin.";
-"Extension" = "Uzantı";
-"Filename" = "Dosya Adı";
-"Interpreter" = "Yorumlayıcı";
-// table column headers
-"Used syntax" = "Kullanılan Sözdizim";
-"Duplicated syntaxes" = "Yinelenmiş Sözdizimler";
-
-
 // MARK: -
 
 /* MARK: Quick Action Bar */

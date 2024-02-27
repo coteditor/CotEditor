@@ -468,17 +468,6 @@
 "The selected text." = "The selected text.";
 
 
-/* MARK: Syntax Mapping Conflicts View */
-"Syntax Mapping Conflicts" = "Syntax Mapping Conflicts";
-"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition.";
-"Extension" = "Extension";
-"Filename" = "Filename";
-"Interpreter" = "Interpreter";
-// table column headers
-"Used syntax" = "Used syntax";
-"Duplicated syntaxes" = "Duplicated syntaxes";
-
-
 // MARK: -
 
 /* MARK: Quick Action Bar */

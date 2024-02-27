@@ -114,6 +114,8 @@
 		2A1E7DFB2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */; };
 		2A1E7E192B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */; };
 		2A1E7E1A2B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */; };
+		2A1E7E2A2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */; };
+		2A1E7E2B2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */; };
 		2A1EB5C419AD469500C1E37E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Assets.xcassets */; };
 		2A1FAD5820A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
 		2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
@@ -306,8 +308,8 @@
 		2A5D2DC421908F4A006814D5 /* NSFont+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D2DC221908F4A006814D5 /* NSFont+Name.swift */; };
 		2A5DCE4F1D185F1B00D5D74C /* CharacterField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */; };
 		2A5DCE501D185F1B00D5D74C /* CharacterField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */; };
-		2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsView.swift */; };
-		2A5DCE871D1888D800D5D74C /* SyntaxMappingConflictsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsView.swift */; };
+		2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictView.swift */; };
+		2A5DCE871D1888D800D5D74C /* SyntaxMappingConflictView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictView.swift */; };
 		2A5DCE8A1D18FFDB00D5D74C /* EncodingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE881D18FFDB00D5D74C /* EncodingListView.swift */; };
 		2A5E41052B0AEFBB00D5EA20 /* CommandBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E41042B0AEFBB00D5EA20 /* CommandBarView.swift */; };
 		2A5E41062B0AEFBB00D5EA20 /* CommandBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E41042B0AEFBB00D5EA20 /* CommandBarView.swift */; };
@@ -908,6 +910,7 @@
 		2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = MultipleReplace.xcstrings; path = mul.lproj/MultipleReplace.xcstrings; sourceTree = "<group>"; };
 		2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = PrintAccessory.xcstrings; path = mul.lproj/PrintAccessory.xcstrings; sourceTree = "<group>"; };
 		2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = EditorOpacity.xcstrings; path = mul.lproj/EditorOpacity.xcstrings; sourceTree = "<group>"; };
+		2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = SyntaxMappingConflict.xcstrings; path = mul.lproj/SyntaxMappingConflict.xcstrings; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
@@ -1016,7 +1019,7 @@
 		2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelController.swift; sourceTree = "<group>"; };
 		2A5D2DC221908F4A006814D5 /* NSFont+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFont+Name.swift"; sourceTree = "<group>"; };
 		2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterField.swift; sourceTree = "<group>"; };
-		2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxMappingConflictsView.swift; sourceTree = "<group>"; };
+		2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxMappingConflictView.swift; sourceTree = "<group>"; };
 		2A5DCE881D18FFDB00D5D74C /* EncodingListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingListView.swift; sourceTree = "<group>"; };
 		2A5E41042B0AEFBB00D5EA20 /* CommandBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBarView.swift; sourceTree = "<group>"; };
 		2A5E41072B0AF62100D5EA20 /* CommandBarWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandBarWindowController.swift; sourceTree = "<group>"; };
@@ -2041,7 +2044,7 @@
 				2A63FBE21D1D90E70081C84E /* ThemeEditorView.swift */,
 				2A2792971D1E57DA00F3FC5D /* SyntaxListViewController.swift */,
 				2A5DCE881D18FFDB00D5D74C /* EncodingListView.swift */,
-				2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsView.swift */,
+				2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictView.swift */,
 				2A505C08298A88DD002080AA /* SnippetsViewController.swift */,
 				2A91C3201D1C40E4007CF8BE /* FileDropViewController.swift */,
 			);
@@ -2156,6 +2159,7 @@
 				2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */,
 				2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */,
 				2A39AC802B8CDFC800E216C9 /* EncodingList.xcstrings */,
+				2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */,
 				2A1E7DE72B8D615A004F0C07 /* TextFind */,
 				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
 				2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */,
@@ -2572,6 +2576,7 @@
 				2A39ACF72B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */,
 				2A5E6FC72A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
 				2A6566E92B73BBB400008669 /* SyntaxEditor.xcstrings in Resources */,
+				2A1E7E2A2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */,
 				2A954B242AB28B010070FB74 /* TextFind.xcstrings in Resources */,
 				2A65EC3B2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */,
 				2A39ACD52B8CE97800E216C9 /* UnicodeInput.xcstrings in Resources */,
@@ -2646,6 +2651,7 @@
 				2A39ACF82B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */,
 				2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
 				2AA6E0C82B75AC4900E536F8 /* SyntaxEditor.xcstrings in Resources */,
+				2A1E7E2B2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */,
 				2A954B252AB28B010070FB74 /* TextFind.xcstrings in Resources */,
 				2A65EC3C2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */,
 				2A39ACD62B8CE97800E216C9 /* UnicodeInput.xcstrings in Resources */,
@@ -3033,7 +3039,7 @@
 				2A2615742977CB48008C2240 /* SyntaxHighlightEditView.swift in Sources */,
 				2A2792991D1E57DA00F3FC5D /* SyntaxListViewController.swift in Sources */,
 				2AC434F31D494EA700980E66 /* SyntaxManager.swift in Sources */,
-				2A5DCE871D1888D800D5D74C /* SyntaxMappingConflictsView.swift in Sources */,
+				2A5DCE871D1888D800D5D74C /* SyntaxMappingConflictView.swift in Sources */,
 				2A2615832977F62D008C2240 /* SyntaxMetadataEditView.swift in Sources */,
 				2A26158C2979052C008C2240 /* SyntaxObject.swift in Sources */,
 				2A7725651D50401300A53C09 /* SyntaxObject+Validation.swift in Sources */,
@@ -3396,7 +3402,7 @@
 				2A2615752977CB48008C2240 /* SyntaxHighlightEditView.swift in Sources */,
 				2A2792981D1E57DA00F3FC5D /* SyntaxListViewController.swift in Sources */,
 				2AC434F41D494EA800980E66 /* SyntaxManager.swift in Sources */,
-				2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictsView.swift in Sources */,
+				2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictView.swift in Sources */,
 				2A2615842977F62D008C2240 /* SyntaxMetadataEditView.swift in Sources */,
 				2A26158D2979052C008C2240 /* SyntaxObject.swift in Sources */,
 				2A7725641D50401300A53C09 /* SyntaxObject+Validation.swift in Sources */,

@@ -469,17 +469,6 @@
 "The selected text." = "選択テキスト";
 
 
-/* MARK: Syntax Mapping Conflicts View */
-"Syntax Mapping Conflicts" = "ファイル関連付けのコンフリクト";
-"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "以下のファイル関連付けルールはいくつかのシンタックスで重複して登録されています。CotEditorは自動的に最初のシンタックスを使用します。解決するには、それぞれのシンタックス定義を編集してください。";
-"Extension" = "拡張子";
-"Filename" = "ファイル名";
-"Interpreter" = "インタープリタ";
-// table column headers
-"Used syntax" = "使用するシンタックス";
-"Duplicated syntaxes" = "重複しているシンタックス";
-
-
 // MARK: -
 
 /* MARK: Quick Action Bar */

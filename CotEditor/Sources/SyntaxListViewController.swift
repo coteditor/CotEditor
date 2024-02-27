@@ -263,7 +263,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     /// Shows the syntax mapping conflict error sheet.
     @IBAction func openSyntaxMappingConflictSheet(_ sender: Any?) {
         
-        let view = SyntaxMappingConflictsView(table: SyntaxManager.shared.mappingConflicts)
+        let view = SyntaxMappingConflictView(table: SyntaxManager.shared.mappingConflicts)
         let viewController = NSHostingController(rootView: view)
         viewController.rootView.parent = viewController
         

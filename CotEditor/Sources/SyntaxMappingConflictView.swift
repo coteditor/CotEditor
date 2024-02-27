@@ -1,5 +1,5 @@
 //
-//  SyntaxMappingConflictsView.swift
+//  SyntaxMappingConflictView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -46,7 +46,7 @@ private struct FileMappingConflict: Identifiable {
 
 // MARK: - SwiftUI View
 
-struct SyntaxMappingConflictsView: View {
+struct SyntaxMappingConflictView: View {
     
     weak var parent: NSHostingController<Self>?
     
@@ -66,19 +66,19 @@ struct SyntaxMappingConflictsView: View {
     var body: some View {
         
         VStack(alignment: .leading, spacing: 10) {
-            Text("Syntax Mapping Conflicts")
+            Text("Syntax Mapping Conflicts", tableName: "SyntaxMappingConflict", comment: "heading")
                 .font(.headline)
-            Text("The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition.")
+            Text("The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition.", tableName: "SyntaxMappingConflict")
                 .controlSize(.small)
             
             if !self.extensionConflicts.isEmpty {
-                ConflictTable(String(localized: "Extension"), conflicts: self.extensionConflicts)
+                ConflictTable(String(localized: "Extension", table: "SyntaxMappingConflict", comment: "heading"), conflicts: self.extensionConflicts)
             }
             if !self.filenameConflicts.isEmpty {
-                ConflictTable(String(localized: "Filename"), conflicts: self.filenameConflicts)
+                ConflictTable(String(localized: "Filename", table: "SyntaxMappingConflict", comment: "heading"), conflicts: self.filenameConflicts)
             }
             if !self.interpreterConflicts.isEmpty {
-                ConflictTable(String(localized: "Interpreter"), conflicts: self.interpreterConflicts)
+                ConflictTable(String(localized: "Interpreter", table: "SyntaxMappingConflict", comment: "heading"), conflicts: self.interpreterConflicts)
             }
             
             HStack {
@@ -120,10 +120,10 @@ private struct ConflictTable: View {
         Section {
             Table(self.conflicts, selection: $selection, sortOrder: $sortOrder) {
                 TableColumn(self.name, value: \.name)
-                TableColumn("Used syntax", value: \.primarySyntax) {
+                TableColumn(String(localized: "Used syntax", table: "SyntaxMappingConflict", comment: "table column header"), value: \.primarySyntax) {
                     Text($0.primarySyntax).fontWeight(.semibold)
                 }
-                TableColumn("Duplicated syntaxes") {
+                TableColumn(String(localized: "Duplicated syntaxes", table: "SyntaxMappingConflict", comment: "table column header")) {
                     Text($0.duplicatedSyntaxes, format: .list(type: .and, width: .narrow))
                 }
             }
@@ -142,7 +142,7 @@ private struct ConflictTable: View {
 // MARK: - Preview
 
 #Preview {
-    SyntaxMappingConflictsView(table: [
+    SyntaxMappingConflictView(table: [
         \.extensions: ["svg": ["SVG", "XML"]],
         \.filenames: ["foo": ["SVG", "XML", "Foo"]],
     ])

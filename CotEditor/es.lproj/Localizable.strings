@@ -468,17 +468,6 @@
 "The selected text." = "El texto seleccionado.";
 
 
-/* MARK: Syntax Mapping Conflicts View */
-"Syntax Mapping Conflicts" = "Conflictos de mapeo de sintaxis";  // FIXME: needs review
-"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "Las siguientes reglas de asignación de archivos están registradas en varias sintaxis. CotEditor utiliza la primera sintaxis automáticamente. Para resolver conflictos, edite cada definición de sintaxis.";  // FIXME: needs review
-"Extension" = "Extensión";
-"Filename" = "Nombre del archivo";
-"Interpreter" = "Intérprete";
-// table column headers
-"Used syntax" = "Sintaxis usada";  // FIXME: needs review
-"Duplicated syntaxes" = "Sintaxis duplicadas";  // FIXME: needs review
-
-
 // MARK: -
 
 /* MARK: Quick Action Bar */

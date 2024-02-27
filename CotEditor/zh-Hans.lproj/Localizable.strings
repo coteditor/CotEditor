@@ -470,17 +470,6 @@
 "The selected text." = "所选文本";
 
 
-/* MARK: Syntax Mapping Conflicts View */
-"Syntax Mapping Conflicts" = "语法映射冲突";
-"The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." = "下列文件映射规则被注册了多种语法。CotEditor自动使用第一个语法。可以通过编辑每个语法来解决冲突。";
-"Extension" = "扩展名";
-"Filename" = "檔案名稱";
-"Interpreter" = "解释器";
-// table column headers
-"Used syntax" = "已使用语法";
-"Duplicated syntaxes" = "重复的语法";
-
-
 // MARK: -
 
 /* MARK: Quick Action Bar */
