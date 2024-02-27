@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@ final class ConsolePanelController: NSWindowController {
         let panel = NSPanel(contentViewController: viewController)
         panel.styleMask = [.closable, .resizable, .titled, .fullSizeContentView, .utilityWindow]
         panel.isFloatingPanel = false
-        panel.title = String(localized: "Console")
+        panel.title = String(localized: "Console", table: "Console", comment: "window title")
         panel.setContentSize(NSSize(width: 360, height: 200))
         
         super.init(window: panel)
@@ -116,8 +116,8 @@ extension ConsolePanelController: NSToolbarDelegate {
             case .clear:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = String(localized: "Clear Log")
-                item.toolTip = String(localized: "Clear error log")
+                item.label = String(localized: "Clear Log", table: "Console", comment: "toolbar item label")
+                item.toolTip = String(localized: "Clear error log", table: "Console", comment: "toolbar item tooltip")
                 item.image = NSImage(systemSymbolName: "trash", accessibilityDescription: item.label)
                 item.action = #selector(ConsoleViewController.clearAll)
                 return item

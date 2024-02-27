@@ -441,12 +441,6 @@
 "Check the permission of the script file." = "Verifique as permissões do arquivo de script.";
 
 
-/* MARK: Console */
-"Console" = "Console";
-"Clear Log" = "Limpar Registro";
-"Clear error log" = "Limpe o registro de erros";
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "O caminho absoluto do arquivo solto.";

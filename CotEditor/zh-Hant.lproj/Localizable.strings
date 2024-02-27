@@ -441,12 +441,6 @@
 "Check the permission of the script file." = "請確認腳本檔案的許可權。";
 
 
-/* MARK: Console */
-"Console" = "主控台";
-"Clear Log" = "清空記錄";
-"Clear error log" = "清空錯誤記錄";
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "拖拽的檔案絕對路徑";

@@ -118,6 +118,8 @@
 		2A1E7E2B2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */; };
 		2A1E7E3B2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E3A2B8D7D47004F0C07 /* CharacterInspector.xcstrings */; };
 		2A1E7E3C2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E3A2B8D7D47004F0C07 /* CharacterInspector.xcstrings */; };
+		2A1E7E4F2B8D9706004F0C07 /* Console.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E4E2B8D9706004F0C07 /* Console.xcstrings */; };
+		2A1E7E502B8D9706004F0C07 /* Console.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E4E2B8D9706004F0C07 /* Console.xcstrings */; };
 		2A1EB5C419AD469500C1E37E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Assets.xcassets */; };
 		2A1FAD5820A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
 		2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
@@ -914,6 +916,7 @@
 		2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = EditorOpacity.xcstrings; path = mul.lproj/EditorOpacity.xcstrings; sourceTree = "<group>"; };
 		2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = SyntaxMappingConflict.xcstrings; path = mul.lproj/SyntaxMappingConflict.xcstrings; sourceTree = "<group>"; };
 		2A1E7E3A2B8D7D47004F0C07 /* CharacterInspector.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = CharacterInspector.xcstrings; path = mul.lproj/CharacterInspector.xcstrings; sourceTree = "<group>"; };
+		2A1E7E4E2B8D9706004F0C07 /* Console.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Console.xcstrings; path = mul.lproj/Console.xcstrings; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
@@ -2170,6 +2173,7 @@
 				2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */,
 				2A39AC942B8CE43100E216C9 /* AccessoryViews */,
 				2ACDA2882B81E2AC00B2EBA8 /* ColorCode.xcstrings */,
+				2A1E7E4E2B8D9706004F0C07 /* Console.xcstrings */,
 				2A39ACFE2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings */,
 				2ACDA29F2B81E8C300B2EBA8 /* IssueReport.xcstrings */,
 				2AA2E0111BFE12620087BDD6 /* UnicodeBlock.strings */,
@@ -2564,6 +2568,7 @@
 				2A55D5D82B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */,
 				2A1E7E3B2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */,
 				2ACDA2892B81E2AC00B2EBA8 /* ColorCode.xcstrings in Resources */,
+				2A1E7E4F2B8D9706004F0C07 /* Console.xcstrings in Resources */,
 				2A39ACB92B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACF92B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
 				2A1E7E192B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
@@ -2640,6 +2645,7 @@
 				2A55D5D92B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */,
 				2A1E7E3C2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */,
 				2ACDA28A2B81E2B100B2EBA8 /* ColorCode.xcstrings in Resources */,
+				2A1E7E502B8D9706004F0C07 /* Console.xcstrings in Resources */,
 				2A39ACBA2B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACFA2B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
 				2A1E7E1A2B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,

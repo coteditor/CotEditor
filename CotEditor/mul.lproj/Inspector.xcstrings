@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Character" : {
-      "comment" : "section title\ntable column header",
+      "comment" : "table column header\nsection title",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

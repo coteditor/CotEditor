@@ -441,12 +441,6 @@
 "Check the permission of the script file." = "Zkontrolujte oprávnění souboru skriptu.";
 
 
-/* MARK: Console */
-"Console" = "Konzola";
-"Clear Log" = "Smazat protokol";
-"Clear error log" = "Smazat protokol chyb";
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Absolutní cesta přetaženého souboru.";
