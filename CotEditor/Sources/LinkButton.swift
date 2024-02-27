@@ -39,7 +39,7 @@ struct LinkButton: View {
                     .accessibilityLabel("Jump to URL")
             }
             .buttonStyle(.borderless)
-            .help("Jump to URL")
+            .help(String(localized: "Jump to URL", comment: "tooltip for link button in URL field"))
         }
     }
 }

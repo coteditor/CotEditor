@@ -337,7 +337,7 @@
 
 
 /* MARK: NavigationBarController */
-// Outline menu title
+// tooltip for buttons
 "Jump to previous outline item" = "Salta all’elemento Outline successivo";
 "Jump to next outline item" = "Salta all’elemento Outline precedente";
 // Accessibility labels
@@ -375,7 +375,7 @@
 // default filename
 "Untitled" = "Senza titolo";
 
-// filename suffix of copied file
+// filename suffix for copied file
 "copy" = "Copia";
 
 // alert option button

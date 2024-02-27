@@ -315,7 +315,7 @@
 "Unwrap Lines" = "Unwrap Lines";
 "Wrap Lines" = "Wrap Lines";
 
-// Tooltip for “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled
+// tooltip for “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled
 "To show invisible characters, set them in the Window settings" = "To show invisible characters, set them in the Window settings";
 
 
@@ -337,7 +337,7 @@
 
 
 /* MARK: NavigationBarController */
-// Outline menu title
+// tooltip for buttons
 "Jump to previous outline item" = "Jump to previous outline item";
 "Jump to next outline item" = "Jump to next outline item";
 // Accessibility labels
@@ -375,7 +375,7 @@
 // default filename
 "Untitled" = "Untitled";
 
-// filename suffix of copied file
+// filename suffix for copied file
 "copy" = "copy";
 
 // alert option button

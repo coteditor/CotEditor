@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -278,7 +278,7 @@ final class NavigationBarController: NSViewController {
         }
         prevButton.image = NSImage(systemSymbolName: prevSymbol,
                                    accessibilityDescription: String(localized: "Previous"))!
-        prevButton.toolTip = String(localized: "Jump to previous outline item")
+        prevButton.toolTip = String(localized: "Jump to previous outline item", comment: "tooltip for button")
         prevButton.action = #selector(EditorViewController.selectPrevItemOfOutlineMenu)
         prevButton.target = self.parent
         prevButton.isEnabled = self.canSelectPrevItem
@@ -290,7 +290,7 @@ final class NavigationBarController: NSViewController {
         }
         nextButton.image = NSImage(systemSymbolName: nextSymbol,
                                    accessibilityDescription: String(localized: "Next"))!
-        nextButton.toolTip = String(localized: "Jump to next outline item")
+        nextButton.toolTip = String(localized: "Jump to next outline item", comment: "tooltip for button")
         nextButton.action = #selector(EditorViewController.selectNextItemOfOutlineMenu)
         nextButton.target = self.parent
         nextButton.isEnabled = self.canSelectNextItem

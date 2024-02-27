@@ -337,7 +337,7 @@
 
 
 /* MARK: NavigationBarController */
-// Outline menu title
+// tooltip for buttons
 "Jump to previous outline item" = "Přejít na předchozí položku osnovy";
 "Jump to next outline item" = "Přejít na další položku osnovy";
 // Accessibility labels
@@ -375,7 +375,7 @@
 // default filename
 "Untitled" = "Bez názvu";
 
-// filename suffix of copied file
+// filename suffix for copied file
 "copy" = "Kopírovat";
 
 // alert option button

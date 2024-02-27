@@ -337,7 +337,7 @@
 
 
 /* MARK: NavigationBarController */
-// Outline menu title
+// tooltip for buttons
 "Jump to previous outline item" = "上一個提綱項目";
 "Jump to next outline item" = "下一個提綱項目";
 // Accessibility labels
@@ -375,7 +375,7 @@
 // default filename
 "Untitled" = "未命名";
 
-// filename suffix of copied file
+// filename suffix for copied file
 "copy" = "拷貝";
 
 // alert option button
