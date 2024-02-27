@@ -258,37 +258,6 @@
 "Last modified on %@" = "最终修改：%@";  // %@ is date
 
 
-/* MARK: PrintAccessoryViewController */
-"Theme" = "主题";
-
-// Content of headers/footers
-"Syntax Name" = "语法名";
-"Document Name" = "文稿名";
-"File Path" = "文件路径";
-"Print Date" = "打印日期";
-"Last Modified Date" = "上次修改日期";
-"Page Number" = "页码";
-
-// Segmented control tooltips
-"Align Left" = "左对齐";
-"Center" = "居中";
-"Align Right" = "右对齐";
-
-// Summary item names
-"Font Size" = "字体大小";
-"Color" = "颜色";
-"Print Backgrounds" = "打印背景";
-"Line Number" = "行号";
-"Invisibles" = "不可见元素";
-"Header" = "页眉";
-"Footer" = "页脚";
-
-// Summary item values
-"%@ pt" = "%@点";
-"On" = "开";
-"Black and White" = "黑白";
-
-
 /* MARK: FilterField */
 "Filter" = "过滤";
 // Menu items

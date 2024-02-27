@@ -110,6 +110,8 @@
 		2A1E7DCA2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */; };
 		2A1E7DE52B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */; };
 		2A1E7DE62B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */; };
+		2A1E7DFA2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */; };
+		2A1E7DFB2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */; };
 		2A1EB5C419AD469500C1E37E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Assets.xcassets */; };
 		2A1FAD5820A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
 		2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
@@ -902,6 +904,7 @@
 		2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedScrollView.swift; sourceTree = "<group>"; };
 		2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = KeyBindingsSettings.xcstrings; path = mul.lproj/KeyBindingsSettings.xcstrings; sourceTree = "<group>"; };
 		2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = MultipleReplace.xcstrings; sourceTree = "<group>"; };
+		2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = PrintAccessory.xcstrings; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
@@ -1773,6 +1776,7 @@
 		2A39AC942B8CE43100E216C9 /* AccessoryViews */ = {
 			isa = PBXGroup;
 			children = (
+				2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */,
 				2A39ACE52B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings */,
 				2A39ACF62B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings */,
 				2A39AC912B8CE40400E216C9 /* GoToLine.xcstrings */,
@@ -2539,7 +2543,6 @@
 				2A5E6FC42A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
 				2ACDA2912B81E8B300B2EBA8 /* GeneralSettings.xcstrings in Resources */,
 				2ACDA2A52B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings in Resources */,
-				2A39ACA82B8CE58100E216C9 /* LiveTextInsertion.xcstrings in Resources */,
 				2ACDA2972B81E8BB00B2EBA8 /* WindowSettings.xcstrings in Resources */,
 				2ACDA2942B81E8B700B2EBA8 /* EditSettings.xcstrings in Resources */,
 				2AB9E4C02B830902004E5BDC /* FormatSettings.xcstrings in Resources */,
@@ -2550,14 +2553,16 @@
 				2ACDA2892B81E2AC00B2EBA8 /* ColorCode.xcstrings in Resources */,
 				2A39ACB92B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACF92B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
-				2A1E7DE52B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */,
 				2A39AC812B8CDFC800E216C9 /* EncodingList.xcstrings in Resources */,
 				2A39AC922B8CE40400E216C9 /* GoToLine.xcstrings in Resources */,
 				2AC94B222B6E26F40086F9F2 /* Inspector.xcstrings in Resources */,
 				2ACDA29D2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */,
 				2AAF93562A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
+				2A39ACA82B8CE58100E216C9 /* LiveTextInsertion.xcstrings in Resources */,
+				2A1E7DE52B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */,
 				2A39ACE62B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings in Resources */,
 				2ACDA2762B81D85700B2EBA8 /* PatternSort.xcstrings in Resources */,
+				2A1E7DFA2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */,
 				2AC94B3B2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */,
 				2A39ACF72B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */,
 				2A5E6FC72A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
@@ -2627,15 +2632,16 @@
 				2ACDA29E2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */,
 				2AAF93572A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A39ACA92B8CE58100E216C9 /* LiveTextInsertion.xcstrings in Resources */,
+				2A1E7DE62B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */,
 				2A39ACE72B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings in Resources */,
 				2ACDA2772B81D85700B2EBA8 /* PatternSort.xcstrings in Resources */,
+				2A1E7DFB2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */,
 				2AC94B3C2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */,
 				2A39ACF82B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */,
 				2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
 				2AA6E0C82B75AC4900E536F8 /* SyntaxEditor.xcstrings in Resources */,
 				2A954B252AB28B010070FB74 /* TextFind.xcstrings in Resources */,
 				2A65EC3C2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */,
-				2A1E7DE62B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */,
 				2A39ACD62B8CE97800E216C9 /* UnicodeInput.xcstrings in Resources */,
 				2A5E6FC22A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
 				2A36E36F2AF9ED0B00A73534 /* Sparkle.xcstrings in Resources */,

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ extension NSPrintInfo.AttributeKey {
 
 enum ThemeName {
     
-    static let blackAndWhite = String(localized: "Black and White")
+    static let blackAndWhite = String(localized: "Black and White", table: "PrintAccessory", comment: "coloring option")
 }
 
 
@@ -168,35 +168,35 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     func localizedSummaryItems() -> [[NSPrintPanel.AccessorySummaryKey: String]] {
         
         var items: [[NSPrintPanel.AccessorySummaryKey: String]] = [
-            [.itemName: String(localized: "Font Size"),
-             .itemDescription: String(localized: "\(self.fontSize, format: .number.precision(.fractionLength(0...1))) pt")],
-            [.itemName: String(localized: "Color"),
+            [.itemName: String(localized: "Font Size", table: "PrintAccessory", comment: "summary item name"),
+             .itemDescription: String(localized: "\(self.fontSize, format: .number.precision(.fractionLength(0...1))) pt", table: "PrintAccessory", comment: "font size with unit")],
+            [.itemName: String(localized: "Color", table: "PrintAccessory", comment: "summary item name"),
              .itemDescription: self.theme],
         ]
         
         if self.printsBackground {
-            items += [[.itemName: String(localized: "Print Backgrounds"),
-                       .itemDescription: String(localized: "On")]]
+            items += [[.itemName: String(localized: "Print Backgrounds", table: "PrintAccessory", comment: "summary item name"),
+                       .itemDescription: String(localized: "On", table: "PrintAccessory")]]
         }
         if self.printsLineNumbers {
-            items += [[.itemName: String(localized: "Line Number"),
-                       .itemDescription: String(localized: "On")]]
+            items += [[.itemName: String(localized: "Line Number", table: "PrintAccessory", comment: "summary item name"),
+                       .itemDescription: String(localized: "On", table: "PrintAccessory")]]
         }
         if self.printsInvisibles {
-            items += [[.itemName: String(localized: "Invisibles"),
-                       .itemDescription: String(localized: "On")]]
+            items += [[.itemName: String(localized: "Invisibles", table: "PrintAccessory", comment: "summary item name"),
+                       .itemDescription: String(localized: "On", table: "PrintAccessory")]]
         }
         
         if self.printsHeaderAndFooter {
             let headerItems = [self.primaryHeaderContent, self.secondaryHeaderContent].filter { $0 != .none }
             if !headerItems.isEmpty {
-                items += [[.itemName: String(localized: "Header"),
+                items += [[.itemName: String(localized: "Header", table: "PrintAccessory", comment: "summary item name"),
                            .itemDescription: headerItems.map(\.label).formatted(.list(type: .and))]]
             }
             
             let footerItems = [self.primaryFooterContent, self.secondaryFooterContent].filter { $0 != .none }
             if !footerItems.isEmpty {
-                items += [[.itemName: String(localized: "Footer"),
+                items += [[.itemName: String(localized: "Footer", table: "PrintAccessory", comment: "summary item name"),
                            .itemDescription: footerItems.map(\.label).formatted(.list(type: .and))]]
             }
         }
@@ -228,7 +228,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         popUpButton.addItem(withTitle: ThemeName.blackAndWhite)
         
         popUpButton.menu?.addItem(.separator())
-        popUpButton.menu?.addItem(.sectionHeader(title: String(localized: "Theme")))
+        popUpButton.menu?.addItem(.sectionHeader(title: String(localized: "Theme", table: "PrintAccessory", comment: "menu header")))
         
         for themeName in themeNames {
             popUpButton.addItem(withTitle: themeName)
@@ -444,13 +444,34 @@ private extension PrintInfoType {
     var label: String {
         
         switch self {
-            case .none: String(localized: "None")
-            case .syntaxName: String(localized: "Syntax Name")
-            case .documentName: String(localized: "Document Name")
-            case .filePath: String(localized: "File Path")
-            case .printDate: String(localized: "Print Date")
-            case .lastModifiedDate: String(localized: "Last Modified Date")
-            case .pageNumber: String(localized: "Page Number")
+            case .none:
+                String(localized: "PrintInfoType.none.label",
+                       defaultValue: "None",
+                       table: "PrintAccessory")
+            case .syntaxName:
+                String(localized: "PrintInfoType.syntaxName.label",
+                       defaultValue: "Syntax Name",
+                       table: "PrintAccessory")
+            case .documentName:
+                String(localized: "PrintInfoType.documentName.label",
+                       defaultValue: "Document Name",
+                       table: "PrintAccessory")
+            case .filePath:
+                String(localized: "PrintInfoType.filePath.label",
+                       defaultValue: "File Path",
+                       table: "PrintAccessory")
+            case .printDate:
+                String(localized: "PrintInfoType.printDate.label",
+                       defaultValue: "Print Date",
+                       table: "PrintAccessory")
+            case .lastModifiedDate:
+                String(localized: "PrintInfoType.lastModifiedDate.label",
+                       defaultValue: "Last Modified Date",
+                       table: "PrintAccessory")
+            case .pageNumber:
+                String(localized: "PrintInfoType.pageNumber.label",
+                       defaultValue: "Page Number",
+                       table: "PrintAccessory")
         }
     }
     
@@ -470,19 +491,28 @@ private extension AlignmentType {
     @MainActor static func setup(segmentedControl: NSSegmentedControl) {
         
         for type in self.allCases {
-            segmentedControl.setToolTip(type.help, forSegment: type.rawValue)
+            segmentedControl.setToolTip(type.label, forSegment: type.rawValue)
             segmentedControl.setTag(type.rawValue, forSegment: type.rawValue)
-            segmentedControl.setImage(NSImage(systemSymbolName: type.symbolName, accessibilityDescription: type.help), forSegment: type.rawValue)
+            segmentedControl.setImage(NSImage(systemSymbolName: type.symbolName, accessibilityDescription: type.label), forSegment: type.rawValue)
         }
     }
     
     
-    private var help: String {
+    private var label: String {
         
         switch self {
-            case .left:   String(localized: "Align Left")
-            case .center: String(localized: "Center")
-            case .right:  String(localized: "Align Right")
+            case .left:
+                String(localized: "AlignmentType.left.label",
+                       defaultValue: "Align Left",
+                       table: "PrintAccessory")
+            case .center:
+                String(localized: "AlignmentType.center.label",
+                       defaultValue: "Center",
+                       table: "PrintAccessory")
+            case .right:
+                String(localized: "AlignmentType.right.label",
+                       defaultValue: "Align Right",
+                       table: "PrintAccessory")
         }
     }
     

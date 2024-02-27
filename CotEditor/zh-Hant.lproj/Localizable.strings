@@ -256,37 +256,6 @@
 "Last modified on %@" = "近期修改於：%@"; // %@ is date
 
 
-/* MARK: PrintAccessoryViewController */
-"Theme" = "主題";
-
-// Content of headers/footers
-"Syntax Name" = "文法名";
-"Document Name" = "文件名稱";
-"File Path" = "檔案路徑";
-"Print Date" = "列印日期";
-"Last Modified Date" = "上次修改日期";
-"Page Number" = "頁碼";
-
-// Segmented control tooltips
-"Align Left" = "左對齊";
-"Center" = "居中";
-"Align Right" = "右對齊";
-
-// Summary item names
-"Font Size" = "字體大小";
-"Color" = "顏色";
-"Print Backgrounds" = "列印背景";
-"Line Number" = "行號";
-"Invisibles" = "不可見元素";
-"Header" = "標頭";
-"Footer" = "註腳";
-
-// Summary item values
-"%@ pt" = "%@點";
-"On" = "開";
-"Black and White" = "黑白";
-
-
 /* MARK: FilterField */
 "Filter" = "濾波器";
 // Menu items

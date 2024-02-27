@@ -256,37 +256,6 @@
 "Last modified on %@" = "Ultima modifica il %@";  // %@ is date
 
 
-/* MARK: PrintAccessoryViewController */
-"Theme" = "Tema";
-
-// Content of headers/footers
-"Syntax Name" = "Nome sintassi";
-"Document Name" = "Nome documento";
-"File Path" = "Percorso file";
-"Print Date" = "Data di stampa";
-"Last Modified Date" = "Data ultima modifica";
-"Page Number" = "Numero di pagina";
-
-// Segmented control tooltips
-"Align Left" = "Allinea a sinistra";
-"Center" = "Centra";
-"Align Right" = "Allinea a destra";
-
-// Summary item names
-"Font Size" = "Dimensioni font";
-"Color" = "Colore";
-"Print Backgrounds" = "Stampa sfondi";
-"Line Number" = "Numero riga";
-"Invisibles" = "Caratteri invisibili";
-"Header" = "Intestazione";
-"Footer" = "Pie’ di pagina";
-
-// Summary item values
-"%@ pt" = "%@ pt";
-"On" = "Acceso";
-"Black and White" = "Bianco e nero";
-
-
 /* MARK: FilterField */
 "Filter" = "Filtra";
 // Menu items

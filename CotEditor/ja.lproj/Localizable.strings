@@ -257,37 +257,6 @@
 "Last modified on %@" = "最終変更: %@";  // %@ is date
 
 
-/* MARK: PrintAccessoryViewController */
-"Theme" = "テーマ";
-
-// Content of headers/footers
-"Syntax Name" = "シンタックス名";
-"Document Name" = "書類名";
-"File Path" = "ファイルパス";
-"Print Date" = "プリント日時";
-"Last Modified Date" = "最終変更日時";
-"Page Number" = "ページ番号";
-
-// Segmented control tooltips
-"Align Left" = "左揃え";
-"Center" = "中央揃え";
-"Align Right" = "右揃え";
-
-// Summary item names
-"Font Size" = "フォントサイズ";
-"Color" = "カラー";
-"Print Backgrounds" = "背景をプリント";
-"Line Number" = "行番号";
-"Invisibles" = "不可視文字";
-"Header" = "ヘッダ";
-"Footer" = "フッタ";
-
-// Summary item values
-"%@ pt" = "%@pt";
-"On" = "オン";
-"Black and White" = "白黒";
-
-
 /* MARK: FilterField */
 "Filter" = "フィルタ";
 // Menu items

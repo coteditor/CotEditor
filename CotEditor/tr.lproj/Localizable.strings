@@ -256,37 +256,6 @@
 "Last modified on %@" = "En son %@ tarihinde değiştirildi";  // %@ is date
 
 
-/* MARK: PrintAccessoryViewController */
-"Theme" = "Tema";
-
-// Content of headers/footers
-"Syntax Name" = "Sözdizim Adı";
-"Document Name" = "Belge Adı";
-"File Path" = "Dosya Yolu";
-"Print Date" = "Yazdırma Tarihi";
-"Last Modified Date" = "Son Değişiklik Tarihi";
-"Page Number" = "Sayfa Numarası";
-
-// Segmented control tooltips
-"Align Left" = "Sola Hizala";
-"Center" = "Ortala";
-"Align Right" = "Sağa Hizala";
-
-// Summary item names
-"Font Size" = "Font Puntosu";
-"Color" = "Renk";
-"Print Backgrounds" = "Arka Planları Yazdır";
-"Line Number" = "Satır Numarası";
-"Invisibles" = "Görünmez Karakterler";
-"Header" = "Üstbilgi";
-"Footer" = "Altbilgi";
-
-// Summary item values
-"%@ pt" = "%@ punto";
-"On" = "Açık";
-"Black and White" = "Siyah - Beyaz";
-
-
 /* MARK: FilterField */
 "Filter" = "Filtre";
 // Menu items

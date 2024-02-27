@@ -256,37 +256,6 @@
 "Last modified on %@" = "Poslední změna dne %@";  // %@ is date
 
 
-/* MARK: PrintAccessoryViewController */
-"Theme" = "Motiv";
-
-// Content of headers/footers
-"Syntax Name" = "Název syntaxe";
-"Document Name" = "Název dokumentu";
-"File Path" = "Cesta k souboru";
-"Print Date" = "Datum tisku";
-"Last Modified Date" = "Datum poslední změny";
-"Page Number" = "Číslo stránky";
-
-// Segmented control tooltips
-"Align Left" = "Zarovnat doleva";
-"Center" = "Zarovnat na střed";
-"Align Right" = "Zarovnat doprava";
-
-// Summary item names
-"Font Size" = "Velikost písma";
-"Color" = "Barva";
-"Print Backgrounds" = "Tisknout pozadí";
-"Line Number" = "Čísla řádků";
-"Invisibles" = "Neviditelné";
-"Header" = "Záhlaví";
-"Footer" = "Zápatí";
-
-// Summary item values
-"%@ pt" = "%@ pt";
-"On" = "Zapnuto";
-"Black and White" = "Černobíle";
-
-
 /* MARK: FilterField */
 "Filter" = "Filtr";
 // Menu items
