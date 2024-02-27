@@ -70,17 +70,6 @@
 "A new theme named “%@” has been successfully installed." = "Nový motiv s názvem „%@“ byl úspěšně nainstalován.";
 
 
-/* MARK: Multiple Replace Panel */
-// window title
-"Multiple Replace" = "Vícenásobné nahrazení";
-
-// Undo action names
-"Insert Rule" = "Přidat pravidlo";
-"Delete Rules" = "Smazat pravidla";
-"Edit Rule" = "Upravit pravidlo";
-"Move Rules" = "Přesunout pravidla";
-
-
 /* MARK: Document Controller */
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "Soubor „%@” se nezdá být textovým.";

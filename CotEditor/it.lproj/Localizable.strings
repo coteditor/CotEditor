@@ -70,17 +70,6 @@
 "A new theme named “%@” has been successfully installed." = "Un nuovo tema dal nome “%@” è stato installato correttamente.";
 
 
-/* MARK: Multiple Replace Panel */
-// window title
-"Multiple Replace" = "Sostituzione multipla";
-
-// Undo action names
-"Insert Rule" = "Inserisci Regola";
-"Delete Rules" = "Elimina Regole";
-"Edit Rule" = "Modifica Regola";
-"Move Rules" = "Sposta Regole";
-
-
 /* MARK: Document Controller */
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "Il file “%@” non sembra essere di testo.";

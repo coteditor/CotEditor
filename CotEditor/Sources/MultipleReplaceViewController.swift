@@ -268,7 +268,7 @@ final class MultipleReplaceViewController: NSViewController {
                 target.removeReplacements(at: rowIndexes)
             }
             if !undoManager.isUndoing {
-                undoManager.setActionName(String(localized: "Insert Rule"))
+                undoManager.setActionName(String(localized: "Insert Rule", table: "MultipleReplace", comment: "action name"))
             }
         }
         
@@ -296,7 +296,7 @@ final class MultipleReplaceViewController: NSViewController {
                 target.insertReplacements(replacements, at: rowIndexes)
             }
             if !undoManager.isUndoing {
-                undoManager.setActionName(String(localized: "Delete Rules"))
+                undoManager.setActionName(String(localized: "Delete Rules", table: "MultipleReplace", comment: "action name"))
             }
         }
         
@@ -328,7 +328,7 @@ final class MultipleReplaceViewController: NSViewController {
                 target.updateReplacements(replacements, at: rowIndexes)
             }
             if !undoManager.isUndoing {
-                undoManager.setActionName(String(localized: "Edit Rule"))
+                undoManager.setActionName(String(localized: "Edit Rule", table: "MultipleReplace", comment: "action name"))
             }
         }
         
@@ -363,7 +363,7 @@ final class MultipleReplaceViewController: NSViewController {
                 target.moveReplacements(from: destinationRows, to: sourceRows)
             }
             if !undoManager.isUndoing {
-                undoManager.setActionName(String(localized: "Move Rules"))
+                undoManager.setActionName(String(localized: "Move Rules", table: "MultipleReplace", comment: "action name"))
             }
         }
         

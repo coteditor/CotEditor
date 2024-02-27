@@ -42,7 +42,7 @@ final class MultipleReplacePanelController: NSWindowController {
         window.titlebarAppearsTransparent = true
         window.standardWindowButton(.zoomButton)?.isEnabled = false
         window.setFrameAutosaveName("Multiple Replace Panel")
-        window.title = String(localized: "Multiple Replace", comment: "window title")
+        window.title = String(localized: "Multiple Replace", table: "MultipleReplace", comment: "window title")
         
         self.init(window: window)
     }

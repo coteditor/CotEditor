@@ -70,17 +70,6 @@
 "A new theme named “%@” has been successfully installed." = "新主題「%@」安裝完成";
 
 
-/* MARK: Multiple Replace Panel */
-// window title
-"Multiple Replace" = "多重取代";
-
-// Undo action names
-"Insert Rule" = "插入規則";
-"Delete Rules" = "刪除規則";
-"Edit Rule" = "編輯規則";
-"Move Rules" = "移動規則";
-
-
 /* MARK: Document Controller */
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "檔案「%@」不是文字資料";

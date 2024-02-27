@@ -70,17 +70,6 @@
 "A new theme named “%@” has been successfully installed." = "Yeni tema “%@” başarıyla yüklendi.";
 
 
-/* MARK: Multiple Replace Panel */
-// window title
-"Multiple Replace" = "Çoklu Değiştir";
-
-// Undo action names
-"Insert Rule" = "Kural Ekle";
-"Delete Rules" = "Kural Sil";
-"Edit Rule" = "Kural Düzenle";
-"Move Rules" = "Kural Taşı";
-
-
 /* MARK: Document Controller */
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "“%@” dosyası metin verisi gibi görünmüyor.";
