@@ -350,17 +350,6 @@
 
 // MARK: -
 
-/* MARK: Settings */
-// Panes
-"General" = "一般";
-"Window" = "ウインドウ";
-"Appearance" = "外観";
-"Edit" = "編集";
-"Format" = "フォーマット";
-"Snippets" = "スニペット";
-"Key Bindings" = "キーバインド";
-
-
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”を削除できませんでした。";
 "“%@” couldn’t be imported." = "“%@”を読み込めませんでした。";

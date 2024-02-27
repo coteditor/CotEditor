@@ -349,17 +349,6 @@
 
 // MARK: -
 
-/* MARK: Settings */
-// Panes
-"General" = "Genel";
-"Window" = "Pencere";
-"Appearance" = "Görünüş";
-"Edit" = "Düzenle";
-"Format" = "Biçim";
-"Snippets" = "Kırpıntılar";
-"Key Bindings" = "Düğme Bağıntıları";
-
-
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”, silinemedi.";
 "“%@” couldn’t be imported." = "“%@”, içe aktarılamadı.";

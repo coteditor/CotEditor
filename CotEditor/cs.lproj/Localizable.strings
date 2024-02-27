@@ -349,17 +349,6 @@
 
 // MARK: -
 
-/* MARK: Settings */
-// Panes
-"General" = "Obecné";
-"Window" = "Okno";
-"Appearance" = "Vzhled";
-"Edit" = "Úpravy";
-"Format" = "Formát";
-"Snippets" = "Fragmenty kódů";
-"Key Bindings" = "Kláv. zkratky";
-
-
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "„%@“ nelze smazat.";
 "“%@” couldn’t be imported." = "„%@“ nelze importovat.";

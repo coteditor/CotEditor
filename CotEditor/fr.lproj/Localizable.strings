@@ -349,17 +349,6 @@
 
 // MARK: -
 
-/* MARK: Settings */
-// Panes
-"General" = "Général";
-"Window" = "Fenêtre";
-"Appearance" = "Apparence";
-"Edit" = "Editeur";
-"Format" = "Format";
-"Snippets" = "Snippets";
-"Key Bindings" = "Raccourcis";
-
-
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "« %@ » n’a pas pu être supprimé.";
 "“%@” couldn’t be imported." = "« %@ » n’a pas pu être importé.";

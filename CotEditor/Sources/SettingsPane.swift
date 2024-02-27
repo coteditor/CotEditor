@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,13 +38,34 @@ enum SettingsPane: String, CaseIterable {
     var label: String {
         
         switch self {
-            case .general: String(localized: "General")
-            case .appearance: String(localized: "Appearance")
-            case .window: String(localized: "Window")
-            case .edit: String(localized: "Edit")
-            case .format: String(localized: "Format")
-            case .snippets: String(localized: "Snippets")
-            case .keyBindings: String(localized: "Key Bindings")
+            case .general:
+                String(localized: "SettingsPane.general.label",
+                       defaultValue: "General",
+                       table: "Settings")
+            case .appearance:
+                String(localized: "SettingsPane.appearance.label",
+                       defaultValue: "Appearance",
+                       table: "Settings")
+            case .window:
+                String(localized: "SettingsPane.window.label",
+                       defaultValue: "Window",
+                       table: "Settings")
+            case .edit:
+                String(localized: "SettingsPane.edit.label",
+                       defaultValue: "Edit",
+                       table: "Settings")
+            case .format:
+                String(localized: "SettingsPane.format.label",
+                       defaultValue: "Format",
+                       table: "Settings")
+            case .snippets:
+                String(localized: "SettingsPane.snippets.label",
+                       defaultValue: "Snippets",
+                       table: "Settings")
+            case .keyBindings:
+                String(localized: "SettingsPane.keyBindings.label",
+                       defaultValue: "Key Bindings",
+                       table: "Settings")
         }
     }
     

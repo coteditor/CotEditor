@@ -351,17 +351,6 @@
 
 // MARK: -
 
-/* MARK: Settings */
-// Panes
-"General" = "通用";
-"Window" = "窗口";
-"Appearance" = "外观";
-"Edit" = "编辑";
-"Format" = "格式";
-"Snippets" = "代码片段";
-"Key Bindings" = "按键绑定";
-
-
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”无法删除。";
 "“%@” couldn’t be imported." = "“%@”无法导入。";

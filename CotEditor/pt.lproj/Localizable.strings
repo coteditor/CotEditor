@@ -349,17 +349,6 @@
 
 // MARK: -
 
-/* MARK: Settings */
-// Panes
-"General" = "Geral";
-"Window" = "Janela";
-"Appearance" = "Aparência";
-"Edit" = "Edição";
-"Format" = "Formato";
-"Snippets" = "Fragmentos";
-"Key Bindings" = "Atalhos";
-
-
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@” não pôde ser apagado.";
 "“%@” couldn’t be imported." = "“%@” não pôde ser importado.";
