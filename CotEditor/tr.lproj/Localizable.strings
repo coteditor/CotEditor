@@ -30,21 +30,18 @@
 "Restore Defaults" = "Výchozí hodnoty";
 "Delete" = "Sil";
 
-// accessibility labels for opacity slider
+// tooltip for opacity slider
 "Transparent" = "Saydam";
 "Opaque" = "Mat";
 
 // tooltip for link button in URL field
 "Jump to URL" = "URL’ye Atla";
 
-
 // words with symbols
 " (%@)" = " (%@)";
 
-
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "BOM ile %@";
-
 
 // Contextual menu items
 "Rename “%@”" = "“%@” Ögesini Yeniden Adlandır";
@@ -53,18 +50,15 @@
 "Export “%@”…" = "“%@” Ögesini Dışa Aktar";
 "Reveal “%@” in Finder" = "“%@” Ögesini Finder’da Göster";
 
-
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "“%@” öğesini silmek istediğinizden emin misiniz?";
 "This action cannot be undone." = "Bu eylem geri alınamaz.";
-
 
 // filename field label variation for save panel
 "Export As:" = "Farklı Dışa Aktar:";
 
 // button label for open panel
 "Import" = "İçe Aktar";
-
 
 
 /* MARK: AppDelegate */
@@ -74,7 +68,6 @@
 "Install" = "Yükle";
 "Open as Text File" = "Metin Dosyası Olarak Aç";
 "A new theme named “%@” has been successfully installed." = "Yeni tema “%@” başarıyla yüklendi.";
-
 
 
 /* MARK: Multiple Replace Panel */
@@ -88,7 +81,6 @@
 "Move Rules" = "Kural Taşı";
 
 
-
 /* MARK: Document Controller */
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "“%@” dosyası metin verisi gibi görünmüyor.";
@@ -100,7 +92,6 @@
 "The file “%@” has a size of %@." = "“%@” dosyasının boyutu %@.";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "Bu kadar büyük bir dosyayı açmak uygulamayı yavaş veya tepkisiz yapabilir.\n\nDosyayı gerçekten açmak istiyor musunuz?";
 "Open" = "Aç";
-
 
 
 /* MARK: Document */
@@ -152,11 +143,9 @@
 "Update" = "Güncelle";
 
 
-
 /* MARK: Document Window */
 // tooltip for the "edited" indicator in the window tab
 "Document has unsaved changes" = "Belgede kaydedilmemiş değişiklikler var";
-
 
 
 /* MARK: Toolbar */
@@ -267,18 +256,15 @@
 "Show Fonts" = "Fontları Göster";
 
 
-
 /* MARK: Touch Bar */
 // Touch bar item labels -Text Size
 "Actual Size" = "Gerçek Boyut";
-
 
 
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "%@ tarihinde yazdırıldı";  // %@ is date
 "Last modified on %@" = "En son %@ tarihinde değiştirildi";  // %@ is date
-
 
 
 /* MARK: PrintAccessoryViewController */
@@ -312,14 +298,12 @@
 "Black and White" = "Siyah - Beyaz";
 
 
-
 /* MARK: FilterField */
 "Filter" = "Filtre";
 // Menu items
 "Recent Filters" = "Son Filtreler";
 "Clear Recent Filters" = "Son Filtreleri Temizle";
 "No Recent Filter" = "Son Filtre Yok";
-
 
 
 /* MARK: EditorTextView */
@@ -354,7 +338,6 @@
 "Line Numbers" = "Satır Numaraları";
 
 
-
 /* MARK: DocumentViewController */
 // Menu items
 "Hide Inspector" = "Denetçiyi Gizle";
@@ -378,12 +361,10 @@
 "To show invisible characters, set them in the Window settings" = "Görünmez karakterleri pencere ayarlarından açabilirsiniz";
 
 
-
 /* MARK: SplitViewController */
 // Menu items
 "Stack Editors Horizontally" = "Düzenleyicileri Yatay Yığ";
 "Stack Editors Vertically" = "Düzenleyicileri Dikey Yığ";
-
 
 
 /* MARK: StatusBarController */
@@ -397,7 +378,6 @@
 "Status Bar" = "Durum Çubuğu";
 
 
-
 /* MARK: NavigationBarController */
 // Outline menu title
 "Jump to previous outline item" = "Bir önceki ana hat ögesine atla";
@@ -407,7 +387,6 @@
 "Outline" = "Ana Hat";
 "Previous" = "Önceki";
 "Next" = "Sonraki";
-
 
 
 // MARK: -
@@ -421,7 +400,6 @@
 "Format" = "Biçim";
 "Snippets" = "Kırpıntılar";
 "Key Bindings" = "Düğme Bağıntıları";
-
 
 
 /* MARK: SettingFileManager */
@@ -446,7 +424,6 @@
 "Replace" = "Değiştir";
 
 
-
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "Hiçbiri";
@@ -456,19 +433,16 @@
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "Yeni sözdizimle değiştirmek istiyor musunuz?\nDeğiştirilen sözdizim geri yüklenemez.";
 
 
-
 /* MARK: ThemeManager */
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "“%@” adlı yeni bir tema yüklenecek; ancak aynı adlı başka bir tema halihazırda var.";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "Yeni temayla değiştirmek istiyor musunuz?\nDeğiştirilen tema geri yüklenemez.";
 
 
-
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
 "A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "“%@” adında yeni bir değişim tanımı yüklenecek; ancak aynı adlı başka bir tanım halihazırda mevcut.";
 "Do you want to replace it?\nReplaced definition can’t be restored." = "Değiştirmek istiyor musunuz?\nDeğiştirilen tanım geri yüklenemez.";
-
 
 
 /* MARK: KeyBindingManager */
@@ -485,14 +459,12 @@
 "Single type is invalid for a shortcut." = "Bir kısayol için tekli tür geçersizdir.";
 
 
-
 /* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "Betikler Klasörünü Aç";
 
 // Script menu item tooltips
 "Option-click to open script in editor." = "Option-tık, betiği düzenleyicide açar.";
-
 
 
 /* MARK: Script */
@@ -511,12 +483,10 @@
 "Check the permission of the script file." = "Betik dosyasının izinlerini denetleyin.";
 
 
-
 /* MARK: Console */
 "Console" = "Konsol";
 "Clear Log" = "Günlüğü Temizle";
 "Clear error log" = "Hata günlüğünü temizle";
-
 
 
 /* MARK: FileDropItem */
@@ -534,12 +504,10 @@
 "(If the dropped file is a text file) file content." = "(Bırakılan dosya metin dosyasıysa) dosya içeriği.";
 
 
-
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "Kırpıntı eklendikten sonraki imleç konumu.";
 "The selected text." = "Seçilen metin.";
-
 
 
 /* MARK: Syntax Mapping Conflicts View */
@@ -553,17 +521,14 @@
 "Duplicated syntaxes" = "Yinelenmiş Sözdizimler";
 
 
-
 // MARK: -
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "Hızlı Eylemler";
 
 
-
 /* MARK: Opacity View */
 "Editor’s Opacity" = "Düzenleyici Matlığı";
-
 
 
 /* MARK: Character Info */
@@ -578,7 +543,6 @@
 "Skin Tone V" = "Ten Rengi V";
 "Skin Tone VI" = "Ten Rengi VI";
 "Variant" = "Varyant";
-
 
 
 /* MARK: Character Inspector View */

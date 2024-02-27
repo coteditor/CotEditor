@@ -30,21 +30,18 @@
 "Restore Defaults" = "Restaurar Padrões";
 "Delete" = "Apagar";
 
-// accessibility labels for opacity slider
+// tooltip for opacity slider
 "Transparent" = "Transparente";
 "Opaque" = "Opaco";
 
 // tooltip for link button in URL field
 "Jump to URL" = "Visite o URL";
 
-
 // words with symbols
 " (%@)" = " (%@)";
 
-
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "%@ com BOM";
-
 
 // Contextual menu items
 "Rename “%@”" = "Renomear “%@”";
@@ -53,18 +50,15 @@
 "Export “%@”…" = "Exportar “%@”…";
 "Reveal “%@” in Finder" = "Mostrar “%@” no Finder";
 
-
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "Tem certeza de que deseja apagar “%@”?";
 "This action cannot be undone." = "Essa ação não pode ser desfeita.";
-
 
 // filename field label variation for save panel
 "Export As:" = "Exportar Como:";
 
 // button label for open panel
 "Import" = "Importar";
-
 
 
 /* MARK: AppDelegate */
@@ -74,7 +68,6 @@
 "Install" = "Instalar";
 "Open as Text File" = "Abrir como Arquivo de Texto";
 "A new theme named “%@” has been successfully installed." = "Um novo tema chamado “%@” foi instalado com êxito.";
-
 
 
 /* MARK: Multiple Replace Panel */
@@ -88,7 +81,6 @@
 "Move Rules" = "Mover Regras";
 
 
-
 /* MARK: Document Controller */
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "O arquivo “%@” não parece ser de dados de texto.";
@@ -100,7 +92,6 @@
 "The file “%@” has a size of %@." = "O arquivo “%@” tem %@ de tamanho.";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "A abertura de um arquivo tão grande pode deixar o aplicativo lento ou sem responder.\n\nDeseja realmente abrir o arquivo?";
 "Open" = "Abrir";
-
 
 
 /* MARK: Document */
@@ -152,11 +143,9 @@
 "Update" = "Atualizar";
 
 
-
 /* MARK: Document Window */
 // tooltip for the "edited" indicator in the window tab
 "Document has unsaved changes" = "Documento contém alterações não salvas";
-
 
 
 /* MARK: Toolbar */
@@ -267,18 +256,15 @@
 "Show Fonts" = "Mostrar tipos de letra";
 
 
-
 /* MARK: Touch Bar */
 // Touch bar item labels -Text Size
 "Actual Size" = "Tamanho Real";
-
 
 
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "Impresso em %@";  // %@ is date
 "Last modified on %@" = "Última modificação em %@";  // %@ is date
-
 
 
 /* MARK: PrintAccessoryViewController */
@@ -312,14 +298,12 @@
 "Black and White" = "Preto e Branco";
 
 
-
 /* MARK: FilterField */
 "Filter" = "Filtrar";
 // Menu items
 "Recent Filters" = "Filtros Recentes";
 "Clear Recent Filters" = "Limpar Recentes";
 "No Recent Filter" = "Nenhum filtro recente";
-
 
 
 /* MARK: EditorTextView */
@@ -354,7 +338,6 @@
 "Line Numbers" = "Números das Linhas";
 
 
-
 /* MARK: DocumentViewController */
 // Menu items
 "Hide Inspector" = "Ocultar Inspetor";
@@ -378,12 +361,10 @@
 "To show invisible characters, set them in the Window settings" = "Para exibir caracteres invisíveis, configure-os na janela de Configurações";
 
 
-
 /* MARK: SplitViewController */
 // Menu items
 "Stack Editors Horizontally" = "Posicionar Editores Horizontalmente";
 "Stack Editors Vertically" = "Posicionar Editores Verticalmente";
-
 
 
 /* MARK: StatusBarController */
@@ -397,7 +378,6 @@
 "Status Bar" = "Barra de Estado";
 
 
-
 /* MARK: NavigationBarController */
 // Outline menu title
 "Jump to previous outline item" = "Salte para o item anterior do plano";
@@ -407,7 +387,6 @@
 "Outline" = "Plano";
 "Previous" = "Anterior";
 "Next" = "Seguinte";
-
 
 
 // MARK: -
@@ -421,7 +400,6 @@
 "Format" = "Formato";
 "Snippets" = "Fragmentos";
 "Key Bindings" = "Atalhos";
-
 
 
 /* MARK: SettingFileManager */
@@ -446,7 +424,6 @@
 "Replace" = "Substituir";
 
 
-
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "Nenhum";
@@ -456,19 +433,16 @@
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "Você deseja alterar?\nUma sintaxe alterada não pode ser restaurada.";
 
 
-
 /* MARK: ThemeManager */
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Um novo tema chamado “%@” será instalado, mas já existe um tema personalizado com o mesmo nome.";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "Deseja substituí-lo?\nOs temas substituídos não podem ser restaurados.";
 
 
-
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
 "A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "Uma nova definição de substituição chamada %@ será instalada, mas uma definição com o mesmo nome já existe.";
 "Do you want to replace it?\nReplaced definition can’t be restored." = "Deseja confirmar alteração?\nDefinições substituídas não podem ser restauradas.";
-
 
 
 /* MARK: KeyBindingManager */
@@ -485,14 +459,12 @@
 "Single type is invalid for a shortcut." = "Não é possível usar uma única tecla como atalho.";
 
 
-
 /* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "Abrir Pasta de Scripts";
 
 // Script menu item tooltips
 "Option-click to open script in editor." = "Opção-clique para abrir o script no editor.";
-
 
 
 /* MARK: Script */
@@ -511,12 +483,10 @@
 "Check the permission of the script file." = "Verifique as permissões do arquivo de script.";
 
 
-
 /* MARK: Console */
 "Console" = "Console";
 "Clear Log" = "Limpar Registro";
 "Clear error log" = "Limpe o registro de erros";
-
 
 
 /* MARK: FileDropItem */
@@ -534,12 +504,10 @@
 "(If the dropped file is a text file) file content." = "Conteúdo do arquivo (se o arquivo solto for um arquivo de texto).";
 
 
-
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "A posição do cursor depois de inserir o fragmento.";
 "The selected text." = "O texto selecionado.";
-
 
 
 /* MARK: Syntax Mapping Conflicts View */
@@ -553,17 +521,14 @@
 "Duplicated syntaxes" = "Sintaxes duplicadas";
 
 
-
 // MARK: -
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "Ações Rápidas";
 
 
-
 /* MARK: Opacity View */
 "Editor’s Opacity" = "Opacidade do Editor";
-
 
 
 /* MARK: Character Info */
@@ -578,7 +543,6 @@
 "Skin Tone V" = "Tom de Pele V";
 "Skin Tone VI" = "Tom de Pele VI";
 "Variant" = "Variante";
-
 
 
 /* MARK: Character Inspector View */

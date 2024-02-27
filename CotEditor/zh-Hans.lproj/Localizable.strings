@@ -30,7 +30,7 @@
 "Restore Defaults" = "恢复默认";
 "Delete" = "删除";
 
-// accessibility labels for opacity slider
+// tooltip for opacity slider
 "Transparent" = "透明";
 "Opaque" = "不透明";
 
@@ -41,10 +41,8 @@
 // words with symbols
 " (%@)" = "（%@）";
 
-
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "%@ with BOM";  // No need to be translated because "UTF-8 with BOM" is acceptable in zh-Hans.
-
 
 // Contextual menu items
 "Rename “%@”" = "给“%@”重新命名";
@@ -53,18 +51,15 @@
 "Export “%@”…" = "导出“%@”…";
 "Reveal “%@” in Finder" = "在访达中显示“%@”";
 
-
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "你确定要删除“%@”吗？";
 "This action cannot be undone." = "此操作不能撤销。";
-
 
 // filename field label variation for save panel
 "Export As:" = "导出为：";
 
 // button label for open panel
 "Import" = "导入";
-
 
 
 /* MARK: AppDelegate */
@@ -74,7 +69,6 @@
 "Install" = "安装";
 "Open as Text File" = "以文本方式打开";
 "A new theme named “%@” has been successfully installed." = "新主题“%@”安装完成";
-
 
 
 /* MARK: Multiple Replace Panel */
@@ -89,7 +83,6 @@
 
 
 
-
 /* MARK: Document Controller */
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "文件“%@”不是文本数据";
@@ -101,7 +94,6 @@
 "The file “%@” has a size of %@." = "“%@”文件尺寸为%@。";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "打开大型文件可能导致应用速度变慢。\n\n确定要打开该文件？";
 "Open" = "打开";
-
 
 
 /* MARK: Document */
@@ -153,11 +145,9 @@
 "Update" = "更新";
 
 
-
 /* MARK: Document Window */
 // tooltip for the "edited" indicator in the window tab
 "Document has unsaved changes" = "文稿中存在未保存的更改";
-
 
 
 /* MARK: Toolbar */
@@ -268,18 +258,15 @@
 "Show Fonts" = "显示字体";
 
 
-
 /* MARK: Touch Bar */
 // Touch bar item labels -Text Size
 "Actual Size" = "实际大小";
-
 
 
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "打印：%@";  // %@ is date
 "Last modified on %@" = "最终修改：%@";  // %@ is date
-
 
 
 /* MARK: PrintAccessoryViewController */
@@ -313,14 +300,12 @@
 "Black and White" = "黑白";
 
 
-
 /* MARK: FilterField */
 "Filter" = "过滤";
 // Menu items
 "Recent Filters" = "最近的过滤";
 "Clear Recent Filters" = "清除最近记录";
 "No Recent Filter" = "没有最近的过滤";
-
 
 
 /* MARK: EditorTextView */
@@ -355,7 +340,6 @@
 "Line Numbers" = "行号";
 
 
-
 /* MARK: DocumentViewController */
 // Menu items
 "Hide Inspector" = "隐藏检查器";
@@ -379,12 +363,10 @@
 "To show invisible characters, set them in the Window settings" = "要显示不可见元素，请在窗口设置中进行设定";
 
 
-
 /* MARK: SplitViewController */
 // Menu items
 "Stack Editors Horizontally" = "横向分隔编辑器";
 "Stack Editors Vertically" = "纵向分隔编辑器";
-
 
 
 /* MARK: StatusBarController */
@@ -398,7 +380,6 @@
 "Status Bar" = "状态栏";
 
 
-
 /* MARK: NavigationBarController */
 // Outline menu title
 "Jump to previous outline item" = "上一个提纲项目";
@@ -408,7 +389,6 @@
 "Outline" = "大纲";
 "Previous" = "上一个";
 "Next" = "下一个";
-
 
 
 // MARK: -
@@ -422,7 +402,6 @@
 "Format" = "格式";
 "Snippets" = "代码片段";
 "Key Bindings" = "按键绑定";
-
 
 
 /* MARK: SettingFileManager */
@@ -447,7 +426,6 @@
 "Replace" = "替换";
 
 
-
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "无";
@@ -457,19 +435,16 @@
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "要替换语法吗？\n被替换的语法将无法恢复。";
 
 
-
 /* MARK: ThemeManager */
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "将要安装名为“%@”的新主题，但是已经存在同名的自定义主题。";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "要覆盖原主题吗？\n主题删除后将无法还原。";
 
 
-
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
 "A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "名称为“%@”的新替换定义将被安装，但是已经存在相同名称的定义。";
 "Do you want to replace it?\nReplaced definition can’t be restored." = "你想要替换该定义吗？\n被替换的定义无法恢复。";
-
 
 
 /* MARK: KeyBindingManager */
@@ -486,14 +461,12 @@
 "Single type is invalid for a shortcut." = "单独的按键类型不能被用作快捷键。";
 
 
-
 /* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "打开Scripts文件夹";
 
 // Script menu item tooltips
 "Option-click to open script in editor." = "使用Option-单击在编辑器中打开脚本。";
-
 
 
 /* MARK: Script */
@@ -512,12 +485,10 @@
 "Check the permission of the script file." = "请确认脚本文件的权限。";
 
 
-
 /* MARK: Console */
 "Console" = "控制台";
 "Clear Log" = "清空记录";
 "Clear error log" = "清空错误记录";
-
 
 
 /* MARK: FileDropItem */
@@ -535,12 +506,10 @@
 "(If the dropped file is a text file) file content." = "文件内容（如果拖拽文件是文本文件）";
 
 
-
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "插入片段后的光标位置";
 "The selected text." = "所选文本";
-
 
 
 /* MARK: Syntax Mapping Conflicts View */
@@ -554,17 +523,14 @@
 "Duplicated syntaxes" = "重复的语法";
 
 
-
 // MARK: -
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "快速操作";
 
 
-
 /* MARK: Opacity View */
 "Editor’s Opacity" = "编辑器透明度";
-
 
 
 /* MARK: Character Info */
@@ -579,7 +545,6 @@
 "Skin Tone V" = "肤色V";
 "Skin Tone VI" = "肤色VI";
 "Variant" = "异体字";
-
 
 
 /* MARK: Character Inspector View */

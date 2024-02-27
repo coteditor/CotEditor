@@ -30,21 +30,18 @@
 "Restore Defaults" = "回復預設值";
 "Delete" = "刪除";
 
-// accessibility labels for opacity slider
+// tooltip for opacity slider
 "Transparent" = "透明";
 "Opaque" = "不透明";
 
 // tooltip for link button in URL field
 "Jump to URL" = "跳轉到URL";
 
-
 // words with symbols
 " (%@)" = "（%@）";
 
-
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "%@ with BOM";  // No need to be translated because "UTF-8 with BOM" is acceptable in zh-Hans.
-
 
 // Contextual menu items
 "Rename “%@”" = "給「%@」重新命名";
@@ -53,18 +50,15 @@
 "Export “%@”…" = "輸出「%@」⋯";
 "Reveal “%@” in Finder" = "顯示「%@」於Finder";
 
-
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "確定要刪除「%@」嗎？";
 "This action cannot be undone." = "此動作無法還原。";
-
 
 // filename field label variation for save panel
 "Export As:" = "輸出為：";
 
 // button label for open panel
 "Import" = "輸入";
-
 
 
 /* MARK: AppDelegate */
@@ -74,7 +68,6 @@
 "Install" = "安裝";
 "Open as Text File" = "以文字方式開啟";
 "A new theme named “%@” has been successfully installed." = "新主題「%@」安裝完成";
-
 
 
 /* MARK: Multiple Replace Panel */
@@ -88,7 +81,6 @@
 "Move Rules" = "移動規則";
 
 
-
 /* MARK: Document Controller */
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "檔案「%@」不是文字資料";
@@ -100,7 +92,6 @@
 "The file “%@” has a size of %@." = "「%@」檔案尺寸為%@。";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "開啟大型檔案可能導致應用速度變慢。\n\n確定要開啟該檔案？";
 "Open" = "開啟";
-
 
 
 /* MARK: Document */
@@ -152,11 +143,9 @@
 "Update" = "更新";
 
 
-
 /* MARK: Document Window */
 // tooltip for the "edited" indicator in the window tab
 "Document has unsaved changes" = "文件內包含尚未存檔的內容變更";
-
 
 
 /* MARK: Toolbar */
@@ -267,18 +256,15 @@
 "Show Fonts" = "顯示字體";
 
 
-
 /* MARK: Touch Bar */
 // Touch bar item labels -Text Size
 "Actual Size" = "實際大小";
-
 
 
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "列印：%@";  // %@ is date
 "Last modified on %@" = "近期修改於：%@"; // %@ is date
-
 
 
 /* MARK: PrintAccessoryViewController */
@@ -312,14 +298,12 @@
 "Black and White" = "黑白";
 
 
-
 /* MARK: FilterField */
 "Filter" = "濾波器";
 // Menu items
 "Recent Filters" = "最近的過濾";
 "Clear Recent Filters" = "清除最近記錄";
 "No Recent Filter" = "沒有最近的過濾";
-
 
 
 /* MARK: EditorTextView */
@@ -354,7 +338,6 @@
 "Line Numbers" = "行號";
 
 
-
 /* MARK: DocumentViewController */
 // Menu items
 "Hide Inspector" = "隱藏檢閱器";
@@ -378,12 +361,10 @@
 "To show invisible characters, set them in the Window settings" = "如欲檢視不可見之字元，請洽「視窗設定」";
 
 
-
 /* MARK: SplitViewController */
 // Menu items
 "Stack Editors Horizontally" = "橫向分隔編輯器";
 "Stack Editors Vertically" = "縱向分隔編輯器";
-
 
 
 /* MARK: StatusBarController */
@@ -397,7 +378,6 @@
 "Status Bar" = "狀態列";
 
 
-
 /* MARK: NavigationBarController */
 // Outline menu title
 "Jump to previous outline item" = "上一個提綱項目";
@@ -407,7 +387,6 @@
 "Outline" = "大綱";
 "Previous" = "上一個";
 "Next" = "下一個";
-
 
 
 // MARK: -
@@ -421,7 +400,6 @@
 "Format" = "格式";
 "Snippets" = "程式碼片段";
 "Key Bindings" = "按鍵繫結";
-
 
 
 /* MARK: SettingFileManager */
@@ -446,7 +424,6 @@
 "Replace" = "取代";
 
 
-
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "無";
@@ -456,19 +433,16 @@
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "真的要取而代之嗎？\n被取代的文法定義將會永遠丟失、無法找回。";
 
 
-
 /* MARK: ThemeManager */
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "將要安裝名為「%@」的新主題，但是已經存在同名的自訂主題。";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "要覆蓋原主題嗎？\n主題刪除後將無法還原。";
 
 
-
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
 "A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "名稱為「%@」的新取代定義將被安裝，但是已經存在相同名稱的定義。";
 "Do you want to replace it?\nReplaced definition can’t be restored." = "你想要取代該定義嗎？\n被取代的定義無法恢復。";
-
 
 
 /* MARK: KeyBindingManager */
@@ -485,14 +459,12 @@
 "Single type is invalid for a shortcut." = "單獨的按鍵類型不能被用作快捷鍵。";
 
 
-
 /* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "開啟Scripts檔案夾";
 
 // Script menu item tooltips
 "Option-click to open script in editor." = "使用Option-單擊在編輯器中開啟腳本。";
-
 
 
 /* MARK: Script */
@@ -511,12 +483,10 @@
 "Check the permission of the script file." = "請確認腳本檔案的許可權。";
 
 
-
 /* MARK: Console */
 "Console" = "主控台";
 "Clear Log" = "清空記錄";
 "Clear error log" = "清空錯誤記錄";
-
 
 
 /* MARK: FileDropItem */
@@ -534,12 +504,10 @@
 "(If the dropped file is a text file) file content." = "檔案內容（如果拖拽檔案是文字檔案）";
 
 
-
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "插入片段後的遊標位置";
 "The selected text." = "所選的文字";
-
 
 
 /* MARK: Syntax Mapping Conflicts View */
@@ -553,17 +521,14 @@
 "Duplicated syntaxes" = "重複的文法定義";
 
 
-
 // MARK: -
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "快速動作";
 
 
-
 /* MARK: Opacity View */
 "Editor’s Opacity" = "編輯器透明度";
-
 
 
 /* MARK: Character Info */
@@ -578,7 +543,6 @@
 "Skin Tone V" = "膚色V";
 "Skin Tone VI" = "膚色VI";
 "Variant" = "異體字";
-
 
 
 /* MARK: Character Inspector View */

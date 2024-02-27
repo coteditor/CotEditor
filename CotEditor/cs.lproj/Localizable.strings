@@ -30,21 +30,18 @@
 "Restore Defaults" = "Výchozí hodnoty";
 "Delete" = "Smazat";
 
-// accessibility labels for opacity slider
+// tooltip for opacity slider
 "Transparent" = "Průhledné";
 "Opaque" = "Neprůhledné";
 
 // tooltip for link button in URL field
 "Jump to URL" = "Přejít na URL";
 
-
 // words with symbols
 " (%@)" = " (%@)";
 
-
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "%@ s BOM";
-
 
 // Contextual menu items
 "Rename “%@”" = "Přejmenovat „%@“";
@@ -53,18 +50,15 @@
 "Export “%@”…" = "Exportovat „%@“…";
 "Reveal “%@” in Finder" = "Zobrazit „%@“ ve Finderu";
 
-
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "Určitě chcete smazat „%@“?";
 "This action cannot be undone." = "Tuto akci nelze odvolat.";
-
 
 // filename field label variation for save panel
 "Export As:" = "Exportovat jako:";
 
 // button label for open panel
 "Import" = "Importovat";
-
 
 
 /* MARK: AppDelegate */
@@ -74,7 +68,6 @@
 "Install" = "Instalovat";
 "Open as Text File" = "Otevřít jako textový soubor";
 "A new theme named “%@” has been successfully installed." = "Nový motiv s názvem „%@“ byl úspěšně nainstalován.";
-
 
 
 /* MARK: Multiple Replace Panel */
@@ -88,7 +81,6 @@
 "Move Rules" = "Přesunout pravidla";
 
 
-
 /* MARK: Document Controller */
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "Soubor „%@” se nezdá být textovým.";
@@ -100,7 +92,6 @@
 "The file “%@” has a size of %@." = "Soubor „%@“ má velikost %@.";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "Otevření tak velkého souboru může způsobit zpomalenou, nebo nereagující aplikaci.\n\nUrčitě chcete soubor otevřít?";
 "Open" = "Otevřít";
-
 
 
 /* MARK: Document */
@@ -152,11 +143,9 @@
 "Update" = "Aktualizovat";
 
 
-
 /* MARK: Document Window */
 // tooltip for the "edited" indicator in the window tab
 "Document has unsaved changes" = "Dokument obsahuje neuložené změny";
-
 
 
 /* MARK: Toolbar */
@@ -267,18 +256,15 @@
 "Show Fonts" = "Zobrazit písma";
 
 
-
 /* MARK: Touch Bar */
 // Touch bar item labels -Text Size
 "Actual Size" = "Skutečná velikost";
-
 
 
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "Vytištěno %@";  // %@ is date
 "Last modified on %@" = "Poslední změna dne %@";  // %@ is date
-
 
 
 /* MARK: PrintAccessoryViewController */
@@ -312,14 +298,12 @@
 "Black and White" = "Černobíle";
 
 
-
 /* MARK: FilterField */
 "Filter" = "Filtr";
 // Menu items
 "Recent Filters" = "Poslední filtry";
 "Clear Recent Filters" = "Smazat poslední filtry";
 "No Recent Filter" = "Žádný poslední filtr";
-
 
 
 /* MARK: EditorTextView */
@@ -354,7 +338,6 @@
 "Line Numbers" = "Čísla řádků";
 
 
-
 /* MARK: DocumentViewController */
 // Menu items
 "Hide Inspector" = "Skrýt inspektora";
@@ -378,12 +361,10 @@
 "To show invisible characters, set them in the Window settings" = "Chcete-li zobrazit neviditelné znaky, nastavte jejich zobrazení v nastavení „Okno“";
 
 
-
 /* MARK: SplitViewController */
 // Menu items
 "Stack Editors Horizontally" = "Seskupit editory vodorovně";
 "Stack Editors Vertically" = "Seskupit editory svisle";
-
 
 
 /* MARK: StatusBarController */
@@ -397,7 +378,6 @@
 "Status Bar" = "Stavový řádek";
 
 
-
 /* MARK: NavigationBarController */
 // Outline menu title
 "Jump to previous outline item" = "Přejít na předchozí položku osnovy";
@@ -407,7 +387,6 @@
 "Outline" = "Osnova";
 "Previous" = "Předchozí";
 "Next" = "Další";
-
 
 
 // MARK: -
@@ -421,7 +400,6 @@
 "Format" = "Formát";
 "Snippets" = "Fragmenty kódů";
 "Key Bindings" = "Kláv. zkratky";
-
 
 
 /* MARK: SettingFileManager */
@@ -455,19 +433,16 @@
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "Chcete ji nahradit?\nNahrazenou syntaxi nelze obnovit.";
 
 
-
 /* MARK: ThemeManager */
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Bude nainstalován nový motiv s názvem „%@“, ale vlastní motiv se stejným názvem již existuje.";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "Chcete ho nahradit?\nNahrazený motiv nelze obnovit.";
 
 
-
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
 "A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "Bude nainstalována nová náhradní definice s názvem „%@“, ale definice se stejným názvem již existuje.";
 "Do you want to replace it?\nReplaced definition can’t be restored." = "Chcete ji nahradit?\nNahrazenou definici nelze obnovit.";
-
 
 
 /* MARK: KeyBindingManager */
@@ -484,14 +459,12 @@
 "Single type is invalid for a shortcut." = "Jednotlivou klávesu nelze pro zkratku použít.";
 
 
-
 /* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "Otevřít složku skriptů";
 
 // Script menu item tooltips
 "Option-click to open script in editor." = "Pro otevření skriptu v editoru stiskněte „Option“ a „klikněte“.";
-
 
 
 /* MARK: Script */
@@ -510,12 +483,10 @@
 "Check the permission of the script file." = "Zkontrolujte oprávnění souboru skriptu.";
 
 
-
 /* MARK: Console */
 "Console" = "Konzola";
 "Clear Log" = "Smazat protokol";
 "Clear error log" = "Smazat protokol chyb";
-
 
 
 /* MARK: FileDropItem */
@@ -533,12 +504,10 @@
 "(If the dropped file is a text file) file content." = "Obsah souboru (pokud je přetažený soubor textový soubor).";
 
 
-
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "Pozice kurzoru po vložení fragmentu kódu.";
 "The selected text." = "Vybraný text.";
-
 
 
 /* MARK: Syntax Mapping Conflicts View */
@@ -552,17 +521,14 @@
 "Duplicated syntaxes" = "Duplikované syntaxe";
 
 
-
 // MARK: -
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "Rychlé akce";
 
 
-
 /* MARK: Opacity View */
 "Editor’s Opacity" = "Neprůhlednost editoru";
-
 
 
 /* MARK: Character Info */
@@ -577,7 +543,6 @@
 "Skin Tone V" = "Skin Tone V";
 "Skin Tone VI" = "Skin Tone VI";
 "Variant" = "Varianta";
-
 
 
 /* MARK: Character Inspector View */

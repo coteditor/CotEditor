@@ -30,21 +30,18 @@
 "Restore Defaults" = "デフォルトに戻す";
 "Delete" = "削除";
 
-// accessibility labels for opacity slider
+// tooltip for opacity slider
 "Transparent" = "透明";
 "Opaque" = "不透明";
 
 // tooltip for link button in URL field
 "Jump to URL" = "URLにジャンプ";
 
-
 // words with symbols
 " (%@)" = "（%@）";
 
-
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "%@BOM付き";
-
 
 // Contextual menu items
 "Rename “%@”" = "“%@”を名称変更";
@@ -53,18 +50,15 @@
 "Export “%@”…" = "“%@”を書き出す…";
 "Reveal “%@” in Finder" = "“%@”をFinderに表示";
 
-
 // warning message occurs in multiple places
 "Are you sure you want to delete “%@”?" = "“%@”を削除してもよろしいですか?";
 "This action cannot be undone." = "この操作は取り消せません。";
-
 
 // filename field label variation for save panel
 "Export As:" = "名前:";
 
 // button label for open panel
 "Import" = "読み込む";
-
 
 
 
@@ -75,7 +69,6 @@
 "Install" = "インストール";
 "Open as Text File" = "テキストファイルとして開く";
 "A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
-
 
 
 /* MARK: Multiple Replace Panel */
@@ -89,7 +82,6 @@
 "Move Rules" = "条件を移動";
 
 
-
 /* MARK: Document Controller */
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "ファイル“%@”はテキストデータではないようです。";
@@ -101,7 +93,6 @@
 "The file “%@” has a size of %@." = "ファイル“%@”はファイルサイズが%@あります。";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか?";
 "Open" = "開く";
-
 
 
 /* MARK: Document */
@@ -153,11 +144,9 @@
 "Update" = "更新";
 
 
-
 /* MARK: Document Window */
 // tooltip for the "edited" indicator in the window tab
 "Document has unsaved changes" = "書類に保存されていない変更があります";
-
 
 
 /* MARK: Toolbar */
@@ -268,18 +257,15 @@
 "Show Fonts" = "フォントパネルを表示";
 
 
-
 /* MARK: Touch Bar */
 // Touch bar item labels -Text Size
 "Actual Size" = "等倍";
-
 
 
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "プリント: %@";  // %@ is date
 "Last modified on %@" = "最終変更: %@";  // %@ is date
-
 
 
 /* MARK: PrintAccessoryViewController */
@@ -313,14 +299,12 @@
 "Black and White" = "白黒";
 
 
-
 /* MARK: FilterField */
 "Filter" = "フィルタ";
 // Menu items
 "Recent Filters" = "最近のフィルタ";
 "Clear Recent Filters" = "フィルタ履歴を消去";
 "No Recent Filter" = "フィルタ履歴がありません";
-
 
 
 /* MARK: EditorTextView */
@@ -355,7 +339,6 @@
 "Line Numbers" = "行番号";
 
 
-
 /* MARK: DocumentViewController */
 // Menu items
 "Hide Inspector" = "インスペクタを非表示";
@@ -379,12 +362,10 @@
 "To show invisible characters, set them in the Window settings" = "不可視文字を表示させるには「ウインドウ」設定で設定を変更してください";
 
 
-
 /* MARK: SplitViewController */
 // Menu items
 "Stack Editors Horizontally" = "分割エディタを横に配置";
 "Stack Editors Vertically" = "分割エディタを縦に配置";
-
 
 
 /* MARK: StatusBarController */
@@ -398,7 +379,6 @@
 "Status Bar" = "ステータスバー";
 
 
-
 /* MARK: NavigationBarController */
 // Outline menu title
 "Jump to previous outline item" = "前の項目へ";
@@ -408,7 +388,6 @@
 "Outline" = "アウトライン";
 "Previous" = "前へ";
 "Next" = "次へ";
-
 
 
 // MARK: -
@@ -422,7 +401,6 @@
 "Format" = "フォーマット";
 "Snippets" = "スニペット";
 "Key Bindings" = "キーバインド";
-
 
 
 /* MARK: SettingFileManager */
@@ -447,7 +425,6 @@
 "Replace" = "置換";
 
 
-
 /* MARK: SyntaxManager */
 // Syntax name
 "None" = "なし";
@@ -457,19 +434,16 @@
 "Do you want to replace it?\nReplaced syntax can’t be restored." = "シンタックスを置き換えますか?\n置き換えたシンタックスは元に戻せません。";
 
 
-
 /* MARK: ThemeManager */
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "テーマを置き換えますか?\n削除したテーマは元に戻せません。";
 
 
-
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
 "A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "新しい置換定義“%@”のインストールを試みましたが、同名の定義がすでに存在しています。";
 "Do you want to replace it?\nReplaced definition can’t be restored." = "定義を置き換えますか?\n削除した定義は元に戻せません。";
-
 
 
 /* MARK: KeyBindingManager */
@@ -486,14 +460,12 @@
 "Single type is invalid for a shortcut." = "単体のキーはショートカットに登録できません。";
 
 
-
 /* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "スクリプトフォルダを開く";
 
 // Script menu item tooltips
 "Option-click to open script in editor." = "スクリプトをエディタで開くには、Option+クリックしてください。";
-
 
 
 /* MARK: Script */
@@ -512,12 +484,10 @@
 "Check the permission of the script file." = "スクリプトファイルのアクセス権を確認してください。";
 
 
-
 /* MARK: Console */
 "Console" = "コンソール";
 "Clear Log" = "ログを消去";
 "Clear error log" = "エラーログを消去";
-
 
 
 /* MARK: FileDropItem */
@@ -535,12 +505,10 @@
 "(If the dropped file is a text file) file content." = "ファイル内容（ドロップ元ファイルがテキストファイルのときのみ有効）";
 
 
-
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "スニペット挿入後の挿入ポイント";
 "The selected text." = "選択テキスト";
-
 
 
 /* MARK: Syntax Mapping Conflicts View */
@@ -554,17 +522,14 @@
 "Duplicated syntaxes" = "重複しているシンタックス";
 
 
-
 // MARK: -
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "クイックアクション";
 
 
-
 /* MARK: Opacity View */
 "Editor’s Opacity" = "エディタの不透明度";
-
 
 
 /* MARK: Character Info */
@@ -579,7 +544,6 @@
 "Skin Tone V" = "スキントーンV";
 "Skin Tone VI" = "スキントーンVI";
 "Variant" = "異体字";
-
 
 
 /* MARK: Character Inspector View */
