@@ -116,6 +116,8 @@
 		2A1E7E1A2B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */; };
 		2A1E7E2A2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */; };
 		2A1E7E2B2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */; };
+		2A1E7E3B2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E3A2B8D7D47004F0C07 /* CharacterInspector.xcstrings */; };
+		2A1E7E3C2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E3A2B8D7D47004F0C07 /* CharacterInspector.xcstrings */; };
 		2A1EB5C419AD469500C1E37E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Assets.xcassets */; };
 		2A1FAD5820A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
 		2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
@@ -911,6 +913,7 @@
 		2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = PrintAccessory.xcstrings; path = mul.lproj/PrintAccessory.xcstrings; sourceTree = "<group>"; };
 		2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = EditorOpacity.xcstrings; path = mul.lproj/EditorOpacity.xcstrings; sourceTree = "<group>"; };
 		2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = SyntaxMappingConflict.xcstrings; path = mul.lproj/SyntaxMappingConflict.xcstrings; sourceTree = "<group>"; };
+		2A1E7E3A2B8D7D47004F0C07 /* CharacterInspector.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = CharacterInspector.xcstrings; path = mul.lproj/CharacterInspector.xcstrings; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
@@ -1791,6 +1794,7 @@
 				2A39ACB82B8CE6DE00E216C9 /* CustomSurround.xcstrings */,
 				2ACDA2752B81D85700B2EBA8 /* PatternSort.xcstrings */,
 				2A39ACD42B8CE97700E216C9 /* UnicodeInput.xcstrings */,
+				2A1E7E3A2B8D7D47004F0C07 /* CharacterInspector.xcstrings */,
 				2A55D5D72B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings */,
 				2A39ACA72B8CE58100E216C9 /* LiveTextInsertion.xcstrings */,
 			);
@@ -2558,6 +2562,7 @@
 				2A902A9D2B86DC140053FC96 /* KeyBindingsSettings.xcstrings in Resources */,
 				2A39ACFC2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings in Resources */,
 				2A55D5D82B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */,
+				2A1E7E3B2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */,
 				2ACDA2892B81E2AC00B2EBA8 /* ColorCode.xcstrings in Resources */,
 				2A39ACB92B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACF92B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
@@ -2633,6 +2638,7 @@
 				2A1E7DCA2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings in Resources */,
 				2A39ACFD2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings in Resources */,
 				2A55D5D92B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */,
+				2A1E7E3C2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */,
 				2ACDA28A2B81E2B100B2EBA8 /* ColorCode.xcstrings in Resources */,
 				2A39ACBA2B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACFA2B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,

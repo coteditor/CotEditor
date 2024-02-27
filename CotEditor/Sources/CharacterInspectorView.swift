@@ -57,7 +57,7 @@ private struct CharacterDetailView: View {
                     .foregroundColor(.label)  // Workaround to keep text color when selected (2022-12, macOS 13, FB10747746, fixed on macOS 14).
                     .textSelection(.enabled)
             } else {
-                Text("Unknown")
+                Text("Unknown", tableName: "CharacterInspector")
                     .foregroundStyle(.secondary)
             }
             
@@ -123,7 +123,7 @@ private struct ScalarDetailView: View {
         Grid(alignment: .leadingLastTextBaseline, verticalSpacing: 2) {
             if self.items.contains(.codePoint) {
                 GridRow {
-                    Text("Code Point:")
+                    Text("Code Point:", tableName: "CharacterInspector")
                         .gridColumnAlignment(.trailing)
                     
                     HStack {
@@ -145,7 +145,7 @@ private struct ScalarDetailView: View {
             
             if self.items.contains(.block) {
                 GridRow {
-                    Text("Block:")
+                    Text("Block:", tableName: "CharacterInspector")
                         .gridColumnAlignment(.trailing)
                     
                     if let blockName = self.scalar.localizedBlockName {
@@ -153,7 +153,7 @@ private struct ScalarDetailView: View {
                             .foregroundColor(.label)
                             .textSelection(.enabled)
                     } else {
-                        Text("No Block")
+                        Text("No Block", tableName: "CharacterInspector")
                             .foregroundStyle(.secondary)
                     }
                 }
@@ -161,7 +161,7 @@ private struct ScalarDetailView: View {
             
             if self.items.contains(.category) {
                 GridRow {
-                    Text("Category:")
+                    Text("Category:", tableName: "CharacterInspector")
                     
                     let category = self.scalar.properties.generalCategory
                     Text(verbatim: "\(category.longName) (\(category.shortName))")
@@ -172,7 +172,7 @@ private struct ScalarDetailView: View {
             
             if self.items.contains(.version), let age = self.scalar.properties.age {
                 GridRow {
-                    Text("Version:")
+                    Text("Version:", tableName: "CharacterInspector")
                     
                     Text(verbatim: "Unicode \(age.major).\(age.minor)")
                 }
@@ -222,7 +222,7 @@ private struct DeprecatedBadge: View {
     
     var body: some View {
         
-        Text("deprecated", comment: "badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification")
+        Text("deprecated", tableName: "CharacterInspector", comment: "badge for when the inspected character is deprecated in the latest Unicode specification")
             .padding(.horizontal, 3)
             .overlay(RoundedRectangle(cornerRadius: 3).stroke(.secondary))
             .foregroundStyle(.secondary)

@@ -486,14 +486,3 @@
 "Skin Tone V" = "Skin Tone V";
 "Skin Tone VI" = "Skin Tone VI";
 "Variant" = "Varianta";
-
-
-/* MARK: Character Inspector View */
-"Unknown" = "Neznámý";
-"No Block" = "Žádný blok";
-"Code Point:" = "Kódový bod:";
-"Block:" = "Blok:";
-"Category:" = "Kategorie:";
-"Version:" = "Verze:";
-// badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
-"deprecated" = "zastaralé";

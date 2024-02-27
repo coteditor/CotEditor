@@ -486,14 +486,3 @@
 "Skin Tone V" = "Ton de chair V";
 "Skin Tone VI" = "Ton de chair VI";
 "Variant" = "Variante";
-
-
-/* MARK: Character Inspector View */
-"Unknown" = "Inconnu";
-"No Block" = "Pas de bloc";
-"Code Point:" = "Point de Code :";
-"Block:" = "Sous-ensemble :";
-"Category:" = "Catégorie :";
-"Version:" = "Version :";
-// badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
-"deprecated" = "déprécié";

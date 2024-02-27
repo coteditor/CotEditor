@@ -486,14 +486,3 @@
 "Skin Tone V" = "Ten Rengi V";
 "Skin Tone VI" = "Ten Rengi VI";
 "Variant" = "Varyant";
-
-
-/* MARK: Character Inspector View */
-"Unknown" = "Bilinmeyen";
-"No Block" = "Blok Yok";
-"Code Point:" = "Kod noktası:";
-"Block:" = "Blok:";
-"Category:" = "Kategori:";
-"Version:" = "Sürüm:";
-// badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
-"deprecated" = "kullanımdan kaldırıldı";

@@ -486,14 +486,3 @@
 "Skin Tone V" = "Tono de piel V";
 "Skin Tone VI" = "Tono de piel VI";
 "Variant" = "Variante";  // FIXME: needs review
-
-
-/* MARK: Character Inspector View */
-"Unknown" = "Desconocido";
-"No Block" = "No bloque";
-"Code Point:" = "Punto de código:";  // FIXME: needs review
-"Block:" = "Bloque:";  // FIXME: needs review
-"Category:" = "Categoría:";  // FIXME: needs review
-"Version:" = "Versión:";  // FIXME: needs review
-// badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
-"deprecated" = "obsoleto";  // FIXME: needs review

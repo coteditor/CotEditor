@@ -486,14 +486,3 @@
 "Skin Tone V" = "Tom de Pele V";
 "Skin Tone VI" = "Tom de Pele VI";
 "Variant" = "Variante";
-
-
-/* MARK: Character Inspector View */
-"Unknown" = "Desconhecido";
-"No Block" = "Nenhum Bloco";
-"Code Point:" = "Ponto de Código:";
-"Block:" = "Bloco:";
-"Category:" = "Categoria:";
-"Version:" = "Versão:";
-// badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
-"deprecated" = "depreciado";

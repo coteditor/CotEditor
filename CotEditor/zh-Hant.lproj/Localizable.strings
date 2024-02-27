@@ -486,14 +486,3 @@
 "Skin Tone V" = "膚色V";
 "Skin Tone VI" = "膚色VI";
 "Variant" = "異體字";
-
-
-/* MARK: Character Inspector View */
-"Unknown" = "未知的";
-"No Block" = "無區段";
-"Code Point:" = "碼位:";
-"Block:" = "區段:";
-"Category:" = "分類:";
-"Version:" = "版本:";
-// badge in the character inspector for when the inspected character is deprecated in the latest Unicode specification
-"deprecated" = "已廢棄";
