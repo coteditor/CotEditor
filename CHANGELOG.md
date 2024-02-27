@@ -10,6 +10,7 @@
 
 ### Improvements
 
+- Improve the look and feel of the syntax editor.
 - Make the encoding priority view undoable.
 - [trivial] Enable delete selected separators in the encoding priority view with the Delete key.
 - [dev] Migrate the settings window and syntax editor to SwiftUI.
