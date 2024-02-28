@@ -85,9 +85,13 @@ extension Snippet {
             
             switch self {
                 case .cursor:
-                    String(localized: "The insertion point after inserting the snippet.")
+                    String(localized: "Snippet.Variable.cursor.description",
+                           defaultValue: "The insertion point after inserting the snippet.",
+                           table: "Snippet")
                 case .selection:
-                    String(localized: "The selected text.")
+                    String(localized: "Snippet.Variable.cursor.description",
+                           defaultValue: "The selected text.",
+                           table: "Snippet")
             }
         }
     }

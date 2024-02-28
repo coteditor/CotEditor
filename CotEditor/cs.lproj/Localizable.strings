@@ -414,12 +414,6 @@
 "Option-click to open script in editor." = "Pro otevření skriptu v editoru stiskněte „Option“ a „klikněte“.";
 
 
-/* MARK: Snippet */
-// Descriptions about variables in the snippet feature
-"The insertion point after inserting the snippet." = "Pozice kurzoru po vložení fragmentu kódu.";
-"The selected text." = "Vybraný text.";
-
-
 // MARK: -
 
 /* MARK: Quick Action Bar */

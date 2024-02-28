@@ -416,12 +416,6 @@
 "Option-click to open script in editor." = "使用Option-单击在编辑器中打开脚本。";
 
 
-/* MARK: Snippet */
-// Descriptions about variables in the snippet feature
-"The insertion point after inserting the snippet." = "插入片段后的光标位置";
-"The selected text." = "所选文本";
-
-
 // MARK: -
 
 /* MARK: Quick Action Bar */

@@ -414,12 +414,6 @@
 "Option-click to open script in editor." = "Opção-clique para abrir o script no editor.";
 
 
-/* MARK: Snippet */
-// Descriptions about variables in the snippet feature
-"The insertion point after inserting the snippet." = "A posição do cursor depois de inserir o fragmento.";
-"The selected text." = "O texto selecionado.";
-
-
 // MARK: -
 
 /* MARK: Quick Action Bar */

@@ -414,12 +414,6 @@
 "Option-click to open script in editor." = "Option-tık, betiği düzenleyicide açar.";
 
 
-/* MARK: Snippet */
-// Descriptions about variables in the snippet feature
-"The insertion point after inserting the snippet." = "Kırpıntı eklendikten sonraki imleç konumu.";
-"The selected text." = "Seçilen metin.";
-
-
 // MARK: -
 
 /* MARK: Quick Action Bar */
