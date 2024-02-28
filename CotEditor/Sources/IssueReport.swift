@@ -54,8 +54,8 @@ struct IssueReport {
     
     // MARK: Private Methods
     
-    private static var issueLink = "[GitHub Issues](https://github.com/coteditor/CotEditor/issues)"
-    private static var mail = "<coteditor.github@gmail.com>"
+    private static let issueLink = "[GitHub Issues](https://github.com/coteditor/CotEditor/issues)"
+    private static let mail = "<coteditor.github@gmail.com>"
     
     
     private var description: String {

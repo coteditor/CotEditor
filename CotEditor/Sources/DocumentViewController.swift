@@ -53,7 +53,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     // MARK: Private Properties
     
     /// Keys for NSNumber values to be restored from the last session (Bool is also an NSNumber).
-    private static var restorableNumberStateKeyPaths: [String] = [
+    private static let restorableNumberStateKeyPaths: [String] = [
         #keyPath(showsLineNumber),
         #keyPath(showsPageGuide),
         #keyPath(showsIndentGuides),

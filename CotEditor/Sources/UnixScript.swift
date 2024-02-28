@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ struct UnixScript: Script {
         case newDocument = "NewDocument"
         case pasteboard = "Pasteboard"
         
-        static var token = "CotEditorXOutput"
+        static let token = "CotEditorXOutput"
     }
     
     
@@ -68,7 +68,7 @@ struct UnixScript: Script {
         case selection = "Selection"
         case allText = "AllText"
         
-        static var token = "CotEditorXInput"
+        static let token = "CotEditorXInput"
     }
     
     
