@@ -125,6 +125,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     private var isTypingPairedQuotes = false
     
     private var isAutomaticSymbolBalancingEnabled = false
+    private var isAutomaticCompletionEnabled = false
     private var isAutomaticIndentEnabled = false
     
     private var mouseDownPoint: NSPoint = .zero
@@ -210,6 +211,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.isAutomaticQuoteSubstitutionEnabled = defaults[.enableSmartQuotes]
         self.isAutomaticDashSubstitutionEnabled = defaults[.enableSmartDashes]
         self.isContinuousSpellCheckingEnabled = defaults[.checkSpellingAsType]
+        self.isAutomaticCompletionEnabled = defaults[.autoComplete]
         
         // set font
         let fontType: FontType = (defaults[.fontPreference] == .monospaced) ? .monospaced : .standard
@@ -252,6 +254,8 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
                 .sink { [unowned self] in self.isAutomaticDashSubstitutionEnabled = $0 },
             defaults.publisher(for: .checkSpellingAsType)
                 .sink { [unowned self] in self.isContinuousSpellCheckingEnabled = $0 },
+            defaults.publisher(for: .autoComplete)
+                .sink { [unowned self] in self.isAutomaticCompletionEnabled = $0 },
             
             defaults.publisher(for: .showIndentGuides)
                 .sink { [unowned self] in self.showsIndentGuides = $0 },
@@ -618,7 +622,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         super.insertText(plainString, replacementRange: replacementRange)
         
         // auto completion
-        if UserDefaults.standard[.autoComplete] {
+        if self.isAutomaticCompletionEnabled {
             if self.rangeForUserCompletion.length >= UserDefaults.standard[.minimumAutomaticCompletionLength] {
                 let delay: TimeInterval = UserDefaults.standard[.autoCompletionDelay]
                 self.completionDebouncer.schedule(delay: .seconds(delay))
