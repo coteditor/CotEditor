@@ -14,6 +14,7 @@
 - Make the encoding priority view undoable.
 - [trivial] Enable delete selected separators in the encoding priority view with the Delete key.
 - [dev] Migrate the settings window and syntax editor to SwiftUI.
+- [dev] Update the build environment to Xcode 15.3 (Swift 5.10).
 
 
 ### Fixes
