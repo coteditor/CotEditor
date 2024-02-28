@@ -414,22 +414,6 @@
 "Option-click to open script in editor." = "Option-tık, betiği düzenleyicide açar.";
 
 
-/* MARK: Script */
-// No script target document errors
-"No document to get input." = "Girdi alınacak bir belge yok.";
-"No document to put output." = "Çıktı koyulacak bir belge yok.";
-
-// Script file error description
-"The script “%@” does not exist." = "“%@” betiği mevcut değil.";
-"The script file “%@” couldn’t be opened." = "“%@” betik dosyası açılamadı.";
-"The script “%@” can’t be executed because you don’t have the execute permission." = "“%@” betiği çalıştırılamıyor; çünkü çalıştırmak için yeterli izinlere iye değilsiniz.";
-"The script “%@” couldn’t be read." = "“%@” betiği okunamadı.";
-
-// Script file error recovery suggestions
-"Check the script file." = "Betik dosyasını denetleyin.";
-"Check the permission of the script file." = "Betik dosyasının izinlerini denetleyin.";
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Bırakılan dosya mutlak yolu.";

@@ -414,22 +414,6 @@
 "Option-click to open script in editor." = "使用Option-單擊在編輯器中開啟腳本。";
 
 
-/* MARK: Script */
-// No script target document errors
-"No document to get input." = "沒有要輸入的文件。";
-"No document to put output." = "沒有要輸出的文件。";
-
-// Script file error description
-"The script “%@” does not exist." = "腳本「%@」不存在。";
-"The script file “%@” couldn’t be opened." = "無法開啟腳本檔案「%@」。";
-"The script “%@” can’t be executed because you don’t have the execute permission." = "由於沒有執行許可權，無法執行腳本「%@」。";
-"The script “%@” couldn’t be read." = "無法讀取腳本「%@」。";
-
-// Script file error recovery suggestions
-"Check the script file." = "請確認腳本檔案。";
-"Check the permission of the script file." = "請確認腳本檔案的許可權。";
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "拖拽的檔案絕對路徑";

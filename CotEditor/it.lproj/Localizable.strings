@@ -414,22 +414,6 @@
 "Option-click to open script in editor." = "Option-click per aprire nell’editor degli script.";
 
 
-/* MARK: Script */
-// No script target document errors
-"No document to get input." = "Nessun documento da cui ottenere dati.";
-"No document to put output." = "Nessun documento dove salvare il risultato.";
-
-// Script file error description
-"The script “%@” does not exist." = "Lo script “%@” non esiste.";
-"The script file “%@” couldn’t be opened." = "Impossibile aprire il file dello script “%@”.";
-"The script “%@” can’t be executed because you don’t have the execute permission." = "Impossibile eseguire lo script “%@”, perché non hai i permessi di esecuzione.";
-"The script “%@” couldn’t be read." = "Impossibile leggere lo script “%@”.";
-
-// Script file error recovery suggestions
-"Check the script file." = "Verificare il file dello script.";
-"Check the permission of the script file." = "Verificare i permessi dello script.";
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Percorso assoluto del file trascinato.";

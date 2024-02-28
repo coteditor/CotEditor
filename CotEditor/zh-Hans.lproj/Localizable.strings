@@ -416,22 +416,6 @@
 "Option-click to open script in editor." = "使用Option-单击在编辑器中打开脚本。";
 
 
-/* MARK: Script */
-// No script target document errors
-"No document to get input." = "没有输入文稿。";
-"No document to put output." = "没有输出文稿。";
-
-// Script file error description
-"The script “%@” does not exist." = "脚本“%@”不存在。";
-"The script file “%@” couldn’t be opened." = "无法打开脚本文件“%@”。";
-"The script “%@” can’t be executed because you don’t have the execute permission." = "由于没有执行权限，无法执行脚本“%@”。";
-"The script “%@” couldn’t be read." = "无法读取脚本“%@”。";
-
-// Script file error recovery suggestions
-"Check the script file." = "请确认脚本文件。";
-"Check the permission of the script file." = "请确认脚本文件的权限。";
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "拖拽的文件绝对路径";

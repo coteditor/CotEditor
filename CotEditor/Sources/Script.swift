@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -97,13 +97,21 @@ struct ScriptFileError: LocalizedError {
         
         switch self.code {
             case .existence:
-                String(localized: "The script “\(self.url.lastPathComponent)” does not exist.")
+                String(localized: "ScriptFileError.existence.description",
+                       defaultValue: "The script “\(self.url.lastPathComponent)” does not exist.",
+                       table: "Script")
             case .read:
-                String(localized: "The script “\(self.url.lastPathComponent)” couldn’t be read.")
+                String(localized: "ScriptFileError.read.description",
+                       defaultValue: "The script “\(self.url.lastPathComponent)” couldn’t be read.",
+                       table: "Script")
             case .open:
-                String(localized: "The script file “\(self.url.path)” couldn’t be opened.")
+                String(localized: "ScriptFileError.open.description",
+                       defaultValue: "The script file “\(self.url.path)” couldn’t be opened.",
+                       table: "Script")
             case .permission:
-                String(localized: "The script “\(self.url.lastPathComponent)” can’t be executed because you don’t have the execute permission.")
+                String(localized: "ScriptFileError.permission.description",
+                       defaultValue: "The script “\(self.url.lastPathComponent)” can’t be executed because you don’t have the execute permission.",
+                       table: "Script")
         }
     }
     
@@ -112,13 +120,16 @@ struct ScriptFileError: LocalizedError {
         
         switch self.code {
             case .permission:
-                String(localized: "Check the permission of the script file.")
+                String(localized: "ScriptFileError.permission.recoverySuggestion",
+                       defaultValue: "Check the permission of the script file.",
+                       table: "Script")
             default:
-                String(localized: "Check the script file.")
+                String(localized: "ScriptFileError.recoverySuggestion",
+                       defaultValue: "Check the script file.",
+                       table: "Script")
         }
     }
 }
-
 
 
 enum ScriptError: LocalizedError {
@@ -134,9 +145,13 @@ enum ScriptError: LocalizedError {
             case .standardError(let string):
                 string
             case .noInputTarget:
-                String(localized: "No document to get input.")
+                String(localized: "ScriptError.noInputTarget.description",
+                       defaultValue: "No document to get input.",
+                       table: "Script")
             case .noOutputTarget:
-                String(localized: "No document to put output.")
+                String(localized: "ScriptError.noOutputTarget.description",
+                       defaultValue: "No document to put output.",
+                       table: "Script")
         }
     }
 }

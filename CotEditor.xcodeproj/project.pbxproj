@@ -551,6 +551,8 @@
 		2AA4F6A120A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */; };
 		2AA5BCFA24FFB21C00618F83 /* String+Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5BCF924FFB21C00618F83 /* String+Match.swift */; };
 		2AA5BCFB24FFB21C00618F83 /* String+Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5BCF924FFB21C00618F83 /* String+Match.swift */; };
+		2AA672592B8F719900B8F7E6 /* Script.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672582B8F6D7B00B8F7E6 /* Script.xcstrings */; };
+		2AA6725A2B8F719900B8F7E6 /* Script.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672582B8F6D7B00B8F7E6 /* Script.xcstrings */; };
 		2AA6E0C82B75AC4900E536F8 /* SyntaxEditor.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */; };
 		2AA704CE2987878B008CBCB5 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA704CD2987878B008CBCB5 /* Node.swift */; };
 		2AA704CF2987878B008CBCB5 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA704CD2987878B008CBCB5 /* Node.swift */; };
@@ -1167,6 +1169,7 @@
 		2AA4EE3C28D55CE80014B045 /* DelegateContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateContext.swift; sourceTree = "<group>"; };
 		2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+RoundedBackground.swift"; sourceTree = "<group>"; };
 		2AA5BCF924FFB21C00618F83 /* String+Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Match.swift"; sourceTree = "<group>"; };
+		2AA672582B8F6D7B00B8F7E6 /* Script.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Script.xcstrings; path = mul.lproj/Script.xcstrings; sourceTree = "<group>"; };
 		2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = SyntaxEditor.xcstrings; path = mul.lproj/SyntaxEditor.xcstrings; sourceTree = "<group>"; };
 		2AA6E0BE2B74728700E536F8 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/FindPanelFieldView.xcstrings; sourceTree = "<group>"; };
 		2AA704CD2987878B008CBCB5 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -2097,6 +2100,17 @@
 			name = Character;
 			sourceTree = "<group>";
 		};
+		2AA6725B2B8F74D900B8F7E6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
+				2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */,
+				2AA672582B8F6D7B00B8F7E6 /* Script.xcstrings */,
+				2ACDA29F2B81E8C300B2EBA8 /* IssueReport.xcstrings */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		2AB1BD21287D752300C6FEAF /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -2172,14 +2186,12 @@
 				2A39AC802B8CDFC800E216C9 /* EncodingList.xcstrings */,
 				2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */,
 				2A1E7DE72B8D615A004F0C07 /* TextFind */,
-				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
-				2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */,
 				2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */,
 				2A39AC942B8CE43100E216C9 /* AccessoryViews */,
 				2ACDA2882B81E2AC00B2EBA8 /* ColorCode.xcstrings */,
 				2A1E7E4E2B8D9706004F0C07 /* Console.xcstrings */,
 				2A39ACFE2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings */,
-				2ACDA29F2B81E8C300B2EBA8 /* IssueReport.xcstrings */,
+				2AA6725B2B8F74D900B8F7E6 /* Models */,
 				2AA2E0111BFE12620087BDD6 /* UnicodeBlock.strings */,
 				2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */,
 			);
@@ -2588,6 +2600,7 @@
 				2A1E7DFA2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */,
 				2AC94B3B2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */,
 				2A39ACF72B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */,
+				2AA672592B8F719900B8F7E6 /* Script.xcstrings in Resources */,
 				2A5E6FC72A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
 				2A1E7E602B8DC879004F0C07 /* Settings.xcstrings in Resources */,
 				2A6566E92B73BBB400008669 /* SyntaxEditor.xcstrings in Resources */,
@@ -2666,6 +2679,7 @@
 				2A1E7DFB2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */,
 				2AC94B3C2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */,
 				2A39ACF82B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */,
+				2AA6725A2B8F719900B8F7E6 /* Script.xcstrings in Resources */,
 				2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
 				2A1E7E612B8DC879004F0C07 /* Settings.xcstrings in Resources */,
 				2AA6E0C82B75AC4900E536F8 /* SyntaxEditor.xcstrings in Resources */,

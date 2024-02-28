@@ -414,22 +414,6 @@
 "Option-click to open script in editor." = "Pro otevření skriptu v editoru stiskněte „Option“ a „klikněte“.";
 
 
-/* MARK: Script */
-// No script target document errors
-"No document to get input." = "Žádný dokument k získání vstupu.";
-"No document to put output." = "Žádný dokument, který by dal výstup.";
-
-// Script file error description
-"The script “%@” does not exist." = "Skript „%@“ neexistuje.";
-"The script file “%@” couldn’t be opened." = "Soubor skriptu „%@“ nelze otevřít.";
-"The script “%@” can’t be executed because you don’t have the execute permission." = "Skript „%@“ nelze spustit, protože nemáte oprávnění ke spuštění.";
-"The script “%@” couldn’t be read." = "Skript „%@“ nelze přečíst.";
-
-// Script file error recovery suggestions
-"Check the script file." = "Zkontrolujte soubor skriptu.";
-"Check the permission of the script file." = "Zkontrolujte oprávnění souboru skriptu.";
-
-
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Absolutní cesta přetaženého souboru.";
