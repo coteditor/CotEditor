@@ -409,7 +409,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     private func didChangeSyntax() {
         
         for viewController in self.editorViewControllers {
-            viewController.apply(syntax: self.syntaxParser.syntax)
+            viewController.apply(syntax: self.syntaxParser.syntax, name: self.syntaxParser.name)
         }
         
         self.outlineParseDebouncer.perform()
@@ -932,7 +932,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     private func replace(document: Document, in editorViewController: EditorViewController) {
         
         editorViewController.setTextStorage(document.textStorage)
-        editorViewController.apply(syntax: document.syntaxParser.syntax)
+        editorViewController.apply(syntax: document.syntaxParser.syntax, name: document.syntaxParser.name)
         editorViewController.outlineItems = document.syntaxParser.outlineItems
     }
     

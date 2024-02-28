@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2021 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -114,7 +114,7 @@ extension EditorTextView {
     /// Resets scale and font to default.
     @IBAction func resetFont(_ sender: Any?) {
         
-        self.font = UserDefaults.standard.font(for: self.preferredFontType)
+        self.font = UserDefaults.standard.font(for: self.mode.fontType)
         self.setScaleKeepingVisibleArea(1.0)
     }
 }

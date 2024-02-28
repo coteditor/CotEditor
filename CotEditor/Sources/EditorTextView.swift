@@ -56,18 +56,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     
     // MARK: Public Properties
     
-    var syntaxKind: Syntax.Kind = .general {
-        
-        didSet {
-            guard oldValue != syntaxKind else { return }
-            let type: FontType = switch UserDefaults.standard[.fontPreference] {
-                case .automatic: syntaxKind.fontType
-                case .standard: .standard
-                case .monospaced: .monospaced
-            }
-            self.setFont(type: type)
-        }
-    }
+    var mode: ModeOptions = ModeOptions()  { didSet { if mode != oldValue { self.applyMode() } } }
     
     var theme: Theme?  { didSet { self.applyTheme() } }
     
@@ -206,55 +195,18 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         // setup behaviors
         self.isAutomaticTabExpansionEnabled = defaults[.autoExpandTab]
         self.isAutomaticIndentEnabled = defaults[.autoIndent]
-        self.smartInsertDeleteEnabled = defaults[.smartInsertAndDelete]
-        self.isAutomaticQuoteSubstitutionEnabled = defaults[.enableSmartQuotes]
-        self.isAutomaticDashSubstitutionEnabled = defaults[.enableSmartDashes]
-        self.isAutomaticSymbolBalancingEnabled = defaults[.balancesBrackets]
-        self.isContinuousSpellCheckingEnabled = defaults[.checkSpellingAsType]
-        self.isAutomaticCompletionEnabled = defaults[.autoComplete]
-        
-        // set font
-        let fontType: FontType = (defaults[.fontPreference] == .monospaced) ? .monospaced : .standard
-        let font = defaults.font(for: fontType)
-        super.font = font
-        layoutManager.textFont = font
-        layoutManager.usesAntialias = defaults[.antialias(for: fontType)]
-        
-        self.ligature = defaults[.ligature(for: fontType)] ? .standard : .none
-        self.typingAttributes[.kern] = (fontType == .monospaced) ? 0 : nil
-        self.invalidateDefaultParagraphStyle(initial: true)
-        
-        // observe font changes in defaults
-        self.observeFontDefaults(for: fontType)
         
         // observe changes in defaults
         self.defaultsObservers = [
-            defaults.publisher(for: .fontPreference)
-                .map { [unowned self] _ in self.preferredFontType }
-                .sink { [unowned self] in self.setFont(type: $0) },
-            
             defaults.publisher(for: .lineHeight)
                 .sink { [unowned self] in self.lineHeight = $0 },
             defaults.publisher(for: .tabWidth)
                 .sink { [unowned self] in self.tabWidth = $0 },
             
-            defaults.publisher(for: .balancesBrackets)
-                .sink { [unowned self] in self.isAutomaticSymbolBalancingEnabled = $0 },
             defaults.publisher(for: .autoExpandTab)
                 .sink { [unowned self] in self.isAutomaticTabExpansionEnabled = $0 },
             defaults.publisher(for: .autoIndent)
                 .sink { [unowned self] in self.isAutomaticIndentEnabled = $0 },
-            
-            defaults.publisher(for: .smartInsertAndDelete)
-                .sink { [unowned self] in self.smartInsertDeleteEnabled = $0 },
-            defaults.publisher(for: .enableSmartQuotes)
-                .sink { [unowned self] in self.isAutomaticQuoteSubstitutionEnabled = $0 },
-            defaults.publisher(for: .enableSmartDashes)
-                .sink { [unowned self] in self.isAutomaticDashSubstitutionEnabled = $0 },
-            defaults.publisher(for: .checkSpellingAsType)
-                .sink { [unowned self] in self.isContinuousSpellCheckingEnabled = $0 },
-            defaults.publisher(for: .autoComplete)
-                .sink { [unowned self] in self.isAutomaticCompletionEnabled = $0 },
             
             defaults.publisher(for: .showIndentGuides)
                 .sink { [unowned self] in self.showsIndentGuides = $0 },
@@ -1293,17 +1245,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// The font type the user prefers.
-    var preferredFontType: FontType {
-        
-        switch UserDefaults.standard[.fontPreference] {
-            case .automatic: self.syntaxKind.fontType
-            case .standard: .standard
-            case .monospaced: .monospaced
-        }
-    }
-    
-    
     /// Sets the font (font, antialias, and ligature) to the given font type.
     ///
     /// - Parameter type: The font type to change.
@@ -1409,6 +1350,26 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
+    /// Updates the settings for the current mode.
+    private func applyMode() {
+        
+        let mode = self.mode
+        
+        self.setFont(type: mode.fontType)
+        
+        self.smartInsertDeleteEnabled = mode.smartInsertDelete
+        self.isAutomaticDashSubstitutionEnabled = mode.automaticDashSubstitution
+        self.isAutomaticQuoteSubstitutionEnabled = mode.automaticQuoteSubstitution
+        self.isAutomaticSymbolBalancingEnabled = mode.automaticSymbolBalancing
+        
+        self.isContinuousSpellCheckingEnabled = mode.continuousSpellChecking
+        self.isGrammarCheckingEnabled = mode.grammarChecking
+        self.isAutomaticSpellingCorrectionEnabled = mode.automaticSpellingCorrection
+        
+        self.isAutomaticCompletionEnabled = mode.automaticCompletion
+    }
+    
+    
     /// Starts observing the update of the user font settings of the given type.
     ///
     /// - Parameter type: The type of the font to observe.
@@ -1428,9 +1389,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     
     
     /// Updates `defaultParagraphStyle` based on the font, tab width, and line height.
-    ///
-    /// - Parameter initial: If true, apply the paragraphStyle even if the values are the same as the current `.defaultParagraphStyle.
-    private func invalidateDefaultParagraphStyle(initial: Bool = false) {
+    private func invalidateDefaultParagraphStyle() {
         
         assert(Thread.isMainThread)
         
@@ -1448,9 +1407,9 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
             paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.width(of: " ")
         }
         
-        guard initial ||
-                (paragraphStyle.lineHeightMultiple != self.defaultParagraphStyle?.lineHeightMultiple ||
-                 paragraphStyle.defaultTabInterval != self.defaultParagraphStyle?.defaultTabInterval)
+        // -> This guard is certainly passed on the first time because the initial values of defaultParagraphStyle are zero. (2024-02, macOS 14)
+        guard (paragraphStyle.lineHeightMultiple != self.defaultParagraphStyle?.lineHeightMultiple ||
+               paragraphStyle.defaultTabInterval != self.defaultParagraphStyle?.defaultTabInterval)
         else { return }
         
         self.defaultParagraphStyle = paragraphStyle
@@ -1698,7 +1657,7 @@ extension EditorTextView {
         let partialWord = (self.string as NSString).substring(with: charRange)
         
         // add words in document
-        if UserDefaults.standard[.completesDocumentWords] {
+        if self.mode.completionWordTypes.contains(.document) {
             let documentWords: [String] = {
                 // do nothing if the particle word is a symbol
                 guard charRange.length > 1 || CharacterSet.alphanumerics.contains(partialWord.unicodeScalars.first!) else { return [] }
@@ -1712,13 +1671,13 @@ extension EditorTextView {
         }
         
         // add words defined in syntax
-        if UserDefaults.standard[.completesSyntaxWords] {
+        if self.mode.completionWordTypes.contains(.syntax) {
             let syntaxWords = self.syntaxCompletionWords.filter { $0.range(of: partialWord, options: [.caseInsensitive, .anchored]) != nil }
             candidateWords.append(contentsOf: syntaxWords)
         }
         
         // add the standard words from default completion words
-        if UserDefaults.standard[.completesStandardWords] {
+        if self.mode.completionWordTypes.contains(.standard) {
             let words = super.completions(forPartialWordRange: charRange, indexOfSelectedItem: index) ?? []
             candidateWords.append(contentsOf: words)
         }

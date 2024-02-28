@@ -48,6 +48,7 @@ final class EditorViewController: NSSplitViewController {
     
     private var navigationBarItem: NSSplitViewItem?
     
+    private var syntaxName: String?
     private var defaultObservers: [AnyCancellable] = []
     
     
@@ -85,6 +86,8 @@ final class EditorViewController: NSSplitViewController {
         self.defaultObservers = [
             UserDefaults.standard.publisher(for: .showNavigationBar)
                 .sink { [weak self] in self?.navigationBarItem?.animator().isCollapsed = !$0 },
+            UserDefaults.standard.publisher(for: .modes)
+                .sink { [weak self] _ in self?.invalidateMode() },
         ]
         
         // set accessibility
@@ -154,15 +157,20 @@ final class EditorViewController: NSSplitViewController {
     
     /// Applies syntax to the inner text view.
     ///
-    /// - Parameter syntax: The syntax to apply.
-    func apply(syntax: Syntax) {
+    /// - Parameters:
+    ///   - syntax: The syntax to apply.
+    ///   - name: The name of the syntax.
+    func apply(syntax: Syntax, name: String) {
+        
+        self.syntaxName = name
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        textView.syntaxKind = syntax.kind
         textView.inlineCommentDelimiter = syntax.commentDelimiters.inline
         textView.blockCommentDelimiters = syntax.commentDelimiters.block
         textView.syntaxCompletionWords = syntax.completionWords
+        
+        self.invalidateMode()
     }
     
     
@@ -205,5 +213,18 @@ final class EditorViewController: NSSplitViewController {
         else { return }
         
         textView.select(range: item.range)
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Updates the editing mode options in the text view.
+    private func invalidateMode() {
+        
+        guard let syntaxName else { return assertionFailure() }
+        
+        Task {
+            self.textView?.mode = await ModeManager.shared.setting(for: .syntax(syntaxName))
+        }
     }
 }
