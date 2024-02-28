@@ -51,7 +51,7 @@ struct FontPicker: View {
             NSFontPanel.shared.orderBack(nil)
         }.onDisappear {
             NSFontManager.shared.target = nil
-            NSFontPanel.shared.close()
+            NSFontManager.shared.fontPanel(false)?.close()
         }
     }
     
