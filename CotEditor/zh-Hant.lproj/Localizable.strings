@@ -399,12 +399,6 @@
 // Keyboard key name
 "Space" = "空格";
 
-// Warning messages
-"“%@” is already taken by the “%@” command." = "「%@」已被「%@」命令使用。";
-"The Shift key can be used only with another modifier key." = "Shift鍵只能配合其他修飾鍵使用。";
-"The combination “%@” is not supported for the shortcut customization." = "組合鍵「%@」無法用作自訂綁定熱鍵。";
-"Single type is invalid for a shortcut." = "單獨的按鍵類型不能被用作快捷鍵。";
-
 
 /* MARK: ScriptManager */
 // Menu items

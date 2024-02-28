@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,16 +40,24 @@ extension Shortcut {
             
             switch self {
                 case .singleType:
-                    String(localized: "Single type is invalid for a shortcut.")
+                    String(localized: "Shortcut.CustomizationError.singleType.description",
+                           defaultValue: "Single type is invalid for a shortcut.",
+                           table: "Shortcut")
                     
                 case .alreadyTaken(let shortcut, let name):
-                    String(localized: "“\(shortcut.symbol)” is already taken by the “\(name)” command.")
+                    String(localized: "Shortcut.CustomizationError.alreadyTaken.description",
+                           defaultValue: "“\(shortcut.symbol)” is already taken by the “\(name)” command.",
+                           table: "Shortcut")
                     
                 case .shiftOnlyModifier:
-                    String(localized: "The Shift key can be used only with another modifier key.")
+                    String(localized: "Shortcut.CustomizationError.shiftOnlyModifier.description",
+                           defaultValue: "The Shift key can be used only with another modifier key.",
+                           table: "Shortcut")
                     
                 case .unsupported(let shortcut):
-                    String(localized: "The combination “\(shortcut.symbol)” is not supported for the shortcut customization.")
+                    String(localized: "Shortcut.CustomizationError.unsupported.description",
+                           defaultValue: "The combination “\(shortcut.symbol)” is not supported for the shortcut customization.",
+                           table: "Shortcut")
             }
         }
     }

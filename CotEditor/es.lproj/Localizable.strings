@@ -399,12 +399,6 @@
 // Keyboard key name
 "Space" = "Espacio";
 
-// Warning messages
-"“%@” is already taken by the “%@” command." = "“%@” ya está tomado por el comando “%@”.";
-"The Shift key can be used only with another modifier key." = "La tecla Mayús solo se puede usar con otra tecla modificadora.";
-"The combination “%@” is not supported for the shortcut customization." = "La combinación “%@” no es compatible con la personalización del atajo de teclado.";
-"Single type is invalid for a shortcut." = "El tipo único no es válido para un atajo de teclado.";
-
 
 /* MARK: ScriptManager */
 // Menu items

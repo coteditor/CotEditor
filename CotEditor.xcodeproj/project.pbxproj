@@ -557,6 +557,8 @@
 		2AA6726D2B8F75CC00B8F7E6 /* FileDropItem.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6726B2B8F75CC00B8F7E6 /* FileDropItem.xcstrings */; };
 		2AA6727E2B8F784700B8F7E6 /* Snippet.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6727D2B8F784700B8F7E6 /* Snippet.xcstrings */; };
 		2AA6727F2B8F784700B8F7E6 /* Snippet.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6727D2B8F784700B8F7E6 /* Snippet.xcstrings */; };
+		2AA672902B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */; };
+		2AA672912B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */; };
 		2AA6E0C82B75AC4900E536F8 /* SyntaxEditor.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */; };
 		2AA704CE2987878B008CBCB5 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA704CD2987878B008CBCB5 /* Node.swift */; };
 		2AA704CF2987878B008CBCB5 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA704CD2987878B008CBCB5 /* Node.swift */; };
@@ -1176,6 +1178,7 @@
 		2AA672582B8F6D7B00B8F7E6 /* Script.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Script.xcstrings; path = mul.lproj/Script.xcstrings; sourceTree = "<group>"; };
 		2AA6726B2B8F75CC00B8F7E6 /* FileDropItem.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = FileDropItem.xcstrings; path = mul.lproj/FileDropItem.xcstrings; sourceTree = "<group>"; };
 		2AA6727D2B8F784700B8F7E6 /* Snippet.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Snippet.xcstrings; path = mul.lproj/Snippet.xcstrings; sourceTree = "<group>"; };
+		2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Shortcut.xcstrings; path = mul.lproj/Shortcut.xcstrings; sourceTree = "<group>"; };
 		2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = SyntaxEditor.xcstrings; path = mul.lproj/SyntaxEditor.xcstrings; sourceTree = "<group>"; };
 		2AA6E0BE2B74728700E536F8 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/FindPanelFieldView.xcstrings; sourceTree = "<group>"; };
 		2AA704CD2987878B008CBCB5 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -2114,6 +2117,7 @@
 				2AA672582B8F6D7B00B8F7E6 /* Script.xcstrings */,
 				2AA6726B2B8F75CC00B8F7E6 /* FileDropItem.xcstrings */,
 				2AA6727D2B8F784700B8F7E6 /* Snippet.xcstrings */,
+				2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */,
 				2ACDA29F2B81E8C300B2EBA8 /* IssueReport.xcstrings */,
 			);
 			name = Models;
@@ -2612,6 +2616,7 @@
 				2AA672592B8F719900B8F7E6 /* Script.xcstrings in Resources */,
 				2A5E6FC72A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
 				2A1E7E602B8DC879004F0C07 /* Settings.xcstrings in Resources */,
+				2AA672902B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */,
 				2AA6727E2B8F784700B8F7E6 /* Snippet.xcstrings in Resources */,
 				2A6566E92B73BBB400008669 /* SyntaxEditor.xcstrings in Resources */,
 				2A1E7E2A2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */,
@@ -2693,6 +2698,7 @@
 				2AA6725A2B8F719900B8F7E6 /* Script.xcstrings in Resources */,
 				2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
 				2A1E7E612B8DC879004F0C07 /* Settings.xcstrings in Resources */,
+				2AA672912B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */,
 				2AA6727F2B8F784700B8F7E6 /* Snippet.xcstrings in Resources */,
 				2AA6E0C82B75AC4900E536F8 /* SyntaxEditor.xcstrings in Resources */,
 				2A1E7E2B2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */,

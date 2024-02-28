@@ -399,12 +399,6 @@
 // Keyboard key name
 "Space" = "Spazio";
 
-// Warning messages
-"“%@” is already taken by the “%@” command." = "Il tasto “%@” è giù utilizzato.";
-"The Shift key can be used only with another modifier key." = "Il tasto Maiuscolo va abbinato ad un altro tasto modificatore.";
-"The combination “%@” is not supported for the shortcut customization." = "La combinazione “%@” non è supportata per la personalizzazione del key binding.";
-"Single type is invalid for a shortcut." = "Un solo tasto non è una scorciatoia valida.";
-
 
 /* MARK: ScriptManager */
 // Menu items

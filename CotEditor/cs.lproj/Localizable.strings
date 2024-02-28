@@ -399,12 +399,6 @@
 // Keyboard key name
 "Space" = "Mezerník";
 
-// Warning messages
-"“%@” is already taken by the “%@” command." = "„%@“ je již obsazeno příkazem „%@“.";
-"The Shift key can be used only with another modifier key." = "Klávesu Shift lze použít pouze s jinou modifikační klávesou.";
-"The combination “%@” is not supported for the shortcut customization." = "Kombinace „%@“ není pro přizpůsobení zkratky podporována.";
-"Single type is invalid for a shortcut." = "Jednotlivou klávesu nelze pro zkratku použít.";
-
 
 /* MARK: ScriptManager */
 // Menu items

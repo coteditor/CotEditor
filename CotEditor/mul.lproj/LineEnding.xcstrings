@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "LineEnding.cr.description" : {
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -13,6 +14,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Klassisches Mac OS"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Classic Mac OS"
           }
         },
         "en-GB" : {
@@ -71,7 +78,85 @@
         }
       }
     },
+    "LineEnding.crlf.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Windows"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        }
+      }
+    },
     "LineEnding.lf.description" : {
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -82,6 +167,12 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "macOS / Unix"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "macOS / Unix"
           }
         },
@@ -142,7 +233,8 @@
       }
     },
     "LineEnding.lineSeparator.description" : {
-      "comment" : "This item is preferably as-is because of the unfamiliarity.",
+      "comment" : "Since this is a technical term, it should be left as-is.",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -153,6 +245,12 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Unix Line Separator"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Unix Line Separator"
           }
         },
@@ -213,7 +311,8 @@
       }
     },
     "LineEnding.nel.description" : {
-      "comment" : "This item is preferably as-is because of the unfamiliarity.",
+      "comment" : "Since this is a technical term, it should be left as-is.",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -224,6 +323,12 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Unix Next Line"
           }
         },
@@ -284,7 +389,8 @@
       }
     },
     "LineEnding.paragraphSeparator.description" : {
-      "comment" : "This item is preferably as-is because of the unfamiliarity.",
+      "comment" : "Since this is a technical term, it should be left as-is.",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -295,6 +401,12 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Unix Paragraph Separator"
           }
         },
@@ -350,76 +462,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unix Paragraph Separator"
-          }
-        }
-      }
-    },
-    "LineEnding.crlf.description" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Windows"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Windows"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Windows"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Windows"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Windows"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Windows"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Windows"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Windows"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Windows"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Windows"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Windows"
           }
         }
       }
