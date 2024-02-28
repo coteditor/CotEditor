@@ -414,21 +414,6 @@
 "Option-click to open script in editor." = "Option-click to open script in editor.";
 
 
-/* MARK: FileDropItem */
-// Descriptions about variables in the file drop feature
-"The dropped file absolute path." = "The dropped file absolute path.";
-"The relative path between the dropped file and the document." = "The relative path between the dropped file and the document.";
-"The dropped file’s name including extension (if exists)." = "The dropped file’s name including extension (if exists).";
-"The dropped file’s name without extension." = "The dropped file’s name without extension.";
-"The dropped file’s extension." = "The dropped file’s extension.";
-"The dropped file’s extension (converted to lowercase)." = "The dropped file’s extension (converted to lowercase).";
-"The dropped file’s extension (converted to uppercase)." = "The dropped file’s extension (converted to uppercase).";
-"The parent directory name of dropped file." = "The parent directory name of dropped file.";
-"(If the dropped file is an image) image width." = "(If the dropped file is an image) image width.";
-"(If the dropped file is an image) image height." = "(If the dropped file is an image) image height.";
-"(If the dropped file is a text file) file content." = "(If the dropped file is a text file) file content.";
-
-
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "The insertion point after inserting the snippet.";

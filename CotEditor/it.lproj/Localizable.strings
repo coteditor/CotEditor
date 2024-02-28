@@ -414,21 +414,6 @@
 "Option-click to open script in editor." = "Option-click per aprire nell’editor degli script.";
 
 
-/* MARK: FileDropItem */
-// Descriptions about variables in the file drop feature
-"The dropped file absolute path." = "Percorso assoluto del file trascinato.";
-"The relative path between the dropped file and the document." = "Percorso relativo tra il file trascinato ed il documento.";
-"The dropped file’s name including extension (if exists)." = "Il nome del file trascinato include l’estensione (se presente).";
-"The dropped file’s name without extension." = "Il nome del file trascinato non ha estensione.";
-"The dropped file’s extension." = "Estensione del file trascinato.";
-"The dropped file’s extension (converted to lowercase)." = "Estensione del file trascinato (convertita in minuscolo).";
-"The dropped file’s extension (converted to uppercase)." = "Estensione del file trascinato (convertita in maiuscolo).";
-"The parent directory name of dropped file." = "Nome della cartella superiore del file trascinato.";
-"(If the dropped file is an image) image width." = "Larghezza dell’immagine (se il file trascinato è un’immagine).";
-"(If the dropped file is an image) image height." = "Altezza dell’immagine (se il file trascinato è un’immagine).";
-"(If the dropped file is a text file) file content." = "(Se il file rilasciato è di testo) contenuto del file.";
-
-
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "Posizione del cursore dopo aver inserito lo snippet.";

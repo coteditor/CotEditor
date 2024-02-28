@@ -414,21 +414,6 @@
 "Option-click to open script in editor." = "Pro otevření skriptu v editoru stiskněte „Option“ a „klikněte“.";
 
 
-/* MARK: FileDropItem */
-// Descriptions about variables in the file drop feature
-"The dropped file absolute path." = "Absolutní cesta přetaženého souboru.";
-"The relative path between the dropped file and the document." = "Relativní cesta mezi přetaženým souborem a dokumentem.";
-"The dropped file’s name including extension (if exists)." = "Název přetažených souborů včetně přípony (pokud existuje).";
-"The dropped file’s name without extension." = "Název přetažených souborů bez přípony.";
-"The dropped file’s extension." = "Přípona přetažených souborů.";
-"The dropped file’s extension (converted to lowercase)." = "Přípona přetažených souborů (převedeno na malá písmena).";
-"The dropped file’s extension (converted to uppercase)." = "Přípona přetažených souborů (převedeno na velká písmena).";
-"The parent directory name of dropped file." = "Název nadřazeného adresáře přetaženého souboru.";
-"(If the dropped file is an image) image width." = "Šířka obrázku (pokud je přetažený soubor obrázkem).";
-"(If the dropped file is an image) image height." = "Výška obrázku (pokud je přetažený soubor obrázkem).";
-"(If the dropped file is a text file) file content." = "Obsah souboru (pokud je přetažený soubor textový soubor).";
-
-
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "Pozice kurzoru po vložení fragmentu kódu.";

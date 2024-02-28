@@ -414,21 +414,6 @@
 "Option-click to open script in editor." = "使用Option-單擊在編輯器中開啟腳本。";
 
 
-/* MARK: FileDropItem */
-// Descriptions about variables in the file drop feature
-"The dropped file absolute path." = "拖拽的檔案絕對路徑";
-"The relative path between the dropped file and the document." = "拖拽的文件與編輯中檔案的相對路徑";
-"The dropped file’s name including extension (if exists)." = "拖拽的檔案的檔案名以及擴展名（如果存在）";
-"The dropped file’s name without extension." = "不帶擴展名的檔案名";
-"The dropped file’s extension." = "拖拽的檔案的擴展名";
-"The dropped file’s extension (converted to lowercase)." = "拖拽的檔案的擴展名（轉換為小寫）";
-"The dropped file’s extension (converted to uppercase)." = "拖拽的檔案的擴展名（轉換為大寫）";
-"The parent directory name of dropped file." = "拖拽的檔案的上級目錄";
-"(If the dropped file is an image) image width." = "圖片寬度（如果拖拽檔案是圖像）";
-"(If the dropped file is an image) image height." = "圖片高度（如果拖拽檔案是圖像）";
-"(If the dropped file is a text file) file content." = "檔案內容（如果拖拽檔案是文字檔案）";
-
-
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "插入片段後的遊標位置";

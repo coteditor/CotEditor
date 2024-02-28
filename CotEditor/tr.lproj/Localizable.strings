@@ -414,21 +414,6 @@
 "Option-click to open script in editor." = "Option-tık, betiği düzenleyicide açar.";
 
 
-/* MARK: FileDropItem */
-// Descriptions about variables in the file drop feature
-"The dropped file absolute path." = "Bırakılan dosya mutlak yolu.";
-"The relative path between the dropped file and the document." = "Bırakılan dosya ve belge arasındaki göreli yol.";
-"The dropped file’s name including extension (if exists)." = "Bırakılan dosyanın varsa uzantısı dahil adı.";
-"The dropped file’s name without extension." = "Bırakılan dosyanın uzantısı hariç adı.";
-"The dropped file’s extension." = "Bırakılan dosyanın uzantısı.";
-"The dropped file’s extension (converted to lowercase)." = "Bırakılan dosyanın uzantısı (küçük harfe dönüştürülmüş).";
-"The dropped file’s extension (converted to uppercase)." = "Bırakılan dosyanın uzantısı (BÜYÜK harfe dönüştürülmüş).";
-"The parent directory name of dropped file." = "Bırakılan dosyanın üst dizininin adı.";
-"(If the dropped file is an image) image width." = "(Bırakılan dosya resim dosyasıysa) resim eni.";
-"(If the dropped file is an image) image height." = "(Bırakılan dosya resim dosyasıysa) resim boyu.";
-"(If the dropped file is a text file) file content." = "(Bırakılan dosya metin dosyasıysa) dosya içeriği.";
-
-
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "Kırpıntı eklendikten sonraki imleç konumu.";

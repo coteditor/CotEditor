@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -137,27 +137,49 @@ extension FileDropItem {
             
             switch self {
                 case .absolutePath:
-                    String(localized: "The dropped file absolute path.")
+                    String(localized: "FileDropItem.Variable.absolutePath.description",
+                           defaultValue: "The dropped file absolute path.",
+                           table: "FileDropItem")
                 case .relativePath:
-                    String(localized: "The relative path between the dropped file and the document.")
+                    String(localized: "FileDropItem.Variable.relativePath.description",
+                           defaultValue: "The relative path between the dropped file and the document.",
+                           table: "FileDropItem")
                 case .filename:
-                    String(localized: "The dropped file’s name including extension (if exists).")
+                    String(localized: "FileDropItem.Variable.filename.description",
+                           defaultValue: "The dropped file’s name including extension (if exists).",
+                           table: "FileDropItem")
                 case .filenameWithoutExtension:
-                    String(localized: "The dropped file’s name without extension.")
+                    String(localized: "FileDropItem.Variable.filenameWithoutExtension.description",
+                           defaultValue: "The dropped file’s name without extension.",
+                           table: "FileDropItem")
                 case .fileExtension:
-                    String(localized: "The dropped file’s extension.")
+                    String(localized: "FileDropItem.Variable.fileExtension.description",
+                           defaultValue: "The dropped file’s extension.",
+                           table: "FileDropItem")
                 case .fileExtensionLowercase:
-                    String(localized: "The dropped file’s extension (converted to lowercase).")
+                    String(localized: "FileDropItem.Variable.fileExtensionLowercase.description",
+                           defaultValue: "The dropped file’s extension (converted to lowercase).",
+                           table: "FileDropItem")
                 case .fileExtensionUppercase:
-                    String(localized: "The dropped file’s extension (converted to uppercase).")
+                    String(localized: "FileDropItem.Variable.fileExtensionUppercase.description",
+                           defaultValue: "The dropped file’s extension (converted to uppercase).",
+                           table: "FileDropItem")
                 case .directory:
-                    String(localized: "The parent directory name of dropped file.")
+                    String(localized: "FileDropItem.Variable.directory.description",
+                           defaultValue: "The parent directory name of dropped file.",
+                           table: "FileDropItem")
                 case .fileContent:
-                    String(localized: "(If the dropped file is a text file) file content.")
+                    String(localized: "FileDropItem.Variable.fileContent.description",
+                           defaultValue: "(If the dropped file is a text file) file content.",
+                           table: "FileDropItem")
                 case .imageWidth:
-                    String(localized: "(If the dropped file is an image) image width.")
+                    String(localized: "FileDropItem.Variable.imageWidth.description",
+                           defaultValue: "(If the dropped file is an image) image width.",
+                           table: "FileDropItem")
                 case .imageHeight:
-                    String(localized: "(If the dropped file is an image) image height.")
+                    String(localized: "FileDropItem.Variable.imageHeight.description",
+                           defaultValue: "(If the dropped file is an image) image height.",
+                           table: "FileDropItem")
             }
         }
     }

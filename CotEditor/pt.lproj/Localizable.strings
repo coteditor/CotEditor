@@ -414,21 +414,6 @@
 "Option-click to open script in editor." = "Opção-clique para abrir o script no editor.";
 
 
-/* MARK: FileDropItem */
-// Descriptions about variables in the file drop feature
-"The dropped file absolute path." = "O caminho absoluto do arquivo solto.";
-"The relative path between the dropped file and the document." = "O caminho relativo entre o arquivo solto e o documento.";
-"The dropped file’s name including extension (if exists)." = "O nome do arquivo solto, incluindo a extensão (se houver).";
-"The dropped file’s name without extension." = "O nome do arquivo solto, sem a extensão.";
-"The dropped file’s extension." = "A extensão do arquivo solto.";
-"The dropped file’s extension (converted to lowercase)." = "A extensão do arquivo solto (convertida em minúsculas).";
-"The dropped file’s extension (converted to uppercase)." = "A extensão do arquivo solto (convertida em maiúsculas).";
-"The parent directory name of dropped file." = "O nome do diretório superior do arquivo solto.";
-"(If the dropped file is an image) image width." = "Largura da imagem (se o arquivo solto for uma imagem).";
-"(If the dropped file is an image) image height." = "Altura da imagem (se o arquivo solto for uma imagem).";
-"(If the dropped file is a text file) file content." = "Conteúdo do arquivo (se o arquivo solto for um arquivo de texto).";
-
-
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "A posição do cursor depois de inserir o fragmento.";

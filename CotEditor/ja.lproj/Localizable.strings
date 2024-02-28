@@ -415,21 +415,6 @@
 "Option-click to open script in editor." = "スクリプトをエディタで開くには、Option+クリックしてください。";
 
 
-/* MARK: FileDropItem */
-// Descriptions about variables in the file drop feature
-"The dropped file absolute path." = "ドロップ元ファイルの絶対パス";
-"The relative path between the dropped file and the document." = "ドロップ先ファイルからドロップ元ファイルへの相対パス";
-"The dropped file’s name including extension (if exists)." = "ドロップ元ファイルの拡張子を含むファイル名";
-"The dropped file’s name without extension." = "ドロップ元ファイルの名前から拡張子を削除した文字列";
-"The dropped file’s extension." = "ドロップ元ファイルの拡張子";
-"The dropped file’s extension (converted to lowercase)." = "ドロップ元ファイルの拡張子（小文字）";
-"The dropped file’s extension (converted to uppercase)." = "ドロップ元ファイルの拡張子（大文字）";
-"The parent directory name of dropped file." = "ドロップ元ファイルのあるディレクトリ名";
-"(If the dropped file is an image) image width." = "画像の幅（ドロップ元ファイルが画像ファイルのときのみ有効）";
-"(If the dropped file is an image) image height." = "画像の高さ（ドロップ元ファイルが画像ファイルのときのみ有効）";
-"(If the dropped file is a text file) file content." = "ファイル内容（ドロップ元ファイルがテキストファイルのときのみ有効）";
-
-
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "スニペット挿入後の挿入ポイント";

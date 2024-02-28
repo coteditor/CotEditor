@@ -414,21 +414,6 @@
 "Option-click to open script in editor." = "Haga clic con la tecla Opción pulsada para abrir el script en el editor.";
 
 
-/* MARK: FileDropItem */
-// Descriptions about variables in the file drop feature
-"The dropped file absolute path." = "La ruta absoluta del archivo eliminado.";
-"The relative path between the dropped file and the document." = "La ruta relativa entre el archivo eliminado y el documento.";
-"The dropped file’s name including extension (if exists)." = "El nombre del archivo eliminado, incluida la extensión (si existe).";
-"The dropped file’s name without extension." = "El nombre del archivo eliminado sin extensión.";
-"The dropped file’s extension." = "La extensión del archivo eliminado.";
-"The dropped file’s extension (converted to lowercase)." = "La extensión del archivo eliminado (convertida a minúsculas).";
-"The dropped file’s extension (converted to uppercase)." = "La extensión del archivo eliminado (convertida a mayúsculas).";
-"The parent directory name of dropped file." = "El nombre del directorio principal del archivo eliminado.";
-"(If the dropped file is an image) image width." = "(Si el archivo eliminado es una imagen) ancho de la imagen.";
-"(If the dropped file is an image) image height." = "(Si el archivo eliminado es una imagen) altura de la imagen.";
-"(If the dropped file is a text file) file content." = "(Si el archivo eliminado es un archivo de texto), contenido del archivo.";
-
-
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "El punto de inserción después de insertar el fragmento.";
