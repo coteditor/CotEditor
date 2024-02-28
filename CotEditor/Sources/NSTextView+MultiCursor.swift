@@ -426,7 +426,7 @@ extension MultiCursorEditing {
     ///
     /// - Parameter isFirstResponder: Whether the receiver is the first responder in the window.
     @available(macOS 14, *)
-    private func invalidateInsertionPointDisplayMode(isFirstResponder: Bool) {
+    func invalidateInsertionPointDisplayMode(isFirstResponder: Bool) {
         
         guard !self.insertionIndicators.isEmpty else { return }
         
