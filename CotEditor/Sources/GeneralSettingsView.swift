@@ -138,8 +138,7 @@ struct GeneralSettingsView: View {
                 Button(String(localized: "Manage Warnings…", table: "GeneralSettings")) {
                     self.isWarningsSettingPresented.toggle()
                 }
-                .sheet(isPresented: $isWarningsSettingPresented, content: { WarningsSettingView()
-                })
+                .sheet(isPresented: $isWarningsSettingPresented, content: WarningsSettingView.init)
             }
             
             Divider()
