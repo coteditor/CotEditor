@@ -132,11 +132,6 @@
 "Update" = "Aktualizovat";
 
 
-/* MARK: Document Window */
-// tooltip for the "edited" indicator in the window tab
-"Document has unsaved changes" = "Dokument obsahuje neuložené změny";
-
-
 /* MARK: Toolbar */
 "Syntax" = "Syntaxe";
 // tooltip
@@ -250,20 +245,6 @@
 "Actual Size" = "Skutečná velikost";
 
 
-/* MARK: PrintTextView */
-// header/footer
-"Printed on %@" = "Vytištěno %@";  // %@ is date
-"Last modified on %@" = "Poslední změna dne %@";  // %@ is date
-
-
-/* MARK: FilterField */
-"Filter" = "Filtr";
-// Menu items
-"Recent Filters" = "Poslední filtry";
-"Clear Recent Filters" = "Smazat poslední filtry";
-"No Recent Filter" = "Žádný poslední filtr";
-
-
 /* MARK: EditorTextView */
 // Undo action names
 "Insert Text" = "Vložit text";
@@ -290,10 +271,6 @@
 "Select All" = "Vybrat vše";
 "Straighten Quotes" = "Rovné uvozovky";
 "Script" = "Skript";
-
-// Accessibility labels
-"Editor" = "Editor";
-"Line Numbers" = "Čísla řádků";
 
 
 /* MARK: DocumentViewController */
@@ -323,28 +300,6 @@
 // Menu items
 "Stack Editors Horizontally" = "Seskupit editory vodorovně";
 "Stack Editors Vertically" = "Seskupit editory svisle";
-
-
-/* MARK: StatusBarController */
-"Lines: " = "Řádky: ";
-"Characters: " = "Znaky: ";
-"Words: " = "Slova: ";
-"Location: " = "Pozice: ";
-"Line: " = "Řádek: ";
-"Column: " = "Sloupec: ";
-// Accessibility labels
-"Status Bar" = "Stavový řádek";
-
-
-/* MARK: NavigationBarController */
-// tooltip for buttons
-"Jump to previous outline item" = "Přejít na předchozí položku osnovy";
-"Jump to next outline item" = "Přejít na další položku osnovy";
-// Accessibility labels
-"Navigation Bar" = "Panel navigace";
-"Outline" = "Osnova";
-"Previous" = "Předchozí";
-"Next" = "Další";
 
 
 // MARK: -
@@ -409,6 +364,20 @@
 
 
 // MARK: -
+
+/* MARK: PrintTextView */
+// header/footer
+"Printed on %@" = "Vytištěno %@";  // %@ is date
+"Last modified on %@" = "Poslední změna dne %@";  // %@ is date
+
+
+/* MARK: FilterField */
+"Filter" = "Filtr";
+// Menu items
+"Recent Filters" = "Poslední filtry";
+"Clear Recent Filters" = "Smazat poslední filtry";
+"No Recent Filter" = "Žádný poslední filtr";
+
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "Rychlé akce";

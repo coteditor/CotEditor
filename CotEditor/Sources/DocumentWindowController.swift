@@ -51,6 +51,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         let dotView = DotView()
         dotView.color = .tertiaryLabelColor
         dotView.toolTip = String(localized: "Document has unsaved changes",
+                                 table: "DocumentWindow",
                                  comment: "tooltip for the “edited” indicator in the window tab")
         dotView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return dotView

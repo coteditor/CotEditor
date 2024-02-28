@@ -132,11 +132,6 @@
 "Update" = "Update";
 
 
-/* MARK: Document Window */
-// tooltip for the "edited" indicator in the window tab
-"Document has unsaved changes" = "Document has unsaved changes";
-
-
 /* MARK: Toolbar */
 "Syntax" = "Syntax";
 // tooltip
@@ -250,20 +245,6 @@
 "Actual Size" = "Actual Size";
 
 
-/* MARK: PrintTextView */
-// header/footer
-"Printed on %@" = "Printed on %@";  // %@ is date
-"Last modified on %@" = "Last modified on %@";  // %@ is date
-
-
-/* MARK: FilterField */
-"Filter" = "Filter";
-// Menu items
-"Recent Filters" = "Recent Filters";
-"Clear Recent Filters" = "Clear Recent Filters";
-"No Recent Filter" = "No Recent Filter";
-
-
 /* MARK: EditorTextView */
 // Undo action names
 "Insert Text" = "Insert Text";
@@ -290,10 +271,6 @@
 "Select All" = "Select All";
 "Straighten Quotes" = "Straighten Quotes";
 "Script" = "Script";
-
-// Accessibility labels
-"Editor" = "Editor";
-"Line Numbers" = "Line Numbers";
 
 
 /* MARK: DocumentViewController */
@@ -323,28 +300,6 @@
 // Menu items
 "Stack Editors Horizontally" = "Stack Editors Horizontally";
 "Stack Editors Vertically" = "Stack Editors Vertically";
-
-
-/* MARK: StatusBarController */
-"Lines: " = "Lines: ";
-"Characters: " = "Characters: ";
-"Words: " = "Words: ";
-"Location: " = "Location: ";
-"Line: " = "Line: ";
-"Column: " = "Column: ";
-// Accessibility labels
-"Status Bar" = "Status Bar";
-
-
-/* MARK: NavigationBarController */
-// tooltip for buttons
-"Jump to previous outline item" = "Jump to previous outline item";
-"Jump to next outline item" = "Jump to next outline item";
-// Accessibility labels
-"Navigation Bar" = "Navigation Bar";
-"Outline" = "Outline";
-"Previous" = "Previous";
-"Next" = "Next";
 
 
 // MARK: -
@@ -409,6 +364,20 @@
 
 
 // MARK: -
+
+/* MARK: PrintTextView */
+// header/footer
+"Printed on %@" = "Printed on %@";  // %@ is date
+"Last modified on %@" = "Last modified on %@";  // %@ is date
+
+
+/* MARK: FilterField */
+"Filter" = "Filter";
+// Menu items
+"Recent Filters" = "Recent Filters";
+"Clear Recent Filters" = "Clear Recent Filters";
+"No Recent Filter" = "No Recent Filter";
+
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "Quick Actions";

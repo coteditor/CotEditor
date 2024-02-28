@@ -134,11 +134,6 @@
 "Update" = "更新";
 
 
-/* MARK: Document Window */
-// tooltip for the "edited" indicator in the window tab
-"Document has unsaved changes" = "文稿中存在未保存的更改";
-
-
 /* MARK: Toolbar */
 "Syntax" = "语法";
 // tooltip
@@ -252,20 +247,6 @@
 "Actual Size" = "实际大小";
 
 
-/* MARK: PrintTextView */
-// header/footer
-"Printed on %@" = "打印：%@";  // %@ is date
-"Last modified on %@" = "最终修改：%@";  // %@ is date
-
-
-/* MARK: FilterField */
-"Filter" = "过滤";
-// Menu items
-"Recent Filters" = "最近的过滤";
-"Clear Recent Filters" = "清除最近记录";
-"No Recent Filter" = "没有最近的过滤";
-
-
 /* MARK: EditorTextView */
 // Undo action names
 "Insert Text" = "插入文本";
@@ -292,10 +273,6 @@
 "Select All" = "全部选择";
 "Straighten Quotes" = "直引号";
 "Script" = "脚本";
-
-// Accessibility labels
-"Editor" = "编辑器";
-"Line Numbers" = "行号";
 
 
 /* MARK: DocumentViewController */
@@ -325,28 +302,6 @@
 // Menu items
 "Stack Editors Horizontally" = "横向分隔编辑器";
 "Stack Editors Vertically" = "纵向分隔编辑器";
-
-
-/* MARK: StatusBarController */
-"Lines: " = "行数：";
-"Characters: " = "字符数：";
-"Words: " = "字数：";
-"Location: " = "位置：";
-"Line: " = "行：";
-"Column: " = "列：";
-// Accessibility labels
-"Status Bar" = "状态栏";
-
-
-/* MARK: NavigationBarController */
-// tooltip for buttons
-"Jump to previous outline item" = "上一个提纲项目";
-"Jump to next outline item" = "下一个提纲项目";
-// Accessibility labels
-"Navigation Bar" = "导航栏";
-"Outline" = "大纲";
-"Previous" = "上一个";
-"Next" = "下一个";
 
 
 // MARK: -
@@ -411,6 +366,20 @@
 
 
 // MARK: -
+
+/* MARK: PrintTextView */
+// header/footer
+"Printed on %@" = "打印：%@";  // %@ is date
+"Last modified on %@" = "最终修改：%@";  // %@ is date
+
+
+/* MARK: FilterField */
+"Filter" = "过滤";
+// Menu items
+"Recent Filters" = "最近的过滤";
+"Clear Recent Filters" = "清除最近记录";
+"No Recent Filter" = "没有最近的过滤";
+
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "快速操作";

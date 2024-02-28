@@ -90,7 +90,7 @@ final class EditorViewController: NSSplitViewController {
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel(String(localized: "Editor"))
+        self.view.setAccessibilityLabel(String(localized: "Editor", table: "DocumentWindow", comment: "accessibility label"))
     }
     
     

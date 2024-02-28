@@ -132,11 +132,6 @@
 "Update" = "Atualizar";
 
 
-/* MARK: Document Window */
-// tooltip for the "edited" indicator in the window tab
-"Document has unsaved changes" = "Documento contém alterações não salvas";
-
-
 /* MARK: Toolbar */
 "Syntax" = "Sintaxe";
 // tooltip
@@ -250,20 +245,6 @@
 "Actual Size" = "Tamanho Real";
 
 
-/* MARK: PrintTextView */
-// header/footer
-"Printed on %@" = "Impresso em %@";  // %@ is date
-"Last modified on %@" = "Última modificação em %@";  // %@ is date
-
-
-/* MARK: FilterField */
-"Filter" = "Filtrar";
-// Menu items
-"Recent Filters" = "Filtros Recentes";
-"Clear Recent Filters" = "Limpar Recentes";
-"No Recent Filter" = "Nenhum filtro recente";
-
-
 /* MARK: EditorTextView */
 // Undo action names
 "Insert Text" = "Inserir Texto";
@@ -290,10 +271,6 @@
 "Select All" = "Selecionar Tudo";
 "Straighten Quotes" = "Straighten Quotes";
 "Script" = "Script";
-
-// Accessibility labels
-"Editor" = "Editor";
-"Line Numbers" = "Números das Linhas";
 
 
 /* MARK: DocumentViewController */
@@ -323,28 +300,6 @@
 // Menu items
 "Stack Editors Horizontally" = "Posicionar Editores Horizontalmente";
 "Stack Editors Vertically" = "Posicionar Editores Verticalmente";
-
-
-/* MARK: StatusBarController */
-"Lines: " = "Linhas: ";
-"Characters: " = "Caracteres: ";
-"Words: " = "Palavras: ";
-"Location: " = "Localização: ";
-"Line: " = "Linha: ";
-"Column: " = "Coluna: ";
-// Accessibility labels
-"Status Bar" = "Barra de Estado";
-
-
-/* MARK: NavigationBarController */
-// tooltip for buttons
-"Jump to previous outline item" = "Salte para o item anterior do plano";
-"Jump to next outline item" = "Salte para o item seguinte do plano";
-// Accessibility labels
-"Navigation Bar" = "Barra de Navegação";
-"Outline" = "Plano";
-"Previous" = "Anterior";
-"Next" = "Seguinte";
 
 
 // MARK: -
@@ -409,6 +364,20 @@
 
 
 // MARK: -
+
+/* MARK: PrintTextView */
+// header/footer
+"Printed on %@" = "Impresso em %@";  // %@ is date
+"Last modified on %@" = "Última modificação em %@";  // %@ is date
+
+
+/* MARK: FilterField */
+"Filter" = "Filtrar";
+// Menu items
+"Recent Filters" = "Filtros Recentes";
+"Clear Recent Filters" = "Limpar Recentes";
+"No Recent Filter" = "Nenhum filtro recente";
+
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "Ações Rápidas";

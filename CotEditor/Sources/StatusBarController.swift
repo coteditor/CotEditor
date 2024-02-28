@@ -80,7 +80,7 @@ import Combine
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel(String(localized: "Status Bar"))
+        self.view.setAccessibilityLabel(String(localized: "Status Bar", table: "DocumentWindow", comment: "accessibility label"))
     }
     
     
@@ -174,27 +174,27 @@ import Combine
         var status: [NSAttributedString] = []
         
         if types.contains(.lines) {
-            let label = String(localized: "Lines: ")
+            let label = String(localized: "Lines: ", table: "DocumentWindow", comment: "label in status bar")
             status.append(.formatted(label: label) + .formatted(state: result.lines.formatted))
         }
         if types.contains(.characters) {
-            let label = String(localized: "Characters: ")
+            let label = String(localized: "Characters: ", table: "DocumentWindow", comment: "label in status bar")
             status.append(.formatted(label: label) + .formatted(state: result.characters.formatted))
         }
         if types.contains(.words) {
-            let label = String(localized: "Words: ")
+            let label = String(localized: "Words: ", table: "DocumentWindow", comment: "label in status bar")
             status.append(.formatted(label: label) + .formatted(state: result.words.formatted))
         }
         if types.contains(.location) {
-            let label = String(localized: "Location: ")
+            let label = String(localized: "Location: ", table: "DocumentWindow", comment: "label in status bar")
             status.append(.formatted(label: label) + .formatted(state: result.location?.formatted()))
         }
         if types.contains(.line) {
-            let label = String(localized: "Line: ")
+            let label = String(localized: "Line: ", table: "DocumentWindow", comment: "label in status bar")
             status.append(.formatted(label: label) + .formatted(state: result.line?.formatted()))
         }
         if types.contains(.column) {
-            let label = String(localized: "Column: ")
+            let label = String(localized: "Column: ", table: "DocumentWindow", comment: "label in status bar")
             status.append(.formatted(label: label) + .formatted(state: result.column?.formatted()))
         }
         

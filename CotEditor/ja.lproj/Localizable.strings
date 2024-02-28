@@ -133,11 +133,6 @@
 "Update" = "更新";
 
 
-/* MARK: Document Window */
-// tooltip for the "edited" indicator in the window tab
-"Document has unsaved changes" = "書類に保存されていない変更があります";
-
-
 /* MARK: Toolbar */
 "Syntax" = "シンタックス";
 // tooltip
@@ -251,20 +246,6 @@
 "Actual Size" = "等倍";
 
 
-/* MARK: PrintTextView */
-// header/footer
-"Printed on %@" = "プリント: %@";  // %@ is date
-"Last modified on %@" = "最終変更: %@";  // %@ is date
-
-
-/* MARK: FilterField */
-"Filter" = "フィルタ";
-// Menu items
-"Recent Filters" = "最近のフィルタ";
-"Clear Recent Filters" = "フィルタ履歴を消去";
-"No Recent Filter" = "フィルタ履歴がありません";
-
-
 /* MARK: EditorTextView */
 // Undo action names
 "Insert Text" = "テキストを挿入";
@@ -291,10 +272,6 @@
 "Select All" = "すべてを選択";
 "Straighten Quotes" = "引用符をまっすぐにする";
 "Script" = "スクリプト";
-
-// Accessibility labels
-"Editor" = "エディタ";
-"Line Numbers" = "行番号";
 
 
 /* MARK: DocumentViewController */
@@ -324,28 +301,6 @@
 // Menu items
 "Stack Editors Horizontally" = "分割エディタを横に配置";
 "Stack Editors Vertically" = "分割エディタを縦に配置";
-
-
-/* MARK: StatusBarController */
-"Lines: " = "行数: ";
-"Characters: " = "文字数: ";
-"Words: " = "単語数: ";
-"Location: " = "位置: ";
-"Line: " = "行: ";
-"Column: " = "列: ";
-// Accessibility labels
-"Status Bar" = "ステータスバー";
-
-
-/* MARK: NavigationBarController */
-// tooltip for buttons
-"Jump to previous outline item" = "前の項目へ";
-"Jump to next outline item" = "次の項目へ";
-// Accessibility labels
-"Navigation Bar" = "ナビゲーションバー";
-"Outline" = "アウトライン";
-"Previous" = "前へ";
-"Next" = "次へ";
 
 
 // MARK: -
@@ -410,6 +365,20 @@
 
 
 // MARK: -
+
+/* MARK: PrintTextView */
+// header/footer
+"Printed on %@" = "プリント: %@";  // %@ is date
+"Last modified on %@" = "最終変更: %@";  // %@ is date
+
+
+/* MARK: FilterField */
+"Filter" = "フィルタ";
+// Menu items
+"Recent Filters" = "最近のフィルタ";
+"Clear Recent Filters" = "フィルタ履歴を消去";
+"No Recent Filter" = "フィルタ履歴がありません";
+
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "クイックアクション";

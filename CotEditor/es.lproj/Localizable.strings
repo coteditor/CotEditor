@@ -132,11 +132,6 @@
 "Update" = "Actualizar";
 
 
-/* MARK: Document Window */
-// tooltip for the "edited" indicator in the window tab
-"Document has unsaved changes" = "El documento tiene cambios no guardados";
-
-
 /* MARK: Toolbar */
 "Syntax" = "Sintaxis";
 // tooltip
@@ -250,20 +245,6 @@
 "Actual Size" = "Tamaño real";
 
 
-/* MARK: PrintTextView */
-// header/footer
-"Printed on %@" = "Impreso el %@";  // %@ is date
-"Last modified on %@" = "Última modificación el %@";  // %@ is date
-
-
-/* MARK: FilterField */
-"Filter" = "Filtro";
-// Menu items
-"Recent Filters" = "Filtros recientes";
-"Clear Recent Filters" = "Borrar filtros recientes";
-"No Recent Filter" = "Sin filtro reciente";
-
-
 /* MARK: EditorTextView */
 // Undo action names
 "Insert Text" = "Insertar texto";
@@ -290,10 +271,6 @@
 "Select All" = "Seleccionar todo";
 "Straighten Quotes" = "Enderezar comillas";
 "Script" = "Script";
-
-// Accessibility labels
-"Editor" = "Editor";
-"Line Numbers" = "Números de línea";
 
 
 /* MARK: DocumentViewController */
@@ -323,28 +300,6 @@
 // Menu items
 "Stack Editors Horizontally" = "Apilar editores horizontalmente";
 "Stack Editors Vertically" = "Apilar editores verticalmente";
-
-
-/* MARK: StatusBarController */
-"Lines: " = "Líneas: ";
-"Characters: " = "Caracteres: ";
-"Words: " = "Palabras: ";
-"Location: " = "Posición: ";
-"Line: " = "Línea: ";
-"Column: " = "Columna: ";
-// Accessibility labels
-"Status Bar" = "Barra de estado";
-
-
-/* MARK: NavigationBarController */
-// tooltip for buttons
-"Jump to previous outline item" = "Saltar al elemento del esquema anterior";
-"Jump to next outline item" = "Saltar al siguiente elemento del esquema";
-// Accessibility labels
-"Navigation Bar" = "Barra de navegación";
-"Outline" = "Tabla de contenido";
-"Previous" = "Anterior";
-"Next" = "Siguiente";
 
 
 // MARK: -
@@ -409,6 +364,20 @@
 
 
 // MARK: -
+
+/* MARK: PrintTextView */
+// header/footer
+"Printed on %@" = "Impreso el %@";  // %@ is date
+"Last modified on %@" = "Última modificación el %@";  // %@ is date
+
+
+/* MARK: FilterField */
+"Filter" = "Filtro";
+// Menu items
+"Recent Filters" = "Filtros recientes";
+"Clear Recent Filters" = "Borrar filtros recientes";
+"No Recent Filter" = "Sin filtro reciente";
+
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "Acciones rápidas";

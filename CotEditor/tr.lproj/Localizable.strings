@@ -132,11 +132,6 @@
 "Update" = "Güncelle";
 
 
-/* MARK: Document Window */
-// tooltip for the "edited" indicator in the window tab
-"Document has unsaved changes" = "Belgede kaydedilmemiş değişiklikler var";
-
-
 /* MARK: Toolbar */
 "Syntax" = "Sözdizim";
 // tooltip
@@ -250,20 +245,6 @@
 "Actual Size" = "Gerçek Boyut";
 
 
-/* MARK: PrintTextView */
-// header/footer
-"Printed on %@" = "%@ tarihinde yazdırıldı";  // %@ is date
-"Last modified on %@" = "En son %@ tarihinde değiştirildi";  // %@ is date
-
-
-/* MARK: FilterField */
-"Filter" = "Filtre";
-// Menu items
-"Recent Filters" = "Son Filtreler";
-"Clear Recent Filters" = "Son Filtreleri Temizle";
-"No Recent Filter" = "Son Filtre Yok";
-
-
 /* MARK: EditorTextView */
 // Undo action names
 "Insert Text" = "Metin Ekle";
@@ -290,10 +271,6 @@
 "Select All" = "Tümünü Seç";
 "Straighten Quotes" = "Tırnakları Düzleştir";
 "Script" = "Betik";
-
-// Accessibility labels
-"Editor" = "Düzenleyici";
-"Line Numbers" = "Satır Numaraları";
 
 
 /* MARK: DocumentViewController */
@@ -323,28 +300,6 @@
 // Menu items
 "Stack Editors Horizontally" = "Düzenleyicileri Yatay Yığ";
 "Stack Editors Vertically" = "Düzenleyicileri Dikey Yığ";
-
-
-/* MARK: StatusBarController */
-"Lines: " = "Satır: ";
-"Characters: " = "Karakter: ";
-"Words: " = "Sözcük: ";
-"Location: " = "Konum: ";
-"Line: " = "Satır: ";
-"Column: " = "Sütun: ";
-// Accessibility labels
-"Status Bar" = "Durum Çubuğu";
-
-
-/* MARK: NavigationBarController */
-// tooltip for buttons
-"Jump to previous outline item" = "Bir önceki ana hat ögesine atla";
-"Jump to next outline item" = "Bir sonraki ana hat ögesine atla";
-// Accessibility labels
-"Navigation Bar" = "Dolaşım Çubuğu";
-"Outline" = "Ana Hat";
-"Previous" = "Önceki";
-"Next" = "Sonraki";
 
 
 // MARK: -
@@ -409,6 +364,20 @@
 
 
 // MARK: -
+
+/* MARK: PrintTextView */
+// header/footer
+"Printed on %@" = "%@ tarihinde yazdırıldı";  // %@ is date
+"Last modified on %@" = "En son %@ tarihinde değiştirildi";  // %@ is date
+
+
+/* MARK: FilterField */
+"Filter" = "Filtre";
+// Menu items
+"Recent Filters" = "Son Filtreler";
+"Clear Recent Filters" = "Son Filtreleri Temizle";
+"No Recent Filter" = "Son Filtre Yok";
+
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "Hızlı Eylemler";
