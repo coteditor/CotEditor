@@ -124,7 +124,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     private lazy var braceHighlightDebouncer = Debouncer { [weak self] in self?.highlightMatchingBrace() }
     private var isTypingPairedQuotes = false
     
-    private var balancesBrackets = false
+    private var isAutomaticSymbolBalancingEnabled = false
     private var isAutomaticIndentEnabled = false
     
     private var mouseDownPoint: NSPoint = .zero
@@ -163,7 +163,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         let defaults = UserDefaults.standard
         
-        self.balancesBrackets = defaults[.balancesBrackets]
+        self.isAutomaticSymbolBalancingEnabled = defaults[.balancesBrackets]
         self.isAutomaticTabExpansionEnabled = defaults[.autoExpandTab]
         self.isAutomaticIndentEnabled = defaults[.autoIndent]
         
@@ -233,7 +233,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
                 .sink { [unowned self] in self.setFont(type: $0) },
             
             defaults.publisher(for: .balancesBrackets)
-                .sink { [unowned self] in self.balancesBrackets = $0 },
+                .sink { [unowned self] in self.isAutomaticSymbolBalancingEnabled = $0 },
             defaults.publisher(for: .autoExpandTab)
                 .sink { [unowned self] in self.isAutomaticTabExpansionEnabled = $0 },
             defaults.publisher(for: .autoIndent)
@@ -556,7 +556,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         }
         
         // balance brackets and quotes
-        if self.balancesBrackets, replacementRange.isEmpty {
+        if self.isAutomaticSymbolBalancingEnabled, replacementRange.isEmpty {
             // with opening symbol input
             if let pair = self.matchingBracketPairs.first(where: { String($0.begin) == plainString }) {
                 // wrap selection with brackets if some text is selected
@@ -737,7 +737,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         }
         
         // balance brackets
-        if self.balancesBrackets,
+        if self.isAutomaticSymbolBalancingEnabled,
            self.rangeForUserTextChange.isEmpty,
            let lastCharacter = self.character(before: self.rangeForUserTextChange),
            let nextCharacter = self.character(after: self.rangeForUserTextChange),
