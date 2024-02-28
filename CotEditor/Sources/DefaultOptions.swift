@@ -48,14 +48,6 @@ enum WritingDirection: Int, CaseIterable {
 }
 
 
-enum FontPreference: Int, CaseIterable {
-    
-    case automatic
-    case monospaced
-    case standard
-}
-
-
 enum AppearanceMode: Int, CaseIterable {
     
     case `default`

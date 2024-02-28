@@ -36,7 +36,6 @@ extension DefaultKeys {
     static let checksUpdatesForBeta = DefaultKey<Bool>("checksUpdatesForBeta")
     
     // Appearance
-    static let fontPreference = RawRepresentableDefaultKey<FontPreference>("fontPreference")
     static let font = DefaultKey<Data?>("font")
     static let shouldAntialias = DefaultKey<Bool>("shouldAntialias")
     static let ligature = DefaultKey<Bool>("ligature")
@@ -78,10 +77,6 @@ extension DefaultKeys {
     static let showStatusBarColumn = DefaultKey<Bool>("showStatusBarColumn")
     
     // Edit
-    static let smartInsertAndDelete = DefaultKey<Bool>("smartInsertAndDelete")
-    static let enableSmartQuotes = DefaultKey<Bool>("enableSmartQuotes")
-    static let enableSmartDashes = DefaultKey<Bool>("enableSmartDashes")
-    static let balancesBrackets = DefaultKey<Bool>("balancesBrackets")
     static let autoTrimsTrailingWhitespace = DefaultKey<Bool>("autoTrimsTrailingWhitespace")
     static let trimsWhitespaceOnlyLines = DefaultKey<Bool>("trimsWhitespaceOnlyLines")
     static let autoIndent = DefaultKey<Bool>("autoIndent")
@@ -96,10 +91,6 @@ extension DefaultKeys {
     static let highlightLtGt = DefaultKey<Bool>("highlightLtGt")
     static let highlightSelectionInstance = DefaultKey<Bool>("highlightSelectionInstance")
     static let selectionInstanceHighlightDelay = DefaultKey<Double>("selectionInstanceHighlightDelay")
-    static let completesDocumentWords = DefaultKey<Bool>("completesDocumentWords")
-    static let completesSyntaxWords = DefaultKey<Bool>("completesSyntaxWords")
-    static let completesStandardWords = DefaultKey<Bool>("completesStandardWords")
-    static let autoComplete = DefaultKey<Bool>("autoComplete")
     
     // Mode
     static let modes = DefaultKey<[String: Data]>("modes")

@@ -37,7 +37,6 @@ struct DefaultSettings {
         .checksUpdatesForBeta: false,
         
         .font: try? FontType.standard.systemFont().archivedData,
-        .fontPreference: FontPreference.automatic.rawValue,
         .shouldAntialias: true,
         .ligature: true,
         .monospacedFont: try? FontType.monospaced.systemFont().archivedData,
@@ -74,10 +73,6 @@ struct DefaultSettings {
         .showStatusBarLine: true,
         .showStatusBarColumn: false,
         
-        .smartInsertAndDelete: false,
-        .enableSmartQuotes: false,
-        .enableSmartDashes: false,
-        .balancesBrackets: false,
         .autoTrimsTrailingWhitespace: false,
         .trimsWhitespaceOnlyLines: false,
         .autoExpandTab: false,
@@ -92,10 +87,6 @@ struct DefaultSettings {
         .highlightLtGt: false,
         .highlightSelectionInstance: true,
         .selectionInstanceHighlightDelay: 0.5,
-        .completesDocumentWords: true,
-        .completesSyntaxWords: true,
-        .completesStandardWords: false,
-        .autoComplete: false,
         
         .lineEndCharCode: 0,
         .encodingList: DefaultSettings.encodings.map(UInt.init),
