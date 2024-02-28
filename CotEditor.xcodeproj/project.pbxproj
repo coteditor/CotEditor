@@ -561,6 +561,8 @@
 		2AA672912B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */; };
 		2AA672A22B8F8AA300B8F7E6 /* DocumentWindow.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */; };
 		2AA672A32B8F8AA300B8F7E6 /* DocumentWindow.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */; };
+		2AA672B42B8F9F1C00B8F7E6 /* Document.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672B32B8F9F1C00B8F7E6 /* Document.xcstrings */; };
+		2AA672B52B8F9F1C00B8F7E6 /* Document.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672B32B8F9F1C00B8F7E6 /* Document.xcstrings */; };
 		2AA6E0C82B75AC4900E536F8 /* SyntaxEditor.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */; };
 		2AA704CE2987878B008CBCB5 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA704CD2987878B008CBCB5 /* Node.swift */; };
 		2AA704CF2987878B008CBCB5 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA704CD2987878B008CBCB5 /* Node.swift */; };
@@ -1182,6 +1184,7 @@
 		2AA6727D2B8F784700B8F7E6 /* Snippet.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Snippet.xcstrings; path = mul.lproj/Snippet.xcstrings; sourceTree = "<group>"; };
 		2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Shortcut.xcstrings; path = mul.lproj/Shortcut.xcstrings; sourceTree = "<group>"; };
 		2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = DocumentWindow.xcstrings; path = mul.lproj/DocumentWindow.xcstrings; sourceTree = "<group>"; };
+		2AA672B32B8F9F1C00B8F7E6 /* Document.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Document.xcstrings; path = mul.lproj/Document.xcstrings; sourceTree = "<group>"; };
 		2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = SyntaxEditor.xcstrings; path = mul.lproj/SyntaxEditor.xcstrings; sourceTree = "<group>"; };
 		2AA6E0BE2B74728700E536F8 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/FindPanelFieldView.xcstrings; sourceTree = "<group>"; };
 		2AA704CD2987878B008CBCB5 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -2201,6 +2204,7 @@
 				2A39AC802B8CDFC800E216C9 /* EncodingList.xcstrings */,
 				2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */,
 				2A1E7DE72B8D615A004F0C07 /* TextFind */,
+				2AA672B32B8F9F1C00B8F7E6 /* Document.xcstrings */,
 				2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */,
 				2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */,
 				2A39AC942B8CE43100E216C9 /* AccessoryViews */,
@@ -2603,6 +2607,7 @@
 				2A1E7E4F2B8D9706004F0C07 /* Console.xcstrings in Resources */,
 				2A39ACB92B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACF92B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
+				2AA672B42B8F9F1C00B8F7E6 /* Document.xcstrings in Resources */,
 				2AA672A22B8F8AA300B8F7E6 /* DocumentWindow.xcstrings in Resources */,
 				2A1E7E192B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
 				2A39AC812B8CDFC800E216C9 /* EncodingList.xcstrings in Resources */,
@@ -2686,6 +2691,7 @@
 				2A1E7E502B8D9706004F0C07 /* Console.xcstrings in Resources */,
 				2A39ACBA2B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACFA2B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
+				2AA672B52B8F9F1C00B8F7E6 /* Document.xcstrings in Resources */,
 				2AA672A32B8F8AA300B8F7E6 /* DocumentWindow.xcstrings in Resources */,
 				2A1E7E1A2B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
 				2A39AC822B8CDFCA00E216C9 /* EncodingList.xcstrings in Resources */,

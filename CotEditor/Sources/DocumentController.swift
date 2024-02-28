@@ -387,10 +387,14 @@ private struct DocumentOpeningError: LocalizedError, RecoverableError {
         
         switch self.code {
             case .binaryFile:
-                String(localized: "The file “\(self.url.lastPathComponent)” doesn’t appear to be text data.")
+                String(localized: "DocumentOpeningError.binaryFile.description",
+                       defaultValue: "The file “\(self.url.lastPathComponent)” doesn’t appear to be text data.",
+                       table: "Document")
                 
             case .tooLarge(let size):
-                String(localized: "The file “\(self.url.lastPathComponent)” has a size of \(size, format: .byteCount(style: .file)).")
+                String(localized: "DocumentOpeningError.tooLarge.description",
+                       defaultValue: "The file “\(self.url.lastPathComponent)” has a size of \(size, format: .byteCount(style: .file)).",
+                       table: "Document")
         }
     }
     
@@ -399,19 +403,28 @@ private struct DocumentOpeningError: LocalizedError, RecoverableError {
         
         switch self.code {
             case .binaryFile(let type):
-                let localizedTypeName = type.localizedDescription ?? String(localized: "an unknown type", comment: "string that is inserted as the variable (%@) in the binary file alert when the type of file cannot be determined")
-                return String(localized: "The file appears to be \(localizedTypeName).\n\nDo you really want to open the file?",
+                let localizedTypeName = type.localizedDescription ?? String(
+                    localized: "DocumentOpeningError.binaryFile.recoverySuggestion.unknownFileType",
+                    defaultValue: "an unknown type",
+                    table: "Document",
+                    comment: "string that is inserted as the variable (%@) in the binary file alert when the type of file cannot be determined"
+                )
+                return String(localized: "DocumentOpeningError.binaryFile.recoverySuggestion",
+                              defaultValue: "The file appears to be \(localizedTypeName).\n\nDo you really want to open the file?",
+                              table: "Document",
                               comment: "%@ is a file type")
                 
             case .tooLarge:
-                return String(localized: "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?")
+                return String(localized: "DocumentOpeningError.tooLarge.recoverySuggestion",
+                              defaultValue: "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?",
+                              table: "Document")
         }
     }
     
     
     var recoveryOptions: [String] {
         
-        [String(localized: "Open"),
+        [String(localized: "DocumentOpeningError.recoveryOption.open", defaultValue: "Open", table: "Document", comment: "button label"),
          String(localized: "Cancel")]
     }
     

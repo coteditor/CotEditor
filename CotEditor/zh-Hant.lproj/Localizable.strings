@@ -70,66 +70,10 @@
 "A new theme named “%@” has been successfully installed." = "新主題「%@」安裝完成";
 
 
-/* MARK: Document Controller */
-// Binary file alert
-"The file “%@” doesn’t appear to be text data." = "檔案「%@」不是文字資料";
-"The file appears to be %@.\n\nDo you really want to open the file?" = "該檔案看起來是%@。\n\n確定要開啟該檔案？";
-// string that is inserted as the variable (%@) in the binary file alert when the type of file cannot be determined
-"an unknown type" = "an unknown type";  // FIXME: added
-
-// Large file alert
-"The file “%@” has a size of %@." = "「%@」檔案尺寸為%@。";
-"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "開啟大型檔案可能導致應用速度變慢。\n\n確定要開啟該檔案？";
-"Open" = "開啟";
-
-
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "編碼變更為「%@」";
 "Line Endings to %@" = "行尾變更為%@";
-
-// Convert or reinterpret encoding alert
-"Text encoding change" = "變更文字編碼";
-"Do you want to convert or reinterpret this document using “%@”?" = "要使用「%@」進行轉換或者再次解釋這份文件嗎？";
-"Convert" = "轉換";
-"Reinterpret" = "再次解釋";
-
-// Encoding alerts
-"The document contains characters incompatible with “%@.”" = "該文件包含與「%@」編碼不相容的字元。";  // %@ is an encoding name.
-
-// Lossy saving alert
-"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "存檔時會自動置換或刪除不相容的字元。您真的要繼續處理嗎？";
-"Save Available Text" = "儲存有效文字";
-"Review Incompatible Characters" = "檢查不兼容字元";
-
-// Encoding change with unsaved changes alert
-"The document has unsaved changes." = "該文件中含有未儲存的修改。";
-"Are you sure you want to discard your changes and reopen the document using “%@”?" = "這將捨棄對當前檔案的更動、且使用「%@」編碼重新載入當前檔案。您確定要這麼做嗎？";  // %@ is an encoding name.
-"Discard Changes" = "放棄修改";
-
-// Reinterpretation failed alert
-"The document doesn’t have a file to reinterpret." = "該文件沒有要用來再次解釋的檔案。";
-"The document could not be reinterpreted using text encoding “%@.”" = "文件無法使用「%@」編碼再次解釋。";
-"The document may have been saved using a different text encoding, or it may not be a text file." = "該文件可能已使用了不同的文字編碼來存儲，或者可能不是文字檔案。";
-
-// incompatible characters alert
-"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "存檔時會自動置換或刪除不相容的字元。您真的要修改文字編碼、檢閱不相容的字元嗎？";
-"Change Encoding" = "更改編碼";
-
-// Inconsistent line ending alert
-"The document has inconsistent line endings." = "文件包含不一致的換行符。";
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "需要將所有換行符都取代為文件中最常使用的%@嗎？";
-"Don’t ask again for this document" = "對該文件不再詢問";
-"Convert" = "轉換";
-"Review" = "檢查";
-"Ignore" = "忽略";
-
-// Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "其他應用程式已對此檔案進行修改。CotEditor中還有未儲存的變更。";
-"The file has been changed by another application." = "其他應用程式已對此檔案進行修改。";
-"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "保留CotEditor的版本還是更新至被編輯過的版本？";
-"Keep CotEditor’s Edition" = "保留CotEditor編輯的內容";
-"Update" = "更新";
 
 
 /* MARK: Toolbar */

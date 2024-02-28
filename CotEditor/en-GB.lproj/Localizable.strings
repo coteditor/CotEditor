@@ -70,66 +70,10 @@
 "A new theme named “%@” has been successfully installed." = "A new theme named “%@” has been successfully installed.";
 
 
-/* MARK: Document Controller */
-// Binary file alert
-"The file “%@” doesn’t appear to be text data." = "The file “%@” doesn’t appear to be text data.";
-"The file appears to be %@.\n\nDo you really want to open the file?" = "The file appears to be %@.\n\nDo you really want to open the file?";
-// string that is inserted as the variable (%@) in the binary file alert when the type of file cannot be determined
-"an unknown type" = "an unknown type";
-
-// Large file alert
-"The file “%@” has a size of %@." = "The file “%@” has a size of %@.";
-"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?";
-"Open" = "Open";
-
-
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "Encoding to “%@”";
 "Line Endings to %@" = "Line Endings to %@";
-
-// Convert or reinterpret encoding alert
-"Text encoding change" = "Text encoding change";
-"Do you want to convert or reinterpret this document using “%@”?" = "Do you want to convert or reinterpret this document using “%@”?";
-"Convert" = "Convert";
-"Reinterpret" = "Reinterpret";
-
-// Encoding alerts
-"The document contains characters incompatible with “%@.”" = "The document contains characters incompatible with “%@.”";
-
-// Lossy saving alert
-"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Incompatible characters are substituted or deleted in saving. Do you want to continue processing?";
-"Save Available Text" = "Save Available Text";
-"Review Incompatible Characters" = "Review Incompatible Characters";
-
-// Encoding change with unsaved changes alert
-"The document has unsaved changes." = "The document has unsaved changes.";
-"Are you sure you want to discard your changes and reopen the document using “%@”?" = "Are you sure you want to discard your changes and reopen the document using “%@”?";  // %@ is an encoding name.
-"Discard Changes" = "Discard Changes";
-
-// Reinterpretation failed alert
-"The document doesn’t have a file to reinterpret." = "The document doesn’t have a file to reinterpret.";
-"The document could not be reinterpreted using text encoding “%@.”" = "The document could not be reinterpreted using text encoding “%@.”";
-"The document may have been saved using a different text encoding, or it may not be a text file." = "The document may have been saved using a different text encoding, or it may not be a text file.";
-
-// incompatible characters alert
-"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?";
-"Change Encoding" = "Change Encoding";
-
-// Inconsistent line ending alert
-"The document has inconsistent line endings." = "The document has inconsistent line endings.";
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Do you want to convert all line endings to %@, the most common line endings in this document?";
-"Don’t ask again for this document" = "Don’t ask again for this document";
-"Convert" = "Convert";
-"Review" = "Review";
-"Ignore" = "Ignore";
-
-// Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "The file has been changed by another application. There are also unsaved changes in CotEditor.";
-"The file has been changed by another application." = "The file has been changed by another application.";
-"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Do you want to keep CotEditor’s edition or update it to the modified edition?";
-"Keep CotEditor’s Edition" = "Keep CotEditor’s Edition";
-"Update" = "Update";
 
 
 /* MARK: Toolbar */

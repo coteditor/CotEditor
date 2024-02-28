@@ -70,66 +70,10 @@
 "A new theme named “%@” has been successfully installed." = "Ein neues Thema mit dem Namen „%@“ wurde erfolgreich installiert.";
 
 
-/* MARK: Document Controller */
-// Binary file alert
-"The file “%@” doesn’t appear to be text data." = "Die Datei „%@” entspricht keiner Textdatei.";
-"The file appears to be %@.\n\nDo you really want to open the file?" = "Die Datei scheint %@ zu sein.\n\nMöchtest du die Datei wirklich öffnen?";
-// string that is inserted as the variable (%@) in the binary file alert when the type of file cannot be determined
-"an unknown type" = "ein unbekannter Typ";
-
-// Large file alert
-"The file “%@” has a size of %@." = "Die Datei „%@“ hat eine Größe von %@.";
-"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "Wenn eine so große Datei geöffnet wird, kann das Programm langsam werden oder nicht mehr reagieren.\n\nMöchtest du die Datei wirklich öffnen?";
-"Open" = "Öffnen";
-
-
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "Codierung zu „%@“";
 "Line Endings to %@" = "Zeilenenden zu %@";
-
-// Convert or reinterpret encoding alert
-"Text encoding change" = "Änderung der Textcodierung";
-"Do you want to convert or reinterpret this document using “%@”?" = "Möchtest du dieses Dokument mit „%@“ umwandeln oder neu interpretieren?";
-"Convert" = "Umwandeln";
-"Reinterpret" = "Neu interpretieren";
-
-// Encoding alerts
-"The document contains characters incompatible with “%@.”" = "Das Dokument enthält Zeichen, die mit „%@“ inkompatible sind.";
-
-// Lossy saving alert
-"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Inkompatible Zeichen werden beim Speichern ersetzt oder gelöscht. Möchtest du mit der Bearbeitung fortfahren?";
-"Save Available Text" = " Verfügbaren Text speichern";
-"Review Incompatible Characters" = "Inkompatible Zeichen prüfen";
-
-// Encoding change with unsaved changes alert
-"The document has unsaved changes." = "Das Dokument hat ungespeicherte Änderungen.";
-"Are you sure you want to discard your changes and reopen the document using “%@”?" = "Möchtest du deine Änderungen wirklich verwerfen und das Dokument in der Codierung „%@“ erneut öffnen?";  // %@ is an encoding name.
-"Discard Changes" = "Änderungen verwerfen";
-
-// Reinterpretation failed alert
-"The document doesn’t have a file to reinterpret." = "Das Dokument hat keine Datei zum Neuinterpretieren.";
-"The document could not be reinterpreted using text encoding “%@.”" = "Das Dokument konnte nicht mithilfe der Codierung „%@“ neu interpretiert werden.";
-"The document may have been saved using a different text encoding, or it may not be a text file." = "Das Dokument wurde möglicherweise mit einer anderen Textcodierung gesichert oder es handelt sich nicht um eine Textdatei.";
-
-// incompatible characters alert
-"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Inkompatible Zeichen werden beim Speichern ersetzt oder gelöscht. Möchtest du die Textcodierung ändern und die inkompatiblen Zeichen überprüfen?";
-"Change Encoding" = "Codierung ändern";
-
-// Inconsistent line ending alert
-"The document has inconsistent line endings." = "Das Dokument hat inkonsistente Zeilenenden.";
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Möchtest du alle Zeilenenden in %@ umwandeln, die häufigsten Zeilenenden in diesem Dokument?";
-"Don’t ask again for this document" = "Für dieses Dokument nicht erneut fragen";
-"Convert" = "Umwandeln";
-"Review" = "Prüfen";
-"Ignore" = "Ignorieren";
-
-// Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "Die Datei wurde von einem anderen Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor.";
-"The file has been changed by another application." = "Die Datei wurde von einem anderen Programm geändert.";
-"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Möchtest du die Version des CotEditors behalten oder auf die geänderte Version aktualisieren?";
-"Keep CotEditor’s Edition" = "CotEditors Version behalten";
-"Update" = "Aktualisieren";
 
 
 /* MARK: Toolbar */

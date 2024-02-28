@@ -71,66 +71,10 @@
 "A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
 
 
-/* MARK: Document Controller */
-// Binary file alert
-"The file “%@” doesn’t appear to be text data." = "ファイル“%@”はテキストデータではないようです。";
-"The file appears to be %@.\n\nDo you really want to open the file?" = "このファイルは%@のようです。\n\n本当にファイルを開きますか?";
-// string that is inserted as the variable (%@) in the binary file alert when the type of file cannot be determined
-"an unknown type" = "不明なタイプ";
-
-// Large file alert
-"The file “%@” has a size of %@." = "ファイル“%@”はファイルサイズが%@あります。";
-"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか?";
-"Open" = "開く";
-
-
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "エンコーディングを“%@”へ";
 "Line Endings to %@" = "改行コードを%@へ";
-
-// Convert or reinterpret encoding alert
-"Text encoding change" = "テキストエンコーディングの変更";
-"Do you want to convert or reinterpret this document using “%@”?" = "“%@”を使って書類を変換または再解釈しますか?";
-"Convert" = "変換";
-"Reinterpret" = "再解釈";
-
-// Encoding alerts
-"The document contains characters incompatible with “%@.”" = "書類に“%@”と互換性のない文字が含まれています。";
-
-// Lossy saving alert
-"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "互換性のない文字は保存時に代替または削除されます。保存を続けますか?";
-"Save Available Text" = "有効なテキストを保存";
-"Review Incompatible Characters" = "非互換文字を確認";
-
-// Encoding change with unsaved changes alert
-"The document has unsaved changes." = "ファイル“%@”の変更内容は保存されていません。";
-"Are you sure you want to discard your changes and reopen the document using “%@”?" = "変更を破棄して、“%@”で書類を開き直してもよろしいですか?";  // %@ is an encoding name.
-"Discard Changes" = "変更内容を破棄";
-
-// Reinterpretation failed alert
-"The document doesn’t have a file to reinterpret." = "再解釈をするファイルがありません。";
-"The document could not be reinterpreted using text encoding “%@.”" = "テキストエンコーディング“%@”で書類を再解釈できませんでした。";
-"The document may have been saved using a different text encoding, or it may not be a text file." = "この書類は、別のテキストエンコーディングで保存されているか、テキストファイルでない可能性があります。";
-
-// incompatible characters alert
-"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "互換性のない文字は保存時に代替または削除されます。エンコーディングを変更し非互換文字を確認しますか?";
-"Change Encoding" = "エンコーディングを変更";
-
-// Inconsistent line ending alert
-"The document has inconsistent line endings." = "書類に複数の改行コードが混在しています。";
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "すべての改行コードをこの書類で最も使われている%@に変換しますか?";
-"Don’t ask again for this document" = "この書類では次回から確認しない";
-"Convert" = "変換";
-"Review" = "確認";
-"Ignore" = "無視";
-
-// Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "このファイルは、別のアプリケーションによって変更されました。CotEditorで加えた編集もまだ保存されていません。";
-"The file has been changed by another application." = "このファイルは、別のアプリケーションによって変更されました。";
-"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "CotEditorでの編集内容を保持しますか、それとも変更された内容に更新しますか?";
-"Keep CotEditor’s Edition" = "CotEditorの編集内容を保持";
-"Update" = "更新";
 
 
 /* MARK: Toolbar */

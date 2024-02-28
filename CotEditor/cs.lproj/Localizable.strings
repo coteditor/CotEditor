@@ -70,66 +70,10 @@
 "A new theme named “%@” has been successfully installed." = "Nový motiv s názvem „%@“ byl úspěšně nainstalován.";
 
 
-/* MARK: Document Controller */
-// Binary file alert
-"The file “%@” doesn’t appear to be text data." = "Soubor „%@” se nezdá být textovým.";
-"The file appears to be %@.\n\nDo you really want to open the file?" = "Zdá se, že soubor je %@.\n\nUrčitě chcete soubor otevřít?";
-// string that is inserted as the variable (%@) in the binary file alert when the type of file cannot be determined
-"an unknown type" = "an unknown type";  // FIXME: added
-
-// Large file alert
-"The file “%@” has a size of %@." = "Soubor „%@“ má velikost %@.";
-"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "Otevření tak velkého souboru může způsobit zpomalenou, nebo nereagující aplikaci.\n\nUrčitě chcete soubor otevřít?";
-"Open" = "Otevřít";
-
-
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "Kódování do „%@“";
 "Line Endings to %@" = "Konce řádků do „%@“";
-
-// Convert or reinterpret encoding alert
-"Text encoding change" = "Změna kódování textu";
-"Do you want to convert or reinterpret this document using “%@”?" = "Chcete tento dokument převést nebo reinterpretovat pomocí „%@“?";
-"Convert" = "Převést";
-"Reinterpret" = "Reinterpretovat";
-
-// Encoding alerts
-"The document contains characters incompatible with “%@.”" = "Dokument obsahuje nekompatibilní znaky s „%@“.";
-
-// Lossy saving alert
-"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Při ukládání jsou nahrazeny nebo odstraněny nekompatibilní znaky. Chcete pokračovat ve zpracování?";
-"Save Available Text" = "Uložit dostupný text";
-"Review Incompatible Characters" = "Prohlédnout nekompatibilní znaky";
-
-// Encoding change with unsaved changes alert
-"The document has unsaved changes." = "Dokument obsahuje neuložené změny.";
-"Are you sure you want to discard your changes and reopen the document using “%@”?" = "Určitě chcete zahodit změny a znovu otevřít dokument pomocí „%@“?";  // %@ is an encoding name.
-"Discard Changes" = "Zahodit změny";
-
-// Reinterpretation failed alert
-"The document doesn’t have a file to reinterpret." = "Dokument nemá soubor k reinterpretaci.";
-"The document could not be reinterpreted using text encoding “%@.”" = "Dokument nelze znovu interpretovat pomocí kódování „%@“.";
-"The document may have been saved using a different text encoding, or it may not be a text file." = "Dokument byl pravděpodobně uložen pomocí jiného kódování textu, nebo se nejedná o textový soubor.";
-
-// incompatible characters alert
-"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Při ukládání jsou nahrazeny nebo odstraněny nekompatibilní znaky. Chcete změnit kódování textu a zkontrolovat nekompatibilní znaky?";
-"Change Encoding" = "Změnit kódování";
-
-// Inconsistent line ending alert
-"The document has inconsistent line endings." = "Dokument má nekonzistentní konce řádků.";
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Chcete převést všechny konce řádků do %@, což jsou nejčastější konce řádků v tomto dokumentu?";
-"Don’t ask again for this document" = "Neptat se znovu na tento dokument";
-"Convert" = "Převést";
-"Review" = "Prohlédnout";
-"Ignore" = "Ignorovat";
-
-// Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "Soubor byl změněn v jiné aplikaci. V CotEditoru jsou také neuložené změny.";
-"The file has been changed by another application." = "Soubor byl změněn v jiné aplikaci.";
-"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Chcete zachovat verzi CotEditoru nebo ho aktualizovat na upravenou verzi?";
-"Keep CotEditor’s Edition" = "Zachovat verzi CotEditoru";
-"Update" = "Aktualizovat";
 
 
 /* MARK: Toolbar */

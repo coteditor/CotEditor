@@ -70,66 +70,10 @@
 "A new theme named “%@” has been successfully installed." = "Yeni tema “%@” başarıyla yüklendi.";
 
 
-/* MARK: Document Controller */
-// Binary file alert
-"The file “%@” doesn’t appear to be text data." = "“%@” dosyası metin verisi gibi görünmüyor.";
-"The file appears to be %@.\n\nDo you really want to open the file?" = "Dosya %@ gibi görünüyor.\n\nDosyayı gerçekten açmak istiyor musunuz?";
-// string that is inserted as the variable (%@) in the binary file alert when the type of file cannot be determined
-"an unknown type" = "an unknown type";  // FIXME: added
-
-// Large file alert
-"The file “%@” has a size of %@." = "“%@” dosyasının boyutu %@.";
-"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "Bu kadar büyük bir dosyayı açmak uygulamayı yavaş veya tepkisiz yapabilir.\n\nDosyayı gerçekten açmak istiyor musunuz?";
-"Open" = "Aç";
-
-
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "“%@” olarak kodlanıyor";
 "Line Endings to %@" = "Satır Sonları: %@";
-
-// Convert or reinterpret encoding alert
-"Text encoding change" = "Metin kodlaması değişikliği";
-"Do you want to convert or reinterpret this document using “%@”?" = "Bu belgeyi “%@” kullanarak dönüştürmek veya yeniden yorumlamak istiyor musunuz?";
-"Convert" = "Dönüştür";
-"Reinterpret" = "Yeniden Yorumla";
-
-// Encoding alerts
-"The document contains characters incompatible with “%@.”" = "Belge, “%@” ile uyumsuz karakterler içeriyor"; // %@ is an encoding name.
-
-// Lossy saving alert
-"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Uyumsuz karakterler kaydedilirken değiştirilirler veya silinirler. İşlemi sürdürmek istiyor musunuz?";
-"Save Available Text" = "Kullanılabilir Metni Kaydet";
-"Review Incompatible Characters" = "Uyumsuz Karakterleri Gözden Geçir";
-
-// Encoding change with unsaved changes alert
-"The document has unsaved changes." = "Belgede kaydedilmemiş değişiklikler var.";
-"Are you sure you want to discard your changes and reopen the document using “%@”?" = "Değişikliklerinizi atıp belgeyi “%@” kullanarak yeniden açmak istediğinizden emin misiniz?";  // %@ is an encoding name.
-"Discard Changes" = "Değişiklikleri At";
-
-// Reinterpretation failed alert
-"The document doesn’t have a file to reinterpret." = "Belge yeniden yorumlanacak bir dosya yok.";
-"The document could not be reinterpreted using text encoding “%@.”" = "Belge, “%@” metin kodlaması kullanarak yeniden yorumlanamadı.";
-"The document may have been saved using a different text encoding, or it may not be a text file." = "Belge, başka bir metin kodlaması kullanarak kaydedilmiş olabilir veya bir metin dosyası olmayabilir.";
-
-// incompatible characters alert
-"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Uyumsuz karakterler kaydedilirken değiştirilirler veya silinirler. Metin kodlamasını değiştirip uyumsuz karakterleri gözden geçirmek istiyor musunuz?";
-"Change Encoding" = "Kodlamayı Değiştir";
-
-// Inconsistent line ending alert
-"The document has inconsistent line endings." = "Belgenin satır sonları tutarsız.";
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Tüm satır sonlarını bu belgedeki en yaygın satır sonu olan %@ olarak değiştirmek istiyor musunuz?";
-"Don’t ask again for this document" = "Bu belge için yeniden sorma";
-"Convert" = "Dönüştür";
-"Review" = "Gözden Geçir";
-"Ignore" = "Yok Say";
-
-// Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "Dosya başka bir uygulama tarafından değiştirilmiş. Aynı zamanda CotEditor’da kaydedilmemiş değişiklikler var.";
-"The file has been changed by another application." = "Dosya başka bir uygulama tarafından değiştirilmiş.";
-"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "CotEditor’da yapılan değişiklikler mi kullanılsın veya daha önce değiştirilen sürüme mi güncellensin?";
-"Keep CotEditor’s Edition" = "CotEditor Değişikliklerini Tut";
-"Update" = "Güncelle";
 
 
 /* MARK: Toolbar */

@@ -70,66 +70,10 @@
 "A new theme named “%@” has been successfully installed." = "Un nouveau thème nommé « %@ » a été installé avec succès.";
 
 
-/* MARK: Document Controller */
-// Binary file alert
-"The file “%@” doesn’t appear to be text data." = "Le fichier « %@ » ne semble pas être dans un format textuel.";
-"The file appears to be %@.\n\nDo you really want to open the file?" = "Le ficher semble être de type %@.\n\nVoulez-vous vraiment ouvrir le fichier ?";
-// string that is inserted as the variable (%@) in the binary file alert when the type of file cannot be determined
-"an unknown type" = "an unknown type";  // FIXME: added
-
-// Large file alert
-"The file “%@” has a size of %@." = "Le fichier « %@ » a une taille de %@.";
-"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "En ouvrant un fichier d’aussi grande taille, il se peut que l’application ralentisse ou ne réponde plus.\n\nVoulez-vous tout de même ouvrir ce fichier ?";
-"Open" = "Ouvrir";
-
-
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "Encodage en « %@ »";
 "Line Endings to %@" = "Fins de ligne en %@";
-
-// Convert or reinterpret encoding alert
-"Text encoding change" = "Modification de l'encodage du texte";  // FIXME: needs review
-"Do you want to convert or reinterpret this document using “%@”?" = "Voulez-vous convertir le document ou bien le réinterpréter en utilisant « %@ » ?";
-"Convert" = "Convertir";
-"Reinterpret" = "Ré-interpréter";
-
-// Encoding alerts
-"The document contains characters incompatible with “%@.”" = "Le document contient des caractères incompatibles avec « %@ ».";  // FIXME: needs review
-
-// Lossy saving alert
-"Incompatible characters are substituted or deleted in saving. Do you want to continue processing?" = "Certains caractères devront être altérés ou supprimés en sauvegardant. Voulez-vous poursuivre ?";  // FIXME: needs review
-"Save Available Text" = "Sauvegarder les caractères disponibles";
-"Review Incompatible Characters" = "Passer en revue les caractères incompatibles";  // FIXME: needs review
-
-// Encoding change with unsaved changes alert
-"The document has unsaved changes." = "Le document contient des modifications non sauvegardées.";
-"Are you sure you want to discard your changes and reopen the document using “%@”?" = "Voulez-vous vraiment abandonner les modifications et réouvrir le document en utilisant « %@ » ?";  // %@ is an encoding name.  // FIXME: needs review
-"Discard Changes" = "Abandonner les modifications";
-
-// Reinterpretation failed alert
-"The document doesn’t have a file to reinterpret." = "Le document n’a pas de fichier à réinterpréter.";
-"The document could not be reinterpreted using text encoding “%@.”" = "Le document n’a pas pu être réinterprété en utilisant l’encodage « %@ ».";
-"The document may have been saved using a different text encoding, or it may not be a text file." = "Le document a peut-être été sauvegardé dans un encodage différent, ou bien il ne s’agit pas d’un fichier texte.";
-
-// incompatible characters alert
-"Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?" = "Les caractères incompatibles sont remplacés ou supprimés lors de l'enregistrement. Voulez-vous modifier l'encodage du texte et revoir les caractères incompatibles ?";  // FIXME: needs review
-"Change Encoding" = "Changer l’encodage";
-
-// Inconsistent line ending alert
-"The document has inconsistent line endings." = "Ce document a des fins de ligne inconsistantes.";
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Souhaitez-vous convertir toutes les fins de ligne en %@, le plus courant dans le document ?";
-"Don’t ask again for this document" = "Ne plus demander pour ce document";
-"Convert" = "Convertir";
-"Review" = "Passer en revue";
-"Ignore" = "Ignorer";
-
-// Modified by an external application alert
-"The file has been changed by another application. There are also unsaved changes in CotEditor." = "Le fichier a été modifié par une autre application. Il y a des modifcations non sauvegardées dans CotEditor.";
-"The file has been changed by another application." = "Le fichier a été modifié par une autre application.";
-"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Voulez-vous garder la version dans CotEditor ou rafraîchir vers la version modifiée ?";
-"Keep CotEditor’s Edition" = "Garder la version dans CotEditor";
-"Update" = "Rafraîchir";
 
 
 /* MARK: Toolbar */
