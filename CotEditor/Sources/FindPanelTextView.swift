@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 1024jp
+//  © 2015-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,6 +54,9 @@ class FindPanelTextView: NSTextView {
         self.textContainer?.widthTracksTextView = false
         self.textContainer?.size = .infinite
         self.isHorizontallyResizable = true
+        
+        // behave as field editor for Tab, Shift-Tab, and Return keys.
+        self.isFieldEditor = true
         
         // disable automatic text substitutions
         self.isAutomaticQuoteSubstitutionEnabled = false
@@ -115,20 +118,6 @@ class FindPanelTextView: NSTextView {
         if let action {
             NSApp.sendAction(action, to: self.target, from: self)
         }
-    }
-    
-    
-    override func insertTab(_ sender: Any?) {
-        
-        // jump to the next key view by the Tab key (standard NSTextField behavior)
-        self.window?.selectNextKeyView(nil)
-    }
-    
-    
-    override func insertBacktab(_ sender: Any?) {
-        
-        // jump to the previous key view by the Tab key (standard NSTextField behavior)
-        self.window?.selectPreviousKeyView(nil)
     }
     
     
