@@ -89,7 +89,7 @@ extension Snippet {
                            defaultValue: "The insertion point after inserting the snippet.",
                            table: "Snippet")
                 case .selection:
-                    String(localized: "Snippet.Variable.cursor.description",
+                    String(localized: "Snippet.Variable.selection.description",
                            defaultValue: "The selected text.",
                            table: "Snippet")
             }
