@@ -74,6 +74,10 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     var isAutomaticTabExpansionEnabled = false
     var isApprovedTextChange = false
     
+    var isAutomaticSymbolBalancingEnabled = false
+    var isAutomaticCompletionEnabled = false
+    var isAutomaticIndentEnabled = false
+    
     var inlineCommentDelimiter: String?
     var blockCommentDelimiters: Pair<String>?
     var syntaxCompletionWords: [String] = []
@@ -124,10 +128,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     private lazy var braceHighlightDebouncer = Debouncer { [weak self] in self?.highlightMatchingBrace() }
     private var isTypingPairedQuotes = false
     
-    private var isAutomaticSymbolBalancingEnabled = false
-    private var isAutomaticCompletionEnabled = false
-    private var isAutomaticIndentEnabled = false
-    
     private var mouseDownPoint: NSPoint = .zero
     private var needsUpdateInsertionIndicators = false
     
@@ -162,24 +162,10 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         assert(textContainer == nil)
         
-        let defaults = UserDefaults.standard
-        
-        self.isAutomaticSymbolBalancingEnabled = defaults[.balancesBrackets]
-        self.isAutomaticTabExpansionEnabled = defaults[.autoExpandTab]
-        self.isAutomaticIndentEnabled = defaults[.autoIndent]
-        
-        // set paragraph style values
-        self.lineHeight = defaults[.lineHeight]
-        self.tabWidth = defaults[.tabWidth]
-        
         // setup textContainer and layoutManager
         let textContainer = TextContainer()
         textContainer.widthTracksTextView = true
-        textContainer.isHangingIndentEnabled = defaults[.enablesHangingIndent]
-        textContainer.hangingIndentWidth = defaults[.hangingIndentWidth]
-        
         let layoutManager = LayoutManager()
-        layoutManager.tabWidth = self.tabWidth
         layoutManager.addTextContainer(textContainer)
         
         super.init(frame: frame, textContainer: textContainer)
@@ -206,10 +192,24 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.linkTextAttributes = [.cursor: NSCursor.pointingHand,
                                    .underlineStyle: NSUnderlineStyle.single.rawValue]
         
+        let defaults = UserDefaults.standard
+        
+        // set paragraph style values
+        self.lineHeight = defaults[.lineHeight]
+        self.tabWidth = defaults[.tabWidth]
+        layoutManager.tabWidth = self.tabWidth
+        
+        textContainer.isHangingIndentEnabled = defaults[.enablesHangingIndent]
+        textContainer.hangingIndentWidth = defaults[.hangingIndentWidth]
+        layoutManager.showsIndentGuides = defaults[.showIndentGuides]
+        
         // setup behaviors
+        self.isAutomaticTabExpansionEnabled = defaults[.autoExpandTab]
+        self.isAutomaticIndentEnabled = defaults[.autoIndent]
         self.smartInsertDeleteEnabled = defaults[.smartInsertAndDelete]
         self.isAutomaticQuoteSubstitutionEnabled = defaults[.enableSmartQuotes]
         self.isAutomaticDashSubstitutionEnabled = defaults[.enableSmartDashes]
+        self.isAutomaticSymbolBalancingEnabled = defaults[.balancesBrackets]
         self.isContinuousSpellCheckingEnabled = defaults[.checkSpellingAsType]
         self.isAutomaticCompletionEnabled = defaults[.autoComplete]
         
@@ -219,7 +219,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         super.font = font
         layoutManager.textFont = font
         layoutManager.usesAntialias = defaults[.antialias(for: fontType)]
-        layoutManager.showsIndentGuides = defaults[.showIndentGuides]
         
         self.ligature = defaults[.ligature(for: fontType)] ? .standard : .none
         self.typingAttributes[.kern] = (fontType == .monospaced) ? 0 : nil
@@ -234,17 +233,17 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
                 .map { [unowned self] _ in self.preferredFontType }
                 .sink { [unowned self] in self.setFont(type: $0) },
             
+            defaults.publisher(for: .lineHeight)
+                .sink { [unowned self] in self.lineHeight = $0 },
+            defaults.publisher(for: .tabWidth)
+                .sink { [unowned self] in self.tabWidth = $0 },
+            
             defaults.publisher(for: .balancesBrackets)
                 .sink { [unowned self] in self.isAutomaticSymbolBalancingEnabled = $0 },
             defaults.publisher(for: .autoExpandTab)
                 .sink { [unowned self] in self.isAutomaticTabExpansionEnabled = $0 },
             defaults.publisher(for: .autoIndent)
                 .sink { [unowned self] in self.isAutomaticIndentEnabled = $0 },
-            
-            defaults.publisher(for: .lineHeight)
-                .sink { [unowned self] in self.lineHeight = $0 },
-            defaults.publisher(for: .tabWidth)
-                .sink { [unowned self] in self.tabWidth = $0 },
             
             defaults.publisher(for: .smartInsertAndDelete)
                 .sink { [unowned self] in self.smartInsertDeleteEnabled = $0 },
@@ -1219,7 +1218,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     
     
     /// Tab width in number of spaces.
-    var tabWidth: Int {
+    var tabWidth: Int = 4 {
         
         didSet {
             tabWidth = max(tabWidth, 0)
@@ -1236,7 +1235,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     
     
     /// The line height multiple.
-    var lineHeight: CGFloat {
+    var lineHeight: CGFloat = 1.2 {
         
         didSet {
             lineHeight = max(lineHeight, 0)
