@@ -166,7 +166,7 @@ private struct TextSettingsView: View {
                 LabeledContent(String(localized: "Encoding", table: "Inspector"),
                                value: self.encoding.localizedName)
                 LabeledContent(String(localized: "Line Endings", table: "Inspector"),
-                               value: self.lineEnding.name)
+                               value: self.lineEnding.label)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }

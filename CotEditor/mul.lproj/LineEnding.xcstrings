@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Classic Mac OS" : {
+    "LineEnding.cr.description" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -71,7 +71,7 @@
         }
       }
     },
-    "macOS / Unix" : {
+    "LineEnding.lf.description" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -141,7 +141,7 @@
         }
       }
     },
-    "Unix Line Separator" : {
+    "LineEnding.lineSeparator.description" : {
       "comment" : "This item is preferably as-is because of the unfamiliarity.",
       "localizations" : {
         "cs" : {
@@ -212,7 +212,7 @@
         }
       }
     },
-    "Unix Next Line" : {
+    "LineEnding.nel.description" : {
       "comment" : "This item is preferably as-is because of the unfamiliarity.",
       "localizations" : {
         "cs" : {
@@ -283,7 +283,7 @@
         }
       }
     },
-    "Unix Paragraph Separator" : {
+    "LineEnding.paragraphSeparator.description" : {
       "comment" : "This item is preferably as-is because of the unfamiliarity.",
       "localizations" : {
         "cs" : {
@@ -354,7 +354,7 @@
         }
       }
     },
-    "Windows" : {
+    "LineEnding.crlf.description" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {

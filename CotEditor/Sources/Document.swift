@@ -914,7 +914,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 // register redo
                 target.undoManager?.registerUndo(withTarget: target) { $0.changeLineEnding(to: lineEnding) }
             }
-            undoManager.setActionName(String(localized: "Line Endings to \(lineEnding.name)"))
+            undoManager.setActionName(String(localized: "Line Endings to \(lineEnding.label)"))
         }
         
         // update line endings in text storage
@@ -1129,7 +1129,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         let alert = NSAlert()
         alert.alertStyle = .warning
         alert.messageText = String(localized: "The document has inconsistent line endings.")
-        alert.informativeText = String(localized: "Do you want to convert all line endings to \(self.lineEnding.name), the most common line endings in this document?")
+        alert.informativeText = String(localized: "Do you want to convert all line endings to \(self.lineEnding.label), the most common line endings in this document?")
         alert.addButton(withTitle: String(localized: "Convert"))
         alert.addButton(withTitle: String(localized: "Review"))
         alert.addButton(withTitle: String(localized: "Ignore"))

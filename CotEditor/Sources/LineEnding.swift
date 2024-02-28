@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ enum LineEnding: Character, CaseIterable {
     }
     
     
-    var name: String {
+    var label: String {
         
         switch self {
             case .lf: "LF"
@@ -75,24 +75,35 @@ enum LineEnding: Character, CaseIterable {
     }
     
     
-    var longName: String {
+    var description: String {
         
         switch self {
             case .lf:
-                String(localized: "macOS / Unix", table: "LineEnding")
+                String(localized: "LineEnding.lf.description",
+                       defaultValue: "macOS / Unix",
+                       table: "LineEnding")
             case .cr:
-                String(localized: "Classic Mac OS", table: "LineEnding")
+                String(localized: "LineEnding.cr.description",
+                       defaultValue: "Classic Mac OS",
+                       table: "LineEnding")
             case .crlf:
-                String(localized: "Windows", table: "LineEnding")
+                String(localized: "LineEnding.crlf.description",
+                       defaultValue: "Windows", table: "LineEnding")
             case .nel:
-                String(localized: "Unix Next Line", table: "LineEnding",
-                       comment: "This item is preferably as-is because of the unfamiliarity.")
+                String(localized: "LineEnding.nel.description",
+                       defaultValue: "Unix Next Line",
+                       table: "LineEnding",
+                       comment: "Since this is a technical term, it should be left as-is.")
             case .lineSeparator:
-                String(localized: "Unix Line Separator", table: "LineEnding",
-                       comment: "This item is preferably as-is because of the unfamiliarity.")
+                String(localized: "LineEnding.lineSeparator.description",
+                       defaultValue: "Unix Line Separator",
+                       table: "LineEnding",
+                       comment: "Since this is a technical term, it should be left as-is.")
             case .paragraphSeparator:
-                String(localized: "Unix Paragraph Separator", table: "LineEnding",
-                       comment: "This item is preferably as-is because of the unfamiliarity.")
+                String(localized: "LineEnding.paragraphSeparator.description",
+                       defaultValue: "Unix Paragraph Separator",
+                       table: "LineEnding",
+                       comment: "Since this is a technical term, it should be left as-is.")
         }
     }
 }

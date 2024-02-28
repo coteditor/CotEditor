@@ -59,7 +59,7 @@ struct InconsistentLineEndingsView: View {
                 Text("No issues found.", tableName: "Inspector")
                     .foregroundStyle(.secondary)
             } else {
-                Text("Found \(self.model.items.count) line endings other than \(self.model.lineEnding.name).",
+                Text("Found \(self.model.items.count) line endings other than \(self.model.lineEnding.label).",
                      tableName: "Inspector",
                      comment: "%lld is the number of inconsistent line endings and %@ is a line ending type, such as LF")
             }
@@ -76,7 +76,7 @@ struct InconsistentLineEndingsView: View {
                     }
                     
                     TableColumn(String(localized: "Line Ending", table: "Inspector", comment: "table column header"), value: \.value.rawValue) {
-                        Text($0.value.name)
+                        Text($0.value.label)
                     }
                 }
                 .onChange(of: self.selection) { newValue in

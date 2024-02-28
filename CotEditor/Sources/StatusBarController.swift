@@ -231,9 +231,9 @@ import Combine
         
         menu.items += LineEnding.allCases.map { lineEnding in
             let item = NSMenuItem()
-            item.title = lineEnding.name
+            item.title = lineEnding.label
             item.tag = lineEnding.index
-            item.toolTip = lineEnding.longName
+            item.toolTip = lineEnding.description
             item.action = #selector(Document.changeLineEnding(_:))
             item.isHidden = !lineEnding.isBasic
             item.keyEquivalentModifierMask = lineEnding.isBasic ? [] : [.option]

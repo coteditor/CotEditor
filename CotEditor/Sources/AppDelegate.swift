@@ -132,7 +132,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.lineEndingsMenu?.items = LineEnding.allCases.map { lineEnding in
             let item = NSMenuItem()
-            item.title = "\(lineEnding.longName) (\(lineEnding.name))"
+            item.title = "\(lineEnding.description) (\(lineEnding.label))"
             item.tag = lineEnding.index
             item.action = #selector(Document.changeLineEnding(_:))
             item.isHidden = !lineEnding.isBasic
