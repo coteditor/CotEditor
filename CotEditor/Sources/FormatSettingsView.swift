@@ -119,7 +119,7 @@ struct FormatSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 Picker(selection: $syntax) {
-                    Text("None").tag("None")
+                    Text("None", comment: "syntax name").tag("None")
                     Divider()
                     ForEach(self.syntaxManager.settingNames, id: \.self) {
                         Text($0).tag($0)
