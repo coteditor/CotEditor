@@ -146,7 +146,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     private var defaultsObservers: Set<AnyCancellable> = []
     private var fontObservers: Set<AnyCancellable> = []
     private var windowOpacityObserver: AnyCancellable?
-    private var applicationObserver: AnyCancellable?
+    private var keyStateObserver: AnyCancellable?
     
     
     
@@ -283,15 +283,11 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         // workaround the issue that indicators display even the application is inactive
         // (2023-08 macOS 14 beta 5, FB12968177)
         if #available(macOS 14, *) {
-            self.applicationObserver = Publishers.Merge(
+            self.keyStateObserver = Publishers.Merge3(
                 NotificationCenter.default.publisher(for: NSApplication.didResignActiveNotification, object: NSApp),
-                NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification, object: NSApp))
-            .filter { [weak self] _ in self?.window?.firstResponder == self }
-            .sink { [unowned self] _ in
-                for indicator in self.insertionIndicators {
-                    indicator.displayMode = NSApp.isActive ? .automatic : .hidden
-                }
-            }
+                NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification, object: NSApp),
+                NotificationCenter.default.publisher(for: NSWindow.didBecomeKeyNotification))
+            .sink { [unowned self] _ in self.invalidateInsertionPointDisplayMode(isFirstResponder: self.window?.firstResponder == self) }
         }
     }
     
@@ -374,9 +370,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         NotificationCenter.default.post(name: EditorTextView.didBecomeFirstResponderNotification, object: self)
         
         if #available(macOS 14, *) {
-            for indicator in self.insertionIndicators {
-                indicator.displayMode = .automatic
-            }
+            self.invalidateInsertionPointDisplayMode(isFirstResponder: true)
         }
         
         return true
@@ -388,9 +382,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         guard super.resignFirstResponder() else { return false }
         
         if #available(macOS 14, *) {
-            for indicator in self.insertionIndicators {
-                indicator.displayMode = .hidden
-            }
+            self.invalidateInsertionPointDisplayMode(isFirstResponder: false)
         }
         
         return true

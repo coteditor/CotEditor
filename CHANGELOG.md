@@ -20,6 +20,7 @@
 ### Fixes
 
 - Fix the application crashed when tried to share a custom syntax.
+- Fix an issue on macOS 14 that multiple cursors in editors remained when they are inactive.
 - Fix missing localizations.
 
 

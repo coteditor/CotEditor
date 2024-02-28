@@ -418,6 +418,23 @@ extension MultiCursorEditing {
         // remove remaining indicators
         indicators.forEach { $0.removeFromSuperview() }
     }
+    
+    
+    /// Workarounds the issue that indicators display even the editor is inactive (2023-08 macOS 14, FB12964703 and FB12968177)
+    ///
+    /// This method should be Invoked when the receiver is changed whether it is the key editor receiving text input in the system.
+    ///
+    /// - Parameter isFirstResponder: Whether the receiver is the first responder in the window.
+    @available(macOS 14, *)
+    private func invalidateInsertionPointDisplayMode(isFirstResponder: Bool) {
+        
+        guard !self.insertionIndicators.isEmpty else { return }
+        
+        let isActive = NSApp.isActive && self.window == NSApp.keyWindow && isFirstResponder
+        for indicator in self.insertionIndicators {
+            indicator.displayMode = isActive ? .automatic : .hidden
+        }
+    }
 }
 
 
