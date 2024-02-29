@@ -47,6 +47,6 @@ func moof(_ items: Any..., function: String = #function) {
     if items.isEmpty {
         Logger.moof.debug("\(icon) \(function)")
     } else {
-        Logger.moof.debug("\(icon) \(function) \(items.map(String.init).joined(separator: ", "))")
+        Logger.moof.debug("\(icon) \(function) \(items.map({ "\($0)" }).formatted(.list(type: .and, width: .short)))")
     }
 }
