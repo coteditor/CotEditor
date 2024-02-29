@@ -28,7 +28,6 @@
 "OK" = "OK";
 "Cancel" = "キャンセル";
 "Restore Defaults" = "デフォルトに戻す";
-"Delete" = "削除";
 
 // tooltip for opacity slider
 "Transparent" = "透明";
@@ -50,25 +49,11 @@
 "Export “%@”…" = "“%@”を書き出す…";
 "Reveal “%@” in Finder" = "“%@”をFinderに表示";
 
-// warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "“%@”を削除してもよろしいですか?";
-"This action cannot be undone." = "この操作は取り消せません。";
-
 // filename field label variation for save panel
 "Export As:" = "名前:";
 
 // button label for open panel
 "Import" = "読み込む";
-
-
-
-/* MARK: AppDelegate */
-// Importing theme
-"“%@” is a CotEditor theme file." = "“%@”はCotEditorテーマファイルです。";
-"Do you want to install this theme?" = "テーマをインストールしますか?";
-"Install" = "インストール";
-"Open as Text File" = "テキストファイルとして開く";
-"A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
 
 
 /* MARK: Document */
@@ -249,54 +234,19 @@
 
 // MARK: -
 
-/* MARK: SettingFileManager */
-"“%@” couldn’t be deleted." = "“%@”を削除できませんでした。";
-"“%@” couldn’t be imported." = "“%@”を読み込めませんでした。";
-"No original file for “%@” was found." = "“%@”のオリジナルファイルが見つかりませんでした。";
-
-// Setting filename warnings
-"Choose another name." = "別の名前を指定してください。";
-"Name can’t be empty." = "名前は空にできません。";
-"Name can’t contain “/”." = "名前に“/”を含めることはできません。";
-"Name can’t begin with “.”." = "名前を“.”から始めることはできません。";
-"The name “%@” is already taken." = "“%@”はすでに使用されています。";
-
 // default filename
 "Untitled" = "名称未設定";
 
 // filename suffix for copied file
 "copy" = "コピー";
 
-// alert option button
-"Replace" = "置換";
-
-
-/* MARK: SyntaxManager */
-// Syntax name
+// syntax name
 "None" = "なし";
 
-// Importing same name syntax alert
-"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "新しいシンタックス“%@”のインストールを試みましたが、同名のカスタムシンタックスがすでに存在しています。";
-"Do you want to replace it?\nReplaced syntax can’t be restored." = "シンタックスを置き換えますか?\n置き換えたシンタックスは元に戻せません。";
-
-
-/* MARK: ThemeManager */
-// Theme import duplicated alert
-"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";
-"Do you want to replace it?\nReplaced theme can’t be restored." = "テーマを置き換えますか?\n削除したテーマは元に戻せません。";
-
-
-/* MARK: ReplacementManager */
-// Replacements import duplicated alert
-"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "新しい置換定義“%@”のインストールを試みましたが、同名の定義がすでに存在しています。";
-"Do you want to replace it?\nReplaced definition can’t be restored." = "定義を置き換えますか?\n削除した定義は元に戻せません。";
-
-
-/* MARK: KeyBindingManager */
-// Label for snippet commands (deprecated)
+// migration name for legacy snippet setting
 "Insert Text %lld" = "テキストを挿入%lld";
 
-// Keyboard key name
+// keyboard key name
 "Space" = "スペース";
 
 

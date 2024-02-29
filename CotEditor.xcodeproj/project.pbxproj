@@ -435,6 +435,8 @@
 		2A7F4E002871F46D0029CE66 /* PrintPanelAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F4E022871F46D0029CE66 /* PrintPanelAccessory.storyboard */; };
 		2A7FCC46280A367C0070EAB3 /* ValueRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FCC45280A367C0070EAB3 /* ValueRange.swift */; };
 		2A7FCC47280A367C0070EAB3 /* ValueRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FCC45280A367C0070EAB3 /* ValueRange.swift */; };
+		2A7FEEF52B9035930042BEFF /* SettingFile.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEEF42B9035930042BEFF /* SettingFile.xcstrings */; };
+		2A7FEEF62B9035930042BEFF /* SettingFile.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEEF42B9035930042BEFF /* SettingFile.xcstrings */; };
 		2A80BE8D27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
 		2A80BE8E27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
 		2A80BE9227FFFA8900D2F7FF /* LineEndingScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */; };
@@ -1111,6 +1113,7 @@
 		2A7C92FB29FD64A8008343C8 /* DefaultKey+FontType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultKey+FontType.swift"; sourceTree = "<group>"; };
 		2A7F4E012871F46D0029CE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PrintPanelAccessory.storyboard; sourceTree = "<group>"; };
 		2A7FCC45280A367C0070EAB3 /* ValueRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueRange.swift; sourceTree = "<group>"; };
+		2A7FEEF42B9035930042BEFF /* SettingFile.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = SettingFile.xcstrings; path = mul.lproj/SettingFile.xcstrings; sourceTree = "<group>"; };
 		2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScanner.swift; sourceTree = "<group>"; };
 		2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScannerTests.swift; sourceTree = "<group>"; };
 		2A80C65D1CEE33C100AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Credits.html; sourceTree = "<group>"; };
@@ -2118,6 +2121,7 @@
 		2AA6725B2B8F74D900B8F7E6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2A7FEEF42B9035930042BEFF /* SettingFile.xcstrings */,
 				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
 				2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */,
 				2AA672582B8F6D7B00B8F7E6 /* Script.xcstrings */,
@@ -2625,6 +2629,7 @@
 				2A39ACF72B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */,
 				2AA672592B8F719900B8F7E6 /* Script.xcstrings in Resources */,
 				2A5E6FC72A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
+				2A7FEEF52B9035930042BEFF /* SettingFile.xcstrings in Resources */,
 				2A1E7E602B8DC879004F0C07 /* Settings.xcstrings in Resources */,
 				2AA672902B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */,
 				2AA6727E2B8F784700B8F7E6 /* Snippet.xcstrings in Resources */,
@@ -2709,6 +2714,7 @@
 				2A39ACF82B8CEBCE00E216C9 /* SavePanelAccessory.xcstrings in Resources */,
 				2AA6725A2B8F719900B8F7E6 /* Script.xcstrings in Resources */,
 				2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
+				2A7FEEF62B9035930042BEFF /* SettingFile.xcstrings in Resources */,
 				2A1E7E612B8DC879004F0C07 /* Settings.xcstrings in Resources */,
 				2AA672912B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */,
 				2AA6727F2B8F784700B8F7E6 /* Snippet.xcstrings in Resources */,

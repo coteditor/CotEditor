@@ -28,7 +28,6 @@
 "OK" = "OK";
 "Cancel" = "Cancel";
 "Restore Defaults" = "Restore Defaults";
-"Delete" = "Delete";
 
 // tooltip for opacity slider
 "Transparent" = "Transparent";
@@ -50,24 +49,11 @@
 "Export “%@”…" = "Export “%@”…";
 "Reveal “%@” in Finder" = "Reveal “%@” in Finder";
 
-// warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "Are you sure you want to delete “%@”?";
-"This action cannot be undone." = "This action cannot be undone.";
-
 // filename field label variation for save panel
 "Export As:" = "Export As:";
 
 // button label for open panel
 "Import" = "Import";
-
-
-/* MARK: AppDelegate */
-// Importing theme
-"“%@” is a CotEditor theme file." = "“%@” is a CotEditor theme file.";
-"Do you want to install this theme?" = "Do you want to install this theme?";
-"Install" = "Install";
-"Open as Text File" = "Open as Text File";
-"A new theme named “%@” has been successfully installed." = "A new theme named “%@” has been successfully installed.";
 
 
 /* MARK: Document */
@@ -248,54 +234,19 @@
 
 // MARK: -
 
-/* MARK: SettingFileManager */
-"“%@” couldn’t be deleted." = "“%@” couldn’t be deleted.";
-"“%@” couldn’t be imported." = "“%@” couldn’t be imported.";
-"No original file for “%@” was found." = "No original file for “%@” was found.";
-
-// Setting filename warnings
-"Choose another name." = "Choose another name.";
-"Name can’t be empty." = "Name can’t be empty.";
-"Name can’t contain “/”." = "Name can’t contain “/”.";
-"Name can’t begin with “.”." = "Name can’t begin with “.”.";
-"The name “%@” is already taken." = "The name “%@” is already taken.";
-
 // default filename
 "Untitled" = "Untitled";
 
 // filename suffix for copied file
 "copy" = "copy";
 
-// alert option button
-"Replace" = "Replace";
-
-
-/* MARK: SyntaxManager */
-// Syntax name
+// syntax name
 "None" = "None";
 
-// Importing same name syntax alert
-"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "A new syntax named “%@” will be installed, but a custom syntax with the same name already exists.";
-"Do you want to replace it?\nReplaced syntax can’t be restored." = "Do you want to replace it?\nReplaced syntax can’t be restored.";
-
-
-/* MARK: ThemeManager */
-// Theme import duplicated alert
-"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "A new theme named “%@” will be installed, but a custom theme with the same name already exists.";
-"Do you want to replace it?\nReplaced theme can’t be restored." = "Do you want to replace it?\nReplaced theme can’t be restored.";
-
-
-/* MARK: ReplacementManager */
-// Replacements import duplicated alert
-"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "A new replacement definition named “%@” will be installed, but a definition with the same name already exists.";
-"Do you want to replace it?\nReplaced definition can’t be restored." = "Do you want to replace it?\nReplaced definition can’t be restored.";
-
-
-/* MARK: KeyBindingManager */
-// Label for snippet commands (deprecated)
+// migration name for legacy snippet setting
 "Insert Text %lld" = "Insert Text %lld";
 
-// Keyboard key name
+// keyboard key name
 "Space" = "Space";
 
 

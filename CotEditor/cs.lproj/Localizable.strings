@@ -28,7 +28,6 @@
 "OK" = "OK";
 "Cancel" = "Zrušit";
 "Restore Defaults" = "Výchozí hodnoty";
-"Delete" = "Smazat";
 
 // tooltip for opacity slider
 "Transparent" = "Průhledné";
@@ -50,24 +49,11 @@
 "Export “%@”…" = "Exportovat „%@“…";
 "Reveal “%@” in Finder" = "Zobrazit „%@“ ve Finderu";
 
-// warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "Určitě chcete smazat „%@“?";
-"This action cannot be undone." = "Tuto akci nelze odvolat.";
-
 // filename field label variation for save panel
 "Export As:" = "Exportovat jako:";
 
 // button label for open panel
 "Import" = "Importovat";
-
-
-/* MARK: AppDelegate */
-// Importing theme
-"“%@” is a CotEditor theme file." = "„%@“ je soubor motivu CotEditor.";
-"Do you want to install this theme?" = "Chcete nainstalovat tento motiv?";
-"Install" = "Instalovat";
-"Open as Text File" = "Otevřít jako textový soubor";
-"A new theme named “%@” has been successfully installed." = "Nový motiv s názvem „%@“ byl úspěšně nainstalován.";
 
 
 /* MARK: Document */
@@ -248,54 +234,19 @@
 
 // MARK: -
 
-/* MARK: SettingFileManager */
-"“%@” couldn’t be deleted." = "„%@“ nelze smazat.";
-"“%@” couldn’t be imported." = "„%@“ nelze importovat.";
-"No original file for “%@” was found." = "Pro „%@“ nebyl nalezen žádný původní soubor.";
-
-// Setting filename warnings
-"Choose another name." = "Zvolte jiný název.";
-"Name can’t be empty." = "Název nemůže být prázdný.";
-"Name can’t contain “/”." = "Název nesmí obsahovat znak „/“.";
-"Name can’t begin with “.”." = "Název nesmí začínat tečkou „.“.";
-"The name “%@” is already taken." = "Název „%@“ je již používán.";
-
 // default filename
 "Untitled" = "Bez názvu";
 
 // filename suffix for copied file
 "copy" = "Kopírovat";
 
-// alert option button
-"Replace" = "Nahradit";
-
-
-/* MARK: SyntaxManager */
-// Syntax name
+// syntax name
 "None" = "Žádný";
 
-// Importing same name syntax alert
-"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "Bude nainstalována nová syntaxe s názvem „%@“, ale vlastní syntaxe se stejným názvem již existuje.";
-"Do you want to replace it?\nReplaced syntax can’t be restored." = "Chcete ji nahradit?\nNahrazenou syntaxi nelze obnovit.";
-
-
-/* MARK: ThemeManager */
-// Theme import duplicated alert
-"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Bude nainstalován nový motiv s názvem „%@“, ale vlastní motiv se stejným názvem již existuje.";
-"Do you want to replace it?\nReplaced theme can’t be restored." = "Chcete ho nahradit?\nNahrazený motiv nelze obnovit.";
-
-
-/* MARK: ReplacementManager */
-// Replacements import duplicated alert
-"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "Bude nainstalována nová náhradní definice s názvem „%@“, ale definice se stejným názvem již existuje.";
-"Do you want to replace it?\nReplaced definition can’t be restored." = "Chcete ji nahradit?\nNahrazenou definici nelze obnovit.";
-
-
-/* MARK: KeyBindingManager */
-// Label for snippet commands (deprecated)
+// migration name for legacy snippet setting
 "Insert Text %lld" = "Vložit text %lld";
 
-// Keyboard key name
+// keyboard key name
 "Space" = "Mezerník";
 
 

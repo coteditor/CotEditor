@@ -28,7 +28,6 @@
 "OK" = "好";
 "Cancel" = "取消";
 "Restore Defaults" = "恢复默认";
-"Delete" = "删除";
 
 // tooltip for opacity slider
 "Transparent" = "透明";
@@ -51,24 +50,11 @@
 "Export “%@”…" = "导出“%@”…";
 "Reveal “%@” in Finder" = "在访达中显示“%@”";
 
-// warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "你确定要删除“%@”吗？";
-"This action cannot be undone." = "此操作不能撤销。";
-
 // filename field label variation for save panel
 "Export As:" = "导出为：";
 
 // button label for open panel
 "Import" = "导入";
-
-
-/* MARK: AppDelegate */
-// Importing theme
-"“%@” is a CotEditor theme file." = "“%@”是CotEditor主题文件";
-"Do you want to install this theme?" = "是否安装主题？";
-"Install" = "安装";
-"Open as Text File" = "以文本方式打开";
-"A new theme named “%@” has been successfully installed." = "新主题“%@”安装完成";
 
 
 /* MARK: Document */
@@ -249,54 +235,19 @@
 
 // MARK: -
 
-/* MARK: SettingFileManager */
-"“%@” couldn’t be deleted." = "“%@”无法删除。";
-"“%@” couldn’t be imported." = "“%@”无法导入。";
-"No original file for “%@” was found." = "无法找到“%@”的源文件。";
-
-// Setting filename warnings
-"Choose another name." = "输入其他名称。";
-"Name can’t be empty." = "名称不能为空。";
-"Name can’t contain “/”." = "名称不能含有“/”。";
-"Name can’t begin with “.”." = "名称不能含有“.”。";
-"The name “%@” is already taken." = "“%@”已经在使用中。";
-
 // default filename
 "Untitled" = "未命名";
 
 // filename suffix for copied file
 "copy" = "拷贝";
 
-// alert option button
-"Replace" = "替换";
-
-
-/* MARK: SyntaxManager */
-// Syntax name
+// syntax name
 "None" = "无";
 
-// Importing same name syntax alert
-"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "将要安装名为“%@”的新语法，但是已经存在同名的自定义语法。";
-"Do you want to replace it?\nReplaced syntax can’t be restored." = "要替换语法吗？\n被替换的语法将无法恢复。";
-
-
-/* MARK: ThemeManager */
-// Theme import duplicated alert
-"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "将要安装名为“%@”的新主题，但是已经存在同名的自定义主题。";
-"Do you want to replace it?\nReplaced theme can’t be restored." = "要覆盖原主题吗？\n主题删除后将无法还原。";
-
-
-/* MARK: ReplacementManager */
-// Replacements import duplicated alert
-"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "名称为“%@”的新替换定义将被安装，但是已经存在相同名称的定义。";
-"Do you want to replace it?\nReplaced definition can’t be restored." = "你想要替换该定义吗？\n被替换的定义无法恢复。";
-
-
-/* MARK: KeyBindingManager */
-// Label for snippet commands (deprecated)
+// migration name for legacy snippet setting
 "Insert Text %lld" = "插入文本%lld";
 
-// Keyboard key name
+// keyboard key name
 "Space" = "空格";
 
 

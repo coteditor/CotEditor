@@ -28,7 +28,6 @@
 "OK" = "Tamam";
 "Cancel" = "Vazgeç";
 "Restore Defaults" = "Výchozí hodnoty";
-"Delete" = "Sil";
 
 // tooltip for opacity slider
 "Transparent" = "Saydam";
@@ -50,24 +49,11 @@
 "Export “%@”…" = "“%@” Ögesini Dışa Aktar";
 "Reveal “%@” in Finder" = "“%@” Ögesini Finder’da Göster";
 
-// warning message occurs in multiple places
-"Are you sure you want to delete “%@”?" = "“%@” öğesini silmek istediğinizden emin misiniz?";
-"This action cannot be undone." = "Bu eylem geri alınamaz.";
-
 // filename field label variation for save panel
 "Export As:" = "Farklı Dışa Aktar:";
 
 // button label for open panel
 "Import" = "İçe Aktar";
-
-
-/* MARK: AppDelegate */
-// Importing theme
-"“%@” is a CotEditor theme file." = "“%@”, bir CotEditor tema dosyasıdır.";
-"Do you want to install this theme?" = "Bu temayı yüklemek istiyor musunuz?";
-"Install" = "Yükle";
-"Open as Text File" = "Metin Dosyası Olarak Aç";
-"A new theme named “%@” has been successfully installed." = "Yeni tema “%@” başarıyla yüklendi.";
 
 
 /* MARK: Document */
@@ -248,54 +234,19 @@
 
 // MARK: -
 
-/* MARK: SettingFileManager */
-"“%@” couldn’t be deleted." = "“%@”, silinemedi.";
-"“%@” couldn’t be imported." = "“%@”, içe aktarılamadı.";
-"No original file for “%@” was found." = "“%@” için özgün dosya bulunamadı.";
-
-// Setting filename warnings
-"Choose another name." = "Başka bir ad seçin.";
-"Name can’t be empty." = "Ad boş bırakılamaz.";
-"Name can’t contain “/”." = "Ad “/” içeremez.";
-"Name can’t begin with “.”." = "Ad “.” ile başlayamaz.";
-"The name “%@” is already taken." = "“%@” adı halihazırda kullanılıyor.";
-
 // default filename
 "Untitled" = "Adsız";
 
 // filename suffix for copied file
 "copy" = "kopyası";
 
-// alert option button
-"Replace" = "Değiştir";
-
-
-/* MARK: SyntaxManager */
-// Syntax name
+// syntax name
 "None" = "Hiçbiri";
 
-// Importing same name syntax alert
-"A new syntax named “%@” will be installed, but a custom syntax with the same name already exists." = "“%@” adlı yeni bir sözdizim yüklenecek; ancak aynı adlı başka bir sözdizim halihazırda var.";
-"Do you want to replace it?\nReplaced syntax can’t be restored." = "Yeni sözdizimle değiştirmek istiyor musunuz?\nDeğiştirilen sözdizim geri yüklenemez.";
-
-
-/* MARK: ThemeManager */
-// Theme import duplicated alert
-"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "“%@” adlı yeni bir tema yüklenecek; ancak aynı adlı başka bir tema halihazırda var.";
-"Do you want to replace it?\nReplaced theme can’t be restored." = "Yeni temayla değiştirmek istiyor musunuz?\nDeğiştirilen tema geri yüklenemez.";
-
-
-/* MARK: ReplacementManager */
-// Replacements import duplicated alert
-"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "“%@” adında yeni bir değişim tanımı yüklenecek; ancak aynı adlı başka bir tanım halihazırda mevcut.";
-"Do you want to replace it?\nReplaced definition can’t be restored." = "Değiştirmek istiyor musunuz?\nDeğiştirilen tanım geri yüklenemez.";
-
-
-/* MARK: KeyBindingManager */
-// Label for snippet commands (deprecated)
+// migration name for legacy snippet setting
 "Insert Text %lld" = "%lld Metnini Ekle";
 
-// Keyboard key name
+// keyboard key name
 "Space" = "Boşluk";
 
 

@@ -464,10 +464,10 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     private func deleteSetting(name: String) {
         
         let alert = NSAlert()
-        alert.messageText = String(localized: "Are you sure you want to delete “\(name)”?")
-        alert.informativeText = String(localized: "This action cannot be undone.")
+        alert.messageText = String(localized: "DeletionConfirmationAlert.message", defaultValue: "Are you sure you want to delete “\(name)”?", table: "SettingFile")
+        alert.informativeText = String(localized: "DeletionConfirmationAlert.informativeText", defaultValue: "This action cannot be undone.", table: "SettingFile")
         alert.addButton(withTitle: String(localized: "Cancel"))
-        alert.addButton(withTitle: String(localized: "Delete"))
+        alert.addButton(withTitle: String(localized: "DeletionConfirmationAlert.button.delete", defaultValue: "Delete", table: "SettingFile"))
         alert.buttons.last?.hasDestructiveAction = true
         
         let window = self.view.window!
