@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -72,7 +72,9 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
         switch identifier {
             case .textSizeActual:
                 let item = NSCustomTouchBarItem(identifier: identifier)
-                item.view = NSButton(title: String(localized: "Actual Size"), target: self, action: #selector(resetTextSize))
+                item.view = NSButton(title: String(localized: "Toolbar.textSize.actualSize.label",
+                                                   defaultValue: "Actual Size", table: "Toolbar", comment: "only in Touch Bar"),
+                                     target: self, action: #selector(resetTextSize))
                 return item
                 
             case .textSizeSlider:
@@ -84,9 +86,13 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
                 item.doubleValue = textView.scale
                 item.slider.maxValue = Double(textView.enclosingScrollView?.maxMagnification ?? 5.0)
                 item.slider.minValue = Double(textView.enclosingScrollView?.minMagnification ?? 0.2)
-                let minimumValueImage = NSImage(systemSymbolName: "textformat.size.smaller", accessibilityDescription: String(localized: "Smaller"))!
+                let minimumValueImage = NSImage(systemSymbolName: "textformat.size.smaller",
+                                                accessibilityDescription: String(localized: "Toolbar.textSize.smaller.label",
+                                                                                 defaultValue: "Smaller", table: "Toolbar"))!
                 item.minimumValueAccessory = NSSliderAccessory(image: minimumValueImage)
-                let maximumValueImage = NSImage(systemSymbolName: "textformat.size.larger", accessibilityDescription: String(localized: "Bigger"))!
+                let maximumValueImage = NSImage(systemSymbolName: "textformat.size.larger",
+                                                accessibilityDescription: String(localized: "Toolbar.textSize.bigger.label",
+                                                                                 defaultValue: "Bigger", table: "Toolbar"))!
                 item.maximumValueAccessory = NSSliderAccessory(image: maximumValueImage)
                 item.maximumSliderWidth = 300
                 

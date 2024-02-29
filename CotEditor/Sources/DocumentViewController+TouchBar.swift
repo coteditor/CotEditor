@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -68,21 +68,21 @@ extension DocumentViewController: NSTouchBarDelegate {
         switch identifier {
             case .invisibles:
                 let item = NSCustomTouchBarItem(identifier: identifier)
-                item.customizationLabel = String(localized: "Invisibles", comment: "touch bar item")
-                let image = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: String(localized: "Invisibles"))!
+                item.customizationLabel = String(localized: "Toolbar.invisibles.label", defaultValue: "Invisibles", table: "Toolbar")
+                let image = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: item.customizationLabel)!
                 item.view = NSButton(image: image, target: self, action: #selector(toggleInvisibleCharsViaTouchBar))
                 return item
                 
             case .indentGuides:
                 let item = NSCustomTouchBarItem(identifier: identifier)
-                item.customizationLabel = String(localized: "Indent Guides", comment: "touch bar item")
+                item.customizationLabel = String(localized: "Toolbar.indentGuides.label", defaultValue: "Indent Guides", table: "Toolbar")
                 let image = NSImage(resource: .textIndentguides)
                 item.view = NSButton(image: image, target: self, action: #selector(toggleIndentGuidesViaTouchBar))
                 return item
                 
             case .wrapLines:
                 let item = NSCustomTouchBarItem(identifier: identifier)
-                item.customizationLabel = String(localized: "Wrap Lines", comment: "touch bar item")
+                item.customizationLabel = String(localized: "Toolbar.wrapLines.label", defaultValue: "Line Wrapping", table: "Toolbar")
                 let image = NSImage(resource: .textWrap)
                 item.view = NSButton(image: image, target: self, action: #selector(toggleLineWrapViaTouchBar))
                 return item

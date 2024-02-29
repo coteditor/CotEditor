@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -61,9 +61,13 @@ extension EditorTextView {
         switch identifier {
             case .shift:
                 let item = NSCustomTouchBarItem(identifier: identifier)
-                let leftImage = NSImage(systemSymbolName: "decrease.indent", accessibilityDescription: String(localized: "Shift Left"))!
-                let rightImage = NSImage(systemSymbolName: "increase.indent", accessibilityDescription: String(localized: "Shift Right"))!
-                item.customizationLabel = String(localized: "Indent", comment: "touch bar item")
+                let leftImage = NSImage(systemSymbolName: "decrease.indent",
+                                        accessibilityDescription: String(localized: "Toolbar.indent.shiftLeft.label",
+                                                                         defaultValue: "Shift Left", table: "Toolbar"))!
+                let rightImage = NSImage(systemSymbolName: "increase.indent",
+                                         accessibilityDescription: String(localized: "Toolbar.indent.shiftRight.label",
+                                                                          defaultValue: "Shift Right", table: "Toolbar"))!
+                item.customizationLabel = String(localized: "Toolbar.indent.label", defaultValue: "Indent", table: "Toolbar")
                 item.view = NSSegmentedControl(images: [leftImage, rightImage],
                                                trackingMode: .momentary,
                                                target: self, action: #selector(shift))
@@ -71,14 +75,15 @@ extension EditorTextView {
                 
             case .comment:
                 let item = NSCustomTouchBarItem(identifier: identifier)
-                item.customizationLabel = String(localized: "Comment", comment: "touch bar item")
+                item.customizationLabel = String(localized: "Toolbar.comment.label", defaultValue: "Comment", table: "Toolbar")
                 item.view = NSButton(image: NSImage(resource: .textCommentout), target: self, action: #selector(toggleComment))
                 return item
                 
             case .textSize:
                 let item = NSPopoverTouchBarItem(identifier: identifier)
-                item.customizationLabel = String(localized: "Text Size", comment: "touch bar item")
-                item.collapsedRepresentationImage = NSImage(systemSymbolName: "textformat.size", accessibilityDescription: String(localized: "Text Size"))!
+                item.customizationLabel = String(localized: "Toolbar.textSize.label", defaultValue: "Text Size", table: "Toolbar")
+                item.collapsedRepresentationImage = NSImage(systemSymbolName: "textformat.size",
+                                                            accessibilityDescription: item.customizationLabel)!
                 item.popoverTouchBar = TextSizeTouchBar(textView: self)
                 item.pressAndHoldTouchBar = TextSizeTouchBar(textView: self, forPressAndHold: true)
                 return item

@@ -105,8 +105,8 @@ type_body_length:
   error: 1500
 
 function_body_length:
-  warning: 260
-  error: 300
+  warning: 350
+  error: 400
 
 large_tuple:
   warning: 3

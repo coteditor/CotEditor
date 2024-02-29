@@ -439,6 +439,8 @@
 		2A7FEEF62B9035930042BEFF /* SettingFile.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEEF42B9035930042BEFF /* SettingFile.xcstrings */; };
 		2A7FEF0B2B90B05C0042BEFF /* FilterField.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */; };
 		2A7FEF0C2B90B05C0042BEFF /* FilterField.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */; };
+		2A7FEF1E2B90C7050042BEFF /* Toolbar.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */; };
+		2A7FEF1F2B90C7050042BEFF /* Toolbar.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */; };
 		2A80BE8D27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
 		2A80BE8E27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
 		2A80BE9227FFFA8900D2F7FF /* LineEndingScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */; };
@@ -1117,6 +1119,7 @@
 		2A7FCC45280A367C0070EAB3 /* ValueRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueRange.swift; sourceTree = "<group>"; };
 		2A7FEEF42B9035930042BEFF /* SettingFile.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = SettingFile.xcstrings; path = mul.lproj/SettingFile.xcstrings; sourceTree = "<group>"; };
 		2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = FilterField.xcstrings; path = mul.lproj/FilterField.xcstrings; sourceTree = "<group>"; };
+		2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Toolbar.xcstrings; path = mul.lproj/Toolbar.xcstrings; sourceTree = "<group>"; };
 		2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScanner.swift; sourceTree = "<group>"; };
 		2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScannerTests.swift; sourceTree = "<group>"; };
 		2A80C65D1CEE33C100AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Credits.html; sourceTree = "<group>"; };
@@ -2222,6 +2225,7 @@
 				2A1E7DE72B8D615A004F0C07 /* TextFind */,
 				2AA672B32B8F9F1C00B8F7E6 /* Document.xcstrings */,
 				2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */,
+				2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */,
 				2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */,
 				2A39AC942B8CE43100E216C9 /* AccessoryViews */,
 				2ACDA2882B81E2AC00B2EBA8 /* ColorCode.xcstrings */,
@@ -2650,6 +2654,7 @@
 				2A1E7E2A2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */,
 				2A954B242AB28B010070FB74 /* TextFind.xcstrings in Resources */,
 				2A65EC3B2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */,
+				2A7FEF1E2B90C7050042BEFF /* Toolbar.xcstrings in Resources */,
 				2A39ACD52B8CE97800E216C9 /* UnicodeInput.xcstrings in Resources */,
 				2A5E6FC12A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
 				2AA2E0141BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
@@ -2736,6 +2741,7 @@
 				2A1E7E2B2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */,
 				2A954B252AB28B010070FB74 /* TextFind.xcstrings in Resources */,
 				2A65EC3C2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */,
+				2A7FEF1F2B90C7050042BEFF /* Toolbar.xcstrings in Resources */,
 				2A39ACD62B8CE97800E216C9 /* UnicodeInput.xcstrings in Resources */,
 				2A5E6FC22A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
 				2A36E36F2AF9ED0B00A73534 /* Sparkle.xcstrings in Resources */,

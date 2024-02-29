@@ -222,7 +222,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         menu.addItem(.separator())
         
         if !recentSyntaxNames.isEmpty {
-            let title = String(localized: "Recently Used", comment: "menu heading in syntax list on toolbar popup")
+            let title = String(localized: "Toolbar.syntax.menu.recentlyUsed.label",
+                               defaultValue: "Recently Used", table: "Toolbar", comment: "menu item header")
             menu.addItem(.sectionHeader(title: title))
             
             menu.items += recentSyntaxNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
@@ -264,7 +265,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             menu.item(at: 1)?.tag = deletedTag
             popUpButton.selectItem(at: 1)
             
-            menu.insertItem(.sectionHeader(title: String(localized: "Deleted")), at: 1)
+            menu.insertItem(.sectionHeader(title: String(localized: "Toolbar.syntax.menu.deleted.label",
+                                                         defaultValue: "Deleted", table: "Toolbar", comment: "menu item header")), at: 1)
             menu.item(at: 1)?.tag = deletedTag
             
             menu.insertItem(.separator(), at: 1)
@@ -393,8 +395,10 @@ extension DocumentWindowController: NSToolbarDelegate {
                 self.buildSyntaxPopUpButton()
                 
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
-                item.label = String(localized: "Syntax")
-                item.toolTip = String(localized: "Change syntax")
+                item.label = String(localized: "Toolbar.syntax.label",
+                                    defaultValue: "Syntax", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.syntax.tooltip",
+                                      defaultValue: "Change syntax", table: "Toolbar")
                 item.view = popUpButton
                 item.visibilityPriority = .high
                 
@@ -408,8 +412,10 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .inspector:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = String(localized: "Inspector")
-                item.toolTip = String(localized: "Show document information")
+                item.label = String(localized: "Toolbar.inspector.label",
+                                    defaultValue: "Inspector", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.inspector.tooltip",
+                                      defaultValue: "Show document information", table: "Toolbar")
                 item.image = NSImage(systemSymbolName: "info.circle", accessibilityDescription: item.label)
                 item.action = if #available(macOS 14, *) {
                     #selector(NSSplitViewController.toggleInspector)
@@ -421,14 +427,18 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             case .textSize:
                 let smallerItem = NSToolbarItem(itemIdentifier: .smaller)
-                smallerItem.label = String(localized: "Smaller")
-                smallerItem.toolTip = String(localized: "Decrease text size")
+                smallerItem.label = String(localized: "Toolbar.textSize.smaller.label",
+                                           defaultValue: "Smaller", table: "Toolbar")
+                smallerItem.toolTip = String(localized: "Toolbar.textSize.smaller.tooltip",
+                                             defaultValue: "Decrease text size", table: "Toolbar")
                 smallerItem.image = NSImage(systemSymbolName: "textformat.size.smaller", accessibilityDescription: smallerItem.label)!
                 smallerItem.action = #selector(EditorTextView.smallerFont)
                 
                 let biggerItem = NSToolbarItem(itemIdentifier: .bigger)
-                biggerItem.label = String(localized: "Bigger")
-                biggerItem.toolTip = String(localized: "Increase text size")
+                biggerItem.label = String(localized: "Toolbar.textSize.bigger.label",
+                                          defaultValue: "Bigger", table: "Toolbar")
+                biggerItem.toolTip = String(localized: "Toolbar.textSize.small.tooltip",
+                                            defaultValue: "Increase text size", table: "Toolbar")
                 biggerItem.image = NSImage(systemSymbolName: "textformat.size.larger", accessibilityDescription: biggerItem.label)!
                 biggerItem.action = #selector(EditorTextView.biggerFont)
                 
@@ -436,21 +446,27 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.controlRepresentation = .expanded
                 item.selectionMode = .momentary
-                item.label = String(localized: "Text Size")
-                item.toolTip = String(localized: "Change text size")
+                item.label = String(localized: "Toolbar.textSize.label",
+                                    defaultValue: "Text Size", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.textSize.tooltip",
+                                      defaultValue: "Change text size", table: "Toolbar")
                 item.subitems = [smallerItem, biggerItem]
                 return item
                 
             case .writingDirection:
                 let ltrItem = NSToolbarItem(itemIdentifier: .leftToRight)
-                ltrItem.label = String(localized: "Left to Right")
-                ltrItem.toolTip = String(localized: "Left to right")
+                ltrItem.label = String(localized: "Toolbar.writingDirection.leftToRight.label",
+                                       defaultValue: "Left to Right", table: "Toolbar")
+                ltrItem.toolTip = String(localized: "Toolbar.writingDirection.leftToRight.tooltip",
+                                         defaultValue: "Left to right", table: "Toolbar")
                 ltrItem.image = NSImage(systemSymbolName: "text.alignleft", accessibilityDescription: ltrItem.label)
                 ltrItem.action = #selector(DocumentViewController.makeWritingDirectionLeftToRight)
                 
                 let rtlItem = NSToolbarItem(itemIdentifier: .rightToLeft)
-                rtlItem.label = String(localized: "Right to Left")
-                rtlItem.toolTip = String(localized: "Right to left")
+                rtlItem.label = String(localized: "Toolbar.writingDirection.rightToLeft.label",
+                                       defaultValue: "Right to Left", table: "Toolbar")
+                rtlItem.toolTip = String(localized: "Toolbar.writingDirection.rightToLeft.tooltip",
+                                         defaultValue: "Right to left", table: "Toolbar")
                 rtlItem.image = NSImage(systemSymbolName: "text.alignright", accessibilityDescription: rtlItem.label)
                 rtlItem.action = #selector(DocumentViewController.makeWritingDirectionRightToLeft)
                 
@@ -458,22 +474,28 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.controlRepresentation = .expanded
                 item.selectionMode = .selectOne
-                item.label = String(localized: "Writing Direction")
-                item.toolTip = String(localized: "Change writing direction")
+                item.label = String(localized: "Toolbar.writingDirection.label",
+                                    defaultValue: "Writing Direction", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.writingDirection.tooltip",
+                                      defaultValue: "Change writing direction", table: "Toolbar")
                 item.action = #selector(DocumentViewController.changeWritingDirection)
                 item.subitems = [ltrItem, rtlItem]
                 return item
                 
             case .textOrientation:
                 let horizontalItem = NSToolbarItem(itemIdentifier: .horizontalText)
-                horizontalItem.label = String(localized: "Horizontal")
-                horizontalItem.toolTip = String(localized: "Horizontal")
+                horizontalItem.label = String(localized: "Toolbar.textOrientation.horizontalText.label",
+                                              defaultValue: "Horizontal", table: "tooltip", comment: "abc")
+                horizontalItem.toolTip = String(localized: "Toolbar.textOrientation.horizontalText.tooltip",
+                                                defaultValue: "Horizontal", table: "Toolbar")
                 horizontalItem.image = NSImage(systemSymbolName: "text.alignleft", accessibilityDescription: horizontalItem.label)
                 horizontalItem.action = #selector(DocumentViewController.makeLayoutOrientationHorizontal)
                 
                 let verticalItem = NSToolbarItem(itemIdentifier: .verticalText)
-                verticalItem.label = String(localized: "Vertical")
-                verticalItem.toolTip = String(localized: "Vertical")
+                verticalItem.label = String(localized: "Toolbar.textOrientation.verticalText.label",
+                                            defaultValue: "Vertical", table: "Toolbar")
+                verticalItem.toolTip = String(localized: "Toolbar.textOrientation.verticalText.tooltip",
+                                              defaultValue: "Vertical", table: "Toolbar")
                 verticalItem.image = NSImage(resource: .textVertical)
                 verticalItem.action = #selector(DocumentViewController.makeLayoutOrientationVertical)
                 
@@ -481,22 +503,28 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.controlRepresentation = .expanded
                 item.selectionMode = .selectOne
-                item.label = String(localized: "Text Orientation")
-                item.toolTip = String(localized: "Switch text orientation")
+                item.label = String(localized: "Toolbar.textOrientation.label",
+                                    defaultValue: "Text Orientation", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.textOrientation.tooltip",
+                                      defaultValue: "Switch text orientation", table: "Toolbar")
                 item.action = #selector(DocumentViewController.changeOrientation)
                 item.subitems = [horizontalItem, verticalItem]
                 return item
                 
             case .indent:
                 let leftItem = NSToolbarItem(itemIdentifier: .shiftLeft)
-                leftItem.label = String(localized: "Shift Left")
-                leftItem.toolTip = String(localized: "Shift lines to left")
+                leftItem.label = String(localized: "Toolbar.indent.shiftLeft.label",
+                                        defaultValue: "Shift Left", table: "Toolbar")
+                leftItem.toolTip = String(localized: "Toolbar.indent.shiftLeft.tooltip",
+                                          defaultValue: "Shift lines to left", table: "Toolbar")
                 leftItem.image = NSImage(systemSymbolName: "decrease.indent", accessibilityDescription: leftItem.label)
                 leftItem.action = #selector(EditorTextView.shiftLeft)
                 
                 let rightItem = NSToolbarItem(itemIdentifier: .shiftRight)
-                rightItem.label = String(localized: "Shift Right")
-                rightItem.toolTip = String(localized: "Shift lines to right")
+                rightItem.label = String(localized: "Toolbar.indent.shiftRight.label",
+                                         defaultValue: "Shift Right", table: "Toolbar")
+                rightItem.toolTip = String(localized: "Toolbar.indent.shiftRight.tooltip",
+                                           defaultValue: "Shift lines to right", table: "Toolbar")
                 rightItem.image = NSImage(systemSymbolName: "increase.indent", accessibilityDescription: rightItem.label)
                 rightItem.action = #selector(EditorTextView.shiftRight)
                 
@@ -504,16 +532,20 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.controlRepresentation = .expanded
                 item.selectionMode = .momentary
-                item.label = String(localized: "Indent")
-                item.toolTip = String(localized: "Indent selection")
+                item.label = String(localized: "Toolbar.indent.label",
+                                    defaultValue: "Indent", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.indent.tooltip",
+                                      defaultValue: "Indent selection", table: "Toolbar")
                 item.subitems = [leftItem, rightItem]
                 return item
                 
             case .comment:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = String(localized: "Comment")
-                item.toolTip = String(localized: "Comment-out or uncomment selection")
+                item.label = String(localized: "Toolbar.comment.label",
+                                    defaultValue: "Comment", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.comment.tooltip",
+                                      defaultValue: "Comment-out or uncomment selection", table: "Toolbar")
                 item.image = NSImage(resource: .textCommentout)
                 item.action = #selector(EditorTextView.toggleComment)
                 return item
@@ -521,21 +553,28 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .tabStyle:
                 let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = String(localized: "Tab Style")
-                item.toolTip = String(localized: "Use spaces for indentation")
+                item.label = String(localized: "Toolbar.tabStyle.label",
+                                    defaultValue: "Tab Style", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.tabStyle.tooltip.off",
+                                      defaultValue: "Use spaces for indentation", table: "Toolbar")
                 item.stateImages[.on] = NSImage(resource: .tabRightSplit)
                 item.stateImages[.off] = NSImage(resource: .tabRight)
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
                 item.menu.items = [
-                    .sectionHeader(title: String(localized: "Tab Width"))
+                    .sectionHeader(title: String(localized: "Toolbar.tabStyle.menu.tabWidth.label",
+                                                 defaultValue: "Tab Width", table: "Toolbar", comment: "menu item header"))
                 ] + [2, 4, 8].map { width in
                     let item = NSMenuItem(title: width.formatted(), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                     item.tag = width
                     return item
                 } + [
-                    NSMenuItem(title: String(localized: "Custom…"), action: #selector(DocumentViewController.customizeTabWidth), keyEquivalent: ""),
+                    NSMenuItem(title: String(localized: "Toolbar.tabStyle.menu.custom.label",
+                                             defaultValue: "Custom…", table: "Toolbar"),
+                               action: #selector(DocumentViewController.customizeTabWidth), keyEquivalent: ""),
                     .separator(),
-                    NSMenuItem(title: String(localized: "Use Spaces for Indentation"), action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: ""),
+                    NSMenuItem(title: String(localized: "Toolbar.tabStyle.menu.toggle.label",
+                                             defaultValue: "Use Spaces for Indentation", table: "Toolbar"),
+                               action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: ""),
                 ]
                 
                 return item
@@ -543,8 +582,10 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .wrapLines:
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = String(localized: "Line Wrapping")
-                item.toolTip = String(localized: "Wrap lines")
+                item.label = String(localized: "Toolbar.wrapLines.label",
+                                    defaultValue: "Line Wrapping", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.wrapLines.tooltip.off",
+                                      defaultValue: "Wrap lines", table: "Toolbar")
                 item.stateImages[.on] = NSImage(resource: .textWrapSlash)
                 item.stateImages[.off] = NSImage(resource: .textWrap)
                 item.action = #selector(DocumentViewController.toggleLineWrap)
@@ -554,8 +595,10 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .invisibles:
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = String(localized: "Invisibles")
-                item.toolTip = String(localized: "Show invisible characters")
+                item.label = String(localized: "Toolbar.invisibles.label",
+                                    defaultValue: "Invisibles", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.invisibles.tooltip.off",
+                                      defaultValue: "Show invisible characters", table: "Toolbar")
                 item.stateImages[.on] = NSImage(resource: .paragraphsignSlash)
                 item.stateImages[.off] = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: item.label)
                 item.action = #selector(DocumentViewController.toggleInvisibleChars)
@@ -565,8 +608,10 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .indentGuides:
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = String(localized: "Indent Guides")
-                item.toolTip = String(localized: "Hide indent guide lines")
+                item.label = String(localized: "Toolbar.indentGuides.label",
+                                    defaultValue: "Indent Guides", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.indentGuides.tooltip.off",
+                                      defaultValue: "Show indent guide lines", table: "Toolbar")
                 item.stateImages[.on] = NSImage(resource: .textIndentguidesHide)
                 item.stateImages[.off] = NSImage(resource: .textIndentguides)
                 item.action = #selector(DocumentViewController.toggleIndentGuides)
@@ -576,8 +621,10 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .keepOnTop:
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = String(localized: "Keep on Top")
-                item.toolTip = String(localized: "Keep the window always on top")
+                item.label = String(localized: "Toolbar.keepOnTop.label",
+                                    defaultValue: "Keep on Top", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.keepOnTop.tooltip",
+                                      defaultValue: "Keep the window always on top", table: "Toolbar")
                 item.stateImages[.on] = NSImage(systemSymbolName: "pin.slash", accessibilityDescription: item.label)
                 item.stateImages[.off] = NSImage(systemSymbolName: "pin", accessibilityDescription: item.label)
                 item.action = #selector(DocumentWindow.toggleKeepOnTop)
@@ -588,8 +635,10 @@ extension DocumentWindowController: NSToolbarDelegate {
                     let menuItem = NSMenuItem()
                     menuItem.view = OpacityHostingView(window: self.window as? DocumentWindow)
                     let item = MenuToolbarItem(itemIdentifier: itemIdentifier)
-                    item.label = String(localized: "Opacity")
-                    item.toolTip = String(localized: "Change editor’s opacity")
+                    item.label = String(localized: "Toolbar.opacity.label",
+                                        defaultValue: "Opacity", table: "Toolbar")
+                    item.toolTip = String(localized: "Toolbar.opacity.tooltip",
+                                          defaultValue: "Change editor’s opacity", table: "Toolbar")
                     item.image = NSImage(resource: .uiwindowOpacity)
                     item.target = self
                     item.showsIndicator = false
@@ -599,8 +648,10 @@ extension DocumentWindowController: NSToolbarDelegate {
                 }
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = String(localized: "Opacity")
-                item.toolTip = String(localized: "Change editor’s opacity")
+                item.label = String(localized: "Toolbar.opacity.label",
+                                    defaultValue: "Opacity", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.opacity.tooltip",
+                                      defaultValue: "Change editor’s opacity", table: "Toolbar")
                 item.image = NSImage(resource: .uiwindowOpacity)
                 item.action = #selector(DocumentViewController.showOpacitySlider)
                 return item
@@ -608,8 +659,10 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .spellCheck:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = String(localized: "Spell Check")
-                item.toolTip = String(localized: "Show spelling and grammar")
+                item.label = String(localized: "Toolbar.spellCheck.label",
+                                    defaultValue: "Spell Check", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.spellCheck.tooltip",
+                                      defaultValue: "Show spelling and grammar", table: "Toolbar")
                 item.image = NSImage(systemSymbolName: "textformat.abc.dottedunderline", accessibilityDescription: item.label)
                 item.action = #selector(NSTextView.showGuessPanel)
                 return item
@@ -617,8 +670,10 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .emojiAndSymbols:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = String(localized: "Emoji & Symbols")
-                item.toolTip = String(localized: "Show Emoji & Symbols palette")
+                item.label = String(localized: "Toolbar.emojiAndSymbols.label",
+                                    defaultValue: "Emoji & Symbols", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.emojiAndSymbols.tooltip",
+                                      defaultValue: "Show Emoji & Symbols palette", table: "Toolbar")
                 item.image = NSImage(resource: .emoji)
                 item.action = #selector(NSApplication.orderFrontCharacterPalette)
                 return item
@@ -626,25 +681,36 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .fonts:
                 let item = NSMenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = String(localized: "Fonts")
-                item.toolTip = String(localized: "Change Font")
+                item.label = String(localized: "Toolbar.fonts.label",
+                                    defaultValue: "Fonts", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.fonts.tooltip",
+                                      defaultValue: "Change Font", table: "Toolbar")
                 item.image = NSImage(systemSymbolName: "textformat", accessibilityDescription: item.label)
                 item.showsIndicator = false
                 item.menu.items = [
                     NSMenuItem(),  // dummy item that will be hidden
-                    .sectionHeader(title: String(localized: "Font Type")),
-                    NSMenuItem(title: String(localized: "Standard"), action: #selector(DocumentViewController.makeFontStandard), keyEquivalent: ""),
-                    NSMenuItem(title: String(localized: "Monospaced"), action: #selector(DocumentViewController.makeFontMonospaced), keyEquivalent: ""),
+                    .sectionHeader(title: String(localized: "Toolbar.fonts.menu.fontType.label",
+                                                 defaultValue: "Font Type", table: "Toolbar", comment: "menu item header")),
+                    NSMenuItem(title: String(localized: "Toolbar.fonts.menu.standard.label",
+                                             defaultValue: "Standard", table: "Toolbar"),
+                               action: #selector(DocumentViewController.makeFontStandard), keyEquivalent: ""),
+                    NSMenuItem(title: String(localized: "Toolbar.fonts.menu.monospaced.label",
+                                             defaultValue: "Monospaced", table: "Toolbar"),
+                               action: #selector(DocumentViewController.makeFontMonospaced), keyEquivalent: ""),
                     .separator(),
-                    NSMenuItem(title: String(localized: "Show Fonts"), action: #selector(NSFontManager.orderFrontFontPanel), keyEquivalent: ""),
+                    NSMenuItem(title: String(localized: "Toolbar.fonts.menu.showFonts.label",
+                                             defaultValue: "Show Fonts", table: "Toolbar"),
+                               action: #selector(NSFontManager.orderFrontFontPanel), keyEquivalent: ""),
                 ]
                 return item
                 
             case .find:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = String(localized: "Find")
-                item.toolTip = String(localized: "Show Find & Replace")
+                item.label = String(localized: "Toolbar.find.label",
+                                    defaultValue: "Find", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.find.tooltip",
+                                      defaultValue: "Show Find & Replace", table: "Toolbar")
                 item.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: item.label)
                 item.action = #selector(performTextFinderAction)
                 item.tag = TextFinder.Action.showFindInterface.rawValue
@@ -653,15 +719,19 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .print:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = String(localized: "Print")
-                item.toolTip = String(localized: "Print document")
+                item.label = String(localized: "Toolbar.print.label",
+                                    defaultValue: "Print", table: "Toolbar")
+                item.toolTip = String(localized: "Toolbar.print.tooltip",
+                                      defaultValue: "Print document", table: "Toolbar")
                 item.image = NSImage(systemSymbolName: "printer", accessibilityDescription: item.label)
                 item.action = #selector(NSDocument.printDocument)
                 return item
                 
             case .share:
                 let item = NSSharingServicePickerToolbarItem(itemIdentifier: itemIdentifier)
-                item.toolTip = String(localized: "Share document file")
+                item.toolTip = String(localized: "Toolbar.share.tooltip",
+                                      defaultValue: "Share document file", table: "Toolbar",
+                                      comment: "(label for the Share toolbar item is automatically set)")
                 item.delegate = self
                 return item
                 
