@@ -82,6 +82,37 @@ final class SyntaxTests: XCTestCase {
     }
     
     
+    func testSanitization() {
+        
+        for (name, syntax) in self.syntaxes {
+            let sanitized = syntax.sanitized
+            
+            XCTAssertEqual(syntax.kind, sanitized.kind)
+            
+            for type in SyntaxType.allCases {
+                let keyPath = Syntax.highlightKeyPath(for: type)
+                XCTAssertEqual(syntax[keyPath: keyPath].count, sanitized[keyPath: keyPath].count,
+                               ".\(type.rawValue) of “\(name)” is not sanitized in the latest manner")
+            }
+            
+            XCTAssertEqual(syntax.outlines.count, sanitized.outlines.count,
+                           ".outlines of “\(name)” is not sanitized in the latest manner")
+            XCTAssertEqual(syntax.completions.count, sanitized.completions.count,
+                           ".completions of “\(name)” is not sanitized in the latest manner")
+            XCTAssertEqual(syntax.commentDelimiters, sanitized.commentDelimiters,
+                           ".commentDelimiters of “\(name)” is not sanitized in the latest manner")
+            XCTAssertEqual(syntax.extensions, sanitized.extensions,
+                           ".extensions of “\(name)” is not sanitized in the latest manner")
+            XCTAssertEqual(syntax.filenames, sanitized.filenames,
+                           ".filenames of “\(name)” is not sanitized in the latest manner")
+            XCTAssertEqual(syntax.interpreters, sanitized.interpreters,
+                           ".interpreters of “\(name)” is not sanitized in the latest manner")
+            XCTAssertEqual(syntax.metadata, sanitized.metadata,
+                           ".metadata of “\(name)” is not sanitized in the latest manner")
+        }
+    }
+    
+    
     func testEquality() {
         
         XCTAssertEqual(self.htmlSyntax, self.htmlSyntax)

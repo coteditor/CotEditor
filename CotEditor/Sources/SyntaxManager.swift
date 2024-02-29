@@ -161,6 +161,7 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
             // save file to user domain
             let encoder = YAMLEncoder()
             encoder.options.allowUnicode = true
+            encoder.options.sortKeys = true
             let yamlString = try encoder.encode(setting)
             let data = Data(yamlString.utf8)
             
