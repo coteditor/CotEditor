@@ -32,9 +32,6 @@
 "Transparent" = "Saydam";
 "Opaque" = "Mat";
 
-// tooltip for link button in URL field
-"Jump to URL" = "URL’ye Atla";
-
 // words with symbols
 " (%@)" = " (%@)";
 

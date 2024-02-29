@@ -32,9 +32,6 @@
 "Transparent" = "Průhledné";
 "Opaque" = "Neprůhledné";
 
-// tooltip for link button in URL field
-"Jump to URL" = "Přejít na URL";
-
 // words with symbols
 " (%@)" = " (%@)";
 

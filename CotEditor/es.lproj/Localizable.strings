@@ -32,9 +32,6 @@
 "Transparent" = "Transparente";
 "Opaque" = "Opaco";
 
-// tooltip for link button in URL field
-"Jump to URL" = "Saltar a la URL";
-
 // words with symbols
 " (%@)" = " (%@)";
 

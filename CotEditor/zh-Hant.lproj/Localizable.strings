@@ -32,9 +32,6 @@
 "Transparent" = "透明";
 "Opaque" = "不透明";
 
-// tooltip for link button in URL field
-"Jump to URL" = "跳轉到URL";
-
 // words with symbols
 " (%@)" = "（%@）";
 

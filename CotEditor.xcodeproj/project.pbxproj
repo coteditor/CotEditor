@@ -445,6 +445,8 @@
 		2A7FEF342B90E1C20042BEFF /* Character.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF322B90E1C20042BEFF /* Character.xcstrings */; };
 		2A7FEF382B90EC1E0042BEFF /* CommandBar.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF362B90EC1E0042BEFF /* CommandBar.xcstrings */; };
 		2A7FEF392B90EC1E0042BEFF /* CommandBar.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF362B90EC1E0042BEFF /* CommandBar.xcstrings */; };
+		2A7FEF3C2B90F0610042BEFF /* LinkButton.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF3A2B90F0610042BEFF /* LinkButton.xcstrings */; };
+		2A7FEF3D2B90F0610042BEFF /* LinkButton.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF3A2B90F0610042BEFF /* LinkButton.xcstrings */; };
 		2A80BE8D27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
 		2A80BE8E27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
 		2A80BE9227FFFA8900D2F7FF /* LineEndingScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */; };
@@ -1126,6 +1128,7 @@
 		2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Toolbar.xcstrings; path = mul.lproj/Toolbar.xcstrings; sourceTree = "<group>"; };
 		2A7FEF322B90E1C20042BEFF /* Character.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Character.xcstrings; path = mul.lproj/Character.xcstrings; sourceTree = "<group>"; };
 		2A7FEF372B90EC1E0042BEFF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/CommandBar.xcstrings; sourceTree = "<group>"; };
+		2A7FEF3B2B90F0610042BEFF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/LinkButton.xcstrings; sourceTree = "<group>"; };
 		2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScanner.swift; sourceTree = "<group>"; };
 		2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScannerTests.swift; sourceTree = "<group>"; };
 		2A80C65D1CEE33C100AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Credits.html; sourceTree = "<group>"; };
@@ -2055,6 +2058,7 @@
 		2A7FEF0D2B90B1800042BEFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2A7FEF3A2B90F0610042BEFF /* LinkButton.xcstrings */,
 				2A39ACFE2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings */,
 				2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */,
 			);
@@ -2648,6 +2652,7 @@
 				2AA672B42B8F9F1C00B8F7E6 /* Document.xcstrings in Resources */,
 				2AA672A22B8F8AA300B8F7E6 /* DocumentWindow.xcstrings in Resources */,
 				2A1E7E192B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
+				2A7FEF3C2B90F0610042BEFF /* LinkButton.xcstrings in Resources */,
 				2A39AC812B8CDFC800E216C9 /* EncodingList.xcstrings in Resources */,
 				2AA6726C2B8F75CC00B8F7E6 /* FileDropItem.xcstrings in Resources */,
 				2A7FEF0B2B90B05C0042BEFF /* FilterField.xcstrings in Resources */,
@@ -2707,6 +2712,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A1EB5C419AD469500C1E37E /* Assets.xcassets in Resources */,
+				2A7FEF3D2B90F0610042BEFF /* LinkButton.xcstrings in Resources */,
 				2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */,
 				2ABC76241909BF5200D2B592 /* Themes in Resources */,
 				2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */,
@@ -3678,6 +3684,14 @@
 				2A7FEF372B90EC1E0042BEFF /* mul */,
 			);
 			name = CommandBar.xcstrings;
+			sourceTree = "<group>";
+		};
+		2A7FEF3A2B90F0610042BEFF /* LinkButton.xcstrings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A7FEF3B2B90F0610042BEFF /* mul */,
+			);
+			name = LinkButton.xcstrings;
 			sourceTree = "<group>";
 		};
 		2A80C65C1CEE33C100AA664D /* Credits.html */ = {
