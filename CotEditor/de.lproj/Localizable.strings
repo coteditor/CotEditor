@@ -150,7 +150,3 @@
 // header/footer
 "Printed on %@" = "Gedruckt am %@";  // %@ is date
 "Last modified on %@" = "Zuletzt geändert am %@";  // %@ is date
-
-
-/* MARK: Quick Action Bar */
-"Quick Actions" = "Schnellaktionen";

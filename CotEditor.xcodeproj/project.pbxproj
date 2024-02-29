@@ -443,6 +443,8 @@
 		2A7FEF1F2B90C7050042BEFF /* Toolbar.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */; };
 		2A7FEF332B90E1C20042BEFF /* Character.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF322B90E1C20042BEFF /* Character.xcstrings */; };
 		2A7FEF342B90E1C20042BEFF /* Character.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF322B90E1C20042BEFF /* Character.xcstrings */; };
+		2A7FEF382B90EC1E0042BEFF /* CommandBar.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF362B90EC1E0042BEFF /* CommandBar.xcstrings */; };
+		2A7FEF392B90EC1E0042BEFF /* CommandBar.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF362B90EC1E0042BEFF /* CommandBar.xcstrings */; };
 		2A80BE8D27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
 		2A80BE8E27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
 		2A80BE9227FFFA8900D2F7FF /* LineEndingScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */; };
@@ -1123,6 +1125,7 @@
 		2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = FilterField.xcstrings; path = mul.lproj/FilterField.xcstrings; sourceTree = "<group>"; };
 		2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Toolbar.xcstrings; path = mul.lproj/Toolbar.xcstrings; sourceTree = "<group>"; };
 		2A7FEF322B90E1C20042BEFF /* Character.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Character.xcstrings; path = mul.lproj/Character.xcstrings; sourceTree = "<group>"; };
+		2A7FEF372B90EC1E0042BEFF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/CommandBar.xcstrings; sourceTree = "<group>"; };
 		2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScanner.swift; sourceTree = "<group>"; };
 		2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScannerTests.swift; sourceTree = "<group>"; };
 		2A80C65D1CEE33C100AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Credits.html; sourceTree = "<group>"; };
@@ -2058,6 +2061,16 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		2A7FEF352B90EBEA0042BEFF /* Panels */ = {
+			isa = PBXGroup;
+			children = (
+				2A1E7E4E2B8D9706004F0C07 /* Console.xcstrings */,
+				2ACDA2882B81E2AC00B2EBA8 /* ColorCode.xcstrings */,
+				2A7FEF362B90EC1E0042BEFF /* CommandBar.xcstrings */,
+			);
+			name = Panels;
+			sourceTree = "<group>";
+		};
 		2A80BE9327FFFBAB00D2F7FF /* Scanners */ = {
 			isa = PBXGroup;
 			children = (
@@ -2232,8 +2245,7 @@
 				2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */,
 				2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */,
 				2A39AC942B8CE43100E216C9 /* AccessoryViews */,
-				2ACDA2882B81E2AC00B2EBA8 /* ColorCode.xcstrings */,
-				2A1E7E4E2B8D9706004F0C07 /* Console.xcstrings */,
+				2A7FEF352B90EBEA0042BEFF /* Panels */,
 				2A7FEF0D2B90B1800042BEFF /* Views */,
 				2AA6725B2B8F74D900B8F7E6 /* Models */,
 				2AA2E0111BFE12620087BDD6 /* UnicodeBlock.strings */,
@@ -2629,6 +2641,7 @@
 				2A7FEF332B90E1C20042BEFF /* Character.xcstrings in Resources */,
 				2A1E7E3B2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */,
 				2ACDA2892B81E2AC00B2EBA8 /* ColorCode.xcstrings in Resources */,
+				2A7FEF382B90EC1E0042BEFF /* CommandBar.xcstrings in Resources */,
 				2A1E7E4F2B8D9706004F0C07 /* Console.xcstrings in Resources */,
 				2A39ACB92B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACF92B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
@@ -2717,6 +2730,7 @@
 				2A7FEF342B90E1C20042BEFF /* Character.xcstrings in Resources */,
 				2A1E7E3C2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */,
 				2ACDA28A2B81E2B100B2EBA8 /* ColorCode.xcstrings in Resources */,
+				2A7FEF392B90EC1E0042BEFF /* CommandBar.xcstrings in Resources */,
 				2A1E7E502B8D9706004F0C07 /* Console.xcstrings in Resources */,
 				2A39ACBA2B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACFA2B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
@@ -3656,6 +3670,14 @@
 				2A5EA1662A88F54800D16730 /* mul */,
 			);
 			name = PrintPanelAccessory.storyboard;
+			sourceTree = "<group>";
+		};
+		2A7FEF362B90EC1E0042BEFF /* CommandBar.xcstrings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A7FEF372B90EC1E0042BEFF /* mul */,
+			);
+			name = CommandBar.xcstrings;
 			sourceTree = "<group>";
 		};
 		2A80C65C1CEE33C100AA664D /* Credits.html */ = {

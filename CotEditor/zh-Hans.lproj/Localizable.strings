@@ -151,7 +151,3 @@
 // header/footer
 "Printed on %@" = "打印：%@";  // %@ is date
 "Last modified on %@" = "最终修改：%@";  // %@ is date
-
-
-/* MARK: Quick Action Bar */
-"Quick Actions" = "快速操作";

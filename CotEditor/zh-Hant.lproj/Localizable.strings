@@ -150,7 +150,3 @@
 // header/footer
 "Printed on %@" = "列印：%@";  // %@ is date
 "Last modified on %@" = "近期修改於：%@"; // %@ is date
-
-
-/* MARK: Quick Action Bar */
-"Quick Actions" = "快速動作";

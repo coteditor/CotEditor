@@ -63,7 +63,7 @@ struct CommandBarView: View {
         VStack(spacing: 0) {
             HStack(alignment: .firstTextBaseline) {
                 Image(systemName: "magnifyingglass")
-                TextField("Quick Actions", text: $input)
+                TextField(String(localized: "Quick Actions", table: "CommandBar"), text: $input)
                     .onSubmit { self.perform() }
                     .fontWeight(.light)
                     .textFieldStyle(.plain)

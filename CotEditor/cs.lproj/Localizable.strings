@@ -150,7 +150,3 @@
 // header/footer
 "Printed on %@" = "Vytištěno %@";  // %@ is date
 "Last modified on %@" = "Poslední změna dne %@";  // %@ is date
-
-
-/* MARK: Quick Action Bar */
-"Quick Actions" = "Rychlé akce";

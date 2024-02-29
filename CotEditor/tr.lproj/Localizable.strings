@@ -150,7 +150,3 @@
 // header/footer
 "Printed on %@" = "%@ tarihinde yazdırıldı";  // %@ is date
 "Last modified on %@" = "En son %@ tarihinde değiştirildi";  // %@ is date
-
-
-/* MARK: Quick Action Bar */
-"Quick Actions" = "Hızlı Eylemler";
