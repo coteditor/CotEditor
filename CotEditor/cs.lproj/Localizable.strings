@@ -55,6 +55,8 @@
 "Import" = "Importovat";
 
 
+// MARK: -
+
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "Kódování do „%@“";
@@ -144,8 +146,6 @@
 "Option-click to open script in editor." = "Pro otevření skriptu v editoru stiskněte „Option“ a „klikněte“.";
 
 
-// MARK: -
-
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "Vytištěno %@";  // %@ is date
@@ -154,17 +154,3 @@
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "Rychlé akce";
-
-
-/* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<písmeno složené z %lld znaků>";  // %lld is always 2 or more.
-
-// Variation selectors
-"Emoji Style" = "Styl emotikony";
-"Text Style" = "Styl textu";
-"Skin Tone I-II" = "Skin Tone I-II";
-"Skin Tone III" = "Skin Tone III";
-"Skin Tone IV" = "Skin Tone IV";
-"Skin Tone V" = "Skin Tone V";
-"Skin Tone VI" = "Skin Tone VI";
-"Variant" = "Varianta";

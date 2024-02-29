@@ -55,6 +55,8 @@
 "Import" = "Import";
 
 
+// MARK: -
+
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "Encoding to “%@”";
@@ -68,8 +70,8 @@
 "Shift Right" = "Shift Right";
 "Shift Left" = "Shift Left";
 "Convert Indentation" = "Convert Indentation";
-"Comment Out" = "Comment Out";
-"Uncomment" = "Uncomment";
+"Comment Out" = "Comment Out";  // menu and undo comment
+"Uncomment" = "Uncomment";  // menu and undo comment
 "Inspect Character" = "Inspect Character";
 "Move Line" = "Move Line";
 "Sort Lines" = "Sort Lines";
@@ -144,8 +146,6 @@
 "Option-click to open script in editor." = "Option-click to open script in editor.";
 
 
-// MARK: -
-
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "Printed on %@";  // %@ is date
@@ -154,17 +154,3 @@
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "Quick Actions";
-
-
-/* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<a letter consisting of %lld characters>";  // %lld is always 2 or more.
-
-// Variation selectors
-"Emoji Style" = "Emoji Style";
-"Text Style" = "Text Style";
-"Skin Tone I-II" = "Skin Tone I-II";
-"Skin Tone III" = "Skin Tone III";
-"Skin Tone IV" = "Skin Tone IV";
-"Skin Tone V" = "Skin Tone V";
-"Skin Tone VI" = "Skin Tone VI";
-"Variant" = "Variant";

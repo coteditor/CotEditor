@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 1024jp
+//  © 2015-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,45 +23,67 @@
 //  limitations under the License.
 //
 
-private extension Unicode.Scalar {
+private enum EmojiVariationSelector: UInt32 {
     
-    enum EmojiVariationSelector {
-        
-        static let text = Unicode.Scalar(0xFE0E)!
-        static let emoji = Unicode.Scalar(0xFE0F)!
-    }
-    
-    enum SkinToneModifier {
-        
-        static let type12 = Unicode.Scalar(0x1F3FB)!  // 🏻 Light
-        static let type3 = Unicode.Scalar(0x1F3FC)!  // 🏼 Medium Light
-        static let type4 = Unicode.Scalar(0x1F3FD)!  // 🏽 Medium
-        static let type5 = Unicode.Scalar(0x1F3FE)!  // 🏾 Medium Dark
-        static let type6 = Unicode.Scalar(0x1F3FF)!  // 🏿 Dark
-    }
+    case text = 0xFE0E
+    case emoji = 0xFE0F
     
     
-    var variantDescription: String? {
+    var label: String {
         
         switch self {
-            case EmojiVariationSelector.emoji:
-                String(localized: "Emoji Style")
-            case EmojiVariationSelector.text:
-                String(localized: "Text Style")
-            case SkinToneModifier.type12:
-                String(localized: "Skin Tone I-II")
-            case SkinToneModifier.type3:
-                String(localized: "Skin Tone III")
-            case SkinToneModifier.type4:
-                String(localized: "Skin Tone IV")
-            case SkinToneModifier.type5:
-                String(localized: "Skin Tone V")
-            case SkinToneModifier.type6:
-                String(localized: "Skin Tone VI")
-            case _ where self.properties.isVariationSelector:
-                String(localized: "Variant")
-            default:
-                nil
+            case .emoji:
+                String(localized: "EmojiVariationSelector.emoji.label",
+                       defaultValue: "Emoji Style",
+                       table: "Character",
+                       comment: "label for the Unicode variation selector that forces to draw the character in the emoji style")
+            case .text:
+                String(localized: "EmojiVariationSelector.text.label",
+                       defaultValue: "Text Style",
+                       table: "Character",
+                       comment: "label for the Unicode variation selector that forces to draw the character in the text style")
+        }
+    }
+}
+
+
+private enum SkinToneModifier: UInt32 {
+    
+    case type12 = 0x1F3FB  // 🏻 Light
+    case type3 = 0x1F3FC   // 🏼 Medium Light
+    case type4 = 0x1F3FD   // 🏽 Medium
+    case type5 = 0x1F3FE   // 🏾 Medium Dark
+    case type6 = 0x1F3FF   // 🏿 Dark
+    
+    
+    var label: String {
+        
+        switch self {
+            case .type12:
+                String(localized: "SkinToneModifier.type12.label",
+                       defaultValue: "Skin Tone I-II",
+                       table: "Character",
+                       comment: "label for Unicode emoji modifier applying the skin tone to the character")
+            case .type3:
+                String(localized: "SkinToneModifier.type3.label",
+                       defaultValue: "Skin Tone III",
+                       table: "Character",
+                       comment: "label for Unicode emoji modifier applying the skin tone to the character")
+            case .type4:
+                String(localized: "SkinToneModifier.type4.label",
+                       defaultValue: "Skin Tone IV",
+                       table: "Character",
+                       comment: "label for Unicode emoji modifier applying the skin tone to the character")
+            case .type5:
+                String(localized: "SkinToneModifier.type5.label",
+                       defaultValue: "Skin Tone V",
+                       table: "Character",
+                       comment: "label for Unicode emoji modifier applying the skin tone to the character")
+            case .type6:
+                String(localized: "SkinToneModifier.type6.label",
+                       defaultValue: "Skin Tone VI",
+                       table: "Character",
+                       comment: "label for Unicode emoji modifier applying the skin tone to the character")
         }
     }
 }
@@ -84,6 +106,7 @@ struct CharacterInfo {
         let unicodes = self.character.unicodeScalars
         if self.isComplex {
             return String(localized: "<a letter consisting of \(unicodes.count) characters>",
+                          table: "Character",
                           comment: "%lld is always 2 or more.")
         }
         
@@ -127,5 +150,27 @@ extension CharacterInfo: CustomStringConvertible {
     var description: String {
         
         String(self.character)
+    }
+}
+
+
+private extension Unicode.Scalar {
+    
+    var variantDescription: String? {
+        
+        if let selector = EmojiVariationSelector(rawValue: self.value) {
+            selector.label
+            
+        } else if let modifier = SkinToneModifier(rawValue: self.value) {
+            modifier.label
+            
+        } else if self.properties.isVariationSelector {
+            String(localized: "Variant",
+                   table: "Character",
+                   comment: "label for general Unicode variation selectors")
+            
+        } else {
+            nil
+        }
     }
 }

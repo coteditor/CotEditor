@@ -55,6 +55,8 @@
 "Import" = "輸入";
 
 
+// MARK: -
+
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "編碼變更為「%@」";
@@ -144,8 +146,6 @@
 "Option-click to open script in editor." = "使用Option-單擊在編輯器中開啟腳本。";
 
 
-// MARK: -
-
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "列印：%@";  // %@ is date
@@ -154,17 +154,3 @@
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "快速動作";
-
-
-/* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<包含有%lld個字元>";  // %lld is always 2 or more.
-
-// Variation selectors
-"Emoji Style" = "表情符號風格";
-"Text Style" = "文字風格";
-"Skin Tone I-II" = "膚色I-II";
-"Skin Tone III" = "膚色III";
-"Skin Tone IV" = "膚色IV";
-"Skin Tone V" = "膚色V";
-"Skin Tone VI" = "膚色VI";
-"Variant" = "異體字";

@@ -55,6 +55,8 @@
 "Import" = "読み込む";
 
 
+// MARK: -
+
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "エンコーディングを“%@”へ";
@@ -144,8 +146,6 @@
 "Option-click to open script in editor." = "スクリプトをエディタで開くには、Option+クリックしてください。";
 
 
-// MARK: -
-
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "プリント: %@";  // %@ is date
@@ -154,17 +154,3 @@
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "クイックアクション";
-
-
-/* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<%lld字から成る文字>";  // %lld is always 2 or more.
-
-// Variation selectors
-"Emoji Style" = "絵文字スタイル";
-"Text Style" = "テキストスタイル";
-"Skin Tone I-II" = "スキントーンI-II";
-"Skin Tone III" = "スキントーンIII";
-"Skin Tone IV" = "スキントーンIV";
-"Skin Tone V" = "スキントーンV";
-"Skin Tone VI" = "スキントーンVI";
-"Variant" = "異体字";

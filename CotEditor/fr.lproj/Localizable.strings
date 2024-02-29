@@ -55,6 +55,8 @@
 "Import" = "Importer";
 
 
+// MARK: -
+
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "Encodage en « %@ »";
@@ -144,8 +146,6 @@
 "Option-click to open script in editor." = "Option-clic pour ouvrir le script dans l’éditeur.";
 
 
-// MARK: -
-
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "Imprimé le %@";  // %@ is date
@@ -154,17 +154,3 @@
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "Actions rapides";
-
-
-/* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "<un symbole constitué de %lld caractères>";  // %lld is always 2 or more.
-
-// Variation selectors
-"Emoji Style" = "Style d’Emoji";
-"Text Style" = "Style de Texte";
-"Skin Tone I-II" = "Ton de chair I-II";
-"Skin Tone III" = "Ton de chair III";
-"Skin Tone IV" = "Ton de chair IV";
-"Skin Tone V" = "Ton de chair V";
-"Skin Tone VI" = "Ton de chair VI";
-"Variant" = "Variante";

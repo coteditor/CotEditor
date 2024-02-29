@@ -55,6 +55,8 @@
 "Import" = "İçe Aktar";
 
 
+// MARK: -
+
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "“%@” olarak kodlanıyor";
@@ -144,8 +146,6 @@
 "Option-click to open script in editor." = "Option-tık, betiği düzenleyicide açar.";
 
 
-// MARK: -
-
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "%@ tarihinde yazdırıldı";  // %@ is date
@@ -154,17 +154,3 @@
 
 /* MARK: Quick Action Bar */
 "Quick Actions" = "Hızlı Eylemler";
-
-
-/* MARK: Character Info */
-"<a letter consisting of %lld characters>" = "%lld karakterden oluşan bir harf";  // %lld is always 2 or more.
-
-// Variation selectors
-"Emoji Style" = "Emoji Biçemi";
-"Text Style" = "Metin Biçemi";
-"Skin Tone I-II" = "Ten Rengi I-II";
-"Skin Tone III" = "Ten Rengi III";
-"Skin Tone IV" = "Ten Rengi IV";
-"Skin Tone V" = "Ten Rengi V";
-"Skin Tone VI" = "Ten Rengi VI";
-"Variant" = "Varyant";
