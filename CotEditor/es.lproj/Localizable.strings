@@ -265,14 +265,6 @@
 "Last modified on %@" = "Última modificación el %@";  // %@ is date
 
 
-/* MARK: FilterField */
-"Filter" = "Filtro";
-// Menu items
-"Recent Filters" = "Filtros recientes";
-"Clear Recent Filters" = "Borrar filtros recientes";
-"No Recent Filter" = "Sin filtro reciente";
-
-
 /* MARK: Quick Action Bar */
 "Quick Actions" = "Acciones rápidas";
 

@@ -45,7 +45,7 @@ struct FilterField: NSViewRepresentable {
         
         let searchField = InnerFilterField()
         searchField.delegate = context.coordinator
-        searchField.placeholderString = String(localized: "Filter", comment: "placeholder for filter field")
+        searchField.placeholderString = String(localized: "Filter", table: "FilterField", comment: "placeholder for filter field")
         searchField.sendsSearchStringImmediately = true
 
         return searchField
@@ -103,10 +103,10 @@ private final class InnerFilterField: NSSearchField {
     // MARK: Private Properties
     
     private let image: NSImage = .init(systemSymbolName: "line.3.horizontal.decrease.circle",
-                                       accessibilityDescription: String(localized: "Filter"))!
+                                       accessibilityDescription: String(localized: "Filter", table: "FilterField"))!
         .tinted(with: .secondaryLabelColor)
     private let filteringImage: NSImage = .init(systemSymbolName: "line.3.horizontal.decrease.circle.fill",
-                                                accessibilityDescription: String(localized: "Filter"))!
+                                                accessibilityDescription: String(localized: "Filter", table: "FilterField"))!
         .tinted(with: .controlAccentColor)
     
     
@@ -127,15 +127,17 @@ private final class InnerFilterField: NSSearchField {
         
         self.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
         
-        let searchMenu = NSMenu(title: String(localized: "Recent Filters"))
-        searchMenu.addItem(withTitle: String(localized: "Recent Filters"), action: nil, keyEquivalent: "")
+        let searchMenu = NSMenu(title: String(localized: "Recent Filters", table: "FilterField", comment: "menu label"))
+        searchMenu.addItem(withTitle: String(localized: "Recent Filters", table: "FilterField"), action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsTitleMenuItemTag
         searchMenu.addItem(withTitle: "", action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsMenuItemTag
         searchMenu.addItem(.separator())
-        searchMenu.addItem(withTitle: String(localized: "Clear Recent Filters"), action: nil, keyEquivalent: "")
+        searchMenu.addItem(withTitle: String(localized: "Clear Recent Filters", table: "FilterField", comment: "menu item label"),
+                           action: nil, keyEquivalent: "")
             .tag = NSSearchField.clearRecentsMenuItemTag
-        searchMenu.addItem(withTitle: String(localized: "No Recent Filter"), action: nil, keyEquivalent: "")
+        searchMenu.addItem(withTitle: String(localized: "No Recent Filter", table: "FilterField", comment: "menu item label"),
+                           action: nil, keyEquivalent: "")
             .tag = NSSearchField.noRecentsMenuItemTag
         self.searchMenuTemplate = searchMenu
     }

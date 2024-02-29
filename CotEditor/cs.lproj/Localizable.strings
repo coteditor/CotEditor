@@ -265,14 +265,6 @@
 "Last modified on %@" = "Poslední změna dne %@";  // %@ is date
 
 
-/* MARK: FilterField */
-"Filter" = "Filtr";
-// Menu items
-"Recent Filters" = "Poslední filtry";
-"Clear Recent Filters" = "Smazat poslední filtry";
-"No Recent Filter" = "Žádný poslední filtr";
-
-
 /* MARK: Quick Action Bar */
 "Quick Actions" = "Rychlé akce";
 

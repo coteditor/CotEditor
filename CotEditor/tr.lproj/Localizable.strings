@@ -265,14 +265,6 @@
 "Last modified on %@" = "En son %@ tarihinde değiştirildi";  // %@ is date
 
 
-/* MARK: FilterField */
-"Filter" = "Filtre";
-// Menu items
-"Recent Filters" = "Son Filtreler";
-"Clear Recent Filters" = "Son Filtreleri Temizle";
-"No Recent Filter" = "Son Filtre Yok";
-
-
 /* MARK: Quick Action Bar */
 "Quick Actions" = "Hızlı Eylemler";
 

@@ -266,14 +266,6 @@
 "Last modified on %@" = "最终修改：%@";  // %@ is date
 
 
-/* MARK: FilterField */
-"Filter" = "过滤";
-// Menu items
-"Recent Filters" = "最近的过滤";
-"Clear Recent Filters" = "清除最近记录";
-"No Recent Filter" = "没有最近的过滤";
-
-
 /* MARK: Quick Action Bar */
 "Quick Actions" = "快速操作";
 

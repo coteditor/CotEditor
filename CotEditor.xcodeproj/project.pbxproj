@@ -437,6 +437,8 @@
 		2A7FCC47280A367C0070EAB3 /* ValueRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FCC45280A367C0070EAB3 /* ValueRange.swift */; };
 		2A7FEEF52B9035930042BEFF /* SettingFile.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEEF42B9035930042BEFF /* SettingFile.xcstrings */; };
 		2A7FEEF62B9035930042BEFF /* SettingFile.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEEF42B9035930042BEFF /* SettingFile.xcstrings */; };
+		2A7FEF0B2B90B05C0042BEFF /* FilterField.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */; };
+		2A7FEF0C2B90B05C0042BEFF /* FilterField.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */; };
 		2A80BE8D27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
 		2A80BE8E27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
 		2A80BE9227FFFA8900D2F7FF /* LineEndingScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */; };
@@ -1114,6 +1116,7 @@
 		2A7F4E012871F46D0029CE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PrintPanelAccessory.storyboard; sourceTree = "<group>"; };
 		2A7FCC45280A367C0070EAB3 /* ValueRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueRange.swift; sourceTree = "<group>"; };
 		2A7FEEF42B9035930042BEFF /* SettingFile.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = SettingFile.xcstrings; path = mul.lproj/SettingFile.xcstrings; sourceTree = "<group>"; };
+		2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = FilterField.xcstrings; path = mul.lproj/FilterField.xcstrings; sourceTree = "<group>"; };
 		2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScanner.swift; sourceTree = "<group>"; };
 		2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScannerTests.swift; sourceTree = "<group>"; };
 		2A80C65D1CEE33C100AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Credits.html; sourceTree = "<group>"; };
@@ -2040,6 +2043,15 @@
 			name = "Text Finder";
 			sourceTree = "<group>";
 		};
+		2A7FEF0D2B90B1800042BEFF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2A39ACFE2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings */,
+				2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		2A80BE9327FFFBAB00D2F7FF /* Scanners */ = {
 			isa = PBXGroup;
 			children = (
@@ -2214,7 +2226,7 @@
 				2A39AC942B8CE43100E216C9 /* AccessoryViews */,
 				2ACDA2882B81E2AC00B2EBA8 /* ColorCode.xcstrings */,
 				2A1E7E4E2B8D9706004F0C07 /* Console.xcstrings */,
-				2A39ACFE2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings */,
+				2A7FEF0D2B90B1800042BEFF /* Views */,
 				2AA6725B2B8F74D900B8F7E6 /* Models */,
 				2AA2E0111BFE12620087BDD6 /* UnicodeBlock.strings */,
 				2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */,
@@ -2616,6 +2628,7 @@
 				2A1E7E192B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
 				2A39AC812B8CDFC800E216C9 /* EncodingList.xcstrings in Resources */,
 				2AA6726C2B8F75CC00B8F7E6 /* FileDropItem.xcstrings in Resources */,
+				2A7FEF0B2B90B05C0042BEFF /* FilterField.xcstrings in Resources */,
 				2A39AC922B8CE40400E216C9 /* GoToLine.xcstrings in Resources */,
 				2AC94B222B6E26F40086F9F2 /* Inspector.xcstrings in Resources */,
 				2ACDA29D2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */,
@@ -2701,6 +2714,7 @@
 				2A1E7E1A2B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
 				2A39AC822B8CDFCA00E216C9 /* EncodingList.xcstrings in Resources */,
 				2AA6726D2B8F75CC00B8F7E6 /* FileDropItem.xcstrings in Resources */,
+				2A7FEF0C2B90B05C0042BEFF /* FilterField.xcstrings in Resources */,
 				2A39AC932B8CE40400E216C9 /* GoToLine.xcstrings in Resources */,
 				2AC94B232B6E26F40086F9F2 /* Inspector.xcstrings in Resources */,
 				2ACDA29E2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */,

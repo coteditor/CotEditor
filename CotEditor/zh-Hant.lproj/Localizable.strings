@@ -265,14 +265,6 @@
 "Last modified on %@" = "近期修改於：%@"; // %@ is date
 
 
-/* MARK: FilterField */
-"Filter" = "濾波器";
-// Menu items
-"Recent Filters" = "最近的過濾";
-"Clear Recent Filters" = "清除最近記錄";
-"No Recent Filter" = "沒有最近的過濾";
-
-
 /* MARK: Quick Action Bar */
 "Quick Actions" = "快速動作";
 

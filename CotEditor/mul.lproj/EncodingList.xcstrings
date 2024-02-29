@@ -214,6 +214,7 @@
       }
     },
     "Restore Defaults" : {
+      "comment" : "button label",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
