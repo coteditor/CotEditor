@@ -41,6 +41,21 @@
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "%@ with BOM";  // No need to be translated because "UTF-8 with BOM" is acceptable in zh-Hans.
 
+// default filename
+"Untitled" = "未命名";
+
+// filename suffix for copied file
+"copy" = "拷貝";
+
+// syntax name
+"None" = "無";
+
+// migration name for legacy snippet setting
+"Insert Text %lld" = "插入文字%lld";
+
+// keyboard key name
+"Space" = "空格";
+
 // Contextual menu items
 "Rename “%@”" = "給「%@」重新命名";
 "Duplicate “%@”" = "拷貝「%@」";
@@ -53,6 +68,11 @@
 
 // button label for open panel
 "Import" = "輸入";
+
+// print header/footer
+"Printed on %@" = "列印：%@";  // %@ is date
+"Last modified on %@" = "近期修改於：%@"; // %@ is date
+
 
 
 // MARK: -
@@ -120,33 +140,9 @@
 "Stack Editors Vertically" = "縱向分隔編輯器";
 
 
-// MARK: -
-
-// default filename
-"Untitled" = "未命名";
-
-// filename suffix for copied file
-"copy" = "拷貝";
-
-// syntax name
-"None" = "無";
-
-// migration name for legacy snippet setting
-"Insert Text %lld" = "插入文字%lld";
-
-// keyboard key name
-"Space" = "空格";
-
-
 /* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "開啟Scripts檔案夾";
 
 // Script menu item tooltips
 "Option-click to open script in editor." = "使用Option-單擊在編輯器中開啟腳本。";
-
-
-/* MARK: PrintTextView */
-// header/footer
-"Printed on %@" = "列印：%@";  // %@ is date
-"Last modified on %@" = "近期修改於：%@"; // %@ is date

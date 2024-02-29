@@ -41,6 +41,21 @@
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "%@ com BOM";
 
+// default filename
+"Untitled" = "Sem Título";
+
+// filename suffix for copied file
+"copy" = "(cópia)";
+
+// syntax name
+"None" = "Nenhum";
+
+// migration name for legacy snippet setting
+"Insert Text %lld" = "Inserir Texto %lld";
+
+// keyboard key name
+"Space" = "Espaço";
+
 // Contextual menu items
 "Rename “%@”" = "Renomear “%@”";
 "Duplicate “%@”" = "Duplicar “%@”";
@@ -53,6 +68,11 @@
 
 // button label for open panel
 "Import" = "Importar";
+
+// print header/footer
+"Printed on %@" = "Impresso em %@";  // %@ is date
+"Last modified on %@" = "Última modificação em %@";  // %@ is date
+
 
 
 // MARK: -
@@ -120,33 +140,9 @@
 "Stack Editors Vertically" = "Posicionar Editores Verticalmente";
 
 
-// MARK: -
-
-// default filename
-"Untitled" = "Sem Título";
-
-// filename suffix for copied file
-"copy" = "(cópia)";
-
-// syntax name
-"None" = "Nenhum";
-
-// migration name for legacy snippet setting
-"Insert Text %lld" = "Inserir Texto %lld";
-
-// keyboard key name
-"Space" = "Espaço";
-
-
 /* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "Abrir Pasta de Scripts";
 
 // Script menu item tooltips
 "Option-click to open script in editor." = "Opção-clique para abrir o script no editor.";
-
-
-/* MARK: PrintTextView */
-// header/footer
-"Printed on %@" = "Impresso em %@";  // %@ is date
-"Last modified on %@" = "Última modificação em %@";  // %@ is date

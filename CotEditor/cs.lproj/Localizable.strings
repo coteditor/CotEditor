@@ -41,6 +41,21 @@
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "%@ s BOM";
 
+// default filename
+"Untitled" = "Bez názvu";
+
+// filename suffix for copied file
+"copy" = "Kopírovat";
+
+// syntax name
+"None" = "Žádný";
+
+// migration name for legacy snippet setting
+"Insert Text %lld" = "Vložit text %lld";
+
+// keyboard key name
+"Space" = "Mezerník";
+
 // Contextual menu items
 "Rename “%@”" = "Přejmenovat „%@“";
 "Duplicate “%@”" = "Duplikovat „%@“";
@@ -53,6 +68,11 @@
 
 // button label for open panel
 "Import" = "Importovat";
+
+// print header/footer
+"Printed on %@" = "Vytištěno %@";  // %@ is date
+"Last modified on %@" = "Poslední změna dne %@";  // %@ is date
+
 
 
 // MARK: -
@@ -120,33 +140,9 @@
 "Stack Editors Vertically" = "Seskupit editory svisle";
 
 
-// MARK: -
-
-// default filename
-"Untitled" = "Bez názvu";
-
-// filename suffix for copied file
-"copy" = "Kopírovat";
-
-// syntax name
-"None" = "Žádný";
-
-// migration name for legacy snippet setting
-"Insert Text %lld" = "Vložit text %lld";
-
-// keyboard key name
-"Space" = "Mezerník";
-
-
 /* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "Otevřít složku skriptů";
 
 // Script menu item tooltips
 "Option-click to open script in editor." = "Pro otevření skriptu v editoru stiskněte „Option“ a „klikněte“.";
-
-
-/* MARK: PrintTextView */
-// header/footer
-"Printed on %@" = "Vytištěno %@";  // %@ is date
-"Last modified on %@" = "Poslední změna dne %@";  // %@ is date

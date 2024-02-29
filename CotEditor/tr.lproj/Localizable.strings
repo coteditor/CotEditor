@@ -41,6 +41,21 @@
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "BOM ile %@";
 
+// default filename
+"Untitled" = "Adsız";
+
+// filename suffix for copied file
+"copy" = "kopyası";
+
+// syntax name
+"None" = "Hiçbiri";
+
+// migration name for legacy snippet setting
+"Insert Text %lld" = "%lld Metnini Ekle";
+
+// keyboard key name
+"Space" = "Boşluk";
+
 // Contextual menu items
 "Rename “%@”" = "“%@” Ögesini Yeniden Adlandır";
 "Duplicate “%@”" = "“%@” Ögesini Çoğalt";
@@ -53,6 +68,11 @@
 
 // button label for open panel
 "Import" = "İçe Aktar";
+
+// print header/footer
+"Printed on %@" = "%@ tarihinde yazdırıldı";  // %@ is date
+"Last modified on %@" = "En son %@ tarihinde değiştirildi";  // %@ is date
+
 
 
 // MARK: -
@@ -120,33 +140,9 @@
 "Stack Editors Vertically" = "Düzenleyicileri Dikey Yığ";
 
 
-// MARK: -
-
-// default filename
-"Untitled" = "Adsız";
-
-// filename suffix for copied file
-"copy" = "kopyası";
-
-// syntax name
-"None" = "Hiçbiri";
-
-// migration name for legacy snippet setting
-"Insert Text %lld" = "%lld Metnini Ekle";
-
-// keyboard key name
-"Space" = "Boşluk";
-
-
 /* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "Betikler Klasörünü Aç";
 
 // Script menu item tooltips
 "Option-click to open script in editor." = "Option-tık, betiği düzenleyicide açar.";
-
-
-/* MARK: PrintTextView */
-// header/footer
-"Printed on %@" = "%@ tarihinde yazdırıldı";  // %@ is date
-"Last modified on %@" = "En son %@ tarihinde değiştirildi";  // %@ is date

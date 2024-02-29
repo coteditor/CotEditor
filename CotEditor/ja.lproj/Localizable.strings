@@ -41,6 +41,21 @@
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "%@BOM付き";
 
+// default filename
+"Untitled" = "名称未設定";
+
+// filename suffix for copied file
+"copy" = "コピー";
+
+// syntax name
+"None" = "なし";
+
+// migration name for legacy snippet setting
+"Insert Text %lld" = "テキストを挿入%lld";
+
+// keyboard key name
+"Space" = "スペース";
+
 // Contextual menu items
 "Rename “%@”" = "“%@”を名称変更";
 "Duplicate “%@”" = "“%@”を複製";
@@ -53,6 +68,11 @@
 
 // button label for open panel
 "Import" = "読み込む";
+
+// print header/footer
+"Printed on %@" = "プリント: %@";  // %@ is date
+"Last modified on %@" = "最終変更: %@";  // %@ is date
+
 
 
 // MARK: -
@@ -120,33 +140,9 @@
 "Stack Editors Vertically" = "分割エディタを縦に配置";
 
 
-// MARK: -
-
-// default filename
-"Untitled" = "名称未設定";
-
-// filename suffix for copied file
-"copy" = "コピー";
-
-// syntax name
-"None" = "なし";
-
-// migration name for legacy snippet setting
-"Insert Text %lld" = "テキストを挿入%lld";
-
-// keyboard key name
-"Space" = "スペース";
-
-
 /* MARK: ScriptManager */
 // Menu items
 "Open Scripts Folder" = "スクリプトフォルダを開く";
 
 // Script menu item tooltips
 "Option-click to open script in editor." = "スクリプトをエディタで開くには、Option+クリックしてください。";
-
-
-/* MARK: PrintTextView */
-// header/footer
-"Printed on %@" = "プリント: %@";  // %@ is date
-"Last modified on %@" = "最終変更: %@";  // %@ is date
