@@ -27,7 +27,6 @@
 // Basic button titles
 "OK" = "Tamam";
 "Cancel" = "Vazgeç";
-"Restore Defaults" = "Výchozí hodnoty";
 
 // tooltip for opacity slider
 "Transparent" = "Saydam";

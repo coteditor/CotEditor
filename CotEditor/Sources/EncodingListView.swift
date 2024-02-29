@@ -114,7 +114,7 @@ struct EncodingListView: View {
             HStack {
                 HelpButton(anchor: "howto_customize_encoding_order")
                 
-                Button("Restore Defaults") {
+                Button(String(localized: "Restore Defaults", table: "EncodingList", comment: "button label")) {
                     self.model.restore()
                 }
                 .disabled(!self.model.canRestore)

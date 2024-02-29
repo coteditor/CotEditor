@@ -27,7 +27,6 @@
 // Basic button titles
 "OK" = "OK";
 "Cancel" = "Zrušit";
-"Restore Defaults" = "Výchozí hodnoty";
 
 // tooltip for opacity slider
 "Transparent" = "Průhledné";

@@ -27,7 +27,6 @@
 // Basic button titles
 "OK" = "OK";
 "Cancel" = "Annuler";
-"Restore Defaults" = "Réglages par défaut";
 
 // tooltip for opacity slider
 "Transparent" = "Transparent";
