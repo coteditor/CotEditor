@@ -270,7 +270,8 @@ struct RegularExpressionSortPatternView: View {
                                 EmptyView()
                             }
                             .accessibilityLabel(String(localized: "Recents", table: "PatternSort"))
-                            .menuStyle(.borderlessButton)
+                            .menuStyle(.button)
+                            .buttonStyle(.borderless)
                             .frame(width: 16)
                             .padding(.leading, 4)
                         }
