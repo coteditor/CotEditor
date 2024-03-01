@@ -222,9 +222,10 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         if let scriptMenu = ScriptManager.shared.contextualMenu {
             let item = NSMenuItem()
             item.title = ""
-            item.setAccessibilityLabel(String(localized: "Script"))
-            item.image = NSImage(systemSymbolName: "applescript.fill", accessibilityDescription: String(localized: "Script"))
-            item.toolTip = String(localized: "Script")
+            item.setAccessibilityLabel(String(localized: "Script", table: "MainMenu"))
+            item.image = NSImage(systemSymbolName: "applescript.fill",
+                                 accessibilityDescription: String(localized: "Script", table: "MainMenu"))
+            item.toolTip = String(localized: "Script", table: "MainMenu")
             item.submenu = scriptMenu
             
             menu.addItem(item)
@@ -232,7 +233,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         // add "Inspect Character" menu item if single character is selected
         if self.textView?.selectsSingleCharacter == true {
-            menu.insertItem(withTitle: String(localized: "Inspect Character"),
+            menu.insertItem(withTitle: String(localized: "Inspect Character", table: "MainMenu"),
                             action: #selector(showSelectionInfo),
                             keyEquivalent: "",
                             at: 1)

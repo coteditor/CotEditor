@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -148,7 +148,7 @@ extension NSTextView {
         let selectedRanges = editingRanges.map { $0.removed(ranges: trimmingRanges) }
         
         self.replace(with: replacementStrings, ranges: trimmingRanges, selectedRanges: selectedRanges,
-                     actionName: String(localized: "Trim Trailing Whitespace"))
+                     actionName: String(localized: "Trim Trailing Whitespace", table: "MainMenu"))
     }
     
     

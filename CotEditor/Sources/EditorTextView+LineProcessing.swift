@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ extension EditorTextView {
             let editingInfo = self.string.moveLineUp(in: ranges)
         else { return NSSound.beep() }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Move Line"))
+        self.edit(with: editingInfo, actionName: String(localized: "Move Line", table: "MainMenu"))
         self.scrollRangeToVisible(self.selectedRange)
     }
     
@@ -51,7 +51,7 @@ extension EditorTextView {
             let editingInfo = self.string.moveLineDown(in: ranges)
         else { return NSSound.beep() }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Move Line"))
+        self.edit(with: editingInfo, actionName: String(localized: "Move Line", table: "MainMenu"))
         self.scrollRangeToVisible(self.selectedRange)
     }
     
@@ -64,7 +64,7 @@ extension EditorTextView {
         
         guard let editingInfo = self.string.sortLinesAscending(in: range) else { return }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Sort Lines"))
+        self.edit(with: editingInfo, actionName: String(localized: "Sort Lines", table: "MainMenu"))
     }
     
     
@@ -76,7 +76,7 @@ extension EditorTextView {
         
         guard let editingInfo = self.string.reverseLines(in: range) else { return }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Reverse Lines"))
+        self.edit(with: editingInfo, actionName: String(localized: "Reverse Lines", table: "MainMenu"))
     }
     
     
@@ -88,7 +88,7 @@ extension EditorTextView {
         
         guard let editingInfo = self.string.shuffleLines(in: range) else { return }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Shuffle Lines"))
+        self.edit(with: editingInfo, actionName: String(localized: "Shuffle Lines", table: "MainMenu"))
     }
     
     
@@ -102,7 +102,7 @@ extension EditorTextView {
         
         guard let editingInfo = self.string.deleteDuplicateLine(in: ranges) else { return }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Delete Duplicate Lines"))
+        self.edit(with: editingInfo, actionName: String(localized: "Delete Duplicate Lines", table: "MainMenu"))
     }
     
     
@@ -113,7 +113,7 @@ extension EditorTextView {
         
         guard let editingInfo = self.string.duplicateLine(in: selectedRanges, lineEnding: self.lineEnding.rawValue) else { return }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Duplicate Line"))
+        self.edit(with: editingInfo, actionName: String(localized: "Duplicate Line", table: "MainMenu"))
     }
     
     
@@ -124,7 +124,7 @@ extension EditorTextView {
         
         guard let editingInfo = self.string.deleteLine(in: selectedRanges) else { return }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Delete Line"))
+        self.edit(with: editingInfo, actionName: String(localized: "Delete Line", table: "MainMenu"))
     }
     
     
@@ -139,7 +139,7 @@ extension EditorTextView {
             self.string.joinLines(after: selectedRanges)
         }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Join Lines"))
+        self.edit(with: editingInfo, actionName: String(localized: "Join Lines", table: "MainMenu"))
     }
     
     
@@ -203,7 +203,7 @@ extension EditorTextView {
         let newString = pattern.sort(string.substring(with: lineRange), options: options)
         
         self.replace(with: newString, range: lineRange, selectedRange: lineRange,
-                     actionName: String(localized: "Sort Lines"))
+                     actionName: String(localized: "Sort Lines", table: "MainMenu"))
     }
 }
 

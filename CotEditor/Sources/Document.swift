@@ -880,7 +880,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 // register redo
                 target.undoManager?.registerUndo(withTarget: target) { $0.changeEncoding(to: fileEncoding) }
             }
-            undoManager.setActionName(String(localized: "Encoding to “\(fileEncoding.localizedName)”"))
+            undoManager.setActionName(String(localized: "Encoding to “\(fileEncoding.localizedName)”",
+                                             table: "MainMenu", comment: "undo action name"))
         }
         
         // update encoding
@@ -914,7 +915,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 // register redo
                 target.undoManager?.registerUndo(withTarget: target) { $0.changeLineEnding(to: lineEnding) }
             }
-            undoManager.setActionName(String(localized: "Line Endings to \(lineEnding.label)"))
+            undoManager.setActionName(String(localized: "Line Endings to \(lineEnding.label)",
+                                             table: "MainMenu", comment: "undo action name"))
         }
         
         // update line endings in text storage

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -83,8 +83,8 @@ final class SplitViewController: NSSplitViewController {
         switch item.action {
             case #selector(toggleSplitOrientation):
                 (item as? NSMenuItem)?.title = self.splitView.isVertical
-                    ? String(localized: "Stack Editors Horizontally")
-                    : String(localized: "Stack Editors Vertically")
+                    ? String(localized: "Stack Editors Horizontally", table: "MainMenu")
+                    : String(localized: "Stack Editors Vertically", table: "MainMenu")
                 
             case #selector(focusNextSplitTextView), #selector(focusPrevSplitTextView):
                 return self.splitViewItems.count > 1

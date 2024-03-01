@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -139,7 +139,7 @@ extension Commenting {
         let newSelectedRanges = selectedRanges.map { $0.inserted(items: items) }
         
         self.replace(with: newStrings, ranges: replacementRanges, selectedRanges: newSelectedRanges,
-                     actionName: String(localized: "Comment Out"))
+                     actionName: String(localized: "Comment Out", table: "MainMenu"))
     }
     
     
@@ -175,7 +175,7 @@ extension Commenting {
         let newSelectedRanges = selectedRanges.map { $0.removed(ranges: deletionRanges) }
         
         self.replace(with: newStrings, ranges: deletionRanges, selectedRanges: newSelectedRanges,
-                     actionName: String(localized: "Uncomment"))
+                     actionName: String(localized: "Uncomment", table: "MainMenu"))
     }
     
     

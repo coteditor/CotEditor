@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,6 +54,6 @@ extension NSTextView {
         let selectedRange = NSRange(location: replacementRange.location, length: (string as NSString).length)
         
         self.replace(with: string, range: replacementRange, selectedRange: selectedRange,
-                     actionName: String(localized: "Insert Text"))
+                     actionName: String(localized: "Insert Text", table: "MainMenu"))
     }
 }

@@ -255,24 +255,24 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 
             case #selector(toggleLineNumber):
                 (item as? NSMenuItem)?.title = self.showsLineNumber
-                    ? String(localized: "Hide Line Numbers")
-                    : String(localized: "Show Line Numbers")
+                    ? String(localized: "Hide Line Numbers", table: "MainMenu")
+                    : String(localized: "Show Line Numbers", table: "MainMenu")
                 
             case #selector(toggleStatusBar):
                 (item as? NSMenuItem)?.title = self.statusBarItem?.isCollapsed == false
-                    ? String(localized: "Hide Status Bar")
-                    : String(localized: "Show Status Bar")
+                    ? String(localized: "Hide Status Bar", table: "MainMenu")
+                    : String(localized: "Show Status Bar", table: "MainMenu")
                 
             case #selector(togglePageGuide):
                 (item as? NSMenuItem)?.title = self.showsPageGuide
-                    ? String(localized: "Hide Page Guide")
-                    : String(localized: "Show Page Guide")
+                    ? String(localized: "Hide Page Guide", table: "MainMenu")
+                    : String(localized: "Show Page Guide", table: "MainMenu")
                 (item as? StatableToolbarItem)?.state = self.showsPageGuide ? .on : .off
                 
             case #selector(toggleIndentGuides):
                 (item as? NSMenuItem)?.title = self.showsIndentGuides
-                    ? String(localized: "Hide Indent Guides")
-                    : String(localized: "Show Indent Guides")
+                    ? String(localized: "Hide Indent Guides", table: "MainMenu")
+                    : String(localized: "Show Indent Guides", table: "MainMenu")
                 (item as? NSToolbarItem)?.toolTip = self.showsIndentGuides
                     ? String(localized: "Toolbar.indentGuides.tooltip.on",
                              defaultValue: "Hide indent guide lines", table: "Toolbar")
@@ -282,8 +282,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 
             case #selector(toggleLineWrap):
                 (item as? NSMenuItem)?.title = self.wrapsLines
-                    ? String(localized: "Unwrap Lines")
-                    : String(localized: "Wrap Lines")
+                    ? String(localized: "Unwrap Lines", table: "MainMenu")
+                    : String(localized: "Wrap Lines", table: "MainMenu")
                 (item as? NSToolbarItem)?.toolTip = self.wrapsLines
                     ? String(localized: "Toolbar.wrapLines.tooltip.on",
                              defaultValue: "Unwrap lines", table: "Toolbar")
@@ -293,8 +293,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 
             case #selector(toggleInvisibleChars):
                 (item as? NSMenuItem)?.title = self.showsInvisibles
-                    ? String(localized: "Hide Invisibles")
-                    : String(localized: "Show Invisibles")
+                    ? String(localized: "Hide Invisibles", table: "MainMenu")
+                    : String(localized: "Show Invisibles", table: "MainMenu")
                 (item as? StatableToolbarItem)?.state = self.showsInvisibles ? .on : .off
                 
                 // disable if item cannot be enabled
@@ -302,6 +302,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 item.toolTip = canActivateShowInvisibles
                     ? nil
                     : String(localized: "To show invisible characters, set them in the Window settings",
+                             table: "MainMenu",
                              comment: "tooltip for the “Show Invisibles” menu item and toolbar item for when all invisible settings are disabled")
                 if canActivateShowInvisibles {
                     (item as? NSToolbarItem)?.toolTip = self.showsInvisibles

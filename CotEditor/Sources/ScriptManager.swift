@@ -239,7 +239,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         let menuItems = scriptMenuItems.map { $0.menuItem(action: #selector(launchScript), target: self) }
         
-        let openMenuItem = NSMenuItem(title: String(localized: "Open Scripts Folder", comment: "menu item"),
+        let openMenuItem = NSMenuItem(title: String(localized: "Open Scripts Folder", table: "MainMenu"),
                                       action: #selector(openScriptFolder), keyEquivalent: "")
         openMenuItem.target = self
         
@@ -439,7 +439,8 @@ private enum ScriptMenuItem: Sendable {
                 // -> Shortcut will be applied later in `applyShortcuts()`.
                 item.representedObject = script
                 item.target = target
-                item.toolTip = String(localized: "Option-click to open script in editor.", comment: "tooltip for script menu item")
+                item.toolTip = String(localized: "Option-click to open script in editor.", table: "MainMenu",
+                                      comment: "tooltip for script menu item")
                 return item
                 
             case .folder(let name, let items):

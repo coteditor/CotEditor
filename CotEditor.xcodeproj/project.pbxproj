@@ -577,6 +577,8 @@
 		2AA672B52B8F9F1C00B8F7E6 /* Document.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672B32B8F9F1C00B8F7E6 /* Document.xcstrings */; };
 		2AA672C62B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */; };
 		2AA672C72B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */; };
+		2AA672F62B916DA400B8F7E6 /* MainMenu.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */; };
+		2AA672F72B916DA400B8F7E6 /* MainMenu.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */; };
 		2AA6E0C82B75AC4900E536F8 /* SyntaxEditor.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */; };
 		2AA704CE2987878B008CBCB5 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA704CD2987878B008CBCB5 /* Node.swift */; };
 		2AA704CF2987878B008CBCB5 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA704CD2987878B008CBCB5 /* Node.swift */; };
@@ -1206,6 +1208,7 @@
 		2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = DocumentWindow.xcstrings; path = mul.lproj/DocumentWindow.xcstrings; sourceTree = "<group>"; };
 		2AA672B32B8F9F1C00B8F7E6 /* Document.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Document.xcstrings; path = mul.lproj/Document.xcstrings; sourceTree = "<group>"; };
 		2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = OpacitySlider.xcstrings; path = mul.lproj/OpacitySlider.xcstrings; sourceTree = "<group>"; };
+		2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = MainMenu.xcstrings; path = mul.lproj/MainMenu.xcstrings; sourceTree = "<group>"; };
 		2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = SyntaxEditor.xcstrings; path = mul.lproj/SyntaxEditor.xcstrings; sourceTree = "<group>"; };
 		2AA6E0BE2B74728700E536F8 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/FindPanelFieldView.xcstrings; sourceTree = "<group>"; };
 		2AA704CD2987878B008CBCB5 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -2242,6 +2245,7 @@
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
 				2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */,
 				2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */,
+				2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */,
 				2AB9E4BB2B7F2378004E5BDC /* Settings */,
 				2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */,
 				2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */,
@@ -2665,6 +2669,7 @@
 				2ACDA29D2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */,
 				2AAF93562A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A39ACA82B8CE58100E216C9 /* LiveTextInsertion.xcstrings in Resources */,
+				2AA672F62B916DA400B8F7E6 /* MainMenu.xcstrings in Resources */,
 				2A1E7DE52B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */,
 				2AA672C62B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */,
 				2A39ACE62B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings in Resources */,
@@ -2756,6 +2761,7 @@
 				2ACDA29E2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */,
 				2AAF93572A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A39ACA92B8CE58100E216C9 /* LiveTextInsertion.xcstrings in Resources */,
+				2AA672F72B916DA400B8F7E6 /* MainMenu.xcstrings in Resources */,
 				2A1E7DE62B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */,
 				2AA672C72B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */,
 				2A39ACE72B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings in Resources */,

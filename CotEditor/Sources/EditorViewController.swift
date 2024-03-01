@@ -109,8 +109,8 @@ final class EditorViewController: NSSplitViewController {
         switch item.action {
             case #selector(toggleNavigationBar):
                 (item as? NSMenuItem)?.title = self.navigationBarItem?.isCollapsed == false
-                ? String(localized: "Hide Navigation Bar")
-                : String(localized: "Show Navigation Bar")
+                ? String(localized: "Hide Navigation Bar", table: "MainMenu")
+                : String(localized: "Show Navigation Bar", table: "MainMenu")
                 
             case #selector(openOutlineMenu):
                 return self.outlineItems?.isEmpty == false

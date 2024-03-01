@@ -102,8 +102,8 @@ final class WindowContentViewController: NSSplitViewController {
         switch item.action {
             case #selector(toggleInspector):
                 (item as? NSMenuItem)?.title = self.isInspectorShown
-                    ? String(localized: "Hide Inspector")
-                    : String(localized: "Show Inspector")
+                    ? String(localized: "Hide Inspector", table: "MainMenu")
+                    : String(localized: "Show Inspector", table: "MainMenu")
                 
             case #selector(getInfo):
                 (item as? NSMenuItem)?.state = self.isInspectorShown(pane: .document) ? .on : .off
