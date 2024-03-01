@@ -32,13 +32,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rellenar la siguiente plantilla, y subirla a [la página de GitHub para los problemas (Issues)](https://github.com/coteditor/CotEditor/issues) o enviarla a %2$@. Tener en cuenta que el contenido del email enviado se compartirá en la página Issue. Por favor el contenido escibirlo en Inglés o Japonés."
+            "value" : "Rellenar la siguiente plantilla, y subirla a %1$@ o enviarla a %2$@. Tener en cuenta que el contenido del email enviado se compartirá en la página Issue. Por favor el contenido escibirlo en Inglés o Japonés."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remplissez le modèle suivant, et postez le sur [la page GitHub pour les Issues](https://github.com/coteditor/CotEditor/issues) ou bien envoyez le à %2$@. \nVeuillez prendre note que le contenu du courriel envoyé sera partagé sur la page Issues. Merci de rédiger le contenu en anglais ou en japonais."
+            "value" : "Remplissez le modèle suivant, et postez le sur %1$@ ou bien envoyez le à %2$@. \nVeuillez prendre note que le contenu du courriel envoyé sera partagé sur la page Issues. Merci de rédiger le contenu en anglais ou en japonais."
           }
         },
         "it" : {
@@ -68,7 +68,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "按照示例进行填写，并将它发布到%1$@上或是通过邮件发送到 %2$@。请注意，通过邮件发送的内容也会被共享至 Issue 页面。请使用英文或者日文书写报告内容。"
+            "value" : "按照示例进行填写，并将它发布到%1$@上或是通过邮件发送到%2$@。请注意，通过邮件发送的内容也会被共享至 Issue 页面。请使用英文或者日文书写报告内容。"
           }
         },
         "zh-Hant" : {

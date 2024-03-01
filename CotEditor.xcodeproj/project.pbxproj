@@ -2180,7 +2180,6 @@
 			isa = PBXGroup;
 			children = (
 				2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */,
-				2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */,
 				2A39AC802B8CDFC800E216C9 /* EncodingList.xcstrings */,
 				2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */,
 			);
@@ -2192,10 +2191,10 @@
 			children = (
 				2ACDA2932B81E8B300B2EBA8 /* GeneralSettings.xcstrings */,
 				2ACDA2A72B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings */,
-				2ACDA2962B81E8B700B2EBA8 /* EditSettings.xcstrings */,
 				2ACDA2992B81E8BB00B2EBA8 /* WindowSettings.xcstrings */,
-				2ACDA29C2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings */,
+				2ACDA2962B81E8B700B2EBA8 /* EditSettings.xcstrings */,
 				2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */,
+				2ACDA29C2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings */,
 				2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */,
 			);
 			name = Panes;
@@ -2234,6 +2233,7 @@
 			children = (
 				2A1E7E5F2B8DC879004F0C07 /* Settings.xcstrings */,
 				2AA673202B917BA400B8F7E6 /* Panes */,
+				2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */,
 				2AA6731F2B917B8F00B8F7E6 /* Other Views */,
 			);
 			name = Settings;
@@ -2645,7 +2645,6 @@
 			files = (
 				2A6F0D551B5500E100C2D03C /* Assets.xcassets in Resources */,
 				2A6F0D561B5500E100C2D03C /* Syntaxes in Resources */,
-				2AA6731C2B9178AB00B8F7E6 /* Localizable.xcstrings in Resources */,
 				2A6F0D571B5500E100C2D03C /* Themes in Resources */,
 				2A6F0D5A1B5500E100C2D03C /* CotEditor.help in Resources */,
 				2A6F0D591B5500E100C2D03C /* CotEditor.sdef in Resources */,
@@ -2654,6 +2653,7 @@
 				2AE73ECD2035223100D8903B /* Credits.css in Resources */,
 				2A80C6691CEE540F00AA664D /* Acknowledgments.html in Resources */,
 				2AE73EC9203520E100D8903B /* Acknowledgments.css in Resources */,
+				2AA6731C2B9178AB00B8F7E6 /* Localizable.xcstrings in Resources */,
 				2A5E6FC42A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
 				2ACDA2912B81E8B300B2EBA8 /* GeneralSettings.xcstrings in Resources */,
 				2ACDA2A52B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings in Resources */,
