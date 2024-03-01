@@ -79,30 +79,15 @@ extension EditorCountResult.Count {
 
 // MARK: -
 
-final actor EditorCounter {
+struct EditorCounter {
     
-    // MARK: Private Properties
+    // MARK: Public Properties
     
-    let string: String
-    let selectedRanges: [Range<String.Index>]
+    var string: String
+    var selectedRanges: [Range<String.Index>]
     
-    let requiredInfo: EditorInfoTypes
-    let countsWholeText: Bool
-    
-    
-    
-    // MARK: Lifecycle
-    
-    init(string: String, selectedRanges: [Range<String.Index>], requiredInfo: EditorInfoTypes, countsWholeText: Bool) {
-        
-        assert(selectedRanges.allSatisfy { $0.upperBound <= string.endIndex })
-        
-        self.string = string
-        self.selectedRanges = selectedRanges
-        self.requiredInfo = requiredInfo
-        self.countsWholeText = countsWholeText
-    }
-    
+    var requiredInfo: EditorInfoTypes
+    var countsWholeText: Bool
     
     
     // MARK: Public Methods

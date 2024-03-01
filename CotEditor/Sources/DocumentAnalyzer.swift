@@ -106,11 +106,12 @@ final class DocumentAnalyzer {
             // selectedRanges can be empty when the document is already closed
             guard !selectedRanges.isEmpty, let self else { return }
             
-            let counter = EditorCounter(string: string, selectedRanges: selectedRanges, requiredInfo: self.requiredInfoTypes, countsWholeText: self.needsCountWholeText)
+            let countsWholeText = self.needsCountWholeText
+            let counter = EditorCounter(string: string, selectedRanges: selectedRanges, requiredInfo: self.requiredInfoTypes, countsWholeText: countsWholeText)
             
-            var result = try await counter.count()
+            var result = try counter.count()
             
-            if counter.countsWholeText {
+            if countsWholeText {
                 self.needsCountWholeText = false
             } else {
                 result.lines.entire = self.result.lines.entire
