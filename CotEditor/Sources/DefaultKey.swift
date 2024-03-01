@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@ class DefaultKeys: RawRepresentable, Hashable, CustomStringConvertible {
 
 
 
-class DefaultKey<Value>: DefaultKeys {
+class DefaultKey<Value>: DefaultKeys, @unchecked Sendable {
     
     enum Error: Swift.Error {
         
@@ -76,7 +76,7 @@ class DefaultKey<Value>: DefaultKeys {
 
 // Specialize RawRepresentable types to use them for UserDefaults observation using UserDefaults.Publisher.
 // Otherwise, the type inference for RawRepresentable doesn't work unfortunately.
-final class RawRepresentableDefaultKey<Value>: DefaultKey<Value> where Value: RawRepresentable {
+final class RawRepresentableDefaultKey<Value>: DefaultKey<Value>, @unchecked Sendable where Value: RawRepresentable {
     
     override func newValue(from value: Any?) throws -> Value {
         
