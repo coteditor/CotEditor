@@ -34,12 +34,6 @@
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "%@ con BOM";
 
-// default filename
-"Untitled" = "Sin título";
-
-// filename suffix for copied file
-"copy" = "copiar";
-
 // syntax name
 "None" = "Nada";
 
@@ -48,19 +42,6 @@
 
 // keyboard key name
 "Space" = "Espacio";
-
-// Contextual menu items
-"Rename “%@”" = "Renombrar “%@”";
-"Duplicate “%@”" = "Duplicar “%@”";
-"Restore “%@”" = "Restaurar “%@”";
-"Export “%@”…" = "Exportar “%@”…";
-"Reveal “%@” in Finder" = "Mostrar “%@” en el Finder";
-
-// filename field label variation for save panel
-"Export As:" = "Exportar como:";
-
-// button label for open panel
-"Import" = "Importar";
 
 // print header/footer
 "Printed on %@" = "Impreso el %@";  // %@ is date

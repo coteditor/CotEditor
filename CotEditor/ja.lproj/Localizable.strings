@@ -34,12 +34,6 @@
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "%@BOM付き";
 
-// default filename
-"Untitled" = "名称未設定";
-
-// filename suffix for copied file
-"copy" = "コピー";
-
 // syntax name
 "None" = "なし";
 
@@ -48,19 +42,6 @@
 
 // keyboard key name
 "Space" = "スペース";
-
-// Contextual menu items
-"Rename “%@”" = "“%@”を名称変更";
-"Duplicate “%@”" = "“%@”を複製";
-"Restore “%@”" = "“%@”を元に戻す";
-"Export “%@”…" = "“%@”を書き出す…";
-"Reveal “%@” in Finder" = "“%@”をFinderに表示";
-
-// filename field label variation for save panel
-"Export As:" = "名前:";
-
-// button label for open panel
-"Import" = "読み込む";
 
 // print header/footer
 "Printed on %@" = "プリント: %@";  // %@ is date

@@ -119,14 +119,16 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
                 
             case #selector(renameTheme(_:)):
                 if let settingName, !isContextMenu {
-                    menuItem.title = String(localized: "Rename “\(settingName)”")
+                    menuItem.title = String(localized: "Rename “\(settingName)”",
+                                            table: "SettingFile", comment: "menu item label")
                 }
                 menuItem.isHidden = !itemSelected
                 return state?.isBundled == false
                 
             case #selector(duplicateTheme(_:)):
                 if let settingName, !isContextMenu {
-                    menuItem.title = String(localized: "Duplicate “\(settingName)”")
+                    menuItem.title = String(localized: "Duplicate “\(settingName)”",
+                                            table: "SettingFile", comment: "menu item label")
                 }
                 menuItem.isHidden = !itemSelected
                 
@@ -135,14 +137,16 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
                 
             case #selector(restoreTheme(_:)):
                 if let settingName, !isContextMenu {
-                    menuItem.title = String(localized: "Restore “\(settingName)”")
+                    menuItem.title = String(localized: "Restore “\(settingName)”",
+                                            table: "SettingFile", comment: "menu item label")
                 }
                 menuItem.isHidden = (state?.isBundled == false || !itemSelected)
                 return state?.isRestorable == true
                 
             case #selector(exportTheme(_:)):
                 if let settingName, !isContextMenu {
-                    menuItem.title = String(localized: "Export “\(settingName)”…")
+                    menuItem.title = String(localized: "Export “\(settingName)”…",
+                                            table: "SettingFile", comment: "menu item label")
                 }
                 menuItem.isHidden = !itemSelected
                 return state?.isCustomized == true
@@ -153,7 +157,8 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
                 
             case #selector(revealThemeInFinder(_:)):
                 if let settingName, !isContextMenu {
-                    menuItem.title = String(localized: "Reveal “\(settingName)” in Finder")
+                    menuItem.title = String(localized: "Reveal “\(settingName)” in Finder",
+                                            table: "SettingFile", comment: "menu item label")
                 }
                 return state?.isCustomized == true
                 
@@ -396,7 +401,8 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
         savePanel.isExtensionHidden = true
-        savePanel.nameFieldLabel = String(localized: "Export As:")
+        savePanel.nameFieldLabel = String(localized: "Export As:", table: "SettingFile",
+                                          comment: "filename field label for save panel")
         savePanel.nameFieldStringValue = settingName
         savePanel.allowedContentTypes = [ThemeManager.shared.fileType]
         
@@ -416,7 +422,7 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
     @IBAction func importTheme(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
-        openPanel.prompt = String(localized: "Import")
+        openPanel.prompt = String(localized: "Import", table: "SettingFile", comment: "button label")
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
@@ -555,10 +561,13 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
     private func deleteTheme(name: String) {
         
         let alert = NSAlert()
-        alert.messageText = String(localized: "DeletionConfirmationAlert.message", defaultValue: "Are you sure you want to delete “\(name)”?", table: "SettingFile")
-        alert.informativeText = String(localized: "DeletionConfirmationAlert.informativeText", defaultValue: "This action cannot be undone.", table: "SettingFile")
+        alert.messageText = String(localized: "DeletionConfirmationAlert.message",
+                                   defaultValue: "Are you sure you want to delete “\(name)”?", table: "SettingFile")
+        alert.informativeText = String(localized: "DeletionConfirmationAlert.informativeText",
+                                       defaultValue: "This action cannot be undone.", table: "SettingFile")
         alert.addButton(withTitle: String(localized: "Cancel"))
-        alert.addButton(withTitle: String(localized: "DeletionConfirmationAlert.button.delete", defaultValue: "Delete", table: "SettingFile"))
+        alert.addButton(withTitle: String(localized: "DeletionConfirmationAlert.button.delete",
+                                          defaultValue: "Delete", table: "SettingFile"))
         alert.buttons.last?.hasDestructiveAction = true
         
         let window = self.view.window!

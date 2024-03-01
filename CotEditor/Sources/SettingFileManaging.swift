@@ -192,7 +192,7 @@ extension SettingFileManaging {
     /// Returns setting name appending number suffix without extension.
     func savableSettingName(for proposedName: String, appendingCopySuffix: Bool = false) -> String {
         
-        let suffix = appendingCopySuffix ? String(localized: "copy", comment: "filename suffix for copied file") : nil
+        let suffix = appendingCopySuffix ? String(localized: "copy", table: "SettingFile", comment: "suffix for copied setting file") : nil
         
         return self.settingNames.createAvailableName(for: proposedName, suffix: suffix)
     }

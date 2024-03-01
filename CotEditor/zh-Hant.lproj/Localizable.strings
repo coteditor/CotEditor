@@ -34,12 +34,6 @@
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "%@ with BOM";  // No need to be translated because "UTF-8 with BOM" is acceptable in zh-Hans.
 
-// default filename
-"Untitled" = "未命名";
-
-// filename suffix for copied file
-"copy" = "拷貝";
-
 // syntax name
 "None" = "無";
 
@@ -48,19 +42,6 @@
 
 // keyboard key name
 "Space" = "空格";
-
-// Contextual menu items
-"Rename “%@”" = "給「%@」重新命名";
-"Duplicate “%@”" = "拷貝「%@」";
-"Restore “%@”" = "還原「%@」";
-"Export “%@”…" = "輸出「%@」⋯";
-"Reveal “%@” in Finder" = "顯示「%@」於Finder";
-
-// filename field label variation for save panel
-"Export As:" = "輸出為：";
-
-// button label for open panel
-"Import" = "輸入";
 
 // print header/footer
 "Printed on %@" = "列印：%@";  // %@ is date

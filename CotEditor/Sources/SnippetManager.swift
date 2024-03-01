@@ -73,7 +73,9 @@ final class SnippetManager {
     /// - Returns: the snippet created.
     func createUntitledSetting() -> Snippet {
         
-        let name = self.snippets.map(\.name).createAvailableName(for: String(localized: "Untitled"))
+        let name = self.snippets.map(\.name)
+            .createAvailableName(for: String(localized: "Untitled", table: "SettingFile",
+                                             comment: "initial setting file name"))
         
         return Snippet(name: name)
     }
@@ -193,7 +195,7 @@ private extension SnippetManager {
         let snippets = texts.enumerated()
             .filter { !$0.element.isEmpty }
             .compactMap {
-                Snippet(name: String(localized: "Insert Text \($0.offset)", comment: "label for snippet command (deprecated)"),
+                Snippet(name: String(localized: "Insert Text \($0.offset)", comment: "label for legacy snippet command (deprecated)"),
                         shortcut: shortcuts[$0.offset], format: $0.element)
             }
         

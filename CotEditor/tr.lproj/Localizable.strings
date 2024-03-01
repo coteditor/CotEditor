@@ -34,12 +34,6 @@
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "BOM ile %@";
 
-// default filename
-"Untitled" = "Adsız";
-
-// filename suffix for copied file
-"copy" = "kopyası";
-
 // syntax name
 "None" = "Hiçbiri";
 
@@ -48,19 +42,6 @@
 
 // keyboard key name
 "Space" = "Boşluk";
-
-// Contextual menu items
-"Rename “%@”" = "“%@” Ögesini Yeniden Adlandır";
-"Duplicate “%@”" = "“%@” Ögesini Çoğalt";
-"Restore “%@”" = "“%@” Ögesini Geri Yükle";
-"Export “%@”…" = "“%@” Ögesini Dışa Aktar";
-"Reveal “%@” in Finder" = "“%@” Ögesini Finder’da Göster";
-
-// filename field label variation for save panel
-"Export As:" = "Farklı Dışa Aktar:";
-
-// button label for open panel
-"Import" = "İçe Aktar";
 
 // print header/footer
 "Printed on %@" = "%@ tarihinde yazdırıldı";  // %@ is date

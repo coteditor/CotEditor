@@ -34,12 +34,6 @@
 // encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)
 "%@ with BOM" = "%@ s BOM";
 
-// default filename
-"Untitled" = "Bez názvu";
-
-// filename suffix for copied file
-"copy" = "Kopírovat";
-
 // syntax name
 "None" = "Žádný";
 
@@ -48,19 +42,6 @@
 
 // keyboard key name
 "Space" = "Mezerník";
-
-// Contextual menu items
-"Rename “%@”" = "Přejmenovat „%@“";
-"Duplicate “%@”" = "Duplikovat „%@“";
-"Restore “%@”" = "Obnovit „%@“";
-"Export “%@”…" = "Exportovat „%@“…";
-"Reveal “%@” in Finder" = "Zobrazit „%@“ ve Finderu";
-
-// filename field label variation for save panel
-"Export As:" = "Exportovat jako:";
-
-// button label for open panel
-"Import" = "Importovat";
 
 // print header/footer
 "Printed on %@" = "Vytištěno %@";  // %@ is date

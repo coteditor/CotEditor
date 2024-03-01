@@ -102,7 +102,8 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
                 
             case #selector(duplicateSetting(_:)):
                 if let settingName, !isContextMenu {
-                    menuItem.title = String(localized: "Duplicate “\(settingName)”")
+                    menuItem.title = String(localized: "Duplicate “\(settingName)”",
+                                            table: "SettingFile", comment: "menu item label")
                 }
                 menuItem.isHidden = !itemSelected
                 
@@ -111,14 +112,16 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
                 
             case #selector(restoreSetting(_:)):
                 if let settingName, !isContextMenu {
-                    menuItem.title = String(localized: "Restore “\(settingName)”")
+                    menuItem.title = String(localized: "Restore “\(settingName)”",
+                                            table: "SettingFile", comment: "menu item label")
                 }
                 menuItem.isHidden = (state?.isBundled == false || !itemSelected)
                 return state?.isRestorable ?? false
                 
             case #selector(exportSetting(_:)):
                 if let settingName, !isContextMenu {
-                    menuItem.title = String(localized: "Export “\(settingName)”…")
+                    menuItem.title = String(localized: "Export “\(settingName)”…",
+                                            table: "SettingFile", comment: "menu item label")
                 }
                 menuItem.isHidden = !itemSelected
                 return state?.isCustomized ?? false
@@ -129,7 +132,8 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
                 
             case #selector(revealSettingInFinder(_:)):
                 if let settingName, !isContextMenu {
-                    menuItem.title = String(localized: "Reveal “\(settingName)” in Finder")
+                    menuItem.title = String(localized: "Reveal “\(settingName)” in Finder",
+                                            table: "SettingFile", comment: "menu item label")
                 }
                 return state?.isCustomized ?? false
                 
@@ -331,7 +335,8 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
         savePanel.isExtensionHidden = false
-        savePanel.nameFieldLabel = String(localized: "Export As:")
+        savePanel.nameFieldLabel = String(localized: "Export As:", table: "SettingFile",
+                                          comment: "filename field label for save panel")
         savePanel.nameFieldStringValue = settingName
         savePanel.allowedContentTypes = [SyntaxManager.shared.fileType]
         
@@ -351,7 +356,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     @IBAction func importSetting(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
-        openPanel.prompt = String(localized: "Import")
+        openPanel.prompt = String(localized: "Import", table: "SettingFile", comment: "button label")
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
@@ -464,10 +469,13 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     private func deleteSetting(name: String) {
         
         let alert = NSAlert()
-        alert.messageText = String(localized: "DeletionConfirmationAlert.message", defaultValue: "Are you sure you want to delete “\(name)”?", table: "SettingFile")
-        alert.informativeText = String(localized: "DeletionConfirmationAlert.informativeText", defaultValue: "This action cannot be undone.", table: "SettingFile")
+        alert.messageText = String(localized: "DeletionConfirmationAlert.message",
+                                   defaultValue: "Are you sure you want to delete “\(name)”?", table: "SettingFile")
+        alert.informativeText = String(localized: "DeletionConfirmationAlert.informativeText",
+                                       defaultValue: "This action cannot be undone.", table: "SettingFile")
         alert.addButton(withTitle: String(localized: "Cancel"))
-        alert.addButton(withTitle: String(localized: "DeletionConfirmationAlert.button.delete", defaultValue: "Delete", table: "SettingFile"))
+        alert.addButton(withTitle: String(localized: "DeletionConfirmationAlert.button.delete",
+                                          defaultValue: "Delete", table: "SettingFile"))
         alert.buttons.last?.hasDestructiveAction = true
         
         let window = self.view.window!
