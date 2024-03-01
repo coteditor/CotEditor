@@ -27,7 +27,6 @@ import SwiftUI
 
 struct AppearanceSettingsView: View {
     
-    @AppStorage(.fontPreference) private var fontPreference
     @AppStorage(.font) private var font
     @AppStorage(.shouldAntialias) private var shouldAntialias
     @AppStorage(.ligature) private var ligature
@@ -46,20 +45,6 @@ struct AppearanceSettingsView: View {
     var body: some View {
         
         Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 8) {
-            GridRow {
-                Text("Prefer font using:", tableName: "AppearanceSettings")
-                    .gridColumnAlignment(.trailing)
-                
-                Picker(selection: $fontPreference) {
-                    Text(FontPreference.automatic.label).tag(FontPreference.automatic)
-                    Divider()
-                    Text(FontPreference.standard.label).tag(FontPreference.standard)
-                    Text(FontPreference.monospaced.label).tag(FontPreference.monospaced)
-                } label: {
-                    EmptyView()
-                }.fixedSize()
-            }
-            
             GridRow {
                 Text("Standard font:", tableName: "AppearanceSettings")
                     .gridColumnAlignment(.trailing)
@@ -208,28 +193,6 @@ private struct ThemeView: NSViewControllerRepresentable {
     
     func updateNSViewController(_ nsViewController: ThemeViewController, context: Context) {
         
-    }
-}
-
-
-private extension FontPreference {
-    
-    var label: String {
-        
-        switch self {
-            case .automatic:
-                String(localized: "FontPreference.automatic.label",
-                       defaultValue: "Automatically",
-                       table: "AppearanceSettings")
-            case .monospaced:
-                String(localized: "FontPreference.monospaced.label",
-                       defaultValue: "Monospaced",
-                       table: "AppearanceSettings")
-            case .standard:
-                String(localized: "FontPreference.standard.label",
-                       defaultValue: "Standard",
-                       table: "AppearanceSettings")
-        }
     }
 }
 

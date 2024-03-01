@@ -1,154 +1,73 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Append a space to comment delimiter" : {
+    "Add" : {
+      "comment" : "button label",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přidat mezery do oddělovačů komentáře"
+            "value" : "Přidat"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leerzeichen zu Kommentartrennzeichen hinzufügen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Append a space to comment delimiter"
+            "value" : "Hinzufügen"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Append a space to comment delimiter"
+            "value" : "Add"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Añadir un espacio en el delimitador de comentario"
+            "value" : "Añadir"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajouter un espace après le symbole de commentaire"
+            "value" : "Ajouter"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aggiungi uno spazio al delimitatore del commento"
+            "value" : "Aggiungi"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "コメント記号にスペースを追加"
+            "value" : "追加"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Anexar espaço ao delimitador de comentários"
+            "value" : "Adicionar"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yorum sınırlayıcısına bir boşluk iliştir"
+            "value" : "Ekle"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在注释符号后追加空格"
+            "value" : "添加"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在註釋符號後追加空格"
-          }
-        }
-      }
-    },
-    "Automatically indent while typing" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automaticky odsazovat při psaní"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Während der Texteingabe automatisch einrücken"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Automatically indent while typing"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatically indent while typing"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sangrar automáticamente al escribir"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Indenter automatiquement lors de la frappe"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rientro automatico durante la digitazione"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "入力中に自動でインデント"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Indentar automaticamente ao escrever"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yazarken kendiliğinden girintile"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "键入时自动缩进"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在鍵入時自動縮進"
+            "value" : "加入"
           }
         }
       }
@@ -229,83 +148,79 @@
         }
       }
     },
-    "Automatically trim trailing whitespace" : {
+    "Check grammar with spelling" : {
+      "comment" : "use localization provided by Apple",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Automaticky odstranit mezery na konci řádku"
+            "value" : "Kontrolovat gramatiku a pravopis"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leerzeichen am Zeilenende automatisch entfernen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Automatically trim trailing whitespace"
+            "value" : "Rechtschreib- und Grammatikprüfung"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Automatically trim trailing whitespace"
+            "value" : "Check Grammar With Spelling"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recortar automáticamente los espacios en blanco finales"
+            "value" : "Comprobar gramática con la ortografía"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Retirer automatiquement les espaces en fin de ligne"
+            "value" : "Vérifier la grammaire et l’orthographe"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rimuovi automaticamente spazi a fine riga"
+            "value" : "Controlla grammatica e ortografia"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "行末の空白を自動的に削除"
+            "value" : "スペルと一緒に文法をチェック"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apagar espaço em branco à direita automaticamente"
+            "value" : "Verificar Gramática com Ortografia"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sondaki boşlukları kendiliğinden kırp"
+            "value" : "Yazım ve Dilbilgisi Denetimi Yap"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自动去除末尾空格"
+            "value" : "检查拼写和语法"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自動去除末尾空格"
+            "value" : "檢查拼字文法"
           }
         }
       }
     },
     "Check spelling while typing" : {
+      "comment" : "use localization provided by Apple",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -316,7 +231,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rechtschreibung während der Texteingabe prüfen"
+            "value" : "Während der Texteingabe prüfen"
           }
         },
         "en-GB" : {
@@ -334,7 +249,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vérifier le document lors de la saisie"
+            "value" : "Vérifier l’orthographe lors de la saisie"
           }
         },
         "it" : {
@@ -346,7 +261,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "入力中にスペルをチェック"
+            "value" : "入力中にスペルチェック"
           }
         },
         "pt" : {
@@ -371,76 +286,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在輸入時同步檢查拼字"
-          }
-        }
-      }
-    },
-    "Comment:" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Komentář:"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kommentar:"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comment:"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comentario:"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Commentaires :"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Commento:"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "コメント:"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comentário:"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yorum:"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "注释："
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "註釋："
           }
         }
       }
@@ -585,772 +430,438 @@
         }
       }
     },
-    "Content parse:" : {
+    "Correct spelling automatically" : {
+      "comment" : "use localization provided by Apple",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Analýza obsahu:"
+            "value" : "Automaticky opravovat pravopis"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inhaltsanalyse:"
+            "value" : "Rechtschreibung automatisch korrigieren"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Content parse:"
+            "value" : "Correct Spelling Automatically"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Análisis de contenido:"
+            "value" : "Corregir ortografía automáticamente"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parsing :"
+            "value" : "Corriger l’orthographe automatiquement"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Analizza il contenuto:"
+            "value" : "Correggi automaticamente ortografia"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "内容解析:"
+            "value" : "スペルを自動的に修正"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Análise de conteúdo:"
+            "value" : "Corrigir Ortografia Automaticamente"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "İçerik ayrıştırma:"
+            "value" : "Yazım Hatalarını Otomatik Düzelt"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "内容解析："
+            "value" : "自动纠正拼写"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "內容解析："
+            "value" : "自動修正拼字"
           }
         }
       }
     },
-    "Delay:" : {
+    "Font:" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zpoždění:"
+            "value" : "Písmo:"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verzögerung:"
+            "value" : "Schrift:"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Delay:"
+            "value" : "Font:"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Retardo:"
+            "value" : "Tipo de letra:"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Délai :"
+            "value" : "Police :"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ritardo:"
+            "value" : "Font:"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "遅延:"
+            "value" : "フォント:"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atraso:"
+            "value" : "Fonte:"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gecikme:"
+            "value" : "Font:"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "延迟："
+            "value" : "字体："
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "延遲："
+            "value" : "字體："
           }
         }
       }
     },
-    "Detect indent style on document opening" : {
+    "FontType.monospaced.label" : {
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zjistit styl odsazení při otevření dokumentu"
+            "value" : "Neproporcionální"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Einzugsstil beim Öffnen ermitteln"
+            "value" : "Nichtproportional"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Monospaced"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detect indent style on document opening"
+            "value" : "Monospaced"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detectar el estilo de sangría al abrir el documento"
+            "value" : "Monoespaciado"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Détecter le style d’indentation à l’ouverture du document"
+            "value" : "Monochasse"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rileva il tipo di rientro all’apertura del documento"
+            "value" : "Spaziatura fissa"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "書類を開くときにインデントスタイルを自動判定"
+            "value" : "等幅"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detectar estilo de recuo ao abrir documentos"
+            "value" : "Monoespaçado"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Belge açılışında girintileme biçemini algıla"
+            "value" : "Sabit Genişlikli"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在打开文稿时检测缩进格式"
+            "value" : "等宽"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在開啟文件時檢測縮排格式"
+            "value" : "等寬型"
           }
         }
       }
     },
-    "Highlight “<>”" : {
+    "FontType.standard.label" : {
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zvýraznit <>"
+            "value" : "Standardní"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "„<>“ markieren"
+            "value" : "Standard"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Standard"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Highlight “<>”"
+            "value" : "Standard"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Resaltar “<>”"
+            "value" : "Estándar"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Surligner “<>”"
+            "value" : "Standard"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Evidenzia “<>”"
+            "value" : "Standard"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“<>”をハイライト"
+            "value" : "標準"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Destacar “<>”"
+            "value" : "Padrão"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“<>” ayraçlarını vurgula"
+            "value" : "Standart"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "高亮“<>”"
+            "value" : "标准"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "高亮「<>」"
+            "value" : "標準型"
           }
         }
       }
     },
-    "Highlight instances of selected text" : {
+    "Mode" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zvýraznit instance vybraného textu"
+            "value" : "Režim"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Instanzen des ausgewählten Textes markieren"
+            "value" : "Modus"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Highlight instances of selected text"
+            "value" : "Mode"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Resaltar las instancias del texto seleccionado"
+            "value" : "Modo"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Surligner les autres instances du texte sélectionné"
+            "value" : "Mode"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Evidenzia le istanze del testo selezionato"
+            "value" : "Modalità"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選択した文字をハイライト"
+            "value" : "モード"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Destacar instâncias do texto selecionado"
+            "value" : "Modo"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seçili metni vurgula"
+            "value" : "Mod"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "高亮选中文本"
+            "value" : "模式"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "高亮選中文字"
+            "value" : "模式"
           }
         }
       }
     },
-    "Highlight matching braces “()” “[]” “{}”" : {
+    "Not found" : {
+      "comment" : "accessibility label",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zvýraznit odpovídající závorky (), [], {}"
+            "value" : "Nenalezeno"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Passende Klammern „()“ „[]“ „{}“ markieren"
+            "value" : "Nicht gefunden"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Highlight matching braces “()” “[]” “{}”"
+            "value" : "Not found"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Resaltar “()” “[]” “{}”"
+            "value" : "No encontrado"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Surligner les “()” “[]” “{}” associés"
+            "value" : "Introuvable"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Evidenzia le parentesi “()” “[]” “{}” accoppiate"
+            "value" : "Non trovato"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "対応する括弧“()” “[]” “{}”をハイライト"
+            "value" : "見つかりませんでした"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Destacar pares de chaves “()” “[]” “{}”"
+            "value" : "Não Encontrado"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eşleşen “()” “[]” “{}” ayraçlarını vurgula"
+            "value" : "Bulunamadı"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "高亮配对括号“()” “[]” “{}”"
+            "value" : "未找到"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "高亮配對括弧「()」「[]」「{}」"
-          }
-        }
-      }
-    },
-    "Including whitespace-only lines" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zahrnout řádky skládající se pouze z mezer"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nur aus Leerzeichen bestehende Zeilen einschließen"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Including whitespace-only lines"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Incluyendo líneas con solo espacios en blanco"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Même les lignes composées uniquement d’espaces"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Includere le righe di solo spazio bianco"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "空白のみの行を含める"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Incluindo linhas somente com espaços em branco"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yalnızca boşluk olan satırlar içeriliyor"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "包含只有空格的行"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "包含只有空格的行"
-          }
-        }
-      }
-    },
-    "Indent selection with Tab key" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Odsadit výběr pomocí klávesy tabulátoru"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Auswahl mit der Tabulatortaste einrücken"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Indent selection with Tab key"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Selección de sangría con la tecla tabulación"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Indenter la sélection avec la touche Tabulation"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rientra la selezione con il tasto Tab"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tabキーで選択範囲をインデント"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recuar seleção com a tecla Tab"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seçimi Sekme düğmesi ile girintile"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用Tab键对选择进行缩进"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用Tab鍵對選擇進行縮排"
-          }
-        }
-      }
-    },
-    "Indent width:" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Šířka odsazení:"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einzugsweite:"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Indent width:"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ancho de sangría:"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Largeur :"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ampiezza rientro:"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "インデント幅:"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Largura do recuo:"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Girintileme genişliği:"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "以"
-          }
-        }
-      }
-    },
-    "Indentation:" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Odsazení:"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einrückung:"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Indentation:"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sangría:"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Indentation :"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rientro:"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "インデント:"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recuo:"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Girintileme:"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "缩进："
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "縮排："
-          }
-        }
-      }
-    },
-    "Link URLs in document" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktivní odkazy URL"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "URLs im Dokument verlinken"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Link URLs in document"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enlaces URL en el documento"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lier les URLs dans le document"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Collegamenti agli URL nel documento"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "書類中のURLをリンク"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Criar links de URLs no documento"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Belgedeki URL’leri bağlantıya dönüştür"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "链接文稿中的 URL"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "連結文件中的URL"
+            "value" : "找不到"
           }
         }
       }
@@ -1425,78 +936,79 @@
         }
       }
     },
-    "seconds" : {
-      "comment" : "init for delay time",
+    "Remove" : {
+      "comment" : "button label",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "sekundy"
+            "value" : "Odstranit"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sekunden"
+            "value" : "Entfernen"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "seconds"
+            "value" : "Remove"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "segundos"
+            "value" : "Eliminar"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "secondes"
+            "value" : "Supprimer"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "secondi"
+            "value" : "Rimuovi"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "秒"
+            "value" : "削除"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "segundos"
+            "value" : "Remover"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "saniye"
+            "value" : "Sil"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "秒"
+            "value" : "移除"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "秒"
+            "value" : "移除"
           }
         }
       }
     },
     "Smart copy/paste" : {
+      "comment" : "use localization provided by Apple",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1567,6 +1079,7 @@
       }
     },
     "Smart dashes" : {
+      "comment" : "use localization provided by Apple",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1637,6 +1150,7 @@
       }
     },
     "Smart quotes" : {
+      "comment" : "use localization provided by Apple",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1706,144 +1220,72 @@
         }
       }
     },
-    "spaces" : {
-      "comment" : "unit for indentation",
+    "Spelling:" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "mezery"
+            "value" : "Pravopis:"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leerzeichen"
+            "value" : "Rechtschreibung:"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "spaces"
+            "value" : "Spelling:"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "espacios"
+            "value" : "Ortografía:"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "espaces"
+            "value" : "Orthographe :"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "spazi"
+            "value" : "Ortografia:"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "スペース"
+            "value" : "スペル:"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "espaços"
+            "value" : "Ortografia:"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "boşluk"
+            "value" : "Yazım Denetimi:"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "个空格缩进"
+            "value" : "拼写："
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "個空格縮排"
-          }
-        }
-      }
-    },
-    "Spaces" : {
-      "comment" : "indent style",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mezery"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Leerzeichen"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spaces"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Espacios"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espaces"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spazi"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スペース"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espaços"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Boşluklar"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "空格"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "空格"
+            "value" : "串字檢查："
           }
         }
       }
@@ -1918,6 +1360,76 @@
         }
       }
     },
+    "Substitution:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nahrazení:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ersetzung:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Substitution:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sustitución:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Substitution :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sostituzione:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動置換:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Substituição:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Değişimler:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "替换："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取代："
+          }
+        }
+      }
+    },
     "Suggest completions while typing" : {
       "localizations" : {
         "cs" : {
@@ -1988,143 +1500,95 @@
         }
       }
     },
-    "Tabs" : {
-      "comment" : "indent style",
+    "Syntax" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tabulátory"
+            "value" : "Syntaxe"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tabulatoren"
+            "value" : "Syntax"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tabs"
+            "value" : "Syntax"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pestañas"
+            "state" : "translated",
+            "value" : "Sintaxis"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tabulations"
+            "value" : "Syntaxe"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tabulazioni"
+            "value" : "Sintassi"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "タブ"
+            "value" : "シンタックス"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tabulações"
+            "value" : "Sintaxe"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sekmeler"
+            "value" : "Sözdizim"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "制表符"
+            "value" : "语法"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "定位符號"
+            "value" : "文法定義"
           }
         }
       }
     },
-    "Whitespace:" : {
+    "This syntax does not exist" : {
+      "comment" : "tooltip",
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mezery:"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leerraum:"
+            "value" : "Dieses Syntax existiert nicht"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Whitespace:"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espacio en blanco:"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espace :"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spazio bianco:"
+            "value" : "This syntax does not exist"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "空白:"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Espaço em Branco:"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Boş alan:"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "空格："
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "空格："
+            "value" : "このシンタックスは存在しません"
           }
         }
       }

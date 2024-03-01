@@ -84,6 +84,7 @@ private extension SettingsPane {
             case .appearance: AppearanceSettingsView()
             case .window: WindowSettingsView()
             case .edit: EditSettingsView()
+            case .mode: ModeSettingsView()
             case .format: FormatSettingsView()
             case .snippets: SnippetsSettingsView()
             case .keyBindings: KeyBindingsSettingsView()

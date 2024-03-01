@@ -33,26 +33,16 @@ struct EditSettingsView: View {
     @AppStorage(.autoIndent) private var autoIndent
     @AppStorage(.indentWithTabKey) private var indentWithTabKey
     
-    @AppStorage(.smartInsertAndDelete) private var smartInsertAndDelete
-    @AppStorage(.enableSmartQuotes) private var enableSmartQuotes
-    @AppStorage(.enableSmartDashes) private var enableSmartDashes
-    @AppStorage(.balancesBrackets) private var balancesBrackets
     @AppStorage(.autoTrimsTrailingWhitespace) private var autoTrimsTrailingWhitespace
     @AppStorage(.trimsWhitespaceOnlyLines) private var trimsWhitespaceOnlyLines
     
     @AppStorage(.appendsCommentSpacer) private var appendsCommentSpacer
     
     @AppStorage(.autoLinkDetection) private var autoLinkDetection
-    @AppStorage(.checkSpellingAsType) private var checkSpellingAsType
     @AppStorage(.highlightBraces) private var highlightBraces
     @AppStorage(.highlightLtGt) private var highlightLtGt
     @AppStorage(.highlightSelectionInstance) private var highlightSelectionInstance
     @AppStorage(.selectionInstanceHighlightDelay) private var selectionInstanceHighlightDelay
-    
-    @AppStorage(.completesDocumentWords) private var completesDocumentWords
-    @AppStorage(.completesSyntaxWords) private var completesSyntaxWords
-    @AppStorage(.completesStandardWords) private var completesStandardWords
-    @AppStorage(.autoComplete) private var autoComplete
     
     
     var body: some View {
@@ -80,16 +70,10 @@ struct EditSettingsView: View {
             }
             
             GridRow {
-                Text("Substitution:", tableName: "EditSettings")
+                Text("Whitespace:", tableName: "EditSettings")
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading, spacing: 6) {
-                    Toggle(String(localized: "Smart copy/paste", table: "EditSettings"), isOn: $smartInsertAndDelete)
-                    HStack(alignment: .firstTextBaseline) {
-                        Toggle(String(localized: "Smart quotes", table: "EditSettings"), isOn: $enableSmartQuotes)
-                        Toggle(String(localized: "Smart dashes", table: "EditSettings"), isOn: $enableSmartDashes)
-                    }
-                    Toggle(String(localized: "Automatically insert closing brackets and quotes", table: "EditSettings"), isOn: $balancesBrackets)
                     Toggle(String(localized: "Automatically trim trailing whitespace", table: "EditSettings"), isOn: $autoTrimsTrailingWhitespace)
                     Toggle(String(localized: "Including whitespace-only lines", table: "EditSettings"), isOn: $trimsWhitespaceOnlyLines)
                         .disabled(!self.autoTrimsTrailingWhitespace)
@@ -112,7 +96,6 @@ struct EditSettingsView: View {
                 
                 VStack(alignment: .leading, spacing: 6) {
                     Toggle(String(localized: "Link URLs in document", table: "EditSettings"), isOn: $autoLinkDetection)
-                    Toggle(String(localized: "Check spelling while typing", table: "EditSettings"), isOn: $checkSpellingAsType)
                     Toggle(String(localized: "Highlight matching braces “()” “[]” “{}”", table: "EditSettings"), isOn: $highlightBraces)
                     Toggle(String(localized: "Highlight “<>”", table: "EditSettings"), isOn: $highlightLtGt)
                         .disabled(!self.highlightBraces)
@@ -132,44 +115,13 @@ struct EditSettingsView: View {
                 }
             }
             
-            GridRow {
-                Text("Completion:", tableName: "EditSettings")
-                    .gridColumnAlignment(.trailing)
-                
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("Completion list includes:", tableName: "EditSettings")
-                    Group {
-                        Toggle(String(localized: "Words in document", table: "EditSettings"), isOn: $completesDocumentWords)
-                        Toggle(String(localized: "Words defined in syntax", table: "EditSettings"), isOn: $completesSyntaxWords)
-                        Toggle(String(localized: "Standard words", table: "EditSettings"), isOn: $completesStandardWords)
-                    }.padding(.leading, 20)
-                    
-                    Toggle(String(localized: "Suggest completions while typing", table: "EditSettings"), isOn: $autoComplete)
-                    
-                    Label(String(localized: "Select at least one item to enable completion.", table: "EditSettings"), systemImage: "exclamationmark.triangle")
-                        .fixedSize(horizontal: false, vertical: true)
-                        .symbolVariant(.fill)
-                        .symbolRenderingMode(.multicolor)
-                        .foregroundStyle(.secondary)
-                        .controlSize(.small)
-                        .opacity(self.isValidCompletion ? 0 : 1)
-                        .padding(.trailing, 30)  // for Help button
-                }
-            }
-            
             HStack {
                 Spacer()
                 HelpButton(anchor: "settings_edit")
-            }.padding(.top, -30)
+            }
         }
         .scenePadding()
         .frame(minWidth: 600)
-    }
-    
-    
-    private var isValidCompletion: Bool {
-        
-        self.completesDocumentWords || self.completesSyntaxWords || self.completesStandardWords
     }
 }
 

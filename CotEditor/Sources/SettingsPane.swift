@@ -29,6 +29,7 @@ enum SettingsPane: String, CaseIterable {
     case appearance
     case window
     case edit
+    case mode
     case format
     case snippets
     case keyBindings
@@ -54,6 +55,10 @@ enum SettingsPane: String, CaseIterable {
                 String(localized: "SettingsPane.edit.label",
                        defaultValue: "Edit",
                        table: "Settings")
+            case .mode:
+                String(localized: "SettingsPane.mode.label",
+                       defaultValue: "Mode",
+                       table: "Settings")
             case .format:
                 String(localized: "SettingsPane.format.label",
                        defaultValue: "Format",
@@ -78,6 +83,7 @@ enum SettingsPane: String, CaseIterable {
             case .appearance: "eyeglasses"
             case .window: "uiwindow.split.2x1"
             case .edit: "square.and.pencil"
+            case .mode: "switch.2"
             case .format: "doc.text"
             case .snippets: "note.text"
             case .keyBindings: "keyboard"

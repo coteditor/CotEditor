@@ -109,6 +109,8 @@
 		2A1E7DCA2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */; };
 		2A1E7DD42B8C5A23004F0C07 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E7DD32B8C5A23004F0C07 /* Mode.swift */; };
 		2A1E7DD52B8C5A23004F0C07 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E7DD32B8C5A23004F0C07 /* Mode.swift */; };
+		2A1E7DD02B8C043F004F0C07 /* ModeSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DD22B8C043F004F0C07 /* ModeSettings.xcstrings */; };
+		2A1E7DD12B8C043F004F0C07 /* ModeSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DD22B8C043F004F0C07 /* ModeSettings.xcstrings */; };
 		2A1E7DE52B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */; };
 		2A1E7DE62B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */; };
 		2A1E7DFA2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */; };
@@ -456,6 +458,8 @@
 		2A80C6691CEE540F00AA664D /* Acknowledgments.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgments.html */; };
 		2A8321742980C41600F87D35 /* Image+Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8321732980C41600F87D35 /* Image+Status.swift */; };
 		2A8321752980C41600F87D35 /* Image+Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8321732980C41600F87D35 /* Image+Status.swift */; };
+		2A836D9F2AB1528700B4D458 /* ModeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A836D9E2AB1528700B4D458 /* ModeSettingsView.swift */; };
+		2A836DA02AB1528700B4D458 /* ModeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A836D9E2AB1528700B4D458 /* ModeSettingsView.swift */; };
 		2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A836F7E1D572A5D0044E8EC /* Main.storyboard */; };
 		2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A836F7E1D572A5D0044E8EC /* Main.storyboard */; };
 		2A86C47B20371DBE00B9357C /* FilePermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A86C47A20371DBE00B9357C /* FilePermissions.swift */; };
@@ -950,6 +954,7 @@
 		2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedScrollView.swift; sourceTree = "<group>"; };
 		2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = KeyBindingsSettings.xcstrings; path = mul.lproj/KeyBindingsSettings.xcstrings; sourceTree = "<group>"; };
 		2A1E7DD32B8C5A23004F0C07 /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
+		2A1E7DD22B8C043F004F0C07 /* ModeSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = ModeSettings.xcstrings; path = mul.lproj/ModeSettings.xcstrings; sourceTree = "<group>"; };
 		2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = MultipleReplace.xcstrings; path = mul.lproj/MultipleReplace.xcstrings; sourceTree = "<group>"; };
 		2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = PrintAccessory.xcstrings; path = mul.lproj/PrintAccessory.xcstrings; sourceTree = "<group>"; };
 		2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = EditorOpacity.xcstrings; path = mul.lproj/EditorOpacity.xcstrings; sourceTree = "<group>"; };
@@ -1149,6 +1154,7 @@
 		2A80C66A1CEE541400AA664D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = ja.lproj/Acknowledgments.html; sourceTree = "<group>"; };
 		2A80C66B1CEE541600AA664D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Acknowledgments.html"; sourceTree = "<group>"; };
 		2A8321732980C41600F87D35 /* Image+Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Status.swift"; sourceTree = "<group>"; };
+		2A836D9E2AB1528700B4D458 /* ModeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSettingsView.swift; sourceTree = "<group>"; };
 		2A836F7F1D572A5D0044E8EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2A8544E6267872E0006EF01A /* SyntaxMap */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SyntaxMap; sourceTree = "<group>"; };
 		2A86C47A20371DBE00B9357C /* FilePermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePermissions.swift; sourceTree = "<group>"; };
@@ -1480,6 +1486,7 @@
 				2A65EC292B80C168008096C5 /* AppearanceSettingsView.swift */,
 				2A78BFA31D1B02ED00A583D2 /* WindowSettingsView.swift */,
 				2AFFA7C52B170097005652CD /* EditSettingsView.swift */,
+				2A836D9E2AB1528700B4D458 /* ModeSettingsView.swift */,
 				2AFFA7C22B16E93B005652CD /* FormatSettingsView.swift */,
 				2ACDA2522B813FA500B2EBA8 /* SnippetsSettingsView.swift */,
 				2AA4D3731D1AA0AC001D261D /* KeyBindingsSettingsView.swift */,
@@ -2213,6 +2220,7 @@
 				2ACDA2A72B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings */,
 				2ACDA2992B81E8BB00B2EBA8 /* WindowSettings.xcstrings */,
 				2ACDA2962B81E8B700B2EBA8 /* EditSettings.xcstrings */,
+				2A1E7DD22B8C043F004F0C07 /* ModeSettings.xcstrings */,
 				2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */,
 				2ACDA29C2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings */,
 				2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */,
@@ -2679,6 +2687,7 @@
 				2ACDA2A52B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings in Resources */,
 				2ACDA2972B81E8BB00B2EBA8 /* WindowSettings.xcstrings in Resources */,
 				2ACDA2942B81E8B700B2EBA8 /* EditSettings.xcstrings in Resources */,
+				2A1E7DD02B8C043F004F0C07 /* ModeSettings.xcstrings in Resources */,
 				2AB9E4C02B830902004E5BDC /* FormatSettings.xcstrings in Resources */,
 				2ACDA29A2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings in Resources */,
 				2A902A9D2B86DC140053FC96 /* KeyBindingsSettings.xcstrings in Resources */,
@@ -2773,6 +2782,7 @@
 				2ACDA2A62B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings in Resources */,
 				2ACDA2982B81E8BB00B2EBA8 /* WindowSettings.xcstrings in Resources */,
 				2ACDA2952B81E8B700B2EBA8 /* EditSettings.xcstrings in Resources */,
+				2A1E7DD12B8C043F004F0C07 /* ModeSettings.xcstrings in Resources */,
 				2AB9E4C12B830902004E5BDC /* FormatSettings.xcstrings in Resources */,
 				2ACDA29B2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings in Resources */,
 				2A1E7DCA2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings in Resources */,
@@ -3075,6 +3085,7 @@
 				2A1E7DD42B8C5A23004F0C07 /* Mode.swift in Sources */,
 				2AB857E82B922D7D0079CFA2 /* ModeManager.swift in Sources */,
 				2AB857EB2B93050E0079CFA2 /* ModeOptions.swift in Sources */,
+				2A836D9F2AB1528700B4D458 /* ModeSettingsView.swift in Sources */,
 				2A3581991E597ECE00762AA5 /* MultipleReplace.swift in Sources */,
 				2A231A261E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */,
 				2A231A3A1E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */,
@@ -3443,6 +3454,7 @@
 				2A1E7DD52B8C5A23004F0C07 /* Mode.swift in Sources */,
 				2AB857E92B922D7D0079CFA2 /* ModeManager.swift in Sources */,
 				2AB857EC2B93050E0079CFA2 /* ModeOptions.swift in Sources */,
+				2A836DA02AB1528700B4D458 /* ModeSettingsView.swift in Sources */,
 				2A3581981E597ECE00762AA5 /* MultipleReplace.swift in Sources */,
 				2A231A251E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */,
 				2A231A391E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */,
