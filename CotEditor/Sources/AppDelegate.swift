@@ -49,7 +49,7 @@ private enum BundleIdentifier {
 
 
 @main
-final class AppDelegate: NSObject, NSApplicationDelegate {
+@MainActor final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Enums
     
@@ -71,8 +71,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
-    @MainActor private lazy var settingsWindowController = SettingsWindowController()
-    @MainActor private lazy var acknowledgmentsWindowController = WebDocumentWindowController(fileURL: Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")!)
+    private lazy var settingsWindowController = SettingsWindowController()
+    private lazy var acknowledgmentsWindowController = WebDocumentWindowController(fileURL: Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")!)
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxesMenu: NSMenu?
@@ -83,7 +83,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     #if DEBUG
-    @MainActor private let textKitObserver = NotificationCenter.default
+    private let textKitObserver = NotificationCenter.default
         .publisher(for: NSTextView.didSwitchToNSLayoutManagerNotification)
         .compactMap { $0.object as? NSTextView }
         .sink { Logger.app.debug("\($0.className) did switch to NSLayoutManager.") }
@@ -111,13 +111,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         ProcessInfo.processInfo.automaticTerminationSupportEnabled = true
         
         // instantiate shared instances
-        Task { @MainActor in
-            _ = DocumentController.shared
-        }
+        _ = DocumentController.shared
     }
     
     
-    @MainActor override func awakeFromNib() {
+    override func awakeFromNib() {
         
         super.awakeFromNib()
         
@@ -427,7 +425,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     ///
     /// - Parameter url: The file URL to a theme file.
     /// - Returns: Whether the given file was handled as a theme file.
-    @MainActor private func askThemeInstallation(fileURL url: URL) -> Bool {
+    private func askThemeInstallation(fileURL url: URL) -> Bool {
         
         assert(url.conforms(to: .cotTheme))
         
