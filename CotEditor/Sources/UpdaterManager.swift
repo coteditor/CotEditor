@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 1024jp
+//  © 2015-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -63,7 +63,8 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
         }
         
         let menuItem = NSMenuItem()
-        menuItem.title = String(localized: "Check for Updates…", table: "Sparkle")
+        menuItem.title = String(localized: "Check for Updates…", table: "Sparkle",
+                                comment: "a command provided only in the non-AppStore version")
         menuItem.action = #selector(SPUUpdater.checkForUpdates)
         menuItem.target = self.controller.updater
         

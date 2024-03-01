@@ -1614,14 +1614,14 @@
 			name = "Bidi Scroll View";
 			sourceTree = "<group>";
 		};
-		2A1E7DE72B8D615A004F0C07 /* TextFind */ = {
+		2A1E7DE72B8D615A004F0C07 /* Text Finder */ = {
 			isa = PBXGroup;
 			children = (
 				2A954B232AB28B010070FB74 /* TextFind.xcstrings */,
 				2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */,
 				2AC94B3A2B6EAAE90086F9F2 /* RegexReference.xcstrings */,
 			);
-			name = TextFind;
+			name = "Text Finder";
 			sourceTree = "<group>";
 		};
 		2A2184121D0426E800522EF5 /* Window */ = {
@@ -1820,7 +1820,7 @@
 			path = CotEditor;
 			sourceTree = "<group>";
 		};
-		2A39AC942B8CE43100E216C9 /* AccessoryViews */ = {
+		2A39AC942B8CE43100E216C9 /* Accessory Views */ = {
 			isa = PBXGroup;
 			children = (
 				2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */,
@@ -1836,7 +1836,7 @@
 				2A55D5D72B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings */,
 				2A39ACA72B8CE58100E216C9 /* LiveTextInsertion.xcstrings */,
 			);
-			name = AccessoryViews;
+			name = "Accessory Views";
 			sourceTree = "<group>";
 		};
 		2A3E61C627C4962B00C6E5B6 /* Formatters */ = {
@@ -2166,6 +2166,41 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		2AA6731E2B917B6500B8F7E6 /* Document Window */ = {
+			isa = PBXGroup;
+			children = (
+				2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */,
+				2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */,
+				2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */,
+			);
+			name = "Document Window";
+			sourceTree = "<group>";
+		};
+		2AA6731F2B917B8F00B8F7E6 /* Other Views */ = {
+			isa = PBXGroup;
+			children = (
+				2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */,
+				2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */,
+				2A39AC802B8CDFC800E216C9 /* EncodingList.xcstrings */,
+				2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */,
+			);
+			name = "Other Views";
+			sourceTree = "<group>";
+		};
+		2AA673202B917BA400B8F7E6 /* Panes */ = {
+			isa = PBXGroup;
+			children = (
+				2ACDA2932B81E8B300B2EBA8 /* GeneralSettings.xcstrings */,
+				2ACDA2A72B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings */,
+				2ACDA2962B81E8B700B2EBA8 /* EditSettings.xcstrings */,
+				2ACDA2992B81E8BB00B2EBA8 /* WindowSettings.xcstrings */,
+				2ACDA29C2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings */,
+				2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */,
+				2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */,
+			);
+			name = Panes;
+			sourceTree = "<group>";
+		};
 		2AB1BD21287D752300C6FEAF /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -2198,13 +2233,8 @@
 			isa = PBXGroup;
 			children = (
 				2A1E7E5F2B8DC879004F0C07 /* Settings.xcstrings */,
-				2ACDA2932B81E8B300B2EBA8 /* GeneralSettings.xcstrings */,
-				2ACDA2A72B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings */,
-				2ACDA2962B81E8B700B2EBA8 /* EditSettings.xcstrings */,
-				2ACDA2992B81E8BB00B2EBA8 /* WindowSettings.xcstrings */,
-				2ACDA29C2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings */,
-				2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */,
-				2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */,
+				2AA673202B917BA400B8F7E6 /* Panes */,
+				2AA6731F2B917B8F00B8F7E6 /* Other Views */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2233,25 +2263,19 @@
 			isa = PBXGroup;
 			children = (
 				2AA6731B2B9178AB00B8F7E6 /* Localizable.xcstrings */,
-				2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */,
-				2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */,
 				2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */,
-				2AB9E4BB2B7F2378004E5BDC /* Settings */,
-				2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */,
-				2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */,
-				2A39AC802B8CDFC800E216C9 /* EncodingList.xcstrings */,
-				2A1E7E292B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings */,
-				2A1E7DE72B8D615A004F0C07 /* TextFind */,
 				2AA672B32B8F9F1C00B8F7E6 /* Document.xcstrings */,
-				2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */,
-				2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */,
-				2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */,
-				2A39AC942B8CE43100E216C9 /* AccessoryViews */,
+				2AB9E4BB2B7F2378004E5BDC /* Settings */,
+				2A1E7DE72B8D615A004F0C07 /* Text Finder */,
+				2AA6731E2B917B6500B8F7E6 /* Document Window */,
+				2A39AC942B8CE43100E216C9 /* Accessory Views */,
 				2A7FEF352B90EBEA0042BEFF /* Panels */,
 				2A7FEF0D2B90B1800042BEFF /* Views */,
 				2AA6725B2B8F74D900B8F7E6 /* Models */,
-				2AA2E0111BFE12620087BDD6 /* UnicodeBlock.strings */,
+				2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */,
+				2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */,
 				2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */,
+				2AA2E0111BFE12620087BDD6 /* UnicodeBlock.strings */,
 			);
 			name = Localizables;
 			sourceTree = "<group>";
