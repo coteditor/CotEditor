@@ -28,10 +28,6 @@
 "OK" = "Tamam";
 "Cancel" = "Vazgeç";
 
-// tooltip for opacity slider
-"Transparent" = "Saydam";
-"Opaque" = "Mat";
-
 // words with symbols
 " (%@)" = " (%@)";
 

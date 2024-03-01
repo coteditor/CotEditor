@@ -61,13 +61,13 @@ struct OpacitySlider: View {
     
     private var minimumHelp: String {
         
-        String(localized: "Transparent", comment: "tooltip for opacity slider")
+        String(localized: "Transparent", table: "OpacitySlider", comment: "tooltip for min label in opacity slider")
     }
     
     
     private var maximumHelp: String {
         
-        String(localized: "Opaque", comment: "tooltip for opacity slider")
+        String(localized: "Opaque", table: "OpacitySlider", comment: "tooltip for max label in opacity slider")
     }
 }
 

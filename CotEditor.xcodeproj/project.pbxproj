@@ -575,6 +575,8 @@
 		2AA672A32B8F8AA300B8F7E6 /* DocumentWindow.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */; };
 		2AA672B42B8F9F1C00B8F7E6 /* Document.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672B32B8F9F1C00B8F7E6 /* Document.xcstrings */; };
 		2AA672B52B8F9F1C00B8F7E6 /* Document.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672B32B8F9F1C00B8F7E6 /* Document.xcstrings */; };
+		2AA672C62B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */; };
+		2AA672C72B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */; };
 		2AA6E0C82B75AC4900E536F8 /* SyntaxEditor.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */; };
 		2AA704CE2987878B008CBCB5 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA704CD2987878B008CBCB5 /* Node.swift */; };
 		2AA704CF2987878B008CBCB5 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA704CD2987878B008CBCB5 /* Node.swift */; };
@@ -1203,6 +1205,7 @@
 		2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Shortcut.xcstrings; path = mul.lproj/Shortcut.xcstrings; sourceTree = "<group>"; };
 		2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = DocumentWindow.xcstrings; path = mul.lproj/DocumentWindow.xcstrings; sourceTree = "<group>"; };
 		2AA672B32B8F9F1C00B8F7E6 /* Document.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Document.xcstrings; path = mul.lproj/Document.xcstrings; sourceTree = "<group>"; };
+		2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = OpacitySlider.xcstrings; path = mul.lproj/OpacitySlider.xcstrings; sourceTree = "<group>"; };
 		2AA6E0B82B744FF300E536F8 /* SyntaxEditor.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = SyntaxEditor.xcstrings; path = mul.lproj/SyntaxEditor.xcstrings; sourceTree = "<group>"; };
 		2AA6E0BE2B74728700E536F8 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/FindPanelFieldView.xcstrings; sourceTree = "<group>"; };
 		2AA704CD2987878B008CBCB5 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -2059,6 +2062,7 @@
 			isa = PBXGroup;
 			children = (
 				2A7FEF3A2B90F0610042BEFF /* LinkButton.xcstrings */,
+				2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */,
 				2A39ACFE2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings */,
 				2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */,
 			);
@@ -2662,6 +2666,7 @@
 				2AAF93562A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A39ACA82B8CE58100E216C9 /* LiveTextInsertion.xcstrings in Resources */,
 				2A1E7DE52B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */,
+				2AA672C62B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */,
 				2A39ACE62B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings in Resources */,
 				2ACDA2762B81D85700B2EBA8 /* PatternSort.xcstrings in Resources */,
 				2A1E7DFA2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */,
@@ -2752,6 +2757,7 @@
 				2AAF93572A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A39ACA92B8CE58100E216C9 /* LiveTextInsertion.xcstrings in Resources */,
 				2A1E7DE62B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */,
+				2AA672C72B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */,
 				2A39ACE72B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings in Resources */,
 				2ACDA2772B81D85700B2EBA8 /* PatternSort.xcstrings in Resources */,
 				2A1E7DFB2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */,

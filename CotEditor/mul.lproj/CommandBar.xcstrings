@@ -15,6 +15,12 @@
             "value" : "Schnellaktionen"
           }
         },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Actions"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",

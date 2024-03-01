@@ -28,10 +28,6 @@
 "OK" = "OK";
 "Cancel" = "Annulla";
 
-// tooltip for opacity slider
-"Transparent" = "Trasparente";
-"Opaque" = "Opaco";
-
 // words with symbols
 " (%@)" = " (%@)";
 

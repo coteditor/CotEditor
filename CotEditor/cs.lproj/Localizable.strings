@@ -28,10 +28,6 @@
 "OK" = "OK";
 "Cancel" = "Zrušit";
 
-// tooltip for opacity slider
-"Transparent" = "Průhledné";
-"Opaque" = "Neprůhledné";
-
 // words with symbols
 " (%@)" = " (%@)";
 

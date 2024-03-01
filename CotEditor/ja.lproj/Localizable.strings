@@ -28,10 +28,6 @@
 "OK" = "OK";
 "Cancel" = "キャンセル";
 
-// tooltip for opacity slider
-"Transparent" = "透明";
-"Opaque" = "不透明";
-
 // words with symbols
 " (%@)" = "（%@）";
 
