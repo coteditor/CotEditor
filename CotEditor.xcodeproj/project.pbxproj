@@ -107,6 +107,8 @@
 		2A1B7E75216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */; };
 		2A1B7E76216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */; };
 		2A1E7DCA2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */; };
+		2A1E7DD42B8C5A23004F0C07 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E7DD32B8C5A23004F0C07 /* Mode.swift */; };
+		2A1E7DD52B8C5A23004F0C07 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E7DD32B8C5A23004F0C07 /* Mode.swift */; };
 		2A1E7DE52B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */; };
 		2A1E7DE62B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */; };
 		2A1E7DFA2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */; };
@@ -635,6 +637,10 @@
 		2AB857EF2B930B070079CFA2 /* Syntax+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857ED2B930B070079CFA2 /* Syntax+Localization.swift */; };
 		2AB857F22B930BC00079CFA2 /* Syntax.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB857F02B930BC00079CFA2 /* Syntax.xcstrings */; };
 		2AB857F32B930BC00079CFA2 /* Syntax.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB857F02B930BC00079CFA2 /* Syntax.xcstrings */; };
+		2AB857E82B922D7D0079CFA2 /* ModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857E72B922D7D0079CFA2 /* ModeManager.swift */; };
+		2AB857E92B922D7D0079CFA2 /* ModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857E72B922D7D0079CFA2 /* ModeManager.swift */; };
+		2AB857EB2B93050E0079CFA2 /* ModeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857EA2B93050E0079CFA2 /* ModeOptions.swift */; };
+		2AB857EC2B93050E0079CFA2 /* ModeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857EA2B93050E0079CFA2 /* ModeOptions.swift */; };
 		2AB9E4C02B830902004E5BDC /* FormatSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */; };
 		2AB9E4C12B830902004E5BDC /* FormatSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */; };
 		2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
@@ -943,6 +949,7 @@
 		2A1ABCA727F07CED0054795D /* NSScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSScroller.swift; sourceTree = "<group>"; };
 		2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedScrollView.swift; sourceTree = "<group>"; };
 		2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = KeyBindingsSettings.xcstrings; path = mul.lproj/KeyBindingsSettings.xcstrings; sourceTree = "<group>"; };
+		2A1E7DD32B8C5A23004F0C07 /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
 		2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = MultipleReplace.xcstrings; path = mul.lproj/MultipleReplace.xcstrings; sourceTree = "<group>"; };
 		2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = PrintAccessory.xcstrings; path = mul.lproj/PrintAccessory.xcstrings; sourceTree = "<group>"; };
 		2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = EditorOpacity.xcstrings; path = mul.lproj/EditorOpacity.xcstrings; sourceTree = "<group>"; };
@@ -1241,6 +1248,8 @@
 		2AB541D920A5B6A400367DD5 /* NSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSView.swift; sourceTree = "<group>"; };
 		2AB857ED2B930B070079CFA2 /* Syntax+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Syntax+Localization.swift"; sourceTree = "<group>"; };
 		2AB857F12B930BC00079CFA2 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Syntax.xcstrings; sourceTree = "<group>"; };
+		2AB857E72B922D7D0079CFA2 /* ModeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeManager.swift; sourceTree = "<group>"; };
+		2AB857EA2B93050E0079CFA2 /* ModeOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeOptions.swift; sourceTree = "<group>"; };
 		2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxManager.swift; sourceTree = "<group>"; };
 		2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = FormatSettings.xcstrings; path = mul.lproj/FormatSettings.xcstrings; sourceTree = "<group>"; };
 		2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+ScriptingSupport.swift"; sourceTree = "<group>"; };
@@ -1497,6 +1506,7 @@
 				2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */,
 				2A9082F11D32A9B500228F50 /* ThemeManager.swift */,
 				2A3643E51E7C3D2400EA3CE8 /* ReplacementManager.swift */,
+				2AB857E72B922D7D0079CFA2 /* ModeManager.swift */,
 				2A64F2411D256FCB001B229F /* KeyBindingManager.swift */,
 				2A64F2441D259E49001B229F /* SnippetManager.swift */,
 				2A8DA9431D286C53003D0C4B /* ScriptManager.swift */,
@@ -1961,6 +1971,8 @@
 				2A4257BB1D239F850086DAAD /* Invisible.swift */,
 				2AF073E21D33C3AB00770BA6 /* Theme.swift */,
 				2ACF23AD26302A4C002B5E10 /* Theme+Syntax.swift */,
+				2A1E7DD32B8C5A23004F0C07 /* Mode.swift */,
+				2AB857EA2B93050E0079CFA2 /* ModeOptions.swift */,
 				2A9C370A1D66E99400774BA4 /* Pair.swift */,
 				2A7FCC45280A367C0070EAB3 /* ValueRange.swift */,
 				2ABF49E2221A54AD00239278 /* TextClipping.swift */,
@@ -3060,6 +3072,9 @@
 				2A59B7032957089A0094F03B /* LinkButton.swift in Sources */,
 				2AE144C42B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */,
 				2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */,
+				2A1E7DD42B8C5A23004F0C07 /* Mode.swift in Sources */,
+				2AB857E82B922D7D0079CFA2 /* ModeManager.swift in Sources */,
+				2AB857EB2B93050E0079CFA2 /* ModeOptions.swift in Sources */,
 				2A3581991E597ECE00762AA5 /* MultipleReplace.swift in Sources */,
 				2A231A261E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */,
 				2A231A3A1E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */,
@@ -3425,6 +3440,9 @@
 				2A59B7042957089A0094F03B /* LinkButton.swift in Sources */,
 				2AE144C52B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */,
 				2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */,
+				2A1E7DD52B8C5A23004F0C07 /* Mode.swift in Sources */,
+				2AB857E92B922D7D0079CFA2 /* ModeManager.swift in Sources */,
+				2AB857EC2B93050E0079CFA2 /* ModeOptions.swift in Sources */,
 				2A3581981E597ECE00762AA5 /* MultipleReplace.swift in Sources */,
 				2A231A251E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */,
 				2A231A391E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */,

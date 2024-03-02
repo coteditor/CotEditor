@@ -101,6 +101,9 @@ extension DefaultKeys {
     static let completesStandardWords = DefaultKey<Bool>("completesStandardWords")
     static let autoComplete = DefaultKey<Bool>("autoComplete")
     
+    // Mode
+    static let modes = DefaultKey<[String: Data]>("modes")
+    
     // Format
     static let lineEndCharCode = DefaultKey<Int>("defaultLineEndCharCode")
     static let encodingList = DefaultKey<[CFStringEncoding]>("encodingList")

@@ -114,6 +114,13 @@ extension UserDefaults {
     }
     
     
+    subscript(key: DefaultKey<[String: Data]>) -> [String: Data] {
+        
+        get { self.dictionary(forKey: key.rawValue) as? [String: Data] ?? [:] }
+        set { self.set(newValue, forKey: key.rawValue) }
+    }
+    
+    
     subscript<T>(key: DefaultKey<[T]>) -> [T] {
         
         get { self.array(forKey: key.rawValue) as? [T] ?? [] }

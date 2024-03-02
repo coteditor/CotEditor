@@ -25,7 +25,7 @@
 
 import AppKit
 
-enum FontType {
+enum FontType: String, CaseIterable, Codable {
     
     case standard
     case monospaced
