@@ -140,15 +140,23 @@ private enum BundleIdentifier {
         }
         
         SyntaxManager.shared.$settingNames
-            .map { $0.map { NSMenuItem(title: $0, action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "") } }
+            .map {
+                $0.map {
+                    let item = NSMenuItem(title: $0, action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
+                    item.representedObject = $0
+                    return item
+                }
+            }
             .receive(on: RunLoop.main)
             .sink { [weak self] items in
                 guard let menu = self?.syntaxesMenu else { return }
                 
                 let recolorItem = menu.items.first { $0.action == #selector((any SyntaxChanging).recolorAll) }
+                let noneItem = NSMenuItem(title: String(localized: "SyntaxName.none", table: "Syntax"), action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
+                noneItem.representedObject = SyntaxName.none
                 
                 menu.removeAllItems()
-                menu.addItem(withTitle: BundledSyntaxName.none, action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
+                menu.addItem(noneItem)
                 menu.addItem(.separator())
                 menu.items += items
                 menu.addItem(.separator())
@@ -411,7 +419,7 @@ private enum BundleIdentifier {
         // open as document
         do {
             let document = try (NSDocumentController.shared as! DocumentController).openUntitledDocument(content: report.template, title: report.title, display: true)
-            document.setSyntax(name: BundledSyntaxName.markdown)
+            document.setSyntax(name: SyntaxName.markdown)
         } catch {
             NSApp.presentError(error)
         }

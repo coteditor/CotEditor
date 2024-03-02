@@ -36,7 +36,7 @@ struct ModeSettingsView: View {
         VStack {
             HStack {
                 ModeListView(selection: $selection)
-                    .frame(width: 110)
+                    .frame(width: 120)
                 
                 GroupBox {
                     ModeOptionsView(options: $options)
@@ -196,7 +196,6 @@ private struct ModeOptionsView: View {
                            isOn: $options.automaticDashSubstitution)
                     Toggle(String(localized: "Automatically insert closing brackets and quotes", table: "ModeSettings"),
                            isOn: $options.automaticSymbolBalancing)
-                    .fixedSize(horizontal: false, vertical: true)
                 }
             }
             .padding(.bottom, 8)
@@ -227,10 +226,10 @@ private struct ModeOptionsView: View {
                     }.padding(.leading, 20)
                     Toggle(String(localized: "Suggest completions while typing", table: "ModeSettings"),
                            isOn: $options.automaticCompletion)
-                    .fixedSize(horizontal: false, vertical: true)
                 }
             }
         }
+        .fixedSize(horizontal: false, vertical: true)
         .padding(10)
     }
 }

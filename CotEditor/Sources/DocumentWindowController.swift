@@ -218,7 +218,10 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         menu.removeAllItems()
         
-        menu.addItem(withTitle: BundledSyntaxName.none, action: action, keyEquivalent: "")
+        let noneItem = NSMenuItem(title: String(localized: "SyntaxName.none", table: "Syntax"), action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
+        noneItem.representedObject = SyntaxName.none
+        
+        menu.addItem(noneItem)
         menu.addItem(.separator())
         
         if !recentSyntaxNames.isEmpty {
@@ -226,11 +229,19 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                                defaultValue: "Recently Used", table: "Toolbar", comment: "menu item header")
             menu.addItem(.sectionHeader(title: title))
             
-            menu.items += recentSyntaxNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
+            menu.items += recentSyntaxNames.map {
+                let item = NSMenuItem(title: $0, action: action, keyEquivalent: "")
+                item.representedObject = $0
+                return item
+            }
             menu.addItem(.separator())
         }
         
-        menu.items += syntaxNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
+        menu.items += syntaxNames.map {
+            let item = NSMenuItem(title: $0, action: action, keyEquivalent: "")
+            item.representedObject = $0
+            return item
+        }
         
         if let syntaxName = (self.document as? Document)?.syntaxParser.name {
             self.selectSyntaxPopUpItem(with: syntaxName)
@@ -256,8 +267,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         // deselect current one
         popUpButton.selectItem(at: -1)
         
-        if let item = popUpButton.item(withTitle: syntaxName) {
-            popUpButton.select(item)
+        let index = popUpButton.indexOfItem(withRepresentedObject: syntaxName)
+        if index >= 0 {
+            popUpButton.selectItem(at: index)
             
         } else {
             // insert item by adding Deleted item section

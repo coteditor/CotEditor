@@ -100,7 +100,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         var syntaxName = UserDefaults.standard[.syntax]
         let syntax = SyntaxManager.shared.setting(name: syntaxName)
-        syntaxName = (syntax == nil) ? BundledSyntaxName.none : syntaxName
+        syntaxName = (syntax == nil) ? SyntaxName.none : syntaxName
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage, syntax: syntax ?? Syntax.none, name: syntaxName)
         
         // use the encoding selected by the user in the open panel, if exists
@@ -126,7 +126,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // observe syntax update
         self.syntaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
             .filter { [weak self] change in change.old == self?.syntaxParser.name }
-            .sink { [weak self] change in self?.setSyntax(name: change.new ?? BundledSyntaxName.none) }
+            .sink { [weak self] change in self?.setSyntax(name: change.new ?? SyntaxName.none) }
     }
     
     
@@ -369,7 +369,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // determine syntax (only on the first file open)
         if self.windowForSheet == nil {
-            let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: file.string) ?? BundledSyntaxName.none
+            let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: file.string) ?? SyntaxName.none
             self.setSyntax(name: syntaxName, isInitial: true)
         }
     }
@@ -788,7 +788,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 menuItem.state = (menuItem.tag == self.lineEnding.index) ? .on : .off
                 
             case #selector(changeSyntax(_:)):
-                menuItem.state = (menuItem.title == self.syntaxParser.name) ? .on : .off
+                menuItem.state = (menuItem.representedObject as? String == self.syntaxParser.name) ? .on : .off
                 
             default: break
         }
@@ -975,7 +975,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     /// Changes the syntax.
     @IBAction func changeSyntax(_ sender: NSMenuItem) {
         
-        self.setSyntax(name: sender.title)
+        guard let name = sender.representedObject as? String else { return assertionFailure() }
+        
+        self.setSyntax(name: name)
     }
     
     

@@ -38,9 +38,9 @@ import SyntaxMap
 }
 
 
-enum BundledSyntaxName {
+enum SyntaxName {
     
-    static let none: SyntaxManager.SettingName = String(localized: "None", comment: "syntax name")
+    static let none: SyntaxManager.SettingName = "None"
     static let xml: SyntaxManager.SettingName = "XML"
     static let markdown: SyntaxManager.SettingName = "Markdown"
 }
@@ -68,7 +68,7 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     
     static let directoryName: String = "Syntaxes"
     let fileType: UTType = .yaml
-    let reservedNames: [String] = ["None", "General", "Code"]
+    let reservedNames: [SettingName] = [SyntaxName.none, "General", "Code"]
     
     @Published var settingNames: [SettingName] = []
     let bundledSettingNames: [SettingName]
@@ -197,7 +197,7 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     /// Returns the setting instance corresponding to the given setting name.
     func setting(name: SettingName) -> Setting? {
         
-        if name == BundledSyntaxName.none {
+        if name == SyntaxName.none {
             return Syntax.none
         }
         
@@ -328,7 +328,7 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
         
         // check XML declaration
         if content.hasPrefix("<?xml ") {
-            return BundledSyntaxName.xml
+            return SyntaxName.xml
         }
         
         return nil
