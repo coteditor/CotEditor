@@ -5,6 +5,7 @@
 
 ### New Features
 
+- Add the Mode feature that enables altering the editor's behavior depending on the document’s syntax (Go Settings > Mode settings pane to set).
 - Add the Restore Defaults button to the File Drop settings.
 
 
@@ -27,7 +28,7 @@
 
 ### Todo
 
-- Localize new strings in the syntax editor.
+- Localize new strings in the syntax editor and Mode settings.
 
 
 

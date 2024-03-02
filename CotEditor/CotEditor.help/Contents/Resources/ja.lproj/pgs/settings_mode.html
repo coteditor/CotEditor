@@ -1,0 +1,127 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="「モード」設定, モード設定, モード, スペル, フォント"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<script defer src="../../Shared/js/toc.js"></script>
+	
+	<title>CotEditorで「モード設定」設定を変更する</title>
+</head>
+
+<body>
+<a name="settings_window"></a>
+
+<h1>CotEditorで「モード」設定を変更する</h1>
+
+<p>MacのCotEidtorアプリ<img class="appicon" src="../../Shared/gfx/icon_16x16@2x.png" height="16" alt=""/>で、シンタックスによって振る舞いを変更するには、「モード」設定を使用します。これらの設定を変更するには、「CotEditor」＞「設定」と選択してから「モード」をクリックします。</p>
+
+
+
+<table class="settings">
+<caption>フォント</caption>
+<thead>
+	<tr><th>オプション</th><th>説明</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>フォント</th>
+		<td>エディタで標準フォントと等幅フォントのどちらを使用するか設定します。それぞれのフォントは<a href="settings_appearance.html">「外観」設定</a>で設定できます。</td>
+	</tr>
+</tbody>
+</table>
+
+
+<table class="settings">
+<caption>自動置換</caption>
+<thead>
+	<tr><th>オプション</th><th>説明</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>スマートコピー/ペースト</th>
+		<td>単語をペーストまたはドラッグ＆ドロップにより単語間に挿入したとき、単語の前または後に半角スペースが自動挿入されます。また、単語を削除したときに余分な半角スペースが自動削除されます。（英語など単語間にスペースが入る言語において実行される機能です）</td>
+	</tr>
+
+	<tr>
+		<th>スマート引用符</th>
+		<td>入力した引用符「&quot;」が対応した「“」または「”」に自動的に変換されます。</td>
+	</tr>
+
+	<tr>
+		<th>スマートダッシュ記号</th>
+		<td>入力した連続するハイフン記号「--」がダッシュ記号「—」（EM DASH）に自動的に変換されます。</td>
+	</tr>
+
+	<tr>
+		<th>括弧と引用符を自動的に閉じる</th>
+		<td>開き括弧もしくは引用符「&quot;」を入力したときに、対応した閉じ括弧または引用符を自動で挿入しさらに挿入ポイントをその間に移動させます。</td>
+	</tr>
+</tbody>
+</table>
+
+
+<table class="settings">
+<caption>スペル</caption>
+<thead>
+	<tr><th>オプション</th><th>説明</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>入力中にスペルをチェック</th>
+		<td>テキスト入力中に自動的にスペルチェックします。スペルチェックを有効にすると、スペルミスのある単語には赤い下線が引かれ、修正候補が表示されます。</td>
+	</tr>
+	
+	<tr>
+		<th>スペルと一緒に文法をチェック</th>
+		<td>テキスト入力中に自動的に文法もチェックします。文法ミスのある部分は点線で青色の下線が引かれます。下線が引かれた語の上にポインタを置くと、問題の説明が表示されます。<strong>注記</strong>: 文法のチェックは、一部の地域、国、または言語では利用できません。</td>
+	</tr>
+	
+	<tr>
+		<th>スペルを自動的に修正</th>
+		<td></td>
+	</tr>
+</tbody>
+</table>
+
+
+<table class="settings">
+<caption>入力補完</caption>
+<thead>
+	<tr><th>オプション</th><th>説明</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>入力補完候補リストに含む単語</th>
+		<td>入力補完するときに表示する候補を選択します。
+			<ul>
+				<li><strong>書類に含まれる単語</strong>: 書類に含まれる単語が候補に含まれます。</li>
+
+				<li><strong>シンタックスで定義された単語</strong>: <a href="syntax_completion_settings.html">シンタックスで定義</a>された入力補完候補リスト（設定されていなければカラーリング設定から生成）の単語が候補に含まれます。</li>
+ 
+				<li><strong>一般英単語</strong>: 一般英単語が候補に含まれます。</li>
+			</ul></td>
+	</tr>
+
+	<tr>
+		<th>入力中に補完候補を表示</th>
+		<td>テキスト入力中、補完候補単語が存在するときに自動的に補完リストを表示します。</td>
+	</tr>
+</tbody>
+</table>
+
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="settings.html">設定を変更する</a></li>
+</ul>
+</section>
+
+</body>
+</html>
