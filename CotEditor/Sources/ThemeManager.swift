@@ -53,6 +53,7 @@ final class ThemeManager: SettingFileManaging {
     
     static let directoryName: String = "Themes"
     let fileType: UTType = .cotTheme
+    let reservedNames: [String] = []
     
     @Published var settingNames: [String] = []
     private(set) var bundledSettingNames: [String] = []

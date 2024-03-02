@@ -68,6 +68,7 @@ final class SyntaxManager: SettingFileManaging, ObservableObject {
     
     static let directoryName: String = "Syntaxes"
     let fileType: UTType = .yaml
+    let reservedNames: [String] = ["None", "General", "Code"]
     
     @Published var settingNames: [SettingName] = []
     let bundledSettingNames: [SettingName]

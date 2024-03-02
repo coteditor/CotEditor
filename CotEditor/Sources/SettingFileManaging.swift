@@ -86,6 +86,9 @@ protocol SettingFileManaging: AnyObject {
     /// UTType of user setting file
     var fileType: UTType { get }
     
+    /// List of names that cannot be used for user setting names.
+    var reservedNames: [String] { get }
+    
     /// List of names of setting filename (without extension).
     var settingNames: [String] { get set }
     
@@ -225,6 +228,10 @@ extension SettingFileManaging {
         
         if let duplicateName = self.settingNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
             throw InvalidNameError.duplicated(name: duplicateName)
+        }
+        
+        if let reservedName = self.reservedNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
+            throw InvalidNameError.reserved(name: reservedName)
         }
     }
     
@@ -449,6 +456,7 @@ enum InvalidNameError: LocalizedError {
     case containSlash
     case startWithDot
     case duplicated(name: String)
+    case reserved(name: String)
     
     
     var errorDescription: String? {
@@ -466,13 +474,16 @@ enum InvalidNameError: LocalizedError {
             case .duplicated(let name):
                 String(localized: "InvalidNameError.duplicated.description",
                        defaultValue: "The name “\(name)” is already taken.", table: "SettingFile")
+            case .reserved(let name):
+                String(localized: "InvalidNameError.reserved.description",
+                       defaultValue: "The name “\(name)” is reserved.", table: "SettingFile")
         }
     }
     
     
     var recoverySuggestion: String? {
         
-        String(localized: "InvalidNameError.empty.recoverySuggestion",
+        String(localized: "InvalidNameError.recoverySuggestion",
                defaultValue: "Choose another name.",
                table: "SettingFile")
     }

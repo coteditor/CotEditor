@@ -1357,7 +1357,7 @@
         }
       }
     },
-    "InvalidNameError.empty.recoverySuggestion" : {
+    "InvalidNameError.recoverySuggestion" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -1430,6 +1430,35 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "輸入其他名稱。"
+          }
+        }
+      }
+    },
+    "InvalidNameError.reserved.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” ist reserviert."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The name “%@” is reserved."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The name “%@” is reserved."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@”は予約されています。"
           }
         }
       }

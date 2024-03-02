@@ -14,6 +14,7 @@
 - Improve the look and feel of the syntax editor.
 - Make the encoding priority view undoable.
 - [trivial] Enable delete selected separators in the encoding priority view with the Delete key.
+- [trivial] Avoid users using reserved syntax names.
 - [dev] Migrate the settings window and syntax editor to SwiftUI.
 - [dev] Migrate all localizable strings to String Catalogs.
 - [dev] Update the build environment to Xcode 15.3 (Swift 5.10).

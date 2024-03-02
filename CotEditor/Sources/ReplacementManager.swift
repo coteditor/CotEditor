@@ -43,6 +43,7 @@ final class ReplacementManager: SettingFileManaging {
     
     static let directoryName: String = "Replacements"
     let fileType: UTType = .cotReplacement
+    let reservedNames: [String] = []
     
     @Published var settingNames: [String] = []
     let bundledSettingNames: [String] = []
