@@ -631,6 +631,10 @@
 		2AB2913F245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2913D245AAD74004CC203 /* Unicode.GeneralCategory.swift */; };
 		2AB541DA20A5B6A400367DD5 /* NSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView.swift */; };
 		2AB541DB20A5B6A400367DD5 /* NSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView.swift */; };
+		2AB857EE2B930B070079CFA2 /* Syntax+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857ED2B930B070079CFA2 /* Syntax+Localization.swift */; };
+		2AB857EF2B930B070079CFA2 /* Syntax+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857ED2B930B070079CFA2 /* Syntax+Localization.swift */; };
+		2AB857F22B930BC00079CFA2 /* Syntax.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB857F02B930BC00079CFA2 /* Syntax.xcstrings */; };
+		2AB857F32B930BC00079CFA2 /* Syntax.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB857F02B930BC00079CFA2 /* Syntax.xcstrings */; };
 		2AB9E4C02B830902004E5BDC /* FormatSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */; };
 		2AB9E4C12B830902004E5BDC /* FormatSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */; };
 		2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
@@ -1235,6 +1239,8 @@
 		2AB1BD23287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCountOptionsSheetView.swift; sourceTree = "<group>"; };
 		2AB2913D245AAD74004CC203 /* Unicode.GeneralCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unicode.GeneralCategory.swift; sourceTree = "<group>"; };
 		2AB541D920A5B6A400367DD5 /* NSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSView.swift; sourceTree = "<group>"; };
+		2AB857ED2B930B070079CFA2 /* Syntax+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Syntax+Localization.swift"; sourceTree = "<group>"; };
+		2AB857F12B930BC00079CFA2 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Syntax.xcstrings; sourceTree = "<group>"; };
 		2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxManager.swift; sourceTree = "<group>"; };
 		2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = FormatSettings.xcstrings; path = mul.lproj/FormatSettings.xcstrings; sourceTree = "<group>"; };
 		2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+ScriptingSupport.swift"; sourceTree = "<group>"; };
@@ -2088,6 +2094,7 @@
 			children = (
 				2A6FD9F51D3AE29E00A59784 /* Syntax.swift */,
 				2AAE8E612AF8AE3B008954B5 /* Syntax+Codable.swift */,
+				2AB857ED2B930B070079CFA2 /* Syntax+Localization.swift */,
 				2A4714E22093A2D40093E27F /* SyntaxParser.swift */,
 				2AAD61F71D2BA3F5008FE772 /* HighlightParser.swift */,
 				2A4714E5209630510093E27F /* OutlineExtractor.swift */,
@@ -2157,6 +2164,7 @@
 				2A7FEEF42B9035930042BEFF /* SettingFile.xcstrings */,
 				2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */,
 				2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */,
+				2AB857F02B930BC00079CFA2 /* Syntax.xcstrings */,
 				2AA672582B8F6D7B00B8F7E6 /* Script.xcstrings */,
 				2AA6726B2B8F75CC00B8F7E6 /* FileDropItem.xcstrings */,
 				2AA6727D2B8F784700B8F7E6 /* Snippet.xcstrings */,
@@ -2697,6 +2705,7 @@
 				2A1E7E602B8DC879004F0C07 /* Settings.xcstrings in Resources */,
 				2AA672902B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */,
 				2AA6727E2B8F784700B8F7E6 /* Snippet.xcstrings in Resources */,
+				2AB857F22B930BC00079CFA2 /* Syntax.xcstrings in Resources */,
 				2A6566E92B73BBB400008669 /* SyntaxEditor.xcstrings in Resources */,
 				2A1E7E2A2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */,
 				2A954B242AB28B010070FB74 /* TextFind.xcstrings in Resources */,
@@ -2789,6 +2798,7 @@
 				2A1E7E612B8DC879004F0C07 /* Settings.xcstrings in Resources */,
 				2AA672912B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */,
 				2AA6727F2B8F784700B8F7E6 /* Snippet.xcstrings in Resources */,
+				2AB857F32B930BC00079CFA2 /* Syntax.xcstrings in Resources */,
 				2AA6E0C82B75AC4900E536F8 /* SyntaxEditor.xcstrings in Resources */,
 				2A1E7E2B2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */,
 				2A954B252AB28B010070FB74 /* TextFind.xcstrings in Resources */,
@@ -3197,6 +3207,7 @@
 				2ACF23AE26302A4C002B5E10 /* Theme+Syntax.swift in Sources */,
 				2A63FBE41D1D90E70081C84E /* ThemeEditorView.swift in Sources */,
 				2A9082F31D32A9B500228F50 /* ThemeManager.swift in Sources */,
+				2AB857EE2B930B070079CFA2 /* Syntax+Localization.swift in Sources */,
 				2A2792931D1DACC400F3FC5D /* ThemeViewController.swift in Sources */,
 				2A0DD6371E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2A0DD6341E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
@@ -3292,6 +3303,7 @@
 				2A1ABCA627F079120054795D /* BidiScroller.swift in Sources */,
 				2A1ABC9C27F056E60054795D /* BidiScrollView.swift in Sources */,
 				2A231A281E7BD82700C2A909 /* Binding.swift in Sources */,
+				2AB857EF2B930B070079CFA2 /* Syntax+Localization.swift in Sources */,
 				2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
 				2AB1BD25287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift in Sources */,
 				2AB1BD1D287D60DF00C6FEAF /* CharacterCountOptionsView.swift in Sources */,
@@ -3771,6 +3783,14 @@
 				2AAFA7D52B7A2F6D00A2B228 /* mul */,
 			);
 			name = MultipleReplaceListView.storyboard;
+			sourceTree = "<group>";
+		};
+		2AB857F02B930BC00079CFA2 /* Syntax.xcstrings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AB857F12B930BC00079CFA2 /* mul */,
+			);
+			name = Syntax.xcstrings;
 			sourceTree = "<group>";
 		};
 		2ADF3BFF1E6D7345009125BB /* SnippetsPane.storyboard */ = {

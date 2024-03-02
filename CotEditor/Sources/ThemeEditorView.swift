@@ -78,28 +78,28 @@ struct ThemeEditorView: View {
             
             GridRow {
                 VStack(alignment: .trailing, spacing: 3) {
-                    ColorPicker(String(localized: "Keywords:", table: "ThemeEditor"),
+                    ColorPicker(String(localized: "\(SyntaxType.keywords.label):"),
                                 selection: $theme.keywords.binding)
-                    ColorPicker(String(localized: "Commands:", table: "ThemeEditor"),
+                    ColorPicker(String(localized: "\(SyntaxType.commands.label):"),
                                 selection: $theme.commands.binding)
-                    ColorPicker(String(localized: "Types:", table: "ThemeEditor"),
+                    ColorPicker(String(localized: "\(SyntaxType.types.label):"),
                                 selection: $theme.types.binding)
-                    ColorPicker(String(localized: "Attributes:", table: "ThemeEditor"),
+                    ColorPicker(String(localized: "\(SyntaxType.attributes.label):"),
                                 selection: $theme.attributes.binding)
-                    ColorPicker(String(localized: "Variables:", table: "ThemeEditor"),
+                    ColorPicker(String(localized: "\(SyntaxType.variables.label):"),
                                 selection: $theme.variables.binding)
                 }
                 
                 VStack(alignment: .trailing, spacing: 3) {
-                    ColorPicker(String(localized: "Values:", table: "ThemeEditor"),
+                    ColorPicker(String(localized: "\(SyntaxType.values.label):"),
                                 selection: $theme.values.binding)
-                    ColorPicker(String(localized: "Numbers:", table: "ThemeEditor"),
+                    ColorPicker(String(localized: "\(SyntaxType.numbers.label):"),
                                 selection: $theme.numbers.binding)
-                    ColorPicker(String(localized: "Strings:", table: "ThemeEditor"),
+                    ColorPicker(String(localized: "\(SyntaxType.strings.label):"),
                                 selection: $theme.strings.binding)
-                    ColorPicker(String(localized: "Characters:", table: "ThemeEditor"),
+                    ColorPicker(String(localized: "\(SyntaxType.characters.label):"),
                                 selection: $theme.characters.binding)
-                    ColorPicker(String(localized: "Comments:", table: "ThemeEditor"),
+                    ColorPicker(String(localized: "\(SyntaxType.commands.label):"),
                                 selection: $theme.comments.binding)
                 }
             }

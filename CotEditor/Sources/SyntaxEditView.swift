@@ -283,26 +283,6 @@ struct SyntaxEditView: View {
 }
 
 
-private extension Syntax.Kind {
-    
-    var label: String {
-        
-        switch self {
-            case .general:
-                String(localized: "Syntax.Kind.general.label",
-                       defaultValue: "General",
-                       table: "SyntaxEditor",
-                       comment: "syntax kind")
-            case .code:
-                String(localized: "Syntax.Kind.code.label",
-                       defaultValue: "Code",
-                       table: "SyntaxEditor",
-                       comment: "syntax kind")
-        }
-    }
-}
-
-
 private extension SyntaxEditView.Pane {
     
     /// The localized label.
@@ -382,55 +362,25 @@ extension PartialKeyPath<SyntaxObject> {
         
         switch self {
             case \.keywords:
-                String(localized: "Syntax.key.keywords.label",
-                       defaultValue: "Keywords",
-                       table: "SyntaxEditor",
-                       comment: "syntax highlight type")
+                SyntaxType.keywords.label
             case \.commands:
-                String(localized: "Syntax.key.commands.label",
-                       defaultValue: "Commands",
-                       table: "SyntaxEditor",
-                       comment: "syntax highlight type")
+                SyntaxType.commands.label
             case \.types:
-                String(localized: "Syntax.key.types.label",
-                       defaultValue: "Types",
-                       table: "SyntaxEditor",
-                       comment: "syntax highlight type")
+                SyntaxType.types.label
             case \.attributes:
-                String(localized: "Syntax.key.attributes.label",
-                       defaultValue: "Attributes",
-                       table: "SyntaxEditor",
-                       comment: "syntax highlight type")
+                SyntaxType.attributes.label
             case \.variables:
-                String(localized: "Syntax.key.variables.label",
-                       defaultValue: "Variables",
-                       table: "SyntaxEditor",
-                       comment: "syntax highlight type")
+                SyntaxType.variables.label
             case \.values:
-                String(localized: "Syntax.key.values.label",
-                       defaultValue: "Values",
-                       table: "SyntaxEditor",
-                       comment: "syntax highlight type")
+                SyntaxType.values.label
             case \.numbers:
-                String(localized: "Syntax.key.numbers.label",
-                       defaultValue: "Numbers",
-                       table: "SyntaxEditor",
-                       comment: "syntax highlight type")
+                SyntaxType.numbers.label
             case \.strings:
-                String(localized: "Syntax.key.strings.label",
-                       defaultValue: "Strings",
-                       table: "SyntaxEditor",
-                       comment: "syntax highlight type")
+                SyntaxType.strings.label
             case \.characters:
-                String(localized: "Syntax.key.characters.label",
-                       defaultValue: "Characters",
-                       table: "SyntaxEditor",
-                       comment: "syntax highlight type")
+                SyntaxType.characters.label
             case \.comments, \.commentDelimiters:
-                String(localized: "Syntax.key.comments.label",
-                       defaultValue: "Comments",
-                       table: "SyntaxEditor",
-                       comment: "syntax highlight type")
+                SyntaxType.comments.label
                 
             case \.outlines:
                 String(localized: "Syntax.key.outlines.label",
