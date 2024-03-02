@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     " (%@)" : {
-      "comment" : "words with symbols",
+      "comment" : "general format for additional string in parentheses following other string (Note that there is a space before the parentheses. In some languages, this space should be removed.)",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
