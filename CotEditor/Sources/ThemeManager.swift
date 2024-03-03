@@ -149,8 +149,7 @@ final class ThemeManager: SettingFileManaging {
     @discardableResult
     func createUntitledSetting() throws -> String {
         
-        let name = self.savableSettingName(for: String(localized: "Untitled", table: "SettingFile",
-                                                       comment: "initial setting file name"))
+        let name = self.savableSettingName(for: String(localized: "Untitled", comment: "initial setting file name"))
         
         try self.save(setting: Setting(), name: name)
         

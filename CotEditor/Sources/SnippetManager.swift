@@ -74,8 +74,7 @@ final class SnippetManager {
     func createUntitledSetting() -> Snippet {
         
         let name = self.snippets.map(\.name)
-            .createAvailableName(for: String(localized: "Untitled", table: "SettingFile",
-                                             comment: "initial setting file name"))
+            .createAvailableName(for: String(localized: "Untitled", comment: "initial setting file name"))
         
         return Snippet(name: name)
     }

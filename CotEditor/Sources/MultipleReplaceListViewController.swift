@@ -114,15 +114,13 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
                 
             case #selector(renameSetting(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Rename “\(name)”",
-                                            table: "SettingFile", comment: "menu item label")
+                    menuItem.title = String(localized: "Rename “\(name)”", comment: "menu item label")
                 }
                 menuItem.isHidden = !itemSelected
                 
             case #selector(duplicateSetting(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Duplicate “\(name)”",
-                                            table: "SettingFile", comment: "menu item label")
+                    menuItem.title = String(localized: "Duplicate “\(name)”", comment: "menu item label")
                 }
                 menuItem.isHidden = !itemSelected
                 
@@ -131,15 +129,13 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
                 
             case #selector(exportSetting(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Export “\(name)”…",
-                                            table: "SettingFile", comment: "menu item label")
+                    menuItem.title = String(localized: "Export “\(name)”…", comment: "menu item label")
                 }
                 menuItem.isHidden = !itemSelected
                 
             case #selector(revealSettingInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(localized: "Reveal “\(name)” in Finder",
-                                            table: "SettingFile", comment: "menu item label")
+                    menuItem.title = String(localized: "Reveal “\(name)” in Finder", comment: "menu item label")
                 }
                 
             case nil:
@@ -218,8 +214,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
         savePanel.isExtensionHidden = true
-        savePanel.nameFieldLabel = String(localized: "Export As:", table: "SettingFile",
-                                          comment: "filename field label for save panel")
+        savePanel.nameFieldLabel = String(localized: "Export As:", comment: "filename field label for save panel")
         savePanel.nameFieldStringValue = settingName
         savePanel.allowedContentTypes = [ReplacementManager.shared.fileType]
         
@@ -239,7 +234,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     @IBAction func importSetting(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
-        openPanel.prompt = String(localized: "Import", table: "SettingFile", comment: "button label")
+        openPanel.prompt = String(localized: "Import", comment: "button label")
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = false
@@ -343,12 +338,12 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         
         let alert = NSAlert()
         alert.messageText = String(localized: "DeletionConfirmationAlert.message",
-                                   defaultValue: "Are you sure you want to delete “\(name)”?", table: "SettingFile")
+                                   defaultValue: "Are you sure you want to delete “\(name)”?")
         alert.informativeText = String(localized: "DeletionConfirmationAlert.informativeText",
-                                       defaultValue: "This action cannot be undone.", table: "SettingFile")
+                                       defaultValue: "This action cannot be undone.")
         alert.addButton(withTitle: String(localized: "Cancel"))
         alert.addButton(withTitle: String(localized: "DeletionConfirmationAlert.button.delete",
-                                          defaultValue: "Delete", table: "SettingFile"))
+                                          defaultValue: "Delete", comment: "button label"))
         alert.buttons.last?.hasDestructiveAction = true
         
         let window = self.view.window!

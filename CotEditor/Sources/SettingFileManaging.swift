@@ -195,7 +195,7 @@ extension SettingFileManaging {
     /// Returns setting name appending number suffix without extension.
     func savableSettingName(for proposedName: String, appendingCopySuffix: Bool = false) -> String {
         
-        let suffix = appendingCopySuffix ? String(localized: "copy", table: "SettingFile", comment: "suffix for copied setting file") : nil
+        let suffix = appendingCopySuffix ? String(localized: "copy", comment: "suffix for copied setting file") : nil
         
         return self.settingNames.createAvailableName(for: proposedName, suffix: suffix)
     }
@@ -464,19 +464,19 @@ enum InvalidNameError: LocalizedError {
         switch self {
             case .empty:
                 String(localized: "InvalidNameError.empty.description",
-                       defaultValue: "Name can’t be empty.", table: "SettingFile")
+                       defaultValue: "Name can’t be empty.")
             case .containSlash:
                 String(localized: "InvalidNameError.containSlash.description",
-                       defaultValue: "Name can’t contain “/”.", table: "SettingFile")
+                       defaultValue: "Name can’t contain “/”.")
             case .startWithDot:
                 String(localized: "InvalidNameError.startWithDot.description",
-                       defaultValue: "Name can’t begin with “.”.", table: "SettingFile")
+                       defaultValue: "Name can’t begin with “.”.")
             case .duplicated(let name):
                 String(localized: "InvalidNameError.duplicated.description",
-                       defaultValue: "The name “\(name)” is already taken.", table: "SettingFile")
+                       defaultValue: "The name “\(name)” is already taken.")
             case .reserved(let name):
                 String(localized: "InvalidNameError.reserved.description",
-                       defaultValue: "The name “\(name)” is reserved.", table: "SettingFile")
+                       defaultValue: "The name “\(name)” is reserved.")
         }
     }
     
@@ -484,8 +484,7 @@ enum InvalidNameError: LocalizedError {
     var recoverySuggestion: String? {
         
         String(localized: "InvalidNameError.recoverySuggestion",
-               defaultValue: "Choose another name.",
-               table: "SettingFile")
+               defaultValue: "Choose another name.")
     }
 }
 
@@ -518,16 +517,13 @@ struct SettingFileError: LocalizedError {
         switch self.code {
             case .deletionFailed:
                 String(localized: "SettingFileError.deletionFailed.description",
-                       defaultValue: "“\(self.name)” couldn’t be deleted.",
-                       table: "SettingFile")
+                       defaultValue: "“\(self.name)” couldn’t be deleted.")
             case .importFailed:
                 String(localized: "SettingFileError.importFailed.description",
-                       defaultValue: "“\(self.name)” couldn’t be imported.",
-                       table: "SettingFile")
+                       defaultValue: "“\(self.name)” couldn’t be imported.")
             case .noSourceFile:
                 String(localized: "SettingFileError.noSourceFile.description",
-                       defaultValue: "No original file for “\(self.name)” was found.",
-                       table: "SettingFile")
+                       defaultValue: "No original file for “\(self.name)” was found.")
         }
     }
     
@@ -552,16 +548,13 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
         switch self.type {
             case .yaml:
                 String(localized: "ImportDuplicationError.syntax.description",
-                       defaultValue: "A new syntax named “\(self.name)” will be installed, but a custom syntax with the same name already exists.",
-                       table: "SettingFile")
+                       defaultValue: "A new syntax named “\(self.name)” will be installed, but a custom syntax with the same name already exists.")
             case .cotTheme:
                 String(localized: "ImportDuplicationError.theme.description",
-                       defaultValue: "A new theme named “\(self.name)” will be installed, but a custom theme with the same name already exists.",
-                       table: "SettingFile")
+                       defaultValue: "A new theme named “\(self.name)” will be installed, but a custom theme with the same name already exists.")
             case .cotReplacement:
                 String(localized: "ImportDuplicationError.replacement.description",
-                       defaultValue: "A new replacement definition named “\(self.name)” will be installed, but a definition with the same name already exists.",
-                       table: "SettingFile")
+                       defaultValue: "A new replacement definition named “\(self.name)” will be installed, but a definition with the same name already exists.")
             default:
                 fatalError()
         }
@@ -573,16 +566,13 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
         switch self.type {
             case .yaml:
                 String(localized: "ImportDuplicationError.syntax.recoverySuggestion",
-                       defaultValue: "Do you want to replace it?\nReplaced syntax can’t be restored.",
-                       table: "SettingFile")
+                       defaultValue: "Do you want to replace it?\nReplaced syntax can’t be restored.")
             case .cotTheme:
                 String(localized: "ImportDuplicationError.theme.recoverySuggestion",
-                       defaultValue: "Do you want to replace it?\nReplaced theme can’t be restored.",
-                       table: "SettingFile")
+                       defaultValue: "Do you want to replace it?\nReplaced theme can’t be restored.")
             case .cotReplacement:
                 String(localized: "ImportDuplicationError.replacement.recoverySuggestion",
-                       defaultValue: "Do you want to replace it?\nReplaced definition can’t be restored.",
-                       table: "SettingFile")
+                       defaultValue: "Do you want to replace it?\nReplaced definition can’t be restored.")
             default:
                 fatalError()
         }
@@ -593,7 +583,7 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
         
         [String(localized: "Cancel"),
          String(localized: "ImportDuplicationError.recoveryOption.replace",
-                defaultValue: "Replace", table: "SettingFile")]
+                defaultValue: "Replace", comment: "button label")]
     }
     
     

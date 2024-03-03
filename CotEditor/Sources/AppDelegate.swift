@@ -439,10 +439,10 @@ private enum BundleIdentifier {
         
         // ask whether theme file should be opened as a text file
         let alert = NSAlert()
-        alert.messageText = String(localized: "ThemeImportAlert.message", defaultValue: "“\(url.lastPathComponent)” is a CotEditor theme file.", table: "SettingFile")
-        alert.informativeText = String(localized: "ThemeImportAlert.informativeText", defaultValue: "Do you want to install this theme?", table: "SettingFile")
-        alert.addButton(withTitle: String(localized: "ThemeImportAlert.button.install", defaultValue: "Install", table: "SettingFile"))
-        alert.addButton(withTitle: String(localized: "ThemeImportAlert.button.openAsText", defaultValue: "Open as Text File", table: "SettingFile"))
+        alert.messageText = String(localized: "ThemeImportAlert.message", defaultValue: "“\(url.lastPathComponent)” is a CotEditor theme file.")
+        alert.informativeText = String(localized: "ThemeImportAlert.informativeText", defaultValue: "Do you want to install this theme?")
+        alert.addButton(withTitle: String(localized: "ThemeImportAlert.button.install", defaultValue: "Install", comment: "button label"))
+        alert.addButton(withTitle: String(localized: "ThemeImportAlert.button.openAsText", defaultValue: "Open as Text File", comment: "button label"))
         
         let returnCode = alert.runModal()
         
@@ -463,7 +463,7 @@ private enum BundleIdentifier {
         let themeName = ThemeManager.shared.settingName(from: url)
         let feedbackAlert = NSAlert()
         feedbackAlert.messageText = String(localized: "ThemeImportAlert.success",
-                                           defaultValue: "A new theme named “\(themeName)” has been successfully installed.", table: "SettingFile")
+                                           defaultValue: "A new theme named “\(themeName)” has been successfully installed.")
         
         NSSound.glass?.play()
         feedbackAlert.runModal()
