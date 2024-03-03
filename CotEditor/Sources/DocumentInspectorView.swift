@@ -114,7 +114,7 @@ struct DocumentInspectorView: View {
             .disclosureGroupStyle(InspectorDisclosureGroupStyle())
             .labeledContentStyle(InspectorLabeledContentStyle())
         }
-        .accessibilityLabel(Text("Document Inspector", tableName: "DocumentWindow"))
+        .accessibilityLabel(Text("Document Inspector", tableName: "Document"))
         .controlSize(.small)
     }
 }
@@ -130,24 +130,24 @@ private struct DocumentFileView: View {
     
     var body: some View {
         
-        DisclosureGroup(String(localized: "Document File", table: "DocumentWindow", comment: "section title in inspector"), isExpanded: $isExpanded) {
+        DisclosureGroup(String(localized: "Document File", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
-                OptionalLabeledContent(String(localized: "Created", table: "DocumentWindow",
+                OptionalLabeledContent(String(localized: "Created", table: "Document",
                                              comment: "label in document inspector"),
                                        value: self.attributes?.creationDate?.formatted(date: .abbreviated, time: .shortened))
-                OptionalLabeledContent(String(localized: "Modified", table: "DocumentWindow",
+                OptionalLabeledContent(String(localized: "Modified", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.attributes?.modificationDate?.formatted(date: .abbreviated, time: .shortened))
-                OptionalLabeledContent(String(localized: "Size", table: "DocumentWindow",
+                OptionalLabeledContent(String(localized: "Size", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.attributes?.size.formatted(.byteCount(style: .file, includesActualByteCount: true)))
-                OptionalLabeledContent(String(localized: "Permissions", table: "DocumentWindow",
+                OptionalLabeledContent(String(localized: "Permissions", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.attributes?.permissions.formatted())
-                OptionalLabeledContent(String(localized: "Owner", table: "DocumentWindow",
+                OptionalLabeledContent(String(localized: "Owner", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.attributes?.owner)
-                OptionalLabeledContent(String(localized: "Full Path", table: "DocumentWindow",
+                OptionalLabeledContent(String(localized: "Full Path", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.fileURL?.path)
             }
@@ -167,12 +167,12 @@ private struct TextSettingsView: View {
     
     var body: some View {
         
-        DisclosureGroup(String(localized: "Text Settings", table: "DocumentWindow", comment: "section title in inspector"), isExpanded: $isExpanded) {
+        DisclosureGroup(String(localized: "Text Settings", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
-                LabeledContent(String(localized: "Encoding", table: "DocumentWindow",
+                LabeledContent(String(localized: "Encoding", table: "Document",
                                       comment: "label in document inspector"),
                                value: self.encoding.localizedName)
-                LabeledContent(String(localized: "Line Endings", table: "DocumentWindow",
+                LabeledContent(String(localized: "Line Endings", table: "Document",
                                       comment: "label in document inspector"),
                                value: self.lineEnding.label)
             }
@@ -191,26 +191,26 @@ private struct CountLocationView: View {
     
     var body: some View {
         
-        DisclosureGroup(String(localized: "Count", table: "DocumentWindow", comment: "section title in inspector"), isExpanded: $isExpanded) {
+        DisclosureGroup(String(localized: "Count", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
-                OptionalLabeledContent(String(localized: "Lines", table: "DocumentWindow",
+                OptionalLabeledContent(String(localized: "Lines", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.result.lines.formatted)
-                OptionalLabeledContent(String(localized: "Characters", table: "DocumentWindow",
+                OptionalLabeledContent(String(localized: "Characters", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.result.characters.formatted)
-                OptionalLabeledContent(String(localized: "Words", table: "DocumentWindow",
+                OptionalLabeledContent(String(localized: "Words", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.result.words.formatted)
                 .padding(.bottom, 8)
                 
-                OptionalLabeledContent(String(localized: "Location", table: "DocumentWindow",
+                OptionalLabeledContent(String(localized: "Location", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.result.location?.formatted())
-                OptionalLabeledContent(String(localized: "Line", table: "DocumentWindow",
+                OptionalLabeledContent(String(localized: "Line", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.result.line?.formatted())
-                OptionalLabeledContent(String(localized: "Column", table: "DocumentWindow",
+                OptionalLabeledContent(String(localized: "Column", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.result.column?.formatted())
             }
@@ -230,10 +230,10 @@ private struct CharacterPaneView: View {
     
     var body: some View {
     
-        DisclosureGroup(String(localized: "Character", table: "DocumentWindow", comment: "section title in inspector"), isExpanded: $isExpanded) {
+        DisclosureGroup(String(localized: "Character", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
                 if let character {
-                    LabeledContent(String(localized: "Code Points", table: "DocumentWindow",
+                    LabeledContent(String(localized: "Code Points", table: "Document",
                                           comment: "label in document inspector")) {
                         WrappingHStack {
                             ForEach(Array(character.unicodeScalars.enumerated()), id: \.offset) { (_, scalar) in
@@ -247,9 +247,9 @@ private struct CharacterPaneView: View {
                         }
                     }
                 } else {
-                    Text("Not selected", tableName: "DocumentWindow", comment: "placeholder")
+                    Text("Not selected", tableName: "Document", comment: "placeholder")
                         .foregroundStyle(.tertiary)
-                        .help(String(localized: "Select a single character to show Unicode information.", table: "DocumentWindow", comment: "tooltip"))
+                        .help(String(localized: "Select a single character to show Unicode information.", table: "Document", comment: "tooltip"))
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)

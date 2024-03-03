@@ -137,7 +137,7 @@ final class LineNumberView: NSView {
     
     override func accessibilityLabel() -> String? {
         
-        String(localized: "Line Numbers", table: "DocumentWindow", comment: "accessibility label")
+        String(localized: "Line Numbers", table: "Document", comment: "accessibility label")
     }
     
     

@@ -573,8 +573,8 @@
 		2AA6727F2B8F784700B8F7E6 /* Snippet.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6727D2B8F784700B8F7E6 /* Snippet.xcstrings */; };
 		2AA672902B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */; };
 		2AA672912B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */; };
-		2AA672A22B8F8AA300B8F7E6 /* DocumentWindow.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */; };
-		2AA672A32B8F8AA300B8F7E6 /* DocumentWindow.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */; };
+		2AA672A22B8F8AA300B8F7E6 /* Document.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672A12B8F8AA300B8F7E6 /* Document.xcstrings */; };
+		2AA672A32B8F8AA300B8F7E6 /* Document.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672A12B8F8AA300B8F7E6 /* Document.xcstrings */; };
 		2AA672C62B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */; };
 		2AA672C72B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */; };
 		2AA672F62B916DA400B8F7E6 /* MainMenu.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */; };
@@ -1211,7 +1211,7 @@
 		2AA6726B2B8F75CC00B8F7E6 /* FileDropItem.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = FileDropItem.xcstrings; path = mul.lproj/FileDropItem.xcstrings; sourceTree = "<group>"; };
 		2AA6727D2B8F784700B8F7E6 /* Snippet.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Snippet.xcstrings; path = mul.lproj/Snippet.xcstrings; sourceTree = "<group>"; };
 		2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Shortcut.xcstrings; path = mul.lproj/Shortcut.xcstrings; sourceTree = "<group>"; };
-		2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = DocumentWindow.xcstrings; path = mul.lproj/DocumentWindow.xcstrings; sourceTree = "<group>"; };
+		2AA672A12B8F8AA300B8F7E6 /* Document.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Document.xcstrings; path = mul.lproj/Document.xcstrings; sourceTree = "<group>"; };
 		2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = OpacitySlider.xcstrings; path = mul.lproj/OpacitySlider.xcstrings; sourceTree = "<group>"; };
 		2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = MainMenu.xcstrings; path = mul.lproj/MainMenu.xcstrings; sourceTree = "<group>"; };
 		2AA6731B2B9178AB00B8F7E6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Localizable.xcstrings; path = mul.lproj/Localizable.xcstrings; sourceTree = "<group>"; };
@@ -2186,7 +2186,7 @@
 		2AA6731E2B917B6500B8F7E6 /* Document Window */ = {
 			isa = PBXGroup;
 			children = (
-				2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */,
+				2AA672A12B8F8AA300B8F7E6 /* Document.xcstrings */,
 				2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */,
 			);
 			name = "Document Window";
@@ -2688,7 +2688,7 @@
 				2A1E7E4F2B8D9706004F0C07 /* Console.xcstrings in Resources */,
 				2A39ACB92B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACF92B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
-				2AA672A22B8F8AA300B8F7E6 /* DocumentWindow.xcstrings in Resources */,
+				2AA672A22B8F8AA300B8F7E6 /* Document.xcstrings in Resources */,
 				2A1E7E192B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
 				2A7FEF3C2B90F0610042BEFF /* LinkButton.xcstrings in Resources */,
 				2A39AC812B8CDFC800E216C9 /* EncodingList.xcstrings in Resources */,
@@ -2780,7 +2780,7 @@
 				2A1E7E502B8D9706004F0C07 /* Console.xcstrings in Resources */,
 				2A39ACBA2B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACFA2B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
-				2AA672A32B8F8AA300B8F7E6 /* DocumentWindow.xcstrings in Resources */,
+				2AA672A32B8F8AA300B8F7E6 /* Document.xcstrings in Resources */,
 				2A1E7E1A2B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
 				2A39AC822B8CDFCA00E216C9 /* EncodingList.xcstrings in Resources */,
 				2AA6726D2B8F75CC00B8F7E6 /* FileDropItem.xcstrings in Resources */,

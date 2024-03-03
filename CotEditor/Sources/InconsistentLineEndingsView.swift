@@ -51,22 +51,22 @@ struct InconsistentLineEndingsView: View {
     var body: some View {
         
         VStack(alignment: .leading, spacing: 8) {
-            Text("Inconsistent Line Endings", tableName: "DocumentWindow", comment: "section title in inspector")
+            Text("Inconsistent Line Endings", tableName: "Document", comment: "section title in inspector")
                 .font(.system(size: 12, weight: .bold))
                 .foregroundStyle(.secondary)
             
             if self.model.items.isEmpty {
-                Text("No issues found.", tableName: "DocumentWindow")
+                Text("No issues found.", tableName: "Document")
                     .foregroundStyle(.secondary)
             } else {
                 Text("Found \(self.model.items.count) line endings other than \(self.model.lineEnding.label).",
-                     tableName: "DocumentWindow",
+                     tableName: "Document",
                      comment: "%lld is the number of inconsistent line endings and %@ is a line ending type, such as LF")
             }
             
             if !self.model.items.isEmpty {
                 Table(self.model.items, selection: $selection, sortOrder: $sortOrder) {
-                    TableColumn(String(localized: "Line", table: "DocumentWindow", comment: "table column header"), value: \.location) {
+                    TableColumn(String(localized: "Line", table: "Document", comment: "table column header"), value: \.location) {
                         // calculate the line number first at this point to postpone the high cost processing as much as possible
                         if let line = self.model.document?.lineEndingScanner.lineNumber(at: $0.location) {
                             Text(line, format: .number)
@@ -75,7 +75,7 @@ struct InconsistentLineEndingsView: View {
                         }
                     }
                     
-                    TableColumn(String(localized: "Line Ending", table: "DocumentWindow", comment: "table column header"), value: \.value.rawValue) {
+                    TableColumn(String(localized: "Line Ending", table: "Document", comment: "table column header"), value: \.value.rawValue) {
                         Text($0.value.label)
                     }
                 }
@@ -92,7 +92,7 @@ struct InconsistentLineEndingsView: View {
             }
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(Text("Inconsistent Line Endings", tableName: "DocumentWindow"))
+        .accessibilityLabel(Text("Inconsistent Line Endings", tableName: "Document"))
         .controlSize(.small)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }

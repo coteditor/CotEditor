@@ -69,9 +69,9 @@ final class NavigationBarController: NSViewController {
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel(String(localized: "Navigation Bar", table: "DocumentWindow", comment: "accessibility label"))
+        self.view.setAccessibilityLabel(String(localized: "Navigation Bar", table: "Document", comment: "accessibility label"))
         
-        self.outlineMenu?.setAccessibilityLabel(String(localized: "Outline", table: "DocumentWindow", comment: "accessibility label"))
+        self.outlineMenu?.setAccessibilityLabel(String(localized: "Outline", table: "Document", comment: "accessibility label"))
     }
     
     
@@ -277,8 +277,8 @@ final class NavigationBarController: NSViewController {
             @unknown default: fatalError()
         }
         prevButton.image = NSImage(systemSymbolName: prevSymbol,
-                                   accessibilityDescription: String(localized: "Previous", table: "DocumentWindow", comment: "button label"))!
-        prevButton.toolTip = String(localized: "Jump to previous outline item", table: "DocumentWindow", comment: "tooltip for button")
+                                   accessibilityDescription: String(localized: "Previous", table: "Document", comment: "button label"))!
+        prevButton.toolTip = String(localized: "Jump to previous outline item", table: "Document", comment: "tooltip for button")
         prevButton.action = #selector(EditorViewController.selectPrevItemOfOutlineMenu)
         prevButton.target = self.parent
         prevButton.isEnabled = self.canSelectPrevItem
@@ -289,8 +289,8 @@ final class NavigationBarController: NSViewController {
             @unknown default: fatalError()
         }
         nextButton.image = NSImage(systemSymbolName: nextSymbol,
-                                   accessibilityDescription: String(localized: "Next", table: "DocumentWindow", comment: "button label"))!
-        nextButton.toolTip = String(localized: "Jump to next outline item", table: "DocumentWindow", comment: "tooltip for button")
+                                   accessibilityDescription: String(localized: "Next", table: "Document", comment: "button label"))!
+        nextButton.toolTip = String(localized: "Jump to next outline item", table: "Document", comment: "tooltip for button")
         nextButton.action = #selector(EditorViewController.selectNextItemOfOutlineMenu)
         nextButton.target = self.parent
         nextButton.isEnabled = self.canSelectNextItem
