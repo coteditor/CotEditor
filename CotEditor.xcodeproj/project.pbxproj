@@ -107,10 +107,10 @@
 		2A1B7E75216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */; };
 		2A1B7E76216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */; };
 		2A1E7DCA2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */; };
-		2A1E7DD42B8C5A23004F0C07 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E7DD32B8C5A23004F0C07 /* Mode.swift */; };
-		2A1E7DD52B8C5A23004F0C07 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E7DD32B8C5A23004F0C07 /* Mode.swift */; };
 		2A1E7DD02B8C043F004F0C07 /* ModeSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DD22B8C043F004F0C07 /* ModeSettings.xcstrings */; };
 		2A1E7DD12B8C043F004F0C07 /* ModeSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DD22B8C043F004F0C07 /* ModeSettings.xcstrings */; };
+		2A1E7DD42B8C5A23004F0C07 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E7DD32B8C5A23004F0C07 /* Mode.swift */; };
+		2A1E7DD52B8C5A23004F0C07 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E7DD32B8C5A23004F0C07 /* Mode.swift */; };
 		2A1E7DE52B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */; };
 		2A1E7DE62B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */; };
 		2A1E7DFA2B8D67B3004F0C07 /* PrintAccessory.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */; };
@@ -577,8 +577,6 @@
 		2AA672912B8F7DF200B8F7E6 /* Shortcut.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */; };
 		2AA672A22B8F8AA300B8F7E6 /* DocumentWindow.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */; };
 		2AA672A32B8F8AA300B8F7E6 /* DocumentWindow.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */; };
-		2AA672B42B8F9F1C00B8F7E6 /* Document.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672B32B8F9F1C00B8F7E6 /* Document.xcstrings */; };
-		2AA672B52B8F9F1C00B8F7E6 /* Document.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672B32B8F9F1C00B8F7E6 /* Document.xcstrings */; };
 		2AA672C62B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */; };
 		2AA672C72B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */; };
 		2AA672F62B916DA400B8F7E6 /* MainMenu.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */; };
@@ -637,14 +635,14 @@
 		2AB2913F245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2913D245AAD74004CC203 /* Unicode.GeneralCategory.swift */; };
 		2AB541DA20A5B6A400367DD5 /* NSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView.swift */; };
 		2AB541DB20A5B6A400367DD5 /* NSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView.swift */; };
-		2AB857EE2B930B070079CFA2 /* Syntax+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857ED2B930B070079CFA2 /* Syntax+Localization.swift */; };
-		2AB857EF2B930B070079CFA2 /* Syntax+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857ED2B930B070079CFA2 /* Syntax+Localization.swift */; };
-		2AB857F22B930BC00079CFA2 /* Syntax.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB857F02B930BC00079CFA2 /* Syntax.xcstrings */; };
-		2AB857F32B930BC00079CFA2 /* Syntax.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB857F02B930BC00079CFA2 /* Syntax.xcstrings */; };
 		2AB857E82B922D7D0079CFA2 /* ModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857E72B922D7D0079CFA2 /* ModeManager.swift */; };
 		2AB857E92B922D7D0079CFA2 /* ModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857E72B922D7D0079CFA2 /* ModeManager.swift */; };
 		2AB857EB2B93050E0079CFA2 /* ModeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857EA2B93050E0079CFA2 /* ModeOptions.swift */; };
 		2AB857EC2B93050E0079CFA2 /* ModeOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857EA2B93050E0079CFA2 /* ModeOptions.swift */; };
+		2AB857EE2B930B070079CFA2 /* Syntax+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857ED2B930B070079CFA2 /* Syntax+Localization.swift */; };
+		2AB857EF2B930B070079CFA2 /* Syntax+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857ED2B930B070079CFA2 /* Syntax+Localization.swift */; };
+		2AB857F22B930BC00079CFA2 /* Syntax.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB857F02B930BC00079CFA2 /* Syntax.xcstrings */; };
+		2AB857F32B930BC00079CFA2 /* Syntax.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB857F02B930BC00079CFA2 /* Syntax.xcstrings */; };
 		2AB9E4C02B830902004E5BDC /* FormatSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */; };
 		2AB9E4C12B830902004E5BDC /* FormatSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */; };
 		2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
@@ -953,8 +951,8 @@
 		2A1ABCA727F07CED0054795D /* NSScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSScroller.swift; sourceTree = "<group>"; };
 		2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedScrollView.swift; sourceTree = "<group>"; };
 		2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = KeyBindingsSettings.xcstrings; path = mul.lproj/KeyBindingsSettings.xcstrings; sourceTree = "<group>"; };
-		2A1E7DD32B8C5A23004F0C07 /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
 		2A1E7DD22B8C043F004F0C07 /* ModeSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = ModeSettings.xcstrings; path = mul.lproj/ModeSettings.xcstrings; sourceTree = "<group>"; };
+		2A1E7DD32B8C5A23004F0C07 /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
 		2A1E7DE42B8D6102004F0C07 /* MultipleReplace.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = MultipleReplace.xcstrings; path = mul.lproj/MultipleReplace.xcstrings; sourceTree = "<group>"; };
 		2A1E7DF92B8D67B3004F0C07 /* PrintAccessory.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = PrintAccessory.xcstrings; path = mul.lproj/PrintAccessory.xcstrings; sourceTree = "<group>"; };
 		2A1E7E182B8D715F004F0C07 /* EditorOpacity.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = EditorOpacity.xcstrings; path = mul.lproj/EditorOpacity.xcstrings; sourceTree = "<group>"; };
@@ -1219,7 +1217,6 @@
 		2AA6727D2B8F784700B8F7E6 /* Snippet.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Snippet.xcstrings; path = mul.lproj/Snippet.xcstrings; sourceTree = "<group>"; };
 		2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Shortcut.xcstrings; path = mul.lproj/Shortcut.xcstrings; sourceTree = "<group>"; };
 		2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = DocumentWindow.xcstrings; path = mul.lproj/DocumentWindow.xcstrings; sourceTree = "<group>"; };
-		2AA672B32B8F9F1C00B8F7E6 /* Document.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Document.xcstrings; path = mul.lproj/Document.xcstrings; sourceTree = "<group>"; };
 		2AA672C52B91535A00B8F7E6 /* OpacitySlider.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = OpacitySlider.xcstrings; path = mul.lproj/OpacitySlider.xcstrings; sourceTree = "<group>"; };
 		2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = MainMenu.xcstrings; path = mul.lproj/MainMenu.xcstrings; sourceTree = "<group>"; };
 		2AA6731B2B9178AB00B8F7E6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Localizable.xcstrings; path = mul.lproj/Localizable.xcstrings; sourceTree = "<group>"; };
@@ -1252,10 +1249,10 @@
 		2AB1BD23287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCountOptionsSheetView.swift; sourceTree = "<group>"; };
 		2AB2913D245AAD74004CC203 /* Unicode.GeneralCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unicode.GeneralCategory.swift; sourceTree = "<group>"; };
 		2AB541D920A5B6A400367DD5 /* NSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSView.swift; sourceTree = "<group>"; };
-		2AB857ED2B930B070079CFA2 /* Syntax+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Syntax+Localization.swift"; sourceTree = "<group>"; };
-		2AB857F12B930BC00079CFA2 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Syntax.xcstrings; sourceTree = "<group>"; };
 		2AB857E72B922D7D0079CFA2 /* ModeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeManager.swift; sourceTree = "<group>"; };
 		2AB857EA2B93050E0079CFA2 /* ModeOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeOptions.swift; sourceTree = "<group>"; };
+		2AB857ED2B930B070079CFA2 /* Syntax+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Syntax+Localization.swift"; sourceTree = "<group>"; };
+		2AB857F12B930BC00079CFA2 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Syntax.xcstrings; sourceTree = "<group>"; };
 		2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxManager.swift; sourceTree = "<group>"; };
 		2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = FormatSettings.xcstrings; path = mul.lproj/FormatSettings.xcstrings; sourceTree = "<group>"; };
 		2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+ScriptingSupport.swift"; sourceTree = "<group>"; };
@@ -2292,7 +2289,6 @@
 			children = (
 				2AA6731B2B9178AB00B8F7E6 /* Localizable.xcstrings */,
 				2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */,
-				2AA672B32B8F9F1C00B8F7E6 /* Document.xcstrings */,
 				2AB9E4BB2B7F2378004E5BDC /* Settings */,
 				2A1E7DE72B8D615A004F0C07 /* Text Finder */,
 				2AA6731E2B917B6500B8F7E6 /* Document Window */,
@@ -2700,7 +2696,6 @@
 				2A1E7E4F2B8D9706004F0C07 /* Console.xcstrings in Resources */,
 				2A39ACB92B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACF92B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
-				2AA672B42B8F9F1C00B8F7E6 /* Document.xcstrings in Resources */,
 				2AA672A22B8F8AA300B8F7E6 /* DocumentWindow.xcstrings in Resources */,
 				2A1E7E192B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
 				2A7FEF3C2B90F0610042BEFF /* LinkButton.xcstrings in Resources */,
@@ -2795,7 +2790,6 @@
 				2A1E7E502B8D9706004F0C07 /* Console.xcstrings in Resources */,
 				2A39ACBA2B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACFA2B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
-				2AA672B52B8F9F1C00B8F7E6 /* Document.xcstrings in Resources */,
 				2AA672A32B8F8AA300B8F7E6 /* DocumentWindow.xcstrings in Resources */,
 				2A1E7E1A2B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
 				2A39AC822B8CDFCA00E216C9 /* EncodingList.xcstrings in Resources */,

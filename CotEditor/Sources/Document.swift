@@ -1056,13 +1056,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             // ask whether just change the encoding or reinterpret document file
             let alert = NSAlert()
             alert.messageText = String(localized: "EncodingChangeAlert.message",
-                                       defaultValue: "Text encoding change", table: "Document")
+                                       defaultValue: "Text encoding change")
             alert.informativeText = String(localized: "EncodingChangeAlert.informativeText",
-                                           defaultValue: "Do you want to convert or reinterpret this document using “\(fileEncoding.localizedName)”?", table: "Document")
+                                           defaultValue: "Do you want to convert or reinterpret this document using “\(fileEncoding.localizedName)”?")
             alert.addButton(withTitle: String(localized: "EncodingChangeAlert.button.convert",
-                                              defaultValue: "Convert", table: "Document", comment: "button label"))
+                                              defaultValue: "Convert", comment: "button label"))
             alert.addButton(withTitle: String(localized: "EncodingChangeAlert.button.reinterpret",
-                                              defaultValue: "Reinterpret", table: "Document", comment: "button label"))
+                                              defaultValue: "Reinterpret", comment: "button label"))
             alert.addButton(withTitle: String(localized: "Cancel"))
             
             let documentWindow = self.windowForSheet!
@@ -1089,14 +1089,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                         if self.isDocumentEdited {
                             let alert = NSAlert()
                             alert.messageText = String(localized: "UnsavedReinterpretationAlert.message",
-                                                       defaultValue: "The document has unsaved changes.",
-                                                       table: "Document")
+                                                       defaultValue: "The document has unsaved changes.")
                             alert.informativeText = String(localized: "UnsavedReinterpretationAlert.informativeText",
-                                                           defaultValue: "Are you sure you want to discard your changes and reopen the document using “\(fileEncoding.localizedName)”?",
-                                                           table: "Document", comment: "%@ is an encoding name")
+                                                           defaultValue: "Are you sure you want to discard your changes and reopen the document using “\(fileEncoding.localizedName)”?", comment: "%@ is an encoding name")
                             alert.addButton(withTitle: String(localized: "Cancel"))
                             alert.addButton(withTitle: String(localized: "UnsavedReinterpretationAlert.button.discard",
-                                                              defaultValue: "Discard Changes", table: "Document", comment: "button label"))
+                                                              defaultValue: "Discard Changes", comment: "button label"))
                             alert.buttons.last?.hasDestructiveAction = true
                             
                             let returnCode = await alert.beginSheetModal(for: documentWindow)
@@ -1141,24 +1139,22 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         let alert = NSAlert()
         alert.alertStyle = .warning
         alert.messageText = String(localized: "InconsistentLineEndingAlert.message",
-                                   defaultValue: "The document has inconsistent line endings.",
-                                   table: "Document")
+                                   defaultValue: "The document has inconsistent line endings.")
         alert.informativeText = String(localized: "InconsistentLineEndingAlert.informativeText",
-                                       defaultValue: "Do you want to convert all line endings to \(self.lineEnding.label), the most common line endings in this document?",
-                                       table: "Document")
+                                       defaultValue: "Do you want to convert all line endings to \(self.lineEnding.label), the most common line endings in this document?")
         alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.convert",
                                           defaultValue: "Convert",
-                                          table: "Document", comment: "button label"))
+                                          comment: "button label"))
         alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.review",
                                           defaultValue: "Review",
-                                          table: "Document", comment: "button label"))
+                                          comment: "button label"))
         alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.ignore",
                                           defaultValue: "Ignore",
-                                          table: "Document", comment: "button label"))
+                                          comment: "button label"))
         alert.showsSuppressionButton = true
         alert.suppressionButton?.title = String(localized: "InconsistentLineEndingAlert.suppressionButton",
                                                 defaultValue: "Don’t ask again for this document",
-                                                table: "Document", comment: "toggle button label")
+                                                comment: "toggle button label")
         alert.showsHelp = true
         alert.helpAnchor = "inconsistent_line_endings"
         
@@ -1208,21 +1204,16 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             let alert = NSAlert()
             alert.messageText = self.isDocumentEdited
                 ? String(localized: "UpdatedByExternalProcessAlert.message.edited",
-                         defaultValue: "The file has been changed by another application. There are also unsaved changes in CotEditor.",
-                         table: "Document")
+                         defaultValue: "The file has been changed by another application. There are also unsaved changes in CotEditor.")
                 : String(localized: "UpdatedByExternalProcessAlert.message",
-                         defaultValue: "The file has been changed by another application.",
-                         table: "Document")
+                         defaultValue: "The file has been changed by another application.")
             alert.informativeText = String(localized: "UpdatedByExternalProcessAlert.informativeText",
-                                           defaultValue: "Do you want to keep CotEditor’s edition or update it to the modified edition?",
-                                           table: "Document")
+                                           defaultValue: "Do you want to keep CotEditor’s edition or update it to the modified edition?")
             alert.addButton(withTitle: String(localized: "UpdatedByExternalProcessAlert.button.keep",
                                               defaultValue: "Keep CotEditor’s Edition",
-                                              table: "Document",
                                               comment: "button label"))
             alert.addButton(withTitle: String(localized: "UpdatedByExternalProcessAlert.button.update",
                                               defaultValue: "Update",
-                                              table: "Document",
                                               comment: "button label"))
             
             // mark the alert as critical in order to interrupt other sheets already attached
@@ -1280,13 +1271,11 @@ private enum ReinterpretationError: LocalizedError {
         switch self {
             case .noFile:
                 String(localized: "ReinterpretationError.noFile.description",
-                       defaultValue: "The document doesn’t have a file to reinterpret.",
-                       table: "Document")
+                       defaultValue: "The document doesn’t have a file to reinterpret.")
                 
             case .reinterpretationFailed(let encoding):
                 String(localized: "ReinterpretationError.reinterpretationFailed.description",
-                       defaultValue: "The document could not be reinterpreted using text encoding “\(String.localizedName(of: encoding)).”",
-                       table: "Document")
+                       defaultValue: "The document could not be reinterpreted using text encoding “\(String.localizedName(of: encoding)).”")
         }
     }
     
@@ -1299,8 +1288,7 @@ private enum ReinterpretationError: LocalizedError {
                 
             case .reinterpretationFailed:
                 String(localized: "ReinterpretationError.reinterpretationFailed.recoverySuggestion",
-                       defaultValue: "The document may have been saved using a different text encoding, or it may not be a text file.",
-                       table: "Document")
+                       defaultValue: "The document may have been saved using a different text encoding, or it may not be a text file.")
         }
     }
 }
@@ -1315,22 +1303,20 @@ struct LossyEncodingError: LocalizedError, RecoverableError {
     var errorDescription: String? {
         
         String(localized: "LossyEncodingError.description",
-               defaultValue: "The document contains characters incompatible with “\(self.encoding.localizedName).”",
-               table: "Document")
+               defaultValue: "The document contains characters incompatible with “\(self.encoding.localizedName).”")
     }
     
     
     var recoverySuggestion: String? {
         
         String(localized: "LossyEncodingError.recoverySuggestion",
-               defaultValue: "Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?",
-               table: "Document")
+               defaultValue: "Incompatible characters are substituted or deleted in saving. Do you want to change the text encoding and review the incompatible characters?")
     }
     
     
     var recoveryOptions: [String] {
         
-        [String(localized: "LossyEncodingError.recoveryOption.change", defaultValue: "Change Encoding", table: "Document", comment: "button label"),
+        [String(localized: "LossyEncodingError.recoveryOption.change", defaultValue: "Change Encoding", comment: "button label"),
          String(localized: "Cancel")]
     }
     
@@ -1383,8 +1369,7 @@ private struct DocumentSavingError: LocalizedError, CustomNSError {
     var recoverySuggestion: String? {
         
         String(localized: "DocumentSavingError.lossyEncoding.recoverySuggestion",
-               defaultValue: "Incompatible characters are substituted or deleted in saving. Do you want to continue processing?",
-               table: "Document")
+               defaultValue: "Incompatible characters are substituted or deleted in saving. Do you want to continue processing?")
     }
     
     
@@ -1393,11 +1378,9 @@ private struct DocumentSavingError: LocalizedError, CustomNSError {
         switch self.code {
             case .lossyEncoding:
                 [String(localized: "DocumentSavingError.lossyEncoding.recoveryOption.save",
-                        defaultValue: "Save Available Text",
-                        table: "Document", comment: "button label"),
+                        defaultValue: "Save Available Text", comment: "button label"),
                  String(localized: "DocumentSavingError.lossyEncoding.recoveryOption.review",
-                        defaultValue: "Review Incompatible Characters",
-                        table: "Document", comment: "button label"),
+                        defaultValue: "Review Incompatible Characters", comment: "button label"),
                  String(localized: "Cancel")]
         }
     }
