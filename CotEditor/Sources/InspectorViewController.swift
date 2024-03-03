@@ -114,7 +114,7 @@ final class InspectorViewController: NSTabViewController {
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel(String(localized: "Inspector", table: "Inspector", comment: "accessibility label"))
+        self.view.setAccessibilityLabel(String(localized: "Inspector", table: "DocumentWindow", comment: "accessibility label"))
     }
     
     
@@ -171,9 +171,9 @@ private extension InspectorPane {
     var name: String {
         
         switch self {
-            case .document: String(localized: "Document Inspector", table: "Inspector", comment: "pane title")
-            case .outline: String(localized: "Outline", table: "Inspector", comment: "pane title")
-            case .warnings: String(localized: "Warnings", table: "Inspector", comment: "pane title")
+            case .document: String(localized: "Document Inspector", table: "DocumentWindow", comment: "inspector pane title")
+            case .outline: String(localized: "Outline", table: "DocumentWindow", comment: "inspector pane title")
+            case .warnings: String(localized: "Warnings", table: "DocumentWindow", comment: "inspector pane title")
         }
     }
     

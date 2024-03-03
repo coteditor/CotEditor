@@ -114,7 +114,7 @@ struct DocumentInspectorView: View {
             .disclosureGroupStyle(InspectorDisclosureGroupStyle())
             .labeledContentStyle(InspectorLabeledContentStyle())
         }
-        .accessibilityLabel(Text("Document Inspector", tableName: "Inspector"))
+        .accessibilityLabel(Text("Document Inspector", tableName: "DocumentWindow"))
         .controlSize(.small)
     }
 }
@@ -130,19 +130,25 @@ private struct DocumentFileView: View {
     
     var body: some View {
         
-        DisclosureGroup(String(localized: "Document File", table: "Inspector", comment: "section title"), isExpanded: $isExpanded) {
+        DisclosureGroup(String(localized: "Document File", table: "DocumentWindow", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
-                OptionalLabeledContent(String(localized: "Created", table: "Inspector"),
+                OptionalLabeledContent(String(localized: "Created", table: "DocumentWindow",
+                                             comment: "label in document inspector"),
                                        value: self.attributes?.creationDate?.formatted(date: .abbreviated, time: .shortened))
-                OptionalLabeledContent(String(localized: "Modified", table: "Inspector"),
+                OptionalLabeledContent(String(localized: "Modified", table: "DocumentWindow",
+                                              comment: "label in document inspector"),
                                        value: self.attributes?.modificationDate?.formatted(date: .abbreviated, time: .shortened))
-                OptionalLabeledContent(String(localized: "Size", table: "Inspector"),
+                OptionalLabeledContent(String(localized: "Size", table: "DocumentWindow",
+                                              comment: "label in document inspector"),
                                        value: self.attributes?.size.formatted(.byteCount(style: .file, includesActualByteCount: true)))
-                OptionalLabeledContent(String(localized: "Permissions", table: "Inspector"),
+                OptionalLabeledContent(String(localized: "Permissions", table: "DocumentWindow",
+                                              comment: "label in document inspector"),
                                        value: self.attributes?.permissions.formatted())
-                OptionalLabeledContent(String(localized: "Owner", table: "Inspector"),
+                OptionalLabeledContent(String(localized: "Owner", table: "DocumentWindow",
+                                              comment: "label in document inspector"),
                                        value: self.attributes?.owner)
-                OptionalLabeledContent(String(localized: "Full Path", table: "Inspector"),
+                OptionalLabeledContent(String(localized: "Full Path", table: "DocumentWindow",
+                                              comment: "label in document inspector"),
                                        value: self.fileURL?.path)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -161,11 +167,13 @@ private struct TextSettingsView: View {
     
     var body: some View {
         
-        DisclosureGroup(String(localized: "Text Settings", table: "Inspector", comment: "section title"), isExpanded: $isExpanded) {
+        DisclosureGroup(String(localized: "Text Settings", table: "DocumentWindow", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
-                LabeledContent(String(localized: "Encoding", table: "Inspector"),
+                LabeledContent(String(localized: "Encoding", table: "DocumentWindow",
+                                      comment: "label in document inspector"),
                                value: self.encoding.localizedName)
-                LabeledContent(String(localized: "Line Endings", table: "Inspector"),
+                LabeledContent(String(localized: "Line Endings", table: "DocumentWindow",
+                                      comment: "label in document inspector"),
                                value: self.lineEnding.label)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -183,21 +191,27 @@ private struct CountLocationView: View {
     
     var body: some View {
         
-        DisclosureGroup(String(localized: "Count", table: "Inspector", comment: "section title"), isExpanded: $isExpanded) {
+        DisclosureGroup(String(localized: "Count", table: "DocumentWindow", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
-                OptionalLabeledContent(String(localized: "Lines", table: "Inspector"),
+                OptionalLabeledContent(String(localized: "Lines", table: "DocumentWindow",
+                                              comment: "label in document inspector"),
                                        value: self.result.lines.formatted)
-                OptionalLabeledContent(String(localized: "Characters", table: "Inspector"),
+                OptionalLabeledContent(String(localized: "Characters", table: "DocumentWindow",
+                                              comment: "label in document inspector"),
                                        value: self.result.characters.formatted)
-                OptionalLabeledContent(String(localized: "Words", table: "Inspector"),
+                OptionalLabeledContent(String(localized: "Words", table: "DocumentWindow",
+                                              comment: "label in document inspector"),
                                        value: self.result.words.formatted)
                 .padding(.bottom, 8)
                 
-                OptionalLabeledContent(String(localized: "Location", table: "Inspector"),
+                OptionalLabeledContent(String(localized: "Location", table: "DocumentWindow",
+                                              comment: "label in document inspector"),
                                        value: self.result.location?.formatted())
-                OptionalLabeledContent(String(localized: "Line", table: "Inspector"),
+                OptionalLabeledContent(String(localized: "Line", table: "DocumentWindow",
+                                              comment: "label in document inspector"),
                                        value: self.result.line?.formatted())
-                OptionalLabeledContent(String(localized: "Column", table: "Inspector"),
+                OptionalLabeledContent(String(localized: "Column", table: "DocumentWindow",
+                                              comment: "label in document inspector"),
                                        value: self.result.column?.formatted())
             }
             .monospacedDigit()
@@ -216,10 +230,11 @@ private struct CharacterPaneView: View {
     
     var body: some View {
     
-        DisclosureGroup(String(localized: "Character", table: "Inspector", comment: "section title"), isExpanded: $isExpanded) {
+        DisclosureGroup(String(localized: "Character", table: "DocumentWindow", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
                 if let character {
-                    LabeledContent(String(localized: "Code Points", table: "Inspector")) {
+                    LabeledContent(String(localized: "Code Points", table: "DocumentWindow",
+                                          comment: "label in document inspector")) {
                         WrappingHStack {
                             ForEach(Array(character.unicodeScalars.enumerated()), id: \.offset) { (_, scalar) in
                                 Text(scalar.codePoint)
@@ -232,9 +247,9 @@ private struct CharacterPaneView: View {
                         }
                     }
                 } else {
-                    Text("Not selected", tableName: "Inspector", comment: "placeholder")
+                    Text("Not selected", tableName: "DocumentWindow", comment: "placeholder")
                         .foregroundStyle(.tertiary)
-                        .help(String(localized: "Select a single character to show Unicode information.", table: "Inspector", comment: "help"))
+                        .help(String(localized: "Select a single character to show Unicode information.", table: "DocumentWindow", comment: "tooltip"))
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)

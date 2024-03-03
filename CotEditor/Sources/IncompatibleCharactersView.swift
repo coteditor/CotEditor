@@ -53,23 +53,23 @@ struct IncompatibleCharactersView: View {
     var body: some View {
         
         VStack(alignment: .leading, spacing: 8) {
-            Text("Incompatible Characters", tableName: "Inspector", comment: "section title")
+            Text("Incompatible Characters", tableName: "DocumentWindow", comment: "section title in inspector")
                 .font(.system(size: 12, weight: .bold))
                 .foregroundStyle(.secondary)
             
             if self.model.isScanning {
-                Text("Scanning incompatible characters…", tableName: "Inspector")
+                Text("Scanning incompatible characters…", tableName: "DocumentWindow")
             } else if self.model.items.isEmpty {
-                Text("No issues found.", tableName: "Inspector")
+                Text("No issues found.", tableName: "DocumentWindow")
                     .foregroundStyle(.secondary)
             } else {
-                Text("Found \(self.model.items.count) incompatible characters.", tableName: "Inspector",
+                Text("Found \(self.model.items.count) incompatible characters.", tableName: "DocumentWindow",
                      comment: "%lld is the number of characters.")
             }
             
             if !self.model.items.isEmpty {
                 Table(self.model.items, selection: $selection, sortOrder: $sortOrder) {
-                    TableColumn(String(localized: "Line", table: "Inspector", comment: "table column header"), value: \.location) {
+                    TableColumn(String(localized: "Line", table: "DocumentWindow", comment: "table column header"), value: \.location) {
                         // calculate the line number first at this point to postpone the high cost processing as much as possible
                         if let line = self.model.document?.lineEndingScanner.lineNumber(at: $0.location) {
                             Text(line, format: .number)
@@ -78,7 +78,7 @@ struct IncompatibleCharactersView: View {
                         }
                     }
                     
-                    TableColumn(String(localized: "Character", table: "Inspector", comment: "table column header"), value: \.value.character) {
+                    TableColumn(String(localized: "Character", table: "DocumentWindow", comment: "table column header"), value: \.value.character) {
                         let character = $0.value.character
                         let invisibleCategories: Set<Unicode.GeneralCategory> = [.control, .spaceSeparator, .lineSeparator]
                         
@@ -91,7 +91,7 @@ struct IncompatibleCharactersView: View {
                         }
                     }
                     
-                    TableColumn(String(localized: "Converted", table: "Inspector", comment: "table column header for converted character")) {
+                    TableColumn(String(localized: "Converted", table: "DocumentWindow", comment: "table column header for converted character")) {
                         if let converted = $0.value.converted {
                             Text(converted)
                         }
@@ -110,7 +110,7 @@ struct IncompatibleCharactersView: View {
             }
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(Text("Incompatible Characters", tableName: "Inspector"))
+        .accessibilityLabel(Text("Incompatible Characters", tableName: "DocumentWindow"))
         .controlSize(.small)
         .frame(maxWidth: .infinity, minHeight: self.model.items.isEmpty ? 60 : 120, alignment: .topLeading)
     }

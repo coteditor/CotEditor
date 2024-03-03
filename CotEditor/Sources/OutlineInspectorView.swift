@@ -108,7 +108,7 @@ struct OutlineInspectorView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Text("Outline", tableName: "Inspector", comment: "section title")
+            Text("Outline", tableName: "DocumentWindow", comment: "section title in inspector")
                 .font(.system(size: 12, weight: .bold))
                 .foregroundStyle(.secondary)
             
@@ -121,7 +121,7 @@ struct OutlineInspectorView: View {
             }
             .overlay {
                 if !self.filterString.isEmpty, items.isEmpty {
-                    Text("No Filter Results", tableName: "Inspector", comment: "display on the list when no results in filtering outline items")
+                    Text("No Filter Results", tableName: "DocumentWindow", comment: "display on the outline list when no results in filtering outline items")
                         .foregroundStyle(.secondary)
                         .controlSize(.regular)
                 }
@@ -147,7 +147,7 @@ struct OutlineInspectorView: View {
                 .controlSize(.regular)
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(Text("Outline", tableName: "Inspector"))
+        .accessibilityLabel(Text("Outline", tableName: "DocumentWindow"))
         .controlSize(.small)
         .padding(EdgeInsets(top: 8, leading: 12, bottom: 12, trailing: 12))
     }

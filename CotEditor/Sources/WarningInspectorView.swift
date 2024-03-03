@@ -107,7 +107,7 @@ struct WarningInspectorView: View {
                 .padding(.top, 8)
         }
         .padding(EdgeInsets(top: 8, leading: 12, bottom: 12, trailing: 12))
-        .accessibilityLabel(Text("Warnings", tableName: "Inspector"))
+        .accessibilityLabel(Text("Warnings", tableName: "DocumentWindow"))
     }
 }
 

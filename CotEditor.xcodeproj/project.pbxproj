@@ -673,8 +673,6 @@
 		2AC7044924EBB76B00454706 /* NSToolbarItem+Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC7044724EBB76B00454706 /* NSToolbarItem+Validatable.swift */; };
 		2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */; };
 		2AC72EA2253478D5001D3CA0 /* FileDropItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */; };
-		2AC94B222B6E26F40086F9F2 /* Inspector.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */; };
-		2AC94B232B6E26F40086F9F2 /* Inspector.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */; };
 		2AC94B3B2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC94B3A2B6EAAE90086F9F2 /* RegexReference.xcstrings */; };
 		2AC94B3C2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC94B3A2B6EAAE90086F9F2 /* RegexReference.xcstrings */; };
 		2ACAAC1C2B85E74C0041B095 /* SyntaxMap in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACAAC1B2B85E74C0041B095 /* SyntaxMap */; };
@@ -1273,7 +1271,6 @@
 		2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
 		2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropItemTests.swift; sourceTree = "<group>"; };
-		2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Inspector.xcstrings; path = mul.lproj/Inspector.xcstrings; sourceTree = "<group>"; };
 		2AC94B3A2B6EAAE90086F9F2 /* RegexReference.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = RegexReference.xcstrings; path = mul.lproj/RegexReference.xcstrings; sourceTree = "<group>"; };
 		2ACC21B11E52B7920078241F /* DefaultOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultOptions.swift; sourceTree = "<group>"; };
 		2ACC21B41E52B8C50078241F /* DefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultKeys.swift; sourceTree = "<group>"; };
@@ -2191,7 +2188,6 @@
 			children = (
 				2AA672A12B8F8AA300B8F7E6 /* DocumentWindow.xcstrings */,
 				2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */,
-				2AC94B212B6E26F40086F9F2 /* Inspector.xcstrings */,
 			);
 			name = "Document Window";
 			sourceTree = "<group>";
@@ -2699,7 +2695,6 @@
 				2AA6726C2B8F75CC00B8F7E6 /* FileDropItem.xcstrings in Resources */,
 				2A7FEF0B2B90B05C0042BEFF /* FilterField.xcstrings in Resources */,
 				2A39AC922B8CE40400E216C9 /* GoToLine.xcstrings in Resources */,
-				2AC94B222B6E26F40086F9F2 /* Inspector.xcstrings in Resources */,
 				2ACDA29D2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */,
 				2AAF93562A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A39ACA82B8CE58100E216C9 /* LiveTextInsertion.xcstrings in Resources */,
@@ -2791,7 +2786,6 @@
 				2AA6726D2B8F75CC00B8F7E6 /* FileDropItem.xcstrings in Resources */,
 				2A7FEF0C2B90B05C0042BEFF /* FilterField.xcstrings in Resources */,
 				2A39AC932B8CE40400E216C9 /* GoToLine.xcstrings in Resources */,
-				2AC94B232B6E26F40086F9F2 /* Inspector.xcstrings in Resources */,
 				2ACDA29E2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */,
 				2AAF93572A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A39ACA92B8CE58100E216C9 /* LiveTextInsertion.xcstrings in Resources */,
