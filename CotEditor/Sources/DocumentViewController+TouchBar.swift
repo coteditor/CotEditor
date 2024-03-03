@@ -68,21 +68,21 @@ extension DocumentViewController: NSTouchBarDelegate {
         switch identifier {
             case .invisibles:
                 let item = NSCustomTouchBarItem(identifier: identifier)
-                item.customizationLabel = String(localized: "Toolbar.invisibles.label", defaultValue: "Invisibles", table: "Toolbar")
+                item.customizationLabel = String(localized: "Toolbar.invisibles.label", defaultValue: "Invisibles", table: "Document")
                 let image = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: item.customizationLabel)!
                 item.view = NSButton(image: image, target: self, action: #selector(toggleInvisibleCharsViaTouchBar))
                 return item
                 
             case .indentGuides:
                 let item = NSCustomTouchBarItem(identifier: identifier)
-                item.customizationLabel = String(localized: "Toolbar.indentGuides.label", defaultValue: "Indent Guides", table: "Toolbar")
+                item.customizationLabel = String(localized: "Toolbar.indentGuides.label", defaultValue: "Indent Guides", table: "Document")
                 let image = NSImage(resource: .textIndentguides)
                 item.view = NSButton(image: image, target: self, action: #selector(toggleIndentGuidesViaTouchBar))
                 return item
                 
             case .wrapLines:
                 let item = NSCustomTouchBarItem(identifier: identifier)
-                item.customizationLabel = String(localized: "Toolbar.wrapLines.label", defaultValue: "Line Wrapping", table: "Toolbar")
+                item.customizationLabel = String(localized: "Toolbar.wrapLines.label", defaultValue: "Line Wrapping", table: "Document")
                 let image = NSImage(resource: .textWrap)
                 item.view = NSButton(image: image, target: self, action: #selector(toggleLineWrapViaTouchBar))
                 return item

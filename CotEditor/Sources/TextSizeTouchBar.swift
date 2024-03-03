@@ -73,7 +73,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
             case .textSizeActual:
                 let item = NSCustomTouchBarItem(identifier: identifier)
                 item.view = NSButton(title: String(localized: "Toolbar.textSize.actualSize.label",
-                                                   defaultValue: "Actual Size", table: "Toolbar", comment: "only in Touch Bar"),
+                                                   defaultValue: "Actual Size", table: "Document", comment: "only in Touch Bar"),
                                      target: self, action: #selector(resetTextSize))
                 return item
                 
@@ -88,11 +88,11 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
                 item.slider.minValue = Double(textView.enclosingScrollView?.minMagnification ?? 0.2)
                 let minimumValueImage = NSImage(systemSymbolName: "textformat.size.smaller",
                                                 accessibilityDescription: String(localized: "Toolbar.textSize.smaller.label",
-                                                                                 defaultValue: "Smaller", table: "Toolbar"))!
+                                                                                 defaultValue: "Smaller", table: "Document"))!
                 item.minimumValueAccessory = NSSliderAccessory(image: minimumValueImage)
                 let maximumValueImage = NSImage(systemSymbolName: "textformat.size.larger",
                                                 accessibilityDescription: String(localized: "Toolbar.textSize.bigger.label",
-                                                                                 defaultValue: "Bigger", table: "Toolbar"))!
+                                                                                 defaultValue: "Bigger", table: "Document"))!
                 item.maximumValueAccessory = NSSliderAccessory(image: maximumValueImage)
                 item.maximumSliderWidth = 300
                 

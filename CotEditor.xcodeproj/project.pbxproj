@@ -439,8 +439,6 @@
 		2A7FCC47280A367C0070EAB3 /* ValueRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FCC45280A367C0070EAB3 /* ValueRange.swift */; };
 		2A7FEF0B2B90B05C0042BEFF /* FilterField.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */; };
 		2A7FEF0C2B90B05C0042BEFF /* FilterField.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */; };
-		2A7FEF1E2B90C7050042BEFF /* Toolbar.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */; };
-		2A7FEF1F2B90C7050042BEFF /* Toolbar.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */; };
 		2A7FEF332B90E1C20042BEFF /* Character.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF322B90E1C20042BEFF /* Character.xcstrings */; };
 		2A7FEF342B90E1C20042BEFF /* Character.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF322B90E1C20042BEFF /* Character.xcstrings */; };
 		2A7FEF382B90EC1E0042BEFF /* CommandBar.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A7FEF362B90EC1E0042BEFF /* CommandBar.xcstrings */; };
@@ -1134,7 +1132,6 @@
 		2A7F4E012871F46D0029CE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PrintPanelAccessory.storyboard; sourceTree = "<group>"; };
 		2A7FCC45280A367C0070EAB3 /* ValueRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueRange.swift; sourceTree = "<group>"; };
 		2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = FilterField.xcstrings; path = mul.lproj/FilterField.xcstrings; sourceTree = "<group>"; };
-		2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Toolbar.xcstrings; path = mul.lproj/Toolbar.xcstrings; sourceTree = "<group>"; };
 		2A7FEF322B90E1C20042BEFF /* Character.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Character.xcstrings; path = mul.lproj/Character.xcstrings; sourceTree = "<group>"; };
 		2A7FEF372B90EC1E0042BEFF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/CommandBar.xcstrings; sourceTree = "<group>"; };
 		2A7FEF3B2B90F0610042BEFF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/LinkButton.xcstrings; sourceTree = "<group>"; };
@@ -2183,15 +2180,6 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		2AA6731E2B917B6500B8F7E6 /* Document Window */ = {
-			isa = PBXGroup;
-			children = (
-				2AA672A12B8F8AA300B8F7E6 /* Document.xcstrings */,
-				2A7FEF1D2B90C7050042BEFF /* Toolbar.xcstrings */,
-			);
-			name = "Document Window";
-			sourceTree = "<group>";
-		};
 		2AA6731F2B917B8F00B8F7E6 /* Other Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -2281,9 +2269,9 @@
 			children = (
 				2AA6731B2B9178AB00B8F7E6 /* Localizable.xcstrings */,
 				2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */,
+				2AA672A12B8F8AA300B8F7E6 /* Document.xcstrings */,
 				2AB9E4BB2B7F2378004E5BDC /* Settings */,
 				2A1E7DE72B8D615A004F0C07 /* Text Finder */,
-				2AA6731E2B917B6500B8F7E6 /* Document Window */,
 				2A39AC942B8CE43100E216C9 /* Accessory Views */,
 				2A7FEF352B90EBEA0042BEFF /* Panels */,
 				2A7FEF0D2B90B1800042BEFF /* Views */,
@@ -2716,7 +2704,6 @@
 				2A1E7E2A2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */,
 				2A954B242AB28B010070FB74 /* TextFind.xcstrings in Resources */,
 				2A65EC3B2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */,
-				2A7FEF1E2B90C7050042BEFF /* Toolbar.xcstrings in Resources */,
 				2A39ACD52B8CE97800E216C9 /* UnicodeInput.xcstrings in Resources */,
 				2A5E6FC12A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
 				2AA2E0141BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
@@ -2807,7 +2794,6 @@
 				2A1E7E2B2B8D7414004F0C07 /* SyntaxMappingConflict.xcstrings in Resources */,
 				2A954B252AB28B010070FB74 /* TextFind.xcstrings in Resources */,
 				2A65EC3C2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */,
-				2A7FEF1F2B90C7050042BEFF /* Toolbar.xcstrings in Resources */,
 				2A39ACD62B8CE97800E216C9 /* UnicodeInput.xcstrings in Resources */,
 				2A5E6FC22A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
 				2A36E36F2AF9ED0B00A73534 /* Sparkle.xcstrings in Resources */,

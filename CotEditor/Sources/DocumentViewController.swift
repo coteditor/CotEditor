@@ -275,9 +275,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                     : String(localized: "Show Indent Guides", table: "MainMenu")
                 (item as? NSToolbarItem)?.toolTip = self.showsIndentGuides
                     ? String(localized: "Toolbar.indentGuides.tooltip.on",
-                             defaultValue: "Hide indent guide lines", table: "Toolbar")
+                             defaultValue: "Hide indent guide lines", table: "Document")
                     : String(localized: "Toolbar.indentGuides.tooltip.off",
-                             defaultValue: "Show indent guide lines", table: "Toolbar")
+                             defaultValue: "Show indent guide lines", table: "Document")
                 (item as? StatableToolbarItem)?.state = self.showsIndentGuides ? .on : .off
                 
             case #selector(toggleLineWrap):
@@ -286,9 +286,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                     : String(localized: "Wrap Lines", table: "MainMenu")
                 (item as? NSToolbarItem)?.toolTip = self.wrapsLines
                     ? String(localized: "Toolbar.wrapLines.tooltip.on",
-                             defaultValue: "Unwrap lines", table: "Toolbar")
+                             defaultValue: "Unwrap lines", table: "Document")
                     : String(localized: "Toolbar.wrapLines.tooltip.off",
-                             defaultValue: "Wrap lines", table: "Toolbar")
+                             defaultValue: "Wrap lines", table: "Document")
                 (item as? StatableToolbarItem)?.state = self.wrapsLines ? .on : .off
                 
             case #selector(toggleInvisibleChars):
@@ -307,9 +307,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 if canActivateShowInvisibles {
                     (item as? NSToolbarItem)?.toolTip = self.showsInvisibles
                         ? String(localized: "Toolbar.invisibles.tooltip.on",
-                                 defaultValue: "Hide invisible characters", table: "Toolbar")
+                                 defaultValue: "Hide invisible characters", table: "Document")
                         : String(localized: "Toolbar.invisibles.tooltip.off",
-                                 defaultValue: "Show invisible characters", table: "Toolbar")
+                                 defaultValue: "Show invisible characters", table: "Document")
                 }
                 return canActivateShowInvisibles
                 
@@ -323,9 +323,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 (item as? any StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
                 (item as? NSToolbarItem)?.toolTip = self.isAutoTabExpandEnabled
                     ? String(localized: "Toolbar.tabStyle.tooltip.on",
-                             defaultValue: "Use tabs for indentation", table: "Toolbar")
+                             defaultValue: "Use tabs for indentation", table: "Document")
                     : String(localized: "Toolbar.tabStyle.tooltip.off",
-                             defaultValue: "Use spaces for indentation", table: "Toolbar")
+                             defaultValue: "Use spaces for indentation", table: "Document")
                 
             case #selector(changeTabWidth):
                 (item as? any StatableItem)?.state = (self.tabWidth == item.tag) ? .on : .off
