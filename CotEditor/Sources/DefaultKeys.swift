@@ -93,7 +93,7 @@ extension DefaultKeys {
     static let selectionInstanceHighlightDelay = DefaultKey<Double>("selectionInstanceHighlightDelay")
     
     // Mode
-    static let modes = DefaultKey<[String: Data]>("modes")
+    static let modes = DefaultKey<[String: AnyHashable]>("modes")
     
     // Format
     static let lineEndCharCode = DefaultKey<Int>("defaultLineEndCharCode")

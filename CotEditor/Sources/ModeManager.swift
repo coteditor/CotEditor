@@ -101,7 +101,7 @@ actor ModeManager {
         if case .kind(let kind) = mode, setting == kind.defaultOptions {
             UserDefaults.standard[.modes].removeValue(forKey: mode.rawValue)
         } else {
-            UserDefaults.standard[.modes][mode.rawValue] = try! JSONEncoder().encode(setting)
+            UserDefaults.standard[.modes][mode.rawValue] = setting.dictionary
         }
     }
     
@@ -114,8 +114,8 @@ actor ModeManager {
     /// - Returns: The user mode setting if available.
     private func loadSetting(for mode: Mode) -> Setting? {
         
-        guard let data = UserDefaults.standard[.modes][mode.rawValue] else { return nil }
+        guard let dictionary = UserDefaults.standard[.modes][mode.rawValue] as? [String: AnyHashable] else { return nil }
         
-        return try? JSONDecoder().decode(Setting.self, from: data)
+        return ModeOptions(dictionary: dictionary)
     }
 }

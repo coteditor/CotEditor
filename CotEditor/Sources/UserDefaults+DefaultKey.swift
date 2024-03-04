@@ -114,9 +114,9 @@ extension UserDefaults {
     }
     
     
-    subscript(key: DefaultKey<[String: Data]>) -> [String: Data] {
+    subscript(key: DefaultKey<[String: AnyHashable]>) -> [String: AnyHashable] {
         
-        get { self.dictionary(forKey: key.rawValue) as? [String: Data] ?? [:] }
+        get { self.dictionary(forKey: key.rawValue) as? [String: AnyHashable] ?? [:] }
         set { self.set(newValue, forKey: key.rawValue) }
     }
     
