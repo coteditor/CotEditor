@@ -92,6 +92,8 @@ extension Syntax: Codable {
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         
+        try container.encode(self.kind, forKey: .kind)
+        
         try container.encode(self.keywords, forKey: .keywords)
         try container.encode(self.commands, forKey: .commands)
         try container.encode(self.types, forKey: .types)
