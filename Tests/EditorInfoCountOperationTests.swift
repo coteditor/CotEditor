@@ -34,7 +34,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
         Both are 👍🏼.
         """
     
-    func testNoRequiredInfo() async throws {
+    func testNoRequiredInfo() throws {
         
         let selectedRange = try XCTUnwrap(Range(NSRange(0..<3), in: self.testString))
         let counter = EditorCounter(
@@ -43,7 +43,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
             requiredInfo: [],
             countsWholeText: true)
         
-        let result = try await counter.count()
+        let result = try counter.count()
         
         XCTAssertNil(result.lines.entire)
         XCTAssertNil(result.characters.entire)
@@ -54,7 +54,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
     }
     
     
-    func testAllRequiredInfo() async throws {
+    func testAllRequiredInfo() throws {
         
         let selectedRange = try XCTUnwrap(Range(NSRange(11..<21), in: self.testString))
         let counter = EditorCounter(
@@ -63,7 +63,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
             requiredInfo: .all,
             countsWholeText: true)
         
-        let result = try await counter.count()
+        let result = try counter.count()
         
         XCTAssertEqual(result.lines.entire, 3)
         XCTAssertEqual(result.characters.entire, 31)
@@ -79,7 +79,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
     }
     
     
-    func testWholeTextSkip() async throws {
+    func testWholeTextSkip() throws {
         
         let selectedRange = try XCTUnwrap(Range(NSRange(11..<21), in: self.testString))
         let counter = EditorCounter(
@@ -88,7 +88,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
             requiredInfo: .all,
             countsWholeText: false)
         
-        let result = try await counter.count()
+        let result = try counter.count()
         
         XCTAssertNil(result.lines.entire)
         XCTAssertNil(result.characters.entire)
@@ -104,7 +104,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
     }
     
     
-    func testCRLF() async throws {
+    func testCRLF() throws {
         
         let string = "a\r\nb"
         let selectedRange = try XCTUnwrap(Range(NSRange(1..<4), in: string))
@@ -114,7 +114,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
             requiredInfo: .all,
             countsWholeText: true)
         
-        let result = try await counter.count()
+        let result = try counter.count()
         
         XCTAssertEqual(result.lines.entire, 2)
         XCTAssertEqual(result.characters.entire, 3)
