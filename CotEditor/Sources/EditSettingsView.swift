@@ -36,8 +36,6 @@ struct EditSettingsView: View {
     @AppStorage(.autoTrimsTrailingWhitespace) private var autoTrimsTrailingWhitespace
     @AppStorage(.trimsWhitespaceOnlyLines) private var trimsWhitespaceOnlyLines
     
-    @AppStorage(.appendsCommentSpacer) private var appendsCommentSpacer
-    
     @AppStorage(.autoLinkDetection) private var autoLinkDetection
     @AppStorage(.highlightBraces) private var highlightBraces
     @AppStorage(.highlightLtGt) private var highlightLtGt
@@ -78,15 +76,6 @@ struct EditSettingsView: View {
                     Toggle(String(localized: "Including whitespace-only lines", table: "EditSettings"), isOn: $trimsWhitespaceOnlyLines)
                         .disabled(!self.autoTrimsTrailingWhitespace)
                         .padding(.leading, 20)
-                }
-            }
-            
-            GridRow {
-                Text("Comment:", tableName: "EditSettings")
-                    .gridColumnAlignment(.trailing)
-                
-                VStack(alignment: .leading, spacing: 6) {
-                    Toggle(String(localized: "Append a space to comment delimiter", table: "EditSettings"), isOn: $appendsCommentSpacer)
                 }
             }
             

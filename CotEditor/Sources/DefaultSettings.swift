@@ -80,7 +80,6 @@ struct DefaultSettings {
         .detectsIndentStyle: true,
         .autoIndent: true,
         .indentWithTabKey: false,
-        .appendsCommentSpacer: false,
         .autoLinkDetection: false,
         .checkSpellingAsType: false,
         .highlightBraces: true,
