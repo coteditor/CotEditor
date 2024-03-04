@@ -133,7 +133,7 @@ private struct DocumentFileView: View {
         DisclosureGroup(String(localized: "Document File", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
                 OptionalLabeledContent(String(localized: "Created", table: "Document",
-                                             comment: "label in document inspector"),
+                                              comment: "label in document inspector"),
                                        value: self.attributes?.creationDate?.formatted(date: .abbreviated, time: .shortened))
                 OptionalLabeledContent(String(localized: "Modified", table: "Document",
                                               comment: "label in document inspector"),
