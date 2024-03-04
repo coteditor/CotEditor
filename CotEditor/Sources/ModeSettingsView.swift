@@ -226,6 +226,7 @@ private struct ModeOptionsView: View {
                     }.padding(.leading, 20)
                     Toggle(String(localized: "Suggest completions while typing", table: "ModeSettings"),
                            isOn: $options.automaticCompletion)
+                    .disabled(self.options.completionWordTypes.isEmpty)
                 }
             }
         }

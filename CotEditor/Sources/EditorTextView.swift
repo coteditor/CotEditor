@@ -1366,7 +1366,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.isGrammarCheckingEnabled = mode.grammarChecking
         self.isAutomaticSpellingCorrectionEnabled = mode.automaticSpellingCorrection
         
-        self.isAutomaticCompletionEnabled = mode.automaticCompletion
+        self.isAutomaticCompletionEnabled = mode.automaticCompletion && !mode.completionWordTypes.isEmpty
     }
     
     
