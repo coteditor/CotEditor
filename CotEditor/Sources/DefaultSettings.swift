@@ -88,6 +88,8 @@ struct DefaultSettings {
         .highlightSelectionInstance: true,
         .selectionInstanceHighlightDelay: 0.5,
         
+        .modes: [:],
+        
         .lineEndCharCode: 0,
         .encodingList: DefaultSettings.encodings.map(UInt.init),
         .encoding: String.Encoding.utf8.rawValue,

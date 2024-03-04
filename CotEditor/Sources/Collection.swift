@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -103,7 +103,7 @@ extension Dictionary {
     ///
     /// - Parameter transform: A closure that transforms a key. Every transformed key must be unique.
     /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
-    func mapKeys<T>(transform: (Key) throws -> T) rethrows -> [T: Value] {
+    func mapKeys<T>(_ transform: (Key) throws -> T) rethrows -> [T: Value] {
         
         try self.reduce(into: [:]) { $0[try transform($1.key)] = $1.value }
     }
@@ -116,6 +116,18 @@ extension Dictionary {
     func mapKeys<T>(_ keyPath: KeyPath<Key, T>) -> [T: Value] {
         
         self.mapKeys { $0[keyPath: keyPath] }
+    }
+    
+    /// Returns a new dictionary containing the keys transformed by the given closure with the values of this dictionary.
+    ///
+    /// - Parameter transform: A closure that transforms a key. Every transformed key must be unique.
+    /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
+    func compactMapKeys<T>(_ transform: (Key) throws -> T?) rethrows -> [T: Value] {
+        
+        try self.reduce(into: [:]) {
+            guard let key = try transform($1.key) else { return }
+            $0[key] = $1.value
+        }
     }
     
     

@@ -99,24 +99,26 @@ extension ModeOptions {
     /// - Parameter dictionary: The dictionary.
     init?(dictionary: [String: AnyHashable]) {
         
+        let dictionary = dictionary.compactMapKeys(CodingKeys.init(stringValue:))
+        
         guard
-            let fontRawValue = dictionary[CodingKeys.fontType.stringValue] as? String,
+            let fontRawValue = dictionary[.fontType] as? String,
             let fontType = FontType(rawValue: fontRawValue) else
         { return nil }
         
         self.fontType = fontType
         
-        self.smartInsertDelete = dictionary[CodingKeys.smartInsertDelete.stringValue] as? Bool ?? false
-        self.automaticQuoteSubstitution = dictionary[CodingKeys.automaticQuoteSubstitution.stringValue] as? Bool ?? false
-        self.automaticDashSubstitution = dictionary[CodingKeys.automaticDashSubstitution.stringValue] as? Bool ?? false
-        self.automaticSymbolBalancing = dictionary[CodingKeys.automaticSymbolBalancing.stringValue] as? Bool ?? false
+        self.smartInsertDelete = dictionary[.smartInsertDelete] as? Bool ?? false
+        self.automaticQuoteSubstitution = dictionary[.automaticQuoteSubstitution] as? Bool ?? false
+        self.automaticDashSubstitution = dictionary[.automaticDashSubstitution] as? Bool ?? false
+        self.automaticSymbolBalancing = dictionary[.automaticSymbolBalancing] as? Bool ?? false
         
-        self.continuousSpellChecking = dictionary[CodingKeys.continuousSpellChecking.stringValue] as? Bool ?? false
-        self.grammarChecking = dictionary[CodingKeys.grammarChecking.stringValue] as? Bool ?? false
-        self.automaticSpellingCorrection = dictionary[CodingKeys.automaticSpellingCorrection.stringValue] as? Bool ?? false
+        self.continuousSpellChecking = dictionary[.continuousSpellChecking] as? Bool ?? false
+        self.grammarChecking = dictionary[.grammarChecking] as? Bool ?? false
+        self.automaticSpellingCorrection = dictionary[.automaticSpellingCorrection] as? Bool ?? false
         
-        self.completionWordTypes = CompletionWordTypes(rawValue: dictionary[CodingKeys.automaticCompletion.stringValue] as? Int ?? 0)
-        self.automaticCompletion = dictionary[CodingKeys.automaticCompletion.stringValue] as? Bool ?? false
+        self.completionWordTypes = CompletionWordTypes(rawValue: dictionary[.completionWordTypes] as? Int ?? 0)
+        self.automaticCompletion = dictionary[.automaticCompletion] as? Bool ?? false
     }
     
     
@@ -138,8 +140,8 @@ extension ModeOptions {
          .completionWordTypes: self.completionWordTypes.rawValue,
          .automaticCompletion: self.automaticQuoteSubstitution,
         ]
-            .filter { ($0.value as? Int) != 0 }
-            .filter { ($0.value as? Bool) != false }
-            .mapKeys(\.stringValue)
+        .filter { ($0.value as? Int) != 0 }
+        .filter { ($0.value as? Bool) != false }
+        .mapKeys(\.stringValue)
     }
 }
