@@ -67,8 +67,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     var isAutomaticCompletionEnabled = false
     var isAutomaticIndentEnabled = false
     
-    var inlineCommentDelimiter: String?
-    var blockCommentDelimiters: Pair<String>?
+    var commentDelimiters: Syntax.Comment = Syntax.Comment()
     var syntaxCompletionWords: [String] = []
     
     var needsUpdateLineHighlight = true {
@@ -1134,13 +1133,13 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
                 (item as? NSMenuItem)?.title = self.canUncomment(partly: false)
                     ? String(localized: "Uncomment", table: "MainMenu")
                     : String(localized: "Comment Out", table: "MainMenu")
-                return (self.inlineCommentDelimiter != nil) || (self.blockCommentDelimiters != nil)
+                return (self.commentDelimiters.inline != nil) || (self.commentDelimiters.block != nil)
                 
             case #selector(inlineCommentOut):
-                return (self.inlineCommentDelimiter != nil)
+                return (self.commentDelimiters.inline != nil)
                 
             case #selector(blockCommentOut):
-                return (self.blockCommentDelimiters != nil)
+                return (self.commentDelimiters.block != nil)
                 
             case #selector(uncomment(_:)):
                 return self.canUncomment(partly: true)

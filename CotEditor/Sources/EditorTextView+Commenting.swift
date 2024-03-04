@@ -85,8 +85,7 @@ struct CommentTypes: OptionSet {
 
 protocol Commenting: NSTextView {
     
-    var inlineCommentDelimiter: String? { get }
-    var blockCommentDelimiters: Pair<String>? { get }
+    var commentDelimiters: Syntax.Comment { get }
 }
 
 
@@ -102,7 +101,7 @@ extension Commenting {
     func commentOut(types: CommentTypes, fromLineHead: Bool) {
         
         guard
-            self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil,
+            self.commentDelimiters.block != nil || self.commentDelimiters.inline != nil,
             let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue)
         else { return }
         
@@ -111,10 +110,10 @@ extension Commenting {
                 .map { fromLineHead ? self.string.lineContentsRange(for: $0) : $0 }
                 .unique
             
-            if types.contains(.inline), let delimiter = self.inlineCommentDelimiter {
+            if types.contains(.inline), let delimiter = self.commentDelimiters.inline {
                 return self.string.inlineCommentOut(delimiter: delimiter, ranges: targetRanges)
             }
-            if types.contains(.block), let delimiters = self.blockCommentDelimiters {
+            if types.contains(.block), let delimiters = self.commentDelimiters.block {
                 return self.string.blockCommentOut(delimiters: delimiters, ranges: targetRanges)
             }
             return []
@@ -135,18 +134,18 @@ extension Commenting {
     func uncomment() {
         
         guard
-            self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil,
+            self.commentDelimiters.block != nil || self.commentDelimiters.inline != nil,
             let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue)
         else { return }
         
         let deletionRanges: [NSRange] = {
-            if let delimiters = self.blockCommentDelimiters {
+            if let delimiters = self.commentDelimiters.block {
                 let targetRanges = selectedRanges.map { $0.isEmpty ? self.string.lineContentsRange(for: $0) : $0 }.unique
                 if let ranges = self.string.rangesOfBlockDelimiters(delimiters, ranges: targetRanges) {
                     return ranges
                 }
             }
-            if let delimiter = self.inlineCommentDelimiter {
+            if let delimiter = self.commentDelimiters.inline {
                 let targetRanges = selectedRanges.map { self.string.lineContentsRange(for: $0) }.unique
                 if let ranges = self.string.rangesOfInlineDelimiter(delimiter, ranges: targetRanges) {
                     return ranges
@@ -173,7 +172,7 @@ extension Commenting {
     func canUncomment(partly: Bool) -> Bool {
         
         guard
-            self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil,
+            self.commentDelimiters.block != nil || self.commentDelimiters.inline != nil,
             let targetRanges = self.rangesForUserTextChange?.map(\.rangeValue)
                 .map(self.string.lineContentsRange(for:))
                 .filter({ !$0.isEmpty })
@@ -181,13 +180,13 @@ extension Commenting {
             !targetRanges.isEmpty
         else { return false }
         
-        if let delimiters = self.blockCommentDelimiters,
+        if let delimiters = self.commentDelimiters.block,
            let ranges = self.string.rangesOfBlockDelimiters(delimiters, ranges: targetRanges)
         {
             return partly ? true : (ranges.count == (2 * targetRanges.count))
         }
         
-        if let delimiter = self.inlineCommentDelimiter,
+        if let delimiter = self.commentDelimiters.inline,
            let ranges = self.string.rangesOfInlineDelimiter(delimiter, ranges: targetRanges)
         {
             let lineRanges = targetRanges.flatMap { self.string.lineContentsRanges(for: $0) }.unique

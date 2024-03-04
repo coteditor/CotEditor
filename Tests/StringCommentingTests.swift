@@ -163,8 +163,7 @@ final class StringCommentingTests: XCTestCase {
 private final class CommentingTextView: NSTextView, Commenting, MultiCursorEditing {
     
     // Commenting
-    var inlineCommentDelimiter: String? = "//"
-    var blockCommentDelimiters: Pair<String>? = Pair("<-", "->")
+    var commentDelimiters = Syntax.Comment(inline: "//", blockBegin: "<-", blockEnd: "->")
     
     // MultiCursorEditing
     var insertionLocations: [Int] = []
