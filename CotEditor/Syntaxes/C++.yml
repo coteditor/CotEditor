@@ -1,206 +1,206 @@
-kind: "code"
-extensions:
-- keyString: "c++"
-- keyString: "cpp"
-- keyString: "cxx"
-- keyString: "cc"
-- keyString: "cp"
-- keyString: "hh"
-- keyString: "hp"
-- keyString: "hpp"
-- keyString: "hxx"
-- keyString: "h++"
-- keyString: "ipp"
-metadata:
-  author: "1024jp"
-  distributionURL: "https://coteditor.com"
-  version: "1.2.0"
-  description: ""
-  license: "Same as CotEditor"
-  lastModified: "2023-05-05"
-keywords:
-- beginString: "alignas"
-- beginString: "alignof"
-- beginString: "and"
-- beginString: "and_eq"
-- beginString: "asm"
-- beginString: "auto"
-- beginString: "bitand"
-- beginString: "bitor"
-- beginString: "bool"
-- beginString: "break"
-- beginString: "case"
-- beginString: "catch"
-- beginString: "char"
-- beginString: "char16_t"
-- beginString: "char32_t"
-- beginString: "class"
-- beginString: "compl"
-- beginString: "const"
-- beginString: "constexpr"
-- beginString: "const_cast"
-- beginString: "continue"
-- beginString: "decltype"
-- beginString: "default"
-- beginString: "delete"
-- beginString: "do"
-- beginString: "double"
-- beginString: "dynamic_cast"
-- beginString: "else"
-- beginString: "enum"
-- beginString: "explicit"
-- beginString: "export"
-- beginString: "extern"
-- beginString: "false"
-- beginString: "float"
-- beginString: "for"
-- beginString: "friend"
-- beginString: "goto"
-- beginString: "if"
-- beginString: "inline"
-- beginString: "int"
-- beginString: "long"
-- beginString: "mutable"
-- beginString: "namespace"
-- beginString: "new"
-- beginString: "noexcept"
-- beginString: "not"
-- beginString: "not_eq"
-- beginString: "nullptr"
-- beginString: "operator"
-- beginString: "or"
-- beginString: "or_eq"
-- beginString: "private"
-- beginString: "protected"
-- beginString: "public"
-- beginString: "register"
-- beginString: "reinterpret_cast"
-- beginString: "return"
-- beginString: "short"
-- beginString: "signed"
-- beginString: "sizeof"
-- beginString: "static"
-- beginString: "static_assert"
-- beginString: "static_cast"
-- beginString: "struct"
-- beginString: "switch"
-- beginString: "template"
-- beginString: "this"
-- beginString: "thread_local"
-- beginString: "throw"
-- beginString: "true"
-- beginString: "try"
-- beginString: "typedef"
-- beginString: "typeid"
-- beginString: "typename"
-- beginString: "union"
-- beginString: "unsigned"
-- beginString: "using"
-- beginString: "virtual"
-- beginString: "void"
-- beginString: "volatile"
-- beginString: "wchar_t"
-- beginString: "while"
-- beginString: "xor"
-- beginString: "xor_eq"
-types:
-- beginString: "short"
-- beginString: "long"
-- beginString: "signed"
-- beginString: "unsigned"
-- beginString: "char"
-- beginString: "bool"
-- beginString: "wchar_t"
-- beginString: "char16_t"
-- beginString: "char32_t"
-- beginString: "int"
-- beginString: "float"
-- beginString: "double"
 attributes:
-- beginString: "#define"
-- beginString: "#elif"
-- beginString: "#else"
-- beginString: "#endif"
-- beginString: "#error"
-- beginString: "#if"
-- beginString: "#ifdef"
-- beginString: "#ifndef"
-- beginString: "#include"
-- beginString: "#line"
-- beginString: "#pragma"
-- beginString: "#undef"
-commands: []
-values:
-- beginString: "false"
-- beginString: "NULL"
-- beginString: "true"
-variables:
-- beginString: "this"
-numbers:
-- beginString: "0"
-  description: "zero"
-- beginString: "\\b-?[1-9][0-9]*l?\\b"
-  regularExpression: true
-  ignoreCase: true
-  description: "integer"
-- beginString: "\\b-?\\d+\\.\\d+(e[-+]?\\d+)?[lf]?\\b"
-  regularExpression: true
-  ignoreCase: true
-  description: "float"
-- beginString: "\\b0[1-7][0-7]*+l?\\b"
-  regularExpression: true
-  ignoreCase: true
-  description: "octal"
-- beginString: "\\b0x[0-9a-f]+l?\\b"
-  regularExpression: true
-  ignoreCase: true
-  description: "hex"
-strings:
-- beginString: "\""
-  endString: "\""
-- beginString: "L\""
-- beginString: "(?<=#include)[\\t ]*<.+>"
-  regularExpression: true
+- beginString: '#define'
+- beginString: '#elif'
+- beginString: '#else'
+- beginString: '#endif'
+- beginString: '#error'
+- beginString: '#if'
+- beginString: '#ifdef'
+- beginString: '#ifndef'
+- beginString: '#include'
+- beginString: '#line'
+- beginString: '#pragma'
+- beginString: '#undef'
 characters:
-- beginString: "'"
-  endString: "'"
-comments: []
+- beginString: ''''
+  endString: ''''
+commands: []
 commentDelimiters:
-  endDelimiter: "*/"
-  beginDelimiter: "/*"
-  inlineDelimiter: "//"
+  beginDelimiter: /*
+  endDelimiter: '*/'
+  inlineDelimiter: //
+comments: []
+completions: []
+extensions:
+- keyString: c++
+- keyString: cpp
+- keyString: cxx
+- keyString: cc
+- keyString: cp
+- keyString: hh
+- keyString: hp
+- keyString: hpp
+- keyString: hxx
+- keyString: h++
+- keyString: ipp
+filenames: []
+interpreters: []
+keywords:
+- beginString: alignas
+- beginString: alignof
+- beginString: and
+- beginString: and_eq
+- beginString: asm
+- beginString: auto
+- beginString: bitand
+- beginString: bitor
+- beginString: bool
+- beginString: break
+- beginString: case
+- beginString: catch
+- beginString: char
+- beginString: char16_t
+- beginString: char32_t
+- beginString: class
+- beginString: compl
+- beginString: const
+- beginString: const_cast
+- beginString: constexpr
+- beginString: continue
+- beginString: decltype
+- beginString: default
+- beginString: delete
+- beginString: do
+- beginString: double
+- beginString: dynamic_cast
+- beginString: else
+- beginString: enum
+- beginString: explicit
+- beginString: export
+- beginString: extern
+- beginString: 'false'
+- beginString: float
+- beginString: for
+- beginString: friend
+- beginString: goto
+- beginString: if
+- beginString: inline
+- beginString: int
+- beginString: long
+- beginString: mutable
+- beginString: namespace
+- beginString: new
+- beginString: noexcept
+- beginString: not
+- beginString: not_eq
+- beginString: nullptr
+- beginString: operator
+- beginString: or
+- beginString: or_eq
+- beginString: private
+- beginString: protected
+- beginString: public
+- beginString: register
+- beginString: reinterpret_cast
+- beginString: return
+- beginString: short
+- beginString: signed
+- beginString: sizeof
+- beginString: static
+- beginString: static_assert
+- beginString: static_cast
+- beginString: struct
+- beginString: switch
+- beginString: template
+- beginString: this
+- beginString: thread_local
+- beginString: throw
+- beginString: 'true'
+- beginString: try
+- beginString: typedef
+- beginString: typeid
+- beginString: typename
+- beginString: union
+- beginString: unsigned
+- beginString: using
+- beginString: virtual
+- beginString: void
+- beginString: volatile
+- beginString: wchar_t
+- beginString: while
+- beginString: xor
+- beginString: xor_eq
+kind: code
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2023-05-05'
+  license: Same as CotEditor
+  version: 1.2.0
+numbers:
+- beginString: '0'
+  description: zero
+- beginString: \b-?[1-9][0-9]*l?\b
+  description: integer
+  ignoreCase: true
+  regularExpression: true
+- beginString: \b-?\d+\.\d+(e[-+]?\d+)?[lf]?\b
+  description: float
+  ignoreCase: true
+  regularExpression: true
+- beginString: \b0[1-7][0-7]*+l?\b
+  description: octal
+  ignoreCase: true
+  regularExpression: true
+- beginString: \b0x[0-9a-f]+l?\b
+  description: hex
+  ignoreCase: true
+  regularExpression: true
 outlineMenu:
-- beginString: "^([\\t ]*)(\\w+::\\w+)\\s*\\(([\\s\\w*&,\\[\\]]*)\\)"
-  keyString: "$1$2($3)"
-  description: "constructor"
-- beginString: "^([\\t ]*)(\\w+::~\\w+)\\s*\\(\\)"
-  keyString: "$1$2()"
-  description: "deconstructor"
-- beginString: "^([\\t ]*)(\\w[\\w\\s]*)\\s+(\\**\\w+)\\(([\\s\\w*&,\\[\\]]*)\\)[\\t
-    ]*(?=\\{|//|$)"
-  keyString: "$1 $3($4)"
-  description: "function"
-- beginString: "^([\\t ]*)(\\w[\\w\\s]*)\\s+(\\**\\w+::\\w+)\\(([\\s\\w*&,]*)\\)[\\t
-    ]*(?=\\{|//|$)"
-  keyString: "$1 $3($4)"
-  description: "method"
-- beginString: "^class[\\t ]+(\\w+)"
+- beginString: ^([\t ]*)(\w+::\w+)\s*\(([\s\w*&,\[\]]*)\)
+  description: constructor
+  keyString: $1$2($3)
+- beginString: ^([\t ]*)(\w+::~\w+)\s*\(\)
+  description: deconstructor
+  keyString: $1$2()
+- beginString: ^([\t ]*)(\w[\w\s]*)\s+(\**\w+)\(([\s\w*&,\[\]]*)\)[\t ]*(?=\{|//|$)
+  description: function
+  keyString: $1 $3($4)
+- beginString: ^([\t ]*)(\w[\w\s]*)\s+(\**\w+::\w+)\(([\s\w*&,]*)\)[\t ]*(?=\{|//|$)
+  description: method
+  keyString: $1 $3($4)
+- beginString: ^class[\t ]+(\w+)
   bold: true
-  keyString: "$1"
-  description: "class"
-- beginString: "^enum[\\t ]+(\\w+)"
+  description: class
+  keyString: $1
+- beginString: ^enum[\t ]+(\w+)
+  description: enum
   italic: true
-  description: "enum"
-  keyString: "enum $1"
-- beginString: "^struct[\\t ]+(\\w+)"
-  keyString: "struct $1"
-  description: "struct"
+  keyString: enum $1
+- beginString: ^struct[\t ]+(\w+)
+  description: struct
   italic: true
-- beginString: "^typedef (enum|struct|union)\\s*\\{[^}]*\\}[\\\\t ]*(\\w+);"
-  keyString: "$1 $2"
-  description: "typedef enum/struct/union"
+  keyString: struct $1
+- beginString: ^typedef (enum|struct|union)\s*\{[^}]*\}[\\t ]*(\w+);
+  description: typedef enum/struct/union
   italic: true
-- beginString: "^union[\\t ]+(\\w+)"
-  description: "union"
+  keyString: $1 $2
+- beginString: ^union[\t ]+(\w+)
+  description: union
   italic: true
-  keyString: "union $1"
+  keyString: union $1
+strings:
+- beginString: '"'
+  endString: '"'
+- beginString: (?<=#include)[\t ]*<.+>
+  regularExpression: true
+- beginString: L"
+types:
+- beginString: bool
+- beginString: char
+- beginString: char16_t
+- beginString: char32_t
+- beginString: double
+- beginString: float
+- beginString: int
+- beginString: long
+- beginString: short
+- beginString: signed
+- beginString: unsigned
+- beginString: wchar_t
+values:
+- beginString: 'false'
+- beginString: 'NULL'
+- beginString: 'true'
+variables:
+- beginString: this

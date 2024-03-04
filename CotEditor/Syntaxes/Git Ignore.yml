@@ -1,25 +1,25 @@
-kind: "code"
+attributes: []
+characters: []
+commands: []
+commentDelimiters:
+  inlineDelimiter: '#'
+comments: []
+completions: []
 extensions: []
 filenames:
-- keyString: ".gitignore"
+- keyString: .gitignore
 interpreters: []
-metadata:
-  version: "1.1.0"
-  lastModified: "2023-05-05"
-  distributionURL: "https://coteditor.com"
-  author: "1024jp"
-  license: "Same as CotEditor"
 keywords: []
-commands: []
-types: []
-attributes: []
-variables: []
-values: []
+kind: code
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2023-05-05'
+  license: Same as CotEditor
+  version: 1.1.0
 numbers: []
-strings: []
-characters: []
-comments: []
-commentDelimiters:
-  inlineDelimiter: "#"
 outlineMenu: []
-completions: []
+strings: []
+types: []
+values: []
+variables: []

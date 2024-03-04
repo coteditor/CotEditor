@@ -1,100 +1,102 @@
-kind: "code"
-extensions:
-- keyString: "yml"
-- keyString: "yaml"
-metadata:
-  author: "1024jp"
-  distributionURL: "https://coteditor.com"
-  version: "1.4.0"
-  license: "Same as CotEditor"
-  lastModified: "2023-05-05"
-outlineMenu:
-- beginString: "^([^\\r\\n -].*?):"
-  keyString: "$1:"
-  description: "top level element"
-- beginString: "^---"
-  keyString: "-"
-  description: "block"
-completions: []
-commands:
-- beginString: "%TAG"
-- beginString: "%YAML [0-9.]+"
-  regularExpression: true
-- beginString: "^---( |$)"
-  regularExpression: true
-- beginString: "^\\.\\.\\.$"
-  regularExpression: true
 attributes: []
 characters:
-- beginString: "\\b[0-9]{4}-[0-9]{2}-[0-9]{2}|[0-9]{4}-[0-9]{2}?-[0-9]{2}?([Tt]|[ \\t]+)[0-9]{2}?:[0-9]{2}:[0-9]{2}(\\.[0-9]*)?(([ \\t]*)Z|[-+][0-9]{2}?(:[0-9]{2})?)?\\b"
+- beginString: \b[0-9]{4}-[0-9]{2}-[0-9]{2}|[0-9]{4}-[0-9]{2}?-[0-9]{2}?([Tt]|[ \t]+)[0-9]{2}?:[0-9]{2}:[0-9]{2}(\.[0-9]*)?(([
+    \t]*)Z|[-+][0-9]{2}?(:[0-9]{2})?)?\b
+  description: time
   regularExpression: true
-  description: "time"
+commands:
+- beginString: '%TAG'
+- beginString: '%YAML [0-9.]+'
+  regularExpression: true
+- beginString: ^---( |$)
+  regularExpression: true
+- beginString: ^\.\.\.$
+  regularExpression: true
+commentDelimiters:
+  inlineDelimiter: '#'
 comments: []
-values:
-- beginString: "(?<!!)(?:null|Null|NULL)\\b"
+completions: []
+extensions:
+- keyString: yml
+- keyString: yaml
+filenames: []
+interpreters: []
+keywords:
+- beginString: (?<=[-\[{,]|^)[ \t]*[^-:\[\]\r\n ][^:\[\]\r\n ]*[\t ]*(?=:\s)
   regularExpression: true
-- beginString: "false"
-  ignoreCase: true
-- beginString: "no"
-  ignoreCase: true
-- beginString: "off"
-  ignoreCase: true
+kind: code
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2023-05-05'
+  license: Same as CotEditor
+  version: 1.4.0
+numbers:
+- beginString: (?<=([-:]|!!float|!!int)) +[0-9,.]+(?=[ \r\n\}\]])
+  regularExpression: true
+- beginString: 0x[0-9a-fA-F]+
+  regularExpression: true
+- beginString: '[-+]?\.(inf|Inf|INF)\b'
+  regularExpression: true
+- beginString: \.(nan|NaN|NAN)\b
+  regularExpression: true
+outlineMenu:
+- beginString: '^([^\r\n -].*?):'
+  description: top level element
+  keyString: '$1:'
+- beginString: ^---
+  description: block
+  keyString: '-'
+strings:
+- beginString: '"'
+  endString: '"'
+- beginString: '''.*?'''
+  regularExpression: true
+types:
+- beginString: '!'
+- beginString: '!!'
+- beginString: '!!binary'
+- beginString: '!!bool'
+- beginString: '!!float'
+- beginString: '!!int'
+- beginString: '!!map'
+- beginString: '!!merge'
+- beginString: '!!null'
+- beginString: '!!omap'
+- beginString: '!!pairs'
+- beginString: '!!seq'
+- beginString: '!!set'
+- beginString: '!!str'
+- beginString: '!!timestamp'
+- beginString: '!!value'
+- beginString: '!!yaml'
+- beginString: '!<'
+  endString: '>'
+- beginString: (?<!!)!\w+(!(\w+)?)?
+  regularExpression: true
+- beginString: \btag:\S+
+  regularExpression: true
+values:
+- beginString: (?<!!)(?:null|Null|NULL)\b
+  regularExpression: true
 - beginString: (?<=:)\s*on\b
   ignoreCase: true
   regularExpression: true
-- beginString: "true"
+- beginString: 'false'
   ignoreCase: true
-- beginString: "yes"
+- beginString: 'no'
   ignoreCase: true
-- beginString: "~"
-types:
-- beginString: "!"
-- beginString: "!!"
-- beginString: "!!binary"
-- beginString: "!!bool"
-- beginString: "!!float"
-- beginString: "!!int"
-- beginString: "!!map"
-- beginString: "!!merge"
-- beginString: "!!null"
-- beginString: "!!omap"
-- beginString: "!!pairs"
-- beginString: "!!seq"
-- beginString: "!!set"
-- beginString: "!!str"
-- beginString: "!!timestamp"
-- beginString: "!!value"
-- beginString: "!!yaml"
-- beginString: "!<"
-  endString: ">"
-- beginString: "(?<!!)!\\w+(!(\\w+)?)?"
-  regularExpression: true
-- beginString: "\\btag:\\S+"
-  regularExpression: true
-numbers:
-- beginString: "(?<=([-:]|!!float|!!int)) +[0-9,.]+(?=[ \\r\\n\\}\\]])"
-  regularExpression: true
-- beginString: "[-+]?\\.(inf|Inf|INF)\\b"
-  regularExpression: true
-- beginString: "\\.(nan|NaN|NAN)\\b"
-  regularExpression: true
-- beginString: "0x[0-9a-fA-F]+"
-  regularExpression: true
-strings:
-- beginString: "\""
-  endString: "\""
-- beginString: "'.*?'"
-  regularExpression: true
-keywords:
-- beginString: "(?<=[-\\[{,]|^)[ \\t]*[^-:\\[\\]\\r\\n ][^:\\[\\]\\r\\n ]*[\\t
-    ]*(?=:\\s)"
-  regularExpression: true
+- beginString: 'off'
+  ignoreCase: true
+- beginString: 'true'
+  ignoreCase: true
+- beginString: 'yes'
+  ignoreCase: true
+- beginString: '~'
 variables:
-- beginString: "(?<!\\w)&[^ \\t\\r\\n]+\\b"
+- beginString: (?<!\w)&[^ \t\r\n]+\b
+  description: anchor
   regularExpression: true
-  description: "anchor"
-- beginString: "(?<!\\w)\\*[^ \\t\\r\\n]+\\b"
+- beginString: (?<!\w)\*[^ \t\r\n]+\b
+  description: reference
   regularExpression: true
-  description: "reference"
-commentDelimiters:
-  inlineDelimiter: "#"

@@ -1,46 +1,46 @@
-kind: "code"
+attributes: []
+characters: []
+commands: []
+commentDelimiters:
+  inlineDelimiter: '#'
+comments:
+- beginString: ;.*
+  regularExpression: true
+completions: []
 extensions: []
 filenames:
-- keyString: ".gitconfig"
-- keyString: ".gitmodules"
-- keyString: "gitconfig"
+- keyString: .gitconfig
+- keyString: .gitmodules
+- keyString: gitconfig
 interpreters: []
-metadata:
-  version: "1.1.0"
-  lastModified: "2023-05-05"
-  distributionURL: "https://coteditor.com"
-  author: "1024jp"
-  license: "Same as CotEditor"
 keywords:
-- beginString: "^[\\t ]*\\w+[\\t ]*(?<=)"
+- beginString: ^[\t ]*\w+[\t ]*(?<=)
   regularExpression: true
-commands: []
-types:
-- beginString: "^\\["
-  endString: "\\]"
-  regularExpression: true
-attributes: []
-variables: []
-values:
-- beginString: "false"
-- beginString: "true"
+kind: code
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2023-05-05'
+  license: Same as CotEditor
+  version: 1.1.0
 numbers:
-- beginString: "(?<!\\w)[0-9.][0-9.]*(e-?[0-9.]+)?\\b"
+- beginString: (?<!\w)[0-9.][0-9.]*(e-?[0-9.]+)?\b
   regularExpression: true
-strings:
-- beginString: "\""
-  endString: "\""
-- beginString: "'"
-  endString: "'"
-characters: []
-comments:
-- beginString: ";.*"
-  regularExpression: true
-commentDelimiters:
-  inlineDelimiter: "#"
 outlineMenu:
-- beginString: "^\\[(.+)\\]"
-  keyString: "$1"
-  description: "section"
+- beginString: ^\[(.+)\]
   bold: true
-completions: []
+  description: section
+  keyString: $1
+strings:
+- beginString: '"'
+  endString: '"'
+- beginString: ''''
+  endString: ''''
+types:
+- beginString: ^\[
+  endString: \]
+  regularExpression: true
+values:
+- beginString: 'false'
+- beginString: 'true'
+variables: []

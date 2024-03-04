@@ -1,37 +1,37 @@
-kind: "code"
-extensions:
-- keyString: "properties"
-interpreters: []
-filenames: []
-metadata:
-  version: "1.1.0"
-  lastModified: "2023-05-05"
-  author: "1024jp"
-  license: "Same as CotEditor"
-  distributionURL: "https://coteditor.com"
-  description: "Properties file format mainly used in Java"
-values: []
-completions: []
-outlineMenu: []
-numbers: []
-commentDelimiters:
-  inlineDelimiter: "#"
-characters:
-- beginString: "\\\\$"
-  regularExpression: true
 attributes: []
-strings: []
+characters:
+- beginString: \\$
+  regularExpression: true
 commands: []
-keywords:
-- beginString: "^\\S+[ \\t\\f]+(?=\\w)"
-  description: "Key without symbols (= or :)"
-  regularExpression: true
-- beginString: "^\\S.*?(?=[=:])"
-  regularExpression: true
-variables:
-- beginString: "${"
-  endString: "}"
-types: []
+commentDelimiters:
+  inlineDelimiter: '#'
 comments:
-- beginString: "^!.*"
+- beginString: ^!.*
   regularExpression: true
+completions: []
+extensions:
+- keyString: properties
+filenames: []
+interpreters: []
+keywords:
+- beginString: ^\S+[ \t\f]+(?=\w)
+  description: Key without symbols (= or :)
+  regularExpression: true
+- beginString: ^\S.*?(?=[=:])
+  regularExpression: true
+kind: code
+metadata:
+  author: 1024jp
+  description: Properties file format mainly used in Java
+  distributionURL: https://coteditor.com
+  lastModified: '2023-05-05'
+  license: Same as CotEditor
+  version: 1.1.0
+numbers: []
+outlineMenu: []
+strings: []
+types: []
+values: []
+variables:
+- beginString: ${
+  endString: '}'

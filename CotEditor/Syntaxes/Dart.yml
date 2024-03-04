@@ -1,106 +1,108 @@
-kind: "code"
-extensions:
-- keyString: "dart"
-interpreters:
-- keyString: "dart"
-metadata:
-  author: "1024jp"
-  distributionURL: "https://coteditor.com"
-  version: "1.3.0"
-  license: "Same as CotEditor"
-  lastModified: "2023-05-05"
-outlineMenu:
-- beginString: "^([\\t ]*)([a-zA-Z]+) (\\w+[\\t ]*\\(.*\\))\\s\\{"
-  keyString: "$1$2 $3"
-  description: "function"
-- beginString: "^([\\t ]*)class (.+)\\s\\{"
-  keyString: "$1class $2"
-  description: "class"
-  bold: true
-completions: []
-commands: []
 attributes:
-- beginString: "@\\w+"
+- beginString: '@\w+'
   regularExpression: true
 characters: []
-comments: []
-values:
-- beginString: "false"
-- beginString: "null"
-- beginString: "true"
-variables:
-- beginString: "super"
-- beginString: "this"
-numbers:
-- beginString: "((?<!\\w)|[-+])(?:\\.\\d+|\\d+\\.|\\d+\\.\\d+|\\d+)(e[+-]?\\d+)?[jl]?"
-  ignoreCase: true
-  regularExpression: true
-  description: "decimal"
-- beginString: "\\b-?(0x)[0-9a-f]+\\b"
-  ignoreCase: true
-  regularExpression: true
-  description: "hexadecimal"
-strings:
-- beginString: "\""
-  endString: "\""
-- beginString: "'"
-  endString: "'"
-- beginString: "@\""
-  endString: "\""
-- beginString: "@'"
-  endString: "'"
-keywords:
-- beginString: "abstract"
-- beginString: "as"
-- beginString: "assert"
-- beginString: "bool"
-- beginString: "break"
-- beginString: "case"
-- beginString: "catch"
-- beginString: "class"
-- beginString: "const"
-- beginString: "continue"
-- beginString: "default"
-- beginString: "do"
-- beginString: "double"
-- beginString: "dynamic"
-- beginString: "else"
-- beginString: "enum"
-- beginString: "export"
-- beginString: "extends"
-- beginString: "external"
-- beginString: "factory"
-- beginString: "final"
-- beginString: "finally"
-- beginString: "for"
-- beginString: "get"
-- beginString: "if"
-- beginString: "implements"
-- beginString: "import"
-- beginString: "in"
-- beginString: "int"
-- beginString: "is"
-- beginString: "library"
-- beginString: "List"
-- beginString: "Map"
-- beginString: "new"
-- beginString: "num"
-- beginString: "operator"
-- beginString: "part"
-- beginString: "rethrow"
-- beginString: "return"
-- beginString: "set"
-- beginString: "static"
-- beginString: "String"
-- beginString: "switch"
-- beginString: "throw"
-- beginString: "try"
-- beginString: "typedef"
-- beginString: "var"
-- beginString: "void"
-- beginString: "while"
-- beginString: "with"
+commands: []
 commentDelimiters:
-  endDelimiter: "*/"
-  beginDelimiter: "/*"
-  inlineDelimiter: "//"
+  beginDelimiter: /*
+  endDelimiter: '*/'
+  inlineDelimiter: //
+comments: []
+completions: []
+extensions:
+- keyString: dart
+filenames: []
+interpreters:
+- keyString: dart
+keywords:
+- beginString: abstract
+- beginString: as
+- beginString: assert
+- beginString: bool
+- beginString: break
+- beginString: case
+- beginString: catch
+- beginString: class
+- beginString: const
+- beginString: continue
+- beginString: default
+- beginString: do
+- beginString: double
+- beginString: dynamic
+- beginString: else
+- beginString: enum
+- beginString: export
+- beginString: extends
+- beginString: external
+- beginString: factory
+- beginString: final
+- beginString: finally
+- beginString: for
+- beginString: get
+- beginString: if
+- beginString: implements
+- beginString: import
+- beginString: in
+- beginString: int
+- beginString: is
+- beginString: library
+- beginString: List
+- beginString: Map
+- beginString: new
+- beginString: num
+- beginString: operator
+- beginString: part
+- beginString: rethrow
+- beginString: return
+- beginString: set
+- beginString: static
+- beginString: String
+- beginString: switch
+- beginString: throw
+- beginString: try
+- beginString: typedef
+- beginString: var
+- beginString: void
+- beginString: while
+- beginString: with
+kind: code
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2023-05-05'
+  license: Same as CotEditor
+  version: 1.3.0
+numbers:
+- beginString: ((?<!\w)|[-+])(?:\.\d+|\d+\.|\d+\.\d+|\d+)(e[+-]?\d+)?[jl]?
+  description: decimal
+  ignoreCase: true
+  regularExpression: true
+- beginString: \b-?(0x)[0-9a-f]+\b
+  description: hexadecimal
+  ignoreCase: true
+  regularExpression: true
+outlineMenu:
+- beginString: ^([\t ]*)([a-zA-Z]+) (\w+[\t ]*\(.*\))\s\{
+  description: function
+  keyString: $1$2 $3
+- beginString: ^([\t ]*)class (.+)\s\{
+  bold: true
+  description: class
+  keyString: $1class $2
+strings:
+- beginString: '"'
+  endString: '"'
+- beginString: ''''
+  endString: ''''
+- beginString: '@"'
+  endString: '"'
+- beginString: '@'''
+  endString: ''''
+types: []
+values:
+- beginString: 'false'
+- beginString: 'null'
+- beginString: 'true'
+variables:
+- beginString: super
+- beginString: this

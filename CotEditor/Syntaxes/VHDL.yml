@@ -305,7 +305,7 @@ keywords:
   ignoreCase: true
 - beginString: xor
   ignoreCase: true
-kind: "code"
+kind: code
 metadata:
   author: 1024jp
   distributionURL: https://coteditor.com
@@ -315,11 +315,9 @@ metadata:
 numbers:
 - beginString: (?<=\W|^)-?[0-9][0-9_]*(\.[0-9][0-9_]*)?(E[-+]?[0-9][0-9_]*)?
   description: decimal
-  ignoreCase: false
   regularExpression: true
 - beginString: '[0-9][0-9_]*#[0-9A-Z][0-9A-Z_]*(\.[0-9A-Z][0-9A-Z_]*)?#(E[-+]?[0-9][0-9_]*)?'
   description: based
-  ignoreCase: false
   regularExpression: true
 outlineMenu:
 - beginString: \b(\s*)architecture\s+(\S+)

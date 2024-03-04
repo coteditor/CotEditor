@@ -1,24 +1,17 @@
-kind: "code"
+attributes: []
+characters: []
+commands: []
+commentDelimiters:
+  beginDelimiter: /*
+  endDelimiter: '*/'
+  inlineDelimiter: //
+comments: []
+completions: []
 extensions:
 - keyString: proto
 filenames: []
 interpreters:
 - keyString: protoc
-metadata:
-  author: 1024jp
-  distributionURL: https://coteditor.com
-  lastModified: '2023-05-05'
-  license: Same as CotEditor
-  version: 1.1.0
-outlineMenu:
-- beginString: ^([\t ]*)(message|enum|service)[\t ]+(\w+)
-  keyString: $1$2 $3
-- beginString: ^([\t ]*)(oneof)[\t ]+(\w+)
-  keyString: $1$2 $3
-- beginString: ^([\t ]*)(extended)[\t ]+(\w+)
-  italic: true
-  keyString: $1$2 $3
-completions: []
 keywords:
 - beginString: default
 - beginString: enum
@@ -44,7 +37,38 @@ keywords:
 - beginString: syntax
 - beginString: to
 - beginString: weak
-commands: []
+kind: code
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2023-05-05'
+  license: Same as CotEditor
+  version: 1.1.0
+numbers:
+- beginString: ((?<!\w)|[-+])[0-9]+(\.[0-9]+)?(e[+-]?[0-9]+)?
+  description: float
+  ignoreCase: true
+  regularExpression: true
+- beginString: \b0[0-7]*\b
+  description: octal
+  regularExpression: true
+- beginString: \b0x[0-9a-f]+\b
+  description: hex
+  ignoreCase: true
+  regularExpression: true
+outlineMenu:
+- beginString: ^([\t ]*)(extended)[\t ]+(\w+)
+  italic: true
+  keyString: $1$2 $3
+- beginString: ^([\t ]*)(message|enum|service)[\t ]+(\w+)
+  keyString: $1$2 $3
+- beginString: ^([\t ]*)(oneof)[\t ]+(\w+)
+  keyString: $1$2 $3
+strings:
+- beginString: '"'
+  endString: '"'
+- beginString: ''''
+  endString: ''''
 types:
 - beginString: bool
 - beginString: bytes
@@ -63,35 +87,11 @@ types:
 - beginString: string
 - beginString: uint32
 - beginString: uint64
-attributes: []
+values:
+- beginString: 'false'
+- beginString: 'true'
 variables:
 - beginString: (?<=message|enum|service)[ \t]+\w+
   regularExpression: true
 - beginString: \b[A-Z]\w+\b
   regularExpression: true
-values:
-- beginString: 'false'
-- beginString: 'true'
-numbers:
-- beginString: ((?<!\w)|[-+])[0-9]+(\.[0-9]+)?(e[+-]?[0-9]+)?
-  description: float
-  ignoreCase: true
-  regularExpression: true
-- beginString: \b0[0-7]*\b
-  description: octal
-  regularExpression: true
-- beginString: \b0x[0-9a-f]+\b
-  description: hex
-  ignoreCase: true
-  regularExpression: true
-strings:
-- beginString: '"'
-  endString: '"'
-- beginString: ''''
-  endString: ''''
-characters: []
-comments: []
-commentDelimiters:
-  beginDelimiter: /*
-  endDelimiter: '*/'
-  inlineDelimiter: //

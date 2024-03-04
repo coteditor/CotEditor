@@ -1,32 +1,38 @@
-kind: "code"
-extensions:
-- keyString: "json"
-- keyString: "geojson"
-- keyString: "resolved"
-- keyString: "cottheme"
-- keyString: "cotrpl"
-outlineMenu: []
-completions: []
-commands: []
-metadata:
-  author: "1024jp"
-  distributionURL: "https://coteditor.com"
-  version: "1.4.0"
-  license: "Same as CotEditor"
-  lastModified: "2023-05-05"
+attributes: []
 characters:
-- beginString: "\"[^\\r\\n\"]++\"\\s*+(?=:)"
+- beginString: '"[^\r\n"]++"\s*+(?=:)'
+  description: Key
   regularExpression: true
-  description: "Key"
+commands: []
+commentDelimiters: {}
 comments: []
-values:
-- beginString: "false"
-- beginString: "null"
-- beginString: "true"
-numbers:
-- beginString: "(?<=[:,\\[])[\\r\\n\\t ]*-?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?\\b"
-  regularExpression: true
-strings:
-- beginString: "\""
-  endString: "\""
+completions: []
+extensions:
+- keyString: json
+- keyString: geojson
+- keyString: resolved
+- keyString: cottheme
+- keyString: cotrpl
+filenames: []
+interpreters: []
 keywords: []
+kind: code
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2023-05-05'
+  license: Same as CotEditor
+  version: 1.4.0
+numbers:
+- beginString: (?<=[:,\[])[\r\n\t ]*-?[0-9]+(\.[0-9]+)?([eE][-+]?[0-9]+)?\b
+  regularExpression: true
+outlineMenu: []
+strings:
+- beginString: '"'
+  endString: '"'
+types: []
+values:
+- beginString: 'false'
+- beginString: 'null'
+- beginString: 'true'
+variables: []

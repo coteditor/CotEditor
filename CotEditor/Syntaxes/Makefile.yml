@@ -1,77 +1,79 @@
-kind: "code"
+attributes: []
+characters: []
+commands:
+- beginString: AR
+- beginString: AS
+- beginString: CC
+- beginString: CO
+- beginString: CPP
+- beginString: CTANGLE
+- beginString: CWEAVE
+- beginString: CXX
+- beginString: FC
+- beginString: GET
+- beginString: LEX
+- beginString: MAKEINFO
+- beginString: PC
+- beginString: RM
+- beginString: TANGLE
+- beginString: TEX
+- beginString: TEXI2VDI
+- beginString: WEAVE
+- beginString: YACC
+- beginString: YACCR
+commentDelimiters:
+  inlineDelimiter: '#'
+comments: []
+completions: []
 extensions: []
 filenames:
-- keyString: "Makefile"
-- keyString: "makefile"
+- keyString: Makefile
+- keyString: makefile
 interpreters:
-- keyString: "make"
-completions: []
-outlineMenu: []
-commands:
-- beginString: "AR"
-- beginString: "AS"
-- beginString: "CC"
-- beginString: "CO"
-- beginString: "CPP"
-- beginString: "CTANGLE"
-- beginString: "CWEAVE"
-- beginString: "CXX"
-- beginString: "FC"
-- beginString: "GET"
-- beginString: "LEX"
-- beginString: "MAKEINFO"
-- beginString: "PC"
-- beginString: "RM"
-- beginString: "TANGLE"
-- beginString: "TEX"
-- beginString: "TEXI2VDI"
-- beginString: "WEAVE"
-- beginString: "YACC"
-- beginString: "YACCR"
+- keyString: make
+keywords:
+- beginString: ^[^ ]+(?= *:[^=])
+  regularExpression: true
+- beginString: do
+- beginString: done
+- beginString: else
+- beginString: endif
+- beginString: export
+- beginString: for
+- beginString: ifdef
+- beginString: ifeq
+- beginString: ifndef
+- beginString: ifneq
+- beginString: include
+- beginString: override
+- beginString: unexport
+- beginString: vpath
+- beginString: while
+kind: code
 metadata:
-  author: "1024jp"
-  distributionURL: "https://coteditor.com"
-  version: "1.3.0"
-  license: "Same as CotEditor"
-  lastModified: "2023-05-05"
-characters: []
-comments: []
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2023-05-05'
+  license: Same as CotEditor
+  version: 1.3.0
+numbers: []
+outlineMenu: []
+strings:
+- beginString: '"'
+  endString: '"'
+types: []
 values: []
 variables:
-- beginString: "$%"
-- beginString: "$("
-  endString: ")"
-- beginString: "$*"
-- beginString: "$+"
-- beginString: "$<"
-- beginString: "$?"
-- beginString: "$@"
-- beginString: "$^"
-- beginString: "${"
-  endString: "}"
-- beginString: "^[-\\w]+(?= +[?:+]?= )"
+- beginString: $%
+- beginString: $(
+  endString: )
+- beginString: $*
+- beginString: $+
+- beginString: $<
+- beginString: $?
+- beginString: $@
+- beginString: $^
+- beginString: ${
+  endString: '}'
+- beginString: ^[-\w]+(?= +[?:+]?= )
   regularExpression: true
-numbers: []
-strings:
-- beginString: "\""
-  endString: "\""
-keywords:
-- beginString: "^[^ ]+(?= *:[^=])"
-  regularExpression: true
-- beginString: "do"
-- beginString: "done"
-- beginString: "else"
-- beginString: "endif"
-- beginString: "export"
-- beginString: "for"
-- beginString: "ifdef"
-- beginString: "ifeq"
-- beginString: "ifndef"
-- beginString: "ifneq"
-- beginString: "include"
-- beginString: "override"
-- beginString: "unexport"
-- beginString: "vpath"
-- beginString: "while"
-commentDelimiters:
-  inlineDelimiter: "#"

@@ -95,27 +95,27 @@ interpreters: []
 keywords:
 - beginString: (<-|->|--)
   regularExpression: true
-- beginString: node
+- beginString: digraph
 - beginString: edge
 - beginString: graph
-- beginString: digraph
-- beginString: subgraph
+- beginString: node
 - beginString: strict
-kind: "code"
+- beginString: subgraph
+kind: code
 metadata:
   author: usr-sse2
   description: Graphviz DOT language, based on https://github.com/textmate/graphviz.tmbundle
   distributionURL: https://coteditor.com
   lastModified: '2023-05-05'
   license: Same as CotEditor
-  version: '3.1.0'
+  version: 3.1.0
 numbers: []
 outlineMenu:
-- beginString: \bsubgraph\s+([^\s]+)
-  keyString: $1
 - beginString: \b(graph|digraph)\s+([^\s\{]+)\s*\{
   bold: true
   keyString: $2
+- beginString: \bsubgraph\s+([^\s]+)
+  keyString: $1
 strings:
 - beginString: '"'
   endString: '"'

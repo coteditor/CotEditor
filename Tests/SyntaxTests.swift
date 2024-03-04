@@ -91,13 +91,13 @@ final class SyntaxTests: XCTestCase {
             
             for type in SyntaxType.allCases {
                 let keyPath = Syntax.highlightKeyPath(for: type)
-                XCTAssertEqual(syntax[keyPath: keyPath].count, sanitized[keyPath: keyPath].count,
+                XCTAssertEqual(syntax[keyPath: keyPath], sanitized[keyPath: keyPath],
                                ".\(type.rawValue) of “\(name)” is not sanitized in the latest manner")
             }
             
-            XCTAssertEqual(syntax.outlines.count, sanitized.outlines.count,
+            XCTAssertEqual(syntax.outlines, sanitized.outlines,
                            ".outlines of “\(name)” is not sanitized in the latest manner")
-            XCTAssertEqual(syntax.completions.count, sanitized.completions.count,
+            XCTAssertEqual(syntax.completions, sanitized.completions,
                            ".completions of “\(name)” is not sanitized in the latest manner")
             XCTAssertEqual(syntax.commentDelimiters, sanitized.commentDelimiters,
                            ".commentDelimiters of “\(name)” is not sanitized in the latest manner")

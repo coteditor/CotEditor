@@ -1,87 +1,89 @@
-kind: "code"
-extensions:
-- keyString: "dtd"
-outlineMenu: []
-completions: []
-commands:
-- beginString: "(?<=<)\\?[[:alnum:]_\\-.:]+"
-  regularExpression: true
-- beginString: "\\?(?=>)"
-  regularExpression: true
 attributes:
-- beginString: "(?<=\\s)[[:alnum:]_\\-.:]+(?=\\s*=)"
+- beginString: (?<=\s)[[:alnum:]_\-.:]+(?=\s*=)
   regularExpression: true
-metadata:
-  author: "1024jp"
-  distributionURL: "https://coteditor.com"
-  version: "1.1.0"
-  license: "Same as CotEditor"
-  lastModified: "2023-05-05"
 characters:
-- beginString: "%[^&%\"]+;(?=[^<>]*[\\[>])"
+- beginString: '%[^&%"]+;(?=[^<>]*[\[>])'
   regularExpression: true
-- beginString: "&\\S+?;"
+- beginString: '&\S+?;'
   regularExpression: true
-- beginString: "<![CDATA["
-  endString: "]]>"
-comments:
-- beginString: "--(?:-[^-]|[^-])*--(?=[^<>]*>)"
-  description: "for SGML DTD"
+- beginString: <![CDATA[
+  endString: ']]>'
+commands:
+- beginString: (?<=<)\?[[:alnum:]_\-.:]+
   regularExpression: true
-values:
-- beginString: "(?<=\\s)(?:SDATA|RCDATA|NAME|NUMBER|#CONREF|#SUBDOC)(?=[^<>]*>)"
-  description: "for SGML DTD"
-  regularExpression: true
-- beginString: "(?<=[(|])#PCDATA(?=\\b)"
-  regularExpression: true
-- beginString: "(?<=\\[)\\s*(?:IGNORE|INCLUDE)\\s*(?=\\[)"
-  regularExpression: true
-- beginString: "(?<=\\s)#(?:FIXED|IMPLIED|REQUIRED)(?=[^<>]*>)"
-  regularExpression: true
-- beginString: "(?<=\\s)(?:ANY|EMPTY)(?=[^<>]*>)"
-  regularExpression: true
-- beginString: "(?<=\\s)(?:PUBLIC|SYSTEM)(?=\\s+[\"'])"
-  regularExpression: true
-- beginString: "(?<=\\s)CDATA(?=[^<>]*>)"
-  regularExpression: true
-- beginString: "(?<=\\s)ENTIT(?:Y|IES)(?=[^<>]*>)"
-  regularExpression: true
-- beginString: "(?<=\\s)ID(?=[^<>]*>)"
-  regularExpression: true
-- beginString: "(?<=\\s)IDREFS?(?=[^<>]*>)"
-  regularExpression: true
-- beginString: "(?<=\\s)NDATA(?=[^<>]*>)"
-  regularExpression: true
-- beginString: "(?<=\\s)NMTOKENS?(?=[^<>]*>)"
-  regularExpression: true
-- beginString: "(?<=\\s)NOTATION(?=[^<>]*>)"
-  regularExpression: true
-types:
-- beginString: "(?<=<)![A-Z]*"
-  regularExpression: true
-numbers: []
-strings:
-- beginString: "\""
-  endString: "\""
-- beginString: "(?<!\\w)'[^']*?'(?=[^<>]*>)"
-  regularExpression: true
-- beginString: "(?<=NDATA)\\s+[[:alnum:]_\\-.]+(?=\\s*>)"
-  regularExpression: true
-keywords:
-- beginString: "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t />])"
-  regularExpression: true
-- beginString: "(?<=[\\r\\n\\t (|,])[[:alnum:]_\\-.:%]+(?=[\\r\\n\\t )|,]?[^<>\\[]*[>\\[])"
-  regularExpression: true
-variables:
-- beginString: "(?<!ATTLIST)\\s+[O\\-]\\s+[O\\-](?=\\s[^<>]*>)"
-  description: "for SGML DTD"
-  regularExpression: true
-- beginString: "(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)"
-  regularExpression: true
-- beginString: "(?<=\\b)[[:alnum:]_\\-.]+:(?=\\w[^<>]*>)"
-  regularExpression: true
-- beginString: "(?<=\\s)[[:alnum:]_\\-.]+:(?=(\\w|[\\-.])+\\s*=)"
+- beginString: \?(?=>)
   regularExpression: true
 commentDelimiters:
-  endDelimiter: "-->"
-  beginDelimiter: "<!--"
+  beginDelimiter: <!--
+  endDelimiter: -->
+comments:
+- beginString: --(?:-[^-]|[^-])*--(?=[^<>]*>)
+  description: for SGML DTD
+  regularExpression: true
+completions: []
+extensions:
+- keyString: dtd
+filenames: []
+interpreters: []
+keywords:
+- beginString: (?<=</?)[[:alnum:]_\-.:]+(?=[\r\n\t />])
+  regularExpression: true
+- beginString: (?<=[\r\n\t (|,])[[:alnum:]_\-.:%]+(?=[\r\n\t )|,]?[^<>\[]*[>\[])
+  regularExpression: true
+kind: code
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2023-05-05'
+  license: Same as CotEditor
+  version: 1.1.0
+numbers: []
+outlineMenu: []
+strings:
+- beginString: '"'
+  endString: '"'
+- beginString: (?<!\w)'[^']*?'(?=[^<>]*>)
+  regularExpression: true
+- beginString: (?<=NDATA)\s+[[:alnum:]_\-.]+(?=\s*>)
+  regularExpression: true
+types:
+- beginString: (?<=<)![A-Z]*
+  regularExpression: true
+values:
+- beginString: (?<=[(|])#PCDATA(?=\b)
+  regularExpression: true
+- beginString: (?<=\[)\s*(?:IGNORE|INCLUDE)\s*(?=\[)
+  regularExpression: true
+- beginString: (?<=\s)#(?:FIXED|IMPLIED|REQUIRED)(?=[^<>]*>)
+  regularExpression: true
+- beginString: (?<=\s)(?:ANY|EMPTY)(?=[^<>]*>)
+  regularExpression: true
+- beginString: (?<=\s)(?:PUBLIC|SYSTEM)(?=\s+["'])
+  regularExpression: true
+- beginString: (?<=\s)(?:SDATA|RCDATA|NAME|NUMBER|#CONREF|#SUBDOC)(?=[^<>]*>)
+  description: for SGML DTD
+  regularExpression: true
+- beginString: (?<=\s)CDATA(?=[^<>]*>)
+  regularExpression: true
+- beginString: (?<=\s)ENTIT(?:Y|IES)(?=[^<>]*>)
+  regularExpression: true
+- beginString: (?<=\s)ID(?=[^<>]*>)
+  regularExpression: true
+- beginString: (?<=\s)IDREFS?(?=[^<>]*>)
+  regularExpression: true
+- beginString: (?<=\s)NDATA(?=[^<>]*>)
+  regularExpression: true
+- beginString: (?<=\s)NMTOKENS?(?=[^<>]*>)
+  regularExpression: true
+- beginString: (?<=\s)NOTATION(?=[^<>]*>)
+  regularExpression: true
+variables:
+- beginString: (?<!ATTLIST)\s+[O\-]\s+[O\-](?=\s[^<>]*>)
+  description: for SGML DTD
+  regularExpression: true
+- beginString: (?<=</?)[[:alnum:]_\-.]+:(?=\w)
+  regularExpression: true
+- beginString: (?<=\b)[[:alnum:]_\-.]+:(?=\w[^<>]*>)
+  regularExpression: true
+- beginString: (?<=\s)[[:alnum:]_\-.]+:(?=(\w|[\-.])+\s*=)
+  regularExpression: true

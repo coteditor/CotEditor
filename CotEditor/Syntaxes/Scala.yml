@@ -1,125 +1,128 @@
-kind: "code"
-extensions:
-- keyString: "scala"
-interpreters:
-- keyString: "scala"
-metadata:
-  author: "1024jp"
-  distributionURL: "https://coteditor.com"
-  version: "1.3.0"
-  license: "Same as CotEditor"
-  lastModified: "2023-05-05"
-outlineMenu:
-- beginString: "^([\\t ]*)(?:(final|protected|private|override)\\s+)*(def)\\s+(\\w+(?:\\(.*\\))?)"
-  keyString: "$1$4"
-  description: "method"
-- beginString: "^([\\t ]*)(?:(final|protected|private|sealed|case)\\s+)*(class|object|trait)\\s+(\\w+)"
-  keyString: "$1$3 $4"
-  description: "class/obj/trait"
-  bold: true
-- beginString: "^([\\t ]*)(?:abstract\\s+)(?:(final|protected|private)\\s+)*(def)\\s+(\\w+(?:\\(.*\\))?)"
-  keyString: "$1$4"
-  description: "abstract method"
-  italic: true
-- beginString: "^([\\t ]*)(?:abstract\\s+)(?:(final|protected|private|sealed|case)\\s+)*(class|object|trait)\\s+(\\w+)"
-  keyString: "$1$3 $4"
-  description: "abstract class/obj/trait"
-  bold: true
-  italic: true
-completions: []
+attributes: []
 characters:
-- beginString: "'"
-  endString: "'"
-comments: []
-values:
-- beginString: "false"
-- beginString: "null"
-- beginString: "true"
-types:
-- beginString: "Array"
-- beginString: "Boolean"
-- beginString: "Byte"
-- beginString: "Char"
-- beginString: "Double"
-- beginString: "Float"
-- beginString: "Int"
-- beginString: "Long"
-- beginString: "Short"
-- beginString: "String"
-- beginString: "Unit"
-numbers:
-- beginString: "((?<!\\w)|[-+])(?:\\.\\d+|\\d+\\.|\\d+\\.\\d+|\\d+)(e[+-]?\\d+)?[fd]?"
-  ignoreCase: true
-  regularExpression: true
-  description: "float"
-- beginString: "\\b0x[0-9a-f]+l?\\b"
-  ignoreCase: true
-  regularExpression: true
-  description: "hexadecimal"
-- beginString: "\\b\\d+l?\\b"
-  ignoreCase: true
-  regularExpression: true
-  description: "integer"
-strings:
-- beginString: "\""
-  endString: "\""
-- beginString: "\"\"\""
-  endString: "\"\"\""
-keywords:
-- beginString: "#"
-- beginString: ":"
-- beginString: "<%"
-- beginString: "<-"
-- beginString: "<:"
-- beginString: "="
-- beginString: "=>"
-- beginString: ">:"
-- beginString: "@"
-- beginString: "_"
-- beginString: "abstract"
-- beginString: "case"
-- beginString: "catch"
-- beginString: "class"
-- beginString: "def"
-- beginString: "do"
-- beginString: "else"
-- beginString: "eq"
-- beginString: "extends"
-- beginString: "final"
-- beginString: "finally"
-- beginString: "for"
-- beginString: "forSome"
-- beginString: "if"
-- beginString: "implicit"
-- beginString: "import"
-- beginString: "lazy"
-- beginString: "match"
-- beginString: "ne"
-- beginString: "new"
-- beginString: "object"
-- beginString: "override"
-- beginString: "package"
-- beginString: "private"
-- beginString: "protected"
-- beginString: "return"
-- beginString: "sealed"
-- beginString: "super"
-- beginString: "this"
-- beginString: "throw"
-- beginString: "trait"
-- beginString: "try"
-- beginString: "type"
-- beginString: "val"
-- beginString: "var"
-- beginString: "while"
-- beginString: "with"
-- beginString: "yield"
-variables:
-- beginString: "super(?=\\.)"
-  regularExpression: true
-- beginString: "this(?=\\.)"
-  regularExpression: true
+- beginString: ''''
+  endString: ''''
+commands: []
 commentDelimiters:
-  endDelimiter: "*/"
-  beginDelimiter: "/*"
-  inlineDelimiter: "//"
+  beginDelimiter: /*
+  endDelimiter: '*/'
+  inlineDelimiter: //
+comments: []
+completions: []
+extensions:
+- keyString: scala
+filenames: []
+interpreters:
+- keyString: scala
+keywords:
+- beginString: '#'
+- beginString: ':'
+- beginString: <%
+- beginString: <-
+- beginString: '<:'
+- beginString: '='
+- beginString: =>
+- beginString: '>:'
+- beginString: '@'
+- beginString: _
+- beginString: abstract
+- beginString: case
+- beginString: catch
+- beginString: class
+- beginString: def
+- beginString: do
+- beginString: else
+- beginString: eq
+- beginString: extends
+- beginString: final
+- beginString: finally
+- beginString: for
+- beginString: forSome
+- beginString: if
+- beginString: implicit
+- beginString: import
+- beginString: lazy
+- beginString: match
+- beginString: ne
+- beginString: new
+- beginString: object
+- beginString: override
+- beginString: package
+- beginString: private
+- beginString: protected
+- beginString: return
+- beginString: sealed
+- beginString: super
+- beginString: this
+- beginString: throw
+- beginString: trait
+- beginString: try
+- beginString: type
+- beginString: val
+- beginString: var
+- beginString: while
+- beginString: with
+- beginString: yield
+kind: code
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2023-05-05'
+  license: Same as CotEditor
+  version: 1.3.0
+numbers:
+- beginString: ((?<!\w)|[-+])(?:\.\d+|\d+\.|\d+\.\d+|\d+)(e[+-]?\d+)?[fd]?
+  description: float
+  ignoreCase: true
+  regularExpression: true
+- beginString: \b0x[0-9a-f]+l?\b
+  description: hexadecimal
+  ignoreCase: true
+  regularExpression: true
+- beginString: \b\d+l?\b
+  description: integer
+  ignoreCase: true
+  regularExpression: true
+outlineMenu:
+- beginString: ^([\t ]*)(?:(final|protected|private|override)\s+)*(def)\s+(\w+(?:\(.*\))?)
+  description: method
+  keyString: $1$4
+- beginString: ^([\t ]*)(?:(final|protected|private|sealed|case)\s+)*(class|object|trait)\s+(\w+)
+  bold: true
+  description: class/obj/trait
+  keyString: $1$3 $4
+- beginString: ^([\t ]*)(?:abstract\s+)(?:(final|protected|private)\s+)*(def)\s+(\w+(?:\(.*\))?)
+  description: abstract method
+  italic: true
+  keyString: $1$4
+- beginString: ^([\t ]*)(?:abstract\s+)(?:(final|protected|private|sealed|case)\s+)*(class|object|trait)\s+(\w+)
+  bold: true
+  description: abstract class/obj/trait
+  italic: true
+  keyString: $1$3 $4
+strings:
+- beginString: '"'
+  endString: '"'
+- beginString: '"""'
+  endString: '"""'
+types:
+- beginString: Array
+- beginString: Boolean
+- beginString: Byte
+- beginString: Char
+- beginString: Double
+- beginString: Float
+- beginString: Int
+- beginString: Long
+- beginString: Short
+- beginString: String
+- beginString: Unit
+values:
+- beginString: 'false'
+- beginString: 'null'
+- beginString: 'true'
+variables:
+- beginString: super(?=\.)
+  regularExpression: true
+- beginString: this(?=\.)
+  regularExpression: true

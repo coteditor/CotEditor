@@ -1,96 +1,99 @@
-extensions:
-- keyString: "tex"
-- keyString: "TEX"
-- keyString: "sty"
-- keyString: "cls"
-metadata:
-  distributionURL: "https://coteditor.com"
-  author: "1024jp"
-  license: "Same as CotEditor"
-  lastModified: "2022-06-05"
-  version: "3.0.0"
-outlineMenu:
-- beginString: "[\\\\¥]chapter\\*?\\{(.*)\\}"
-  description: "chapter"
-  keyString: "$1"
-- beginString: "[\\\\¥]part\\*?\\{(.*)\\}"
-  description: "part"
-  keyString: "$1"
-  bold: true
-- beginString: "[\\\\¥]section\\*?\\{(.*)\\}"
-  description: "section"
-  keyString: "    $1"
-- beginString: "[\\\\¥]subsection\\*?\\{(.*)\\}"
-  description: "subsection"
-  keyString: "        $1"
-- beginString: "[\\\\¥]subsubsection\\*?\\{(.*)\\}"
-  description: "subsubsection"
-  keyString: "            $1"
-keywords:
-- beginString: "(?<=\\w)_(?=\\{)"
+attributes:
+- beginString: '['
+  endString: ']'
+characters:
+- beginString: '!'''
+  description: inverted exclamation mark (¡)
   regularExpression: true
-- beginString: "(?<!\\\\)\\^"
+- beginString: ''''''
+  description: opening double quotation mark (“)
   regularExpression: true
-- beginString: "(?<!\\\\)&"
+- beginString: (?<!\\)\\[!,:>; ]
+  description: spaces
   regularExpression: true
-- beginString: "\\\\\\\\"
+- beginString: (?<!\\)\\[&%$#_{}~^]
+  description: escaped characters
+  regularExpression: true
+- beginString: '---?'
+  description: en/em dash
+  regularExpression: true
+- beginString: \?'
+  description: inverted question mark (¿)
+  regularExpression: true
+- beginString: '``'
+  description: closing double quotation mark (”)
+  regularExpression: true
+- beginString: '~'
+  description: non-breaking space
   regularExpression: true
 commands:
-- beginString: "[\\\\¥][a-zA-Z0-9]+\\*?"
+- beginString: '[\\¥][a-zA-Z0-9]+\*?'
   regularExpression: true
-types:
-- beginString: "{"
-  endString: "}"
-attributes:
-- beginString: "["
-  endString: "]"
-variables:
-- beginString: "(?<!\\\\)##?[0-9]"
-  regularExpression: true
-values:
-- beginString: "[\\\\¥](La)?TeXe?"
-  regularExpression: true
-- beginString: "\\$.+?\\$"
-  regularExpression: true
-- beginString: "\\("
-  endString: "\\)"
-- beginString: "\\["
-  endString: "\\]"
-numbers: []
-strings: []
-characters:
-- beginString: "(?<!\\\\)\\\\[&%$#_{}~^]"
-  regularExpression: true
-  description: "escaped characters"
-- beginString: "---?"
-  regularExpression: true
-  description: "en/em dash"
-- beginString: "~"
-  regularExpression: true
-  description: "non-breaking space"
-- beginString: "''"
-  regularExpression: true
-  description: "opening double quotation mark (“)"
-- beginString: "``"
-  regularExpression: true
-  description: "closing double quotation mark (”)"
-- beginString: "!'"
-  regularExpression: true
-  description: "inverted exclamation mark (¡)"
-- beginString: "\\?'"
-  regularExpression: true
-  description: "inverted question mark (¿)"
-- beginString: "(?<!\\\\)\\\\[!,:>; ]"
-  regularExpression: true
-  description: "spaces"
-comments: []
 commentDelimiters:
-  inlineDelimiter: "%"
+  inlineDelimiter: '%'
+comments: []
 completions:
-- keyString: "begin"
-- keyString: "chapter"
-- keyString: "end"
-- keyString: "equation"
-- keyString: "section"
-- keyString: "subsection"
-- keyString: "subsubsection"
+- keyString: begin
+- keyString: chapter
+- keyString: end
+- keyString: equation
+- keyString: section
+- keyString: subsection
+- keyString: subsubsection
+extensions:
+- keyString: tex
+- keyString: TEX
+- keyString: sty
+- keyString: cls
+filenames: []
+interpreters: []
+keywords:
+- beginString: (?<!\\)&
+  regularExpression: true
+- beginString: (?<!\\)\^
+  regularExpression: true
+- beginString: (?<=\w)_(?=\{)
+  regularExpression: true
+- beginString: \\\\
+  regularExpression: true
+kind: general
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2022-06-05'
+  license: Same as CotEditor
+  version: 3.0.0
+numbers: []
+outlineMenu:
+- beginString: '[\\¥]chapter\*?\{(.*)\}'
+  description: chapter
+  keyString: $1
+- beginString: '[\\¥]part\*?\{(.*)\}'
+  bold: true
+  description: part
+  keyString: $1
+- beginString: '[\\¥]section\*?\{(.*)\}'
+  description: section
+  keyString: '    $1'
+- beginString: '[\\¥]subsection\*?\{(.*)\}'
+  description: subsection
+  keyString: '        $1'
+- beginString: '[\\¥]subsubsection\*?\{(.*)\}'
+  description: subsubsection
+  keyString: '            $1'
+strings: []
+types:
+- beginString: '{'
+  endString: '}'
+values:
+- beginString: '[\\¥](La)?TeXe?'
+  regularExpression: true
+- beginString: \$.+?\$
+  regularExpression: true
+- beginString: \(
+  endString: \)
+- beginString: \[
+  endString: \]
+variables:
+- beginString: (?<!\\)##?[0-9]
+  regularExpression: true

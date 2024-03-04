@@ -1,193 +1,212 @@
-kind: "code"
+attributes:
+- beginString: abstract
+- beginString: add
+- beginString: alias
+- beginString: as
+- beginString: async
+- beginString: await
+- beginString: const
+- beginString: event
+- beginString: explicit
+- beginString: extern
+- beginString: get
+- beginString: global
+- beginString: implicit
+- beginString: internal
+- beginString: is
+- beginString: new
+- beginString: operator
+- beginString: out
+- beginString: override
+- beginString: params
+- beginString: partial
+- beginString: private
+- beginString: protected
+- beginString: public
+- beginString: readonly
+- beginString: ref
+- beginString: remove
+- beginString: sealed
+- beginString: set
+- beginString: sizeof
+- beginString: static
+- beginString: typeof
+- beginString: unsafe
+- beginString: value
+- beginString: virtual
+- beginString: volatile
+characters:
+- beginString: ''''
+  endString: ''''
+commands:
+- beginString: ascending
+- beginString: by
+- beginString: descending
+- beginString: equals
+- beginString: from
+- beginString: group
+- beginString: into
+- beginString: join
+- beginString: let
+- beginString: 'on'
+- beginString: orderby
+- beginString: select
+- beginString: where
+commentDelimiters:
+  beginDelimiter: /*
+  endDelimiter: '*/'
+  inlineDelimiter: //
+comments: []
+completions: []
 extensions:
-- keyString: "cs"
+- keyString: cs
 filenames: []
 interpreters:
-- keyString: "csharp"
-metadata:
-  author: "usami-k"
-  distributionURL: "https://coteditor.com"
-  version: "1.2.0"
-  description: "C# 5.0\nkeywords: Statement,Namespace,Preprocessor\ncommands: Query(LINQ)\ntypes:
-    Types\nattributes: Modifiers,MethodParameters,Operator,Conversion,Contextual\nvariables:
-    Access\nvalues: Literal"
-  license: "Same as CotEditor"
-  lastModified: "2023-05-05"
-completions: []
-outlineMenu:
-- beginString: "#define\\W(.*)$"
-  description: "#define"
-  italic: true
-- beginString: "#elif\\W(.*)$"
-  description: "#elif"
-  italic: true
-- beginString: "#else\\W(.*)$"
-  description: "#else"
-  italic: true
-- beginString: "#endif\\W(.*)$"
-  description: "#endif"
-  italic: true
-- beginString: "#endregion\\W(.*)$"
-  description: "#endregion"
-  bold: true
-- beginString: "#if\\W(.*)$"
-  description: "#if"
-  italic: true
-- beginString: "#region\\W(.*)$"
-  description: "#region"
-  bold: true
-- beginString: "#undef\\W(.*)$"
-  description: "#undef"
-  italic: true
-- beginString: "^[\\t ]*(\\[.+\\])"
-  keyString: "$1"
-  description: "attribute"
-  bold: true
-- beginString: "^[\\t ]*(\\w[\\w\\s]*\\s[\\*]*)(\\w+)\\(([\\s\\w*&,]*)\\)\\s*\\{"
-  keyString: "$1 $2($3)"
-  description: "function"
-- beginString: "namespace\\W(.*)$"
-  description: "namespace"
-  bold: true
-commands:
-- beginString: "ascending"
-- beginString: "by"
-- beginString: "descending"
-- beginString: "equals"
-- beginString: "from"
-- beginString: "group"
-- beginString: "into"
-- beginString: "join"
-- beginString: "let"
-- beginString: "on"
-- beginString: "orderby"
-- beginString: "select"
-- beginString: "where"
-attributes:
-- beginString: "abstract"
-- beginString: "add"
-- beginString: "alias"
-- beginString: "as"
-- beginString: "async"
-- beginString: "await"
-- beginString: "const"
-- beginString: "event"
-- beginString: "explicit"
-- beginString: "extern"
-- beginString: "get"
-- beginString: "global"
-- beginString: "implicit"
-- beginString: "internal"
-- beginString: "is"
-- beginString: "new"
-- beginString: "operator"
-- beginString: "out"
-- beginString: "override"
-- beginString: "params"
-- beginString: "partial"
-- beginString: "private"
-- beginString: "protected"
-- beginString: "public"
-- beginString: "readonly"
-- beginString: "ref"
-- beginString: "remove"
-- beginString: "sealed"
-- beginString: "set"
-- beginString: "sizeof"
-- beginString: "static"
-- beginString: "typeof"
-- beginString: "unsafe"
-- beginString: "value"
-- beginString: "virtual"
-- beginString: "volatile"
-characters:
-- beginString: "'"
-  endString: "'"
-comments: []
-values:
-- beginString: "false"
-- beginString: "null"
-- beginString: "true"
-types:
-- beginString: "bool"
-- beginString: "byte"
-- beginString: "char"
-- beginString: "class"
-- beginString: "decimal"
-- beginString: "delegate"
-- beginString: "double"
-- beginString: "dynamic"
-- beginString: "enum"
-- beginString: "float"
-- beginString: "int"
-- beginString: "interface"
-- beginString: "long"
-- beginString: "object"
-- beginString: "sbyte"
-- beginString: "short"
-- beginString: "string"
-- beginString: "struct"
-- beginString: "uint"
-- beginString: "ulong"
-- beginString: "ushort"
-- beginString: "var"
-- beginString: "void"
-numbers:
-- beginString: "\\b(\\d+\\.?\\d*|\\.\\d+)(e[-+]\\d+)?[dfm]?\\b"
-  ignoreCase: true
-  regularExpression: true
-- beginString: "\\b0x[0-9a-f]+\\b"
-  ignoreCase: true
-  regularExpression: true
-- beginString: "\\b\\d+[lu]{0,2}\\b"
-  ignoreCase: true
-  regularExpression: true
-strings:
-- beginString: "\""
-  endString: "\""
+- keyString: csharp
 keywords:
-- beginString: "#define"
-- beginString: "#elif"
-- beginString: "#else"
-- beginString: "#endif"
-- beginString: "#endregion"
-- beginString: "#error"
-- beginString: "#if"
-- beginString: "#line"
-- beginString: "#pragma"
-- beginString: "#region"
-- beginString: "#undef"
-- beginString: "#warning"
-- beginString: "break"
-- beginString: "case"
-- beginString: "catch"
-- beginString: "checked"
-- beginString: "continue"
-- beginString: "default"
-- beginString: "do"
-- beginString: "else"
-- beginString: "finally"
-- beginString: "fixed"
-- beginString: "for"
-- beginString: "foreach"
-- beginString: "goto"
-- beginString: "if"
-- beginString: "in"
-- beginString: "lock"
-- beginString: "namespace"
-- beginString: "return"
-- beginString: "stackalloc"
-- beginString: "switch"
-- beginString: "throw"
-- beginString: "try"
-- beginString: "unchecked"
-- beginString: "using"
-- beginString: "while"
-- beginString: "yield"
+- beginString: '#define'
+- beginString: '#elif'
+- beginString: '#else'
+- beginString: '#endif'
+- beginString: '#endregion'
+- beginString: '#error'
+- beginString: '#if'
+- beginString: '#line'
+- beginString: '#pragma'
+- beginString: '#region'
+- beginString: '#undef'
+- beginString: '#warning'
+- beginString: break
+- beginString: case
+- beginString: catch
+- beginString: checked
+- beginString: continue
+- beginString: default
+- beginString: do
+- beginString: else
+- beginString: finally
+- beginString: fixed
+- beginString: for
+- beginString: foreach
+- beginString: goto
+- beginString: if
+- beginString: in
+- beginString: lock
+- beginString: namespace
+- beginString: return
+- beginString: stackalloc
+- beginString: switch
+- beginString: throw
+- beginString: try
+- beginString: unchecked
+- beginString: using
+- beginString: while
+- beginString: yield
+kind: code
+metadata:
+  author: usami-k
+  description: 'C# 5.0
+
+    keywords: Statement,Namespace,Preprocessor
+
+    commands: Query(LINQ)
+
+    types: Types
+
+    attributes: Modifiers,MethodParameters,Operator,Conversion,Contextual
+
+    variables: Access
+
+    values: Literal'
+  distributionURL: https://coteditor.com
+  lastModified: '2023-05-05'
+  license: Same as CotEditor
+  version: 1.2.0
+numbers:
+- beginString: \b(\d+\.?\d*|\.\d+)(e[-+]\d+)?[dfm]?\b
+  ignoreCase: true
+  regularExpression: true
+- beginString: \b0x[0-9a-f]+\b
+  ignoreCase: true
+  regularExpression: true
+- beginString: \b\d+[lu]{0,2}\b
+  ignoreCase: true
+  regularExpression: true
+outlineMenu:
+- beginString: '#define\W(.*)$'
+  description: '#define'
+  italic: true
+  keyString: ''
+- beginString: '#elif\W(.*)$'
+  description: '#elif'
+  italic: true
+  keyString: ''
+- beginString: '#else\W(.*)$'
+  description: '#else'
+  italic: true
+  keyString: ''
+- beginString: '#endif\W(.*)$'
+  description: '#endif'
+  italic: true
+  keyString: ''
+- beginString: '#endregion\W(.*)$'
+  bold: true
+  description: '#endregion'
+  keyString: ''
+- beginString: '#if\W(.*)$'
+  description: '#if'
+  italic: true
+  keyString: ''
+- beginString: '#region\W(.*)$'
+  bold: true
+  description: '#region'
+  keyString: ''
+- beginString: '#undef\W(.*)$'
+  description: '#undef'
+  italic: true
+  keyString: ''
+- beginString: ^[\t ]*(\[.+\])
+  bold: true
+  description: attribute
+  keyString: $1
+- beginString: ^[\t ]*(\w[\w\s]*\s[\*]*)(\w+)\(([\s\w*&,]*)\)\s*\{
+  description: function
+  keyString: $1 $2($3)
+- beginString: namespace\W(.*)$
+  bold: true
+  description: namespace
+  keyString: ''
+strings:
+- beginString: '"'
+  endString: '"'
+types:
+- beginString: bool
+- beginString: byte
+- beginString: char
+- beginString: class
+- beginString: decimal
+- beginString: delegate
+- beginString: double
+- beginString: dynamic
+- beginString: enum
+- beginString: float
+- beginString: int
+- beginString: interface
+- beginString: long
+- beginString: object
+- beginString: sbyte
+- beginString: short
+- beginString: string
+- beginString: struct
+- beginString: uint
+- beginString: ulong
+- beginString: ushort
+- beginString: var
+- beginString: void
+values:
+- beginString: 'false'
+- beginString: 'null'
+- beginString: 'true'
 variables:
-- beginString: "base"
-- beginString: "this"
-commentDelimiters:
-  endDelimiter: "*/"
-  beginDelimiter: "/*"
-  inlineDelimiter: "//"
+- beginString: base
+- beginString: this

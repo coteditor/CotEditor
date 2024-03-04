@@ -1,79 +1,85 @@
-extensions:
-- keyString: "textile"
-metadata:
-  author: "1024jp"
-  distributionURL: "https://coteditor.com"
-  version: "1.1.5"
-  license: "Same as CotEditor"
-  lastModified: "2022-06-01"
-outlineMenu:
-- keyString: "$2"
-  beginString: "^h1([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$"
-  description: "h1"
-  bold: true
-- keyString: "    $2"
-  beginString: "^h2([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$"
-  description: "h2"
-  bold: true
-- beginString: "^h3([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$"
-  keyString: "        $2"
-  description: "h3"
-- beginString: "^h4([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$"
-  keyString: "            $2"
-  description: "h4"
-- beginString: "^h5([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$"
-  keyString: "                $2"
-  description: "h5"
-- beginString: "^h6([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$"
-  keyString: "                    $2"
-  description: "h6"
-completions: []
-commands: []
+attributes: []
 characters:
-- beginString: "<pre(\\s[^<>]*)?>"
-  endString: "</pre>"
+- beginString: <pre(\s[^<>]*)?>
+  endString: </pre>
   regularExpression: true
-- beginString: "@.*@"
+- beginString: '@.*@'
   regularExpression: true
+commands: []
+commentDelimiters: {}
 comments: []
-values:
-- beginString: "\\[\\d+\\]"
+completions: []
+extensions:
+- keyString: textile
+filenames: []
+interpreters: []
+keywords:
+- beginString: (?<![\\*])\*[^ \t*]((?!\R{2})(?:.|\R))*?(?<![\\ ])\*
+  description: bold
   regularExpression: true
-- beginString: "\\s\".*?\"(?>:)"
+- beginString: (?<![\_])_[^ \t*]((?!\R{2})(?:.|\R)).*?(?<![\\ ])_
+  description: italic
+  regularExpression: true
+- beginString: ^#+[\t ]
+  regularExpression: true
+- beginString: ^\*+[\t ]
+  regularExpression: true
+- beginString: ^bq([\[{()=>]\S*)?\.[\t ]
+  regularExpression: true
+- beginString: ^fn\d+\.[\t ]
+  regularExpression: true
+- beginString: ^p([\[{()=>]\S*)?\.[\t ]
+  regularExpression: true
+kind: general
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2022-06-01'
+  license: Same as CotEditor
+  version: 1.1.5
+numbers:
+- beginString: '![<>]?\S*!'
+  regularExpression: true
+outlineMenu:
+- beginString: ^h1([\[{()=>]\S*)?\.[\t ]*(.*)$
+  bold: true
+  description: h1
+  keyString: $2
+- beginString: ^h2([\[{()=>]\S*)?\.[\t ]*(.*)$
+  bold: true
+  description: h2
+  keyString: '    $2'
+- beginString: ^h3([\[{()=>]\S*)?\.[\t ]*(.*)$
+  description: h3
+  keyString: '        $2'
+- beginString: ^h4([\[{()=>]\S*)?\.[\t ]*(.*)$
+  description: h4
+  keyString: '            $2'
+- beginString: ^h5([\[{()=>]\S*)?\.[\t ]*(.*)$
+  description: h5
+  keyString: '                $2'
+- beginString: ^h6([\[{()=>]\S*)?\.[\t ]*(.*)$
+  description: h6
+  keyString: '                    $2'
+strings:
+- beginString: (?<=!):\S*
+  regularExpression: true
+- beginString: (?<="):\S*
+  regularExpression: true
+- beginString: </[a-zA-Z]+>
+  regularExpression: true
+- beginString: <[a-zA-Z]+([^<>]*)?>
+  regularExpression: true
+- beginString: ^\[\S+\]\S
+  endString: $
   regularExpression: true
 types:
-- beginString: "^h[1-6]([\\[{()=>]\\S*)?\\.[\\t ]"
-  endString: "$"
+- beginString: ^h[1-6]([\[{()=>]\S*)?\.[\t ]
+  endString: $
   regularExpression: true
-numbers:
-- beginString: "![<>]?\\S*!"
+values:
+- beginString: \[\d+\]
   regularExpression: true
-strings:
-- beginString: "(?<=!):\\S*"
+- beginString: \s".*?"(?>:)
   regularExpression: true
-- beginString: "(?<=\"):\\S*"
-  regularExpression: true
-- beginString: "</[a-zA-Z]+>"
-  regularExpression: true
-- beginString: "<[a-zA-Z]+([^<>]*)?>"
-  regularExpression: true
-- beginString: "^\\[\\S+\\]\\S"
-  endString: "$"
-  regularExpression: true
-keywords:
-- beginString: "(?<![\\\\*])\\*[^ \\t*]((?!\\R{2})(?:.|\\R))*?(?<![\\\\ ])\\*"
-  description: "bold"
-  regularExpression: true
-- beginString: "(?<![\\_])_[^ \\t*]((?!\\R{2})(?:.|\\R)).*?(?<![\\\\ ])_"
-  description: "italic"
-  regularExpression: true
-- beginString: "^#+[\\t ]"
-  regularExpression: true
-- beginString: "^\\*+[\\t ]"
-  regularExpression: true
-- beginString: "^bq([\\[{()=>]\\S*)?\\.[\\t ]"
-  regularExpression: true
-- beginString: "^fn\\d+\\.[\\t ]"
-  regularExpression: true
-- beginString: "^p([\\[{()=>]\\S*)?\\.[\\t ]"
-  regularExpression: true
+variables: []

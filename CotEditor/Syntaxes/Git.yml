@@ -1,32 +1,32 @@
-kind: "code"
+attributes: []
+characters: []
+commands:
+- beginString: ^(pick|reword|edit|squash|fixup|exec|drop)\b
+  description: rebase commands
+  regularExpression: true
+commentDelimiters:
+  inlineDelimiter: '#'
+comments: []
+completions: []
 extensions: []
 filenames:
-- keyString: "git-rebase-todo"
-- keyString: "COMMIT_EDITMSG"
-comments: []
-outlineMenu: []
-completions: []
-metadata:
-  distributionURL: "https://coteditor.com"
-  lastModified: "2023-05-05"
-  author: "1024jp"
-  license: "Same as CotEditor"
-  version: "1.1.0"
-numbers:
-- beginString: "\\b[0-9a-f]{6,10}\\b"
-  description: "hex"
-  regularExpression: true
-commands:
-- beginString: "^(pick|reword|edit|squash|fixup|exec|drop)\\b"
-  regularExpression: true
-  description: "rebase commands"
-values: []
-keywords: []
-attributes: []
-strings: []
-variables: []
-commentDelimiters:
-  inlineDelimiter: "#"
+- keyString: git-rebase-todo
+- keyString: COMMIT_EDITMSG
 interpreters: []
+keywords: []
+kind: code
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2023-05-05'
+  license: Same as CotEditor
+  version: 1.1.0
+numbers:
+- beginString: \b[0-9a-f]{6,10}\b
+  description: hex
+  regularExpression: true
+outlineMenu: []
+strings: []
 types: []
-characters: []
+values: []
+variables: []

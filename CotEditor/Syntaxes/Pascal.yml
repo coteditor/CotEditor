@@ -15,7 +15,6 @@ attributes:
   ignoreCase: true
 characters:
 - beginString: \#
-  ignoreCase: false
   regularExpression: true
 commands:
 - beginString: Abs
@@ -904,7 +903,7 @@ keywords:
   ignoreCase: true
 - beginString: xor
   ignoreCase: true
-kind: "code"
+kind: code
 metadata:
   author: cbnbg
   description: 'Pascal/Object Pascal
@@ -920,7 +919,7 @@ metadata:
   distributionURL: https://coteditor.com
   lastModified: '2023-05-05'
   license: Same as CotEditor
-  version: '1.2.0'
+  version: 1.2.0
 numbers:
 - beginString: \b(\d+\.?\d*|\.\d+)(e[-+]\d+)?[dfm]?\b
   ignoreCase: true
@@ -932,13 +931,18 @@ numbers:
   ignoreCase: true
   regularExpression: true
 outlineMenu:
-- beginString: unit\W(.*)(?:\;)$
+- beginString: (^\s*)(?:\T)(?:.*)(?<!\:)\=(?:.*)
   bold: true
-  description: Unit
+  description: Types (start with T)
   ignoreCase: true
   italic: true
-  keyString: $1
-  underline: true
+  keyString: type $0
+- beginString: \{(?:.*)\$(?:.*)(?:region)(?:.*)\'(.*)\'\}
+  bold: true
+  description: Region
+  ignoreCase: true
+  italic: true
+  keyString: ($1)
 - beginString: ^([ \t]*)(?:[a-z]* )*function(.*)(?:\;|\()
   description: Function
   ignoreCase: true
@@ -947,16 +951,9 @@ outlineMenu:
   description: Procedure
   ignoreCase: true
   keyString: $2
-- beginString: \{(?:.*)\$(?:.*)(?:region)(?:.*)\'(.*)\'\}
+- beginString: ^\s*(implementation)
   bold: true
-  description: Region
-  ignoreCase: true
-  italic: true
-  keyString: ($1)
-  underline: false
-- beginString: ^\s*(type)
-  bold: true
-  description: Type
+  description: Implementation
   ignoreCase: true
   italic: true
   keyString: '---- $1'
@@ -966,24 +963,25 @@ outlineMenu:
   ignoreCase: true
   italic: true
   keyString: '---- $1'
+- beginString: ^\s*(type)
+  bold: true
+  description: Type
+  ignoreCase: true
+  italic: true
+  keyString: '---- $1'
 - beginString: ^\s*(uses)
   bold: true
   description: Uses
   ignoreCase: true
   italic: true
   keyString: '---- $1'
-- beginString: ^\s*(implementation)
+- beginString: unit\W(.*)(?:\;)$
   bold: true
-  description: Implementation
+  description: Unit
   ignoreCase: true
   italic: true
-  keyString: '---- $1'
-- beginString: (^\s*)(?:\T)(?:.*)(?<!\:)\=(?:.*)
-  bold: true
-  description: Types (start with T)
-  ignoreCase: true
-  italic: true
-  keyString: type $0
+  keyString: $1
+  underline: true
 strings:
 - beginString: ''''
   endString: ''''

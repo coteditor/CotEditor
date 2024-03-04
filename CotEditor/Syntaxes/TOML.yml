@@ -1,63 +1,64 @@
+attributes: []
+characters:
+- beginString: \b[0-9]{4}-[0-9]{2}-[0-9]{2}(([Tt]|[ \t]+)[0-9]{2}?:[0-9]{2}:[0-9]{2}(\.[0-9]*)?(([
+    \t]*)Z|[-+][0-9]{2}?(:[0-9]{2})?)?)?\b
+  description: date-time
+  regularExpression: true
+commands: []
+commentDelimiters:
+  inlineDelimiter: '#'
+comments: []
+completions: []
 extensions:
-- keyString: "toml"
+- keyString: toml
 filenames: []
 interpreters: []
-metadata:
-  version: "1.0.1"
-  author: "1024jp"
-  license: "Same as CotEditor"
-  lastModified: "2019-07-16"
-  distributionURL: "https://coteditor.com"
-commentDelimiters:
-  inlineDelimiter: "#"
 keywords:
-- beginString: "(?<=\\[\\[)[^\\],]+(?=\\]\\])"
-  description: "array of tables"
+- beginString: (?<!\[\[)(?<=\[)[^\],]+(?=\])(?!\]\])
+  description: table
   regularExpression: true
-- beginString: "(?<!\\[\\[)(?<=\\[)[^\\],]+(?=\\])(?!\\]\\])"
-  description: "table"
+- beginString: (?<=\[\[)[^\],]+(?=\]\])
+  description: array of tables
   regularExpression: true
-attributes: []
-commands: []
-types: []
-variables: []
-values:
-- beginString: "false"
-- beginString: "true"
+kind: general
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2019-07-16'
+  license: Same as CotEditor
+  version: 1.0.1
 numbers:
-- beginString: "(\\b|[-+])0b[01][01_]*\\b"
-  description: "binary"
+- beginString: (\b|[-+])0b[01][01_]*\b
+  description: binary
   regularExpression: true
-- beginString: "(\\b|[-+])0o[0-7][0-7_]*\\b"
+- beginString: (\b|[-+])0o[0-7][0-7_]*\b
+  description: octal
   regularExpression: true
-  description: "octal"
-- beginString: "(\\b|[-+])0x[0-9a-fA-F][0-9a-fA-F_]*\\b"
-  description: "hex"
+- beginString: (\b|[-+])0x[0-9a-fA-F][0-9a-fA-F_]*\b
+  description: hex
   regularExpression: true
-- beginString: "(\\b|[-+])[0-9][0-9_]*(\\.[0-9][0-9_]*)?(e[+-]?[0-9][0-9_]*)?\\b"
-  regularExpression: true
+- beginString: (\b|[-+])[0-9][0-9_]*(\.[0-9][0-9_]*)?(e[+-]?[0-9][0-9_]*)?\b
+  description: int / float
   ignoreCase: true
-  description: "int / float"
-- beginString: "(\\b|[-+])inf\\b"
-  description: "inf"
   regularExpression: true
-- beginString: "(\\b|[-+])nan\\b"
-  description: "nan"
+- beginString: (\b|[-+])inf\b
+  description: inf
   regularExpression: true
-strings:
-- beginString: "\""
-  endString: "\""
-- beginString: "\"\"\""
-  endString: "\"\"\""
-- beginString: "'"
-  endString: "'"
-- beginString: "'''"
-  endString: "'''"
-characters:
-- beginString: "\\b[0-9]{4}-[0-9]{2}-[0-9]{2}(([Tt]|[ \\t]+)[0-9]{2}?:[0-9]{2}:[0-9]{2}(\\.[0-9]*)?(([
-    \\t]*)Z|[-+][0-9]{2}?(:[0-9]{2})?)?)?\\b"
+- beginString: (\b|[-+])nan\b
+  description: nan
   regularExpression: true
-  description: "date-time"
-comments: []
 outlineMenu: []
-completions: []
+strings:
+- beginString: '"'
+  endString: '"'
+- beginString: '"""'
+  endString: '"""'
+- beginString: ''''
+  endString: ''''
+- beginString: ''''''''
+  endString: ''''''''
+types: []
+values:
+- beginString: 'false'
+- beginString: 'true'
+variables: []

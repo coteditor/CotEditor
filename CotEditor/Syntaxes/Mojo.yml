@@ -331,6 +331,7 @@ commands:
 commentDelimiters:
   inlineDelimiter: '#'
 comments: []
+completions: []
 extensions:
 - keyString: mojo
 - keyString: "\U0001F525"
@@ -385,7 +386,7 @@ keywords:
 - beginString: while
 - beginString: with
 - beginString: yield
-kind: "code"
+kind: code
 metadata:
   author: 1024jp
   description: Based on the official Mojo programming manual on 2023-05-03

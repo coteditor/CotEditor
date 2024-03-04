@@ -1,1109 +1,1112 @@
-kind: "code"
-extensions:
-- keyString: "svg"
-metadata:
-  author: "1024jp"
-  distributionURL: "https://coteditor.com"
-  version: "1.3.0"
-  description: "Based on SVG 1.1 (Second Edition)"
-  license: "Same as CotEditor"
-  lastModified: "2023-05-05"
-outlineMenu:
-- beginString: "(?<= )id=\"([^\"]+?)\""
-  description: "id"
-  ignoreCase: true
-  keyString: "#$1"
-  italic: true
-- beginString: "<title[^>]*>([^<]*)</title[^>]*>"
-  description: "title"
-  ignoreCase: true
-  keyString: "$1"
-  bold: true
-completions:
-- keyString: "accent-height"
-- keyString: "accumulate"
-- keyString: "additive"
-- keyString: "alignment-baseline"
-- keyString: "alphabetic"
-- keyString: "amplitude"
-- keyString: "arabic-form"
-- keyString: "ascent"
-- keyString: "attributeName"
-- keyString: "attributeType"
-- keyString: "azimuth"
-- keyString: "baseFrequency"
-- keyString: "baseline-shift"
-- keyString: "baseProfile"
-- keyString: "bbox"
-- keyString: "begin"
-- keyString: "bias"
-- keyString: "by"
-- keyString: "calcMode"
-- keyString: "cap-height"
-- keyString: "class"
-- keyString: "clip"
-- keyString: "clip-path"
-- keyString: "clip-rule"
-- keyString: "clipPathUnits"
-- keyString: "color"
-- keyString: "color-interpolation"
-- keyString: "color-interpolation-filters"
-- keyString: "color-profile"
-- keyString: "color-rendering"
-- keyString: "contentScriptType"
-- keyString: "contentStyleType"
-- keyString: "cursor"
-- keyString: "cx"
-- keyString: "cy"
-- keyString: "d"
-- keyString: "descent"
-- keyString: "diffuseConstant"
-- keyString: "direction"
-- keyString: "display"
-- keyString: "divisor"
-- keyString: "dominant-baseline"
-- keyString: "dur"
-- keyString: "dx"
-- keyString: "dy"
-- keyString: "edgeMode"
-- keyString: "elevation"
-- keyString: "enable-background"
-- keyString: "end"
-- keyString: "exponent"
-- keyString: "externalResourcesRequired"
-- keyString: "fill"
-- keyString: "fill"
-- keyString: "fill-opacity"
-- keyString: "fill-rule"
-- keyString: "filter"
-- keyString: "filterRes"
-- keyString: "filterUnits"
-- keyString: "flood-color"
-- keyString: "flood-opacity"
-- keyString: "font-family"
-- keyString: "font-family"
-- keyString: "font-size"
-- keyString: "font-size"
-- keyString: "font-size-adjust"
-- keyString: "font-stretch"
-- keyString: "font-stretch"
-- keyString: "font-style"
-- keyString: "font-style"
-- keyString: "font-variant"
-- keyString: "font-variant"
-- keyString: "font-weight"
-- keyString: "font-weight"
-- keyString: "format"
-- keyString: "from"
-- keyString: "fx"
-- keyString: "fy"
-- keyString: "g1"
-- keyString: "g2"
-- keyString: "glyph-name"
-- keyString: "glyph-orientation-horizontal"
-- keyString: "glyph-orientation-vertical"
-- keyString: "glyphRef"
-- keyString: "gradientTransform"
-- keyString: "gradientUnits"
-- keyString: "hanging"
-- keyString: "height"
-- keyString: "horiz-adv-x"
-- keyString: "horiz-origin-x"
-- keyString: "horiz-origin-y"
-- keyString: "id"
-- keyString: "ideographic"
-- keyString: "image-rendering"
-- keyString: "in"
-- keyString: "in2"
-- keyString: "intercept"
-- keyString: "k"
-- keyString: "k1"
-- keyString: "k2"
-- keyString: "k3"
-- keyString: "k4"
-- keyString: "kernelMatrix"
-- keyString: "kernelUnitLength"
-- keyString: "kerning"
-- keyString: "keyPoints"
-- keyString: "keySplines"
-- keyString: "keyTimes"
-- keyString: "lang"
-- keyString: "lengthAdjust"
-- keyString: "letter-spacing"
-- keyString: "lighting-color"
-- keyString: "limitingConeAngle"
-- keyString: "local"
-- keyString: "marker-end"
-- keyString: "marker-mid"
-- keyString: "marker-start"
-- keyString: "markerHeight"
-- keyString: "markerUnits"
-- keyString: "markerWidth"
-- keyString: "mask"
-- keyString: "maskContentUnits"
-- keyString: "maskUnits"
-- keyString: "mathematical"
-- keyString: "max"
-- keyString: "media"
-- keyString: "method"
-- keyString: "min"
-- keyString: "mode"
-- keyString: "name"
-- keyString: "numOctaves"
-- keyString: "offset"
-- keyString: "onabort"
-- keyString: "onactivate"
-- keyString: "onbegin"
-- keyString: "onclick"
-- keyString: "onend"
-- keyString: "onerror"
-- keyString: "onfocusin"
-- keyString: "onfocusout"
-- keyString: "onload"
-- keyString: "onload"
-- keyString: "onmousedown"
-- keyString: "onmousemove"
-- keyString: "onmouseout"
-- keyString: "onmouseover"
-- keyString: "onmouseup"
-- keyString: "onrepeat"
-- keyString: "onresize"
-- keyString: "onscroll"
-- keyString: "onunload"
-- keyString: "onzoom"
-- keyString: "opacity"
-- keyString: "operator"
-- keyString: "order"
-- keyString: "orient"
-- keyString: "orientation"
-- keyString: "origin"
-- keyString: "overflow"
-- keyString: "overline-position"
-- keyString: "overline-thickness"
-- keyString: "panose-1"
-- keyString: "path"
-- keyString: "pathLength"
-- keyString: "patternContentUnits"
-- keyString: "patternTransform"
-- keyString: "patternUnits"
-- keyString: "pointer-events"
-- keyString: "points"
-- keyString: "pointsAtX"
-- keyString: "pointsAtY"
-- keyString: "pointsAtZ"
-- keyString: "preserveAlpha"
-- keyString: "preserveAspectRatio"
-- keyString: "primitiveUnits"
-- keyString: "r"
-- keyString: "radius"
-- keyString: "refX"
-- keyString: "refY"
-- keyString: "rendering-intent"
-- keyString: "repeatCount"
-- keyString: "repeatDur"
-- keyString: "requiredExtensions"
-- keyString: "requiredFeatures"
-- keyString: "restart"
-- keyString: "result"
-- keyString: "rotate"
-- keyString: "rx"
-- keyString: "ry"
-- keyString: "scale"
-- keyString: "seed"
-- keyString: "shape-rendering"
-- keyString: "slope"
-- keyString: "spacing"
-- keyString: "specularConstant"
-- keyString: "specularExponent"
-- keyString: "spreadMethod"
-- keyString: "startOffset"
-- keyString: "stdDeviation"
-- keyString: "stemh"
-- keyString: "stemv"
-- keyString: "stitchTiles"
-- keyString: "stop-color"
-- keyString: "stop-opacity"
-- keyString: "strikethrough-position"
-- keyString: "strikethrough-thickness"
-- keyString: "string"
-- keyString: "stroke"
-- keyString: "stroke-dasharray"
-- keyString: "stroke-dashoffset"
-- keyString: "stroke-linecap"
-- keyString: "stroke-linejoin"
-- keyString: "stroke-miterlimit"
-- keyString: "stroke-opacity"
-- keyString: "stroke-width"
-- keyString: "style"
-- keyString: "surfaceScale"
-- keyString: "svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\""
-- keyString: "systemLanguage"
-- keyString: "tableValues"
-- keyString: "target"
-- keyString: "targetX"
-- keyString: "targetY"
-- keyString: "text-anchor"
-- keyString: "text-decoration"
-- keyString: "text-rendering"
-- keyString: "textLength"
-- keyString: "textLength"
-- keyString: "title"
-- keyString: "to"
-- keyString: "transform"
-- keyString: "transform=\"matrix(1,0,0,1,0,0)\""
-- keyString: "transform=\"rotate(0)\""
-- keyString: "transform=\"scale(1,1)\""
-- keyString: "transform=\"skewX(0)\""
-- keyString: "transform=\"skewY(0)\""
-- keyString: "transform=\"translate(0,0)\""
-- keyString: "type"
-- keyString: "u1"
-- keyString: "u2"
-- keyString: "underline-position"
-- keyString: "underline-thickness"
-- keyString: "unicode"
-- keyString: "unicode-bidi"
-- keyString: "unicode-range"
-- keyString: "units-per-em"
-- keyString: "v-alphabetic"
-- keyString: "v-hanging"
-- keyString: "v-ideographic"
-- keyString: "v-mathematical"
-- keyString: "values"
-- keyString: "version"
-- keyString: "vert-adv-y"
-- keyString: "vert-origin-x"
-- keyString: "vert-origin-y"
-- keyString: "viewBox"
-- keyString: "viewTarget"
-- keyString: "visibility"
-- keyString: "width"
-- keyString: "widths"
-- keyString: "word-spacing"
-- keyString: "writing-mode"
-- keyString: "x"
-- keyString: "x-height"
-- keyString: "x1"
-- keyString: "x2"
-- keyString: "xChannelSelector"
-- keyString: "xlink:actuate"
-- keyString: "xlink:href"
-- keyString: "xlink:role"
-- keyString: "xlink:show"
-- keyString: "xlink:title"
-- keyString: "xlink:type"
-- keyString: "xml:base"
-- keyString: "xml:lang"
-- keyString: "xml:space"
-- keyString: "xmlns:dc=\"http://purl.org/dc/elements/1.1/\""
-- keyString: "xmlns:xlink=\"http://www.w3.org/1999/xlink\""
-- keyString: "xmlns=\"http://www.w3.org/2000/svg\""
-- keyString: "y"
-- keyString: "y1"
-- keyString: "y2"
-- keyString: "yChannelSelector"
-- keyString: "z"
-- keyString: "zoomAndPan"
-commands:
-- beginString: "(?<=<)\\?xml\\b"
-  regularExpression: true
-- beginString: "(?<=<)\\?xml-stylesheet\\b"
-  regularExpression: true
-- beginString: "\\?(?=>)"
-  regularExpression: true
 attributes:
-- beginString: "(?<=xlink:)actuate\\s*+(?==)"
+- beginString: (?<=xlink:)actuate\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xlink:)arcrole\\s*+(?==)"
+- beginString: (?<=xlink:)arcrole\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xlink:)base\\s*+(?==)"
+- beginString: (?<=xlink:)base\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xlink:)href\\s*+(?==)"
+- beginString: (?<=xlink:)href\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xlink:)lang\\s*+(?==)"
+- beginString: (?<=xlink:)lang\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xlink:)role\\s*+(?==)"
+- beginString: (?<=xlink:)role\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xlink:)show\\s*+(?==)"
+- beginString: (?<=xlink:)show\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xlink:)space\\s*+(?==)"
+- beginString: (?<=xlink:)space\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xlink:)title\\s*+(?==)"
+- beginString: (?<=xlink:)title\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xlink:)type\\s*+(?==)"
+- beginString: (?<=xlink:)type\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xml:)lang\\s*+(?==)"
+- beginString: (?<=xml:)lang\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xml:)space\\s*+(?==)"
+- beginString: (?<=xml:)space\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xmlns:)a\\s*+(?==)"
+- beginString: (?<=xmlns:)a\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xmlns:)cc\\s*+(?==)"
+- beginString: (?<=xmlns:)cc\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xmlns:)dc\\s*+(?==)"
+- beginString: (?<=xmlns:)dc\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xmlns:)rdf\\s*+(?==)"
+- beginString: (?<=xmlns:)rdf\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xmlns:)svg\\s*+(?==)"
+- beginString: (?<=xmlns:)svg\s*+(?==)
   regularExpression: true
-- beginString: "(?<=xmlns:)xlink\\s*+(?==)"
+- beginString: (?<=xmlns:)xlink\s*+(?==)
   regularExpression: true
-- beginString: "\\saccent-height\\s*+(?==)"
+- beginString: \saccent-height\s*+(?==)
   regularExpression: true
-- beginString: "\\saccumulate\\s*+(?==)"
+- beginString: \saccumulate\s*+(?==)
   regularExpression: true
-- beginString: "\\sadditive\\s*+(?==)"
+- beginString: \sadditive\s*+(?==)
   regularExpression: true
-- beginString: "\\salignment-baseline\\s*+(?==)"
+- beginString: \salignment-baseline\s*+(?==)
   regularExpression: true
-- beginString: "\\salphabetic\\s*+(?==)"
+- beginString: \salphabetic\s*+(?==)
   regularExpression: true
-- beginString: "\\samplitude\\s*+(?==)"
+- beginString: \samplitude\s*+(?==)
   regularExpression: true
-- beginString: "\\sarabic-form\\s*+(?==)"
+- beginString: \sarabic-form\s*+(?==)
   regularExpression: true
-- beginString: "\\sascent\\s*+(?==)"
+- beginString: \sascent\s*+(?==)
   regularExpression: true
-- beginString: "\\sattributeName\\s*+(?==)"
+- beginString: \sattributeName\s*+(?==)
   regularExpression: true
-- beginString: "\\sattributeType\\s*+(?==)"
+- beginString: \sattributeType\s*+(?==)
   regularExpression: true
-- beginString: "\\sazimuth\\s*+(?==)"
+- beginString: \sazimuth\s*+(?==)
   regularExpression: true
-- beginString: "\\sbaseFrequency\\s*+(?==)"
+- beginString: \sbaseFrequency\s*+(?==)
   regularExpression: true
-- beginString: "\\sbaseline-shift\\s*+(?==)"
+- beginString: \sbaseline-shift\s*+(?==)
   regularExpression: true
-- beginString: "\\sbaseProfile\\s*+(?==)"
+- beginString: \sbaseProfile\s*+(?==)
   regularExpression: true
-- beginString: "\\sbbox\\s*+(?==)"
+- beginString: \sbbox\s*+(?==)
   regularExpression: true
-- beginString: "\\sbegin\\s*+(?==)"
+- beginString: \sbegin\s*+(?==)
   regularExpression: true
-- beginString: "\\sbias\\s*+(?==)"
+- beginString: \sbias\s*+(?==)
   regularExpression: true
-- beginString: "\\sby\\s*+(?==)"
+- beginString: \sby\s*+(?==)
   regularExpression: true
-- beginString: "\\scalcMode\\s*+(?==)"
+- beginString: \scalcMode\s*+(?==)
   regularExpression: true
-- beginString: "\\scap-height\\s*+(?==)"
+- beginString: \scap-height\s*+(?==)
   regularExpression: true
-- beginString: "\\sclass\\s*+(?==)"
+- beginString: \sclass\s*+(?==)
   regularExpression: true
-- beginString: "\\sclip-path\\s*+(?==)"
+- beginString: \sclip-path\s*+(?==)
   regularExpression: true
-- beginString: "\\sclip-rule\\s*+(?==)"
+- beginString: \sclip-rule\s*+(?==)
   regularExpression: true
-- beginString: "\\sclip\\s*+(?==)"
+- beginString: \sclip\s*+(?==)
   regularExpression: true
-- beginString: "\\sclipPathUnits\\s*+(?==)"
+- beginString: \sclipPathUnits\s*+(?==)
   regularExpression: true
-- beginString: "\\scolor-interpolation-filters\\s*+(?==)"
+- beginString: \scolor-interpolation-filters\s*+(?==)
   regularExpression: true
-- beginString: "\\scolor-interpolation\\s*+(?==)"
+- beginString: \scolor-interpolation\s*+(?==)
   regularExpression: true
-- beginString: "\\scolor-profile\\s*+(?==)"
+- beginString: \scolor-profile\s*+(?==)
   regularExpression: true
-- beginString: "\\scolor-rendering\\s*+(?==)"
+- beginString: \scolor-rendering\s*+(?==)
   regularExpression: true
-- beginString: "\\scolor\\s*+(?==)"
+- beginString: \scolor\s*+(?==)
   regularExpression: true
-- beginString: "\\scontentScriptType\\s*+(?==)"
+- beginString: \scontentScriptType\s*+(?==)
   regularExpression: true
-- beginString: "\\scontentStyleType\\s*+(?==)"
+- beginString: \scontentStyleType\s*+(?==)
   regularExpression: true
-- beginString: "\\scursor\\s*+(?==)"
+- beginString: \scursor\s*+(?==)
   regularExpression: true
-- beginString: "\\scx\\s*+(?==)"
+- beginString: \scx\s*+(?==)
   regularExpression: true
-- beginString: "\\scy\\s*+(?==)"
+- beginString: \scy\s*+(?==)
   regularExpression: true
-- beginString: "\\sd\\s*+(?==)"
+- beginString: \sd\s*+(?==)
   regularExpression: true
-- beginString: "\\sdescent\\s*+(?==)"
+- beginString: \sdescent\s*+(?==)
   regularExpression: true
-- beginString: "\\sdiffuseConstant\\s*+(?==)"
+- beginString: \sdiffuseConstant\s*+(?==)
   regularExpression: true
-- beginString: "\\sdirection\\s*+(?==)"
+- beginString: \sdirection\s*+(?==)
   regularExpression: true
-- beginString: "\\sdisplay\\s*+(?==)"
+- beginString: \sdisplay\s*+(?==)
   regularExpression: true
-- beginString: "\\sdivisor\\s*+(?==)"
+- beginString: \sdivisor\s*+(?==)
   regularExpression: true
-- beginString: "\\sdominant-baseline\\s*+(?==)"
+- beginString: \sdominant-baseline\s*+(?==)
   regularExpression: true
-- beginString: "\\sdur\\s*+(?==)"
+- beginString: \sdur\s*+(?==)
   regularExpression: true
-- beginString: "\\sdx\\s*+(?==)"
+- beginString: \sdx\s*+(?==)
   regularExpression: true
-- beginString: "\\sdy\\s*+(?==)"
+- beginString: \sdy\s*+(?==)
   regularExpression: true
-- beginString: "\\sedgeMode\\s*+(?==)"
+- beginString: \sedgeMode\s*+(?==)
   regularExpression: true
-- beginString: "\\selevation\\s*+(?==)"
+- beginString: \selevation\s*+(?==)
   regularExpression: true
-- beginString: "\\senable-background\\s*+(?==)"
+- beginString: \senable-background\s*+(?==)
   regularExpression: true
-- beginString: "\\sencoding\\s*+(?==)"
+- beginString: \sencoding\s*+(?==)
   regularExpression: true
-- beginString: "\\send\\s*+(?==)"
+- beginString: \send\s*+(?==)
   regularExpression: true
-- beginString: "\\sexponent\\s*+(?==)"
+- beginString: \sexponent\s*+(?==)
   regularExpression: true
-- beginString: "\\sexternalResourcesRequired\\s*+(?==)"
+- beginString: \sexternalResourcesRequired\s*+(?==)
   regularExpression: true
-- beginString: "\\sfill-opacity\\s*+(?==)"
+- beginString: \sfill-opacity\s*+(?==)
   regularExpression: true
-- beginString: "\\sfill-rule\\s*+(?==)"
+- beginString: \sfill-rule\s*+(?==)
   regularExpression: true
-- beginString: "\\sfill\\s*+(?==)"
+- beginString: \sfill\s*+(?==)
   regularExpression: true
-- beginString: "\\sfilter\\s*+(?==)"
+- beginString: \sfilter\s*+(?==)
   regularExpression: true
-- beginString: "\\sfilterRes\\s*+(?==)"
+- beginString: \sfilterRes\s*+(?==)
   regularExpression: true
-- beginString: "\\sfilterUnits\\s*+(?==)"
+- beginString: \sfilterUnits\s*+(?==)
   regularExpression: true
-- beginString: "\\sflood-color\\s*+(?==)"
+- beginString: \sflood-color\s*+(?==)
   regularExpression: true
-- beginString: "\\sflood-opacity\\s*+(?==)"
+- beginString: \sflood-opacity\s*+(?==)
   regularExpression: true
-- beginString: "\\sfont-family\\s*+(?==)"
+- beginString: \sfont-family\s*+(?==)
   regularExpression: true
-- beginString: "\\sfont-size-adjust\\s*+(?==)"
+- beginString: \sfont-size-adjust\s*+(?==)
   regularExpression: true
-- beginString: "\\sfont-size\\s*+(?==)"
+- beginString: \sfont-size\s*+(?==)
   regularExpression: true
-- beginString: "\\sfont-stretch\\s*+(?==)"
+- beginString: \sfont-stretch\s*+(?==)
   regularExpression: true
-- beginString: "\\sfont-style\\s*+(?==)"
+- beginString: \sfont-style\s*+(?==)
   regularExpression: true
-- beginString: "\\sfont-variant\\s*+(?==)"
+- beginString: \sfont-variant\s*+(?==)
   regularExpression: true
-- beginString: "\\sfont-weight\\s*+(?==)"
+- beginString: \sfont-weight\s*+(?==)
   regularExpression: true
-- beginString: "\\sformat\\s*+(?==)"
+- beginString: \sformat\s*+(?==)
   regularExpression: true
-- beginString: "\\sfrom\\s*+(?==)"
+- beginString: \sfrom\s*+(?==)
   regularExpression: true
-- beginString: "\\sfx\\s*+(?==)"
+- beginString: \sfx\s*+(?==)
   regularExpression: true
-- beginString: "\\sfy\\s*+(?==)"
+- beginString: \sfy\s*+(?==)
   regularExpression: true
-- beginString: "\\sg1\\s*+(?==)"
+- beginString: \sg1\s*+(?==)
   regularExpression: true
-- beginString: "\\sg2\\s*+(?==)"
+- beginString: \sg2\s*+(?==)
   regularExpression: true
-- beginString: "\\sglyph-name\\s*+(?==)"
+- beginString: \sglyph-name\s*+(?==)
   regularExpression: true
-- beginString: "\\sglyph-orientation-horizontal\\s*+(?==)"
+- beginString: \sglyph-orientation-horizontal\s*+(?==)
   regularExpression: true
-- beginString: "\\sglyph-orientation-vertical\\s*+(?==)"
+- beginString: \sglyph-orientation-vertical\s*+(?==)
   regularExpression: true
-- beginString: "\\sglyphRef\\s*+(?==)"
+- beginString: \sglyphRef\s*+(?==)
   regularExpression: true
-- beginString: "\\sgradientTransform\\s*+(?==)"
+- beginString: \sgradientTransform\s*+(?==)
   regularExpression: true
-- beginString: "\\sgradientUnits\\s*+(?==)"
+- beginString: \sgradientUnits\s*+(?==)
   regularExpression: true
-- beginString: "\\shanging\\s*+(?==)"
+- beginString: \shanging\s*+(?==)
   regularExpression: true
-- beginString: "\\sheight\\s*+(?==)"
+- beginString: \sheight\s*+(?==)
   regularExpression: true
-- beginString: "\\shoriz-adv-x\\s*+(?==)"
+- beginString: \shoriz-adv-x\s*+(?==)
   regularExpression: true
-- beginString: "\\shoriz-origin-x\\s*+(?==)"
+- beginString: \shoriz-origin-x\s*+(?==)
   regularExpression: true
-- beginString: "\\shoriz-origin-y\\s*+(?==)"
+- beginString: \shoriz-origin-y\s*+(?==)
   regularExpression: true
-- beginString: "\\shref\\s*+(?==)"
+- beginString: \shref\s*+(?==)
   regularExpression: true
-- beginString: "\\sid\\s*+(?==)"
+- beginString: \sid\s*+(?==)
   regularExpression: true
-- beginString: "\\sideographic\\s*+(?==)"
+- beginString: \sideographic\s*+(?==)
   regularExpression: true
-- beginString: "\\simage-rendering\\s*+(?==)"
+- beginString: \simage-rendering\s*+(?==)
   regularExpression: true
-- beginString: "\\sin2\\s*+(?==)"
+- beginString: \sin2\s*+(?==)
   regularExpression: true
-- beginString: "\\sin\\s*+(?==)"
+- beginString: \sin\s*+(?==)
   regularExpression: true
-- beginString: "\\sintercept\\s*+(?==)"
+- beginString: \sintercept\s*+(?==)
   regularExpression: true
-- beginString: "\\sk1\\s*+(?==)"
+- beginString: \sk1\s*+(?==)
   regularExpression: true
-- beginString: "\\sk2\\s*+(?==)"
+- beginString: \sk2\s*+(?==)
   regularExpression: true
-- beginString: "\\sk3\\s*+(?==)"
+- beginString: \sk3\s*+(?==)
   regularExpression: true
-- beginString: "\\sk4\\s*+(?==)"
+- beginString: \sk4\s*+(?==)
   regularExpression: true
-- beginString: "\\sk\\s*+(?==)"
+- beginString: \sk\s*+(?==)
   regularExpression: true
-- beginString: "\\skernelMatrix\\s*+(?==)"
+- beginString: \skernelMatrix\s*+(?==)
   regularExpression: true
-- beginString: "\\skernelUnitLength\\s*+(?==)"
+- beginString: \skernelUnitLength\s*+(?==)
   regularExpression: true
-- beginString: "\\skerning\\s*+(?==)"
+- beginString: \skerning\s*+(?==)
   regularExpression: true
-- beginString: "\\skeyPoints\\s*+(?==)"
+- beginString: \skeyPoints\s*+(?==)
   regularExpression: true
-- beginString: "\\skeySplines\\s*+(?==)"
+- beginString: \skeySplines\s*+(?==)
   regularExpression: true
-- beginString: "\\skeyTimes\\s*+(?==)"
+- beginString: \skeyTimes\s*+(?==)
   regularExpression: true
-- beginString: "\\slang\\s*+(?==)"
+- beginString: \slang\s*+(?==)
   regularExpression: true
-- beginString: "\\slengthAdjust\\s*+(?==)"
+- beginString: \slengthAdjust\s*+(?==)
   regularExpression: true
-- beginString: "\\sletter-spacing\\s*+(?==)"
+- beginString: \sletter-spacing\s*+(?==)
   regularExpression: true
-- beginString: "\\slighting-color\\s*+(?==)"
+- beginString: \slighting-color\s*+(?==)
   regularExpression: true
-- beginString: "\\slimitingConeAngle\\s*+(?==)"
+- beginString: \slimitingConeAngle\s*+(?==)
   regularExpression: true
-- beginString: "\\slocal\\s*+(?==)"
+- beginString: \slocal\s*+(?==)
   regularExpression: true
-- beginString: "\\smarker-end\\s*+(?==)"
+- beginString: \smarker-end\s*+(?==)
   regularExpression: true
-- beginString: "\\smarker-mid\\s*+(?==)"
+- beginString: \smarker-mid\s*+(?==)
   regularExpression: true
-- beginString: "\\smarker-start\\s*+(?==)"
+- beginString: \smarker-start\s*+(?==)
   regularExpression: true
-- beginString: "\\smarkerHeight\\s*+(?==)"
+- beginString: \smarkerHeight\s*+(?==)
   regularExpression: true
-- beginString: "\\smarkerUnits\\s*+(?==)"
+- beginString: \smarkerUnits\s*+(?==)
   regularExpression: true
-- beginString: "\\smarkerWidth\\s*+(?==)"
+- beginString: \smarkerWidth\s*+(?==)
   regularExpression: true
-- beginString: "\\smask\\s*+(?==)"
+- beginString: \smask\s*+(?==)
   regularExpression: true
-- beginString: "\\smaskContentUnits\\s*+(?==)"
+- beginString: \smaskContentUnits\s*+(?==)
   regularExpression: true
-- beginString: "\\smaskUnits\\s*+(?==)"
+- beginString: \smaskUnits\s*+(?==)
   regularExpression: true
-- beginString: "\\smathematical\\s*+(?==)"
+- beginString: \smathematical\s*+(?==)
   regularExpression: true
-- beginString: "\\smax\\s*+(?==)"
+- beginString: \smax\s*+(?==)
   regularExpression: true
-- beginString: "\\smedia\\s*+(?==)"
+- beginString: \smedia\s*+(?==)
   regularExpression: true
-- beginString: "\\smethod\\s*+(?==)"
+- beginString: \smethod\s*+(?==)
   regularExpression: true
-- beginString: "\\smin\\s*+(?==)"
+- beginString: \smin\s*+(?==)
   regularExpression: true
-- beginString: "\\smode\\s*+(?==)"
+- beginString: \smode\s*+(?==)
   regularExpression: true
-- beginString: "\\sname\\s*+(?==)"
+- beginString: \sname\s*+(?==)
   regularExpression: true
-- beginString: "\\snumOctaves\\s*+(?==)"
+- beginString: \snumOctaves\s*+(?==)
   regularExpression: true
-- beginString: "\\soffset\\s*+(?==)"
+- beginString: \soffset\s*+(?==)
   regularExpression: true
-- beginString: "\\soffsetx\\s*+(?==)"
+- beginString: \soffsetx\s*+(?==)
   regularExpression: true
-- beginString: "\\sonabort\\s*+(?==)"
+- beginString: \sonabort\s*+(?==)
   regularExpression: true
-- beginString: "\\sonactivate\\s*+(?==)"
+- beginString: \sonactivate\s*+(?==)
   regularExpression: true
-- beginString: "\\sonbegin\\s*+(?==)"
+- beginString: \sonbegin\s*+(?==)
   regularExpression: true
-- beginString: "\\sonclick\\s*+(?==)"
+- beginString: \sonclick\s*+(?==)
   regularExpression: true
-- beginString: "\\sonend\\s*+(?==)"
+- beginString: \sonend\s*+(?==)
   regularExpression: true
-- beginString: "\\sonerror\\s*+(?==)"
+- beginString: \sonerror\s*+(?==)
   regularExpression: true
-- beginString: "\\sonfocusin\\s*+(?==)"
+- beginString: \sonfocusin\s*+(?==)
   regularExpression: true
-- beginString: "\\sonfocusout\\s*+(?==)"
+- beginString: \sonfocusout\s*+(?==)
   regularExpression: true
-- beginString: "\\sonload\\s*+(?==)"
+- beginString: \sonload\s*+(?==)
   regularExpression: true
-- beginString: "\\sonmousedown\\s*+(?==)"
+- beginString: \sonmousedown\s*+(?==)
   regularExpression: true
-- beginString: "\\sonmousemove\\s*+(?==)"
+- beginString: \sonmousemove\s*+(?==)
   regularExpression: true
-- beginString: "\\sonmouseout\\s*+(?==)"
+- beginString: \sonmouseout\s*+(?==)
   regularExpression: true
-- beginString: "\\sonmouseover\\s*+(?==)"
+- beginString: \sonmouseover\s*+(?==)
   regularExpression: true
-- beginString: "\\sonmouseup\\s*+(?==)"
+- beginString: \sonmouseup\s*+(?==)
   regularExpression: true
-- beginString: "\\sonrepeat\\s*+(?==)"
+- beginString: \sonrepeat\s*+(?==)
   regularExpression: true
-- beginString: "\\sonresize\\s*+(?==)"
+- beginString: \sonresize\s*+(?==)
   regularExpression: true
-- beginString: "\\sonscroll\\s*+(?==)"
+- beginString: \sonscroll\s*+(?==)
   regularExpression: true
-- beginString: "\\sonunload\\s*+(?==)"
+- beginString: \sonunload\s*+(?==)
   regularExpression: true
-- beginString: "\\sonzoom\\s*+(?==)"
+- beginString: \sonzoom\s*+(?==)
   regularExpression: true
-- beginString: "\\sopacity\\s*+(?==)"
+- beginString: \sopacity\s*+(?==)
   regularExpression: true
-- beginString: "\\soperator\\s*+(?==)"
+- beginString: \soperator\s*+(?==)
   regularExpression: true
-- beginString: "\\sorder\\s*+(?==)"
+- beginString: \sorder\s*+(?==)
   regularExpression: true
-- beginString: "\\sorient\\s*+(?==)"
+- beginString: \sorient\s*+(?==)
   regularExpression: true
-- beginString: "\\sorientation\\s*+(?==)"
+- beginString: \sorientation\s*+(?==)
   regularExpression: true
-- beginString: "\\soverflow\\s*+(?==)"
+- beginString: \soverflow\s*+(?==)
   regularExpression: true
-- beginString: "\\soverline-position\\s*+(?==)"
+- beginString: \soverline-position\s*+(?==)
   regularExpression: true
-- beginString: "\\soverline-thickness\\s*+(?==)"
+- beginString: \soverline-thickness\s*+(?==)
   regularExpression: true
-- beginString: "\\spanose-1\\s*+(?==)"
+- beginString: \spanose-1\s*+(?==)
   regularExpression: true
-- beginString: "\\spath\\s*+(?==)"
+- beginString: \spath\s*+(?==)
   regularExpression: true
-- beginString: "\\spathLength\\s*+(?==)"
+- beginString: \spathLength\s*+(?==)
   regularExpression: true
-- beginString: "\\spatternContentUnits\\s*+(?==)"
+- beginString: \spatternContentUnits\s*+(?==)
   regularExpression: true
-- beginString: "\\spatternTransform\\s*+(?==)"
+- beginString: \spatternTransform\s*+(?==)
   regularExpression: true
-- beginString: "\\spatternUnits\\s*+(?==)"
+- beginString: \spatternUnits\s*+(?==)
   regularExpression: true
-- beginString: "\\spointer-events\\s*+(?==)"
+- beginString: \spointer-events\s*+(?==)
   regularExpression: true
-- beginString: "\\spoints\\s*+(?==)"
+- beginString: \spoints\s*+(?==)
   regularExpression: true
-- beginString: "\\spointsAtX\\s*+(?==)"
+- beginString: \spointsAtX\s*+(?==)
   regularExpression: true
-- beginString: "\\spointsAtY\\s*+(?==)"
+- beginString: \spointsAtY\s*+(?==)
   regularExpression: true
-- beginString: "\\spointsAtZ\\s*+(?==)"
+- beginString: \spointsAtZ\s*+(?==)
   regularExpression: true
-- beginString: "\\spreserveAlpha\\s*+(?==)"
+- beginString: \spreserveAlpha\s*+(?==)
   regularExpression: true
-- beginString: "\\spreserveAspectRatio\\s*+(?==)"
+- beginString: \spreserveAspectRatio\s*+(?==)
   regularExpression: true
-- beginString: "\\sprimitiveUnits\\s*+(?==)"
+- beginString: \sprimitiveUnits\s*+(?==)
   regularExpression: true
-- beginString: "\\sr\\s*+(?==)"
+- beginString: \sr\s*+(?==)
   regularExpression: true
-- beginString: "\\sradius\\s*+(?==)"
+- beginString: \sradius\s*+(?==)
   regularExpression: true
-- beginString: "\\srefX\\s*+(?==)"
+- beginString: \srefX\s*+(?==)
   regularExpression: true
-- beginString: "\\srefY\\s*+(?==)"
+- beginString: \srefY\s*+(?==)
   regularExpression: true
-- beginString: "\\srendering-intent\\s*+(?==)"
+- beginString: \srendering-intent\s*+(?==)
   regularExpression: true
-- beginString: "\\srepeatCount\\s*+(?==)"
+- beginString: \srepeatCount\s*+(?==)
   regularExpression: true
-- beginString: "\\srepeatDur\\s*+(?==)"
+- beginString: \srepeatDur\s*+(?==)
   regularExpression: true
-- beginString: "\\srequiredExtensions\\s*+(?==)"
+- beginString: \srequiredExtensions\s*+(?==)
   regularExpression: true
-- beginString: "\\srequiredFeatures\\s*+(?==)"
+- beginString: \srequiredFeatures\s*+(?==)
   regularExpression: true
-- beginString: "\\srestart\\s*+(?==)"
+- beginString: \srestart\s*+(?==)
   regularExpression: true
-- beginString: "\\sresult\\s*+(?==)"
+- beginString: \sresult\s*+(?==)
   regularExpression: true
-- beginString: "\\srotate\\s*+(?==)"
+- beginString: \srotate\s*+(?==)
   regularExpression: true
-- beginString: "\\srx\\s*+(?==)"
+- beginString: \srx\s*+(?==)
   regularExpression: true
-- beginString: "\\sry\\s*+(?==)"
+- beginString: \sry\s*+(?==)
   regularExpression: true
-- beginString: "\\sscale\\s*+(?==)"
+- beginString: \sscale\s*+(?==)
   regularExpression: true
-- beginString: "\\sseed\\s*+(?==)"
+- beginString: \sseed\s*+(?==)
   regularExpression: true
-- beginString: "\\sshape-rendering\\s*+(?==)"
+- beginString: \sshape-rendering\s*+(?==)
   regularExpression: true
-- beginString: "\\sslope\\s*+(?==)"
+- beginString: \sslope\s*+(?==)
   regularExpression: true
-- beginString: "\\sspacing\\s*+(?==)"
+- beginString: \sspacing\s*+(?==)
   regularExpression: true
-- beginString: "\\sspecularConstant\\s*+(?==)"
+- beginString: \sspecularConstant\s*+(?==)
   regularExpression: true
-- beginString: "\\sspecularExponent\\s*+(?==)"
+- beginString: \sspecularExponent\s*+(?==)
   regularExpression: true
-- beginString: "\\sspreadMethod\\s*+(?==)"
+- beginString: \sspreadMethod\s*+(?==)
   regularExpression: true
-- beginString: "\\sstandalone\\s*+(?==)"
+- beginString: \sstandalone\s*+(?==)
   regularExpression: true
-- beginString: "\\sstartOffset\\s*+(?==)"
+- beginString: \sstartOffset\s*+(?==)
   regularExpression: true
-- beginString: "\\sstdDeviation\\s*+(?==)"
+- beginString: \sstdDeviation\s*+(?==)
   regularExpression: true
-- beginString: "\\sstemh\\s*+(?==)"
+- beginString: \sstemh\s*+(?==)
   regularExpression: true
-- beginString: "\\sstemv\\s*+(?==)"
+- beginString: \sstemv\s*+(?==)
   regularExpression: true
-- beginString: "\\sstitchTiles\\s*+(?==)"
+- beginString: \sstitchTiles\s*+(?==)
   regularExpression: true
-- beginString: "\\sstop-color\\s*+(?==)"
+- beginString: \sstop-color\s*+(?==)
   regularExpression: true
-- beginString: "\\sstop-opacity\\s*+(?==)"
+- beginString: \sstop-opacity\s*+(?==)
   regularExpression: true
-- beginString: "\\sstrikethrough-position\\s*+(?==)"
+- beginString: \sstrikethrough-position\s*+(?==)
   regularExpression: true
-- beginString: "\\sstrikethrough-thickness\\s*+(?==)"
+- beginString: \sstrikethrough-thickness\s*+(?==)
   regularExpression: true
-- beginString: "\\sstring\\s*+(?==)"
+- beginString: \sstring\s*+(?==)
   regularExpression: true
-- beginString: "\\sstroke-dasharray\\s*+(?==)"
+- beginString: \sstroke-dasharray\s*+(?==)
   regularExpression: true
-- beginString: "\\sstroke-dashoffset\\s*+(?==)"
+- beginString: \sstroke-dashoffset\s*+(?==)
   regularExpression: true
-- beginString: "\\sstroke-linecap\\s*+(?==)"
+- beginString: \sstroke-linecap\s*+(?==)
   regularExpression: true
-- beginString: "\\sstroke-linejoin\\s*+(?==)"
+- beginString: \sstroke-linejoin\s*+(?==)
   regularExpression: true
-- beginString: "\\sstroke-miterlimit\\s*+(?==)"
+- beginString: \sstroke-miterlimit\s*+(?==)
   regularExpression: true
-- beginString: "\\sstroke-opacity\\s*+(?==)"
+- beginString: \sstroke-opacity\s*+(?==)
   regularExpression: true
-- beginString: "\\sstroke-width\\s*+(?==)"
+- beginString: \sstroke-width\s*+(?==)
   regularExpression: true
-- beginString: "\\sstroke\\s*+(?==)"
+- beginString: \sstroke\s*+(?==)
   regularExpression: true
-- beginString: "\\sstyle\\s*+(?==)"
+- beginString: \sstyle\s*+(?==)
   regularExpression: true
-- beginString: "\\ssurfaceScale\\s*+(?==)"
+- beginString: \ssurfaceScale\s*+(?==)
   regularExpression: true
-- beginString: "\\ssystemLanguage\\s*+(?==)"
+- beginString: \ssystemLanguage\s*+(?==)
   regularExpression: true
-- beginString: "\\stableValues\\s*+(?==)"
+- beginString: \stableValues\s*+(?==)
   regularExpression: true
-- beginString: "\\starget\\s*+(?==)"
+- beginString: \starget\s*+(?==)
   regularExpression: true
-- beginString: "\\stargetX\\s*+(?==)"
+- beginString: \stargetX\s*+(?==)
   regularExpression: true
-- beginString: "\\stargetY\\s*+(?==)"
+- beginString: \stargetY\s*+(?==)
   regularExpression: true
-- beginString: "\\stext-anchor\\s*+(?==)"
+- beginString: \stext-anchor\s*+(?==)
   regularExpression: true
-- beginString: "\\stext-decoration\\s*+(?==)"
+- beginString: \stext-decoration\s*+(?==)
   regularExpression: true
-- beginString: "\\stext-rendering\\s*+(?==)"
+- beginString: \stext-rendering\s*+(?==)
   regularExpression: true
-- beginString: "\\stextLength\\s*+(?==)"
+- beginString: \stextLength\s*+(?==)
   regularExpression: true
-- beginString: "\\stitle\\s*+(?==)"
+- beginString: \stitle\s*+(?==)
   regularExpression: true
-- beginString: "\\sto\\s*+(?==)"
+- beginString: \sto\s*+(?==)
   regularExpression: true
-- beginString: "\\stransform\\s*+(?==)"
+- beginString: \stransform\s*+(?==)
   regularExpression: true
-- beginString: "\\stype\\s*+(?==)"
+- beginString: \stype\s*+(?==)
   regularExpression: true
-- beginString: "\\su1\\s*+(?==)"
+- beginString: \su1\s*+(?==)
   regularExpression: true
-- beginString: "\\su2\\s*+(?==)"
+- beginString: \su2\s*+(?==)
   regularExpression: true
-- beginString: "\\sunderline-position\\s*+(?==)"
+- beginString: \sunderline-position\s*+(?==)
   regularExpression: true
-- beginString: "\\sunderline-thickness\\s*+(?==)"
+- beginString: \sunderline-thickness\s*+(?==)
   regularExpression: true
-- beginString: "\\sunicode-bidi\\s*+(?==)"
+- beginString: \sunicode-bidi\s*+(?==)
   regularExpression: true
-- beginString: "\\sunicode-range\\s*+(?==)"
+- beginString: \sunicode-range\s*+(?==)
   regularExpression: true
-- beginString: "\\sunicode\\s*+(?==)"
+- beginString: \sunicode\s*+(?==)
   regularExpression: true
-- beginString: "\\sunits-per-em\\s*+(?==)"
+- beginString: \sunits-per-em\s*+(?==)
   regularExpression: true
-- beginString: "\\sv-alphabetic\\s*+(?==)"
+- beginString: \sv-alphabetic\s*+(?==)
   regularExpression: true
-- beginString: "\\sv-hanging\\s*+(?==)"
+- beginString: \sv-hanging\s*+(?==)
   regularExpression: true
-- beginString: "\\sv-ideographic\\s*+(?==)"
+- beginString: \sv-ideographic\s*+(?==)
   regularExpression: true
-- beginString: "\\sv-mathematical\\s*+(?==)"
+- beginString: \sv-mathematical\s*+(?==)
   regularExpression: true
-- beginString: "\\svalues\\s*+(?==)"
+- beginString: \svalues\s*+(?==)
   regularExpression: true
-- beginString: "\\sversion\\s*+(?==)"
+- beginString: \sversion\s*+(?==)
   regularExpression: true
-- beginString: "\\svert-adv-y\\s*+(?==)"
+- beginString: \svert-adv-y\s*+(?==)
   regularExpression: true
-- beginString: "\\svert-origin-x\\s*+(?==)"
+- beginString: \svert-origin-x\s*+(?==)
   regularExpression: true
-- beginString: "\\svert-origin-y\\s*+(?==)"
+- beginString: \svert-origin-y\s*+(?==)
   regularExpression: true
-- beginString: "\\sviewBox\\s*+(?==)"
+- beginString: \sviewBox\s*+(?==)
   regularExpression: true
-- beginString: "\\sviewTarget\\s*+(?==)"
+- beginString: \sviewTarget\s*+(?==)
   regularExpression: true
-- beginString: "\\svisibility\\s*+(?==)"
+- beginString: \svisibility\s*+(?==)
   regularExpression: true
-- beginString: "\\swidth\\s*+(?==)"
+- beginString: \swidth\s*+(?==)
   regularExpression: true
-- beginString: "\\swidths\\s*+(?==)"
+- beginString: \swidths\s*+(?==)
   regularExpression: true
-- beginString: "\\sword-spacing\\s*+(?==)"
+- beginString: \sword-spacing\s*+(?==)
   regularExpression: true
-- beginString: "\\swriting-mode\\s*+(?==)"
+- beginString: \swriting-mode\s*+(?==)
   regularExpression: true
-- beginString: "\\sx-height\\s*+(?==)"
+- beginString: \sx-height\s*+(?==)
   regularExpression: true
-- beginString: "\\sx1\\s*+(?==)"
+- beginString: \sx1\s*+(?==)
   regularExpression: true
-- beginString: "\\sx2\\s*+(?==)"
+- beginString: \sx2\s*+(?==)
   regularExpression: true
-- beginString: "\\sx\\s*+(?==)"
+- beginString: \sx\s*+(?==)
   regularExpression: true
-- beginString: "\\sxChannelSelector\\s*+(?==)"
+- beginString: \sxChannelSelector\s*+(?==)
   regularExpression: true
-- beginString: "\\sxmlns\\s*+(?==)"
+- beginString: \sxmlns\s*+(?==)
   regularExpression: true
-- beginString: "\\sy1\\s*+(?==)"
+- beginString: \sy1\s*+(?==)
   regularExpression: true
-- beginString: "\\sy2\\s*+(?==)"
+- beginString: \sy2\s*+(?==)
   regularExpression: true
-- beginString: "\\sy\\s*+(?==)"
+- beginString: \sy\s*+(?==)
   regularExpression: true
-- beginString: "\\syChannelSelector\\s*+(?==)"
+- beginString: \syChannelSelector\s*+(?==)
   regularExpression: true
-- beginString: "\\sz\\s*+(?==)"
+- beginString: \sz\s*+(?==)
   regularExpression: true
-- beginString: "\\szoomAndPan\\s*+(?==)"
+- beginString: \szoomAndPan\s*+(?==)
   regularExpression: true
 characters:
-- beginString: "&#[0-9]+;"
-  regularExpression: true
-- beginString: "&amp;"
-- beginString: "&copy;"
-- beginString: "&gt;"
-- beginString: "&hearts;"
-- beginString: "&infin;"
-- beginString: "&laquo;"
-- beginString: "&lt;"
-- beginString: "&nbsp;"
-- beginString: "&quot;"
-- beginString: "&raquo;"
-- beginString: "&reg;"
-- beginString: "&yen;"
-- beginString: "<![CDATA["
-  endString: "]]>"
-comments: []
-types:
-- beginString: "(?<=<)!DOCTYPE"
-  endString: "\""
-  regularExpression: true
-- beginString: "(?<=<)!ENTITY"
-  endString: "\""
-  regularExpression: true
-numbers: []
-strings:
-- beginString: "\""
-  endString: "\""
-- beginString: "(?<==)\\s*'"
-  endString: "'"
-  regularExpression: true
-keywords:
-- beginString: "(?<=</?)(svg:)?a\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?altGlyph\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?altGlyphDef\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?altGlyphItem\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?animate\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?animateColor\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?animateMotion\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?animateTransform\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?circle\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?clipPath\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?color-profile\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?cursor\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?defs\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?desc\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?ellipse\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feBlend\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feColorMatrix\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feComponentTransfer\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feComposite\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feConvolveMatrix\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feDiffuseLighting\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feDisplacementMap\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feDistantLight\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feFlood\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feFuncA\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feFuncB\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feFuncG\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feFuncR\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feGaussianBlur\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feImage\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feMerge\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feMergeNode\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feMorphology\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feOffset\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?fePointLight\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feSpecularLighting\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feSpotLight\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feTile\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?feTurbulence\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?filter\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?font-face-format\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?font-face-name\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?font-face-src\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?font-face-uri\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?font-face\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?font\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?foreignObject\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?g\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?glyph\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?glyphRef\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?hkern\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?image\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?line\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?linearGradient\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?marker\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?mask\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?metadata\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?missing-glyph\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?mpath\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?path\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?pattern\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?polygon\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?polyline\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?radialGradient\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?rect\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?script\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?set\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?stop\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?style\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?svg\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?switch\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?symbol\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?text\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?textPath\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?title\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?tref\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?tspan\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?use\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?view\\b"
-  regularExpression: true
-- beginString: "(?<=</?)(svg:)?vkern\\b"
-  regularExpression: true
-- beginString: "(?<=</?dc:)contributor\\b"
-  regularExpression: true
-- beginString: "(?<=</?dc:)creator\\b"
-  regularExpression: true
-- beginString: "(?<=</?dc:)date\\b"
-  regularExpression: true
-- beginString: "(?<=</?dc:)description\\b"
-  regularExpression: true
-- beginString: "(?<=</?dc:)format\\b"
-  regularExpression: true
-- beginString: "(?<=</?dc:)identifier\\b"
-  regularExpression: true
-- beginString: "(?<=</?dc:)language\\b"
-  regularExpression: true
-- beginString: "(?<=</?dc:)publisher\\b"
-  regularExpression: true
-- beginString: "(?<=</?dc:)relation\\b"
-  regularExpression: true
-- beginString: "(?<=</?dc:)rights\\b"
-  regularExpression: true
-- beginString: "(?<=</?dc:)source\\b"
-  regularExpression: true
-- beginString: "(?<=</?dc:)subject\\b"
-  regularExpression: true
-- beginString: "(?<=</?dc:)title\\b"
-  regularExpression: true
-- beginString: "(?<=</?dc:)type\\b"
-  regularExpression: true
-variables:
-- beginString: "\\bcc:(?=[a-zA-Z])"
-  regularExpression: true
-- beginString: "\\bdc:(?=[a-zA-Z])"
-  regularExpression: true
-- beginString: "\\brdf:(?=[a-zA-Z])"
-  regularExpression: true
-- beginString: "\\bsvg:(?=[a-zA-Z])"
-  regularExpression: true
-- beginString: "\\bxlink:(?=[a-z])"
-  regularExpression: true
-- beginString: "\\bxml:(?=[a-z])"
-  regularExpression: true
-- beginString: "\\bxmlns:(?=[a-z])"
+- beginString: '&#[0-9]+;'
+  regularExpression: true
+- beginString: '&amp;'
+- beginString: '&copy;'
+- beginString: '&gt;'
+- beginString: '&hearts;'
+- beginString: '&infin;'
+- beginString: '&laquo;'
+- beginString: '&lt;'
+- beginString: '&nbsp;'
+- beginString: '&quot;'
+- beginString: '&raquo;'
+- beginString: '&reg;'
+- beginString: '&yen;'
+- beginString: <![CDATA[
+  endString: ']]>'
+commands:
+- beginString: (?<=<)\?xml-stylesheet\b
+  regularExpression: true
+- beginString: (?<=<)\?xml\b
+  regularExpression: true
+- beginString: \?(?=>)
   regularExpression: true
 commentDelimiters:
-  endDelimiter: "-->"
-  beginDelimiter: "<!--"
+  beginDelimiter: <!--
+  endDelimiter: -->
+comments: []
+completions:
+- keyString: accent-height
+- keyString: accumulate
+- keyString: additive
+- keyString: alignment-baseline
+- keyString: alphabetic
+- keyString: amplitude
+- keyString: arabic-form
+- keyString: ascent
+- keyString: attributeName
+- keyString: attributeType
+- keyString: azimuth
+- keyString: baseFrequency
+- keyString: baseline-shift
+- keyString: baseProfile
+- keyString: bbox
+- keyString: begin
+- keyString: bias
+- keyString: by
+- keyString: calcMode
+- keyString: cap-height
+- keyString: class
+- keyString: clip
+- keyString: clip-path
+- keyString: clip-rule
+- keyString: clipPathUnits
+- keyString: color
+- keyString: color-interpolation
+- keyString: color-interpolation-filters
+- keyString: color-profile
+- keyString: color-rendering
+- keyString: contentScriptType
+- keyString: contentStyleType
+- keyString: cursor
+- keyString: cx
+- keyString: cy
+- keyString: d
+- keyString: descent
+- keyString: diffuseConstant
+- keyString: direction
+- keyString: display
+- keyString: divisor
+- keyString: dominant-baseline
+- keyString: dur
+- keyString: dx
+- keyString: dy
+- keyString: edgeMode
+- keyString: elevation
+- keyString: enable-background
+- keyString: end
+- keyString: exponent
+- keyString: externalResourcesRequired
+- keyString: fill
+- keyString: fill
+- keyString: fill-opacity
+- keyString: fill-rule
+- keyString: filter
+- keyString: filterRes
+- keyString: filterUnits
+- keyString: flood-color
+- keyString: flood-opacity
+- keyString: font-family
+- keyString: font-family
+- keyString: font-size
+- keyString: font-size
+- keyString: font-size-adjust
+- keyString: font-stretch
+- keyString: font-stretch
+- keyString: font-style
+- keyString: font-style
+- keyString: font-variant
+- keyString: font-variant
+- keyString: font-weight
+- keyString: font-weight
+- keyString: format
+- keyString: from
+- keyString: fx
+- keyString: fy
+- keyString: g1
+- keyString: g2
+- keyString: glyph-name
+- keyString: glyph-orientation-horizontal
+- keyString: glyph-orientation-vertical
+- keyString: glyphRef
+- keyString: gradientTransform
+- keyString: gradientUnits
+- keyString: hanging
+- keyString: height
+- keyString: horiz-adv-x
+- keyString: horiz-origin-x
+- keyString: horiz-origin-y
+- keyString: id
+- keyString: ideographic
+- keyString: image-rendering
+- keyString: in
+- keyString: in2
+- keyString: intercept
+- keyString: k
+- keyString: k1
+- keyString: k2
+- keyString: k3
+- keyString: k4
+- keyString: kernelMatrix
+- keyString: kernelUnitLength
+- keyString: kerning
+- keyString: keyPoints
+- keyString: keySplines
+- keyString: keyTimes
+- keyString: lang
+- keyString: lengthAdjust
+- keyString: letter-spacing
+- keyString: lighting-color
+- keyString: limitingConeAngle
+- keyString: local
+- keyString: marker-end
+- keyString: marker-mid
+- keyString: marker-start
+- keyString: markerHeight
+- keyString: markerUnits
+- keyString: markerWidth
+- keyString: mask
+- keyString: maskContentUnits
+- keyString: maskUnits
+- keyString: mathematical
+- keyString: max
+- keyString: media
+- keyString: method
+- keyString: min
+- keyString: mode
+- keyString: name
+- keyString: numOctaves
+- keyString: offset
+- keyString: onabort
+- keyString: onactivate
+- keyString: onbegin
+- keyString: onclick
+- keyString: onend
+- keyString: onerror
+- keyString: onfocusin
+- keyString: onfocusout
+- keyString: onload
+- keyString: onload
+- keyString: onmousedown
+- keyString: onmousemove
+- keyString: onmouseout
+- keyString: onmouseover
+- keyString: onmouseup
+- keyString: onrepeat
+- keyString: onresize
+- keyString: onscroll
+- keyString: onunload
+- keyString: onzoom
+- keyString: opacity
+- keyString: operator
+- keyString: order
+- keyString: orient
+- keyString: orientation
+- keyString: origin
+- keyString: overflow
+- keyString: overline-position
+- keyString: overline-thickness
+- keyString: panose-1
+- keyString: path
+- keyString: pathLength
+- keyString: patternContentUnits
+- keyString: patternTransform
+- keyString: patternUnits
+- keyString: pointer-events
+- keyString: points
+- keyString: pointsAtX
+- keyString: pointsAtY
+- keyString: pointsAtZ
+- keyString: preserveAlpha
+- keyString: preserveAspectRatio
+- keyString: primitiveUnits
+- keyString: r
+- keyString: radius
+- keyString: refX
+- keyString: refY
+- keyString: rendering-intent
+- keyString: repeatCount
+- keyString: repeatDur
+- keyString: requiredExtensions
+- keyString: requiredFeatures
+- keyString: restart
+- keyString: result
+- keyString: rotate
+- keyString: rx
+- keyString: ry
+- keyString: scale
+- keyString: seed
+- keyString: shape-rendering
+- keyString: slope
+- keyString: spacing
+- keyString: specularConstant
+- keyString: specularExponent
+- keyString: spreadMethod
+- keyString: startOffset
+- keyString: stdDeviation
+- keyString: stemh
+- keyString: stemv
+- keyString: stitchTiles
+- keyString: stop-color
+- keyString: stop-opacity
+- keyString: strikethrough-position
+- keyString: strikethrough-thickness
+- keyString: string
+- keyString: stroke
+- keyString: stroke-dasharray
+- keyString: stroke-dashoffset
+- keyString: stroke-linecap
+- keyString: stroke-linejoin
+- keyString: stroke-miterlimit
+- keyString: stroke-opacity
+- keyString: stroke-width
+- keyString: style
+- keyString: surfaceScale
+- keyString: svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+- keyString: systemLanguage
+- keyString: tableValues
+- keyString: target
+- keyString: targetX
+- keyString: targetY
+- keyString: text-anchor
+- keyString: text-decoration
+- keyString: text-rendering
+- keyString: textLength
+- keyString: textLength
+- keyString: title
+- keyString: to
+- keyString: transform
+- keyString: transform="matrix(1,0,0,1,0,0)"
+- keyString: transform="rotate(0)"
+- keyString: transform="scale(1,1)"
+- keyString: transform="skewX(0)"
+- keyString: transform="skewY(0)"
+- keyString: transform="translate(0,0)"
+- keyString: type
+- keyString: u1
+- keyString: u2
+- keyString: underline-position
+- keyString: underline-thickness
+- keyString: unicode
+- keyString: unicode-bidi
+- keyString: unicode-range
+- keyString: units-per-em
+- keyString: v-alphabetic
+- keyString: v-hanging
+- keyString: v-ideographic
+- keyString: v-mathematical
+- keyString: values
+- keyString: version
+- keyString: vert-adv-y
+- keyString: vert-origin-x
+- keyString: vert-origin-y
+- keyString: viewBox
+- keyString: viewTarget
+- keyString: visibility
+- keyString: width
+- keyString: widths
+- keyString: word-spacing
+- keyString: writing-mode
+- keyString: x
+- keyString: x-height
+- keyString: x1
+- keyString: x2
+- keyString: xChannelSelector
+- keyString: xlink:actuate
+- keyString: xlink:href
+- keyString: xlink:role
+- keyString: xlink:show
+- keyString: xlink:title
+- keyString: xlink:type
+- keyString: xml:base
+- keyString: xml:lang
+- keyString: xml:space
+- keyString: xmlns:dc="http://purl.org/dc/elements/1.1/"
+- keyString: xmlns:xlink="http://www.w3.org/1999/xlink"
+- keyString: xmlns="http://www.w3.org/2000/svg"
+- keyString: y
+- keyString: y1
+- keyString: y2
+- keyString: yChannelSelector
+- keyString: z
+- keyString: zoomAndPan
+extensions:
+- keyString: svg
+filenames: []
+interpreters: []
+keywords:
+- beginString: (?<=</?)(svg:)?a\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?altGlyph\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?altGlyphDef\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?altGlyphItem\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?animate\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?animateColor\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?animateMotion\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?animateTransform\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?circle\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?clipPath\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?color-profile\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?cursor\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?defs\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?desc\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?ellipse\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feBlend\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feColorMatrix\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feComponentTransfer\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feComposite\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feConvolveMatrix\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feDiffuseLighting\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feDisplacementMap\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feDistantLight\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feFlood\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feFuncA\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feFuncB\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feFuncG\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feFuncR\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feGaussianBlur\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feImage\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feMerge\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feMergeNode\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feMorphology\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feOffset\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?fePointLight\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feSpecularLighting\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feSpotLight\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feTile\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?feTurbulence\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?filter\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?font-face-format\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?font-face-name\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?font-face-src\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?font-face-uri\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?font-face\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?font\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?foreignObject\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?g\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?glyph\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?glyphRef\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?hkern\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?image\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?line\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?linearGradient\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?marker\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?mask\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?metadata\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?missing-glyph\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?mpath\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?path\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?pattern\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?polygon\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?polyline\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?radialGradient\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?rect\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?script\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?set\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?stop\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?style\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?svg\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?switch\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?symbol\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?text\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?textPath\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?title\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?tref\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?tspan\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?use\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?view\b
+  regularExpression: true
+- beginString: (?<=</?)(svg:)?vkern\b
+  regularExpression: true
+- beginString: (?<=</?dc:)contributor\b
+  regularExpression: true
+- beginString: (?<=</?dc:)creator\b
+  regularExpression: true
+- beginString: (?<=</?dc:)date\b
+  regularExpression: true
+- beginString: (?<=</?dc:)description\b
+  regularExpression: true
+- beginString: (?<=</?dc:)format\b
+  regularExpression: true
+- beginString: (?<=</?dc:)identifier\b
+  regularExpression: true
+- beginString: (?<=</?dc:)language\b
+  regularExpression: true
+- beginString: (?<=</?dc:)publisher\b
+  regularExpression: true
+- beginString: (?<=</?dc:)relation\b
+  regularExpression: true
+- beginString: (?<=</?dc:)rights\b
+  regularExpression: true
+- beginString: (?<=</?dc:)source\b
+  regularExpression: true
+- beginString: (?<=</?dc:)subject\b
+  regularExpression: true
+- beginString: (?<=</?dc:)title\b
+  regularExpression: true
+- beginString: (?<=</?dc:)type\b
+  regularExpression: true
+kind: code
+metadata:
+  author: 1024jp
+  description: Based on SVG 1.1 (Second Edition)
+  distributionURL: https://coteditor.com
+  lastModified: '2023-05-05'
+  license: Same as CotEditor
+  version: 1.3.0
+numbers: []
+outlineMenu:
+- beginString: (?<= )id="([^"]+?)"
+  description: id
+  ignoreCase: true
+  italic: true
+  keyString: '#$1'
+- beginString: <title[^>]*>([^<]*)</title[^>]*>
+  bold: true
+  description: title
+  ignoreCase: true
+  keyString: $1
+strings:
+- beginString: '"'
+  endString: '"'
+- beginString: (?<==)\s*'
+  endString: ''''
+  regularExpression: true
+types:
+- beginString: (?<=<)!DOCTYPE
+  endString: '"'
+  regularExpression: true
+- beginString: (?<=<)!ENTITY
+  endString: '"'
+  regularExpression: true
+values: []
+variables:
+- beginString: \bcc:(?=[a-zA-Z])
+  regularExpression: true
+- beginString: \bdc:(?=[a-zA-Z])
+  regularExpression: true
+- beginString: \brdf:(?=[a-zA-Z])
+  regularExpression: true
+- beginString: \bsvg:(?=[a-zA-Z])
+  regularExpression: true
+- beginString: \bxlink:(?=[a-z])
+  regularExpression: true
+- beginString: \bxml:(?=[a-z])
+  regularExpression: true
+- beginString: \bxmlns:(?=[a-z])
+  regularExpression: true

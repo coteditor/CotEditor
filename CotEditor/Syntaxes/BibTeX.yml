@@ -1,171 +1,172 @@
-extensions:
-- keyString: "bib"
-- keyString: "bibtex"
-filenames: []
-metadata:
-  distributionURL: "https://coteditor.com"
-  lastModified: "2016-02-28"
-  author: "1024jp"
-  license: "Same as CotEditor"
-  version: "1.1.0"
-outlineMenu:
-- beginString: "@(\\w+)\\s*\\{\\s*([^,=]+)"
-  keyString: "@$1 $2"
-  description: "entry"
-comments: []
-numbers: []
-commands:
-- beginString: "\\emph"
-- beginString: "\\LaTeX"
-- beginString: "\\texttt"
-- beginString: "\\verb"
-values: []
-keywords:
-- beginString: "@\\w+\\b"
-  regularExpression: true
-- beginString: "@article"
-  ignoreCase: true
-- beginString: "@book"
-  ignoreCase: true
-- beginString: "@booklet"
-  ignoreCase: true
-- beginString: "@conference"
-  ignoreCase: true
-- beginString: "@inbook"
-  ignoreCase: true
-- beginString: "@incollection"
-  ignoreCase: true
-- beginString: "@inproceedings"
-  ignoreCase: true
-- beginString: "@manual"
-  ignoreCase: true
-- beginString: "@masterthesis"
-  ignoreCase: true
-  regularExpression: false
-- beginString: "@misc"
-  ignoreCase: true
-- beginString: "@phdthesis"
-  ignoreCase: true
-- beginString: "@proceedings"
-  ignoreCase: true
-- beginString: "@techreport"
-  ignoreCase: true
-- beginString: "@unpublished"
-  ignoreCase: true
 attributes:
-- beginString: "\\baddress[\\t ]*="
+- beginString: \baddress[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bauthor[\\t ]*="
+- beginString: \bauthor[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bbooktitle[\\t ]*="
+- beginString: \bbooktitle[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bchapter[\\t ]*="
+- beginString: \bchapter[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bedition[\\t ]*="
+- beginString: \bedition[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\beditor[\\t ]*="
+- beginString: \beditor[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bhowpublished[\\t ]*="
+- beginString: \bhowpublished[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\binstitution[\\t ]*="
+- beginString: \binstitution[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bjournal[\\t ]*="
+- beginString: \bisbn[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bmonth[\\t ]*="
+- beginString: \bjournal[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bnote[\\t ]*="
+- beginString: \bmonth[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bnumber[\\t ]*="
+- beginString: \bnote[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\borganization[\\t ]*="
+- beginString: \bnumber[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bpages[\\t ]*="
+- beginString: \borganization[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bprice[\\t ]*="
+- beginString: \bpages[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bpublisher[\\t ]*="
+- beginString: \bprice[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bisbn[\\t ]*="
+- beginString: \bpublisher[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bschool[\\t ]*="
+- beginString: \bschool[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bseries[\\t ]*="
+- beginString: \bseries[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\btitle[\\t ]*="
+- beginString: \btitle[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\btype[\\t ]*="
+- beginString: \btype[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\burl[\\t ]*="
+- beginString: \burl[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\bvolume[\\t ]*="
+- beginString: \bvolume[\t ]*=
   ignoreCase: true
   regularExpression: true
-- beginString: "\\byear[\\t ]*="
+- beginString: \byear[\t ]*=
   ignoreCase: true
   regularExpression: true
-strings:
-- beginString: "\""
-  endString: "\""
-types: []
-commentDelimiters:
-  inlineDelimiter: "%"
-variables: []
 characters: []
+commands:
+- beginString: \emph
+- beginString: \LaTeX
+- beginString: \texttt
+- beginString: \verb
+commentDelimiters:
+  inlineDelimiter: '%'
+comments: []
 completions:
-- keyString: "@article"
-- keyString: "@book"
-- keyString: "@booklet"
-- keyString: "@conference"
-- keyString: "@inbook"
-- keyString: "@incollection"
-- keyString: "@inproceedings"
-- keyString: "@manual"
-- keyString: "@masterthesis"
-- keyString: "@misc"
-- keyString: "@phdthesis"
-- keyString: "@proceedings"
-- keyString: "@techreport"
-- keyString: "@unpublished"
-- keyString: "address"
-- keyString: "author"
-- keyString: "booktitle"
-- keyString: "chapter"
-- keyString: "edition"
-- keyString: "editor"
-- keyString: "howpublished"
-- keyString: "institution"
-- keyString: "journal"
-- keyString: "month"
-- keyString: "note"
-- keyString: "number"
-- keyString: "organization"
-- keyString: "pages"
-- keyString: "publisher"
-- keyString: "school"
-- keyString: "series"
-- keyString: "title"
-- keyString: "type"
-- keyString: "volume"
-- keyString: "year"
+- keyString: '@article'
+- keyString: '@book'
+- keyString: '@booklet'
+- keyString: '@conference'
+- keyString: '@inbook'
+- keyString: '@incollection'
+- keyString: '@inproceedings'
+- keyString: '@manual'
+- keyString: '@masterthesis'
+- keyString: '@misc'
+- keyString: '@phdthesis'
+- keyString: '@proceedings'
+- keyString: '@techreport'
+- keyString: '@unpublished'
+- keyString: address
+- keyString: author
+- keyString: booktitle
+- keyString: chapter
+- keyString: edition
+- keyString: editor
+- keyString: howpublished
+- keyString: institution
+- keyString: journal
+- keyString: month
+- keyString: note
+- keyString: number
+- keyString: organization
+- keyString: pages
+- keyString: publisher
+- keyString: school
+- keyString: series
+- keyString: title
+- keyString: type
+- keyString: volume
+- keyString: year
+extensions:
+- keyString: bib
+- keyString: bibtex
+filenames: []
+interpreters: []
+keywords:
+- beginString: '@\w+\b'
+  regularExpression: true
+- beginString: '@article'
+  ignoreCase: true
+- beginString: '@book'
+  ignoreCase: true
+- beginString: '@booklet'
+  ignoreCase: true
+- beginString: '@conference'
+  ignoreCase: true
+- beginString: '@inbook'
+  ignoreCase: true
+- beginString: '@incollection'
+  ignoreCase: true
+- beginString: '@inproceedings'
+  ignoreCase: true
+- beginString: '@manual'
+  ignoreCase: true
+- beginString: '@masterthesis'
+  ignoreCase: true
+- beginString: '@misc'
+  ignoreCase: true
+- beginString: '@phdthesis'
+  ignoreCase: true
+- beginString: '@proceedings'
+  ignoreCase: true
+- beginString: '@techreport'
+  ignoreCase: true
+- beginString: '@unpublished'
+  ignoreCase: true
+kind: general
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2016-02-28'
+  license: Same as CotEditor
+  version: 1.1.0
+numbers: []
+outlineMenu:
+- beginString: '@(\w+)\s*\{\s*([^,=]+)'
+  description: entry
+  keyString: '@$1 $2'
+strings:
+- beginString: '"'
+  endString: '"'
+types: []
+values: []
+variables: []

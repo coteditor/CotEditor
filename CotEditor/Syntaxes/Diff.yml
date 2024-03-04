@@ -1,58 +1,65 @@
-kind: "code"
-extensions:
-- keyString: "diff"
-- keyString: "patch"
-- keyString: "dif"
-metadata:
-  author: "1024jp"
-  distributionURL: "https://coteditor.com"
-  version: "1.2.0"
-  license: "Same as CotEditor"
-  lastModified: "2023-05-05"
-outlineMenu:
-- beginString: "(.+)(?=\\R\\=+[\\t ]*$)"
-  description: "header"
-  bold: true
-- beginString: "^@@(.+)@@"
-  description: "[Unified] range"
-  keyString: "    $1"
-- beginString: "^[0-9,adc]+$"
-  description: "added/deleted/changed"
-  keyString: "    $0"
-completions: []
-commands:
-- beginString: "^diff -.+"
-  regularExpression: true
-- beginString: "^index .+"
-  regularExpression: true
-- beginString: "^Index: .+(\\R ?=+)?"
-  regularExpression: true
+attributes: []
 characters:
-- beginString: "^! .*"
+- beginString: ^! .*
   regularExpression: true
-- beginString: "^!$"
+- beginString: ^!$
   regularExpression: true
+commands:
+- beginString: ^diff -.+
+  regularExpression: true
+- beginString: ^index .+
+  regularExpression: true
+- beginString: '^Index: .+(\R ?=+)?'
+  regularExpression: true
+commentDelimiters: {}
 comments:
-- beginString: "^[*]{3} .*"
+- beginString: ^[*]{3} .*
   regularExpression: true
-- beginString: "^[-+]{3} .*"
+- beginString: ^[-+]{3} .*
   regularExpression: true
-- beginString: "^\\*+"
+- beginString: ^\*+
   regularExpression: true
-values:
-- beginString: "^< .*"
-  regularExpression: true
-- beginString: "^\\+.*"
-  regularExpression: true
-numbers:
-- beginString: "^@@ "
-  endString: " @@"
-  regularExpression: true
-- beginString: "^[0-9,adc]+$"
-  regularExpression: true
-strings: []
+completions: []
+extensions:
+- keyString: diff
+- keyString: patch
+- keyString: dif
+filenames: []
+interpreters: []
 keywords:
-- beginString: "^-.*"
+- beginString: ^-.*
   regularExpression: true
-- beginString: "^> .*"
+- beginString: ^> .*
   regularExpression: true
+kind: code
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2023-05-05'
+  license: Same as CotEditor
+  version: 1.2.0
+numbers:
+- beginString: '^@@ '
+  endString: ' @@'
+  regularExpression: true
+- beginString: ^[0-9,adc]+$
+  regularExpression: true
+outlineMenu:
+- beginString: (.+)(?=\R\=+[\t ]*$)
+  bold: true
+  description: header
+  keyString: ''
+- beginString: ^@@(.+)@@
+  description: '[Unified] range'
+  keyString: '    $1'
+- beginString: ^[0-9,adc]+$
+  description: added/deleted/changed
+  keyString: '    $0'
+strings: []
+types: []
+values:
+- beginString: ^< .*
+  regularExpression: true
+- beginString: ^\+.*
+  regularExpression: true
+variables: []

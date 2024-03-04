@@ -1,137 +1,142 @@
-extensions:
-- keyString: "rest"
-- keyString: "rst"
-metadata:
-  version: "1.1.4"
-  author: "1024jp"
-  license: "Same as CotEditor"
-  lastModified: "2022-06-01"
-  distributionURL: "https://coteditor.com"
-keywords:
-- beginString: "(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*[^* \\t\\r\\n)\\]'\"’‘”“`}>›»](?:(?!\\R{2})(?:[^*]|\\R))*?(?<![\\\\
-    \\t\\r\\n])\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
+attributes: []
+characters:
+- beginString: (?<!\\)``(?![ \t`])(?:(?!\R{2})(?:.|\R))+?(?<![\\\t ])``
+  description: code
   regularExpression: true
-  description: "em"
-- beginString: "(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*\\*[^* \\t\\r\\n)\\]'\"’‘”“`}>›»](?![
-    \\t])(?:(?!\\R{2}|\\*)(?:.|\\R))*?(?<![\\\\\\t ])\\*\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
-  regularExpression: true
-  description: "strong"
-- beginString: "(?<![\\\\`)\\]'\"’‘”“`}>›»]|\\w)`[^ \\r\\n\\t`](?:(?!\\R{2})(?:[^`]|\\R))*?[^\\\\
-    \\r\\n\\t]`(?!\\w|['\"’‘”“`<‹«(\\[{_])"
-  regularExpression: true
+- beginString: (?<!^[\t ]{0,4}\.\. [a-z]{1,10} ?)::\R[\t ]*(?:\R(?:[\t ]*\R)?([\t
+    ]+).*)(?:\R(?:[\t ]*\R)?\1.*)*
+  description: codeblock
   ignoreCase: true
-  description: "interpreted text"
-- beginString: "\\[\\w[^\\]]*?\\]_"
   regularExpression: true
-  description: "cite"
-- beginString: "\\R{2}([\\t ]*)(?!(?:[#a-z]|[ivxlxcdm]+|\\d+)\\.)\\w.*\\R\\1[\\t
-    ]+(?=\\w)"
-  regularExpression: true
+- beginString: ^(--?|/)[a-z]((?!  )[a-z0-9_= \-])* {2,}
+  description: option lists
   ignoreCase: true
-  description: "dt"
-- beginString: "\\R{2}[-=`:.'\"~^_*+#]{4,}\\R{2}"
-  regularExpression: true
-  description: "hr"
-- beginString: "^[ \\t]*[-*+•‣⁃][ \\t]"
-  regularExpression: true
-  description: "ul li"
-- beginString: "^[ \\t]*\\(?(?:[#a-z]|[ivxlxcdm]+|\\d+)[.)][ \\t]"
-  regularExpression: true
-  ignoreCase: true
-  description: "ol li"
-- beginString: "^[\\t ]*:[^\\r\\n:]+?: "
-  regularExpression: true
-  description: "field list"
-- beginString: "^[\\t ]*\\.\\. [a-z]+ ?::"
-  regularExpression: true
-  ignoreCase: true
-  description: "directive"
-- beginString: "^[\\t ]*\\.\\. \\[[^\\]\\r\\n]+\\] "
-  regularExpression: true
-  description: "footnotes"
-types:
-- beginString: "^([-=`:.'\"~^_*+#]{3,})\\R.+\\R\\1$"
-  regularExpression: true
-- beginString: "^.+\\R([-=`:.'\"~^_*+#])\\1{2,}$"
   regularExpression: true
 commands: []
-values:
-- beginString: "(?:https?|ftp):\\/\\/[-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+"
-  regularExpression: true
-  description: "url link"
-- beginString: "(?:https?|ftp):\\/\\/[-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+\\([-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+\\)"
-  regularExpression: true
-  description: "url link with bracket"
-- beginString: "(mailto:)?[a-zA-Z0-9]+[a-zA-Z0-9\\._-]*@[a-zA-Z0-9_-]+([a-zA-Z0-9\\._-]+)+"
-  regularExpression: true
-  description: "mail link"
-- beginString: "\\b[^-=_ \\t\\r\\n](?:\\w|\\d|[-=])*_(?!_)\\b"
-  regularExpression: true
-  description: "single word link"
-- beginString: "\\s\\[#[^\\]]*?\\]_\\b"
-  regularExpression: true
-  description: "foot link"
-- beginString: "\\s\\[\\*\\]_\\b"
-  regularExpression: true
-  description: "foot link"
-- beginString: "\\s\\[\\d+?\\]_\\b"
-  regularExpression: true
-  description: "foot link"
-- beginString: "\\s`[^`]+?`__?\\b"
-  regularExpression: true
-  description: "multi-words link"
-numbers:
-- beginString: "(?<=\\w`):[a-z]+?:"
-  regularExpression: true
-  description: "role"
-- beginString: ":[a-z]+?:(?=`\\w)"
-  regularExpression: true
-  description: "role"
-- beginString: "\\s\\|\\S(?:(?!\\R{2})[^\\|])*?\\|_{0,2}[\\W]"
-  regularExpression: true
-  description: "sub"
-- beginString: "^[\\t ]*\\.\\. (?:\\|[^|\\r\\n]+?\\| )?image ?::\\s.*$"
-  regularExpression: true
-  description: "image"
-- beginString: "^\\R(={4,} [= ]{4,}\\R)(?:.|\\R)+\\1(?=$\\R)"
-  regularExpression: true
-  description: "table"
-- beginString: "^\\R\\+[-+]{3,}\\+\\R(?:(?!\\R{2})(?:.|\\R))+\\+[-+]{3,}\\+(?=$\\R)"
-  regularExpression: true
-  description: "table"
-strings:
-- beginString: " <\\S+>(?=`_)"
-  regularExpression: true
-  description: "url"
-- beginString: "^[\\t ]*\\.\\. _\\S.*(?:\\R[\\t ]+\\S*)?$"
-  regularExpression: true
-  description: "url"
-- beginString: "^[\\t ]*__ .\\S+$"
-  regularExpression: true
-  description: "url"
-characters:
-- beginString: "(?<!\\\\)``(?![ \\t`])(?:(?!\\R{2})(?:.|\\R))+?(?<![\\\\\\t ])``"
-  regularExpression: true
-  description: "code"
-- beginString: "(?<!^[\\t ]{0,4}\\.\\. [a-z]{1,10} ?)::\\R[\\t ]*(?:\\R(?:[\\t ]*\\R)?([\\t
-    ]+).*)(?:\\R(?:[\\t ]*\\R)?\\1.*)*"
-  regularExpression: true
-  ignoreCase: true
-  description: "codeblock"
-- beginString: "^(--?|/)[a-z]((?!  )[a-z0-9_= \\-])* {2,}"
-  regularExpression: true
-  ignoreCase: true
-  description: "option lists"
+commentDelimiters: {}
 comments:
-- beginString: "^(?:\\t| {1,4})?\\.\\.\\s(?![_\\[|]|[a-z]+?::)(?:(?!\\R{2})(.|\\R))*"
+- beginString: ^(?:\t| {1,4})?\.\.\s(?![_\[|]|[a-z]+?::)(?:(?!\R{2})(.|\R))*
   ignoreCase: true
   regularExpression: true
 completions: []
+extensions:
+- keyString: rest
+- keyString: rst
+filenames: []
+interpreters: []
+keywords:
+- beginString: (?<![\\*)\]'"’‘”“`}>›»]|\w)\*[^* \t\r\n)\]'"’‘”“`}>›»](?:(?!\R{2})(?:[^*]|\R))*?(?<![\\
+    \t\r\n])\*(?!\w|['"’‘”“`<‹«(\[{])
+  description: em
+  regularExpression: true
+- beginString: (?<![\\*)\]'"’‘”“`}>›»]|\w)\*\*[^* \t\r\n)\]'"’‘”“`}>›»](?![ \t])(?:(?!\R{2}|\*)(?:.|\R))*?(?<![\\\t
+    ])\*\*(?!\w|['"’‘”“`<‹«(\[{])
+  description: strong
+  regularExpression: true
+- beginString: (?<![\\`)\]'"’‘”“`}>›»]|\w)`[^ \r\n\t`](?:(?!\R{2})(?:[^`]|\R))*?[^\\
+    \r\n\t]`(?!\w|['"’‘”“`<‹«(\[{_])
+  description: interpreted text
+  ignoreCase: true
+  regularExpression: true
+- beginString: \[\w[^\]]*?\]_
+  description: cite
+  regularExpression: true
+- beginString: \R{2}([\t ]*)(?!(?:[#a-z]|[ivxlxcdm]+|\d+)\.)\w.*\R\1[\t ]+(?=\w)
+  description: dt
+  ignoreCase: true
+  regularExpression: true
+- beginString: \R{2}[-=`:.'"~^_*+#]{4,}\R{2}
+  description: hr
+  regularExpression: true
+- beginString: ^[ \t]*[-*+•‣⁃][ \t]
+  description: ul li
+  regularExpression: true
+- beginString: ^[ \t]*\(?(?:[#a-z]|[ivxlxcdm]+|\d+)[.)][ \t]
+  description: ol li
+  ignoreCase: true
+  regularExpression: true
+- beginString: '^[\t ]*:[^\r\n:]+?: '
+  description: field list
+  regularExpression: true
+- beginString: '^[\t ]*\.\. [a-z]+ ?::'
+  description: directive
+  ignoreCase: true
+  regularExpression: true
+- beginString: '^[\t ]*\.\. \[[^\]\r\n]+\] '
+  description: footnotes
+  regularExpression: true
+kind: general
+metadata:
+  author: 1024jp
+  distributionURL: https://coteditor.com
+  lastModified: '2022-06-01'
+  license: Same as CotEditor
+  version: 1.1.4
+numbers:
+- beginString: '(?<=\w`):[a-z]+?:'
+  description: role
+  regularExpression: true
+- beginString: :[a-z]+?:(?=`\w)
+  description: role
+  regularExpression: true
+- beginString: \s\|\S(?:(?!\R{2})[^\|])*?\|_{0,2}[\W]
+  description: sub
+  regularExpression: true
+- beginString: ^[\t ]*\.\. (?:\|[^|\r\n]+?\| )?image ?::\s.*$
+  description: image
+  regularExpression: true
+- beginString: ^\R(={4,} [= ]{4,}\R)(?:.|\R)+\1(?=$\R)
+  description: table
+  regularExpression: true
+- beginString: ^\R\+[-+]{3,}\+\R(?:(?!\R{2})(?:.|\R))+\+[-+]{3,}\+(?=$\R)
+  description: table
+  regularExpression: true
 outlineMenu:
-- beginString: "(?<![-=`:.'\"~^_*+#]{2}\\R)^(.+)(?=\\R([-=`:.'\"~^_*+#])\\2{2,}$)"
-  keyString: "$1"
-  description: "section"
-- beginString: "(?<=[-=`:.'\"~^_*+#]{3}\\R)(.+)(?=\\R([-=`:.'\"~^_*+#])\\2{2,}+$)"
-  keyString: "$1"
-  description: "section"
+- beginString: (?<![-=`:.'"~^_*+#]{2}\R)^(.+)(?=\R([-=`:.'"~^_*+#])\2{2,}$)
+  description: section
+  keyString: $1
+- beginString: (?<=[-=`:.'"~^_*+#]{3}\R)(.+)(?=\R([-=`:.'"~^_*+#])\2{2,}+$)
   bold: true
+  description: section
+  keyString: $1
+strings:
+- beginString: ' <\S+>(?=`_)'
+  description: url
+  regularExpression: true
+- beginString: ^[\t ]*\.\. _\S.*(?:\R[\t ]+\S*)?$
+  description: url
+  regularExpression: true
+- beginString: ^[\t ]*__ .\S+$
+  description: url
+  regularExpression: true
+types:
+- beginString: ^([-=`:.'"~^_*+#]{3,})\R.+\R\1$
+  regularExpression: true
+- beginString: ^.+\R([-=`:.'"~^_*+#])\1{2,}$
+  regularExpression: true
+values:
+- beginString: (?:https?|ftp):\/\/[-_.!~*\'a-zA-Z0-9;\/?:\@&=+\$,%#]+
+  description: url link
+  regularExpression: true
+- beginString: (?:https?|ftp):\/\/[-_.!~*\'a-zA-Z0-9;\/?:\@&=+\$,%#]+\([-_.!~*\'a-zA-Z0-9;\/?:\@&=+\$,%#]+\)
+  description: url link with bracket
+  regularExpression: true
+- beginString: (mailto:)?[a-zA-Z0-9]+[a-zA-Z0-9\._-]*@[a-zA-Z0-9_-]+([a-zA-Z0-9\._-]+)+
+  description: mail link
+  regularExpression: true
+- beginString: \b[^-=_ \t\r\n](?:\w|\d|[-=])*_(?!_)\b
+  description: single word link
+  regularExpression: true
+- beginString: \s\[#[^\]]*?\]_\b
+  description: foot link
+  regularExpression: true
+- beginString: \s\[\*\]_\b
+  description: foot link
+  regularExpression: true
+- beginString: \s\[\d+?\]_\b
+  description: foot link
+  regularExpression: true
+- beginString: \s`[^`]+?`__?\b
+  description: multi-words link
+  regularExpression: true
+variables: []

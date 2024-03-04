@@ -1,15 +1,24 @@
-commands: []
-keywords: []
-numbers: []
-comments: []
+attributes: []
 characters: []
-strings: []
-metadata:
-  author: "nakamuxu"
-  distributionURL: "https://coteditor.com"
-  version: "1.1"
-  license: "Same as CotEditor"
-  lastModified: "2014-09-24"
+commands: []
+commentDelimiters: {}
+comments: []
+completions: []
 extensions:
-- keyString: "txt"
+- keyString: txt
+filenames: []
+interpreters: []
+keywords: []
+kind: general
+metadata:
+  author: nakamuxu
+  distributionURL: https://coteditor.com
+  lastModified: '2014-09-24'
+  license: Same as CotEditor
+  version: '1.1'
+numbers: []
+outlineMenu: []
+strings: []
+types: []
 values: []
+variables: []

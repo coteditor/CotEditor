@@ -91,6 +91,7 @@ keywords:
   regularExpression: true
 - beginString: \[url=.+?\]
   regularExpression: true
+kind: general
 metadata:
   author: 1024jp
   description: https://www.bbcode.org
