@@ -1010,6 +1010,12 @@
             "state" : "translated",
             "value" : "定义文件"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "定義檔案"
+          }
         }
       }
     },
@@ -1394,6 +1400,12 @@
             "state" : "translated",
             "value" : "完全匹配"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完全匹配"
+          }
         }
       }
     },
@@ -1490,6 +1502,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "特性"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "特性"
@@ -1671,6 +1689,12 @@
             "state" : "translated",
             "value" : "高亮显示"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高亮顯示"
+          }
         }
       }
     },
@@ -1810,8 +1834,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "如果沒有單字，補全列表將由高亮設定生成。"
+            "state" : "translated",
+            "value" : "如果未指定，則基於高亮設定生成語法補全用詞。"
           }
         }
       }
@@ -2485,6 +2509,12 @@
             "state" : "translated",
             "value" : "选择了多个项"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇了多個條目"
+          }
         }
       }
     },
@@ -2585,6 +2615,12 @@
             "state" : "translated",
             "value" : "未选择任何项"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未選擇任何條目"
+          }
         }
       }
     },
@@ -2684,6 +2720,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "大纲提取规则："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "大綱提取規則："
           }
         }
       }
@@ -2895,7 +2937,7 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "常規表示式"
           }
         }
@@ -3113,8 +3155,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "補全列表"
+            "state" : "translated",
+            "value" : "補全"
           }
         }
       }

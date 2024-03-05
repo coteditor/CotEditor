@@ -775,6 +775,12 @@
             "state" : "translated",
             "value" : "未知类型"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未知類型"
+          }
         }
       }
     },
@@ -3253,6 +3259,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名称“%@”已被保留。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名稱「%@」已被保留。"
           }
         }
       }

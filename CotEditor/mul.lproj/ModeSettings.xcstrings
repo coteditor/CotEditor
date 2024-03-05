@@ -1596,6 +1596,12 @@
             "state" : "translated",
             "value" : "此语法不存在"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此語法不存在"
+          }
         }
       }
     },
