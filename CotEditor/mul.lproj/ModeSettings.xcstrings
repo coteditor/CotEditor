@@ -1590,6 +1590,12 @@
             "state" : "translated",
             "value" : "このシンタックスは存在しません"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此语法不存在"
+          }
         }
       }
     },

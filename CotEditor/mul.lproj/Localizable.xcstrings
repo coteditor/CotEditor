@@ -769,6 +769,12 @@
             "state" : "translated",
             "value" : "不明なタイプ"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未知类型"
+          }
         }
       }
     },
@@ -3241,6 +3247,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”は予約されています。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名称“%@”已被保留。"
           }
         }
       }
