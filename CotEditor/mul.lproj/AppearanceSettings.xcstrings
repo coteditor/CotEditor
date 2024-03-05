@@ -15,12 +15,6 @@
             "value" : "Text glätten"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Antialias"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -89,12 +83,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erscheinungsbild:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Appearance:"
           }
         },
         "en-GB" : {
@@ -469,12 +457,6 @@
             "value" : "Editor-Deckkraft:"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Editor opacity:"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -543,12 +525,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ligaturen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Ligatures"
           }
         },
         "en-GB" : {
@@ -621,12 +597,6 @@
             "value" : "Zeilenhöhe:"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Line height:"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -695,12 +665,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nichtproportionale Schrift:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Monospaced font:"
           }
         },
         "en-GB" : {
@@ -774,12 +738,6 @@
             "value" : "Auswählen …"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Select…"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -848,12 +806,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standardschrift:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Standard font:"
           }
         },
         "en-GB" : {
@@ -982,83 +934,6 @@
         }
       }
     },
-    "Theme" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Motiv"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Thema"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Theme"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Theme"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tema"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Thème"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tema"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "テーマ"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tema"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tema"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "主题"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "主題"
-          }
-        }
-      }
-    },
     "times" : {
       "comment" : "unit for line height",
       "localizations" : {
@@ -1072,12 +947,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "-fach"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "times"
           }
         },
         "en-GB" : {

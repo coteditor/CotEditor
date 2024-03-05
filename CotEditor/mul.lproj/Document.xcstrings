@@ -1970,7 +1970,7 @@
       }
     },
     "Line Endings" : {
-      "extractionState" : "manual",
+      "comment" : "label in document inspector",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -7000,7 +7000,7 @@
       }
     },
     "Toolbar.textOrientation.horizontalText.label" : {
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -7011,6 +7011,12 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Horizontal"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Horizontal"
           }
         },

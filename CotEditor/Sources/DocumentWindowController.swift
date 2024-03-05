@@ -497,7 +497,7 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .textOrientation:
                 let horizontalItem = NSToolbarItem(itemIdentifier: .horizontalText)
                 horizontalItem.label = String(localized: "Toolbar.textOrientation.horizontalText.label",
-                                              defaultValue: "Horizontal", table: "tooltip", comment: "abc")
+                                              defaultValue: "Horizontal", table: "Document")
                 horizontalItem.toolTip = String(localized: "Toolbar.textOrientation.horizontalText.tooltip",
                                                 defaultValue: "Horizontal", table: "Document")
                 horizontalItem.image = NSImage(systemSymbolName: "text.alignleft", accessibilityDescription: horizontalItem.label)

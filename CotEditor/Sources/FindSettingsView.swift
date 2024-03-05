@@ -63,6 +63,7 @@ struct FindSettingsView: View {
                                       defaultValue: "Wrap search around",
                                       table: "TextFind", comment: "toggle button label"),
                                isOn: $settings.findIsWrap)
+                        
                         Toggle(String(localized: "FindSettings.findSearchesIncrementally.label",
                                       defaultValue: "Search incrementally",
                                       table: "TextFind", comment: "toggle button label"),
@@ -116,6 +117,7 @@ struct FindTextualOptionsView: View {
                 .help(String(localized: "FindSettings.matchesFullWord.description",
                              defaultValue: "Restrict search results to the whole words.",
                              table: "TextFind", comment: "tooltip"))
+                
                 Toggle(String(localized: "FindSettings.isLiteralSearch.label",
                               defaultValue: "Distinguish characters strictly",
                               table: "TextFind", comment: "toggle button label"),
@@ -123,13 +125,15 @@ struct FindTextualOptionsView: View {
                 .help(String(localized: "FindSettings.isLiteralSearch.description",
                              defaultValue: "Exact character-by-character equivalence.",
                              table: "TextFind", comment: "tooltip"))
-                Toggle(String(localized: "FindSettings.findSearchesIncrementally.label",
+                
+                Toggle(String(localized: "FindSettings.ignoresDiacriticMarks.label",
                               defaultValue: "Ignore diacritical marks",
                               table: "TextFind", comment: "toggle button label"),
                        isOn: $ignoresDiacriticMarks)
                 .help(String(localized: "FindSettings.ignoresDiacriticMarks.description",
                              defaultValue: "Search ignores diacritical marks (e.g. ö = o).",
                              table: "TextFind", comment: "tooltip"))
+                
                 Toggle(String(localized: "FindSettings.ignoresWidth.label",
                               defaultValue: "Ignore width differences",
                               table: "TextFind", comment: "toggle button label"),
@@ -165,6 +169,7 @@ struct FindRegularExpressionOptionsView: View {
                 .help(String(localized: "FindSettings.isSingleLine.description",
                              defaultValue: "Allow . to match any character, including newline characters (singleline).",
                              table: "TextFind", comment: "tooltip"))
+                
                 Toggle(String(localized: "FindSettings.isMultiline.label",
                               defaultValue: "Anchors match lines",
                               table: "TextFind", comment: "toggle button label"),
@@ -172,6 +177,7 @@ struct FindRegularExpressionOptionsView: View {
                 .help(String(localized: "FindSettings.isMultiline.description",
                              defaultValue: "Allow ^ and $ to match the start and end of lines (multiline).",
                              table: "TextFind", comment: "tooltip"))
+                
                 Toggle(String(localized: "FindSettings.usesUnicodeBoundaries.label",
                               defaultValue: "Use Unicode word boundaries",
                               table: "TextFind", comment: "toggle button label"),
@@ -179,6 +185,7 @@ struct FindRegularExpressionOptionsView: View {
                 .help(String(localized: "FindSettings.usesUnicodeBoundaries.description",
                              defaultValue: "Use Unicode TR#29 to specify word boundaries",
                              table: "TextFind", comment: "tooltip"))
+                
                 Toggle(String(localized: "FindSettings.unescapesReplacementString.label",
                               defaultValue: "Unescape replacement string",
                               table: "TextFind", comment: "toggle button label"),

@@ -1742,79 +1742,72 @@
       }
     },
     "FindSettings.findSearchesIncrementally.label" : {
-      "comment" : "toggle button label",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "manual",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignorovat diakritiku"
+            "value" : "Hledat postupně"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diakritische Zeichen ignorieren"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Search incrementally"
+            "value" : "Inkrementell suchen"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignore diacritical marks"
+            "value" : "Search incrementally"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignorar las marcas diacríticas"
+            "value" : "Buscar de forma incremental"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignorer les signes diacritiques"
+            "value" : "Recherche incrémentale"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignora segni diacritici"
+            "value" : "Ricerca incrementale"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "発音区別記号を無視"
+            "value" : "インクリメンタルに検索"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignorar sinais diacríticos"
+            "value" : "Buscar incrementalmente"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aksan imlerini yok say"
+            "value" : "Aşamalı olarak ara"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "忽略变音符号"
+            "value" : "增量搜索"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "忽略變音符號"
+            "value" : "增量尋找"
           }
         }
       }
@@ -1893,6 +1886,84 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "忽略變音符號進行尋找（例如ö = o）。"
+          }
+        }
+      }
+    },
+    "FindSettings.ignoresDiacriticMarks.label" : {
+      "comment" : "toggle button label",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorovat diakritiku"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diakritische Zeichen ignorieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Ignore diacritical marks"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignore diacritical marks"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorar las marcas diacríticas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer les signes diacritiques"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignora segni diacritici"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "発音区別記号を無視"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorar sinais diacríticos"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aksan imlerini yok say"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略变音符号"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略變音符號"
           }
         }
       }
@@ -4182,77 +4253,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "用取代文字取代當前選中內容，然後查找下一個匹配項目"
-          }
-        }
-      }
-    },
-    "Search incrementally" : {
-      "extractionState" : "migrated",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hledat postupně"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inkrementell suchen"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search incrementally"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscar de forma incremental"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recherche incrémentale"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ricerca incrementale"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "インクリメンタルに検索"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscar incrementalmente"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aşamalı olarak ara"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "增量搜索"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "增量尋找"
           }
         }
       }
