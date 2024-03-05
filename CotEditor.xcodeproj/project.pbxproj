@@ -2837,17 +2837,17 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/CotEditor/Syntaxes",
+				"$(PROJECT_DIR)/CotEditor/Syntaxes",
 			);
 			name = "Build Syntax Map";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(SRCROOT)/CotEditor/SyntaxMap.json",
+				"$(PROJECT_DIR)/CotEditor/SyntaxMap.json",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${BUILT_PRODUCTS_DIR}/SyntaxMapBuilder\" \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"$BUILT_PRODUCTS_DIR/SyntaxMapBuilder\" \"$SCRIPT_INPUT_FILE_0\" \"$SCRIPT_OUTPUT_FILE_0\"\n";
 		};
 		2A53326426799B3B000DE73D /* Build Syntax Map */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2857,17 +2857,17 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/CotEditor/Syntaxes",
+				"$(PROJECT_DIR)/CotEditor/Syntaxes",
 			);
 			name = "Build Syntax Map";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(SRCROOT)/CotEditor/SyntaxMap.json",
+				"$(PROJECT_DIR)/CotEditor/SyntaxMap.json",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${BUILT_PRODUCTS_DIR}/SyntaxMapBuilder\" \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"$BUILT_PRODUCTS_DIR/SyntaxMapBuilder\" \"$SCRIPT_INPUT_FILE_0\" \"$SCRIPT_OUTPUT_FILE_0\"\n";
 		};
 		2ACC21B81E5445BA0078241F /* Lint Swift Code */ = {
 			isa = PBXShellScriptBuildPhase;
