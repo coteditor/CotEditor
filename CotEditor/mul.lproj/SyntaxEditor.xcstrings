@@ -1363,7 +1363,7 @@
       }
     },
     "Entire match" : {
-      "comment" : "placeholder",
+      "comment" : "placeholder for outline item table",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2436,7 +2436,7 @@
       }
     },
     "Multiple items selected" : {
-      "comment" : "placeholder",
+      "comment" : "message for uneditable condition",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2530,7 +2530,7 @@
       }
     },
     "No item selected" : {
-      "comment" : "placeholder",
+      "comment" : "message for uneditable condition",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2619,28 +2619,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未定義"
-          }
-        }
-      }
-    },
-    "Outline" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gliederung"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Outline"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "アウトライン"
           }
         }
       }
