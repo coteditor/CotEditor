@@ -44,7 +44,7 @@ import Combine
     
     private var documentObservers: Set<AnyCancellable> = []
     private var encodingListObserver: AnyCancellable?
-    private var defaultsObserver: AnyCancellable?
+    private var defaultsObservers: Set<AnyCancellable> = []
     
     @objc private dynamic var editorStatus: NSAttributedString?
     @objc private dynamic var fileSize: String?
@@ -103,13 +103,15 @@ import Combine
             .showStatusBarColumn,
         ]
         let publishers = editorDefaultKeys.map { UserDefaults.standard.publisher(for: $0) }
-        self.defaultsObserver = Publishers.MergeMany(publishers)
-            .map { _ in UserDefaults.standard.statusBarEditorInfo }
-            .sink { [weak self] in
-                guard let document = self?.document else { return }
-                document.analyzer.statusBarRequirements = $0
-                self?.editorStatus = self?.statusAttributedString(result: document.analyzer.result, types: $0)
-            }
+        self.defaultsObservers = [
+            Publishers.MergeMany(publishers)
+                .map { _ in UserDefaults.standard.statusBarEditorInfo }
+                .sink { [weak self] in
+                    guard let document = self?.document else { return }
+                    document.analyzer.statusBarRequirements = $0
+                    self?.editorStatus = self?.statusAttributedString(result: document.analyzer.result, types: $0)
+                },
+        ]
         
         self.observeDocument()
     }
@@ -120,7 +122,7 @@ import Combine
         super.viewDidDisappear()
         
         self.encodingListObserver = nil
-        self.defaultsObserver = nil
+        self.defaultsObservers.removeAll()
         
         self.document.analyzer.statusBarRequirements = []
         self.documentObservers.removeAll()
