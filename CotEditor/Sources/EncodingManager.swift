@@ -54,7 +54,7 @@ extension Array<FileEncoding?> {
 
 // MARK: -
 
-final class EncodingManager: ObservableObject {
+final class EncodingManager {
     
     // MARK: Public Properties
     

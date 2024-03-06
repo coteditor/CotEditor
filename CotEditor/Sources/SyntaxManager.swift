@@ -49,7 +49,7 @@ enum SyntaxName {
 
 // MARK: -
 
-final class SyntaxManager: SettingFileManaging, ObservableObject {
+final class SyntaxManager: SettingFileManaging {
     
     typealias Setting = Syntax
     
