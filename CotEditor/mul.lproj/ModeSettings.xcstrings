@@ -1509,6 +1509,12 @@
             "value" : "This syntax does not exist"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Esta sintaxis no existe"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",

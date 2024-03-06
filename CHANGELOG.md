@@ -28,9 +28,9 @@
 - Fix missing localizations.
 
 
-### Todo
+### Known Issues
 
-- Localize new strings in the syntax editor and Mode settings.
+- Some new strings in the syntax editor and Mode settings are not localized to Czech, French, Italian, and Portuguese.
 
 
 

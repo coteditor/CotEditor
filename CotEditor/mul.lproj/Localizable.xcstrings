@@ -764,6 +764,12 @@
             "value" : "an unknown type"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "un tipo desconocido"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3253,6 +3259,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The name “%@” is reserved."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "El nombre “%@” está reservado."
           }
         },
         "ja" : {

@@ -183,6 +183,12 @@
             "value" : "Expected Result"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Resultado Esperado"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -317,6 +323,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Steps to Reproduce the Issue"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pasos para reproducir el problema"
           }
         },
         "ja" : {

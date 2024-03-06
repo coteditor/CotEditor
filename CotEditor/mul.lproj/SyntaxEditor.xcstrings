@@ -999,6 +999,12 @@
             "value" : "Definition File"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Archivo de definición"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1395,6 +1401,12 @@
             "value" : "Entire match"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Toda coincidencia"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1505,6 +1517,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Features"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Recursos"
           }
         },
         "ja" : {
@@ -1688,6 +1706,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Highlighting"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Resaltando"
           }
         },
         "ja" : {
@@ -2510,6 +2534,12 @@
             "value" : "Multiple items selected"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Varios items  seleccionados"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2622,6 +2652,12 @@
             "value" : "No item selected"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nenhum item selecionado"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2732,6 +2768,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Outline extraction rules:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Reglas de extracción de esquemas:"
           }
         },
         "ja" : {
