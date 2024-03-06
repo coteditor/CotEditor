@@ -770,6 +770,12 @@
             "value" : "不明なタイプ"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bilinmeyen bir tür"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3253,6 +3259,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”は予約されています。"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” adı rezerve."
           }
         },
         "zh-Hans" : {

@@ -1005,6 +1005,12 @@
             "value" : "定義ファイル"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanım Dosyası"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1395,6 +1401,12 @@
             "value" : "一致した全文字列"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tam eşleşme"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1499,6 +1511,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "機能"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Özellikler"
           }
         },
         "zh-Hans" : {
@@ -1678,6 +1696,12 @@
             "value" : "ハイライト"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vurgulama"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1816,8 +1840,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sözcük yoksa tamamlama listesi renklendirme listesinden çıkarılır."
+            "state" : "translated",
+            "value" : "Belirtilmemişse sözdizim tamamlama sözcükleri vurgulama ayarları tabanlı olarak üretilir."
           }
         },
         "zh-Hans" : {
@@ -2492,6 +2516,12 @@
             "value" : "複数の項目が選択されています"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birden çok öge seçili"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2598,6 +2628,12 @@
             "value" : "項目が選択されていません"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçili öge yok"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2702,6 +2738,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "アウトライン抽出ルール:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ana hat çıkarma kuralları:"
           }
         },
         "zh-Hans" : {
@@ -2913,8 +2955,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Düzenli İfade Dizisi"
+            "state" : "translated",
+            "value" : "Düzenli İfade Dizgisi"
           }
         },
         "zh-Hans" : {
@@ -3131,7 +3173,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Tamamlama"
           }
         },

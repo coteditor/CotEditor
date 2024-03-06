@@ -1515,6 +1515,12 @@
             "value" : "このシンタックスは存在しません"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu sözdizim yok"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
