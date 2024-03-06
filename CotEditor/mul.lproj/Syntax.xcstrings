@@ -158,6 +158,7 @@
       }
     },
     "SyntaxName.none" : {
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -169,6 +170,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ohne"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "None"
           }
         },
         "en-GB" : {

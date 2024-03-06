@@ -630,7 +630,6 @@
       }
     },
     "Block comment needs both begin and end delimiters." : {
-      "comment" : "SyntaxError.strings\n  CotEditor\n\n  Created by imanishi on 2024/02/19.\n  © 2024 CotEditor Project",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

@@ -218,7 +218,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         menu.removeAllItems()
         
-        let noneItem = NSMenuItem(title: String(localized: "SyntaxName.none", table: "Syntax"), action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
+        let noneItem = NSMenuItem(title: String(localized: "SyntaxName.none", defaultValue: "None", table: "Syntax"), action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
         noneItem.representedObject = SyntaxName.none
         
         menu.addItem(noneItem)

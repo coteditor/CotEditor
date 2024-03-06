@@ -1555,7 +1555,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Option-Klicken, um das Skript im Editor zu öffnen."
+            "value" : "Option-Taste klicken, um das Skript im Editor zu öffnen."
           }
         },
         "en-GB" : {
@@ -1585,7 +1585,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "スクリプトをエディタで開くには、Option+クリックしてください。"
+            "value" : "スクリプトをエディタで開くにはOption+クリックしてください。"
           }
         },
         "pt" : {

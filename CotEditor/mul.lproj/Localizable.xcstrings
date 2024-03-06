@@ -880,13 +880,13 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Soubor „%@“ má velikost %@."
+            "value" : "Soubor „%1$@“ má velikost %2$@."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Datei „%@“ hat eine Größe von %@."
+            "value" : "Die Datei „%1$@“ hat eine Größe von %2$@."
           }
         },
         "en" : {
@@ -898,55 +898,55 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The file “%@” has a size of %@."
+            "value" : "The file “%1$@” has a size of %2$@."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The file “%@” tiene un tamaño de %@."
+            "value" : "The file “%1$@” tiene un tamaño de %2$@."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le fichier « %@ » a une taille de %@."
+            "value" : "Le fichier « %1$@ » a une taille de %2$@."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il file “%@” è grande %@."
+            "value" : "Il file “%1$@” è grande %2$@."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ファイル“%@”はファイルサイズが%@あります。"
+            "value" : "ファイル“%1$@”はファイルサイズが%2$@あります。"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O arquivo “%@” tem %@ de tamanho."
+            "value" : "O arquivo “%1$@” tem %2$@ de tamanho."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” dosyasının boyutu %@."
+            "value" : "“%1$@” dosyasının boyutu %2$@."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@”文件尺寸为%@。"
+            "value" : "“%1$@”文件尺寸为%2$@。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "「%@」檔案尺寸為%@。"
+            "value" : "「%1$@」檔案尺寸為%2$@。"
           }
         }
       }
@@ -3246,7 +3246,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” ist reserviert."
+            "value" : "„%@“ ist reserviert."
           }
         },
         "en" : {
