@@ -100,6 +100,9 @@ actor ModeManager {
         
         if case .kind(let kind) = mode, setting == kind.defaultOptions {
             UserDefaults.standard[.modes].removeValue(forKey: mode.rawValue)
+            if UserDefaults.standard[.modes].isEmpty {
+                UserDefaults.standard.restore(key: .modes)
+            }
         } else {
             UserDefaults.standard[.modes][mode.rawValue] = setting.dictionary
         }
