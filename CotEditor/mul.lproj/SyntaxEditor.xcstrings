@@ -1010,6 +1010,12 @@
             "value" : "Fichier de Définition"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File delle definizioni"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1418,6 +1424,12 @@
             "value" : "Tout capturer"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Corrispondenza completa"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1540,6 +1552,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fonctionnalités"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funzionalità"
           }
         },
         "ja" : {
@@ -1737,6 +1755,12 @@
             "value" : "Surlignage"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Evidenziazione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1869,8 +1893,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "In assenza di parole, la lista di completamento verrà generata partendo dalle impostazioni di colorazione."
+            "state" : "translated",
+            "value" : "Quando non specificato, la sintassi delle parole\ndi completamento è generata in base ai parametri evidenziati."
           }
         },
         "ja" : {
@@ -2569,6 +2593,12 @@
             "value" : "Plusieurs éléments sélectionnés"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elementi multipli selezionati"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2693,6 +2723,12 @@
             "value" : "Aucun élément sélectionné"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nessun elemento selezionato"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2815,6 +2851,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Règles d'extraction de structure :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regole estrazione struttura:"
           }
         },
         "ja" : {
@@ -3020,8 +3062,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Stringa Espressione regolare"
+            "state" : "translated",
+            "value" : "Espressione regolare"
           }
         },
         "ja" : {
@@ -3238,7 +3280,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Completamento"
           }
         },

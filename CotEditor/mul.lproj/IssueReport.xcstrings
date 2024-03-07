@@ -195,6 +195,12 @@
             "value" : "Résultat attendu"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risultato atteso"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -341,6 +347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Étapes pour reproduire le problème"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passaggi per riprodurre il problema"
           }
         },
         "ja" : {

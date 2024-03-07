@@ -776,6 +776,12 @@
             "value" : "de type inconnu"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "di tipo sconosciuto"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3277,6 +3283,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le nom « %@ » est réservé."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il nome “%@” è riservato."
           }
         },
         "ja" : {

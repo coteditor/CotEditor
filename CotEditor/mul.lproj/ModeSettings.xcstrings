@@ -1521,6 +1521,12 @@
             "value" : "Cette syntaxe n'existe pas"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questa sintassi non esiste"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
