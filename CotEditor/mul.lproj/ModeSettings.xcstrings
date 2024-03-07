@@ -1515,6 +1515,12 @@
             "value" : "Esta sintaxis no existe"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette syntaxe n'existe pas"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",

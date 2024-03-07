@@ -1004,6 +1004,12 @@
             "value" : "Archivo de definición"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fichier de Définition"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1406,6 +1412,12 @@
             "value" : "Toda coincidencia"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout capturer"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1522,6 +1534,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Recursos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonctionnalités"
           }
         },
         "ja" : {
@@ -1713,6 +1731,12 @@
             "value" : "Resaltando"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surlignage"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1839,8 +1863,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Si cette liste est vide, la liste de complétion sera générée à partir de la définition de la coloration syntaxique."
+            "state" : "translated",
+            "value" : "Si non précisé, les mots de complétion de syntaxe sont générés à partir des paramètres de surlignage."
           }
         },
         "it" : {
@@ -2539,6 +2563,12 @@
             "value" : "Varios items  seleccionados"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plusieurs éléments sélectionnés"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2657,6 +2687,12 @@
             "value" : "Nenhum item selecionado"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun élément sélectionné"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2773,6 +2809,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Reglas de extracción de esquemas:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Règles d'extraction de structure :"
           }
         },
         "ja" : {
@@ -2972,7 +3014,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Expression régulière"
           }
         },
@@ -3190,8 +3232,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Complétage"
+            "state" : "translated",
+            "value" : "Complétion"
           }
         },
         "it" : {

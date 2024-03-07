@@ -701,7 +701,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le ficher semble être de type %@.\n\nVoulez-vous vraiment ouvrir le fichier ?"
+            "value" : "Le ficher semble être %@.\n\nVoulez-vous vraiment ouvrir le fichier ?"
           }
         },
         "it" : {
@@ -768,6 +768,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "un tipo desconocido"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de type inconnu"
           }
         },
         "ja" : {
@@ -3265,6 +3271,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "El nombre “%@” está reservado."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le nom « %@ » est réservé."
           }
         },
         "ja" : {
