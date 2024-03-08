@@ -217,12 +217,12 @@ private struct ModeOptionsView: View {
                     Text("Completion list includes:", tableName: "ModeSettings")
                         .foregroundStyle(self.isEnabled ? .primary : .tertiary)
                     Group {
+                        Toggle(String(localized: "Standard words", table: "ModeSettings"),
+                               isOn: $options.completionWordTypes.bind(.standard))
                         Toggle(String(localized: "Words in document", table: "ModeSettings"),
                                isOn: $options.completionWordTypes.bind(.document))
                         Toggle(String(localized: "Words defined in syntax", table: "ModeSettings"),
                                isOn: $options.completionWordTypes.bind(.syntax))
-                        Toggle(String(localized: "Standard words", table: "ModeSettings"),
-                               isOn: $options.completionWordTypes.bind(.standard))
                     }.padding(.leading, 20)
                     Toggle(String(localized: "Suggest completions while typing", table: "ModeSettings"),
                            isOn: $options.automaticCompletion)
