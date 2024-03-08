@@ -30,7 +30,7 @@
 
 ### Known Issues
 
-- Some new strings in the syntax editor and Mode settings are not localized to Czech, and Portuguese.
+- Some new strings in the syntax editor and Mode settings are not localized yet in Czech.
 
 
 

@@ -1022,6 +1022,12 @@
             "value" : "定義ファイル"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arquivo de Definição"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1436,6 +1442,12 @@
             "value" : "一致した全文字列"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correspondência Completa"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1564,6 +1576,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "機能"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recursos"
           }
         },
         "tr" : {
@@ -1767,6 +1785,12 @@
             "value" : "ハイライト"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Destaque"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1905,8 +1929,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Se em branco, a lista será gerada a partir dos ajustes de coloração."
+            "state" : "translated",
+            "value" : "Se não especificado, as palavras de conclusão de sintaxe são geradas com base nas configurações de destaque."
           }
         },
         "tr" : {
@@ -2605,6 +2629,12 @@
             "value" : "複数の項目が選択されています"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Múltiplos itens selecionados"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2735,6 +2765,12 @@
             "value" : "項目が選択されていません"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhum item selecionado"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2863,6 +2899,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "アウトライン抽出ルール:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regras de extração do esboço:"
           }
         },
         "tr" : {
@@ -3074,8 +3116,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "String de Expressão Regular"
+            "state" : "translated",
+            "value" : "Padrão de Expressão Regular"
           }
         },
         "tr" : {
@@ -3292,8 +3334,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Preenchimento"
+            "state" : "translated",
+            "value" : "Conclusão"
           }
         },
         "tr" : {

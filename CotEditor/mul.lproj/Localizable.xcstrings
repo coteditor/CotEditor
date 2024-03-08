@@ -788,6 +788,12 @@
             "value" : "不明なタイプ"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "um tipo desconhecido"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3295,6 +3301,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”は予約されています。"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O nome “%@” é reservado."
           }
         },
         "tr" : {

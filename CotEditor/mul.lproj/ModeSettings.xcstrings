@@ -1533,6 +1533,12 @@
             "value" : "このシンタックスは存在しません"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta sintaxe não existe"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
