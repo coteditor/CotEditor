@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<script defer src="../../Shared/js/toc.js"></script>
 	
-	<title>CotEditorで「モード設定」設定を変更する</title>
+	<title>CotEditorで「モード」設定を変更する</title>
 </head>
 
 <body>
@@ -19,7 +19,31 @@
 
 
 <table class="settings">
-<caption>フォント</caption>
+<caption>モード</caption>
+<thead>
+	<tr><th>オプション</th><th>説明</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>モード</th>
+		<td>右側のペインで編集するモードを切り替えます</td>
+	</tr>
+	<tr>
+		<th>追加 +</th>
+		<td>特定のシンタックスに対するモード設定を追加します。</td>
+	</tr>
+	<tr>
+		<th>削除 -</th>
+		<td>選択しているシンタックスのモード設定を削除します。シンタックスの種類（一般/コード）に対する設定を削除することはできません。</td>
+	</tr>
+</tbody>
+</table>
+
+
+
+<table class="settings">
+<caption>モードオプション</caption>
 <thead>
 	<tr><th>オプション</th><th>説明</th></tr>
 </thead>
@@ -30,14 +54,6 @@
 		<td>エディタで標準フォントと等幅フォントのどちらを使用するか設定します。それぞれのフォントは<a href="settings_appearance.html">「外観」設定</a>で設定できます。</td>
 	</tr>
 </tbody>
-</table>
-
-
-<table class="settings">
-<caption>自動置換</caption>
-<thead>
-	<tr><th>オプション</th><th>説明</th></tr>
-</thead>
 
 <tbody>
 	<tr>
@@ -60,14 +76,6 @@
 		<td>開き括弧もしくは引用符「&quot;」を入力したときに、対応した閉じ括弧または引用符を自動で挿入しさらに挿入ポイントをその間に移動させます。</td>
 	</tr>
 </tbody>
-</table>
-
-
-<table class="settings">
-<caption>スペル</caption>
-<thead>
-	<tr><th>オプション</th><th>説明</th></tr>
-</thead>
 
 <tbody>
 	<tr>
@@ -82,17 +90,9 @@
 	
 	<tr>
 		<th>スペルを自動的に修正</th>
-		<td></td>
+		<td>入力中にスペルの誤りを検出し自動的に修正します。自動修正された単語は下線が引かれ、自動修正をアンドゥすることも可能です。</td>
 	</tr>
 </tbody>
-</table>
-
-
-<table class="settings">
-<caption>入力補完</caption>
-<thead>
-	<tr><th>オプション</th><th>説明</th></tr>
-</thead>
 
 <tbody>
 	<tr>
