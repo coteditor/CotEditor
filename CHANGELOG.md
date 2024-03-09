@@ -13,6 +13,7 @@
 
 - Improve the look and feel of the syntax editor.
 - Make the encoding priority view undoable.
+- Disable the pane transition animation in the Settings window when the user sets to reduce motion in the system Accessibility settings.
 - Deprecate “Append a space to comment delimiter” option
 - [trivial] Enable delete selected separators in the encoding priority view with the Delete key.
 - [trivial] Avoid users using reserved syntax names.
