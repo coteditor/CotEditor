@@ -119,8 +119,18 @@ struct FormatSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 Picker(selection: $syntax) {
-                    Text("SyntaxName.none", tableName: "Syntax").tag(SyntaxName.none)
+                    Text(String(localized: "SyntaxName.none", defaultValue: "None", table: "Syntax"))
+                        .tag(SyntaxName.none)
+                    
                     Divider()
+                    
+                    if !(self.syntaxNames + [SyntaxName.none]).contains(self.syntax) {
+                        Text(self.syntax).tag(self.syntax)
+                            .help(String(localized: "This syntax does not exist",
+                                         table: "FormatSettings", comment: "tooltip"))
+                            .foregroundStyle(.secondary)
+                    }
+                    
                     ForEach(self.syntaxNames, id: \.self) {
                         Text($0).tag($0)
                     }
