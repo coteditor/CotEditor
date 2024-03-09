@@ -3,6 +3,10 @@
 4.8.0-beta.2 (unreleased)
 --------------------------
 
+### Fixes
+
+- [beta] Fix an issue that the “Suggest completions while typing” option in the Mode settings was wrongly stored. 
+
 
 
 4.8.0-beta (633)

@@ -138,7 +138,7 @@ extension ModeOptions {
          .automaticSpellingCorrection: self.automaticSpellingCorrection,
          
          .completionWordTypes: self.completionWordTypes.rawValue,
-         .automaticCompletion: self.automaticQuoteSubstitution,
+         .automaticCompletion: self.automaticCompletion,
         ]
         .filter { ($0.value as? Int) != 0 }
         .filter { ($0.value as? Bool) != false }
