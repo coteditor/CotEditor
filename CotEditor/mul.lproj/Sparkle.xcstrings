@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Check for Updates…" : {
+      "comment" : "a command provided only in the non-AppStore version",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
