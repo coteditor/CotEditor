@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,6 +34,7 @@ final class BidiScrollView: NSScrollView {
     
     var scrollerDirection: NSUserInterfaceLayoutDirection = .rightToLeft  { didSet { self.tile() } }
     
+    var isInconsistentScrollerDirection: Bool { self.scrollerDirection != self.userInterfaceLayoutDirection }
     
     
     // MARK: View Methods
@@ -44,7 +45,7 @@ final class BidiScrollView: NSScrollView {
         
         // add a space for the vertical scroller to the left edge if the style is legacy
         guard
-            self.scrollerDirection == .rightToLeft,
+            self.isInconsistentScrollerDirection,
             self.scrollerStyle == .legacy,
             self.hasVerticalScroller,
             let scroller = self.verticalScroller,
@@ -53,12 +54,23 @@ final class BidiScrollView: NSScrollView {
         
         let scrollerThickness = scroller.thickness
         
-        if self.contentInsets != .zero, self.contentInsets.right != 0 {
-            self.contentView.contentInsets.left += scrollerThickness
-            self.contentView.contentInsets.right -= scrollerThickness
-            
-        } else {
-            self.contentView.frame.origin.x = scrollerThickness
+        switch self.scrollerDirection {
+            case .leftToRight:
+                if self.contentInsets != .zero, self.contentInsets.left != 0 {
+                    self.contentView.contentInsets.left -= scrollerThickness
+                    self.contentView.contentInsets.right += scrollerThickness
+                } else {
+                    self.contentView.frame.origin.x = 0
+                }
+            case .rightToLeft:
+                if self.contentInsets != .zero, self.contentInsets.right != 0 {
+                    self.contentView.contentInsets.left += scrollerThickness
+                    self.contentView.contentInsets.right -= scrollerThickness
+                } else {
+                    self.contentView.frame.origin.x = scrollerThickness
+                }
+            @unknown default:
+                assertionFailure()
         }
     }
 }

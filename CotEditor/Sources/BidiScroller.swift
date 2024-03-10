@@ -38,7 +38,7 @@ final class BidiScroller: NSScroller {
         
         set {
             var newValue = newValue
-            if self.scrollView?.scrollerDirection == .rightToLeft {
+            if self.scrollView?.isInconsistentScrollerDirection == true {
                 newValue.origin.x = self.originX
             }
             super.frame = newValue
@@ -66,7 +66,7 @@ final class BidiScroller: NSScroller {
         
         // workaround that the vertical scroller is cropped when .knobSlot is not shown (macOS 12)
         if self.isVertical,
-           self.scrollView?.scrollerDirection == .rightToLeft,
+           self.scrollView?.isInconsistentScrollerDirection == true,
            self.scrollerStyle == .overlay,
            part == .knob,
            partRect.width != 0,
@@ -102,22 +102,36 @@ final class BidiScroller: NSScroller {
         
         guard let scrollView = self.scrollView else { return 0 }
         
-        assert(scrollView.scrollerDirection != NSApp.userInterfaceLayoutDirection)
+        assert(scrollView.isInconsistentScrollerDirection)
         
         let inset = scrollView.contentInsets.left + scrollView.scrollerInsets.left
         
-        if !self.isVertical, self.scrollerStyle == .legacy {
-            // give a space for the vertical scroller
-            if scrollView.hasVerticalScroller,
-               let scroller = scrollView.verticalScroller,
-               !scroller.isHidden
-            {
-                return inset + scroller.thickness
-            } else {
+        switch (scrollView.scrollerDirection, self.isVertical) {
+            case (.leftToRight, true):
+                // move vertical scroller to the right side
+                return scrollView.frame.width - self.thickness
+                
+            case (.leftToRight, false):
                 return inset
-            }
-        } else {
-            return inset
+                
+            case (.rightToLeft, true):
+                return inset
+                
+            case (.rightToLeft, false):
+                // give a space for the vertical scroller
+                if self.scrollerStyle == .legacy,
+                   scrollView.hasVerticalScroller,
+                   let scroller = scrollView.verticalScroller,
+                   !scroller.isHidden
+                {
+                    return inset + scroller.thickness
+                } else {
+                    return inset
+                }
+                
+            @unknown default:
+                assertionFailure()
+                return inset
         }
     }
     
@@ -129,11 +143,15 @@ final class BidiScroller: NSScroller {
         
         guard
             self.isVertical,
-            self.scrollView?.scrollerDirection != NSApp.userInterfaceLayoutDirection
+            self.scrollView?.isInconsistentScrollerDirection == true
         else { return }
         
         let flip = NSAffineTransform()
         flip.translateX(by: self.rect(for: part).width, yBy: 0)
+        if part == .knob, self.userInterfaceLayoutDirection == .rightToLeft {
+            // add 1 px to adjust aesthetically
+            flip.translateX(by: 1, yBy: 0)
+        }
         flip.scaleX(by: -1, yBy: 1)
         flip.concat()
     }
