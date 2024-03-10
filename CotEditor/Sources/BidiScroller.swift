@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -48,14 +48,14 @@ final class BidiScroller: NSScroller {
     
     override func drawKnob() {
         
-        self.flipHorizontalCoordinatesInRightToLeftLayout(for: .knob)
+        self.flipHorizontalCoordinateIfNeeded(for: .knob)
         super.drawKnob()
     }
     
     
     override func drawKnobSlot(in slotRect: NSRect, highlight flag: Bool) {
         
-        self.flipHorizontalCoordinatesInRightToLeftLayout(for: .knobSlot)
+        self.flipHorizontalCoordinateIfNeeded(for: .knobSlot)
         super.drawKnobSlot(in: slotRect, highlight: flag)
     }
     
@@ -100,52 +100,41 @@ final class BidiScroller: NSScroller {
     /// X-origin of the scroller considering the border and the visibility of another scrollers.
     private var originX: CGFloat {
         
-        assert(self.scrollView?.scrollerDirection == .rightToLeft)
-        
         guard let scrollView = self.scrollView else { return 0 }
+        
+        assert(scrollView.scrollerDirection != NSApp.userInterfaceLayoutDirection)
         
         let inset = scrollView.contentInsets.left + scrollView.scrollerInsets.left
         
         if !self.isVertical, self.scrollerStyle == .legacy {
             // give a space for the vertical scroller
-            if scrollView.hasVerticalScroller, let scroller = scrollView.verticalScroller, !scroller.isHidden {
+            if scrollView.hasVerticalScroller,
+               let scroller = scrollView.verticalScroller,
+               !scroller.isHidden
+            {
                 return inset + scroller.thickness
+            } else {
+                return inset
             }
         } else {
-            return inset + scrollView.borderType.width
+            return inset
         }
-        
-        return inset
     }
     
     
-    /// Horizontally flips the drawing coordinate when the scroller direction is right-to-left.
+    /// Horizontally flips the drawing coordinate when the scroller direction is not equal to the UI layout direction .
     ///
     /// - Parameter part: The scroller part drawing in.
-    private func flipHorizontalCoordinatesInRightToLeftLayout(for part: NSScroller.Part) {
+    private func flipHorizontalCoordinateIfNeeded(for part: NSScroller.Part) {
         
-        guard self.isVertical, self.scrollView?.scrollerDirection == .rightToLeft else { return }
+        guard
+            self.isVertical,
+            self.scrollView?.scrollerDirection != NSApp.userInterfaceLayoutDirection
+        else { return }
         
         let flip = NSAffineTransform()
         flip.translateX(by: self.rect(for: part).width, yBy: 0)
         flip.scaleX(by: -1, yBy: 1)
         flip.concat()
-    }
-}
-
-
-
-private extension NSBorderType {
-    
-    /// Border width.
-    var width: CGFloat {
-        
-        switch self {
-            case .noBorder: 0
-            case .lineBorder: 1
-            case .bezelBorder: 1
-            case .grooveBorder: 2
-            @unknown default: 0
-        }
     }
 }
