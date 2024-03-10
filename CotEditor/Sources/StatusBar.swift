@@ -166,6 +166,7 @@ struct StatusBar: View {
     
     
     @State var model: Model
+    @State var donationManager: DonationManager = .shared
     
     @State private(set) var fileEncodings: [FileEncoding?] = []
     
@@ -175,6 +176,9 @@ struct StatusBar: View {
     var body: some View {
         
         HStack {
+            if self.donationManager.hasDonated {
+                CoffeeBadge()
+            }
             EditorCountView(result: self.model.countResult)
             
             Spacer()
@@ -391,6 +395,30 @@ private struct LineEndingPicker: NSViewRepresentable {
 }
 
 
+private struct CoffeeBadge: View {
+    
+    @AppStorage(.donationBadgeType) private var badgeType
+    
+    @State private var isMessagePresented = false
+    
+    
+    var body: some View {
+        
+        Button {
+            self.isMessagePresented.toggle()
+        } label: {
+            Image(systemName: self.badgeType.symbolName)
+                .fontWeight(.semibold)
+        }
+        .popover(isPresented: $isMessagePresented) {
+            Text("Thank you for your kind support!", tableName: "Document", comment: "message for users who made a donation")
+                .padding(.vertical, 8)
+                .padding(.horizontal)
+        }
+        .opacity(self.badgeType == .invisible ? 0 : 1)
+        .accessibilityHidden(true)
+    }
+}
 
 // MARK: - Preview
 

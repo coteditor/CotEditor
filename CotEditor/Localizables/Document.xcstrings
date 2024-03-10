@@ -4059,6 +4059,29 @@
         }
       }
     },
+    "Thank you for your kind support!" : {
+      "comment" : "message for users who made a donation",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Danke für deine nette Hilfe!"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thank you for your kind support!"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サポートありがとう!"
+          }
+        }
+      }
+    },
     "Toolbar.comment.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
