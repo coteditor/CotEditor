@@ -85,7 +85,7 @@ struct AppearanceSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 HStack(alignment: .firstTextBaseline) {
-                    Stepper(value: $lineHeight, in: 0.1...10, step: 0.1, format: .number, label: EmptyView.init)
+                    Stepper(value: $lineHeight, in: 0.1...10, step: 0.1, format: .number.precision(.fractionLength(1...2)), label: EmptyView.init)
                         .monospacedDigit()
                         .multilineTextAlignment(.trailing)
                     
