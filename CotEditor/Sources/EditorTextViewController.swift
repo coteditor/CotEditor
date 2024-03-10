@@ -93,39 +93,21 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         // observe text orientation for line number view
         self.orientationObserver = self.textView!.publisher(for: \.layoutOrientation, options: .initial)
             .sink { [weak self] orientation in
-                guard let self else { return assertionFailure() }
-                
-                self.stackView?.orientation = switch orientation {
+                self?.stackView?.orientation = switch orientation {
                     case .horizontal: .horizontal
                     case .vertical: .vertical
                     @unknown default: fatalError()
                 }
-                
-                self.lineNumberView?.orientation = orientation
+                self?.lineNumberView?.orientation = orientation
             }
         
         // let line number view position follow writing direction
         self.writingDirectionObserver = self.textView!.publisher(for: \.baseWritingDirection)
             .removeDuplicates()
-            .map { $0 == .rightToLeft }
-            .sink { [weak self] isRTL in
-                guard
-                    let stackView = self?.stackView,
-                    let lineNumberView = self?.lineNumberView
-                else { return assertionFailure() }
-                
-                // set scroller location
-                (self?.textView?.enclosingScrollView as? BidiScrollView)?.scrollerDirection = isRTL ? .rightToLeft : .leftToRight
-                
-                // set line number view location
-                let index = isRTL ? stackView.arrangedSubviews.endIndex - 1 : 0
-                
-                guard stackView.arrangedSubviews[safe: index] != lineNumberView else { return }
-                
-                stackView.removeArrangedSubview(lineNumberView)
-                stackView.insertArrangedSubview(lineNumberView, at: index)
-                stackView.needsLayout = true
-                stackView.layoutSubtreeIfNeeded()
+            .map { ($0 == .rightToLeft) ? NSUserInterfaceLayoutDirection.rightToLeft : .leftToRight }
+            .sink { [weak self] direction in
+                self?.stackView?.userInterfaceLayoutDirection = direction
+                (self?.textView?.enclosingScrollView as? BidiScrollView)?.scrollerDirection = direction
             }
         
         // toggle visibility of the separator of the line number view
