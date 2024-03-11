@@ -262,7 +262,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                     .map(\.string.isEmpty)
                     .removeDuplicates()
                     .receive(on: RunLoop.main)
-                    .assign(to: \.isWhitepaper, on: windowController)
+                    .assign(to: \.isWhitePaper, on: windowController)
             }
         }
         

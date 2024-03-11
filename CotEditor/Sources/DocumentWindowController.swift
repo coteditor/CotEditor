@@ -32,12 +32,12 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Public Properties
     
-    var isWhitepaper = false {
+    var isWhitePaper = false {
         
         didSet {
-            guard isWhitepaper || oldValue else { return }
+            guard isWhitePaper || oldValue else { return }
             
-            self.setDocumentEdited(!isWhitepaper)
+            self.setDocumentEdited(!isWhitePaper)
         }
     }
     
@@ -157,7 +157,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         self.window?.tab.accessoryView = dirtyFlag ? self.editedIndicator : nil
         
-        super.setDocumentEdited(self.isWhitepaper ? false : dirtyFlag)
+        super.setDocumentEdited(self.isWhitePaper ? false : dirtyFlag)
     }
     
     
