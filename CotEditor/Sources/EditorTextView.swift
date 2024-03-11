@@ -187,13 +187,13 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.tabWidth = defaults[.tabWidth]
         layoutManager.tabWidth = self.tabWidth
         
-        textContainer.isHangingIndentEnabled = defaults[.enablesHangingIndent]
-        textContainer.hangingIndentWidth = defaults[.hangingIndentWidth]
-        layoutManager.showsIndentGuides = defaults[.showIndentGuides]
-        
         // setup behaviors
         self.isAutomaticTabExpansionEnabled = defaults[.autoExpandTab]
         self.isAutomaticIndentEnabled = defaults[.autoIndent]
+        
+        layoutManager.showsIndentGuides = defaults[.showIndentGuides]
+        textContainer.isHangingIndentEnabled = defaults[.enablesHangingIndent]
+        textContainer.hangingIndentWidth = defaults[.hangingIndentWidth]
         
         // observe changes in defaults
         self.defaultsObservers = [
@@ -1255,7 +1255,14 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.usesAntialias = defaults[.antialias(for: type)]
         self.typingAttributes[.kern] = (type == .monospaced) ? 0 : nil
         
-        self.observeFontDefaults(for: type)
+        self.fontObservers = [
+            defaults.publisher(for: .fontKey(for: type))
+                .sink { [unowned self] _ in self.font = UserDefaults.standard.font(for: type) },
+            defaults.publisher(for: .ligature(for: type))
+                .sink { [unowned self] in self.ligature = $0 ? .standard : .none },
+            defaults.publisher(for: .antialias(for: type))
+                .sink { [unowned self] in self.usesAntialias = $0 },
+        ]
     }
     
     
@@ -1366,24 +1373,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.isAutomaticSpellingCorrectionEnabled = mode.automaticSpellingCorrection
         
         self.isAutomaticCompletionEnabled = mode.automaticCompletion && !mode.completionWordTypes.isEmpty
-    }
-    
-    
-    /// Starts observing the update of the user font settings of the given type.
-    ///
-    /// - Parameter type: The type of the font to observe.
-    private func observeFontDefaults(for type: FontType) {
-        
-        let defaults = UserDefaults.standard
-        
-        self.fontObservers = [
-            defaults.publisher(for: .fontKey(for: type))
-                .sink { [unowned self] _ in self.font = UserDefaults.standard.font(for: type) },
-            defaults.publisher(for: .antialias(for: type))
-                .sink { [unowned self] in self.usesAntialias = $0 },
-            defaults.publisher(for: .ligature(for: type))
-                .sink { [unowned self] in self.ligature = $0 ? .standard : .none },
-        ]
     }
     
     
