@@ -1487,7 +1487,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
             // just insert the absolute path if no specific setting for the file type was found
             // -> This is the default behavior of NSTextView by file dropping.
             if !string.isEmpty {
-                string += "\n"
+                string += self.lineEnding.string
             }
             
             string += url.isFileURL ? url.path : url.absoluteString
