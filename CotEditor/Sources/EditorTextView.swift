@@ -230,16 +230,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
                 .filter { !$0 }
                 .sink { [unowned self] _ in self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange) },
         ]
-        
-        // workaround the issue that indicators display even the application is inactive
-        // (2023-08 macOS 14 beta 5, FB12968177)
-        if #available(macOS 14, *) {
-            self.keyStateObserver = Publishers.Merge3(
-                NotificationCenter.default.publisher(for: NSApplication.didResignActiveNotification, object: NSApp),
-                NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification, object: NSApp),
-                NotificationCenter.default.publisher(for: NSWindow.didBecomeKeyNotification))
-            .sink { [unowned self] _ in self.invalidateInsertionPointDisplayMode(isFirstResponder: self.window?.firstResponder == self) }
-        }
     }
     
     
@@ -320,8 +310,8 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         // post notification about becoming the first responder
         NotificationCenter.default.post(name: EditorTextView.didBecomeFirstResponderNotification, object: self)
         
-        if #available(macOS 14, *) {
-            self.invalidateInsertionPointDisplayMode(isFirstResponder: true)
+        defer {
+            self.invalidateInsertionIndicatorDisplayMode()
         }
         
         return true
@@ -332,8 +322,8 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         guard super.resignFirstResponder() else { return false }
         
-        if #available(macOS 14, *) {
-            self.invalidateInsertionPointDisplayMode(isFirstResponder: false)
+        defer {
+            self.invalidateInsertionIndicatorDisplayMode()
         }
         
         return true
@@ -356,6 +346,16 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
                 self?.enclosingScrollView?.drawsBackground = $0
                 self?.lineHighlightColor = self?.theme?.lineHighlightColor(forOpaqueBackground: $0)
             }
+        
+        
+        // observe key window state for insertion points drawing
+        if #available(macOS 14, *), let window {
+            self.keyStateObserver = Publishers.Merge(
+                NotificationCenter.default.publisher(for: NSWindow.didBecomeKeyNotification, object: window),
+                NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification, object: window)
+            )
+            .sink { [unowned self] _ in self.invalidateInsertionIndicatorDisplayMode() }
+        }
     }
     
     

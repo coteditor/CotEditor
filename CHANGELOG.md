@@ -3,6 +3,10 @@
 4.8.0-beta.3 (unreleased)
 --------------------------
 
+### Fixes
+
+- [beta] Fix an issue on macOS 14 that multiple cursors in editors were not drawn when the editor becomes active again.
+
 
 
 4.8.0-beta.2 (635)

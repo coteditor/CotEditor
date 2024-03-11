@@ -397,7 +397,7 @@ extension MultiCursorEditing {
         
         // reuse existing indicators
         var indicators = ArraySlice(self.insertionIndicators)  // slice for popFirst()
-        let isActive = (self.window?.firstResponder == self && NSApp.isActive)
+        let shouldDraw = self.shouldDrawInsertionPoints
         
         self.insertionIndicators = insertionLocations
             .compactMap { layoutManager.insertionPointRect(at: $0) }  // ignore split cursors
@@ -409,7 +409,7 @@ extension MultiCursorEditing {
                 } else {
                     let indicator = NSTextInsertionIndicator(frame: rect)
                     indicator.color = self.insertionPointColor
-                    indicator.displayMode = isActive ? .automatic : .hidden
+                    indicator.displayMode = shouldDraw ? .automatic : .hidden
                     self.addSubview(indicator)
                     return indicator
                 }
@@ -422,23 +422,27 @@ extension MultiCursorEditing {
     
     /// Workarounds the issue that indicators display even the editor is inactive (2023-08 macOS 14, FB12964703 and FB12968177)
     ///
-    /// This method should be Invoked when the receiver is changed whether it is the key editor receiving text input in the system.
-    ///
-    /// - Parameter isFirstResponder: Whether the receiver is the first responder in the window.
-    @available(macOS 14, *)
-    func invalidateInsertionPointDisplayMode(isFirstResponder: Bool) {
+    /// This method should be Invoked when changing the state whether the receiver is the key editor receiving text input in the system.
+    func invalidateInsertionIndicatorDisplayMode() {
         
-        guard !self.insertionIndicators.isEmpty else { return }
+        guard #available(macOS 14, *), !self.insertionIndicators.isEmpty else { return }
         
-        let isActive = NSApp.isActive && self.window == NSApp.keyWindow && isFirstResponder
+        let shouldDraw = self.shouldDrawInsertionPoints
         for indicator in self.insertionIndicators {
-            indicator.displayMode = isActive ? .automatic : .hidden
+            indicator.displayMode = shouldDraw ? .automatic : .hidden
         }
     }
 }
 
 
 extension NSTextView {
+    
+    /// Whether the editor should draw insertion points.
+    fileprivate final var shouldDrawInsertionPoints: Bool {
+        
+        NSApp.isActive && self.window?.isKeyWindow == true && self.window?.firstResponder == self && self.isEditable
+    }
+    
     
     /// Finds the location for the insertion point where one (visual) line above to the given insertion point location.
     ///
