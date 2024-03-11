@@ -34,7 +34,7 @@ extension NSAppleEventDescriptor: @unchecked Sendable { }
 extension NSScriptObjectSpecifier: @unchecked Sendable { }
 
 
-final class ScriptManager: NSObject, NSFilePresenter {
+final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     
     // MARK: Public Properties
     

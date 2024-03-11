@@ -38,7 +38,7 @@ extension NSAttributedString.Key {
 
 // MARK: -
 
-final class SyntaxParser {
+final class SyntaxParser: @unchecked Sendable {
     
     // MARK: Public Properties
     

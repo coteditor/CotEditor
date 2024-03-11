@@ -25,6 +25,9 @@
 
 import Foundation
 
+extension NSUserUnixTask: @unchecked Sendable { }
+
+
 actor UserUnixTask {
     
     // MARK: Private Properties
