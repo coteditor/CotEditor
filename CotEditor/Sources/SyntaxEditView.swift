@@ -180,7 +180,7 @@ struct SyntaxEditView: View {
     }
     
     
-    @ViewBuilder private var detailView: some View {
+    @MainActor @ViewBuilder private var detailView: some View {
         
         switch self.pane {
             case .keywords:
@@ -220,7 +220,7 @@ struct SyntaxEditView: View {
     // MARK: Private Methods
     
     /// Submits the syntax if it is valid.
-    private func submit() {
+    @MainActor private func submit() {
         
         // syntax name validation
         self.name = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -249,7 +249,7 @@ struct SyntaxEditView: View {
     
     
     /// Restores the current settings in editor to the user default.
-    private func restore() {
+    @MainActor private func restore() {
         
         guard
             self.isBundled,

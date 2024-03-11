@@ -59,7 +59,7 @@ struct FindPanelResultView: View {
     
     typealias Match = TextFindAllResult.Match
     
-    final class Model: ObservableObject {
+    @MainActor final class Model: ObservableObject {
         
         @Published var matches: [Match] = []
         @Published var findString: String = ""
@@ -153,7 +153,7 @@ struct FindPanelResultView: View {
     }
     
     
-    private var message: String {
+    @MainActor private var message: String {
         
         let documentName = self.model.target?.documentName ?? "Unknown"  // This should never be nil.
         

@@ -55,6 +55,7 @@ struct ValueRange<Value> {
 
 extension ValueRange: Equatable where Value: Equatable { }
 extension ValueRange: Hashable where Value: Hashable { }
+extension ValueRange: Sendable where Value: Sendable { }
 
 extension ValueRange: Identifiable where Self: Hashable {
     
