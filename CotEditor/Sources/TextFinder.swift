@@ -82,7 +82,6 @@ enum TextFindResult {
 }
 
 
-
 struct TextFindAllResult {
     
     struct Match: Identifiable, @unchecked Sendable {
@@ -103,7 +102,7 @@ struct TextFindAllResult {
 
 // MARK: -
 
-final class TextFinder {
+@MainActor final class TextFinder {
     
     enum Action: Int {
         
@@ -136,7 +135,7 @@ final class TextFinder {
     static let didFindNotification = Notification.Name("didFindNotification")
     static let didFindAllNotification = Notification.Name("didFindAllNotification")
     
-    @MainActor weak var client: NSTextView!
+    weak var client: NSTextView!
     
     private(set) var findResult: TextFindResult?
     private(set) var findAllResult: TextFindAllResult?
@@ -174,7 +173,7 @@ final class TextFinder {
     ///
     /// - Parameter action: The sender’s tag.
     /// - Returns: `true` if the operation is valid; otherwise `false`.
-    @MainActor func validateAction(_ action: Action) -> Bool {
+    func validateAction(_ action: Action) -> Bool {
         
         switch action {
             case .showFindInterface,
@@ -212,7 +211,7 @@ final class TextFinder {
     /// Performs the specified text finding action.
     ///
     /// - Parameter action: The text finding action.
-    @MainActor func performAction(_ action: Action) {
+    func performAction(_ action: Action) {
         
         guard self.validateAction(action) else { return }
         
@@ -246,7 +245,7 @@ final class TextFinder {
                  .hideFindInterface,
                  .showReplaceInterface,
                  .hideReplaceInterface:
-                // not supported in TextFinder
+                // not supported by TextFinder
                 assertionFailure()
                 
             case .findAll:
@@ -271,7 +270,7 @@ final class TextFinder {
     // MARK: Private Actions
     
     /// Finds the next matched string.
-    @MainActor private func nextMatch() {
+    private func nextMatch() {
         
         self.findTask?.cancel()
         self.findTask = Task(priority: .userInitiated) {
@@ -281,7 +280,7 @@ final class TextFinder {
     
     
     /// Finds the previous matched string.
-    @MainActor private func previousMatch() {
+    private func previousMatch() {
         
         self.findTask?.cancel()
         self.findTask = Task(priority: .userInitiated) {
@@ -291,7 +290,7 @@ final class TextFinder {
     
     
     /// Selects all matched strings.
-    @MainActor private func selectAll() {
+    private func selectAll() {
         
         guard let textFind = self.prepareTextFind() else { return }
         guard let matchedRanges = try? textFind.matches else { return }
@@ -304,7 +303,7 @@ final class TextFinder {
     
     
     /// Finds all matched strings and shows results in a table.
-    @MainActor private func findAll() {
+    private func findAll() {
         
         Task {
             await self.findAll(showsList: true, actionName: String(localized: "Find All", table: "TextFind"))
@@ -313,7 +312,7 @@ final class TextFinder {
     
     
     /// Highlights all matched strings.
-    @MainActor private func highlight() {
+    private func highlight() {
         
         Task {
             await self.findAll(showsList: false, actionName: String(localized: "Highlight All", table: "TextFind"))
@@ -322,14 +321,14 @@ final class TextFinder {
     
     
     /// Removes all of current highlights in the frontmost textView.
-    @MainActor private func unhighlight() {
+    private func unhighlight() {
         
         self.client.unhighlight(nil)
     }
     
     
     /// Replaces matched string in selection with replacementString.
-    @MainActor private func replace() {
+    private func replace() {
         
         if self.replaceSelected() {
             self.client.centerSelectionInVisibleArea(self)
@@ -342,7 +341,7 @@ final class TextFinder {
     
     
     /// Replaces matched string with replacementString and selects the next match.
-    @MainActor private func replaceAndFind() {
+    private func replaceAndFind() {
         
         self.replaceSelected()
         
@@ -356,7 +355,7 @@ final class TextFinder {
     
     
     /// Replaces all matched strings with given string.
-    @MainActor private func replaceAll() {
+    private func replaceAll() {
         
         Task {
             await self.replaceAll()
@@ -365,7 +364,7 @@ final class TextFinder {
     
     
     /// Sets the selected string to find field.
-    @MainActor private func setSearchString() {
+    private func setSearchString() {
         
         TextFinderSettings.shared.findString = self.client.selectedString
         TextFinderSettings.shared.usesRegularExpression = false  // auto-disable regex
@@ -373,7 +372,7 @@ final class TextFinder {
     
     
     /// Sets the selected string to replace field.
-    @MainActor private func setReplaceString() {
+    private func setReplaceString() {
         
         TextFinderSettings.shared.replacementString = self.client.selectedString
     }
@@ -386,7 +385,7 @@ final class TextFinder {
     ///
     /// - Parameter presentsError: Whether shows error dialog on the find panel.
     /// - Returns: A TextFind object with the current state, or `nil` if not ready.
-    @MainActor private func prepareTextFind(presentsError: Bool = true) -> TextFind? {
+    private func prepareTextFind(presentsError: Bool = true) -> TextFind? {
         
         let client = self.client!
         
@@ -433,7 +432,7 @@ final class TextFinder {
     ///   - forward: The flag whether finds forward or backward.
     ///   - isIncremental: Whether is the incremental search.
     /// - Throws: `CancellationError`
-    @MainActor private func find(forward: Bool, isIncremental: Bool = false) async throws {
+    private func find(forward: Bool, isIncremental: Bool = false) async throws {
         
         assert(forward || !isIncremental)
         
@@ -486,7 +485,7 @@ final class TextFinder {
     
     /// Replaces a matched string in selection with replacementString.
     @discardableResult
-    @MainActor private func replaceSelected() -> Bool {
+    private func replaceSelected() -> Bool {
         
         guard let textFind = self.prepareTextFind() else { return false }
         
@@ -507,7 +506,7 @@ final class TextFinder {
     /// - Parameters:
     ///   - showsList: Whether shows the result view when finished.
     ///   - actionName: The name of the action to display in the progress sheet.
-    @MainActor private func findAll(showsList: Bool, actionName: String) async {
+    private func findAll(showsList: Bool, actionName: String) async {
         
         guard let textFind = self.prepareTextFind() else { return }
         
@@ -595,7 +594,7 @@ final class TextFinder {
     
     
     /// Replaces all matched strings and applies the result to views.
-    @MainActor private func replaceAll() async {
+    private func replaceAll() async {
         
         guard let textFind = self.prepareTextFind() else { return }
         
@@ -646,7 +645,7 @@ final class TextFinder {
     ///
     /// - Parameters:
     ///   - result: The result of the process.
-    @MainActor private func notify(result: TextFindResult) {
+    private func notify(result: TextFindResult) {
         
         self.findResult = result
         NotificationCenter.default.post(name: TextFinder.didFindNotification, object: self)
@@ -667,9 +666,6 @@ extension NSTextView {
     }
 }
 
-
-
-// MARK: -
 
 private final class LineCounter: LineRangeCacheable, @unchecked Sendable {
     
