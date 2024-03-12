@@ -57,13 +57,14 @@ final class DocumentAnalyzer {
     }
     
     
-    deinit {
-        self.task?.cancel()
-    }
-    
-    
     
     // MARK: Public Methods
+    
+    /// Cancels all remaining tasks.
+    func cancel() {
+        
+        self.task?.cancel()
+    }
     
     /// Updates editor info (only if really needed).
     ///
@@ -91,7 +92,7 @@ final class DocumentAnalyzer {
         let delay: Duration = .milliseconds(self.needsCountWholeText ? 10 : 200)
         
         self.task?.cancel()
-        self.task = Task { [weak self, weak textView] in
+        self.task = Task { [weak textView] in
             try await Task.sleep(for: delay, tolerance: .milliseconds(10))  // debounce
             
             guard let textView else { return }
@@ -104,7 +105,7 @@ final class DocumentAnalyzer {
             try Task.checkCancellation()
             
             // selectedRanges can be empty when the document is already closed
-            guard !selectedRanges.isEmpty, let self else { return }
+            guard !selectedRanges.isEmpty else { return }
             
             let countsWholeText = self.needsCountWholeText
             let counter = EditorCounter(string: string, selectedRanges: selectedRanges, requiredInfo: self.requiredInfoTypes, countsWholeText: countsWholeText)
