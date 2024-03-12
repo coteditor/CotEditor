@@ -46,11 +46,6 @@ final class URLDetector: @unchecked Sendable {
     }
     
     
-    deinit {
-        self.task?.cancel()
-    }
-    
-    
     // MARK: Public Methods
     
     /// Whether the auto URL detection is enabled.
@@ -71,6 +66,13 @@ final class URLDetector: @unchecked Sendable {
                 self.textStorage.removeAttribute(.link, range: self.textStorage.range)
             }
         }
+    }
+    
+    
+    /// Cancels the current detection task, if any exists.
+    func cancel() {
+        
+        self.task?.cancel()
     }
     
     
