@@ -48,13 +48,14 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     private lazy var editedIndicator: NSView = {
         
-        let dotView = DotView()
-        dotView.color = .tertiaryLabelColor
-        dotView.toolTip = String(localized: "Document has unsaved changes",
-                                 table: "Document",
-                                 comment: "tooltip for the “edited” indicator in the window tab")
-        dotView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        return dotView
+        let dotView = Circle()
+            .fill(.tertiary)
+            .frame(width: 4, height: 4)
+            .padding(8)
+            .help(String(localized: "Document has unsaved changes",
+                         table: "Document",
+                         comment: "tooltip for the “edited” indicator in the window tab"))
+        return NSHostingView(rootView: dotView)
     }()
     
     private var opacityObserver: AnyCancellable?
