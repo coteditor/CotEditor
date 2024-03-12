@@ -35,26 +35,12 @@ extension NSAttributedString.Key {
 }
 
 
-
-// MARK: -
-
 final class SyntaxParser: @unchecked Sendable {
     
     // MARK: Public Properties
     
     private(set) var name: String
-    
-    private(set) var syntax: Syntax {
-        
-        willSet {
-            self.outlineParseTask?.cancel()
-            self.highlightParseTask?.cancel()
-        }
-        didSet {
-            self.outlineExtractors = syntax.outlineExtractors
-            self.highlightParser = syntax.highlightParser
-        }
-    }
+    private(set) var syntax: Syntax
     
     @Published private(set) var outlineItems: [OutlineItem]?
     
@@ -68,6 +54,7 @@ final class SyntaxParser: @unchecked Sendable {
     
     private var outlineParseTask: Task<Void, any Error>?
     private var highlightParseTask: Task<Void, any Error>?
+    private var textEditingObservationTask: Task<Void, any Error>?
     private var isHighlighting = false
     
     private var textEditingObserver: AnyCancellable?
@@ -90,13 +77,25 @@ final class SyntaxParser: @unchecked Sendable {
     }
     
     
-    deinit {
+    /// Cancels all remaining tasks.
+    func cancel() {
+        
         self.outlineParseTask?.cancel()
         self.highlightParseTask?.cancel()
     }
     
     
+    /// Updates the syntax definition for parsing.
+    ///
+    /// - Parameters:
+    ///   - syntax: The syntax.
+    ///   - name: The name of the syntax.
     func update(syntax: Syntax, name: String) {
+        
+        self.cancel()
+        
+        self.outlineExtractors = syntax.outlineExtractors
+        self.highlightParser = syntax.highlightParser
         
         self.syntax = syntax
         self.name = name
@@ -126,8 +125,8 @@ extension SyntaxParser {
         
         let extractors = self.outlineExtractors
         let string = self.textStorage.string.immutable
-        self.outlineParseTask = Task.detached(priority: .utility) { [weak self] in
-            self?.outlineItems = try await withThrowingTaskGroup(of: [OutlineItem].self) { group in
+        self.outlineParseTask = Task.detached(priority: .utility) {
+            self.outlineItems = try await withThrowingTaskGroup(of: [OutlineItem].self) { group in
                 for extractor in extractors {
                     group.addTask { try extractor.items(in: string, range: string.range) }
                 }
@@ -235,15 +234,13 @@ extension SyntaxParser {
         let parser = self.highlightParser
         
         self.highlightParseTask?.cancel()
-        self.highlightParseTask = Task.detached(priority: .userInitiated) { [weak self] in
+        self.highlightParseTask = Task.detached(priority: .userInitiated) {
             defer {
-                self?.isHighlighting = false
+                self.isHighlighting = false
             }
             let highlights = try await parser.parse(string: string, range: range)
             
-            try Task.checkCancellation()
-            
-            await self?.apply(highlights: highlights, range: range)
+            await self.apply(highlights: highlights, range: range)
         }
         
         // make large parse cancellable

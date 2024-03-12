@@ -131,6 +131,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     
     deinit {
+        self.syntaxParser.cancel()
         self.urlDetector.cancel()
     }
     
