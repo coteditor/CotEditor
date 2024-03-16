@@ -25,19 +25,19 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 
 <h3>Security authorization</h3>
-<p>In macOS, user authorization is required to control CotEditor from other applications in which <code>cot</code> command is used. The authorization is normally done via the dialog appeared when using the <code>cot</code> command for the first time. However, in some cases, you may need to authorize it manually from System Settings &gt; privacy &amp; Security &gt; Automation. Select the checkbox for <strong>CotEditor</strong> (and also <strong>System Events</strong> for <code>--wait</code> option) under your client application, such as Terminal.</p>
+<p>In macOS, user authorization is required to control CotEditor from other applications in which <code>cot</code> command is used. The authorization is normally done by the dialog appeared when using the <code>cot</code> command for the first time. However, in some cases, you may need to authorize it manually from System Settings &gt; privacy &amp; Security &gt; Automation. Select the checkbox for <strong>CotEditor</strong> (and also <strong>System Events</strong> for <code>--wait</code> option) under your client application, such as Terminal.</p>
 
 
 <h3>Installation of Python 3</h3>
 <p>The cot command is implemented in Python 3. However, because Python has no longer been bundled into the system since macOS 12.3, you need to install <code>python3</code> manually for the cot command.</p>
-<p>The developer tools provided by Apple include <code>python3</code>. Run the following line in Terminal to install Apple’s Command Line Developer Tools. Obviously, any <code>python3</code> installed via other methods can be used as well.</p>
+<p>The developer tools provided by Apple include <code>python3</code>. Run the following line in Terminal to install Apple’s Command Line Developer Tools. Obviously, any <code>python3</code> installed by other methods can be used as well.</p>
 
 <pre class="source"><code>xcode-select --install</code></pre>
 
 
 <h2>Uninstall cot command</h2>
 
-<p>To uninstall <code>cot</code> command at the recommended location above via Terminal is like the following:</p>
+<p>To uninstall <code>cot</code> command at the recommended location above in Terminal is like the following:</p>
 <pre class="source"><code>unlink /usr/local/bin/cot</code></pre>
 
 
