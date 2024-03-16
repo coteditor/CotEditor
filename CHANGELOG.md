@@ -3,6 +3,11 @@
 4.8.0-beta.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- [non-AppStore ver.] Update Sparkle from 2.5.2 to 2.6.0.
+
+
 ### Fixes
 
 - [beta] Fix an issue on macOS 14 that multiple cursors in editors were not drawn when the editor becomes active again.
