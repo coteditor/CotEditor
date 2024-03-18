@@ -71,8 +71,7 @@ struct LiveTextInsertionView: View {
                 }
             }
             .padding(.top, 10)
-            .scenePadding(.horizontal)
-            .scenePadding(.bottom)
+            .scenePadding([.horizontal, .bottom])
         }
         .task {
             do {

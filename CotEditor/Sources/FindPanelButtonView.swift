@@ -82,8 +82,7 @@ struct FindPanelButtonView: View {
         }
         .responderChain(to: self.firstResponder)
         .padding(.top, 8)
-        .scenePadding(.horizontal)
-        .scenePadding(.bottom)
+        .scenePadding([.horizontal, .bottom])
     }
     
     

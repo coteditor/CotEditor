@@ -35,8 +35,7 @@ struct FindPanelMainView: View {
             FindPanelFieldView()
             FindPanelOptionView()
         }
-        .scenePadding(.top)
-        .scenePadding(.horizontal)
+        .scenePadding([.top, .horizontal])
         .padding(.bottom, 8)
     }
 }

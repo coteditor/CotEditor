@@ -52,8 +52,7 @@ struct SnippetsSettingsView: View {
             }
         }
         .padding(.top, 10)
-        .scenePadding(.horizontal)
-        .scenePadding(.bottom)
+        .scenePadding([.horizontal, .bottom])
         .frame(width: 600)
     }
 }
