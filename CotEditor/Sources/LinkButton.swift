@@ -36,10 +36,10 @@ struct LinkButton: View {
             Link(destination: url) {
                 Image(systemName: "arrow.forward")
                     .symbolVariant(.circle)
-                    .accessibilityLabel(String(localized: "Jump to URL", table: "LinkButton"))
+                    .accessibilityLabel(String(localized: "Jump to URL", table: "LinkButton", comment: "accessibility label for link button"))
             }
-            .buttonStyle(.borderless)
-            .help(String(localized: "Jump to URL", table: "LinkButton", comment: "tooltip for link button in URL field"))
+            .buttonStyle(.plain)
+            .help(self.url)
         }
     }
 }

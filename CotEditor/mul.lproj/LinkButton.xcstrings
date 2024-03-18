@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Jump to URL" : {
-      "comment" : "tooltip for link button in URL field",
+      "comment" : "accessibility label for link button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

@@ -188,6 +188,7 @@ private struct ThemeMetadataView: View {
                 self.itemView(String(localized: "URL:", table: "ThemeEditor"),
                               text: $metadata.distributionURL ?? "")
                 LinkButton(url: self.metadata.distributionURL ?? "")
+                    .foregroundStyle(.secondary)
             }
             GridRow {
                 self.itemView(String(localized: "License:", table: "ThemeEditor"),

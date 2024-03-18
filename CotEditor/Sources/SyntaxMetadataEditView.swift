@@ -44,6 +44,7 @@ struct SyntaxMetadataEditView: View {
                     .inset(.trailing, 32)
                     .overlay(alignment: .trailing) {
                         LinkButton(url: self.metadata.distributionURL ?? "")
+                            .foregroundStyle(.secondary)
                             .padding(.trailing, 4)
                     }
             }
