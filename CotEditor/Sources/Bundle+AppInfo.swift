@@ -47,6 +47,12 @@ extension Bundle {
         self.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
     }
     
+    /// The human-readable copyright.
+    final var copyright: String {
+        
+        self.object(forInfoDictionaryKey: "NSHumanReadableCopyright" as String) as! String
+    }
+    
     
     /// The help book name.
     final var helpBookName: String? {

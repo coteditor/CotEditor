@@ -25,6 +25,7 @@
 //
 
 import AppKit
+import SwiftUI
 import Combine
 import UniformTypeIdentifiers
 import OSLog
@@ -71,6 +72,7 @@ private enum BundleIdentifier {
     
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
+    private lazy var aboutPanel = NSPanel(contentViewController: NSHostingController(rootView: AboutView()))
     private lazy var settingsWindowController = SettingsWindowController()
     private lazy var acknowledgmentsWindowController = WebDocumentWindowController(fileURL: Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")!)
     
@@ -318,26 +320,19 @@ private enum BundleIdentifier {
     }
     
     
-    /// Shows the standard about panel.
+    /// Shows the about panel.
     @IBAction func showAboutPanel(_ sender: Any?) {
         
-        var options: [NSApplication.AboutPanelOptionKey: Any] = [:]
+        // initialize panel settings
+        if !self.aboutPanel.styleMask.contains(.utilityWindow) {
+            self.aboutPanel.styleMask = [.closable, .titled, .fullSizeContentView, .utilityWindow]
+            self.aboutPanel.titleVisibility = .hidden
+            self.aboutPanel.titlebarAppearsTransparent = true
+            self.aboutPanel.hidesOnDeactivate = false
+            self.aboutPanel.becomesKeyOnlyIfNeeded = true
+        }
         
-        #if !SPARKLE  // Remove Sparkle from 3rd party code list
-        options[.credits] = {
-            guard
-                let url = Bundle.main.url(forResource: "Credits", withExtension: "html"),
-                var html = try? String(contentsOf: url),
-                let range = html.range(of: "Sparkle")
-            else { assertionFailure(); return nil }
-            
-            html.removeSubrange(html.lineRange(for: range))
-            
-            return NSAttributedString(html: Data(html.utf8), baseURL: url, documentAttributes: nil)
-        }()
-        #endif
-        
-        NSApp.orderFrontStandardAboutPanel(options: options)
+        self.aboutPanel.makeKeyAndOrderFront(sender)
     }
     
     

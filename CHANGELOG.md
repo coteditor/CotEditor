@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Update “About CotEditor” window.
 - [non-AppStore ver.] Update Sparkle from 2.5.2 to 2.6.0.
 - [dev] Update Yams from 5.0.6 to 5.1.0.
 

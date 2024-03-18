@@ -1,0 +1,79 @@
+{
+    "project" : [
+        {
+            "name": "1024jp",
+            "url": "https://github.com/1024jp"
+        }
+    ],
+    "original" : {
+        "name": "nakamuxu",
+        "url": "https://www.aynimac.com"
+    },
+    "localization" : {
+        "ja" : [
+            {
+                "name" : "1024jp"
+            }
+        ],
+        "de" : [
+            {
+                "name" : "1024jp"
+            }
+        ],
+        "zh-Hans" : [
+            {
+                "name" : "Wei Wang (onevcat)",
+                "url" : "https://onevcat.com"
+            }
+        ],
+        "zh-hant" : [
+            {
+                "name" : "Shiki Suen",
+                "url" : "https://shiki.inmu.pro/about/"
+            },
+            {
+                "name" : "Wei Wang (onevcat)",
+                "url" : "https://onevcat.com"
+            }
+        ],
+        "cs" : [
+            {
+                "name" : "Martin Růžička",
+                "url" : "https://github.com/martinr-kytka"
+            }
+        ],
+        "fr" : [
+            {
+                "name" : "Aurélien Roy",
+                "url" : "https://github.com/aurelien-roy"
+            }
+        ],
+        "it" : [
+            {
+                "name" : "Agostino Maiello",
+                "url" : "https://github.com/AgostinoM"
+            }
+        ],
+        "pt" : [
+            {
+                "name" : "Thiago Holanda",
+                "url" : "https://github.com/unnamedd"
+            },
+            {
+                "name" : "BR Lingo"
+            }
+        ],
+        "es" : [
+            {
+                "name" : "Agustín Borrego",
+                "url" : "https://github.com/techagus"
+            }
+        ],
+        "tr" : [
+            {
+                "name" : "Emir SARI",
+                "url" : "https://github.com/bitigchi"
+            }
+        ]
+    }
+}
