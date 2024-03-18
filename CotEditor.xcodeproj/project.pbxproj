@@ -1364,6 +1364,8 @@
 		2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppInfo.swift"; sourceTree = "<group>"; };
 		2AFFA7C22B16E93B005652CD /* FormatSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatSettingsView.swift; sourceTree = "<group>"; };
 		2AFFA7C52B170097005652CD /* EditSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsView.swift; sourceTree = "<group>"; };
+		3E99C63F2BA8CF3000FACE43 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = nl; path = nl.lproj/Credits.html; sourceTree = "<group>"; };
+		3E99C6402BA8CF3000FACE43 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = nl; path = nl.lproj/Acknowledgments.html; sourceTree = "<group>"; };
 		5454B928243C81C6009275BC /* CodeSigning-AdHoc.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "CodeSigning-AdHoc.xcconfig"; sourceTree = "<group>"; };
 		5454B929243C81C7009275BC /* CodeSigning-Default.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "CodeSigning-Default.xcconfig"; sourceTree = "<group>"; };
 		5454B92A243C81C7009275BC /* CodeSigning.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CodeSigning.xcconfig; sourceTree = "<group>"; };
@@ -2623,6 +2625,7 @@
 				tr,
 				es,
 				cs,
+				nl,
 			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* CotEditor */;
 			packageReferences = (
@@ -3727,6 +3730,7 @@
 				57ED31751FFD892900F16CAD /* pt */,
 				99A863102A753A9900EEEE75 /* es */,
 				08C28FAA279CBE300016693E /* tr */,
+				3E99C63F2BA8CF3000FACE43 /* nl */,
 			);
 			name = Credits.html;
 			sourceTree = "<group>";
@@ -3743,6 +3747,7 @@
 				57ED31761FFD892900F16CAD /* pt */,
 				99A863112A753AB300EEEE75 /* es */,
 				08C28FAB279CBE300016693E /* tr */,
+				3E99C6402BA8CF3000FACE43 /* nl */,
 			);
 			name = Acknowledgments.html;
 			sourceTree = "<group>";
