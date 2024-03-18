@@ -74,7 +74,6 @@ private enum BundleIdentifier {
     
     private lazy var aboutPanel = NSPanel(contentViewController: NSHostingController(rootView: AboutView()))
     private lazy var settingsWindowController = SettingsWindowController()
-    private lazy var acknowledgmentsWindowController = WebDocumentWindowController(fileURL: Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")!)
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxesMenu: NSMenu?
@@ -361,13 +360,6 @@ private enum BundleIdentifier {
     @IBAction func showConsolePanel(_ sender: Any?) {
         
         ConsolePanelController.shared.showWindow(sender)
-    }
-    
-    
-    /// Shows acknowledgments window.
-    @IBAction func showAcknowledgments(_ sender: Any?) {
-        
-        self.acknowledgmentsWindowController.showWindow(sender)
     }
     
     

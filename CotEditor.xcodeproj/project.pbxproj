@@ -425,8 +425,6 @@
 		2A78BFA51D1B02ED00A583D2 /* WindowSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA31D1B02ED00A583D2 /* WindowSettingsView.swift */; };
 		2A78BFA71D1B05FB00A583D2 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA61D1B05FB00A583D2 /* GeneralSettingsView.swift */; };
 		2A78BFA81D1B05FB00A583D2 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA61D1B05FB00A583D2 /* GeneralSettingsView.swift */; };
-		2A78BFB01D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */; };
-		2A78BFB11D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */; };
 		2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */; };
 		2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
 		2A78BFBD1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
@@ -448,8 +446,6 @@
 		2A80BE8D27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
 		2A80BE8E27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
 		2A80BE9227FFFA8900D2F7FF /* LineEndingScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */; };
-		2A80C6681CEE540F00AA664D /* Acknowledgments.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgments.html */; };
-		2A80C6691CEE540F00AA664D /* Acknowledgments.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgments.html */; };
 		2A8321742980C41600F87D35 /* Image+Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8321732980C41600F87D35 /* Image+Status.swift */; };
 		2A8321752980C41600F87D35 /* Image+Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8321732980C41600F87D35 /* Image+Status.swift */; };
 		2A836D9F2AB1528700B4D458 /* ModeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A836D9E2AB1528700B4D458 /* ModeSettingsView.swift */; };
@@ -780,8 +776,6 @@
 		2AE52F1C1D17493B00D60A32 /* FilePermissions+FormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F1A1D17493B00D60A32 /* FilePermissions+FormatStyle.swift */; };
 		2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
 		2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
-		2AE73EC8203520E000D8903B /* Acknowledgments.css in Resources */ = {isa = PBXBuildFile; fileRef = 2AE73EC6203520E000D8903B /* Acknowledgments.css */; };
-		2AE73EC9203520E100D8903B /* Acknowledgments.css in Resources */ = {isa = PBXBuildFile; fileRef = 2AE73EC6203520E000D8903B /* Acknowledgments.css */; };
 		2AE73F3D2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */; };
 		2AE73F3E2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */; };
 		2AE73F40203D2FBB00D8903B /* NSLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE73F3F203D2FBB00D8903B /* NSLayoutManager.swift */; };
@@ -897,7 +891,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		08C28FAB279CBE300016693E /* tr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = tr; path = tr.lproj/Acknowledgments.html; sourceTree = "<group>"; };
 		08C28FB2279CBE530016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/UnicodeBlock.strings; sourceTree = "<group>"; };
 		0D51D5922274EF5300A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UnicodeBlock.strings; sourceTree = "<group>"; };
 		2A04E9BA27FD6911008C82D8 /* SnippetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetTests.swift; sourceTree = "<group>"; };
@@ -1125,7 +1118,6 @@
 		2A7846DA18FE035E006BDF00 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
 		2A78BFA31D1B02ED00A583D2 /* WindowSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowSettingsView.swift; sourceTree = "<group>"; };
 		2A78BFA61D1B05FB00A583D2 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
-		2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebDocumentWindowController.swift; sourceTree = "<group>"; };
 		2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdaterManager.swift; sourceTree = "<group>"; };
 		2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesProvider.swift; sourceTree = "<group>"; };
 		2A7B279824E435FE00F02304 /* OutlineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTests.swift; sourceTree = "<group>"; };
@@ -1138,9 +1130,6 @@
 		2A7FEF3B2B90F0610042BEFF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/LinkButton.xcstrings; sourceTree = "<group>"; };
 		2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScanner.swift; sourceTree = "<group>"; };
 		2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScannerTests.swift; sourceTree = "<group>"; };
-		2A80C6671CEE540F00AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Acknowledgments.html; sourceTree = "<group>"; };
-		2A80C66A1CEE541400AA664D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = ja.lproj/Acknowledgments.html; sourceTree = "<group>"; };
-		2A80C66B1CEE541600AA664D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Acknowledgments.html"; sourceTree = "<group>"; };
 		2A8321732980C41600F87D35 /* Image+Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Status.swift"; sourceTree = "<group>"; };
 		2A836D9E2AB1528700B4D458 /* ModeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSettingsView.swift; sourceTree = "<group>"; };
 		2A836F7F1D572A5D0044E8EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1261,7 +1250,6 @@
 		2AC39F721E8AC80E009F97D5 /* CollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionTests.swift; sourceTree = "<group>"; };
 		2AC4E5D127A6C0300052A4DD /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/UnicodeBlock.strings"; sourceTree = "<group>"; };
 		2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
-		2AC605AB2B64A3F600E93E5B /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = cs; path = cs.lproj/Acknowledgments.html; sourceTree = "<group>"; };
 		2AC605AE2B64CDE300E93E5B /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/UnicodeBlock.strings; sourceTree = "<group>"; };
 		2AC6069A20416ADE00F9C839 /* OpenPanelAccessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPanelAccessory.swift; sourceTree = "<group>"; };
 		2AC6BFD021D00ABD00FF325C /* NSTextView+RegexParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+RegexParse.swift"; sourceTree = "<group>"; };
@@ -1318,7 +1306,6 @@
 		2AE52F1A1D17493B00D60A32 /* FilePermissions+FormatStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FilePermissions+FormatStyle.swift"; sourceTree = "<group>"; };
 		2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelSplitView.swift; sourceTree = "<group>"; };
 		2AE56CC6265F2F4C00B8A278 /* AdvancedCharacterCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCharacterCounterView.swift; sourceTree = "<group>"; };
-		2AE73EC7203520E000D8903B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = Base; path = Base.lproj/Acknowledgments.css; sourceTree = "<group>"; };
 		2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+ExtendedAttribute.swift"; sourceTree = "<group>"; };
 		2AE73F3F203D2FBB00D8903B /* NSLayoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutManager.swift; sourceTree = "<group>"; };
 		2AE73F42203E753C00D8903B /* NSTextView+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Selection.swift"; sourceTree = "<group>"; };
@@ -1372,14 +1359,10 @@
 		5454B92E243C8257009275BC /* CotEditor.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CotEditor.xcconfig; sourceTree = "<group>"; };
 		5454B933243C8271009275BC /* CotEditor-AdHoc.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "CotEditor-AdHoc.entitlements"; sourceTree = "<group>"; };
 		57ED31741FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/UnicodeBlock.strings; sourceTree = "<group>"; };
-		57ED31761FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = pt; path = pt.lproj/Acknowledgments.html; sourceTree = "<group>"; };
-		5B08851128296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/Acknowledgments.html"; sourceTree = "<group>"; };
 		5B91B7D4282A6851005CBD5C /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/UnicodeBlock.strings"; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		98EAE83C27A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "en-GB"; path = "en-GB.lproj/Acknowledgments.html"; sourceTree = "<group>"; };
 		99A8630F2A753A8400EEEE75 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/UnicodeBlock.strings; sourceTree = "<group>"; };
-		99A863112A753AB300EEEE75 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = es.lproj/Acknowledgments.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1570,7 +1553,6 @@
 				2A8961911DB76A3400E9E0EC /* MainMenu.swift */,
 				2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */,
 				2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */,
-				2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */,
 				2AFB5AEA1D597AFC003895A7 /* Defaults */,
 			);
 			name = Application;
@@ -1813,8 +1795,6 @@
 				2A1EB5C319AD469500C1E37E /* Assets.xcassets */,
 				2A149DC91902BC3900A9D6EF /* Storyboards */,
 				2AC94B262B6E2E110086F9F2 /* Localizables */,
-				2A80C6661CEE540F00AA664D /* Acknowledgments.html */,
-				2AE73EC6203520E000D8903B /* Acknowledgments.css */,
 				2A8EAE3D2BA3B15D00448875 /* Credits.json */,
 				2A2179F51A07093B002C4AB1 /* SyntaxMap.json */,
 				2A3A758D19E77C84001DAB88 /* Syntaxes */,
@@ -2652,8 +2632,6 @@
 				2A6F0D591B5500E100C2D03C /* CotEditor.sdef in Resources */,
 				2A8EAE3E2BA3B15D00448875 /* Credits.json in Resources */,
 				2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */,
-				2A80C6691CEE540F00AA664D /* Acknowledgments.html in Resources */,
-				2AE73EC9203520E100D8903B /* Acknowledgments.css in Resources */,
 				2AA6731C2B9178AB00B8F7E6 /* Localizable.xcstrings in Resources */,
 				2A5E6FC42A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
 				2ACDA2912B81E8B300B2EBA8 /* GeneralSettings.xcstrings in Resources */,
@@ -2743,8 +2721,6 @@
 				2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */,
 				2A8EAE3F2BA3B15D00448875 /* Credits.json in Resources */,
 				2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */,
-				2A80C6681CEE540F00AA664D /* Acknowledgments.html in Resources */,
-				2AE73EC8203520E000D8903B /* Acknowledgments.css in Resources */,
 				2AA6731D2B9178AB00B8F7E6 /* Localizable.xcstrings in Resources */,
 				2A5E6FC52A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
 				2ACDA2922B81E8B300B2EBA8 /* GeneralSettings.xcstrings in Resources */,
@@ -3223,7 +3199,6 @@
 				2A7FCC46280A367C0070EAB3 /* ValueRange.swift in Sources */,
 				2AE144B92B00DCB7005E8CF1 /* View+Alert.swift in Sources */,
 				2A2B086028046E3B0028D733 /* WarningInspectorView.swift in Sources */,
-				2A78BFB11D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA51D1B02ED00A583D2 /* WindowSettingsView.swift in Sources */,
 				2A2EEF182B778BB1001FEDFB /* WrappingHStack.swift in Sources */,
@@ -3593,7 +3568,6 @@
 				2A7FCC47280A367C0070EAB3 /* ValueRange.swift in Sources */,
 				2AE144BA2B00DCB7005E8CF1 /* View+Alert.swift in Sources */,
 				2A2B086128046E3B0028D733 /* WarningInspectorView.swift in Sources */,
-				2A78BFB01D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA41D1B02ED00A583D2 /* WindowSettingsView.swift in Sources */,
 				2A2EEF192B778BB1001FEDFB /* WrappingHStack.swift in Sources */,
@@ -3713,22 +3687,6 @@
 			name = LinkButton.xcstrings;
 			sourceTree = "<group>";
 		};
-		2A80C6661CEE540F00AA664D /* Acknowledgments.html */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A80C6671CEE540F00AA664D /* en */,
-				98EAE83C27A5D7DA00C6D571 /* en-GB */,
-				2A80C66B1CEE541600AA664D /* zh-Hans */,
-				5B08851128296B61003D4C2D /* zh-Hant */,
-				2AC605AB2B64A3F600E93E5B /* cs */,
-				2A80C66A1CEE541400AA664D /* ja */,
-				57ED31761FFD892900F16CAD /* pt */,
-				99A863112A753AB300EEEE75 /* es */,
-				08C28FAB279CBE300016693E /* tr */,
-			);
-			name = Acknowledgments.html;
-			sourceTree = "<group>";
-		};
 		2A836F7E1D572A5D0044E8EC /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3788,14 +3746,6 @@
 				2AF122A42B7A3D50004BA1FF /* mul */,
 			);
 			name = SnippetsPane.storyboard;
-			sourceTree = "<group>";
-		};
-		2AE73EC6203520E000D8903B /* Acknowledgments.css */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2AE73EC7203520E000D8903B /* Base */,
-			);
-			name = Acknowledgments.css;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

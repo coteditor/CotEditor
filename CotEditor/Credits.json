@@ -75,5 +75,66 @@
                 "url" : "https://github.com/bitigchi"
             }
         ]
-    }
+    },
+    "contributors" : [
+        {
+            "name" : "M.Daimon",
+            "url" : "https://github.com/VoD",
+            "description": "syntax: METAFONT"
+        },
+        {
+            "name" : "cbnbg",
+            "description": "syntax: Pascal"
+        },
+        {
+            "name" : "kaz",
+            "url" : "https://github.com/kaz6120",
+            "description": "syntax: PHP"
+        },
+        {
+            "name" : "Y. Tokutomi",
+            "url" : "https://heartbeat.tommy1969.com",
+            "description": "syntax: Ruby"
+        },
+        {
+            "name" : "konn",
+            "url" : "https://konn-san.com",
+            "description": "syntax: Haskell"
+        },
+        {
+            "name" : "nanasiya",
+            "url" : "http://mahonet.info/~nanasiya/",
+            "description": "syntax: Python"
+        },
+        {
+            "name" : "Kaito Udagawa",
+            "url" : "https://github.com/umireon",
+            "description": "scripting hook implementation"
+        },
+        {
+            "name" : "Naotaka Morimoto",
+            "url" : "http://naotaka.com",
+            "description": "automatic indent improvement"
+        },
+        {
+            "name" : "Yusuke Terada",
+            "url" : "https://doratex.hatenablog.jp",
+            "description": "improvement of the character inspector, and addition of normalizations in NFKC Casefold, modified NFC, and modified NFD"
+        },
+        {
+            "name" : "Hetima",
+            "url" : "http://hetima.com",
+            "description": "improvement of line number view, text coloring, and completion"
+        },
+        {
+            "name" : "Haruka Kataoka",
+            "url" : "https://drumsoft.com",
+            "description": "improvement of completion list"
+        },
+        {
+            "name" : "Hiroto Sakai",
+            "url" : "http://www.fan.gr.jp/~sakai/",
+            "description": "original Japanese help book"
+        }
+    ]
 }

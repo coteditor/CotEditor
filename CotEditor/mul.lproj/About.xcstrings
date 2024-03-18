@@ -72,73 +72,90 @@
         }
       }
     },
-    "and all great contributors" : {
+    "and everyone who supports CotEditor!" : {
       "comment" : "last line of the Special Thanks section",
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "… a všichni ostatní skvělí přispěvatelé"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "und allen tollen Mitwirkenden"
+            "value" : "und alle, die CotEditor unterstützen"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "and all great contributors"
+            "value" : "and everyone who supports CotEditor!"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "y todos los demás grandes colaboradores"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "et tous les autres grands contributeurs"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ed a tutti gli altri fantastici collaboratori"
+            "state" : "needs_review",
+            "value" : "¡y a todos los que apoyan CotEditor!"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "そしてすべての素敵な貢献者の皆さま"
+            "value" : "そしてCotEditorを支えてくれた全ての皆さま!"
+          }
+        }
+      }
+    },
+    "Code Contributors" : {
+      "comment" : "section heading",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přispěvatelé"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code-Beitragenden"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code Contributors"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Contribuyentes de código"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コード貢献者"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "e a todos os outros generosos contribuidores"
+            "state" : "needs_review",
+            "value" : "Contribuidores"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "ve diğer tüm katkıda bulunanlar"
+            "state" : "needs_review",
+            "value" : "Katkıda Bulunanlar"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "以及所有其他贡献者"
+            "state" : "needs_review",
+            "value" : "贡献者"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "以及所有其他貢獻者"
+            "state" : "needs_review",
+            "value" : "貢獻者"
           }
         }
       }
@@ -442,7 +459,7 @@
         }
       }
     },
-    "only on non-AppStore ver." : {
+    "only on non-AppStore version" : {
       "comment" : "annotation for the Sparkle framework license",
       "localizations" : {
         "cs" : {
@@ -454,19 +471,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "nur bei der non-AppStore ver."
+            "value" : "nur bei der non-AppStore version"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "only on non-AppStore ver."
+            "value" : "only on non-AppStore version"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Solo en la versión fuera de la AppStore."
+            "value" : "Solo en la versión fuera de la AppStore"
           }
         },
         "ja" : {

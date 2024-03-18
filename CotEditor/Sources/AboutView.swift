@@ -167,6 +167,7 @@ private struct Credits: Decodable {
     var project: [Contributor] = []
     var original: Contributor?
     var localization: [String: [Contributor]] = [:]
+    var contributors: [Contributor] = []
 }
 
 
@@ -201,6 +202,10 @@ private struct CreditsView: View {
                 }
             }
             
+            SectionView(String(localized: "Code Contributors", table: "About", comment: "section heading")) {
+                Text(self.credits.contributors.map(\.name).sorted(options: [.caseInsensitive, .localized]), format: .list(type: .and))
+            }
+            
             SectionView(String(localized: "Special Thanks", table: "About", comment: "section heading")) {
                 Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 4) {
                     GridRow {
@@ -211,10 +216,14 @@ private struct CreditsView: View {
                             ContributorView(contributor: original)
                         }
                     }
-                    Text("and all great contributors", tableName: "About",
+                    Text("and everyone who supports CotEditor!", tableName: "About",
                          comment: "last line of the Special Thanks section")
                 }
             }
+            
+            Image(systemName: "dog")
+                .symbolVariant(.fill)
+                .foregroundStyle(.tertiary)
             
             Text("CotEditor is an open source program\nlicensed under the Apache License, Version 2.0.", tableName: "About")
             Link(String("https://github.com/coteditor"),
@@ -305,7 +314,7 @@ private struct LicenseView: View {
             ItemView(name: "Sparkle",
                      url: "https://github.com/jpsim/Yams",
                      license: "MIT license",
-                     description: String(localized: "only on non-AppStore ver.", table: "About",
+                     description: String(localized: "only on non-AppStore version", table: "About",
                                          comment: "annotation for the Sparkle framework license"))
 #endif
         }
