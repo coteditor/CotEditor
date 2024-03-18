@@ -213,6 +213,164 @@
         }
       }
     },
+    "CotEditor uses the following awesome technologies. We are deeply grateful for those who let us use their valuable work." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "CotEditor je vyvinut pomocí následujících úžasných technologií. Jsme velmi vděční těm, kteří nám umožnili používat jejich cenné programy a informace."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor verwendet die folgenden großartigen Technologien. Wir sind sehr dankbar für diejenigen, die uns ihre wertvolle Arbeit zur Verfügung stellen."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor uses the following awesome technologies. We are deeply grateful for those who let us use their valuable work."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "CotEditor se desarrolla utilizando las siguientes tecnologías increíbles. Estamos profundamente agradecidos por aquellos que nos dejaron usar sus programas e informaciones valiosas."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditorは下記の素晴らしい技術を使用しています。有益な作品の公開に深く感謝いたします。"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "O desenvolvimento do CotEditor usa as incríveis tecnologias a seguir. Somos profundamente gratos àqueles que nos permitem usar seus programas e informações valiosas."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "CotEditor, aşağıdaki harika teknolojiler kullanılarak geliştirilmiştir. Değerli programlarını/bilgilerini kullanmamıza izin verenlere derinden minnettarız."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "CotEditor在开发中使用了下面这些出色的技术。我们对于那些允许我们使用他们宝贵的程序/信息来开发CotEditor的人致以最诚挚的感谢。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "CotEditor在開發中使用了下面這些出色的技術。我們對於那些允許我們使用他們寶貴的程式/資訊來開發CotEditor的人致以最誠摯的感謝。"
+          }
+        }
+      }
+    },
+    "Credits" : {
+      "comment" : "button label",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anerkennung"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Credits"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Créditos"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "クレジット"
+          }
+        }
+      }
+    },
+    "License" : {
+      "comment" : "button label",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licence"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lizenz"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licence"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licencia"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licence"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licenza"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "利用許諾契約"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licença"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisans"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "许可证"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "許可證"
+          }
+        }
+      }
+    },
     "Localization" : {
       "comment" : "section heading",
       "localizations" : {
@@ -280,6 +438,53 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "本地化"
+          }
+        }
+      }
+    },
+    "only on non-AppStore ver." : {
+      "comment" : "annotation for the Sparkle framework license",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pouze na non-AppStore ver."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nur bei der non-AppStore ver."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "only on non-AppStore ver."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo en la versión fuera de la AppStore."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "非AppStore版のみ"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "somente na versão fora da App Store"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "yalnızca AppStore olmayan sürümde"
           }
         }
       }

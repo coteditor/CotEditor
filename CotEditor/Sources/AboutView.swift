@@ -28,6 +28,26 @@ import AppKit.NSApplication
 
 struct AboutView: View {
     
+    private enum Pane: CaseIterable {
+        
+        case credits
+        case license
+        
+        var label: String {
+            
+            switch self {
+                case .credits:
+                    String(localized: "Credits", table: "About", comment: "button label")
+                case .license:
+                    String(localized: "License", table: "About", comment: "button label")
+            }
+        }
+    }
+    
+    
+    @State private var pane: Pane = .credits
+    
+    
     var body: some View {
         
         HStack {
@@ -54,8 +74,27 @@ struct AboutView: View {
             .padding(.trailing)
             .frame(minWidth: 200)
             
-            ScrollView(.vertical) {
-                CreditsView()
+            VStack(spacing: 0) {
+                HStack {
+                    ForEach(Pane.allCases, id: \.self) { pane in
+                        TabPickerButtonView(pane.label, isSelected: self.pane == pane) {
+                            withAnimation {
+                                self.pane = pane
+                            }
+                        }
+                    }
+                }
+                .padding(.vertical, 6)
+                Divider()
+                
+                ScrollView(.vertical) {
+                    switch self.pane {
+                        case .credits:
+                            CreditsView()
+                        case .license:
+                            LicenseView()
+                    }
+                }
             }
             .ignoresSafeArea()
             .background()
@@ -63,6 +102,54 @@ struct AboutView: View {
         .accessibilityLabel(String(localized: "About \(Bundle.main.bundleName)", table: "About", comment: "accessibility label (%@ is app name)"))
         .controlSize(.small)
         .frame(width: 540, height: 300)
+    }
+}
+
+
+private struct TabPickerButtonView: View {
+    
+    var title: String
+    var isSelected: Bool
+    var action: () -> Void
+    
+    @Environment(\.colorSchemeContrast) private var contrast
+    
+    @State private var isHovered = false
+    
+    
+    init(_ title: String, isSelected: Bool, action: @escaping () -> Void) {
+        
+        self.title = title
+        self.isSelected = isSelected
+        self.action = action
+    }
+    
+    
+    var body: some View {
+        
+        Button(self.title, action: self.action)
+            .buttonStyle(.borderless)
+            .brightness(-0.2)
+            .padding(.vertical, 1)
+            .padding(.horizontal, 4)
+            .background(.primary.opacity(self.backgroundOpacity),
+                        in: RoundedRectangle(cornerRadius: 3))
+            .overlay(self.contrast == .increased
+                     ? RoundedRectangle(cornerRadius: 3).stroke(.tertiary)
+                     : nil)
+            .onHover { self.isHovered = $0 }
+    }
+    
+    
+    private var backgroundOpacity: Double {
+        
+        if self.isHovered {
+            0.10
+        } else if self.isSelected {
+            0.05
+        } else {
+            0
+        }
     }
 }
 
@@ -189,6 +276,85 @@ private struct CreditsView: View {
                     .textSelection(.enabled)
                 LinkButton(url: self.contributor.url ?? "")
                     .foregroundStyle(.tint)
+            }
+        }
+    }
+}
+
+
+// MARK: -
+
+private struct LicenseView: View {
+    
+    var body: some View {
+        
+        LazyVStack(alignment: .leading, spacing: 16) {
+            Text("CotEditor uses the following awesome technologies. We are deeply grateful for those who let us use their valuable work.", tableName: "About")
+                .lineSpacing(2)
+            
+            ItemView(name: "Yams",
+                     url: "https://sparkle-project.org",
+                     license: "MIT license")
+            ItemView(name: "WFColorCode",
+                     url: "https://github.com/1024jp/WFColorCode",
+                     license: "MIT license")
+            ItemView(name: "Solarized",
+                     url: "https://ethanschoonover.com/solarized",
+                     license: "MIT license")
+#if SPARKLE
+            ItemView(name: "Sparkle",
+                     url: "https://github.com/jpsim/Yams",
+                     license: "MIT license",
+                     description: String(localized: "only on non-AppStore ver.", table: "About",
+                                         comment: "annotation for the Sparkle framework license"))
+#endif
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
+    }
+    
+    
+    private struct ItemView: View {
+        
+        let name: String
+        let url: String
+        let license: String
+        var description: String?
+        
+        @State private var content: String = ""
+        
+        
+        var body: some View {
+            
+            VStack(alignment: .leading, spacing: 2) {
+                HStack(alignment: .center, spacing: 4) {
+                    Text(self.name)
+                        .fontWeight(.semibold)
+                    
+                    LinkButton(url: self.url)
+                        .foregroundStyle(.tint)
+                    
+                    if let description {
+                        Text(" (\(description))")
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                
+                Text(self.license)
+                    .fontWeight(.medium)
+                    .opacity(0.8)
+                Text(self.content)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.leading)
+            }
+            .onAppear {
+                guard
+                    let url =
+                        Bundle.main.url(forResource: self.name, withExtension: "txt", subdirectory: "Licenses"),
+                    let string = try? String(contentsOf: url)
+                else { return assertionFailure() }
+                
+                self.content = string
             }
         }
     }

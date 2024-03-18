@@ -487,6 +487,8 @@
 		2A8EAE422BA3C3DC00448875 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8EAE402BA3C3DC00448875 /* AboutView.swift */; };
 		2A8EAE452BA59C3C00448875 /* About.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A8EAE432BA59C3C00448875 /* About.xcstrings */; };
 		2A8EAE462BA59C3C00448875 /* About.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A8EAE432BA59C3C00448875 /* About.xcstrings */; };
+		2A8EAE562BA7E2BE00448875 /* Licenses in Resources */ = {isa = PBXBuildFile; fileRef = 2A8EAE552BA7E2BE00448875 /* Licenses */; };
+		2A8EAE572BA7E2BE00448875 /* Licenses in Resources */ = {isa = PBXBuildFile; fileRef = 2A8EAE552BA7E2BE00448875 /* Licenses */; };
 		2A8EF014241F0A8A001BDBC0 /* StringLineProcessingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8EF013241F0A8A001BDBC0 /* StringLineProcessingTests.swift */; };
 		2A9003B9267715E600EC766F /* NSApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9003B8267715E500EC766F /* NSApplication.swift */; };
 		2A9003BA267715E600EC766F /* NSApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9003B8267715E500EC766F /* NSApplication.swift */; };
@@ -1160,6 +1162,7 @@
 		2A8EAE3D2BA3B15D00448875 /* Credits.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credits.json; sourceTree = "<group>"; };
 		2A8EAE402BA3C3DC00448875 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		2A8EAE442BA59C3C00448875 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/About.xcstrings; sourceTree = "<group>"; };
+		2A8EAE552BA7E2BE00448875 /* Licenses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Licenses; sourceTree = "<group>"; };
 		2A8EF013241F0A8A001BDBC0 /* StringLineProcessingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLineProcessingTests.swift; sourceTree = "<group>"; };
 		2A9003B8267715E500EC766F /* NSApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSApplication.swift; sourceTree = "<group>"; };
 		2A902B99236E3AA600A6A9BB /* StringCommentingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCommentingTests.swift; sourceTree = "<group>"; };
@@ -1816,6 +1819,7 @@
 				2A2179F51A07093B002C4AB1 /* SyntaxMap.json */,
 				2A3A758D19E77C84001DAB88 /* Syntaxes */,
 				2A7846DA18FE035E006BDF00 /* Themes */,
+				2A8EAE552BA7E2BE00448875 /* Licenses */,
 				2A94FC781BE2256F00B454A8 /* cot */,
 			);
 			name = Resources;
@@ -2643,6 +2647,7 @@
 				2A6F0D551B5500E100C2D03C /* Assets.xcassets in Resources */,
 				2A6F0D561B5500E100C2D03C /* Syntaxes in Resources */,
 				2A6F0D571B5500E100C2D03C /* Themes in Resources */,
+				2A8EAE562BA7E2BE00448875 /* Licenses in Resources */,
 				2A6F0D5A1B5500E100C2D03C /* CotEditor.help in Resources */,
 				2A6F0D591B5500E100C2D03C /* CotEditor.sdef in Resources */,
 				2A8EAE3E2BA3B15D00448875 /* Credits.json in Resources */,
@@ -2733,6 +2738,7 @@
 				2A1EB5C419AD469500C1E37E /* Assets.xcassets in Resources */,
 				2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */,
 				2ABC76241909BF5200D2B592 /* Themes in Resources */,
+				2A8EAE572BA7E2BE00448875 /* Licenses in Resources */,
 				2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */,
 				2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */,
 				2A8EAE3F2BA3B15D00448875 /* Credits.json in Resources */,
