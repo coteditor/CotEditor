@@ -19,7 +19,7 @@
 
 ### Fixes
 
-- [beta] Fix an issue that the “Suggest completions while typing” option in the Mode settings was wrongly stored. 
+- [beta] Fix an issue that the “Suggest completions while typing” option in the Mode settings was wrongly stored.
 
 
 
