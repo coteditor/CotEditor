@@ -38,12 +38,15 @@ If your localization makes some layout in views destroy, try first making the se
 
 #### Submitting a new localization
 
-Currently, the CotEditor project only accepts new localizations whose provider can maintain the localization thereafter. Please explicitly tell us if you also intend to be a localization maintainer when submitting a new localization. The standard maintenance process of a localization is described in the subsection below.
+Currently, the CotEditor project only accepts new localizations whose provider can maintain the localization thereafter. Please explicitly tell us if you also intend to be a localization maintainer when submitting a new localization. The standard maintenance process of a localization is described in the following subsection.
 
-To add a new localization to CotEditor.app, open CotEditor.xcodeproj in Xcode, go to Project > CotEditor > Info > Localizations, and then add your language to the table. Because CotEditor currently uses the String Catalog format (.xcstrings) first introduced in Xcode 15 released in 2023, we recommend you to edit localizations in Xcode. In the Resources group in the project, you can find all strings files (.xcstrings) both in the Localizations and Storyboards subgroups. The new language you added will automatically be appeared in the catalog list. Select your language and fill each cell of your language column in the table.
-Note that you don't need to localize the UnicodeBlock.strings file. It will be done by @1024jp based on the localization data by Apple.
+You have two options to add a new localization to CotEditor.app. Chose one of them depending on your knowledge and preference:
 
-- cf. [Localizing and varying text with a string catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog)
+- Option 1: Add a new localization in Xcode by yourself and make a pull-request (for those who get used to use git and Xcode projects):
+    - Open CotEditor.xcodeproj in Xcode, go to Project > CotEditor > Info > Localizations, and then add your language to the table. In the Resources group in the project, you can find all strings files (.xcstrings) both in the Localizations and Storyboards subgroups. The new language you added will automatically be appeared in the catalog list. Select your language and fill each cell of your language column in the table. Note that you don't need to localize the UnicodeBlock.strings file. It will be done by @1024jp based on the localization data by Apple.
+    - CotEditor currently uses the String Catalog format (.xcstrings) first introduced in Xcode 15 released in 2023. cf. [Localizing and varying text with a string catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog)
+- Option 2: Communicate with the maintainer personally and work with provided localization template (.xcloc file):
+    - Send a message to the maintainer (@1024jp) either by creating a new issue on GitHub or by e-mail to ask to get the localization template (.xcloc file) for your language. When you receiving the .xcloc file, open it in Xcode and fill each cell of your language column in the tables. When finished, send back the template file to the maintainer.
 
 #### Localization maintenance process
 
