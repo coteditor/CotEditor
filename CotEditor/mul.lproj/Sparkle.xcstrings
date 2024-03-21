@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Check for Updates…" : {
-      "comment" : "a command provided only in the non-AppStore version",
+      "comment" : "menu item label provided only in the non-AppStore version",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

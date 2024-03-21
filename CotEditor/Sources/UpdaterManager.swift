@@ -64,7 +64,7 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
         
         let menuItem = NSMenuItem()
         menuItem.title = String(localized: "Check for Updates…", table: "Sparkle",
-                                comment: "a command provided only in the non-AppStore version")
+                                comment: "menu item label provided only in the non-AppStore version")
         menuItem.action = #selector(SPUUpdater.checkForUpdates)
         menuItem.target = self.controller.updater
         
