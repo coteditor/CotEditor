@@ -62,7 +62,7 @@ struct SyntaxEditView: View {
     let saveAction: SaveAction
     
     weak var parent: NSHostingController<Self>?
-
+    
     @State private var name: String = ""
     @State private var message: String?
     
@@ -269,7 +269,7 @@ struct SyntaxEditView: View {
     private func validate(name: String) -> Bool {
         
         if self.isBundled { return true }  // cannot edit syntax name
-
+        
         do {
             try SyntaxManager.shared.validate(settingName: name, originalName: self.originalName)
         } catch {
