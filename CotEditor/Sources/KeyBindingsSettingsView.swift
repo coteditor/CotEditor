@@ -72,8 +72,8 @@ private final class KeyBindingModel: ObservableObject {
     
     typealias Item = Node<KeyBindingItem>
     
-    @Published var tree: [Item] = []
-    @Published var isRestorable: Bool = false
+    @Published private(set) var tree: [Item] = []
+    @Published private(set) var isRestorable: Bool = false
     @Published var error: (any Error)?
     
     @Published var rootIndex: Int?
