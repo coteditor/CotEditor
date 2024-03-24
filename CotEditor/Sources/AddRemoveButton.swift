@@ -69,8 +69,8 @@ struct AddRemoveButton<Item: Identifiable & EmptyInitializable>: View {
                     self.selection = [item.id]
                 }
             }
-            .onChange(of: self.added) { id in
-                self.focus?.wrappedValue = id
+            .onChange(of: self.added) { newValue in
+                self.focus?.wrappedValue = newValue
             }
             .help(String(localized: "Add new item", table: "AddRemoveButton", comment: "tooltip"))
             

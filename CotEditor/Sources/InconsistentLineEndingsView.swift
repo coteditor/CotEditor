@@ -82,9 +82,9 @@ struct InconsistentLineEndingsView: View {
                 .onChange(of: self.selection) { newValue in
                     self.model.selectItem(id: newValue)
                 }
-                .onChange(of: self.sortOrder) { newOrder in
+                .onChange(of: self.sortOrder) { newValue in
                     withAnimation {
-                        self.model.items.sort(using: newOrder)
+                        self.model.items.sort(using: newValue)
                     }
                 }
                 .tableStyle(.bordered)

@@ -133,8 +133,8 @@ struct FindPanelResultView: View {
                 guard newValue.count == 1 else { return }
                 self.selectMatch(newValue.first)
             }
-            .onChange(of: self.sortOrder) { newOrder in
-                self.model.matches.sort(using: newOrder)
+            .onChange(of: self.sortOrder) { newValue in
+                self.model.matches.sort(using: newValue)
             }
             .onCommand(#selector(EditorTextView.biggerFont)) {
                 self.fontSize += 1

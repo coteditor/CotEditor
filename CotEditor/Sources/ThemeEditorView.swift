@@ -120,12 +120,12 @@ struct ThemeEditorView: View {
                 .buttonStyle(.borderless)
             }
         }
-        .onChange(of: self.theme) { theme in
+        .onChange(of: self.theme) { newValue in
             if self.isMetadataPresenting {
                 // postpone notification to avoid closing the popover
                 self.needsNotify = true
             } else {
-                self.onUpdate(theme)
+                self.onUpdate(newValue)
             }
         }
         .onChange(of: self.isMetadataPresenting) { newValue in

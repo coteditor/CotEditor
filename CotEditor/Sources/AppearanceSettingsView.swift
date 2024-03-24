@@ -57,14 +57,14 @@ struct AppearanceSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 FontSettingView(data: $monospacedFont ?? (try! FontType.monospaced.systemFont().archivedData), antialias: $monospacedShouldAntialias, ligature: $monospacedLigature)
-                    .onChange(of: self.monospacedFont) { [oldData = self.monospacedFont] data in
+                    .onChange(of: self.monospacedFont) { [oldValue = self.monospacedFont] newValue in
                         guard
-                            let data,
-                            let font = NSFont(archivedData: data),
+                            let newValue,
+                            let font = NSFont(archivedData: newValue),
                             !font.isFixedPitch
                         else { return }
                         
-                        self.selectingFont = oldData
+                        self.selectingFont = oldValue
                         self.isMonospacedFontAlertPresented = true
                     }
                     .alert(String(localized: "The selected font doesn’t seem to be monospaced.", table: "AppearanceSettings"), isPresented: $isMonospacedFontAlertPresented, presenting: self.selectingFont) { font in
