@@ -551,6 +551,17 @@
       "protoc"
     ]
   },
+  "PRQL" : {
+    "extensions" : [
+      "prql"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
   "Python" : {
     "extensions" : [
       "py",

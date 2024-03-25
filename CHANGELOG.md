@@ -254,6 +254,11 @@
 4.6.4 (599)
 --------------------------
 
+### New Features
+
+- Add syntax style for “PRQL”.
+
+
 ### Improvements
 
 - [trivial] Dim the switcher buttons in the inspector when the window is inactive.
