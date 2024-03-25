@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2022 1024jp
+//  © 2020-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -159,7 +159,7 @@ extension InvisibleDrawing {
         
         // update UserDefaults observation if needed
         if self.showsInvisibles, self.invisiblesDefaultsObserver == nil {
-            let publishers = Invisible.allCases.map(\.visibilityDefaultKey).unique
+            let publishers = Invisible.allCases.map(\.visibilityDefaultKey).uniqued
                 .map { UserDefaults.standard.publisher(for: $0) }
             self.invisiblesDefaultsObserver = Publishers.MergeMany(publishers)
                 .sink { [weak self] _ in self?.invalidateInvisibleDisplay() }

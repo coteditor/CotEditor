@@ -193,7 +193,7 @@ extension MultiCursorEditing {
         
         guard !ranges.isEmpty else { return nil }
         
-        let ranges = ranges.unique.sorted(\.location)
+        let ranges = ranges.uniqued.sorted(\.location)
         let selectionSet = IndexSet(integersIn: ranges)
         let nonemptyRanges = selectionSet.rangeView
             .map(NSRange.init)
@@ -544,7 +544,7 @@ private extension NSLayoutManager {
         }
         assert(!rects.isEmpty)
         
-        return rects.unique
+        return rects.uniqued
     }
 }
 

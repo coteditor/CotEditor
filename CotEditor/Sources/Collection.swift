@@ -74,7 +74,7 @@ extension Collection {
 extension Sequence where Element: Equatable {
     
     /// An array consists of unique elements of receiver by keeping ordering.
-    var unique: [Element] {
+    var uniqued: [Element] {
         
         self.reduce(into: []) { (unique, element) in
             guard !unique.contains(element) else { return }
@@ -89,9 +89,9 @@ extension Sequence where Element: Equatable {
 extension Array where Element: Equatable {
     
     /// Removes duplicated elements by keeping ordering.
-    mutating func formUnique() {
+    mutating func unique() {
         
-        self = self.unique
+        self = self.uniqued
     }
 }
 

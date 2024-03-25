@@ -108,7 +108,7 @@ extension Commenting {
         let items: [NSRange.InsertionItem] = {
             let targetRanges = selectedRanges
                 .map { fromLineHead ? self.string.lineContentsRange(for: $0) : $0 }
-                .unique
+                .uniqued
             
             if types.contains(.inline), let delimiter = self.commentDelimiters.inline {
                 return self.string.inlineCommentOut(delimiter: delimiter, ranges: targetRanges)
@@ -140,13 +140,13 @@ extension Commenting {
         
         let deletionRanges: [NSRange] = {
             if let delimiters = self.commentDelimiters.block {
-                let targetRanges = selectedRanges.map { $0.isEmpty ? self.string.lineContentsRange(for: $0) : $0 }.unique
+                let targetRanges = selectedRanges.map { $0.isEmpty ? self.string.lineContentsRange(for: $0) : $0 }.uniqued
                 if let ranges = self.string.rangesOfBlockDelimiters(delimiters, ranges: targetRanges) {
                     return ranges
                 }
             }
             if let delimiter = self.commentDelimiters.inline {
-                let targetRanges = selectedRanges.map { self.string.lineContentsRange(for: $0) }.unique
+                let targetRanges = selectedRanges.map { self.string.lineContentsRange(for: $0) }.uniqued
                 if let ranges = self.string.rangesOfInlineDelimiter(delimiter, ranges: targetRanges) {
                     return ranges
                 }
@@ -176,7 +176,7 @@ extension Commenting {
             let targetRanges = self.rangesForUserTextChange?.map(\.rangeValue)
                 .map(self.string.lineContentsRange(for:))
                 .filter({ !$0.isEmpty })
-                .unique,
+                .uniqued,
             !targetRanges.isEmpty
         else { return false }
         
@@ -189,7 +189,7 @@ extension Commenting {
         if let delimiter = self.commentDelimiters.inline,
            let ranges = self.string.rangesOfInlineDelimiter(delimiter, ranges: targetRanges)
         {
-            let lineRanges = targetRanges.flatMap { self.string.lineContentsRanges(for: $0) }.unique
+            let lineRanges = targetRanges.flatMap { self.string.lineContentsRanges(for: $0) }.uniqued
             return partly ? true : (ranges.count == lineRanges.count)
         }
         
@@ -213,7 +213,7 @@ extension String {
         
         return ranges.flatMap { regex.matches(in: self, range: $0) }
             .map(\.range.location)
-            .unique
+            .uniqued
             .map { NSRange.InsertionItem(string: delimiter, location: $0, forward: true) }
     }
     
@@ -252,7 +252,7 @@ extension String {
         let delimiterRanges = ranges
             .flatMap { regex.matches(in: self, range: $0) }
             .map { $0.range(at: 1) }
-            .unique
+            .uniqued
         
         return delimiterRanges.isEmpty ? nil : delimiterRanges
     }

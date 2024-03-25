@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -207,7 +207,7 @@ final class ThemeManager: SettingFileManaging {
         let userSettingNames = self.userSettingFileURLs
             .map { self.settingName(from: $0) }
         
-        self.settingNames = (self.bundledSettingNames + userSettingNames).unique
+        self.settingNames = (self.bundledSettingNames + userSettingNames).uniqued
             .sorted(options: [.localized, .caseInsensitive])
         
         // reset user default if not found

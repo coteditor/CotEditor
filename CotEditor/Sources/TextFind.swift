@@ -338,7 +338,7 @@ struct TextFind {
             }
         }
         
-        selectedRanges.formUnique()
+        selectedRanges.unique()
         
         return (replacementItems, self.inSelection ? selectedRanges : nil)
     }

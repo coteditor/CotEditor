@@ -260,7 +260,7 @@ extension String {
                 }
             }
         }
-        selectedRanges = selectedRanges.unique.sorted(\.location)
+        selectedRanges = selectedRanges.uniqued.sorted(\.location)
         
         let replacementString = string.substring(with: replacementRange)
         
@@ -310,7 +310,7 @@ extension String {
                 }
             }
         }
-        selectedRanges = selectedRanges.unique.sorted(\.location)
+        selectedRanges = selectedRanges.uniqued.sorted(\.location)
         
         let replacementString = string.substring(with: replacementRange)
         
@@ -346,7 +346,7 @@ extension String {
         let lineContentRanges = ranges
             .map { string.lineRange(for: $0) }
             .flatMap { self.lineContentsRanges(for: $0) }
-            .unique
+            .uniqued
             .sorted(\.location)
         
         var replacementRanges: [NSRange] = []
@@ -428,7 +428,7 @@ extension String {
             selectedRanges.append(NSRange(location: range.location + offset, length: 0))
             offset -= range.length
         }
-        selectedRanges = selectedRanges.unique.sorted(\.location)
+        selectedRanges = selectedRanges.uniqued.sorted(\.location)
         
         return EditingInfo(strings: replacementStrings, ranges: lineRanges, selectedRanges: selectedRanges)
     }
