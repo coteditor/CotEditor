@@ -14,6 +14,7 @@
 
 - [beta] Fix an issue on macOS 14 that multiple cursors in editors were not drawn when the editor becomes active again.
 - [beta] Add missing localization.
+- [dev] Migrate the status bar to SwiftUI.
 
 
 

@@ -38,6 +38,14 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
     
     // MARK: Lifecycle
     
+    required override init(title: String = "") {
+        
+        super.init(title: title)
+        
+        self.delegate = self
+    }
+    
+    
     required init(coder: NSCoder) {
         
         super.init(coder: coder)

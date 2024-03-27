@@ -1041,7 +1041,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     /// Changes the text encoding by asking options to the user.
     ///
     /// - Parameter fileEncoding: The text encoding to change.
-    @MainActor private func askChangingEncoding(to fileEncoding: FileEncoding) {
+    @MainActor func askChangingEncoding(to fileEncoding: FileEncoding) {
         
         assert(Thread.isMainThread)
         
