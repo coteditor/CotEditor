@@ -75,6 +75,12 @@
     "and everyone who supports CotEditor!" : {
       "comment" : "last line of the Special Thanks section",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "a všem, kteří podporují CotEditor!"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -93,10 +99,46 @@
             "value" : "¡y a todos los que apoyan CotEditor!"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ainsi que tous ceux supportant CotEditor !"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "e a tutti i sostenitori di CotEditor!"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "そしてCotEditorを支えてくれた全ての皆さま!"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "e todos que apoiam o CotEditor!"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ve CotEditor’u destekleyen herkes!"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以及支持CotEditor的各位！"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以及應援著CotEditor的諸位！"
           }
         }
       }
@@ -106,8 +148,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Přispěvatelé"
+            "state" : "translated",
+            "value" : "Přispěvatelé do kódu"
           }
         },
         "de" : {
@@ -128,6 +170,18 @@
             "value" : "Contribuyentes de código"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contributeurs du code"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Collaboratori al codice"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -136,26 +190,26 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Contribuidores"
+            "state" : "translated",
+            "value" : "Contribuidores do Código"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Katkıda Bulunanlar"
+            "state" : "translated",
+            "value" : "Kod Katkıcıları"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "贡献者"
+            "state" : "translated",
+            "value" : "源代码贡献者"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "貢獻者"
+            "state" : "translated",
+            "value" : "原始碼貢獻者們"
           }
         }
       }
@@ -234,8 +288,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "CotEditor je vyvinut pomocí následujících úžasných technologií. Jsme velmi vděční těm, kteří nám umožnili používat jejich cenné programy a informace."
+            "state" : "translated",
+            "value" : "CotEditor používá následující úžasné technologie. Jsme velmi vděční všem, kteří nám umožnili použít jejich přínosnou práci."
           }
         },
         "de" : {
@@ -256,6 +310,18 @@
             "value" : "CotEditor se desarrolla utilizando las siguientes tecnologías increíbles. Estamos profundamente agradecidos por aquellos que nos dejaron usar sus programas e informaciones valiosas."
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor utilise les technologies géniales suivantes. Nous sommes très reconnaissants envers ceux nous permettant d’utiliser leurs précieux travaux."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor fa uso delle fantastiche seguenti tecnologie. Un enorme grazie a coloro che ci permettono di utilizzarle."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -264,26 +330,26 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "O desenvolvimento do CotEditor usa as incríveis tecnologias a seguir. Somos profundamente gratos àqueles que nos permitem usar seus programas e informações valiosas."
+            "state" : "translated",
+            "value" : "CotEditor usa as incríveis tecnologias a seguir. Somos profundamente gratos àqueles que nos permitem usar seu valioso trabalho."
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "CotEditor, aşağıdaki harika teknolojiler kullanılarak geliştirilmiştir. Değerli programlarını/bilgilerini kullanmamıza izin verenlere derinden minnettarız."
+            "state" : "translated",
+            "value" : "CotEditor aşağıdaki muhteşem teknolojileri kullanır. Değerli çalışmalarını kullanmamıza izin veren herkese şükran borçluyuz."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "CotEditor在开发中使用了下面这些出色的技术。我们对于那些允许我们使用他们宝贵的程序/信息来开发CotEditor的人致以最诚挚的感谢。"
+            "state" : "translated",
+            "value" : "CotEditor使用了下述绝伦的技术。对于让我们得以使用这些宝贵作品的人们，我们深表谢意。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "CotEditor在開發中使用了下面這些出色的技術。我們對於那些允許我們使用他們寶貴的程式/資訊來開發CotEditor的人致以最誠摯的感謝。"
+            "state" : "translated",
+            "value" : "CotEditor有使用到下述絕倫的技術。我們對那些讓我們用上了這些技術的人士們深表敬意。"
           }
         }
       }
@@ -291,6 +357,12 @@
     "Credits" : {
       "comment" : "button label",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kredity"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -309,10 +381,46 @@
             "value" : "Créditos"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crédits"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crediti"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "クレジット"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Créditos"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emeği Geçenler"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "鸣谢"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "銘謝"
           }
         }
       }
@@ -465,7 +573,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "pouze na non-AppStore ver."
+            "value" : "pouze u verzí mimo App Store"
           }
         },
         "de" : {
@@ -486,6 +594,18 @@
             "value" : "Solo en la versión fuera de la AppStore"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "uniquement la version non-AppStore"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "solo sulla versione non sull'AppStore"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -495,13 +615,25 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "somente na versão fora da App Store"
+            "value" : "apenas na versão fora da App Store"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "yalnızca AppStore olmayan sürümde"
+            "value" : "yalnızca App Store olmayan sürümde"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "仅在「非App Store」版本使用"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "僅「非Mac App Store」發行版有使用到该模组"
           }
         }
       }
