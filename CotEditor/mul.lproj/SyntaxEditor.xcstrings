@@ -986,6 +986,12 @@
     "Definition File" : {
       "comment" : "section header in sidebar",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Definiční soubor"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1406,6 +1412,12 @@
     "Entire match" : {
       "comment" : "placeholder for outline item table",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Celá shoda"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1542,6 +1554,12 @@
     "Features" : {
       "comment" : "section header in sidebar",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funkce"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1749,6 +1767,12 @@
     "Highlighting" : {
       "comment" : "section header in sidebar",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zvýraznění"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1887,8 +1911,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pokud není uvedeno žádné slovo, seznam dokončení se vygeneruje z nastavení barev."
+            "state" : "translated",
+            "value" : "Pokud není zadáno, jsou slova pro dokončení syntaxe generována na základě nastavení zvýraznění."
           }
         },
         "de" : {
@@ -2593,6 +2617,12 @@
     "Multiple items selected" : {
       "comment" : "message for uneditable condition",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybráno více položek"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2729,6 +2759,12 @@
     "No item selected" : {
       "comment" : "message for uneditable condition",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Není vybrána žádná položka"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2865,6 +2901,12 @@
     "Outline extraction rules:" : {
       "comment" : "label",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pravidla pro extrakci osnovy:"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3074,8 +3116,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Regulární výraz"
+            "state" : "translated",
+            "value" : "Vzor regulárního výrazu"
           }
         },
         "de" : {
@@ -3286,8 +3328,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Seznam dokončení"
+            "state" : "translated",
+            "value" : "Dokončení"
           }
         },
         "de" : {

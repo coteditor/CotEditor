@@ -494,6 +494,12 @@
     "This syntax does not exist" : {
       "comment" : "tooltip",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tato syntaxe neexistuje"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

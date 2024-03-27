@@ -746,6 +746,12 @@
       "comment" : "string that is inserted as the variable (%@) in the binary file alert when the type of file cannot be determined",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "neznámého typu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3261,6 +3267,12 @@
     "InvalidNameError.reserved.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Název „%@“ je vyhrazen."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
