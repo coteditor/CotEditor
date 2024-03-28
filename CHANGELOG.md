@@ -8,14 +8,14 @@
 - Renew the “About CotEditor” window.
 - [non-AppStore ver.] Update Sparkle from 2.5.2 to 2.6.0.
 - [dev] Update Yams from 5.0.6 to 5.1.0.
-- [beta] Restore the last syntax editor size within a session. 
+- [dev] Migrate the status bar to SwiftUI.
+- [beta] Restore the last syntax editor size within a session.
 
 
 ### Fixes
 
 - [beta] Fix an issue on macOS 14 that multiple cursors in editors were not drawn when the editor becomes active again.
 - [beta] Add missing localization.
-- [dev] Migrate the status bar to SwiftUI.
 
 
 
