@@ -10,6 +10,11 @@
         "url": "https://www.aynimac.com"
     },
     "localization" : {
+        "en" : [
+            {
+                "name" : "1024jp"
+            }
+        ],
         "ja" : [
             {
                 "name" : "1024jp"
@@ -32,8 +37,7 @@
                 "url" : "https://shiki.inmu.pro/about/"
             },
             {
-                "name" : "Wei Wang (onevcat)",
-                "url" : "https://onevcat.com"
+                "name" : "Wei Wang (onevcat)"
             }
         ],
         "cs" : [
