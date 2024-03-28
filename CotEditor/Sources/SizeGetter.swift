@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 
 import SwiftUI
 
-struct WidthGetter<Key: PreferenceKey>: View where Key.Value == CGFloat {
+struct SizeGetter<Key: PreferenceKey>: View where Key.Value == CGSize {
     
     let key: Key.Type
     
@@ -33,28 +33,22 @@ struct WidthGetter<Key: PreferenceKey>: View where Key.Value == CGFloat {
     var body: some View {
         
         GeometryReader { geometry in
-            Color.clear.preference(key: self.key.self, value: geometry.size.width)
+            Color.clear.preference(key: self.key.self, value: geometry.size)
         }
     }
 }
 
 
-protocol MaxWidthKey: PreferenceKey {
+/// Stores max size.
+struct MaxSizeKey: PreferenceKey {
     
-    static var defaultValue: CGFloat { get }
-}
-
-
-extension MaxWidthKey {
-    
-    static var defaultValue: CGFloat { 0 }
+    static var defaultValue: CGSize { .zero }
     
     
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
         
-        value = max(value, nextValue())
+        let next = nextValue()
+        value = CGSize(width: max(value.width, next.width),
+                       height: max(value.height, next.height))
     }
 }
-
-
-struct WidthKey: MaxWidthKey { }

@@ -79,7 +79,7 @@ struct CharacterCountOptionsView: View {
                                 }
                             }
                         }.fixedSize()
-                            .background(WidthGetter(key: WidthKey.self))
+                            .background(SizeGetter(key: MaxSizeKey.self))
                     }
                     
                     if self.setting.unit != .graphemeCluster {
@@ -105,7 +105,7 @@ struct CharacterCountOptionsView: View {
                 }
             }
         }
-        .onPreferenceChange(WidthKey.self) { self.contentWidth = $0 }
+        .onPreferenceChange(MaxSizeKey.self) { self.contentWidth = $0.width }
         .animation(.default, value: self.setting.unit)
     }
 }

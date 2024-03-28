@@ -55,18 +55,18 @@ struct SubmitButtonGroup: View {
         HStack {
             Button(role: .cancel, action: self.cancelAction) {
                 Text(String(localized: "Cancel"))
-                    .background(WidthGetter(key: WidthKey.self))
+                    .background(SizeGetter(key: MaxSizeKey.self))
                     .frame(width: self.buttonWidth)
             }.keyboardShortcut(.cancelAction)
                 .environment(\.isEnabled, true)  // Cancel button is always active
             
             Button(action: self.submitAction) {
                 Text(self.submitLabel)
-                    .background(WidthGetter(key: WidthKey.self))
+                    .background(SizeGetter(key: MaxSizeKey.self))
                     .frame(width: self.buttonWidth)
             }.keyboardShortcut(.defaultAction)
         }
-        .onPreferenceChange(WidthKey.self) { self.buttonWidth = $0 }
+        .onPreferenceChange(MaxSizeKey.self) { self.buttonWidth = $0.width }
         .fixedSize()
     }
 }
