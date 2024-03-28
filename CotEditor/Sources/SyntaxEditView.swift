@@ -188,7 +188,7 @@ struct SyntaxEditView: View {
     }
     
     
-    @MainActor @ViewBuilder private var detailView: some View {
+    @ViewBuilder private var detailView: some View {
         
         switch self.pane {
             case .keywords:
