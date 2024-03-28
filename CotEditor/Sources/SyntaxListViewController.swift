@@ -533,7 +533,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
         
         let viewController = NSHostingController(rootView: view)
         viewController.rootView.parent = viewController
-        viewController.view.frame.size = NSSize(width: 680, height: 450)
+        viewController.view.frame.size = viewController.view.intrinsicContentSize
         
         self.presentAsSheet(viewController)
     }

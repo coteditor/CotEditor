@@ -8,6 +8,7 @@
 - Renew the “About CotEditor” window.
 - [non-AppStore ver.] Update Sparkle from 2.5.2 to 2.6.0.
 - [dev] Update Yams from 5.0.6 to 5.1.0.
+- [beta] Restore the last syntax editor size within a session. 
 
 
 ### Fixes
