@@ -1544,7 +1544,7 @@
       }
     },
     "Incompatible Characters" : {
-      "comment" : "section title",
+      "comment" : "section title in inspector",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1615,7 +1615,7 @@
       }
     },
     "Inconsistent Line Endings" : {
-      "comment" : "section title",
+      "comment" : "section title in inspector",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
