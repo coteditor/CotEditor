@@ -65,13 +65,13 @@ struct DocumentFile {
     
     // MARK: Properties
     
-    let data: Data
-    let string: String
-    let attributes: Attributes
-    let fileEncoding: FileEncoding
-    let xattrEncoding: String.Encoding?
-    let isVerticalText: Bool
-    let allowsInconsistentLineEndings: Bool
+    var data: Data
+    var string: String
+    var attributes: Attributes
+    var fileEncoding: FileEncoding
+    var xattrEncoding: String.Encoding?
+    var isVerticalText: Bool
+    var allowsInconsistentLineEndings: Bool
     
     
     
