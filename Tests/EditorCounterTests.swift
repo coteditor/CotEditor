@@ -1,5 +1,5 @@
 //
-//  EditorInfoCountOperationTests.swift
+//  EditorCounterTests.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,7 @@
 import XCTest
 @testable import CotEditor
 
-final class EditorInfoCountOperationTests: XCTestCase {
+final class EditorCounterTests: XCTestCase {
     
     private let testString = """
         dog is 🐕.
@@ -34,16 +34,14 @@ final class EditorInfoCountOperationTests: XCTestCase {
         Both are 👍🏼.
         """
     
-    func testNoRequiredInfo() throws {
+    func testNoRequiredInfo() async throws {
         
         let selectedRange = try XCTUnwrap(Range(NSRange(0..<3), in: self.testString))
-        let counter = EditorCounter(
-            string: self.testString,
-            selectedRanges: [selectedRange],
-            requiredInfo: [],
-            countsWholeText: true)
         
-        let result = try counter.count()
+        let counter = EditorCounter()
+        try await counter.count(string: self.testString)
+        try await counter.move(selectedRanges: [selectedRange], string: self.testString)
+        let result = await counter.result
         
         XCTAssertNil(result.lines.entire)
         XCTAssertNil(result.characters.entire)
@@ -54,16 +52,15 @@ final class EditorInfoCountOperationTests: XCTestCase {
     }
     
     
-    func testAllRequiredInfo() throws {
+    func testAllRequiredInfo() async throws {
         
         let selectedRange = try XCTUnwrap(Range(NSRange(11..<21), in: self.testString))
-        let counter = EditorCounter(
-            string: self.testString,
-            selectedRanges: [selectedRange],
-            requiredInfo: .all,
-            countsWholeText: true)
         
-        let result = try counter.count()
+        let counter = EditorCounter()
+        await counter.update(types: .all)
+        try await counter.count(string: self.testString)
+        try await counter.move(selectedRanges: [selectedRange], string: self.testString)
+        let result = await counter.result
         
         XCTAssertEqual(result.lines.entire, 3)
         XCTAssertEqual(result.characters.entire, 31)
@@ -79,16 +76,14 @@ final class EditorInfoCountOperationTests: XCTestCase {
     }
     
     
-    func testWholeTextSkip() throws {
+    func testWholeTextSkip() async throws {
         
         let selectedRange = try XCTUnwrap(Range(NSRange(11..<21), in: self.testString))
-        let counter = EditorCounter(
-            string: self.testString,
-            selectedRanges: [selectedRange],
-            requiredInfo: .all,
-            countsWholeText: false)
         
-        let result = try counter.count()
+        let counter = EditorCounter()
+        await counter.update(types: .all)
+        try await counter.move(selectedRanges: [selectedRange], string: self.testString)
+        let result = await counter.result
         
         XCTAssertNil(result.lines.entire)
         XCTAssertNil(result.characters.entire)
@@ -104,17 +99,16 @@ final class EditorInfoCountOperationTests: XCTestCase {
     }
     
     
-    func testCRLF() throws {
+    func testCRLF() async throws {
         
         let string = "a\r\nb"
         let selectedRange = try XCTUnwrap(Range(NSRange(1..<4), in: string))
-        let counter = EditorCounter(
-            string: string,
-            selectedRanges: [selectedRange],
-            requiredInfo: .all,
-            countsWholeText: true)
         
-        let result = try counter.count()
+        let counter = EditorCounter()
+        await counter.update(types: .all)
+        try await counter.count(string: string)
+        try await counter.move(selectedRanges: [selectedRange], string: string)
+        let result = await counter.result
         
         XCTAssertEqual(result.lines.entire, 2)
         XCTAssertEqual(result.characters.entire, 3)
@@ -132,7 +126,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
     
     func testCountFormatting() {
         
-        var count = EditorCountResult.Count()
+        var count = EditorCounter.Result.Count()
         
         XCTAssertNil(count.formatted)
         

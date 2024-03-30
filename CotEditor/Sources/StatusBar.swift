@@ -100,7 +100,6 @@ private extension StatusBar.Model {
         }
         
         document.analyzer.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
-        document.analyzer.invalidate()
         
         self.documentObservers = [
             document.analyzer.$result
@@ -126,9 +125,9 @@ private extension StatusBar.Model {
 private extension UserDefaults {
     
     /// The info types needed to be calculated.
-    var statusBarEditorInfo: EditorInfoTypes {
+    var statusBarEditorInfo: EditorCounter.Types {
         
-        EditorInfoTypes()
+        EditorCounter.Types()
             .union(self[.showStatusBarChars] ? .characters : [])
             .union(self[.showStatusBarLines] ? .lines : [])
             .union(self[.showStatusBarWords] ? .words : [])
@@ -151,7 +150,7 @@ struct StatusBar: View {
         @Published var fileEncoding: FileEncoding = .utf8
         @Published var lineEnding: LineEnding = .lf
         
-        @Published fileprivate(set) var countResult: EditorCountResult = .init()
+        @Published fileprivate(set) var countResult: EditorCounter.Result = .init()
         @Published fileprivate(set) var fileSize: Int64?
         
         private var defaultsObserver: AnyCancellable?
@@ -241,7 +240,7 @@ struct StatusBar: View {
 
 private struct EditorCountView: View {
     
-    var result: EditorCountResult
+    var result: EditorCounter.Result
     
     @AppStorage(.showStatusBarLines) private var showsLines
     @AppStorage(.showStatusBarChars) private var showsCharacters

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,19 +33,19 @@ final class DocumentAnalyzer {
     
     // MARK: Public Properties
     
-    @Published private(set) var result: EditorCountResult = .init()
+    @Published private(set) var result: EditorCounter.Result = .init()
     
-    var updatesAll = false
-    var statusBarRequirements: EditorInfoTypes = []
+    var updatesAll = false  { didSet { Task { await self.updateTypes() } } }
+    var statusBarRequirements: EditorCounter.Types = []  { didSet { Task { await self.updateTypes() } } }
     
     
     // MARK: Private Properties
     
+    private let counter = EditorCounter()
     private weak var document: Document?  // weak to avoid cycle retain
-    private var requiredInfoTypes: EditorInfoTypes  { self.updatesAll ? .all : self.statusBarRequirements }
     
-    private var needsCountWholeText = true
-    private var task: Task<Void, any Error>?
+    private var contentTask: Task<Void, any Error>?
+    private var selectionTask: Task<Void, any Error>?
     
     
     
@@ -63,64 +63,62 @@ final class DocumentAnalyzer {
     /// Cancels all remaining tasks.
     func cancel() {
         
-        self.task?.cancel()
+        self.contentTask?.cancel()
+        self.selectionTask?.cancel()
     }
     
-    /// Updates editor info (only if really needed).
-    ///
-    /// - Parameter onlySelection: `true` to invalidate only the selection.
-    func invalidate(onlySelection: Bool = false) {
+    
+    /// Updates content counts.
+    func invalidateContent() {
         
-        guard !self.requiredInfoTypes.isEmpty else { return }
-        guard let textView = self.document?.textView else { return }
-        
-        if !onlySelection {
-            self.needsCountWholeText = true
-        }
-        
-        // do nothing if only cursor is moved but no need to calculate the cursor location.
-        if !self.needsCountWholeText,
-           self.requiredInfoTypes.isDisjoint(with: .cursors),
-           textView.selectedRange.isEmpty
-        {
-            self.result.lines.selected = 0
-            self.result.characters.selected = 0
-            self.result.words.selected = 0
-            return
-        }
-        
-        let delay: Duration = .milliseconds(self.needsCountWholeText ? 10 : 200)
-        
-        self.task?.cancel()
-        self.task = Task { [weak textView] in
-            try await Task.sleep(for: delay, tolerance: .milliseconds(10))  // debounce
+        self.contentTask?.cancel()
+        self.contentTask = Task {
+            guard await !self.counter.types.isDisjoint(with: .count) else { return }
             
-            guard let textView else { return }
+            try await Task.sleep(for: .milliseconds(20), tolerance: .milliseconds(20))  // debounce
+            
+            guard let string = await self.document?.textView?.string.immutable else { return }
+            
+            try await self.counter.count(string: string)
+            self.result = await self.counter.result
+        }
+    }
+    
+    
+    /// Updates selection-related values.
+    func invalidateSelection() {
+        
+        self.selectionTask?.cancel()
+        self.selectionTask = Task {
+            guard await !self.counter.types.isEmpty else { return }
+            
+            try await Task.sleep(for: .milliseconds(200), tolerance: .milliseconds(40))  // debounce
+            
+            guard let textView = await self.document?.textView else { return }
             
             let string = await textView.string.immutable
             let selectedRanges = await textView.selectedRanges
-                .map(\.rangeValue)
-                .compactMap { Range($0, in: string) }
+                .compactMap { Range($0.rangeValue, in: string) }
             
-            try Task.checkCancellation()
-            
-            // selectedRanges can be empty when the document is already closed
-            guard !selectedRanges.isEmpty else { return }
-            
-            let countsWholeText = self.needsCountWholeText
-            let counter = EditorCounter(string: string, selectedRanges: selectedRanges, requiredInfo: self.requiredInfoTypes, countsWholeText: countsWholeText)
-            
-            var result = try counter.count()
-            
-            if countsWholeText {
-                self.needsCountWholeText = false
-            } else {
-                result.lines.entire = self.result.lines.entire
-                result.characters.entire = self.result.characters.entire
-                result.words.entire = self.result.words.entire
-            }
-            
-            self.result = result
+            try await self.counter.move(selectedRanges: selectedRanges, string: string)
+            self.result = await self.counter.result
         }
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Update types to count.
+    private func updateTypes() async {
+        
+        let oldValue = await self.counter.types
+        let newValue = self.updatesAll ? .all : self.statusBarRequirements
+        
+        await self.counter.update(types: newValue)
+        
+        if oldValue.intersection(.count) == newValue.intersection(.count) {
+            self.invalidateContent()
+        }
+        self.invalidateSelection()
     }
 }
