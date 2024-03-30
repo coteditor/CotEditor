@@ -15,12 +15,6 @@
             "value" : "Während der Texteingabe automatisch einrücken"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Automatically indent while typing"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -89,12 +83,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Leerzeichen am Zeilenende automatisch entfernen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Automatically trim trailing whitespace"
           }
         },
         "en-GB" : {

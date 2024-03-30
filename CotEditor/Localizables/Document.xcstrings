@@ -1116,7 +1116,7 @@
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "new",
+                  "state" : "translated",
                   "value" : "Found %lld incompatible characters."
                 }
               }
@@ -1319,7 +1319,7 @@
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "new",
+                  "state" : "translated",
                   "value" : "Found %1$lld line endings other than %2$@."
                 }
               }
@@ -3541,12 +3541,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Textcodierung"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Text Encoding"
           }
         },
         "en-GB" : {

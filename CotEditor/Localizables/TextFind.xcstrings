@@ -385,7 +385,7 @@
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "new",
+                  "state" : "translated",
                   "value" : "%lld strings found."
                 }
               }
@@ -588,7 +588,7 @@
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "new",
+                  "state" : "translated",
                   "value" : "%lld strings replaced."
                 }
               }
@@ -3109,7 +3109,7 @@
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "new",
+                  "state" : "translated",
                   "value" : "Found %1$lld strings in “%2$@.”"
                 }
               }
