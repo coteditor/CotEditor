@@ -134,7 +134,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     private var defaultsObservers: Set<AnyCancellable> = []
     private var fontObservers: Set<AnyCancellable> = []
     private var windowOpacityObserver: AnyCancellable?
-    private var keyStateObserver: AnyCancellable?
+    private var keyStateObservers: [any NSObjectProtocol] = []
     
     
     
@@ -347,14 +347,21 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
                 self?.lineHighlightColor = self?.theme?.lineHighlightColor(forOpaqueBackground: $0)
             }
         
-        
         // observe key window state for insertion points drawing
         if #available(macOS 14, *), let window {
-            self.keyStateObserver = Publishers.Merge(
-                NotificationCenter.default.publisher(for: NSWindow.didBecomeKeyNotification, object: window),
-                NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification, object: window)
-            )
-            .sink { [unowned self] _ in self.invalidateInsertionIndicatorDisplayMode() }
+            self.keyStateObservers = [
+                NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: window, queue: .main) { [weak self] _ in
+                    self?.invalidateInsertionIndicatorDisplayMode()
+                },
+                NotificationCenter.default.addObserver(forName: NSWindow.didResignKeyNotification, object: window, queue: .main) { [weak self] _ in
+                    self?.invalidateInsertionIndicatorDisplayMode()
+                },
+            ]
+        } else {
+            for observer in self.keyStateObservers {
+                NotificationCenter.default.removeObserver(observer)
+            }
+            self.keyStateObservers.removeAll()
         }
     }
     
