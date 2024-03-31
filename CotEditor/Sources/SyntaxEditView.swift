@@ -64,7 +64,7 @@ struct SyntaxEditView: View {
     weak var parent: NSHostingController<Self>?
     
     
-    private static var viewSize = CGSize(width: 680, height: 450)
+    private static var viewSize = CGSize(width: 680, height: 500)
     
     @State private var name: String = ""
     @State private var message: String?
@@ -184,7 +184,7 @@ struct SyntaxEditView: View {
                 Color.clear.onChange(of: geometry.size) { Self.viewSize = $0 }
             }
         }
-        .frame(idealWidth: Self.viewSize.width, minHeight: 450, idealHeight: Self.viewSize.height)
+        .frame(idealWidth: Self.viewSize.width, minHeight: 500, idealHeight: Self.viewSize.height)
     }
     
     
