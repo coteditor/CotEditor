@@ -1,6 +1,6 @@
 # Change Log
 
-4.8.0-beta.3 (unreleased)
+4.8.0-beta.3 (637)
 --------------------------
 
 ### Improvements
