@@ -114,7 +114,9 @@ private struct ColorCodePanelAccessory: View {
         if let colorCode, let color = NSColor(colorCode: colorCode, type: &type), let type {
             self.colorCode = colorCode
             self.type = type.rawValue
-            panel.color = color
+            Task { @MainActor in
+                panel.color = color
+            }
         }
     }
     

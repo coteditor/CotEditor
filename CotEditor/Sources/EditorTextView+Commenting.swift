@@ -83,7 +83,7 @@ struct CommentTypes: OptionSet {
 }
 
 
-protocol Commenting: NSTextView {
+@MainActor protocol Commenting: NSTextView {
     
     var commentDelimiters: Syntax.Comment { get }
 }

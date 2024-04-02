@@ -29,7 +29,7 @@ import Combine
 
 @objc protocol EncodingChanging: AnyObject {
     
-    func changeEncoding(_ sender: NSMenuItem)
+    @MainActor func changeEncoding(_ sender: NSMenuItem)
 }
 
 

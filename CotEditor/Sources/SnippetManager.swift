@@ -28,7 +28,7 @@ import AppKit
 import Combine
 import Foundation
 
-@objc protocol SnippetInsertable: AnyObject {
+@MainActor @objc protocol SnippetInsertable: AnyObject {
     
     @objc func insertSnippet(_ sender: NSMenuItem)
 }

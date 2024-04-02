@@ -64,7 +64,7 @@ final class StatusBarController: NSHostingController<StatusBar> {
 
 private extension StatusBar.Model {
     
-    func onAppear() {
+    @MainActor func onAppear() {
         
         self.observeDocument()
         
@@ -84,7 +84,7 @@ private extension StatusBar.Model {
     }
     
     
-    func onDisappear() {
+    @MainActor func onDisappear() {
         
         self.defaultsObserver = nil
         self.documentObservers.removeAll()
@@ -92,7 +92,7 @@ private extension StatusBar.Model {
     }
     
     
-    private func observeDocument() {
+    @MainActor private func observeDocument() {
         
         guard let document else {
             self.documentObservers.removeAll()
@@ -145,7 +145,7 @@ struct StatusBar: View {
     
     final class Model: ObservableObject {
         
-        var document: Document?  { didSet { self.observeDocument() } }
+        @MainActor var document: Document?  { didSet { Task { @MainActor in self.observeDocument() } } }
         
         @Published var fileEncoding: FileEncoding = .utf8
         @Published var lineEnding: LineEnding = .lf

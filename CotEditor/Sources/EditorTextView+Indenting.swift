@@ -87,7 +87,7 @@ extension EditorTextView: Indenting {
 
 // MARK: - Protocol
 
-protocol Indenting: NSTextView {
+@MainActor protocol Indenting: NSTextView {
     
     var tabWidth: Int { get }
     var isAutomaticTabExpansionEnabled: Bool { get }

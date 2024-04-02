@@ -178,7 +178,7 @@ private extension InspectorPane {
     }
     
     
-    func viewController(document: Document) -> NSViewController {
+    @MainActor func viewController(document: Document) -> NSViewController {
         
         switch self {
             case .document:

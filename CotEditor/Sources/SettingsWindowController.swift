@@ -64,7 +64,7 @@ final class SettingsWindowController: NSWindowController {
 
 private extension SettingsPane {
     
-    var tabViewItem: NSTabViewItem {
+    @MainActor var tabViewItem: NSTabViewItem {
         
         let viewController = NSHostingController(rootView: AnyView(self.view))
         viewController.sizingOptions = .preferredContentSize

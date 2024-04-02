@@ -27,7 +27,7 @@ import AppKit
 import Combine
 import SwiftUI
 
-@objc protocol TextFinderClient: AnyObject {
+@MainActor @objc protocol TextFinderClient: AnyObject {
     
     func performEditorTextFinderAction(_ sender: Any?)
     func matchNext(_ sender: Any?)

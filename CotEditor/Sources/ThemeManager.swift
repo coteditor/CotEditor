@@ -28,7 +28,7 @@ import Combine
 import Foundation
 import UniformTypeIdentifiers
 
-@objc protocol ThemeChanging: AnyObject {
+@MainActor @objc protocol ThemeChanging: AnyObject {
     
     func changeTheme(_ sender: NSMenuItem)
 }

@@ -160,13 +160,15 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     // MARK: Services Menu Requestor
     
-    func readSelection(from pboard: NSPasteboard) -> Bool {
+    nonisolated func readSelection(from pboard: NSPasteboard) -> Bool {
         
         // scan from continuity camera
         if pboard.canReadItem(withDataConformingToTypes: NSImage.imageTypes),
            let image = NSImage(pasteboard: pboard)
         {
-            self.popoverLiveText(image: image)
+            Task { @MainActor in
+                self.popoverLiveText(image: image)
+            }
             
             return true
         }
@@ -333,7 +335,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// Shows a popover indicating the given image and live text detection.
     ///
     /// - Parameter image: The image to scan text.
-    @MainActor private func popoverLiveText(image: NSImage) {
+    private func popoverLiveText(image: NSImage) {
         
         guard let textView = self.textView else { return assertionFailure() }
         

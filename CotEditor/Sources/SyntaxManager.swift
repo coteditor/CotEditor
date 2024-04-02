@@ -31,7 +31,7 @@ import UniformTypeIdentifiers
 import Yams
 import SyntaxMap
 
-@objc protocol SyntaxChanging: AnyObject {
+@MainActor @objc protocol SyntaxChanging: AnyObject {
     
     func changeSyntax(_ sender: NSMenuItem)
     func recolorAll(_ sender: Any?)

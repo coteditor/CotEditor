@@ -587,7 +587,7 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
     }
     
     
-    @MainActor func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
+    func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
         
         switch recoveryOptionIndex {
             case 0:  // == Cancel
@@ -597,7 +597,9 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
                 do {
                     try self.continuationHandler()
                 } catch {
-                    NSApp.presentError(error)
+                    Task { @MainActor in
+                        NSApp.presentError(error)
+                    }
                     return false
                 }
                 return true

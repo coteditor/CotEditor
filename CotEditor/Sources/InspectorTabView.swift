@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ protocol InspectorTabViewDelegate: NSTabViewDelegate {
     ///   - tabView: The tab view that sent the request.
     ///   - tabViewItem: The tab view item that requests selected image.
     /// - Returns: An image for selected tab, or `nil` for default behavior.
-    func tabView(_ tabView: NSTabView, selectedImageForItem tabViewItem: NSTabViewItem) -> NSImage?
+    @MainActor func tabView(_ tabView: NSTabView, selectedImageForItem tabViewItem: NSTabViewItem) -> NSImage?
 }
 
 
