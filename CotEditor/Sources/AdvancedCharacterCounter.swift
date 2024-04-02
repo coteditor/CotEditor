@@ -58,20 +58,23 @@ final class AdvancedCharacterCounter: ObservableObject {
     @Published private(set) var entireCount: Int? = 0
     @Published private(set) var selectionCount: Int? = 0
     
-    let setting = CharacterCountOptionsSetting()
+    @ObservedObject var setting = CharacterCountOptionsSetting()
     
     
-    // MARK: Private Properties
+    // MARK: Public Methods
     
-    @MainActor private let textView: NSTextView
-    
-    
-    
-    // MARK: Lifecycle
-    
-    init(textView: NSTextView) {
+    /// If there is a selection returns the count of the selection; otherwise, the entire count.
+    var count: Int? {
         
-        self.textView = textView
+        guard let selectionCount = self.selectionCount else { return nil }
+        
+        return (selectionCount > 0) ? selectionCount : self.entireCount
+    }
+    
+    
+    /// Observe the content and selections of the given text view to count.
+    /// - Parameter textView: The text view to observe.
+    @MainActor func observe(textView: NSTextView) {
         
         // observe text view and UserDefaults
         NotificationCenter.default.publisher(for: NSText.didChangeNotification, object: textView)
@@ -79,7 +82,7 @@ final class AdvancedCharacterCounter: ObservableObject {
             .merge(with: self.setting.objectWillChange)
             .merge(with: Just(Void()))  // initial calculation
             .receive(on: DispatchQueue.main)
-            .compactMap { [weak self] in self.flatMap { ($0.textView.string.immutable, $0.setting.options) } }
+            .compactMap { [unowned self] in (textView.string.immutable, self.setting.options) }
             .receive(on: DispatchQueue.global())
             .map { $0.count(options: $1) }
             .receive(on: DispatchQueue.main)
@@ -89,7 +92,7 @@ final class AdvancedCharacterCounter: ObservableObject {
             .merge(with: self.setting.objectWillChange)
             .merge(with: Just(Void()))  // initial calculation
             .receive(on: DispatchQueue.main)
-            .compactMap { [weak self] in self.flatMap { ($0.textView.selectedStrings, $0.setting.options) } }
+            .compactMap { [unowned self] in (textView.selectedStrings, self.setting.options) }
             .receive(on: DispatchQueue.global())
             .map { (strings, options) in
                 strings

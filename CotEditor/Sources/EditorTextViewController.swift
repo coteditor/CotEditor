@@ -355,7 +355,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// Hides the existing advanced character counter.
     ///
     /// - Parameter counterView: The advanced character counter to dismiss.
-    @MainActor private func dismissAdvancedCharacterCounter() {
+    private func dismissAdvancedCharacterCounter() {
         
         guard let counterView = self.advancedCounterView else { return assertionFailure() }
         
@@ -370,11 +370,12 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     
     /// Sets and shows advanced character counter.
-    @MainActor private func showAdvancedCharacterCounter() {
+    private func showAdvancedCharacterCounter() {
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        let counter = AdvancedCharacterCounter(textView: textView)
+        let counter = AdvancedCharacterCounter()
+        counter.observe(textView: textView)
         let rootView = AdvancedCharacterCounterView(counter: counter) { [weak self] in
             self?.dismissAdvancedCharacterCounter()
         }

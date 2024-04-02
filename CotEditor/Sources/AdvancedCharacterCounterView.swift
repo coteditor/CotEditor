@@ -36,12 +36,12 @@ struct AdvancedCharacterCounterView: View {
     var body: some View {
         
         HStack(alignment: .firstTextBaseline) {
-            if let count = self.count {
+            if let count = self.counter.count {
                 let markdown: AttributedString = switch self.counter.setting.unit {
                     case .byte: .init(localized: "*\(count)* byte(s)", table: "AdvancedCharacterCount", locale: .current,
                                       comment: "counter for advanced character count")
-                    default:    .init(localized: "*\(count)* character(s)", table: "AdvancedCharacterCount", locale: .current,
-                                      comment: "counter for advanced character count")
+                    default: .init(localized: "*\(count)* character(s)", table: "AdvancedCharacterCount", locale: .current,
+                                   comment: "counter for advanced character count")
                 }
                 let attributes = AttributeContainer
                     .font(.body.monospacedDigit().weight(.medium))
@@ -86,7 +86,7 @@ struct AdvancedCharacterCounterView: View {
         .shadow(radius: 4, y: 2)
         .onTapGesture { }  // avoid clicking through
         .contextMenu {
-            if let count = self.count {
+            if let count = self.counter.count {
                 Button(String(localized: "Copy", table: "AdvancedCharacterCount", comment: "menu item")) {
                     NSPasteboard.general.clearContents()
                     NSPasteboard.general.setString(String(count), forType: .string)
@@ -99,14 +99,6 @@ struct AdvancedCharacterCounterView: View {
             }
         }
     }
-    
-    
-    private var count: Int? {
-        
-        guard let selectionCount = self.counter.selectionCount else { return nil }
-        
-        return (selectionCount > 0) ? selectionCount : self.counter.entireCount
-    }
 }
 
 
@@ -114,5 +106,6 @@ struct AdvancedCharacterCounterView: View {
 // MARK: - Preview
 
 #Preview {
-    AdvancedCharacterCounterView(counter: .init(textView: .init())) { }
+    AdvancedCharacterCounterView(counter: .init()) { }
+        .frame(width: 140)
 }
