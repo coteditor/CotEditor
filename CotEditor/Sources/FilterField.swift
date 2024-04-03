@@ -87,12 +87,10 @@ struct FilterField: NSViewRepresentable {
             self._text = text
         }
         
-        
-        func controlTextDidChange(_ obj: Notification) {
-            
-            guard let textField = obj.object as? NSTextField else { return }
-            
-            self.text = textField.stringValue
+        // Workaround to fix the issue that the text field does not update when selecting a recent filter.
+        // Update is called directly from  InnerFilterField#sendAction,
+        func updateText(_ text: String) {
+            self.text = text
         }
     }
 }
@@ -172,6 +170,11 @@ private final class InnerFilterField: NSSearchField {
         // invoked when the search string was set by selecting recent history menu
         defer {
             self.validateImage()
+        }
+        
+        // Workaround to fix the issue that the text field does not update (via controlTextDidChange) when selecting an item from the recents menu.
+        if let coordinator = (self.delegate as? FilterField.Coordinator) {
+            coordinator.updateText(self.stringValue)
         }
         
         return super.sendAction(action, to: target)
