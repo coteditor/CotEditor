@@ -27,11 +27,6 @@ import SwiftUI
 
 struct FindPanelButtonView: View {
     
-    @FirstResponder private var firstResponder
-    
-    
-    // MARK: View
-    
     var body: some View {
         
         HStack(alignment: .bottom) {
@@ -80,7 +75,6 @@ struct FindPanelButtonView: View {
             .labelStyle(.iconOnly)
             .frame(width: 70)
         }
-        .responderChain(to: self.firstResponder)
         .padding(.top, 8)
         .scenePadding([.horizontal, .bottom])
     }
@@ -88,9 +82,16 @@ struct FindPanelButtonView: View {
     
     // MARK: Private Methods
     
+    /// Send a text finder action message to the legacy responder-chain.
+    ///
+    /// - Parameter action: The `TextFinder.Action` to perform.
     @MainActor private func performAction(_ action: TextFinder.Action) {
         
-        self.firstResponder.performAction(#selector((any TextFinderClient).performEditorTextFinderAction), tag: action.rawValue)
+        // create a dummy sender for tag
+        let sender = NSControl()
+        sender.tag = action.rawValue
+        
+        NSApp.sendAction(#selector((any TextFinderClient).performEditorTextFinderAction), to: nil, from: sender)
     }
 }
 

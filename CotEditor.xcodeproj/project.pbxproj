@@ -378,8 +378,6 @@
 		2A6876A92963DE38006257A6 /* TextFinderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876A72963DE38006257A6 /* TextFinderSettings.swift */; };
 		2A6876AB29641547006257A6 /* MultipleReplacePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876AA29641547006257A6 /* MultipleReplacePanelController.swift */; };
 		2A6876AC29641547006257A6 /* MultipleReplacePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876AA29641547006257A6 /* MultipleReplacePanelController.swift */; };
-		2A6876AE296505BC006257A6 /* FirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876AD296505BC006257A6 /* FirstResponder.swift */; };
-		2A6876AF296505BC006257A6 /* FirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876AD296505BC006257A6 /* FirstResponder.swift */; };
 		2A6C8E3221E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */; };
 		2A6C8E3321E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */; };
 		2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E3F3C19B5218300A63E97 /* CotEditor.help */; };
@@ -1086,7 +1084,6 @@
 		2A68722E288A5C44006D6B41 /* DraggableHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableHostingView.swift; sourceTree = "<group>"; };
 		2A6876A72963DE38006257A6 /* TextFinderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFinderSettings.swift; sourceTree = "<group>"; };
 		2A6876AA29641547006257A6 /* MultipleReplacePanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleReplacePanelController.swift; sourceTree = "<group>"; };
-		2A6876AD296505BC006257A6 /* FirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstResponder.swift; sourceTree = "<group>"; };
 		2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorTextView+CursorMovement.swift"; sourceTree = "<group>"; };
 		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
 		2A6F0E071B5500E100C2D03C /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2373,7 +2370,6 @@
 			isa = PBXGroup;
 			children = (
 				2AB1BD1E287D747200C6FEAF /* SizeGetter.swift */,
-				2A6876AD296505BC006257A6 /* FirstResponder.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -2976,7 +2972,6 @@
 				2A231A2E1E7BE8B700C2A909 /* FindProgress.swift in Sources */,
 				2A5D13111D1EE66500D38E6A /* FindProgressView.swift in Sources */,
 				2AF98CAB294B9488009AD47F /* FindSettingsView.swift in Sources */,
-				2A6876AE296505BC006257A6 /* FirstResponder.swift in Sources */,
 				2AFFA7C32B16E93B005652CD /* FormatSettingsView.swift in Sources */,
 				2A65EC262B80C01B008096C5 /* FontPicker.swift in Sources */,
 				2A19AF862AE0D15300EFFDCB /* FormPopUpButton.swift in Sources */,
@@ -3344,7 +3339,6 @@
 				2A231A2D1E7BE8B700C2A909 /* FindProgress.swift in Sources */,
 				2A5D13101D1EE66500D38E6A /* FindProgressView.swift in Sources */,
 				2AF98CAC294B9488009AD47F /* FindSettingsView.swift in Sources */,
-				2A6876AF296505BC006257A6 /* FirstResponder.swift in Sources */,
 				2A65EC272B80C01B008096C5 /* FontPicker.swift in Sources */,
 				2A19AF872AE0D15300EFFDCB /* FormPopUpButton.swift in Sources */,
 				2AFFA7C42B16E93B005652CD /* FormatSettingsView.swift in Sources */,
@@ -3888,7 +3882,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "-enable-upcoming-feature ConciseMagicFile -enable-upcoming-feature ExistentialAny -enable-upcoming-feature ForwardTrailingClosures -enable-upcoming-feature ImplicitOpenExistentials -enable-upcoming-feature DisableOutwardActorInference";
+				OTHER_SWIFT_FLAGS = "-enable-upcoming-feature ConciseMagicFile -enable-upcoming-feature ExistentialAny -enable-upcoming-feature ForwardTrailingClosures -enable-upcoming-feature ImplicitOpenExistentials -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature IsolatedDefaultValues";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -3952,7 +3946,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "-enable-upcoming-feature ConciseMagicFile -enable-upcoming-feature ExistentialAny -enable-upcoming-feature ForwardTrailingClosures -enable-upcoming-feature ImplicitOpenExistentials -enable-upcoming-feature DisableOutwardActorInference";
+				OTHER_SWIFT_FLAGS = "-enable-upcoming-feature ConciseMagicFile -enable-upcoming-feature ExistentialAny -enable-upcoming-feature ForwardTrailingClosures -enable-upcoming-feature ImplicitOpenExistentials -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature IsolatedDefaultValues";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
