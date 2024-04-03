@@ -29,7 +29,7 @@ import ColorCode
 
 @objc protocol ColorCodeReceiver: AnyObject {
     
-    func insertColorCode(_ colorCode: String)
+    @MainActor func insertColorCode(_ colorCode: String)
 }
 
 

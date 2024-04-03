@@ -30,6 +30,10 @@ import Combine
 import UniformTypeIdentifiers
 import OSLog
 
+// Logger should be Sendable. (2024-04, macOS 14.3, Xcode 15.3)
+// cf. https://forums.developer.apple.com/forums/thread/747816
+extension Logger: @unchecked Sendable { }
+
 extension Logger {
     
     static let app = Logger(subsystem: "com.coteditor.CotEditor", category: "application")

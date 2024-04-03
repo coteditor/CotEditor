@@ -64,7 +64,7 @@ struct SyntaxEditView: View {
     weak var parent: NSHostingController<Self>?
     
     
-    private static var viewSize = CGSize(width: 680, height: 500)
+    @MainActor private static var viewSize = CGSize(width: 680, height: 500)
     
     @State private var name: String = ""
     @State private var message: String?
