@@ -30,6 +30,8 @@ import Combine
 import UniformTypeIdentifiers
 import OSLog
 
+extension Notification.Name: @unchecked Sendable { }
+
 // Logger should be Sendable. (2024-04, macOS 14.3, Xcode 15.3)
 // cf. https://forums.developer.apple.com/forums/thread/747816
 extension Logger: @unchecked Sendable { }
