@@ -3,6 +3,11 @@
 4.8.0-beta.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- Change the filter field for the outline inspector to apply the selection of the filter history immediately.
+
+
 ### Fixes
 
 - Fix an issue on the filter field for the outline inspector that the filter history was initially empty.

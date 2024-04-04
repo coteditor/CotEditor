@@ -166,6 +166,7 @@ private final class InnerFilterField: NSSearchField {
         // invoked when the search string was set by selecting recent history menu
         defer {
             self.validateImage()
+            self.delegate?.controlTextDidChange?(Notification(name: NSTextField.textDidChangeNotification, object: self))
         }
         
         return super.sendAction(action, to: target)
