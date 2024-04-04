@@ -47,6 +47,7 @@ struct FilterField: NSViewRepresentable {
         searchField.delegate = context.coordinator
         searchField.placeholderString = String(localized: "Filter", table: "FilterField", comment: "placeholder for filter field")
         searchField.sendsSearchStringImmediately = true
+        searchField.recentsAutosaveName = self.autosaveName
 
         return searchField
     }
@@ -55,7 +56,6 @@ struct FilterField: NSViewRepresentable {
     func updateNSView(_ nsView: NSSearchField, context: Context) {
         
         nsView.stringValue = self.text
-        nsView.recentsAutosaveName = self.autosaveName
     }
     
     
@@ -126,20 +126,6 @@ private final class InnerFilterField: NSSearchField {
         }
         
         self.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
-        
-        let searchMenu = NSMenu(title: String(localized: "Recent Filters", table: "FilterField", comment: "menu label"))
-        searchMenu.addItem(withTitle: String(localized: "Recent Filters", table: "FilterField"), action: nil, keyEquivalent: "")
-            .tag = NSSearchField.recentsTitleMenuItemTag
-        searchMenu.addItem(withTitle: "", action: nil, keyEquivalent: "")
-            .tag = NSSearchField.recentsMenuItemTag
-        searchMenu.addItem(.separator())
-        searchMenu.addItem(withTitle: String(localized: "Clear Recent Filters", table: "FilterField", comment: "menu item label"),
-                           action: nil, keyEquivalent: "")
-            .tag = NSSearchField.clearRecentsMenuItemTag
-        searchMenu.addItem(withTitle: String(localized: "No Recent Filter", table: "FilterField", comment: "menu item label"),
-                           action: nil, keyEquivalent: "")
-            .tag = NSSearchField.noRecentsMenuItemTag
-        self.searchMenuTemplate = searchMenu
     }
     
     
@@ -151,6 +137,14 @@ private final class InnerFilterField: NSSearchField {
     
     
     // MARK: Text Field Methods
+    
+    override var recentsAutosaveName: NSSearchField.RecentsAutosaveName? {
+        
+        didSet {
+            self.invalidateSearchMenu()
+        }
+    }
+    
     
     override func draw(_ dirtyRect: NSRect) {
         
@@ -181,11 +175,31 @@ private final class InnerFilterField: NSSearchField {
     
     // MARK: Private Methods
     
+    /// Updates highlighting of the filter icon on the field.
     private func validateImage() {
         
         guard let buttonCell = (self.cell as? NSSearchFieldCell)?.searchButtonCell else { return assertionFailure() }
         
         buttonCell.image = self.stringValue.isEmpty ? self.image : self.filteringImage
+    }
+    
+    
+    /// Sets up the search menu.
+    private func invalidateSearchMenu() {
+        
+        let searchMenu = NSMenu(title: String(localized: "Recent Filters", table: "FilterField", comment: "menu label"))
+        searchMenu.addItem(withTitle: String(localized: "Recent Filters", table: "FilterField"), action: nil, keyEquivalent: "")
+            .tag = NSSearchField.recentsTitleMenuItemTag
+        searchMenu.addItem(withTitle: "", action: nil, keyEquivalent: "")
+            .tag = NSSearchField.recentsMenuItemTag
+        searchMenu.addItem(.separator())
+        searchMenu.addItem(withTitle: String(localized: "Clear Recent Filters", table: "FilterField", comment: "menu item label"),
+                           action: nil, keyEquivalent: "")
+            .tag = NSSearchField.clearRecentsMenuItemTag
+        searchMenu.addItem(withTitle: String(localized: "No Recent Filter", table: "FilterField", comment: "menu item label"),
+                           action: nil, keyEquivalent: "")
+            .tag = NSSearchField.noRecentsMenuItemTag
+        self.searchMenuTemplate = searchMenu
     }
 }
 
@@ -196,6 +210,7 @@ private final class InnerFilterField: NSSearchField {
 #Preview {
     @State var text = ""
     return FilterField(text: $text)
+        .autosaveName("FilterField Preview")
         .frame(width: 160)
         .padding()
 }

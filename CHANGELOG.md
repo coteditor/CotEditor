@@ -3,6 +3,10 @@
 4.8.0-beta.4 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue on the filter field for the outline inspector that the filter history was initially empty.
+
 
 
 4.8.0-beta.3 (637)
