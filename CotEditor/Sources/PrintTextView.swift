@@ -225,29 +225,18 @@ final class PrintTextView: NSTextView, Themable {
                 NSGraphicsContext.current?.cgContext.rotate(by: -.pi / 2)
             }
             
-            let options: NSTextView.LineEnumerationOptions = isVerticalText ? [.bySkippingWrappedLine] : []
             let range = (self.layoutManager as? PrintLayoutManager)?.visibleRange
-            self.enumerateLineFragments(in: dirtyRect, for: range, options: options.union(.bySkippingExtraLine)) { (lineRect, line, lineNumber) in
-                let numberString: String = switch line {
-                    case .new:
-                        if isVerticalText, lineNumber != 1, !lineNumber.isMultiple(of: 5) {
-                            "·"  // draw number only every 5 times
-                        } else {
-                            String(lineNumber)
-                        }
-                    case .wrapped:
-                        "-"
-                }
+            self.enumerateLineFragments(in: dirtyRect, for: range, options: [.bySkippingWrappedLine, .bySkippingExtraLine]) { (lineRect, _, lineNumber) in
+                // draw number only every 5 times
+                let numberString = (!isVerticalText || lineNumber == 1 || lineNumber.isMultiple(of: 5)) ? String(lineNumber) :  "·"
                 
                 // adjust position to draw
                 let width = CGFloat(numberString.count) * numberSize.width
-                let point: NSPoint = if isVerticalText {
-                    NSPoint(x: -lineRect.midY - width / 2,
-                            y: horizontalOrigin - numberSize.height)
-                } else {
-                    NSPoint(x: horizontalOrigin - width,  // - width to align to right
-                            y: lineRect.minY + baselineOffset - numberAscender)
-                }
+                let point: NSPoint = isVerticalText
+                    ? NSPoint(x: -lineRect.midY - width / 2,
+                              y: horizontalOrigin - numberSize.height)
+                    : NSPoint(x: horizontalOrigin - width,  // - width to align to right
+                              y: lineRect.minY + baselineOffset - numberAscender)
                 
                 // draw number
                 NSAttributedString(string: numberString, attributes: attrs).draw(at: point)

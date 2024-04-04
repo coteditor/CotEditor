@@ -6,6 +6,7 @@
 ### Improvements
 
 - Change the filter field for the outline inspector to apply the selection of the filter history immediately.
+- Remove wrapped line marks in the line number view.
 
 
 ### Fixes

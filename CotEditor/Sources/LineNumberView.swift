@@ -34,7 +34,6 @@ final class LineNumberView: NSView {
         
         let fontSize: CGFloat
         let charWidth: CGFloat
-        let wrappedMarkGlyph: CGGlyph
         let digitGlyphs: [CGGlyph]
         let padding: CGFloat
         let tickLength: CGFloat
@@ -47,7 +46,6 @@ final class LineNumberView: NSView {
             
             // prepare glyphs
             let font = CTFontCreateWithGraphicsFont(LineNumberView.lineNumberFont, self.fontSize, nil, nil)
-            self.wrappedMarkGlyph = font.glyph(for: "-")
             self.digitGlyphs = (0...9).map { font.glyph(for: Character(String($0))) }
             
             // calculate character width by assuming the font is monospace
@@ -310,9 +308,7 @@ final class LineNumberView: NSView {
                     }
                     
                 case .wrapped:
-                    // draw wrapped mark (-)
-                    let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y - lineOffset)
-                    context.showGlyphs([drawingInfo.wrappedMarkGlyph], at: [position])
+                    break
             }
         }
     }
