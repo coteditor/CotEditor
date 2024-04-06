@@ -79,20 +79,12 @@ struct FilterField: NSViewRepresentable {
     
     final class Coordinator: NSObject, NSSearchFieldDelegate {
         
-        @Binding private var text: String
+        @Binding fileprivate var text: String
         
         
         init(text: Binding<String>) {
             
             self._text = text
-        }
-        
-        
-        func controlTextDidChange(_ obj: Notification) {
-            
-            guard let textField = obj.object as? NSTextField else { return }
-            
-            self.text = textField.stringValue
         }
     }
 }
@@ -117,7 +109,7 @@ private final class InnerFilterField: NSSearchField {
         
         super.init(frame: .zero)
         
-        self.validateImage()
+        self.searchButtonCell?.image = self.image
         
         // workaround the cancel button color is .labelColor (2022-09, macOS 13)
         if let cancelButtonCell = (self.cell as? NSSearchFieldCell)?.cancelButtonCell {
@@ -138,6 +130,14 @@ private final class InnerFilterField: NSSearchField {
     
     // MARK: Text Field Methods
     
+    override var stringValue: String  {
+        
+        didSet {
+            self.searchButtonCell?.image = stringValue.isEmpty ? self.image : self.filteringImage
+        }
+    }
+    
+    
     override var recentsAutosaveName: NSSearchField.RecentsAutosaveName? {
         
         didSet {
@@ -153,21 +153,10 @@ private final class InnerFilterField: NSSearchField {
     }
     
     
-    override func textDidChange(_ notification: Notification) {
-        
-        super.textDidChange(notification)
-        
-        self.validateImage()
-    }
-    
-    
     override func sendAction(_ action: Selector?, to target: Any?) -> Bool {
         
-        // invoked when the search string was set by selecting recent history menu
-        defer {
-            self.validateImage()
-            self.delegate?.controlTextDidChange?(Notification(name: NSTextField.textDidChangeNotification, object: self))
-        }
+        // invoked when the search string was set even by selecting the search menu
+        (self.delegate as? FilterField.Coordinator)?.text = self.stringValue
         
         return super.sendAction(action, to: target)
     }
@@ -176,12 +165,10 @@ private final class InnerFilterField: NSSearchField {
     
     // MARK: Private Methods
     
-    /// Updates highlighting of the filter icon on the field.
-    private func validateImage() {
+    /// The button cell used to display the search-button image.
+    private var searchButtonCell: NSButtonCell? {
         
-        guard let buttonCell = (self.cell as? NSSearchFieldCell)?.searchButtonCell else { return assertionFailure() }
-        
-        buttonCell.image = self.stringValue.isEmpty ? self.image : self.filteringImage
+        (self.cell as? NSSearchFieldCell)?.searchButtonCell
     }
     
     
@@ -200,6 +187,7 @@ private final class InnerFilterField: NSSearchField {
         searchMenu.addItem(withTitle: String(localized: "No Recent Filter", table: "FilterField", comment: "menu item label"),
                            action: nil, keyEquivalent: "")
             .tag = NSSearchField.noRecentsMenuItemTag
+        
         self.searchMenuTemplate = searchMenu
     }
 }
