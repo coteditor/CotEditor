@@ -422,7 +422,8 @@
     ],
     "filenames" : [
       "Makefile",
-      "makefile"
+      "makefile",
+      "GNUmakefile"
     ],
     "interpreters" : [
       "make"
