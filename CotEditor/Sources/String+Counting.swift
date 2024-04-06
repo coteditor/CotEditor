@@ -39,7 +39,7 @@ extension StringProtocol {
     }
     
     
-    /// The number of lines in the whole string including the last blank line.
+    /// The number of lines in the whole string excluding the last blank line.
     var numberOfLines: Int {
         
         self.numberOfLines()
@@ -54,15 +54,17 @@ extension StringProtocol {
         
         guard !self.isEmpty, index > self.startIndex else { return 1 }
         
-        return self.numberOfLines(in: self.startIndex..<index)
+        return self.numberOfLines(in: self.startIndex..<index, includesLastBreak: true)
     }
     
     
-    /// Counts the number of lines in the given range including the last blank line.
+    /// Counts the number of lines in the given range.
     ///
-    /// - Parameter range: The character range to count lines, or when `nil`, the entire range.
+    /// - Parameters:
+    ///   - range: The character range to count lines, or when `nil`, the entire range.
+    ///   - includesLastBreak: The flag to count the new line character at the end.
     /// - Returns: The number of lines.
-    func numberOfLines(in range: Range<String.Index>? = nil) -> Int {
+    func numberOfLines(in range: Range<String.Index>? = nil, includesLastBreak: Bool = false) -> Int {
         
         let range = range ?? self.startIndex..<self.endIndex
         
@@ -73,7 +75,7 @@ extension StringProtocol {
             count += 1
         }
         
-        if self[range].last?.isNewline == true {
+        if includesLastBreak, self[range].last?.isNewline == true {
             count += 1
         }
         
@@ -81,11 +83,13 @@ extension StringProtocol {
     }
     
     
-    /// Counts the number of lines in the given ranges including the last blank line.
+    /// Counts the number of lines in the given ranges.
     ///
-    /// - Parameter ranges: The character ranges to count lines.
+    /// - Parameters:
+    ///   - ranges: The character ranges to count lines.
+    ///   - includesLastBreak: The flag to count the new line character at the end.
     /// - Returns: The number of lines.
-    func numberOfLines(in ranges: [Range<String.Index>]) -> Int {
+    func numberOfLines(in ranges: [Range<String.Index>], includesLastBreak: Bool = false) -> Int {
         
         assert(!ranges.isEmpty)
         
@@ -93,7 +97,7 @@ extension StringProtocol {
         
         // use simple count for efficiency
         if ranges.count == 1 {
-            return self.numberOfLines(in: ranges[0])
+            return self.numberOfLines(in: ranges[0], includesLastBreak: includesLastBreak)
         }
         
         // evaluate line ranges to avoid double-count lines holding multiple ranges
@@ -104,7 +108,7 @@ extension StringProtocol {
                 lineRanges.append(substringRange)
             }
             
-            if self[range].last?.isNewline == true {
+            if includesLastBreak, self[range].last?.isNewline == true {
                 lineRanges.append(self.lineRange(at: range.upperBound))
             }
         }
@@ -137,15 +141,17 @@ extension String {
         
         guard !self.isEmpty, location > 0 else { return 1 }
         
-        return self.numberOfLines(in: NSRange(location: 0, length: location))
+        return self.numberOfLines(in: NSRange(location: 0, length: location), includesLastBreak: true)
     }
     
     
-    /// Counts the number of lines in the given range including the last blank line.
+    /// Counts the number of lines in the given range.
     ///
-    /// - Parameter range: The character range to count lines, or when `nil`, the entire range.
+    /// - Parameters:
+    ///   - ranges: The character range to count lines, or when `nil`, the entire range.
+    ///   - includesLastBreak: The flag to count the new line character at the end.
     /// - Returns: The number of lines.
-    func numberOfLines(in range: NSRange? = nil) -> Int {
+    func numberOfLines(in range: NSRange? = nil, includesLastBreak: Bool = false) -> Int {
         
         let range = range ?? self.nsRange
         
@@ -156,7 +162,7 @@ extension String {
             count += 1
         }
         
-        if (self as NSString).character(at: range.upperBound - 1).isNewline == true {
+        if includesLastBreak, (self as NSString).character(at: range.upperBound - 1).isNewline == true {
             count += 1
         }
         

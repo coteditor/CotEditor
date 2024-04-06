@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 1024jp
+//  © 2015-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -107,18 +107,24 @@ final class StringExtensionsTests: XCTestCase {
         
         XCTAssertEqual("".numberOfLines, 0)
         XCTAssertEqual("a".numberOfLines, 1)
-        XCTAssertEqual("\n".numberOfLines, 2)
-        XCTAssertEqual("\n\n".numberOfLines, 3)
+        XCTAssertEqual("\n".numberOfLines, 1)
+        XCTAssertEqual("\n\n".numberOfLines, 2)
         XCTAssertEqual("\u{feff}".numberOfLines, 1)
         XCTAssertEqual("ab\r\ncd".numberOfLines, 2)
         
         let testString = "a\nb c\n\n"
-        XCTAssertEqual(testString.numberOfLines, 4)
+        XCTAssertEqual(testString.numberOfLines, 3)
         XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<0)), 0)   // ""
         XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<1)), 1)   // "a"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<2)), 2)   // "a\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<6)), 3)   // "a\nb c\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<7)), 4)   // "a\nb c\n\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<2)), 1)   // "a\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<6)), 2)   // "a\nb c\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<7)), 3)   // "a\nb c\n\n"
+        
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<0), includesLastBreak: true), 0)   // ""
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<1), includesLastBreak: true), 1)   // "a"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<2), includesLastBreak: true), 2)   // "a\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<6), includesLastBreak: true), 3)   // "a\nb c\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<7), includesLastBreak: true), 4)   // "a\nb c\n\n"
         
         XCTAssertEqual(testString.lineNumber(at: 0), 1)
         XCTAssertEqual(testString.lineNumber(at: 1), 1)
@@ -146,11 +152,11 @@ final class StringExtensionsTests: XCTestCase {
         
         let bomString = "\u{FEFF}\nb"
         let range = bomString.startIndex..<bomString.index(bomString.startIndex, offsetBy: 2)
-        XCTAssertEqual(bomString.numberOfLines(in: [range, range]), 2)  // "\u{FEFF}\nb"
+        XCTAssertEqual(bomString.numberOfLines(in: [range, range]), 1)  // "\u{FEFF}\n"
     }
     
     
-    func testColumnCOunt() {
+    func testColumnCount() {
         
         let string = "aaa \r\n🐱 "
         
