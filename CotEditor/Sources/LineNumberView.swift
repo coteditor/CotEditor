@@ -268,47 +268,40 @@ final class LineNumberView: NSView {
         }
         
         // draw labels
-        let options: NSTextView.LineEnumerationOptions = isVerticalText ? [.bySkippingWrappedLine] : []
-        textView.enumerateLineFragments(in: textView.visibleRect, options: options) { (lineRect, line, lineNumber) in
-            let y = scale * -lineRect.minY
+        textView.enumerateLineFragments(in: textView.visibleRect) { (lineRect, lineNumber, isSelected) in
+            let y = (scale * -lineRect.minY) - lineOffset
             
-            switch line {
-                case .new(let isSelected):
-                    // draw line number
-                    if !isVerticalText || isSelected || lineNumber.isMultiple(of: 5) || lineNumber == 1 || lineNumber == self.numberOfLines {
-                        let digits = lineNumber.digits
-                        
-                        // calculate base position
-                        let basePosition: CGPoint = isVerticalText
-                            ? CGPoint(x: y - lineOffset + drawingInfo.charWidth * CGFloat(digits.count) / 2, y: 3 * drawingInfo.tickLength)
-                            : CGPoint(x: -drawingInfo.padding, y: y - lineOffset)
-                        
-                        // get glyphs and positions
-                        let positions: [CGPoint] = digits.indices
-                            .map { basePosition.offsetBy(dx: -CGFloat($0 + 1) * drawingInfo.charWidth) }
-                        let glyphs: [CGGlyph] = digits
-                            .map { drawingInfo.digitGlyphs[$0] }
-                        
-                        // draw
-                        if isSelected {
-                            context.setFillColor(self.foregroundColor(.bold).cgColor)
-                            context.setFont(self.boldLineNumberFont)
-                        }
-                        context.showGlyphs(glyphs, at: positions)
-                        if isSelected {
-                            context.setFillColor(self.foregroundColor().cgColor)
-                            context.setFont(Self.lineNumberFont)
-                        }
-                    }
-                    
-                    // draw tick
-                    if isVerticalText {
-                        let rect = CGRect(x: (y - lineOffset).rounded() + 0.5, y: 1, width: 0, height: drawingInfo.tickLength)
-                        context.stroke(rect, width: scale)
-                    }
-                    
-                case .wrapped:
-                    break
+            // draw tick
+            if isVerticalText {
+                let rect = CGRect(x: y.rounded() + 0.5, y: 1, width: 0, height: drawingInfo.tickLength)
+                context.stroke(rect, width: scale)
+            }
+            
+            // skip intermediate lines by vertical orientation
+            guard !isVerticalText || isSelected || lineNumber.isMultiple(of: 5) || lineNumber == 1 || lineNumber == self.numberOfLines else { return }
+            
+            let digits = lineNumber.digits
+            
+            // calculate base position
+            let basePosition = isVerticalText
+                ? CGPoint(x: y + drawingInfo.charWidth * Double(digits.count) / 2, y: 3 * drawingInfo.tickLength)
+                : CGPoint(x: -drawingInfo.padding, y: y)
+            
+            // get glyphs and positions
+            let positions: [CGPoint] = digits.indices
+                .map { basePosition.offsetBy(dx: -Double($0 + 1) * drawingInfo.charWidth) }
+            let glyphs: [CGGlyph] = digits
+                .map { drawingInfo.digitGlyphs[$0] }
+            
+            // draw number
+            if isSelected {
+                context.setFillColor(self.foregroundColor(.bold).cgColor)
+                context.setFont(self.boldLineNumberFont)
+            }
+            context.showGlyphs(glyphs, at: positions)
+            if isSelected {
+                context.setFillColor(self.foregroundColor().cgColor)
+                context.setFont(Self.lineNumberFont)
             }
         }
     }

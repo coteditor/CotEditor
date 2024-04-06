@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -226,13 +226,13 @@ final class PrintTextView: NSTextView, Themable {
             }
             
             let range = (self.layoutManager as? PrintLayoutManager)?.visibleRange
-            self.enumerateLineFragments(in: dirtyRect, for: range, options: [.bySkippingWrappedLine, .bySkippingExtraLine]) { (lineRect, _, lineNumber) in
+            self.enumerateLineFragments(in: dirtyRect, for: range, options: .bySkippingExtraLine) { (lineRect, lineNumber, _) in
                 // draw number only every 5 times
                 let numberString = (!isVerticalText || lineNumber == 1 || lineNumber.isMultiple(of: 5)) ? String(lineNumber) :  "·"
                 
                 // adjust position to draw
                 let width = CGFloat(numberString.count) * numberSize.width
-                let point: NSPoint = isVerticalText
+                let point = isVerticalText
                     ? NSPoint(x: -lineRect.midY - width / 2,
                               y: horizontalOrigin - numberSize.height)
                     : NSPoint(x: horizontalOrigin - width,  // - width to align to right
