@@ -29,6 +29,7 @@ extensions: []
 filenames:
 - keyString: Makefile
 - keyString: makefile
+- keyString: GNUmakefile
 interpreters:
 - keyString: make
 keywords:
@@ -53,9 +54,9 @@ kind: code
 metadata:
   author: 1024jp
   distributionURL: https://coteditor.com
-  lastModified: '2023-05-05'
+  lastModified: '2024-04-06'
   license: Same as CotEditor
-  version: 1.3.0
+  version: 1.4.0
 numbers: []
 outlineMenu: []
 strings:

@@ -8,6 +8,7 @@
 - Change the line count behavior to ignore the new line character at the end of the last line.
 - Change the filter field for the outline inspector to apply the selection of the filter history immediately.
 - Remove wrapped line marks in the line number view.
+- Update the Makefile syntax to add `GNUmakefile` to the filename mapping.
 
 
 ### Fixes
