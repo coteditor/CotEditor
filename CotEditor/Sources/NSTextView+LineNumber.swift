@@ -32,6 +32,7 @@ extension NSTextView {
         let rawValue: Int
         
         static let bySkippingExtraLine = Self(rawValue: 1 << 0)
+        static let onlySelectionBoundary = Self(rawValue: 1 << 1)
     }
     
     
@@ -73,10 +74,16 @@ extension NSTextView {
             let lineRange = self.lineRange(at: index)
             let lineGlyphIndex = layoutManager.glyphIndexForCharacter(at: lineRange.lowerBound)
             let lineRect = layoutManager.lineFragmentRect(forGlyphAt: lineGlyphIndex, effectiveRange: nil, withoutAdditionalLayout: true)
-            let isSelected = selectedRanges.contains { $0.intersects(lineRange) }
-                || (lineRange.upperBound == length &&
-                    selectedRanges.last?.lowerBound == length &&
-                    layoutManager.extraLineFragmentRect.isEmpty)
+            let isSelected: Bool = selectedRanges.contains {
+                if options.contains(.onlySelectionBoundary) {
+                    lineRange.contains($0.lowerBound)
+                    || (!$0.isEmpty && lineRange.lowerBound < $0.upperBound && $0.upperBound <= lineRange.upperBound)
+                } else {
+                    lineRange.intersects($0)
+                }
+            } || (lineRange.upperBound == length &&
+                  selectedRanges.last?.lowerBound == length &&
+                  layoutManager.extraLineFragmentRect.isEmpty)
             
             body(lineRect, lineNumber, isSelected)
             

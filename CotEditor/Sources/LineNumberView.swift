@@ -270,7 +270,8 @@ final class LineNumberView: NSView {
         }
         
         // draw labels
-        textView.enumerateLineFragments(in: range) { (lineRect, lineNumber, isSelected) in
+        let options: NSTextView.LineEnumerationOptions = isVerticalText ? .onlySelectionBoundary : []
+        textView.enumerateLineFragments(in: range, options: options) { (lineRect, lineNumber, isSelected) in
             let y = (scale * -lineRect.minY) - lineOffset
             
             // draw tick
