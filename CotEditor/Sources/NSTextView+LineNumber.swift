@@ -51,47 +51,31 @@ extension NSTextView {
     /// Enumerates line fragments in area with line numbers.
     ///
     /// - Parameters:
-    ///   - rect: The bounding rectangle for which to process lines.
-    ///   - range: The character range to process lines, or `nil` to enumerate whole in rect.
+    ///   - range: The character range to process lines.
     ///   - options: The options to skip invoking `body` in some specific fragments.
     ///   - body: The closure executed for each line in the enumeration.
     ///   - lineRect: The line fragment rect.
     ///   - lineNumber: The number of logical line (1-based).
     ///   - isSelected: Whether the line is selected.
-    final func enumerateLineFragments(in rect: NSRect, for range: NSRange? = nil, options: LineEnumerationOptions = [], body: (_ lineRect: NSRect, _ lineNumber: Int, _ isSelected: Bool) -> Void) {
+    final func enumerateLineFragments(in range: NSRange, options: LineEnumerationOptions = [], body: (_ lineRect: NSRect, _ lineNumber: Int, _ isSelected: Bool) -> Void) {
         
-        guard
-            let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer
-        else { return assertionFailure() }
+        guard let layoutManager = self.layoutManager else { return assertionFailure() }
         
-        // get range of which line number should be drawn
-        // -> Requires additionalLayout to obtain glyphRange for markedText. (2018-12 macOS 10.14 SDK)
-        guard let rangeToDraw: NSRange = {
-            let layoutRect = rect.offset(by: -self.textContainerOrigin)
-            let rectGlyphRange = layoutManager.glyphRange(forBoundingRect: layoutRect, in: textContainer)
-            let rectRange = layoutManager.characterRange(forGlyphRange: rectGlyphRange, actualGlyphRange: nil)
-            
-            guard let range else { return rectRange }
-            
-            return rectRange.intersection(range)
-        }() else { return }
-        
-        let string = self.string as NSString
+        let length = (self.string as NSString).length
         let selectedRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map(\.rangeValue)
         
         // count up lines until the interested area
-        var index = rangeToDraw.lowerBound
+        var index = range.lowerBound
         var lineNumber = self.lineNumber(at: index)
         
         // enumerate visible line numbers
-        while index < rangeToDraw.upperBound {  // process logical lines
+        while index < range.upperBound {  // process logical lines
             let lineRange = self.lineRange(at: index)
             let lineGlyphIndex = layoutManager.glyphIndexForCharacter(at: lineRange.lowerBound)
             let lineRect = layoutManager.lineFragmentRect(forGlyphAt: lineGlyphIndex, effectiveRange: nil, withoutAdditionalLayout: true)
             let isSelected = selectedRanges.contains { $0.intersects(lineRange) }
-                || (lineRange.upperBound == string.length &&
-                    lineRange.upperBound == selectedRanges.last?.upperBound &&
+                || (lineRange.upperBound == length &&
+                    selectedRanges.last?.lowerBound == length &&
                     layoutManager.extraLineFragmentRect.isEmpty)
             
             body(lineRect, lineNumber, isSelected)
@@ -102,12 +86,12 @@ extension NSTextView {
         
         guard
             !options.contains(.bySkippingExtraLine),
-            (rangeToDraw.upperBound == string.length || lineNumber == 1),
-            layoutManager.extraLineFragmentTextContainer != nil
+            (range.upperBound == length || lineNumber == 1),
+            !layoutManager.extraLineFragmentRect.isEmpty
         else { return }
         
-        lineNumber = (lineNumber > 1) ? lineNumber : self.lineNumber(at: string.length)
-        let isSelected = (selectedRanges.last?.lowerBound == string.length)
+        lineNumber = (lineNumber > 1) ? lineNumber : self.lineNumber(at: length)
+        let isSelected = (selectedRanges.last?.lowerBound == length)
         
         body(layoutManager.extraLineFragmentRect, lineNumber, isSelected)
     }

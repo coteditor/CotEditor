@@ -241,12 +241,14 @@ final class LineNumberView: NSView {
     private func drawNumbers(in rect: NSRect) {
         
         guard
+            // -> Requires additionalLayout to obtain glyphRange for markedText. (2018-12 macOS 10.14 SDK)
+            let range = self.textView.range(for: self.textView.visibleRect),
             let layoutManager = self.textView.layoutManager as? LayoutManager,
             let context = NSGraphicsContext.current?.cgContext
         else { return assertionFailure() }
         
         context.setFont(Self.lineNumberFont)
-        context.setFontSize(drawingInfo.fontSize)
+        context.setFontSize(self.drawingInfo.fontSize)
         context.setFillColor(self.foregroundColor().cgColor)
         context.setStrokeColor(self.foregroundColor(.stroke).cgColor)
         
@@ -268,7 +270,7 @@ final class LineNumberView: NSView {
         }
         
         // draw labels
-        textView.enumerateLineFragments(in: textView.visibleRect) { (lineRect, lineNumber, isSelected) in
+        textView.enumerateLineFragments(in: range) { (lineRect, lineNumber, isSelected) in
             let y = (scale * -lineRect.minY) - lineOffset
             
             // draw tick
@@ -278,7 +280,8 @@ final class LineNumberView: NSView {
             }
             
             // skip intermediate lines by vertical orientation
-            guard !isVerticalText || isSelected || lineNumber.isMultiple(of: 5) || lineNumber == 1 || lineNumber == self.numberOfLines else { return }
+            let drawsNumber = !isVerticalText || lineNumber.isMultiple(of: 5) || lineNumber == 1 || lineNumber == self.numberOfLines
+            guard isSelected || drawsNumber else { return }
             
             let digits = lineNumber.digits
             

@@ -197,9 +197,18 @@ final class PrintTextView: NSTextView, Themable {
         // draw line numbers if needed
         if self.printsLineNumber {
             guard
-                let layoutManager = self.layoutManager as? LayoutManager,
+                let layoutManager = self.layoutManager as? PrintLayoutManager,
                 let textContainer = self.textContainer
             else { return assertionFailure() }
+            
+            // determine range to draw numbers
+            guard
+                let dirtyRange = self.range(for: dirtyRect, withoutAdditionalLayout: true),
+                let range = if let visibleRange = layoutManager.visibleRange {
+                    dirtyRange.intersection(visibleRange)
+                } else {
+                    dirtyRange
+                } else { return }
             
             // prepare text attributes for line numbers
             let numberFontSize = (0.9 * (self.font?.pointSize ?? 12)).rounded()
@@ -225,8 +234,7 @@ final class PrintTextView: NSTextView, Themable {
                 NSGraphicsContext.current?.cgContext.rotate(by: -.pi / 2)
             }
             
-            let range = (self.layoutManager as? PrintLayoutManager)?.visibleRange
-            self.enumerateLineFragments(in: dirtyRect, for: range, options: .bySkippingExtraLine) { (lineRect, lineNumber, _) in
+            self.enumerateLineFragments(in: range, options: .bySkippingExtraLine) { (lineRect, lineNumber, _) in
                 // draw number only every 5 times
                 let numberString = (!isVerticalText || lineNumber == 1 || lineNumber.isMultiple(of: 5)) ? String(lineNumber) :  "·"
                 
