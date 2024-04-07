@@ -46,6 +46,12 @@
             "value" : "追加"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg toe"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -114,6 +120,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "括弧と引用符を自動的に閉じる"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg automatisch haakjes en aanhalingstekens in"
           }
         },
         "pt" : {
@@ -187,6 +199,12 @@
             "value" : "スペルと一緒に文法をチェック"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Controleer grammatica met spelling"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -256,6 +274,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "入力中にスペルチェック"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Controleer spelling tijdens het typen"
           }
         },
         "pt" : {
@@ -328,6 +352,12 @@
             "value" : "入力補完候補リストに含む単語:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De lijst met voltooiingen omvat:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -396,6 +426,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "入力補完:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voltooiing:"
           }
         },
         "pt" : {
@@ -469,6 +505,12 @@
             "value" : "スペルを自動的に修正"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Corrigeer spelling automatisch"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -537,6 +579,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "フォント:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lettertype:"
           }
         },
         "pt" : {
@@ -616,6 +664,12 @@
             "value" : "等幅"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niet-proportioneel"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -693,6 +747,12 @@
             "value" : "標準"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standaard"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -761,6 +821,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "モード"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modus"
           }
         },
         "pt" : {
@@ -834,6 +900,12 @@
             "value" : "見つかりませんでした"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niet gevonden"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -903,6 +975,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "削除"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwijder"
           }
         },
         "pt" : {
@@ -976,6 +1054,12 @@
             "value" : "スマートコピー/ペースト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slim kopiëren/plakken"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1045,6 +1129,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スマートダッシュ記号"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slimme streepjes"
           }
         },
         "pt" : {
@@ -1118,6 +1208,12 @@
             "value" : "スマート引用符"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slimme citaten"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1186,6 +1282,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スペル:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spelling:"
           }
         },
         "pt" : {
@@ -1258,6 +1360,12 @@
             "value" : "一般単語"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standaardwoorden"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1326,6 +1434,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "自動置換:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vervanging:"
           }
         },
         "pt" : {
@@ -1398,6 +1512,12 @@
             "value" : "入力中に補完候補を表示"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geef suggesties voor aanvullingen tijdens het typen"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1468,6 +1588,12 @@
             "value" : "シンタックス"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxis"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1531,6 +1657,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "このシンタックスは存在しません"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deze syntaxis bestaat niet"
           }
         },
         "pt" : {
@@ -1603,6 +1735,12 @@
             "value" : "シンタックスで定義された単語"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Woorden gedefinieerd in syntaxis"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1671,6 +1809,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類に含まれる単語"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Woorden in document"
           }
         },
         "pt" : {

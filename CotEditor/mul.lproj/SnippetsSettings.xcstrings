@@ -46,6 +46,12 @@
             "value" : "コマンド"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opdracht"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -115,6 +121,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイルドロップ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestandsdrop"
           }
         },
         "pt" : {
@@ -188,6 +200,12 @@
             "value" : "編集するスニペットを選択してください。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer een knipsel om te bewerken."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -258,6 +276,12 @@
             "value" : "メニューコマンドやキーボードショートカットで挿入できるテキスト:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst die moet worden ingevoegd via een opdracht in het menu of via een sneltoets op het toetsenbord:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -326,6 +350,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイルをエディタにドロップして挿入できるテキスト:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst die kan worden ingevoegd door bestanden naar de bewerker te slepen:"
           }
         },
         "pt" : {

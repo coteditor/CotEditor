@@ -46,6 +46,12 @@
             "value" : "重複しているシンタックス"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbele syntaxen"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -115,6 +121,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拡張子"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensie"
           }
         },
         "pt" : {
@@ -188,6 +200,12 @@
             "value" : "ファイル名"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestandsnaam"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -257,6 +275,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "インタープリタ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interpreter"
           }
         },
         "pt" : {
@@ -330,6 +354,12 @@
             "value" : "ファイル関連付けのコンフリクト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conflicten in syntaxiskoppeling"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -398,6 +428,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "以下のファイル関連付けルールはいくつかのシンタックスで重複して登録されています。CotEditorは自動的に最初のシンタックスを使用します。解決するには、それぞれのシンタックス定義を編集してください。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De volgende regels voor bestandskoppeling zijn geregistreerd in meerdere syntaxis. CotEditor gebruikt automatisch de eerste syntaxis. Bewerk elke syntaxdefinitie om conflicten op te lossen."
           }
         },
         "pt" : {
@@ -469,6 +505,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用するシンタックス"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebruikte syntaxis"
           }
         },
         "pt" : {
