@@ -46,6 +46,12 @@
             "value" : "アップデートを確認…"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Controleer op updates..."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

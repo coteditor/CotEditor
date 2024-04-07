@@ -46,6 +46,12 @@
             "value" : "（%@）"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (%@)"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117,6 +123,12 @@
             "value" : "%@BOM付き"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (%@) met BOM"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -183,6 +195,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@:"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@:"
@@ -258,6 +276,12 @@
             "value" : "キャンセル"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annuleer"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -327,6 +351,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コピー"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kopieer"
           }
         },
         "pt" : {
@@ -407,6 +437,12 @@
             "value" : "削除"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwijder"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -482,6 +518,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "この操作は取り消せません。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deze actie kan niet ongedaan worden gemaakt."
           }
         },
         "pt" : {
@@ -561,6 +603,12 @@
             "value" : "“%@”を削除してもよろしいですか?"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weet je zeker dat je “%@” wilt verwijderen?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -636,6 +684,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイル“%@”はテキストデータではないようです。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het bestand \"%@\" bevat geen tekstgegevens."
           }
         },
         "pt" : {
@@ -716,6 +770,12 @@
             "value" : "このファイルは%@のようです。\n\n本当にファイルを開きますか?"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het bestand is van het type %@.\n\nWil je het bestand echt openen?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -786,6 +846,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "不明なタイプ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "een onbekend type"
           }
         },
         "pt" : {
@@ -866,6 +932,12 @@
             "value" : "開く"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -943,6 +1015,12 @@
             "value" : "ファイル“%1$@”はファイルサイズが%2$@あります。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het bestand \"%1$@\" heeft een grootte van %2$@."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1018,6 +1096,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "巨大なファイルを開くと、アプリの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか?"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het openen van zo'n groot bestand kan de applicatie traag of onresponsief maken.\n\nWil je het bestand echt openen?"
           }
         },
         "pt" : {
@@ -1098,6 +1182,12 @@
             "value" : "非互換文字を確認"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beoordeel Incompatibele Karakters"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1174,6 +1264,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "有効なテキストを保存"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bewaar Beschikbare Tekst"
           }
         },
         "pt" : {
@@ -1253,6 +1349,12 @@
             "value" : "互換性のない文字は保存時に代替または削除されます。保存を続けますか?"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incompatibele tekens worden vervangen of verwijderd tijdens het opslaan. Wil je doorgaan met verwerken?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1322,6 +1424,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”を複製"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dupliceer “%@”"
           }
         },
         "pt" : {
@@ -1402,6 +1510,12 @@
             "value" : "変換"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Converteer"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1478,6 +1592,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "再解釈"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herinterpreteer"
           }
         },
         "pt" : {
@@ -1557,6 +1677,12 @@
             "value" : "“%@”を使って書類を変換または再解釈しますか?"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wil je dit document converteren of herinterpreteren met \"%@\"?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1634,6 +1760,12 @@
             "value" : "テキストエンコーディングの変更"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wijziging tekstcodering"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1703,6 +1835,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”を書き出す…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporteer \"%@\"..."
           }
         },
         "pt" : {
@@ -1776,6 +1914,12 @@
             "value" : "名前:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporteer als:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1845,6 +1989,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "読み込む"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importeer"
           }
         },
         "pt" : {
@@ -1925,6 +2075,12 @@
             "value" : "置換"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vervang"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2000,6 +2156,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新しい置換定義“%@”のインストールを試みましたが、同名の定義がすでに存在しています。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Een nieuwe vervangende definitie met de naam \"%@\" wordt geïnstalleerd, maar een definitie met dezelfde naam bestaat al."
           }
         },
         "pt" : {
@@ -2079,6 +2241,12 @@
             "value" : "定義を置き換えますか?\n削除した定義は元に戻せません。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wil je het vervangen?\nEen vervangen definitie kan niet worden hersteld."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2154,6 +2322,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新しいシンタックス“%@”のインストールを試みましたが、同名のカスタムシンタックスがすでに存在しています。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Een nieuwe syntaxis met de naam \"%@\" wordt geïnstalleerd, maar een aangepaste syntaxis met dezelfde naam bestaat al."
           }
         },
         "pt" : {
@@ -2233,6 +2407,12 @@
             "value" : "シンタックスを置き換えますか?\n置き換えたシンタックスは元に戻せません。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wil je het vervangen?\nVervangen syntaxis kan niet worden hersteld."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2310,6 +2490,12 @@
             "value" : "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Er wordt een nieuw thema met de naam \"%@\" geïnstalleerd, maar er bestaat al een aangepast thema met dezelfde naam."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2385,6 +2571,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テーマを置き換えますか?\n削除したテーマは元に戻せません。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wil je het vervangen?\nEen vervangen thema kan niet worden hersteld."
           }
         },
         "pt" : {
@@ -2465,6 +2657,12 @@
             "value" : "変換"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Converteer"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2541,6 +2739,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無視"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Negeer"
           }
         },
         "pt" : {
@@ -2621,6 +2825,12 @@
             "value" : "確認"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beoordeel"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2698,6 +2908,12 @@
             "value" : "すべての改行コードをこの書類で最も使われている%@に変換しますか?"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wil je alle regeleinden converteren naar %@, de meest voorkomende regeleinden in dit document?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2773,6 +2989,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類に複数の改行コードが混在しています。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het document heeft inconsistente regeleinden."
           }
         },
         "pt" : {
@@ -2853,6 +3075,12 @@
             "value" : "この書類では次回から確認しない"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vraag niet opnieuw naar dit document"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2922,6 +3150,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テキストを挿入%lld"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg tekst in %lld"
           }
         },
         "pt" : {
@@ -3001,6 +3235,12 @@
             "value" : "名前に“/”を含めることはできません。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naam mag geen \"/\" bevatten."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3076,6 +3316,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”はすでに使用されています。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De naam \"%@\" is al in gebruik."
           }
         },
         "pt" : {
@@ -3155,6 +3401,12 @@
             "value" : "名前は空にできません。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naam mag niet leeg zijn."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3232,6 +3484,12 @@
             "value" : "別の名前を指定してください。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kies een andere naam."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3301,6 +3559,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”は予約されています。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De naam \"%@\" is gereserveerd."
           }
         },
         "pt" : {
@@ -3380,6 +3644,12 @@
             "value" : "名前を“.”から始めることはできません。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naam kan niet beginnen met \".\"."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3449,6 +3719,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最終変更: %@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laatst gewijzigd op %@"
           }
         },
         "pt" : {
@@ -3526,6 +3802,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類に“%@”と互換性のない文字が含まれています。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het document bevat tekens die niet compatibel zijn met \"%@.\""
           }
         },
         "pt" : {
@@ -3606,6 +3888,12 @@
             "value" : "エンコーディングを変更"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wijzig codering"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3683,6 +3971,12 @@
             "value" : "互換性のない文字は保存時に代替または削除されます。エンコーディングを変更し非互換文字を確認しますか?"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incompatibele tekens worden vervangen of verwijderd tijdens het opslaan. Wil je de tekstcodering wijzigen en de niet-compatibele tekens controleren?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3748,6 +4042,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
@@ -3822,6 +4122,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "プリント: %@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gedrukt op %@"
           }
         },
         "pt" : {
@@ -3901,6 +4207,12 @@
             "value" : "再解釈をするファイルがありません。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het document heeft geen bestand om te herinterpreteren."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3976,6 +4288,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テキストエンコーディング“%@”で書類を再解釈できませんでした。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het document kon niet worden geherinterpreteerd met de tekstcodering \"%@.\""
           }
         },
         "pt" : {
@@ -4055,6 +4373,12 @@
             "value" : "この書類は、別のテキストエンコーディングで保存されているか、テキストファイルでない可能性があります。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het document kan zijn opgeslagen met een andere tekstcodering, of het is geen tekstbestand."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4124,6 +4448,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”を名称変更"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hernoem \"%@\""
           }
         },
         "pt" : {
@@ -4197,6 +4527,12 @@
             "value" : "“%@”を元に戻す"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herstel \"%@\""
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4266,6 +4602,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”をFinderに表示"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toon \"%@\" in Finder"
           }
         },
         "pt" : {
@@ -4345,6 +4687,12 @@
             "value" : "“%@”を削除できませんでした。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"%@\" kon niet worden verwijderd."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4420,6 +4768,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”を読み込めませんでした。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"%@\" kon niet worden geïmporteerd."
           }
         },
         "pt" : {
@@ -4499,6 +4853,12 @@
             "value" : "“%@”のオリジナルファイルが見つかりませんでした。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen origineel bestand gevonden voor \"%@\"."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4568,6 +4928,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スペース"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spatie"
           }
         },
         "pt" : {
@@ -4648,6 +5014,12 @@
             "value" : "インストール"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installeer"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4724,6 +5096,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テキストファイルとして開く"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open als tekstbestand"
           }
         },
         "pt" : {
@@ -4803,6 +5181,12 @@
             "value" : "テーマをインストールしますか?"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wil je dit thema installeren?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4880,6 +5264,12 @@
             "value" : "“%@”はCotEditorテーマファイルです。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"%@\" is een CotEditor themabestand."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4955,6 +5345,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新しいテーマ“%@”がインストールされました。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Een nieuw thema met de naam \"%@\" is met succes geïnstalleerd."
           }
         },
         "pt" : {
@@ -5035,6 +5431,12 @@
             "value" : "変更内容を破棄"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwijder wijzigingen"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5111,6 +5513,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "変更を破棄して、“%@”で書類を開き直してもよろしいですか?"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weet je zeker dat je je wijzigingen wilt verwijderen en het document opnieuw wilt openen met \"%@\"?"
           }
         },
         "pt" : {
@@ -5190,6 +5598,12 @@
             "value" : "ファイル“%@”の変更内容は保存されていません。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het document heeft niet-opgeslagen wijzigingen."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5259,6 +5673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名称未設定"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naamloos"
           }
         },
         "pt" : {
@@ -5339,6 +5759,12 @@
             "value" : "CotEditorの編集内容を保持"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bewaar uitgave van CotEditor"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5415,6 +5841,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "更新"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bijwerken"
           }
         },
         "pt" : {
@@ -5494,6 +5926,12 @@
             "value" : "CotEditorでの編集内容を保持しますか、それとも変更された内容に更新しますか?"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wil je de uitgave van CotEditor behouden of deze bijwerken naar de gewijzigde uitgave?"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5571,6 +6009,12 @@
             "value" : "このファイルは、別のアプリケーションによって変更されました。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het bestand is gewijzigd door een andere applicatie."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5646,6 +6090,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "このファイルは、別のアプリケーションによって変更されました。CotEditorで加えた編集もまだ保存されていません。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het bestand is gewijzigd door een andere applicatie. Er zijn ook niet-opgeslagen wijzigingen in CotEditor."
           }
         },
         "pt" : {

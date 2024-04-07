@@ -46,6 +46,12 @@
             "value" : "選択範囲を含む新規書類をCotEditorで開く"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nieuw CotEditor-document met selectie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -115,6 +121,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイルをCotEditorで開く"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open bestand in CotEditor"
           }
         },
         "pt" : {
