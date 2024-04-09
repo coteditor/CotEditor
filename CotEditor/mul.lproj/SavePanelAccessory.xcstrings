@@ -46,6 +46,12 @@
             "value" : "実行可能ファイルにする"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maak bestand uitvoerbaar"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

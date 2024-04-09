@@ -46,6 +46,12 @@
             "value" : "エラーログを消去"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wis foutlog"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117,6 +123,12 @@
             "value" : "ログを消去"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wis log"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -186,6 +198,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コンソール"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Console"
           }
         },
         "pt" : {

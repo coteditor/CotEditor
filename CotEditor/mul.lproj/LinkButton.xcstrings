@@ -46,6 +46,12 @@
             "value" : "URLにジャンプ"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ga naar URL"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

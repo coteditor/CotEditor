@@ -46,6 +46,12 @@
             "value" : "条件を削除"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwijder linialen"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -115,6 +121,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "条件を編集"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bewerk liniaal"
           }
         },
         "pt" : {
@@ -188,6 +200,12 @@
             "value" : "条件を追加"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg liniaal in"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -259,6 +277,12 @@
             "value" : "条件を移動"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verplaats liniaal"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -328,6 +352,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "複数置換"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vervang meerdere"
           }
         },
         "pt" : {

@@ -46,6 +46,12 @@
             "value" : "不透明"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ondoorzichtig"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -115,6 +121,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "透明"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transparant"
           }
         },
         "pt" : {

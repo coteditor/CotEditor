@@ -46,6 +46,12 @@
             "value" : "履歴を消去"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wis recente"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -114,6 +120,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無効なコード"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ongeldige code"
           }
         },
         "pt" : {
@@ -185,6 +197,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最近の項目"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recente"
           }
         },
         "pt" : {
