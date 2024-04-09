@@ -39,10 +39,9 @@ struct GeneralSettingsView: View {
     @AppStorage(.enablesAutosaveInPlace) private var enablesAutosaveInPlace: Bool
     @AppStorage(.documentConflictOption) private var documentConflictOption: DocumentConflictOption
     
-    @State private var initialQuitAlwaysKeepsWindows: Bool = false
     @State private var initialEnablesAutosaveInPlace: Bool = false
     
-    @State private var askingKey: DefaultKey<Bool>?
+    @State private var isAutosaveChangeDialogPresented = false
     @State private var isWarningsSettingPresented = false
     
     @State private var commandLineToolStatus: CommandLineToolManager.Status = .none
@@ -60,14 +59,6 @@ struct GeneralSettingsView: View {
                 
                 VStack(alignment: .leading) {
                     Toggle(String(localized: "Reopen windows from last session", table: "GeneralSettings"), isOn: $quitAlwaysKeepsWindows)
-                        .onChange(of: self.quitAlwaysKeepsWindows) { newValue in
-                            if newValue != self.initialQuitAlwaysKeepsWindows {
-                                self.askingKey = .quitAlwaysKeepsWindows
-                            }
-                        }
-                        .onAppear {
-                            self.initialQuitAlwaysKeepsWindows = self.quitAlwaysKeepsWindows
-                        }
                     
                     Text("When nothing else is open:", tableName: "GeneralSettings")
                     Picker(selection: $noDocumentOnLaunchOption) {
@@ -92,11 +83,25 @@ struct GeneralSettingsView: View {
                     Toggle(String(localized: "Enable Auto Save with Versions", table: "GeneralSettings"), isOn: $enablesAutosaveInPlace)
                         .onChange(of: self.enablesAutosaveInPlace) { newValue in
                             if newValue != self.initialEnablesAutosaveInPlace {
-                                self.askingKey = .enablesAutosaveInPlace
+                                self.isAutosaveChangeDialogPresented = true
                             }
                         }
                         .onAppear {
                             self.initialEnablesAutosaveInPlace = self.enablesAutosaveInPlace
+                        }
+                        .alert(String(localized: "The change will be applied first on the next launch.", table: "GeneralSettings"), isPresented: $isAutosaveChangeDialogPresented) {
+                            Button(String(localized: "Restart Now", table: "GeneralSettings", comment: "button label")) {
+                                (NSApp.delegate as? AppDelegate)?.needsRelaunch = true
+                                NSApp.terminate(self)
+                            }
+                            Button(String(localized: "Later", table: "GeneralSettings", comment: "button label")) {
+                                // do nothing
+                            }
+                            Button("Cancel", role: .cancel) {
+                                self.enablesAutosaveInPlace.toggle()
+                            }
+                        } message: {
+                            Text("Do you want to restart CotEditor now?", tableName: "GeneralSettings")
                         }
                     Text("A system feature that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected quit.", tableName: "GeneralSettings")
                         .foregroundStyle(.secondary)
@@ -184,34 +189,6 @@ struct GeneralSettingsView: View {
         .onAppear {
             self.commandLineToolStatus = CommandLineToolManager.shared.validateSymlink()
             self.commandLineToolURL = CommandLineToolManager.shared.linkURL
-        }
-        .alert(String(localized: "The change will be applied first on the next launch.", table: "GeneralSettings"), isPresented: .constant(self.askingKey != nil)) {
-            Button(String(localized: "Restart Now", table: "GeneralSettings")) {
-                (NSApp.delegate as? AppDelegate)?.needsRelaunch = true
-                NSApp.terminate(self)
-                self.askingKey = nil
-            }
-            Button(String(localized: "Later", table: "GeneralSettings")) {
-                // do nothing
-                self.askingKey = nil
-            }
-            Button("Cancel", role: .cancel) {
-                if let askingKey {
-                    // revert state
-                    switch askingKey {
-                        case .quitAlwaysKeepsWindows:
-                            self.quitAlwaysKeepsWindows.toggle()
-                        case .enablesAutosaveInPlace:
-                            self.enablesAutosaveInPlace.toggle()
-                        default:
-                            break
-                    }
-                    
-                    self.askingKey = nil
-                }
-            }
-        } message: {
-            Text("Do you want to restart CotEditor now?", tableName: "GeneralSettings")
         }
         .scenePadding()
         .frame(minWidth: 600, idealWidth: 600)
