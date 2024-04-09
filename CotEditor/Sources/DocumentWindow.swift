@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ final class DocumentWindow: NSWindow {
         }
     }
     
-    @objc dynamic var backgroundAlpha: CGFloat = 1.0 {
+    @objc dynamic var backgroundAlpha: Double = 1.0 {
         
         didSet {
             backgroundAlpha = backgroundAlpha.clamped(to: 0.2...1.0)
@@ -141,7 +141,7 @@ final class DocumentWindow: NSWindow {
     // MARK: Private Methods
     
     /// Whether the window level is floating.
-    @objc dynamic var isFloating: Bool = false {
+    private var isFloating: Bool = false {
         
         didSet {
             self.level = isFloating ? .floating : .normal

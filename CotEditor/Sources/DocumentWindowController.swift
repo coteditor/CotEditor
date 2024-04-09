@@ -106,7 +106,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         // -> Keep opaque when the window was created as a browsing window (the right side ones in the browsing mode).
         if !document.isInViewingMode {
             self.opacityObserver = UserDefaults.standard.publisher(for: .windowAlpha, initial: true)
-                .map { CGFloat($0) }
                 .assign(to: \.backgroundAlpha, on: window)
         }
         
