@@ -10,6 +10,7 @@
 - Change the filter field for the outline inspector to apply the selection of the filter history immediately.
 - Remove wrapped line marks in the line number view.
 - Update the Makefile syntax to add `GNUmakefile` to the filename mapping.
+- [dev] Update Yams from 5.1.0 to 5.1.1.
 
 
 ### Fixes
