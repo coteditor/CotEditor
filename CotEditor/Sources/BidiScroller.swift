@@ -29,7 +29,7 @@ final class BidiScroller: NSScroller {
     
     // MARK: Scroller methods
     
-    override class var isCompatibleWithOverlayScrollers: Bool { true }
+    override class var isCompatibleWithOverlayScrollers: Bool  { true }
     
     
     override var frame: NSRect {
@@ -122,7 +122,7 @@ final class BidiScroller: NSScroller {
     }
     
     
-    /// Horizontally flips the drawing coordinate when the scroller direction is not equal to the UI layout direction .
+    /// Horizontally flips the drawing coordinate when the scroller direction is not equal to the UI layout direction.
     ///
     /// - Parameter part: The scroller part drawing in.
     private func flipHorizontalCoordinateIfNeeded(for part: NSScroller.Part) {
