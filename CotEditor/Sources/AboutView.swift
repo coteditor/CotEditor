@@ -354,7 +354,8 @@ private struct LicenseView: View {
                     .opacity(0.8)
                 Text(self.content)
                     .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.leading)
+                    .environment(\.locale, Locale(languageCode: .english))
+                    .environment(\.layoutDirection, .leftToRight)
             }
             .onAppear {
                 guard
