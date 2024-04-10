@@ -50,9 +50,12 @@ class FindPanelTextView: NSTextView {
         // set inset a bit like NSTextField (horizontal inset is added in FindPanelTextClipView)
         self.textContainerInset = NSSize(width: 0.0, height: 2.0)
         
+        // set writing direction to RTL when UI is RTL
+        self.baseWritingDirection = (self.userInterfaceLayoutDirection == .rightToLeft) ? .rightToLeft : .natural
+        
         // avoid wrapping
         self.textContainer?.widthTracksTextView = false
-        self.textContainer?.size = .infinite
+        self.textContainer?.size = self.infiniteSize
         self.isHorizontallyResizable = true
         
         // behave as field editor for Tab, Shift-Tab, and Return keys.
