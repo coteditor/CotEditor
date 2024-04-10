@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -79,7 +79,10 @@ final class FormPopUpButtonCell: NSPopUpButtonCell {
         }
         
         let width: Double = 16
-        let rect = NSRect(x: cellFrame.maxX - width - 6, y: cellFrame.minY + 3,
+        let x = (self.userInterfaceLayoutDirection == .rightToLeft)
+            ? cellFrame.minX + 6
+            : cellFrame.maxX - width - 6
+        let rect = NSRect(x: x, y: cellFrame.minY + 3,
                           width: width, height: cellFrame.height - 9)
         let appearance = controlView.effectiveAppearance
         

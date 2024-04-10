@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,14 +23,12 @@
 //  limitations under the License.
 //
 
-import AppKit
+import AppKit.NSScroller
 
 extension NSScroller {
     
     final var thickness: CGFloat {
         
-        assert(self.scrollerStyle == .legacy)
-        
-        return Self.scrollerWidth(for: self.controlSize, scrollerStyle: self.scrollerStyle)
+        Self.scrollerWidth(for: self.controlSize, scrollerStyle: self.scrollerStyle)
     }
 }
