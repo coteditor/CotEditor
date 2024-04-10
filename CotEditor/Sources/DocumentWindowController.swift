@@ -548,7 +548,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                                     defaultValue: "Indent", table: "Document")
                 item.toolTip = String(localized: "Toolbar.indent.tooltip",
                                       defaultValue: "Indent selection", table: "Document")
-                item.subitems = [leftItem, rightItem]
+                item.subitems = (self.window?.windowTitlebarLayoutDirection == .rightToLeft) ? [rightItem, leftItem] : [leftItem, rightItem]
                 return item
                 
             case .comment:
