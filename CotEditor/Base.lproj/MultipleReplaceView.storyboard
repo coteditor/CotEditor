@@ -99,10 +99,6 @@
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="showsError" value="NO"/>
-                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="showsInvisibles" value="YES"/>
-                                                                    </userDefinedRuntimeAttributes>
                                                                     <connections>
                                                                         <action selector="didEditTableCell:" target="uzB-9o-Idl" id="chh-jJ-eOd"/>
                                                                         <binding destination="Rqz-SK-mda" name="value" keyPath="objectValue" id="c9c-V4-T3h"/>
@@ -137,7 +133,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="M9b-zX-U8A">
-                                                            <rect key="frame" x="135.5" y="1" width="103" height="16"/>
+                                                            <rect key="frame" x="136" y="1" width="103" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXD-LW-TDg" customClass="RegularExpressionTextField" customModule="CotEditor" customModuleProvider="target">
@@ -149,8 +145,6 @@
                                                                     </textFieldCell>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isReplacement" value="YES"/>
-                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="showsError" value="NO"/>
-                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="showsInvisibles" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
                                                                         <action selector="didEditTableCell:" target="uzB-9o-Idl" id="Xl4-dh-IBV"/>

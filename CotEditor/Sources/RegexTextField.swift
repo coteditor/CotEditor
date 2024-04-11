@@ -49,7 +49,7 @@ struct RegexTextField: NSViewRepresentable {
     private var style: Style = .automatic
     
     
-    init(text: Binding<String>, mode: RegularExpressionParseMode = .search, showsError: Bool = true, showsInvisible: Bool = true, prompt: String? = nil, onSubmit: @escaping () -> Void = {}) {
+    init(text: Binding<String>, mode: RegularExpressionParseMode = .search, showsError: Bool = false, showsInvisible: Bool = true, prompt: String? = nil, onSubmit: @escaping () -> Void = {}) {
         
         self._text = text
         self.prompt = prompt
@@ -263,12 +263,10 @@ private final class RegexNSTextField: NSTextField {
 // MARK: - Preview
 
 #Preview {
-    @State var text = "[^abc]def"
-    
-    return RegexTextField(text: $text)
+    RegexTextField(text: .constant("[^abc]def"), prompt: "Pattern")
         .leadingInset(20)
 }
 
 #Preview("Error") {
-    RegexTextField(text: .constant("[]def"))
+    RegexTextField(text: .constant("[]def"), showsError: true)
 }

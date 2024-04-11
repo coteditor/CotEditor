@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -51,9 +51,6 @@ final class RegularExpressionTextField: NSTextField {
     private let regexFormatter = RegularExpressionFormatter()
     
     @IBInspectable private var isReplacement: Bool = false
-    @IBInspectable private var showsError: Bool = true
-    @IBInspectable private var showsInvisibles: Bool = false
-    @IBInspectable private var bindingKeyPath: String = ""
     
     
     
@@ -63,15 +60,6 @@ final class RegularExpressionTextField: NSTextField {
         
         get { PaddingTextFieldCell.self }
         set { _ = newValue }
-    }
-    
-    
-    init(string: String = "") {
-     
-        super.init(frame: .zero)
-        
-        self.formatter = self.regexFormatter
-        self.stringValue = string
     }
     
     
@@ -89,16 +77,7 @@ final class RegularExpressionTextField: NSTextField {
         
         // setup regex formatter
         self.regexFormatter.mode = self.parseMode
-        self.regexFormatter.showsError = self.showsError
-        self.regexFormatter.showsInvisibles = self.showsInvisibles
-        self.formatter = formatter
-        
-        // bind with cellView's objectValue
-        if !self.bindingKeyPath.isEmpty {
-            guard let tableCellView = self.superview as? NSTableCellView else { return assertionFailure() }
-            
-            self.bind(NSBindingName(#keyPath(parsesRegularExpression)), to: tableCellView, withKeyPath: "objectValue." + self.bindingKeyPath, options: [.nullPlaceholder: false])
-        }
+        self.regexFormatter.showsInvisibles = true
     }
     
     
