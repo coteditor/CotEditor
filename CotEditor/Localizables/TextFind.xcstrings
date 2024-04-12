@@ -3122,13 +3122,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Found one string in “%2$@.”"
+                  "value" : "Found one string in “%2$@”."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Found %1$lld strings in “%2$@.”"
+                  "value" : "Found %1$lld strings in “%2$@”."
                 }
               }
             }
@@ -3206,13 +3206,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "\"%1lld string encontrada em “%2$@.”\""
+                  "value" : "%1lld string encontrada em “%2$@”."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%1$lld strings encontradas em “%2$@.”"
+                  "value" : "%1$lld strings encontradas em “%2$@”."
                 }
               }
             }
@@ -3635,7 +3635,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No strings found in “%@.”"
+            "value" : "No strings found in “%@”."
           }
         },
         "es" : {
@@ -3665,7 +3665,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nenhuma string encontrada em “%@.”"
+            "value" : "Nenhuma string encontrada em “%@”."
           }
         },
         "tr" : {
@@ -5108,7 +5108,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selecione o escopo da busca no documento ou desmarque a opção “Na Seleção.”"
+            "value" : "Selecione o escopo da busca no documento ou desmarque a opção “Na Seleção”."
           }
         },
         "tr" : {

@@ -1625,7 +1625,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modification de l'encodage du texte"
+            "value" : "Modification de l’encodage du texte"
           }
         },
         "it" : {
@@ -3513,13 +3513,13 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The document contains characters incompatible with “%@.”"
+            "value" : "The document contains characters incompatible with “%@”."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "El documento contiene caracteres incompatibles con “%@.”"
+            "value" : "El documento contiene caracteres incompatibles con “%@”."
           }
         },
         "fr" : {
@@ -3531,7 +3531,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il documento contiene caratteri non compatibili con la codifica “%@.”"
+            "value" : "Il documento contiene caratteri non compatibili con la codifica “%@”."
           }
         },
         "ja" : {
@@ -3543,7 +3543,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O documento contém caracteres incompatíveis com “%@.”"
+            "value" : "O documento contém caracteres incompatíveis com “%@”."
           }
         },
         "tr" : {
@@ -3680,7 +3680,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les caractères incompatibles sont remplacés ou supprimés lors de l'enregistrement. Voulez-vous modifier l'encodage du texte et revoir les caractères incompatibles ?"
+            "value" : "Les caractères incompatibles sont remplacés ou supprimés lors de l’enregistrement. Voulez-vous modifier l’encodage du texte et revoir les caractères incompatibles ?"
           }
         },
         "it" : {
@@ -3963,7 +3963,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The document could not be reinterpreted using text encoding “%@.”"
+            "value" : "The document could not be reinterpreted using text encoding “%@”."
           }
         },
         "es" : {

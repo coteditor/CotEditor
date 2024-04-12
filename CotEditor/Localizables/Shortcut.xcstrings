@@ -55,7 +55,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” já está sendo usado pelo comando “%@.”"
+            "value" : "“%@” já está sendo usado pelo comando “%@”."
           }
         },
         "tr" : {

@@ -385,7 +385,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les règles d'association de fichiers suivantes sont déclarées dans plusieurs syntaxes. CotEditor utilise la première syntaxe automatiquement. Pour résoudre les conflits, éditez chaque syntaxe."
+            "value" : "Les règles d’association de fichiers suivantes sont déclarées dans plusieurs syntaxes. CotEditor utilise la première syntaxe automatiquement. Pour résoudre les conflits, éditez chaque syntaxe."
           }
         },
         "it" : {
