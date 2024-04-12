@@ -105,7 +105,7 @@ struct SyntaxEditView: View {
                         Text(pane.label)
                     }
                 }
-            }
+            }.environment(\.sidebarRowSize, .medium)
             
         } detail: {
             VStack(spacing: 16) {

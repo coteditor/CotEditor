@@ -12,6 +12,7 @@
 - Update the Makefile syntax to add `GNUmakefile` to the filename mapping.
 - [trivial] Remove the dialog urging to restart the application by changing the “Reopen windows from last session” option in the General settings pane.
 - [dev] Update Yams from 5.1.0 to 5.1.2.
+- [beta][trivial] Fix the size of the syntax editor’s font size.
 
 
 ### Fixes
