@@ -52,6 +52,12 @@
             "value" : "“%@”はすでに“%@”コマンドで使用されています。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "'%1$@' is al bezet door het commando '%2$@'."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -127,6 +133,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shiftキーはほかの修飾キーと合わせて使う必要があります。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De Shift-toets kan alleen worden gebruikt in combinatie met een andere speciale toets."
           }
         },
         "pt" : {
@@ -206,6 +218,12 @@
             "value" : "単体のキーはショートカットに登録できません。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enkel type is ongeldig voor een snelkoppeling."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -281,6 +299,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”の組み合わせはショートカットのカスタマイズに対応していません。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De combinatie '%@' wordt niet ondersteund voor het aanpassen van de snelkoppeling."
           }
         },
         "pt" : {

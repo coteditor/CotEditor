@@ -49,7 +49,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opdracht"
+            "value" : "Commando"
           }
         },
         "pt" : {
@@ -126,7 +126,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bestandsdrop"
+            "value" : "Bestand neerzetten"
           }
         },
         "pt" : {
@@ -279,7 +279,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tekst die moet worden ingevoegd via een opdracht in het menu of via een sneltoets op het toetsenbord:"
+            "value" : "Tekst die moet worden ingevoegd via een commando in het menu of via een sneltoets op het toetsenbord:"
           }
         },
         "pt" : {

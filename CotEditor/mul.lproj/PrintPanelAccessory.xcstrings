@@ -53,6 +53,12 @@
             "value" : "背景をプリント"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Druk achtergronden af"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -129,6 +135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "フォントサイズ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lettergrootte"
           }
         },
         "pt" : {
@@ -209,6 +221,12 @@
             "value" : "ヘッダ"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koptekst"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -285,6 +303,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ヘッダとフッタをプリント"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Druk kop- en voetteksten af"
           }
         },
         "pt" : {
@@ -365,6 +389,12 @@
             "value" : "行番号をプリント"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Druk regelnummers af"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -443,6 +473,12 @@
             "value" : "不可視文字をプリント"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Druk onzichtbaren af"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -516,6 +552,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -599,6 +641,12 @@
             "value" : "フッタ"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voettekst"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -677,6 +725,12 @@
             "value" : "白黒"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zwart-wit"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -750,6 +804,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -833,6 +893,12 @@
             "value" : "pt"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pt"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -906,6 +972,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -989,6 +1061,12 @@
             "value" : ""
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1065,6 +1143,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "カラー"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kleur"
           }
         },
         "pt" : {

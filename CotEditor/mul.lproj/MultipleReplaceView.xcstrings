@@ -53,6 +53,12 @@
             "value" : "選択範囲のみ"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In selectie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -129,6 +135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "以下の条件を上から順に適用して置換:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voer vervanging uit door deze regels opeenvolgend van boven naar beneden te gebruiken:"
           }
         },
         "pt" : {
@@ -209,6 +221,12 @@
             "value" : "すべての置換条件の一致をハイライト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markeer alle overeenkomsten van de vervangingsregels."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -282,6 +300,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IC"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IC"
@@ -365,6 +389,12 @@
             "value" : "大文字/小文字を無視"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Negeer hoofdletters"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -443,6 +473,12 @@
             "value" : "無効な条件はスキップされます。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ongeldige regels worden overgeslagen."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -516,6 +552,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -599,6 +641,12 @@
             "value" : "詳細オプション"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geavanceerde opties"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -675,6 +723,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "詳細オプションを表示"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toon geavanceerde opties"
           }
         },
         "pt" : {
@@ -755,6 +809,12 @@
             "value" : "大文字/小文字を区別せずに検索する場合に選択"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer om hoofdletters en kleine letters te negeren bij het zoeken."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -831,6 +891,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべてハイライト"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markeer alles"
           }
         },
         "pt" : {
@@ -911,6 +977,12 @@
             "value" : "有効"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schakel in"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -987,6 +1059,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべて置換"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vervang alles"
           }
         },
         "pt" : {
@@ -1067,6 +1145,12 @@
             "value" : "検索に正規表現を使う場合に選択"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer om te zoeken met reguliere expressie."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1143,6 +1227,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "置換"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vervangm et"
           }
         },
         "pt" : {
@@ -1223,6 +1313,12 @@
             "value" : "置換条件ですべてを置き換え"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vervang alle overeenkomsten volgens de vervangingsregels."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1299,6 +1395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "現在の選択範囲のみを置換対象とする場合に選択"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer om tekst alleen in de selectie te vervangen."
           }
         },
         "pt" : {
@@ -1379,6 +1481,12 @@
             "value" : "この置換条件を使う場合に選択"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer om deze vervangingsregel te gebruiken."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1457,6 +1565,12 @@
             "value" : "説明"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beschrijving"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1530,6 +1644,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RE"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "RE"
@@ -1613,6 +1733,12 @@
             "value" : "正規表現"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reguliere expressie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1689,6 +1815,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "検索"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zoek"
           }
         },
         "pt" : {

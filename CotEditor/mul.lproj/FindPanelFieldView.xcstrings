@@ -53,6 +53,12 @@
             "value" : ""
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -129,6 +135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "置換"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vervang met"
           }
         },
         "pt" : {
@@ -209,6 +221,12 @@
             "value" : "検索履歴"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recente zoekacties"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -285,6 +303,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "置換履歴"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recente vervangingen"
           }
         },
         "pt" : {
@@ -365,6 +389,12 @@
             "value" : "検索履歴"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recente zoekacties"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -438,6 +468,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -521,6 +557,12 @@
             "value" : "置換履歴"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recente vervangingen"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -597,6 +639,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "検索"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zoek"
           }
         },
         "pt" : {
@@ -677,6 +725,12 @@
             "value" : "検索するテキストを入力"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typ de tekst waar je naar wilt zoeken."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -753,6 +807,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "検索"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zoek"
           }
         },
         "pt" : {
@@ -833,6 +893,12 @@
             "value" : "消去"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wis"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -906,6 +972,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -989,6 +1061,12 @@
             "value" : ""
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1065,6 +1143,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "置換"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vervanng"
           }
         },
         "pt" : {
@@ -1145,6 +1229,12 @@
             "value" : "見つかったテキストと入れ替えるテキストを入力"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typ de tekst om de gevonden tekst te vervangen."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1221,6 +1311,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "検索履歴を消去"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wis recente zoekacties"
           }
         },
         "pt" : {
@@ -1301,6 +1397,12 @@
             "value" : "置換履歴を消去"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wis recente vervangingen"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1377,6 +1479,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "消去"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wis"
           }
         },
         "pt" : {

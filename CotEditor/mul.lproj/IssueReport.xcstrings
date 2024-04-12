@@ -53,6 +53,12 @@
             "value" : "以下のテンプレートに記入して%1$@に投稿するか%2$@にメールをしてください。送られたメールの内容はIssueページで公開される可能があります。本文は英語か日本語、どちらかでお書きください。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vul het volgende sjabloon in en post het op %1$@ of stuur het naar %2$@. Houd er rekening mee dat de inhoud van de verzonden e-mail kan worden gedeeld op de Issue-pagina. Schrijf de inhoud in het Engels of Japans."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -128,6 +134,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "環境"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omgeving"
           }
         },
         "pt" : {
@@ -207,6 +219,12 @@
             "value" : "期待される挙動"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwacht resultaat"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -282,6 +300,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "簡単な説明"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Korte beschrijving"
           }
         },
         "pt" : {
@@ -361,6 +385,12 @@
             "value" : "不具合が発生したときに行っていた操作、または再現手順"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stappen om het probleem te reproduceren"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -437,6 +467,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "不具合レポート"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foutrapport"
           }
         },
         "pt" : {
