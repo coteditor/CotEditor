@@ -18,7 +18,7 @@
 ### Fixes
 
 - Fix an issue on the filter field for the outline inspector that the filter history was initially empty.
-- [beta] Fix an issue in the syntax editor that the latter part of regular expression patterns can be invisible when they have regular expression syntax error.
+- [beta] Fix an issue in the syntax editor that the latter part of regular expression patterns can be invisible when they have regular expression syntax errors.
 
 
 
