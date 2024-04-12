@@ -38,6 +38,15 @@ final class ShortcutField: NSTextField, NSTextViewDelegate {
     
     // MARK: Text Field Methods
     
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        
+        // fix the alignment to right regardless the UI layout direction
+        self.alignment = .right
+    }
+    
+    
     /// Text field turns into edit mode.
     override func becomeFirstResponder() -> Bool {
         
