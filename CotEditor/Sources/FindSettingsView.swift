@@ -131,7 +131,7 @@ struct FindTextualOptionsView: View {
                               table: "TextFind", comment: "toggle button label"),
                        isOn: $ignoresDiacriticMarks)
                 .help(String(localized: "FindSettings.ignoresDiacriticMarks.description",
-                             defaultValue: "Search ignores diacritical marks (e.g. ö = o).",
+                             defaultValue: "Search ignores diacritical marks (e.g., ö = o).",
                              table: "TextFind", comment: "tooltip"))
                 
                 Toggle(String(localized: "FindSettings.ignoresWidth.label",
@@ -139,7 +139,7 @@ struct FindTextualOptionsView: View {
                               table: "TextFind", comment: "toggle button label"),
                        isOn: $ignoresWidth)
                 .help(String(localized: "FindSettings.ignoresWidth.description",
-                             defaultValue: "Search ignores width differences in character forms (e.g. ａ = a).",
+                             defaultValue: "Search ignores width differences in character forms (e.g., ａ = a).",
                              table: "TextFind", comment: "tooltip"))
             } header: {
                 Text("Textual Search", tableName: "TextFind", comment: "heading")

@@ -1830,7 +1830,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Search ignores diacritical marks (e.g. ö = o)."
+            "value" : "Search ignores diacritical marks (e.g., ö = o)."
           }
         },
         "en-GB" : {
@@ -1842,13 +1842,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La búsqueda ignora las marcas diacríticas (ej: ö = o)."
+            "value" : "La búsqueda ignora las marcas diacríticas (P. ej., ö = o)."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La recherche ignore les signes diacritiques (par exemple : ö = o)"
+            "value" : "La recherche ignore les signes diacritiques (Ex. : ö = o)"
           }
         },
         "it" : {
@@ -1866,7 +1866,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A busca ignora sinais diacríticos (ö = o)."
+            "value" : "A busca ignora sinais diacríticos (Ex.: ö = o)."
           }
         },
         "tr" : {
@@ -1884,7 +1884,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "忽略變音符號進行尋找（例如ö = o）。"
+            "value" : "忽略變音符號進行尋找（例如：ö = o）。"
           }
         }
       }
@@ -1986,7 +1986,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Search ignores width differences in character forms (e.g. ａ = a)."
+            "value" : "Search ignores width differences in character forms (e.g., ａ = a)."
           }
         },
         "en-GB" : {
@@ -1998,13 +1998,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La búsqueda ignora las diferencias de ancho en las formas de caracteres (ej: ａ = a)."
+            "value" : "La búsqueda ignora las diferencias de ancho en las formas de caracteres (P. ej., ａ = a)."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignore les différences de forme des caractères (par exemple : ａ = a)."
+            "value" : "Ignore les différences de forme des caractères (Ex. : ａ = a)."
           }
         },
         "it" : {
@@ -2022,7 +2022,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A busca ignora as diferenças de largura nas formas dos caracteres (ａ = a)."
+            "value" : "A busca ignora as diferenças de largura nas formas dos caracteres (Ex.: ａ = a)."
           }
         },
         "tr" : {
@@ -2040,7 +2040,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "忽略字元形式的寬度進行尋找（例如ａ = a）。"
+            "value" : "忽略字元形式的寬度進行尋找（例如：ａ = a）。"
           }
         }
       }

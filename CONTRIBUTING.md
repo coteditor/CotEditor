@@ -52,7 +52,7 @@ You have two options to add a new localization to CotEditor.app. Choose one of t
 
 A standard localization update proceeds as follows:
 
-1. When CotEditor has new strings to be localized, the CotEditor maintainer, @1024jp, creates a new ticket on GitHub Issues and mentions the localization maintainers in it so that they can keep all their localized strings up to date. The ticket includes all strings to be updated and their descriptions, sometime with screenshots. e.g. [#1519](https://github.com/coteditor/CotEditor/issues/1519).
+1. When CotEditor has new strings to be localized, the CotEditor maintainer, @1024jp, creates a new ticket on GitHub Issues and mentions the localization maintainers in it so that they can keep all their localized strings up to date. The ticket includes all strings to be updated and their descriptions, sometime with screenshots. e.g., [#1519](https://github.com/coteditor/CotEditor/issues/1519).
 2. The localizers either post the localized strings to the thread or make a pull request on GitHub. The maintainers should localize the updated strings within about one week (the shorter period is, of course, welcome, but not required). All the responses must be done on GitHub. Not par email.
 3. The CotEditor maintainer reviews and merges the update provided by the localizers.
 

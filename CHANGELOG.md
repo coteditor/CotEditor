@@ -3207,7 +3207,7 @@ no change.
 ### Fixes
 
 - Fix an issue under OS X 10.11 where the application could crash when an item in the outline inspector is clicked.
-- Fix an issue where the word completion of which word starts with double underscores (e.g. `__init__`) skipped the second underscore.
+- Fix an issue where the word completion of which word starts with double underscores (e.g., `__init__`) skipped the second underscore.
 - Fix an issue where the application could rarely crash while typing.
 - [AppStore ver.] Fix an issue where the options for the software updater for non-AppStore versions were wrongly displayed in the General preferences pane.
 
@@ -4702,7 +4702,7 @@ no change.
     - Allow also taking a 1 to 3 digits point code.
     - Avoid auto-closing panel after entering character.
 - Improve character inspector:
-    - Display more comprehensible name for control characters (e.g. `<control-0000>` to `NULL`).
+    - Display more comprehensible name for control characters (e.g., `<control-0000>` to `NULL`).
     - Display an alternate visible symbol in the zoomed character area for C0 control characters.
 - Improve installed syntax style list in preferences:
     - Add dot mark to style names in the list to represent the state if the style is customized.
