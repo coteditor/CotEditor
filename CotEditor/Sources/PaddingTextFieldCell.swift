@@ -42,8 +42,8 @@ final class PaddingTextFieldCell: NSTextFieldCell {
         assert(self.leadingPadding >= 0)
         assert(self.trailingPadding >= 0)
         
-        let isLTR = self.userInterfaceLayoutDirection == .leftToRight
-        let newRect = NSRect(x: rect.origin.x + (isLTR ? self.leadingPadding : self.trailingPadding),
+        let xPadding = (self.userInterfaceLayoutDirection == .leftToRight) ? self.leadingPadding : self.trailingPadding
+        let newRect = NSRect(x: rect.origin.x + xPadding,
                              y: rect.origin.y,
                              width: rect.width - self.leadingPadding - self.trailingPadding,
                              height: rect.height)

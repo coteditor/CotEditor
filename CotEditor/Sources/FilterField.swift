@@ -118,6 +118,7 @@ private final class InnerFilterField: NSSearchField {
         }
         
         self.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
+        self.alignment = .natural
     }
     
     
