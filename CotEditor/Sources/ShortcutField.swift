@@ -44,6 +44,7 @@ final class ShortcutField: NSTextField, NSTextViewDelegate {
         
         // fix the alignment to right regardless the UI layout direction
         self.alignment = .right
+        self.baseWritingDirection = .leftToRight
     }
     
     
