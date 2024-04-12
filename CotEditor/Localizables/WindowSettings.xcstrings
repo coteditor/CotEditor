@@ -887,7 +887,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spring omwikkelde regels in met"
+            "value" : "Spring teruggelopen regels in met"
           }
         },
         "pt" : {
@@ -2339,7 +2339,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tabblad"
+            "value" : "Tab"
           }
         },
         "pt" : {
@@ -2643,7 +2643,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Omwikkel regels naar bewerkerbreedte"
+            "value" : "Pas regelterugloop aan vensterbreedte aan"
           }
         },
         "pt" : {
@@ -2719,7 +2719,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schrijfrichting:"
+            "value" : "Schriftrichting"
           }
         },
         "pt" : {

@@ -665,7 +665,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aangemaakt"
+            "value" : "Aanmaak"
           }
         },
         "pt" : {
@@ -896,7 +896,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Documentinspecteur"
+            "value" : "Documentinfovenster"
           }
         },
         "pt" : {
@@ -1877,7 +1877,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inspecteur"
+            "value" : "Infovenster"
           }
         },
         "pt" : {
@@ -2801,7 +2801,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gewijzigd"
+            "value" : "Bewerking"
           }
         },
         "pt" : {
@@ -4202,7 +4202,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Emoji en symbolen"
+            "value" : "Emoji's en symbolen"
           }
         },
         "pt" : {
@@ -4285,7 +4285,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toon emoji- en symbolenpalet"
+            "value" : "Toon 'Emoji's en symbolen'"
           }
         },
         "pt" : {
@@ -9105,7 +9105,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schrijfrichting"
+            "value" : "Schriftrichting"
           }
         },
         "pt" : {
@@ -9520,7 +9520,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wijzig schrijfrichting"
+            "value" : "Wijzig schriftrichting"
           }
         },
         "pt" : {

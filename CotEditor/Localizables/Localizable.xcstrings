@@ -523,7 +523,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deze actie kan niet ongedaan worden gemaakt."
+            "value" : "Deze bewerking kan niet ongedaan worden gemaakt."
           }
         },
         "pt" : {
@@ -606,7 +606,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Weet je zeker dat je “%@” wilt verwijderen?"
+            "value" : "Weet je zeker dat je '%@' wilt verwijderen?"
           }
         },
         "pt" : {
@@ -689,7 +689,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het bestand \"%@\" bevat geen tekstgegevens."
+            "value" : "Het bestand '%@' bevat geen tekstgegevens."
           }
         },
         "pt" : {
@@ -773,7 +773,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het bestand is van het type %@.\n\nWil je het bestand echt openen?"
+            "value" : "Het bestand is van het type %@.\n\nWeet je zeker dat je het bestand openen?"
           }
         },
         "pt" : {
@@ -1024,7 +1024,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het bestand \"%1$@\" heeft een grootte van %2$@."
+            "value" : "Het bestand '%1$@' heeft een grootte van %2$@."
           }
         },
         "pt" : {
@@ -1435,7 +1435,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dupliceer “%@”"
+            "value" : "Dupliceer '%@'"
           }
         },
         "pt" : {
@@ -1686,7 +1686,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wil je dit document converteren of herinterpreteren met \"%@\"?"
+            "value" : "Wil je dit document converteren of herinterpreteren met '%@'?"
           }
         },
         "pt" : {
@@ -1846,7 +1846,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exporteer \"%@\"..."
+            "value" : "Exporteer '%@'..."
           }
         },
         "pt" : {
@@ -2167,7 +2167,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Een nieuwe vervangende definitie met de naam \"%@\" wordt geïnstalleerd, maar een definitie met dezelfde naam bestaat al."
+            "value" : "Een nieuwe vervangende definitie met de naam '%@' wordt geïnstalleerd, maar een definitie met dezelfde naam bestaat al."
           }
         },
         "pt" : {
@@ -2333,7 +2333,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Een nieuwe syntaxis met de naam \"%@\" wordt geïnstalleerd, maar een aangepaste syntaxis met dezelfde naam bestaat al."
+            "value" : "Een nieuwe syntaxis met de naam '%@' wordt geïnstalleerd, maar een aangepaste syntaxis met dezelfde naam bestaat al."
           }
         },
         "pt" : {
@@ -2499,7 +2499,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Er wordt een nieuw thema met de naam \"%@\" geïnstalleerd, maar er bestaat al een aangepast thema met dezelfde naam."
+            "value" : "Er wordt een nieuw thema met de naam '%@' geïnstalleerd, maar er bestaat al een aangepast thema met dezelfde naam."
           }
         },
         "pt" : {
@@ -3244,7 +3244,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Naam mag geen \"/\" bevatten."
+            "value" : "Naam mag geen '/' bevatten."
           }
         },
         "pt" : {
@@ -3327,7 +3327,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De naam \"%@\" is al in gebruik."
+            "value" : "De naam '%@' is al in gebruik."
           }
         },
         "pt" : {
@@ -3576,7 +3576,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De naam \"%@\" is gereserveerd."
+            "value" : "De naam '%@' is gereserveerd."
           }
         },
         "pt" : {
@@ -3659,7 +3659,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Naam kan niet beginnen met \".\"."
+            "value" : "Naam kan niet beginnen met '."
           }
         },
         "pt" : {
@@ -3819,7 +3819,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het document bevat tekens die niet compatibel zijn met \"%@.\""
+            "value" : "Het document bevat tekens die niet compatibel zijn met '%@'."
           }
         },
         "pt" : {
@@ -4305,7 +4305,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het document kon niet worden geherinterpreteerd met de tekstcodering \"%@.\""
+            "value" : "Het document kon niet worden geherinterpreteerd met de tekstcodering '%@'."
           }
         },
         "pt" : {
@@ -4465,7 +4465,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hernoem \"%@\""
+            "value" : "Hernoem '%@'"
           }
         },
         "pt" : {
@@ -4542,7 +4542,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Herstel \"%@\""
+            "value" : "Herstel '%@'"
           }
         },
         "pt" : {
@@ -4619,7 +4619,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toon \"%@\" in Finder"
+            "value" : "Toon '%@' in Finder"
           }
         },
         "pt" : {
@@ -4702,7 +4702,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "\"%@\" kon niet worden verwijderd."
+            "value" : "'%@' kon niet worden verwijderd."
           }
         },
         "pt" : {
@@ -4785,7 +4785,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "\"%@\" kon niet worden geïmporteerd."
+            "value" : "'%@' kon niet worden geïmporteerd."
           }
         },
         "pt" : {
@@ -4868,7 +4868,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geen origineel bestand gevonden voor \"%@\"."
+            "value" : "Geen origineel bestand gevonden voor '%@'."
           }
         },
         "pt" : {
@@ -5279,7 +5279,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "\"%@\" is een CotEditor themabestand."
+            "value" : "'%@' is een CotEditor themabestand."
           }
         },
         "pt" : {
@@ -5362,7 +5362,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Een nieuw thema met de naam \"%@\" is met succes geïnstalleerd."
+            "value" : "Een nieuw thema met de naam '%@' is met succes geïnstalleerd."
           }
         },
         "pt" : {
@@ -5530,7 +5530,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Weet je zeker dat je je wijzigingen wilt verwijderen en het document opnieuw wilt openen met \"%@\"?"
+            "value" : "Weet je zeker dat je je wijzigingen wilt verwijderen en het document opnieuw wilt openen met '%@'?"
           }
         },
         "pt" : {
@@ -6024,7 +6024,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het bestand is gewijzigd door een andere applicatie."
+            "value" : "Het bestand is gewijzigd door een andere app."
           }
         },
         "pt" : {
@@ -6107,7 +6107,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het bestand is gewijzigd door een andere applicatie. Er zijn ook niet-opgeslagen wijzigingen in CotEditor."
+            "value" : "Het bestand is gewijzigd door een andere app. Er zijn ook niet-opgeslagen wijzigingen in CotEditor."
           }
         },
         "pt" : {

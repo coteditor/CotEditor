@@ -202,7 +202,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Controleer grammatica met spelling"
+            "value" : "Controleer grammatica tegelijk met spelling"
           }
         },
         "pt" : {
@@ -279,7 +279,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Controleer spelling tijdens het typen"
+            "value" : "Controleer spelling tijdens typen"
           }
         },
         "pt" : {
@@ -1211,7 +1211,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Slimme citaten"
+            "value" : "Slimme aanhalingstekens"
           }
         },
         "pt" : {
@@ -1515,7 +1515,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geef suggesties voor aanvullingen tijdens het typen"
+            "value" : "Stel voltooiingen voor tijdens typen"
           }
         },
         "pt" : {

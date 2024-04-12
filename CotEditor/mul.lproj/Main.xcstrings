@@ -224,7 +224,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open volledig scherm"
+            "value" : "Schakel schermvullende weergave in"
           }
         },
         "pt" : {
@@ -392,7 +392,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stop met spreken"
+            "value" : "Stop spraakfunctie"
           }
         },
         "pt" : {
@@ -476,7 +476,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vervangingen"
+            "value" : "Vervanging"
           }
         },
         "pt" : {
@@ -728,7 +728,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Indentatie"
+            "value" : "Inspringing"
           }
         },
         "pt" : {
@@ -812,7 +812,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Begin met spreken"
+            "value" : "Start spraakfunctie"
           }
         },
         "pt" : {
@@ -980,7 +980,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Breng alles naar voren"
+            "value" : "Alles op voorgrond"
           }
         },
         "pt" : {
@@ -1064,7 +1064,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Controleer grammatica met spelling"
+            "value" : "Controleer grammatica tegelijk met spelling"
           }
         },
         "pt" : {
@@ -2072,7 +2072,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Controleer spelling tijdens het typen"
+            "value" : "Controleer spelling tijdens typen"
           }
         },
         "pt" : {
@@ -2156,7 +2156,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inspecteur"
+            "value" : "Infovenster"
           }
         },
         "pt" : {
@@ -3920,7 +3920,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terug naar bewaard"
+            "value" : "Laatst bewaarde versie"
           }
         },
         "pt" : {
@@ -4004,7 +4004,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open recent"
+            "value" : "Open recente bestanden"
           }
         },
         "pt" : {
@@ -4088,7 +4088,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open recent"
+            "value" : "Open recente bestanden"
           }
         },
         "pt" : {
@@ -4340,7 +4340,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diensten"
+            "value" : "Voorzieningen"
           }
         },
         "pt" : {
@@ -4424,7 +4424,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diensten"
+            "value" : "Voorzieningen"
           }
         },
         "pt" : {
@@ -4592,7 +4592,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sluit CotEditor"
+            "value" : "Stop CotEditor"
           }
         },
         "pt" : {
@@ -5096,7 +5096,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bewerk"
+            "value" : "Wijzig"
           }
         },
         "pt" : {
@@ -5348,7 +5348,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bewerk"
+            "value" : "Wijzig"
           }
         },
         "pt" : {
@@ -5684,7 +5684,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zoom"
+            "value" : "Vergroot/verklein"
           }
         },
         "pt" : {
@@ -5768,7 +5768,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Indeling"
+            "value" : "Opmaak"
           }
         },
         "pt" : {
@@ -5852,7 +5852,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Indeling"
+            "value" : "Opmaak"
           }
         },
         "pt" : {
@@ -7280,7 +7280,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toon lettertypes"
+            "value" : "Toon lettertypen"
           }
         },
         "pt" : {
@@ -7700,7 +7700,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Documentinspecteur"
+            "value" : "Documentinfovenster"
           }
         },
         "pt" : {
@@ -8540,7 +8540,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verberg werkbalk"
+            "value" : "Verberg knoppenbalk"
           }
         },
         "pt" : {
@@ -8624,7 +8624,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pas werkbalk aan..."
+            "value" : "Pas knoppenbalk aan..."
           }
         },
         "pt" : {
@@ -10052,7 +10052,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Release-opmerkingen"
+            "value" : "Versienotities"
           }
         },
         "pt" : {
@@ -10220,7 +10220,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Transformaties"
+            "value" : "Omzetting"
           }
         },
         "pt" : {
@@ -11228,7 +11228,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wat is er nieuw in CotEditor"
+            "value" : "Nieuw in CotEditor"
           }
         },
         "pt" : {
@@ -11732,7 +11732,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Converteer inspringing in ruimtes"
+            "value" : "Converteer inspringing in spaties"
           }
         },
         "pt" : {
@@ -12740,7 +12740,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Transformaties"
+            "value" : "Omzetting"
           }
         },
         "pt" : {
@@ -13160,7 +13160,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gebruik ruimte voor inspringing"
+            "value" : "Gebruik spaties voor inspringing"
           }
         },
         "pt" : {
@@ -13244,7 +13244,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gebruik selectie voor zoeken"
+            "value" : "Gebruik selectie voor zoekactie"
           }
         },
         "pt" : {
@@ -13328,7 +13328,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schrijfrichting"
+            "value" : "Schriftrichting"
           }
         },
         "pt" : {
@@ -13496,7 +13496,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toon inspecteur"
+            "value" : "Toon infovenster"
           }
         },
         "pt" : {
@@ -14504,7 +14504,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hoofdletter"
+            "value" : "Zet om in beginhoofdletters"
           }
         },
         "pt" : {
@@ -15008,7 +15008,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schrijfrichting"
+            "value" : "Schriftrichting"
           }
         },
         "pt" : {
@@ -16352,7 +16352,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Slim kopieren/plakken"
+            "value" : "Slim kopiëren/plakken"
           }
         },
         "pt" : {
@@ -16856,7 +16856,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maak hoofdletter"
+            "value" : "Zet om in hoofdletters"
           }
         },
         "pt" : {
@@ -17360,7 +17360,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inspecteur"
+            "value" : "Infovenster"
           }
         },
         "pt" : {
@@ -19124,7 +19124,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vervangingen"
+            "value" : "Vervanging"
           }
         },
         "pt" : {
@@ -19208,7 +19208,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Indentatie"
+            "value" : "Inspringing"
           }
         },
         "pt" : {
@@ -19376,7 +19376,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maak kleine letters"
+            "value" : "Zet om in kleine letters"
           }
         },
         "pt" : {

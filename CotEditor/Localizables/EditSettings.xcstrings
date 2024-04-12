@@ -428,7 +428,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Markeer \"<>\""
+            "value" : "Markeer '<>'"
           }
         },
         "pt" : {
@@ -580,7 +580,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Markeer overeenkomende accolades \"()\" \"[]\" \"{}\""
+            "value" : "Markeer overeenkomende accolades '()' '[]' '{}'"
           }
         },
         "pt" : {
@@ -1190,7 +1190,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ruimtes"
+            "value" : "spaties"
           }
         },
         "pt" : {
@@ -1267,7 +1267,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ruimtes"
+            "value" : "Spaties"
           }
         },
         "pt" : {
@@ -1420,7 +1420,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Witruimtes:"
+            "value" : "Witruimte:"
           }
         },
         "pt" : {

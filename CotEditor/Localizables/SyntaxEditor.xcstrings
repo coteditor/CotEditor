@@ -3499,7 +3499,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Standaardwaarden"
+            "value" : "Herstel standaardinstellingen"
           }
         },
         "pt" : {
@@ -3575,7 +3575,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toon zijbalk"
+            "value" : "Toon navigatiekolom"
           }
         },
         "pt" : {
@@ -4050,7 +4050,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Onderstreep"
+            "value" : "Onderstreept"
           }
         },
         "pt" : {

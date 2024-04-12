@@ -920,7 +920,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Klaar"
+            "value" : "Gereed"
           }
         },
         "pt" : {
@@ -1848,7 +1848,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nu opnieuw starten"
+            "value" : "Herstart nu"
           }
         },
         "pt" : {

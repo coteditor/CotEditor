@@ -200,7 +200,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kopieer als Rich Text"
+            "value" : "Kopieer als RTF-tekst"
           }
         },
         "pt" : {
@@ -505,7 +505,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Codering naar \"%@\""
+            "value" : "Codering naar '%@'"
           }
         },
         "pt" : {
@@ -657,7 +657,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verberg inspecteur"
+            "value" : "Verberg infovenster"
           }
         },
         "pt" : {
@@ -2255,7 +2255,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toon inspecteur"
+            "value" : "Toon infovenster"
           }
         },
         "pt" : {
