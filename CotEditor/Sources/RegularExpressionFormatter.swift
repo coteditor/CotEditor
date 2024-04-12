@@ -68,9 +68,11 @@ final class RegularExpressionFormatter: Formatter {
                         _ = try NSRegularExpression(pattern: string)
                     } catch {
                         if self.showsError {
-                            let alert = NSAttributedString(systemSymbolName: "exclamationmark.triangle.fill",
-                                                           configuration: .preferringMulticolor())
-                            attributedString.insert(alert, at: 0)
+                            let alert = NSAttributedString(systemSymbolName: "exclamationmark.triangle.fill", configuration: .preferringMulticolor())
+                            // add ZERO WIDTH SPACE to avoid losing the paragraph style determining trailing truncation
+                            // due to adding an image attachment at the beginning (macOS 14, 2024-04)
+                            let zeroWidthSpace = NSAttributedString(string: "\u{200B}", attributes: attrs)
+                            attributedString.insert(zeroWidthSpace + alert, at: 0)
                         }
                         return attributedString
                     }
