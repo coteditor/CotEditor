@@ -45,6 +45,12 @@
             "value" : "ブロック:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Block:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -115,6 +121,12 @@
             "value" : "カテゴリ:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Categorie:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -183,6 +195,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コードポイント:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codepunt:"
           }
         },
         "pt" : {
@@ -256,6 +274,12 @@
             "value" : "非推奨"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "verouderd"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -324,6 +348,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ブロックなし"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen block"
           }
         },
         "pt" : {
@@ -396,6 +426,12 @@
             "value" : "不明"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onbekend"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -464,6 +500,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "バージョン:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versie:"
           }
         },
         "pt" : {

@@ -45,6 +45,12 @@
             "value" : "利用可能なシンタックス:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beschikbare syntaxen:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -113,6 +119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "デフォルトのエンコーディング:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standaardcodering:"
           }
         },
         "pt" : {
@@ -185,6 +197,12 @@
             "value" : "デフォルトの改行コード:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standaard regeleinden:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -253,6 +271,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "デフォルトのシンタックス:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standaardsyntaxis:"
           }
         },
         "pt" : {
@@ -325,6 +349,12 @@
             "value" : "リストを編集…"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bewerklijst..."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -393,6 +423,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "エンコーディングの優先順位:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prioriteit van coderingen:"
           }
         },
         "pt" : {
@@ -465,6 +501,12 @@
             "value" : "書類中のエンコーディング宣言を参照"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zie coderingsverklaring in document"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -534,6 +576,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "このシンタックスは存在しません"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deze syntaxis bestaat niet"
           }
         },
         "pt" : {

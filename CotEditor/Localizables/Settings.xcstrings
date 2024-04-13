@@ -52,6 +52,12 @@
             "value" : "外観"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uiterlijk"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -127,6 +133,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "編集"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bewerk"
           }
         },
         "pt" : {
@@ -206,6 +218,12 @@
             "value" : "フォーマット"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indeling"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -281,6 +299,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "一般"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Algemeen"
           }
         },
         "pt" : {
@@ -360,6 +384,12 @@
             "value" : "キーバインド"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sneltoetsen"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -435,6 +465,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "モード"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modus"
           }
         },
         "pt" : {
@@ -514,6 +550,12 @@
             "value" : "スニペット"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Knipsels"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -589,6 +631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ウインドウ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Venster"
           }
         },
         "pt" : {

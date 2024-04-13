@@ -142,6 +142,24 @@
             }
           }
         },
+        "nl" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* byte"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* bytes"
+                }
+              }
+            }
+          }
+        },
         "pt" : {
           "variations" : {
             "plural" : {
@@ -339,6 +357,24 @@
             }
           }
         },
+        "nl" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* teken"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* tekens"
+                }
+              }
+            }
+          }
+        },
         "pt" : {
           "variations" : {
             "plural" : {
@@ -440,6 +476,12 @@
             "value" : "高度な文字カウント…"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geavanceerde tekentelling..."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -516,6 +558,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "指定したエンコーディングでエンコードしたときのバイト長をカウントします。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telt bytes van de tekst gecodeerd met de opgegeven codering."
           }
         },
         "pt" : {
@@ -596,6 +644,12 @@
             "value" : "バイト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Byte"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -672,6 +726,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unicodeで定義されている人の感覚に近い単位でカウントします。絵文字など複数のUnicodeコードポイントから成る文字も1文字で数えます。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tel op de intuïtieve manier zoals gedefinieerd in Unicode. Een teken dat uit meerdere Unicode-codepunten bestaat, zoals emoji's, wordt als één teken geteld."
           }
         },
         "pt" : {
@@ -752,6 +812,12 @@
             "value" : "書記素クラスタ"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grafeemcluster"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -828,6 +894,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unicodeコードポイント単位でカウントします。UTF-32のカウントと同一です。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tel Unicode-codepunten. Hetzelfde als UTF-32 tellen."
           }
         },
         "pt" : {
@@ -908,6 +980,12 @@
             "value" : "Unicodeスカラー"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode scalar"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -984,6 +1062,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unicodeコードポイント単位でカウントしますがサロゲートペアは2文字でカウントします。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tel Unicode-codepunten maar een surrogaatpaar als twee tekens."
           }
         },
         "pt" : {
@@ -1064,6 +1148,12 @@
             "value" : "UTF-16"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1133,6 +1223,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コピー"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopieer"
           }
         },
         "pt" : {
@@ -1206,6 +1302,12 @@
             "value" : "エンコーディング:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codering:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1275,6 +1377,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "失敗"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mislukt"
           }
         },
         "pt" : {
@@ -1348,6 +1456,12 @@
             "value" : "改行を無視"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Negeer regeleinden"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1417,6 +1531,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空白を無視"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Negeer wituimte"
           }
         },
         "pt" : {
@@ -1490,6 +1610,12 @@
             "value" : "正規化:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalisatie:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1559,6 +1685,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "オプションを表示"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toon opties"
           }
         },
         "pt" : {
@@ -1632,6 +1764,12 @@
             "value" : "開始"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Begin"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1701,6 +1839,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "高度な文字カウントを停止"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop geavanceerde tekentelling"
           }
         },
         "pt" : {
@@ -1774,6 +1918,12 @@
             "value" : "カウントを停止"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop telling"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1843,6 +1993,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "連続する空白を1文字として扱う"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behandel opeenvolgende witruimtes als één ruimte"
           }
         },
         "pt" : {
@@ -1916,6 +2072,12 @@
             "value" : "単位:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eenheid:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1985,6 +2147,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空白:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Witruimte:"
           }
         },
         "pt" : {

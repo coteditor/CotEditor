@@ -46,6 +46,12 @@
             "value" : "カラーコード"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kleurcode"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -118,6 +124,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSL"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS HSL"
@@ -200,6 +212,12 @@
             "value" : "CSS HSLa"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSLa"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -277,6 +295,12 @@
             "value" : "CSSキーワード"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS-trefwoord"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -349,6 +373,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGB"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS RGB"
@@ -431,6 +461,12 @@
             "value" : "CSS RGBa"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGBa"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -506,6 +542,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "16進数"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hexadecimaal"
           }
         },
         "pt" : {
@@ -585,6 +627,12 @@
             "value" : "16進数（アルファ値付き）"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hexadecimaal met alpha"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -662,6 +710,12 @@
             "value" : "16進数（ショート）"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hexadecimaal (Kort)"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -733,6 +787,12 @@
             "value" : "挿入"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invoegen"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -802,6 +862,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スタイルシートキーワード"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trefwoorden voor stijlbladen"
           }
         },
         "pt" : {

@@ -46,6 +46,12 @@
             "value" : "<%lld字から成る文字>"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<a letter bestaande uit %lld tekens>"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -122,6 +128,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "絵文字スタイル"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emoji-stijl"
           }
         },
         "pt" : {
@@ -202,6 +214,12 @@
             "value" : "テキストスタイル"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekststijl"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -278,6 +296,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スキントーンIII"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Huidskleur III"
           }
         },
         "pt" : {
@@ -358,6 +382,12 @@
             "value" : "スキントーンIV"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Huidskleur IV"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -434,6 +464,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スキントーンV"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Huidskleur V"
           }
         },
         "pt" : {
@@ -514,6 +550,12 @@
             "value" : "スキントーンVI"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Huidskleur VI"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -592,6 +634,12 @@
             "value" : "スキントーンI-II"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Huidskleur I-II"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -661,6 +709,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "異体字"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Variant"
           }
         },
         "pt" : {

@@ -53,6 +53,12 @@
             "value" : "コード"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -129,6 +135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "一般"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Algemeen"
           }
         },
         "pt" : {
@@ -208,6 +220,12 @@
             "value" : "なし"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -283,6 +301,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "属性"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attributen"
           }
         },
         "pt" : {
@@ -362,6 +386,12 @@
             "value" : "文字"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekens"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -437,6 +467,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コマンド"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commando's"
           }
         },
         "pt" : {
@@ -516,6 +552,12 @@
             "value" : "コメント"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opmerkingen"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -591,6 +633,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "キーワード"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trefwoorden"
           }
         },
         "pt" : {
@@ -670,6 +718,12 @@
             "value" : "数値"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nummers"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -745,6 +799,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字列"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekenreeksen"
           }
         },
         "pt" : {
@@ -824,6 +884,12 @@
             "value" : "タイプ"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Soorten"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -901,6 +967,12 @@
             "value" : "値"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Waarden"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -976,6 +1048,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "変数"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Variabelen"
           }
         },
         "pt" : {

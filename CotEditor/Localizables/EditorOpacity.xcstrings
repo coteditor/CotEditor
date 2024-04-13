@@ -45,6 +45,12 @@
             "value" : "エディタの不透明度"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doorzichtigheid van bewerker"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

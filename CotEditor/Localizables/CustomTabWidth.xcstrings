@@ -45,6 +45,12 @@
             "value" : "タブ幅:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabbreedte:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

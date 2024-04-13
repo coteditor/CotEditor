@@ -45,6 +45,12 @@
             "value" : "作者:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auteur:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -113,6 +119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "背景:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Achtergrond:"
           }
         },
         "pt" : {
@@ -185,6 +197,12 @@
             "value" : "現在の行:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Huidige regel:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -253,6 +271,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "カーソル:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cursor:"
           }
         },
         "pt" : {
@@ -325,6 +349,12 @@
             "value" : "説明:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beschrijving:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -395,6 +425,12 @@
             "value" : "不可視文字:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onzichtbare tekens:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -463,6 +499,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ライセンス:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licentie:"
           }
         },
         "pt" : {
@@ -536,6 +578,12 @@
             "value" : "未設定"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niet gedefinieerd"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -604,6 +652,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択範囲:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selectie:"
           }
         },
         "pt" : {
@@ -676,6 +730,12 @@
             "value" : "テーマファイル情報を表示"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toon informatie over themabestanden"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -744,6 +804,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "シンタックス"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxis"
           }
         },
         "pt" : {
@@ -816,6 +882,12 @@
             "value" : "文字:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -881,6 +953,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "URL:"
@@ -955,6 +1033,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "システムカラーを使う"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebruik systeemkleur"
           }
         },
         "pt" : {

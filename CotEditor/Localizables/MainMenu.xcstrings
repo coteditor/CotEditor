@@ -45,6 +45,12 @@
             "value" : "コメントアウト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commentaarteken"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -113,6 +119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "インデントを変換"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Converteer inspring"
           }
         },
         "pt" : {
@@ -185,6 +197,12 @@
             "value" : "リッチテキストとしてコピー"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopieer als Rich Text"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -253,6 +271,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "重複行を削除"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwijder dubbele regels"
           }
         },
         "pt" : {
@@ -325,6 +349,12 @@
             "value" : "行を削除"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwijder regel"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -393,6 +423,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行を複製"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dupliceer regel"
           }
         },
         "pt" : {
@@ -466,6 +502,12 @@
             "value" : "エンコーディングを“%@”へ"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codering naar \"%@\""
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -534,6 +576,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "インデントガイドを非表示"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verberg inspringgidsen"
           }
         },
         "pt" : {
@@ -606,6 +654,12 @@
             "value" : "インスペクタを非表示"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verberg inspecteur"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -674,6 +728,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "不可視文字を非表示"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verberg onzichtbaarheden"
           }
         },
         "pt" : {
@@ -746,6 +806,12 @@
             "value" : "行番号を非表示"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verberg regelnummers"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -814,6 +880,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ナビゲーションバーを非表示"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verberg navigatiebalk"
           }
         },
         "pt" : {
@@ -886,6 +958,12 @@
             "value" : "ページガイドを非表示"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verberg paginagids"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -954,6 +1032,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ステータスバーを非表示"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verberg statusbalk"
           }
         },
         "pt" : {
@@ -1026,6 +1110,12 @@
             "value" : "カラーコードを挿入"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg kleurcode in"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1094,6 +1184,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スニペットを挿入"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg knipsel in"
           }
         },
         "pt" : {
@@ -1166,6 +1262,12 @@
             "value" : "テキストを挿入"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg tekst in"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1236,6 +1338,12 @@
             "value" : "文字情報を表示"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspecteer teken"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1304,6 +1412,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行を結合"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg regels samen"
           }
         },
         "pt" : {
@@ -1377,6 +1491,12 @@
             "value" : "改行コードを%@へ"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regeleinden naar %@"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1447,6 +1567,12 @@
             "value" : "行を移動"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verplaats regel"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1515,6 +1641,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スクリプトフォルダを開く"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Scriptmap"
           }
         },
         "pt" : {
@@ -1588,6 +1720,12 @@
             "value" : "スクリプトをエディタで開くにはOption+クリックしてください。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Option-klik om script in bewerker te openen."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1656,6 +1794,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行を反転"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keer regels om"
           }
         },
         "pt" : {
@@ -1728,6 +1872,12 @@
             "value" : "スクリプト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1796,6 +1946,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべてを選択"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer alles"
           }
         },
         "pt" : {
@@ -1868,6 +2024,12 @@
             "value" : "左へシフト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verplaats links"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1936,6 +2098,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "右へシフト"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verplaats rechts"
           }
         },
         "pt" : {
@@ -2008,6 +2176,12 @@
             "value" : "インデントガイドを表示"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toon inspringgidsen"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2076,6 +2250,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "インスペクタを表示"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toon inspecteur"
           }
         },
         "pt" : {
@@ -2148,6 +2328,12 @@
             "value" : "不可視文字を表示"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toon onzichtbaren"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2216,6 +2402,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行番号を表示"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toon regelnummers"
           }
         },
         "pt" : {
@@ -2288,6 +2480,12 @@
             "value" : "ナビゲーションバーを表示"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toon navigatiebalk"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2356,6 +2554,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ページガイドを表示"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toon paginagids"
           }
         },
         "pt" : {
@@ -2428,6 +2632,12 @@
             "value" : "ステータスバーを表示"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toon statusbalk"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2496,6 +2706,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行をシャッフル"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shuffle regels"
           }
         },
         "pt" : {
@@ -2568,6 +2784,12 @@
             "value" : "行を並び替え"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorteer regels"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2636,6 +2858,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "分割エディタを横に配置"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stapel bewerkers horizontaal"
           }
         },
         "pt" : {
@@ -2708,6 +2936,12 @@
             "value" : "分割エディタを縦に配置"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stapel bewerkers verticaal"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2776,6 +3010,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "引用符をまっすぐにする"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maak aanhalingstekens recht"
           }
         },
         "pt" : {
@@ -2849,6 +3089,12 @@
             "value" : "不可視文字を表示させるには「ウインドウ」設定で設定を変更してください"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stel de onzichtbare tekens in bij de Vensterinstellingen om ze weer te geven"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2917,6 +3163,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行末の空白を削除"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trim witruimte"
           }
         },
         "pt" : {
@@ -2989,6 +3241,12 @@
             "value" : "コメント解除"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwijder opmerking"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3059,6 +3317,12 @@
             "value" : "行を折り返さない"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pak regels uit"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3127,6 +3391,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行を折り返す"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pak regels in"
           }
         },
         "pt" : {

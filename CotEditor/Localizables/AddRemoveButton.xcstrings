@@ -46,6 +46,12 @@
             "value" : "追加"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg toe"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -115,6 +121,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新しい項目を追加"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg nieuwe item toe"
           }
         },
         "pt" : {
@@ -188,6 +200,12 @@
             "value" : "削除"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwijder"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -257,6 +275,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択した項目を削除"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwijder geselecteerde items"
           }
         },
         "pt" : {

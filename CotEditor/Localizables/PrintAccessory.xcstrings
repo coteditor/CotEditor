@@ -46,6 +46,12 @@
             "value" : "%@pt"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ pt"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -121,6 +127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "中央揃え"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Midden"
           }
         },
         "pt" : {
@@ -200,6 +212,12 @@
             "value" : "左揃え"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lijn links uit"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -277,6 +295,12 @@
             "value" : "右揃え"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lijn rechts uit"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -346,6 +370,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "白黒"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zwart-wit"
           }
         },
         "pt" : {
@@ -419,6 +449,12 @@
             "value" : "カラー"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kleur"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -488,6 +524,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "フォントサイズ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lettergrootte"
           }
         },
         "pt" : {
@@ -561,6 +603,12 @@
             "value" : "フッタ"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voettekst"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -630,6 +678,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ヘッダ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koptekst"
           }
         },
         "pt" : {
@@ -703,6 +757,12 @@
             "value" : "不可視文字"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onzichtbaren"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -772,6 +832,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行番号"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regelnummer"
           }
         },
         "pt" : {
@@ -844,6 +910,12 @@
             "value" : "オン"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Op"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -913,6 +985,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "背景をプリント"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Druk achtergronden af"
           }
         },
         "pt" : {
@@ -992,6 +1070,12 @@
             "value" : "書類名"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Documentnaam"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1067,6 +1151,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイルパス"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestandspad"
           }
         },
         "pt" : {
@@ -1146,6 +1236,12 @@
             "value" : "最終変更日時"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laatst gewijzigde datum"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1221,6 +1317,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "なし"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen"
           }
         },
         "pt" : {
@@ -1300,6 +1402,12 @@
             "value" : "ページ番号"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paginanummer"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1375,6 +1483,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "プリント日時"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afdrukdatum"
           }
         },
         "pt" : {
@@ -1454,6 +1568,12 @@
             "value" : "シンタックス名"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxisnaam"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1523,6 +1643,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テーマ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thema"
           }
         },
         "pt" : {
