@@ -3,6 +3,10 @@
 4.8.0 (unreleased)
 --------------------------
 
+### Fixes
+
+- [rc][trivial] Fix Dutch localization.
+
 
 
 4.8.0-rc (639)

@@ -1846,7 +1846,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exporteer '%@'..."
+            "value" : "Exporteer '%@'…"
           }
         },
         "pt" : {
