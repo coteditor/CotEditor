@@ -1,6 +1,6 @@
 # Change Log
 
-4.8.0-beta.4 (unreleased)
+4.8.0-rc (unreleased)
 --------------------------
 
 ### New Features
