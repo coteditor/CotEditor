@@ -46,6 +46,12 @@
             "value" : "%@について"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Over %@"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -115,6 +121,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "そしてCotEditorを支えてくれた全ての皆さま!"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "en iedereen die CotEditor steunt!"
           }
         },
         "pt" : {
@@ -188,6 +200,12 @@
             "value" : "コード貢献者"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code Bijdragers"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -258,6 +276,12 @@
             "value" : "CotEditorはオープンソースプログラムとして\nApache License, Version 2.0でライセンスされてます。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor is een open source programma\ngelicentieerd onder de Apache-licentie, versie 2.0"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -326,6 +350,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditorは下記の素晴らしい技術を使用しています。有益な作品の公開に深く感謝いたします。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor\ngebruikt de volgende geweldige technologieën. We zijn degenen die ons\nhun waardevolle werk laten gebruiken zeer dankbaar."
           }
         },
         "pt" : {
@@ -399,6 +429,12 @@
             "value" : "クレジット"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Credits"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -468,6 +504,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "利用許諾契約"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licentie"
           }
         },
         "pt" : {
@@ -541,6 +583,12 @@
             "value" : "ローカリゼーション"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lokalisatie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -612,6 +660,12 @@
             "value" : "非AppStore版のみ"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "alleen op niet-AppStore versie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -680,6 +734,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "オリジナル開発者"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "oorspronkelijke ontwikkelaar"
           }
         },
         "pt" : {
@@ -753,6 +813,12 @@
             "value" : "スペシャルサンクス"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speciale dank"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -822,6 +888,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditorプロジェクト"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het CotEditor-project"
           }
         },
         "pt" : {
@@ -899,6 +971,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "バージョン %1$@ (%2$@)"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versie %1$@ (%2$@)"
           }
         },
         "pt" : {

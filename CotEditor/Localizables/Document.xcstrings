@@ -1124,6 +1124,12 @@
             "value" : "ファイルサイズ"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestandsgrootte"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3865,6 +3871,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テキストエンコーディング"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekstcodering"
           }
         },
         "pt" : {
