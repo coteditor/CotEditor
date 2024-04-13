@@ -1,0 +1,371 @@
+//
+//  UnicodeBlock.strings (Dutch)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2024-03-11.
+//  Localized by 1024jp
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2024 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+// -> Localizer doesn't need to translate this file
+//    because it is programmatically generated from CharacterPaletteIM.lg in the Apple's glossaries.
+//    release date of the used glossary: 2020-01-15
+// cf. <https://developer.apple.com/download/all/?q=glossaries>
+
+"Cuneiform" = "Spijkerschrift";
+"Variation Selectors" = "Variatieselectors";
+"Latin Extended-B" = "Latijns Uitgebreid-B";
+"Brahmi" = "Brahmi";
+"Enclosed Alphanumerics" = "Omsloten alfanumerieke tekens";
+"Linear B Syllabary" = "Lineair B-syllabenschrift";
+"Arabic Mathematical Alphabetic Symbols" = "Arabische wisk. alfabetische symbolen";  // "Math" -> "Mathematical"
+"Ugaritic" = "Oegaritisch";
+"Bamum Supplement" = "Bamum Aanvulling";
+"Alphabetic Presentation Forms" = "Alfabetische presentatievormen";
+"Early Dynastic Cuneiform" = "Vroeg-dynastiek spijkerschrift";
+"Miao" = "Miao";
+"Mongolian" = "Mongools";
+"CJK Radicals Supplement" = "CJK-radicalen Aanvulling";
+"Arabic" = "Arabisch";
+"Khudawadi" = "Khudawadi";
+"Control Pictures" = "Commandoafbeeldingen";
+"Inscriptional Parthian" = "Gegraveerd Parthiaans";
+"Meroitic Hieroglyphs" = "Meroïtische hiërogliefen";
+"Linear A" = "Lineair A";
+"Phaistos Disc" = "Discus van Phaestus";
+"Siddham" = "Siddham";
+"Geometric Shapes" = "Geometrische vormen";
+"CJK Unified Ideographs" = "CJK-ideogr. Alg.";
+"Greek and Coptic" = "Grieks en Koptisch";
+"Ancient Greek Musical Notation" = "Oudgriekse muzieknotatie";
+"Basic Latin" = "Latijns - Basis";
+"Inscriptional Pahlavi" = "Gegraveerd Pahlavi";
+"Braille Patterns" = "Braillepatronen";
+"Javanese" = "Javaans";
+"Old South Arabian" = "Oud-Zuid-Arabisch";
+"Hebrew" = "Hebreeuws";
+"Specials" = "Speciale tekens";
+"Anatolian Hieroglyphs" = "Anatolische hiërogliefen";
+"Variation Selectors Supplement" = "Variatieselectors Aanvulling";
+"Ornamental Dingbats" = "Decoratieve dingbats";
+"Miscellaneous Technical" = "Diverse technisch";
+"Sundanese Supplement" = "Soendanees Aanvulling";
+"Aegean Numbers" = "Egeïsche getallen";
+"General Punctuation" = "Algemene interpunctie";
+"Latin Extended-D" = "Latijns Uitgebreid-D";
+"CJK Compatibility Ideographs" = "CJK-compatibele ideogrammen";
+"Bopomofo" = "Bopomofo";
+"Myanmar Extended-B" = "Myanmar Uitgebreid-B";
+"Buhid" = "Buhid";
+"Khojki" = "Khojki";
+"Chakma" = "Chakma";
+"Bengali" = "Bengaals";
+"Shorthand Format Controls" = "Regelaars voor steno-opmaak";
+"Grantha" = "Grantha";
+"New Tai Lue" = "Nieuw Thai Lue";
+"Linear B Ideograms" = "Lineair B-ideogrammen";
+"Coptic Epact Numbers" = "Koptische epact-getallen";
+"Unified Canadian Aboriginal Syllabics" = "Inheems-Canadese syllaben Algemeen";
+"Low Surrogates" = "Lage surrogaten";
+"Ethiopic" = "Ethiopisch";
+"Vertical Forms" = "Verticale vormen";
+"Block Elements" = "Blokelementen";
+"Supplemental Symbols and Pictographs" = "Aanvullende symbolen en pictogrammen";
+"Pahawh Hmong" = "Pahawh Hmong";
+"Currency Symbols" = "Valutasymbolen";
+"Bamum" = "Bamum";
+"Superscripts and Subscripts" = "Superscript en subscript";
+"Arabic Presentation Forms-A" = "Arabische presentatievormen-A";
+"Shavian" = "Shavian";
+"CJK Unified Ideographs Ext. B" = "CJK-ideogr. Alg. Uitgebr. B";
+"Enclosed Ideographic Supplement" = "Omsloten ideogrammen Aanvulling";
+"Combining Diacritical Marks Extended" = "Diakritische combinatietekens Uitgebreid";
+"Ancient Symbols" = "Oude symbolen";
+"Cyrillic Extended-B" = "Cyrillisch Uitgebreid-B";
+"Saurashtra" = "Saurashtra";
+"Vedic Extensions" = "Vedische uitbreidingen";
+"Old Hungarian" = "Oud-Hongaars";
+"Cyrillic" = "Cyrillisch";
+"Arrows" = "Pijlen";
+"Thai" = "Thai";
+"Supplemental Arrows-B" = "Aanvullende pijlen-B";
+"Ancient Greek Numbers" = "Oudgriekse getallen";
+"Cham" = "Cham";
+"Tai Tham" = "Tai Tham";
+"Bopomofo Extended" = "Bopomofo Uitgebreid";
+"Warang Citi" = "Warang Citi";
+"Phonetic Extensions Supplement" = "Fonetische uitbreidingen Aanvulling";
+"Meroitic Cursive" = "Meroïtisch cursief";
+"Sora Sompeng" = "Sora Sompeng";
+"Ol Chiki" = "Ol Chiki";
+"Cuneiform Numbers and Punctuation" = "Spijkerschriftgetallen en -interpunctie";
+"Phags-pa" = "Phags-pa";
+"Devanagari Extended" = "Devanagari Uitgebreid";
+"Devanagari" = "Devanagari";
+"Greek Extended" = "Grieks Uitgebreid";
+"Thaana" = "Thaana";
+"Telugu" = "Telugu";
+"Hiragana" = "Hiragana";
+"CJK Compatibility Ideographs Supp." = "CJK-compatibele ideogr. Aanv.";
+"Katakana" = "Katakana";
+"Mathematical Operators" = "Wiskundige operatoren";
+"Mahjong Tiles" = "Mahjongstenen";
+"Batak" = "Batak";
+"Vai" = "Vai";
+"Phonetic Extensions" = "Fonetische uitbreidingen";
+"Malayalam" = "Malayalam";
+"Optical Character Recognition" = "Optische tekenherkenning";
+"Hangul Jamo Extended-A" = "Hangul Jamo Uitgebreid-A";
+"Geometric Shapes Extended" = "Geometrische vormen Uitgebreid";
+"Supplemental Mathematical Operators" = "Aanvullende wisk. operatoren";  // "Math" -> "Mathematical"
+"Common Indic Number Forms" = "Gangbare Indische cijfervormen";
+"Enclosed Alphanumeric Supplement" = "Omsloten alfanumerieke tekens Aanvulling";
+"Kaithi" = "Kaithi";
+"Imperial Aramaic" = "Keizerlijk Aramees";
+"Hatran" = "Hatran";
+"Modifier Tone Letters" = "Toonwijzigingstekens";
+"Sharada" = "Sharada";
+"Kayah Li" = "Kayah Li";
+"Tamil" = "Tamil";
+"Small Form Variants" = "Kleine vormen - varianten";
+"CJK Unified Ideographs Ext. D" = "CJK-ideogr. Alg. Uitgebr. D";
+"Caucasian Albanian" = "Kaukasisch Albanees";
+"Tifinagh" = "Tifinagh";
+"Miscellaneous Symbols and Pictographs" = "Diverse symbolen en pictogrammen";  // "And" -> "and"
+"Meetei Mayek Extensions" = "Meetei Mayek-uitbreidingen";
+"Miscellaneous Mathematical Symbols-B" = "Diverse wisk. symbolen-B";  // "Math" -> "Mathematical"
+"Mahajani" = "Mahajani";
+"Yi Radicals" = "Yi-radicalen";
+"Lydian" = "Lydiaans";
+"Unified Canadian Aboriginal Syllabics Extended" = "Inheems-Canadese syllaben Algemeen Uitgebreid";
+"Supplementary Private Use Area-B" = "Aanvullend privé-gebruik-B";
+"Private Use Area" = "Privé-gebruikgebied";
+"Glagolitic" = "Glagolitisch";
+"Osmanya" = "Osmanya";
+"Yijing Hexagram Symbols" = "Yijing-hexagramsymbolen";
+"Latin Extended-A" = "Latijns Uitgebreid-A";
+"Cyrillic Supplement" = "Cyrillisch Aanvulling";
+"Box Drawing" = "Vakelementen";
+"Letterlike Symbols" = "Letterachtige symbolen";
+"Sinhala" = "Singalees";
+"Supplemental Punctuation" = "Aanvullende interpunctie";
+"Mathematical Alphanumeric Symbols" = "Wisk. alfanumerieke symbolen";  // "Math" -> "Mathematical"
+"Cypriot Syllabary" = "Cypriotisch syllabenschrift";
+"Gurmukhi" = "Gurmukhi";
+"Gothic" = "Gotisch";
+"Cherokee" = "Cherokee";
+"CJK Compatibility Forms" = "CJK-compatibiliteitsvormen";
+"Mro" = "Mro";
+"Latin Extended-C" = "Latijns Uitgebreid-C";
+"Old Turkic" = "Oud-Turks";
+"Mende Kikakui" = "Mende Kikakui";
+"Domino Tiles" = "Dominostenen";
+"Khmer Symbols" = "Khmer-symbolen";
+"Khmer" = "Khmer";
+"Syloti Nagri" = "Syloti Nagri";
+"Runic" = "Runeschrift";
+"Enclosed CJK Letters and Months" = "Omsloten CJK-letters/maanden";
+"Byzantine Musical Symbols" = "Byzantijnse muzieksymbolen";
+"NKo" = "N'ko";  // remove ’
+"CJK Strokes" = "CJK-streken";
+"Latin Extended-E" = "Latijns Uitgebreid-E";
+"Miscellaneous Symbols" = "Diverse symbolen";
+"Tai Le" = "Tai Le";
+"Katakana Phonetic Extensions" = "Katakana fonetische uitbr.";
+"Tagalog" = "Tagalog";
+"Kharoshthi" = "Kharoshthi";
+"Dingbats" = "Dingbats";
+"Sundanese" = "Soendanees";
+"Combining Diacritical Marks for Symbols" = "Diakritische combinatietekens voor symbolen";
+"Samaritan" = "Samaritaans";
+"Old Italic" = "Oud-Italisch";
+"CJK Symbols and Punctuation" = "CJK-symbolen en -interpunctie";
+"Kangxi Radicals" = "Kangxi-radicalen";
+"Buginese" = "Buginees";
+"Phoenician" = "Fenicisch";
+"Bassa Vah" = "Bassa Vah";
+"Tagbanwa" = "Tagbanwa";
+"Ethiopic Supplement" = "Ethiopisch Aanvulling";
+"Lisu" = "Lisu";
+"IPA Extensions" = "IPA-uitbreidingen";
+"Yi Syllables" = "Yi-syllabenschrift";
+"Kannada" = "Kannada";
+"Egyptian Hieroglyphs" = "Egyptische hiërogliefen";
+"Myanmar Extended-A" = "Myanmar Uitgebreid-A";
+"Rumi Numeral Symbols" = "Rumi numerieke symbolen";
+"Hangul Jamo" = "Hangul Jamo";
+"Lepcha" = "Lepcha";
+"Meetei Mayek" = "Meetei Mayek";
+"Hangul Syllables" = "Hangul-syllabenschrift";
+"Arabic Supplement" = "Arabisch Aanvulling";
+"Sutton SignWriting" = "Sutton SignWriting";
+"Kanbun" = "Kanbun";
+"Combining Diacritical Marks" = "Diakritische combinatietekens";
+"Latin-1 Supplement" = "Latijns-1 Aanvulling";
+"Takri" = "Takri";
+"Tirhuta" = "Tirhuta";
+"Supplemental Arrows-C" = "Aanvullende pijlen-C";
+"Deseret" = "Deseret";
+"Hangul Compatibility Jamo" = "Hangul-compatibiliteit Jamo";
+"Arabic Presentation Forms-B" = "Arabische presentatievormen-B";
+"CJK Unified Ideographs Ext. A" = "CJK-ideogr. Alg. Uitgebr. A";
+"Cyrillic Extended-A" = "Cyrillisch Uitgebreid-A";
+"Armenian" = "Armeens";
+"Ethiopic Extended" = "Ethiopisch Uitgebreid";
+"Lycian" = "Lyciaans";
+"Manichaean" = "Manichaean";
+"Syriac" = "Oud-Syrisch";
+"Coptic" = "Koptisch";
+"Nabataean" = "Nabataean";
+"High Surrogates" = "Hoge surrogaten";
+"Limbu" = "Limbu";
+"Avestan" = "Avestaans";
+"Old Persian" = "Oud-Perzisch";
+"Ogham" = "Ogham";
+"Supplemental Arrows-A" = "Aanvullende pijlen-A";
+"Sinhala Archaic Numbers" = "Sinhala archaïsche getallen";
+"Psalter Pahlavi" = "Psalter Pahlavi";
+"CJK Unified Ideographs Ext. C" = "CJK-ideogr. Alg. Uitgebr. C";
+"Palmyrene" = "Palmyrene";
+"Ideographic Desc. Characters" = "Beschrijvende ideogrammen";
+"Rejang" = "Rejang";
+"Alchemical Symbols" = "Alchemistische symbolen";
+"Pau Cin Hau" = "Pau Cin Hau";
+"Tags" = "Tags";
+"Emoticons" = "Emoticons";
+"Balinese" = "Balinees";
+"Myanmar" = "Myanmar";
+"Musical Symbols" = "Muzieksymbolen";
+"Ethiopic Extended-A" = "Ethiopisch Uitgebreid-A";
+"Mandaic" = "Mandaïsch";
+"Spacing Modifier Letters" = "Letters aangepaste spatiëring";
+"Carian" = "Cariaans";
+"Number Forms" = "Cijfervormen";
+"CJK Compatibility" = "CJK-compatibiliteit";
+"CJK Unified Ideographs Ext. E" = "CJK-ideogr. Alg. Uitgebr. E";
+"Modi" = "Modi";
+"Halfwidth and Fullwidth Forms" = "Vormen - halve/volle breedte";
+"Playing Cards" = "Speelkaarten";
+"Cherokee Supplement" = "Cherokee Aanvulling";
+"Miscellaneous Symbols and Arrows" = "Diverse symbolen en pijlen";
+"Old North Arabian" = "Oud-Noord-Arabisch";
+"Transport and Map Symbols" = "Vervoers- en kaartsymbolen";  // "And" -> "and"
+"Lao" = "Lao";
+"Multani" = "Multani";
+"Hangul Jamo Extended-B" = "Hangul Jamo Uitgebreid-B";
+"Tibetan" = "Tibetaans";
+"Old Permic" = "Oud-Permisch";
+"Georgian Supplement" = "Georgisch Aanvulling";
+"Duployan" = "Duployan";
+"Tai Viet" = "Tai Viet";
+"Arabic Extended-A" = "Arabisch Uitgebreid-A";
+"Elbasan" = "Elbasan";
+"Combining Diacritical Marks Supplement" = "Diakritische combinatietekens Aanvulling";
+"Hanunoo" = "Hanunoo";
+"Oriya" = "Oriya";
+"Latin Extended Additional" = "Latijns Uitgebreid Aanvullend";
+"Georgian" = "Georgisch";
+"Miscellaneous Mathematical Symbols-A" = "Diverse wisk. symbolen-A";  // "Math" -> "Mathematical"
+"Combining Half Marks" = "Halve combinatietekens";
+"Counting Rod Numerals" = "Telbordgetallen";
+"Ahom" = "Ahom";
+"Gujarati" = "Gujarati";
+"Tai Xuan Jing Symbols" = "Tai Xuan Jing-symbolen";
+"Kana Supplement" = "Kana Aanvulling";
+"Supplementary Private Use Area-A" = "Aanvullend privé-gebruik-A";
+
+
+// The following blocks are (mostly newly added to Unicode and therefore) not in the glossaries.
+"Syriac Supplement" = "Syrisch Aanvulling";
+"Cyrillic Extended-C" = "Cyrillisch Uitgebreid-C";
+"High Private Use Surrogates" = "High Private Use Surrogates";
+"Georgian Extended" = "Georgisch Uitgebreid";
+"Osage" = "Osage";
+"Hanifi Rohingya" = "Hanifi Rohingya";
+"Yezidi" = "Jezidisch";
+"Old Sogdian" = "Oud-Sogdisch";
+"Sogdian" = "Sogdisch";
+"Chorasmian" = "Choresmisch";
+"Elymaic" = "Elymees";
+"Newa" = "Newa";
+"Mongolian Supplement" = "Mongools Aanvulling";
+"Dogra" = "Dogra";
+"Dives Akuru" = "Dives Akuru";
+"Nandinagari" = "Nandinagari";
+"Zanabazar Square" = "Zanabazar vierkant";
+"Soyombo" = "Sojombo";
+"Bhaiksuki" = "Bhaiksuki";
+"Marchen" = "Marchen";
+"Masaram Gondi" = "Masaram Gondi";
+"Gunjala Gondi" = "Gunjala Gondi";
+"Makasar" = "Makassar";
+"Lisu Supplement" = "Lisu Aanvulling";
+"Tamil Supplement" = "Tamil Aanvulling";
+"Egyptian Hieroglyph Format Controls" = "Opmaakregelaars Egyptische hiërogliefen";
+"Medefaidrin" = "Medefaidrin";
+"Ideographic Symbols and Punctuation" = "Ideografische symbolen en leestekens";
+"Tangut" = "Tangut";
+"Tangut Components" = "Tangut-componenten";
+"Khitan Small Script" = "Khitaans klein schrift";
+"Tangut Supplement" = "Tangut Aanvulling";
+"Kana Extended-A" = "Kana Uitgebreid-A";
+"Small Kana Extension" = "Klein Kana uitgebreid";
+"Nushu" = "Nushu";
+"Mayan Numerals" = "Maya-cijfers";
+"Glagolitic Supplement" = "Glagolitisch Aanvulling";
+"Nyiakeng Puachue Hmong" = "Nyiakeng Puachue Hmong";
+"Wancho" = "Wancho";
+"Adlam" = "Adlam";
+"Indic Siyaq Numbers" = "Indische Siyaq-cijfers";
+"Ottoman Siyaq Numbers" = "Ottomaanse Siyaq-cijfers";
+"Chess Symbols" = "Schaaksymbolen";
+"Symbols and Pictographs Extended-A" = "Symbolen en pictogrammen Uitgebreid-A";
+"Symbols for Legacy Computing" = "Symbolen voor verouderde computers";
+"CJK Unified Ideographs Ext. F" = "CJK-ideogr. Alg. Uitgebr. F";
+"CJK Unified Ideographs Ext. G" = "CJK-ideogr. Alg. Uitgebr. G";
+
+
+// Blocks added in Unicode 14.0.0 (2021-01)
+"Arabic Extended-B" = "Arabisch Uitgebreid-B";
+"Latin Extended-F" = "Latijns Uitgebreid-F";
+"Vithkuqi" = "Vithkuqi";
+"Old Uyghur" = "Old Uyghur";
+"Unified Canadian Aboriginal Syllabics Extended-A" = "Inheems-Canadese syllaben Algemeen Uitgebreid-A";
+"Cypro-Minoan" = "Cypro-Minoan";
+"Tangsa" = "Tangsa";
+"Kana Extended-B" = "Kana Uitgebreid-B";
+"Znamenny Musical Notation" = "Znamenny Musical Notation";
+"Latin Extended-G" = "Latijns Uitgebreid-G";
+"Toto" = "Toto";
+"Ethiopic Extended-B" = "Ethiopisch Uitgebreid-B";
+
+
+// Blocks added in Unicode 15.0.0 (2022-01)
+"Arabic Extended-C" = "Arabisch Uitgebreid-C";
+"Devanagari Extended-A" = "Devanagari Uitgebreid-A";
+"Kawi" = "Kawi";
+"Kaktovik Numerals" = "Kaktovik Numerals";
+"Cyrillic Extended-D" = "Cyrillisch Uitgebreid-D";
+"Nag Mundari" = "Nag Mundari";
+"CJK Unified Ideographs Ext. H" = "CJK-ideogr. Alg. Uitgebr. H";
+
+
+// Blocks added in Unicode 15.1.0 (2023-09)
+"CJK Unified Ideographs Ext. I" = "CJK-ideogr. Alg. Uitgebr. I";

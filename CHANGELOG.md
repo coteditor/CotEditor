@@ -3,6 +3,11 @@
 4.8.0-beta.4 (unreleased)
 --------------------------
 
+### New Features
+
+- Add Dutch localization (thanks to Yasin Gunaydin!).
+
+
 ### Improvements
 
 - Change the line count behavior to ignore the new line character at the end of the last line.

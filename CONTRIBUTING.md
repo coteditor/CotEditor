@@ -64,6 +64,7 @@ Currently, we already have maintainers for:
 - Simplified Chinese
 - Traditional Chinese
 - Czech
+- Dutch
 - French
 - German
 - Italian
