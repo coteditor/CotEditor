@@ -843,7 +843,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Použití NFKC, CaseFolding a odstranění ignorovatelných kódových bodů"
+            "value" : "Použití NFKC, case folding a odstranění ignorovatelných kódových bodů"
           }
         },
         "de" : {
@@ -855,13 +855,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Applying NFKC, CaseFolding, and removal of default-ignorable code points"
+            "value" : "Applying NFKC, case folding, and removal of default-ignorable code points"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Applying NFKC, CaseFolding, and removal of default-ignorable code points"
+            "value" : "Applying NFKC, case folding, and removal of default-ignorable code points"
           }
         },
         "es" : {
@@ -873,19 +873,19 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Application de NFKC, CaseFolding et suppression des points de code ignorables."
+            "value" : "Application de NFKC, case folding et suppression des points de code ignorables."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Applicare NFKC, CaseFolding, e rimuovere i punti di codice ignorabili di default"
+            "value" : "Applicare NFKC, case folding, e rimuovere i punti di codice ignorabili di default"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKCを適用しすべて小文字に変換したのち、デフォルトの無視できるコードポイントを削除"
+            "value" : "NFKCを適用しすべて小文字に変換（case folding）したのち、デフォルトの無視できるコードポイントを削除"
           }
         },
         "nl" : {
@@ -909,13 +909,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "正在NFKC, CaseFolding, 并移除默认可忽略编码点"
+            "value" : "正在NFKC, Case Folding, 并移除默认可忽略编码点"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "正在NFKC, CaseFolding, 並移除預設可忽略編碼點"
+            "value" : "正在NFKC, Case Folding, 並移除預設可忽略編碼點"
           }
         }
       }

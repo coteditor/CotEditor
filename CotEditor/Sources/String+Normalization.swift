@@ -101,7 +101,7 @@ enum UnicodeNormalizationForm: String, CaseIterable {
                        comment: "description for NFKC")
             case .nfkcCasefold:
                 String(localized: "UnicodeNormalization.nfkcCasefold.description",
-                       defaultValue: "Applying NFKC, CaseFolding, and removal of default-ignorable code points",
+                       defaultValue: "Applying NFKC, case folding, and removal of default-ignorable code points",
                        table: "UnicodeNormalization",
                        comment: "description for NFKD Casefold")
             case .modifiedNFD:
