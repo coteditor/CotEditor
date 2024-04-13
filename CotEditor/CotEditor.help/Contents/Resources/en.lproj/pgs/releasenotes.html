@@ -29,7 +29,7 @@
 		<ul>
 			<li>Add the Mode feature that enables altering the editor’s behavior depending on the document’s syntax (Go Settings > Mode settings pane to set).</li>
 			<li>Add the Restore Defaults button to the File Drop settings.</li>
-
+			<li>Add Dutch localization (thanks to Yasin Gunaydin!).</li>
 		</ul>
 	</section>
 
@@ -40,16 +40,22 @@
 		<ul>
 			<li>Improve the look and feel of the syntax editor.</li>
 			<li>Renew the “About CotEditor” window.</li>
+			<li>Change the line count behavior to ignore the new line character at the end of the last line.</li>
+			<li>Improve selected line number emphasis in the line number view by the vertical text orientation.</li>
+			<li>Change the filter field for the outline inspector to apply the selection of the filter history immediately.</li>
 			<li>Make the encoding priority view undoable.</li>
 			<li>Disable the pane transition animation in the Settings window when the user sets to reduce motion in the system Accessibility settings.</li>
 			<li>Deprecate “Append a space to comment delimiter” option.</li>
+			<li>Remove wrapped line marks in the line number view.</li>
+			<li>Update the Makefile syntax to add “GNUmakefile” to the filename mapping.</li>
 			<li><span class="label">non-AppStore ver.</span>: Update Sparkle from 2.5.2 to 2.6.0.</li>
 			<li><span class="trivial">trivial</span>: Enable delete selected separators in the encoding priority view with the Delete key.</li>
 			<li><span class="trivial">trivial</span>: Avoid users using reserved syntax names.</li>
+			<li><span class="trivial">trivial</span>: Remove the dialog urging to restart the application by changing the “Reopen windows from last session” option in the General settings pane.</li>
 			<li><span class="trivial">dev</span>: Migrate the settings window, syntax editor, and status bar to SwiftUI.</li>
 			<li><span class="trivial">dev</span>: Migrate all localizable strings to String Catalog.</li>
 			<li><span class="trivial">dev</span>: Update the build environment to Xcode 15.3 (Swift 5.10).</li>
-			<li><span class="trivial">dev</span>: Update Yams from 5.0.6 to 5.1.0.</li>
+			<li><span class="trivial">dev</span>: Update Yams from 5.0.6 to 5.1.2.</li>
 		</ul>
 	</section>
 
@@ -59,6 +65,7 @@
 
 		<ul>
 			<li>Fix an issue that the application crashed when trying to share a custom syntax.</li>
+			<li>Fix an issue on the filter field for the outline inspector that the filter history was initially empty.</li>
 			<li>Fix an issue on macOS 14 that multiple cursors in editors remained when they are inactive.</li>
 			<li>Fix missing localizations.</li>
 		</ul>
