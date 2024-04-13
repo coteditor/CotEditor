@@ -45,6 +45,12 @@
             "value" : "クイックアクション"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snelle taken"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

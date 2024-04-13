@@ -46,6 +46,12 @@
             "value" : "閉じる"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sluit"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -114,6 +120,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "検出に失敗しました"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detentie mislukt"
           }
         },
         "pt" : {
@@ -187,6 +199,12 @@
             "value" : "挿入"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg in"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -255,6 +273,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テキストが検出されませんでした"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen tekst gedetecteerd"
           }
         },
         "pt" : {

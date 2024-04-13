@@ -46,6 +46,12 @@
             "value" : "自動"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatisch"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117,6 +123,12 @@
             "value" : "不可視ファイルを表示"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toon onzichtbare bestanden"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -185,6 +197,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テキストエンコーディング:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekstcodering:"
           }
         },
         "pt" : {

@@ -53,6 +53,12 @@
             "value" : "修正NFDに対応するNFCを基にした非公式の正規化形式"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onofficiële op NFC gebaseerde normalisatievorm die overeenkomt met Gewijzigd NFD"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -128,6 +134,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "修正NFC"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gewijzigde NFC"
           }
         },
         "pt" : {
@@ -208,6 +220,12 @@
             "value" : "HFS+で使用されているNFDを基にした非公式の正規化形式"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onofficiële op NFD gebaseerde normalisatievorm gebruikt in HFS+"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -283,6 +301,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "修正NFD"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gewijzigde NFD"
           }
         },
         "pt" : {
@@ -363,6 +387,12 @@
             "value" : "正準等価によって分解し、正準等価によって合成"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canonieke decompositie, gevolgd door canonieke compositie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -435,6 +465,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFC"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFC"
@@ -518,6 +554,12 @@
             "value" : "正準等価によって分解"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canonieke decompositie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -590,6 +632,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFD"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFD"
@@ -673,6 +721,12 @@
             "value" : "互換性等価によって分解し、正準等価によって合成"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compatibiliteitsdecompositie, gevolgd door canonieke compositie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -745,6 +799,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC"
@@ -828,6 +888,12 @@
             "value" : "NFKCを適用しすべて小文字に変換したのち、デフォルトの無視できるコードポイントを削除"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toepassing van NFKC, omzetten naar kleine letters en verwijdering van codepunten die standaard kunnen worden genegeerd."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -900,6 +966,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC Casefold"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC Casefold"
@@ -983,6 +1055,12 @@
             "value" : "互換性等価によって分解"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compatibiliteitsdecompositie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1055,6 +1133,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKD"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKD"

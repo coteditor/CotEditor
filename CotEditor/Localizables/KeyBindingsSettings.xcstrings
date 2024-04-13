@@ -46,6 +46,12 @@
             "value" : "デフォルトに戻す"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herstel standaardinstellingen"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -114,6 +120,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ショートカットを変更するには、キー列をクリックして編集状態にしてから、新しいキーを入力してください。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Om een sneltoets te wijzigen, klik je op de sleutelkolom en typ je de nieuwe toetsen."
           }
         },
         "pt" : {

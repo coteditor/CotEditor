@@ -53,6 +53,12 @@
             "value" : "変数を挿入"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg variabele in"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -129,6 +135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "挿入フォーマット:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invoegformaat:"
           }
         },
         "pt" : {
@@ -209,6 +221,12 @@
             "value" : "名前"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naam"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -285,6 +303,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スニペットを選択してください。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer een knipsel om te bewerken."
           }
         },
         "pt" : {
@@ -365,6 +389,12 @@
             "value" : "拡張子"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensies"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -441,6 +471,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ドロップされるファイルの拡張子（カンマ区切り）"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestandsextensies van neergezet bestand (door komma's gescheiden)."
           }
         },
         "pt" : {
@@ -521,6 +557,12 @@
             "value" : "すべて"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -597,6 +639,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コマンド"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commando"
           }
         },
         "pt" : {
@@ -677,6 +725,12 @@
             "value" : "追加"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg toe"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -753,6 +807,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "削除"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwijder"
           }
         },
         "pt" : {
@@ -833,6 +893,12 @@
             "value" : "説明"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beschrijving"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -909,6 +975,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "挿入フォーマット:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invoegformaat:"
           }
         },
         "pt" : {
@@ -989,6 +1061,12 @@
             "value" : "シンタックス"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxis"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1065,6 +1143,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "デフォルトに戻す"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herstel standaardinstellingen"
           }
         },
         "pt" : {
@@ -1145,6 +1229,12 @@
             "value" : "シンタックス"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxis"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1223,6 +1313,12 @@
             "value" : "このファイルドロップ定義を使用するシンタックス"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxis waarin deze instelling voor het neerzetten van bestanden wordt gebruikt."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1296,6 +1392,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -1379,6 +1481,12 @@
             "value" : "追加"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg toe"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1455,6 +1563,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "削除"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwijder"
           }
         },
         "pt" : {
@@ -1535,6 +1649,12 @@
             "value" : "ファイルドロップ"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestand neerzetten"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1611,6 +1731,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "変数を挿入"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg variabele in"
           }
         },
         "pt" : {
@@ -1691,6 +1817,12 @@
             "value" : "すべて"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1769,6 +1901,12 @@
             "value" : "すべて"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1845,6 +1983,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "キー"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleutel"
           }
         },
         "pt" : {

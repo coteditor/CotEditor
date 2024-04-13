@@ -46,6 +46,12 @@
             "value" : "移動"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ga"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117,6 +123,12 @@
             "value" : "行番号"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regelnummer"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -185,6 +197,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regel:"
           }
         },
         "pt" : {

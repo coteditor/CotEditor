@@ -53,6 +53,12 @@
             "value" : "アウトラインを抽出中…"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omtrek uitpakken..."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -129,6 +135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "分割されたエディタを閉じる"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sluit gesplitste bewerker"
           }
         },
         "pt" : {
@@ -209,6 +221,12 @@
             "value" : ""
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stapel bewerkers verticaal"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -285,6 +303,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "エディタを分割"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Splits bewerker"
           }
         },
         "pt" : {

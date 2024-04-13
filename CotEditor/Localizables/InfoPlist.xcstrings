@@ -45,6 +45,12 @@
             "value" : "BibTeX文献目録"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BibTeX-bibliografie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -113,6 +119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cヘッダ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C-header"
           }
         },
         "pt" : {
@@ -185,6 +197,12 @@
             "value" : "Cソース"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C-code"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -253,6 +271,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "C#ソース"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C#-bron"
           }
         },
         "pt" : {
@@ -325,6 +349,12 @@
             "value" : "C++ヘッダ"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C++-header"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -395,6 +425,12 @@
             "value" : "C++ソース"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C++-bron"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -463,6 +499,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cascading Style Sheet"
           }
         },
         "pt" : {
@@ -538,6 +580,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor"
@@ -621,6 +669,12 @@
             "value" : "コットエディタ"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cot editor"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -689,6 +743,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Configuration"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuratie"
           }
         },
         "pt" : {
@@ -761,6 +821,12 @@
             "value" : "CotEditor置換定義"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vervangingsdefinitie CotEditor"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -829,6 +895,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditorテーマ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor-thema"
           }
         },
         "pt" : {
@@ -901,6 +973,12 @@
             "value" : "Dソース"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D-bron"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -971,6 +1049,12 @@
             "value" : "Dartスクリプト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dart-script"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1036,6 +1120,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diff"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diff"
@@ -1111,6 +1201,12 @@
             "value" : "Fortranソース"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortran-bron"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1179,6 +1275,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Goスクリプト"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go-script"
           }
         },
         "pt" : {
@@ -1251,6 +1353,12 @@
             "value" : "Haskellスクリプト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haskell-script"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1321,6 +1429,12 @@
             "value" : "HTML書類"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTML-document"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1386,6 +1500,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INI"
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "INI"
@@ -1461,6 +1581,12 @@
             "value" : "Javaソース"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Java-bron"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1529,6 +1655,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "JavaScript"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Javscript"
           }
         },
         "pt" : {
@@ -1601,6 +1733,12 @@
             "value" : "JSON書類"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JSON-document"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1669,6 +1807,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Juliaスクリプト"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Julia-script"
           }
         },
         "pt" : {
@@ -1741,6 +1885,12 @@
             "value" : "Kotlinスクリプト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kotlin-script"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1809,6 +1959,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lispスクリプト"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisp-script"
           }
         },
         "pt" : {
@@ -1881,6 +2037,12 @@
             "value" : "Luaスクリプト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lua-script"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1951,6 +2113,12 @@
             "value" : "Markdown書類"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markdown-document"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2019,6 +2187,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mojoスクリプト"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mojo-script"
           }
         },
         "pt" : {
@@ -2099,6 +2273,12 @@
             "value" : "CotEditorがAppleScriptでほかのアプリを操作するためにユーザの許可が必要です。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor heeft toestemming nodig van de gebruiker om andere programma's te besturen met AppleScript."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2177,6 +2357,12 @@
             "value" : "© 2005-2009 nakamuxu\n© 2011, 2014 usami-k\n© 2013-2024 1024jp"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "© 2005-2009 nakamuxu\n© 2011, 2014 usami-k\n© 2013-2024 1024jp"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2245,6 +2431,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Perlスクリプト"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perl-script"
           }
         },
         "pt" : {
@@ -2317,6 +2509,12 @@
             "value" : "PHPスクリプト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PHP-script"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2385,6 +2583,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "標準テキスト書類"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Platte-tekstdocument"
           }
         },
         "pt" : {
@@ -2457,6 +2661,12 @@
             "value" : "Pythonスクリプト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Python-script"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2525,6 +2735,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "reStructured Text書類"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "reStructured-tekstdocument"
           }
         },
         "pt" : {
@@ -2597,6 +2813,12 @@
             "value" : "Rubyスクリプト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ruby-script"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2665,6 +2887,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rustスクリプト"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rust-script"
           }
         },
         "pt" : {
@@ -2737,6 +2965,12 @@
             "value" : "Scalaスクリプト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scala-bron"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2805,6 +3039,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "SVG"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scalable Vector Graphics"
           }
         },
         "pt" : {
@@ -2877,6 +3117,12 @@
             "value" : "Schemeスクリプト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scheme-script"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2945,6 +3191,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "シェルスクリプト"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shell-script"
           }
         },
         "pt" : {
@@ -3017,6 +3269,12 @@
             "value" : "SQLソース"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SQL-bron"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3085,6 +3343,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Swiftソース"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swift-bron"
           }
         },
         "pt" : {
@@ -3157,6 +3421,12 @@
             "value" : "TeX書類"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TeX-document"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3225,6 +3495,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Textile書類"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Textile-dcoument"
           }
         },
         "pt" : {
@@ -3297,6 +3573,12 @@
             "value" : "TOML書類"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TOML-document"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3365,6 +3647,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verilogソース"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verilog-bron"
           }
         },
         "pt" : {
@@ -3437,6 +3725,12 @@
             "value" : "VHDLソース"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VHDL-bron"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3507,6 +3801,12 @@
             "value" : "XML書類"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "XML-document"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3575,6 +3875,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "YAML書類"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "YAML-document"
           }
         },
         "pt" : {

@@ -45,6 +45,12 @@
             "value" : "開始:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Begin:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -115,6 +121,12 @@
             "value" : "終了:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einde:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -183,6 +195,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字で囲む:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omring met:"
           }
         },
         "pt" : {

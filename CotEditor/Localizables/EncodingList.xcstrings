@@ -46,6 +46,12 @@
             "value" : "区切り線を追加"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg scheidingsteken toe"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117,6 +123,12 @@
             "value" : "区切り線を削除"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwijder scheidingsteken"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -185,6 +197,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "エンコーディングをドラッグして並び替えてください:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleep coderingen om de volgorde te wijzigen:"
           }
         },
         "pt" : {
@@ -258,6 +276,12 @@
             "value" : "デフォルトに戻す"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herstel standaardinstellingen"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -326,6 +350,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "この順序はエンコーディングメニューや書類を開くときのエンコーディング認識で使われます。自動認識では上位のエンコーディングがより優先して適用されます。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deze volgorde is voor het coderingsmenu en de coderingsdetectie bij het openen van een bestand. Bij detectie krijgen de hogere items meer prioriteit."
           }
         },
         "pt" : {

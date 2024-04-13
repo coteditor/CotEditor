@@ -53,6 +53,12 @@
             "value" : ""
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -129,6 +135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "メニュー"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu"
           }
         },
         "pt" : {
@@ -209,6 +221,12 @@
             "value" : "コマンド"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commando"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -282,6 +300,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
+        "nl" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -363,6 +387,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "キー"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleutel"
           }
         },
         "pt" : {

@@ -45,6 +45,12 @@
             "value" : "入力中に自動でインデント"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spring automatisch in tijdens het typen"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -113,6 +119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行末の空白を自動的に削除"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snij automatisch witregels bij "
           }
         },
         "pt" : {
@@ -185,6 +197,12 @@
             "value" : "内容解析:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inhoudparsering:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -253,6 +271,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "遅延:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vertraging:"
           }
         },
         "pt" : {
@@ -325,6 +349,12 @@
             "value" : "書類を開くときにインデントスタイルを自動判定"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detecteer inspringstijl bij openen document"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -393,6 +423,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“<>”をハイライト"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markeer '<>'"
           }
         },
         "pt" : {
@@ -465,6 +501,12 @@
             "value" : "選択した文字をハイライト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markeer geselecteerde tekst"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -533,6 +575,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "対応する括弧“()” “[]” “{}”をハイライト"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markeer overeenkomende accolades '()' '[]' '{}'"
           }
         },
         "pt" : {
@@ -605,6 +653,12 @@
             "value" : "空白のみの行を含める"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neem regels op met alleen witruimte"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -673,6 +727,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tabキーで選択範囲をインデント"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spring selectie in met Tab-toets"
           }
         },
         "pt" : {
@@ -745,6 +805,12 @@
             "value" : "インデント幅:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspringbreedte:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -813,6 +879,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "インデント:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inspringing:"
           }
         },
         "pt" : {
@@ -885,6 +957,12 @@
             "value" : "書類中のURLをリンク"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koppel URL's in document"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -953,6 +1031,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用する文字:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebruik bij voorkeur"
           }
         },
         "pt" : {
@@ -1026,6 +1110,12 @@
             "value" : "秒"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "seconden"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1095,6 +1185,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スペース"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "spaties"
           }
         },
         "pt" : {
@@ -1168,6 +1264,12 @@
             "value" : "スペース"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spaties"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1239,6 +1341,12 @@
             "value" : "タブ"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabs"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1307,6 +1415,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空白:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Witruimte:"
           }
         },
         "pt" : {

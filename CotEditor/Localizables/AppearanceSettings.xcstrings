@@ -45,6 +45,12 @@
             "value" : "アンチエイリアス"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antialias"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -113,6 +119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "外観モード:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weergave:"
           }
         },
         "pt" : {
@@ -192,6 +204,12 @@
             "value" : "システムに合わせる"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match systeem"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -267,6 +285,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ダーク"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Donker"
           }
         },
         "pt" : {
@@ -346,6 +370,12 @@
             "value" : "ライト"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licht"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -415,6 +445,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択したフォントを等幅フォントとして使用しますか?"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wil je het gebruiken voor het niet-proportionele lettertype?"
           }
         },
         "pt" : {
@@ -487,6 +523,12 @@
             "value" : "エディタの不透明度:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doorzichtigheid bewerker"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -555,6 +597,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "リガチャ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligaturen"
           }
         },
         "pt" : {
@@ -627,6 +675,12 @@
             "value" : "行の高さ:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regelhoogte:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -695,6 +749,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "等幅フォント:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niet-proportioneel lettertype:"
           }
         },
         "pt" : {
@@ -768,6 +828,12 @@
             "value" : "選択…"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer..."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -836,6 +902,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "標準フォント:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standaardlettertype:"
           }
         },
         "pt" : {
@@ -908,6 +980,12 @@
             "value" : "選択したフォントは等幅フォントではないようです。"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het geselecteerde lettertype lijkt niet monospaced te zijn."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -977,6 +1055,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "倍"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "keer"
           }
         },
         "pt" : {

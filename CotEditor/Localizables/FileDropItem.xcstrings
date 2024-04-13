@@ -52,6 +52,12 @@
             "value" : "ドロップ元ファイルの絶対パス"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het absolute pad van het geplaatste bestand."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -127,6 +133,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ドロップ元ファイルのあるディレクトリ名"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De bovenliggende mapnaam van het geplaatste bestand."
           }
         },
         "pt" : {
@@ -206,6 +218,12 @@
             "value" : "ファイル内容（ドロップ元ファイルがテキストファイルのときのみ有効）"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Als het geplaatste bestand een tekstbestand is) bestandsinhoud."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -281,6 +299,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ドロップ元ファイルの拡張子"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De extensie van het geplaatste bestand."
           }
         },
         "pt" : {
@@ -360,6 +384,12 @@
             "value" : "ドロップ元ファイルの拡張子（小文字）"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De extensie van het geplaatste bestand (geconverteerd naar kleine letters)."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -435,6 +465,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ドロップ元ファイルの拡張子（大文字）"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De extensie van het geplaatste bestand (geconverteerd naar hoofdletters)."
           }
         },
         "pt" : {
@@ -514,6 +550,12 @@
             "value" : "ドロップ元ファイルの拡張子を含むファイル名"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De naam van het geplaatste bestand, inclusief extensie (indien bestaand)."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -589,6 +631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ドロップ元ファイルの名前から拡張子を削除した文字列"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De naam van het geplaatste bestand zonder extensie."
           }
         },
         "pt" : {
@@ -668,6 +716,12 @@
             "value" : "画像の高さ（ドロップ元ファイルが画像ファイルのときのみ有効）"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Als het geplaatste bestand een afbeelding is) afbeeldingshoogte."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -745,6 +799,12 @@
             "value" : "画像の幅（ドロップ元ファイルが画像ファイルのときのみ有効）"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Als het geplaatste bestand een afbeelding is) beeldbreedte."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -820,6 +880,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ドロップ先ファイルからドロップ元ファイルへの相対パス"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het relatieve pad tussen het geplaatste bestand en het document."
           }
         },
         "pt" : {
