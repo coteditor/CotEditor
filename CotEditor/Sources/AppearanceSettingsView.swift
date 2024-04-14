@@ -87,7 +87,7 @@ struct AppearanceSettingsView: View {
                 HStack(alignment: .firstTextBaseline) {
                     Stepper(value: $lineHeight, in: 0.1...10, step: 0.1, format: .number.precision(.fractionLength(1...2)), label: EmptyView.init)
                         .monospacedDigit()
-                        .multilineTextAlignment(.trailing)
+                        .environment(\.layoutDirection, .rightToLeft)
                     
                     Text("times", tableName: "AppearanceSettings", comment: "unit for line height")
                 }
@@ -119,7 +119,7 @@ struct AppearanceSettingsView: View {
                     
                     TextField(value: $windowAlpha, format: .percent.precision(.fractionLength(0)), prompt: Text(1, format: .percent), label: EmptyView.init)
                         .monospacedDigit()
-                        .multilineTextAlignment(.trailing)
+                        .environment(\.layoutDirection, .rightToLeft)
                         .frame(width: 48)
                 }
             }

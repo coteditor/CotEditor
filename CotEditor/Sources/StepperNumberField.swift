@@ -59,7 +59,7 @@ struct StepperNumberField: View {
         HStack(spacing: 4) {
             TextField(text: $value.string(in: self.bounds, defaultValue: self.defaultValue), prompt: self.prompt, label: EmptyView.init)
             .monospacedDigit()
-            .multilineTextAlignment(.trailing)
+            .environment(\.layoutDirection, .rightToLeft)
             .frame(width: self.fieldWidth)
             
             Stepper(value: $value, in: self.bounds, step: self.step, label: EmptyView.init)

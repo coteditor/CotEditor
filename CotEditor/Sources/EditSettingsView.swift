@@ -94,7 +94,7 @@ struct EditSettingsView: View {
                         Text("Delay:", tableName: "EditSettings")
                         Stepper(value: $selectionInstanceHighlightDelay, in: 0...10, step: 0.25, format: .number.precision(.fractionLength(2)), label: EmptyView.init)
                         .monospacedDigit()
-                        .multilineTextAlignment(.trailing)  // width: 40
+                        .environment(\.layoutDirection, .rightToLeft)  // width: 40
                         Text("seconds", tableName: "EditSettings", comment: "init for delay time")
                     }
                     .disabled(!self.highlightSelectionInstance)
