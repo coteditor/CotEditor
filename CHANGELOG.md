@@ -3,6 +3,10 @@
 4.8.1 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue on CotEditor 4.8.0 that the editor's kerning did not set to zero despite the font type is monospaced.
+
 
 
 4.8.0 (642)

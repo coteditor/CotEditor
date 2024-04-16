@@ -1261,6 +1261,12 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.ligature = defaults[.ligature(for: type)] ? .standard : .none
         self.usesAntialias = defaults[.antialias(for: type)]
         self.typingAttributes[.kern] = (type == .monospaced) ? 0 : nil
+        switch type {
+            case .standard:
+                self.textStorage?.removeAttribute(.kern, range: self.string.nsRange)
+            case .monospaced:
+                self.textStorage?.addAttribute(.kern, value: 0, range: self.string.nsRange)
+        }
         
         self.fontObservers = [
             defaults.publisher(for: .fontKey(for: type))
