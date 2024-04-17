@@ -788,18 +788,22 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         self.needsUpdateLineHighlight = true
         
+        // invalidate current instances highlight
+        if UserDefaults.standard[.highlightSelectionInstance] {
+            self.instanceHighlightTask?.cancel()
+            if let layoutManager = self.layoutManager, layoutManager.hasTemporaryAttribute(.roundedBackgroundColor) {
+                layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+            }
+        }
+        
         if !stillSelectingFlag, !self.isShowingCompletion {
             // highlight matching brace
             if UserDefaults.standard[.highlightBraces] {
                 self.braceHighlightDebouncer.schedule()
             }
             
-            // invalidate current instances highlight
+            // update instances highlight
             if UserDefaults.standard[.highlightSelectionInstance] {
-                self.instanceHighlightTask?.cancel()
-                if let layoutManager = self.layoutManager, layoutManager.hasTemporaryAttribute(.roundedBackgroundColor) {
-                    layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
-                }
                 self.highlightInstances(after: .seconds(UserDefaults.standard[.selectionInstanceHighlightDelay]))
             }
         }
@@ -1555,9 +1559,12 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
             let substring = (string as NSString).substring(with: selectedRange)
             let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
             let regex = try! NSRegularExpression(pattern: pattern)
-            let ranges = try regex.cancellableMatches(in: string, range: string.nsRange).map(\.range)
+            let ranges = try regex.cancellableMatches(in: string, range: string.nsRange)
+                .map(\.range)
+                .filter { $0 != selectedRange }
             
             guard
+                !ranges.isEmpty,
                 let lower = ranges.first?.lowerBound,
                 let upper = ranges.last?.upperBound
             else { return }

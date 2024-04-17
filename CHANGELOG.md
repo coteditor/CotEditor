@@ -12,6 +12,7 @@
 
 - Fix an issue on CotEditor 4.8.0 that the editor's kerning did not set to zero despite the font type was monospaced.
 - Fix an issue on CotEditor 4.8.0 that some steppers in the Settings window were placed on the opposite side.
+- Fix an issue that the same instance highlight remains under specific conditions.
 
 
 
