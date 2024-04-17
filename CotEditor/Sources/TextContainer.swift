@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2020 1024jp
+//  © 2019-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@
 //
 
 import AppKit
-import Combine
 
 final class TextContainer: NSTextContainer {
     
@@ -38,7 +37,7 @@ final class TextContainer: NSTextContainer {
     
     private var indentWidthCache: [String: CGFloat] = [:]
     private var indentAttributes: [NSAttributedString.Key: Any] = [:]
-    private var typingAttributesObserver: AnyCancellable?
+    private var typingAttributesObservation: NSKeyValueObservation?
     
     
     
@@ -47,14 +46,15 @@ final class TextContainer: NSTextContainer {
     override weak var textView: NSTextView? {
         
         didSet {
-            self.typingAttributesObserver = textView?.publisher(for: \.typingAttributes, options: .initial)
-                .sink { [weak self] typingAttributes in
-                    // -> The font can differ from the specified text font while typing marked text.
-                    guard self?.textView?.hasMarkedText() != true else { return }
-                    
-                    self?.indentAttributes = typingAttributes
-                    self?.indentWidthCache.removeAll()
-                }
+            self.typingAttributesObservation = textView?.observe(\.typingAttributes, options: [.initial, .new]) { [weak self] (textView, change) in
+                guard let typingAttributes = change.newValue else { return }
+                
+                // -> The font can differ from the specified text font while typing marked text.
+                guard textView.hasMarkedText() != true else { return }
+                
+                self?.indentAttributes = typingAttributes
+                self?.indentWidthCache.removeAll()
+            }
         }
     }
     
