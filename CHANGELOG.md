@@ -3,6 +3,11 @@
 4.8.1 (unreleased)
 --------------------------
 
+### Improvements
+
+- Add context menus for font size change to the tables in the outline inspector and find result view.
+
+
 ### Fixes
 
 - Fix an issue on CotEditor 4.8.0 that the editor's kerning did not set to zero despite the font type is monospaced.

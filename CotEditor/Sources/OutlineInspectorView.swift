@@ -105,6 +105,8 @@ struct OutlineInspectorView: View {
     @State var filterString: String = ""
     
     
+    // MARK: View Methods
+    
     var body: some View {
         
         VStack(alignment: .leading) {
@@ -130,15 +132,16 @@ struct OutlineInspectorView: View {
                 // use .onReceive(_:) instead of .onChange(of:) to control the timing
                 self.model.selectItem(id: id)
             }
-            .onCommand(#selector(EditorTextView.biggerFont)) {
-                self.fontSize += 1
+            .contextMenu {
+                Menu(String(localized: "Font", table: "MainMenu")) {
+                    Button(String(localized: "Bigger", table: "MainMenu"), action: self.biggerFont)
+                    Button(String(localized: "Smaller", table: "MainMenu"), action: self.smallerFont)
+                    Button(String(localized: "Reset to Default", table: "MainMenu"), action: self.resetFont)
+                }
             }
-            .onCommand(#selector(EditorTextView.smallerFont)) {
-                self.fontSize = max(self.fontSize - 1, NSFont.smallSystemFontSize)
-            }
-            .onCommand(#selector(EditorTextView.resetFont)) {
-                UserDefaults.standard.restore(key: .outlineViewFontSize)
-            }
+            .onCommand(#selector(EditorTextView.biggerFont), perform: self.biggerFont)
+            .onCommand(#selector(EditorTextView.smallerFont), perform: self.smallerFont)
+            .onCommand(#selector(EditorTextView.resetFont), perform: self.resetFont)
             .border(.separator)
             .environment(\.defaultMinListRowHeight, self.fontSize)
             
@@ -150,6 +153,29 @@ struct OutlineInspectorView: View {
         .accessibilityLabel(Text("Outline", tableName: "Document"))
         .controlSize(.small)
         .padding(EdgeInsets(top: 8, leading: 12, bottom: 12, trailing: 12))
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Make the outline list's font size bigger.
+    private func biggerFont() {
+        
+        self.fontSize += 1
+    }
+    
+    
+    /// Make the outline list's font size smaller.
+    private func smallerFont() {
+        
+        self.fontSize = max(self.fontSize - 1, NSFont.smallSystemFontSize)
+    }
+    
+    
+    /// Resets the outline list's font size to the default.
+    private func resetFont() {
+        
+        UserDefaults.standard.restore(key: .outlineViewFontSize)
     }
 }
 

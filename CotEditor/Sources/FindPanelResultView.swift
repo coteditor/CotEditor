@@ -136,15 +136,16 @@ struct FindPanelResultView: View {
             .onChange(of: self.sortOrder) { newValue in
                 self.model.matches.sort(using: newValue)
             }
-            .onCommand(#selector(EditorTextView.biggerFont)) {
-                self.fontSize += 1
+            .contextMenu {
+                Menu(String(localized: "Font", table: "MainMenu")) {
+                    Button(String(localized: "Bigger", table: "MainMenu"), action: self.biggerFont)
+                    Button(String(localized: "Smaller", table: "MainMenu"), action: self.smallerFont)
+                    Button(String(localized: "Reset to Default", table: "MainMenu"), action: self.resetFont)
+                }
             }
-            .onCommand(#selector(EditorTextView.smallerFont)) {
-                self.fontSize = max(self.fontSize - 1, NSFont.smallSystemFontSize)
-            }
-            .onCommand(#selector(EditorTextView.resetFont)) {
-                UserDefaults.standard.restore(key: .findResultViewFontSize)
-            }
+            .onCommand(#selector(EditorTextView.biggerFont), perform: self.biggerFont)
+            .onCommand(#selector(EditorTextView.smallerFont), perform: self.smallerFont)
+            .onCommand(#selector(EditorTextView.resetFont), perform: self.resetFont)
         }
         .controlSize(.small)
         .padding(.top, 8)
@@ -152,6 +153,8 @@ struct FindPanelResultView: View {
         .accessibilityLabel(String(localized: "Find Result", table: "TextFind", comment: "accessibility label"))
     }
     
+    
+    // MARK: Private Methods
     
     @MainActor private var message: String {
         
@@ -179,6 +182,27 @@ struct FindPanelResultView: View {
         
         textView.select(range: range)
         textView.showFindIndicator(for: range)
+    }
+    
+    
+    /// Make the table's font size bigger.
+    private func biggerFont() {
+        
+        self.fontSize += 1
+    }
+    
+    
+    /// Make the table's font size smaller.
+    private func smallerFont() {
+        
+        self.fontSize = max(self.fontSize - 1, NSFont.smallSystemFontSize)
+    }
+    
+    
+    /// Resets the table's font size to the default.
+    private func resetFont() {
+        
+        UserDefaults.standard.restore(key: .findResultViewFontSize)
     }
 }
 

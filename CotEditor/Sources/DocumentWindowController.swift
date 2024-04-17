@@ -46,17 +46,14 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     private static let windowFrameName = NSWindow.FrameAutosaveName("Document")
     
-    private lazy var editedIndicator: NSView = {
-        
-        let dotView = Circle()
-            .fill(.tertiary)
-            .frame(width: 4, height: 4)
-            .padding(8)
-            .help(String(localized: "Document has unsaved changes",
-                         table: "Document",
-                         comment: "tooltip for the “edited” indicator in the window tab"))
-        return NSHostingView(rootView: dotView)
-    }()
+    private lazy var editedIndicator: NSView = NSHostingView(rootView: Circle()
+        .fill(.tertiary)
+        .frame(width: 4, height: 4)
+        .padding(8)
+        .help(String(localized: "Document has unsaved changes",
+                     table: "Document",
+                     comment: "tooltip for the “edited” indicator in the window tab"))
+    )
     
     private var opacityObserver: AnyCancellable?
     private var appearanceModeObserver: AnyCancellable?
