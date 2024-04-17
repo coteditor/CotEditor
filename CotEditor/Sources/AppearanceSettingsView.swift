@@ -27,6 +27,8 @@ import SwiftUI
 
 struct AppearanceSettingsView: View {
     
+    @Environment(\.layoutDirection) private var layoutDirection
+    
     @AppStorage(.font) private var font
     @AppStorage(.shouldAntialias) private var shouldAntialias
     @AppStorage(.ligature) private var ligature
@@ -87,7 +89,7 @@ struct AppearanceSettingsView: View {
                 HStack(alignment: .firstTextBaseline) {
                     Stepper(value: $lineHeight, in: 0.1...10, step: 0.1, format: .number.precision(.fractionLength(1...2)), label: EmptyView.init)
                         .monospacedDigit()
-                        .environment(\.layoutDirection, .rightToLeft)
+                        .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
                     
                     Text("times", tableName: "AppearanceSettings", comment: "unit for line height")
                 }

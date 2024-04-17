@@ -27,6 +27,8 @@ import SwiftUI
 
 struct EditSettingsView: View {
     
+    @Environment(\.layoutDirection) private var layoutDirection
+    
     @AppStorage(.autoExpandTab) private var autoExpandTab
     @AppStorage(.tabWidth) private var tabWidth
     @AppStorage(.detectsIndentStyle) private var detectsIndentStyle
@@ -94,7 +96,7 @@ struct EditSettingsView: View {
                         Text("Delay:", tableName: "EditSettings")
                         Stepper(value: $selectionInstanceHighlightDelay, in: 0...10, step: 0.25, format: .number.precision(.fractionLength(2)), label: EmptyView.init)
                         .monospacedDigit()
-                        .environment(\.layoutDirection, .rightToLeft)  // width: 40
+                        .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)  // width: 40
                         Text("seconds", tableName: "EditSettings", comment: "init for delay time")
                     }
                     .disabled(!self.highlightSelectionInstance)
