@@ -277,7 +277,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    override func fileNameExtension(forType typeName: String, saveOperation: NSDocument.SaveOperationType) -> String? {  // nonisolated
+    override nonisolated func fileNameExtension(forType typeName: String, saveOperation: NSDocument.SaveOperationType) -> String? {
         
         if !self.isDraft, let pathExtension = self.fileURL?.pathExtension {
             return pathExtension
