@@ -5,12 +5,12 @@
 
 ### Improvements
 
-- Add context menus for font size change to the tables in the outline inspector and find result view.
+- Add context menus for font size change to the tables in the outline inspector and find the result view.
 
 
 ### Fixes
 
-- Fix an issue on CotEditor 4.8.0 that the editor's kerning did not set to zero despite the font type is monospaced.
+- Fix an issue on CotEditor 4.8.0 that the editor's kerning did not set to zero despite the font type was monospaced.
 - Fix an issue on CotEditor 4.8.0 that some steppers in the Settings window were placed on the opposite side.
 
 
