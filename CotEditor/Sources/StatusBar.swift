@@ -235,7 +235,7 @@ struct StatusBar: View {
         .controlSize(.small)
         .padding(.leading, 10)
         .frame(height: 21)
-        .background(.thinMaterial)  // .windowBackground on macOS 14
+        .background(.windowBackground)
     }
 }
 
