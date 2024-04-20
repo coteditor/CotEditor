@@ -1,4 +1,4 @@
-name: Issue report
+name: Bug report
 description: Something is not working as expected.
 labels: 'potential bug'
 
