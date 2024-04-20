@@ -479,7 +479,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 rtlItem.image = NSImage(systemSymbolName: "text.alignright", accessibilityDescription: rtlItem.label)
                 rtlItem.action = #selector(DocumentViewController.makeWritingDirectionRightToLeft)
                 
-                let item = ToolbarItemGroup(itemIdentifier: itemIdentifier)
+                let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.controlRepresentation = .expanded
                 item.selectionMode = .selectOne
@@ -508,7 +508,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 verticalItem.image = NSImage(resource: .textVertical)
                 verticalItem.action = #selector(DocumentViewController.makeLayoutOrientationVertical)
                 
-                let item = ToolbarItemGroup(itemIdentifier: itemIdentifier)
+                let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.controlRepresentation = .expanded
                 item.selectionMode = .selectOne

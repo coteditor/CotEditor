@@ -59,12 +59,3 @@ final class MenuToolbarItem: NSMenuToolbarItem, Validatable {
         self.isEnabled = self.validate()
     }
 }
-
-
-final class ToolbarItemGroup: NSToolbarItemGroup, Validatable {
-    
-    override func validate() {
-        
-        self.isEnabled = self.validate()
-    }
-}
