@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Observation
 
 final class WarningInspectorViewController: NSHostingController<WarningInspectorView>, DocumentOwner {
     
@@ -80,7 +81,7 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
 
 struct WarningInspectorView: View {
     
-    @MainActor final class Model: ObservableObject {
+    @MainActor @Observable final class Model {
         
         var document: Document? {
             
@@ -95,7 +96,7 @@ struct WarningInspectorView: View {
     }
     
     
-    @ObservedObject var model: Model
+    @State var model: Model
     
     
     var body: some View {

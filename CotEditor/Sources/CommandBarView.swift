@@ -25,12 +25,13 @@
 
 import SwiftUI
 import AppKit
+import Observation
 
 struct CommandBarView: View {
     
-    final class Model: ObservableObject {
+    @Observable final class Model {
         
-        @Published var commands: [ActionCommand] = []
+        var commands: [ActionCommand] = []
     }
     
     
@@ -43,7 +44,7 @@ struct CommandBarView: View {
     }
     
     
-    let model: Model
+    @State var model: Model
     
     weak var parent: NSWindow?
     

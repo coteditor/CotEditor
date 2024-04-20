@@ -25,12 +25,12 @@
 
 import SwiftUI
 import AppKit
-import Combine
+import Observation
 import OSLog
 
 struct KeyBindingsSettingsView: View {
     
-    @StateObject private var model = KeyBindingModel()
+    @State private var model = KeyBindingModel()
     
     
     var body: some View {
@@ -40,7 +40,7 @@ struct KeyBindingsSettingsView: View {
                 .lineLimit(10)
                 .fixedSize(horizontal: false, vertical: true)
             
-            KeyBindingTreeView(model: self.model)
+            KeyBindingTreeView(model: $model)
             
             HStack(alignment: .firstTextBaseline) {
                 Button(String(localized: "Restore Defaults", table: "KeyBindingsSettings", comment: "button label")) {
@@ -68,15 +68,15 @@ struct KeyBindingsSettingsView: View {
 }
 
 
-private final class KeyBindingModel: ObservableObject {
+@Observable private final class KeyBindingModel {
     
     typealias Item = Node<KeyBindingItem>
     
-    @Published private(set) var tree: [Item] = []
-    @Published private(set) var isRestorable: Bool = false
-    @Published var error: (any Error)?
+    private(set) var tree: [Item] = []
+    private(set) var isRestorable: Bool = false
+    var error: (any Error)?
     
-    @Published var rootIndex: Int?
+    var rootIndex: Int?
     
     
     /// Loads data from the user defaults.
@@ -122,7 +122,7 @@ private struct KeyBindingTreeView: NSViewControllerRepresentable {
     typealias NSViewControllerType = NSViewController
     
     
-    @ObservedObject var model: KeyBindingModel
+    @Binding var model: KeyBindingModel
     
     
     func makeNSViewController(context: Context) -> NSViewController {
@@ -156,8 +156,6 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
     
     private let model: KeyBindingModel
     
-    private var observer: AnyCancellable?
-    
     @IBOutlet private weak var listView: NSTableView?
     @IBOutlet private weak var outlineView: NSOutlineView?
     
@@ -186,18 +184,7 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
         self.listView?.reloadData()
         self.outlineView?.reloadData()
         
-        // observe restoration
-        self.observer = self.model.$isRestorable
-            .filter { !$0 }
-            .sink { [weak self] _ in self?.outlineView?.reloadData() }
-    }
-    
-    
-    override func viewDidDisappear() {
-         
-        super.viewDidDisappear()
-        
-        self.observer?.cancel()
+        self.observe()
     }
     
     
@@ -313,6 +300,23 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
         item.shortcut = shortcut
         self.model.save()
         outlineView.reloadData(forRowIndexes: [row], columnIndexes: [column])
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Recursively observes the `.isRestorable` flag.
+    private func observe() {
+        
+        withObservationTracking { [weak self] in
+            if self?.model.isRestorable == false {
+                self?.outlineView?.reloadData()
+            }
+        } onChange: {
+            Task { @MainActor [weak self] in
+                self?.observe()
+            }
+        }
     }
 }
 

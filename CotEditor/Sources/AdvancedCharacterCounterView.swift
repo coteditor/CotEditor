@@ -27,7 +27,7 @@ import SwiftUI
 
 struct AdvancedCharacterCounterView: View {
     
-    @StateObject var counter: AdvancedCharacterCounter
+    @State var counter: AdvancedCharacterCounter
     let dismissAction: () -> Void
     
     @AppStorage(.countUnit) private var unit: CharacterCountOptions.CharacterUnit

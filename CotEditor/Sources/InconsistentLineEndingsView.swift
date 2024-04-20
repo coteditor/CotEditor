@@ -24,17 +24,18 @@
 //
 
 import SwiftUI
+import Observation
 import Combine
 
 struct InconsistentLineEndingsView: View {
     
-    @MainActor final class Model: ObservableObject {
+    @MainActor @Observable final class Model {
         
         typealias Item = ValueRange<LineEnding>
         
         
-        @Published var items: [Item] = []
-        @Published var lineEnding: LineEnding = .lf
+        var items: [Item] = []
+        var lineEnding: LineEnding = .lf
         
         var document: Document?  { didSet { self.invalidateObservation() } }
         
@@ -42,7 +43,7 @@ struct InconsistentLineEndingsView: View {
     }
     
     
-    @ObservedObject var model: Model
+    @State var model: Model
     
     @State private var selection: Model.Item.ID?
     @State private var sortOrder: [KeyPathComparator<Model.Item>] = []

@@ -24,18 +24,19 @@
 //
 
 import SwiftUI
+import Observation
 import Combine
 import AppKit.NSTextStorage
 
 struct IncompatibleCharactersView: View {
     
-    @MainActor final class Model: ObservableObject {
+    @MainActor @Observable final class Model {
         
         typealias Item = ValueRange<IncompatibleCharacter>
         
         
-        @Published var items: [Item] = []
-        @Published private(set) var isScanning = false
+        var items: [Item] = []
+        private(set) var isScanning = false
         
         var document: Document?  { didSet { self.invalidateObservation() } }
         
@@ -44,7 +45,7 @@ struct IncompatibleCharactersView: View {
     }
     
     
-    @ObservedObject var model: Model
+    @State var model: Model
     
     @State private var selection: Model.Item.ID?
     @State private var sortOrder: [KeyPathComparator<Model.Item>] = []

@@ -24,17 +24,18 @@
 //
 
 import SwiftUI
+import Observation
 import AppKit.NSOpenPanel
 
-final class OpenOptions: ObservableObject {
+@Observable final class OpenOptions {
     
-    @Published var encoding: String.Encoding?
+    var encoding: String.Encoding?
 }
 
 
 struct OpenPanelAccessory: View {
     
-    @ObservedObject var options: OpenOptions
+    @State var options: OpenOptions
     
     weak var openPanel: NSOpenPanel?
     let fileEncodings: [FileEncoding?]

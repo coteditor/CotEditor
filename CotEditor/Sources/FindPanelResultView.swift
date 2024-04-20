@@ -25,6 +25,7 @@
 
 import AppKit
 import SwiftUI
+import Observation
 
 final class FindPanelResultViewController: NSHostingController<FindPanelResultView> {
     
@@ -59,15 +60,15 @@ struct FindPanelResultView: View {
     
     typealias Match = TextFindAllResult.Match
     
-    @MainActor final class Model: ObservableObject {
+    @MainActor @Observable final class Model {
         
-        @Published var matches: [Match] = []
-        @Published var findString: String = ""
+        var matches: [Match] = []
+        var findString: String = ""
         weak var target: NSTextView?
     }
     
     
-    @ObservedObject var model: Model
+    @State var model: Model
     
     @State private var selection: Set<Match.ID> = []
     @State private var sortOrder = [KeyPathComparator(\Match.range.location)]

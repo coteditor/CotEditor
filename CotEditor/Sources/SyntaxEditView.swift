@@ -56,7 +56,7 @@ struct SyntaxEditView: View {
     }
     
     
-    @StateObject var syntax: SyntaxObject
+    @State var syntax: SyntaxObject
     var originalName: String?
     var isBundled: Bool = false
     let saveAction: SaveAction
@@ -79,7 +79,7 @@ struct SyntaxEditView: View {
     
     init(syntax: Syntax? = nil, originalName: String? = nil, isBundled: Bool = false, saveAction: @escaping SaveAction) {
         
-        self._syntax = StateObject(wrappedValue: SyntaxObject(value: syntax))
+        self._syntax = State(wrappedValue: SyntaxObject(value: syntax))
         self.originalName = originalName
         self.isBundled = isBundled
         self.saveAction = saveAction

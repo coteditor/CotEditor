@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Observation
 import Combine
 
 final class OutlineInspectorViewController: NSHostingController<OutlineInspectorView>, DocumentOwner {
@@ -81,13 +82,13 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
 
 struct OutlineInspectorView: View {
     
-    @MainActor final class Model: ObservableObject {
+    @MainActor @Observable final class Model {
         
         typealias Item = OutlineItem
         
         
-        @Published var items: [Item] = []
-        @Published var selection: Item.ID?
+        var items: [Item] = []
+        var selection: Item.ID?
         
         var document: Document?  { didSet { self.invalidateObservation() } }
         
@@ -98,7 +99,7 @@ struct OutlineInspectorView: View {
     }
     
     
-    @ObservedObject var model: Model
+    @State var model: Model
     
     @AppStorage(.outlineViewFontSize) private var fontSize: Double
     
@@ -129,8 +130,7 @@ struct OutlineInspectorView: View {
                         .controlSize(.regular)
                 }
             }
-            .onReceive(self.model.$selection) { id in
-                // use .onReceive(_:) instead of .onChange(of:) to control the timing
+            .onChange(of: self.model.selection) { (_, id) in
                 self.model.selectItem(id: id)
             }
             .contextMenu {
@@ -269,7 +269,10 @@ private extension OutlineInspectorView.Model {
         
         self.isOwnSelectionChange = true
         self.selection = item.id
-        self.isOwnSelectionChange = false
+        // adjust the timing to restore flag
+        Task {
+            self.isOwnSelectionChange = false
+        }
     }
 }
 

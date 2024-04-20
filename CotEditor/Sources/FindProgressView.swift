@@ -36,7 +36,7 @@ struct FindProgressView: View {
     
     weak var parent: NSHostingController<Self>?
     
-    @ObservedObject private var progress: FindProgress
+    @State private var progress: FindProgress
     private let unit: Unit
     private let label: String
     

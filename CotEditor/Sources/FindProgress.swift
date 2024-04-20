@@ -24,14 +24,15 @@
 //
 
 import Foundation
+import Observation
 
-final class FindProgress: ObservableObject, @unchecked Sendable {
+@Observable final class FindProgress: @unchecked Sendable {
     
-    private(set) var count = 0
-    var completedUnit = 0
+    @ObservationIgnored private(set) var count = 0
+    @ObservationIgnored var completedUnit = 0
     
-    @Published private(set) var isCancelled = false
-    @Published private(set) var isFinished = false
+    private(set) var isCancelled = false
+    private(set) var isFinished = false
     
     private let scope: Range<Int>
     

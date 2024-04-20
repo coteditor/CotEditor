@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Observation
 import Combine
 
 final class DocumentInspectorViewController: NSHostingController<DocumentInspectorView>, DocumentOwner {
@@ -81,14 +82,14 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
 
 struct DocumentInspectorView: View {
     
-    @MainActor final class Model: ObservableObject {
+    @MainActor @Observable final class Model {
         
-        @Published var attributes: DocumentFile.Attributes?
-        @Published var fileURL: URL?
-        @Published var encoding: FileEncoding = .utf8
-        @Published var lineEnding: LineEnding = .lf
-        @Published var mode: Mode = .kind(.general)
-        @Published var countResult: EditorCounter.Result = .init()
+        var attributes: DocumentFile.Attributes?
+        var fileURL: URL?
+        var encoding: FileEncoding = .utf8
+        var lineEnding: LineEnding = .lf
+        var mode: Mode = .kind(.general)
+        var countResult: EditorCounter.Result = .init()
         
         var document: Document?  { willSet { self.invalidateObservation(document: newValue) } }
         
@@ -96,7 +97,7 @@ struct DocumentInspectorView: View {
     }
     
     
-    @ObservedObject var model: Model
+    @State var model: Model
     
     
     var body: some View {

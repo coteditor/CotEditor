@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Observation
 import Combine
 
 final class StatusBarController: NSHostingController<StatusBar> {
@@ -143,15 +144,15 @@ private extension UserDefaults {
 
 struct StatusBar: View {
     
-    final class Model: ObservableObject {
+    @MainActor @Observable final class Model {
         
-        @MainActor var document: Document?  { didSet { Task { @MainActor in self.observeDocument() } } }
+        var document: Document?  { didSet { Task { @MainActor in self.observeDocument() } } }
         
-        @Published var fileEncoding: FileEncoding = .utf8
-        @Published var lineEnding: LineEnding = .lf
+        var fileEncoding: FileEncoding = .utf8
+        var lineEnding: LineEnding = .lf
         
-        @Published fileprivate(set) var countResult: EditorCounter.Result = .init()
-        @Published fileprivate(set) var fileSize: Int64?
+        fileprivate(set) var countResult: EditorCounter.Result = .init()
+        fileprivate(set) var fileSize: Int64?
         
         private var defaultsObserver: AnyCancellable?
         private var documentObservers: Set<AnyCancellable> = []
@@ -164,7 +165,7 @@ struct StatusBar: View {
     }
     
     
-    @ObservedObject var model: Model
+    @State var model: Model
     
     @State private(set) var fileEncodings: [FileEncoding?] = []
     
