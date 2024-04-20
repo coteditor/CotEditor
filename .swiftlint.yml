@@ -1,5 +1,5 @@
 deployment_target:
-  macOS_deployment_target: 13
+  macOS_deployment_target: 14
 
 excluded:
   - "*/.build"

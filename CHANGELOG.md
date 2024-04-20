@@ -3,6 +3,10 @@
 4.9.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- Change the system requirement to __macOS 14 Sonoma and later__.
+
 
 
 4.8.3 (unreleased)
