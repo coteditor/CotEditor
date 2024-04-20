@@ -103,9 +103,10 @@ struct FindPanelResultView: View {
                 TableColumn(String(localized: "Line", table: "TextFind", comment: "table column header"), value: \.range.location) {
                     Text(self.model.target?.lineNumber(at: $0.range.location) ?? 0, format: .number)
                         .monospacedDigit()
-                        .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(.vertical, -2)
-                }.width(ideal: 30, max: 64)
+                }
+                .width(ideal: 30, max: 64)
+                .alignment(.trailing)
                 
                 TableColumn(String(localized: "Found String", table: "TextFind", comment: "table column header")) {
                     Text(AttributedString($0.attributedLineString(offset: 16)))

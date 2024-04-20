@@ -56,9 +56,10 @@ struct SyntaxHighlightEditView: View {
                                     .filter { $0.id != item.id }
                                     .forEach { $0.isRegularExpression.wrappedValue = newValue }
                             }
-                            .frame(maxWidth: .infinity, alignment: .center)
                     }
-                }.width(20)
+                }
+                .width(22)
+                .alignment(.center)
                 
                 TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { wrappedItem in
                     if let item = $items.first(where: { $0.id == wrappedItem.id }) {
@@ -71,9 +72,10 @@ struct SyntaxHighlightEditView: View {
                                     .filter { $0.id != item.id }
                                     .forEach { $0.ignoreCase.wrappedValue = newValue }
                             }
-                            .frame(maxWidth: .infinity, alignment: .center)
                     }
-                }.width(20)
+                }
+                .width(22)
+                .alignment(.center)
                 
                 TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { wrappedItem in
                     if let item = $items.first(where: { $0.id == wrappedItem.id }) {

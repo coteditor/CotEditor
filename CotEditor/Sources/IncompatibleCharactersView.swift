@@ -76,9 +76,9 @@ struct IncompatibleCharactersView: View {
                         if let line = self.model.document?.lineEndingScanner.lineNumber(at: $0.location) {
                             Text(line, format: .number)
                                 .monospacedDigit()
-                                .frame(maxWidth: .infinity, alignment: .trailing)
                         }
                     }
+                    .alignment(.trailing)
                     
                     TableColumn(String(localized: "Character", table: "Document", comment: "table column header"), value: \.value.character) {
                         let character = $0.value.character

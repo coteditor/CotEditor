@@ -72,9 +72,9 @@ struct InconsistentLineEndingsView: View {
                         if let line = self.model.document?.lineEndingScanner.lineNumber(at: $0.location) {
                             Text(line, format: .number)
                                 .monospacedDigit()
-                                .frame(maxWidth: .infinity, alignment: .trailing)
                         }
                     }
+                    .alignment(.trailing)
                     
                     TableColumn(String(localized: "Line Ending", table: "Document", comment: "table column header"), value: \.value.rawValue) {
                         Text($0.value.label)

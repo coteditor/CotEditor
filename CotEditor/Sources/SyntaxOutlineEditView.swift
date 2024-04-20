@@ -47,8 +47,9 @@ struct SyntaxOutlineEditView: View {
                 TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { item in
                     Toggle(isOn: item.ignoreCase, label: EmptyView.init)
                         .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
-                        .frame(maxWidth: .infinity, alignment: .center)
-                }.width(20)
+                }
+                .width(22)
+                .alignment(.center)
                 
                 TableColumn(String(localized: "Regular Expression Pattern", table: "SyntaxEditor", comment: "table column header")) { item in
                     RegexTextField(text: item.pattern, showsError: true, showsInvisible: true)
