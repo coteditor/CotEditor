@@ -48,16 +48,12 @@ struct CommandBarView: View {
     weak var parent: NSWindow?
     
     
-    @Environment(\.controlActiveState) private var controlActiveState
-    
     @State private var input: String = ""
     @State var candidates: [Candidate] = []
     
     @State private var selection: ActionCommand.ID?
     @FocusState private var focus: ActionCommand.ID?
     @AccessibilityFocusState private var accessibilityFocus: ActionCommand.ID?
-    
-    @State private var keyMonitor: Any?
     
     
     var body: some View {
@@ -114,34 +110,11 @@ struct CommandBarView: View {
                 .sorted(\.score)
             self.selection = self.candidates.first?.id
         }
-        .onChange(of: self.controlActiveState) { (_, newValue) in
-            switch newValue {
-                case .key, .active:
-                    self.keyMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
-                        if let key = event.specialKey,
-                           event.modifierFlags.isDisjoint(with: [.shift, .control, .option, .command])
-                        {
-                            switch key {
-                                case .downArrow, .upArrow:
-                                    self.move(down: (key == .downArrow))
-                                    return nil
-                                default:
-                                    break
-                            }
-                        }
-                        return event
-                    }
-                    
-                case .inactive:
-                    self.input = ""
-                    if let keyMonitor {
-                        NSEvent.removeMonitor(keyMonitor)
-                        self.keyMonitor = nil
-                    }
-                    
-                @unknown default:
-                    break
-            }
+        .onKeyPress(.upArrow) {
+            self.move(down: false) ? .handled : .ignored
+        }
+        .onKeyPress(.downArrow) {
+            self.move(down: true) ? .handled : .ignored
         }
         .frame(width: 500)
         .ignoresSafeArea()
@@ -151,16 +124,18 @@ struct CommandBarView: View {
     /// Moves the selection to the next one, if any exists.
     ///
     /// - Parameter down: Whether move down or up the selection.
-    private func move(down: Bool) {
+    /// - Returns: Whether the move action is performed.
+    private func move(down: Bool) -> Bool {
         
         guard
             let index = self.candidates.firstIndex(where: { $0.id == self.selection }),
             let candidate = self.candidates[safe: index + (down ? 1 : -1)]
-        else { return }
+        else { return false }
         
         self.selection = candidate.id
         self.focus = candidate.id
         self.accessibilityFocus = candidate.id
+        return true
     }
     
     
