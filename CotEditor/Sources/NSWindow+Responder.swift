@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ extension NSViewController {
     @discardableResult
     final func endEditing() -> Bool {
         
-        guard self.isViewLoaded, let window = self.view.window else { return true }
+        guard let window = self.viewIfLoaded?.window else { return true }
         
         return window.makeFirstResponder(nil)
     }
