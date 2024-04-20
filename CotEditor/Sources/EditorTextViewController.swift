@@ -40,13 +40,13 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     // MARK: Public Properties
     
-    private(set) weak var textView: EditorTextView?
+    @ViewLoading private(set) var textView: EditorTextView
     
     
     // MARK: Private Properties
     
     private var stackView: NSStackView?  { self.view as? NSStackView }
-    private weak var lineNumberView: LineNumberView?
+    @ViewLoading private var lineNumberView: LineNumberView
     
     private weak var advancedCounterView: NSView?
     private weak var horizontalCounterConstraint: NSLayoutConstraint?
@@ -91,29 +91,29 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         self.identifier = NSUserInterfaceItemIdentifier("EditorTextViewController")
         
         // observe text orientation for line number view
-        self.orientationObserver = self.textView!.publisher(for: \.layoutOrientation, options: .initial)
+        self.orientationObserver = self.textView.publisher(for: \.layoutOrientation, options: .initial)
             .sink { [weak self] orientation in
                 self?.stackView?.orientation = switch orientation {
                     case .horizontal: .horizontal
                     case .vertical: .vertical
                     @unknown default: fatalError()
                 }
-                self?.lineNumberView?.orientation = orientation
+                self?.lineNumberView.orientation = orientation
             }
         
         // let line number view position follow writing direction
-        self.writingDirectionObserver = self.textView!.publisher(for: \.baseWritingDirection)
+        self.writingDirectionObserver = self.textView.publisher(for: \.baseWritingDirection)
             .removeDuplicates()
             .map { ($0 == .rightToLeft) ? NSUserInterfaceLayoutDirection.rightToLeft : .leftToRight }
             .sink { [weak self] direction in
                 self?.stackView?.userInterfaceLayoutDirection = direction
-                (self?.textView?.enclosingScrollView as? BidiScrollView)?.scrollerDirection = direction
+                (self?.textView.enclosingScrollView as? BidiScrollView)?.scrollerDirection = direction
             }
         
         // toggle visibility of the separator of the line number view
         self.defaultsObservers = [
             UserDefaults.standard.publisher(for: .showLineNumberSeparator, initial: true)
-                .assign(to: \.drawsSeparator, on: self.lineNumberView!),
+                .assign(to: \.drawsSeparator, on: self.lineNumberView),
         ]
     }
     
@@ -216,7 +216,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         }
         
         // add "Inspect Character" menu item if single character is selected
-        if self.textView?.selectsSingleCharacter == true {
+        if self.textView.selectsSingleCharacter == true {
             menu.insertItem(withTitle: String(localized: "Inspect Character", table: "MainMenu"),
                             action: #selector(showSelectionInfo),
                             keyEquivalent: "",
@@ -233,8 +233,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// Shows the Go To sheet.
     @IBAction func gotoLocation(_ sender: Any?) {
         
-        guard let textView = self.textView else { return assertionFailure() }
-        
+        let textView = self.textView
         let string = textView.string
         let lineNumber = string.lineNumber(at: textView.selectedRange.location)
         let lineCount = (string as NSString).substring(with: textView.selectedRange).numberOfLines
@@ -257,8 +256,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// Shows the Unicode input view.
     @IBAction func showUnicodeInputPanel(_ sender: Any?) {
         
-        guard let textView = self.textView else { return assertionFailure() }
-        
+        let textView = self.textView
         let view = UnicodeInputView { [unowned textView] character in
             // flag to skip line ending sanitization
             textView.isApprovedTextChange = true
@@ -300,9 +298,8 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     @IBAction func showSelectionInfo(_ sender: Any?) {
         
         guard
-            let textView = self.textView,
-            textView.selectsSingleCharacter,
-            let character = textView.selectedString.first
+            self.textView.selectsSingleCharacter,
+            let character = self.textView.selectedString.first
         else { return assertionFailure() }
         
         let characterInfo = CharacterInfo(character: character)
@@ -310,6 +307,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         popoverController.view = NSHostingView(rootView: CharacterInspectorView(info: characterInfo))
         popoverController.view.frame.size = popoverController.view.intrinsicContentSize
         
+        let textView = self.textView
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -4, dy: -4) ?? .zero
         
         textView.scrollRangeToVisible(textView.selectedRange)
@@ -324,8 +322,8 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// The visibility of the line number view.
     var showsLineNumber: Bool {
         
-        get { self.lineNumberView?.isHidden == false }
-        set { self.lineNumberView?.isHidden = !newValue }
+        get { self.lineNumberView.isHidden == false }
+        set { self.lineNumberView.isHidden = !newValue }
     }
     
     
@@ -337,8 +335,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// - Parameter image: The image to scan text.
     private func popoverLiveText(image: NSImage) {
         
-        guard let textView = self.textView else { return assertionFailure() }
-        
+        let textView = self.textView
         let rootView = LiveTextInsertionView(image: image) { [weak textView] string in
             guard let textView else { return }
             textView.replace(with: string, range: textView.selectedRange, selectedRange: nil)
@@ -374,8 +371,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// Sets and shows advanced character counter.
     private func showAdvancedCharacterCounter() {
         
-        guard let textView = self.textView else { return assertionFailure() }
-        
+        let textView = self.textView
         let counter = AdvancedCharacterCounter()
         counter.observe(textView: textView)
         let rootView = AdvancedCharacterCounterView(counter: counter) { [weak self] in
@@ -409,7 +405,7 @@ extension EditorTextViewController: NSUserInterfaceValidations {
                 return true
                 
             case #selector(showSelectionInfo):
-                return self.textView?.selectsSingleCharacter == true
+                return self.textView.selectsSingleCharacter == true
                 
             case nil:
                 return false

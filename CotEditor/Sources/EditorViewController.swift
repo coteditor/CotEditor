@@ -46,7 +46,7 @@ final class EditorViewController: NSSplitViewController {
     private lazy var navigationBarController: NavigationBarController = NSStoryboard(name: "NavigationBar", bundle: nil).instantiateInitialController()!
     private lazy var textViewController = EditorTextViewController()
     
-    private var navigationBarItem: NSSplitViewItem?
+    @ViewLoading private var navigationBarItem: NSSplitViewItem
     
     private var syntaxName: String?
     private var defaultObservers: [AnyCancellable] = []
@@ -85,7 +85,7 @@ final class EditorViewController: NSSplitViewController {
         navigationBarItem.isCollapsed = !UserDefaults.standard[.showNavigationBar]
         self.defaultObservers = [
             UserDefaults.standard.publisher(for: .showNavigationBar)
-                .sink { [weak self] in self?.navigationBarItem?.animator().isCollapsed = !$0 },
+                .sink { [weak self] in self?.navigationBarItem.animator().isCollapsed = !$0 },
             UserDefaults.standard.publisher(for: .modes)
                 .sink { [weak self] _ in self?.invalidateMode() },
         ]
@@ -111,7 +111,7 @@ final class EditorViewController: NSSplitViewController {
         
         switch item.action {
             case #selector(toggleNavigationBar):
-                (item as? NSMenuItem)?.title = self.navigationBarItem?.isCollapsed == false
+                (item as? NSMenuItem)?.title = !self.navigationBarItem.isCollapsed
                 ? String(localized: "Hide Navigation Bar", table: "MainMenu")
                 : String(localized: "Show Navigation Bar", table: "MainMenu")
                 
@@ -186,7 +186,7 @@ final class EditorViewController: NSSplitViewController {
     /// Shows the menu items of the outline menu in the navigation bar.
     @IBAction func openOutlineMenu(_ sender: Any) {
         
-        self.navigationBarItem?.isCollapsed = false
+        self.navigationBarItem.isCollapsed = false
         self.navigationBarController.openOutlineMenu()
     }
     

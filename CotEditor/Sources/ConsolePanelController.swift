@@ -136,7 +136,7 @@ private final class ConsoleViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private weak var textView: NSTextView?
+    @ViewLoading private var textView: NSTextView
     
     private var fontSize: Double = max(UserDefaults.standard[.consoleFontSize], NSFont.smallSystemFontSize) {
         
@@ -168,8 +168,7 @@ private final class ConsoleViewController: NSViewController {
     /// - Parameter log: The log to append.
     func append(log: Console.Log) {
         
-        guard let textView = self.textView else { return assertionFailure() }
-        
+        let textView = self.textView
         let lastLocation = textView.string.length
         let attributedString = log.attributedString(fontSize: self.fontSize)
         let range = NSRange(location: lastLocation, length: attributedString.length)
@@ -187,10 +186,8 @@ private final class ConsoleViewController: NSViewController {
     /// Flushes existing log.
     @IBAction func clearAll(_ sender: Any?) {
         
-        guard let textView = self.textView else { return assertionFailure() }
-        
-        textView.string = ""
-        NSAccessibility.post(element: textView, notification: .valueChanged)
+        self.textView.string = ""
+        NSAccessibility.post(element: self.textView, notification: .valueChanged)
     }
     
     
@@ -225,7 +222,7 @@ private final class ConsoleViewController: NSViewController {
     /// - Parameter fontSize: The new font size.
     private func changeFontSize(_ fontSize: Double) {
         
-        guard let storage = self.textView?.textStorage else { return }
+        guard let storage = self.textView.textStorage else { return }
         
         storage.beginEditing()
         storage.enumerateAttribute(.consolePart, type: Console.Log.Part.self, in: storage.range) { (part, range, _) in

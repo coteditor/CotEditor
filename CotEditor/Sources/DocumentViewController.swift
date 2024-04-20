@@ -66,7 +66,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     private lazy var splitViewController = SplitViewController()
     private lazy var statusBarModel = StatusBar.Model(document: self.document)
-    private weak var statusBarItem: NSSplitViewItem?
+    @ViewLoading private var statusBarItem: NSSplitViewItem
     
     private var documentSyntaxObserver: AnyCancellable?
     private var outlineObserver: AnyCancellable?
@@ -136,7 +136,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         self.setTheme(name: ThemeManager.shared.userDefaultSettingName)
         self.defaultsObservers = [
             defaults.publisher(for: .showStatusBar, initial: false)
-                .sink { [weak self] in self?.statusBarItem?.animator().isCollapsed = !$0 },
+                .sink { [weak self] in self?.statusBarItem.animator().isCollapsed = !$0 },
             defaults.publisher(for: .theme, initial: false)
                 .sink { [weak self] in self?.setTheme(name: $0) },
             defaults.publisher(for: .showInvisibles, initial: true)
@@ -258,7 +258,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                     : String(localized: "Show Line Numbers", table: "MainMenu")
                 
             case #selector(toggleStatusBar):
-                (item as? NSMenuItem)?.title = self.statusBarItem?.isCollapsed == false
+                (item as? NSMenuItem)?.title = !self.statusBarItem.isCollapsed
                     ? String(localized: "Hide Status Bar", table: "MainMenu")
                     : String(localized: "Show Status Bar", table: "MainMenu")
                 
