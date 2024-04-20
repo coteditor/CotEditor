@@ -70,7 +70,7 @@ struct UnicodeInputView: View {
                                         .monospacedDigit() +
                                     Text(scalar.name ?? "–")
                                         .font(.system(size: NSFont.smallSystemFontSize))
-                                        .foregroundColor(.secondary)
+                                        .foregroundStyle(.secondary)
                                 }
                             }
                         }

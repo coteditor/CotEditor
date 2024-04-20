@@ -72,7 +72,7 @@ struct WindowSettingsView: View {
                 
                 Picker(selection: $windowTabbing) {
                     (Text("Respect System Setting", tableName: "WindowSettings") +
-                     Text(" (\(NSWindow.userTabbingPreference.label))").foregroundColor(.secondary)).tag(-1)
+                     Text(" (\(NSWindow.userTabbingPreference.label))").foregroundStyle(.secondary)).tag(-1)
                     
                     Divider()
                     

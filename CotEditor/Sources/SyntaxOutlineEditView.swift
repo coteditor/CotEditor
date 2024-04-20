@@ -103,7 +103,7 @@ struct SyntaxOutlineEditView: View {
                         .accessibilityLabeledPair(role: .label, id: "titlePattern", in: self.accessibility)
                     Text("(Blank matches the whole string.)", tableName: "SyntaxEditor", comment: "label")
                         .controlSize(.small)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 
                 RegexTextField(text: $outline.template, mode: .replacement(unescapes: false), prompt: self.prompt)
