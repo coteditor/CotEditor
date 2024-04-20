@@ -48,7 +48,7 @@ extension CurrentLineHighlighting {
         if self.needsUpdateLineHighlight, let dirtyRange = self.range(for: dirtyRect) {
             let lineRanges = self.selectedLineRanges()
             
-            if lineRanges.contains(where: { $0.intersects(dirtyRange) }) {
+            if lineRanges.contains(where: { $0.touches(dirtyRange) }) {
                 self.lineHighlightRects = lineRanges.map(self.lineRect(for:))
                 self.needsUpdateLineHighlight = false
             } else {
