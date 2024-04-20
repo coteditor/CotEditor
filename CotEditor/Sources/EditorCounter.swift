@@ -112,9 +112,13 @@ actor EditorCounter {
     ///   - string: The string to count.
     func move(selectedRanges: [Range<String.Index>], string: String) throws {
         
+        assert(!selectedRanges.isEmpty)
+        assert(selectedRanges.map(\.upperBound).allSatisfy({ $0 <= string.endIndex }))
+        
         guard !self.types.isEmpty else { return }
         
         let selectedStrings = selectedRanges.map { string[$0] }
+        let location = selectedRanges.first?.lowerBound ?? string.startIndex
         
         if self.types.contains(.characters) {
             try Task.checkCancellation()
@@ -133,17 +137,17 @@ actor EditorCounter {
         
         if self.types.contains(.location) {
             try Task.checkCancellation()
-            self.result.location = string.distance(from: string.startIndex, to: selectedRanges[0].lowerBound)
+            self.result.location = string.distance(from: string.startIndex, to: location)
         }
         
         if self.types.contains(.line) {
             try Task.checkCancellation()
-            self.result.line = string.lineNumber(at: selectedRanges[0].lowerBound)
+            self.result.line = string.lineNumber(at: location)
         }
         
         if self.types.contains(.column) {
             try Task.checkCancellation()
-            self.result.column = string.columnNumber(at: selectedRanges[0].lowerBound)
+            self.result.column = string.columnNumber(at: location)
         }
         
         if self.types.contains(.character) {

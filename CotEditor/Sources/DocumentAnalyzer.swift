@@ -94,11 +94,9 @@ final class DocumentAnalyzer {
             
             try await Task.sleep(for: .milliseconds(200), tolerance: .milliseconds(40))  // debounce
             
-            guard let textView = await self.document?.textView else { return }
+            guard let (string, selectedRanges) = await self.document?.textView?.stringAndSelection else { return }
             
-            let string = await textView.string.immutable
-            let selectedRanges = await textView.selectedRanges
-                .compactMap { Range($0.rangeValue, in: string) }
+            try Task.checkCancellation()
             
             try await self.counter.move(selectedRanges: selectedRanges, string: string)
             self.result = await self.counter.result
@@ -120,5 +118,18 @@ final class DocumentAnalyzer {
             self.invalidateContent()
         }
         self.invalidateSelection()
+    }
+}
+
+
+private extension NSTextView {
+    
+    /// Returns the current string and selected ranges safely.
+    var stringAndSelection: (string: String, ranges: [Range<String.Index>]) {
+        
+        let string = self.string.immutable
+        let selectedRanges = self.selectedRanges.compactMap { Range($0.rangeValue, in: string) }
+        
+        return (string, selectedRanges)
     }
 }
