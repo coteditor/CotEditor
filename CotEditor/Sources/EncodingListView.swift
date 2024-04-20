@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Observation
 
 private struct EncodingItem: Identifiable {
     
@@ -39,12 +40,12 @@ private struct EncodingItem: Identifiable {
 
 struct EncodingListView: View {
     
-    fileprivate final class Model: ObservableObject {
+     @Observable fileprivate final class Model {
         
         typealias Item = EncodingItem
         
         
-        @Published var items: [Item]
+        var items: [Item]
         
         private let defaults: UserDefaults
         
@@ -57,7 +58,7 @@ struct EncodingListView: View {
     }
     
     
-    @StateObject private var model = Model()
+    @State private var model = Model()
     @Environment(\.undoManager) private var undoManager
     @Environment(\.dismiss) private var dismiss
     
