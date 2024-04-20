@@ -64,7 +64,7 @@ struct AppearanceSettingsView: View {
                     .accessibilityLabeledPair(role: .label, id: "monospacedFont", in: self.accessibility)
                 
                 FontSettingView(data: $monospacedFont ?? (try! FontType.monospaced.systemFont().archivedData), antialias: $monospacedShouldAntialias, ligature: $monospacedLigature)
-                    .onChange(of: self.monospacedFont) { [oldValue = self.monospacedFont] newValue in
+                    .onChange(of: self.monospacedFont) { (oldValue, newValue) in
                         guard
                             let newValue,
                             let font = NSFont(archivedData: newValue),

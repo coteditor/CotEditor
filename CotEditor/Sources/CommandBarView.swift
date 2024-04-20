@@ -96,7 +96,7 @@ struct CommandBarView: View {
                         }
                         .padding(.horizontal, 10)
                     }
-                    .onChange(of: self.selection) { newValue in
+                    .onChange(of: self.selection) { (_, newValue) in
                         proxy.scrollTo(newValue)
                     }
                 }
@@ -105,7 +105,7 @@ struct CommandBarView: View {
                 .fixedSize(horizontal: false, vertical: true)
             }
         }
-        .onChange(of: self.input) { newValue in
+        .onChange(of: self.input) { (_, newValue) in
             self.candidates = self.model.commands
                 .compactMap {
                     guard let result = $0.match(command: newValue) else { return nil }
@@ -114,7 +114,7 @@ struct CommandBarView: View {
                 .sorted(\.score)
             self.selection = self.candidates.first?.id
         }
-        .onChange(of: self.controlActiveState) { newValue in
+        .onChange(of: self.controlActiveState) { (_, newValue) in
             switch newValue {
                 case .key, .active:
                     self.keyMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in

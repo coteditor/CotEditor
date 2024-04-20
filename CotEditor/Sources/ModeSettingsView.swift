@@ -41,7 +41,7 @@ struct ModeSettingsView: View {
                 GroupBox {
                     ModeOptionsView(options: $options)
                         .disabled(!self.selection.available)
-                        .onChange(of: self.options) { newValue in
+                        .onChange(of: self.options) { (_, newValue) in
                             Task {
                                 await ModeManager.shared.save(setting: newValue, mode: self.selection)
                             }
@@ -55,12 +55,9 @@ struct ModeSettingsView: View {
                 HelpButton(anchor: "settings_mode")
             }
         }
-        .task {
-            self.options = await ModeManager.shared.setting(for: self.selection)
-        }
-        .onChange(of: self.selection) { mode in  // migrate to .onChange(of:initial:...
+        .onChange(of: self.selection, initial: true) { (_, newValue) in
             Task {
-                self.options = await ModeManager.shared.setting(for: mode)
+                self.options = await ModeManager.shared.setting(for: newValue)
             }
         }
         .scenePadding()

@@ -131,7 +131,7 @@ struct SyntaxEditView: View {
                             .focused($isNameFieldFocused)
                             .fontWeight(.medium)
                             .frame(minWidth: 80, maxWidth: 160)
-                            .onChange(of: self.name) { newValue in
+                            .onChange(of: self.name) { (_, newValue) in
                                 self.validate(name: newValue)
                             }
                     }
@@ -175,13 +175,15 @@ struct SyntaxEditView: View {
         .onAppear {
             self.name = self.originalName ?? ""
         }
-        .onChange(of: self.pane) { _ in
+        .onChange(of: self.pane) {
             self.errors = self.syntax.validate()
         }
         .alert(error: $error)
         .background {  // store last view size
             GeometryReader { geometry in
-                Color.clear.onChange(of: geometry.size) { Self.viewSize = $0 }
+                Color.clear.onChange(of: geometry.size) { (_, newValue) in
+                    Self.viewSize = newValue
+                }
             }
         }
         .frame(idealWidth: Self.viewSize.width, minHeight: 500, idealHeight: Self.viewSize.height)

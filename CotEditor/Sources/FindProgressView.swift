@@ -87,12 +87,12 @@ struct FindProgressView: View {
         .onReceive(self.timer) { _ in
             self.updateDescription()
         }
-        .onChange(of: self.progress.isCancelled) { newValue in
+        .onChange(of: self.progress.isCancelled) { (_, newValue) in
             if newValue {
                 self.parent?.dismiss(nil)
             }
         }
-        .onChange(of: self.progress.isFinished) { newValue in
+        .onChange(of: self.progress.isFinished) { (_, newValue) in
             if newValue {
                 self.updateDescription()
                 self.parent?.dismiss(nil)

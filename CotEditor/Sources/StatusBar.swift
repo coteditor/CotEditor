@@ -207,7 +207,7 @@ struct StatusBar: View {
                 } label: {
                     EmptyView()
                 }
-                .onChange(of: self.model.fileEncoding) { newValue in
+                .onChange(of: self.model.fileEncoding) { (_, newValue) in
                     self.model.document?.askChangingEncoding(to: newValue)
                 }
                 .help(String(localized: "Text Encoding", table: "Document"))
@@ -218,7 +218,7 @@ struct StatusBar: View {
                 
                 LineEndingPicker(String(localized: "Line Endings", table: "Document", comment: "menu item header"),
                                  selection: $model.lineEnding)
-                .onChange(of: self.model.lineEnding) { newValue in
+                .onChange(of: self.model.lineEnding) { (_, newValue) in
                     self.model.document?.changeLineEnding(to: newValue)
                 }
                 .help(String(localized: "Line Endings", table: "Document"))

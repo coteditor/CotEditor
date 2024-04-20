@@ -64,7 +64,7 @@ struct OpenPanelAccessory: View {
                 }
                 
                 Toggle(String(localized: "Show invisible files", table: "OpenPanelAccessory", comment: "toggle button label"), isOn: $showsHiddenFiles)
-                    .onChange(of: self.showsHiddenFiles) { newValue in
+                    .onChange(of: self.showsHiddenFiles) { (_, newValue) in
                         guard let openPanel = self.openPanel else { return }
                         
                         openPanel.showsHiddenFiles = newValue

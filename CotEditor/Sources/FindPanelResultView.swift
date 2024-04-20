@@ -121,7 +121,7 @@ struct FindPanelResultView: View {
             .copyable(self.model.matches
                 .filter(with: self.selection)
                 .map(\.attributedLineString.string))
-            .onChange(of: self.selection) { newValue in
+            .onChange(of: self.selection) { (_, newValue) in
                 // remove selection of previous data
                 if newValue.count > 1 {
                     let ids = self.model.matches.map(\.id)
@@ -133,7 +133,7 @@ struct FindPanelResultView: View {
                 guard newValue.count == 1 else { return }
                 self.selectMatch(newValue.first)
             }
-            .onChange(of: self.sortOrder) { newValue in
+            .onChange(of: self.sortOrder) { (_, newValue) in
                 self.model.matches.sort(using: newValue)
             }
             .contextMenu {

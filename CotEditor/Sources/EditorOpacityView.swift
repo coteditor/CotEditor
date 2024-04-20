@@ -40,7 +40,7 @@ struct EditorOpacityView: View {
                 .foregroundStyle(.secondary)
             
             OpacitySlider(value: $opacity)
-                .onChange(of: self.opacity) { newValue in
+                .onChange(of: self.opacity) { (_, newValue) in
                     self.window?.backgroundAlpha = newValue
                 }
                 .controlSize(.small)

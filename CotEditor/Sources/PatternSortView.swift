@@ -99,17 +99,17 @@ struct PatternSortView: View {
                         .horizontalRadioGroupLayout()
                         .labelsHidden()
                         .fixedSize()
-                        .onChange(of: self.sortKey) { _ in self.validate() }
+                        .onChange(of: self.sortKey) { self.validate() }
                         
                         switch self.sortKey {
                             case .entire:
                                 EmptyView()
                             case .column:
                                 ColumnSortPatternView(pattern: $columnSortPattern)
-                                    .onChange(of: self.columnSortPattern) { _ in self.validate() }
+                                    .onChange(of: self.columnSortPattern) { self.validate() }
                             case .regularExpression:
                                 RegularExpressionSortPatternView(pattern: $regularExpressionSortPattern, error: $error)
-                                    .onChange(of: self.regularExpressionSortPattern) { _ in self.validate() }
+                                    .onChange(of: self.regularExpressionSortPattern) { self.validate() }
                         }
                     }
                 }

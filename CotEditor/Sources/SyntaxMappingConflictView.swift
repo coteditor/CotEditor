@@ -128,7 +128,7 @@ private struct ConflictTable: View {
                     Text($0.duplicatedSyntaxes, format: .list(type: .and, width: .narrow))
                 }
             }
-            .onChange(of: self.sortOrder) { newValue in
+            .onChange(of: self.sortOrder) { (_, newValue) in
                 self.conflicts.sort(using: newValue)
             }
             .tableStyle(.bordered)

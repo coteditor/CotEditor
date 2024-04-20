@@ -118,7 +118,7 @@ struct ThemeEditorView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Theme Editor", table: "ThemeEditor"))
-        .onChange(of: self.theme) { newValue in
+        .onChange(of: self.theme) { (_, newValue) in
             if self.isMetadataPresenting {
                 // postpone notification to avoid closing the popover
                 self.needsNotify = true
@@ -126,7 +126,7 @@ struct ThemeEditorView: View {
                 self.onUpdate(newValue)
             }
         }
-        .onChange(of: self.isMetadataPresenting) { newValue in
+        .onChange(of: self.isMetadataPresenting) { (_, newValue) in
             guard !newValue, self.needsNotify else { return }
             
             self.onUpdate(self.theme)

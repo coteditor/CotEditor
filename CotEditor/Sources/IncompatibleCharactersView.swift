@@ -99,10 +99,10 @@ struct IncompatibleCharactersView: View {
                         }
                     }
                 }
-                .onChange(of: self.selection) { newValue in
+                .onChange(of: self.selection) { (_, newValue) in
                     self.model.selectItem(id: newValue)
                 }
-                .onChange(of: self.sortOrder) { newValue in
+                .onChange(of: self.sortOrder) { (_, newValue) in
                     withAnimation {
                         self.model.items.sort(using: newValue)
                     }

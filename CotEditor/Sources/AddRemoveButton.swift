@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ struct AddRemoveButton<Item: Identifiable & EmptyInitializable>: View {
                     self.selection = [item.id]
                 }
             }
-            .onChange(of: self.added) { newValue in
+            .onChange(of: self.added) { (_, newValue) in
                 self.focus?.wrappedValue = newValue
             }
             .help(String(localized: "Add new item", table: "AddRemoveButton", comment: "tooltip"))
