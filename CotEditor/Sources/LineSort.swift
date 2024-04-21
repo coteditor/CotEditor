@@ -166,6 +166,9 @@ struct CSVSortPattern: SortPattern {
         let trimmedStart = line.index(start, offsetBy: headTrim)
         let trimmedEnd = line.index(end, offsetBy: -endTrim)
         
+        // oder can be opposite when component contains only whitespace
+        guard trimmedStart <= trimmedEnd else { return nil }
+        
         return trimmedStart..<trimmedEnd
     }
     
