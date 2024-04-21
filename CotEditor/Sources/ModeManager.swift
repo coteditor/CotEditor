@@ -60,7 +60,7 @@ actor ModeManager {
         
         let kind = switch mode {
             case .kind(let kind): kind
-            case .syntax(let name): SyntaxManager.shared.setting(name: name)?.kind ?? .general
+            case .syntax(let name): (try? SyntaxManager.shared.setting(name: name).kind) ?? .general
         }
         
         return self.loadSetting(for: .kind(kind)) ?? kind.defaultOptions
@@ -70,9 +70,10 @@ actor ModeManager {
     /// Add a syntax-specific setting to the user defaults.
     ///
     /// - Parameter syntaxName: The syntax name for the new setting to add.
-    func addSetting(for syntaxName: String) {
+    /// - Throws: `SettingFileError`
+    func addSetting(for syntaxName: String) throws {
         
-        guard let syntax = SyntaxManager.shared.setting(name: syntaxName) else { return }
+        let syntax = try SyntaxManager.shared.setting(name: syntaxName)
         
         self.save(setting: syntax.kind.defaultOptions, mode: .syntax(syntaxName))
     }

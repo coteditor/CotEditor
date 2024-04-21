@@ -943,7 +943,13 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         assert(Thread.isMainThread)
         
-        guard let theme = ThemeManager.shared.setting(name: name) else { return }
+        let theme: Theme
+        do {
+            theme = try ThemeManager.shared.setting(name: name)
+        } catch {
+            self.presentError(error)
+            return
+        }
         
         for textView in self.editorViewControllers.compactMap(\.textView) {
             textView.theme = theme

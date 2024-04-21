@@ -6,6 +6,7 @@
 ### Improvements
 
 - Add context menus for font size change to the tables in the outline inspector and find the result view.
+- Improve error message when failed loading setting files.
 
 
 ### Fixes

@@ -288,7 +288,7 @@ final class PrintTextView: NSTextView, Themable {
         
         // create theme
         let themeName = printInfo[.theme] ?? ThemeName.blackAndWhite
-        let theme = ThemeManager.shared.setting(name: themeName)  // nil for Black and White
+        let theme = try? ThemeManager.shared.setting(name: themeName)  // nil for Black and White
         
         guard self.theme?.name != theme?.name else { return }
         

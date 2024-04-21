@@ -545,10 +545,15 @@ extension MultipleReplaceListViewController: NSTableViewDelegate {
     /// Invoked when the selection of setting table did change.
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard
-            let settingName = self.selectedSettingName,
-            let setting = ReplacementManager.shared.setting(name: settingName)
-        else { return }
+        guard let settingName = self.selectedSettingName else { return }
+        
+        let setting: MultipleReplace
+        do {
+            setting = try ReplacementManager.shared.setting(name: settingName)
+        } catch {
+            self.presentError(error)
+            return
+        }
         
         self.detailViewController?.change(setting: setting)
         UserDefaults.standard[.selectedMultipleReplaceSettingName] = settingName

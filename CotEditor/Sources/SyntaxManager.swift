@@ -194,25 +194,36 @@ final class SyntaxManager: SettingFileManaging {
     
     // MARK: Setting File Managing
     
-    /// Returns the setting instance corresponding to the given setting name.
-    func setting(name: SettingName) -> Setting? {
+    /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
+    ///
+    /// - Parameter name: The setting name.
+    /// - Returns: A Setting instance.
+    /// - Throws: `SettingFileError`
+    func setting(name: SettingName) throws -> Setting {
         
         if name == SyntaxName.none {
             return Syntax.none
         }
         
-        guard let setting: Setting = {
+        let setting: Setting = try {
             if let setting = self.cachedSettings[name] {
                 return setting
             }
             
-            guard let url = self.urlForUsedSetting(name: name) else { return nil }
+            guard let url = self.urlForUsedSetting(name: name) else {
+                throw SettingFileError(.noSourceFile, name: name)
+            }
             
-            let setting = try? self.loadSetting(at: url)
+            let setting: Setting
+            do {
+                setting = try self.loadSetting(at: url)
+            } catch {
+                throw SettingFileError(.loadFailed, name: name, underlyingError: error as NSError)
+            }
             self.$cachedSettings.mutate { $0[name] = setting }
             
             return setting
-        }() else { return nil }
+        }()
         
         // add to recent syntaxes list
         let maximumRecentSyntaxCount = max(0, UserDefaults.standard[.maximumRecentSyntaxCount])

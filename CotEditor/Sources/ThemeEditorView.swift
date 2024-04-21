@@ -249,7 +249,7 @@ private extension Theme.SystemDefaultStyle {
 
 @available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 360, height: 280)) {
-    ThemeEditorView(theme: ThemeManager.shared.setting(name: "Anura")!, isBundled: false) { _ in }
+    ThemeEditorView(theme: try! ThemeManager.shared.setting(name: "Anura"), isBundled: false) { _ in }
 }
 
 #Preview("Metadata (editable)") {

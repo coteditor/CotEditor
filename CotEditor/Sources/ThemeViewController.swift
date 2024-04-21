@@ -75,7 +75,7 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
                 .receive(on: RunLoop.main)
                 .filter { [weak self] in $0 == self?.selectedSettingName }
                 .sink { [weak self] name in
-                    guard let theme = ThemeManager.shared.setting(name: name) else { return }
+                    guard let theme = try? ThemeManager.shared.setting(name: name) else { return }
                     
                     self?.setTheme(theme, name: name)
                 },
@@ -513,9 +513,13 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
     /// - Parameter name: The theme name.
     private func setTheme(name: String) {
         
-        guard
-            let theme = ThemeManager.shared.setting(name: name)
-        else { return assertionFailure() }
+        let theme: Theme
+        do {
+            theme = try ThemeManager.shared.setting(name: name)
+        } catch {
+            self.presentError(error)
+            return
+        }
         
         // update default theme setting
         let isDarkTheme = ThemeManager.shared.isDark(name: name)

@@ -99,8 +99,8 @@ protocol SettingFileManaging: AnyObject {
     var cachedSettings: [String: Setting] { get set }
     
     
-    /// Returns setting instance corresponding to the given setting name.
-    func setting(name: String) -> Setting?
+    /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
+    func setting(name: String) throws -> Setting
     
     /// Loads setting from the file at the given URL.
     func loadSetting(at fileURL: URL) throws -> Setting
@@ -115,16 +115,28 @@ extension SettingFileManaging {
     
     // MARK: Default implementation
     
-    /// Returns setting instance corresponding to the given setting name.
-    func setting(name: String) -> Setting? {
+    /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
+    ///
+    /// - Parameter name: The setting name.
+    /// - Returns: A Setting instance.
+    /// - Throws: `SettingFileError`
+    func setting(name: String) throws -> Setting {
         
         if let setting = self.cachedSettings[name] {
             return setting
         }
         
-        guard let url = self.urlForUsedSetting(name: name) else { return nil }
+        guard let url = self.urlForUsedSetting(name: name) else {
+            throw SettingFileError(.noSourceFile, name: name)
+        }
         
-        let setting = try? self.loadSetting(at: url)
+        let setting: Setting
+        
+        do {
+            setting = try self.loadSetting(at: url)
+        } catch {
+            throw SettingFileError(.loadFailed, name: name, underlyingError: error as NSError)
+        }
         self.cachedSettings[name] = setting
         
         return setting
@@ -496,6 +508,7 @@ struct SettingFileError: LocalizedError {
         
         case deletionFailed
         case importFailed
+        case loadFailed
         case noSourceFile
     }
     
@@ -521,6 +534,9 @@ struct SettingFileError: LocalizedError {
             case .importFailed:
                 String(localized: "SettingFileError.importFailed.description",
                        defaultValue: "“\(self.name)” couldn’t be imported.")
+            case .loadFailed:
+                String(localized: "SettingFileError.loadFailed.description",
+                       defaultValue: "“\(self.name)” couldn’t be loaded.")
             case .noSourceFile:
                 String(localized: "SettingFileError.noSourceFile.description",
                        defaultValue: "No original file for “\(self.name)” was found.")
@@ -530,7 +546,13 @@ struct SettingFileError: LocalizedError {
     
     var recoverySuggestion: String? {
         
-        self.underlyingError?.localizedRecoverySuggestion
+        switch (self.code, self.underlyingError) {
+            case (.loadFailed, let error as DecodingError):
+                String(localized: "SettingFileError.loadFailed.recoverySuggestion.decodingError",
+                       defaultValue: "Decoding Error: \(error.localizedDescription)")
+            default:
+                self.underlyingError?.localizedRecoverySuggestion
+        }
     }
 }
 

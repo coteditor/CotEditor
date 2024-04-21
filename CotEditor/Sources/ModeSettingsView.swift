@@ -74,6 +74,7 @@ private struct ModeListView: View {
     @Binding var selection: Mode
     
     @State private var syntaxModes: [Mode] = []
+    @State private var error: (any Error)?
     
     
     var body: some View {
@@ -119,7 +120,11 @@ private struct ModeListView: View {
                         ForEach(SyntaxManager.shared.settingNames, id: \.self) { syntaxName in
                             Button(syntaxName) {
                                 Task {
-                                    await ModeManager.shared.addSetting(for: syntaxName)
+                                    do {
+                                        try await ModeManager.shared.addSetting(for: syntaxName)
+                                    } catch {
+                                        self.error = error
+                                    }
                                     let syntaxModes = await ModeManager.shared.syntaxModes
                                     withAnimation {
                                         self.syntaxModes = syntaxModes
@@ -135,6 +140,7 @@ private struct ModeListView: View {
                 .padding(4)
                 .menuIndicator(.hidden)
                 .accessibilityLabel(String(localized: "Add", table: "ModeSettings"))
+                .alert(error: $error)
                 
                 Button {
                     Task {

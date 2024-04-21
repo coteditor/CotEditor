@@ -524,7 +524,17 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     /// - Parameter state: The setting state to edit, or `nil` for a new setting.
     private func presentSyntaxEditor(state: SettingState? = nil) {
         
-        let syntax = state.flatMap { SyntaxManager.shared.setting(name: $0.name) }
+        let syntax: Syntax?
+        if let state {
+            do {
+                syntax = try SyntaxManager.shared.setting(name: state.name)
+            } catch {
+                self.presentError(error)
+                return
+            }
+        } else {
+            syntax = nil
+        }
         let isBundled = state?.isBundled ?? false
         
         let view = SyntaxEditView(syntax: syntax, originalName: state?.name, isBundled: isBundled) { (syntax, name) in

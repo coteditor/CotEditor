@@ -99,7 +99,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         self.lineEnding = lineEnding
         
         var syntaxName = UserDefaults.standard[.syntax]
-        let syntax = SyntaxManager.shared.setting(name: syntaxName)
+        let syntax = try? SyntaxManager.shared.setting(name: syntaxName)
         syntaxName = (syntax == nil) ? SyntaxName.none : syntaxName
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage, syntax: syntax ?? Syntax.none, name: syntaxName)
         
@@ -944,10 +944,18 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     ///   - isInitial: Whether the setting is initial.
     func setSyntax(name: String, isInitial: Bool = false) {
         
-        guard
-            let syntax = SyntaxManager.shared.setting(name: name),
-            syntax != self.syntaxParser.syntax
-        else { return }
+        let syntax: Syntax
+        do {
+            syntax = try SyntaxManager.shared.setting(name: name)
+        } catch {
+            // present error dialog if failed
+            Task { @MainActor [error] in
+                self.presentErrorAsSheet(error)
+            }
+            return
+        }
+        
+        guard syntax != self.syntaxParser.syntax else { return }
         
         // update
         self.syntaxParser.update(syntax: syntax, name: name)
