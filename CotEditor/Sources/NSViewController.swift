@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,5 +34,16 @@ extension NSViewController {
     final var isViewShown: Bool {
         
         self.isViewLoaded && !self.view.isHiddenOrHasHiddenAncestor
+    }
+    
+    
+    /// Presents an error alert as a window modal sheet.
+    final func presentErrorAsSheet(_ error: any Error) {
+        
+        if self.isViewLoaded, let window = self.view.window {
+            self.presentError(error, modalFor: window, delegate: nil, didPresent: nil, contextInfo: nil)
+        } else {
+            self.presentError(error)
+        }
     }
 }

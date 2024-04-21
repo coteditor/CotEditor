@@ -159,8 +159,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         do {
             settingName = try ReplacementManager.shared.createUntitledSetting()
         } catch {
-            self.presentError(error)
-            return
+            return self.presentErrorAsSheet(error)
         }
         
         self.updateSettingList(bySelecting: settingName)
@@ -176,8 +175,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         do {
             settingName = try ReplacementManager.shared.duplicateSetting(name: baseName)
         } catch {
-            self.presentError(error)
-            return
+            return self.presentErrorAsSheet(error)
         }
         
         self.updateSettingList(bySelecting: settingName)
@@ -224,7 +222,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
             do {
                 try ReplacementManager.shared.exportSetting(name: settingName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
             } catch {
-                self.presentError(error)
+                self.presentErrorAsSheet(error)
             }
         }
     }
@@ -379,7 +377,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
             try ReplacementManager.shared.importSetting(fileURL: fileURL)
         } catch {
             // ask for overwriting if a setting with the same name already exists
-            self.presentError(error)
+            self.presentErrorAsSheet(error)
         }
     }
     
@@ -470,7 +468,7 @@ extension MultipleReplaceListViewController: NSTableViewDataSource {
             for receiver in receivers {
                 receiver.receivePromisedFiles(atDestination: dropDirectoryURL, operationQueue: .main) { [weak self] (fileURL, error) in
                     if let error {
-                        self?.presentError(error)
+                        self?.presentErrorAsSheet(error)
                         return
                     }
                     self?.importSetting(fileURL: fileURL)
@@ -551,8 +549,7 @@ extension MultipleReplaceListViewController: NSTableViewDelegate {
         do {
             setting = try ReplacementManager.shared.setting(name: settingName)
         } catch {
-            self.presentError(error)
-            return
+            return self.presentErrorAsSheet(error)
         }
         
         self.detailViewController?.change(setting: setting)

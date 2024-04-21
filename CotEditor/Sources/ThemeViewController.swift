@@ -213,7 +213,7 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
             for receiver in receivers {
                 receiver.receivePromisedFiles(atDestination: dropDirectoryURL, operationQueue: .main) { [weak self] (fileURL, error) in
                     if let error {
-                        self?.presentError(error)
+                        self?.presentErrorAsSheet(error)
                         return
                     }
                     self?.importTheme(fileURL: fileURL)
@@ -335,8 +335,7 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
         do {
             settingName = try ThemeManager.shared.createUntitledSetting()
         } catch {
-            self.presentError(error)
-            return
+            return self.presentErrorAsSheet(error)
         }
         
         self.updateList(bySelecting: settingName)
@@ -351,8 +350,7 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
         do {
             settingName = try ThemeManager.shared.duplicateSetting(name: baseName)
         } catch {
-            self.presentError(error)
-            return
+            return self.presentErrorAsSheet(error)
         }
         
         self.updateList(bySelecting: settingName)
@@ -406,7 +404,7 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
             do {
                 try ThemeManager.shared.exportSetting(name: settingName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
             } catch {
-                self.presentError(error)
+                self.presentErrorAsSheet(error)
             }
         }
     }
@@ -517,8 +515,7 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
         do {
             theme = try ThemeManager.shared.setting(name: name)
         } catch {
-            self.presentError(error)
-            return
+            return self.presentErrorAsSheet(error)
         }
         
         // update default theme setting
@@ -595,7 +592,7 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
         do {
             try ThemeManager.shared.restoreSetting(name: name)
         } catch {
-            self.presentError(error)
+            self.presentErrorAsSheet(error)
         }
     }
     
@@ -609,7 +606,7 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
             try ThemeManager.shared.importSetting(fileURL: fileURL)
         } catch {
             // ask for overwriting if a setting with the same name already exists
-            self.presentError(error)
+            self.presentErrorAsSheet(error)
         }
     }
     

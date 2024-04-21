@@ -201,7 +201,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
             for receiver in receivers {
                 receiver.receivePromisedFiles(atDestination: dropDirectoryURL, operationQueue: .main) { [weak self] (fileURL, error) in
                     if let error {
-                        self?.presentError(error)
+                        self?.presentErrorAsSheet(error)
                         return
                     }
                     self?.importSetting(fileURL: fileURL)
@@ -289,8 +289,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
         do {
             settingName = try SyntaxManager.shared.duplicateSetting(name: baseName)
         } catch {
-            self.presentError(error)
-            return
+            return self.presentErrorAsSheet(error)
         }
         
         self.updateList(bySelecting: settingName)
@@ -341,7 +340,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
             do {
                 try SyntaxManager.shared.exportSetting(name: settingName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
             } catch {
-                self.presentError(error)
+                self.presentErrorAsSheet(error)
             }
         }
     }
@@ -500,7 +499,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
         do {
             try SyntaxManager.shared.restoreSetting(name: name)
         } catch {
-            self.presentError(error)
+            self.presentErrorAsSheet(error)
         }
     }
     
@@ -514,7 +513,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
             try SyntaxManager.shared.importSetting(fileURL: fileURL)
         } catch {
             // ask for overwriting if a setting with the same name already exists
-            self.presentError(error)
+            self.presentErrorAsSheet(error)
         }
     }
     
@@ -529,8 +528,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
             do {
                 syntax = try SyntaxManager.shared.setting(name: state.name)
             } catch {
-                self.presentError(error)
-                return
+                return self.presentErrorAsSheet(error)
             }
         } else {
             syntax = nil

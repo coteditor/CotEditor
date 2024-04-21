@@ -947,8 +947,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         do {
             theme = try ThemeManager.shared.setting(name: name)
         } catch {
-            self.presentError(error)
-            return
+            return self.presentErrorAsSheet(error)
         }
         
         for textView in self.editorViewControllers.compactMap(\.textView) {
