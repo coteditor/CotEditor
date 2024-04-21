@@ -29,12 +29,13 @@ import AppKit
 extension NSValue: @unchecked Sendable { }
 
 
-final class DocumentAnalyzer {
+@MainActor final class DocumentAnalyzer {
     
     // MARK: Public Properties
     
     @Published private(set) var result: EditorCounter.Result = .init()
     
+    weak var document: Document?  // weak to avoid cycle retain
     var updatesAll = false  { didSet { Task { await self.updateTypes() } } }
     var statusBarRequirements: EditorCounter.Types = []  { didSet { Task { await self.updateTypes() } } }
     
@@ -42,20 +43,9 @@ final class DocumentAnalyzer {
     // MARK: Private Properties
     
     private let counter = EditorCounter()
-    private weak var document: Document?  // weak to avoid cycle retain
     
     private var contentTask: Task<Void, any Error>?
     private var selectionTask: Task<Void, any Error>?
-    
-    
-    
-    // MARK: Lifecycle
-    
-    required init(document: Document) {
-        
-        self.document = document
-    }
-    
     
     
     // MARK: Public Methods
@@ -77,10 +67,9 @@ final class DocumentAnalyzer {
             
             try await Task.sleep(for: .milliseconds(20), tolerance: .milliseconds(20))  // debounce
             
-            guard let string = await self.document?.textView?.string.immutable else { return }
+            guard let string = self.document?.textView?.string.immutable else { return }
             
-            try await self.counter.count(string: string)
-            self.result = await self.counter.result
+            self.result = try await self.counter.count(string: string)
         }
     }
     
@@ -94,12 +83,12 @@ final class DocumentAnalyzer {
             
             try await Task.sleep(for: .milliseconds(200), tolerance: .milliseconds(40))  // debounce
             
-            guard let (string, selectedRanges) = await self.document?.textView?.stringAndSelection else { return }
+            guard let textView = self.document?.textView else { return }
             
-            try Task.checkCancellation()
+            let string = textView.string.immutable
+            let selectedRanges = textView.selectedRanges.compactMap { Range($0.rangeValue, in: string) }
             
-            try await self.counter.move(selectedRanges: selectedRanges, string: string)
-            self.result = await self.counter.result
+            self.result = try await self.counter.move(selectedRanges: selectedRanges, string: string)
         }
     }
     
@@ -118,18 +107,5 @@ final class DocumentAnalyzer {
             self.invalidateContent()
         }
         self.invalidateSelection()
-    }
-}
-
-
-private extension NSTextView {
-    
-    /// Returns the current string and selected ranges safely.
-    var stringAndSelection: (string: String, ranges: [Range<String.Index>]) {
-        
-        let string = self.string.immutable
-        let selectedRanges = self.selectedRanges.compactMap { Range($0.rangeValue, in: string) }
-        
-        return (string, selectedRanges)
     }
 }

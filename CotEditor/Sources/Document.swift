@@ -60,7 +60,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     @Published private(set) var fileAttributes: DocumentFile.Attributes?
     
     let lineEndingScanner: LineEndingScanner
-    private(set) lazy var analyzer = DocumentAnalyzer(document: self)
+    let analyzer = DocumentAnalyzer()
     private(set) lazy var selection = TextSelection(document: self)
     
     let didChangeSyntax = PassthroughSubject<String, Never>()
@@ -113,6 +113,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         super.init()
         
         self.lineEndingScanner.observe(lineEnding: self.$lineEnding)
+        self.analyzer.document = self
         
         // auto-link URLs in the content
         if UserDefaults.standard[.autoLinkDetection] {
@@ -132,7 +133,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     deinit {
         self.syntaxParser.cancel()
-        self.analyzer.cancel()
         self.urlDetector.cancel()
     }
     
@@ -577,9 +577,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     override func close() {
         
-        self.textStorageObserver?.cancel()
-        
         super.close()
+        
+        self.textStorageObserver?.cancel()
+        self.analyzer.cancel()
     }
     
     

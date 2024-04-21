@@ -84,9 +84,9 @@ actor EditorCounter {
     ///
     /// - Parameters:
     ///   - string: The string to count.
-    func count(string: String) throws {
+    @discardableResult func count(string: String) throws -> Result {
         
-        guard !self.types.isDisjoint(with: .count) else { return }
+        guard !self.types.isDisjoint(with: .count) else { return self.result }
         
         if self.types.contains(.characters) {
             try Task.checkCancellation()
@@ -102,6 +102,8 @@ actor EditorCounter {
             try Task.checkCancellation()
             self.result.words.entire = string.numberOfWords
         }
+        
+        return self.result
     }
     
     
@@ -110,12 +112,12 @@ actor EditorCounter {
     /// - Parameters:
     ///   - selectedRanges: The editor's selected ranges.
     ///   - string: The string to count.
-    func move(selectedRanges: [Range<String.Index>], string: String) throws {
+    @discardableResult func move(selectedRanges: [Range<String.Index>], string: String) throws -> Result {
         
         assert(!selectedRanges.isEmpty)
         assert(selectedRanges.map(\.upperBound).allSatisfy({ $0 <= string.endIndex }))
         
-        guard !self.types.isEmpty else { return }
+        guard !self.types.isEmpty else { return self.result }
         
         let selectedStrings = selectedRanges.map { string[$0] }
         let location = selectedRanges.first?.lowerBound ?? string.startIndex
@@ -155,6 +157,8 @@ actor EditorCounter {
                 ? selectedStrings.first?.first
                 : nil
         }
+        
+        return self.result
     }
 }
 
