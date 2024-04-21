@@ -136,17 +136,6 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Action Messages
     
-    /// Toggles visibility of the inspector.
-    @IBAction override func toggleInspector(_ sender: Any?) {
-        
-        if #available(macOS 14, *) {
-            super.toggleInspector(sender)
-        } else {
-            self.inspectorViewItem?.animator().isCollapsed.toggle()
-        }
-    }
-    
-    
     /// Toggles visibility of the document inspector pane.
     @IBAction func getInfo(_ sender: Any?) {
         

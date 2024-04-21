@@ -742,7 +742,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         let opacityView = EditorOpacityView(window: self.view.window as? DocumentWindow)
         let viewController = NSHostingController(rootView: opacityView)
         
-        if #available(macOS 14, *), let toolbarItem = sender as? NSToolbarItem {
+        if let toolbarItem = sender as? NSToolbarItem {
             let popover = NSPopover()
             popover.behavior = .semitransient
             popover.contentViewController = viewController

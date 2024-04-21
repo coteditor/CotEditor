@@ -100,7 +100,7 @@ struct CommandBarView: View {
                         proxy.scrollTo(newValue)
                     }
                 }
-                .compatibleContentMargins(.vertical, 10)
+                .contentMargins(.vertical, 10, for: .scrollContent)
                 .frame(maxHeight: 300)
                 .fixedSize(horizontal: false, vertical: true)
             }
@@ -303,17 +303,6 @@ private extension ActionCommand.Kind {
 
 
 private extension View {
-    
-    @available(macOS, deprecated: 14)
-    func compatibleContentMargins(_ edges: Edge.Set = .all, _ length: CGFloat?) -> some View {
-        
-        if #available(macOS 14, *) {
-            return self.contentMargins(edges, length, for: .scrollContent)
-        } else {
-            return self.padding(edges, length)
-        }
-    }
-    
     
     /// Performs actions when clicking the mouse on the view.
     ///

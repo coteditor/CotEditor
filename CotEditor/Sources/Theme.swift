@@ -160,11 +160,7 @@ struct Theme: Equatable {
     /// Insertion point color to use.
     var effectiveInsertionPointColor: NSColor {
         
-        if #available(macOS 14, *) {
-            self.insertionPoint.usesSystemSetting ? .textInsertionPointColor : self.insertionPoint.color
-        } else {
-            self.insertionPoint.color
-        }
+        self.insertionPoint.usesSystemSetting ? .textInsertionPointColor : self.insertionPoint.color
     }
     
     

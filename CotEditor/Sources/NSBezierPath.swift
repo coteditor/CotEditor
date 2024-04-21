@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,48 +24,6 @@
 //
 
 import AppKit.NSBezierPath
-
-public extension NSBezierPath {
-    
-    /// A back deployed version of the NSBezierPath creation from a CGPath.
-    ///
-    /// - Parameter cgPath: A CGPath to convert to NSBezierPath.
-    @backDeployed(before: macOS 14)
-    convenience init(cgPath: CGPath) {
-        
-        self.init()
-        
-        cgPath.applyWithBlock { pointer in
-            let element = pointer.pointee
-            
-            switch element.type {
-                case .moveToPoint:
-                    self.move(to: element.points[0])
-                    
-                case .addLineToPoint:
-                    self.line(to: element.points[0])
-                    
-                case .addQuadCurveToPoint:
-                    let controlPoint1 = NSPoint(x: self.currentPoint.x + (2 / 3 * (element.points[0].x - self.currentPoint.x)),
-                                                y: self.currentPoint.y + (2 / 3 * (element.points[0].y - self.currentPoint.y)))
-                    let controlPoint2 = NSPoint(x: element.points[1].x + (2 / 3 * (element.points[0].x - element.points[1].x)),
-                                                y: element.points[1].y + (2 / 3 * (element.points[0].y - element.points[1].y)))
-                    self.curve(to: element.points[1], controlPoint1: controlPoint1, controlPoint2: controlPoint2)
-                    
-                case .addCurveToPoint:
-                    self.curve(to: element.points[2], controlPoint1: element.points[0], controlPoint2: element.points[1])
-                    
-                case .closeSubpath:
-                    self.close()
-                    
-                @unknown default:
-                    assertionFailure()
-            }
-        }
-    }
-}
-
-
 
 // MARK: Rounded Corner
 

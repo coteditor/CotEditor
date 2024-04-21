@@ -61,7 +61,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     override func loadView() {
         
-        let textView = if #available(macOS 14, *) { EditorTextView() } else { LegacyEditorTextView() }
+        let textView = EditorTextView()
         textView.delegate = self
         
         let scrollView = BidiScrollView()

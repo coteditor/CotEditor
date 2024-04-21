@@ -247,7 +247,6 @@ private extension NSTextStorage {
 
 // MARK: - Preview
 
-@available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
     let model = IncompatibleCharactersView.Model()
     model.items = [
@@ -259,7 +258,6 @@ private extension NSTextStorage {
         .padding(12)
 }
 
-@available(macOS 14, *)
 #Preview("Empty", traits: .fixedLayout(width: 240, height: 300)) {
     IncompatibleCharactersView(model: .init())
         .padding(12)

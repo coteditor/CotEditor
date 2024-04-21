@@ -336,14 +336,6 @@ private extension NSToolbarItem.Identifier {
 }
 
 
-public extension NSToolbarItem.Identifier {
-    
-    /// The back-deployed version of the `.inspectorTrackingSeparator` to use the same identifier to the original one for the autosaving compatibility.
-    @backDeployed(before: macOS 14)
-    static var inspectorTrackingSeparator: Self  { Self("NSToolbarInspectorTrackingSeparatorItemIdentifier") }
-}
-
-
 extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarImmovableItemIdentifiers(_ toolbar: NSToolbar) -> Set<NSToolbarItem.Identifier> {
@@ -426,11 +418,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.toolTip = String(localized: "Toolbar.inspector.tooltip",
                                       defaultValue: "Show document information", table: "Document")
                 item.image = NSImage(systemSymbolName: "info.circle", accessibilityDescription: item.label)
-                item.action = if #available(macOS 14, *) {
-                    #selector(NSSplitViewController.toggleInspector)
-                } else {
-                    #selector(WindowContentViewController.toggleInspector)
-                }
+                item.action = #selector(NSSplitViewController.toggleInspector)
                 item.visibilityPriority = .high
                 return item
                 
@@ -640,21 +628,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .opacity:
-                guard #available(macOS 14, *) else {
-                    let menuItem = NSMenuItem()
-                    menuItem.view = OpacityHostingView(window: self.window as? DocumentWindow)
-                    let item = MenuToolbarItem(itemIdentifier: itemIdentifier)
-                    item.label = String(localized: "Toolbar.opacity.label",
-                                        defaultValue: "Opacity", table: "Document")
-                    item.toolTip = String(localized: "Toolbar.opacity.tooltip",
-                                          defaultValue: "Change editor’s opacity", table: "Document")
-                    item.image = NSImage(resource: .uiwindowOpacity)
-                    item.target = self
-                    item.showsIndicator = false
-                    item.menu = NSMenu()
-                    item.menu.items = [menuItem]
-                    return item
-                }
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = String(localized: "Toolbar.opacity.label",
@@ -742,11 +715,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                                       defaultValue: "Share document file", table: "Document",
                                       comment: "(label for the Share toolbar item is automatically set)")
                 item.delegate = self
-                return item
-                
-            case .inspectorTrackingSeparator where ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 14:
-                let splitView = (self.contentViewController as! NSSplitViewController).splitView
-                let item = NSTrackingSeparatorToolbarItem(identifier: itemIdentifier, splitView: splitView, dividerIndex: 0)
                 return item
                 
             default:

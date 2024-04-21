@@ -366,7 +366,6 @@ private extension DocumentInspectorView.Model {
 
 // MARK: - Preview
 
-@available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 240, height: 520)) {
     let model = DocumentInspectorView.Model()
     model.attributes = .init(
@@ -387,7 +386,6 @@ private extension DocumentInspectorView.Model {
     return DocumentInspectorView(model: model)
 }
 
-@available(macOS 14, *)
 #Preview("Empty", traits: .fixedLayout(width: 240, height: 520)) {
     DocumentInspectorView(model: .init())
 }

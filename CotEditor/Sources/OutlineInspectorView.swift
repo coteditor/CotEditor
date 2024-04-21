@@ -191,11 +191,9 @@ private struct OutlineRowView: View {
     var body: some View {
         
         if self.item.isSeparator {
-            if #available(macOS 14, *) {
-                Divider().selectionDisabled()
-            } else {
-                Divider()
-            }
+            Divider()
+                .selectionDisabled()
+            
         } else {
             Text(self.item.attributedTitle(.init()
                 .backgroundColor(.findHighlightColor)
@@ -279,7 +277,6 @@ private extension OutlineInspectorView.Model {
 
 // MARK: - Preview
 
-@available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
     let model = OutlineInspectorView.Model()
     model.items = [

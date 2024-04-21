@@ -286,7 +286,6 @@ private extension CFStringEncoding {
 
 // MARK: - Preview
 
-@available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 400, height: 400)) {
     EncodingListView()
 }

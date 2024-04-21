@@ -201,13 +201,6 @@ private enum BundleIdentifier {
     
     // MARK: Application Delegate
     
-    @available(macOS, deprecated: 14, message: "The secure restoration became automatically enabled on macOS 14 and later.")
-    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
-        
-        true
-    }
-    
-    
     #if SPARKLE
     func applicationWillFinishLaunching(_ notification: Notification) {
         
@@ -316,11 +309,7 @@ private enum BundleIdentifier {
     /// Activates self and perform New menu action (from Dock menu).
     @IBAction func newDocumentActivatingApplication(_ sender: Any?) {
         
-        if #available(macOS 14, *) {
-            NSApp.activate()
-        } else {
-            NSApp.activate(ignoringOtherApps: true)
-        }
+        NSApp.activate()
         NSDocumentController.shared.newDocument(sender)
     }
     

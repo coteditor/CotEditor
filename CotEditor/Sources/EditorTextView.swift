@@ -83,21 +83,13 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         didSet {
             self.needsUpdateInsertionIndicators = true
-            self.updateInsertionPointTimer()
         }
     }
     var selectionOrigins: [Int] = []
     var insertionPointTimer: (any DispatchSourceTimer)?
     var insertionPointOn = false
+    var insertionIndicators: [NSTextInsertionIndicator] = []
     private(set) var isPerformingRectangularSelection = false
-    
-    @available(macOS 14, *)
-    var insertionIndicators: [NSTextInsertionIndicator] {
-        
-        get { self._insertionIndicators.compactMap { $0 as? NSTextInsertionIndicator } }
-        set { self._insertionIndicators = newValue }
-    }
-    private var _insertionIndicators: [NSView] = []
     
     // for Scaling extension
     var initialMagnificationScale: CGFloat = 0
@@ -351,7 +343,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
             }
         
         // observe key window state for insertion points drawing
-        if #available(macOS 14, *), let window {
+        if let window {
             self.keyStateObservers = [
                 NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: window, queue: .main) { [weak self] _ in
                     self?.invalidateInsertionIndicatorDisplayMode()
@@ -408,7 +400,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.mouseDownPoint = self.convert(event.locationInWindow, from: nil)
         self.isPerformingRectangularSelection = event.modifierFlags.contains(.option)
         self.needsUpdateInsertionIndicators = true  // to draw dummy indicator for proper one while selecting
-        self.updateInsertionPointTimer()
         
         let selectedRange = self.selectedRange.isEmpty ? self.selectedRange : nil
         
@@ -440,7 +431,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         }
         
         self.isPerformingRectangularSelection = false
-        self.updateInsertionPointTimer()
     }
     
     
@@ -787,8 +777,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
             self.selectionOrigins = [self.selectedRange.location]
         }
         
-        self.updateInsertionPointTimer()
-        
         self.needsUpdateLineHighlight = true
         
         // invalidate current instances highlight
@@ -943,7 +931,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         super.viewWillDraw()
         
-        if #available(macOS 14, *), self.needsUpdateInsertionIndicators {
+        if self.needsUpdateInsertionIndicators {
             self.updateInsertionIndicators()
             self.needsUpdateInsertionIndicators = false
         }
@@ -991,16 +979,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
                 self.centerScanRect(guideRect).intersection(dirtyRect).fill()
                 NSGraphicsContext.restoreGraphicsState()
             }
-        }
-        
-        // draw zero-width insertion points while rectangular selection
-        // -> Because the insertion point blink timer stops while dragging. (macOS 10.14)
-        if self.needsDrawInsertionPoints, ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 14 {
-            self.insertionRanges
-                .filter(\.isEmpty)
-                .flatMap { self.insertionPointRects(at: $0.location) }
-                .filter { $0.intersects(dirtyRect) }
-                .forEach { super.drawInsertionPoint(in: $0, color: self.insertionPointColor, turnedOn: self.insertionPointOn) }
         }
     }
     
@@ -1360,10 +1338,8 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.backgroundColor = theme.background.color
         self.lineHighlightColor = theme.lineHighlightColor(forOpaqueBackground: self.isOpaque)
         self.insertionPointColor = theme.effectiveInsertionPointColor
-        if #available(macOS 14, *) {
-            for indicator in self.insertionIndicators {
-                indicator.color = self.insertionPointColor
-            }
+        for indicator in self.insertionIndicators {
+            indicator.color = self.insertionPointColor
         }
         self.selectedTextAttributes[.backgroundColor] = theme.effectiveSelectionColor
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color

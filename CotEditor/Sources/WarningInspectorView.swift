@@ -115,7 +115,6 @@ struct WarningInspectorView: View {
 
 // MARK: - Preview
 
-@available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
     WarningInspectorView(model: .init())
 }

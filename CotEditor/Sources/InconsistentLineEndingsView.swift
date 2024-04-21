@@ -141,7 +141,6 @@ private extension InconsistentLineEndingsView.Model {
 
 // MARK: - Preview
 
-@available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
     let model = InconsistentLineEndingsView.Model()
     model.items = [
@@ -152,7 +151,6 @@ private extension InconsistentLineEndingsView.Model {
         .padding(12)
 }
 
-@available(macOS 14, *)
 #Preview("Empty", traits: .fixedLayout(width: 240, height: 300)) {
     InconsistentLineEndingsView(model: .init())
         .padding(12)

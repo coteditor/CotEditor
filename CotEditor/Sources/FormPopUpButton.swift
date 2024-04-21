@@ -132,7 +132,6 @@ final class FormPopUpButtonCell: NSPopUpButtonCell {
 
 // MARK: - Preview
 
-@available(macOS 14, *)
 #Preview("Enabled") {
     let button = FormPopUpButton()
     button.addItem(withTitle: "Inu dog")
@@ -140,7 +139,6 @@ final class FormPopUpButtonCell: NSPopUpButtonCell {
     return button
 }
 
-@available(macOS 14, *)
 #Preview("Disabled") {
     let button = FormPopUpButton()
     button.addItem(withTitle: "Inu dog")

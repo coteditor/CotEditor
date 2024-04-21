@@ -47,15 +47,10 @@ struct ThemeEditorView: View {
                                 selection: $theme.text.binding, supportsOpacity: false)
                     ColorPicker(String(localized: "Invisibles:", table: "ThemeEditor"),
                                 selection: $theme.invisibles.binding)
-                    if #available(macOS 14, *) {
-                        SystemColorPicker(String(localized: "Cursor:", table: "ThemeEditor"),
-                                          selection: $theme.insertionPoint,
-                                          systemColor: Color(nsColor: .textInsertionPointColor))
-                    } else {
-                        ColorPicker(String(localized: "Cursor:", table: "ThemeEditor"),
-                                    selection: $theme.insertionPoint.binding)
-                    }
-                }.accessibilityElement(children: .contain)
+                    SystemColorPicker(String(localized: "Cursor:", table: "ThemeEditor"),
+                                      selection: $theme.insertionPoint,
+                                      systemColor: Color(nsColor: .textInsertionPointColor))
+                }
                 
                 VStack(alignment: .trailing, spacing: 3) {
                     ColorPicker(String(localized: "Background:", table: "ThemeEditor"),
@@ -230,7 +225,6 @@ private struct ThemeMetadataView: View {
                 .accessibilityLabeledPair(role: .content, id: title, in: self.accessibility)
         } else {
             Text(text.wrappedValue)
-                .foregroundColor(.label)
                 .textSelection(.enabled)
                 .accessibilityLabeledPair(role: .content, id: title, in: self.accessibility)
         }
@@ -261,7 +255,6 @@ private extension Theme.SystemDefaultStyle {
 
 // MARK: - Preview
 
-@available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 360, height: 280)) {
     ThemeEditorView(theme: try! ThemeManager.shared.setting(name: "Anura"), isBundled: false) { _ in }
 }

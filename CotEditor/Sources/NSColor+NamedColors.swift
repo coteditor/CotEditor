@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -52,29 +52,4 @@ extension NSColor {
             .map { (self.hueComponent + $0).truncatingRemainder(dividingBy: 1) }
             .map { NSColor(calibratedHue: $0, saturation: self.saturationComponent, brightness: self.brightnessComponent, alpha: self.alphaComponent) }
     }
-}
-
-
-
-public extension NSColor {
-    
-    /// The back-deployed version of the `.systemFill`.
-    @backDeployed(before: macOS 14)
-    static var systemFill: NSColor  { .labelColor.withAlphaComponent(0.50) }
-    
-    /// The back-deployed version of the `.secondarySystemFill`.
-    @backDeployed(before: macOS 14)
-    static var secondarySystemFill: NSColor  { .labelColor.withAlphaComponent(0.15) }
-    
-    /// The back-deployed version of the `.tertiarySystemFill`.
-    @backDeployed(before: macOS 14)
-    static var tertiarySystemFill: NSColor  { .labelColor.withAlphaComponent(0.10) }
-    
-    /// The back-deployed version of the `.quaternarySystemFill`.
-    @backDeployed(before: macOS 14)
-    static var quaternarySystemFill: NSColor  { .labelColor.withAlphaComponent(0.05) }
-    
-    /// The back-deployed version of the `.quinarySystemFill`.
-    @backDeployed(before: macOS 14)
-    static var quinarySystemFill: NSColor  { .labelColor.withAlphaComponent(0.03) }
 }
