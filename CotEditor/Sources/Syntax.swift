@@ -284,13 +284,11 @@ private extension Syntax.Highlight {
         
         assert(!words.isEmpty)
         
-        let escapedWords = words.sorted().reversed().map(NSRegularExpression.escapedPattern(for:))  // reverse to precede longer word
-        let rawBoundary = String(Set(words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_").sorted())
-            .replacing(/\s/, with: "")
-        let boundary = NSRegularExpression.escapedPattern(for: rawBoundary)
-        let pattern = "(?<![" + boundary + "])" + "(?:" + escapedWords.joined(separator: "|") + ")" + "(?![" + boundary + "])"
+        let escapedWords = words.sorted()
+            .reversed()  // reverse to precede longer words
+            .map(NSRegularExpression.escapedPattern(for:))
         
-        self.begin = pattern
+        self.begin = "\\b(?:\(escapedWords.joined(separator: "|")))\\b"
         self.end = nil
         self.isRegularExpression = true
         self.ignoreCase = ignoreCase
