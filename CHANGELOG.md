@@ -11,6 +11,7 @@
 ### Fixes
 
 - Address an issue on CotEditor 4.8.0 that the application could crash while updating the editor counts.
+- Fix an issue on CotEditor 4.8.0 that custom syntaxes could be empty when it contains ill-formed definitions.
 - Fix an issue on CotEditor 4.8.0 that the editor's kerning did not set to zero despite the font type being monospaced.
 - Fix an issue on CotEditor 4.8.0 that some steppers in the Settings window were placed on the opposite side.
 - Fix an issue that the current line highlight did not appear when the insertion point was located at the last empty line.

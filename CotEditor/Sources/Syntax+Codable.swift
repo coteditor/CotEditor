@@ -134,7 +134,7 @@ extension Syntax.Highlight: Codable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.begin = try container.decode(String.self, forKey: .begin)
+        self.begin = try container.decodeIfPresent(String.self, forKey: .begin) ?? ""
         self.end = try container.decodeIfPresent(String.self, forKey: .end)
         self.isRegularExpression = try container.decodeIfPresent(Bool.self, forKey: .isRegularExpression) ?? false
         self.ignoreCase = try container.decodeIfPresent(Bool.self, forKey: .ignoreCase) ?? false
@@ -181,7 +181,7 @@ extension Syntax.Outline: Codable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.pattern = try container.decode(String.self, forKey: .pattern)
+        self.pattern = try container.decodeIfPresent(String.self, forKey: .pattern) ?? ""
         self.template = try container.decodeIfPresent(String.self, forKey: .template) ?? ""
         self.ignoreCase = try container.decodeIfPresent(Bool.self, forKey: .ignoreCase) ?? false
         self.bold = try container.decodeIfPresent(Bool.self, forKey: .bold) ?? false
