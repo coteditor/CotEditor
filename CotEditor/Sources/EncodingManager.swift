@@ -92,7 +92,8 @@ final class EncodingManager {
     var defaultEncoding: FileEncoding {
         
         get {
-            let encoding = String.Encoding(rawValue: UInt(UserDefaults.standard[.encoding]))
+            let rawValue = UserDefaults.standard[.encoding]
+            let encoding = (rawValue >= 0) ? String.Encoding(rawValue: UInt(rawValue)) : .utf8
             let availableEncoding = String.availableStringEncodings.contains(encoding) ? encoding : .utf8
             let withBOM = (availableEncoding == .utf8) && UserDefaults.standard[.saveUTF8BOM]
             
