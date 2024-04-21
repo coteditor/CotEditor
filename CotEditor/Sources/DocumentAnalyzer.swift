@@ -114,7 +114,7 @@ final class DocumentAnalyzer {
         
         await self.counter.update(types: newValue)
         
-        if oldValue.intersection(.count) == newValue.intersection(.count) {
+        if !newValue.intersection(.count).isSubset(of: oldValue.intersection(.count)) {
             self.invalidateContent()
         }
         self.invalidateSelection()
