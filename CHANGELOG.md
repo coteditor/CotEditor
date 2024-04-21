@@ -7,7 +7,7 @@
 
 - Add context menus for text size change to the tables in the outline inspector and find the result view.
 - Improve the algorithm to parse syntax highlighting with simple words.
-- Improve error message when failed loading setting files.
+- Improve error message when failing to load setting files.
 
 
 ### Fixes
