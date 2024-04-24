@@ -208,9 +208,9 @@ attributes:
 - beginString: htmlFor
 - beginString: images
 - beginString: implementation
-- beginString: innerWidth
 - beginString: innerHeight
 - beginString: innerHTML
+- beginString: innerWidth
 - beginString: inputEncoding
 - beginString: internalSubset
 - beginString: isComposing
