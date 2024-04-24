@@ -28,7 +28,7 @@ import AppKit.NSFont
 
 struct DefaultSettings {
     
-    static let defaults: [DefaultKeys: Any?] = [
+    nonisolated(unsafe) static let defaults: [DefaultKeys: Any?] = [
         .quitAlwaysKeepsWindows: true,
         .noDocumentOnLaunchOption: NoDocumentOnLaunchOption.untitledDocument.rawValue,
         .enablesAutosaveInPlace: true,

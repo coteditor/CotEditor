@@ -59,7 +59,7 @@ final class SyntaxManager: SettingFileManaging {
     
     // MARK: Public Properties
     
-    static let shared = SyntaxManager()
+    nonisolated(unsafe) static let shared = SyntaxManager()
     
     
     // MARK: Setting File Managing Properties

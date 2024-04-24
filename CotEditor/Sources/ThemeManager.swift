@@ -44,7 +44,7 @@ final class ThemeManager: SettingFileManaging {
     
     // MARK: Public Properties
     
-    static let shared = ThemeManager()
+    nonisolated(unsafe) static let shared = ThemeManager()
     
     
     // MARK: Setting File Managing Properties

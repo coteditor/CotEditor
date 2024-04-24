@@ -58,7 +58,7 @@ final class EncodingManager {
     
     // MARK: Public Properties
     
-    static let shared = EncodingManager()
+    nonisolated(unsafe) static let shared = EncodingManager()
     
     @Published private(set) var fileEncodings: [FileEncoding?] = []
     

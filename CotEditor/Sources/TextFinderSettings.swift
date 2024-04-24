@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ final class TextFinderSettings: NSObject {
     
     // MARK: Public Properties
     
-    static let shared = TextFinderSettings()
+    nonisolated(unsafe) static let shared = TextFinderSettings()
     
     @objc dynamic var findString: String  { didSet { self.shareFindString() } }
     @objc dynamic var replacementString: String

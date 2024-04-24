@@ -3885,7 +3885,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "-enable-upcoming-feature ConciseMagicFile -enable-upcoming-feature ExistentialAny -enable-upcoming-feature ForwardTrailingClosures -enable-upcoming-feature ImplicitOpenExistentials -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature IsolatedDefaultValues";
+				OTHER_SWIFT_FLAGS = "-enable-upcoming-feature ConciseMagicFile -enable-upcoming-feature ExistentialAny -enable-upcoming-feature ForwardTrailingClosures -enable-upcoming-feature ImplicitOpenExistentials -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature IsolatedDefaultValues -enable-upcoming-feature GlobalConcurrency";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -3949,7 +3949,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_SWIFT_FLAGS = "-enable-upcoming-feature ConciseMagicFile -enable-upcoming-feature ExistentialAny -enable-upcoming-feature ForwardTrailingClosures -enable-upcoming-feature ImplicitOpenExistentials -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature IsolatedDefaultValues";
+				OTHER_SWIFT_FLAGS = "-enable-upcoming-feature ConciseMagicFile -enable-upcoming-feature ExistentialAny -enable-upcoming-feature ForwardTrailingClosures -enable-upcoming-feature ImplicitOpenExistentials -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature IsolatedDefaultValues -enable-upcoming-feature GlobalConcurrency";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
