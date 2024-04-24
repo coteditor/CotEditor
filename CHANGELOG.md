@@ -8,6 +8,10 @@
 - Update the JavaScript syntax to fix some typos.
 - Update the Swift syntax.
 
+### Fixes
+
+- Fix syntax highlighting for simple words.
+
 
 
 4.8.1 (644)
