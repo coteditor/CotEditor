@@ -3,6 +3,10 @@
 4.8.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update the JavaScript syntax to fix some typos.
+
 
 
 4.8.1 (644)

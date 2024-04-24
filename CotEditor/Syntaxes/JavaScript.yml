@@ -209,8 +209,8 @@ attributes:
 - beginString: images
 - beginString: implementation
 - beginString: innerWidth
-- beginString: innterHeight
-- beginString: innterHTML
+- beginString: innerHeight
+- beginString: innerHTML
 - beginString: inputEncoding
 - beginString: internalSubset
 - beginString: isComposing
@@ -1064,9 +1064,9 @@ kind: code
 metadata:
   author: 1024jp
   distributionURL: https://coteditor.com
-  lastModified: '2023-05-05'
+  lastModified: '2024-04-24'
   license: Same as CotEditor
-  version: 2.3.0
+  version: 2.3.1
 numbers:
 - beginString: \b0[bB][01][01_]*n?\b
   description: binary
