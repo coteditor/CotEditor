@@ -212,11 +212,11 @@ keywords:
 kind: code
 metadata:
   author: 1024jp
-  description: Based on Swift 5.9
+  description: Based on Swift 5.10
   distributionURL: https://coteditor.com
-  lastModified: '2023-09-24'
+  lastModified: '2024-04-24'
   license: Same as CotEditor
-  version: 4.10.0
+  version: 4.10.1
 numbers:
 - beginString: (?<![0-9a-z_$])-?[0-9][0-9._]*(e[-+]?[0-9._]+)?\b
   ignoreCase: true
@@ -346,6 +346,7 @@ types:
 - beginString: ContiguousArray
 - beginString: ContinuousClock
 - beginString: COpaquePointer
+- beginString: Copyable
 - beginString: CShort
 - beginString: CSignedChar
 - beginString: CUnsignedChar
@@ -454,6 +455,7 @@ types:
 - beginString: ReverseIndexType
 - beginString: ReverseRandomAccessIndex
 - beginString: Self
+- beginString: Sendable
 - beginString: SequenceType
 - beginString: Set
 - beginString: SetAlgebraType
@@ -515,6 +517,7 @@ types:
 - beginString: VaListBuilder
 - beginString: Zip2Generator
 - beginString: Zip2Sequence
+- beginString: ~Copyable
 values:
 - beginString: 'false'
 - beginString: nil
