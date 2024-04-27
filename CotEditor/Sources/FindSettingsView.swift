@@ -25,7 +25,7 @@
 
 import SwiftUI
 
-private final class FindSettings: ObservableObject {
+struct FindSettingsView: View {
     
     @AppStorage(.findIsWrap) var findIsWrap: Bool
     @AppStorage(.findSearchesIncrementally) var findSearchesIncrementally: Bool
@@ -39,12 +39,6 @@ private final class FindSettings: ObservableObject {
     @AppStorage(.findRegexIsMultiline) var findRegexIsMultiline: Bool
     @AppStorage(.findRegexUsesUnicodeBoundaries) var findRegexUsesUnicodeBoundaries: Bool
     @AppStorage(.findRegexUnescapesReplacementString) var findRegexUnescapesReplacementString: Bool
-}
-
-
-struct FindSettingsView: View {
-    
-    @StateObject private var settings = FindSettings()
     
     
     var body: some View {
@@ -62,27 +56,27 @@ struct FindSettingsView: View {
                         Toggle(String(localized: "FindSettings.findIsWrap.label",
                                       defaultValue: "Wrap search around",
                                       table: "TextFind", comment: "toggle button label"),
-                               isOn: $settings.findIsWrap)
+                               isOn: $findIsWrap)
                         
                         Toggle(String(localized: "FindSettings.findSearchesIncrementally.label",
                                       defaultValue: "Search incrementally",
                                       table: "TextFind", comment: "toggle button label"),
-                               isOn: $settings.findSearchesIncrementally)
+                               isOn: $findSearchesIncrementally)
                     }
                 }
                 
                 FindTextualOptionsView(
-                    matchesFullWord: $settings.findMatchesFullWord,
-                    isLiteralSearch: $settings.findTextIsLiteralSearch,
-                    ignoresDiacriticMarks: $settings.findTextIgnoresDiacriticMarks,
-                    ignoresWidth: $settings.findTextIgnoresWidth
+                    matchesFullWord: $findMatchesFullWord,
+                    isLiteralSearch: $findTextIsLiteralSearch,
+                    ignoresDiacriticMarks: $findTextIgnoresDiacriticMarks,
+                    ignoresWidth: $findTextIgnoresWidth
                 )
                 
                 FindRegularExpressionOptionsView(
-                    isSingleLine: $settings.findRegexIsSingleline,
-                    isMultiline: $settings.findRegexIsMultiline,
-                    usesUnicodeBoundaries: $settings.findRegexUsesUnicodeBoundaries,
-                    unescapesReplacementString: $settings.findRegexUnescapesReplacementString
+                    isSingleLine: $findRegexIsSingleline,
+                    isMultiline: $findRegexIsMultiline,
+                    usesUnicodeBoundaries: $findRegexUsesUnicodeBoundaries,
+                    unescapesReplacementString: $findRegexUnescapesReplacementString
                 )
                 
                 HStack {
