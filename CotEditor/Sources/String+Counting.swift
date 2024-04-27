@@ -176,7 +176,9 @@ extension String {
 
 struct CharacterCountOptions {
     
-    enum CharacterUnit: String, CaseIterable {
+    enum CharacterUnit: String, CaseIterable, DefaultInitializable {
+        
+        static let defaultValue: Self = .graphemeCluster
         
         case graphemeCluster
         case unicodeScalar

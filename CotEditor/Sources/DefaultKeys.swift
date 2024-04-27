@@ -139,6 +139,15 @@ extension DefaultKeys {
     static let findRegexUsesUnicodeBoundaries = DefaultKey<Bool>("regexUsesUnicodeBoundaries")
     static let findRegexUnescapesReplacementString = DefaultKey<Bool>("regexUnescapesReplacementString")
     
+    // Advanced Character Count
+    static let countUnit = RawRepresentableDefaultKey<CharacterCountOptions.CharacterUnit>("countOptionUnit")
+    static let countNormalizationForm = RawRepresentableDefaultKey<UnicodeNormalizationForm>("countOptionNormalizationForm")
+    static let countNormalizes = DefaultKey<Bool>("countOptionNormalizes")
+    static let countIgnoresNewlines = DefaultKey<Bool>("countOptionIgnoresNewlines")
+    static let countIgnoresWhitespaces = DefaultKey<Bool>("countOptionIgnoresWhitespaces")
+    static let countTreatsConsecutiveWhitespaceAsSingle = DefaultKey<Bool>("countOptionTreatsConsecutiveWhitespaceAsSingle")
+    static let countEncoding = DefaultKey<Int>("countOptionEncoding")
+    
     // settings that are not in the Settings window
     static let pinsThemeAppearance = DefaultKey<Bool>("pinsThemeAppearance")
     static let lastSettingsPaneIdentifier = DefaultKey<String?>("lastPreferencesPaneIdentifier")

@@ -30,6 +30,8 @@ struct AdvancedCharacterCounterView: View {
     @StateObject var counter: AdvancedCharacterCounter
     let dismissAction: () -> Void
     
+    @AppStorage(.countUnit) private var unit: CharacterCountOptions.CharacterUnit
+    
     @State private var isSettingPresented = false
     
     
@@ -37,7 +39,7 @@ struct AdvancedCharacterCounterView: View {
         
         HStack(alignment: .firstTextBaseline) {
             if let count = self.counter.count {
-                let markdown: AttributedString = switch self.counter.setting.unit {
+                let markdown: AttributedString = switch self.unit {
                     case .byte: .init(localized: "*\(count)* byte(s)", table: "AdvancedCharacterCount", locale: .current,
                                       comment: "counter for advanced character count")
                     default: .init(localized: "*\(count)* character(s)", table: "AdvancedCharacterCount", locale: .current,
@@ -97,6 +99,9 @@ struct AdvancedCharacterCounterView: View {
                           comment: "menu item (This “Stop” should be translated the same as it is in the “Stop Advanced Character Count” menu label.)")) {
                 self.dismissAction()
             }
+        }
+        .onDisappear {
+            self.counter.stopObservation()
         }
     }
 }

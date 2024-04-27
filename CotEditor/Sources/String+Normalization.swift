@@ -126,6 +126,12 @@ enum UnicodeNormalizationForm: String, CaseIterable {
 }
 
 
+extension UnicodeNormalizationForm: DefaultInitializable {
+    
+    static let defaultValue: Self = .nfc
+}
+
+
 extension StringProtocol {
     
     /// Returns a string created by normalizing the string’s contents using the specified form.

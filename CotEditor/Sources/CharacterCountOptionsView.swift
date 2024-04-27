@@ -27,7 +27,13 @@ import SwiftUI
 
 struct CharacterCountOptionsView: View {
     
-    @StateObject private var setting = CharacterCountOptionsSetting()
+    @AppStorage(.countUnit) private var unit: CharacterCountOptions.CharacterUnit
+    @AppStorage(.countNormalizationForm) private var normalizationForm: UnicodeNormalizationForm
+    @AppStorage(.countNormalizes) private var normalizes
+    @AppStorage(.countIgnoresNewlines) private var ignoresNewlines
+    @AppStorage(.countIgnoresWhitespaces) private var ignoresWhitespaces
+    @AppStorage(.countTreatsConsecutiveWhitespaceAsSingle) private var treatsConsecutiveWhitespaceAsSingle
+    @AppStorage(.countEncoding) private var encoding: Int
     
     @State private var contentWidth: CGFloat?
     
@@ -41,12 +47,12 @@ struct CharacterCountOptionsView: View {
                 
                 VStack(alignment: .leading, spacing: 6) {
                     Toggle(String(localized: "Ignore line endings", table: "AdvancedCharacterCount", comment: "setting option"),
-                           isOn: $setting.ignoresNewlines)
+                           isOn: $ignoresNewlines)
                     Toggle(String(localized: "Ignore whitespace", table: "AdvancedCharacterCount", comment: "setting option"),
-                           isOn: $setting.ignoresWhitespaces)
+                           isOn: $ignoresWhitespaces)
                     Toggle(String(localized: "Treat consecutive whitespace as one space", table: "AdvancedCharacterCount", comment: "setting option"),
-                           isOn: $setting.treatsConsecutiveWhitespaceAsSingle)
-                    .disabled(self.setting.ignoresNewlines && self.setting.ignoresWhitespaces)
+                           isOn: $treatsConsecutiveWhitespaceAsSingle)
+                    .disabled(self.ignoresNewlines && self.ignoresWhitespaces)
                 }
             }.fixedSize()
             
@@ -54,7 +60,7 @@ struct CharacterCountOptionsView: View {
                 Text("Unit:", tableName: "AdvancedCharacterCount", comment: "label")
                 
                 VStack(alignment: .leading) {
-                    Picker(selection: $setting.unit.animation()) {
+                    Picker(selection: $unit.animation()) {
                         ForEach(CharacterCountOptions.CharacterUnit.allCases, id: \.self) {
                             Text($0.label)
                         }
@@ -63,13 +69,13 @@ struct CharacterCountOptionsView: View {
                     }.fixedSize()
 
                     
-                    Text(self.setting.unit.description)
+                    Text(self.unit.description)
                         .foregroundStyle(.secondary)
                         .controlSize(.small)
                         .frame(width: max(300, self.contentWidth ?? 0), alignment: .leading)
                     
-                    if self.setting.unit == .byte {
-                        Picker(String(localized: "Encoding:", table: "AdvancedCharacterCount", comment: "label"), selection: self.$setting.encoding) {
+                    if self.unit == .byte {
+                        Picker(String(localized: "Encoding:", table: "AdvancedCharacterCount", comment: "label"), selection: self.$encoding) {
                             ForEach(String.sortedAvailableStringEncodings.indices, id: \.self) { index in
                                 if let encoding = String.sortedAvailableStringEncodings[index] {
                                     Text(String.localizedName(of: encoding))
@@ -82,9 +88,9 @@ struct CharacterCountOptionsView: View {
                             .background(SizeGetter(key: MaxSizeKey.self))
                     }
                     
-                    if self.setting.unit != .graphemeCluster {
-                        Toggle(isOn: $setting.normalizes) {
-                            Picker(String(localized: "Normalization:", table: "AdvancedCharacterCount", comment: "label"), selection: $setting.normalizationForm) {
+                    if self.unit != .graphemeCluster {
+                        Toggle(isOn: $normalizes) {
+                            Picker(String(localized: "Normalization:", table: "AdvancedCharacterCount", comment: "label"), selection: $normalizationForm) {
                                 Section {
                                     ForEach(UnicodeNormalizationForm.standardForms, id: \.self) { form in
                                         Text(form.localizedName)
@@ -98,7 +104,7 @@ struct CharacterCountOptionsView: View {
                                     }
                                 }
                             }
-                            .disabled(!self.setting.normalizes)
+                            .disabled(!self.normalizes)
                             .fixedSize()
                         }
                     }
@@ -106,7 +112,7 @@ struct CharacterCountOptionsView: View {
             }
         }
         .onPreferenceChange(MaxSizeKey.self) { self.contentWidth = $0.width }
-        .animation(.default, value: self.setting.unit)
+        .animation(.default, value: self.unit)
     }
 }
 

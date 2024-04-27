@@ -144,6 +144,15 @@ struct DefaultSettings {
         .findRegexUsesUnicodeBoundaries: false,
         .findRegexUnescapesReplacementString: true,
         
+        // Advanced Character Count
+        .countUnit: CharacterCountOptions.CharacterUnit.graphemeCluster.rawValue,
+        .countNormalizationForm: UnicodeNormalizationForm.nfc.rawValue,
+        .countNormalizes: false,
+        .countIgnoresNewlines: false,
+        .countIgnoresWhitespaces: false,
+        .countTreatsConsecutiveWhitespaceAsSingle: false,
+        .countEncoding: String.Encoding.utf8.rawValue,
+        
         // settings not in the Settings window
         .pinsThemeAppearance: false,
         .colorCodeType: 1,
