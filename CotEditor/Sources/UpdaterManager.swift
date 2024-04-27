@@ -30,7 +30,7 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     
     // MARK: Public Properties
     
-    static let shared = UpdaterManager()
+    nonisolated(unsafe) static let shared = UpdaterManager()
     
     
     // MARK: Private Properties
