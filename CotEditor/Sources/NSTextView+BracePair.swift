@@ -39,7 +39,7 @@ extension NSTextView {
             .filter { $0.isEmpty }
             .map { String.Index(utf16Offset: $0.lowerBound, in: self.string) }
             .filter { $0 > self.string.startIndex }
-            .compactMap { self.string.index($0, offsetBy: -1, limitedBy: self.string.endIndex) }
+            .map(self.string.index(before:))
         
         guard
             !lastIndexes.isEmpty,
