@@ -56,7 +56,7 @@ extension Syntax: Codable {
     
     private struct KeyString: Codable {
         
-        var keyString: String
+        var keyString: String?
     }
     
     
@@ -78,11 +78,11 @@ extension Syntax: Codable {
         
         self.commentDelimiters = try values.decodeIfPresent(Comment.self, forKey: .commentDelimiters) ?? .init()
         self.outlines = try values.decodeIfPresent([Outline].self, forKey: .outlines) ?? []
-        self.completions = try values.decodeIfPresent([KeyString].self, forKey: .completions)?.map(\.keyString) ?? []
+        self.completions = try values.decodeIfPresent([KeyString].self, forKey: .completions)?.compactMap(\.keyString) ?? []
         
-        self.filenames = try values.decodeIfPresent([KeyString].self, forKey: .filenames)?.map(\.keyString) ?? []
-        self.extensions = try values.decodeIfPresent([KeyString].self, forKey: .extensions)?.map(\.keyString) ?? []
-        self.interpreters = try values.decodeIfPresent([KeyString].self, forKey: .interpreters)?.map(\.keyString) ?? []
+        self.filenames = try values.decodeIfPresent([KeyString].self, forKey: .filenames)?.compactMap(\.keyString) ?? []
+        self.extensions = try values.decodeIfPresent([KeyString].self, forKey: .extensions)?.compactMap(\.keyString) ?? []
+        self.interpreters = try values.decodeIfPresent([KeyString].self, forKey: .interpreters)?.compactMap(\.keyString) ?? []
         
         self.metadata = try values.decodeIfPresent(Metadata.self, forKey: .metadata) ?? .init()
     }

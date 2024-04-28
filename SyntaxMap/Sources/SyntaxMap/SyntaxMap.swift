@@ -65,9 +65,9 @@ public struct SyntaxMap: Equatable, Codable {
             let syntaxName = url.deletingPathExtension().lastPathComponent
             
             map[syntaxName] = SyntaxMap(
-                extensions: syntax.extensions?.map(\.keyString) ?? [],
-                filenames: syntax.filenames?.map(\.keyString) ?? [],
-                interpreters: syntax.interpreters?.map(\.keyString) ?? []
+                extensions: syntax.extensions?.compactMap(\.keyString) ?? [],
+                filenames: syntax.filenames?.compactMap(\.keyString) ?? [],
+                interpreters: syntax.interpreters?.compactMap(\.keyString) ?? []
             )
         }
     }
@@ -78,7 +78,7 @@ private struct Syntax: Codable {
     
     struct KeyString: Codable {
         
-        var keyString: String
+        var keyString: String?
     }
     
     var extensions: [KeyString]?
