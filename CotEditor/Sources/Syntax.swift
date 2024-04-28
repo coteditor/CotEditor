@@ -165,13 +165,16 @@ struct Syntax: Equatable {
         
         var syntax = self
         for keyPath in SyntaxType.allCases.map(Syntax.highlightKeyPath(for:)) {
-            syntax[keyPath: keyPath].removeAll { $0.isEmpty }
+            syntax[keyPath: keyPath].removeAll(where: \.isEmpty)
             syntax[keyPath: keyPath].sort(\.begin, options: .caseInsensitive)
         }
-        syntax.outlines.removeAll { $0.isEmpty }
+        syntax.outlines.removeAll(where: \.isEmpty)
         syntax.outlines.sort(\.pattern, options: .caseInsensitive)
-        syntax.completions.removeAll { $0.isEmpty }
+        syntax.completions.removeAll(where: \.isEmpty)
         syntax.completions.sort(options: .caseInsensitive)
+        syntax.extensions.removeAll(where: \.isEmpty)
+        syntax.filenames.removeAll(where: \.isEmpty)
+        syntax.interpreters.removeAll(where: \.isEmpty)
         
         return syntax
     }
