@@ -28,11 +28,23 @@ import Yams
 
 public struct SyntaxMap: Equatable, Codable {
     
+    struct InvalidError: Error {
+        
+        var filename: String
+        var underlyingError: any Error
+    }
+    
     public var extensions: [String]
     public var filenames: [String]
     public var interpreters: [String]
 
     
+    /// Loads SyntaxMap of the given files.
+    ///
+    /// - Parameters:
+    ///   - urls: File URLs of CotEditor's syntax definition files to load.
+    ///   - ignoresInvalidData: If `true`, just ignores invalid files and continues scanning, otherwise throws an `InvalidError`.
+    /// - Returns: Valid SyntaxMaps.
     public static func loadMaps(at urls: [URL], ignoresInvalidData: Bool = false) throws -> [String: SyntaxMap] {
         
         let decoder = YAMLDecoder()
@@ -46,7 +58,7 @@ public struct SyntaxMap: Equatable, Codable {
                 if ignoresInvalidData {
                     return
                 } else {
-                    throw error
+                    throw InvalidError(filename: url.lastPathComponent, underlyingError: error)
                 }
             }
             
