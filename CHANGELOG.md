@@ -6,12 +6,12 @@
 ### Improvements
 
 - Disable smart dash for the General mode by default.
-- Update the JavaScript syntax to fix some typos.
-- Update the Swift and TOML syntaxes.
+- Update the JavaScript, Swift, and TOML syntaxes.
 
 
 ### Fixes
 
+- Fix an issue on CotEditor 4.8.1 that opening some kinds of documents took a long time.
 - Fix an issue on CotEditor 4.8.0 that the editor displayed nothing when the mode setting is empty.
 - Fix an issue on CotEditor 4.8.0 that custom syntaxes could be ignored when it contains ill-formed file mapping definitions.
 - Fix syntax highlighting for simple words.
