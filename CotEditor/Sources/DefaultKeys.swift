@@ -106,6 +106,9 @@ extension DefaultKeys {
     static let snippets = DefaultKey<[[String: String]]>("snippets")
     static let fileDropArray = DefaultKey<[[String: String]]>("fileDropArray")
     
+    // Donation
+    static let donationBadgeType = RawRepresentableDefaultKey<BadgeType>("donationBadgeType")
+    
     // Print
     static let printFontSize = DefaultKey<Double>("printFontSize")
     static let printTheme = DefaultKey<String?>("printTheme")

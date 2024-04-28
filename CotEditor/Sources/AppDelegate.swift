@@ -119,6 +119,10 @@ private enum BundleIdentifier {
         
         // instantiate shared instances
         _ = DocumentController.shared
+        
+        Task {
+            await DonationManager.shared.updatePurchasedProducts()
+        }
     }
     
     
