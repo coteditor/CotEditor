@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Disable smart dash for the General mode by default.
 - Update the JavaScript syntax to fix some typos.
 - Update the Swift and TOML syntaxes.
 

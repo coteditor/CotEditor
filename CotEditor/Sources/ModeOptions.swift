@@ -63,7 +63,7 @@ extension Syntax.Kind {
                     fontType: .standard,
                     smartInsertDelete: true,
                     automaticQuoteSubstitution: true,
-                    automaticDashSubstitution: true,
+                    automaticDashSubstitution: false,
                     automaticSymbolBalancing: false,
                     continuousSpellChecking: true,
                     grammarChecking: false,
