@@ -6,7 +6,8 @@
 ### Improvements
 
 - Update the JavaScript syntax to fix some typos.
-- Update the Swift syntax.
+- Update the Swift and TOML syntaxes.
+
 
 ### Fixes
 

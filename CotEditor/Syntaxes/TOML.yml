@@ -20,13 +20,13 @@ keywords:
 - beginString: (?<=\[\[)[^\],]+(?=\]\])
   description: array of tables
   regularExpression: true
-kind: general
+kind: code
 metadata:
   author: 1024jp
   distributionURL: https://coteditor.com
-  lastModified: '2019-07-16'
+  lastModified: '2024-04-28'
   license: Same as CotEditor
-  version: 1.0.1
+  version: 1.0.2
 numbers:
 - beginString: (\b|[-+])0b[01][01_]*\b
   description: binary
