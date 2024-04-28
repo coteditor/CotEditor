@@ -18,6 +18,9 @@ jobs:
         git submodule update --init
     - name: Lint Swift
       run: |
+        if [[ ! -f "/usr/local/bin/swiftlint" ]]; then
+            brew install swiftlint
+        fi
         swiftlint
     - name: Unit Test
       env:
