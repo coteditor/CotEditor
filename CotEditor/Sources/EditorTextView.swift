@@ -195,6 +195,9 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         textContainer.isHangingIndentEnabled = defaults[.enablesHangingIndent]
         textContainer.hangingIndentWidth = defaults[.hangingIndentWidth]
         
+        // setup mode related values
+        self.applyMode()
+        
         // observe changes in defaults
         self.defaultsObservers = [
             defaults.publisher(for: .lineHeight)

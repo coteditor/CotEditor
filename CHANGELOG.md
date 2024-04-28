@@ -12,8 +12,9 @@
 
 ### Fixes
 
-- Fix syntax highlighting for simple words.
+- Fix an issue on CotEditor 4.8.0 that the editor displayed nothing when the mode setting is empty.
 - Fix an issue on CotEditor 4.8.0 that custom syntaxes could be ignored when it contains ill-formed file mapping definitions.
+- Fix syntax highlighting for simple words.
 
 
 
