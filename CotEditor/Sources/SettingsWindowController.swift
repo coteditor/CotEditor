@@ -77,7 +77,7 @@ private extension SettingsPane {
     }
     
     
-    private var view: any View {
+    @MainActor private var view: any View {
         
         switch self {
             case .general: GeneralSettingsView()
@@ -88,6 +88,7 @@ private extension SettingsPane {
             case .format: FormatSettingsView()
             case .snippets: SnippetsSettingsView()
             case .keyBindings: KeyBindingsSettingsView()
+            case .donation: DonationSettingsView()
         }
     }
 }

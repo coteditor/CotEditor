@@ -1,0 +1,479 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "× %lld" : {
+      "comment" : "multiple sign for the quantity of items to purchase",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        }
+      }
+    },
+    "As a proof of your kind support, a coffee badge appears on the status bar during continuous support." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Als Beweis für deine freundliche Unterstützung erscheint während des laufenden Unterstützung ein Kaffee-Badge in der Statusleiste."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As a proof of your kind support, a coffee badge appears on the status bar during continuous support."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "寛大なサポートの証として、継続的な寄付の期間中ステータスバーにコーヒーバッジが表示されます。"
+          }
+        }
+      }
+    },
+    "Badge type:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Badgetyp:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Badge type:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "バッジタイプ:"
+          }
+        }
+      }
+    },
+    "BadgeType.invisible.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unsichtbarer Kaffee"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Invisible Coffee"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invisible Coffee"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "透明コーヒー"
+          }
+        }
+      }
+    },
+    "BadgeType.mug.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kávový hrnek"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaffeebecher"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Coffee Mug"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coffee Mug"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taza de café"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasse de café"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tazza di caffè"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コーヒーマグ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koffiekop"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caneca de Café"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kahve Kupası"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "咖啡杯"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "咖啡杯"
+          }
+        }
+      }
+    },
+    "Continuous support" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontinuierliche Unterstützung"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuous support"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "継続的なサポート"
+          }
+        }
+      }
+    },
+    "CotEditor provides all features for free to everyone. You can support this project by offering coffee." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor bietet alle Funktionen kostenlos für alle. Du kannst dieses Projekt unterstützen, indem du Kaffee spendest."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor provides all features for free to everyone. You can support this project by offering coffee."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditorはすべての人に無償ですべての機能を提供しています。コーヒーを送ることでこのプロジェクトをサポートすることができます。"
+          }
+        }
+      }
+    },
+    "Manage subscriptions" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spravovat předplatná"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abos verwalten"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage Subscriptions"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestionar suscripciones"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gérer les abonnements"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestisci le iscrizioni"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サブスクリプションを管理"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beheer abonnementen"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gerenciar Assinaturas"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abonelikleri Yönet"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "管理订阅"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "管理訂閱項目"
+          }
+        }
+      }
+    },
+    "One-time donation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einmalige Spende"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One-off donation"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1回限りの寄付"
+          }
+        }
+      }
+    },
+    "Open in the App Store" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít v App Storu"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Im App Store öffnen"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open in the App Store"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir en App Store"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir dans l’App Store"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri su App Store"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Storeで開く"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open in App Store"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir na App Store"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Store’da Aç"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在App Store中打开"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在App Store中打開"
+          }
+        }
+      }
+    },
+    "The donation feature is available only in CotEditor distributed in the App Store." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Spendenfunktion ist nur in CotEditor verfügbar, das im App Store vertrieben wird."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The donation feature is available only in CotEditor distributed in the App Store."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "寄付機能はApp Storeで配布されているCotEditorでのみ有効です。"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

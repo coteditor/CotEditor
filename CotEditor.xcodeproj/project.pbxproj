@@ -137,6 +137,8 @@
 		2A1FAD5820A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
 		2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
+		2A21E6732BB44D5E0054C8A1 /* DonationSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A21E6722BB44D5E0054C8A1 /* DonationSettings.xcstrings */; };
+		2A21E6742BB44D5E0054C8A1 /* DonationSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A21E6722BB44D5E0054C8A1 /* DonationSettings.xcstrings */; };
 		2A222C3024FA8E0500251084 /* UserDefaults.Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A222C2F24FA8E0500251084 /* UserDefaults.Publisher.swift */; };
 		2A222C3124FA8E0500251084 /* UserDefaults.Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A222C2F24FA8E0500251084 /* UserDefaults.Publisher.swift */; };
 		2A231A251E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* MultipleReplace+Codable.swift */; };
@@ -762,6 +764,8 @@
 		2AE144B72B00A963005E8CF1 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144B52B00A963005E8CF1 /* Identifiable.swift */; };
 		2AE144B92B00DCB7005E8CF1 /* View+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144B82B00DCB7005E8CF1 /* View+Alert.swift */; };
 		2AE144BA2B00DCB7005E8CF1 /* View+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144B82B00DCB7005E8CF1 /* View+Alert.swift */; };
+		2AE144BC2B01E341005E8CF1 /* DonationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144BB2B01E341005E8CF1 /* DonationSettingsView.swift */; };
+		2AE144BD2B01E341005E8CF1 /* DonationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144BB2B01E341005E8CF1 /* DonationSettingsView.swift */; };
 		2AE144C42B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144C32B0222DB005E8CF1 /* LiveTextInsertionView.swift */; };
 		2AE144C52B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144C32B0222DB005E8CF1 /* LiveTextInsertionView.swift */; };
 		2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */; };
@@ -948,6 +952,7 @@
 		2A1EB5C319AD469500C1E37E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
+		2A21E6722BB44D5E0054C8A1 /* DonationSettings.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = DonationSettings.xcstrings; sourceTree = "<group>"; };
 		2A222C2F24FA8E0500251084 /* UserDefaults.Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.Publisher.swift; sourceTree = "<group>"; };
 		2A231A241E7B4EDC00C2A909 /* MultipleReplace+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultipleReplace+Codable.swift"; sourceTree = "<group>"; };
 		2A231A271E7BD82700C2A909 /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
@@ -1291,6 +1296,7 @@
 		2AE12E061E7DDF0700681F72 /* CustomSurroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSurroundView.swift; sourceTree = "<group>"; };
 		2AE144B52B00A963005E8CF1 /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		2AE144B82B00DCB7005E8CF1 /* View+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Alert.swift"; sourceTree = "<group>"; };
+		2AE144BB2B01E341005E8CF1 /* DonationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationSettingsView.swift; sourceTree = "<group>"; };
 		2AE144C32B0222DB005E8CF1 /* LiveTextInsertionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTextInsertionView.swift; sourceTree = "<group>"; };
 		2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		2AE4658627A5A7CE00D2904F /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
@@ -1445,6 +1451,7 @@
 				2AFFA7C22B16E93B005652CD /* FormatSettingsView.swift */,
 				2ACDA2522B813FA500B2EBA8 /* SnippetsSettingsView.swift */,
 				2AA4D3731D1AA0AC001D261D /* KeyBindingsSettingsView.swift */,
+				2AE144BB2B01E341005E8CF1 /* DonationSettingsView.swift */,
 			);
 			name = Panes;
 			sourceTree = "<group>";
@@ -2166,6 +2173,7 @@
 				2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */,
 				2ACDA29C2B81E8BF00B2EBA8 /* SnippetsSettings.xcstrings */,
 				2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */,
+				2A21E6722BB44D5E0054C8A1 /* DonationSettings.xcstrings */,
 			);
 			name = Panes;
 			sourceTree = "<group>";
@@ -2636,6 +2644,7 @@
 				2A39ACB92B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACF92B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
 				2AA672A22B8F8AA300B8F7E6 /* Document.xcstrings in Resources */,
+				2A21E6732BB44D5E0054C8A1 /* DonationSettings.xcstrings in Resources */,
 				2A1E7E192B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
 				2ACDA2942B81E8B700B2EBA8 /* EditSettings.xcstrings in Resources */,
 				2A39AC812B8CDFC800E216C9 /* EncodingList.xcstrings in Resources */,
@@ -2724,6 +2733,7 @@
 				2A39ACBA2B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACFA2B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
 				2AA672A32B8F8AA300B8F7E6 /* Document.xcstrings in Resources */,
+				2A21E6742BB44D5E0054C8A1 /* DonationSettings.xcstrings in Resources */,
 				2A1E7E1A2B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
 				2ACDA2952B81E8B700B2EBA8 /* EditSettings.xcstrings in Resources */,
 				2A39AC822B8CDFCA00E216C9 /* EncodingList.xcstrings in Resources */,
@@ -2934,6 +2944,7 @@
 				2A17A3171D2D4319001DD717 /* DocumentWindow.swift in Sources */,
 				2AA749C41D3C263300850802 /* DocumentWindowController.swift in Sources */,
 				2A9BC2782BDE00B1008B58B5 /* DonationManager.swift in Sources */,
+				2AE144BC2B01E341005E8CF1 /* DonationSettingsView.swift in Sources */,
 				2ACDC0921D1726BD009B72D6 /* DotView.swift in Sources */,
 				2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */,
 				2A68722F288A5C44006D6B41 /* DraggableHostingView.swift in Sources */,
@@ -3300,6 +3311,7 @@
 				2A17A3161D2D4319001DD717 /* DocumentWindow.swift in Sources */,
 				2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */,
 				2A9BC2792BDE00B1008B58B5 /* DonationManager.swift in Sources */,
+				2AE144BD2B01E341005E8CF1 /* DonationSettingsView.swift in Sources */,
 				2ACDC0911D1726BD009B72D6 /* DotView.swift in Sources */,
 				2A38FAFD1D1C67050032231A /* DraggableArrayController.swift in Sources */,
 				2A687230288A5C44006D6B41 /* DraggableHostingView.swift in Sources */,
