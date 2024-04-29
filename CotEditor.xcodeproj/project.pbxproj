@@ -1072,6 +1072,8 @@
 		2A64F2441D259E49001B229F /* SnippetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnippetManager.swift; sourceTree = "<group>"; };
 		2A64F2471D26327C001B229F /* Shortcut+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Shortcut+Error.swift"; sourceTree = "<group>"; };
 		2A64F24A1D26615A001B229F /* KeyBindingItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingItem.swift; sourceTree = "<group>"; };
+		2A65520A2BDF4D880082B7D6 /* InAppPurchase.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InAppPurchase.xcstrings; sourceTree = "<group>"; };
+		2A65520B2BE001A10082B7D6 /* CotEditor.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = CotEditor.storekit; sourceTree = "<group>"; };
 		2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInitializable.swift; sourceTree = "<group>"; };
 		2A65EC252B80C01B008096C5 /* FontPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPicker.swift; sourceTree = "<group>"; };
 		2A65EC292B80C168008096C5 /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
@@ -1827,6 +1829,7 @@
 				2A715E21261AC5960060CF84 /* CotEditor-Sparkle.entitlements */,
 				5454B933243C8271009275BC /* CotEditor-AdHoc.entitlements */,
 				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
+				2A65520B2BE001A10082B7D6 /* CotEditor.storekit */,
 				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
 			);
 			name = "Supporting Files";
@@ -2237,6 +2240,7 @@
 				2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */,
 				2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */,
 				2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */,
+				2A65520A2BDF4D880082B7D6 /* InAppPurchase.xcstrings */,
 			);
 			path = Localizables;
 			sourceTree = "<group>";
