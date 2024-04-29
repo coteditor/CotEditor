@@ -3,6 +3,11 @@
 4.9.0 (unreleased)
 --------------------------
 
+### New Feature
+
+- [AppStore ver.] Now user can donate to the CotEditor project via in-app purchase in the new Donate settings pane.
+
+
 ### Improvements
 
 - Change the system requirement to __macOS 14 Sonoma and later__.
