@@ -554,8 +554,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                                     defaultValue: "Tab Style", table: "Document")
                 item.toolTip = String(localized: "Toolbar.tabStyle.tooltip.off",
                                       defaultValue: "Use spaces for indentation", table: "Document")
-                item.stateImages[.on] = NSImage(resource: .tabRightSplit)
-                item.stateImages[.off] = NSImage(resource: .tabRight)
+                item.stateImages[.on] = NSImage(resource: .tabForwardSplit)
+                item.stateImages[.off] = NSImage(resource: .tabForward)
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
                 item.menu.items = [
                     .sectionHeader(title: String(localized: "Toolbar.tabStyle.menu.tabWidth.label",
@@ -609,7 +609,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                                     defaultValue: "Indent Guides", table: "Document")
                 item.toolTip = String(localized: "Toolbar.indentGuides.tooltip.off",
                                       defaultValue: "Show indent guide lines", table: "Document")
-                item.stateImages[.on] = NSImage(resource: .textIndentguidesHide)
+                item.stateImages[.on] = NSImage(resource: .textIndentguides)
+                    .withSymbolConfiguration(.init(paletteColors: [.tertiaryLabelColor, .labelColor]))
                 item.stateImages[.off] = NSImage(resource: .textIndentguides)
                 item.action = #selector(DocumentViewController.toggleIndentGuides)
                 item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")

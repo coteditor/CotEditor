@@ -6,7 +6,8 @@
   "symbols" : [
     {
       "filename" : "text.wrap.svg",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "language-direction" : "left-to-right"
     }
   ]
 }
