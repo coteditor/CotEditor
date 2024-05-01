@@ -6,6 +6,7 @@
 ### Improvements
 
 - Display the numbers of registered items below the lists in the syntax editor.
+- [dev] Migrate the input fields in the Find window to SwiftUI.
 
 
 
