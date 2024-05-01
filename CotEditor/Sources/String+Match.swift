@@ -33,7 +33,7 @@ extension String {
     }
     
     
-    /// Searchs ranges of the characters contains in the `searchString` in the `searchString` order.
+    /// Searches ranges of the characters contains in the `searchString` in the `searchString` order.
     ///
     /// - Parameter searchString: The string to search.
     /// - Returns: The matched character ranges and score, or `nil` if not matched.
