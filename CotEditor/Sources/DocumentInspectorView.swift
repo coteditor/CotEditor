@@ -87,6 +87,7 @@ struct DocumentInspectorView: View {
         @Published var fileURL: URL?
         @Published var encoding: FileEncoding = .utf8
         @Published var lineEnding: LineEnding = .lf
+        @Published var mode: Mode = .kind(.general)
         @Published var countResult: EditorCounter.Result = .init()
         
         var document: Document?  { willSet { self.invalidateObservation(document: newValue) } }
@@ -104,7 +105,7 @@ struct DocumentInspectorView: View {
             VStack(spacing: 8) {
                 DocumentFileView(attributes: self.model.attributes, fileURL: self.model.fileURL)
                 Divider()
-                TextSettingsView(encoding: self.model.encoding, lineEnding: self.model.lineEnding)
+                TextSettingsView(encoding: self.model.encoding, lineEnding: self.model.lineEnding, mode: self.model.mode)
                 Divider()
                 CountLocationView(result: self.model.countResult)
                 Divider()
@@ -161,6 +162,7 @@ private struct TextSettingsView: View {
     
     var encoding: FileEncoding
     var lineEnding: LineEnding
+    var mode: Mode
     
     @State private var isExpanded = true
     
@@ -175,6 +177,9 @@ private struct TextSettingsView: View {
                 LabeledContent(String(localized: "Line Endings", table: "Document",
                                       comment: "label in document inspector"),
                                value: self.lineEnding.label)
+                LabeledContent(String(localized: "Mode", table: "Document",
+                                      comment: "label in document inspector"),
+                               value: self.mode.label)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -340,6 +345,13 @@ private extension DocumentInspectorView.Model {
                 document.$lineEnding
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] in self?.lineEnding = $0 },
+                document.didChangeSyntax
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] syntax in
+                        Task {
+                            self?.mode = await ModeManager.shared.mode(for: syntax)
+                        }
+                    },
                 document.analyzer.$result
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] in self?.countResult = $0 },

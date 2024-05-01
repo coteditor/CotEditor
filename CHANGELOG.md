@@ -3,6 +3,10 @@
 4.8.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Display the current editor mode in the document inspector.
+
 
 
 4.8.2 (647)

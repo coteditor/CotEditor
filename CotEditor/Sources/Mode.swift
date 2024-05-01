@@ -33,10 +33,10 @@ enum Mode: RawRepresentable, Equatable, Hashable {
     
     init?(rawValue: String) {
         
-        if let kind = Syntax.Kind(rawValue: rawValue) {
-            self = .kind(kind)
+        self = if let kind = Syntax.Kind(rawValue: rawValue) {
+            .kind(kind)
         } else {
-            self = .syntax(rawValue)
+            .syntax(rawValue)
         }
     }
     
@@ -45,6 +45,16 @@ enum Mode: RawRepresentable, Equatable, Hashable {
         
         switch self {
             case .kind(let kind): kind.rawValue
+            case .syntax(let string): string
+        }
+    }
+    
+    
+    /// Localized name to display for user.
+    var label: String {
+        
+        switch self {
+            case .kind(let kind): kind.label
             case .syntax(let string): string
         }
     }

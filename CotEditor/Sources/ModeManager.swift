@@ -48,6 +48,22 @@ actor ModeManager {
     }
     
     
+    /// Returns the mode corresponding to the given syntax.
+    ///
+    /// - Parameter syntax: The syntax name.
+    /// - Returns: A mode.
+    func mode(for syntaxName: String) -> Mode {
+        
+        if let mode = self.syntaxModes.first(where: { $0 == .syntax(syntaxName) }) {
+            mode
+        } else if let kind = try? SyntaxManager.shared.setting(name: syntaxName).kind {
+            .kind(kind)
+        } else {
+            .kind(.general)
+        }
+    }
+    
+    
     /// Returns the setting instance corresponding to the given mode.
     ///
     /// - Parameter mode: The mode.

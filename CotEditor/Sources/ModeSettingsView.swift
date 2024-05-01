@@ -248,22 +248,8 @@ private extension Mode {
     var syntaxName: String? {
         
         switch self {
-            case .kind:
-                nil
-            case .syntax(let name):
-                name
-        }
-    }
-    
-    
-    /// Localized name to display for user.
-    var label: String {
-        
-        switch self {
-            case .kind(let kind):
-                kind.label
-            case .syntax(let name):
-                name
+            case .kind: nil
+            case .syntax(let name): name
         }
     }
     
