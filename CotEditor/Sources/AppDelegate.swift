@@ -133,11 +133,13 @@ private enum BundleIdentifier {
         self.menuUpdateObservers.removeAll()
         
         // sync menus with setting list updates
-        EncodingManager.shared.$fileEncodings
-            .receive(on: RunLoop.main)
-            .map(\.menuItems)
-            .assign(to: \.items, on: self.encodingsMenu!)
-            .store(in: &self.menuUpdateObservers)
+        withContinuousObservationTracking {
+            _ = EncodingManager.shared.fileEncodings
+        } onChange: {
+            Task { @MainActor in
+                self.encodingsMenu?.items = EncodingManager.shared.fileEncodings.map(\.menuItem)
+            }
+        }
         
         self.lineEndingsMenu?.items = LineEnding.allCases.map { lineEnding in
             let item = NSMenuItem()

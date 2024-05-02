@@ -166,9 +166,9 @@ struct StatusBar: View {
     
     
     @State var model: Model
-    @State var donationManager: DonationManager = .shared
     
-    @State private(set) var fileEncodings: [FileEncoding?] = []
+    @State private var encodingManager: EncodingManager = .shared
+    @State private var donationManager: DonationManager = .shared
     
     @State private var isAcknowledgementPresented = false
     
@@ -197,11 +197,11 @@ struct StatusBar: View {
                     .padding(.vertical, 4)
                 
                 Picker(selection: $model.fileEncoding) {
-                    if !self.fileEncodings.contains(self.model.fileEncoding) {
+                    if !self.encodingManager.fileEncodings.contains(self.model.fileEncoding) {
                         Text(self.model.fileEncoding.localizedName).tag(self.model.fileEncoding)
                     }
                     Section(String(localized: "Text Encoding", table: "Document", comment: "menu item header")) {
-                        ForEach(Array(self.fileEncodings.enumerated()), id: \.offset) { (_, fileEncoding) in
+                        ForEach(Array(self.encodingManager  .fileEncodings.enumerated()), id: \.offset) { (_, fileEncoding) in
                             if let fileEncoding {
                                 Text(fileEncoding.localizedName).tag(fileEncoding)
                             } else {
@@ -230,9 +230,6 @@ struct StatusBar: View {
                 .accessibilityLabel(String(localized: "Line Endings", table: "Document", comment: "menu item header"))
                 .frame(width: 48)
             }
-        }
-        .onReceive(EncodingManager.shared.$fileEncodings.receive(on: RunLoop.main)) { encodings in
-            self.fileEncodings = encodings
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Status Bar", table: "Document", comment: "accessibility label"))
