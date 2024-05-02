@@ -449,7 +449,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             }
             
             if !saveOperation.isAutosave {
-                ScriptManager.shared.dispatch(event: .documentSaved, document: self.objectSpecifier)
+                Task {
+                    await ScriptManager.shared.dispatch(event: .documentSaved, document: self.objectSpecifier)
+                }
             }
         }
     }
@@ -812,7 +814,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // -> This method won't be invoked on Resume. (2015-01-26)
         
         Task {
-            ScriptManager.shared.dispatch(event: .documentOpened, document: await self.objectSpecifier)
+            await ScriptManager.shared.dispatch(event: .documentOpened, document: await self.objectSpecifier)
         }
     }
     

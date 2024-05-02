@@ -47,7 +47,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     
     private var scriptsDirectoryURL: URL?
     private var currentContext: String?  { didSet { Task { await self.applyShortcuts() } } }
-    @Atomic private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
+    @MainActor private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
     
     private var debounceTask: Task<Void, any Error>?
     private var syntaxObserver: AnyCancellable?
@@ -148,12 +148,9 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     /// - Parameters:
     ///   - eventType: The event trigger to perform script.
     ///   - documentSpecifier: The script object specifier of the target document.
-    func dispatch(event eventType: ScriptingEventType, document documentSpecifier: NSScriptObjectSpecifier) {
+    func dispatch(event eventType: ScriptingEventType, document documentSpecifier: NSScriptObjectSpecifier) async {
         
-        guard
-            let scripts = self.scriptHandlersTable[eventType],
-            !scripts.isEmpty
-        else { return }
+        guard let scripts = await self.scriptHandlersTable[eventType], !scripts.isEmpty else { return }
         
         // Create an Apple event caused by the given `Document`.
         let documentDescriptor = documentSpecifier.descriptor ?? NSAppleEventDescriptor(string: "BUG: document.objectSpecifier.descriptor was nil")
@@ -164,9 +161,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
                                            transactionID: AETransactionID(kAnyTransactionID))
         event.setParam(documentDescriptor, forKeyword: keyDirectObject)
         
-        Task {
-            await self.dispatch(event, handlers: scripts)
-        }
+        await self.dispatch(event, handlers: scripts)
     }
     
     
@@ -231,7 +226,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     @MainActor private func buildScriptMenu() async {
         
         self.debounceTask?.cancel()
-        self.$scriptHandlersTable.mutate { $0.removeAll() }
+        self.scriptHandlersTable.removeAll()
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
         
@@ -241,9 +236,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         let eventScripts = scriptMenuItems.flatMap(\.scripts)
             .compactMap { $0 as? any EventScript }
         for type in ScriptingEventType.allCases {
-            self.$scriptHandlersTable.mutate {
-                $0[type] = eventScripts.filter { $0.eventTypes.contains(type) }
-            }
+            self.scriptHandlersTable[type] = eventScripts.filter { $0.eventTypes.contains(type) }
         }
         
         let menuItems = scriptMenuItems.map { $0.menuItem(action: #selector(launchScript), target: self) }
