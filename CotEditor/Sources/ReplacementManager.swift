@@ -25,9 +25,10 @@
 
 import Combine
 import Foundation
+import Observation
 import UniformTypeIdentifiers
 
-final class ReplacementManager: SettingFileManaging {
+@Observable final class ReplacementManager: SettingFileManaging {
     
     typealias Setting = MultipleReplace
     
@@ -45,7 +46,7 @@ final class ReplacementManager: SettingFileManaging {
     let fileType: UTType = .cotReplacement
     let reservedNames: [String] = []
     
-    @Published var settingNames: [String] = []
+    var settingNames: [String] = []
     let bundledSettingNames: [String] = []
     var cachedSettings: [String: Setting] = [:]
     

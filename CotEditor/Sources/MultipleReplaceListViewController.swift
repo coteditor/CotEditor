@@ -36,7 +36,6 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     private var settingNames: [String] = []
     
     private var settingUpdateObserver: AnyCancellable?
-    private var listUpdateObserver: AnyCancellable?
     private lazy var filePromiseQueue = OperationQueue()
     
     @IBOutlet private weak var tableView: NSTableView?
@@ -78,9 +77,13 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         self.tableView?.selectRowIndexes([row], byExtendingSelection: false)
         
         // observe replacement setting list change
-        self.listUpdateObserver = ReplacementManager.shared.$settingNames
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in self?.updateSettingList() }
+        withContinuousObservationTracking {
+            _ = ReplacementManager.shared.settingNames
+        } onChange: {
+            Task { @MainActor in
+                self.updateSettingList()
+            }
+        }
     }
     
     
