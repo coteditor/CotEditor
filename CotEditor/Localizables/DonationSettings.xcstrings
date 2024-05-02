@@ -78,6 +78,28 @@
         }
       }
     },
+    "An internet connection is required to donate." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für die Spende ist eine Internetverbindung erforderlich."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An internet connection is required to donate."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "寄付にはインターネット接続が必要です。"
+          }
+        }
+      }
+    },
     "As a proof of your kind support, a coffee badge appears on the status bar during continuous support." : {
       "localizations" : {
         "de" : {
@@ -278,6 +300,28 @@
         }
       }
     },
+    "Donation is currently not available." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spende ist derzeit nicht verfügbar."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Donation is currently not available."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在、寄付はできません。"
+          }
+        }
+      }
+    },
     "Manage subscriptions" : {
       "localizations" : {
         "cs" : {
@@ -376,7 +420,30 @@
         }
       }
     },
-    "Open in the App Store" : {
+    "Open GitHub Sponsors" : {
+      "comment" : "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization if exists.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub Sponsors öffnen"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open GitHub Sponsors"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub Sponsosを開く"
+          }
+        }
+      }
+    },
+    "Open in App Store" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -393,7 +460,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open in the App Store"
+            "value" : "Open in App Store"
           }
         },
         "es" : {
@@ -457,7 +524,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Spendenfunktion ist nur in CotEditor verfügbar, das im App Store vertrieben wird."
+            "value" : "Die Spendenfunktion ist nur in CotEditor verfügbar, der im App Store vertrieben wird."
           }
         },
         "en-GB" : {

@@ -167,17 +167,17 @@ struct StatusBar: View {
     
     @State var model: Model
     
-    @State private var encodingManager: EncodingManager = .shared
-    @State private var donationManager: DonationManager = .shared
+    @AppStorage(.donationBadgeType) private var badgeType
     
-    @State private var isAcknowledgementPresented = false
+    @State private var encodingManager: EncodingManager = .shared
+    @State private var hasDonated: Bool = false
     
     
     var body: some View {
         
         HStack {
-            if self.donationManager.hasDonated {
-                CoffeeBadge()
+            if self.hasDonated, self.badgeType != .invisible {
+                CoffeeBadge(type: self.badgeType)
             }
             EditorCountView(result: self.model.countResult)
             
@@ -230,6 +230,9 @@ struct StatusBar: View {
                 .accessibilityLabel(String(localized: "Line Endings", table: "Document", comment: "menu item header"))
                 .frame(width: 48)
             }
+        }
+        .subscriptionStatusTask(for: Donation.groupID) { taskState in
+            self.hasDonated = taskState.value?.map(\.state).contains(.subscribed) == true
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Status Bar", table: "Document", comment: "accessibility label"))
@@ -394,7 +397,7 @@ private struct LineEndingPicker: NSViewRepresentable {
 
 private struct CoffeeBadge: View {
     
-    @AppStorage(.donationBadgeType) private var badgeType
+    var type: BadgeType
     
     @State private var isMessagePresented = false
     
@@ -404,7 +407,7 @@ private struct CoffeeBadge: View {
         Button {
             self.isMessagePresented.toggle()
         } label: {
-            Image(systemName: self.badgeType.symbolName)
+            Image(systemName: self.type.symbolName)
                 .fontWeight(.semibold)
         }
         .popover(isPresented: $isMessagePresented) {
@@ -412,7 +415,6 @@ private struct CoffeeBadge: View {
                 .padding(.vertical, 8)
                 .padding(.horizontal)
         }
-        .opacity(self.badgeType == .invisible ? 0 : 1)
         .accessibilityHidden(true)
     }
 }

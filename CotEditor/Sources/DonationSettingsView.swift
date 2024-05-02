@@ -34,9 +34,10 @@ import StoreKit
     var isInAppPurchaseAvailable = true
 #endif
     
-    @State private var manager: DonationManager = .shared
-    
     @AppStorage(.donationBadgeType) private var badgeType: BadgeType
+    
+    @State private var error: (any Error)?
+    @State private var hasDonated = false
     
     
     // MARK: View
@@ -53,9 +54,9 @@ import StoreKit
                         Text("Continuous support", tableName: "DonationSettings")
                             .font(.system(size: 14))
                         
-                        ProductView(id: Donation.ProductID.continuous) {
+                        ProductView(id: Donation.ProductID.continuous, prefersPromotionalIcon: true) {
                             Image(.bagCoffee)
-                                .font(.system(size: 36))
+                                .font(.system(size: 40))
                                 .foregroundStyle(.secondary)
                                 .productIconBorder()
                         }
@@ -65,7 +66,7 @@ import StoreKit
                         .textScale(.secondary)
                         .foregroundStyle(.tint)
                         .frame(maxWidth: .infinity)
-                        .opacity(self.manager.hasDonated ? 1 : 0)
+                        .opacity(self.hasDonated ? 1 : 0)
                         .padding(.bottom, 10)
                         
                         Form {
@@ -81,9 +82,11 @@ import StoreKit
                             Text("As a proof of your kind support, a coffee badge appears on the status bar during continuous support.", tableName: "DonationSettings")
                                 .foregroundStyle(.secondary)
                                 .controlSize(.small)
-                        }.disabled(!self.manager.hasDonated)
+                        }.disabled(!self.hasDonated)
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)  // for the same width
+                    .subscriptionStatusTask(for: Donation.groupID) { taskState in
+                        self.hasDonated = taskState.value?.map(\.state).contains(.subscribed) == true
+                    }
                     
                     Divider()
                     
@@ -91,12 +94,40 @@ import StoreKit
                         Text("One-time donation", tableName: "DonationSettings")
                             .font(.system(size: 14))
                         
-                        ProductView(id: Donation.ProductID.onetime) {
+                        ProductView(id: Donation.ProductID.onetime, prefersPromotionalIcon: true) {
                             Image(.espresso)
                         }.productViewStyle(OnetimeProductViewStyle())
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)  // for the same width
                 }
+                .overlay(alignment: .top) {
+                    if let error = self.error {
+                        VStack {
+                            let description = switch error {
+                            case StoreKitError.networkError:
+                                String(localized: "An internet connection is required to donate.", table: "DonationSettings")
+                            default:
+                                error.localizedDescription
+                            }
+                            Text("Donation is currently not available.", tableName: "DonationSettings")
+                            Text(description)
+                                .foregroundStyle(.tertiary)
+                                .textScale(.secondary)
+                        }
+                        .textSelection(.enabled)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 12)
+                        .background(.background.shadow(.drop(radius: 3, y: 1.5)),
+                                    in: RoundedRectangle(cornerRadius: 8))
+                        .offset(y: 40)
+                    }
+                }
+                .storeProductsTask(for: Donation.ProductID.allCases) { taskState in
+                    self.error = switch taskState {
+                        case .failure(let error): error
+                        default: nil
+                    }
+                }
+                
             } else {
                 VStack(alignment: .center) {
                     Image(.bagCoffee)
@@ -107,10 +138,14 @@ import StoreKit
                         .foregroundStyle(.secondary)
                     
                     if let url = URL(string: "itms-apps://itunes.apple.com/app/id1024640650") {
-                        Link(String(localized: "Open in the App Store", table: "DonationSettings"), destination: url)
-                            .foregroundStyle(.tint)
+                        Link(String(localized: "Open in App Store", table: "DonationSettings"), destination: url)
                     }
-                }.frame(maxWidth: .infinity, alignment: .center)
+                    if let url = URL(string: "https://github.com/sponsors/1024jp/") {
+                        Link(String(localized: "Open GitHub Sponsors", table: "DonationSettings", comment: "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization if exists."), destination: url)
+                    }
+                }
+                .buttonStyle(CapsuleButtonStyle())
+                .frame(maxWidth: .infinity, alignment: .center)
             }
             
             HStack {
@@ -124,7 +159,22 @@ import StoreKit
 }
 
 
+private struct CapsuleButtonStyle: ButtonStyle {
+    
+    func makeBody(configuration: Configuration) -> some View {
+        
+        configuration.label
+            .padding(.vertical, 2)
+            .padding(.horizontal, 10)
+            .foregroundStyle(.tint)
+            .background(.fill.tertiary, in: Capsule())
+    }
+}
+
+
 private struct OnetimeProductViewStyle: ProductViewStyle {
+    
+    @Environment(\.purchase) private var purchase: PurchaseAction
     
     @State private var quantity = 1
     @State private var error: (any Error)?
@@ -135,19 +185,18 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
         switch configuration.state {
             case .success(let product):
                 self.productView(product, icon: configuration.icon)
-            case .loading, .failure, .unavailable:
-                ProductView(configuration)
-            @unknown default:
+            default:
                 ProductView(configuration)
         }
     }
     
+    
     /// Returns the view to display when the state is success.
     @ViewBuilder private func productView(_ product: Product, icon: ProductViewStyleConfiguration.Icon) -> some View {
         
-        HStack(spacing: 10) {
+        HStack(alignment: .top, spacing: 10) {
             icon
-                .font(.system(size: 18))
+                .font(.system(size: 22))
                 .foregroundStyle(.secondary)
                 .productIconBorder()
                 .frame(width: 50, height: 50)
@@ -155,31 +204,31 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
             VStack(alignment: .leading, spacing: 1) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     Text(product.displayName)
+                        .fixedSize()
                     Text("× \(self.quantity)", tableName: "DonationSettings", comment: "multiple sign for the quantity of items to purchase")
                         .monospacedDigit()
+                        .frame(minWidth: 28, alignment: .trailing)
                     
-                    Stepper(value: $quantity, in: 1...100, label: EmptyView.init)
+                    Stepper(value: $quantity, in: 1...99, label: EmptyView.init)
                     
                     Spacer()
-                    Button {
+                    Button((product.price * Decimal(self.quantity)).formatted(product.priceFormatStyle)) {
                         Task {
                             do {
-                                _ = try await product.purchase(options: [.quantity(self.quantity)])
+                                _ = try await self.purchase(product, options: [.quantity(self.quantity)])
                             } catch {
                                 self.error = error
                             }
                         }
-                    } label: {
-                        Text(product.price * Decimal(self.quantity), format: product.priceFormatStyle)
-                            .monospacedDigit()
-                            .fixedSize()
-                            .contentTransition(.numericText())
-                            .animation(.default, value: self.quantity)
                     }
+                    .monospacedDigit()
+                    .fixedSize()
+                    .contentTransition(.numericText())
+                    .animation(.default, value: self.quantity)
                 }
                 
                 Text(product.description)
-                    .controlSize(.small)
+                    .font(.system(size: 12))
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }.alert(error: $error)
@@ -210,7 +259,7 @@ private extension BadgeType {
 // MARK: - Preview
 
 #Preview {
-    DonationSettingsView()
+    DonationSettingsView(isInAppPurchaseAvailable: true)
 }
 
 #Preview("Non-AppStore version") {
