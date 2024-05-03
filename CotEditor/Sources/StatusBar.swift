@@ -313,9 +313,8 @@ private extension AttributedString {
     /// - Returns: An attributed string.
     init(_ label: String, value: String?) {
         
-        self = Self(label, attributes: .init().foregroundColor(.secondary))
-        + Self(value ?? "–", attributes: .init()
-            .foregroundColor((value == nil) ? NSColor.disabledControlTextColor : .labelColor))
+        self = Self(label, attributes: AttributeContainer.foregroundColor(.secondary))
+        + Self(value ?? "–", attributes: AttributeContainer.foregroundColor((value == nil) ? .disabledControlTextColor : .labelColor))
     }
 }
 
