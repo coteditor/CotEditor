@@ -83,14 +83,12 @@ struct FindPanelResultView: View {
         
         VStack(alignment: .leading) {
             HStack {
-                Button {
+                Button(String(localized: "Close", table: "TextFind", comment: "button label"), systemImage: "chevron.up") {
                     NSApp.sendAction(#selector(FindPanelContentViewController.closeResultView), to: nil, from: nil)
-                } label: {
-                    Image(systemName: "chevron.up")
-                        .fontWeight(.medium)
-                        .imageScale(.small)
                 }
-                .accessibilityLabel(String(localized: "Close", table: "TextFind", comment: "button label"))
+                .fontWeight(.medium)
+                .imageScale(.small)
+                .labelStyle(.iconOnly)
                 .help(String(localized: "Close find result.", table: "TextFind", comment: "tooltip"))
                 
                 Text(self.message)

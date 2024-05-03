@@ -102,14 +102,11 @@ struct ThemeEditorView: View {
             
             HStack {
                 Spacer()
-                Button {
+                Button(String(localized: "Show theme file information", table: "ThemeEditor"), systemImage: "info") {
                     self.isMetadataPresenting.toggle()
-                } label: {
-                    Image(systemName: "info")
-                        .symbolVariant(.circle)
                 }
-                .accessibilityLabel(String(localized: "Show theme file information", table: "ThemeEditor"))
-                .help(String(localized: "Show theme file information", table: "ThemeEditor", comment: "tooltip"))
+                .symbolVariant(.circle)
+                .labelStyle(.iconOnly)
                 .popover(isPresented: self.$isMetadataPresenting, arrowEdge: .trailing) {
                     ThemeMetadataView(metadata: $theme.metadata ?? .init(), isEditable: !self.isBundled)
                 }

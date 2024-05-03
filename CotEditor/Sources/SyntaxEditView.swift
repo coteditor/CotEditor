@@ -111,14 +111,12 @@ struct SyntaxEditView: View {
             VStack(spacing: 16) {
                 HStack(alignment: .firstTextBaseline) {
                     if self.columnVisibility == .detailOnly {
-                        Button {
+                        Button(String(localized: "Show Sidebar", table: "SyntaxEditor"), systemImage: "sidebar.leading") {
                             withAnimation {
                                 self.columnVisibility = .all
                             }
-                        } label: {
-                            Image(systemName: "sidebar.leading")
-                                .accessibilityLabel(String(localized: "Show Sidebar", table: "SyntaxEditor"))
                         }
+                        .labelStyle(.iconOnly)
                         .buttonStyle(.borderless)
                     }
                     

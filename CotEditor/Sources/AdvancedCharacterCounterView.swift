@@ -63,15 +63,13 @@ struct AdvancedCharacterCounterView: View {
             
             Spacer()
             
-            Button {
+            Button(String(localized: "Show options", table: "AdvancedCharacterCount"), systemImage: "gearshape") {
                 self.isSettingPresented.toggle()
-            } label: {
-                Image(systemName: "gearshape")
-                    .symbolVariant(.fill)
-                    .accessibilityLabel(String(localized: "Show options", table: "AdvancedCharacterCount"))
             }
+            .symbolVariant(.fill)
             .buttonStyle(.plain)
             .foregroundStyle(.secondary)
+            .labelStyle(.iconOnly)
             .help(String(localized: "Show options", table: "AdvancedCharacterCount", comment: "tooltip"))
             .popover(isPresented: self.$isSettingPresented) {
                 VStack {

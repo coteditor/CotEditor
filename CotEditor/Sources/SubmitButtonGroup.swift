@@ -57,14 +57,16 @@ struct SubmitButtonGroup: View {
                 Text(String(localized: "Cancel"))
                     .background(SizeGetter(key: MaxSizeKey.self))
                     .frame(width: self.buttonWidth)
-            }.keyboardShortcut(.cancelAction)
-                .environment(\.isEnabled, true)  // Cancel button is always active
+            }
+            .keyboardShortcut(.cancelAction)
+            .environment(\.isEnabled, true)  // Cancel button is always active
             
             Button(action: self.submitAction) {
                 Text(self.submitLabel)
                     .background(SizeGetter(key: MaxSizeKey.self))
                     .frame(width: self.buttonWidth)
-            }.keyboardShortcut(.defaultAction)
+            }
+            .keyboardShortcut(.defaultAction)
         }
         .onPreferenceChange(MaxSizeKey.self) { self.buttonWidth = $0.width }
         .fixedSize()
