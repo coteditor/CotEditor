@@ -413,17 +413,32 @@ final class StringExtensionsTests: XCTestCase {
     }
     
     
-    func testAbbreviatedMatch() {
+    func testAbbreviatedMatch() throws {
         
         let string = "The fox jumps over the lazy dogcow."
         
         XCTAssertNil(string.abbreviatedMatch(with: "quick"))
         
-        XCTAssertEqual(string.abbreviatedMatch(with: "dogcow")?.score, 6)
-        XCTAssertEqual(string.abbreviatedMatch(with: "dogcow")?.ranges.count, 6)
+        let dogcow = try XCTUnwrap(string.abbreviatedMatch(with: "dogcow"))
+        XCTAssertEqual(dogcow.score, 6)
+        XCTAssertEqual(dogcow.ranges.count, 6)
+        XCTAssertEqual(dogcow.remaining, "")
         
-        XCTAssertEqual(string.abbreviatedMatch(with: "ow")?.score, 29)
-        XCTAssertEqual(string.abbreviatedMatch(with: "ow")?.ranges.count, 2)
+        let ow = try XCTUnwrap(string.abbreviatedMatch(with: "ow"))
+        XCTAssertEqual(ow.score, 29)
+        XCTAssertEqual(ow.ranges.count, 2)
+        XCTAssertEqual(ow.remaining, "")
+        
+        let lazyTanuki = try XCTUnwrap(string.abbreviatedMatch(with: "lazy tanuki"))
+        XCTAssertEqual(lazyTanuki.score, 5)
+        XCTAssertEqual(lazyTanuki.ranges.count, 5)
+        XCTAssertEqual(lazyTanuki.remaining, "tanuki")
+        
+        XCTAssertNil(string.abbreviatedMatchedRanges(with: "lazy tanuki"))
+        XCTAssertEqual(string.abbreviatedMatchedRanges(with: "lazy tanuki", incomplete: true)?.count, 5)
+        
+        XCTAssertEqual(string.abbreviatedMatchedRanges(with: "lazy w")?.count, 6)
+        XCTAssertEqual(string.abbreviatedMatchedRanges(with: "lazy w", incomplete: true)?.count, 6)
     }
 }
 

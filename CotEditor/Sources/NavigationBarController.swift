@@ -224,8 +224,10 @@ final class NavigationBarController: NSViewController {
                         
                     default:
                         let menuItem = NSMenuItem()
-                        let title = outlineItem.attributedTitle(for: outlineMenu.font, paragraphStyle: self.menuItemParagraphStyle)
-                        menuItem.attributedTitle = NSAttributedString(title)
+                        let attributes = outlineItem.attributes(baseFont: outlineMenu.font)
+                            .merging([.paragraphStyle: self.menuItemParagraphStyle]) { $1 }
+                        
+                        menuItem.attributedTitle = NSAttributedString(string: outlineItem.title, attributes: attributes)
                         menuItem.representedObject = outlineItem.range
                         
                         return [menuItem]

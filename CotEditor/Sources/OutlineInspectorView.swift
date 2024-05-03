@@ -116,7 +116,7 @@ struct OutlineInspectorView: View {
                 .foregroundStyle(.secondary)
                 .accessibilityRemoveTraits(.isHeader)
             
-            let items = self.model.items.filterItems(with: self.filterString)
+            let items = self.model.items.compactMap { $0.filter(self.filterString, keyPath: \.title) }
             
             List(items, selection: $model.selection) { item in
                 OutlineRowView(item: item, fontSize: self.fontSize)
@@ -184,21 +184,23 @@ struct OutlineInspectorView: View {
 
 private struct OutlineRowView: View {
     
-    var item: OutlineItem
+    var item: FilteredItem<OutlineItem>
     var fontSize: Double = 0
     
     
     var body: some View {
         
-        if self.item.isSeparator {
-            Divider()
-                .selectionDisabled()
+        if self.item.value.isSeparator {
+            Divider().selectionDisabled()
             
         } else {
-            Text(self.item.attributedTitle(.init()
-                .backgroundColor(.findHighlightColor)
-                .foregroundColor(.black.withAlphaComponent(0.9)),  // for legibility in Dark Mode
-                                           fontSize: self.fontSize))
+            Text(self.item.attributedString
+                .replacingAttributes(AttributeContainer.inlinePresentationIntent(.emphasized),
+                                     with: AttributeContainer
+                    .backgroundColor(.findHighlightColor)
+                    .foregroundColor(.black.withAlphaComponent(0.9)))  // for legibility in Dark Mode
+                .mergingAttributes(self.item.value.attributes(fontSize: fontSize), mergePolicy: .keepCurrent)
+            )
         }
     }
 }

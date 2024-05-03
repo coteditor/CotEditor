@@ -82,9 +82,9 @@ final class OutlineTests: XCTestCase {
     
     func testFilter() throws {
         
-        XCTAssertEqual(self.items.filterItems(with: "").count, 7)
-        XCTAssertEqual(self.items.filterItems(with: "cat").count, 0)
-        XCTAssertEqual(self.items.filterItems(with: "dog").count, 2)
-        XCTAssertEqual(self.items.filterItems(with: "dow").count, 1)
+        XCTAssertEqual(self.items.compactMap { $0.filter("", keyPath: \.title) }.count, 7)
+        XCTAssertEqual(self.items.compactMap { $0.filter("cat", keyPath: \.title) }.count, 0)
+        XCTAssertEqual(self.items.compactMap { $0.filter("dog", keyPath: \.title) }.count, 2)
+        XCTAssertEqual(self.items.compactMap { $0.filter("dow", keyPath: \.title) }.count, 1)
     }
 }

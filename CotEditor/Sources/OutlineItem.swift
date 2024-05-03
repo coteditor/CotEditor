@@ -42,7 +42,6 @@ struct OutlineItem: Equatable, Identifiable {
     var title: String
     var range: NSRange
     var style: Style = []
-    fileprivate(set) var filteredRanges: [Range<String.Index>]?
     
     var isSeparator: Bool  { self.title == .separator }
 }
@@ -88,26 +87,6 @@ extension BidirectionalCollection<OutlineItem> {
         else { return nil }
         
         return self[self.index(after: currentIndex)...].first { !$0.isSeparator }
-    }
-    
-    
-    /// Filters matched outline items abbreviatedly.
-    ///
-    /// - Parameter searchString: The string to search.
-    /// - Returns: Matched items, or all if the searchString is empty.
-    func filterItems(with searchString: String) -> [OutlineItem] {
-        
-        guard !searchString.isEmpty else { return Array(self) }
-        
-        return self.compactMap { item in
-            item.title.abbreviatedMatch(with: searchString).flatMap { (item: item, result: $0) }
-        }
-        .filter { $0.result.remaining.isEmpty }
-        .map {
-            var item = $0.item
-            item.filteredRanges = $0.result.ranges
-            return item
-        }
     }
     
     
