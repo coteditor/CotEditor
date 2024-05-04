@@ -65,7 +65,9 @@ final class StatusBarController: NSHostingController<StatusBar> {
 
 private extension StatusBar.Model {
     
-    @MainActor func onAppear() {
+    func onAppear() {
+        
+        self.isActive = true
         
         self.observeDocument()
         
@@ -85,7 +87,9 @@ private extension StatusBar.Model {
     }
     
     
-    @MainActor func onDisappear() {
+    func onDisappear() {
+        
+        self.isActive = false
         
         self.defaultsObserver = nil
         self.documentObservers.removeAll()
@@ -93,9 +97,9 @@ private extension StatusBar.Model {
     }
     
     
-    @MainActor private func observeDocument() {
+    private func observeDocument() {
         
-        guard let document else {
+        guard let document, self.isActive else {
             self.documentObservers.removeAll()
             return
         }
@@ -146,7 +150,7 @@ struct StatusBar: View {
     
     @MainActor @Observable final class Model {
         
-        var document: Document?  { didSet { Task { @MainActor in self.observeDocument() } } }
+        var document: Document?  { didSet { self.observeDocument() } }
         
         var fileEncoding: FileEncoding = .utf8
         var lineEnding: LineEnding = .lf
@@ -154,6 +158,7 @@ struct StatusBar: View {
         fileprivate(set) var countResult: EditorCounter.Result = .init()
         fileprivate(set) var fileSize: Int64?
         
+        private var isActive: Bool = false
         private var defaultsObserver: AnyCancellable?
         private var documentObservers: Set<AnyCancellable> = []
         

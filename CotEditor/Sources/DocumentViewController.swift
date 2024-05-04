@@ -46,6 +46,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         didSet {
             self.statusBarModel.document = document
             self.updateDocument()
+            self.invalidateStyleInTextStorage()
         }
     }
     

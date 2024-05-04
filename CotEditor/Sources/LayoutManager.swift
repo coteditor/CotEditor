@@ -110,6 +110,15 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     
     // MARK: Layout Manager Methods
     
+    override func replaceTextStorage(_ newTextStorage: NSTextStorage) {
+        
+        super.replaceTextStorage(newTextStorage)
+        
+        // reset line range cache
+        self.lineRangeCache = .init()
+    }
+    
+    
     /// Adjusts rect of last empty line.
     override func setExtraLineFragmentRect(_ fragmentRect: NSRect, usedRect: NSRect, textContainer container: NSTextContainer) {
         
