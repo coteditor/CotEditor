@@ -38,7 +38,7 @@ struct NavigationBar: View {
         HStack(alignment: .center, spacing: 6) {
             Group {
                 Button(String(localized: "Close Split Editor", table: "Document", comment: "accessibility label for button"), systemImage: "xmark") {
-                    NSApp.sendAction(#selector(DocumentViewController.closeSplitTextView), to: nil, from: nil)
+                    NSApp.sendAction(#selector(DocumentViewController.closeSplitTextView), to: nil, from: self.outlineNavigator.textView)
                 }
                 .labelStyle(.iconOnly)
                 .help(String(localized: "Close split editor", table: "Document", comment: "tooltip for button"))
@@ -74,7 +74,7 @@ struct NavigationBar: View {
             Spacer()
             
             Button(String(localized: "Split Editor", table: "Document", comment: "accessibility label for button"), image: self.splitState.isVertical ? .splitAddVertical : .splitAdd) {
-                NSApp.sendAction(#selector(DocumentViewController.openSplitTextView), to: nil, from: nil)
+                NSApp.sendAction(#selector(DocumentViewController.openSplitTextView), to: nil, from: self.outlineNavigator.textView)
             }
             .labelStyle(.iconOnly)
             .help(String(localized: "Split editor", table: "Document", comment: "tooltip for button"))
