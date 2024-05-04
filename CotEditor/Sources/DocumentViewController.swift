@@ -55,7 +55,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     var document: Document  {
         
         didSet {
-            self.updateDocument()
+            self.updateDocument(from: oldValue)
             self.invalidateStyleInTextStorage()
         }
     }
@@ -83,10 +83,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     private var focusedEditorObserver: AnyCancellable?
     private var documentSyntaxObserver: AnyCancellable?
-    private var outlineObserver: AnyCancellable?
-    private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: Set<AnyCancellable> = []
     private var themeChangeObserver: AnyCancellable?
+    private var appearanceObserver: AnyCancellable?
     
     private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.document.syntaxParser.invalidateOutline() }
     
@@ -111,7 +110,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSTextStorage.didProcessEditingNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: EditorTextView.didLiveChangeSelectionNotification, object: nil)
     }
     
@@ -407,18 +406,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     @objc private func textViewDidLiveChangeSelection(_ notification: Notification) {
         
         self.document.analyzer.invalidateSelection()
-    }
-    
-    
-    /// The document updated its syntax.
-    private func didChangeSyntax() {
-        
-        for viewController in self.editorViewControllers {
-            viewController.apply(syntax: self.document.syntaxParser.syntax, name: self.document.syntaxParser.name)
-        }
-        
-        self.outlineParseDebouncer.perform()
-        self.document.syntaxParser.highlight()
     }
     
     
@@ -790,7 +777,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         NSTextInputContext.current?.discardMarkedText()
         
         let newEditorViewController = self.addEditorView(below: currentEditorViewController)
-        self.replace(document: self.document, in: newEditorViewController)
         
         // copy parsed syntax highlight
         if let textView = newEditorViewController.textView,
@@ -820,7 +806,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         guard let currentEditorViewController = self.baseEditorViewController(for: sender) else { return }
         
         if let textView = currentEditorViewController.textView {
-            NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
+            NotificationCenter.default.removeObserver(self, name: EditorTextView.didLiveChangeSelectionNotification, object: textView)
         }
         
         // end current editing
@@ -853,10 +839,12 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     
     /// Sets the receiver and its children with the given document.
-    private func updateDocument() {
+    /// 
+    /// - Parameter oldDocument: The old document if exists.
+    private func updateDocument(from oldDocument: Document? = nil) {
         
         for editorViewController in self.editorViewControllers {
-            self.replace(document: self.document, in: editorViewController)
+            editorViewController.document = self.document
         }
         
         // detect indent style
@@ -873,6 +861,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         self.outlineParseDebouncer.perform()
         self.document.syntaxParser.highlight()
         
+        if let oldDocument {
+            NotificationCenter.default.removeObserver(self, name: NSTextStorage.didProcessEditingNotification, object: oldDocument)
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(textStorageDidProcessEditing),
                                                name: NSTextStorage.didProcessEditingNotification,
                                                object: self.document.textStorage)
@@ -880,14 +871,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         // observe syntax change
         self.documentSyntaxObserver = self.document.didChangeSyntax
             .receive(on: RunLoop.main)
-            .sink { [weak self] _ in self?.didChangeSyntax() }
-        
-        // observe syntaxParser for outline update
-        self.outlineObserver = self.document.syntaxParser.$outlineItems
-            .removeDuplicates()
-            .receive(on: RunLoop.main)
-            .sink { [weak self] items in
-                self?.editorViewControllers.forEach { $0.outlineNavigator.items = items }
+            .sink { [weak self] _ in
+                self?.outlineParseDebouncer.perform()
+                self?.document.syntaxParser.highlight()
             }
     }
     
@@ -899,7 +885,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     @discardableResult
     private func addEditorView(below otherViewController: EditorViewController? = nil) -> EditorViewController {
         
-        let viewController = EditorViewController(splitState: self.splitState)
+        let viewController = EditorViewController(document: self.document, splitState: self.splitState)
         
         let splitViewItem = NSSplitViewItem(viewController: viewController)
         splitViewItem.minimumThickness = 100
@@ -938,19 +924,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         }
         
         return viewController
-    }
-    
-    
-    /// Replaces the document in the editorViewController with the given document.
-    ///
-    /// - Parameters:
-    ///   - document: The new document to be replaced with.
-    ///   - editorViewController: The editor view controller of which document is replaced.
-    private func replace(document: Document, in editorViewController: EditorViewController) {
-        
-        editorViewController.setTextStorage(document.textStorage)
-        editorViewController.apply(syntax: document.syntaxParser.syntax, name: document.syntaxParser.name)
-        editorViewController.outlineNavigator.items = document.syntaxParser.outlineItems
     }
     
     

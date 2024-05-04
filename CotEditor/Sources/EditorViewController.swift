@@ -32,27 +32,28 @@ final class EditorViewController: NSSplitViewController {
     
     // MARK: Public Properties
     
+    var document: Document  { didSet { self.updateDocument() } }
     var textView: EditorTextView?  { self.textViewController.textView }
-    
-    private(set) lazy var outlineNavigator = OutlineNavigator()
     
     
     // MARK: Private Properties
     
+    private lazy var outlineNavigator = OutlineNavigator()
     private lazy var textViewController = EditorTextViewController()
     @ViewLoading private var navigationBarItem: NSSplitViewItem
     
     private var splitState: SplitState
-    private var syntaxName: String?
     
     private var defaultObservers: [AnyCancellable] = []
-    
+    private var documentSyntaxObserver: AnyCancellable?
+    private var outlineObserver: AnyCancellable?
     
     
     // MARK: Lifecycle
     
-    init(splitState: SplitState) {
+    init(document: Document, splitState: SplitState) {
         
+        self.document = document
         self.splitState = splitState
         
         super.init(nibName: nil, bundle: nil)
@@ -68,6 +69,8 @@ final class EditorViewController: NSSplitViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        self.updateDocument()
         
         self.splitView.isVertical = false
         
@@ -139,35 +142,6 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
-    /// Sets textStorage to the inner text view.
-    ///
-    /// - Parameter textStorage: The text storage to set.
-    func setTextStorage(_ textStorage: NSTextStorage) {
-        
-        guard let layoutManager = self.textView?.layoutManager else { return assertionFailure() }
-        
-        layoutManager.replaceTextStorage(textStorage)
-    }
-    
-    
-    /// Applies syntax to the inner text view.
-    ///
-    /// - Parameters:
-    ///   - syntax: The syntax to apply.
-    ///   - name: The name of the syntax.
-    func apply(syntax: Syntax, name: String) {
-        
-        self.syntaxName = name
-        
-        guard let textView = self.textView else { return assertionFailure() }
-        
-        textView.commentDelimiters = syntax.commentDelimiters
-        textView.syntaxCompletionWords = syntax.completionWords
-        
-        self.invalidateMode()
-    }
-    
-    
     
     // MARK: Action Messages
     
@@ -202,10 +176,43 @@ final class EditorViewController: NSSplitViewController {
     
     // MARK: Private Methods
     
+    /// Setups document.
+    private func updateDocument() {
+        
+        assert(self.textView != nil)
+        
+        self.textView?.layoutManager?.replaceTextStorage(self.document.textStorage)
+        self.applySyntax()
+        
+        self.documentSyntaxObserver = self.document.didChangeSyntax
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.applySyntax() }
+        
+        // observe syntaxParser for outline update
+        self.outlineObserver = self.document.syntaxParser.$outlineItems
+            .removeDuplicates()
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in self?.outlineNavigator.items = $0 }
+    }
+    
+    
+    /// Applies syntax to the inner text view.
+    private func applySyntax() {
+        
+        guard let textView = self.textView else { return assertionFailure() }
+        
+        let syntax = self.document.syntaxParser.syntax
+        textView.commentDelimiters = syntax.commentDelimiters
+        textView.syntaxCompletionWords = syntax.completionWords
+        
+        self.invalidateMode()
+    }
+    
+    
     /// Updates the editing mode options in the text view.
     private func invalidateMode() {
         
-        guard let syntaxName else { return assertionFailure() }
+        let syntaxName = self.document.syntaxParser.name
         
         Task {
             self.textView?.mode = await ModeManager.shared.setting(for: .syntax(syntaxName))
