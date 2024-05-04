@@ -49,7 +49,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     @ViewLoading private var lineNumberView: LineNumberView
     
     private weak var advancedCounterView: NSView?
-    private weak var horizontalCounterConstraint: NSLayoutConstraint?
     
     private var orientationObserver: AnyCancellable?
     private var writingDirectionObserver: AnyCancellable?
