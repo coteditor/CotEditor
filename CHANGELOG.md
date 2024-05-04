@@ -11,6 +11,7 @@
 ### Improvements
 
 - Change the system requirement to __macOS 14 Sonoma and later__.
+- [dev] Migrate the navigation bar to SwiftUI.
 
 
 

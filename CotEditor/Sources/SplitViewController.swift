@@ -25,15 +25,29 @@
 //
 
 import AppKit
+import Observation
 import Combine
+
+@Observable final class SplitState {
+    
+    var isVertical: Bool
+    var canClose: Bool
+    
+    
+    init(isVertical: Bool = false, canClose: Bool = false) {
+        
+        self.isVertical = isVertical
+        self.canClose = canClose
+    }
+}
+
 
 final class SplitViewController: NSSplitViewController {
     
     // MARK: Public Properties
     
+    private(set) var state = SplitState()
     private(set) weak var focusedChild: EditorViewController?
-    
-    @Published private(set) var canCloseSplitItem = false
     
     
     // MARK: Private Properties
@@ -66,7 +80,7 @@ final class SplitViewController: NSSplitViewController {
         
         super.insertSplitViewItem(splitViewItem, at: index)
         
-        self.canCloseSplitItem = self.splitViewItems.count > 1
+        self.state.canClose = self.splitViewItems.count > 1
     }
     
     
@@ -74,7 +88,7 @@ final class SplitViewController: NSSplitViewController {
         
         super.removeChild(at: index)
         
-        self.canCloseSplitItem = self.splitViewItems.count > 1
+        self.state.canClose = self.splitViewItems.count > 1
     }
     
     
@@ -103,6 +117,7 @@ final class SplitViewController: NSSplitViewController {
     @IBAction func toggleSplitOrientation(_ sender: Any?) {
         
         self.splitView.isVertical.toggle()
+        self.state.isVertical = self.splitView.isVertical
         
         UserDefaults.standard[.splitViewVertical] = self.splitView.isVertical
     }

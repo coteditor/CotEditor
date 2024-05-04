@@ -25,6 +25,7 @@
 //
 
 import AppKit
+import SwiftUI
 import Combine
 
 final class EditorViewController: NSSplitViewController {
@@ -33,19 +34,14 @@ final class EditorViewController: NSSplitViewController {
     
     var textView: EditorTextView?  { self.textViewController.textView }
     
-    var outlineItems: [OutlineItem]? {
-        
-        didSet {
-            self.navigationBarController.outlineItems = outlineItems
-        }
-    }
+    private(set) lazy var outlineNavigator = OutlineNavigator()
     
     
     // MARK: Private Properties
     
-    private lazy var navigationBarController: NavigationBarController = NSStoryboard(name: "NavigationBar", bundle: nil).instantiateInitialController()!
-    private lazy var textViewController = EditorTextViewController()
+    private var splitState: SplitState
     
+    private lazy var textViewController = EditorTextViewController()
     @ViewLoading private var navigationBarItem: NSSplitViewItem
     
     private var syntaxName: String?
@@ -54,6 +50,20 @@ final class EditorViewController: NSSplitViewController {
     
     
     // MARK: Lifecycle
+    
+    init(splitState: SplitState) {
+        
+        self.splitState = splitState
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     deinit {
         // detach layoutManager safely
@@ -72,17 +82,15 @@ final class EditorViewController: NSSplitViewController {
         
         self.splitView.isVertical = false
         
-        let navigationBarItem = NSSplitViewItem(viewController: self.navigationBarController)
-        navigationBarItem.isCollapsed = true  // avoid initial view loading
-        self.navigationBarItem = navigationBarItem
-        self.addSplitViewItem(navigationBarItem)
+        self.outlineNavigator.textView = self.textView
+        let navigationBar = NavigationBar(outlineNavigator: self.outlineNavigator, splitState: self.splitState)
+        self.navigationBarItem = NSSplitViewItem(viewController: NSHostingController(rootView: navigationBar))
+        self.navigationBarItem.isCollapsed = !UserDefaults.standard[.showNavigationBar]
+        self.addSplitViewItem(self.navigationBarItem)
         
         self.addChild(self.textViewController)
         
-        self.navigationBarController.textView = self.textView
-        
-        // set user defaults
-        navigationBarItem.isCollapsed = !UserDefaults.standard[.showNavigationBar]
+        // observe user defaults
         self.defaultObservers = [
             UserDefaults.standard.publisher(for: .showNavigationBar)
                 .sink { [weak self] in self?.navigationBarItem.animator().isCollapsed = !$0 },
@@ -116,15 +124,13 @@ final class EditorViewController: NSSplitViewController {
                 : String(localized: "Show Navigation Bar", table: "MainMenu")
                 
             case #selector(openOutlineMenu):
-                return self.outlineItems?.isEmpty == false
+                return self.outlineNavigator.items?.isEmpty == false
                 
             case #selector(selectPrevItemOfOutlineMenu):
-                guard let textView = self.textView else { return false }
-                return self.outlineItems?.previousItem(for: textView.selectedRange) != nil
+                return self.outlineNavigator.canSelectPreviousItem
                 
             case #selector(selectNextItemOfOutlineMenu):
-                guard let textView = self.textView else { return false }
-                return self.outlineItems?.nextItem(for: textView.selectedRange) != nil
+                return self.outlineNavigator.canSelectNextItem
                 
             default: break
         }
@@ -187,31 +193,21 @@ final class EditorViewController: NSSplitViewController {
     @IBAction func openOutlineMenu(_ sender: Any) {
         
         self.navigationBarItem.isCollapsed = false
-        self.navigationBarController.openOutlineMenu()
+        self.outlineNavigator.isOutlinePickerPresented = true
     }
     
     
     /// Selects the previous outline item.
     @IBAction func selectPrevItemOfOutlineMenu(_ sender: Any?) {
         
-        guard
-            let textView = self.textView,
-            let item = self.outlineItems?.previousItem(for: textView.selectedRange)
-        else { return }
-        
-        textView.select(range: item.range)
+        self.outlineNavigator.selectPreviousItem()
     }
     
     
     /// Selects the next outline item.
     @IBAction func selectNextItemOfOutlineMenu(_ sender: Any?) {
         
-        guard
-            let textView = self.textView,
-            let item = self.outlineItems?.nextItem(for: textView.selectedRange)
-        else { return }
-        
-        textView.select(range: item.range)
+        self.outlineNavigator.selectNextItem()
     }
     
     

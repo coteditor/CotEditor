@@ -871,8 +871,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         self.outlineObserver = self.document.syntaxParser.$outlineItems
             .removeDuplicates()
             .receive(on: RunLoop.main)
-            .sink { [weak self] outlineItems in
-                self?.editorViewControllers.forEach { $0.outlineItems = outlineItems }
+            .sink { [weak self] items in
+                self?.editorViewControllers.forEach { $0.outlineNavigator.items = items }
             }
     }
     
@@ -884,7 +884,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     @discardableResult
     private func addEditorView(below otherViewController: EditorViewController? = nil) -> EditorViewController {
         
-        let viewController = EditorViewController()
+        let viewController = EditorViewController(splitState: self.splitViewController.state)
         
         let splitViewItem = NSSplitViewItem(viewController: viewController)
         splitViewItem.minimumThickness = 100
@@ -933,7 +933,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         editorViewController.setTextStorage(document.textStorage)
         editorViewController.apply(syntax: document.syntaxParser.syntax, name: document.syntaxParser.name)
-        editorViewController.outlineItems = document.syntaxParser.outlineItems
+        editorViewController.outlineNavigator.items = document.syntaxParser.outlineItems
     }
     
     
