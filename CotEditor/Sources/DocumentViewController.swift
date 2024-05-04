@@ -52,13 +52,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     // MARK: Public Properties
     
-    var document: Document  {
-        
-        didSet {
-            self.updateDocument(from: oldValue)
-            self.invalidateStyleInTextStorage()
-        }
-    }
+    var document: Document  { didSet { self.updateDocument(from: oldValue) } }
     
     
     // MARK: Private Properties
@@ -518,7 +512,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     var tabWidth: Int {
         
         get {
-            self.focusedTextView?.tabWidth ?? 0
+            self.focusedTextView?.tabWidth ?? UserDefaults.standard[.tabWidth]
         }
         
         set {
@@ -551,10 +545,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         guard
             let textView = self.focusedTextView,
-            let textStorage = textView.textStorage
-        else { return assertionFailure() }
-        
-        guard textStorage.length > 0 else { return }
+            let textStorage = textView.textStorage,
+            textStorage.length > 0
+        else { return }
         
         textStorage.addAttributes(textView.typingAttributes, range: textStorage.range)
         
@@ -778,14 +771,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         let newEditorViewController = self.addEditorView(below: currentEditorViewController)
         
-        // copy parsed syntax highlight
-        if let textView = newEditorViewController.textView,
-           let highlights = currentEditorViewController.textView?.layoutManager?.syntaxHighlights(),
-            !highlights.isEmpty
-        {
-            textView.layoutManager?.apply(highlights: highlights, range: textView.string.range)
-        }
-        
         // adjust visible areas
         if let selectedRange = currentEditorViewController.textView?.selectedRange {
             newEditorViewController.textView?.selectedRange = selectedRange
@@ -839,7 +824,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     
     /// Sets the receiver and its children with the given document.
-    /// 
+    ///
     /// - Parameter oldDocument: The old document if exists.
     private func updateDocument(from oldDocument: Document? = nil) {
         
@@ -875,6 +860,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 self?.outlineParseDebouncer.perform()
                 self?.document.syntaxParser.highlight()
             }
+        
+        self.invalidateStyleInTextStorage()
     }
     
     
@@ -891,9 +878,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         splitViewItem.minimumThickness = 100
         
         // add to the split view
-        let index = otherViewController
-            .flatMap { self.children.firstIndex(of: $0) }?
-            .advanced(by: 1) ?? 0
+        let index = otherViewController.flatMap(self.children.firstIndex(of:))?.advanced(by: 1) ?? 0
         self.insertSplitViewItem(splitViewItem, at: index)
         
         self.splitState.canClose = self.splitViewItems.count > 1
@@ -921,6 +906,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             textView.theme = baseTextView.theme
             textView.tabWidth = baseTextView.tabWidth
             textView.isAutomaticTabExpansionEnabled = baseTextView.isAutomaticTabExpansionEnabled
+            
+            // copy parsed syntax highlight
+            if let highlights = baseTextView.layoutManager?.syntaxHighlights(), !highlights.isEmpty {
+                textView.layoutManager?.apply(highlights: highlights, range: textView.string.range)
+            }
         }
         
         return viewController
