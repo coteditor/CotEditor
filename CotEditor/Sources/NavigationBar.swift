@@ -35,16 +35,21 @@ struct NavigationBar: View {
     
     var body: some View {
         
-        HStack(alignment: .center, spacing: 6) {
+        HStack(alignment: .center, spacing: 0) {
             Group {
-                Button(String(localized: "Close Split Editor", table: "Document", comment: "accessibility label for button"), systemImage: "xmark") {
+                Button {
                     NSApp.sendAction(#selector(DocumentViewController.closeSplitTextView), to: nil, from: self.outlineNavigator.textView)
+                } label: {
+                    Label(String(localized: "Close Split Editor", table: "Document", comment: "accessibility label for button"), systemImage: "xmark")
+                        .frame(width: 18)
+                        .frame(maxHeight: .infinity, alignment: .center)
                 }
                 .labelStyle(.iconOnly)
                 .help(String(localized: "Close split editor", table: "Document", comment: "tooltip for button"))
                 
                 Divider()
                     .padding(.vertical, 4)
+                    .padding(.horizontal, 3)
             }.opacity(self.splitState.canClose ? 1 : 0)
             
             if let items = self.outlineNavigator.items {
@@ -73,8 +78,12 @@ struct NavigationBar: View {
             
             Spacer()
             
-            Button(String(localized: "Split Editor", table: "Document", comment: "accessibility label for button"), image: self.splitState.isVertical ? .splitAddVertical : .splitAdd) {
+            Button {
                 NSApp.sendAction(#selector(DocumentViewController.openSplitTextView), to: nil, from: self.outlineNavigator.textView)
+            } label: {
+                Label(String(localized: "Split Editor", table: "Document", comment: "accessibility label for button"), image: self.splitState.isVertical ? .splitAddVertical : .splitAdd)
+                    .frame(width: 18)
+                    .frame(maxHeight: .infinity, alignment: .center)
             }
             .labelStyle(.iconOnly)
             .help(String(localized: "Split editor", table: "Document", comment: "tooltip for button"))
@@ -92,7 +101,8 @@ struct NavigationBar: View {
         }
         .buttonStyle(.borderless)
         .controlSize(.small)
-        .padding(.horizontal, 6)
+        .padding(.horizontal, 2)
+        .background(.windowBackground)
         .frame(height: 20)
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Navigation Bar", table: "Document", comment: "accessibility label"))
@@ -103,26 +113,34 @@ struct NavigationBar: View {
     
     @ViewBuilder @MainActor private func previousButton(systemImage: String) -> some View {
         
-        Button(String(localized: "Previous", table: "Document", comment: "accessibility label for button"), systemImage: systemImage) {
+        Button {
             self.outlineNavigator.selectPreviousItem()
+        } label: {
+            Label(String(localized: "Previous", table: "Document", comment: "accessibility label for button"), systemImage: systemImage)
+                .frame(width: 18)
+                .frame(maxHeight: .infinity, alignment: .center)
         }
+        .fontWeight(.medium)
         .labelStyle(.iconOnly)
         .disabled(!self.outlineNavigator.canSelectPreviousItem)
         .help(String(localized: "Jump to previous outline item", table: "Document", comment: "tooltip for button"))
-        .frame(width: 16)
         
     }
     
     
     @ViewBuilder @MainActor private func nextButton(systemImage: String) -> some View {
         
-        Button(String(localized: "Next", table: "Document", comment: "accessibility label for button"), systemImage: systemImage) {
+        Button {
             self.outlineNavigator.selectNextItem()
+        } label: {
+            Label(String(localized: "Next", table: "Document", comment: "accessibility label for button"), systemImage: systemImage)
+                .frame(width: 18)
+                .frame(maxHeight: .infinity, alignment: .center)
         }
+        .fontWeight(.medium)
         .labelStyle(.iconOnly)
         .disabled(!self.outlineNavigator.canSelectNextItem)
         .help(String(localized: "Jump to next outline item", table: "Document", comment: "tooltip for button"))
-        .frame(width: 16)
     }
 }
 
@@ -132,7 +150,10 @@ struct NavigationBar: View {
 
 #Preview {
     let navigator = OutlineNavigator()
-    navigator.items = [.init(title: "Heading 1", range: .notFound)]
+    navigator.items = [
+        OutlineItem(title: "    Heading 1", range: .notFound),
+        OutlineItem(title: "Heading 2", range: .notFound),
+    ]
     
     return NavigationBar(outlineNavigator: navigator, splitState: SplitState(canClose: true))
         .frame(width: 300)
