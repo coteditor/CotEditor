@@ -65,17 +65,6 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
-    deinit {
-        // detach layoutManager safely
-        guard
-            let textStorage = self.textView?.textStorage,
-            let layoutManager = self.textView?.layoutManager
-        else { return assertionFailure() }
-        
-        textStorage.removeLayoutManager(layoutManager)
-    }
-    
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()

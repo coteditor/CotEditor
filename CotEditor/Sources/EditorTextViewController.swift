@@ -59,6 +59,17 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     // MARK: Lifecycle
     
+    deinit {
+        // detach layoutManager safely
+        guard
+            let textStorage = self.textView.textStorage,
+            let layoutManager = self.textView.layoutManager
+        else { return assertionFailure() }
+        
+        textStorage.removeLayoutManager(layoutManager)
+    }
+    
+    
     override func loadView() {
         
         let textView = EditorTextView()
