@@ -80,7 +80,7 @@ struct NavigationBar: View {
             .help(String(localized: "Split editor", table: "Document", comment: "tooltip for button"))
             .contextMenu {
                 Button {
-                    NSApp.sendAction(#selector(SplitViewController.toggleSplitOrientation), to: nil, from: nil)
+                    NSApp.sendAction(#selector(DocumentViewController.toggleSplitOrientation), to: nil, from: nil)
                 } label: {
                     if self.splitState.isVertical {
                         Text("Stack Editors Horizontally", tableName: "MainMenu")

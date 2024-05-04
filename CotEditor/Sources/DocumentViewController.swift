@@ -28,7 +28,18 @@ import AppKit
 import Combine
 import SwiftUI
 
-private let maximumNumberOfSplitEditors = 4
+@Observable final class SplitState {
+    
+    var isVertical: Bool
+    var canClose: Bool
+    
+    
+    init(isVertical: Bool = false, canClose: Bool = false) {
+        
+        self.isVertical = isVertical
+        self.canClose = canClose
+    }
+}
 
 
 final class DocumentViewController: NSSplitViewController, ThemeChanging, NSToolbarItemValidation {
@@ -44,7 +55,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     var document: Document  {
         
         didSet {
-            self.statusBarModel.document = document
             self.updateDocument()
             self.invalidateStyleInTextStorage()
         }
@@ -52,6 +62,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     
     // MARK: Private Properties
+    
+    private static let maximumNumberOfSplitEditors = 4
     
     /// Keys for NSNumber values to be restored from the last session (Bool is also an NSNumber).
     private static let restorableNumberStateKeyPaths: [String] = [
@@ -65,17 +77,18 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         #keyPath(writingDirection),
     ]
     
-    private lazy var splitViewController = SplitViewController()
-    private lazy var statusBarModel = StatusBar.Model(document: self.document)
-    @ViewLoading private var statusBarItem: NSSplitViewItem
+    private var splitState = SplitState()
     
+    private weak var focusedChild: EditorViewController?
+    
+    private var focusedEditorObserver: AnyCancellable?
     private var documentSyntaxObserver: AnyCancellable?
     private var outlineObserver: AnyCancellable?
     private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: Set<AnyCancellable> = []
     private var themeChangeObserver: AnyCancellable?
     
-    private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.syntaxParser.invalidateOutline() }
+    private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.document.syntaxParser.invalidateOutline() }
     
     
     
@@ -107,18 +120,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         super.viewDidLoad()
         
-        self.splitView.isVertical = false
+        self.splitView.isVertical = UserDefaults.standard[.splitViewVertical]
+        self.splitState.isVertical = self.splitView.isVertical
         
         // set identifier for state restoration
         self.identifier = NSUserInterfaceItemIdentifier("DocumentViewController")
-        
-        self.addChild(self.splitViewController)
-        
-        // set status bar
-        let statusBarItem = NSSplitViewItem(viewController: StatusBarController(model: self.statusBarModel))
-        statusBarItem.isCollapsed = true  // avoid initial view loading
-        self.addSplitViewItem(statusBarItem)
-        self.statusBarItem = statusBarItem
         
         // set first editor view
         self.addEditorView()
@@ -133,11 +139,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             case .vertical:
                 self.verticalLayoutOrientation = true
         }
-        statusBarItem.isCollapsed = !defaults[.showStatusBar]
         self.setTheme(name: ThemeManager.shared.userDefaultSettingName)
         self.defaultsObservers = [
-            defaults.publisher(for: .showStatusBar, initial: false)
-                .sink { [weak self] in self?.statusBarItem.animator().isCollapsed = !$0 },
             defaults.publisher(for: .theme, initial: false)
                 .sink { [weak self] in self?.setTheme(name: $0) },
             defaults.publisher(for: .showInvisibles, initial: true)
@@ -173,6 +176,12 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 
                 self.setTheme(name: themeName)
             }
+        
+        // observe focus change
+        self.focusedEditorObserver = NotificationCenter.default.publisher(for: EditorTextView.didBecomeFirstResponderNotification)
+            .map { $0.object as! EditorTextView }
+            .compactMap { [weak self] textView in self?.editorViewControllers.first { $0.textView == textView } }
+            .sink { [weak self] in self?.focusedChild = $0 }
     }
     
     
@@ -230,13 +239,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     // MARK: Split View Controller Methods
     
-    override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
-        
-        // avoid showing draggable cursor for the status bar boundary
-        .zero
-    }
-    
-    
     func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
         
         // manually pass toolbar items to `validateUserInterfaceItem(_:)`,
@@ -248,20 +250,10 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-            case #selector(changeTheme):
-                if let item = item as? NSMenuItem {
-                    item.state = (self.theme?.name == item.title) ? .on : .off
-                }
-                
             case #selector(toggleLineNumber):
                 (item as? NSMenuItem)?.title = self.showsLineNumber
                     ? String(localized: "Hide Line Numbers", table: "MainMenu")
                     : String(localized: "Show Line Numbers", table: "MainMenu")
-                
-            case #selector(toggleStatusBar):
-                (item as? NSMenuItem)?.title = !self.statusBarItem.isCollapsed
-                    ? String(localized: "Hide Status Bar", table: "MainMenu")
-                    : String(localized: "Show Status Bar", table: "MainMenu")
                 
             case #selector(togglePageGuide):
                 (item as? NSMenuItem)?.title = self.showsPageGuide
@@ -364,8 +356,21 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             case #selector(showOpacitySlider):
                 return self.view.window?.styleMask.contains(.fullScreen) == false
                 
+            case #selector(changeTheme):
+                if let item = item as? NSMenuItem {
+                    item.state = (self.theme?.name == item.title) ? .on : .off
+                }
+                
+            case #selector(toggleSplitOrientation):
+                (item as? NSMenuItem)?.title = self.splitView.isVertical
+                ? String(localized: "Stack Editors Horizontally", table: "MainMenu")
+                : String(localized: "Stack Editors Vertically", table: "MainMenu")
+                
+            case #selector(focusNextSplitTextView), #selector(focusPrevSplitTextView):
+                return self.splitViewItems.count > 1
+                
             case #selector(closeSplitTextView):
-                return self.splitViewController.splitViewItems.count > 1
+                return self.splitViewItems.count > 1
                 
             default: break
         }
@@ -393,7 +398,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         // -> Perform in the next run loop to give layoutManagers time to update their values.
         let editedRange = textStorage.editedRange
         DispatchQueue.main.async { [weak self] in
-            self?.syntaxParser.highlight(around: editedRange)
+            self?.document.syntaxParser.highlight(around: editedRange)
         }
     }
     
@@ -409,11 +414,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     private func didChangeSyntax() {
         
         for viewController in self.editorViewControllers {
-            viewController.apply(syntax: self.syntaxParser.syntax, name: self.syntaxParser.name)
+            viewController.apply(syntax: self.document.syntaxParser.syntax, name: self.document.syntaxParser.name)
         }
         
         self.outlineParseDebouncer.perform()
-        self.syntaxParser.highlight()
+        self.document.syntaxParser.highlight()
     }
     
     
@@ -423,7 +428,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// The text view currently focused on.
     var focusedTextView: EditorTextView? {
         
-        self.splitViewController.focusedChild?.textView ?? self.editorViewControllers.first?.textView
+        self.focusedChild?.textView ?? self.editorViewControllers.first?.textView
     }
     
     
@@ -578,7 +583,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Recolors whole document.
     @IBAction func recolorAll(_ sender: Any?) {
         
-        self.syntaxParser.highlight()
+        self.document.syntaxParser.highlight()
     }
     
     
@@ -593,13 +598,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     @IBAction func toggleLineNumber(_ sender: Any?) {
         
         self.showsLineNumber.toggle()
-    }
-    
-    
-    /// Toggles the visibility of status bar with fancy animation (sync all documents).
-    @IBAction func toggleStatusBar(_ sender: Any?) {
-        
-        UserDefaults.standard[.showStatusBar].toggle()
     }
     
     
@@ -757,14 +755,36 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
+    /// Toggles divider orientation.
+    @IBAction func toggleSplitOrientation(_ sender: Any?) {
+        
+        self.splitView.isVertical.toggle()
+        self.splitState.isVertical = self.splitView.isVertical
+        
+        UserDefaults.standard[.splitViewVertical] = self.splitView.isVertical
+    }
+    
+    
+    /// Moves focus to the next text view.
+    @IBAction func focusNextSplitTextView(_ sender: Any?) {
+        
+        self.focusSplitTextView(onNext: true)
+    }
+    
+    
+    /// Moves focus to the previous text view.
+    @IBAction func focusPrevSplitTextView(_ sender: Any?) {
+        
+        self.focusSplitTextView(onNext: false)
+    }
+    
+    
     /// Splits editor view.
     @IBAction func openSplitTextView(_ sender: Any?) {
         
-        guard self.splitViewController.splitViewItems.count < maximumNumberOfSplitEditors else { return NSSound.beep() }
+        guard self.splitViewItems.count < Self.maximumNumberOfSplitEditors else { return NSSound.beep() }
         
-        guard
-            let currentEditorViewController = self.baseEditorViewController(for: sender)
-        else { return assertionFailure() }
+        guard let currentEditorViewController = self.baseEditorViewController(for: sender) else { return assertionFailure() }
         
         // end current editing
         NSTextInputContext.current?.discardMarkedText()
@@ -795,7 +815,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Closes one of the split editors.
     @IBAction func closeSplitTextView(_ sender: Any?) {
         
-        assert(self.splitViewController.splitViewItems.count > 1)
+        assert(self.splitViewItems.count > 1)
         
         guard let currentEditorViewController = self.baseEditorViewController(for: sender) else { return }
         
@@ -807,7 +827,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         NSTextInputContext.current?.discardMarkedText()
         
         // move focus to the next text view if the view to close has a focus
-        if self.splitViewController.focusedChild == currentEditorViewController {
+        if self.focusedChild == currentEditorViewController {
             let children = self.editorViewControllers
             let deleteIndex = children.firstIndex(of: currentEditorViewController) ?? 0
             let newFocusEditorViewController = children[safe: deleteIndex - 1] ?? children.last!
@@ -817,23 +837,18 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         // close
         currentEditorViewController.removeFromParent()
+        
+        self.splitState.canClose = self.splitViewItems.count > 1
     }
     
     
     
     // MARK: Private Methods
     
-    /// The document's syntax parser.
-    private var syntaxParser: SyntaxParser {
-        
-        self.document.syntaxParser
-    }
-    
-    
     /// The array of all child editor view controllers.
     private var editorViewControllers: [EditorViewController] {
         
-        self.splitViewController.children.compactMap { $0 as? EditorViewController }
+        self.children.compactMap { $0 as? EditorViewController }
     }
     
     
@@ -884,16 +899,18 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     @discardableResult
     private func addEditorView(below otherViewController: EditorViewController? = nil) -> EditorViewController {
         
-        let viewController = EditorViewController(splitState: self.splitViewController.state)
+        let viewController = EditorViewController(splitState: self.splitState)
         
         let splitViewItem = NSSplitViewItem(viewController: viewController)
         splitViewItem.minimumThickness = 100
         
         // add to the split view
         let index = otherViewController
-            .flatMap { self.splitViewController.children.firstIndex(of: $0) }?
+            .flatMap { self.children.firstIndex(of: $0) }?
             .advanced(by: 1) ?? 0
-        self.splitViewController.insertSplitViewItem(splitViewItem, at: index)
+        self.insertSplitViewItem(splitViewItem, at: index)
+        
+        self.splitState.canClose = self.splitViewItems.count > 1
         
         // observe cursor
         NotificationCenter.default.addObserver(self, selector: #selector(textViewDidLiveChangeSelection),
@@ -937,6 +954,41 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
+    /// Finds the base `EditorViewController` for split editor management actions.
+    ///
+    /// - Parameter sender: The action sender.
+    /// - Returns: An editor view controller, or `nil` if not found.
+    private func baseEditorViewController(for sender: Any?) -> EditorViewController? {
+        
+        if let view = sender as? NSView,
+           let controller = self.editorViewControllers.first(where: { view.isDescendant(of: $0.view) })
+        {
+            controller
+        } else {
+            self.focusedChild
+        }
+    }
+    
+    
+    /// Moves focus to the next/previous text view.
+    ///
+    /// - Parameter onNext: Move to the next if `true`, otherwise previous.
+    private func focusSplitTextView(onNext: Bool) {
+        
+        let children = self.editorViewControllers
+        
+        guard children.count > 1 else { return }
+        guard let focusedChild = self.focusedChild,
+              let focusIndex = children.firstIndex(of: focusedChild),
+              let nextChild = onNext
+                ? children[safe: focusIndex + 1] ?? children.first
+                : children[safe: focusIndex - 1] ?? children.last
+        else { return assertionFailure() }
+        
+        self.view.window?.makeFirstResponder(nextChild.textView)
+    }
+    
+    
     /// Applies the given theme to child text views.
     ///
     /// - Parameter name: The name of the theme to apply.
@@ -957,22 +1009,5 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         }
         
         self.invalidateRestorableState()
-    }
-    
-    
-    /// Finds the base `EditorViewController` for split editor management actions.
-    ///
-    /// - Parameter sender: The action sender.
-    /// - Returns: An editor view controller, or `nil` if not found.
-    private func baseEditorViewController(for sender: Any?) -> EditorViewController? {
-        
-        if let view = sender as? NSView,
-           let controller = self.splitViewController.children
-            .first(where: { view.isDescendant(of: $0.view) }) as? EditorViewController
-        {
-            return controller
-        }
-        
-        return self.splitViewController.focusedChild
     }
 }

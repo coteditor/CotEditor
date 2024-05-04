@@ -31,11 +31,12 @@ final class WindowContentViewController: NSSplitViewController {
     
     var document: Document  { didSet { self.updateDocument() } }
     
-    private(set) lazy var documentViewController = DocumentViewController(document: self.document)
+    var documentViewController: DocumentViewController { self.contentViewController.documentViewController }
     
     
     // MARK: Private Properties
     
+    private(set) lazy var contentViewController = ContentViewController(document: self.document)
     private lazy var inspectorViewController = InspectorViewController(document: self.document)
     
     private var windowObserver: NSKeyValueObservation?
@@ -83,7 +84,7 @@ final class WindowContentViewController: NSSplitViewController {
         self.splitView.identifier = NSUserInterfaceItemIdentifier(autosaveName)
         self.splitView.autosaveName = autosaveName
         
-        self.addChild(self.documentViewController)
+        self.addChild(self.contentViewController)
         
         let inspectorViewItem = NSSplitViewItem(inspectorWithViewController: self.inspectorViewController)
         inspectorViewItem.minimumThickness = NSSplitViewItem.unspecifiedDimension
@@ -209,7 +210,7 @@ final class WindowContentViewController: NSSplitViewController {
     /// Updates the document in children.
     private func updateDocument() {
         
-        self.documentViewController.document = self.document
+        self.contentViewController.document = self.document
         self.inspectorViewController.document = self.document
     }
 }

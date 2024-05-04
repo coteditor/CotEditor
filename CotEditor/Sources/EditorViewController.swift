@@ -39,12 +39,12 @@ final class EditorViewController: NSSplitViewController {
     
     // MARK: Private Properties
     
-    private var splitState: SplitState
-    
     private lazy var textViewController = EditorTextViewController()
     @ViewLoading private var navigationBarItem: NSSplitViewItem
     
+    private var splitState: SplitState
     private var syntaxName: String?
+    
     private var defaultObservers: [AnyCancellable] = []
     
     
@@ -109,8 +109,8 @@ final class EditorViewController: NSSplitViewController {
         switch item.action {
             case #selector(toggleNavigationBar):
                 (item as? NSMenuItem)?.title = !self.navigationBarItem.isCollapsed
-                ? String(localized: "Hide Navigation Bar", table: "MainMenu")
-                : String(localized: "Show Navigation Bar", table: "MainMenu")
+                    ? String(localized: "Hide Navigation Bar", table: "MainMenu")
+                    : String(localized: "Show Navigation Bar", table: "MainMenu")
                 
             case #selector(openOutlineMenu):
                 return self.outlineNavigator.items?.isEmpty == false
