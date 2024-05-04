@@ -474,9 +474,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.instanceHighlightTask?.cancel()
         
         // trim trailing whitespace if needed
-        if UserDefaults.standard[.autoTrimsTrailingWhitespace],
-           self.document?.isLocked != true
-        {
+        if UserDefaults.standard[.autoTrimsTrailingWhitespace] {
             self.trimTrailingWhitespaceTask.schedule(delay: .seconds(3))
         }
         
