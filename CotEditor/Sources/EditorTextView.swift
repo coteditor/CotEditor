@@ -35,7 +35,7 @@ private extension NSAttributedString.Key {
 
 // MARK: -
 
-class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursorEditing {
+final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursorEditing {
     
     // MARK: Notification Names
     
