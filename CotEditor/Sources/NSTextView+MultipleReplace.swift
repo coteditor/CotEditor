@@ -79,7 +79,7 @@ extension NSTextView {
             ? String(localized: "Not found", table: "TextFind")
             : String(localized: "\(progress.count) found", table: "TextFind")
         
-        self.requestAccessibilityAnnouncement(message)
+        AccessibilityNotification.Announcement(message).post()
         
         return message
     }
@@ -127,7 +127,7 @@ extension NSTextView {
             ? String(localized: "Not replaced", table: "TextFind")
             : String(localized: "\(progress.count) replaced", table: "TextFind")
         
-        self.requestAccessibilityAnnouncement(message)
+        AccessibilityNotification.Announcement(message).post()
         
         return message
     }

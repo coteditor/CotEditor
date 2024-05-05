@@ -488,7 +488,7 @@ struct TextFindAllResult {
             
             if result.wrapped {
                 client.enclosingScrollView?.superview?.showHUD(symbol: .wrap(flipped: !forward))
-                client.requestAccessibilityAnnouncement(String(localized: "Search wrapped.", table: "TextFind", comment: "Announced when the search restarted from the beginning."))
+                AccessibilityNotification.Announcement(String(localized: "Search wrapped.", table: "TextFind", comment: "Announced when the search restarted from the beginning.")).post()
             }
         } else if !isIncremental {
             client.enclosingScrollView?.superview?.showHUD(symbol: forward ? .reachBottom : .reachTop)
@@ -669,7 +669,7 @@ struct TextFindAllResult {
         self.findResult = result
         NotificationCenter.default.post(name: TextFinder.didFindNotification, object: self)
         
-        self.client?.requestAccessibilityAnnouncement(result.message)
+        AccessibilityNotification.Announcement(result.message).post()
     }
 }
 
