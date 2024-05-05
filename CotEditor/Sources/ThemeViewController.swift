@@ -148,7 +148,7 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
                 return state?.isCustomized == true
                 
             case #selector(shareTheme(_:)):
-                menuItem.isHidden = true
+                menuItem.isHidden = state?.isCustomized != true
                 return state?.isCustomized == true
                 
             case #selector(revealThemeInFinder(_:)):

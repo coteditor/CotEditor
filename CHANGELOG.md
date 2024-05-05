@@ -12,6 +12,7 @@
 
 ### Fixes
 
+- Fix an issue that the Share command was not available in the theme setting list.
 - Fix the layout of the Go To dialog.
 
 
