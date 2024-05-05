@@ -45,7 +45,7 @@ struct GoToLineView: View {
                 TextField(String(localized: "Line:", table: "GoToLine"), value: $lineRange, format: .fuzzyRange,
                           prompt: Text("Line Number", tableName: "GoToLine", comment: "placeholder"))
                     .monospacedDigit()
-                    .environment(\.layoutDirection, .rightToLeft)
+                    .multilineTextAlignment(.trailing)
                     .onSubmit { self.submit() }
             }
             

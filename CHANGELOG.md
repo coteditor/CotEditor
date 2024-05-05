@@ -10,6 +10,11 @@
 - [non-AppStore ver.] Update Sparkle from 2.6.0 to 2.6.1 (security update).
 
 
+### Fixes
+
+- Fix the layout of the Go To dialog.
+
+
 
 4.8.2 (647)
 --------------------------
