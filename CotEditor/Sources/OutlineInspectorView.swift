@@ -215,7 +215,7 @@ private extension OutlineInspectorView.Model {
         
         guard
             !self.isOwnSelectionChange,
-            let item = self.items.first(where: { $0.id == id }),
+            let item = self.items[id: id],
             let textView = self.document?.textView,
             textView.string.length >= item.range.upperBound
         else { return }

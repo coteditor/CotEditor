@@ -147,7 +147,7 @@ struct CommandBarView: View {
         // so that the action is delivered to the correct (first) responder.
         self.parent?.close()
         
-        if let command = self.candidates.first(where: { $0.id == self.selection })?.command {
+        if let command = self.candidates[id: self.selection]?.command {
             command.perform()
         }
     }

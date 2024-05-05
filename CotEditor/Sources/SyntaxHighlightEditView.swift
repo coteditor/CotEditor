@@ -46,7 +46,7 @@ struct SyntaxHighlightEditView: View {
             // to avoid taking time when leaving a pane with a large number of items. (2024-02-25 macOS 14)
             Table(self.items, selection: $selection) {
                 TableColumn(String(localized: "RE", table: "SyntaxEditor", comment: "table column header (RE for Regular Expression)")) { wrappedItem in
-                    if let item = $items.first(where: { $0.id == wrappedItem.id }) {
+                    if let item = $items[id: wrappedItem.id] {
                         Toggle(isOn: item.isRegularExpression, label: EmptyView.init)
                             .help(String(localized: "Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
                             .onChange(of: item.isRegularExpression.wrappedValue) { (_, newValue) in
@@ -62,7 +62,7 @@ struct SyntaxHighlightEditView: View {
                 .alignment(.center)
                 
                 TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { wrappedItem in
-                    if let item = $items.first(where: { $0.id == wrappedItem.id }) {
+                    if let item = $items[id: wrappedItem.id] {
                         Toggle(isOn: item.ignoreCase, label: EmptyView.init)
                             .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
                             .onChange(of: item.ignoreCase.wrappedValue) { (_, newValue) in
@@ -78,7 +78,7 @@ struct SyntaxHighlightEditView: View {
                 .alignment(.center)
                 
                 TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { wrappedItem in
-                    if let item = $items.first(where: { $0.id == wrappedItem.id }) {
+                    if let item = $items[id: wrappedItem.id] {
                         RegexTextField(text: item.begin, showsError: true, showsInvisible: true)
                             .regexHighlighted(item.isRegularExpression.wrappedValue)
                             .style(.table)
@@ -87,7 +87,7 @@ struct SyntaxHighlightEditView: View {
                 }
                 
                 TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { wrappedItem in
-                    if let item = $items.first(where: { $0.id == wrappedItem.id }) {
+                    if let item = $items[id: wrappedItem.id] {
                         RegexTextField(text: item.end ?? "", showsError: true, showsInvisible: true)
                             .regexHighlighted(item.isRegularExpression.wrappedValue)
                             .style(.table)
@@ -95,7 +95,7 @@ struct SyntaxHighlightEditView: View {
                 }
                 
                 TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { wrappedItem in
-                    if let item = $items.first(where: { $0.id == wrappedItem.id }) {
+                    if let item = $items[id: wrappedItem.id] {
                         TextField(text: item.description ?? "", label: EmptyView.init)
                     }
                 }

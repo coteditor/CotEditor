@@ -131,7 +131,7 @@ private extension IncompatibleCharactersView.Model {
     func selectItem(id: Item.ID?) {
         
         guard
-            let item = self.items.first(where: { $0.id == id }),
+            let item = self.items[id: id],
             let textView = self.document?.textView,
             textView.string.length >= item.range.upperBound
         else { return }

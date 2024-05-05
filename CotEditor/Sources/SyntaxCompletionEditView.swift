@@ -48,9 +48,10 @@ struct SyntaxCompletionEditView: View {
             // to avoid taking time when leaving a pane with a large number of items. (2024-02-25 macOS 14)
             Table(self.items, selection: $selection) {
                 TableColumn(String(localized: "Completion", table: "SyntaxEditor", comment: "table column header")) { wrappedItem in
-                    if let item = $items.first(where: { $0.id == wrappedItem.id }) {
+                    if let item = $items[id: wrappedItem.id] {
                         TextField(text: item.string, label: EmptyView.init)
                             .focused($focusedField, equals: item.id)
+                        
                     }
                 }
             }

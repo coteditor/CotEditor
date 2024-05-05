@@ -175,7 +175,7 @@ struct FindPanelResultView: View {
         
         // abandon if text becomes shorter than range to select
         guard
-            let range = self.model.matches.first(where: { $0.id == id })?.range,
+            let range = self.model.matches[id: id]?.range,
             let textView = self.model.target,
             textView.string.length >= range.upperBound
         else { return }

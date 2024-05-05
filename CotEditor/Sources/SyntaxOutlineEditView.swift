@@ -70,9 +70,7 @@ struct SyntaxOutlineEditView: View {
             if self.selection.count > 1 {
                 PatternView(outline: .constant(.init()), error: .multipleSelection)
                     .disabled(true)
-            } else if let selection = self.selection.first,
-               let outline = $items.first(where: { $0.id == selection })
-            {
+            } else if let outline = $items[id: self.selection.first] {
                 PatternView(outline: outline)
             } else {
                 PatternView(outline: .constant(.init()), error: .noSelection)
