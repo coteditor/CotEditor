@@ -113,6 +113,7 @@ struct OutlineInspectorView: View {
             Text("Outline", tableName: "Document", comment: "section title in inspector")
                 .font(.system(size: 12, weight: .bold))
                 .foregroundStyle(.secondary)
+                .accessibilityRemoveTraits(.isHeader)
             
             let items = self.model.items.filterItems(with: self.filterString)
             
@@ -147,6 +148,7 @@ struct OutlineInspectorView: View {
             
             FilterField(text: $filterString)
                 .autosaveName("OutlineSearch")
+                .accessibilityAddTraits(.isSearchField)
                 .controlSize(.regular)
         }
         .accessibilityElement(children: .contain)

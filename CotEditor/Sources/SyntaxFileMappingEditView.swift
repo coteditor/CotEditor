@@ -95,6 +95,7 @@ struct SyntaxFileMappingEditView: View {
             
             VStack(alignment: .leading) {
                 self.label()
+                    .accessibilityAddTraits(.isHeader)
                 
                 List(selection: $selection) {
                     ForEach($items) {
@@ -111,7 +112,7 @@ struct SyntaxFileMappingEditView: View {
                 .border(Color(nsColor: .gridColor))
                 
                 AddRemoveButton($items, selection: $selection, focus: $focusedField)
-            }
+            }.accessibilityElement(children: .contain)
         }
     }
 }

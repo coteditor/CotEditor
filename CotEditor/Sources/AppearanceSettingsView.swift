@@ -27,6 +27,8 @@ import SwiftUI
 
 struct AppearanceSettingsView: View {
     
+    @Namespace private var accessibility
+    
     @Environment(\.layoutDirection) private var layoutDirection
     
     @AppStorage(.font) private var font
@@ -50,13 +52,16 @@ struct AppearanceSettingsView: View {
             GridRow {
                 Text("Standard font:", tableName: "AppearanceSettings")
                     .gridColumnAlignment(.trailing)
+                    .accessibilityLabeledPair(role: .label, id: "font", in: self.accessibility)
                 
                 FontSettingView(data: $font ?? (try! FontType.standard.systemFont().archivedData), antialias: $shouldAntialias, ligature: $ligature)
+                    .accessibilityLabeledPair(role: .content, id: "font", in: self.accessibility)
             }
             
             GridRow {
                 Text("Monospaced font:", tableName: "AppearanceSettings")
                     .gridColumnAlignment(.trailing)
+                    .accessibilityLabeledPair(role: .label, id: "monospacedFont", in: self.accessibility)
                 
                 FontSettingView(data: $monospacedFont ?? (try! FontType.monospaced.systemFont().archivedData), antialias: $monospacedShouldAntialias, ligature: $monospacedLigature)
                     .onChange(of: self.monospacedFont) { [oldValue = self.monospacedFont] newValue in
@@ -69,6 +74,7 @@ struct AppearanceSettingsView: View {
                         self.selectingFont = oldValue
                         self.isMonospacedFontAlertPresented = true
                     }
+                    .accessibilityLabeledPair(role: .content, id: "monospacedFont", in: self.accessibility)
                     .alert(String(localized: "The selected font doesn’t seem to be monospaced.", table: "AppearanceSettings"), isPresented: $isMonospacedFontAlertPresented, presenting: self.selectingFont) { font in
                         Button("OK") {
                             self.isMonospacedFontAlertPresented = false
@@ -85,6 +91,7 @@ struct AppearanceSettingsView: View {
             GridRow {
                 Text("Line height:", tableName: "AppearanceSettings")
                     .gridColumnAlignment(.trailing)
+                    .accessibilityLabeledPair(role: .label, id: "lineHeight", in: self.accessibility)
                 
                 HStack(alignment: .firstTextBaseline) {
                     Stepper(value: $lineHeight, in: 0.1...10, step: 0.1, format: .number.precision(.fractionLength(1...2)), label: EmptyView.init)
@@ -93,11 +100,14 @@ struct AppearanceSettingsView: View {
                     
                     Text("times", tableName: "AppearanceSettings", comment: "unit for line height")
                 }
+                .accessibilityElement(children: .combine)
+                .accessibilityLabeledPair(role: .content, id: "lineHeight", in: self.accessibility)
             }
             
             GridRow {
                 Text("Appearance:", tableName: "AppearanceSettings")
                     .gridColumnAlignment(.trailing)
+                    .accessibilityLabeledPair(role: .label, id: "documentAppearance", in: self.accessibility)
                 
                 Picker(selection: $documentAppearance) {
                     ForEach(AppearanceMode.allCases, id: \.self) {
@@ -106,6 +116,7 @@ struct AppearanceSettingsView: View {
                 } label: {
                     EmptyView()
                 }
+                .accessibilityLabeledPair(role: .content, id: "documentAppearance", in: self.accessibility)
                 .pickerStyle(.radioGroup)
                 .horizontalRadioGroupLayout()
                 .labelsHidden()
@@ -114,6 +125,7 @@ struct AppearanceSettingsView: View {
             GridRow(alignment: .center) {
                 Text("Editor opacity:", tableName: "AppearanceSettings")
                     .gridColumnAlignment(.trailing)
+                    .accessibilityLabeledPair(role: .label, id: "windowAlpha", in: self.accessibility)
                 
                 HStack {
                     OpacitySlider(value: $windowAlpha)
@@ -124,6 +136,7 @@ struct AppearanceSettingsView: View {
                         .environment(\.layoutDirection, .rightToLeft)
                         .frame(width: 48)
                 }
+                .accessibilityLabeledPair(role: .content, id: "windowAlpha", in: self.accessibility)
             }
             
             ThemeView()

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,6 +44,7 @@ final class CommandBarWindowController: NSWindowController {
     init() {
         
         let panel = CommandBarPanel(contentRect: .zero, styleMask: [.titled, .fullSizeContentView], backing: .buffered, defer: false)
+        panel.title = String(localized: "Quick Actions", table: "CommandBar")  // for VoiceOver
         panel.contentView = HostingViewSuppressingSafeArea(rootView: CommandBarView(model: self.model, parent: panel))
         panel.animationBehavior = .utilityWindow
         panel.collectionBehavior.insert(.fullScreenAuxiliary)

@@ -27,6 +27,8 @@ import SwiftUI
 
 struct WindowSettingsView: View {
     
+    @Namespace private var accessibility
+    
     @Environment(\.layoutDirection) private var layoutDirection
     
     @AppStorage(.windowTabbing) private var windowTabbing
@@ -66,6 +68,7 @@ struct WindowSettingsView: View {
             GridRow {
                 Text("Prefer tabs:", tableName: "WindowSettings")
                     .gridColumnAlignment(.trailing)
+                    .accessibilityLabeledPair(role: .label, id: "windowTabbing", in: self.accessibility)
                 
                 Picker(selection: $windowTabbing) {
                     (Text("Respect System Setting", tableName: "WindowSettings") +
@@ -78,12 +81,15 @@ struct WindowSettingsView: View {
                     }
                 } label: {
                     EmptyView()
-                }.fixedSize()
+                }
+                .fixedSize()
+                .accessibilityLabeledPair(role: .content, id: "windowTabbing", in: self.accessibility)
             }
             
             GridRow {
                 Text("Window size:", tableName: "WindowSettings")
                     .gridColumnAlignment(.trailing)
+                    .accessibilityLabeledPair(role: .label, id: "windowSize", in: self.accessibility)
                 
                 HStack(alignment: .firstTextBaseline, spacing: 12) {
                     HStack(alignment: .firstTextBaseline, spacing: 6) {
@@ -92,11 +98,15 @@ struct WindowSettingsView: View {
                                 .monospacedDigit()
                                 .environment(\.layoutDirection, .rightToLeft)
                                 .frame(width: 64)
+                                .accessibilityLabeledPair(role: .content, id: "windowWidth", in: self.accessibility)
                             Text("Width", tableName: "WindowSettings")
                                 .controlSize(.small)
+                                .accessibilityLabeledPair(role: .label, id: "windowWidth", in: self.accessibility)
                         }
                         Text("px", tableName: "WindowSettings", comment: "length unit following an input field")
+                            .accessibilityLabel(String(localized: "pixels", table: "WindowSettings", comment: "accessibility label for “px”"))
                     }
+                    .accessibilityElement(children: .contain)
                     
                     HStack(alignment: .firstTextBaseline, spacing: 6) {
                         VStack(spacing: 1) {
@@ -104,12 +114,17 @@ struct WindowSettingsView: View {
                                 .monospacedDigit()
                                 .environment(\.layoutDirection, .rightToLeft)
                                 .frame(width: 64)
+                                .accessibilityLabeledPair(role: .label, id: "windowHeight", in: self.accessibility)
                             Text("Height", tableName: "WindowSettings")
                                 .controlSize(.small)
+                                .accessibilityLabeledPair(role: .content, id: "windowHeight", in: self.accessibility)
                         }
                         Text("px", tableName: "WindowSettings", comment: "length unit following an input field")
+                            .accessibilityLabel(String(localized: "pixels", table: "WindowSettings", comment: "accessibility label for “px”"))
                     }
+                    .accessibilityElement(children: .contain)
                 }
+                .accessibilityLabeledPair(role: .content, id: "windowSize", in: self.accessibility)
             }
             
             Divider()
@@ -181,6 +196,7 @@ struct WindowSettingsView: View {
             
             GridRow {
                 Text("Writing direction:", tableName: "WindowSettings")
+                    .accessibilityLabeledPair(role: .label, id: "writingDirection", in: self.accessibility)
                     .gridColumnAlignment(.trailing)
                 
                 Picker(selection: $writingDirection) {
@@ -193,15 +209,18 @@ struct WindowSettingsView: View {
                 .pickerStyle(.radioGroup)
                 .horizontalRadioGroupLayout()
                 .labelsHidden()
+                .accessibilityLabeledPair(role: .content, id: "writingDirection", in: self.accessibility)
             }
             
             GridRow {
                 Text("Overscroll:", tableName: "WindowSettings")
+                    .accessibilityLabeledPair(role: .label, id: "overscrollRate", in: self.accessibility)
                     .gridColumnAlignment(.trailing)
                 
                 Stepper(value: $overscrollRate, in: 0...1, step: 0.1, format: .percent.precision(.fractionLength(0)), label: EmptyView.init)
                     .monospacedDigit()
                     .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
+                    .accessibilityLabeledPair(role: .content, id: "overscrollRate", in: self.accessibility)
             }
             
             Divider()
@@ -209,6 +228,7 @@ struct WindowSettingsView: View {
             
             GridRow {
                 Text("Status bar shows:", tableName: "WindowSettings")
+                    .accessibilityLabeledPair(role: .label, id: "sideBarShows", in: self.accessibility)
                     .gridColumnAlignment(.trailing)
                 
                 HStack(spacing: 20) {
@@ -223,6 +243,7 @@ struct WindowSettingsView: View {
                         Toggle(String(localized: "Current column", table: "WindowSettings"), isOn: $showStatusBarColumn)
                     }
                 }
+                .accessibilityLabeledPair(role: .content, id: "sideBarShows", in: self.accessibility)
             }
             .fixedSize()
             

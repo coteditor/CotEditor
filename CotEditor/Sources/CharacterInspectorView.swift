@@ -117,6 +117,8 @@ private struct ScalarDetailView: View {
     let scalar: Unicode.Scalar
     var items: Items = .all
     
+    @Namespace private var accessibility
+    
     
     var body: some View {
         
@@ -124,6 +126,7 @@ private struct ScalarDetailView: View {
             if self.items.contains(.codePoint) {
                 GridRow {
                     Text("Code Point:", tableName: "CharacterInspector")
+                        .accessibilityLabeledPair(role: .label, id: "codePoint", in: self.accessibility)
                         .gridColumnAlignment(.trailing)
                     
                     HStack {
@@ -140,6 +143,7 @@ private struct ScalarDetailView: View {
                     .monospacedDigit()
                     .foregroundColor(.label)
                     .textSelection(.enabled)
+                    .accessibilityLabeledPair(role: .content, id: "codePoint", in: self.accessibility)
                 }
             }
             
@@ -147,34 +151,42 @@ private struct ScalarDetailView: View {
                 GridRow {
                     Text("Block:", tableName: "CharacterInspector")
                         .gridColumnAlignment(.trailing)
+                        .accessibilityLabeledPair(role: .label, id: "block", in: self.accessibility)
                     
-                    if let blockName = self.scalar.localizedBlockName {
-                        Text(blockName)
-                            .foregroundColor(.label)
-                            .textSelection(.enabled)
-                    } else {
-                        Text("No Block", tableName: "CharacterInspector")
-                            .foregroundStyle(.secondary)
+                    Group {
+                        if let blockName = self.scalar.localizedBlockName {
+                            Text(blockName)
+                                .foregroundColor(.label)
+                                .textSelection(.enabled)
+                        } else {
+                            Text("No Block", tableName: "CharacterInspector")
+                                .foregroundStyle(.secondary)
+                        }
                     }
+                    .accessibilityLabeledPair(role: .content, id: "block", in: self.accessibility)
                 }
             }
             
             if self.items.contains(.category) {
                 GridRow {
                     Text("Category:", tableName: "CharacterInspector")
+                        .accessibilityLabeledPair(role: .label, id: "category", in: self.accessibility)
                     
                     let category = self.scalar.properties.generalCategory
                     Text(verbatim: "\(category.longName) (\(category.shortName))")
                         .foregroundColor(.label)
                         .textSelection(.enabled)
+                        .accessibilityLabeledPair(role: .content, id: "category", in: self.accessibility)
                 }
             }
             
             if self.items.contains(.version), let age = self.scalar.properties.age {
                 GridRow {
                     Text("Version:", tableName: "CharacterInspector")
+                        .accessibilityLabeledPair(role: .label, id: "version", in: self.accessibility)
                     
                     Text(verbatim: "Unicode \(age.major).\(age.minor)")
+                        .accessibilityLabeledPair(role: .content, id: "version", in: self.accessibility)
                 }
             }
         }.fixedSize()

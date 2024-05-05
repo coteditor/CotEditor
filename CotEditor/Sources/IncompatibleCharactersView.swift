@@ -57,6 +57,7 @@ struct IncompatibleCharactersView: View {
                  comment: "section title in inspector")
                 .font(.system(size: 12, weight: .bold))
                 .foregroundStyle(.secondary)
+                .accessibilityRemoveTraits(.isHeader)
             
             if self.model.isScanning {
                 Text("Scanning incompatible characters…", tableName: "Document")

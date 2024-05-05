@@ -211,6 +211,7 @@ struct StatusBar: View {
                     self.model.document?.askChangingEncoding(to: newValue)
                 }
                 .help(String(localized: "Text Encoding", table: "Document"))
+                .accessibilityLabel(String(localized: "Text Encoding", table: "Document"))
                 
                 Divider()
                     .padding(.vertical, 4)
@@ -221,6 +222,7 @@ struct StatusBar: View {
                     self.model.document?.changeLineEnding(to: newValue)
                 }
                 .help(String(localized: "Line Endings", table: "Document"))
+                .accessibilityLabel(String(localized: "Line Endings", table: "Document", comment: "menu item header"))
                 .frame(width: 48)
             }
         }

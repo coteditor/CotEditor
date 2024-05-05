@@ -83,6 +83,7 @@ struct RegularExpressionReferenceView: View {
             Text("Basic Regular Expression Syntax", tableName: "RegexReference", comment: "title")
                 .font(.title3)
                 .foregroundStyle(.secondary)
+                .accessibilityHeading(.h1)
             
             HStack(alignment: .top, spacing: 12) {
                 VStack(alignment: .leading, spacing: 12) {
@@ -91,6 +92,7 @@ struct RegularExpressionReferenceView: View {
                     DefinitionList(Definition.anchors,
                                    title: String(localized: "Anchors", table: "RegexReference", comment: "heading"))
                 }
+                .accessibilityElement(children: .contain)
                 Divider()
                 VStack(alignment: .leading, spacing: 12) {
                     DefinitionList(Definition.quantifiers,
@@ -100,6 +102,7 @@ struct RegularExpressionReferenceView: View {
                     DefinitionList(Definition.backReference,
                                    title: String(localized: "Back Reference", table: "RegexReference", comment: "heading"))
                 }
+                .accessibilityElement(children: .contain)
             }
             
             let icuURL = "https://unicode-org.github.io/icu/userguide/strings/regexp.html"
@@ -141,6 +144,7 @@ struct RegularExpressionReferenceView: View {
                 Text(self.title)
                     .fontWeight(.semibold)
                     .foregroundStyle(.secondary)
+                    .accessibilityAddTraits(.isHeader)
                 
                 Grid(alignment: .leading, verticalSpacing: 1) {
                     ForEach(self.definitions) { definition in
@@ -151,7 +155,9 @@ struct RegularExpressionReferenceView: View {
                         }
                     }
                 }
-            }.frame(minWidth: 200, alignment: .leading)
+            }
+            .accessibilityElement(children: .contain)
+            .frame(minWidth: 200, alignment: .leading)
         }
     }
 }

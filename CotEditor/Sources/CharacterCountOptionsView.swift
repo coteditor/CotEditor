@@ -27,6 +27,8 @@ import SwiftUI
 
 struct CharacterCountOptionsView: View {
     
+    @Namespace private var accessibility
+    
     @AppStorage(.countUnit) private var unit: CharacterCountOptions.CharacterUnit
     @AppStorage(.countNormalizationForm) private var normalizationForm: UnicodeNormalizationForm
     @AppStorage(.countNormalizes) private var normalizes
@@ -54,10 +56,13 @@ struct CharacterCountOptionsView: View {
                            isOn: $treatsConsecutiveWhitespaceAsSingle)
                     .disabled(self.ignoresNewlines && self.ignoresWhitespaces)
                 }
-            }.fixedSize()
+            }
+            .fixedSize()
+            .accessibilityElement(children: .contain)
             
             GridRow {
                 Text("Unit:", tableName: "AdvancedCharacterCount", comment: "label")
+                    .accessibilityLabeledPair(role: .label, id: "unit", in: self.accessibility)
                 
                 VStack(alignment: .leading) {
                     Picker(selection: $unit.animation()) {
@@ -66,7 +71,9 @@ struct CharacterCountOptionsView: View {
                         }
                     } label: {
                         EmptyView()
-                    }.fixedSize()
+                    }
+                    .fixedSize()
+                    .accessibilityLabeledPair(role: .content, id: "unit", in: self.accessibility)
 
                     
                     Text(self.unit.description)
@@ -110,6 +117,7 @@ struct CharacterCountOptionsView: View {
                     }
                 }
             }
+            .accessibilityElement(children: .contain)
         }
         .onPreferenceChange(MaxSizeKey.self) { self.contentWidth = $0.width }
         .animation(.default, value: self.unit)

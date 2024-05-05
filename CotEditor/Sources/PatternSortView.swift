@@ -113,6 +113,7 @@ struct PatternSortView: View {
                         }
                     }
                 }
+                .accessibilityElement(children: .contain)
                 
                 GridRow {
                     Text("Sort option:", tableName: "PatternSort")
@@ -131,6 +132,7 @@ struct PatternSortView: View {
                     }
                 }
                 .fixedSize()
+                .accessibilityElement(children: .contain)
             }
             
             HStack {
@@ -240,6 +242,9 @@ struct RegularExpressionSortPatternView: View {
     @Binding var pattern: RegularExpressionSortPattern
     @Binding var error: SortPatternError?
     
+    
+    @Namespace private var accessibility
+    
     private let formatter = RegularExpressionFormatter()
     
     
@@ -248,6 +253,7 @@ struct RegularExpressionSortPatternView: View {
         Grid(alignment: .leadingFirstTextBaseline) {
             GridRow {
                 Text("Pattern:", tableName: "PatternSort")
+                    .accessibilityLabeledPair(role: .label, id: "pattern", in: self.accessibility)
                 VStack(alignment: .leading) {
                     RegexTextField(text: $pattern.searchPattern, prompt: String(localized: "Regular Expression", table: "PatternSort", comment: "placeholder for regular expression pattern field"))
                         .leadingInset(18)
@@ -293,15 +299,19 @@ struct RegularExpressionSortPatternView: View {
                     .controlSize(.small)
                     .frame(minHeight: 8)  // keep height for error message
                 }
+                .accessibilityLabeledPair(role: .content, id: "pattern", in: self.accessibility)
             }
+            .accessibilityElement(children: .contain)
         }
         
         Toggle(isOn: $pattern.usesCaptureGroup) {
             HStack(alignment: .firstTextBaseline) {
                 Text("Use captured group:", tableName: "PatternSort")
+                    .accessibilityLabeledPair(role: .label, id: "useGroup", in: self.accessibility)
                 StepperNumberField(value: $pattern.group, default: 1,
                                    in: 0...self.pattern.numberOfCaptureGroups)
                 .disabled(!self.pattern.usesCaptureGroup)
+                .accessibilityLabeledPair(role: .content, id: "useGroup", in: self.accessibility)
             }
         }
     }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 1024jp
+//  © 2015-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -75,9 +75,6 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
         assert(selectedImage?.isTemplate != false)
         
         let selectedImage = selectedImage?.tinted(with: .controlAccentColor)
-        
-        image?.accessibilityDescription = self.label(forSegment: segment)
-        selectedImage?.accessibilityDescription = self.label(forSegment: segment)
         
         super.setImage((segment == self.selectedSegment) ? selectedImage : image, forSegment: segment)
         

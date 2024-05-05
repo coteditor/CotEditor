@@ -54,6 +54,7 @@ struct InconsistentLineEndingsView: View {
             Text("Inconsistent Line Endings", tableName: "Document", comment: "section title in inspector")
                 .font(.system(size: 12, weight: .bold))
                 .foregroundStyle(.secondary)
+                .accessibilityRemoveTraits(.isHeader)
             
             if self.model.items.isEmpty {
                 Text("No issues found.", tableName: "Document")

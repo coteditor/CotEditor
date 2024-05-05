@@ -55,7 +55,7 @@ struct ThemeEditorView: View {
                         ColorPicker(String(localized: "Cursor:", table: "ThemeEditor"),
                                     selection: $theme.insertionPoint.binding)
                     }
-                }
+                }.accessibilityElement(children: .contain)
                 
                 VStack(alignment: .trailing, spacing: 3) {
                     ColorPicker(String(localized: "Background:", table: "ThemeEditor"),
@@ -66,14 +66,15 @@ struct ThemeEditorView: View {
                                       selection: $theme.selection,
                                       systemColor: Color(nsColor: .selectedTextBackgroundColor),
                                       supportsOpacity: false)
-                }
-            }
+                }.accessibilityElement(children: .contain)
+            }.accessibilityElement(children: .contain)
             
             GridRow {
                 Text("Syntax", tableName: "ThemeEditor")
                     .fontWeight(.bold)
                     .gridCellColumns(2)
                     .gridCellAnchor(.leading)
+                    .accessibilityAddTraits(.isHeader)
             }
             
             GridRow {
@@ -88,7 +89,7 @@ struct ThemeEditorView: View {
                                 selection: $theme.attributes.binding)
                     ColorPicker(String(localized: "\(SyntaxType.variables.label):"),
                                 selection: $theme.variables.binding)
-                }
+                }.accessibilityElement(children: .contain)
                 
                 VStack(alignment: .trailing, spacing: 3) {
                     ColorPicker(String(localized: "\(SyntaxType.values.label):"),
@@ -101,8 +102,8 @@ struct ThemeEditorView: View {
                                 selection: $theme.characters.binding)
                     ColorPicker(String(localized: "\(SyntaxType.commands.label):"),
                                 selection: $theme.comments.binding)
-                }
-            }
+                }.accessibilityElement(children: .contain)
+            }.accessibilityElement(children: .contain)
             
             HStack {
                 Spacer()
@@ -147,6 +148,8 @@ private struct SystemColorPicker: View {
     var systemColor: Color
     var supportsOpacity: Bool
     
+    @Namespace private var accessibility
+    
     
     init(_ label: String, selection: Binding<Theme.SystemDefaultStyle>, systemColor: Color, supportsOpacity: Bool = true) {
         
@@ -159,13 +162,17 @@ private struct SystemColorPicker: View {
     
     var body: some View {
         
-        ColorPicker(self.label,
-                    selection: self.selection.usesSystemSetting ? .constant(self.systemColor) : $selection.binding,
-                    supportsOpacity: self.supportsOpacity)
-        .disabled(self.selection.usesSystemSetting)
-        Toggle(String(localized: "Use system color", table: "ThemeEditor", comment: "toggle button label"), isOn: $selection.usesSystemSetting)
-            .controlSize(.small)
+        VStack(alignment: .trailing, spacing: 4) {
+            ColorPicker(selection: self.selection.usesSystemSetting ? .constant(self.systemColor) : $selection.binding, supportsOpacity: self.supportsOpacity) {
+                Text(self.label)
+                    .accessibilityLabeledPair(role: .label, id: "color", in: self.accessibility)
+            }
+            Toggle(String(localized: "Use system color", table: "ThemeEditor", comment: "toggle button label"), isOn: $selection.usesSystemSetting)
+                .controlSize(.small)
+                .accessibilityLabeledPair(role: .content, id: "color", in: self.accessibility)
+        }.accessibilityElement(children: .contain)
     }
+        
 }
 
 
@@ -173,6 +180,8 @@ private struct ThemeMetadataView: View {
     
     @Binding var metadata: Theme.Metadata
     let isEditable: Bool
+    
+    @Namespace private var accessibility
     
     
     // MARK: View
@@ -210,15 +219,18 @@ private struct ThemeMetadataView: View {
         Text(title)
             .fontWeight(.bold)
             .gridColumnAlignment(.trailing)
+            .accessibilityLabeledPair(role: .label, id: title, in: self.accessibility)
         
         if self.isEditable {
             TextField(title, text: text, prompt: Text("Not defined", tableName: "ThemeEditor", comment: "placeholder"), axis: .vertical)
                 .lineLimit(lineLimit)
                 .textFieldStyle(.plain)
+                .accessibilityLabeledPair(role: .content, id: title, in: self.accessibility)
         } else {
             Text(text.wrappedValue)
                 .foregroundColor(.label)
                 .textSelection(.enabled)
+                .accessibilityLabeledPair(role: .content, id: title, in: self.accessibility)
         }
     }
 }

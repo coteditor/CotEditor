@@ -54,6 +54,8 @@ struct CommandBarView: View {
     @State var candidates: [Candidate] = []
     
     @State private var selection: ActionCommand.ID?
+    @FocusState private var focus: ActionCommand.ID?
+    @AccessibilityFocusState private var accessibilityFocus: ActionCommand.ID?
     
     @State private var keyMonitor: Any?
     
@@ -67,6 +69,7 @@ struct CommandBarView: View {
                     .onSubmit { self.perform() }
                     .fontWeight(.light)
                     .textFieldStyle(.plain)
+                    .accessibilityAddTraits(.isSearchField)
             }
             .font(.system(size: 20))
             .padding(12)
@@ -79,6 +82,8 @@ struct CommandBarView: View {
                             ForEach(self.candidates) { candidate in
                                 ActionCommandView(command: candidate.command, matches: candidate.matches)
                                     .selected(candidate.id == self.selection)
+                                    .focused($focus, equals: candidate.id)
+                                    .accessibilityFocused($accessibilityFocus, equals: candidate.id)
                                     .id(candidate.id)
                                     .onMouseDown {
                                         self.selection = candidate.id
@@ -154,6 +159,8 @@ struct CommandBarView: View {
         else { return }
         
         self.selection = candidate.id
+        self.focus = candidate.id
+        self.accessibilityFocus = candidate.id
     }
     
     
@@ -183,16 +190,7 @@ private struct ActionCommandView: View {
     
     var body: some View {
         
-        HStack {
-            Image(systemName: self.command.kind.systemImage)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .font(.system(size: 23))
-                .fontWeight(.light)
-                .foregroundStyle(self.isSelected ? .primary : .secondary)
-                .frame(width: 26, height: 22, alignment: .center)
-                .padding(.horizontal, 4)
-            
+        Label {
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     ForEach(Array(self.matches.enumerated()), id: \.offset) { (offset, match) in
@@ -205,6 +203,7 @@ private struct ActionCommandView: View {
                             .layoutPriority((offset == 0) ? 10 : Double(offset))
                     }
                 }
+                .accessibilityElement(children: .combine)
                 .foregroundStyle((self.isSelected && self.colorContrast == .standard) ? Color.selectedMenuItemText.opacity(0.8) : .primary)
                 
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
@@ -217,6 +216,7 @@ private struct ActionCommandView: View {
                             .layoutPriority((offset == 0) ? 10 : Double(offset))
                     }
                 }
+                .accessibilityElement(children: .combine)
                 .foregroundStyle(self.isSelected ? .primary : .secondary)
                 .controlSize(.small)
             }
@@ -228,6 +228,16 @@ private struct ActionCommandView: View {
                     .foregroundStyle(self.isSelected ? .primary : .secondary)
                     .layoutPriority(100)
             }
+        } icon: {
+            Image(systemName: self.command.kind.systemImage)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .font(.system(size: 23))
+                .fontWeight(.light)
+                .foregroundStyle(self.isSelected ? .primary : .secondary)
+                .frame(width: 26, height: 22, alignment: .center)
+                .accessibilityLabel(self.command.kind.label)
+                .padding(.horizontal, 4)
         }
         .lineLimit(1)
         .padding(.vertical, 4)
@@ -278,6 +288,15 @@ private extension ActionCommand.Kind {
         switch self {
             case .command: "filemenu.and.selection"
             case .script: "applescript.fill"
+        }
+    }
+    
+    
+    var label: String {
+        
+        switch self {
+            case .command: String(localized: "Command", table: "CommandBar", comment: "command type")
+            case .script: String(localized: "Script", table: "CommandBar", comment: "command type")
         }
     }
 }

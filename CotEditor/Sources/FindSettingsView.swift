@@ -48,6 +48,8 @@ struct FindSettingsView: View {
                 .fontWeight(.semibold)
                 .foregroundStyle(.secondary)
                 .controlSize(.regular)
+                .accessibilityAddTraits(.isHeader)
+                .accessibilityHeading(.h1)
                 .padding(.bottom, 6)
             
             VStack(alignment: .leading, spacing: 14) {

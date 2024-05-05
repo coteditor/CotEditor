@@ -33,6 +33,8 @@ struct GeneralSettingsView: View {
     var showsUpdaterSettings = false
 #endif
     
+    @Namespace private var accessibility
+    
     @AppStorage(.quitAlwaysKeepsWindows) private var quitAlwaysKeepsWindows: Bool
     @AppStorage(.noDocumentOnLaunchOption) private var noDocumentOnLaunchOption: NoDocumentOnLaunchOption
     
@@ -61,6 +63,7 @@ struct GeneralSettingsView: View {
                     Toggle(String(localized: "Reopen windows from last session", table: "GeneralSettings"), isOn: $quitAlwaysKeepsWindows)
                     
                     Text("When nothing else is open:", tableName: "GeneralSettings")
+                        .accessibilityLabeledPair(role: .label, id: "noDocumentOnLaunchOption", in: self.accessibility)
                     Picker(selection: $noDocumentOnLaunchOption) {
                         ForEach(NoDocumentOnLaunchOption.allCases, id: \.self) {
                             Text($0.label)
@@ -71,6 +74,7 @@ struct GeneralSettingsView: View {
                     .pickerStyle(.menu)
                     .labelsHidden()
                     .fixedSize()
+                    .accessibilityLabeledPair(role: .content, id: "noDocumentOnLaunchOption", in: self.accessibility)
                     .padding(.leading, 20)
                 }
             }
@@ -116,6 +120,7 @@ struct GeneralSettingsView: View {
             GridRow {
                 Text("When document is changed by another application:",
                      tableName: "GeneralSettings")
+                .accessibilityLabeledPair(role: .label, id: "documentConflictOption", in: self.accessibility)
                 .gridCellColumns(2)
             }.padding(.bottom, -6)
             
@@ -133,16 +138,19 @@ struct GeneralSettingsView: View {
                 }
                 .pickerStyle(.radioGroup)
                 .labelsHidden()
+                .accessibilityLabeledPair(role: .content, id: "documentConflictOption", in: self.accessibility)
             }
             
             
             GridRow {
                 Text("Dialog warnings:", tableName: "GeneralSettings")
                     .gridColumnAlignment(.trailing)
+                    .accessibilityLabeledPair(role: .label, id: "dialogWarnings", in: self.accessibility)
                 
                 Button(String(localized: "Manage Warnings…", table: "GeneralSettings")) {
                     self.isWarningsSettingPresented.toggle()
                 }
+                .accessibilityLabeledPair(role: .content, id: "dialogWarnings", in: self.accessibility)
                 .sheet(isPresented: $isWarningsSettingPresented, content: WarningsSettingView.init)
             }
             

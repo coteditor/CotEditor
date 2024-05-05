@@ -68,6 +68,7 @@ struct SyntaxMappingConflictView: View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Syntax Mapping Conflicts", tableName: "SyntaxMappingConflict", comment: "heading")
                 .font(.headline)
+                .accessibilityHeading(.h1)
             Text("The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition.", tableName: "SyntaxMappingConflict")
                 .controlSize(.small)
             

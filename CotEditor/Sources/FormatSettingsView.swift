@@ -27,6 +27,8 @@ import SwiftUI
 
 struct FormatSettingsView: View {
     
+    @Namespace private var accessibility
+    
     @AppStorage(.lineEndCharCode) private var lineEnding
     
     @AppStorage(.encoding) private var encoding
@@ -60,6 +62,7 @@ struct FormatSettingsView: View {
         Grid(alignment: .leadingFirstTextBaseline) {
             GridRow {
                 Text("Default line endings:", tableName: "FormatSettings")
+                    .accessibilityLabeledPair(role: .label, id: "lineEnding", in: self.accessibility)
                     .gridColumnAlignment(.trailing)
                 
                 Picker(selection: $lineEnding) {
@@ -71,6 +74,7 @@ struct FormatSettingsView: View {
                     EmptyView()
                 }
                 .fixedSize()
+                .accessibilityLabeledPair(role: .content, id: "lineEnding", in: self.accessibility)
             }
             
             Divider()
@@ -78,9 +82,10 @@ struct FormatSettingsView: View {
             
             GridRow {
                 Text("Default encoding:", tableName: "FormatSettings")
+                    .accessibilityLabeledPair(role: .label, id: "fileEncoding", in: self.accessibility)
                     .gridColumnAlignment(.trailing)
                 
-                Picker(selection: fileEncoding) {
+                Picker(selection: self.fileEncoding) {
                     ForEach(Array(self.fileEncodings.enumerated()), id: \.offset) { (_, encoding) in
                         if let encoding {
                             Text(encoding.localizedName)
@@ -93,10 +98,12 @@ struct FormatSettingsView: View {
                     EmptyView()
                 }
                 .frame(maxWidth: 260)
+                .accessibilityLabeledPair(role: .content, id: "fileEncoding", in: self.accessibility)
             }
             
             GridRow {
                 Text("Priority of encodings:", tableName: "FormatSettings")
+                    .accessibilityLabeledPair(role: .label, id: "encodingPriority", in: self.accessibility)
                     .gridColumnAlignment(.trailing)
                 
                 VStack {
@@ -109,6 +116,7 @@ struct FormatSettingsView: View {
                         Toggle(String(localized: "Refer to encoding declaration in document", table: "FormatSettings"), isOn: $referToEncodingTag)
                     }
                 }
+                .accessibilityLabeledPair(role: .content, id: "encodingPriority", in: self.accessibility)
             }
             
             Divider()
@@ -116,6 +124,7 @@ struct FormatSettingsView: View {
             
             GridRow {
                 Text("Default syntax:", tableName: "FormatSettings")
+                    .accessibilityLabeledPair(role: .label, id: "syntax", in: self.accessibility)
                     .gridColumnAlignment(.trailing)
                 
                 Picker(selection: $syntax) {
@@ -138,16 +147,19 @@ struct FormatSettingsView: View {
                     EmptyView()
                 }
                 .frame(maxWidth: 260)
+                .accessibilityLabeledPair(role: .content, id: "syntax", in: self.accessibility)
             }
             
             GridRow(alignment: .top) {
                 Text("Available syntaxes:", tableName: "FormatSettings")
+                    .accessibilityLabeledPair(role: .label, id: "availableSyntaxes", in: self.accessibility)
                     .gridColumnAlignment(.trailing)
                 
                 SyntaxListView()
                     .background()
                     .border(.separator)
                     .frame(width: 260)
+                    .accessibilityLabeledPair(role: .content, id: "availableSyntaxes", in: self.accessibility)
             }
             
             HStack {

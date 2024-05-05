@@ -91,18 +91,22 @@ struct SyntaxOutlineEditView: View {
         @Binding var outline: Item
         var error: SelectionError?
         
+        @Namespace private var accessibility
+        
         
         var body: some View {
             
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     Text("Title pattern:", tableName: "SyntaxEditor", comment: "label")
+                        .accessibilityLabeledPair(role: .label, id: "titlePattern", in: self.accessibility)
                     Text("(Blank matches the whole string.)", tableName: "SyntaxEditor", comment: "label")
                         .controlSize(.small)
                         .foregroundColor(.secondary)
                 }
                 
                 RegexTextField(text: $outline.template, mode: .replacement(unescapes: false), prompt: self.prompt)
+                    .accessibilityLabeledPair(role: .content, id: "titlePattern", in: self.accessibility)
                 
                 HStack {
                     Toggle(String(localized: "Bold", table: "SyntaxEditor", comment: "checkbox label"), isOn: $outline.bold)

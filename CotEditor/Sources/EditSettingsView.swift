@@ -27,6 +27,8 @@ import SwiftUI
 
 struct EditSettingsView: View {
     
+    @Namespace private var accessibility
+    
     @Environment(\.layoutDirection) private var layoutDirection
     
     @AppStorage(.autoExpandTab) private var autoExpandTab
@@ -60,7 +62,9 @@ struct EditSettingsView: View {
                     
                     HStack(alignment: .firstTextBaseline) {
                         Text("Indent width:", tableName: "EditSettings")
+                            .accessibilityLabeledPair(role: .label, id: "tabWidth", in: self.accessibility)
                         StepperNumberField(value: $tabWidth, default: UserDefaults.standard[initial: .tabWidth], in: 1...99)
+                            .accessibilityLabeledPair(role: .content, id: "tabWidth", in: self.accessibility)
                         Text("spaces", tableName: "EditSettings", comment: "unit for indentation")
                     }
                     Toggle(String(localized: "Detect indent style on document opening", table: "EditSettings"), isOn: $detectsIndentStyle)
@@ -94,9 +98,11 @@ struct EditSettingsView: View {
                     Toggle(String(localized: "Highlight instances of selected text", table: "EditSettings"), isOn: $highlightSelectionInstance)
                     HStack(alignment: .firstTextBaseline) {
                         Text("Delay:", tableName: "EditSettings")
+                            .accessibilityLabeledPair(role: .label, id: "selectionInstanceHighlightDelay", in: self.accessibility)
                         Stepper(value: $selectionInstanceHighlightDelay, in: 0...10, step: 0.25, format: .number.precision(.fractionLength(2)), label: EmptyView.init)
                         .monospacedDigit()
                         .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)  // width: 40
+                        .accessibilityLabeledPair(role: .content, id: "selectionInstanceHighlightDelay", in: self.accessibility)
                         Text("seconds", tableName: "EditSettings", comment: "init for delay time")
                     }
                     .disabled(!self.highlightSelectionInstance)
