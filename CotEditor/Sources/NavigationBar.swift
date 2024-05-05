@@ -70,6 +70,7 @@ struct NavigationBar: View {
                     OutlinePicker(items: items, selection: $outlineNavigator.selection, isPresented: $outlineNavigator.isOutlinePickerPresented) {
                         self.outlineNavigator.textView?.select(range: $0.range)
                     }
+                    .accessibilityLabel(String(localized: "Outline Menu", table: "Document", comment: "accessibility label"))
                 }
             } else {
                 Text("Extracting Outline…", tableName: "Document")
@@ -116,7 +117,7 @@ struct NavigationBar: View {
         Button {
             self.outlineNavigator.selectPreviousItem()
         } label: {
-            Label(String(localized: "Previous", table: "Document", comment: "accessibility label for button"), systemImage: systemImage)
+            Label(String(localized: "Previous Outline Item", table: "Document", comment: "accessibility label for button"), systemImage: systemImage)
                 .frame(width: 18)
                 .frame(maxHeight: .infinity, alignment: .center)
         }
@@ -133,7 +134,7 @@ struct NavigationBar: View {
         Button {
             self.outlineNavigator.selectNextItem()
         } label: {
-            Label(String(localized: "Next", table: "Document", comment: "accessibility label for button"), systemImage: systemImage)
+            Label(String(localized: "Next Outline Item", table: "Document", comment: "accessibility label for button"), systemImage: systemImage)
                 .frame(width: 18)
                 .frame(maxHeight: .infinity, alignment: .center)
         }
