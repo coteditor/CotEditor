@@ -50,7 +50,7 @@ struct ThemeEditorView: View {
                     SystemColorPicker(String(localized: "Cursor:", table: "ThemeEditor"),
                                       selection: $theme.insertionPoint,
                                       systemColor: Color(nsColor: .textInsertionPointColor))
-                }
+                }.accessibilityElement(children: .contain)
                 
                 VStack(alignment: .trailing, spacing: 3) {
                     ColorPicker(String(localized: "Background:", table: "ThemeEditor"),
