@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import struct Foundation.NSRange
 
 extension StringProtocol {
     
-    /// Calculates equivalent ranges in the receiver to the given ranges in the given string using DifferenceKit.
+    /// Calculates equivalent ranges in the receiver to the given ranges in the given string.
     ///
     /// - Parameters:
     ///   - ranges: The original ranges to be based on.
