@@ -138,6 +138,7 @@ struct AppearanceSettingsView: View {
                 }
                 .accessibilityLabeledPair(role: .content, id: "windowAlpha", in: self.accessibility)
             }
+            .accessibilityElement(children: .contain)
             
             ThemeView()
                 .padding(.top, 10)

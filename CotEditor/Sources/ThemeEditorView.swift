@@ -121,6 +121,8 @@ struct ThemeEditorView: View {
                 .buttonStyle(.borderless)
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(String(localized: "Theme Editor", table: "ThemeEditor"))
         .onChange(of: self.theme) { newValue in
             if self.isMetadataPresenting {
                 // postpone notification to avoid closing the popover

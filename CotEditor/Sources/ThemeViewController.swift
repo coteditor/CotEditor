@@ -544,9 +544,13 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
                 assertionFailure(error.localizedDescription)
             }
         }
+        let hostingView = NSHostingView(rootView: view)
         
-        self.themeViewContainer?.contentView = NSHostingView(rootView: view)
+        self.themeViewContainer?.contentView = hostingView
         self.isBundled = isBundled
+        
+        NSAccessibility.post(element: hostingView, notification: .valueChanged)
+        
     }
     
     
@@ -630,15 +634,5 @@ final class ThemeViewController: NSViewController, NSMenuItemValidation, NSTable
         if selectingName != nil {
             tableView.scrollRowToVisible(row)
         }
-    }
-    
-    
-    /// Updates the selection of the theme table.
-    private func updateThemeSelection() {
-        
-        let settingName = ThemeManager.shared.userDefaultSettingName
-        let row = self.settingNames.firstIndex(of: settingName) ?? 0
-        
-        self.tableView?.selectRowIndexes([row], byExtendingSelection: false)
     }
 }
