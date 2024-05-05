@@ -53,11 +53,13 @@ import StoreKit
                     VStack(alignment: .leading) {
                         Text("Continuous support", tableName: "DonationSettings")
                             .font(.system(size: 14))
+                            .accessibilityAddTraits(.isHeader)
                         
                         ProductView(id: Donation.ProductID.continuous, prefersPromotionalIcon: true) {
                             Image(.bagCoffee)
                                 .font(.system(size: 40))
                                 .foregroundStyle(.secondary)
+                                .accessibilityLabel(String(localized: "donation.continuous.yearly.displayName", table: "InAppPurchase"))
                                 .productIconBorder()
                         }
                         
@@ -84,6 +86,7 @@ import StoreKit
                                 .controlSize(.small)
                         }.disabled(!self.hasDonated)
                     }
+                    .accessibilityElement(children: .contain)
                     .subscriptionStatusTask(for: Donation.groupID) { taskState in
                         self.hasDonated = taskState.value?.map(\.state).contains(.subscribed) == true
                     }
@@ -93,11 +96,14 @@ import StoreKit
                     VStack(alignment: .leading) {
                         Text("One-time donation", tableName: "DonationSettings")
                             .font(.system(size: 14))
+                            .accessibilityAddTraits(.isHeader)
                         
                         ProductView(id: Donation.ProductID.onetime, prefersPromotionalIcon: true) {
                             Image(.espresso)
+                                .accessibilityLabel(String(localized: "donation.onetime.displayName", table: "InAppPurchase"))
                         }.productViewStyle(OnetimeProductViewStyle())
                     }
+                    .accessibilityElement(children: .contain)
                 }
                 .overlay(alignment: .top) {
                     if let error = self.error {
@@ -114,6 +120,7 @@ import StoreKit
                                 .textScale(.secondary)
                         }
                         .textSelection(.enabled)
+                        .accessibilityElement(children: .contain)
                         .padding(.vertical, 8)
                         .padding(.horizontal, 12)
                         .background(.background.shadow(.drop(radius: 3, y: 1.5)),
@@ -203,14 +210,17 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
             
             VStack(alignment: .leading, spacing: 1) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Text(product.displayName)
-                        .fixedSize()
-                    Text("× \(self.quantity)", tableName: "DonationSettings", comment: "multiple sign for the quantity of items to purchase")
-                        .monospacedDigit()
-                        .frame(minWidth: 28, alignment: .trailing)
-                    
+                    HStack {
+                        Text(product.displayName)
+                            .fixedSize()
+                        Text("× \(self.quantity)", tableName: "DonationSettings", comment: "multiple sign for the quantity of items to purchase")
+                            .monospacedDigit()
+                            .accessibilityLabel(String(localized: "\(self.quantity) cups", table: "DonationSettings", comment: "accessibility label for item quantity"))
+                            .frame(minWidth: 28, alignment: .trailing)
+                    }.accessibilityElement(children: .combine)
                     Stepper(value: $quantity, in: 1...99, label: EmptyView.init)
-                    
+                        .accessibilityValue(String(localized: "\(self.quantity) cups", table: "DonationSettings"))
+                        .accessibilityLabel(String(localized: "Quantity", table: "DonationSettings", comment: "accessibility label for item quantity stepper"))
                     Spacer()
                     Button((product.price * Decimal(self.quantity)).formatted(product.priceFormatStyle)) {
                         Task {
@@ -225,32 +235,17 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
                     .fixedSize()
                     .contentTransition(.numericText())
                     .animation(.default, value: self.quantity)
+                    .accessibilitySortPriority(-1)
                 }
                 
                 Text(product.description)
                     .font(.system(size: 12))
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
-            }.alert(error: $error)
+            }
+            .accessibilityElement(children: .contain)
         }
-    }
-}
-
-
-private extension BadgeType {
-    
-    var label: String {
-        
-        switch self {
-            case .mug:
-                String(localized: "BadgeType.mug.label",
-                       defaultValue: "Coffee Mug",
-                       table: "DonationSettings")
-            case .invisible:
-                String(localized: "BadgeType.invisible.label",
-                       defaultValue: "Invisible Coffee",
-                       table: "DonationSettings")
-        }
+        .alert(error: $error)
     }
 }
 

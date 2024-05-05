@@ -411,15 +411,20 @@ private struct CoffeeBadge: View {
         Button {
             self.isMessagePresented.toggle()
         } label: {
-            Image(systemName: self.type.symbolName)
-                .fontWeight(.semibold)
+            Label {
+                Text(self.type.label)
+            } icon: {
+                Image(systemName: self.type.symbolName)
+            }
+
         }
+        .fontWeight(.semibold)
+        .labelStyle(.iconOnly)
         .popover(isPresented: $isMessagePresented) {
             Text("Thank you for your kind support!", tableName: "Document", comment: "message for users who made a donation")
                 .padding(.vertical, 8)
                 .padding(.horizontal)
         }
-        .accessibilityHidden(true)
     }
 }
 

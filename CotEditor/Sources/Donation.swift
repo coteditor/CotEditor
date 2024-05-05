@@ -50,4 +50,19 @@ enum BadgeType: Int, CaseIterable, Equatable {
             case .invisible: "circle.dotted"
         }
     }
+    
+    
+    var label: String {
+        
+        switch self {
+            case .mug:
+                String(localized: "BadgeType.mug.label",
+                       defaultValue: "Coffee Mug",
+                       table: "Donation")
+            case .invisible:
+                String(localized: "BadgeType.invisible.label",
+                       defaultValue: "Invisible Coffee",
+                       table: "Donation")
+        }
+    }
 }

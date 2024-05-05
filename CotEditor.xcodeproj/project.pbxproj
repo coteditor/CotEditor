@@ -772,6 +772,10 @@
 		2AE44DB92BE65C1F002A787D /* OutlineNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE44DB72BE65C1F002A787D /* OutlineNavigator.swift */; };
 		2AE44DBB2BE67F81002A787D /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE44DBA2BE67F81002A787D /* ContentViewController.swift */; };
 		2AE44DBC2BE67F81002A787D /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE44DBA2BE67F81002A787D /* ContentViewController.swift */; };
+		2AE44DCE2BE7C34D002A787D /* InAppPurchase.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A65520A2BDF4D880082B7D6 /* InAppPurchase.xcstrings */; };
+		2AE44DCF2BE7C355002A787D /* InAppPurchase.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A65520A2BDF4D880082B7D6 /* InAppPurchase.xcstrings */; };
+		2AE44DD12BE7CF48002A787D /* Donation.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AE44DD02BE7CF48002A787D /* Donation.xcstrings */; };
+		2AE44DD22BE7CF48002A787D /* Donation.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AE44DD02BE7CF48002A787D /* Donation.xcstrings */; };
 		2AE52F1B1D17493B00D60A32 /* FilePermissions+FormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F1A1D17493B00D60A32 /* FilePermissions+FormatStyle.swift */; };
 		2AE52F1C1D17493B00D60A32 /* FilePermissions+FormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F1A1D17493B00D60A32 /* FilePermissions+FormatStyle.swift */; };
 		2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
@@ -1301,6 +1305,7 @@
 		2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		2AE44DB72BE65C1F002A787D /* OutlineNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineNavigator.swift; sourceTree = "<group>"; };
 		2AE44DBA2BE67F81002A787D /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		2AE44DD02BE7CF48002A787D /* Donation.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Donation.xcstrings; sourceTree = "<group>"; };
 		2AE4658627A5A7CE00D2904F /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		2AE52F1A1D17493B00D60A32 /* FilePermissions+FormatStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FilePermissions+FormatStyle.swift"; sourceTree = "<group>"; };
 		2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelSplitView.swift; sourceTree = "<group>"; };
@@ -2152,6 +2157,7 @@
 				2AA6727D2B8F784700B8F7E6 /* Snippet.xcstrings */,
 				2AA6728F2B8F7DF100B8F7E6 /* Shortcut.xcstrings */,
 				2ACDA29F2B81E8C300B2EBA8 /* IssueReport.xcstrings */,
+				2AE44DD02BE7CF48002A787D /* Donation.xcstrings */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2627,6 +2633,7 @@
 				2AA6731C2B9178AB00B8F7E6 /* Localizable.xcstrings in Resources */,
 				2A5E6FC42A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
 				2A5E6FC72A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
+				2AE44DCE2BE7C34D002A787D /* InAppPurchase.xcstrings in Resources */,
 				2A07A8FA2BABC182007CABFD /* About.xcstrings in Resources */,
 				2A39ACFC2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings in Resources */,
 				2A55D5D82B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */,
@@ -2639,6 +2646,7 @@
 				2A39ACB92B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACF92B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
 				2AA672A22B8F8AA300B8F7E6 /* Document.xcstrings in Resources */,
+				2AE44DD12BE7CF48002A787D /* Donation.xcstrings in Resources */,
 				2A21E6732BB44D5E0054C8A1 /* DonationSettings.xcstrings in Resources */,
 				2A1E7E192B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
 				2ACDA2942B81E8B700B2EBA8 /* EditSettings.xcstrings in Resources */,
@@ -2713,6 +2721,7 @@
 				2A8EAE3F2BA3B15D00448875 /* Credits.json in Resources */,
 				2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */,
 				2AA6731D2B9178AB00B8F7E6 /* Localizable.xcstrings in Resources */,
+				2AE44DCF2BE7C355002A787D /* InAppPurchase.xcstrings in Resources */,
 				2A5E6FC52A723CEA00E33EA7 /* InfoPlist.xcstrings in Resources */,
 				2A5E6FC82A723F3C00E33EA7 /* ServicesMenu.xcstrings in Resources */,
 				2A07A8FB2BABC182007CABFD /* About.xcstrings in Resources */,
@@ -2727,6 +2736,7 @@
 				2A39ACBA2B8CE6DE00E216C9 /* CustomSurround.xcstrings in Resources */,
 				2A39ACFA2B8CED8B00E216C9 /* CustomTabWidth.xcstrings in Resources */,
 				2AA672A32B8F8AA300B8F7E6 /* Document.xcstrings in Resources */,
+				2AE44DD22BE7CF48002A787D /* Donation.xcstrings in Resources */,
 				2A21E6742BB44D5E0054C8A1 /* DonationSettings.xcstrings in Resources */,
 				2A1E7E1A2B8D715F004F0C07 /* EditorOpacity.xcstrings in Resources */,
 				2ACDA2952B81E8B700B2EBA8 /* EditSettings.xcstrings in Resources */,
