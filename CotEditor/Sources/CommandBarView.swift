@@ -110,6 +110,11 @@ struct CommandBarView: View {
                 }
                 .sorted(\.score)
             self.selection = self.candidates.first?.id
+            
+            // post a VoiceOver announcement
+            let announcement = String(localized: "\(self.candidates.count) commands found", table: "CommandBar", comment: "VoiceOver announcement when incrementally updated the command search result.")
+            AccessibilityNotification.Announcement(announcement).post()
+            
         }
         .onKeyPress(.upArrow) {
             self.move(down: false) ? .handled : .ignored
