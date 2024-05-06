@@ -449,6 +449,53 @@ extension EditorTextViewController: NSUserInterfaceValidations {
 }
 
 
+extension EditorTextViewController: EditorTextView.Delegate {
+    
+    /// Inserts string representation of dropped files applying the user's file drop snippets.
+    ///
+    /// - Parameter urls: The file URLs of dropped files.
+    /// - Returns: Whether the file drop was performed.
+    func editorTextView(_ textView: EditorTextView, readDroppedURLs urls: [URL]) -> Bool {
+        
+        guard !urls.isEmpty else { return false }
+        
+        let fileDropItems = UserDefaults.standard[.fileDropArray].map(FileDropItem.init(dictionary:))
+        
+        guard !fileDropItems.isEmpty else { return false }
+        
+        let replacementString = urls.reduce(into: "") { (string, url) in
+            if url.pathExtension == "textClipping", let textClipping = try? TextClipping(contentsOf: url) {
+                string += textClipping.string
+                return
+            }
+            
+            if let fileDropItem = fileDropItems.first(where: { $0.supports(extension: url.pathExtension, scope: textView.syntaxName) }) {
+                string += fileDropItem.dropText(forFileURL: url, documentURL: self.document.fileURL)
+                return
+            }
+            
+            // just insert the absolute path if no specific setting for the file type was found
+            // -> This is the default behavior of NSTextView by file dropping.
+            if !string.isEmpty {
+                string += textView.lineEnding.string
+            }
+            
+            string += url.isFileURL ? url.path : url.absoluteString
+        }
+        
+        guard replacementString.isEmpty else { return true }
+        
+        // insert snippets to view
+        guard textView.shouldChangeText(in: textView.rangeForUserTextChange, replacementString: replacementString) else { return false }
+        
+        textView.replaceCharacters(in: textView.rangeForUserTextChange, with: replacementString)
+        textView.didChangeText()
+        
+        return true
+    }
+}
+
+
 
 extension EditorTextViewController: NSFontChanging {
     

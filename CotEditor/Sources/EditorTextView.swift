@@ -37,6 +37,12 @@ private extension NSAttributedString.Key {
 
 final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursorEditing {
     
+    @MainActor protocol Delegate: AnyObject {
+        
+        func editorTextView(_ textView: EditorTextView, readDroppedURLs URLs: [URL]) -> Bool
+    }
+    
+    
     // MARK: Notification Names
     
     static let didBecomeFirstResponderNotification = Notification.Name("TextViewDidBecomeFirstResponder")
@@ -1013,7 +1019,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // on file drop
         if pboard.name == .drag,
            let urls = pboard.readObjects(forClasses: [NSURL.self]) as? [URL],
-           self.insertDroppedFiles(urls)
+           (self.delegate as? any Delegate)?.editorTextView(self, readDroppedURLs: urls) == true
         {
             return true
         }
@@ -1295,13 +1301,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Private Methods
     
-    /// The file URL of the document representing the text view contents.
-    private var documentURL: URL? {
-        
-        (self.window?.windowController?.document as? Document)?.fileURL
-    }
-    
-    
     /// Updates coloring settings with the current theme.
     private func applyTheme() {
         
@@ -1431,46 +1430,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         } else {
             self.string.length > UserDefaults.standard[.minimumLengthForNonContiguousLayout]
         }
-    }
-    
-    
-    /// Inserts string representation of dropped files applying the user's file drop settings.
-    ///
-    /// - Parameter urls: The file URLs of dropped files.
-    /// - Returns: Whether the file drop was performed.
-    private func insertDroppedFiles(_ urls: [URL]) -> Bool {
-        
-        guard !urls.isEmpty else { return false }
-        
-        let fileDropItems = UserDefaults.standard[.fileDropArray].map(FileDropItem.init(dictionary:))
-        
-        let replacementString = urls.reduce(into: "") { (string, url) in
-            if url.pathExtension == "textClipping", let textClipping = try? TextClipping(contentsOf: url) {
-                string += textClipping.string
-                return
-            }
-            
-            if let fileDropItem = fileDropItems.first(where: { $0.supports(extension: url.pathExtension, scope: self.syntaxName) }) {
-                string += fileDropItem.dropText(forFileURL: url, documentURL: self.documentURL)
-                return
-            }
-            
-            // just insert the absolute path if no specific setting for the file type was found
-            // -> This is the default behavior of NSTextView by file dropping.
-            if !string.isEmpty {
-                string += self.lineEnding.string
-            }
-            
-            string += url.isFileURL ? url.path : url.absoluteString
-        }
-        
-        // insert drop text to view
-        guard self.shouldChangeText(in: self.rangeForUserTextChange, replacementString: replacementString) else { return false }
-        
-        self.replaceCharacters(in: self.rangeForUserTextChange, with: replacementString)
-        self.didChangeText()
-        
-        return true
     }
     
     
