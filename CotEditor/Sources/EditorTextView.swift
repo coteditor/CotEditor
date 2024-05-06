@@ -45,8 +45,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Notification Names
     
-    static let didBecomeFirstResponderNotification = Notification.Name("TextViewDidBecomeFirstResponder")
-    static let didLiveChangeSelectionNotification = Notification.Name("TextViewDidLiveChangeSelectionNotification")
+    nonisolated static let didBecomeFirstResponderNotification = Notification.Name("TextViewDidBecomeFirstResponder")
+    nonisolated static let didLiveChangeSelectionNotification = Notification.Name("TextViewDidLiveChangeSelectionNotification")
     
     
     // MARK: Enums

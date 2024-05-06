@@ -133,8 +133,9 @@ struct TextFindAllResult {
     
     // MARK: Public Properties
     
-    static let didFindNotification = Notification.Name("didFindNotification")
-    static let didFindAllNotification = Notification.Name("didFindAllNotification")
+    nonisolated static let didFindNotification = Notification.Name("didFindNotification")
+    nonisolated static let didFindAllNotification = Notification.Name("didFindAllNotification")
+    
     
     weak var client: NSTextView!
     
