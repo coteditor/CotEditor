@@ -5,7 +5,8 @@
 
 ### New Feature
 
-- [AppStore ver.] Now user can donate to the CotEditor project via in-app purchase in the new Donate settings pane.
+- [AppStore ver.] Now users can donate to the CotEditor project via in-app purchase in the new Donate settings pane.
+- Support the alpha channel for the current line in theme settings.
 - Add new “Resinifictrix (Dark)” theme.
 
 
@@ -13,7 +14,8 @@
 
 - Change the system requirement to __macOS 14 Sonoma and later__.
 - Improve VoiceOver support in the Quick Action bar.
-- Remove Solarized themes from bundle.
+- Remove Solarized themes from the bundle.
+- Update all the bundled themes to have a 70% opacity in the current line highlight.
 - [dev] Migrate the navigation bar to SwiftUI.
 
 

@@ -1,6 +1,18 @@
 {
-  "text" : {
-    "color" : "#e5e5e5"
+  "attributes" : {
+    "color" : "#c76090"
+  },
+  "background" : {
+    "color" : "#1f1f1f"
+  },
+  "characters" : {
+    "color" : "#9cd936"
+  },
+  "commands" : {
+    "color" : "#d4a046"
+  },
+  "comments" : {
+    "color" : "#808080"
   },
   "insertionPoint" : {
     "color" : "#a8a8a8",
@@ -9,50 +21,39 @@
   "invisibles" : {
     "color" : "#555555"
   },
-  "background" : {
-    "color" : "#1f1f1f"
+  "keywords" : {
+    "color" : "#4d92ab"
   },
   "lineHighlight" : {
-    "color" : "#393939"
+    "color" : "#333333b3"
+  },
+  "metadata" : {
+    "author" : "1024jp",
+    "description" : "CotEditor bundled theme.",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "license" : "Same as CotEditor (Apache, ver.2)"
+  },
+  "name" : "Anura (Dark)",
+  "numbers" : {
+    "color" : "#a97dd1"
   },
   "selection" : {
     "color" : "#a7caff",
     "usesSystemSetting" : true
   },
-  "keywords" : {
-    "color" : "#4d92ab"
+  "strings" : {
+    "color" : "#90ad65"
   },
-  "commands" : {
-    "color" : "#d4a046"
+  "text" : {
+    "color" : "#e5e5e5"
   },
   "types" : {
     "color" : "#ed734c"
   },
-  "attributes" : {
-    "color" : "#c76090"
-  },
-  "variables" : {
-    "color" : "#75c9c6"
-  },
   "values" : {
     "color" : "#f26669"
   },
-  "numbers" : {
-    "color" : "#a97dd1"
-  },
-  "strings" : {
-    "color" : "#90ad65"
-  },
-  "characters" : {
-    "color" : "#9cd936"
-  },
-  "comments" : {
-    "color" : "#808080"
-  },
-  "metadata" : {
-    "author" : "1024jp",
-    "license" : "Same as CotEditor (Apache, ver.2)",
-    "description" : "CotEditor bundled theme.",
-    "distributionURL" : "https:\/\/coteditor.com"
+  "variables" : {
+    "color" : "#75c9c6"
   }
 }

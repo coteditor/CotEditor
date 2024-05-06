@@ -1,6 +1,18 @@
 {
-  "text" : {
-    "color" : "#000000"
+  "attributes" : {
+    "color" : "#718129"
+  },
+  "background" : {
+    "color" : "#ffffff"
+  },
+  "characters" : {
+    "color" : "#7f3561"
+  },
+  "commands" : {
+    "color" : "#62480c"
+  },
+  "comments" : {
+    "color" : "#4d7551"
   },
   "insertionPoint" : {
     "color" : "#000000",
@@ -9,50 +21,39 @@
   "invisibles" : {
     "color" : "#929292"
   },
-  "background" : {
-    "color" : "#ffffff"
+  "keywords" : {
+    "color" : "#244364"
   },
   "lineHighlight" : {
-    "color" : "#edf4ec"
+    "color" : "#eaf2e9b3"
+  },
+  "metadata" : {
+    "author" : "1024jp",
+    "description" : "CotEditor bundled theme.",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "license" : "Same as CotEditor (Apache, ver.2)"
+  },
+  "name" : "Kawazu",
+  "numbers" : {
+    "color" : "#327e8c"
   },
   "selection" : {
     "color" : "#dde6d9",
     "usesSystemSetting" : false
   },
-  "keywords" : {
-    "color" : "#244364"
+  "strings" : {
+    "color" : "#686868"
   },
-  "commands" : {
-    "color" : "#62480c"
+  "text" : {
+    "color" : "#000000"
   },
   "types" : {
     "color" : "#843d2c"
   },
-  "attributes" : {
-    "color" : "#718129"
-  },
-  "variables" : {
-    "color" : "#4f3081"
-  },
   "values" : {
     "color" : "#253384"
   },
-  "numbers" : {
-    "color" : "#327e8c"
-  },
-  "strings" : {
-    "color" : "#686868"
-  },
-  "characters" : {
-    "color" : "#7f3561"
-  },
-  "comments" : {
-    "color" : "#4d7551"
-  },
-  "metadata" : {
-    "author" : "1024jp",
-    "distributionURL" : "https://coteditor.com",
-    "license" : "Same as CotEditor (Apache, ver.2)",
-    "description" : "CotEditor bundled theme."
+  "variables" : {
+    "color" : "#4f3081"
   }
 }

@@ -326,7 +326,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             .sink { [weak self] in
                 self?.drawsBackground = $0
                 self?.enclosingScrollView?.drawsBackground = $0
-                self?.lineHighlightColor = self?.theme?.lineHighlightColor(forOpaqueBackground: $0)
             }
         
         // observe key window state for insertion points drawing
@@ -1314,7 +1313,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         self.textColor = theme.text.color
         self.backgroundColor = theme.background.color
-        self.lineHighlightColor = theme.lineHighlightColor(forOpaqueBackground: self.isOpaque)
+        self.lineHighlightColor = theme.lineHighlight.color
         self.insertionPointColor = theme.effectiveInsertionPointColor
         for indicator in self.insertionIndicators {
             indicator.color = self.insertionPointColor

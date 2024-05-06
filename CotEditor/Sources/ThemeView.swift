@@ -153,7 +153,7 @@ private struct ThemeEditorView: View {
                     ColorPicker(String(localized: "Background:", table: "ThemeEditor"),
                                 selection: $theme.background.binding, supportsOpacity: false)
                     ColorPicker(String(localized: "Current Line:", table: "ThemeEditor"),
-                                selection: $theme.lineHighlight.binding, supportsOpacity: false)
+                                selection: $theme.lineHighlight.binding)
                     SystemColorPicker(String(localized: "Selection:", table: "ThemeEditor"),
                                       selection: $theme.selection,
                                       systemColor: Color(nsColor: .selectedTextBackgroundColor),
