@@ -39,7 +39,7 @@ final class EditorViewController: NSSplitViewController {
     // MARK: Private Properties
     
     private lazy var outlineNavigator = OutlineNavigator()
-    private lazy var textViewController = EditorTextViewController()
+    private lazy var textViewController = EditorTextViewController(document: self.document)
     @ViewLoading private var navigationBarItem: NSSplitViewItem
     
     private var splitState: SplitState
@@ -179,6 +179,8 @@ final class EditorViewController: NSSplitViewController {
     private func updateDocument() {
         
         assert(self.textView != nil)
+        
+        self.textViewController.document = self.document
         
         self.textView?.layoutManager?.replaceTextStorage(self.document.textStorage)
         self.applySyntax()

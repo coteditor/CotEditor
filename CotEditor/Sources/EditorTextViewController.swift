@@ -40,6 +40,8 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     // MARK: Public Properties
     
+    var document: NSDocument
+    
     @ViewLoading private(set) var textView: EditorTextView
     
     
@@ -56,6 +58,19 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     
     // MARK: Lifecycle
+    
+    init(document: NSDocument) {
+        
+        self.document = document
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
     
     deinit {
         // detach layoutManager safely
@@ -190,6 +205,12 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     
     // MARK: Text View Delegate
+    
+    func undoManager(for view: NSTextView) -> UndoManager? {
+        
+        self.document.undoManager
+    }
+    
     
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         
