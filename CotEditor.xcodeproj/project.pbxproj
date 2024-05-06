@@ -2534,7 +2534,7 @@
 				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = "CotEditor Project";
 				TargetAttributes = {
 					2A3E847D1D07296200070A54 = {
@@ -2693,7 +2693,6 @@
 				2A7F4DFF2871F46D0029CE66 /* PrintPanelAccessory.storyboard in Resources */,
 				2ACDE2992406B9C000FC31EC /* SnippetsPane.storyboard in Resources */,
 				2ACDE28D2406B9C000FC31EC /* ThemeListView.storyboard in Resources */,
-				2ACDE28D2406B9C000FC31EC /* ThemeListView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2784,7 +2783,6 @@
 				2A3D63FB1E769DDF00F538E1 /* MultipleReplaceView.storyboard in Resources */,
 				2A7F4E002871F46D0029CE66 /* PrintPanelAccessory.storyboard in Resources */,
 				2ADF3C011E6D7345009125BB /* SnippetsPane.storyboard in Resources */,
-				2A10D1281E714D230027192A /* ThemeListView.storyboard in Resources */,
 				2A10D1281E714D230027192A /* ThemeListView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
