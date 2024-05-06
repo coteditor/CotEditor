@@ -59,13 +59,15 @@ extension NSTextStorage {
     ///
     /// - Parameters:
     ///   - string: The content string to replace with.
-    @MainActor final func replaceContent(with string: String) {
+    final func replaceContent(with string: String) {
+        
+        assert(self.layoutManagers.isEmpty || Thread.isMainThread)
         
         guard string != self.string else { return }
         
         self.replaceCharacters(in: self.range, with: string)
         
-        guard !string.isEmpty else { return }
+        guard !string.isEmpty, Thread.isMainThread else { return }
         
         // otherwise, the insertion point moves to the end of the content
         for textView in self.layoutManagers.compactMap(\.firstTextView) {

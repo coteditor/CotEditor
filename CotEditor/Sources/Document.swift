@@ -367,9 +367,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         }
         
         // update textStorage
-        Task { @MainActor in
-            self.textStorage.replaceContent(with: file.string)
-        }
+        self.textStorage.replaceContent(with: file.string)
         
         // set read values
         self.fileEncoding = file.fileEncoding
