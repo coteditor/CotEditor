@@ -66,7 +66,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Lifecycle
     
-    convenience init(document: Document) {
+    required init(document: Document) {
         
         let window = DocumentWindow(contentViewController: WindowContentViewController(document: document))
         window.styleMask.update(with: .fullSizeContentView)
@@ -81,7 +81,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             window.setFrame(.init(origin: window.frame.origin, size: frameSize), display: false)
         }
         
-        self.init(window: window)
+        super.init(window: window)
         
         window.delegate = self
         
@@ -125,27 +125,22 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     
     // MARK: Window Controller Methods
     
     override unowned(unsafe) var document: AnyObject? {
         
-        willSet {
-            self.documentSyntaxObserver = nil
-        }
-        
         didSet {
-            guard let document = document as? Document else { return }
-            
-            if document != oldValue as? Document {
-                (self.contentViewController as? WindowContentViewController)?.document = document
+            self.documentSyntaxObserver = nil
+            if let document = document as? Document {
+                self.updateDocument(document)
             }
-            
-            // observe document's syntax change
-            self.documentSyntaxObserver = document.didChangeSyntax
-                .merge(with: Just(document.syntaxParser.name))
-                .receive(on: RunLoop.main)
-                .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
         }
     }
     
@@ -196,6 +191,23 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     
     // MARK: Private Methods
+    
+    /// Updates document by passing it to the content view controller and updating the observation.
+    ///
+    /// - Parameter document: The new document.
+    private func updateDocument(_ document: Document) {
+        
+        if let viewController = self.contentViewController as? WindowContentViewController, viewController.document != document {
+            viewController.document = document
+        }
+        
+        // observe document's syntax change for toolbar
+        self.documentSyntaxObserver = document.didChangeSyntax
+            .merge(with: Just(document.syntaxParser.name))
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
+    }
+    
     
     /// Restores the window opacity.
     private func restoreWindowOpacity() {
