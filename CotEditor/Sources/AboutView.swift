@@ -50,7 +50,7 @@ struct AboutView: View {
     
     var body: some View {
         
-        HStack {
+        HStack(spacing: 0) {
             VStack(spacing: 6) {
                 Image(nsImage: NSApp.applicationIconImage)
                 Text(Bundle.main.bundleName)
@@ -74,6 +74,8 @@ struct AboutView: View {
             .padding(.trailing)
             .frame(minWidth: 200)
             
+            Divider()
+            
             VStack(spacing: 0) {
                 HStack {
                     ForEach(Pane.allCases, id: \.self) { pane in
@@ -96,11 +98,11 @@ struct AboutView: View {
                     }
                 }
             }
-            .ignoresSafeArea()
             .background()
         }
         .accessibilityLabel(String(localized: "About \(Bundle.main.bundleName)", table: "About", comment: "accessibility label (%@ is app name)"))
         .controlSize(.small)
+        .ignoresSafeArea()
         .frame(width: 540, height: 300)
     }
 }
@@ -204,6 +206,7 @@ private struct CreditsView: View {
             
             SectionView(String(localized: "Code Contributors", table: "About", comment: "section heading")) {
                 Text(self.credits.contributors.map(\.name).sorted(options: [.caseInsensitive, .localized]), format: .list(type: .and))
+                    .textSelection(.enabled)
             }
             
             SectionView(String(localized: "Special Thanks", table: "About", comment: "section heading")) {
@@ -226,6 +229,7 @@ private struct CreditsView: View {
                 .foregroundStyle(.tertiary)
             
             Text("CotEditor is an open source program\nlicensed under the Apache License, Version 2.0.", tableName: "About")
+                .textSelection(.enabled)
             Link(String("https://github.com/coteditor"),
                  destination: URL(string: "https://github.com/coteditor")!)
             .foregroundStyle(.tint)
