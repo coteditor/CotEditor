@@ -7,7 +7,7 @@
 
 - Display the current editor mode in the document inspector.
 - Improve VoiceOver support.
-- [non-AppStore ver.] Update Sparkle from 2.6.0 to 2.6.1 (security update).
+- [non-AppStore ver.] Update Sparkle from 2.6.0 to 2.6.2 (security update).
 
 
 ### Fixes
