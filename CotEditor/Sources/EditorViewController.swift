@@ -45,8 +45,7 @@ final class EditorViewController: NSSplitViewController {
     private var splitState: SplitState
     
     private var defaultObservers: [AnyCancellable] = []
-    private var documentSyntaxObserver: AnyCancellable?
-    private var outlineObserver: AnyCancellable?
+    private var documentObservers: [AnyCancellable] = []
     
     
     // MARK: Lifecycle
@@ -184,15 +183,19 @@ final class EditorViewController: NSSplitViewController {
         self.textView?.layoutManager?.replaceTextStorage(self.document.textStorage)
         self.applySyntax()
         
-        self.documentSyntaxObserver = self.document.didChangeSyntax
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in self?.applySyntax() }
-        
-        // observe syntaxParser for outline update
-        self.outlineObserver = self.document.syntaxParser.$outlineItems
-            .removeDuplicates()
-            .receive(on: RunLoop.main)
-            .sink { [weak self] in self?.outlineNavigator.items = $0 }
+        self.documentObservers = [
+            self.document.$lineEnding
+                .receive(on: RunLoop.main)
+                .sink { [weak self] in self?.textView?.lineEnding = $0 },
+            self.document.didChangeSyntax
+                .receive(on: RunLoop.main)
+                .sink { [weak self] _ in self?.applySyntax() },
+            
+            self.document.syntaxParser.$outlineItems
+                .removeDuplicates()
+                .receive(on: RunLoop.main)
+                .sink { [weak self] in self?.outlineNavigator.items = $0 },
+        ]
     }
     
     
@@ -201,9 +204,10 @@ final class EditorViewController: NSSplitViewController {
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        let syntax = self.document.syntaxParser.syntax
-        textView.commentDelimiters = syntax.commentDelimiters
-        textView.syntaxCompletionWords = syntax.completionWords
+        let parser = self.document.syntaxParser
+        textView.syntaxName = parser.name
+        textView.commentDelimiters = parser.syntax.commentDelimiters
+        textView.syntaxCompletionWords = parser.syntax.completionWords
         
         self.invalidateMode()
     }

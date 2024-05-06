@@ -50,8 +50,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     private weak var advancedCounterView: NSView?
     
-    private var orientationObserver: AnyCancellable?
-    private var writingDirectionObserver: AnyCancellable?
+    private var textViewObservers: Set<AnyCancellable> = []
     private var defaultsObservers: Set<AnyCancellable> = []
     
     
@@ -100,25 +99,27 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         // set identifier for state restoration
         self.identifier = NSUserInterfaceItemIdentifier("EditorTextViewController")
         
-        // observe text orientation for line number view
-        self.orientationObserver = self.textView.publisher(for: \.layoutOrientation, options: .initial)
-            .sink { [weak self] orientation in
-                self?.stackView?.orientation = switch orientation {
-                    case .horizontal: .horizontal
-                    case .vertical: .vertical
-                    @unknown default: fatalError()
-                }
-                self?.lineNumberView.orientation = orientation
-            }
-        
-        // let line number view position follow writing direction
-        self.writingDirectionObserver = self.textView.publisher(for: \.baseWritingDirection)
-            .removeDuplicates()
-            .map { ($0 == .rightToLeft) ? NSUserInterfaceLayoutDirection.rightToLeft : .leftToRight }
-            .sink { [weak self] direction in
-                self?.stackView?.userInterfaceLayoutDirection = direction
-                (self?.textView.enclosingScrollView as? BidiScrollView)?.scrollerDirection = direction
-            }
+        self.textViewObservers = [
+            // observe text orientation for line number view
+            self.textView.publisher(for: \.layoutOrientation, options: .initial)
+                .sink { [weak self] orientation in
+                    self?.stackView?.orientation = switch orientation {
+                        case .horizontal: .horizontal
+                        case .vertical: .vertical
+                        @unknown default: fatalError()
+                    }
+                    self?.lineNumberView.orientation = orientation
+                },
+            
+            // let line number view position follow writing direction
+            self.textView.publisher(for: \.baseWritingDirection)
+                .removeDuplicates()
+                .map { ($0 == .rightToLeft) ? NSUserInterfaceLayoutDirection.rightToLeft : .leftToRight }
+                .sink { [weak self] direction in
+                    self?.stackView?.userInterfaceLayoutDirection = direction
+                    (self?.textView.enclosingScrollView as? BidiScrollView)?.scrollerDirection = direction
+                },
+        ]
         
         // toggle visibility of the separator of the line number view
         self.defaultsObservers = [

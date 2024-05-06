@@ -56,6 +56,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Public Properties
     
+    var lineEnding: LineEnding = .lf
+    
+    var syntaxName: String = SyntaxName.none
     var mode: ModeOptions = ModeOptions()  { didSet { if mode != oldValue { self.applyMode() } } }
     
     var theme: Theme?  { didSet { self.applyTheme() } }
@@ -79,12 +82,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var lineHighlightRects: [NSRect] = []
     private(set) var lineHighlightColor: NSColor?
     
-    var insertionLocations: [Int] = []  {
-        
-        didSet {
-            self.needsUpdateInsertionIndicators = true
-        }
-    }
+    var insertionLocations: [Int] = []  { didSet { self.needsUpdateInsertionIndicators = true } }
     var selectionOrigins: [Int] = []
     var insertionPointTimer: (any DispatchSourceTimer)?
     var insertionPointOn = false
@@ -132,15 +130,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Lifecycle
     
-    convenience init() {
-        
-        self.init(frame: .zero, textContainer: nil)
-    }
-    
-    
-    required override init(frame: NSRect, textContainer: NSTextContainer?) {
-        
-        assert(textContainer == nil)
+    required override init(frame: NSRect = .zero) {
         
         // setup textContainer and layoutManager
         let textContainer = TextContainer()
@@ -163,12 +153,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.textContainerInset = Self.textContainerInset
         
         // set NSTextView behaviors
-        self.baseWritingDirection = .leftToRight  // default is fixed in LTR
-        self.allowsDocumentBackgroundColorChange = false
         self.allowsUndo = true
         self.isRichText = false
-        self.usesFindPanel = true
-        self.acceptsGlyphInfo = true
+        self.baseWritingDirection = .leftToRight  // default is fixed in LTR
         self.linkTextAttributes = [.cursor: NSCursor.pointingHand,
                                    .underlineStyle: NSUnderlineStyle.single.rawValue]
         
@@ -439,8 +426,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // perform snippet insertion if not in the middle of Japanese input
         if !self.hasMarkedText(),
            let shortcut = Shortcut(keyDownEvent: event),
-           let document = self.document,
-           let snippet = SnippetManager.shared.snippet(for: shortcut, scope: document.syntaxParser.name)
+           let snippet = SnippetManager.shared.snippet(for: shortcut, scope: self.syntaxName)
         {
             return self.insert(snippet: snippet)
         }
@@ -1144,12 +1130,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Public Accessors
     
-    var lineEnding: LineEnding {
-        
-        self.document?.lineEnding ?? .lf
-    }
-    
-    
     /// Tab width in number of spaces.
     var tabWidth: Int = 4 {
         
@@ -1316,10 +1296,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Private Methods
     
-    /// The document object representing the text view contents.
-    private var document: Document? {
+    /// The file URL of the document representing the text view contents.
+    private var documentURL: URL? {
         
-        self.window?.windowController?.document as? Document
+        (self.window?.windowController?.document as? Document)?.fileURL
     }
     
     
@@ -1464,8 +1444,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         guard !urls.isEmpty else { return false }
         
         let fileDropItems = UserDefaults.standard[.fileDropArray].map(FileDropItem.init(dictionary:))
-        let documentURL = self.document?.fileURL
-        let syntax = self.document?.syntaxParser.name
         
         let replacementString = urls.reduce(into: "") { (string, url) in
             if url.pathExtension == "textClipping", let textClipping = try? TextClipping(contentsOf: url) {
@@ -1473,8 +1451,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 return
             }
             
-            if let fileDropItem = fileDropItems.first(where: { $0.supports(extension: url.pathExtension, scope: syntax) }) {
-                string += fileDropItem.dropText(forFileURL: url, documentURL: documentURL)
+            if let fileDropItem = fileDropItems.first(where: { $0.supports(extension: url.pathExtension, scope: self.syntaxName) }) {
+                string += fileDropItem.dropText(forFileURL: url, documentURL: self.documentURL)
                 return
             }
             
