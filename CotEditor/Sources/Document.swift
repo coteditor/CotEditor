@@ -367,7 +367,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         }
         
         // update textStorage
-        self.textStorage.replaceContent(with: file.string)
+        Task { @MainActor in
+            self.textStorage.replaceContent(with: file.string)
+        }
         
         // set read values
         self.fileEncoding = file.fileEncoding
@@ -930,8 +932,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         }
         
         // update line endings in text storage
+        let selection = self.textStorage.editorSelection
         let string = self.textStorage.string.replacingLineEndings(with: lineEnding)
-        self.textStorage.replaceContent(with: string, keepsSelection: true)
+        self.textStorage.replaceContent(with: string)
+        if let selection {
+            self.textStorage.restoreEditorSelection(selection)
+        }
         
         // update line ending
         self.lineEnding = lineEnding

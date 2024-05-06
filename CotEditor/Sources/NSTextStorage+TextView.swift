@@ -35,7 +35,7 @@ extension NSTextStorage {
     
     
     /// The current selection in the textViews that use the receiver., or `nil` if no text view exists.
-    final var editorSelection: EditorSelection? {
+    @MainActor final var editorSelection: EditorSelection? {
         
         assert(self.layoutManagers.isEmpty || Thread.isMainThread)
         
@@ -51,7 +51,7 @@ extension NSTextStorage {
     /// Applies the previous selection to the text views by taking diff into account.
     ///
     /// - Parameter state: The selection state to apply.
-    final func restoreEditorSelection(_ state: EditorSelection) {
+    @MainActor final func restoreEditorSelection(_ state: EditorSelection) {
         
         assert(Thread.isMainThread)
         
@@ -78,27 +78,21 @@ extension NSTextStorage {
     }
     
     
-    /// Replaces whole content with the given `string`.
+    /// Replaces whole content with the given `string` and move the insertion point to the beginning of the content.
     ///
     /// - Parameters:
     ///   - string: The content string to replace with.
-    ///   - keepsSelection: Whether try to keep the selected ranges in views.
-    final func replaceContent(with string: String, keepsSelection: Bool = false) {
-        
-        assert(self.layoutManagers.isEmpty || Thread.isMainThread)
+    @MainActor final func replaceContent(with string: String) {
         
         guard string != self.string else { return }
         
-        let selection = keepsSelection ? self.editorSelection : nil
-        
         self.replaceCharacters(in: self.range, with: string)
         
-        if let selection {
-            self.restoreEditorSelection(selection)
-        } else {
-            for textView in self.layoutManagers.compactMap(\.firstTextView) {
-                textView.selectedRange = NSRange(0..<0)
-            }
+        guard !string.isEmpty else { return }
+        
+        // otherwise, the insertion point moves to the end of the content
+        for textView in self.layoutManagers.compactMap(\.firstTextView) {
+            textView.selectedRange = NSRange(0..<0)
         }
     }
 }
