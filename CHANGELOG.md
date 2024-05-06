@@ -12,6 +12,7 @@
 
 - Change the system requirement to __macOS 14 Sonoma and later__.
 - Improve VoiceOver support in the Quick Action bar.
+- Remove Solarized themes from bundle.
 - [dev] Migrate the navigation bar to SwiftUI.
 
 

@@ -307,9 +307,6 @@ private struct LicenseView: View {
             ItemView(name: "WFColorCode",
                      url: "https://github.com/1024jp/WFColorCode",
                      license: "MIT license")
-            ItemView(name: "Solarized",
-                     url: "https://ethanschoonover.com/solarized",
-                     license: "MIT license")
 #if SPARKLE
             ItemView(name: "Sparkle",
                      url: "https://github.com/jpsim/Yams",
