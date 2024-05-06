@@ -1,0 +1,59 @@
+{
+  "attributes" : {
+    "color" : "#3e9c99"
+  },
+  "background" : {
+    "color" : "#282828"
+  },
+  "characters" : {
+    "color" : "#bf9c63"
+  },
+  "commands" : {
+    "color" : "#d05961"
+  },
+  "comments" : {
+    "color" : "#7e999d"
+  },
+  "insertionPoint" : {
+    "color" : "#336f80",
+    "usesSystemSetting" : false
+  },
+  "invisibles" : {
+    "color" : "#6c7d807f"
+  },
+  "keywords" : {
+    "color" : "#67aad1"
+  },
+  "lineHighlight" : {
+    "color" : "#313232"
+  },
+  "metadata" : {
+    "author" : "1024jp",
+    "description" : "CotEditor bundled theme.",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "license" : "Same as CotEditor (Apache, ver.2)"
+  },
+  "name" : "Resinifictrix (Dark)",
+  "numbers" : {
+    "color" : "#8a87c8"
+  },
+  "selection" : {
+    "color" : "#4d5e66",
+    "usesSystemSetting" : false
+  },
+  "strings" : {
+    "color" : "#a17850"
+  },
+  "text" : {
+    "color" : "#c5c5c5"
+  },
+  "types" : {
+    "color" : "#dd8251"
+  },
+  "values" : {
+    "color" : "#af6da2"
+  },
+  "variables" : {
+    "color" : "#91a336"
+  }
+}

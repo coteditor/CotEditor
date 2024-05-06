@@ -6,6 +6,7 @@
 ### New Feature
 
 - [AppStore ver.] Now user can donate to the CotEditor project via in-app purchase in the new Donate settings pane.
+- Add new “Resinifictrix (Dark)” theme.
 
 
 ### Improvements
