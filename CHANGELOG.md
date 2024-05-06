@@ -7,11 +7,13 @@
 
 - Display the current editor mode in the document inspector.
 - Improve VoiceOver support.
+- Deprecate exact recalculation of insertion points when documents are updated by external processes to improve application stability.
 - [non-AppStore ver.] Update Sparkle from 2.6.0 to 2.6.2 (security update).
 
 
 ### Fixes
 
+- Fix an issue that the application could not responding by updating a relatively large document from external processes.
 - Fix an issue that the Share command was not available in the theme setting list.
 - Fix the layout of the Go To dialog.
 

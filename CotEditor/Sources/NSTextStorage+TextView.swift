@@ -27,24 +27,13 @@ import AppKit.NSTextStorage
 
 extension NSTextStorage {
     
-    struct EditorSelection {
-        
-        fileprivate var string: String
-        fileprivate var ranges: [[NSValue]]
-    }
+    typealias EditorSelection = [[NSValue]]
     
     
     /// The current selection in the textViews that use the receiver., or `nil` if no text view exists.
-    @MainActor final var editorSelection: EditorSelection? {
+    @MainActor final var editorSelection: EditorSelection {
         
-        assert(self.layoutManagers.isEmpty || Thread.isMainThread)
-        
-        let textViews = self.layoutManagers.compactMap(\.firstTextView)
-        
-        // avoid creating immutable string if not necessary
-        guard !textViews.isEmpty else { return nil }
-        
-        return EditorSelection(string: self.string.immutable, ranges: textViews.map(\.selectedRanges))
+        self.layoutManagers.compactMap(\.firstTextView).map(\.selectedRanges)
     }
     
     
@@ -53,27 +42,15 @@ extension NSTextStorage {
     /// - Parameter state: The selection state to apply.
     @MainActor final func restoreEditorSelection(_ state: EditorSelection) {
         
-        assert(Thread.isMainThread)
-        
         let textViews = self.layoutManagers.compactMap(\.firstTextView)
         
-        guard state.ranges.count == textViews.count else { return assertionFailure() }
+        guard state.count == textViews.count else { return assertionFailure() }
         
-        // -> Taking performance issues into consideration,
-        //    the selection ranges are adjusted only when the content is small enough;
-        //    otherwise, just cut extra ranges off.
-        let maxLength = 1_000_000  // takes ca. 0.05 sec. with MacBook M1 13-inch late 2020 (3.3 GHz)
-        let considersDiff = state.string.length < maxLength && self.length < maxLength
-        
-        for (textView, selectedRange) in zip(textViews, state.ranges) {
-            let ranges = selectedRange.map(\.rangeValue)
-            let selectedRanges = considersDiff
-                ? self.string.equivalentRanges(to: ranges, in: state.string)
-                : ranges.map { NSRange(min($0.lowerBound, self.length)..<min($0.upperBound, self.length)) }
-            
-            guard !selectedRanges.isEmpty else { continue }
-            
-            textView.selectedRanges = selectedRanges.uniqued as [NSValue]
+        for (textView, selectedRanges) in zip(textViews, state) where !selectedRanges.isEmpty {
+            textView.selectedRanges = selectedRanges
+                .map(\.rangeValue)
+                .map { NSRange(min($0.lowerBound, self.length)..<min($0.upperBound, self.length)) }
+                .uniqued as [NSValue]
         }
     }
     

@@ -298,7 +298,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         try super.revert(toContentsOf: url, ofType: typeName)
         
         // do nothing if already no textView exists
-        guard let selection else { return }
+        guard !selection.isEmpty else { return }
         
         self.applyContentToWindow()
         self.textStorage.restoreEditorSelection(selection)
@@ -935,9 +935,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         let selection = self.textStorage.editorSelection
         let string = self.textStorage.string.replacingLineEndings(with: lineEnding)
         self.textStorage.replaceContent(with: string)
-        if let selection {
-            self.textStorage.restoreEditorSelection(selection)
-        }
+        self.textStorage.restoreEditorSelection(selection)
         
         // update line ending
         self.lineEnding = lineEnding

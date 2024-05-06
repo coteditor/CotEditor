@@ -41,21 +41,4 @@ final class StringCollectionTests: XCTestCase {
         XCTAssertEqual(names.createAvailableName(for: "foo 3", suffix: copy), "foo 3 copy")
         XCTAssertEqual(names.createAvailableName(for: "foo copy 3", suffix: copy), "foo copy 4")
     }
-    
-    
-    func testRangeDiff() {
-        
-        let string1 = "family 👨‍👨‍👦 with 🐕"
-        let string2 = "family 👨‍👨‍👦 and 🐕"
-        
-        XCTAssertEqual(string2.equivalentRanges(to: [NSRange(7..<15)], in: string1), [NSRange(7..<15)])  //  👨‍👨‍👦
-        XCTAssertEqual(string2.equivalentRanges(to: [NSRange(16..<20)], in: string1), [NSRange(16..<19)])  // with -> and
-        XCTAssertEqual(string2.equivalentRanges(to: [NSRange(16..<18)], in: string1), [NSRange(16..<18)])  // wi -> an
-        XCTAssertEqual(string2.equivalentRanges(to: [NSRange(21..<23)], in: string1), [NSRange(20..<22)])  // 🐕
-        XCTAssertEqual("".equivalentRanges(to: [NSRange(16..<20)], in: string1), [NSRange(0..<0)])  // with
-        
-        XCTAssertEqual(string1.equivalentRanges(to: [NSRange(0..<0)], in: string2), [NSRange(0..<0)])
-        XCTAssertEqual(string1.equivalentRanges(to: [NSRange(16..<19)], in: string2), [NSRange(16..<19)])  // and
-        XCTAssertEqual(string1.equivalentRanges(to: [NSRange(16..<20)], in: string2), [NSRange(16..<21)])  // and_
-    }
 }
