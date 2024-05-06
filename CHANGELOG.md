@@ -14,6 +14,7 @@
 ### Fixes
 
 - Fix an issue that the application could not responding by updating a relatively large document from external processes.
+- Fix an issue that the application unwontedly copied the bundled theme setting files to the user domain.
 - Fix an issue that the Share command was not available in the theme setting list.
 - Fix the layout of the Go To dialog.
 

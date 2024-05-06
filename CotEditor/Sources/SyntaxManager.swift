@@ -123,18 +123,6 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// Returns the bundled version of the setting, or `nil` if not exists.
-    ///
-    /// - Parameter name: The setting name.
-    /// - Returns: A setting, or `nil` if not exists.
-    func bundledSetting(name: SettingName) -> Setting? {
-        
-        guard let url = self.urlForBundledSetting(name: name) else { return nil }
-        
-        return try? self.loadSetting(at: url)
-    }
-    
-    
     /// Saves the given setting file to the user domain.
     ///
     /// - Parameters:
@@ -152,8 +140,8 @@ final class SyntaxManager: SettingFileManaging {
         
         let setting = setting.sanitized
         
-        // just remove the current custom setting file in the user domain if new syntax is just the same as bundled one
-        // so that application uses bundled one
+        // just remove the current custom setting file in the user domain
+        // if the new setting is the same as bundled one
         if setting == self.bundledSetting(name: name) {
             if fileURL.isReachable {
                 try FileManager.default.removeItem(at: fileURL)

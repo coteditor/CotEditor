@@ -143,6 +143,18 @@ extension SettingFileManaging {
     }
     
     
+    /// Returns the bundled version of the setting, or `nil` if not exists.
+    ///
+    /// - Parameter name: The setting name.
+    /// - Returns: A setting, or `nil` if not exists.
+    func bundledSetting(name: String) -> Setting? {
+        
+        guard let url = self.urlForBundledSetting(name: name) else { return nil }
+        
+        return try? self.loadSetting(at: url)
+    }
+    
+    
     
     // MARK: Public Methods
     

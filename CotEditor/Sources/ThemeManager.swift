@@ -118,21 +118,31 @@ final class ThemeManager: SettingFileManaging {
     }
     
     
-    /// Saves the given setting file.
+    /// Saves the given setting file to the user domain.
     ///
     /// - Parameters:
     ///   - setting: The setting to save.
     ///   - name: The name of the setting to save.
     func save(setting: Setting, name: String) throws {
         
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        
-        let data = try encoder.encode(setting)
         let fileURL = self.preparedURLForUserSetting(name: name)
         
-        try FileManager.default.createIntermediateDirectories(to: fileURL)
-        try data.write(to: fileURL)
+        // just remove the current custom setting file in the user domain
+        // if the new setting is the same as bundled one
+        if setting == self.bundledSetting(name: name) {
+            if fileURL.isReachable {
+                try FileManager.default.removeItem(at: fileURL)
+            }
+        } else {
+            // save file to user domain
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+            
+            let data = try encoder.encode(setting)
+            
+            try FileManager.default.createIntermediateDirectories(to: fileURL)
+            try data.write(to: fileURL)
+        }
         
         self.cachedSettings[name] = setting
         
