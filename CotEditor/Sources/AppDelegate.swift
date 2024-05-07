@@ -114,11 +114,6 @@ private enum BundleIdentifier {
             UserDefaults.standard.migrateFontSetting()
             UserDefaults.standard.migrateOnLaunchSetting()
         }
-        
-        ProcessInfo.processInfo.automaticTerminationSupportEnabled = true
-        
-        // instantiate shared instances
-        _ = DocumentController.shared
     }
     
     
@@ -208,12 +203,16 @@ private enum BundleIdentifier {
     }
     
     
-    #if SPARKLE
     func applicationWillFinishLaunching(_ notification: Notification) {
         
+        ProcessInfo.processInfo.automaticTerminationSupportEnabled = true
+        
+        _ = DocumentController.shared
+        
+        #if SPARKLE
         UpdaterManager.shared.setup()
+        #endif
     }
-    #endif
     
     
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -249,6 +248,27 @@ private enum BundleIdentifier {
             case .openPanel:
                 NSDocumentController.shared.openDocument(nil)
                 return false
+        }
+    }
+    
+    
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        
+        // not evaluated on the app launch (only on the *re*-open event)
+        
+        // invoked only on the *re*-open event
+        switch UserDefaults.standard[.noDocumentOnLaunchOption] {
+            case .untitledDocument:
+                if !flag {
+                    // show an untitled document before the app considers displaying the Open dialog
+                    NSDocumentController.shared.newDocument(nil)
+                }
+                return false
+            case .openPanel:
+                // the original behavior depends on whether iCloud is enabled:
+                //   -> On:  the Open dialog
+                //   -> Off: an untitled document
+                return true  // entrust to `.applicationShouldOpenUntitledFile(_:)`
         }
     }
     
