@@ -77,7 +77,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         self.tableView?.selectRowIndexes([row], byExtendingSelection: false)
         
         // observe replacement setting list change
-        withContinuousObservationTracking {
+        withContinuousObservationTracking(initial: true) {
             _ = ReplacementManager.shared.settingNames
         } onChange: {
             Task { @MainActor in

@@ -28,10 +28,15 @@ import Observation
 /// Tracks access to properties continuously.
 ///
 /// - Parameters:
+///   - initial: If `true`, `onChange` closure will be evaluated immediately before the actual observation.
 ///   - apply: A closure that contains properties to track.
 ///   - onChange: The closure invoked when the value of a property changes.
 /// - Returns: The value that the apply closure returns if it has a return value; otherwise, there is no return value.
-func withContinuousObservationTracking<T>(_ apply: @escaping () -> T, onChange: @escaping (@Sendable () -> Void)) {
+func withContinuousObservationTracking<T>(initial: Bool = false, _ apply: @escaping () -> T, onChange: @escaping (@Sendable () -> Void)) {
+    
+    if initial {
+        onChange()
+    }
     
     _ = withObservationTracking(apply, onChange: {
         onChange()

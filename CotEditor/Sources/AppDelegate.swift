@@ -125,7 +125,7 @@ private enum BundleIdentifier {
         self.menuUpdateObservers.removeAll()
         
         // sync menus with setting list updates
-        withContinuousObservationTracking {
+        withContinuousObservationTracking(initial: true) {
             _ = EncodingManager.shared.fileEncodings
         } onChange: {
             Task { @MainActor in
@@ -195,7 +195,7 @@ private enum BundleIdentifier {
             }
         
         // build multiple replacement menu items
-        withContinuousObservationTracking {
+        withContinuousObservationTracking(initial: true) {
             _ = ReplacementManager.shared.settingNames
         } onChange: {
             Task { @MainActor in
