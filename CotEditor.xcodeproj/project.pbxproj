@@ -768,6 +768,8 @@
 		2AE144C52B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144C32B0222DB005E8CF1 /* LiveTextInsertionView.swift */; };
 		2AE214E22BEB3011007EF0E9 /* CSVFormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE214E12BEB3011007EF0E9 /* CSVFormatStyle.swift */; };
 		2AE214E32BEB3011007EF0E9 /* CSVFormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE214E12BEB3011007EF0E9 /* CSVFormatStyle.swift */; };
+		2AE214E52BEBAD1A007EF0E9 /* UUID+Transferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE214E42BEBAD1A007EF0E9 /* UUID+Transferable.swift */; };
+		2AE214E62BEBAD1A007EF0E9 /* UUID+Transferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE214E42BEBAD1A007EF0E9 /* UUID+Transferable.swift */; };
 		2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */; };
 		2AE3F3191D3F8A1F005B8724 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */; };
 		2AE44DB82BE65C1F002A787D /* OutlineNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE44DB72BE65C1F002A787D /* OutlineNavigator.swift */; };
@@ -1305,6 +1307,7 @@
 		2AE144BB2B01E341005E8CF1 /* DonationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationSettingsView.swift; sourceTree = "<group>"; };
 		2AE144C32B0222DB005E8CF1 /* LiveTextInsertionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTextInsertionView.swift; sourceTree = "<group>"; };
 		2AE214E12BEB3011007EF0E9 /* CSVFormatStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVFormatStyle.swift; sourceTree = "<group>"; };
+		2AE214E42BEBAD1A007EF0E9 /* UUID+Transferable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+Transferable.swift"; sourceTree = "<group>"; };
 		2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		2AE44DB72BE65C1F002A787D /* OutlineNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineNavigator.swift; sourceTree = "<group>"; };
 		2AE44DBA2BE67F81002A787D /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
@@ -1737,6 +1740,7 @@
 				2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */,
 				2A8DA9461D28ED93003D0C4B /* URL.swift */,
 				2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */,
+				2AE214E42BEBAD1A007EF0E9 /* UUID+Transferable.swift */,
 				2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */,
 				2A10C5F91FD25D04002AB5AE /* Selector+Codable.swift */,
 				2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */,
@@ -3201,6 +3205,7 @@
 				2AD2387A2939AC7200209834 /* UserUnixTask.swift in Sources */,
 				2AFD218A27E0434100E83E88 /* UTType.swift in Sources */,
 				2A91C31C1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */,
+				2AE214E52BEBAD1A007EF0E9 /* UUID+Transferable.swift in Sources */,
 				2A7FCC46280A367C0070EAB3 /* ValueRange.swift in Sources */,
 				2AE144B92B00DCB7005E8CF1 /* View+Alert.swift in Sources */,
 				2A2B086028046E3B0028D733 /* WarningInspectorView.swift in Sources */,
@@ -3571,6 +3576,7 @@
 				2AD2387B2939AC7200209834 /* UserUnixTask.swift in Sources */,
 				2AFD218B27E0434100E83E88 /* UTType.swift in Sources */,
 				2A91C31B1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */,
+				2AE214E62BEBAD1A007EF0E9 /* UUID+Transferable.swift in Sources */,
 				2A7FCC47280A367C0070EAB3 /* ValueRange.swift in Sources */,
 				2AE144BA2B00DCB7005E8CF1 /* View+Alert.swift in Sources */,
 				2A2B086128046E3B0028D733 /* WarningInspectorView.swift in Sources */,
