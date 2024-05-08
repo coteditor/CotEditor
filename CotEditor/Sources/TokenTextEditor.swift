@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2023 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,7 +23,74 @@
 //  limitations under the License.
 //
 
+import SwiftUI
 import AppKit
+
+struct TokenTextEditor: NSViewRepresentable {
+    
+    typealias NSViewType = NSScrollView
+    
+    
+    @Binding var text: String?
+    var tokenizer: Tokenizer
+    
+    @Environment(\.isEnabled) private var isEnabled
+    
+    
+    func makeNSView(context: Context) -> NSScrollView {
+        
+        let textView = TokenTextView(usingTextLayoutManager: false)
+        textView.allowsUndo = true
+        textView.autoresizingMask = [.width, .height]
+        textView.textContainerInset = CGSize(width: 4, height: 6)
+        textView.isRichText = false
+        textView.font = .systemFont(ofSize: 0)
+        textView.delegate = context.coordinator
+        textView.tokenizer = self.tokenizer
+        
+        let nsView = NSScrollView()
+        nsView.documentView = textView
+        
+        return nsView
+    }
+    
+    
+    func updateNSView(_ nsView: NSScrollView, context: Context) {
+        
+        guard let textView = nsView.documentView as? TokenTextView else { return assertionFailure() }
+        
+        textView.string = self.text ?? ""
+        textView.isEditable = self.isEnabled
+    }
+    
+    
+    func makeCoordinator() -> Coordinator {
+        
+        Coordinator(text: $text)
+    }
+    
+    
+    
+    final class Coordinator: NSObject, NSTextViewDelegate {
+        
+        @Binding private var text: String?
+        
+        
+        init(text: Binding<String?>) {
+            
+            self._text = text
+        }
+        
+        
+        func textDidChange(_ notification: Notification) {
+            
+            guard let textView = notification.object as? NSTextView else { return assertionFailure() }
+            
+            self.text = textView.string
+        }
+    }
+}
+
 
 private extension NSAttributedString.Key {
     
