@@ -77,7 +77,7 @@ import Observation
 }
 
 
-struct SyntaxObjectHighlight: Identifiable, EmptyInitializable {
+struct SyntaxObjectHighlight: Identifiable {
     
     let id = UUID()
     
@@ -89,7 +89,7 @@ struct SyntaxObjectHighlight: Identifiable, EmptyInitializable {
 }
 
 
-struct SyntaxObjectOutline: Identifiable, EmptyInitializable {
+struct SyntaxObjectOutline: Identifiable {
     
     let id = UUID()
     
@@ -103,7 +103,7 @@ struct SyntaxObjectOutline: Identifiable, EmptyInitializable {
 }
 
 
-struct SyntaxObjectKeyString: Identifiable, EmptyInitializable {
+struct SyntaxObjectKeyString: Identifiable {
     
     let id = UUID()
     

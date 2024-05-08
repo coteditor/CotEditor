@@ -64,7 +64,7 @@ struct SyntaxOutlineEditView: View {
             .tableStyle(.bordered)
             .border(Color(nsColor: .gridColor))
             
-            AddRemoveButton($items, selection: $selection, focus: $focusedField)
+            AddRemoveButton($items, selection: $selection, focus: $focusedField, newItem: Item.init)
                 .padding(.bottom, 8)
             
             if self.selection.count > 1 {

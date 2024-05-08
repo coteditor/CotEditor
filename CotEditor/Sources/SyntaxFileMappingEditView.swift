@@ -112,7 +112,7 @@ struct SyntaxFileMappingEditView: View {
                 .alternatingRowBackgrounds()
                 .border(Color(nsColor: .gridColor))
                 
-                AddRemoveButton($items, selection: $selection, focus: $focusedField)
+                AddRemoveButton($items, selection: $selection, focus: $focusedField, newItem: Item.init)
             }.accessibilityElement(children: .contain)
         }
     }

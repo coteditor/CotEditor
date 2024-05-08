@@ -59,7 +59,7 @@ struct SyntaxCompletionEditView: View {
             .border(Color(nsColor: .gridColor))
             
             HStack {
-                AddRemoveButton($items, selection: $selection, focus: $focusedField)
+                AddRemoveButton($items, selection: $selection, focus: $focusedField, newItem: Item.init)
                 Spacer()
                 HelpButton(anchor: "syntax_highlight_settings")
             }
