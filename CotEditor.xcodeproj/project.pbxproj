@@ -766,6 +766,8 @@
 		2AE144BD2B01E341005E8CF1 /* DonationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144BB2B01E341005E8CF1 /* DonationSettingsView.swift */; };
 		2AE144C42B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144C32B0222DB005E8CF1 /* LiveTextInsertionView.swift */; };
 		2AE144C52B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE144C32B0222DB005E8CF1 /* LiveTextInsertionView.swift */; };
+		2AE214E22BEB3011007EF0E9 /* CSVFormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE214E12BEB3011007EF0E9 /* CSVFormatStyle.swift */; };
+		2AE214E32BEB3011007EF0E9 /* CSVFormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE214E12BEB3011007EF0E9 /* CSVFormatStyle.swift */; };
 		2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */; };
 		2AE3F3191D3F8A1F005B8724 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */; };
 		2AE44DB82BE65C1F002A787D /* OutlineNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE44DB72BE65C1F002A787D /* OutlineNavigator.swift */; };
@@ -1302,6 +1304,7 @@
 		2AE144B82B00DCB7005E8CF1 /* View+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Alert.swift"; sourceTree = "<group>"; };
 		2AE144BB2B01E341005E8CF1 /* DonationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationSettingsView.swift; sourceTree = "<group>"; };
 		2AE144C32B0222DB005E8CF1 /* LiveTextInsertionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTextInsertionView.swift; sourceTree = "<group>"; };
+		2AE214E12BEB3011007EF0E9 /* CSVFormatStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVFormatStyle.swift; sourceTree = "<group>"; };
 		2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		2AE44DB72BE65C1F002A787D /* OutlineNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineNavigator.swift; sourceTree = "<group>"; };
 		2AE44DBA2BE67F81002A787D /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
@@ -1837,6 +1840,7 @@
 			children = (
 				2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */,
 				2A505C042988D44E002080AA /* ShortcutFormatter.swift */,
+				2AE214E12BEB3011007EF0E9 /* CSVFormatStyle.swift */,
 				2AE52F1A1D17493B00D60A32 /* FilePermissions+FormatStyle.swift */,
 				2A57B98E294ED75900771696 /* RangedIntegerFormatStyle.swift */,
 			);
@@ -2923,6 +2927,7 @@
 				2A885E341D5C3A1B00288723 /* Comparable.swift in Sources */,
 				2A5D130B1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
 				2AE44DBB2BE67F81002A787D /* ContentViewController.swift in Sources */,
+				2AE214E22BEB3011007EF0E9 /* CSVFormatStyle.swift in Sources */,
 				2AE12E081E7DDF0700681F72 /* CustomSurroundView.swift in Sources */,
 				2A25C52920F06BE80003AE1A /* CustomTabWidthView.swift in Sources */,
 				2AFB30E01E4B8F5B00BFAEF3 /* Debouncer.swift in Sources */,
@@ -3291,6 +3296,7 @@
 				2A885E331D5C3A1B00288723 /* Comparable.swift in Sources */,
 				2A5D130A1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
 				2AE44DBC2BE67F81002A787D /* ContentViewController.swift in Sources */,
+				2AE214E32BEB3011007EF0E9 /* CSVFormatStyle.swift in Sources */,
 				2AE12E071E7DDF0700681F72 /* CustomSurroundView.swift in Sources */,
 				2A25C52820F06BE80003AE1A /* CustomTabWidthView.swift in Sources */,
 				2AFB30DF1E4B8F5B00BFAEF3 /* Debouncer.swift in Sources */,
