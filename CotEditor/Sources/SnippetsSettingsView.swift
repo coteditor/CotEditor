@@ -71,35 +71,29 @@ private struct CommandSnippetsView: View {
         VStack(alignment: .leading) {
             Text("Text to be inserted by a command in the menu or by keyboard shortcut:", tableName: "SnippetsSettings")
             
-            Table(of: Item.self, selection: $selection) {
-                TableColumn(String(localized: "Syntax", table: "SnippetsSettings", comment: "table column header")) { wrappedItem in
-                    let item = $items[id: wrappedItem.id]!
-                    
+            Table(of: Binding<Item>.self, selection: $selection) {
+                TableColumn(String(localized: "Syntax", table: "SnippetsSettings", comment: "table column header")) { item in
                     SyntaxPicker(selection: item.scope)
                         .buttonStyle(.borderless)
                         .help(String(localized: "Syntax in which this file drop setting is used.", table: "SnippetsSettings", comment: "tooltip"))
-                }.width(min: 40, ideal: 64)
+                }.width(160)
                 
-                TableColumn(String(localized: "Name", table: "SnippetsSettings", comment: "table column header")) { wrappedItem in
-                    let item = $items[id: wrappedItem.id]!
-                    
+                TableColumn(String(localized: "Name", table: "SnippetsSettings", comment: "table column header")) { item in
                     TextField(text: item.name, label: EmptyView.init)
-                }.width(min: 40, ideal: 64)
-                
-                TableColumn(String(localized: "Key", table: "SnippetsSettings", comment: "table column header")) { wrappedItem in
-                    let item = $items[id: wrappedItem.id]!
-                    
-                    ShortcutField(value: item.shortcut, error: $error)
                 }
+                
+                TableColumn(String(localized: "Key", table: "SnippetsSettings", comment: "table column header")) { item in
+                    ShortcutField(value: item.shortcut, error: $error)
+                }.width(60)
             } rows: {
-                ForEach(self.items) { item in
+                ForEach($items) { item in
                     TableRow(item)
                         .itemProvider { [id = item.id] in id.itemProvider }
                 }
                 .onInsert(of: [.uuid]) { (index, providers) in
                     // `onInsert(of:perform:)` shows a plus badge which should be avoided
                     // on just moving items in the identical table,
-                    // but `onMove()` is not provided yet for DynamicTableRowContent yet.
+                    // but `onMove()` is not provided yet for DynamicTableRowContent.
                     // (2024-05, macOS 14)
                     Task {
                         let indexes = try await providers
@@ -167,29 +161,23 @@ private struct FileDropView: View {
         VStack(alignment: .leading) {
             Text("Text to be inserted by dropping files to the editor:", tableName: "SnippetsSettings")
             
-            Table(of: Item.self, selection: $selection) {
-                TableColumn(String(localized: "Syntax", table: "SnippetsSettings", comment: "table column header")) { wrappedItem in
-                    let item = $items[id: wrappedItem.id]!
-                    
+            Table(of: Binding<Item>.self, selection: $selection) {
+                TableColumn(String(localized: "Syntax", table: "SnippetsSettings", comment: "table column header")) { item in
                     SyntaxPicker(selection: item.scope)
                         .buttonStyle(.borderless)
                         .help(String(localized: "Syntax in which this file drop setting is used.", table: "SnippetsSettings", comment: "tooltip"))
-                }.width(min: 40, ideal: 64)
+                }.width(160)
                 
-                TableColumn(String(localized: "Extensions", table: "SnippetsSettings", comment: "table column header")) { wrappedItem in
-                    let item = $items[id: wrappedItem.id]!
-                    
+                TableColumn(String(localized: "Extensions", table: "SnippetsSettings", comment: "table column header")) { item in
                     TextField(value: item.extensions, format: .csv(omittingEmptyItems: true), prompt: Text("All", tableName: "SnippetsSettings"), label: EmptyView.init)
                         .help(String(localized: "File extensions of dropped file (comma separated).", table: "SnippetsSettings", comment: "tooltip"))
-                }.width(min: 40, ideal: 64)
+                }
                 
-                TableColumn(String(localized: "Description", table: "SnippetsSettings", comment: "table column header")) { wrappedItem in
-                    let item = $items[id: wrappedItem.id]!
-                    
+                TableColumn(String(localized: "Description", table: "SnippetsSettings", comment: "table column header")) { item in
                     TextField(text: item.description ?? "", label: EmptyView.init)
                 }
             } rows: {
-                ForEach(self.items) { item in
+                ForEach($items) { item in
                     TableRow(item)
                         .itemProvider { [id = item.id] in id.itemProvider }
                 }
@@ -218,10 +206,8 @@ private struct FileDropView: View {
             HStack(alignment: .firstTextBaseline) {
                 AddRemoveButton($items, selection: $selection, newItem: Item.init)
                 Spacer()
-                Button(String(localized: "Restore Defaults", table: "SnippetsSettings", comment: "button label")) {
-                    self.restore()
-                }
-                .disabled(!self.canRestore)
+                Button(String(localized: "Restore Defaults", table: "SnippetsSettings", comment: "button label"), action: self.restore)
+                    .disabled(!self.canRestore)
             }
             .padding(.bottom)
             
@@ -313,7 +299,7 @@ private struct InsertionFormatView: View {
     
     var body: some View {
         
-        Group {
+        VStack {
             HStack {
                 Text("Insertion format:", tableName: "SnippetsSettings")
                     .accessibilityLabeledPair(role: .label, id: "insertionFormat", in: self.accessibility)
