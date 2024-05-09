@@ -274,6 +274,7 @@ private struct ThemeMetadataView: View {
             GridRow {
                 self.itemView(String(localized: "URL:", table: "ThemeEditor"),
                               text: $metadata.distributionURL ?? "")
+                .textContentType(.URL)
                 LinkButton(url: self.metadata.distributionURL ?? "")
                     .foregroundStyle(.secondary)
             }
