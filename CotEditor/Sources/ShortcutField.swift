@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -96,7 +96,10 @@ final class ShortcutField: NSTextField, NSTextViewDelegate {
         }
         
         // end monitoring key down event
-        self.removeKeyMonitor()
+        if let monitor = self.keyDownMonitor {
+            NSEvent.removeMonitor(monitor)
+            self.keyDownMonitor = nil
+        }
         self.windowObserver = nil
         
         super.textDidEndEditing(notification)
@@ -110,17 +113,5 @@ final class ShortcutField: NSTextField, NSTextViewDelegate {
         
         // disable contextual menu for field editor
         nil
-    }
-    
-    
-    // MARK: Private Methods
-    
-    /// Stops and removes the key down monitoring.
-    private func removeKeyMonitor() {
-        
-        if let monitor = self.keyDownMonitor {
-            NSEvent.removeMonitor(monitor)
-            self.keyDownMonitor = nil
-        }
     }
 }
