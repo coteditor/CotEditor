@@ -272,8 +272,6 @@
 		2A4E638120ADC45F0033CE63 /* NSBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4E637F20ADC45F0033CE63 /* NSBezierPath.swift */; };
 		2A505C052988D44E002080AA /* ShortcutFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A505C042988D44E002080AA /* ShortcutFormatter.swift */; };
 		2A505C062988D44E002080AA /* ShortcutFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A505C042988D44E002080AA /* ShortcutFormatter.swift */; };
-		2A505C09298A88DD002080AA /* SnippetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A505C08298A88DD002080AA /* SnippetsViewController.swift */; };
-		2A505C0A298A88DD002080AA /* SnippetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A505C08298A88DD002080AA /* SnippetsViewController.swift */; };
 		2A50AA62204D513500D10A10 /* DocumentFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50AA61204D513500D10A10 /* DocumentFile.swift */; };
 		2A50AA63204D513500D10A10 /* DocumentFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50AA61204D513500D10A10 /* DocumentFile.swift */; };
 		2A53F56727585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */; };
@@ -711,7 +709,6 @@
 		2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */; };
 		2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */; };
 		2ACDE28D2406B9C000FC31EC /* ThemeListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1261E714D230027192A /* ThemeListView.storyboard */; };
-		2ACDE2992406B9C000FC31EC /* SnippetsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3BFF1E6D7345009125BB /* SnippetsView.storyboard */; };
 		2ACDE29A2406B9C000FC31EC /* FindPanelFieldView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D13401D1FE34F00D38E6A /* FindPanelFieldView.storyboard */; };
 		2ACDE29C2406B9C000FC31EC /* SyntaxListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1361E715E5B0027192A /* SyntaxListView.storyboard */; };
 		2ACDE2A22406B9C000FC31EC /* KeyBindingTreeView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1081E708CDF0027192A /* KeyBindingTreeView.storyboard */; };
@@ -746,7 +743,6 @@
 		2ADBC91621C9F30000B884FF /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADBC91421C9F30000B884FF /* Atomic.swift */; };
 		2ADD0AD8217A967200F78732 /* NSTextView+LineNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */; };
 		2ADD0AD9217A967200F78732 /* NSTextView+LineNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */; };
-		2ADF3C011E6D7345009125BB /* SnippetsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3BFF1E6D7345009125BB /* SnippetsView.storyboard */; };
 		2AE12DFB1E7DB47000681F72 /* Collection+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE12DFA1E7DB47000681F72 /* Collection+String.swift */; };
 		2AE12DFC1E7DB47000681F72 /* Collection+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE12DFA1E7DB47000681F72 /* Collection+String.swift */; };
 		2AE12DFE1E7DB7D200681F72 /* StringCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE12DFD1E7DB7D200681F72 /* StringCollectionTests.swift */; };
@@ -1032,7 +1028,6 @@
 		2A4D69261D3FF61C00FBBD0B /* String+Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Encoding.swift"; sourceTree = "<group>"; };
 		2A4E637F20ADC45F0033CE63 /* NSBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSBezierPath.swift; sourceTree = "<group>"; };
 		2A505C042988D44E002080AA /* ShortcutFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutFormatter.swift; sourceTree = "<group>"; };
-		2A505C08298A88DD002080AA /* SnippetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetsViewController.swift; sourceTree = "<group>"; };
 		2A50AA61204D513500D10A10 /* DocumentFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentFile.swift; sourceTree = "<group>"; };
 		2A51CF402BB45940001896F1 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/UnicodeBlock.strings; sourceTree = "<group>"; };
 		2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionReferenceView.swift; sourceTree = "<group>"; };
@@ -1291,7 +1286,6 @@
 		2ADB04AB2A89F14D00C4F562 /* AddRemoveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRemoveButton.swift; sourceTree = "<group>"; };
 		2ADBC91421C9F30000B884FF /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+LineNumber.swift"; sourceTree = "<group>"; };
-		2ADF3C001E6D7345009125BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SnippetsView.storyboard; sourceTree = "<group>"; };
 		2AE12DFA1E7DB47000681F72 /* Collection+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+String.swift"; sourceTree = "<group>"; };
 		2AE12DFD1E7DB7D200681F72 /* StringCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringCollectionTests.swift; sourceTree = "<group>"; };
 		2AE12DFF1E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+SurroundSelection.swift"; sourceTree = "<group>"; };
@@ -1331,7 +1325,6 @@
 		2AF1229E2B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/ThemeListView.xcstrings; sourceTree = "<group>"; };
 		2AF1229F2B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/KeyBindingTreeView.xcstrings; sourceTree = "<group>"; };
 		2AF122A22B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SyntaxListView.xcstrings; sourceTree = "<group>"; };
-		2AF122A42B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SnippetsView.xcstrings; sourceTree = "<group>"; };
 		2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression+Additions.swift"; sourceTree = "<group>"; };
 		2AF29EC32882EE7700DF31D2 /* AdvancedCharacterCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCharacterCounter.swift; sourceTree = "<group>"; };
 		2AF45E1D1E6C0D920030CD60 /* EditorCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorCounter.swift; sourceTree = "<group>"; };
@@ -1441,7 +1434,6 @@
 			children = (
 				2A10D1261E714D230027192A /* ThemeListView.storyboard */,
 				2A10D1361E715E5B0027192A /* SyntaxListView.storyboard */,
-				2ADF3BFF1E6D7345009125BB /* SnippetsView.storyboard */,
 				2A10D1081E708CDF0027192A /* KeyBindingTreeView.storyboard */,
 			);
 			name = Settings;
@@ -2103,7 +2095,6 @@
 				2A2792971D1E57DA00F3FC5D /* SyntaxListViewController.swift */,
 				2A5DCE881D18FFDB00D5D74C /* EncodingListView.swift */,
 				2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictView.swift */,
-				2A505C08298A88DD002080AA /* SnippetsViewController.swift */,
 			);
 			name = "Other Views";
 			sourceTree = "<group>";
@@ -2692,7 +2683,6 @@
 				2ACDE2A32406B9C000FC31EC /* MultipleReplaceView.storyboard in Resources */,
 				2A7F4DFF2871F46D0029CE66 /* PrintPanelAccessory.storyboard in Resources */,
 				2ACDE28D2406B9C000FC31EC /* ThemeListView.storyboard in Resources */,
-				2ACDE2992406B9C000FC31EC /* SnippetsView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2783,7 +2773,6 @@
 				2A3D63FB1E769DDF00F538E1 /* MultipleReplaceView.storyboard in Resources */,
 				2A7F4E002871F46D0029CE66 /* PrintPanelAccessory.storyboard in Resources */,
 				2A10D1281E714D230027192A /* ThemeListView.storyboard in Resources */,
-				2ADF3C011E6D7345009125BB /* SnippetsView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3133,7 +3122,6 @@
 				2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A64F2461D259E49001B229F /* SnippetManager.swift in Sources */,
 				2ACDA2532B813FA500B2EBA8 /* SnippetsSettingsView.swift in Sources */,
-				2A505C09298A88DD002080AA /* SnippetsViewController.swift in Sources */,
 				2AD551EB20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */,
 				2A5D13261D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */,
 				2AD21FCD1D2E3BE80018C8D1 /* StatusBar.swift in Sources */,
@@ -3501,7 +3489,6 @@
 				2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A64F2451D259E49001B229F /* SnippetManager.swift in Sources */,
 				2ACDA2542B813FA500B2EBA8 /* SnippetsSettingsView.swift in Sources */,
-				2A505C0A298A88DD002080AA /* SnippetsViewController.swift in Sources */,
 				2AD551EA20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */,
 				2A5D13251D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */,
 				2AD21FCC1D2E3BE80018C8D1 /* StatusBar.swift in Sources */,
@@ -3688,15 +3675,6 @@
 				2AAFA7D52B7A2F6D00A2B228 /* mul */,
 			);
 			name = MultipleReplaceListView.storyboard;
-			sourceTree = "<group>";
-		};
-		2ADF3BFF1E6D7345009125BB /* SnippetsView.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2ADF3C001E6D7345009125BB /* Base */,
-				2AF122A42B7A3D50004BA1FF /* mul */,
-			);
-			name = SnippetsView.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

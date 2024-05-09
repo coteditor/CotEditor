@@ -223,33 +223,6 @@ final class TokenTextView: NSTextView {
 
 
 
-extension TokenRepresentable {
-    
-    /// Returns a menu item to insert variable to TokenTextView.
-    ///
-    /// - Parameter target: The action target.
-    /// - Returns: A menu item.
-    func insertionMenuItem(target: TokenTextView? = nil) -> NSMenuItem {
-        
-        let font = NSFont.menuFont(ofSize: NSFont.systemFontSize(for: .small))
-        
-        let token = NSAttributedString(string: self.token, attributes: [.font: font])
-        let description = NSAttributedString(string: self.localizedDescription,
-                                             attributes: [.font: font,
-                                                          .foregroundColor: NSColor.secondaryLabelColor])
-        
-        let item = NSMenuItem()
-        item.target = target
-        item.action = #selector(TokenTextView.insertVariable)
-        item.attributedTitle = [token, description].joined(separator: "\n")
-        item.representedObject = self.token
-        
-        return item
-    }
-}
-
-
-
 private extension NSColor {
     
     static let tokenTextColor = NSColor(name: nil) { appearance in

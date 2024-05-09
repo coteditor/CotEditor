@@ -34,13 +34,9 @@ struct SnippetsSettingsView: View {
         
         VStack {
             TabView {
-                VStack(alignment: .leading) {
-                    Text("Text to be inserted by a command in the menu or by keyboard shortcut:", tableName: "SnippetsSettings")
-                    SnippetsView()
-                }
-                .padding(self.insets)
-                .tabItem { Text("Command", tableName: "SnippetsSettings", comment: "tab label") }
-                
+                CommandSnippetsView()
+                    .padding(self.insets)
+                    .tabItem { Text("Command", tableName: "SnippetsSettings", comment: "tab label") }
                 FileDropView()
                     .padding(self.insets)
                     .tabItem { Text("File Drop", tableName: "SnippetsSettings", comment: "tab label") }
@@ -58,18 +54,98 @@ struct SnippetsSettingsView: View {
 }
 
 
-private struct SnippetsView: NSViewControllerRepresentable {
+private struct CommandSnippetsView: View {
     
-    typealias NSViewControllerType = NSViewController
+    private typealias Item = Snippet
     
     
-    func makeNSViewController(context: Context) -> NSViewController {
+    @State private var items: [Item] = []
+    @State private var selection: Set<Item.ID> = []
+    
+    @State private var error: (any Error)?
+    @State private var format: String?
+    
+    
+    var body: some View {
         
-        NSStoryboard(name: "SnippetsView", bundle: nil).instantiateInitialController()!
-    }
-    
-    func updateNSViewController(_ nsViewController: NSViewController, context: Context) {
-        
+        VStack(alignment: .leading) {
+            Text("Text to be inserted by a command in the menu or by keyboard shortcut:", tableName: "SnippetsSettings")
+            
+            Table(of: Item.self, selection: $selection) {
+                TableColumn(String(localized: "Syntax", table: "SnippetsSettings", comment: "table column header")) { wrappedItem in
+                    let item = $items[id: wrappedItem.id]!
+                    
+                    SyntaxPicker(selection: item.scope)
+                        .buttonStyle(.borderless)
+                        .help(String(localized: "Syntax in which this file drop setting is used.", table: "SnippetsSettings", comment: "tooltip"))
+                }.width(min: 40, ideal: 64)
+                
+                TableColumn(String(localized: "Name", table: "SnippetsSettings", comment: "table column header")) { wrappedItem in
+                    let item = $items[id: wrappedItem.id]!
+                    
+                    TextField(text: item.name, label: EmptyView.init)
+                }.width(min: 40, ideal: 64)
+                
+                TableColumn(String(localized: "Key", table: "SnippetsSettings", comment: "table column header")) { wrappedItem in
+                    let item = $items[id: wrappedItem.id]!
+                    
+                    ShortcutField(value: item.shortcut, error: $error)
+                }
+            } rows: {
+                ForEach(self.items) { item in
+                    TableRow(item)
+                        .itemProvider { [id = item.id] in id.itemProvider }
+                }
+                .onInsert(of: [.uuid]) { (index, providers) in
+                    // `onInsert(of:perform:)` shows a plus badge which should be avoided
+                    // on just moving items in the identical table,
+                    // but `onMove()` is not provided yet for DynamicTableRowContent yet.
+                    // (2024-05, macOS 14)
+                    Task {
+                        let indexes = try await providers
+                            .asyncMap { try await $0.load(type: UUID.self) }
+                            .compactMap { uuid in self.items.firstIndex(where: { $0.id == uuid }) }
+                        
+                        withAnimation {
+                            self.items.move(fromOffsets: IndexSet(indexes), toOffset: index)
+                        }
+                    }
+                }
+            }
+            .onChange(of: self.selection, initial: true) { (_, newValue) in
+                self.format = if newValue.count == 1, let id = newValue.first {
+                    self.items[id: id]?.format
+                } else {
+                    nil
+                }
+            }
+            .tableStyle(.bordered)
+            .border(Color(nsColor: .gridColor))
+            
+            HStack(alignment: .firstTextBaseline) {
+                AddRemoveButton($items, selection: $selection) {
+                    SnippetManager.shared.createUntitledSetting()
+                }
+                Spacer()
+                if let error {
+                    Text(error.localizedDescription)
+                        .foregroundStyle(.red)
+                        .controlSize(.small)
+                }
+            }
+            .padding(.bottom)
+            
+            InsertionFormatView(text: $format, count: self.selection.count, insertionVariables: Snippet.Variable.allCases, tokenizer: Snippet.Variable.tokenizer)
+        }
+        .onAppear {
+            self.items = SnippetManager.shared.snippets
+            if let item = self.items.first {
+                self.selection = [item.id]
+            }
+        }
+        .onChange(of: self.items) { (_, newValue) in
+            SnippetManager.shared.save(newValue)
+        }
     }
 }
 
