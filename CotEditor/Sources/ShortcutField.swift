@@ -24,10 +24,98 @@
 //  limitations under the License.
 //
 
+import SwiftUI
 import AppKit
 import Combine
 
-final class ShortcutField: NSTextField, NSTextViewDelegate {
+struct ShortcutField: NSViewRepresentable {
+    
+    typealias NSViewType = NSTextField
+    
+    @Binding var value: Shortcut?
+    @Binding var error: (any Error)?
+    
+    
+    func makeNSView(context: Context) -> NSTextField {
+        
+        let nsView = ShortcutTextField()
+        nsView.cell?.sendsActionOnEndEditing = true
+        nsView.delegate = context.coordinator
+        nsView.formatter = ShortcutFormatter()
+        nsView.isEditable = true
+        nsView.isBordered = false
+        nsView.drawsBackground = false
+        
+        // fix the alignment to right regardless the UI layout direction
+        nsView.alignment = .right
+        nsView.baseWritingDirection = .leftToRight
+        
+        return nsView
+    }
+    
+    
+    func updateNSView(_ nsView: NSTextField, context: Context) {
+        
+        nsView.objectValue = self.value
+    }
+    
+    
+    func makeCoordinator() -> Coordinator {
+        
+        Coordinator(shortcut: $value, error: $error)
+    }
+    
+    
+    @MainActor final class Coordinator: NSObject, NSTextFieldDelegate {
+        
+        @Binding private var shortcut: Shortcut?
+        @Binding private var error: (any Error)?
+        
+        
+        init(shortcut: Binding<Shortcut?>, error: Binding<(any Error)?>) {
+            
+            self._shortcut = shortcut
+            self._error = error
+        }
+        
+        
+        func controlTextDidEndEditing(_ obj: Notification) {
+            
+            guard let sender = obj.object as? NSTextField else { return assertionFailure() }
+            
+            let shortcut = sender.objectValue as? Shortcut
+            
+            self.error = nil
+            
+            // not edited
+            guard shortcut != self.shortcut else { return }
+            
+            if let shortcut {
+                do {
+                    try shortcut.checkCustomizationAvailability()
+                    
+                } catch {
+                    self.error = error
+                    sender.objectValue = self.shortcut  // reset text field
+                    NSSound.beep()
+                    
+                    // make text field edit mode again
+                    // -> Wrap with Task to delay a bit (2024-05, macOS 14).
+                    Task {
+                        _ = sender.becomeFirstResponder()
+                    }
+                    return
+                }
+            }
+            
+            // successfully update data
+            self.shortcut = shortcut
+        }
+    }
+}
+
+
+final class ShortcutTextField: NSTextField, NSTextViewDelegate {
     
     // MARK: Private Properties
     

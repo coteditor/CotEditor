@@ -297,7 +297,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     
     
     /// Validates and applies the new shortcut key input.
-    @IBAction func didEditShortcut(_ sender: ShortcutField) {
+    @IBAction func didEditShortcut(_ sender: ShortcutTextField) {
         
         guard let tableView = self.tableView else { return assertionFailure() }
         

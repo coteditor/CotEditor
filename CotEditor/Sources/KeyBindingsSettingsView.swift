@@ -258,7 +258,7 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
     // MARK: Action Messages
     
     /// Validates and apply new shortcut key input.
-    @IBAction func didEditShortcut(_ sender: ShortcutField) {
+    @IBAction func didEditShortcut(_ sender: ShortcutTextField) {
         
         guard let outlineView = self.outlineView else { return assertionFailure() }
         
