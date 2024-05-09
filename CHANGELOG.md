@@ -17,7 +17,7 @@
 - Remove Solarized themes from the bundle.
 - Update all the bundled themes to have a 70% opacity in the current line highlight.
 - [trivial] Make names of code contributes in the About window selectable.
-- [dev] Migrate the navigation bar to SwiftUI.
+- [dev] Migrate the navigation bar and the Snippets settings view to SwiftUI.
 
 
 

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,6 +27,21 @@ import XCTest
 @testable import CotEditor
 
 final class FormatStylesTests: XCTestCase {
+    
+    func testCSVFormatStyle() {
+        
+        XCTAssertEqual(["dog", "cat"].formatted(.csv), "dog, cat")
+        XCTAssertEqual(["dog"].formatted(.csv), "dog")
+        XCTAssertEqual(["dog", "", "dog", ""].formatted(.csv), "dog, , dog, ")
+        XCTAssertEqual(["dog", "", "dog", ""].formatted(.csv(omittingEmptyItems: true)), "dog, dog")
+        
+        let strategy = CSVFormatStyle().parseStrategy
+        XCTAssertEqual(try strategy.parse("dog,  cat"), ["dog", "cat"])
+        XCTAssertEqual(try strategy.parse(" a,b,c"), ["a", "b", "c"])
+        XCTAssertEqual(try strategy.parse(" a, ,c"), ["a", "", "c"])
+        XCTAssertEqual(try CSVFormatStyle(omittingEmptyItems: true).parseStrategy.parse(" a,,c"), ["a", "c"])
+    }
+    
     
     func testRangedInteger() throws {
         

@@ -25,7 +25,7 @@
 
 import Foundation.NSString
 
-struct Snippet: Identifiable {
+struct Snippet: Equatable, Identifiable {
     
     let id = UUID()
     

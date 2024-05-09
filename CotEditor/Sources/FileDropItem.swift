@@ -26,7 +26,9 @@
 import Foundation
 import AppKit.NSImageRep
 
-struct FileDropItem {
+struct FileDropItem: Equatable, Identifiable {
+    
+    let id = UUID()
     
     var format: String = ""
     var extensions: [String] = [] {
@@ -128,6 +130,7 @@ extension FileDropItem {
         case imageWidth = "IMAGEWIDTH"
         case imageHeight = "IMAGEHEIGHT"
         
+        static let allCases: [Variable?] = Self.pathTokens + [nil] + Self.textTokens + [nil] + Self.imageTokens
         static let pathTokens: [Self] = [.absolutePath, .relativePath, .filename, .filenameWithoutExtension, .fileExtension, .fileExtensionLowercase, .fileExtensionUppercase, .directory]
         static let textTokens: [Self] = [.fileContent]
         static let imageTokens: [Self] = [.imageWidth, .imageHeight]
