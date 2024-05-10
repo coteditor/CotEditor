@@ -9,6 +9,7 @@
 - Improve VoiceOver support.
 - Deprecate exact recalculation of insertion points when documents are updated by external processes to improve application stability.
 - Improve stability of application launch behavior.
+- Update the Markdown syntax to distinguish strong emphases (`strong`) from normal emphases (`em`).
 - [non-AppStore ver.] Update Sparkle from 2.6.0 to 2.6.2 (security update).
 
 
