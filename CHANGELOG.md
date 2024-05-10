@@ -3,6 +3,11 @@
 4.8.3 (unreleased)
 --------------------------
 
+### New Features
+
+- Add the “Show in Finder” button next to the file path in the document inspector.
+
+
 ### Improvements
 
 - Display the current editor mode in the document inspector.
