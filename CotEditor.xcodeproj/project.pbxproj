@@ -151,10 +151,10 @@
 		2A231A371E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */; };
 		2A231A391E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */; };
 		2A231A3A1E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */; };
-		2A24F9132BEDF6D000CB6CCF /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A24F9122BEDF6D000CB6CCF /* CapsuleButtonStyle.swift */; };
-		2A24F9142BEDF6D000CB6CCF /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A24F9122BEDF6D000CB6CCF /* CapsuleButtonStyle.swift */; };
 		2A24F9102BEDDFEF00CB6CCF /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A24F90F2BEDDFEF00CB6CCF /* WhatsNewView.swift */; };
 		2A24F9112BEDDFEF00CB6CCF /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A24F90F2BEDDFEF00CB6CCF /* WhatsNewView.swift */; };
+		2A24F9132BEDF6D000CB6CCF /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A24F9122BEDF6D000CB6CCF /* CapsuleButtonStyle.swift */; };
+		2A24F9142BEDF6D000CB6CCF /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A24F9122BEDF6D000CB6CCF /* CapsuleButtonStyle.swift */; };
 		2A24F9162BEDFD9400CB6CCF /* WhatsNew.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A24F9152BEDFD9400CB6CCF /* WhatsNew.xcstrings */; };
 		2A24F9172BEDFD9400CB6CCF /* WhatsNew.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A24F9152BEDFD9400CB6CCF /* WhatsNew.xcstrings */; };
 		2A25C52820F06BE80003AE1A /* CustomTabWidthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */; };
@@ -967,8 +967,8 @@
 		2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindProgress.swift; sourceTree = "<group>"; };
 		2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceSplitViewController.swift; sourceTree = "<group>"; };
 		2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceListViewController.swift; sourceTree = "<group>"; };
-		2A24F9122BEDF6D000CB6CCF /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
 		2A24F90F2BEDDFEF00CB6CCF /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
+		2A24F9122BEDF6D000CB6CCF /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
 		2A24F9152BEDFD9400CB6CCF /* WhatsNew.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = WhatsNew.xcstrings; sourceTree = "<group>"; };
 		2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabWidthView.swift; sourceTree = "<group>"; };
 		2A26156D2977B87F008C2240 /* StepperNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperNumberField.swift; sourceTree = "<group>"; };
