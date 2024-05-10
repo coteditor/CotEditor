@@ -79,6 +79,7 @@ private enum BundleIdentifier {
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
     private lazy var aboutPanel = NSPanel(contentViewController: NSHostingController(rootView: AboutView()))
+    private lazy var whatsNewPanel = NSPanel(contentViewController: NSHostingController(rootView: WhatsNewView()))
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxesMenu: NSMenu?
@@ -238,6 +239,11 @@ private enum BundleIdentifier {
         
         NSApp.servicesProvider = ServicesProvider()
         NSTouchBar.isAutomaticCustomizeTouchBarMenuItemEnabled = true
+        
+        // Show What's New panel for CotEditor 4.9.0
+        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion <= 650 {
+            self.showWhatsNew(nil)
+        }
     }
     
     
@@ -371,6 +377,22 @@ private enum BundleIdentifier {
         }
         
         self.aboutPanel.makeKeyAndOrderFront(sender)
+    }
+    
+    
+    /// Shows the What's New panel.
+    @IBAction func showWhatsNew(_ sender: Any?) {
+        
+        // initialize panel settings
+        if !self.whatsNewPanel.styleMask.contains(.fullSizeContentView) {
+            self.whatsNewPanel.styleMask = [.closable, .titled, .fullSizeContentView]
+            self.whatsNewPanel.titleVisibility = .hidden
+            self.whatsNewPanel.titlebarAppearsTransparent = true
+            self.whatsNewPanel.hidesOnDeactivate = false
+            self.whatsNewPanel.becomesKeyOnlyIfNeeded = true
+        }
+        
+        self.whatsNewPanel.makeKeyAndOrderFront(sender)
     }
     
     

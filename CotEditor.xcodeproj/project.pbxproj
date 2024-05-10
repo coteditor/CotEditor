@@ -153,6 +153,10 @@
 		2A231A3A1E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */; };
 		2A24F9132BEDF6D000CB6CCF /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A24F9122BEDF6D000CB6CCF /* CapsuleButtonStyle.swift */; };
 		2A24F9142BEDF6D000CB6CCF /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A24F9122BEDF6D000CB6CCF /* CapsuleButtonStyle.swift */; };
+		2A24F9102BEDDFEF00CB6CCF /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A24F90F2BEDDFEF00CB6CCF /* WhatsNewView.swift */; };
+		2A24F9112BEDDFEF00CB6CCF /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A24F90F2BEDDFEF00CB6CCF /* WhatsNewView.swift */; };
+		2A24F9162BEDFD9400CB6CCF /* WhatsNew.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A24F9152BEDFD9400CB6CCF /* WhatsNew.xcstrings */; };
+		2A24F9172BEDFD9400CB6CCF /* WhatsNew.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A24F9152BEDFD9400CB6CCF /* WhatsNew.xcstrings */; };
 		2A25C52820F06BE80003AE1A /* CustomTabWidthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */; };
 		2A25C52920F06BE80003AE1A /* CustomTabWidthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */; };
 		2A26156E2977B87F008C2240 /* StepperNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A26156D2977B87F008C2240 /* StepperNumberField.swift */; };
@@ -964,6 +968,8 @@
 		2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceSplitViewController.swift; sourceTree = "<group>"; };
 		2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceListViewController.swift; sourceTree = "<group>"; };
 		2A24F9122BEDF6D000CB6CCF /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
+		2A24F90F2BEDDFEF00CB6CCF /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
+		2A24F9152BEDFD9400CB6CCF /* WhatsNew.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = WhatsNew.xcstrings; sourceTree = "<group>"; };
 		2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabWidthView.swift; sourceTree = "<group>"; };
 		2A26156D2977B87F008C2240 /* StepperNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperNumberField.swift; sourceTree = "<group>"; };
 		2A2615732977CB48008C2240 /* SyntaxHighlightEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxHighlightEditView.swift; sourceTree = "<group>"; };
@@ -2054,6 +2060,7 @@
 			isa = PBXGroup;
 			children = (
 				2A07A8F92BABC182007CABFD /* About.xcstrings */,
+				2A24F9152BEDFD9400CB6CCF /* WhatsNew.xcstrings */,
 				2A1E7E4E2B8D9706004F0C07 /* Console.xcstrings */,
 				2ACDA2882B81E2AC00B2EBA8 /* ColorCode.xcstrings */,
 				2A07A9022BABC1FA007CABFD /* CommandBar.xcstrings */,
@@ -2407,6 +2414,7 @@
 			isa = PBXGroup;
 			children = (
 				2A8EAE402BA3C3DC00448875 /* AboutView.swift */,
+				2A24F90F2BEDDFEF00CB6CCF /* WhatsNewView.swift */,
 				2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */,
 				2A4257AF1D22FD490086DAAD /* ColorCodePanelController.swift */,
 				2A5E410D2B0CE4DB00D5EA20 /* Command Bar */,
@@ -2677,6 +2685,7 @@
 				2A65EC3B2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */,
 				2A39ACD52B8CE97800E216C9 /* UnicodeInput.xcstrings in Resources */,
 				2A5E6FC12A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
+				2A24F9162BEDFD9400CB6CCF /* WhatsNew.xcstrings in Resources */,
 				2ACDA2972B81E8BB00B2EBA8 /* WindowSettings.xcstrings in Resources */,
 				2AA2E0141BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
 				2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */,
@@ -2766,6 +2775,7 @@
 				2A65EC3C2B80C667008096C5 /* ThemeEditor.xcstrings in Resources */,
 				2A39ACD62B8CE97800E216C9 /* UnicodeInput.xcstrings in Resources */,
 				2A5E6FC22A72342700E33EA7 /* UnicodeNormalization.xcstrings in Resources */,
+				2A24F9172BEDFD9400CB6CCF /* WhatsNew.xcstrings in Resources */,
 				2ACDA2982B81E8BB00B2EBA8 /* WindowSettings.xcstrings in Resources */,
 				2A36E36F2AF9ED0B00A73534 /* Sparkle.xcstrings in Resources */,
 				2AA2E0131BFE12620087BDD6 /* UnicodeBlock.strings in Resources */,
@@ -3192,6 +3202,7 @@
 				2A7FCC46280A367C0070EAB3 /* ValueRange.swift in Sources */,
 				2AE144B92B00DCB7005E8CF1 /* View+Alert.swift in Sources */,
 				2A2B086028046E3B0028D733 /* WarningInspectorView.swift in Sources */,
+				2A24F9102BEDDFEF00CB6CCF /* WhatsNewView.swift in Sources */,
 				2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA51D1B02ED00A583D2 /* WindowSettingsView.swift in Sources */,
 				2A2EEF182B778BB1001FEDFB /* WrappingHStack.swift in Sources */,
@@ -3561,6 +3572,7 @@
 				2A7FCC47280A367C0070EAB3 /* ValueRange.swift in Sources */,
 				2AE144BA2B00DCB7005E8CF1 /* View+Alert.swift in Sources */,
 				2A2B086128046E3B0028D733 /* WarningInspectorView.swift in Sources */,
+				2A24F9112BEDDFEF00CB6CCF /* WhatsNewView.swift in Sources */,
 				2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA41D1B02ED00A583D2 /* WindowSettingsView.swift in Sources */,
 				2A2EEF192B778BB1001FEDFB /* WrappingHStack.swift in Sources */,

@@ -1183,7 +1183,7 @@ CA
                                         <menuItem title="What’s New in CotEditor" identifier="whats_new" id="DCW-Ij-540">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="openHelpAnchor:" target="Ady-hI-5gd" id="FNJ-oW-5gq"/>
+                                                <action selector="showWhatsNew:" target="Ady-hI-5gd" id="BdY-Zk-DOK"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Release Notes" identifier="releasenotes" id="822">
