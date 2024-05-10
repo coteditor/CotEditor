@@ -151,6 +151,8 @@
 		2A231A371E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */; };
 		2A231A391E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */; };
 		2A231A3A1E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */; };
+		2A24F9132BEDF6D000CB6CCF /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A24F9122BEDF6D000CB6CCF /* CapsuleButtonStyle.swift */; };
+		2A24F9142BEDF6D000CB6CCF /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A24F9122BEDF6D000CB6CCF /* CapsuleButtonStyle.swift */; };
 		2A25C52820F06BE80003AE1A /* CustomTabWidthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */; };
 		2A25C52920F06BE80003AE1A /* CustomTabWidthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */; };
 		2A26156E2977B87F008C2240 /* StepperNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A26156D2977B87F008C2240 /* StepperNumberField.swift */; };
@@ -961,6 +963,7 @@
 		2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindProgress.swift; sourceTree = "<group>"; };
 		2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceSplitViewController.swift; sourceTree = "<group>"; };
 		2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceListViewController.swift; sourceTree = "<group>"; };
+		2A24F9122BEDF6D000CB6CCF /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
 		2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabWidthView.swift; sourceTree = "<group>"; };
 		2A26156D2977B87F008C2240 /* StepperNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperNumberField.swift; sourceTree = "<group>"; };
 		2A2615732977CB48008C2240 /* SyntaxHighlightEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxHighlightEditView.swift; sourceTree = "<group>"; };
@@ -2370,6 +2373,7 @@
 		2AF601CC296F925900F6F1E8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				2A24F9122BEDF6D000CB6CCF /* CapsuleButtonStyle.swift */,
 				2AB1BD1E287D747200C6FEAF /* SizeGetter.swift */,
 			);
 			name = Helpers;
@@ -2895,6 +2899,7 @@
 				2A1ABC9B27F056E60054795D /* BidiScrollView.swift in Sources */,
 				2A231A291E7BD82700C2A909 /* Binding.swift in Sources */,
 				2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
+				2A24F9132BEDF6D000CB6CCF /* CapsuleButtonStyle.swift in Sources */,
 				2AB1BD24287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift in Sources */,
 				2AB1BD1C287D60DF00C6FEAF /* CharacterCountOptionsView.swift in Sources */,
 				2A5DCE501D185F1B00D5D74C /* CharacterField.swift in Sources */,
@@ -3263,6 +3268,7 @@
 				2A231A281E7BD82700C2A909 /* Binding.swift in Sources */,
 				2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
 				2AB1BD25287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift in Sources */,
+				2A24F9142BEDF6D000CB6CCF /* CapsuleButtonStyle.swift in Sources */,
 				2AB1BD1D287D60DF00C6FEAF /* CharacterCountOptionsView.swift in Sources */,
 				2A5DCE4F1D185F1B00D5D74C /* CharacterField.swift in Sources */,
 				2AF073FB1D34587500770BA6 /* CharacterInfo.swift in Sources */,

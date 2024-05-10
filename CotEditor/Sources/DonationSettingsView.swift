@@ -151,7 +151,7 @@ import StoreKit
                         Link(String(localized: "Open GitHub Sponsors", table: "DonationSettings", comment: "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization if exists."), destination: url)
                     }
                 }
-                .buttonStyle(CapsuleButtonStyle())
+                .buttonStyle(.capsule)
                 .frame(maxWidth: .infinity, alignment: .center)
             }
             
@@ -162,19 +162,6 @@ import StoreKit
         }
         .scenePadding()
         .frame(minWidth: 600, idealWidth: 600)
-    }
-}
-
-
-private struct CapsuleButtonStyle: ButtonStyle {
-    
-    func makeBody(configuration: Configuration) -> some View {
-        
-        configuration.label
-            .padding(.vertical, 2)
-            .padding(.horizontal, 10)
-            .foregroundStyle(.tint)
-            .background(.fill.tertiary, in: Capsule())
     }
 }
 
