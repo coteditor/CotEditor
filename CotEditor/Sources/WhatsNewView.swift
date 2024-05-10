@@ -163,7 +163,9 @@ private enum NewFeature: CaseIterable {
                     .fixedSize()
                 #else
                 Button(String(localized: "Open Donation Settings", table: "WhatsNew")) {
-                    SettingsWindowController.shared.openPane(.donation)
+                    Task { @MainActor in
+                        SettingsWindowController.shared.openPane(.donation)
+                    }
                 }
                 .buttonStyle(.capsule)
                 #endif
