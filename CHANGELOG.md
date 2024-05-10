@@ -15,10 +15,10 @@
 
 ### Fixes
 
-- Fix an issue that the application could not respond by updating a relatively large document from external processes.
+- Fix an issue that the application could not respond to by updating a relatively large document from external processes.
 - Fix an issue that the application unwontedly copied the bundled theme setting files to the user domain.
 - Fix an issue that the Share command was not available in the theme setting list.
-- Fix the layout of the Go To dialog.
+- Fix the layout of the Go To Line dialog.
 - Fix an incorrect label in the theme editor in the Appearance settings.
 
 
