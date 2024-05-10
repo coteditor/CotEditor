@@ -79,7 +79,6 @@ private enum BundleIdentifier {
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
     private lazy var aboutPanel = NSPanel(contentViewController: NSHostingController(rootView: AboutView()))
-    private lazy var settingsWindowController = SettingsWindowController()
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxesMenu: NSMenu?
@@ -378,7 +377,7 @@ private enum BundleIdentifier {
     /// Shows the Settings window.
     @IBAction func showSettingsWindow(_ sender: Any?) {
         
-        self.settingsWindowController.showWindow(sender)
+        SettingsWindowController.shared.showWindow(sender)
     }
     
     
@@ -392,7 +391,7 @@ private enum BundleIdentifier {
     /// Shows Snippet pane in the Settings window.
     @IBAction func showSnippetEditor(_ sender: Any?) {
         
-        self.settingsWindowController.openPane(.snippets)
+        SettingsWindowController.shared.openPane(.snippets)
     }
     
     

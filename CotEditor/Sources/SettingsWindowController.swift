@@ -28,6 +28,9 @@ import SwiftUI
 
 final class SettingsWindowController: NSWindowController {
     
+    static let shared = SettingsWindowController()
+    
+    
     // MARK: Lifecycle
     
     convenience init() {
