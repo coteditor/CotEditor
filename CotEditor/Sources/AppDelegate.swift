@@ -258,7 +258,7 @@ private enum BundleIdentifier {
         NSApp.servicesProvider = ServicesProvider()
         NSTouchBar.isAutomaticCustomizeTouchBarMenuItemEnabled = true
         
-        // Show What's New panel for CotEditor 4.9.0
+        // Show What's New panel for CotEditor 5.0.0
         if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion <= 650 {
             self.showWhatsNew(nil)
         }

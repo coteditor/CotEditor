@@ -124,7 +124,7 @@ private struct SectionView<Content: View>: View {
 
 private enum NewFeature: CaseIterable {
     
-    static let version = "4.9"
+    static let version = "5.0"
     
     case macOSSupport
     case donation
