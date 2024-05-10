@@ -1,4 +1,10 @@
-attributes: []
+attributes:
+- beginString: (?<!\\)(?<!\*)\*[^ \t*]((?!\R{2})(?:.|\R))*?(?<![\\ ])\*
+  description: em
+  regularExpression: true
+- beginString: (?<!\\)\b(?<!\_)_[^ \t_]((?!\R{2})(?:.|\R))*?(?<![\\ ])_
+  description: em
+  regularExpression: true
 characters:
 - beginString: (?:\R{2,}|\A)((?:([ ]{4}|\t)(.*(?:\R+|\Z)))+)((?=^[ ]{0,4}\S)|\Z)
   description: codeblock
@@ -33,12 +39,6 @@ extensions:
 filenames: []
 interpreters: []
 keywords:
-- beginString: (?<!\\)(?<!\*)\*[^ \t*]((?!\R{2})(?:.|\R))*?(?<![\\ ])\*
-  description: em
-  regularExpression: true
-- beginString: (?<!\\)\b(?<!\_)_[^ \t_]((?!\R{2})(?:.|\R))*?(?<![\\ ])_
-  description: em
-  regularExpression: true
 - beginString: (?<!\\)\b~~(?![ \t])((?!\R{2})(?:.|\R))*?(?<![\\\t ])~~
   description: '[github] strikethrough'
   regularExpression: true
