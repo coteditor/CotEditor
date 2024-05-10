@@ -29,7 +29,7 @@ struct WrappingHStack<Content: View>: View {
     
     var horizontalSpacing: Double = 4
     var verticalSpacing: Double = 4
-    var content: () -> Content
+    @ViewBuilder var content: () -> Content
     
     
     var body: some View {

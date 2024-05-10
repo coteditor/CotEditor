@@ -255,7 +255,7 @@ private struct CreditsView: View {
         var content: () -> Content
         
         
-        init(_ label: String, content: @escaping () -> Content) {
+        init(_ label: String, @ViewBuilder content: @escaping () -> Content) {
             
             self.label = label
             self.content = content
