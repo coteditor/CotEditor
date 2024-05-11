@@ -64,7 +64,7 @@ struct ThemeEditorView: View {
                                 selection: $theme.lineHighlight.binding, supportsOpacity: false)
                     SystemColorPicker(String(localized: "Selection:", table: "ThemeEditor"),
                                       selection: $theme.selection,
-                                      systemColor: Color(nsColor: .selectedTextBackgroundColor),
+                                      systemColor: Color(nsColor: .selectedTextBackgroundColor.forDarkMode(self.theme.isDarkTheme)),
                                       supportsOpacity: false)
                 }.accessibilityElement(children: .contain)
             }.accessibilityElement(children: .contain)

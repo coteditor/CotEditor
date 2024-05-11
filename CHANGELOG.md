@@ -11,6 +11,7 @@
 ### Improvements
 
 - Display the current editor mode in the document inspector.
+- Use more appropriate system color for the selection background when dark mode or not differs between the editor and theme.
 - Improve VoiceOver support.
 - Deprecate exact recalculation of insertion points when documents are updated by external processes to improve application stability.
 - Improve stability of application launch behavior.
