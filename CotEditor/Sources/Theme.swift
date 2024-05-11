@@ -182,9 +182,9 @@ struct Theme: Equatable {
         
         if self.selection.usesSystemSetting {
             return if self.isDarkTheme == appearance.isDark {
-                .unemphasizedSelectedTextBackgroundColor
+                .unemphasizedSelectedContentBackgroundColor
             } else {
-                .unemphasizedSelectedTextBackgroundColor.solve(for: appearance.appearance(for: self.isDarkTheme))
+                .unemphasizedSelectedContentBackgroundColor.solve(for: appearance.appearance(for: self.isDarkTheme))
             }
         } else {
             guard let color = self.selection.color.usingColorSpace(.genericRGB) else { return nil }
