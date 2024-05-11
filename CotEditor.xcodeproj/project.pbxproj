@@ -737,8 +737,8 @@
 		2AD69B861D3E42F700FBD998 /* TextSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69B841D3E42F700FBD998 /* TextSelection.swift */; };
 		2AD69B881D3E4FCD00FBD998 /* NSTextView+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69B871D3E4FCD00FBD998 /* NSTextView+ScriptingSupport.swift */; };
 		2AD69B891D3E4FCD00FBD998 /* NSTextView+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69B871D3E4FCD00FBD998 /* NSTextView+ScriptingSupport.swift */; };
-		2AD7B9AF1D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */; };
-		2AD7B9B01D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */; };
+		2AD7B9AF1D3E832E00E5D6D7 /* EditorCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7B9AE1D3E832E00E5D6D7 /* EditorCounter.swift */; };
+		2AD7B9B01D3E832E00E5D6D7 /* EditorCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7B9AE1D3E832E00E5D6D7 /* EditorCounter.swift */; };
 		2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD8D7492064AD83000BEFDB /* NumberTextField.swift */; };
 		2AD8D74B2064AD83000BEFDB /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD8D7492064AD83000BEFDB /* NumberTextField.swift */; };
 		2ADA15EE21C5073D00C6608B /* Collection+IndexSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */; };
@@ -819,8 +819,6 @@
 		2AF1D85921B8D9250060BC04 /* NSRegularExpression+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */; };
 		2AF29EC42882EE7700DF31D2 /* AdvancedCharacterCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF29EC32882EE7700DF31D2 /* AdvancedCharacterCounter.swift */; };
 		2AF29EC52882EE7700DF31D2 /* AdvancedCharacterCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF29EC32882EE7700DF31D2 /* AdvancedCharacterCounter.swift */; };
-		2AF45E1E1E6C0D920030CD60 /* EditorCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorCounter.swift */; };
-		2AF45E1F1E6C0D920030CD60 /* EditorCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorCounter.swift */; };
 		2AF5D0E5286D9AB3000BE826 /* ArithmeticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5D0E4286D9AB3000BE826 /* ArithmeticsTests.swift */; };
 		2AF63BA82A6FA4D900E1258E /* NSTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF63BA72A6FA4D900E1258E /* NSTableView.swift */; };
 		2AF63BA92A6FA4D900E1258E /* NSTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF63BA72A6FA4D900E1258E /* NSTableView.swift */; };
@@ -1289,7 +1287,7 @@
 		2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
 		2AD69B841D3E42F700FBD998 /* TextSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSelection.swift; sourceTree = "<group>"; };
 		2AD69B871D3E4FCD00FBD998 /* NSTextView+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+ScriptingSupport.swift"; sourceTree = "<group>"; };
-		2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentAnalyzer.swift; sourceTree = "<group>"; };
+		2AD7B9AE1D3E832E00E5D6D7 /* EditorCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorCounter.swift; sourceTree = "<group>"; };
 		2AD8D7492064AD83000BEFDB /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
 		2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+IndexSet.swift"; sourceTree = "<group>"; };
 		2ADB04AB2A89F14D00C4F562 /* AddRemoveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRemoveButton.swift; sourceTree = "<group>"; };
@@ -1336,7 +1334,6 @@
 		2AF122A22B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SyntaxListView.xcstrings; sourceTree = "<group>"; };
 		2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression+Additions.swift"; sourceTree = "<group>"; };
 		2AF29EC32882EE7700DF31D2 /* AdvancedCharacterCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCharacterCounter.swift; sourceTree = "<group>"; };
-		2AF45E1D1E6C0D920030CD60 /* EditorCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorCounter.swift; sourceTree = "<group>"; };
 		2AF482D9279288CF00A86481 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		2AF482DA279288CF00A86481 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2AF5D0E4286D9AB3000BE826 /* ArithmeticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArithmeticsTests.swift; sourceTree = "<group>"; };
@@ -2071,8 +2068,7 @@
 		2A80BE9327FFFBAB00D2F7FF /* Scanners */ = {
 			isa = PBXGroup;
 			children = (
-				2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */,
-				2AF45E1D1E6C0D920030CD60 /* EditorCounter.swift */,
+				2AD7B9AE1D3E832E00E5D6D7 /* EditorCounter.swift */,
 				2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */,
 				2A1125C523F6EFB2006A1DB2 /* URLDetector.swift */,
 			);
@@ -2944,7 +2940,6 @@
 				2AC52BDC1D48CC0E007D6371 /* DispatchQueue.swift in Sources */,
 				2A1679E71D3CE07100E8261D /* Document.swift in Sources */,
 				2AF0C12E1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */,
-				2AD7B9B01D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */,
 				2AD616CD1D3E583D0016EFB6 /* DocumentController.swift in Sources */,
 				2A50AA63204D513500D10A10 /* DocumentFile.swift in Sources */,
 				2AAB4BFA1D2435AC0049A68B /* DocumentInspectorView.swift in Sources */,
@@ -2957,7 +2952,7 @@
 				2ACDC0921D1726BD009B72D6 /* DotView.swift in Sources */,
 				2A68722F288A5C44006D6B41 /* DraggableHostingView.swift in Sources */,
 				2A8E47E2299A2314006A40D8 /* EditedRangeSet.swift in Sources */,
-				2AF45E1F1E6C0D920030CD60 /* EditorCounter.swift in Sources */,
+				2AD7B9B01D3E832E00E5D6D7 /* EditorCounter.swift in Sources */,
 				2A158C222945F54B000A4EC1 /* EditorOpacityView.swift in Sources */,
 				2AEC69C51D41A1BE0089F96F /* EditorTextView.swift in Sources */,
 				2A4257BA1D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */,
@@ -3313,7 +3308,6 @@
 				2AC52BDB1D48CC0E007D6371 /* DispatchQueue.swift in Sources */,
 				2A1679E61D3CE07100E8261D /* Document.swift in Sources */,
 				2AF0C12D1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */,
-				2AD7B9AF1D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */,
 				2AD616CC1D3E583D0016EFB6 /* DocumentController.swift in Sources */,
 				2A50AA62204D513500D10A10 /* DocumentFile.swift in Sources */,
 				2AAB4BF91D2435AC0049A68B /* DocumentInspectorView.swift in Sources */,
@@ -3326,7 +3320,7 @@
 				2ACDC0911D1726BD009B72D6 /* DotView.swift in Sources */,
 				2A687230288A5C44006D6B41 /* DraggableHostingView.swift in Sources */,
 				2A8E47E3299A2314006A40D8 /* EditedRangeSet.swift in Sources */,
-				2AF45E1E1E6C0D920030CD60 /* EditorCounter.swift in Sources */,
+				2AD7B9AF1D3E832E00E5D6D7 /* EditorCounter.swift in Sources */,
 				2A158C232945F54B000A4EC1 /* EditorOpacityView.swift in Sources */,
 				2AEC69C41D41A1BE0089F96F /* EditorTextView.swift in Sources */,
 				2A4257B91D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */,

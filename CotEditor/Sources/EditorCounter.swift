@@ -4,7 +4,7 @@
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2017-03-05.
+//  Created by 1024jp on 2014-12-18.
 //
 //  ---------------------------------------------------------------------------
 //
@@ -23,24 +23,51 @@
 //  limitations under the License.
 //
 
-actor EditorCounter {
+import AppKit
+import Observation
+
+extension NSValue: @unchecked Sendable { }
+
+
+protocol TextViewProvider: AnyObject {
     
-    struct Result: Equatable {
+    @MainActor var textView: NSTextView? { get }
+}
+
+extension Document: TextViewProvider { }
+
+
+struct EditorCount: Equatable {
+    
+    var entire: Int?
+    var selected = 0
+    
+    
+    var formatted: String? {
         
-        struct Count: Equatable {
-            
-            var entire: Int?
-            var selected = 0
+        if let entire, self.selected > 0 {
+            "\(entire.formatted()) (\(self.selected.formatted()))"
+        } else {
+            self.entire?.formatted()
         }
+    }
+}
+
+
+@MainActor final class EditorCounter {
+    
+    @Observable final class Result {
         
-        var characters = Count()
-        var lines = Count()
-        var words = Count()
+        var characters = EditorCount()
+        var lines = EditorCount()
+        var words = EditorCount()
         
         /// Cursor location from the beginning of the content.
         var location: Int?
+        
         /// Current line.
         var line: Int?
+        
         /// Cursor location from the beginning of the line.
         var column: Int?
         
@@ -68,109 +95,131 @@ actor EditorCounter {
     
     // MARK: Public Properties
     
-    private(set) var result = Result()
-    private(set) var types: Types = []
+    let result: Result = .init()
+    
+    weak var document: (any TextViewProvider)?  // weak to avoid cycle retain
+    
+    var updatesAll = false  { didSet { self.updateTypes() } }
+    var statusBarRequirements: Types = []  { didSet { self.updateTypes() } }
+    
+    
+    // MARK: Private Properties
+    
+    private var types: Types = []
+    
+    private var contentTask: Task<Void, any Error>?
+    private var selectionTask: Task<Void, any Error>?
     
     
     // MARK: Public Methods
     
-    func update(types: Types) {
+    /// Cancels all remaining tasks.
+    func cancel() {
         
-        self.types = types
+        self.contentTask?.cancel()
+        self.selectionTask?.cancel()
     }
     
     
-    /// Update the given types by counting the given string.
-    ///
-    /// - Parameters:
-    ///   - string: The string to count.
-    @discardableResult func count(string: String) throws -> Result {
+    /// Updates content counts.
+    func invalidateContent() {
         
-        guard !self.types.isDisjoint(with: .count) else { return self.result }
+        self.contentTask?.cancel()
         
-        if self.types.contains(.characters) {
-            try Task.checkCancellation()
-            self.result.characters.entire = string.count
+        guard !self.types.isDisjoint(with: .count) else { return }
+        
+        self.contentTask = Task {
+            try await Task.sleep(for: .milliseconds(20), tolerance: .milliseconds(20))  // debounce
+            
+            guard let string = self.document?.textView?.string.immutable else { return }
+            
+            if self.types.contains(.characters) {
+                try Task.checkCancellation()
+                self.result.characters.entire = await Task.detached { string.count }.value
+            }
+            
+            if self.types.contains(.lines) {
+                try Task.checkCancellation()
+                self.result.lines.entire = await Task.detached { string.numberOfLines }.value
+            }
+            
+            if self.types.contains(.words) {
+                try Task.checkCancellation()
+                self.result.words.entire = await Task.detached { string.numberOfWords }.value
+            }
         }
-        
-        if self.types.contains(.lines) {
-            try Task.checkCancellation()
-            self.result.lines.entire = string.numberOfLines
-        }
-        
-        if self.types.contains(.words) {
-            try Task.checkCancellation()
-            self.result.words.entire = string.numberOfWords
-        }
-        
-        return self.result
     }
     
     
-    /// Update the given types by counting the given string.
-    ///
-    /// - Parameters:
-    ///   - selectedRanges: The editor's selected ranges.
-    ///   - string: The string to count.
-    @discardableResult func move(selectedRanges: [Range<String.Index>], string: String) throws -> Result {
+    /// Updates selection-related values.
+    func invalidateSelection() {
         
-        assert(!selectedRanges.isEmpty)
-        assert(selectedRanges.map(\.upperBound).allSatisfy({ $0 <= string.endIndex }))
+        self.selectionTask?.cancel()
         
-        guard !self.types.isEmpty else { return self.result }
+        guard !self.types.isEmpty else { return }
         
-        let selectedStrings = selectedRanges.map { string[$0] }
-        let location = selectedRanges.first?.lowerBound ?? string.startIndex
-        
-        if self.types.contains(.characters) {
-            try Task.checkCancellation()
-            self.result.characters.selected = selectedStrings.map(\.count).reduce(0, +)
+        self.selectionTask = Task {
+            try await Task.sleep(for: .milliseconds(200), tolerance: .milliseconds(40))  // debounce
+            
+            guard let textView = self.document?.textView else { return }
+            
+            let string = textView.string.immutable
+            let selectedRanges = textView.selectedRanges.compactMap { Range($0.rangeValue, in: string) }
+            
+            let selectedStrings = selectedRanges.map { string[$0] }
+            let location = selectedRanges.first?.lowerBound ?? string.startIndex
+            
+            if self.types.contains(.character) {
+                self.result.character = (selectedStrings.first?.compareCount(with: 1) == .equal)
+                    ? selectedStrings.first?.first
+                    : nil
+            }
+            
+            if self.types.contains(.characters) {
+                try Task.checkCancellation()
+                self.result.characters.selected = await Task.detached { selectedStrings.map(\.count).reduce(0, +) }.value
+            }
+            
+            if self.types.contains(.lines) {
+                try Task.checkCancellation()
+                self.result.lines.selected = await Task.detached { string.numberOfLines(in: selectedRanges) }.value
+            }
+            
+            if self.types.contains(.words) {
+                try Task.checkCancellation()
+                self.result.words.selected = await Task.detached { selectedStrings.map(\.numberOfWords).reduce(0, +) }.value
+            }
+            
+            if self.types.contains(.location) {
+                try Task.checkCancellation()
+                self.result.location = await Task.detached { string.distance(from: string.startIndex, to: location) }.value
+            }
+            
+            if self.types.contains(.line) {
+                try Task.checkCancellation()
+                self.result.line = await Task.detached { string.lineNumber(at: location) }.value
+            }
+            
+            if self.types.contains(.column) {
+                try Task.checkCancellation()
+                self.result.column = await Task.detached { string.columnNumber(at: location) }.value
+            }
         }
-        
-        if self.types.contains(.lines) {
-            try Task.checkCancellation()
-            self.result.lines.selected = string.numberOfLines(in: selectedRanges)
-        }
-        
-        if self.types.contains(.words) {
-            try Task.checkCancellation()
-            self.result.words.selected = selectedStrings.map(\.numberOfWords).reduce(0, +)
-        }
-        
-        if self.types.contains(.location) {
-            try Task.checkCancellation()
-            self.result.location = string.distance(from: string.startIndex, to: location)
-        }
-        
-        if self.types.contains(.line) {
-            try Task.checkCancellation()
-            self.result.line = string.lineNumber(at: location)
-        }
-        
-        if self.types.contains(.column) {
-            try Task.checkCancellation()
-            self.result.column = string.columnNumber(at: location)
-        }
-        
-        if self.types.contains(.character) {
-            self.result.character = (selectedStrings.first?.compareCount(with: 1) == .equal)
-                ? selectedStrings.first?.first
-                : nil
-        }
-        
-        return self.result
     }
-}
-
-
-extension EditorCounter.Result.Count {
     
-    var formatted: String? {
+    
+    // MARK: Private Methods
+    
+    /// Update types to count.
+    private func updateTypes() {
         
-        if let entire, self.selected > 0 {
-            "\(entire.formatted()) (\(self.selected.formatted()))"
-        } else {
-            self.entire?.formatted()
+        let oldValue = self.types
+        
+        self.types = self.updatesAll ? .all : self.statusBarRequirements
+        
+        if !self.types.intersection(.count).isSubset(of: oldValue.intersection(.count)) {
+            self.invalidateContent()
         }
+        self.invalidateSelection()
     }
 }

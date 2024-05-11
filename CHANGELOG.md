@@ -16,6 +16,7 @@
 - Improve VoiceOver support in the Quick Action bar.
 - Remove Solarized themes from the bundle.
 - Update all the bundled themes to have a 70% opacity in the current line highlight.
+- Improve the performance of counting values in the editor for the status bar and the document inspector.
 - [trivial] Make names of code contributors in the About window selectable.
 - [dev] Migrate the navigation bar and the Snippets settings view to SwiftUI.
 

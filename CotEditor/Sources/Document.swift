@@ -60,7 +60,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     @Published private(set) var fileAttributes: DocumentFile.Attributes?
     
     let lineEndingScanner: LineEndingScanner
-    let analyzer = DocumentAnalyzer()
+    let counter = EditorCounter()
     private(set) lazy var selection = TextSelection(document: self)
     
     let didChangeSyntax = PassthroughSubject<String, Never>()
@@ -113,7 +113,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         super.init()
         
         self.lineEndingScanner.observe(lineEnding: self.$lineEnding)
-        self.analyzer.document = self
+        self.counter.document = self
         
         // auto-link URLs in the content
         if UserDefaults.standard[.autoLinkDetection] {
@@ -569,7 +569,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         super.close()
         
         self.textStorageObserver?.cancel()
-        self.analyzer.cancel()
+        self.counter.cancel()
     }
     
     

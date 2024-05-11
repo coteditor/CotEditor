@@ -385,7 +385,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             self.focusedTextView?.hasMarkedText() != true
         else { return }
         
-        self.document.analyzer.invalidateContent()
+        self.document.counter.invalidateContent()
         self.outlineParseDebouncer.schedule()
         
         // -> Perform in the next run loop to give layoutManagers time to update their values.
@@ -399,7 +399,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Invoked when the selection did change.
     @objc private func textViewDidLiveChangeSelection(_ notification: Notification) {
         
-        self.document.analyzer.invalidateSelection()
+        self.document.counter.invalidateSelection()
     }
     
     

@@ -83,7 +83,7 @@ private extension StatusBar.Model {
         let publishers = editorDefaultKeys.map { UserDefaults.standard.publisher(for: $0) }
         self.defaultsObserver = Publishers.MergeMany(publishers)
             .map { _ in UserDefaults.standard.statusBarEditorInfo }
-            .sink { [weak self] in self?.document?.analyzer.statusBarRequirements = $0 }
+            .sink { [weak self] in self?.document?.counter.statusBarRequirements = $0 }
     }
     
     
@@ -93,7 +93,7 @@ private extension StatusBar.Model {
         
         self.defaultsObserver = nil
         self.documentObservers.removeAll()
-        self.document?.analyzer.statusBarRequirements = []
+        self.document?.counter.statusBarRequirements = []
     }
     
     
@@ -104,13 +104,10 @@ private extension StatusBar.Model {
             return
         }
         
-        document.analyzer.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
+        document.counter.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
+        self.countResult = document.counter.result
         
         self.documentObservers = [
-            document.analyzer.$result
-                .removeDuplicates()
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] in self?.countResult = $0 },
             document.$fileAttributes
                 .map { $0?.size }
                 .removeDuplicates()
@@ -152,10 +149,11 @@ struct StatusBar: View {
         
         var document: Document?  { didSet { self.observeDocument() } }
         
+        var countResult: EditorCounter.Result?
+        
         var fileEncoding: FileEncoding = .utf8
         var lineEnding: LineEnding = .lf
         
-        fileprivate(set) var countResult: EditorCounter.Result = .init()
         fileprivate(set) var fileSize: Int64?
         
         private var isActive: Bool = false
@@ -184,7 +182,9 @@ struct StatusBar: View {
             if self.hasDonated, self.badgeType != .invisible {
                 CoffeeBadge(type: self.badgeType)
             }
-            EditorCountView(result: self.model.countResult)
+            if let result = self.model.countResult {
+                EditorCountView(result: result)
+            }
             
             Spacer()
             
@@ -428,11 +428,14 @@ private struct CoffeeBadge: View {
     }
 }
 
+
 // MARK: - Preview
 
 #Preview {
     let model = StatusBar.Model()
-    model.countResult.characters = .init(entire: 1024, selected: 64)
+    let result = EditorCounter.Result()
+    result.characters = .init(entire: 1024, selected: 64)
+    model.countResult = result
     
-    return StatusBar(model: model)
+    return StatusBar(model: StatusBar.Model())
 }

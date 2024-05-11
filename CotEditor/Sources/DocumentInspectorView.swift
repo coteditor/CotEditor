@@ -89,7 +89,7 @@ struct DocumentInspectorView: View {
         var encoding: FileEncoding = .utf8
         var lineEnding: LineEnding = .lf
         var mode: Mode = .kind(.general)
-        var countResult: EditorCounter.Result = .init()
+        var countResult: EditorCounter.Result?
         
         var document: Document?  { willSet { self.invalidateObservation(document: newValue) } }
         
@@ -110,7 +110,7 @@ struct DocumentInspectorView: View {
                 Divider()
                 CountLocationView(result: self.model.countResult)
                 Divider()
-                CharacterPaneView(character: self.model.countResult.character)
+                CharacterPaneView(character: self.model.countResult?.character)
             }
             .padding(EdgeInsets(top: 4, leading: 12, bottom: 12, trailing: 12))
             .disclosureGroupStyle(InspectorDisclosureGroupStyle())
@@ -190,7 +190,7 @@ private struct TextSettingsView: View {
 
 private struct CountLocationView: View {
     
-    var result: EditorCounter.Result
+    var result: EditorCounter.Result?
     
     @State private var isExpanded = true
     
@@ -201,24 +201,24 @@ private struct CountLocationView: View {
             Form {
                 OptionalLabeledContent(String(localized: "Lines", table: "Document",
                                               comment: "label in document inspector"),
-                                       value: self.result.lines.formatted)
+                                       value: self.result?.lines.formatted)
                 OptionalLabeledContent(String(localized: "Characters", table: "Document",
                                               comment: "label in document inspector"),
-                                       value: self.result.characters.formatted)
+                                       value: self.result?.characters.formatted)
                 OptionalLabeledContent(String(localized: "Words", table: "Document",
                                               comment: "label in document inspector"),
-                                       value: self.result.words.formatted)
+                                       value: self.result?.words.formatted)
                 .padding(.bottom, 8)
                 
                 OptionalLabeledContent(String(localized: "Location", table: "Document",
                                               comment: "label in document inspector"),
-                                       value: self.result.location?.formatted())
+                                       value: self.result?.location?.formatted())
                 OptionalLabeledContent(String(localized: "Line", table: "Document",
                                               comment: "label in document inspector"),
-                                       value: self.result.line?.formatted())
+                                       value: self.result?.line?.formatted())
                 OptionalLabeledContent(String(localized: "Column", table: "Document",
                                               comment: "label in document inspector"),
-                                       value: self.result.column?.formatted())
+                                       value: self.result?.column?.formatted())
             }
             .monospacedDigit()
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -328,10 +328,11 @@ private extension DocumentInspectorView.Model {
     
     func invalidateObservation(document: Document?) {
         
-        self.document?.analyzer.updatesAll = false
+        self.document?.counter.updatesAll = false
+        self.countResult = document?.counter.result
         
         if let document {
-            document.analyzer.updatesAll = true
+            document.counter.updatesAll = true
             
             self.observers = [
                 document.publisher(for: \.fileURL, options: .initial)
@@ -353,9 +354,6 @@ private extension DocumentInspectorView.Model {
                             self?.mode = await ModeManager.shared.mode(for: syntax)
                         }
                     },
-                document.analyzer.$result
-                    .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in self?.countResult = $0 },
             ]
         } else {
             self.observers.removeAll()
@@ -378,11 +376,13 @@ private extension DocumentInspectorView.Model {
     )
     model.fileURL = URL(filePath: "/Users/clarus/Desktop/My Script.py")
     model.encoding = .init(encoding: .utf8, withUTF8BOM: true)
-    model.countResult = .init(
-        characters: .init(entire: 1024, selected: 4),
-        lines: .init(entire: 10, selected: 1),
-        character: "🐈‍⬛"
-    )
+    
+    let result = EditorCounter.Result()
+    result.characters = .init(entire: 1024, selected: 4)
+    result.lines = .init(entire: 10, selected: 1)
+    result.character = "🐈‍⬛"
+    
+    model.countResult = result
     
     return DocumentInspectorView(model: model)
 }
