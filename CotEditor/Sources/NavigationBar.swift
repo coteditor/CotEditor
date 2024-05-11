@@ -36,21 +36,21 @@ struct NavigationBar: View {
     var body: some View {
         
         HStack(alignment: .center, spacing: 0) {
-            Group {
-                Button {
-                    NSApp.sendAction(#selector(DocumentViewController.closeSplitTextView), to: nil, from: self.outlineNavigator.textView)
-                } label: {
-                    Label(String(localized: "Close Split Editor", table: "Document", comment: "accessibility label for button"), systemImage: "xmark")
-                        .frame(width: 18)
-                        .frame(maxHeight: .infinity, alignment: .center)
-                }
-                .labelStyle(.iconOnly)
-                .help(String(localized: "Close split editor", table: "Document", comment: "tooltip for button"))
-                
-                Divider()
-                    .padding(.vertical, 4)
-                    .padding(.horizontal, 3)
-            }.opacity(self.splitState.canClose ? 1 : 0)
+            Button {
+                NSApp.sendAction(#selector(DocumentViewController.closeSplitTextView), to: nil, from: self.outlineNavigator.textView)
+            } label: {
+                Label(String(localized: "Close Split Editor", table: "Document", comment: "accessibility label for button"), systemImage: "xmark")
+                    .frame(width: 18)
+                    .frame(maxHeight: .infinity, alignment: .center)
+            }
+            .labelStyle(.iconOnly)
+            .help(String(localized: "Close split editor", table: "Document", comment: "tooltip for button"))
+            .symbolEffect(.disappear, isActive: !self.splitState.canClose)
+            
+            Divider()
+                .padding(.vertical, 4)
+                .padding(.horizontal, 3)
+                .opacity(self.splitState.canClose ? 1 : 0)
             
             if let items = self.outlineNavigator.items {
                 if !items.isEmpty {
@@ -82,10 +82,11 @@ struct NavigationBar: View {
             Button {
                 NSApp.sendAction(#selector(DocumentViewController.openSplitTextView), to: nil, from: self.outlineNavigator.textView)
             } label: {
-                Label(String(localized: "Split Editor", table: "Document", comment: "accessibility label for button"), image: self.splitState.isVertical ? .splitAddVertical : .splitAdd)
+                Label(String(localized: "Split Editor", table: "Document", comment: "accessibility label for button"), image: .splitAdd)
                     .frame(width: 18)
                     .frame(maxHeight: .infinity, alignment: .center)
             }
+            .rotationEffect(.degrees(self.splitState.isVertical ? -90 : 0))
             .labelStyle(.iconOnly)
             .help(String(localized: "Split editor", table: "Document", comment: "tooltip for button"))
             .contextMenu {
