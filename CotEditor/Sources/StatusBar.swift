@@ -181,6 +181,7 @@ struct StatusBar: View {
         HStack {
             if self.hasDonated, self.badgeType != .invisible {
                 CoffeeBadge(type: self.badgeType)
+                    .transition(.symbolEffect)
             }
             if let result = self.model.countResult {
                 EditorCountView(result: result)
