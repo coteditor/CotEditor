@@ -69,7 +69,7 @@ private extension StatusBar.Model {
         
         self.isActive = true
         
-        self.observeDocument()
+        self.invalidateObservation(document: self.document)
         
         // observe changes in defaults
         let editorDefaultKeys: [DefaultKey<Bool>] = [
@@ -97,29 +97,30 @@ private extension StatusBar.Model {
     }
     
     
-    private func observeDocument() {
+    private func invalidateObservation(document: Document?) {
         
-        guard let document, self.isActive else {
+        self.document?.counter.statusBarRequirements = []
+        self.countResult = document?.counter.result
+        
+        if let document, self.isActive {
+            document.counter.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
+            
+            self.documentObservers = [
+                document.$fileAttributes
+                    .map { $0?.size }
+                    .removeDuplicates()
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in self?.fileSize = $0 },
+                document.$fileEncoding
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in self?.fileEncoding = $0 },
+                document.$lineEnding
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in self?.lineEnding = $0 },
+            ]
+        } else {
             self.documentObservers.removeAll()
-            return
         }
-        
-        document.counter.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
-        self.countResult = document.counter.result
-        
-        self.documentObservers = [
-            document.$fileAttributes
-                .map { $0?.size }
-                .removeDuplicates()
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] in self?.fileSize = $0 },
-            document.$fileEncoding
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] in self?.fileEncoding = $0 },
-            document.$lineEnding
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] in self?.lineEnding = $0 },
-        ]
     }
 }
 
@@ -147,7 +148,7 @@ struct StatusBar: View {
     
     @MainActor @Observable final class Model {
         
-        var document: Document?  { didSet { self.observeDocument() } }
+        var document: Document?  { willSet { self.invalidateObservation(document: newValue) } }
         
         var countResult: EditorCounter.Result?
         
