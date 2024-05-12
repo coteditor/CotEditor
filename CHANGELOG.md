@@ -3,6 +3,10 @@
 4.8.4 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix a typo in the Czech localization.
+
 
 
 4.8.3 (649)
