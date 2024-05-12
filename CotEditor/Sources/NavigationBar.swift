@@ -30,8 +30,6 @@ struct NavigationBar: View {
     @State var outlineNavigator: OutlineNavigator
     @State var splitState: SplitState
     
-    @State private var isOutlinePickerPresented = false
-    
     
     var body: some View {
         
@@ -52,30 +50,7 @@ struct NavigationBar: View {
                 .padding(.horizontal, 3)
                 .opacity(self.splitState.canClose ? 1 : 0)
             
-            if let items = self.outlineNavigator.items {
-                if !items.isEmpty {
-                    HStack(spacing: 0) {
-                        if self.outlineNavigator.isVerticalOrientation {
-                            self.nextButton(systemImage: "chevron.left")
-                            self.previousButton(systemImage: "chevron.right")
-                        } else {
-                            self.previousButton(systemImage: "chevron.up")
-                            self.nextButton(systemImage: "chevron.down")
-                        }
-                    }
-                    
-                    // Use AppKit-based picker (2024-05, macOS 14):
-                    //   - To trim whitespaces of button display.
-                    //   - To open programmatically.
-                    OutlinePicker(items: items, selection: $outlineNavigator.selection, isPresented: $outlineNavigator.isOutlinePickerPresented) {
-                        self.outlineNavigator.textView?.select(range: $0.range)
-                    }
-                    .accessibilityLabel(String(localized: "Outline Menu", table: "Document", comment: "accessibility label"))
-                }
-            } else {
-                Text("Extracting Outline…", tableName: "Document")
-                    .foregroundStyle(.secondary)
-            }
+            OutlineNavigationView(navigator: $outlineNavigator)
             
             Spacer()
             
@@ -109,6 +84,62 @@ struct NavigationBar: View {
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Navigation Bar", table: "Document", comment: "accessibility label"))
     }
+}
+
+
+private struct OutlineNavigationView: View {
+    
+    @Binding var navigator: OutlineNavigator
+    
+    @State private var isLongExtraction = false
+    @State private var extractionDelayTask: Task<Void, any Error>?
+    
+    
+    var body: some View {
+        
+        HStack {
+            if let items = self.navigator.items {
+                if !items.isEmpty {
+                    HStack(spacing: 0) {
+                        if self.navigator.isVerticalOrientation {
+                            self.nextButton(systemImage: "chevron.left")
+                            self.previousButton(systemImage: "chevron.right")
+                        } else {
+                            self.previousButton(systemImage: "chevron.up")
+                            self.nextButton(systemImage: "chevron.down")
+                        }
+                    }
+                    
+                    // Use AppKit-based picker (2024-05, macOS 14):
+                    //   - To trim whitespaces of button display.
+                    //   - To open programmatically.
+                    OutlinePicker(items: items, selection: $navigator.selection, isPresented: $navigator.isOutlinePickerPresented) {
+                        self.navigator.textView?.select(range: $0.range)
+                    }
+                    .accessibilityLabel(String(localized: "Outline Menu", table: "Document", comment: "accessibility label"))
+                }
+            } else if self.isLongExtraction {
+                Text("Extracting Outline…", tableName: "Document")
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .onDisappear {
+            self.extractionDelayTask?.cancel()
+        }
+        .onChange(of: self.navigator.items, initial: true) { (_, newValue) in
+            // show message only when parse takes more than 1 second.
+            self.extractionDelayTask?.cancel()
+            if newValue == nil {
+                self.extractionDelayTask = Task {
+                    try await Task.sleep(for: .seconds(1))
+                    self.isLongExtraction = true
+                }
+            } else {
+                self.extractionDelayTask = nil
+                self.isLongExtraction = false
+            }
+        }
+    }
     
     
     // MARK: Private Methods
@@ -116,7 +147,7 @@ struct NavigationBar: View {
     @ViewBuilder @MainActor private func previousButton(systemImage: String) -> some View {
         
         Button {
-            self.outlineNavigator.selectPreviousItem()
+            self.navigator.selectPreviousItem()
         } label: {
             Label(String(localized: "Previous Outline Item", table: "Document", comment: "accessibility label for button"), systemImage: systemImage)
                 .frame(width: 18)
@@ -124,7 +155,7 @@ struct NavigationBar: View {
         }
         .fontWeight(.medium)
         .labelStyle(.iconOnly)
-        .disabled(!self.outlineNavigator.canSelectPreviousItem)
+        .disabled(!self.navigator.canSelectPreviousItem)
         .help(String(localized: "Jump to previous outline item", table: "Document", comment: "tooltip for button"))
         
     }
@@ -133,7 +164,7 @@ struct NavigationBar: View {
     @ViewBuilder @MainActor private func nextButton(systemImage: String) -> some View {
         
         Button {
-            self.outlineNavigator.selectNextItem()
+            self.navigator.selectNextItem()
         } label: {
             Label(String(localized: "Next Outline Item", table: "Document", comment: "accessibility label for button"), systemImage: systemImage)
                 .frame(width: 18)
@@ -141,7 +172,7 @@ struct NavigationBar: View {
         }
         .fontWeight(.medium)
         .labelStyle(.iconOnly)
-        .disabled(!self.outlineNavigator.canSelectNextItem)
+        .disabled(!self.navigator.canSelectNextItem)
         .help(String(localized: "Jump to next outline item", table: "Document", comment: "tooltip for button"))
     }
 }
