@@ -1,4 +1,10 @@
-attributes: []
+attributes:
+- beginString: (?<!\\)(?<!\*)\*[^ \t*]((?!\R{2})(?:.|\R))*?(?<![\\ ])\*
+  description: em
+  regularExpression: true
+- beginString: (?<!\\)\b(?<!\_)_[^ \t_]((?!\R{2})(?:.|\R))*?(?<![\\ ])_
+  description: em
+  regularExpression: true
 characters:
 - beginString: (?:\R{2,}|\A)((?:([ ]{4}|\t)(.*(?:\R+|\Z)))+)((?=^[ ]{0,4}\S)|\Z)
   description: codeblock
@@ -12,7 +18,13 @@ characters:
 - beginString: ^```[^`](?!```)(?:.|\R)*?\R[\t ]*```
   description: '[github] codeblock'
   regularExpression: true
-commands: []
+commands:
+- beginString: (?<!\\)(\*{2,3})[^ \t*]((?!\R{2})(?:.|\R))*?(?<![\\ ])\1
+  description: strong
+  regularExpression: true
+- beginString: (?<!\\)\b(_{2,3})[^ \t_]((?!\R{2})(?:.|\R))*?(?<![\\ ])\1
+  description: strong
+  regularExpression: true
 commentDelimiters:
   beginDelimiter: <!--
   endDelimiter: -->
@@ -27,12 +39,6 @@ extensions:
 filenames: []
 interpreters: []
 keywords:
-- beginString: (?<!\\)(\*{1,3})[^ \t*]((?!\R{2})(?:.|\R))*?(?<![\\ ])\1
-  description: em, strong
-  regularExpression: true
-- beginString: (?<!\\)\b(_{1,3})[^ \t_]((?!\R{2})(?:.|\R))*?(?<![\\ ])\1
-  description: em, strong
-  regularExpression: true
 - beginString: (?<!\\)\b~~(?![ \t])((?!\R{2})(?:.|\R))*?(?<![\\\t ])~~
   description: '[github] strikethrough'
   regularExpression: true
@@ -65,9 +71,9 @@ kind: general
 metadata:
   author: 1024jp
   distributionURL: https://coteditor.com
-  lastModified: '2022-06-01'
+  lastModified: '2024-05-10'
   license: Same as CotEditor
-  version: 1.3.6
+  version: 1.4.0
 numbers:
 - beginString: (?<!\\)!\[.*?(?<!\\)\](?=\()
   description: img

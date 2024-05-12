@@ -22,24 +22,37 @@
 
 
 
-4.8.3 (unreleased)
+4.8.4 (unreleased)
 --------------------------
+
+
+
+4.8.3 (649)
+--------------------------
+
+### New Features
+
+- Add the “Show in Finder” button next to the file path in the document inspector.
+
 
 ### Improvements
 
 - Display the current editor mode in the document inspector.
+- Use more appropriate system color for the selection background when dark mode or not differs between the editor and theme.
 - Improve VoiceOver support.
 - Deprecate exact recalculation of insertion points when documents are updated by external processes to improve application stability.
 - Improve stability of application launch behavior.
+- Update the Markdown syntax to distinguish strong emphases (`strong`) from normal emphases (`em`).
 - [non-AppStore ver.] Update Sparkle from 2.6.0 to 2.6.2 (security update).
 
 
 ### Fixes
 
-- Fix an issue that the application could not respond by updating a relatively large document from external processes.
+- Fix an issue that the application could not respond to by updating a relatively large document from external processes.
 - Fix an issue that the application unwontedly copied the bundled theme setting files to the user domain.
 - Fix an issue that the Share command was not available in the theme setting list.
-- Fix the layout of the Go To dialog.
+- Fix the layout of the Go To Line dialog.
+- Fix an incorrect label in the theme editor in the Appearance settings.
 
 
 

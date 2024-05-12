@@ -145,18 +145,6 @@ struct Theme: Equatable {
     }
     
     
-    /// Selection color for inactive text view.
-    var secondarySelectionColor: NSColor? {
-        
-        guard
-            !self.selection.usesSystemSetting,
-            let color = self.selection.color.usingColorSpace(.genericRGB)
-        else { return nil }
-        
-        return NSColor(calibratedWhite: color.lightnessComponent, alpha: 1.0)
-    }
-    
-    
     /// Insertion point color to use.
     var effectiveInsertionPointColor: NSColor {
         
@@ -164,10 +152,41 @@ struct Theme: Equatable {
     }
     
     
-    /// Selected text background color to use.
-    var effectiveSelectionColor: NSColor {
+    /// Returns the selection color to use with the given appearance.
+    ///
+    /// - Parameter appearance: The current appearance of the text view to draw.
+    /// - Returns: A color.
+    func effectiveSelectionColor(for appearance: NSAppearance) -> NSColor {
         
-        self.selection.usesSystemSetting ? .selectedTextBackgroundColor : self.selection.color
+        if self.selection.usesSystemSetting {
+            if self.isDarkTheme == appearance.isDark {
+                .selectedTextBackgroundColor
+            } else {
+                .selectedTextBackgroundColor.solve(for: appearance.appearance(for: self.isDarkTheme))
+            }
+        } else {
+            self.selection.color
+        }
+    }
+    
+    
+    /// Returns the selection color to use for inactive views.
+    ///
+    /// - Parameter appearance: The current appearance of the text view to draw.
+    /// - Returns: A color.
+    func effectiveSecondarySelectionColor(for appearance: NSAppearance) -> NSColor? {
+        
+        if self.selection.usesSystemSetting {
+            return if self.isDarkTheme == appearance.isDark {
+                .unemphasizedSelectedContentBackgroundColor
+            } else {
+                .unemphasizedSelectedContentBackgroundColor.solve(for: appearance.appearance(for: self.isDarkTheme))
+            }
+        } else {
+            guard let color = self.selection.color.usingColorSpace(.genericRGB) else { return nil }
+            
+            return NSColor(calibratedWhite: color.lightnessComponent, alpha: 1.0)
+        }
     }
 }
 

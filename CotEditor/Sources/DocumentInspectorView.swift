@@ -149,9 +149,28 @@ private struct DocumentFileView: View {
                 OptionalLabeledContent(String(localized: "Owner", table: "Document",
                                               comment: "label in document inspector"),
                                        value: self.attributes?.owner)
-                OptionalLabeledContent(String(localized: "Full Path", table: "Document",
-                                              comment: "label in document inspector"),
-                                       value: self.fileURL?.path)
+                
+                LabeledContent(String(localized: "Full Path", table: "Document", comment: "label in document inspector")) {
+                    if let fileURL = self.fileURL {
+                        HStack(alignment: .lastTextBaseline, spacing: 0) {
+                            Text(fileURL, format: .url)
+                                .textSelection(.enabled)
+                                .foregroundStyle(.primary)
+                            Button(String(localized: "Show in Finder", table: "Document"), systemImage: "arrow.forward") {
+                                NSWorkspace.shared.activateFileViewerSelecting([fileURL])
+                            }
+                            .symbolVariant(.circle)
+                            .symbolVariant(.fill)
+                            .fontWeight(.bold)
+                            .labelStyle(.iconOnly)
+                            .controlSize(.mini)
+                            .buttonStyle(.borderless)
+                        }
+                    } else {
+                        Text(verbatim: "–")
+                            .foregroundStyle(.tertiary)
+                    }
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }

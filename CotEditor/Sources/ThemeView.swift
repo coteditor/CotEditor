@@ -156,7 +156,7 @@ private struct ThemeEditorView: View {
                                 selection: $theme.lineHighlight.binding)
                     SystemColorPicker(String(localized: "Selection:", table: "ThemeEditor"),
                                       selection: $theme.selection,
-                                      systemColor: Color(nsColor: .selectedTextBackgroundColor),
+                                      systemColor: Color(nsColor: .selectedTextBackgroundColor.forDarkMode(self.theme.isDarkTheme)),
                                       supportsOpacity: false)
                 }.accessibilityElement(children: .contain)
             }.accessibilityElement(children: .contain)
@@ -192,7 +192,7 @@ private struct ThemeEditorView: View {
                                 selection: $theme.strings.binding)
                     ColorPicker(String(localized: "\(SyntaxType.characters.label):"),
                                 selection: $theme.characters.binding)
-                    ColorPicker(String(localized: "\(SyntaxType.commands.label):"),
+                    ColorPicker(String(localized: "\(SyntaxType.comments.label):"),
                                 selection: $theme.comments.binding)
                 }.accessibilityElement(children: .contain)
             }.accessibilityElement(children: .contain)
