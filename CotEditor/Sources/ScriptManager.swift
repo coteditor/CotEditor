@@ -298,7 +298,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         
         guard let urls = try? FileManager.default
             .contentsOfDirectory(at: directoryURL,
-                                 includingPropertiesForKeys: [.contentTypeKey, .isDirectoryKey, .isExecutableKey],
+                                 includingPropertiesForKeys: [.contentTypeKey, .isExecutableKey],
                                  options: [.skipsHiddenFiles])
         else { return [] }
         
@@ -309,21 +309,16 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
                 let name = url.deletingPathExtension().lastPathComponent
                     .replacing(/^\d+\)/.asciiOnlyDigits(), with: "", maxReplacements: 1)  // remove ordering prefix
                 
-                if name == .separator {
-                    return .separator
-                    
-                } else if let descriptor = ScriptDescriptor(contentsOf: url, name: name),
-                          let script = try? descriptor.makeScript()
-                {
+                return if name == .separator {
+                    .separator
+                } else if let script = try? ScriptDescriptor(contentsOf: url, name: name)?.makeScript() {
                     // -> Check script possibility before folder because a script can be a directory, e.g. .scptd.
-                    return .script(script.name, script)
-                    
-                } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {
-                    let items = Self.scriptMenuItems(at: url)
-                    return .folder(name, items)
+                    .script(script.name, script)
+                } else if url.hasDirectoryPath {
+                    .folder(name, Self.scriptMenuItems(at: url))
+                } else {
+                    nil
                 }
-                
-                return nil
             }
     }
     
