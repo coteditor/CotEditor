@@ -769,7 +769,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 case .notify:
                     await self.showUpdatedByExternalProcessAlert()
                 case .revert:
-                    await self.revertWithoutAsking()
+                    await self.revert()
             }
         }
     }
@@ -1232,28 +1232,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             
             alert.beginSheetModal(for: documentWindow) { [unowned self] returnCode in
                 if returnCode == .alertSecondButtonReturn {  // == Revert
-                    self.revertWithoutAsking()
+                    self.revert()
                 }
                 
                 self.isExternalUpdateAlertShown = false
                 activityCompletionHandler()
             }
-        }
-    }
-    
-    
-    /// Reverts the receiver with current document file without asking to the user in advance.
-    @MainActor private func revertWithoutAsking() {
-        
-        guard
-            let fileURL = self.fileURL,
-            let fileType = self.fileType
-        else { return }
-        
-        do {
-            try self.revert(toContentsOf: fileURL, ofType: fileType)
-        } catch {
-            self.presentErrorAsSheet(error)
         }
     }
     

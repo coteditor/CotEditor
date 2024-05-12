@@ -652,8 +652,8 @@
 		2ABFF6D71D02856A00BE2795 /* ShortcutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABFF6D61D02856A00BE2795 /* ShortcutTests.swift */; };
 		2AC13A0924F112D800799A93 /* CommandLineToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */; };
 		2AC13A0A24F112D800799A93 /* CommandLineToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */; };
-		2AC186DA1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */; };
-		2AC186DB1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */; };
+		2AC186DA1E2F414D002F4D27 /* NSDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186D91E2F414D002F4D27 /* NSDocument.swift */; };
+		2AC186DB1E2F414D002F4D27 /* NSDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186D91E2F414D002F4D27 /* NSDocument.swift */; };
 		2AC186DD1E2F4264002F4D27 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186DC1E2F4264002F4D27 /* Debug.swift */; };
 		2AC186DE1E2F4264002F4D27 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186DC1E2F4264002F4D27 /* Debug.swift */; };
 		2AC2462E1D1BC70C00E46CFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC2462D1D1BC70C00E46CFA /* AppDelegate.swift */; };
@@ -1245,7 +1245,7 @@
 		2ABF86BC208C3C630082D52B /* AudioToolbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioToolbox.swift; sourceTree = "<group>"; };
 		2ABFF6D61D02856A00BE2795 /* ShortcutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutTests.swift; sourceTree = "<group>"; };
 		2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineToolManager.swift; sourceTree = "<group>"; };
-		2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDocument+ErrorHandling.swift"; sourceTree = "<group>"; };
+		2AC186D91E2F414D002F4D27 /* NSDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDocument.swift; sourceTree = "<group>"; };
 		2AC186DC1E2F4264002F4D27 /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		2AC2462D1D1BC70C00E46CFA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AC39F721E8AC80E009F97D5 /* CollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionTests.swift; sourceTree = "<group>"; };
@@ -1694,7 +1694,7 @@
 				2A10B6F421450A3B00B4205E /* NSAppearance.swift */,
 				2A9003B8267715E500EC766F /* NSApplication.swift */,
 				2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */,
-				2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */,
+				2AC186D91E2F414D002F4D27 /* NSDocument.swift */,
 				2A05081223D6B9E900602F5E /* NSViewController.swift */,
 				2AB541D920A5B6A400367DD5 /* NSView.swift */,
 				2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */,
@@ -3045,7 +3045,7 @@
 				2AE3F3191D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
 				2A4E638120ADC45F0033CE63 /* NSBezierPath.swift in Sources */,
 				2A5ADE891D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */,
-				2AC186DB1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
+				2AC186DB1E2F414D002F4D27 /* NSDocument.swift in Sources */,
 				2A9B134E27E2D84E009954A4 /* NSDraggingInfo.swift in Sources */,
 				2A5D2DC421908F4A006814D5 /* NSFont+Name.swift in Sources */,
 				2AA45A551D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
@@ -3413,7 +3413,7 @@
 				2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
 				2A4E638020ADC45F0033CE63 /* NSBezierPath.swift in Sources */,
 				2A5ADE881D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */,
-				2AC186DA1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
+				2AC186DA1E2F414D002F4D27 /* NSDocument.swift in Sources */,
 				2A9B134F27E2D84E009954A4 /* NSDraggingInfo.swift in Sources */,
 				2A5D2DC321908F4A006814D5 /* NSFont+Name.swift in Sources */,
 				2AA45A541D2F22C600A1A401 /* NSFont+Size.swift in Sources */,

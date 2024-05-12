@@ -1,5 +1,5 @@
 //
-//  NSDocument+ErrorHandling.swift
+//  NSDocument.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -56,6 +56,32 @@ extension NSDocument.SaveOperationType {
 }
 
 
+extension NSDocument {
+    
+    /// Reverts the receiver with the current document file without asking to the user in advance.
+    ///
+    /// - Parameter fileURL: The location from which the document contents are read, or `nil` to revert at the same location.
+    /// - Returns: `true` if succeeded.
+    @discardableResult final func revert(fileURL: URL? = nil) -> Bool {
+        
+        guard
+            let fileURL = fileURL ?? self.fileURL,
+            let fileType = self.fileType
+        else { return false }
+        
+        do {
+            try self.revert(toContentsOf: fileURL, ofType: fileType)
+        } catch {
+            self.presentErrorAsSheet(error)
+            return false
+        }
+        
+        return true
+    }
+}
+
+
+// MARK: Error Handling
 
 extension NSDocument {
     
@@ -63,7 +89,7 @@ extension NSDocument {
     
     
     /// Presents an error alert as document modal sheet.
-    @MainActor final func presentErrorAsSheet(_ error: some Error, recoveryHandler: RecoveryHandler? = nil) {
+    final func presentErrorAsSheet(_ error: some Error, recoveryHandler: RecoveryHandler? = nil) {
         
         guard let window = self.windowForSheet else {
             let didRecover = self.presentError(error)
