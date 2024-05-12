@@ -72,6 +72,20 @@ extension URL {
         
         self.components(relativeTo: baseURL).joined(separator: "/")
     }
+    
+    
+    /// Checks the given URL is ancestor of the receiver.
+    ///
+    /// - Parameter url: The child candidate URL.
+    /// - Returns: `true` if the given URL is child.
+    func isAncestor(of url: URL) -> Bool {
+        
+        let ancestorComponents = self.standardizedFileURL.resolvingSymlinksInPath().pathComponents
+        let childComponents = url.standardizedFileURL.resolvingSymlinksInPath().pathComponents
+        
+        return ancestorComponents.count < childComponents.count
+            && !zip(ancestorComponents, childComponents).contains(where: !=)
+    }
 }
 
 

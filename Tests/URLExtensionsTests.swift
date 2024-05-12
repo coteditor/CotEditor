@@ -71,6 +71,17 @@ struct URLExtensionsTests {
     }
     
     
+    @Test func ancestor() throws {
+        
+        let leaf = URL(fileURLWithPath: "/Dog/Cow/Cat")
+        let parent = leaf.deletingLastPathComponent()
+        
+        #expect(parent.isAncestor(of: leaf))
+        #expect(!parent.isAncestor(of: URL(fileURLWithPath: "/Dog/Cow 1/Cat")))
+        #expect(!leaf.isAncestor(of: leaf))
+    }
+    
+    
     @Test func createItemReplacementDirectory() throws {
         
         #expect(throws: Never.self) { try URL.itemReplacementDirectory }
