@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,6 +54,20 @@ final class URLExtensionsTests: XCTestCase {
         let baseURL = URL(filePath: "/file1.txt")
         
         XCTAssertEqual(url.path(relativeTo: baseURL), "file1.txt")
+    }
+    
+    
+    func testRelativeURLCreationWithDirectoryURLs() {
+        
+        let url = URL(filePath: "Dog/Cow/Cat/file1.txt")
+        XCTAssertEqual(url.path(relativeTo: URL(filePath: "Dog/Cow", directoryHint: .isDirectory)), "Cat/file1.txt")
+        XCTAssertEqual(url.path(relativeTo: URL(filePath: "Dog/Cow/", directoryHint: .isDirectory)), "Cat/file1.txt")
+        XCTAssertEqual(url.path(relativeTo: URL(filePath: "Dog/Cow/Cat", directoryHint: .isDirectory)), "file1.txt")
+        XCTAssertEqual(url.path(relativeTo: URL(filePath: "", directoryHint: .isDirectory)), "Dog/Cow/Cat/file1.txt")
+        
+        let url2 = URL(filePath: "file1.txt")
+        XCTAssertEqual(url2.path(relativeTo: URL(filePath: "", directoryHint: .isDirectory)), "file1.txt")
+        XCTAssertEqual(url2.path(relativeTo: URL(filePath: "Dog", directoryHint: .isDirectory)), "../file1.txt")
     }
     
     

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,6 +36,8 @@ extension URL {
     
     /// Returns relative-path string.
     ///
+    /// - Note: The `baseURL` is assumed its `directoryHint` is properly set.
+    ///
     /// - Parameter baseURL: The URL the relative path based on.
     /// - Returns: A path string.
     func path(relativeTo baseURL: URL?) -> String? {
@@ -45,19 +47,20 @@ extension URL {
         
         guard let baseURL else { return nil }
         
-        if baseURL == self {
+        if baseURL == self, !baseURL.hasDirectoryPath {
             return self.lastPathComponent
         }
         
-        let pathComponents = self.pathComponents
-        let basePathComponents = baseURL.pathComponents
+        let filename = self.lastPathComponent
+        let pathComponents = self.pathComponents.dropLast()
+        let basePathComponents = baseURL.pathComponents.dropLast(baseURL.hasDirectoryPath ? 0 : 1)
         
         let sameCount = zip(basePathComponents, pathComponents).countPrefix { $0.0 == $0.1 }
-        let parentCount = basePathComponents.count - sameCount - 1
+        let parentCount = basePathComponents.count - sameCount
         let parentComponents = [String](repeating: "..", count: parentCount)
         let diffComponents = pathComponents[sameCount...]
         
-        return (parentComponents + diffComponents).joined(separator: "/")
+        return (parentComponents + diffComponents + [filename]).joined(separator: "/")
     }
 }
 
