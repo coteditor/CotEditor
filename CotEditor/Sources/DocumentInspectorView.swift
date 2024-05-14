@@ -31,7 +31,7 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
     
     // MARK: Public Properties
     
-    var document: Document {
+    var document: Document? {
         
         didSet {
             if self.isViewShown {
@@ -49,7 +49,7 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
     
     // MARK: Lifecycle
     
-    required init(document: Document) {
+    required init(document: Document?) {
         
         self.document = document
         
@@ -80,18 +80,32 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
 }
 
 
+@Observable final class TextSettings {
+    
+    var encoding: FileEncoding
+    var lineEnding: LineEnding
+    var mode: Mode
+    
+    
+    init(encoding: FileEncoding, lineEnding: LineEnding, mode: Mode) {
+        
+        self.encoding = encoding
+        self.lineEnding = lineEnding
+        self.mode = mode
+    }
+}
+
+
 struct DocumentInspectorView: View {
     
     @MainActor @Observable final class Model {
         
-        var attributes: DocumentFile.Attributes?
-        var fileURL: URL?
-        var encoding: FileEncoding = .utf8
-        var lineEnding: LineEnding = .lf
-        var mode: Mode = .kind(.general)
-        var countResult: EditorCounter.Result?
+        fileprivate var attributes: DocumentFile.Attributes?
+        fileprivate var fileURL: URL?
+        fileprivate var textSettings: TextSettings?
+        fileprivate var countResult: EditorCounter.Result?
         
-        var document: Document?  { willSet { self.invalidateObservation(document: newValue) } }
+        fileprivate var document: Document?  { willSet { self.invalidateObservation(document: newValue) } }
         
         private var observers: Set<AnyCancellable> = []
     }
@@ -105,12 +119,19 @@ struct DocumentInspectorView: View {
         ScrollView(.vertical) {
             VStack(spacing: 8) {
                 DocumentFileView(attributes: self.model.attributes, fileURL: self.model.fileURL)
-                Divider()
-                TextSettingsView(encoding: self.model.encoding, lineEnding: self.model.lineEnding, mode: self.model.mode)
-                Divider()
-                CountLocationView(result: self.model.countResult)
-                Divider()
-                CharacterPaneView(character: self.model.countResult?.character)
+                
+                if let textSettings = self.model.textSettings {
+                    Divider()
+                    TextSettingsView(value: textSettings)
+                }
+                
+                if let countResult = self.model.countResult {
+                    Divider()
+                    CountLocationView(result: countResult)
+                    
+                    Divider()
+                    CharacterPaneView(character: countResult.character)
+                }
             }
             .padding(EdgeInsets(top: 4, leading: 12, bottom: 12, trailing: 12))
             .disclosureGroupStyle(InspectorDisclosureGroupStyle())
@@ -132,7 +153,7 @@ private struct DocumentFileView: View {
     
     var body: some View {
         
-        DisclosureGroup(String(localized: "Document File", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
+        DisclosureGroup(String(localized: "File", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
                 OptionalLabeledContent(String(localized: "Created", table: "Document",
                                               comment: "label in document inspector"),
@@ -180,9 +201,7 @@ private struct DocumentFileView: View {
 
 private struct TextSettingsView: View {
     
-    var encoding: FileEncoding
-    var lineEnding: LineEnding
-    var mode: Mode
+    var value: TextSettings
     
     @State private var isExpanded = true
     
@@ -193,13 +212,13 @@ private struct TextSettingsView: View {
             Form {
                 LabeledContent(String(localized: "Encoding", table: "Document",
                                       comment: "label in document inspector"),
-                               value: self.encoding.localizedName)
+                               value: self.value.encoding.localizedName)
                 LabeledContent(String(localized: "Line Endings", table: "Document",
                                       comment: "label in document inspector"),
-                               value: self.lineEnding.label)
+                               value: self.value.lineEnding.label)
                 LabeledContent(String(localized: "Mode", table: "Document",
                                       comment: "label in document inspector"),
-                               value: self.mode.label)
+                               value: self.value.mode.label)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -209,7 +228,7 @@ private struct TextSettingsView: View {
 
 private struct CountLocationView: View {
     
-    var result: EditorCounter.Result?
+    var result: EditorCounter.Result
     
     @State private var isExpanded = true
     
@@ -220,24 +239,24 @@ private struct CountLocationView: View {
             Form {
                 OptionalLabeledContent(String(localized: "Lines", table: "Document",
                                               comment: "label in document inspector"),
-                                       value: self.result?.lines.formatted)
+                                       value: self.result.lines.formatted)
                 OptionalLabeledContent(String(localized: "Characters", table: "Document",
                                               comment: "label in document inspector"),
-                                       value: self.result?.characters.formatted)
+                                       value: self.result.characters.formatted)
                 OptionalLabeledContent(String(localized: "Words", table: "Document",
                                               comment: "label in document inspector"),
-                                       value: self.result?.words.formatted)
+                                       value: self.result.words.formatted)
                 .padding(.bottom, 8)
                 
                 OptionalLabeledContent(String(localized: "Location", table: "Document",
                                               comment: "label in document inspector"),
-                                       value: self.result?.location?.formatted())
+                                       value: self.result.location?.formatted())
                 OptionalLabeledContent(String(localized: "Line", table: "Document",
                                               comment: "label in document inspector"),
-                                       value: self.result?.line?.formatted())
+                                       value: self.result.line?.formatted())
                 OptionalLabeledContent(String(localized: "Column", table: "Document",
                                               comment: "label in document inspector"),
-                                       value: self.result?.column?.formatted())
+                                       value: self.result.column?.formatted())
             }
             .monospacedDigit()
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -353,6 +372,10 @@ private extension DocumentInspectorView.Model {
         if let document {
             document.counter.updatesAll = true
             
+            self.textSettings = TextSettings(encoding: document.fileEncoding,
+                                             lineEnding: document.lineEnding,
+                                             mode: .kind(.general))
+            
             self.observers = [
                 document.publisher(for: \.fileURL, options: .initial)
                     .receive(on: DispatchQueue.main)
@@ -362,16 +385,19 @@ private extension DocumentInspectorView.Model {
                     .sink { [weak self] in self?.attributes = $0 },
                 document.$fileEncoding
                     .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in self?.encoding = $0 },
+                    .sink { [weak self] in self?.textSettings?.encoding = $0 },
                 document.$lineEnding
                     .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in self?.lineEnding = $0 },
+                    .sink { [weak self] in self?.textSettings?.lineEnding = $0 },
                 document.$mode
                     .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in self?.mode = $0 },
+                    .sink { [weak self] in self?.textSettings?.mode = $0 },
             ]
         } else {
             self.observers.removeAll()
+            self.fileURL = nil
+            self.attributes = nil
+            self.textSettings = nil
         }
     }
 }
@@ -390,7 +416,9 @@ private extension DocumentInspectorView.Model {
         owner: "clarus"
     )
     model.fileURL = URL(filePath: "/Users/clarus/Desktop/My Script.py")
-    model.encoding = .init(encoding: .utf8, withUTF8BOM: true)
+    model.textSettings = .init(encoding: .init(encoding: .utf8, withUTF8BOM: true),
+                               lineEnding: .lf,
+                               mode: .kind(.general))
     
     let result = EditorCounter.Result()
     result.characters = .init(entire: 1024, selected: 4)

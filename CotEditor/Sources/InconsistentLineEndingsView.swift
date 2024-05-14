@@ -134,6 +134,7 @@ private extension InconsistentLineEndingsView.Model {
             ]
         } else {
             self.observers.removeAll()
+            self.items.removeAll()
         }
     }
 }

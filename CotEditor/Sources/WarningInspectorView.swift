@@ -30,7 +30,7 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
     
     // MARK: Public Properties
     
-    var document: Document {
+    var document: Document? {
         
         didSet {
             if self.isViewShown {
@@ -48,7 +48,7 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
     
     // MARK: Lifecycle
     
-    required init(document: Document) {
+    required init(document: Document?) {
         
         self.document = document
         

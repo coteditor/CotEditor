@@ -166,10 +166,11 @@ private extension IncompatibleCharactersView.Model {
                     self.items = items
                 }
             }
-            
         } else {
             self.observer = nil
             self.task?.cancel()
+            self.items.removeAll()
+            self.isScanning = false
             self.updateMarkup([])
         }
     }

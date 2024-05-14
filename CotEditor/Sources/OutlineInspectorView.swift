@@ -31,7 +31,7 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
     
     // MARK: Public Properties
     
-    var document: Document {
+    var document: Document? {
         
         didSet {
             if self.isViewShown {
@@ -255,6 +255,7 @@ private extension OutlineInspectorView.Model {
             self.documentObserver = nil
             self.syntaxObserver = nil
             self.selectionObserver = nil
+            self.items.removeAll()
         }
     }
     
