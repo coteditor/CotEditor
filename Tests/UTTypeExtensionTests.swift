@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,6 +33,8 @@ final class UTTypeExtensionTests: XCTestCase {
         
         XCTAssertEqual(UTType.yaml.filenameExtensions, ["yml", "yaml"])
         XCTAssertEqual(UTType.svg.filenameExtensions, ["svg", "svgz"])
+        XCTAssertEqual(UTType.mpeg2TransportStream.filenameExtensions, ["ts"])
+        XCTAssertEqual(UTType.propertyList.filenameExtensions, ["plist"])
     }
     
     
@@ -45,5 +47,31 @@ final class UTTypeExtensionTests: XCTestCase {
         
         let svgzURL = URL(filePath: "FOO.SVGZ")
         XCTAssertTrue(svgzURL.conforms(to: .svg))
+    }
+    
+    
+    func testSVG() throws {
+        
+        XCTAssertTrue(UTType.svg.conforms(to: .text))
+        XCTAssertTrue(UTType.svg.conforms(to: .image))
+        
+        let svgz = try XCTUnwrap(UTType(filenameExtension: "svgz"))
+        XCTAssertEqual(svgz, .svg)
+        XCTAssertFalse(svgz.conforms(to: .gzip))
+    }
+    
+    
+    func testPlist() throws {
+        
+        XCTAssertTrue(UTType.propertyList.conforms(to: .data))
+        XCTAssertFalse(UTType.propertyList.conforms(to: .image))
+    }
+    
+    
+    func testIsPlainText() {
+        
+        XCTAssertTrue(UTType.propertyList.isPlainText)
+        XCTAssertTrue(UTType.svg.isPlainText)
+        XCTAssertTrue(UTType(filenameExtension: "ts")!.isPlainText)
     }
 }
