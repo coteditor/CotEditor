@@ -120,6 +120,9 @@ private extension StatusBar.Model {
             ]
         } else {
             self.documentObservers.removeAll()
+            self.fileSize = nil
+            self.fileEncoding = nil
+            self.lineEnding = nil
         }
     }
 }
@@ -152,8 +155,8 @@ struct StatusBar: View {
         
         var countResult: EditorCounter.Result?
         
-        var fileEncoding: FileEncoding = .utf8
-        var lineEnding: LineEnding = .lf
+        var fileEncoding: FileEncoding?
+        var lineEnding: LineEnding?
         
         fileprivate(set) var fileSize: Int64?
         
@@ -203,39 +206,43 @@ struct StatusBar: View {
                 Divider()
                     .padding(.vertical, 4)
                 
-                Picker(selection: $model.fileEncoding) {
-                    if !self.encodingManager.fileEncodings.contains(self.model.fileEncoding) {
-                        Text(self.model.fileEncoding.localizedName).tag(self.model.fileEncoding)
-                    }
-                    Section(String(localized: "Text Encoding", table: "Document", comment: "menu item header")) {
-                        ForEach(Array(self.encodingManager  .fileEncodings.enumerated()), id: \.offset) { (_, fileEncoding) in
-                            if let fileEncoding {
-                                Text(fileEncoding.localizedName).tag(fileEncoding)
-                            } else {
-                                Divider()
+                if let fileEncoding = Binding($model.fileEncoding) {
+                    Picker(selection: fileEncoding) {
+                        if !self.encodingManager.fileEncodings.contains(fileEncoding.wrappedValue) {
+                            Text(fileEncoding.wrappedValue.localizedName).tag(self.model.fileEncoding)
+                        }
+                        Section(String(localized: "Text Encoding", table: "Document", comment: "menu item header")) {
+                            ForEach(Array(self.encodingManager.fileEncodings.enumerated()), id: \.offset) { (_, fileEncoding) in
+                                if let fileEncoding {
+                                    Text(fileEncoding.localizedName).tag(fileEncoding)
+                                } else {
+                                    Divider()
+                                }
                             }
                         }
+                    } label: {
+                        EmptyView()
                     }
-                } label: {
-                    EmptyView()
+                    .onChange(of: fileEncoding.wrappedValue) { (_, newValue) in
+                        self.model.document?.askChangingEncoding(to: newValue)
+                    }
+                    .help(String(localized: "Text Encoding", table: "Document"))
+                    .accessibilityLabel(String(localized: "Text Encoding", table: "Document"))
                 }
-                .onChange(of: self.model.fileEncoding) { (_, newValue) in
-                    self.model.document?.askChangingEncoding(to: newValue)
-                }
-                .help(String(localized: "Text Encoding", table: "Document"))
-                .accessibilityLabel(String(localized: "Text Encoding", table: "Document"))
                 
                 Divider()
                     .padding(.vertical, 4)
                 
-                LineEndingPicker(String(localized: "Line Endings", table: "Document", comment: "menu item header"),
-                                 selection: $model.lineEnding)
-                .onChange(of: self.model.lineEnding) { (_, newValue) in
-                    self.model.document?.changeLineEnding(to: newValue)
+                if let lineEnding = Binding($model.lineEnding) {
+                    LineEndingPicker(String(localized: "Line Endings", table: "Document", comment: "menu item header"),
+                                     selection: lineEnding)
+                    .onChange(of: lineEnding.wrappedValue) { (_, newValue) in
+                        self.model.document?.changeLineEnding(to: newValue)
+                    }
+                    .help(String(localized: "Line Endings", table: "Document"))
+                    .accessibilityLabel(String(localized: "Line Endings", table: "Document", comment: "menu item header"))
+                    .frame(width: 48)
                 }
-                .help(String(localized: "Line Endings", table: "Document"))
-                .accessibilityLabel(String(localized: "Line Endings", table: "Document", comment: "menu item header"))
-                .frame(width: 48)
             }
         }
         .subscriptionStatusTask(for: Donation.groupID) { taskState in
