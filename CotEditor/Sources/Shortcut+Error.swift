@@ -66,7 +66,7 @@ extension Shortcut {
     /// Validates whether the shortcut is available for user customization.
     ///
     /// - Throws: `Shortcut.CustomizationError`
-    func checkCustomizationAvailability() throws {
+    @MainActor func checkCustomizationAvailability() throws {
         
         // Tab or Backtab
         if self.keyEquivalent == "\u{9}" || self.keyEquivalent == "\u{19}" {
