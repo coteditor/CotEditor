@@ -57,6 +57,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     let syntaxParser: SyntaxParser
     @Published private(set) var fileEncoding: FileEncoding
     @Published private(set) var lineEnding: LineEnding
+    @Published private(set) var mode: Mode
     @Published private(set) var fileAttributes: DocumentFile.Attributes?
     
     let lineEndingScanner: LineEndingScanner
@@ -110,6 +111,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // observe for inconsistent line endings
         self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
         
+        self.mode = .kind(.general)
+        
         super.init()
         
         self.lineEndingScanner.observe(lineEnding: self.$lineEnding)
@@ -121,7 +124,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         }
         self.defaultObservers = [
             UserDefaults.standard.publisher(for: .autoLinkDetection)
-                .sink { [weak self] in self?.urlDetector.isEnabled = $0 }
+                .sink { [weak self] in self?.urlDetector.isEnabled = $0 },
+            UserDefaults.standard.publisher(for: .modes)
+                .sink { [weak self] _ in self?.invalidateMode() },
         ]
         
         // observe syntax update
@@ -957,6 +962,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         guard !isInitial else { return }
         
         self.didChangeSyntax.send(name)
+        Task {
+            await self.invalidateMode()
+        }
     }
     
     
@@ -1238,6 +1246,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
                 self.isExternalUpdateAlertShown = false
                 activityCompletionHandler()
             }
+        }
+    }
+    
+    
+    private func invalidateMode() {
+        
+        Task {
+            self.mode = await ModeManager.shared.mode(for: self.syntaxParser.name)
         }
     }
     

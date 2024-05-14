@@ -85,8 +85,6 @@ final class EditorViewController: NSSplitViewController {
         self.defaultObservers = [
             UserDefaults.standard.publisher(for: .showNavigationBar)
                 .sink { [weak self] in self?.navigationBarItem.animator().isCollapsed = !$0 },
-            UserDefaults.standard.publisher(for: .modes)
-                .sink { [weak self] _ in self?.invalidateMode() },
         ]
         
         // set accessibility
@@ -197,6 +195,13 @@ final class EditorViewController: NSSplitViewController {
                 .removeDuplicates()
                 .receive(on: RunLoop.main)
                 .sink { [weak self] in self?.outlineNavigator.items = $0 },
+            self.document.$mode
+                .removeDuplicates()
+                .sink { [weak self] mode in
+                    Task { @MainActor in
+                        self?.textView?.mode = await ModeManager.shared.setting(for: mode)
+                    }
+                },
         ]
     }
     
@@ -210,18 +215,5 @@ final class EditorViewController: NSSplitViewController {
         textView.syntaxName = parser.name
         textView.commentDelimiters = parser.syntax.commentDelimiters
         textView.syntaxCompletionWords = parser.syntax.completionWords
-        
-        self.invalidateMode()
-    }
-    
-    
-    /// Updates the editing mode options in the text view.
-    private func invalidateMode() {
-        
-        let syntaxName = self.document.syntaxParser.name
-        
-        Task {
-            self.textView?.mode = await ModeManager.shared.setting(for: .syntax(syntaxName))
-        }
     }
 }

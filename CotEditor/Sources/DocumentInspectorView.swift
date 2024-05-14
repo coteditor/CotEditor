@@ -366,12 +366,9 @@ private extension DocumentInspectorView.Model {
                 document.$lineEnding
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] in self?.lineEnding = $0 },
-                document.didChangeSyntax
-                    .sink { [weak self] syntax in
-                        Task { @MainActor in
-                            self?.mode = await ModeManager.shared.mode(for: syntax)
-                        }
-                    },
+                document.$mode
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in self?.mode = $0 },
             ]
         } else {
             self.observers.removeAll()
