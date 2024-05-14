@@ -3,6 +3,11 @@
 4.8.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- [dev] Update the build environment to Xcode 15.4.
+
+
 ### Fixes
 
 - Fix a typo in the Czech localization.
