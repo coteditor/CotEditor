@@ -827,7 +827,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     ///
     /// - Parameter fileEncoding: The text encoding to test, or `nil` to test with the current file encoding.
     /// - Returns: `true` if the content can be encoded in encoding without loss of information; otherwise, `false`.
-    func canBeConverted(to fileEncoding: FileEncoding? = nil) -> Bool {
+    nonisolated(unsafe) func canBeConverted(to fileEncoding: FileEncoding? = nil) -> Bool {
         
         self.textStorage.string.canBeConverted(to: (fileEncoding ?? self.fileEncoding).encoding)
     }
@@ -934,7 +934,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     /// - Parameters:
     ///   - name: The name of the syntax to change with.
     ///   - isInitial: Whether the setting is initial.
-    func setSyntax(name: String, isInitial: Bool = false) {
+    nonisolated(unsafe) func setSyntax(name: String, isInitial: Bool = false) {
         
         let syntax: Syntax
         do {
