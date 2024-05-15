@@ -85,7 +85,8 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         scrollView.documentView = textView
         scrollView.identifier = NSUserInterfaceItemIdentifier("EditorScrollView")
         
-        let lineNumberView = LineNumberView(textView: textView)
+        let lineNumberView = LineNumberView()
+        lineNumberView.textView = textView
         
         let stackView = NSStackView(views: [lineNumberView, scrollView])
         stackView.spacing = 0
@@ -123,6 +124,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
                 .sink { [weak self] direction in
                     self?.stackView?.userInterfaceLayoutDirection = direction
                     (self?.textView.enclosingScrollView as? BidiScrollView)?.scrollerDirection = direction
+                    self?.lineNumberView.layoutDirection = direction
                 },
         ]
         
