@@ -93,8 +93,10 @@ final class WindowContentViewController: NSSplitViewController {
         self.addSplitViewItem(inspectorViewItem)
         
         // adopt the visibility of the inspector from the last change
-        self.windowObserver = self.view.observe(\.window) { [weak self] (_, _)  in
-            self?.restoreAutosavingState()
+        self.windowObserver = self.view.observe(\.window, options: .new) { [weak self] (_, change) in
+            if let window = change.newValue, window != nil {
+                self?.restoreAutosavingState()
+            }
         }
     }
     
