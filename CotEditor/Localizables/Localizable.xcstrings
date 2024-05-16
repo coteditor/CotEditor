@@ -5715,7 +5715,7 @@
       }
     },
     "Untitled" : {
-      "comment" : "initial setting file name",
+      "comment" : "default file name for new creation\ninitial setting file name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -5787,6 +5787,83 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未命名"
+          }
+        }
+      }
+    },
+    "untitled folder" : {
+      "comment" : "default folder name for new creation",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bez názvu"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuer Ordner"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "untitled folder"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "carpeta sin título"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dossier sans titre"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cartella senza nome"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名称未設定フォルダ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "naamloze map"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pasta sem título"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "adsız klasör"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未命名文件夹"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未命名檔案夾"
           }
         }
       }

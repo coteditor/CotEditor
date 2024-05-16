@@ -65,6 +65,36 @@ struct FileBrowserView: View {
                 let node = ids.first.flatMap { self.document.fileNode?.node(with: $0, keyPath: \.id) }
                 self.contextMenu(node: node)
             }
+            
+            HStack(spacing: 2) {
+                Menu(String(localized: "Add", table: "Document"), systemImage: "plus") {
+                    if let fileURL = self.selectedNode?.directoryURL ?? self.document.fileURL {
+                        Button(String(localized: "New File", table: "Document", comment: "menu item label")) {
+                            do {
+                                let url = try self.document.addFile(at: fileURL)
+                                Task {
+                                    await self.document.openDocument(at: url)
+                                }
+                            } catch {
+                                self.error = error
+                            }
+                        }
+                        Button(String(localized: "New Folder", table: "Document", comment: "menu item label")) {
+                            do {
+                                try self.document.addFolder(at: fileURL)
+                            } catch {
+                                self.error = error
+                            }
+                        }
+                    }
+                }
+                .menuIndicator(.hidden)
+                .labelStyle(.iconOnly)
+                
+                Spacer()
+            }
+            .buttonStyle(.borderless)
+            .padding(6)
         }
         .onChange(of: self.selection) { (oldValue, _) in
             guard let node = self.selectedNode, !node.isDirectory else { return }

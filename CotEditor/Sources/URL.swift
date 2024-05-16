@@ -74,6 +74,24 @@ extension URL {
     }
     
     
+    /// Creates an URL with a unique filename at the same directory by appending a number before the path extension.
+    ///
+    /// - Returns: A unique file URL, or `self` if it is already unique.
+    func appendingUniqueNumber() -> URL {
+        
+        guard self.isReachable else { return self }
+        
+        let pathExtension = self.pathExtension
+        let baseName = self.deletingPathExtension().lastPathComponent
+        let baseURL = self.deletingLastPathComponent()
+        
+        return (2...).lazy
+            .map { "\(baseName) \($0)" }
+            .map { baseURL.appending(component: $0).appendingPathExtension(pathExtension) }
+            .first { !$0.isReachable }!
+    }
+    
+    
     /// Checks the given URL is ancestor of the receiver.
     ///
     /// - Parameter url: The child candidate URL.
