@@ -447,6 +447,11 @@ extension DocumentWindowController: NSToolbarDelegate {
     func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
         
         switch itemIdentifier {
+            case .toggleSidebar:
+                let item = NSToolbarItem(itemIdentifier: itemIdentifier)
+                item.autovalidates = true
+                return item
+                
             case .syntax:
                 let popUpButton = NSPopUpButton()
                 popUpButton.bezelStyle = .toolbar

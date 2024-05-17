@@ -26,7 +26,7 @@
 import AppKit
 import SwiftUI
 
-final class WindowContentViewController: NSSplitViewController {
+final class WindowContentViewController: NSSplitViewController, NSToolbarItemValidation {
     
     // MARK: Public Properties
     
@@ -38,10 +38,15 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Private Properties
     
+    private var sidebarStateCache: Bool?
+    
+    private var sidebarViewItem: NSSplitViewItem?
     @ViewLoading private var contentViewItem: NSSplitViewItem
     @ViewLoading private var inspectorViewItem: NSSplitViewItem
     
     private var windowObserver: NSKeyValueObservation?
+    private var versionBrowserEnterObservationTask: Task<Void, any Error>?
+    private var versionBrowserExitObservationTask: Task<Void, any Error>?
     
     
     
@@ -85,6 +90,7 @@ final class WindowContentViewController: NSSplitViewController {
             let rootView = FileBrowserView(document: directoryDocument)
             let sidebarViewItem = NSSplitViewItem(sidebarWithViewController: NSHostingController(rootView: rootView))
             self.addSplitViewItem(sidebarViewItem)
+            self.sidebarViewItem = sidebarViewItem
         }
         
         let contentViewController = ContentViewController(document: self.document)
@@ -109,6 +115,41 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        // forcibly collapse sidebar while version browse
+        if let sidebarViewItem, let window = self.view.window {
+            self.versionBrowserEnterObservationTask = Task {
+                for await _ in NotificationCenter.default.notifications(named: NSWindow.willEnterVersionBrowserNotification, object: window).map(\.name) {
+                    self.sidebarStateCache = sidebarViewItem.isCollapsed
+                    sidebarViewItem.isCollapsed = true
+                }
+            }
+            self.versionBrowserExitObservationTask = Task {
+                for await _ in NotificationCenter.default.notifications(named: NSWindow.didExitVersionBrowserNotification, object: window).map(\.name) {
+                    self.sidebarStateCache = nil
+                    sidebarViewItem.isCollapsed = false
+                }
+            }
+        }
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.versionBrowserEnterObservationTask?.cancel()
+        self.versionBrowserExitObservationTask?.cancel()
+        if let sidebarStateCache {
+            self.sidebarViewItem?.isCollapsed = sidebarStateCache
+            self.sidebarStateCache = nil
+        }
+    }
+    
+    
     override func supplementalTarget(forAction action: Selector, sender: Any?) -> Any? {
         
         // reel responders from the ideal first responder in the content view
@@ -123,9 +164,26 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
+    func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
+        
+        switch item.action {
+            case #selector(toggleSidebar):
+                // validation of `toggleSidebar` is implemented in `validateToolbarItem`
+                return self.sidebarStateCache == nil
+            default:
+                break
+        }
+        
+        return true
+    }
+    
+    
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
+            case #selector(toggleSidebar):
+                return self.sidebarStateCache == nil
+                
             case #selector(toggleInspector):
                 (item as? NSMenuItem)?.title = self.isInspectorShown
                     ? String(localized: "Hide Inspector", table: "MainMenu")
