@@ -66,12 +66,6 @@ final class WindowContentViewController: NSSplitViewController {
         self.view.addSubview(self.splitView)
         
         self.splitView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.view.topAnchor.constraint(equalTo: self.splitView.topAnchor),
-            self.view.bottomAnchor.constraint(equalTo: self.splitView.bottomAnchor),
-            self.view.leadingAnchor.constraint(equalTo: self.splitView.leadingAnchor),
-            self.view.trailingAnchor.constraint(equalTo: self.splitView.trailingAnchor),
-        ])
     }
     
     
