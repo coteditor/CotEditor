@@ -73,6 +73,17 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
+    deinit {
+        // detach layoutManager safely
+        guard
+            let textStorage = self.textView.textStorage,
+            let layoutManager = self.textView.layoutManager
+        else { return assertionFailure() }
+        
+        textStorage.removeLayoutManager(layoutManager)
+    }
+    
+    
     override func loadView() {
         
         let textView = EditorTextView()
@@ -133,20 +144,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             UserDefaults.standard.publisher(for: .showLineNumberSeparator, initial: true)
                 .assign(to: \.drawsSeparator, on: self.lineNumberView),
         ]
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        // detach layoutManager safely
-        guard
-            let textStorage = self.textView.textStorage,
-            let layoutManager = self.textView.layoutManager
-        else { return assertionFailure() }
-        
-        textStorage.removeLayoutManager(layoutManager)
     }
     
     

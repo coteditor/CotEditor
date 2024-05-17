@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -43,6 +43,7 @@ final class HoleContentView: NSView {
         
         super.viewWillMove(toWindow: newWindow)
         
+        self.holeViewObserver?.cancel()
         self.windowOpacityObserver = newWindow?.publisher(for: \.isOpaque, options: .initial)
             .sink { [unowned self] isOpaque in
                 self.holeViewObserver = if isOpaque {

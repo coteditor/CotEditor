@@ -92,9 +92,9 @@ final class FindPanelContentViewController: NSSplitViewController {
     }
     
     
-    override func viewWillDisappear() {
+    override func viewDidDisappear() {
         
-        super.viewWillDisappear()
+        super.viewDidDisappear()
         
         self.fieldSplitViewItem.holdingPriority = .defaultHigh
         self.resultSplitViewItem.isCollapsed = true

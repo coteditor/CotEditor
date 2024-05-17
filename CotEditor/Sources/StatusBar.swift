@@ -46,9 +46,9 @@ final class StatusBarController: NSHostingController<StatusBar> {
     }
     
     
-    override func viewDidAppear() {
+    override func viewWillAppear() {
         
-        super.viewDidAppear()
+        super.viewWillAppear()
         
         self.model.onAppear()
     }

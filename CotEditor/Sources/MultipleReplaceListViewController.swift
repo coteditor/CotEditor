@@ -96,6 +96,14 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         self.settingUpdateObserver = self.detailViewController?.didSettingUpdate
             .sink { [weak self] in self?.saveSetting(setting: $0) }
     }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.settingUpdateObserver?.cancel()
+    }
 
     
     
