@@ -26,8 +26,15 @@
 import AppKit
 import Observation
 import UniformTypeIdentifiers
+import OSLog
 
 @Observable final class DirectoryDocument: NSDocument {
+    
+    private enum SerializationKey {
+        
+        static let documents = "documents"
+    }
+    
     
     // MARK: Public Properties
     
@@ -53,6 +60,35 @@ import UniformTypeIdentifiers
     override class func canConcurrentlyReadDocuments(ofType typeName: String) -> Bool {
         
         true
+    }
+    
+    
+    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
+        
+        super.encodeRestorableState(with: coder, backgroundQueue: queue)
+        
+        let fileData = self.documents
+            .compactMap(\.fileURL)
+            .compactMap { try? $0.bookmarkData(options: .withSecurityScope) }
+        coder.encode(fileData, forKey: SerializationKey.documents)
+    }
+    
+    
+    override func restoreState(with coder: NSCoder) {
+        
+        super.restoreState(with: coder)
+        
+        if let fileData = coder.decodeArrayOfObjects(ofClass: NSData.self, forKey: SerializationKey.documents) as? [Data] {
+            let fileURLs = fileData.compactMap {
+                var isStale = false
+                return try? URL(resolvingBookmarkData: $0, options: .withSecurityScope, bookmarkDataIsStale: &isStale)
+            }
+            Task {
+                for fileURL in fileURLs {
+                    await self.openDocument(at: fileURL)
+                }
+            }
+        }
     }
     
     
@@ -237,6 +273,7 @@ import UniformTypeIdentifiers
             document.close()
             self.documents.removeFirst(document)
         }
+        self.invalidateRestorableState()
     }
 }
 
