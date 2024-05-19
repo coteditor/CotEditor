@@ -126,7 +126,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             UserDefaults.standard.publisher(for: .autoLinkDetection)
                 .sink { [weak self] in self?.urlDetector.isEnabled = $0 },
             UserDefaults.standard.publisher(for: .modes)
-                .sink { [weak self] _ in self?.invalidateMode() },
+                .sink { [weak self] _ in Task { await self?.invalidateMode() } },
         ]
         
         // observe syntax update
@@ -941,6 +941,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     ///   - isInitial: Whether the setting is initial.
     nonisolated(unsafe) func setSyntax(name: String, isInitial: Bool = false) {
         
+        defer {
+            Task { await self.invalidateMode() }
+        }
+        
         let syntax: Syntax
         do {
             syntax = try SyntaxManager.shared.setting(name: name)
@@ -962,9 +966,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         guard !isInitial else { return }
         
         self.didChangeSyntax.send(name)
-        Task {
-            await self.invalidateMode()
-        }
     }
     
     
@@ -1250,11 +1251,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    private func invalidateMode() {
+    private func invalidateMode() async {
         
-        Task {
-            self.mode = await ModeManager.shared.mode(for: self.syntaxParser.name)
-        }
+        self.mode = await ModeManager.shared.mode(for: self.syntaxParser.name)
     }
     
     
