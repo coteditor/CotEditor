@@ -49,7 +49,7 @@ struct DocumentFile {
     }
     
     
-    struct Attributes {
+    struct Attributes: Equatable {
         
         var creationDate: Date?
         var modificationDate: Date?

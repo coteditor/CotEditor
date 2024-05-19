@@ -25,12 +25,13 @@
 //
 
 import AppKit
+import Observation
 import Combine
 import SwiftUI
 import UniformTypeIdentifiers
 import OSLog
 
-final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging {
+@Observable final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging {
     
     // MARK: Enums
     
@@ -55,21 +56,21 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     let textStorage = NSTextStorage()
     let syntaxParser: SyntaxParser
-    @Published private(set) var fileEncoding: FileEncoding
-    @Published private(set) var lineEnding: LineEnding
-    @Published private(set) var mode: Mode
-    @Published private(set) var fileAttributes: DocumentFile.Attributes?
+    @ObservationIgnored @Published private(set) var fileEncoding: FileEncoding
+    @ObservationIgnored @Published private(set) var lineEnding: LineEnding
+    @ObservationIgnored @Published private(set) var mode: Mode
+    private(set) var fileAttributes: DocumentFile.Attributes?
     
     let lineEndingScanner: LineEndingScanner
     let counter = EditorCounter()
-    private(set) lazy var selection = TextSelection(document: self)
+    @ObservationIgnored private(set) lazy var selection = TextSelection(document: self)
     
     let didChangeSyntax = PassthroughSubject<String, Never>()
     
     
     // MARK: Private Properties
     
-    private lazy var printPanelAccessoryController: PrintPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory", bundle: nil).instantiateInitialController()!
+    @ObservationIgnored private lazy var printPanelAccessoryController: PrintPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory", bundle: nil).instantiateInitialController()!
     
     private var readingEncoding: String.Encoding?  // encoding to read document file
     private var fileData: Data?
@@ -80,7 +81,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     private var isExternalUpdateAlertShown = false
     private var allowsLossySaving = false
     
-    private lazy var urlDetector = URLDetector(textStorage: self.textStorage)
+    @ObservationIgnored private lazy var urlDetector = URLDetector(textStorage: self.textStorage)
     
     private var syntaxUpdateObserver: AnyCancellable?
     private var textStorageObserver: AnyCancellable?

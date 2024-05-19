@@ -35,7 +35,7 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
         
         didSet {
             if self.isViewShown {
-                self.model.document = document
+                self.model.updateDocument(to: document)
             }
         }
     }
@@ -67,7 +67,7 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
         
         super.viewWillAppear()
         
-        self.model.document = self.document
+        self.model.updateDocument(to: self.document)
     }
     
     
@@ -75,7 +75,7 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
         
         super.viewDidDisappear()
         
-        self.model.document = nil
+        self.model.updateDocument(to: nil)
     }
 }
 
@@ -105,9 +105,16 @@ struct DocumentInspectorView: View {
         fileprivate var textSettings: TextSettings?
         fileprivate var countResult: EditorCounter.Result?
         
-        fileprivate var document: Document?  { willSet { self.invalidateObservation(document: newValue) } }
+        private(set) var document: Document?
         
         private var observers: Set<AnyCancellable> = []
+        
+        
+        func updateDocument(to document: Document?) {
+            
+            self.invalidateObservation(document: document)
+            self.document = document
+        }
     }
     
     
@@ -136,6 +143,9 @@ struct DocumentInspectorView: View {
             .padding(EdgeInsets(top: 4, leading: 12, bottom: 12, trailing: 12))
             .disclosureGroupStyle(InspectorDisclosureGroupStyle())
             .labeledContentStyle(InspectorLabeledContentStyle())
+            .onChange(of: self.model.document?.fileAttributes, initial: true) { (_, newValue) in
+                self.model.attributes = newValue
+            }
         }
         .accessibilityLabel(Text("Document Inspector", tableName: "Document"))
         .controlSize(.small)
@@ -380,9 +390,6 @@ private extension DocumentInspectorView.Model {
                 document.publisher(for: \.fileURL, options: .initial)
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] in self?.fileURL = $0 },
-                document.$fileAttributes
-                    .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in self?.attributes = $0 },
                 document.$fileEncoding
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] in self?.textSettings?.encoding = $0 },
@@ -396,7 +403,6 @@ private extension DocumentInspectorView.Model {
         } else {
             self.observers.removeAll()
             self.fileURL = nil
-            self.attributes = nil
             self.textSettings = nil
         }
     }

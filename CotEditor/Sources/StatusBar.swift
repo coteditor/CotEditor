@@ -106,11 +106,6 @@ private extension StatusBar.Model {
             document.counter.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
             
             self.documentObservers = [
-                document.$fileAttributes
-                    .map { $0?.size }
-                    .removeDuplicates()
-                    .receive(on: DispatchQueue.main)
-                    .sink { [weak self] in self?.fileSize = $0 },
                 document.$fileEncoding
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] in self?.fileEncoding = $0 },
@@ -120,7 +115,6 @@ private extension StatusBar.Model {
             ]
         } else {
             self.documentObservers.removeAll()
-            self.fileSize = nil
             self.fileEncoding = nil
             self.lineEnding = nil
         }
@@ -151,14 +145,12 @@ struct StatusBar: View {
     
     @MainActor @Observable final class Model {
         
-        var document: Document?  { willSet { self.invalidateObservation(document: newValue) } }
+        private(set) var document: Document?
         
         var countResult: EditorCounter.Result?
         
         var fileEncoding: FileEncoding?
         var lineEnding: LineEnding?
-        
-        fileprivate(set) var fileSize: Int64?
         
         private var isActive: Bool = false
         private var defaultsObserver: AnyCancellable?
@@ -167,6 +159,13 @@ struct StatusBar: View {
         
         init(document: Document? = nil) {
             
+            self.document = document
+        }
+        
+        
+        func updateDocument(to document: Document) {
+            
+            self.invalidateObservation(document: document)
             self.document = document
         }
     }
@@ -193,7 +192,7 @@ struct StatusBar: View {
             
             Spacer()
             
-            if let fileSize = self.model.fileSize {
+            if let fileSize = self.model.document?.fileAttributes?.size {
                 Text(fileSize, format: .byteCount(style: .file, spellsOutZero: false))
                     .monospacedDigit()
                     .help(String(localized: "File size", table: "Document", comment: "tooltip"))

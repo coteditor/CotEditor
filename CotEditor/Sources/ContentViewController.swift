@@ -128,6 +128,6 @@ final class ContentViewController: NSSplitViewController {
         self.documentViewItem = NSSplitViewItem(viewController: DocumentViewController(document: self.document))
         self.insertSplitViewItem(self.documentViewItem, at: 0)
         
-        self.statusBarModel.document = self.document
+        self.statusBarModel.updateDocument(to: self.document)
     }
 }
