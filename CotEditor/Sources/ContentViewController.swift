@@ -30,21 +30,19 @@ final class ContentViewController: NSSplitViewController {
     
     // MARK: Public Properties
     
-    var document: Document {
-        
-        didSet {
-            self.documentViewController.document = document
-            self.statusBarModel.document = document
-        }
-    }
+    var document: Document  { didSet { self.updateDocument(from: oldValue) } }
     
-    private(set) lazy var documentViewController = DocumentViewController(document: self.document)
+    var documentViewController: DocumentViewController? {
+        
+        self.documentViewItem.viewController as? DocumentViewController
+    }
     
     
     // MARK: Private Properties
     
-    private lazy var statusBarModel = StatusBar.Model(document: self.document)
+    @ViewLoading private var documentViewItem: NSSplitViewItem
     @ViewLoading private var statusBarItem: NSSplitViewItem
+    private lazy var statusBarModel = StatusBar.Model(document: self.document)
     
     private var defaultsObserver: AnyCancellable?
     
@@ -69,15 +67,15 @@ final class ContentViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
-        self.splitView.isVertical = false
-        
-        self.addChild(self.documentViewController)
+        // set document view
+        self.documentViewItem = NSSplitViewItem(viewController: DocumentViewController(document: self.document))
         
         // set status bar
-        let statusBarItem = NSSplitViewItem(viewController: StatusBarController(model: self.statusBarModel))
-        statusBarItem.isCollapsed = !UserDefaults.standard[.showStatusBar]
-        self.addSplitViewItem(statusBarItem)
-        self.statusBarItem = statusBarItem
+        self.statusBarItem = NSSplitViewItem(viewController: StatusBarController(model: self.statusBarModel))
+        self.statusBarItem.isCollapsed = !UserDefaults.standard[.showStatusBar]
+        
+        self.splitView.isVertical = false
+        self.splitViewItems = [self.documentViewItem, self.statusBarItem]
         
         // observe user defaults
         self.defaultsObserver = UserDefaults.standard.publisher(for: .showStatusBar, initial: false)
@@ -116,5 +114,20 @@ final class ContentViewController: NSSplitViewController {
     @IBAction func toggleStatusBar(_ sender: Any?) {
         
         UserDefaults.standard[.showStatusBar].toggle()
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Updates the document in children.
+    private func updateDocument(from oldDocument: Document) {
+        
+        guard oldDocument != self.document else { return }
+        
+        self.removeSplitViewItem(self.documentViewItem)
+        self.documentViewItem = NSSplitViewItem(viewController: DocumentViewController(document: self.document))
+        self.insertSplitViewItem(self.documentViewItem, at: 0)
+        
+        self.statusBarModel.document = self.document
     }
 }

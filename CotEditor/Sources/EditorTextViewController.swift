@@ -40,20 +40,19 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     // MARK: Public Properties
     
-    var document: NSDocument
-    
     @ViewLoading private(set) var textView: EditorTextView
     
     
     // MARK: Private Properties
+    
+    private let document: NSDocument
     
     private var stackView: NSStackView?  { self.view as? NSStackView }
     @ViewLoading private var lineNumberView: LineNumberView
     
     private weak var advancedCounterView: NSView?
     
-    private var textViewObservers: Set<AnyCancellable> = []
-    private var defaultsObservers: Set<AnyCancellable> = []
+    private var observers: Set<AnyCancellable> = []
     
     
     
@@ -116,7 +115,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         // set identifier for state restoration
         self.identifier = NSUserInterfaceItemIdentifier("EditorTextViewController")
         
-        self.textViewObservers = [
+        self.observers = [
             // observe text orientation for line number view
             self.textView.publisher(for: \.layoutOrientation, options: .initial)
                 .sink { [weak self] orientation in
@@ -137,10 +136,8 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
                     (self?.textView.enclosingScrollView as? BidiScrollView)?.scrollerDirection = direction
                     self?.lineNumberView.layoutDirection = direction
                 },
-        ]
-        
-        // toggle visibility of the separator of the line number view
-        self.defaultsObservers = [
+            
+            // toggle visibility of the separator of the line number view
             UserDefaults.standard.publisher(for: .showLineNumberSeparator, initial: true)
                 .assign(to: \.drawsSeparator, on: self.lineNumberView),
         ]

@@ -32,20 +32,19 @@ final class EditorViewController: NSSplitViewController {
     
     // MARK: Public Properties
     
-    var document: Document  { didSet { self.updateDocument() } }
     var textView: EditorTextView?  { self.textViewController.textView }
     
     
     // MARK: Private Properties
     
+    private let document: Document
+    private let splitState: SplitState
+    
     private lazy var outlineNavigator = OutlineNavigator()
     private lazy var textViewController = EditorTextViewController(document: self.document)
     @ViewLoading private var navigationBarItem: NSSplitViewItem
     
-    private var splitState: SplitState
-    
-    private var defaultObservers: [AnyCancellable] = []
-    private var documentObservers: [AnyCancellable] = []
+    private var observers: [AnyCancellable] = []
     
     
     // MARK: Lifecycle
@@ -69,20 +68,39 @@ final class EditorViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
-        self.updateDocument()
-        
         self.splitView.isVertical = false
         
+        // setup navigation bar
         self.outlineNavigator.textView = self.textView
         let navigationBar = NavigationBar(outlineNavigator: self.outlineNavigator, splitState: self.splitState)
         self.navigationBarItem = NSSplitViewItem(viewController: NSHostingController(rootView: navigationBar))
         self.navigationBarItem.isCollapsed = !UserDefaults.standard[.showNavigationBar]
         self.addSplitViewItem(self.navigationBarItem)
         
+        // setup text view controller
+        self.textView?.layoutManager?.replaceTextStorage(self.document.textStorage)
+        self.applySyntax()
         self.addChild(self.textViewController)
         
-        // observe user defaults
-        self.defaultObservers = [
+        // observe document and defaults
+        self.observers = [
+            self.document.$lineEnding
+                .receive(on: RunLoop.main)
+                .sink { [weak self] in self?.textView?.lineEnding = $0 },
+            self.document.didChangeSyntax
+                .receive(on: RunLoop.main)
+                .sink { [weak self] _ in self?.applySyntax() },
+            self.document.syntaxParser.$outlineItems
+                .removeDuplicates()
+                .receive(on: RunLoop.main)
+                .sink { [weak self] in self?.outlineNavigator.items = $0 },
+            self.document.$mode
+                .removeDuplicates()
+                .sink { [weak self] mode in
+                    Task { @MainActor in
+                        self?.textView?.mode = await ModeManager.shared.setting(for: mode)
+                    }
+                },
             UserDefaults.standard.publisher(for: .showNavigationBar)
                 .sink { [weak self] in self?.navigationBarItem.animator().isCollapsed = !$0 },
         ]
@@ -172,39 +190,6 @@ final class EditorViewController: NSSplitViewController {
     
     
     // MARK: Private Methods
-    
-    /// Setups document.
-    private func updateDocument() {
-        
-        assert(self.textView != nil)
-        
-        self.textViewController.document = self.document
-        
-        self.textView?.layoutManager?.replaceTextStorage(self.document.textStorage)
-        self.applySyntax()
-        
-        self.documentObservers = [
-            self.document.$lineEnding
-                .receive(on: RunLoop.main)
-                .sink { [weak self] in self?.textView?.lineEnding = $0 },
-            self.document.didChangeSyntax
-                .receive(on: RunLoop.main)
-                .sink { [weak self] _ in self?.applySyntax() },
-            
-            self.document.syntaxParser.$outlineItems
-                .removeDuplicates()
-                .receive(on: RunLoop.main)
-                .sink { [weak self] in self?.outlineNavigator.items = $0 },
-            self.document.$mode
-                .removeDuplicates()
-                .sink { [weak self] mode in
-                    Task { @MainActor in
-                        self?.textView?.mode = await ModeManager.shared.setting(for: mode)
-                    }
-                },
-        ]
-    }
-    
     
     /// Applies syntax to the inner text view.
     private func applySyntax() {

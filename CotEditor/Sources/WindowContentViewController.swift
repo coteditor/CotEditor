@@ -31,13 +31,13 @@ final class WindowContentViewController: NSSplitViewController {
     
     var document: Document  { didSet { self.updateDocument() } }
     
-    var documentViewController: DocumentViewController { self.contentViewController.documentViewController }
+    var documentViewController: DocumentViewController? { self.contentViewController.documentViewController }
     
     
     // MARK: Private Properties
     
-    private(set) lazy var contentViewController = ContentViewController(document: self.document)
-    private lazy var inspectorViewController = InspectorViewController(document: self.document)
+    @ViewLoading private var contentViewItem: NSSplitViewItem
+    @ViewLoading private var inspectorViewItem: NSSplitViewItem
     
     private var windowObserver: NSKeyValueObservation?
     
@@ -78,13 +78,16 @@ final class WindowContentViewController: NSSplitViewController {
         self.splitView.identifier = NSUserInterfaceItemIdentifier(autosaveName)
         self.splitView.autosaveName = autosaveName
         
-        self.addChild(self.contentViewController)
+        let contentViewController = ContentViewController(document: self.document)
+        self.contentViewItem = NSSplitViewItem(viewController: contentViewController)
+        self.addSplitViewItem(self.contentViewItem)
         
-        let inspectorViewItem = NSSplitViewItem(inspectorWithViewController: self.inspectorViewController)
-        inspectorViewItem.minimumThickness = NSSplitViewItem.unspecifiedDimension
-        inspectorViewItem.maximumThickness = NSSplitViewItem.unspecifiedDimension
-        inspectorViewItem.isCollapsed = true
-        self.addSplitViewItem(inspectorViewItem)
+        let inspectorViewController = InspectorViewController(document: self.document)
+        self.inspectorViewItem = NSSplitViewItem(inspectorWithViewController: inspectorViewController)
+        self.inspectorViewItem.minimumThickness = NSSplitViewItem.unspecifiedDimension
+        self.inspectorViewItem.maximumThickness = NSSplitViewItem.unspecifiedDimension
+        self.inspectorViewItem.isCollapsed = true
+        self.addSplitViewItem(self.inspectorViewItem)
         
         // adopt the visibility of the inspector from the last change
         self.windowObserver = self.view.observe(\.window, options: .new) { [weak self] (_, change) in
@@ -158,17 +161,24 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Private Methods
     
-    /// The split view item for the inspector.
-    private var inspectorViewItem: NSSplitViewItem? {
+    /// The view controller for the content view.
+    private var contentViewController: ContentViewController {
         
-        self.splitViewItem(for: self.inspectorViewController)
+        self.contentViewItem.viewController as! ContentViewController
+    }
+    
+    
+    /// The view controller for the inspector.
+    private var inspectorViewController: InspectorViewController {
+        
+        self.inspectorViewItem.viewController as! InspectorViewController
     }
     
     
     /// Whether the inspector is opened.
     private var isInspectorShown: Bool {
         
-        self.inspectorViewItem?.isCollapsed == false
+        self.inspectorViewItem.isCollapsed == false
     }
     
     
@@ -179,7 +189,7 @@ final class WindowContentViewController: NSSplitViewController {
     ///   - pane: The inspector pane to change visibility.
     private func setInspectorShown(_ shown: Bool, pane: InspectorPane) {
         
-        self.inspectorViewItem!.animator().isCollapsed = !shown
+        self.inspectorViewItem.animator().isCollapsed = !shown
         self.inspectorViewController.selectedTabViewItemIndex = pane.rawValue
     }
     

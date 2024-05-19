@@ -1627,9 +1627,9 @@
 			isa = PBXGroup;
 			children = (
 				2AE44DBA2BE67F81002A787D /* ContentViewController.swift */,
+				2AD21FCB1D2E3BE80018C8D1 /* StatusBar.swift */,
 				2AED70ED1D2E36EF006FFBCE /* DocumentViewController.swift */,
 				2A71BC7A1DDC50530085AE1C /* DocumentViewController+TouchBar.swift */,
-				2AD21FCB1D2E3BE80018C8D1 /* StatusBar.swift */,
 				2AA45A4A1D2E871900A1A401 /* EditorViewController.swift */,
 				2AA45A501D2E938500A1A401 /* NavigationBar.swift */,
 				2A6FD9D01D38933100A59784 /* EditorTextViewController.swift */,

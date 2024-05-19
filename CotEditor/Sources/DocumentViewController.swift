@@ -52,7 +52,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     // MARK: Public Properties
     
-    var document: Document  { didSet { self.updateDocument(from: oldValue) } }
+    let document: Document
     
     
     // MARK: Private Properties
@@ -71,15 +71,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         #keyPath(writingDirection),
     ]
     
-    private var splitState = SplitState()
+    private let splitState = SplitState()
     
     private weak var focusedChild: EditorViewController?
     
-    private var focusedEditorObserver: AnyCancellable?
-    private var documentSyntaxObserver: AnyCancellable?
-    private var defaultsObservers: Set<AnyCancellable> = []
-    private var themeChangeObserver: AnyCancellable?
-    private var appearanceObserver: AnyCancellable?
+    private var observers: Set<AnyCancellable> = []
     
     private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.document.syntaxParser.invalidateOutline() }
     
@@ -92,8 +88,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         self.document = document
         
         super.init(nibName: nil, bundle: nil)
-        
-        self.updateDocument()
     }
     
     
@@ -119,12 +113,17 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         // set identifier for state restoration
         self.identifier = NSUserInterfaceItemIdentifier("DocumentViewController")
         
-        // set first editor view
-        self.addEditorView()
+        // detect indent style
+        if UserDefaults.standard[.detectsIndentStyle],
+           let indentStyle = self.document.textStorage.string.detectedIndentStyle
+        {
+            self.isAutoTabExpandEnabled = switch indentStyle {
+                case .tab: false
+                case .space: true
+            }
+        }
         
-        // set user defaults
-        let defaults = UserDefaults.standard
-        switch defaults[.writingDirection] {
+        switch UserDefaults.standard[.writingDirection] {
             case .leftToRight:
                 break
             case .rightToLeft:
@@ -132,49 +131,71 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             case .vertical:
                 self.verticalLayoutOrientation = true
         }
+        
+        // start parsing syntax for highlighting and outlines
+        self.outlineParseDebouncer.perform()
+        self.document.syntaxParser.highlight()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(textStorageDidProcessEditing),
+                                               name: NSTextStorage.didProcessEditingNotification,
+                                               object: self.document.textStorage)
+        
+        // set first editor view
+        self.addEditorView()
         self.setTheme(name: ThemeManager.shared.userDefaultSettingName)
-        self.defaultsObservers = [
-            defaults.publisher(for: .theme, initial: false)
+        
+        // observe
+        self.observers = [
+            // observe syntax change
+            self.document.didChangeSyntax
+                .receive(on: RunLoop.main)
+                .sink { [weak self] _ in
+                    self?.outlineParseDebouncer.perform()
+                    self?.document.syntaxParser.highlight()
+                },
+            
+            // observe user defaults
+            UserDefaults.standard.publisher(for: .theme, initial: false)
                 .sink { [weak self] in self?.setTheme(name: $0) },
-            defaults.publisher(for: .showInvisibles, initial: true)
+            UserDefaults.standard.publisher(for: .showInvisibles, initial: true)
                 .sink { [weak self] in self?.showsInvisibles = $0 },
-            defaults.publisher(for: .showLineNumbers, initial: true)
+            UserDefaults.standard.publisher(for: .showLineNumbers, initial: true)
                 .sink { [weak self] in self?.showsLineNumber = $0 },
-            defaults.publisher(for: .wrapLines, initial: true)
+            UserDefaults.standard.publisher(for: .wrapLines, initial: true)
                 .sink { [weak self] in self?.wrapsLines = $0 },
-            defaults.publisher(for: .showPageGuide, initial: true)
+            UserDefaults.standard.publisher(for: .showPageGuide, initial: true)
                 .sink { [weak self] in self?.showsPageGuide = $0 },
-            defaults.publisher(for: .showIndentGuides, initial: true)
+            UserDefaults.standard.publisher(for: .showIndentGuides, initial: true)
                 .sink { [weak self] in self?.showsIndentGuides = $0 },
+            
+            // observe theme change
+            ThemeManager.shared.didUpdateSetting
+                .filter { [weak self] in $0.old == self?.theme?.name }
+                .compactMap(\.new)
+                .throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true)
+                .sink { [weak self] in self?.setTheme(name: $0) },
+            
+            // observe appearance change for theme toggle
+            self.view.publisher(for: \.effectiveAppearance)
+                .sink { [weak self] appearance in
+                    guard
+                        let self,
+                        !UserDefaults.standard[.pinsThemeAppearance],
+                        self.view.window != nil,
+                        let currentThemeName = self.theme?.name,
+                        let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: appearance.isDark),
+                        currentThemeName != themeName
+                    else { return }
+                    
+                    self.setTheme(name: themeName)
+                },
+            
+            // observe focus change
+            NotificationCenter.default.publisher(for: EditorTextView.didBecomeFirstResponderNotification)
+                .map { $0.object as! EditorTextView }
+                .compactMap { [weak self] textView in self?.editorViewControllers.first { $0.textView == textView } }
+                .sink { [weak self] in self?.focusedChild = $0 },
         ]
-        
-        // observe theme change
-        self.themeChangeObserver = ThemeManager.shared.didUpdateSetting
-            .filter { [weak self] in $0.old == self?.theme?.name }
-            .compactMap(\.new)
-            .throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true)
-            .sink { [weak self] in self?.setTheme(name: $0) }
-        
-        // observe appearance change for theme toggle
-        self.appearanceObserver = self.view.publisher(for: \.effectiveAppearance)
-            .sink { [weak self] appearance in
-                guard
-                    let self,
-                    !UserDefaults.standard[.pinsThemeAppearance],
-                    self.view.window != nil,
-                    let currentThemeName = self.theme?.name,
-                    let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: appearance.isDark),
-                    currentThemeName != themeName
-                else { return }
-                
-                self.setTheme(name: themeName)
-            }
-        
-        // observe focus change
-        self.focusedEditorObserver = NotificationCenter.default.publisher(for: EditorTextView.didBecomeFirstResponderNotification)
-            .map { $0.object as! EditorTextView }
-            .compactMap { [weak self] textView in self?.editorViewControllers.first { $0.textView == textView } }
-            .sink { [weak self] in self?.focusedChild = $0 }
     }
     
     
@@ -550,10 +571,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         else { return }
         
         textStorage.addAttributes(textView.typingAttributes, range: textStorage.range)
-        
-        self.editorViewControllers
-            .compactMap(\.textView)
-            .forEach { $0.setNeedsDisplay($0.visibleRect) }
     }
     
     
@@ -820,48 +837,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     private var editorViewControllers: [EditorViewController] {
         
         self.children.compactMap { $0 as? EditorViewController }
-    }
-    
-    
-    /// Sets the receiver and its children with the given document.
-    ///
-    /// - Parameter oldDocument: The old document if exists.
-    private func updateDocument(from oldDocument: Document? = nil) {
-        
-        for editorViewController in self.editorViewControllers {
-            editorViewController.document = self.document
-        }
-        
-        // detect indent style
-        if UserDefaults.standard[.detectsIndentStyle],
-           let indentStyle = self.document.textStorage.string.detectedIndentStyle
-        {
-            self.isAutoTabExpandEnabled = switch indentStyle {
-                case .tab: false
-                case .space: true
-            }
-        }
-        
-        // start parsing syntax for highlighting and outlines
-        self.outlineParseDebouncer.perform()
-        self.document.syntaxParser.highlight()
-        
-        if let oldDocument {
-            NotificationCenter.default.removeObserver(self, name: NSTextStorage.didProcessEditingNotification, object: oldDocument)
-        }
-        NotificationCenter.default.addObserver(self, selector: #selector(textStorageDidProcessEditing),
-                                               name: NSTextStorage.didProcessEditingNotification,
-                                               object: self.document.textStorage)
-        
-        // observe syntax change
-        self.documentSyntaxObserver = self.document.didChangeSyntax
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in
-                self?.outlineParseDebouncer.perform()
-                self?.document.syntaxParser.highlight()
-            }
-        
-        self.invalidateStyleInTextStorage()
     }
     
     
