@@ -44,6 +44,8 @@ extension Document: EditorSource {
 
 @Observable final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging {
     
+    nonisolated static let didUpdateChange = Notification.Name("didUpdateChange")
+    
     // MARK: Enums
     
     private enum SerializationKey {
@@ -719,6 +721,17 @@ extension Document: EditorSource {
         self.isTransient = false
         
         super.updateChangeCount(change)
+        
+        NotificationCenter.default.post(name: Document.didUpdateChange, object: self)
+    }
+    
+    
+    override func updateChangeCount(withToken changeCountToken: Any, for saveOperation: NSDocument.SaveOperationType) {
+        
+        // This method updates the values in the .isDocumentEdited and .hasUnautosavedChanges properties.
+        super.updateChangeCount(withToken: changeCountToken, for: saveOperation)
+        
+        NotificationCenter.default.post(name: Document.didUpdateChange, object: self)
     }
     
     

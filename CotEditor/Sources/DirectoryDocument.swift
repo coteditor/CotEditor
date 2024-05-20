@@ -47,6 +47,8 @@ import OSLog
     private var documents: [Document] = []
     private var windowController: DocumentWindowController?  { self.windowControllers.first as? DocumentWindowController }
     
+    private var documentObserver: (any NSObjectProtocol)?
+    
     
     
     // MARK: Document Methods
@@ -95,6 +97,16 @@ import OSLog
     override func makeWindowControllers() {
         
         self.addWindowController(DocumentWindowController(directoryDocument: self))
+        
+        // observe document updates for the edited marker in the close button
+        if self.documentObserver == nil {
+            self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didUpdateChange, object: nil, queue: .main) { [unowned self] _ in
+                MainActor.assumeIsolated {
+                    let hasEditedDocuments = self.documents.contains { $0.isDocumentEdited }
+                    self.windowController?.setDocumentEdited(hasEditedDocuments)
+                }
+            }
+        }
     }
     
     
@@ -149,6 +161,10 @@ import OSLog
         
         for document in self.documents {
             document.close()
+        }
+        
+        if let documentObserver {
+            NotificationCenter.default.removeObserver(documentObserver)
         }
     }
     
