@@ -49,7 +49,7 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
     
     // MARK: Lifecycle
     
-    required init(document: Document) {
+    required init(document: Document?) {
         
         self.document = document
         

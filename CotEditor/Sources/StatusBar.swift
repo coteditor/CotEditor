@@ -163,7 +163,7 @@ struct StatusBar: View {
         }
         
         
-        func updateDocument(to document: Document) {
+        func updateDocument(to document: Document?) {
             
             self.invalidateObservation(document: document)
             self.document = document
@@ -192,20 +192,22 @@ struct StatusBar: View {
             
             Spacer()
             
-            if let fileSize = self.model.document?.fileAttributes?.size {
-                Text(fileSize, format: .byteCount(style: .file, spellsOutZero: false))
-                    .monospacedDigit()
-                    .help(String(localized: "File size", table: "Document", comment: "tooltip"))
-            } else {
-                Text(verbatim: "–")
-                    .foregroundStyle(.tertiary)
+            if let document = self.model.document {
+                if let fileSize = document.fileAttributes?.size {
+                    Text(fileSize, format: .byteCount(style: .file, spellsOutZero: false))
+                        .monospacedDigit()
+                        .help(String(localized: "File size", table: "Document", comment: "tooltip"))
+                } else {
+                    Text(verbatim: "–")
+                        .foregroundStyle(.tertiary)
+                }
             }
             
             HStack(spacing: 2) {
-                Divider()
-                    .padding(.vertical, 4)
-                
                 if let fileEncoding = Binding($model.fileEncoding) {
+                    Divider()
+                        .padding(.vertical, 4)
+                    
                     Picker(selection: fileEncoding) {
                         if !self.encodingManager.fileEncodings.contains(fileEncoding.wrappedValue) {
                             Text(fileEncoding.wrappedValue.localizedName).tag(self.model.fileEncoding)
@@ -229,10 +231,10 @@ struct StatusBar: View {
                     .accessibilityLabel(String(localized: "Text Encoding", table: "Document"))
                 }
                 
-                Divider()
-                    .padding(.vertical, 4)
-                
                 if let lineEnding = Binding($model.lineEnding) {
+                    Divider()
+                        .padding(.vertical, 4)
+                    
                     LineEndingPicker(String(localized: "Line Endings", table: "Document", comment: "menu item header"),
                                      selection: lineEnding)
                     .onChange(of: lineEnding.wrappedValue) { (_, newValue) in

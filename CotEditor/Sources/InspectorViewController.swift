@@ -44,14 +44,14 @@ final class InspectorViewController: NSTabViewController {
     
     // MARK: Public Properties
     
-    var document: Document  { didSet { self.updateDocument() } }
+    var document: Document?  { didSet { self.updateDocument() } }
     var selectedPane: InspectorPane { InspectorPane(rawValue: self.selectedTabViewItemIndex) ?? .document }
     
     
     
     // MARK: Lifecycle
     
-    init(document: Document) {
+    init(document: Document? = nil) {
         
         self.document = document
         
@@ -178,7 +178,7 @@ private extension InspectorPane {
     }
     
     
-    @MainActor func viewController(document: Document) -> NSViewController {
+    @MainActor func viewController(document: Document?) -> NSViewController {
         
         switch self {
             case .document:
