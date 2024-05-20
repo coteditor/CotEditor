@@ -53,8 +53,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Private Properties
     
-    private static let windowFrameName = NSWindow.FrameAutosaveName("Document")
-    
     private var directoryDocument: DirectoryDocument?
     private var hasDirectoryBrowser: Bool  { self.directoryDocument != nil }
     
@@ -82,7 +80,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         let window = DocumentWindow(contentViewController: WindowContentViewController(document: document, directoryDocument: directoryDocument))
         window.styleMask.update(with: .fullSizeContentView)
-        window.setFrameAutosaveName(Self.windowFrameName)
+        window.setFrameAutosaveName((directoryDocument == nil) ? "Document" : "DirectoryDocument")
         
         if directoryDocument != nil {
             window.tabbingMode = .disallowed
@@ -192,7 +190,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         guard self.isWindowLoaded, let window = self.window else { return }
         
         // workaround issue that window frame is not saved automatically (2022-08 macOS 12.5, FB11082729)
-        window.saveFrame(usingName: Self.windowFrameName)
+        window.saveFrame(usingName: window.frameAutosaveName)
     }
     
     
