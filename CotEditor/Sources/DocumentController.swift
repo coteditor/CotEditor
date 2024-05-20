@@ -187,6 +187,8 @@ final class DocumentController: NSDocumentController {
         let accessoryView = NSHostingView(rootView: accessory)
         accessoryView.sizingOptions = .intrinsicContentSize
         
+        openPanel.delegate = options
+        openPanel.canChooseDirectories = true
         openPanel.accessoryView = accessoryView
         openPanel.isAccessoryViewDisclosed = true
         

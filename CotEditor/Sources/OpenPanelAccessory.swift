@@ -28,9 +28,18 @@ import Observation
 import AppKit.NSOpenPanel
 import FileEncoding
 
-@Observable final class OpenOptions {
+@Observable final class OpenOptions: NSObject, NSOpenSavePanelDelegate {
     
     var encoding: String.Encoding?
+    var isDirectory: Bool = false
+    
+    
+    func panelSelectionDidChange(_ sender: Any?) {
+        
+        guard let panel = sender as? NSOpenPanel else { return }
+        
+        self.isDirectory = panel.url?.hasDirectoryPath == true
+    }
 }
 
 
@@ -64,6 +73,7 @@ struct OpenPanelAccessory: View {
                         }
                     }
                 }
+                .disabled(self.options.isDirectory)
                 
                 Toggle(String(localized: "Show invisible files", table: "OpenPanelAccessory", comment: "toggle button label"), isOn: $showsHiddenFiles)
                     .onChange(of: self.showsHiddenFiles) { (_, newValue) in
