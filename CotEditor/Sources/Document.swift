@@ -357,6 +357,7 @@ import OSLog
         
         if file.allowsInconsistentLineEndings {
             self.suppressesInconsistentLineEndingAlert = true
+            self.invalidateRestorableState()
         }
         
         // update textStorage
@@ -968,6 +969,7 @@ import OSLog
         
         Task { @MainActor in
             self.didChangeSyntax.send(name)
+            self.invalidateRestorableState()
         }
     }
     
