@@ -232,6 +232,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         self.synchronizeWindowTitleWithDocumentName()
         
+        self.syntaxPopUpButton?.isEnabled = (document != nil)
+        
         // observe document's syntax change for toolbar
         self.documentSyntaxObserver = nil
         if let document {
@@ -453,6 +455,7 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .syntax:
                 let popUpButton = NSPopUpButton()
                 popUpButton.bezelStyle = .toolbar
+                popUpButton.isEnabled = false  // enable later
                 self.syntaxPopUpButton = popUpButton
                 self.buildSyntaxPopUpButton()
                 
