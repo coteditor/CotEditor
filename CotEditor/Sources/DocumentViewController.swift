@@ -148,7 +148,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         self.observers = [
             // observe syntax change
             self.document.didChangeSyntax
-                .receive(on: RunLoop.main)
                 .sink { [weak self] _ in
                     self?.outlineParseDebouncer.perform()
                     self?.document.syntaxParser.highlight()

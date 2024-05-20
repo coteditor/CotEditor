@@ -88,7 +88,6 @@ final class EditorViewController: NSSplitViewController {
                 .receive(on: RunLoop.main)
                 .sink { [weak self] in self?.textView?.lineEnding = $0 },
             self.document.didChangeSyntax
-                .receive(on: RunLoop.main)
                 .sink { [weak self] _ in self?.applySyntax() },
             self.document.syntaxParser.$outlineItems
                 .removeDuplicates()

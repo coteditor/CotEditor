@@ -966,7 +966,9 @@ import OSLog
         // to avoid redundant highlight parse due to async notification.
         guard !isInitial else { return }
         
-        self.didChangeSyntax.send(name)
+        Task { @MainActor in
+            self.didChangeSyntax.send(name)
+        }
     }
     
     
