@@ -50,7 +50,15 @@ struct FileBrowserView: View {
                 .sorted(keepsFoldersOnTop: self.keepsFoldersOnTop)
             
             List(fileNodes, children: \.children, selection: $selection) { node in
-                NodeView(node: node)
+                NodeView(node: node) { name in
+                    do {
+                        try self.document.renameItem(at: node.fileURL, with: name)
+                    } catch {
+                        self.error = error
+                        return false
+                    }
+                    return true
+                }
             }
             .listStyle(.sidebar)
             .contextMenu(forSelectionType: FileNode.ID.self) { ids in
@@ -134,19 +142,58 @@ struct FileBrowserView: View {
 private struct NodeView: View {
     
     var node: FileNode
+    var onEdit: (String) -> Bool
     
     @AppStorage(.fileBrowserShowsFilenameExtensions) private var showsFilenameExtensions
+    
+    @FocusState var isFocused: Bool
+    
+    @State private var name: String
+    
+    
+    init(node: FileNode, onEdit: @escaping (String) -> Bool) {
+        
+        self.node = node
+        self.onEdit = onEdit
+        self._name = State(initialValue: node.name)
+        
+        self.resetName()
+    }
     
     
     var body: some View {
         
         Label {
-            Text(self.showsFilenameExtensions ? self.node.name : self.node.name.deletingPathExtension)
+            TextField(text: $name, label: EmptyView.init)
+                .focused($isFocused)
         } icon: {
             Image(systemName: self.node.isDirectory ? "folder" : "doc")
         }
-        .lineLimit(1)
-        .opacity(self.node.isHidden ? 0.5 : 1)
+        .opacity((self.node.isHidden && !self.isFocused) ? 0.5 : 1)
+        .onChange(of: self.showsFilenameExtensions) {
+            self.resetName()
+        }
+        .onChange(of: self.isFocused) { (_, newValue) in
+            if newValue {
+                // enter focus
+                self.name = self.node.name
+            } else {
+                // exit focus
+                guard
+                    self.name != self.node.name,
+                    self.onEdit(self.name)
+                else {
+                    self.resetName()
+                    return
+                }
+            }
+        }
+    }
+    
+    
+    private func resetName() {
+        
+        self.name = self.showsFilenameExtensions ? self.node.name : self.node.name.deletingPathExtension
     }
 }
 

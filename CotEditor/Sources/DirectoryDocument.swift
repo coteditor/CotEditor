@@ -252,6 +252,62 @@ import OSLog
     }
     
     
+    /// Renames the file at the given `fileURL` with a new name.
+    ///
+    /// - Parameters:
+    ///   - fileURL: The file URL at the file to rename.
+    ///   - name: The new file name.
+    func renameItem(at fileURL: URL, with name: String) throws {
+        
+        // validate new name
+        guard !name.isEmpty else {
+            throw InvalidNameError.empty
+        }
+        guard !name.contains("/") else {
+            throw InvalidNameError.invalidCharacter("/")
+        }
+        guard !name.contains(":") else {
+            throw InvalidNameError.invalidCharacter(":")
+        }
+        
+        let newURL = fileURL.deletingLastPathComponent().appending(component: name)
+        
+        do {
+            try self.moveItem(from: fileURL, to: newURL)
+        } catch {
+            if (error as? CocoaError)?.errorCode == CocoaError.fileWriteFileExists.rawValue {
+                throw InvalidNameError.duplicated(name: name)
+            } else {
+                throw error
+            }
+        }
+    }
+    
+    
+    /// Move the file to a new destination inside the directory.
+    ///
+    /// - Parameters:
+    ///   - sourceURL: The current file URL.
+    ///   - destinationURL: The destination.
+    func moveItem(from sourceURL: URL, to destinationURL: URL) throws {
+        
+        var coordinationError: NSError?
+        var movingError: (any Error)?
+        let coordinator = NSFileCoordinator(filePresenter: self)
+        coordinator.coordinate(writingItemAt: sourceURL, options: .forMoving, writingItemAt: destinationURL, options: .forMoving, error: &coordinationError) { (newSourceURL, newDestinationURL) in
+            do {
+                try FileManager.default.moveItem(at: newSourceURL, to: newDestinationURL)
+            } catch {
+                movingError = error
+            }
+        }
+        
+        if let error = coordinationError ?? movingError {
+            throw error
+        }
+    }
+    
+    
     /// Properly moves the item to the trash.
     ///
     /// - Parameters:
@@ -325,6 +381,7 @@ private enum DirectoryDocumentError: LocalizedError {
         switch self {
             case .alreadyOpen(let fileURL):
                 String(localized: "DirectoryDocumentError.alreadyOpen.description", defaultValue: "The file “\(fileURL.lastPathComponent)” is already open in a different window.")
+                
         }
     }
     
