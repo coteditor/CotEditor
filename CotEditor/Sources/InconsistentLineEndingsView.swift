@@ -25,28 +25,19 @@
 
 import SwiftUI
 import Observation
-import Combine
 
 struct InconsistentLineEndingsView: View {
     
-    @MainActor @Observable final class Model {
-        
-        typealias Item = ValueRange<LineEnding>
-        
-        
-        var items: [Item] = []
-        var lineEnding: LineEnding = .lf
-        
-        var document: Document?  { didSet { self.invalidateObservation() } }
-        
-        private var observers: Set<AnyCancellable> = []
-    }
+    typealias Item = ValueRange<LineEnding>
     
     
-    @State var model: Model
+    var document: Document?
     
-    @State private var selection: Model.Item.ID?
-    @State private var sortOrder: [KeyPathComparator<Model.Item>] = []
+    @State var items: [Item] = []
+    @State var lineEnding: LineEnding = .lf
+    
+    @State private var selection: Item.ID?
+    @State private var sortOrder: [KeyPathComparator<Item>] = []
     
     
     var body: some View {
@@ -57,20 +48,20 @@ struct InconsistentLineEndingsView: View {
                 .foregroundStyle(.secondary)
                 .accessibilityRemoveTraits(.isHeader)
             
-            if self.model.items.isEmpty {
+            if self.items.isEmpty {
                 Text("No issues found.", tableName: "Document")
                     .foregroundStyle(.secondary)
             } else {
-                Text("Found \(self.model.items.count) line endings other than \(self.model.lineEnding.label).",
+                Text("Found \(self.items.count) line endings other than \(self.lineEnding.label).",
                      tableName: "Document",
                      comment: "%lld is the number of inconsistent line endings and %@ is a line ending type, such as LF")
             }
             
-            if !self.model.items.isEmpty {
-                Table(self.model.items, selection: $selection, sortOrder: $sortOrder) {
+            if !self.items.isEmpty {
+                Table(self.items, selection: $selection, sortOrder: $sortOrder) {
                     TableColumn(String(localized: "Line", table: "Document", comment: "table column header"), value: \.location) {
                         // calculate the line number first at this point to postpone the high cost processing as much as possible
-                        if let line = self.model.document?.lineEndingScanner.lineNumber(at: $0.location) {
+                        if let line = self.document?.lineEndingScanner.lineNumber(at: $0.location) {
                             Text(line, format: .number)
                                 .monospacedDigit()
                         }
@@ -82,31 +73,36 @@ struct InconsistentLineEndingsView: View {
                     }
                 }
                 .onChange(of: self.selection) { (_, newValue) in
-                    self.model.selectItem(id: newValue)
+                    self.selectItem(id: newValue)
                 }
                 .onChange(of: self.sortOrder) { (_, newValue) in
                     withAnimation {
-                        self.model.items.sort(using: newValue)
+                        self.items.sort(using: newValue)
                     }
                 }
                 .tableStyle(.bordered)
                 .border(Color(nsColor: .gridColor))
             }
         }
+        .onChange(of: self.document?.lineEndingScanner.inconsistentLineEndings, initial: true) { (_, newValue) in
+            self.items = (newValue ?? []).sorted(using: self.sortOrder)
+        }
+        .onChange(of: self.document?.lineEndingScanner.documentLineEnding, initial: true) { (_, newValue) in
+            self.lineEnding = newValue ?? .lf
+        }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(Text("Inconsistent Line Endings", tableName: "Document"))
         .controlSize(.small)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
-}
-
-
-private extension InconsistentLineEndingsView.Model {
+    
+    
+    // MARK: Private Methods
     
     /// Selects correspondence range of the item in the editor.
     ///
     /// - Parameter id: The `id` of the item to select.
-    func selectItem(id: Item.ID?) {
+    @MainActor private func selectItem(id: Item.ID?) {
         
         guard
             let item = self.items[id: id],
@@ -117,26 +113,6 @@ private extension InconsistentLineEndingsView.Model {
         textView.selectedRange = item.range
         textView.centerSelectionInVisibleArea(self)
     }
-    
-    
-    func invalidateObservation() {
-        
-        if let document {
-            self.observers = [
-                document.lineEndingScanner.$inconsistentLineEndings
-                    .removeDuplicates()
-                    .receive(on: RunLoop.main)
-                    .sink { [weak self] in self?.items = $0 },
-                document.$lineEnding
-                    .removeDuplicates()
-                    .receive(on: RunLoop.main)
-                    .sink { [weak self] in self?.lineEnding = $0 },
-            ]
-        } else {
-            self.observers.removeAll()
-            self.items.removeAll()
-        }
-    }
 }
 
 
@@ -144,16 +120,13 @@ private extension InconsistentLineEndingsView.Model {
 // MARK: - Preview
 
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
-    let model = InconsistentLineEndingsView.Model()
-    model.items = [
+    InconsistentLineEndingsView(items: [
         .init(value: .cr, range: .notFound)
-    ]
-    
-    return InconsistentLineEndingsView(model: model)
-        .padding(12)
+    ])
+    .padding(12)
 }
 
 #Preview("Empty", traits: .fixedLayout(width: 240, height: 300)) {
-    InconsistentLineEndingsView(model: .init())
+    InconsistentLineEndingsView()
         .padding(12)
 }

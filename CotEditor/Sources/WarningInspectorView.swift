@@ -34,7 +34,7 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
         
         didSet {
             if self.isViewShown {
-                self.model.document = document
+                self.model.updateDocument(to: document)
             }
         }
     }
@@ -51,6 +51,7 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
     required init(document: Document?) {
         
         self.document = document
+        self.model.updateDocument(to: document)
         
         super.init(rootView: WarningInspectorView(model: self.model))
     }
@@ -66,7 +67,7 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
         
         super.viewWillAppear()
         
-        self.model.document = self.document
+        self.model.updateDocument(to: self.document)
     }
     
     
@@ -74,7 +75,7 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
         
         super.viewDidDisappear()
         
-        self.model.document = nil
+        self.model.updateDocument(to: nil)
     }
 }
 
@@ -83,16 +84,16 @@ struct WarningInspectorView: View {
     
     @MainActor @Observable final class Model {
         
-        var document: Document? {
-            
-            didSet {
-                self.incompatibleCharactersModel.document = document
-                self.inconsistentLineEndingsModel.document = document
-            }
-        }
+        private(set) var document: Document?
         
         let incompatibleCharactersModel = IncompatibleCharactersView.Model()
-        let inconsistentLineEndingsModel = InconsistentLineEndingsView.Model()
+        
+        
+        func updateDocument(to document: Document?) {
+            
+            self.document = document
+            self.incompatibleCharactersModel.document = document
+        }
     }
     
     
@@ -104,7 +105,7 @@ struct WarningInspectorView: View {
         VSplitView {
             IncompatibleCharactersView(model: self.model.incompatibleCharactersModel)
                 .padding(.bottom, 12)
-            InconsistentLineEndingsView(model: self.model.inconsistentLineEndingsModel)
+            InconsistentLineEndingsView(document: self.model.document)
                 .padding(.top, 8)
         }
         .padding(EdgeInsets(top: 8, leading: 12, bottom: 12, trailing: 12))

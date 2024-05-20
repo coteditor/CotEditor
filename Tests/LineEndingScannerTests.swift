@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,17 +35,10 @@ final class LineEndingScannerTests: XCTestCase {
         
         storage.replaceCharacters(in: NSRange(0..<3), with: "dog\u{85}cow")
         
-        // test async line ending scan
-        let expectation = self.expectation(description: "didScanLineEndings")
-        let observer = scanner.$inconsistentLineEndings
-            .sink { lineEndings in
-                XCTAssertEqual(lineEndings, [ValueRange(value: .nel, range: NSRange(location: 3, length: 1)),
-                                             ValueRange(value: .crlf, range: NSRange(location: 11, length: 2))])
-                expectation.fulfill()
-            }
-        self.wait(for: [expectation], timeout: .zero)
-        
-        observer.cancel()
+        // test line ending scan
+        XCTAssertEqual(scanner.inconsistentLineEndings,
+                       [ValueRange(value: .nel, range: NSRange(location: 3, length: 1)),
+                        ValueRange(value: .crlf, range: NSRange(location: 11, length: 2))])
     }
     
     
@@ -59,16 +52,8 @@ final class LineEndingScannerTests: XCTestCase {
         // test scanRange does not expand to the out of range
         storage.replaceCharacters(in: NSRange(0..<1), with: "")
         
-        // test async line ending scan
-        let expectation = self.expectation(description: "didScanLineEndings")
-        let observer = scanner.$inconsistentLineEndings
-            .sink { lineEndings in
-                XCTAssert(lineEndings.isEmpty)
-                expectation.fulfill()
-            }
-        self.wait(for: [expectation], timeout: .zero)
-        
-        observer.cancel()
+        // test line ending scan
+        XCTAssert(scanner.inconsistentLineEndings.isEmpty)
     }
     
     
@@ -82,17 +67,10 @@ final class LineEndingScannerTests: XCTestCase {
         // remove \n after \r (CRLF -> CR)
         storage.replaceCharacters(in: NSRange(9..<10), with: "")
         
-        // test async line ending scan
-        let expectation = self.expectation(description: "didScanLineEndings")
-        let observer = scanner.$inconsistentLineEndings
-            .sink { lineEndings in
-                XCTAssertEqual(lineEndings, [ValueRange(value: .crlf, range: NSRange(location: 3, length: 2)),
-                                             ValueRange(value: .cr, range: NSRange(location: 8, length: 1))])
-                expectation.fulfill()
-            }
-        self.wait(for: [expectation], timeout: .zero)
-        
-        observer.cancel()
+        // test line ending scan
+        XCTAssertEqual(scanner.inconsistentLineEndings,
+                       [ValueRange(value: .crlf, range: NSRange(location: 3, length: 2)),
+                        ValueRange(value: .cr, range: NSRange(location: 8, length: 1))])
     }
     
     

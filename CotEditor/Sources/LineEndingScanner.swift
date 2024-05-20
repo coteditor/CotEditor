@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,24 +25,19 @@
 
 import Combine
 import Foundation
+import Observation
 import class AppKit.NSTextStorage
 
-final class LineEndingScanner {
+@Observable final class LineEndingScanner {
     
-    @Published private(set) var inconsistentLineEndings: [ValueRange<LineEnding>]
+    private(set) var documentLineEnding: LineEnding
+    private(set) var inconsistentLineEndings: [ValueRange<LineEnding>] = []
     
     
     // MARK: Private Properties
     
     private let textStorage: NSTextStorage
     private var lineEndings: [ValueRange<LineEnding>]
-    
-    private var documentLineEnding: LineEnding {
-        
-        didSet {
-            self.inconsistentLineEndings = self.lineEndings.filter { $0.value != documentLineEnding }
-        }
-    }
     
     private var lineEndingObserver: AnyCancellable?
     private var storageObserver: AnyCancellable?
@@ -62,7 +57,12 @@ final class LineEndingScanner {
         self.storageObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textStorage)
             .compactMap { $0.object as? NSTextStorage }
             .filter { $0.editedMask.contains(.editedCharacters) }
-            .sink { [weak self] in self?.invalidate(in: $0.editedRange, changeInLength: $0.changeInLength) }
+            .sink { [weak self] in
+                guard let self else { return }
+                
+                self.invalidate(in: $0.editedRange, changeInLength: $0.changeInLength)
+                self.inconsistentLineEndings = self.lineEndings.filter { $0.value != self.documentLineEnding }
+            }
     }
     
     
