@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2023 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -454,7 +454,7 @@ extension MultipleReplaceViewController: NSTableViewDelegate {
                 do {
                     try replacement.validate(regexOptions: self.definition.settings.regexOptions)
                 } catch {
-                    guard let suggestion = (error as? any LocalizedError)?.recoverySuggestion else { return error.localizedDescription }
+                    guard let suggestion = (error as any LocalizedError).recoverySuggestion else { return error.localizedDescription }
                     
                     return "[" + error.localizedDescription + "] " + suggestion
                 }
