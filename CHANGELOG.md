@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Display a warning if custom setting names contain “:”.
 - [dev] Update the build environment to Xcode 15.4.
 
 

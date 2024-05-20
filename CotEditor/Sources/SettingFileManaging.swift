@@ -243,7 +243,11 @@ extension SettingFileManaging {
         }
         
         if settingName.contains("/") {  // invalid for filename
-            throw InvalidNameError.containSlash
+            throw InvalidNameError.invalidCharacter("/")
+        }
+        
+        if settingName.contains(":") {  // invalid for filename
+            throw InvalidNameError.invalidCharacter(":")
         }
         
         if settingName.hasPrefix(".") {  // invalid for filename
@@ -477,7 +481,7 @@ extension SettingFileManaging {
 enum InvalidNameError: LocalizedError {
     
     case empty
-    case containSlash
+    case invalidCharacter(String)
     case startWithDot
     case duplicated(name: String)
     case reserved(name: String)
@@ -489,9 +493,10 @@ enum InvalidNameError: LocalizedError {
             case .empty:
                 String(localized: "InvalidNameError.empty.description",
                        defaultValue: "Name can’t be empty.")
-            case .containSlash:
-                String(localized: "InvalidNameError.containSlash.description",
-                       defaultValue: "Name can’t contain “/”.")
+            case .invalidCharacter(let string):
+                String(localized: "InvalidNameError.invalidCharacter.description",
+                       defaultValue: "Name can’t contain “\(string)”.",
+                       comment: "%@ is an invalid character for filename")
             case .startWithDot:
                 String(localized: "InvalidNameError.startWithDot.description",
                        defaultValue: "Name can’t begin with “.”.")
