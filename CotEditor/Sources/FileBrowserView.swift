@@ -114,7 +114,7 @@ struct FileBrowserView: View {
             
             Button(String(localized: "Move to Trash", table: "Document", comment: "menu item label")) {
                 do {
-                    try FileManager.default.trashItem(at: node.fileURL, resultingItemURL: nil)
+                    try self.document.trashItem(at: node.fileURL)
                     AudioServicesPlaySystemSound(.moveToTrash)
                 } catch {
                     self.error = error

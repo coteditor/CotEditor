@@ -236,6 +236,34 @@ import OSLog
     }
     
     
+    /// Properly moves the item to the trash.
+    ///
+    /// - Parameters:
+    ///   - fileURL: The URL of an item to move to trash.
+    func trashItem(at fileURL: URL) throws {
+        
+        var trashedURL: NSURL?
+        var coordinationError: NSError?
+        var trashError: (any Error)?
+        NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .forDeleting, error: &coordinationError) { newURL in
+            do {
+                try FileManager.default.trashItem(at: newURL, resultingItemURL: &trashedURL)
+            } catch {
+                trashError = error
+            }
+        }
+        
+        if let error = coordinationError ?? trashError {
+            throw error
+        }
+        
+        guard trashedURL != nil else {
+            assertionFailure("This guard should success.")
+            throw CocoaError(.fileWriteUnknown)
+        }
+    }
+    
+    
     // MARK: Private Methods
     
     /// Changes the frontmost document.
