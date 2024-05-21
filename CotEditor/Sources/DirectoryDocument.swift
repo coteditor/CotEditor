@@ -375,6 +375,16 @@ import OSLog
     ///   - fileURL: The URL of an item to move to trash.
     func trashItem(at fileURL: URL) throws {
         
+        // close if the item to trash is opened as a document
+        if let document = self.documents.first(where: { $0.fileURL == fileURL }) {
+            if document == self.currentDocument {
+                self.windowController?.fileDocument = nil
+            }
+            self.documents.removeFirst(document)
+            document.close()
+            self.invalidateRestorableState()
+        }
+        
         var trashedURL: NSURL?
         var coordinationError: NSError?
         var trashError: (any Error)?
