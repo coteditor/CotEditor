@@ -99,6 +99,20 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
+    override func supplementalTarget(forAction action: Selector, sender: Any?) -> Any? {
+        
+        // reel responders from the ideal first responder in the content view
+        // for when the actual first responder is on the sidebar/inspector
+        if let textView = self.documentViewController?.focusedTextView,
+           let responder = sequence(first: textView, next: \.nextResponder).first(where: { $0.responds(to: action) })
+        {
+            responder
+        } else {
+            super.supplementalTarget(forAction: action, sender: sender)
+        }
+    }
+    
+    
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
