@@ -103,7 +103,7 @@ final class WindowContentViewController: NSSplitViewController {
         
         // reel responders from the ideal first responder in the content view
         // for when the actual first responder is on the sidebar/inspector
-        if let textView = self.documentViewController?.focusedTextView,
+        if let textView = self.documentViewController.focusedTextView,
            let responder = sequence(first: textView, next: \.nextResponder).first(where: { $0.responds(to: action) })
         {
             responder
