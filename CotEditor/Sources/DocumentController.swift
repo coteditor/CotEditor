@@ -205,6 +205,19 @@ final class DocumentController: NSDocumentController {
     }
     
     
+    override func openDocument(_ sender: Any?) {
+        
+        // be called on the open event when iCloud Drive is enabled (2024-05, macOS 14).
+        // -> Otherwise, AppDelegate.applicationShouldOpenUntitledFile(_:) is called on launch.
+        
+        if NSAppleEventManager.shared().isOpenEvent {
+            return self.performOnLaunchAction()
+        }
+        
+        super.openDocument(sender)
+    }
+    
+    
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
@@ -248,6 +261,23 @@ final class DocumentController: NSDocumentController {
         }
         
         return document
+    }
+    
+    
+    /// Performs the user-defined action on the open/reopen event.
+    ///
+    /// - Parameter isReopen: Flag to tell whether the event is the reopen event (not affected to the behavior).
+    func performOnLaunchAction(isReopen: Bool = false) {
+        
+        switch UserDefaults.standard[.noDocumentOnLaunchOption] {
+            case .untitledDocument:
+                self.newDocument(nil)
+            case .openPanel:
+                // invoke super to avoid infinite loop
+                super.openDocument(nil)
+            case .none:
+                break
+        }
     }
     
     

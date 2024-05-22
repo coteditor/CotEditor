@@ -13,6 +13,7 @@
 
 ### Fixes
 
+- Fix an issue on CotEditor 4.8.3 that The Open dialog always shows up on launch despite the setting when the “Reopen windows from last session” option is disabled.
 - Fix a typo in the Czech localization.
 
 
