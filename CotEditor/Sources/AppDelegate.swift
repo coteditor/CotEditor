@@ -112,7 +112,6 @@ private enum BundleIdentifier {
         // migrate settings on CotEditor 4.6.0 (2023-08)
         if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion <= 586 {
             UserDefaults.standard.migrateFontSetting()
-            UserDefaults.standard.migrateOnLaunchSetting()
         }
     }
     
@@ -248,6 +247,8 @@ private enum BundleIdentifier {
             case .openPanel:
                 NSDocumentController.shared.openDocument(nil)
                 return false
+            case .none:
+                return false
         }
     }
     
@@ -269,6 +270,8 @@ private enum BundleIdentifier {
                 //   -> On:  the Open dialog
                 //   -> Off: an untitled document
                 return true  // entrust to `.applicationShouldOpenUntitledFile(_:)`
+            case .none:
+                return false
         }
     }
     
@@ -487,16 +490,6 @@ private enum BundleIdentifier {
 
 
 private extension UserDefaults {
-    
-    /// Migrates the on launch setting to new key updated on CotEditor 4.6.0 (2023-09).
-    @available(macOS, deprecated: 16, message: "The setting migration is outdated.")
-    func migrateOnLaunchSetting() {
-        
-        guard self.integer(forKey: "noDocumentOnLaunchBehavior") == 2 else { return }
-        
-        self[.noDocumentOnLaunchOption] = .openPanel
-    }
-    
     
     /// Migrates the user font setting to new format introduced on CotEditor 4.6.0 (2023-09).
     @available(macOS, deprecated: 16, message: "The font setting migration is outdated.")

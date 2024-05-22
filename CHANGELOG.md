@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Revert the “Do Nothing” option for the “When nothing else is open” setting
 - Enable toolbar/menu items for the document editor even when the focus in on the inspector.
 - Display a warning if custom setting names contain “:”.
 - [dev] Update the build environment to Xcode 15.4.

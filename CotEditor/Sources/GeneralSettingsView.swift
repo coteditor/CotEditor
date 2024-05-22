@@ -307,6 +307,10 @@ private extension NoDocumentOnLaunchOption {
                 String(localized: "NoDocumentOnLaunchOption.openPanel.label",
                        defaultValue: "Show Open Dialog",
                        table: "GeneralSettings")
+            case .none:
+                String(localized: "NoDocumentOnLaunchOption.none.label",
+                       defaultValue: "Do Nothing",
+                       table: "GeneralSettings")
         }
     }
 }
