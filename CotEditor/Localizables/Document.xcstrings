@@ -4282,6 +4282,7 @@
       }
     },
     "Text Encoding" : {
+      "comment" : "menu item header",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

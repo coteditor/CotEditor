@@ -204,13 +204,13 @@ struct StatusBar: View {
             }
             
             HStack(spacing: 2) {
-                if let fileEncoding = Binding($model.fileEncoding) {
+                if let fileEncoding = self.model.fileEncoding {
                     Divider()
                         .padding(.vertical, 4)
                     
-                    Picker(selection: fileEncoding) {
-                        if !self.encodingManager.fileEncodings.contains(fileEncoding.wrappedValue) {
-                            Text(fileEncoding.wrappedValue.localizedName).tag(self.model.fileEncoding)
+                    Picker(selection: $model.fileEncoding ?? .utf8) {
+                        if !self.encodingManager.fileEncodings.contains(fileEncoding) {
+                            Text(fileEncoding.localizedName).tag(fileEncoding)
                         }
                         Section(String(localized: "Text Encoding", table: "Document", comment: "menu item header")) {
                             ForEach(Array(self.encodingManager.fileEncodings.enumerated()), id: \.offset) { (_, fileEncoding) in
@@ -224,20 +224,20 @@ struct StatusBar: View {
                     } label: {
                         EmptyView()
                     }
-                    .onChange(of: fileEncoding.wrappedValue) { (_, newValue) in
+                    .onChange(of: fileEncoding) { (_, newValue) in
                         self.model.document?.askChangingEncoding(to: newValue)
                     }
                     .help(String(localized: "Text Encoding", table: "Document"))
                     .accessibilityLabel(String(localized: "Text Encoding", table: "Document"))
                 }
                 
-                if let lineEnding = Binding($model.lineEnding) {
+                if let lineEnding = self.model.lineEnding {
                     Divider()
                         .padding(.vertical, 4)
                     
                     LineEndingPicker(String(localized: "Line Endings", table: "Document", comment: "menu item header"),
-                                     selection: lineEnding)
-                    .onChange(of: lineEnding.wrappedValue) { (_, newValue) in
+                                     selection: $model.lineEnding ?? .lf)
+                    .onChange(of: lineEnding) { (_, newValue) in
                         self.model.document?.changeLineEnding(to: newValue)
                     }
                     .help(String(localized: "Line Endings", table: "Document"))

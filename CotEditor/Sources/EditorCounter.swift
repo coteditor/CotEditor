@@ -217,6 +217,12 @@ struct EditorCount: Equatable {
         
         self.types = self.updatesAll ? .all : self.statusBarRequirements
         
+        if self.types.isEmpty {
+            self.contentTask?.cancel()
+            self.selectionTask?.cancel()
+            return
+        }
+        
         if !self.types.intersection(.count).isSubset(of: oldValue.intersection(.count)) {
             self.invalidateContent()
         }
