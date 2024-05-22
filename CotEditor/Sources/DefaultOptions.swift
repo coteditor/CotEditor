@@ -29,6 +29,7 @@ enum NoDocumentOnLaunchOption: Int, CaseIterable {
     
     case untitledDocument
     case openPanel
+    case none
 }
 
 

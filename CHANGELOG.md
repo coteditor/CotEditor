@@ -28,6 +28,7 @@
 
 ### Improvements
 
+- Revert the “Do Nothing” option for the “When nothing else is open” setting
 - Enable toolbar/menu items for the document editor even when the focus in on the inspector.
 - Display a warning if custom setting names contain “:”.
 - [dev] Update the build environment to Xcode 15.4.
@@ -35,6 +36,7 @@
 
 ### Fixes
 
+- Fix an issue on CotEditor 4.8.3 that The Open dialog always shows up on launch despite the setting when the “Reopen windows from last session” option is disabled.
 - Fix a typo in the Czech localization.
 
 

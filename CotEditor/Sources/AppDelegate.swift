@@ -115,7 +115,6 @@ private enum BundleIdentifier {
         // migrate settings on CotEditor 4.6.0 (2023-08)
         if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion <= 586 {
             UserDefaults.standard.migrateFontSetting()
-            UserDefaults.standard.migrateOnLaunchSetting()
         }
     }
     
@@ -267,34 +266,27 @@ private enum BundleIdentifier {
     
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
-        switch UserDefaults.standard[.noDocumentOnLaunchOption] {
-            case .untitledDocument:
-                return true
-            case .openPanel:
-                NSDocumentController.shared.openDocument(nil)
-                return false
-        }
+        // be called on the open event when iCloud Drive is disabled (2024-05, macOS 14).
+        // -> Otherwise, NSDocumentController.openDocument(_:) is directly called on launch.
+        
+        (DocumentController.shared as? DocumentController)?.performOnLaunchAction()
+        
+        return false
     }
     
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         
-        // not evaluated on the app launch (only on the *re*-open event)
+        // only on the *re*-open event (not called on the app launch)
         
-        // invoked only on the *re*-open event
-        switch UserDefaults.standard[.noDocumentOnLaunchOption] {
-            case .untitledDocument:
-                if !flag {
-                    // show an untitled document before the app considers displaying the Open dialog
-                    NSDocumentController.shared.newDocument(nil)
-                }
-                return false
-            case .openPanel:
-                // the original behavior depends on whether iCloud is enabled:
-                //   -> On:  the Open dialog
-                //   -> Off: an untitled document
-                return true  // entrust to `.applicationShouldOpenUntitledFile(_:)`
+        // Because the default reopen behavior varies depending on various conditions,
+        // such as NSQuitAlwaysKeepsWindows, the iCloud Drive availability, etc,
+        // execute the action directly by self (2024-05, macOS 14).
+        if !flag {
+            (DocumentController.shared as? DocumentController)?.performOnLaunchAction(isReopen: true)
         }
+        
+        return false
     }
     
     
@@ -524,16 +516,6 @@ private enum BundleIdentifier {
 
 
 private extension UserDefaults {
-    
-    /// Migrates the on launch setting to new key updated on CotEditor 4.6.0 (2023-09).
-    @available(macOS, deprecated: 16, message: "The setting migration is outdated.")
-    func migrateOnLaunchSetting() {
-        
-        guard self.integer(forKey: "noDocumentOnLaunchBehavior") == 2 else { return }
-        
-        self[.noDocumentOnLaunchOption] = .openPanel
-    }
-    
     
     /// Migrates the user font setting to new format introduced on CotEditor 4.6.0 (2023-09).
     @available(macOS, deprecated: 16, message: "The font setting migration is outdated.")
