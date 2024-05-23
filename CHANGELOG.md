@@ -5,8 +5,8 @@
 
 ### Improvements
 
-- Revert the “Do Nothing” option for the “When nothing else is open” setting
-- Enable toolbar/menu items for the document editor even when the focus in on the inspector.
+- Revert the “Do Nothing” option, which was once deprecated on CotEditor 4.6.0, for the “When nothing else is open” setting.
+- Enable toolbar/menu items for the document editor even when the focus is on the inspector.
 - Display a warning on setting renaming if the name contains “:”.
 - [dev] Update the build environment to Xcode 15.4.
 
