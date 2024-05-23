@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,12 +39,19 @@ final class HoleContentView: NSView {
     
     // MARK: View Methods
     
+    override var isOpaque: Bool {
+        
+        self.holes.isEmpty
+    }
+    
+    
     override func viewWillMove(toWindow newWindow: NSWindow?) {
         
         super.viewWillMove(toWindow: newWindow)
         
         self.windowOpacityObserver = newWindow?.publisher(for: \.isOpaque, options: .initial)
             .sink { [unowned self] isOpaque in
+                self.holes.removeAll()
                 self.holeViewObserver = if isOpaque {
                     nil
                 } else {
@@ -57,6 +64,8 @@ final class HoleContentView: NSView {
                         .sink { [unowned self] _ in
                             self.holes = self.descendants(type: NSStackView.self)
                                 .map { $0.convert($0.frame, to: self) }
+                                .filter { !$0.isEmpty }
+                            self.needsDisplay = true
                         }
                 }
             }
