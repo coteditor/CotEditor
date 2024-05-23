@@ -39,6 +39,12 @@ final class HoleContentView: NSView {
     
     // MARK: View Methods
     
+    override var isOpaque: Bool {
+        
+        self.holes.isEmpty
+    }
+    
+    
     override func viewWillMove(toWindow newWindow: NSWindow?) {
         
         super.viewWillMove(toWindow: newWindow)
@@ -46,6 +52,7 @@ final class HoleContentView: NSView {
         self.holeViewObserver?.cancel()
         self.windowOpacityObserver = newWindow?.publisher(for: \.isOpaque, options: .initial)
             .sink { [unowned self] isOpaque in
+                self.holes.removeAll()
                 self.holeViewObserver = if isOpaque {
                     nil
                 } else {
@@ -58,6 +65,7 @@ final class HoleContentView: NSView {
                         .sink { [unowned self] _ in
                             self.holes = self.descendants(type: NSStackView.self)
                                 .map { $0.convert($0.frame, to: self) }
+                                .filter { !$0.isEmpty }
                         }
                 }
             }
