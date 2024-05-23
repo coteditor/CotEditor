@@ -65,7 +65,6 @@ final class HoleContentView: NSView {
                             self.holes = self.descendants(type: NSStackView.self)
                                 .map { $0.convert($0.frame, to: self) }
                                 .filter { !$0.isEmpty }
-                            self.needsDisplay = true
                         }
                 }
             }
