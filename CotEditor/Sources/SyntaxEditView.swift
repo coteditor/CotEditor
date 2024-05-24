@@ -50,7 +50,7 @@ struct SyntaxEditView: View {
         case validation
         
         
-        static let highlights: [Self] = [.keywords, .commands, .types, .attributes, .variables, .numbers, .strings, .characters, .comments]
+        static let highlights: [Self] = [.keywords, .commands, .types, .attributes, .variables, .values, .numbers, .strings, .characters, .comments]
         static let others: [Self] = [.outline, .completion, .fileMapping]
         static let syntaxData: [Self] = [.syntaxInfo, .validation]
     }

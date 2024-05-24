@@ -3,6 +3,10 @@
 4.8.5 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue in the syntax editor that the Values pane was missing in the highlighting list in the sidebar.
+
 
 
 4.8.4 (651)
