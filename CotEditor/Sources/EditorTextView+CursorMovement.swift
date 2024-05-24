@@ -596,6 +596,16 @@ extension EditorTextView {
         
         self.addSelectedColumn(affinity: .upstream)
     }
+    
+    
+    /// Splits selections by lines.
+    @IBAction func splitSelectionByLines(_ sender: Any?) {
+        
+        guard let ranges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
+        
+        self.selectedRanges = ranges
+            .flatMap(self.string.lineContentsRanges(for:)) as [NSValue]
+    }
 }
 
 

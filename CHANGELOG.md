@@ -6,6 +6,7 @@
 ### New Feature
 
 - [AppStore ver.] Now users can donate to the CotEditor project via in-app purchase in the new Donate settings pane.
+- Add new “Split Selection by Lines” command to the Edit > Select menu.
 - Support the alpha channel for the current line in theme settings.
 - Add new “Resinifictrix (Dark)” theme.
 

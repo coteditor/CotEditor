@@ -216,6 +216,13 @@
                                                             <action selector="selectColumnDown:" target="Ady-hI-5gd" id="eta-Ij-JMA"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="5PI-LC-fl2"/>
+                                                    <menuItem title="Split Selection by Lines" keyEquivalent="L" id="jkL-Tg-nug">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                                        <connections>
+                                                            <action selector="splitSelectionByLines:" target="Ady-hI-5gd" id="Wj0-pS-FPH"/>
+                                                        </connections>
+                                                    </menuItem>
                                                 </items>
                                             </menu>
                                         </menuItem>

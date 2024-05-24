@@ -14185,6 +14185,36 @@
         }
       }
     },
+    "jkL-Tg-nug.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Split Selection by Lines\"; ObjectID = \"jkL-Tg-nug\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auswahl in Zeilen teilen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Split Selection by Lines"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Split Selection by Lines"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択範囲を行に分割"
+          }
+        }
+      }
+    },
     "jQ7-hG-AjA.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Horizontal\"; ObjectID = \"jQ7-hG-AjA\";",
       "extractionState" : "extracted_with_value",
