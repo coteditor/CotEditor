@@ -203,6 +203,19 @@
                                                             <action selector="selectWord:" target="Ady-hI-5gd" id="hYk-Nd-XPC"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="Cpy-7b-POT"/>
+                                                    <menuItem title="Select Column Up" keyEquivalent="" id="yVo-uW-dls">
+                                                        <modifierMask key="keyEquivalentModifierMask" shift="YES" control="YES"/>
+                                                        <connections>
+                                                            <action selector="selectColumnUp:" target="Ady-hI-5gd" id="ADH-vC-UMS"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Select Column Down" keyEquivalent="" id="m1A-zz-piF">
+                                                        <modifierMask key="keyEquivalentModifierMask" shift="YES" control="YES"/>
+                                                        <connections>
+                                                            <action selector="selectColumnDown:" target="Ady-hI-5gd" id="eta-Ij-JMA"/>
+                                                        </connections>
+                                                    </menuItem>
                                                 </items>
                                             </menu>
                                         </menuItem>

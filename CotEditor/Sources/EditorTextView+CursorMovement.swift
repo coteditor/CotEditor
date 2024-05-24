@@ -584,34 +584,6 @@ extension EditorTextView {
     
     // MARK: Actions
     
-    /// Processes user's shortcut input.
-    override func performKeyEquivalent(with event: NSEvent) -> Bool {
-        
-        guard !super.performKeyEquivalent(with: event) else { return true }
-        
-        // interrupt for selectColumnUp/Down actions
-        guard
-            event.modifierFlags.intersection([.shift, .control, .option, .command]) == [.shift, .control],
-            let key = event.specialKey
-        else { return false }
-        
-        switch (key, self.layoutOrientation) {
-            case (.upArrow, .horizontal),
-                 (.rightArrow, .vertical):
-                self.doCommand(by: #selector(selectColumnUp))
-                return true
-                
-            case (.downArrow, .horizontal),
-                 (.leftArrow, .vertical):
-                self.doCommand(by: #selector(selectColumnDown))
-                return true
-                
-            default:
-                return false
-        }
-    }
-    
-    
     /// Adds insertion point just above the first selected range (^⇧↑).
     @IBAction func selectColumnUp(_ sender: Any?) {
         

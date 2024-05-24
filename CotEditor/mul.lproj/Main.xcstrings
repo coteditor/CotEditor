@@ -14941,6 +14941,36 @@
         }
       }
     },
+    "m1A-zz-piF.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Select Column Down\"; ObjectID = \"m1A-zz-piF\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spalte unten auswählen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Select Column Down"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Column Down"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下の列を選択"
+          }
+        }
+      }
+    },
     "M1N-Fg-Bo4.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"CotEditor Scripting Guide\"; ObjectID = \"M1N-Fg-Bo4\";",
       "extractionState" : "extracted_with_value",
@@ -19641,6 +19671,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "註釋"
+          }
+        }
+      }
+    },
+    "yVo-uW-dls.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Select Column Up\"; ObjectID = \"yVo-uW-dls\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spalte oben auswählen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Select Column Up"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Column Up"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上の列を選択"
           }
         }
       }

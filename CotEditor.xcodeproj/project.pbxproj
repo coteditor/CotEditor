@@ -792,6 +792,8 @@
 		2AE7A8DA20450FE600830830 /* OutlineInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE7A8D820450FE600830830 /* OutlineInspectorView.swift */; };
 		2AE95A1A2A86270000E85CF5 /* HoleContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE95A192A86270000E85CF5 /* HoleContentView.swift */; };
 		2AE95A1B2A86270000E85CF5 /* HoleContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE95A192A86270000E85CF5 /* HoleContentView.swift */; };
+		2AEAA1432C00B37300B5332F /* NSMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAA1422C00B37300B5332F /* NSMenu.swift */; };
+		2AEAA1442C00B37300B5332F /* NSMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAA1422C00B37300B5332F /* NSMenu.swift */; };
 		2AEAA8232096380C001A175C /* HighlightExtractors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAA8222096380C001A175C /* HighlightExtractors.swift */; };
 		2AEAA8242096380C001A175C /* HighlightExtractors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAA8222096380C001A175C /* HighlightExtractors.swift */; };
 		2AEBD25A246BB4C200EC97A3 /* NSAttributedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEBD259246BB4C200EC97A3 /* NSAttributedStringTests.swift */; };
@@ -1316,6 +1318,7 @@
 		2AE73F42203E753C00D8903B /* NSTextView+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Selection.swift"; sourceTree = "<group>"; };
 		2AE7A8D820450FE600830830 /* OutlineInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineInspectorView.swift; sourceTree = "<group>"; };
 		2AE95A192A86270000E85CF5 /* HoleContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoleContentView.swift; sourceTree = "<group>"; };
+		2AEAA1422C00B37300B5332F /* NSMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenu.swift; sourceTree = "<group>"; };
 		2AEAA8222096380C001A175C /* HighlightExtractors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightExtractors.swift; sourceTree = "<group>"; };
 		2AEBD259246BB4C200EC97A3 /* NSAttributedStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTests.swift; sourceTree = "<group>"; };
 		2AEC48321E641E4F00FB0F89 /* Snippet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snippet.swift; sourceTree = "<group>"; };
@@ -1700,6 +1703,7 @@
 				2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */,
 				2A1ABCA727F07CED0054795D /* NSScroller.swift */,
 				2AF9961F235ACDD60041872E /* NSPrintInfo.swift */,
+				2AEAA1422C00B37300B5332F /* NSMenu.swift */,
 				2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */,
 				2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */,
 				2A9B134D27E2D84E009954A4 /* NSDraggingInfo.swift */,
@@ -3053,6 +3057,7 @@
 				2AE73F41203D2FBB00D8903B /* NSLayoutManager.swift in Sources */,
 				2A9AC937244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */,
 				2A484A3A236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
+				2AEAA1432C00B37300B5332F /* NSMenu.swift in Sources */,
 				2AAF6E9129BB8B45003DFF4B /* NSMenuItem+Shortcut.swift in Sources */,
 				2AF99621235ACDD60041872E /* NSPrintInfo.swift in Sources */,
 				2A8E47E9299C6064006A40D8 /* NSRange.swift in Sources */,
@@ -3421,6 +3426,7 @@
 				2AE73F40203D2FBB00D8903B /* NSLayoutManager.swift in Sources */,
 				2A9AC938244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */,
 				2A484A39236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
+				2AEAA1442C00B37300B5332F /* NSMenu.swift in Sources */,
 				2AAF6E9229BB8B45003DFF4B /* NSMenuItem+Shortcut.swift in Sources */,
 				2AF99620235ACDD60041872E /* NSPrintInfo.swift in Sources */,
 				2A8E47EA299C6064006A40D8 /* NSRange.swift in Sources */,

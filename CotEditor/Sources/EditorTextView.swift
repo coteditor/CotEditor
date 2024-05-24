@@ -1010,6 +1010,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             let keyPath = (orientation == .vertical) ? \NSSize.height : \NSSize.width
             self.frame.size[keyPath: keyPath] = self.visibleRect.width * self.scale
         }
+        
+        // update keyboard shortcuts
+        NSApp.mainMenu?.updateAll()
     }
     
     
@@ -1098,6 +1101,44 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
+            case #selector(selectColumnUp):
+                if let menuItem = item as? NSMenuItem {
+                    switch self.layoutOrientation {
+                        case .horizontal:
+                            if menuItem.keyEquivalent == NSEvent.SpecialKey.rightArrow.string {
+                                menuItem.keyEquivalent = NSEvent.SpecialKey.upArrow.string
+                            }
+                            menuItem.title = String(localized: "Select Column Up", table: "MainMenu")
+                        case .vertical:
+                            if menuItem.keyEquivalent == NSEvent.SpecialKey.upArrow.string {
+                                menuItem.keyEquivalent = NSEvent.SpecialKey.rightArrow.string
+                            }
+                            menuItem.title = String(localized: "Select Column Right", table: "MainMenu",
+                                                    comment: "vertical orientation version of the Select Column Up command")
+                        @unknown default:
+                            assertionFailure()
+                    }
+                }
+                
+            case #selector(selectColumnDown):
+                if let menuItem = item as? NSMenuItem {
+                    switch self.layoutOrientation {
+                        case .horizontal:
+                            if menuItem.keyEquivalent == NSEvent.SpecialKey.leftArrow.string {
+                                menuItem.keyEquivalent = NSEvent.SpecialKey.downArrow.string
+                            }
+                            menuItem.title = String(localized: "Select Column down", table: "MainMenu")
+                        case .vertical:
+                            if menuItem.keyEquivalent == NSEvent.SpecialKey.downArrow.string {
+                                menuItem.keyEquivalent = NSEvent.SpecialKey.leftArrow.string
+                            }
+                            menuItem.title = String(localized: "Select Column Left", table: "MainMenu",
+                                                    comment: "vertical orientation version of the Select Column Down command")
+                        @unknown default:
+                            assertionFailure()
+                    }
+                }
+                
             case #selector(performTextFinderAction):
                 guard let action = TextFinder.Action(rawValue: item.tag) else { return false }
                 return self.textFinder.validateAction(action)

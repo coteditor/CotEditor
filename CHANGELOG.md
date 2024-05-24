@@ -13,6 +13,7 @@
 ### Improvements
 
 - Change the system requirement to __macOS 14 Sonoma and later__.
+- Add “Select Column Up/Down“ commands to Edit > Select menu.
 - Improve VoiceOver support in the Quick Action bar.
 - Remove Solarized themes from the bundle.
 - Update all the bundled themes to have a 70% opacity in the current line highlight.
