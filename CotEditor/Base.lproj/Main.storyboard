@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22689"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -183,6 +183,30 @@
                                                 <action selector="delete:" target="Ady-hI-5gd" id="Ftk-bU-BQH"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Select" id="6fK-Zl-wdN">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Select" id="Bm6-Jh-1mk">
+                                                <items>
+                                                    <menuItem title="Select All" keyEquivalent="a" id="172">
+                                                        <connections>
+                                                            <action selector="selectAll:" target="Ady-hI-5gd" id="Rho-pS-oPz"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Select Line" keyEquivalent="A" id="Cwp-ys-LJc">
+                                                        <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="selectParagraph:" target="Ady-hI-5gd" id="i5P-vu-hGU"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Select Word" keyEquivalent="d" id="0HX-j9-5jF">
+                                                        <connections>
+                                                            <action selector="selectWord:" target="Ady-hI-5gd" id="hYk-Nd-XPC"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="630"/>
                                         <menuItem title="Complete" id="Qa9-dA-CF1">
                                             <string key="keyEquivalent" base64-UTF8="YES">
 Gw
@@ -192,23 +216,7 @@ Gw
                                                 <action selector="complete:" target="Ady-hI-5gd" id="xdV-uV-Chm"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Select All" keyEquivalent="a" id="172">
-                                            <connections>
-                                                <action selector="selectAll:" target="Ady-hI-5gd" id="Rho-pS-oPz"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Select Line" keyEquivalent="A" id="Cwp-ys-LJc">
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="selectParagraph:" target="Ady-hI-5gd" id="i5P-vu-hGU"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Select Word" keyEquivalent="d" id="0HX-j9-5jF">
-                                            <connections>
-                                                <action selector="selectWord:" target="Ady-hI-5gd" id="hYk-Nd-XPC"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="630"/>
+                                        <menuItem isSeparatorItem="YES" id="ngg-iN-BYh"/>
                                         <menuItem title="Input Backslash" keyEquivalent="¥" id="631">
                                             <connections>
                                                 <action selector="inputBackSlash:" target="Ady-hI-5gd" id="PpN-Zj-7Zc"/>
