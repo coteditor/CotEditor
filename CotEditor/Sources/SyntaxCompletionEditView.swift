@@ -65,7 +65,7 @@ struct SyntaxCompletionEditView: View {
             HStack {
                 AddRemoveButton($items, selection: $selection, focus: $focusedField, newItem: Item.init)
                 Spacer()
-                HelpButton(anchor: "syntax_highlight_settings")
+                HelpLink(anchor: "syntax_highlight_settings")
             }
         }
     }

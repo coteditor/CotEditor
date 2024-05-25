@@ -249,7 +249,7 @@ struct WindowSettingsView: View {
             
             HStack {
                 Spacer()
-                HelpButton(anchor: "settings_window")
+                HelpLink(anchor: "settings_window")
             }.padding(.top, -8)
         }
         .scenePadding()

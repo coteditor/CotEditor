@@ -56,7 +56,7 @@ struct KeyBindingsSettingsView: View {
                         .foregroundStyle(.red)
                         .controlSize(.small)
                 }
-                HelpButton(anchor: "settings_keybindings")
+                HelpLink(anchor: "settings_keybindings")
             }.frame(minHeight: 20)
         }
         .onAppear {

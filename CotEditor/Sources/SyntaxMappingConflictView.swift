@@ -83,7 +83,7 @@ struct SyntaxMappingConflictView: View {
             }
             
             HStack {
-                HelpButton(anchor: "syntax_file_mapping")
+                HelpLink(anchor: "syntax_file_mapping")
                 Spacer()
                 Button("OK") {
                     self.parent?.dismiss(nil)

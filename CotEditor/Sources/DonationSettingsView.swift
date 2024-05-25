@@ -157,7 +157,7 @@ import StoreKit
             
             HStack {
                 Spacer()
-                HelpButton(anchor: "settings_appearance")
+                HelpLink(anchor: "settings_appearance")
             }
         }
         .scenePadding()

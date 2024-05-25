@@ -113,7 +113,7 @@ struct EncodingListView: View {
                 .padding(.bottom)
             
             HStack {
-                HelpButton(anchor: "howto_customize_encoding_order")
+                HelpLink(anchor: "howto_customize_encoding_order")
                 
                 Button(String(localized: "Restore Defaults", table: "EncodingList", comment: "button label")) {
                     self.model.restore()

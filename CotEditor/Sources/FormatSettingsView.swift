@@ -164,7 +164,7 @@ struct FormatSettingsView: View {
             
             HStack {
                 Spacer()
-                HelpButton(anchor: "settings_format")
+                HelpLink(anchor: "settings_format")
             }
         }
         .onReceive(SyntaxManager.shared.$settingNames) { settingNames in

@@ -110,7 +110,7 @@ struct SyntaxHighlightEditView: View {
             HStack {
                 AddRemoveButton($items, selection: $selection, focus: $focusedField, newItem: Item.init)
                 Spacer()
-                HelpButton(anchor: self.helpAnchor)
+                HelpLink(anchor: self.helpAnchor)
             }
         }
     }

@@ -60,7 +60,7 @@ struct SyntaxMetadataEditView: View {
         Spacer()
         HStack {
             Spacer()
-            HelpButton(anchor: "syntax_metadata_settings")
+            HelpLink(anchor: "syntax_metadata_settings")
         }
     }
 }

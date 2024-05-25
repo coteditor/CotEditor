@@ -145,7 +145,7 @@ struct AppearanceSettingsView: View {
             
             HStack {
                 Spacer()
-                HelpButton(anchor: "settings_appearance")
+                HelpLink(anchor: "settings_appearance")
             }
         }
         .scenePadding()

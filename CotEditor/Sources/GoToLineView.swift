@@ -50,7 +50,7 @@ struct GoToLineView: View {
             }
             
             HStack {
-                HelpButton(anchor: "howto_jump")
+                HelpLink(anchor: "howto_jump")
                 
                 Spacer()
                 

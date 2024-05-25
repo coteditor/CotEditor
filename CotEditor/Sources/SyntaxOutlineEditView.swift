@@ -79,7 +79,7 @@ struct SyntaxOutlineEditView: View {
             
             HStack {
                 Spacer()
-                HelpButton(anchor: "syntax_outline_settings")
+                HelpLink(anchor: "syntax_outline_settings")
             }
         }
     }

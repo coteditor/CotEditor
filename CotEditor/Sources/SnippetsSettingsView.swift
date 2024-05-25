@@ -44,7 +44,7 @@ struct SnippetsSettingsView: View {
             
             HStack {
                 Spacer()
-                HelpButton(anchor: "settings_snippets")
+                HelpLink(anchor: "settings_snippets")
             }
         }
         .padding(.top, 10)

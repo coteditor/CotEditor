@@ -52,7 +52,7 @@ struct ModeSettingsView: View {
             
             HStack {
                 Spacer()
-                HelpButton(anchor: "settings_mode")
+                HelpLink(anchor: "settings_mode")
             }
         }
         .onChange(of: self.selection, initial: true) { (_, newValue) in

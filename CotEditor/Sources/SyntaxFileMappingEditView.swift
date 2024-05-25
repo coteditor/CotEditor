@@ -64,7 +64,7 @@ struct SyntaxFileMappingEditView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        HelpButton(anchor: "syntax_file_mapping")
+                        HelpLink(anchor: "syntax_file_mapping")
                     }
                 }
             }

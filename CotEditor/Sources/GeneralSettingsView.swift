@@ -191,7 +191,7 @@ struct GeneralSettingsView: View {
             
             HStack {
                 Spacer()
-                HelpButton(anchor: "settings_general")
+                HelpLink(anchor: "settings_general")
             }
         }
         .onAppear {
@@ -252,7 +252,7 @@ private struct WarningsSettingView: View {
             }
             
             HStack {
-                HelpButton(anchor: "howto_manage_warnings")
+                HelpLink(anchor: "howto_manage_warnings")
                 Spacer()
                 Button(String(localized: "Done", table: "GeneralSettings", comment: "button label")) {
                     self.dismiss()

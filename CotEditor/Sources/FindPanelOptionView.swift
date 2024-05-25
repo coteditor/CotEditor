@@ -45,7 +45,7 @@ struct FindPanelOptionView: View {
                 Toggle(String(localized: "Regular Expression", table: "TextFind", comment: "toggle button label"), isOn: $usesRegularExpression)
                     .help(String(localized: "Select to search with regular expression.", table: "TextFind", comment: "tooltip"))
                     .fixedSize()
-                HelpButton {
+                HelpLink {
                     self.isRegexReferencePresented.toggle()
                 }
                 .help(String(localized: "Show quick reference for regular expression syntax.", table: "TextFind", comment: "tooltip"))

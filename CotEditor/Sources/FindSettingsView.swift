@@ -83,7 +83,7 @@ struct FindSettingsView: View {
                 
                 HStack {
                     Spacer()
-                    HelpButton(anchor: "howto_find")
+                    HelpLink(anchor: "howto_find")
                 }
             }
         }
