@@ -19,6 +19,7 @@
 - Remove Solarized themes from the bundle.
 - Update all the bundled themes to have a 70% opacity in the current line highlight.
 - Improve the performance of counting values in the editor for the status bar and the document inspector to avoid flicking.
+- Make more table columns sortable.
 - [trivial] Organize the structure of the Edit menu.
 - [trivial] Suppress display of “Extracting” message on the navigation bar in instantaneous parsing.
 - [trivial] Make names of code contributors in the About window selectable.

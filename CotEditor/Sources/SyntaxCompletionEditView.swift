@@ -33,6 +33,7 @@ struct SyntaxCompletionEditView: View {
     @Binding var items: [Item]
     
     @State private var selection: Set<Item.ID> = []
+    @State private var sortOrder: [KeyPathComparator<Item>] = []
     @FocusState private var focusedField: Item.ID?
     
     
@@ -46,14 +47,17 @@ struct SyntaxCompletionEditView: View {
             
             // create a table with wrapped values and then find the editable item again in each column
             // to avoid taking time when leaving a pane with a large number of items. (2024-02-25 macOS 14)
-            Table(self.items, selection: $selection) {
-                TableColumn(String(localized: "Completion", table: "SyntaxEditor", comment: "table column header")) { wrappedItem in
+            Table(self.items, selection: $selection, sortOrder: $sortOrder) {
+                TableColumn(String(localized: "Completion", table: "SyntaxEditor", comment: "table column header"), value: \.string) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
                         TextField(text: item.string, label: EmptyView.init)
                             .focused($focusedField, equals: item.id)
                         
                     }
                 }
+            }
+            .onChange(of: self.sortOrder) { (_, newValue) in
+                self.items.sort(using: newValue)
             }
             .tableStyle(.bordered)
             .border(Color(nsColor: .gridColor))

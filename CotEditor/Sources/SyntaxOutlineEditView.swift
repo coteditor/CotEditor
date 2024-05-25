@@ -48,7 +48,7 @@ struct SyntaxOutlineEditView: View {
                     Toggle(isOn: item.ignoreCase, label: EmptyView.init)
                         .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
                 }
-                .width(22)
+                .width(24)
                 .alignment(.center)
                 
                 TableColumn(String(localized: "Regular Expression Pattern", table: "SyntaxEditor", comment: "table column header")) { item in

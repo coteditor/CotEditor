@@ -94,7 +94,7 @@ struct IncompatibleCharactersView: View {
                         }
                     }
                     
-                    TableColumn(String(localized: "Converted", table: "Document", comment: "table column header for converted character")) {
+                    TableColumn(String(localized: "Converted", table: "Document", comment: "table column header for converted character"), sortUsing: KeyPathComparator(\.value.converted)) {
                         if let converted = $0.value.converted {
                             Text(converted)
                         }

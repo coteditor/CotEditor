@@ -34,6 +34,7 @@ struct SyntaxHighlightEditView: View {
     var helpAnchor: String = "syntax_highlight_settings"
     
     @State private var selection: Set<Item.ID> = []
+    @State private var sortOrder: [KeyPathComparator<Item>] = []
     @FocusState private var focusedField: Item.ID?
     
     
@@ -44,8 +45,8 @@ struct SyntaxHighlightEditView: View {
         VStack(alignment: .leading) {
             // create a table with wrapped values and then find the editable item again in each column
             // to avoid taking time when leaving a pane with a large number of items. (2024-02-25 macOS 14)
-            Table(self.items, selection: $selection) {
-                TableColumn(String(localized: "RE", table: "SyntaxEditor", comment: "table column header (RE for Regular Expression)")) { wrappedItem in
+            Table(self.items, selection: $selection, sortOrder: $sortOrder) {
+                TableColumn(String(localized: "RE", table: "SyntaxEditor", comment: "table column header (RE for Regular Expression)"), value: \.isRegularExpression) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
                         Toggle(isOn: item.isRegularExpression, label: EmptyView.init)
                             .help(String(localized: "Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
@@ -58,10 +59,10 @@ struct SyntaxHighlightEditView: View {
                             }
                     }
                 }
-                .width(22)
+                .width(24)
                 .alignment(.center)
                 
-                TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { wrappedItem in
+                TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)"), value: \.ignoreCase) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
                         Toggle(isOn: item.ignoreCase, label: EmptyView.init)
                             .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
@@ -74,10 +75,10 @@ struct SyntaxHighlightEditView: View {
                             }
                     }
                 }
-                .width(22)
+                .width(24)
                 .alignment(.center)
                 
-                TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { wrappedItem in
+                TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header"), value: \.begin) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
                         RegexTextField(text: item.begin, showsError: true, showsInvisible: true)
                             .regexHighlighted(item.isRegularExpression.wrappedValue)
@@ -86,7 +87,7 @@ struct SyntaxHighlightEditView: View {
                     }
                 }
                 
-                TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { wrappedItem in
+                TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.end)) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
                         RegexTextField(text: item.end ?? "", showsError: true, showsInvisible: true)
                             .regexHighlighted(item.isRegularExpression.wrappedValue)
@@ -94,11 +95,14 @@ struct SyntaxHighlightEditView: View {
                     }
                 }
                 
-                TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { wrappedItem in
+                TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.description)) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
                         TextField(text: item.description ?? "", label: EmptyView.init)
                     }
                 }
+            }
+            .onChange(of: self.sortOrder) { (_, newValue) in
+                self.items.sort(using: newValue)
             }
             .tableStyle(.bordered)
             .border(Color(nsColor: .gridColor))
