@@ -187,6 +187,7 @@
 		2A2792991D1E57DA00F3FC5D /* SyntaxListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792971D1E57DA00F3FC5D /* SyntaxListViewController.swift */; };
 		2A2B086028046E3B0028D733 /* WarningInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2B085F28046E3B0028D733 /* WarningInspectorView.swift */; };
 		2A2B086128046E3B0028D733 /* WarningInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2B085F28046E3B0028D733 /* WarningInspectorView.swift */; };
+		2A2E56D72C018ADB00416F9E /* ComparableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E56D62C018ADB00416F9E /* ComparableTests.swift */; };
 		2A2EEF182B778BB1001FEDFB /* WrappingHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2EEF172B778BB1001FEDFB /* WrappingHStack.swift */; };
 		2A2EEF192B778BB1001FEDFB /* WrappingHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2EEF172B778BB1001FEDFB /* WrappingHStack.swift */; };
 		2A30C7DB2B1380BE002F6381 /* ShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C7DA2B1380BE002F6381 /* ShortcutView.swift */; };
@@ -985,6 +986,7 @@
 		2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Constants.swift"; sourceTree = "<group>"; };
 		2A2792971D1E57DA00F3FC5D /* SyntaxListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxListViewController.swift; sourceTree = "<group>"; };
 		2A2B085F28046E3B0028D733 /* WarningInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningInspectorView.swift; sourceTree = "<group>"; };
+		2A2E56D62C018ADB00416F9E /* ComparableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparableTests.swift; sourceTree = "<group>"; };
 		2A2EEF172B778BB1001FEDFB /* WrappingHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingHStack.swift; sourceTree = "<group>"; };
 		2A30C7DA2B1380BE002F6381 /* ShortcutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutView.swift; sourceTree = "<group>"; };
 		2A33D07D1D1C75B8005977B9 /* SyntaxValidationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxValidationView.swift; sourceTree = "<group>"; };
@@ -2271,6 +2273,7 @@
 			isa = PBXGroup;
 			children = (
 				2AF5D0E4286D9AB3000BE826 /* ArithmeticsTests.swift */,
+				2A2E56D62C018ADB00416F9E /* ComparableTests.swift */,
 				2A9082EE1D325ED900228F50 /* GeometryTests.swift */,
 				2AC39F721E8AC80E009F97D5 /* CollectionTests.swift */,
 				2AE12DFD1E7DB7D200681F72 /* StringCollectionTests.swift */,
@@ -3218,6 +3221,7 @@
 				2A9C370E1D672A1F00774BA4 /* BracePairTests.swift in Sources */,
 				2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */,
 				2AC39F731E8AC80E009F97D5 /* CollectionTests.swift in Sources */,
+				2A2E56D72C018ADB00416F9E /* ComparableTests.swift in Sources */,
 				2A3F8F682429E04000CBBA89 /* DebouncerTests.swift in Sources */,
 				2A8E47E5299A2401006A40D8 /* EditedRangeSetTests.swift in Sources */,
 				2ABEFB6A23DC0CA0008769F4 /* EditorCounterTests.swift in Sources */,
