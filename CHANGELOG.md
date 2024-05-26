@@ -5,6 +5,7 @@
 
 ### Fixes
 
+- Fix an issue that the application crashed by opening the Appearance settings pane when the font the user set did not exist. 
 - Fix an issue in the syntax editor that the Values pane was missing in the highlighting list in the sidebar.
 
 
