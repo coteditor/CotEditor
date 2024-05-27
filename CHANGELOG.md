@@ -3,6 +3,11 @@
 4.8.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- Improve the file path display in the document inspector.
+
+
 ### Fixes
 
 - Fix an issue that the application crashed by opening the Appearance settings pane when the font the user set did not exist. 
