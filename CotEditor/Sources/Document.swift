@@ -62,6 +62,8 @@ extension Document: EditorSource {
     var isTransient = false  // untitled & empty document that was created automatically
     nonisolated(unsafe) var isVerticalText = false
     
+    weak var windowController: DocumentWindowController?
+    
     
     // MARK: Readonly Properties
     
@@ -261,9 +263,13 @@ extension Document: EditorSource {
     
     override func makeWindowControllers() {
         
-        if self.windowControllers.isEmpty {  // -> A transient document already has one.
+        // -> The window controller already exists either when:
+        //   - The window of a transient document was reused.
+        //   - The document is a member of a DirectoryDocument.
+        if self.windowController == nil {
             let windowController = DocumentWindowController(document: self)
             self.addWindowController(windowController)
+            self.windowController = windowController
             
             // avoid showing "edited" indicator in the close button when the content is empty
             if !Self.autosavesInPlace {
@@ -278,6 +284,20 @@ extension Document: EditorSource {
         }
         
         self.applyContentToWindow()
+    }
+    
+    
+    override func showWindows() {
+        
+        super.showWindows()
+        
+        self.windowController?.showWindow(nil)
+    }
+    
+    
+    override var windowForSheet: NSWindow? {
+        
+        super.windowForSheet ?? self.windowController?.window
     }
     
     
@@ -838,7 +858,7 @@ extension Document: EditorSource {
     /// The view controller represents document.
     var viewController: DocumentViewController? {
         
-        (self.windowControllers.first?.contentViewController as? WindowContentViewController)?.documentViewController
+        (self.windowController?.contentViewController as? WindowContentViewController)?.documentViewController
     }
     
     
@@ -1319,7 +1339,7 @@ extension Document: EditorSource {
     /// Shows the warning inspector in the document window.
     private func showWarningInspector() {
         
-        (self.windowControllers.first?.contentViewController as? WindowContentViewController)?.showInspector(pane: .warnings)
+        (self.windowController?.contentViewController as? WindowContentViewController)?.showInspector(pane: .warnings)
     }
 }
 

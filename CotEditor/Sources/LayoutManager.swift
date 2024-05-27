@@ -241,7 +241,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
         switch invisible {
             case .newLine:
                 let textView = self.firstTextView
-                return MainActor.assumeIsolated { (textView?.window?.windowController?.document as? Document)?.lineEndingScanner.isInvalidLineEnding(at: characterIndex) == true }
+                return MainActor.assumeIsolated { (textView?.window?.windowController as? DocumentWindowController)?.fileDocument?.lineEndingScanner.isInvalidLineEnding(at: characterIndex) == true }
             default:
                 return false
         }

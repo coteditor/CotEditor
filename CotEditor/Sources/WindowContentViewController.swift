@@ -24,12 +24,14 @@
 //
 
 import AppKit
+import SwiftUI
 
 final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Public Properties
     
     var document: Document  { didSet { self.updateDocument() } }
+    var directoryDocument: DirectoryDocument?
     
     var documentViewController: DocumentViewController? { self.contentViewController.documentViewController }
     
@@ -45,9 +47,10 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: Split View Controller Methods
     
-    init(document: Document) {
+    init(document: Document, directoryDocument: DirectoryDocument?) {
         
         self.document = document
+        self.directoryDocument = directoryDocument
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -74,9 +77,15 @@ final class WindowContentViewController: NSSplitViewController {
         super.viewDidLoad()
         
         // -> Need to set *both* identifier and autosaveName to make autosaving work.
-        let autosaveName = "WindowContentSplitView"
+        let autosaveName = (self.directoryDocument == nil) ? "WindowContentSplitView" : "DirectoryWindowContentSplitView"
         self.splitView.identifier = NSUserInterfaceItemIdentifier(autosaveName)
         self.splitView.autosaveName = autosaveName
+        
+        if let directoryDocument {
+            let rootView = FileBrowserView(document: directoryDocument)
+            let sidebarViewItem = NSSplitViewItem(sidebarWithViewController: NSHostingController(rootView: rootView))
+            self.addSplitViewItem(sidebarViewItem)
+        }
         
         let contentViewController = ContentViewController(document: self.document)
         self.contentViewItem = NSSplitViewItem(viewController: contentViewController)

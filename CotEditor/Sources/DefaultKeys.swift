@@ -153,6 +153,11 @@ extension DefaultKeys {
     static let countTreatsConsecutiveWhitespaceAsSingle = DefaultKey<Bool>("countOptionTreatsConsecutiveWhitespaceAsSingle")
     static let countEncoding = DefaultKey<Int>("countOptionEncoding")
     
+    // file browser
+    static let fileBrowserKeepsFoldersOnTop = DefaultKey<Bool>("fileBrowserKeepsFoldersOnTop")
+    static let fileBrowserShowsHiddenFiles = DefaultKey<Bool>("fileBrowserShowsHiddenFiles")
+    static let fileBrowserShowsFilenameExtensions = DefaultKey<Bool>("fileBrowserShowsFilenameExtensions")
+    
     // settings that are not in the Settings window
     static let pinsThemeAppearance = DefaultKey<Bool>("pinsThemeAppearance")
     static let lastSettingsPaneIdentifier = DefaultKey<String?>("lastPreferencesPaneIdentifier")

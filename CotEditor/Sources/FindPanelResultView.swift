@@ -212,7 +212,7 @@ private extension NSTextView {
     
     var documentName: String? {
         
-        self.window?.windowController?.document?.displayName
+        (self.window?.windowController as? DocumentWindowController)?.fileDocument?.displayName
     }
 }
 

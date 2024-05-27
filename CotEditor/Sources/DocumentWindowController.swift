@@ -43,9 +43,22 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
+    weak var fileDocument: Document? {
+        
+        didSet {
+            if let fileDocument {
+                self.updateDocument(fileDocument)
+            }
+        }
+    }
+    
+    
     // MARK: Private Properties
     
     private static let windowFrameName = NSWindow.FrameAutosaveName("Document")
+    
+    private var directoryDocument: DirectoryDocument?
+    private var hasDirectoryBrowser: Bool  { self.directoryDocument != nil }
     
     private lazy var editedIndicator: NSView = NSHostingView(rootView: Circle()
         .fill(.tertiary)
@@ -67,11 +80,15 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Lifecycle
     
-    required init(document: Document) {
+    required init(document: Document, directoryDocument: DirectoryDocument? = nil) {
         
-        let window = DocumentWindow(contentViewController: WindowContentViewController(document: document))
+        let window = DocumentWindow(contentViewController: WindowContentViewController(document: document, directoryDocument: directoryDocument))
         window.styleMask.update(with: .fullSizeContentView)
         window.setFrameAutosaveName(Self.windowFrameName)
+        
+        if directoryDocument != nil {
+            window.tabbingMode = .disallowed
+        }
         
         // set window size
         let width = UserDefaults.standard[.windowWidth] ?? 0
@@ -82,12 +99,16 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             window.setFrame(.init(origin: window.frame.origin, size: frameSize), display: false)
         }
         
+        self.directoryDocument = directoryDocument
+        
         super.init(window: window)
+        
+        self.updateDocument(document)
         
         window.delegate = self
         
         // setup toolbar
-        let toolbar = NSToolbar(identifier: .document)
+        let toolbar = NSToolbar(identifier: self.hasDirectoryBrowser ? .directoryDocument : .document)
         toolbar.displayMode = .iconOnly
         toolbar.allowsUserCustomization = true
         toolbar.autosavesConfiguration = true
@@ -154,6 +175,17 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
+    override func synchronizeWindowTitleWithDocumentName() {
+        
+        super.synchronizeWindowTitleWithDocumentName()
+        
+        if let directoryURL = self.directoryDocument?.fileURL, let fileDocument = self.fileDocument {
+            // display current document title as window subtitle
+            self.window?.subtitle = fileDocument.fileURL?.path(relativeTo: directoryURL) ?? fileDocument.displayName
+        }
+    }
+    
+    
     
     // MARK: Window Delegate
     
@@ -201,6 +233,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         if let viewController = self.contentViewController as? WindowContentViewController, viewController.document != document {
             viewController.document = document
         }
+        
+        self.synchronizeWindowTitleWithDocumentName()
         
         // observe document's syntax change for toolbar
         self.selectSyntaxPopUpItem(with: document.syntaxParser.name)
@@ -253,7 +287,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             return item
         }
         
-        if let syntaxName = (self.document as? Document)?.syntaxParser.name {
+        if let syntaxName = self.fileDocument?.syntaxParser.name {
             self.selectSyntaxPopUpItem(with: syntaxName)
         }
     }
@@ -304,6 +338,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
 private extension NSToolbar.Identifier {
     
     static let document = Self("Document")
+    static let directoryDocument = Self("DirectoryDocument")
 }
 
 
@@ -351,18 +386,28 @@ private extension NSToolbarItem.Identifier {
 
 extension DocumentWindowController: NSToolbarDelegate {
     
+    private var directoryIdentifiers: [NSToolbarItem.Identifier] {
+        
+        self.hasDirectoryBrowser ? [
+            .toggleSidebar,
+            .sidebarTrackingSeparator,
+        ] : []
+    }
+    
+    
     func toolbarImmovableItemIdentifiers(_ toolbar: NSToolbar) -> Set<NSToolbarItem.Identifier> {
         
-        [
-            .flexibleSpace,
+        Set(self.directoryIdentifiers).union([
             .inspectorTrackingSeparator,
-        ]
+            .flexibleSpace,
+            .inspector,
+        ])
     }
     
     
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
-        [
+        self.directoryIdentifiers + [
             .syntax,
             .inspectorTrackingSeparator,
             .flexibleSpace,
@@ -373,7 +418,7 @@ extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
-        [
+        self.directoryIdentifiers + [
             .syntax,
             .inspector,
             .textSize,
@@ -756,7 +801,7 @@ extension DocumentWindowController: NSSharingServicePickerToolbarItemDelegate {
     
     public func items(for pickerToolbarItem: NSSharingServicePickerToolbarItem) -> [Any] {
         
-        guard let document = self.document else { return [] }
+        guard let document = self.fileDocument else { return [] }
         
         return [document]
     }

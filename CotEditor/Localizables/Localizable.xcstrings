@@ -558,6 +558,65 @@
         }
       }
     },
+    "DirectoryDocumentError.alreadyOpen.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Datei „%@“ ist bereits in einem anderen Fenster geöffnet."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The file “%@” is already open in a different window."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The file “%@” is already open in a different window."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ファイル“%@”はすでに別のウインドウで開かれています。"
+          }
+        }
+      }
+    },
+    "DirectoryDocumentError.alreadyOpen.recoverySuggestion" : {
+      "comment" : "“it” is the file in description.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Um sie in diesem Fenster zu öffnen, schließ zuerst das bestehende Fenster."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "To open it in this window, close the existing window first."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To open it in this window, close the existing window first."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このウインドウで開くには、先にすでにあるウインドウを閉じてください。"
+          }
+        }
+      }
+    },
     "DocumentOpeningError.binaryFile.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
