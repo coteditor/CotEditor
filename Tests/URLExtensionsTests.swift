@@ -35,7 +35,6 @@ final class URLExtensionsTests: XCTestCase {
         let baseURL = URL(filePath: "/foo/buz/file.txt")
         
         XCTAssertEqual(url.path(relativeTo: baseURL), "../bar/file.txt")
-        XCTAssertNil(url.path(relativeTo: nil))
     }
     
     

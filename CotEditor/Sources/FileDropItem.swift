@@ -202,7 +202,7 @@ extension FileDropItem {
         // replace template
         var dropText = self.format
             .replacing(Variable.absolutePath.token, with: droppedFileURL.path)
-            .replacing(Variable.relativePath.token, with: droppedFileURL.path(relativeTo: documentURL) ?? droppedFileURL.path)
+            .replacing(Variable.relativePath.token, with: documentURL.flatMap(droppedFileURL.path(relativeTo:)) ?? droppedFileURL.path)
             .replacing(Variable.filename.token, with: droppedFileURL.lastPathComponent)
             .replacing(Variable.filenameWithoutExtension.token, with: droppedFileURL.deletingPathExtension().lastPathComponent)
             .replacing(Variable.fileExtension.token, with: droppedFileURL.pathExtension)

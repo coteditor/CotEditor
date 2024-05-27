@@ -34,21 +34,19 @@ extension URL {
     }
     
     
-    /// Returns relative-path string.
+    /// Returns relative-path components.
     ///
     /// - Note: The `baseURL` is assumed its `directoryHint` is properly set.
     ///
     /// - Parameter baseURL: The URL the relative path based on.
-    /// - Returns: A path string.
-    func path(relativeTo baseURL: URL?) -> String? {
+    /// - Returns: Path components.
+    func components(relativeTo baseURL: URL) -> [String] {
         
         assert(self.isFileURL)
-        assert(baseURL?.isFileURL != false)
-        
-        guard let baseURL else { return nil }
+        assert(baseURL.isFileURL)
         
         if baseURL == self, !baseURL.hasDirectoryPath {
-            return self.lastPathComponent
+            return [self.lastPathComponent]
         }
         
         let filename = self.lastPathComponent
@@ -60,7 +58,19 @@ extension URL {
         let parentComponents = [String](repeating: "..", count: parentCount)
         let diffComponents = pathComponents[sameCount...]
         
-        return (parentComponents + diffComponents + [filename]).joined(separator: "/")
+        return parentComponents + diffComponents + [filename]
+    }
+    
+    
+    /// Returns relative-path string.
+    ///
+    /// - Note: The `baseURL` is assumed its `directoryHint` is properly set.
+    ///
+    /// - Parameter baseURL: The URL the relative path based on.
+    /// - Returns: A path string.
+    func path(relativeTo baseURL: URL) -> String {
+        
+        self.components(relativeTo: baseURL).joined(separator: "/")
     }
 }
 
