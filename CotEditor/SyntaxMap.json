@@ -337,6 +337,17 @@
 
     ]
   },
+  "jq" : {
+    "extensions" : [
+      "jq"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
   "JSON" : {
     "extensions" : [
       "json",

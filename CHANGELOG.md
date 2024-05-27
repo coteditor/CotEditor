@@ -3,6 +3,11 @@
 4.8.5 (unreleased)
 --------------------------
 
+### New Features
+
+- Add jq Syntax.
+
+
 ### Improvements
 
 - Improve the file path display in the document inspector.
