@@ -65,6 +65,12 @@ struct AntialiasingText: NSViewRepresentable {
     }
     
     
+    func sizeThatFits(_ proposal: ProposedViewSize, nsView: NSTextField, context: Context) -> CGSize? {
+        
+        proposal.replacingUnspecifiedDimensions()
+    }
+    
+    
     /// Sets whether disables the antialias.
     ///
     /// - Parameter disabled: The antialias state to change.

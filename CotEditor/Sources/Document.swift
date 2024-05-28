@@ -530,6 +530,9 @@ import OSLog
             .flatMap { UTType(filenameExtension: $0) }
             .flatMap { [$0] } ?? []
         
+        // avoid the Hide Extension option removes actual file extension (macOS 14, 2024-05)
+        savePanel.canSelectHiddenExtension = false
+        
         // set accessory view
         let accessory = SavePanelAccessory(options: self.saveOptions)
         let accessoryView = NSHostingView(rootView: accessory)

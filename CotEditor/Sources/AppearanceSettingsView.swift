@@ -54,7 +54,7 @@ struct AppearanceSettingsView: View {
                     .gridColumnAlignment(.trailing)
                     .accessibilityLabeledPair(role: .label, id: "font", in: self.accessibility)
                 
-                FontSettingView(data: $font ?? (try! FontType.standard.systemFont().archivedData), antialias: $shouldAntialias, ligature: $ligature)
+                FontSettingView(data: $font, fallback: FontType.standard.systemFont(), antialias: $shouldAntialias, ligature: $ligature)
                     .accessibilityLabeledPair(role: .content, id: "font", in: self.accessibility)
             }
             
@@ -63,7 +63,7 @@ struct AppearanceSettingsView: View {
                     .gridColumnAlignment(.trailing)
                     .accessibilityLabeledPair(role: .label, id: "monospacedFont", in: self.accessibility)
                 
-                FontSettingView(data: $monospacedFont ?? (try! FontType.monospaced.systemFont().archivedData), antialias: $monospacedShouldAntialias, ligature: $monospacedLigature)
+                FontSettingView(data: $monospacedFont, fallback: FontType.monospaced.systemFont(), antialias: $monospacedShouldAntialias, ligature: $monospacedLigature)
                     .onChange(of: self.monospacedFont) { (oldValue, newValue) in
                         guard
                             let newValue,
@@ -156,13 +156,14 @@ struct AppearanceSettingsView: View {
 
 private struct FontSettingView: View {
     
-    @Binding var data: Data
+    @Binding var data: Data?
+    var fallback: NSFont
     @Binding var antialias: Bool
     @Binding var ligature: Bool
     
     private var font: Binding<NSFont> {
         
-        Binding(get: { NSFont(archivedData: self.data) ?? .init() },
+        Binding(get: { self.data.flatMap(NSFont.init(archivedData:)) ?? self.fallback },
                 set: { self.data = (try? $0.archivedData) ?? self.data })
     }
     
@@ -230,6 +231,6 @@ private extension AppearanceMode {
     @State var antialias = false
     @State var ligature = false
     
-    return FontSettingView(data: .constant(Data()), antialias: $antialias, ligature: $ligature)
+    return FontSettingView(data: .constant(Data()), fallback: NSFont.systemFont(ofSize: 0), antialias: $antialias, ligature: $ligature)
         .padding()
 }

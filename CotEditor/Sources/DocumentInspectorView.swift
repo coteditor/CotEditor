@@ -184,9 +184,12 @@ private struct DocumentFileView: View {
                 LabeledContent(String(localized: "Full Path", table: "Document", comment: "label in document inspector")) {
                     if let fileURL = self.fileURL {
                         HStack(alignment: .lastTextBaseline, spacing: 0) {
-                            Text(fileURL, format: .url)
+                            Text(fileURL, format: .url.scheme(.never))
+                                .lineLimit(5)
+                                .truncationMode(.middle)
                                 .textSelection(.enabled)
                                 .foregroundStyle(.primary)
+                                .help(fileURL.formatted(.url.scheme(.never)))
                             Button(String(localized: "Show in Finder", table: "Document"), systemImage: "arrow.forward") {
                                 NSWorkspace.shared.activateFileViewerSelecting([fileURL])
                             }

@@ -30,9 +30,22 @@
 4.8.5 (unreleased)
 --------------------------
 
+### New Features
+
+- Add jq Syntax.
+
+
+### Improvements
+
+- Improve the file path display in the document inspector.
+
+
 ### Fixes
 
+- Fix an issue that the application crashed by opening the Appearance settings pane when the font the user set did not exist.
 - Fix an issue in the syntax editor that the Values pane was missing in the highlighting list in the sidebar.
+- Fix an issue in the Save dialog that the file extension disappeared when the user select the Hide Extension option.
+- Fix an issue that the font fields in the Appearance settings pane could unnecessary shrunk with specific fonts.
 
 
 
