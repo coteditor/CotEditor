@@ -28,6 +28,9 @@ import AppKit
 
 struct WhatsNewView: View {
     
+    @Environment(\.dismissWindow) private var dismiss
+    
+    
     var body: some View {
         
         VStack {
@@ -64,11 +67,24 @@ struct WhatsNewView: View {
             
             Spacer()
             
-            Button(String(localized: "Release Notes", table: "WhatsNew")) {
+            Button {
                 NSHelpManager.shared.openHelpAnchor("releasenotes", inBook: Bundle.main.helpBookName)
+            } label: {
+                HStack(alignment: .firstTextBaseline, spacing: 3) {
+                    Text("Release Notes", tableName: "WhatsNew")
+                    Image(systemName: "chevron.forward")
+                        .imageScale(.small)
+                }
             }
             .buttonStyle(.link)
             .foregroundStyle(.tint)
+            
+            Button(String(localized: "Continue", table: "WhatsNew")) {
+                self.dismiss()
+            }
+            .keyboardShortcut(.cancelAction)
+            .buttonStyle(.borderedProminent)
+            .padding(.top, 6)
         }
         .scenePadding()
         .frame(width: 640, height: 300)
