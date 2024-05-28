@@ -13597,6 +13597,36 @@
         }
       }
     },
+    "hYd-RY-2dc.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Select Enclosing Symbols\"; ObjectID = \"hYd-RY-2dc\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einschließende Symbole auswählen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Select Enclosing Symbols"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Enclosing Symbols"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内包する記号を選択"
+          }
+        }
+      }
+    },
     "HZ8-G2-f8d.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"Speech\"; ObjectID = \"HZ8-G2-f8d\";",
       "extractionState" : "extracted_with_value",

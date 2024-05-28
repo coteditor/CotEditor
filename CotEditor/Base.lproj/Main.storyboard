@@ -203,6 +203,12 @@
                                                             <action selector="selectWord:" target="Ady-hI-5gd" id="hYk-Nd-XPC"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem title="Select Enclosing Symbols" id="hYd-RY-2dc">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="selectEnclosingSymbols:" target="Ady-hI-5gd" id="jgc-AB-qMh"/>
+                                                        </connections>
+                                                    </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="Cpy-7b-POT"/>
                                                     <menuItem title="Select Column Up" keyEquivalent="" id="yVo-uW-dls">
                                                         <modifierMask key="keyEquivalentModifierMask" shift="YES" control="YES"/>

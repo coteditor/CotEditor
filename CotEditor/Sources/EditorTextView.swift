@@ -1339,6 +1339,18 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// Selects the content of the enclosing paired symbols, such as brackets or quotation marks.
+    @IBAction func selectEnclosingSymbols(_ sender: Any?) {
+        
+        guard
+            let selectedRange = Range(self.selectedRange, in: self.string),
+            let enclosingRange = self.string.rangeOfEnclosingBracePair(at: selectedRange, candidates: BracePair.braces + [.ltgt])
+        else { return }
+        
+        self.selectedRange = NSRange(enclosingRange, in: self.string)
+    }
+    
+    
     
     // MARK: Private Methods
     

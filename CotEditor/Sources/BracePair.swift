@@ -47,6 +47,20 @@ extension Pair where T == Character {
 
 extension StringProtocol {
     
+    /// Finds the range enclosed by one of given brace pairs.
+    ///
+    /// - Note: Escaping character by `\` is not considered.
+    ///
+    /// - Parameters:
+    ///   - range: The character range on which to base the search.
+    ///   - candidates: The pairs of symbols to search.
+    /// - Returns: The range of the enclosing brace pair, or `nil` if not found.
+    func rangeOfEnclosingBracePair(at range: Range<Index>, candidates: [BracePair]) -> Range<Index>? {
+        
+        BracePairScanner(string: String(self), candidates: candidates, baseRange: range).scan()
+    }
+    
+    
     /// Finds the mate of a brace pair.
     ///
     /// - Parameters:
@@ -179,5 +193,113 @@ extension StringProtocol {
         }
         
         return nil
+    }
+}
+
+
+// MARK: -
+
+private final class BracePairScanner {
+    
+    let string: String
+    let candidates: [BracePair]
+    
+    private var scanningRange: Range<String.Index>
+    private var scanningPair: BracePair?
+    private var finished: Bool = false
+    private var found: Bool = false
+    
+    
+    init(string: String, candidates: [BracePair], baseRange: Range<String.Index>) {
+        
+        assert(candidates.allSatisfy({ $0.begin != $0.end }))
+        
+        self.string = string
+        self.candidates = candidates
+        self.scanningRange = baseRange
+    }
+    
+    
+    // MARK: Public Methods
+    
+    func scan() -> Range<String.Index>? {
+        
+        while !self.finished {
+            self.scanForward()
+            
+            guard !self.finished else { return nil }
+            
+            self.scanBackward()
+        }
+        
+        return self.found ? self.scanningRange : nil
+    }
+    
+    
+    // MARK: Private Methods
+    
+    private func scanForward() {
+        
+        var index = self.scanningRange.upperBound
+        var nestDepths: [BracePair: Int] = [:]
+        var isEscaped = (index != self.string.startIndex) && self.string[self.string.index(before: index)] == "\\"
+        
+        for character in self.string[index...] {
+            index = self.string.index(after: index)
+            
+            guard !isEscaped else { continue }
+            
+            if let pair = self.candidates.first(where: { $0.begin == character }) {
+                nestDepths[pair, default: 0] += 1
+                
+            } else if let pair = self.candidates.first(where: { $0.end == character }) {
+                if nestDepths[pair, default: 0] > 0 {
+                    nestDepths[pair, default: 0] -= 1
+                } else {
+                    self.scanningRange = self.scanningRange.lowerBound..<index
+                    self.scanningPair = pair
+                    return
+                }
+            }
+            
+            if character == "\\" {
+                isEscaped.toggle()
+            } else {
+                isEscaped = false
+            }
+        }
+        
+        self.finished = true
+    }
+    
+    
+    private func scanBackward() {
+        
+        var index = self.scanningRange.lowerBound
+        var nestDepths: [BracePair: Int] = [:]
+        
+        for character in self.string[..<index].reversed() {
+            index = self.string.index(before: index)
+            
+            if let pair = self.candidates.first(where: { $0.begin == character }) {
+                guard !self.string.isCharacterEscaped(at: index) else { continue }
+                
+                if nestDepths[pair, default: 0] > 0 {
+                    nestDepths[pair, default: 0] -= 1
+                } else {
+                    self.finished = true
+                    self.found = true
+                    self.scanningRange = index..<self.scanningRange.upperBound
+                    return
+                }
+                
+            } else if let pair = self.candidates.first(where: { $0.end == character }) {
+                guard !self.string.isCharacterEscaped(at: index) else { continue }
+                
+                nestDepths[pair, default: 0] += 1
+            }
+        }
+        
+        self.finished = true
     }
 }
