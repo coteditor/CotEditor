@@ -56,6 +56,7 @@ struct WhatsNewView: View {
                             .padding(.vertical, 2)
                         
                         Text(feature.description)
+                            .foregroundStyle(.secondary)
                             .fixedSize(horizontal: false, vertical: true)
                         
                         feature.supplementalView
@@ -71,7 +72,7 @@ struct WhatsNewView: View {
                 NSHelpManager.shared.openHelpAnchor("releasenotes", inBook: Bundle.main.helpBookName)
             } label: {
                 HStack(alignment: .firstTextBaseline, spacing: 3) {
-                    Text("Release Notes", tableName: "WhatsNew")
+                    Text("Complete release notes", tableName: "WhatsNew")
                     Image(systemName: "chevron.forward")
                         .imageScale(.small)
                 }
@@ -79,8 +80,11 @@ struct WhatsNewView: View {
             .buttonStyle(.link)
             .foregroundStyle(.tint)
             
-            Button(String(localized: "Continue", table: "WhatsNew")) {
+            Button {
                 self.dismiss()
+            } label: {
+                Text("Continue", tableName: "WhatsNew")
+                    .frame(minWidth: 120)
             }
             .keyboardShortcut(.cancelAction)
             .buttonStyle(.borderedProminent)
@@ -88,7 +92,7 @@ struct WhatsNewView: View {
         }
         .scenePadding()
         .frame(width: 640, height: 300)
-        .padding(.top)  // for balancing with window titlebar space
+        .padding(.top, 30)  // for balancing with window titlebar space
         .ignoresSafeArea()
         .background()
     }
