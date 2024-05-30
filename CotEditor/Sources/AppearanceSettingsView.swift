@@ -231,6 +231,6 @@ private extension AppearanceMode {
     @State var antialias = false
     @State var ligature = false
     
-    return FontSettingView(data: .constant(Data()), fallback: NSFont.systemFont(ofSize: 0), antialias: $antialias, ligature: $ligature)
+    return FontSettingView(data: .constant(Data()), fallback: .systemFont(ofSize: 0), antialias: $antialias, ligature: $ligature)
         .padding()
 }
