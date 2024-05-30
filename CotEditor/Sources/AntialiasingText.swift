@@ -47,8 +47,9 @@ struct AntialiasingText: NSViewRepresentable {
         let nsView = AntialiasingTextField(string: self.text)
         nsView.isEditable = false
         nsView.isSelectable = false
-        nsView.frame.size.height = 22
         nsView.alignment = .center
+        nsView.lineBreakMode = .byTruncatingMiddle
+        nsView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         
         // keep initial field height
         nsView.heightAnchor.constraint(equalToConstant: nsView.frame.height).isActive = true
@@ -62,12 +63,6 @@ struct AntialiasingText: NSViewRepresentable {
         nsView.stringValue = self.text
         nsView.font = self.font
         (nsView as! AntialiasingTextField).antialiasDisabled = self.antialiasDisabled
-    }
-    
-    
-    func sizeThatFits(_ proposal: ProposedViewSize, nsView: NSTextField, context: Context) -> CGSize? {
-        
-        proposal.replacingUnspecifiedDimensions()
     }
     
     
@@ -131,7 +126,7 @@ private final class CenteringTextFieldCell: NSTextFieldCell {
         var titleRect = super.titleRect(forBounds: rect)
         let titleSize = self.attributedStringValue.size()
         
-        titleRect.origin.y = (rect.minY + (rect.height - titleSize.height) / 2).rounded(.down)
+        titleRect.origin.y = (rect.minY + (rect.height - titleSize.height) / 2).rounded(.up)
         titleRect.size.height = rect.height - titleRect.origin.y
         
         return titleRect
@@ -157,6 +152,8 @@ private final class CenteringTextFieldCell: NSTextFieldCell {
         
         AntialiasingText("Smooth Text")
             .antialiasDisabled(false)
-            .font(nsFont: NSFont.monospacedSystemFont(ofSize: 8, weight: .regular))
+            .font(nsFont: .monospacedSystemFont(ofSize: 8, weight: .regular))
+        
+        AntialiasingText("Very Long Long Long Long Long Long Text")
     }.padding()
 }
