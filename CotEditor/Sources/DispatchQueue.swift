@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ extension DispatchQueue {
     /// Synchronously but thread-safely invokes passed-in block on main thread to avoid deadlock.
     ///
     /// - Parameter block: The block that contains the work to perform.
-    final class func syncOnMain(execute block: () -> Void) {
+    static func syncOnMain(execute block: () -> Void) {
         
         if Thread.isMainThread {
             block()
@@ -46,7 +46,7 @@ extension DispatchQueue {
     ///
     /// - Parameter work: The work item containing the work to perform.
     /// - Returns: The return value of the item in the work parameter.
-    final class func syncOnMain<T>(execute work: () throws -> T) rethrows -> T {
+    static func syncOnMain<T>(execute work: () throws -> T) rethrows -> T {
         
         if Thread.isMainThread {
             try work()

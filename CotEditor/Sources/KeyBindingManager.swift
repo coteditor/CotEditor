@@ -274,7 +274,7 @@ final class KeyBindingManager {
     ///
     /// - Parameter menu: The menu where to collect key bindings.
     /// - Returns: An array of KeyBindings.
-    private class func scanKeyBindings(in menu: NSMenu) -> [KeyBinding] {
+    private static func scanKeyBindings(in menu: NSMenu) -> [KeyBinding] {
         
         menu.items
             .filter(Self.allowsModifying)

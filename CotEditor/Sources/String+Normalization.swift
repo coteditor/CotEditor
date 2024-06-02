@@ -121,7 +121,7 @@ enum UnicodeNormalizationForm: String, CaseIterable {
     /// Unique identifier for menu item.
     var tag: Int {
         
-        Self.allCases.enumerated().first { $0.element == self }!.offset
+        Self.allCases.firstIndex(of: self)!
     }
 }
 
