@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -59,9 +59,11 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
     func menuWillOpen(_ menu: NSMenu) {
         
         self.update()  // UI validation is performed here
-        self.validateKeyEvent(force: true)
+        self.validateKeyEvent(forcibly: true)
         
-        let timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(validateKeyEvent), userInfo: nil, repeats: true)
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
+            self?.validateKeyEvent()
+        }
         RunLoop.current.add(timer, forMode: .eventTracking)
         self.trackingTimer = timer
     }
@@ -78,12 +80,12 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
     
     /// Checks the state of the modifier key press and update the item visibility.
     ///
-    /// - Parameter force: Whether forcing to update the item visibility.
-    @objc private func validateKeyEvent(force: Bool = false) {
+    /// - Parameter forcibly: Whether forcing to update the item visibility.
+    @objc private func validateKeyEvent(forcibly: Bool = false) {
         
         let shows = NSEvent.modifierFlags.contains(.option)
         
-        guard force || shows != self.isShowingOptionalItems else { return }
+        guard forcibly || shows != self.isShowingOptionalItems else { return }
         
         self.updateOptionalItems(shows: shows)
     }
