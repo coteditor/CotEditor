@@ -480,7 +480,7 @@ private extension PrintInfoType {
         
         let item = NSMenuItem()
         item.title = self.label
-        item.tag = Self.allCases.enumerated().first { $0.element == self }?.offset ?? 0
+        item.tag = Self.allCases.firstIndex(of: self) ?? 0
         return item
     }
 }

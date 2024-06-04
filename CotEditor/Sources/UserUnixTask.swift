@@ -98,7 +98,7 @@ actor UserUnixTask {
             
             async let data = buffer.reduce(into: Data()) { $0 += $1 }
             
-            return String(data: await data, encoding: .utf8)
+            return String(decoding: await data, as: UTF8.self)
         }
     }
     
@@ -106,13 +106,11 @@ actor UserUnixTask {
     /// The standard error.
     var error: String? {
         
-        guard
-            let data = try? self.errorPipe.fileHandleForReading.readToEnd(),
-            let string = String(data: data, encoding: .utf8),
-            !string.isEmpty
-        else { return nil }
+        guard let data = try? self.errorPipe.fileHandleForReading.readToEnd() else { return nil }
         
-        return string
+        let string = String(decoding: data, as: UTF8.self)
+        
+        return string.isEmpty ? nil : string
     }
 }
 

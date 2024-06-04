@@ -30,6 +30,10 @@
 4.8.6 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix a trivial memory leak in the line ending menu (thanks to Yoshimasa Niwa).
+
 
 
 4.8.5 (653)

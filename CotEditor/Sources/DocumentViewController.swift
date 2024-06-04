@@ -398,6 +398,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Invoked when the text was edited (invoked right **before** notifying layout managers).
     override func textStorageDidProcessEditing(_ notification: Notification) {
         
+        assert(Thread.isMainThread)
+        
         let textStorage = notification.object as! NSTextStorage
         
         guard

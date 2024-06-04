@@ -37,7 +37,7 @@ final class EncodingDetectionTests: XCTestCase {
         // -> String(data:encoding:) preserves BOM since Swift 5 (2019-03)
         //    cf. https://bugs.swift.org/browse/SR-10173
         let data = try self.dataForFileName("UTF-8 BOM")
-        XCTAssertEqual(String(data: data, encoding: .utf8), "\u{FEFF}0")
+        XCTAssertEqual(String(decoding: data, as: UTF8.self), "\u{FEFF}0")
         XCTAssertEqual(String(bomCapableData: data, encoding: .utf8), "0")
         
         var encoding: String.Encoding?

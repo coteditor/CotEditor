@@ -68,6 +68,7 @@ disabled_rules:
   - force_cast
   - force_try
   - opening_brace
+  - static_over_final_class
   - switch_case_alignment
   - trailing_comma
   - unneeded_override
