@@ -33,7 +33,7 @@ struct WhatsNewView: View {
     
     var body: some View {
         
-        VStack {
+        VStack(spacing: 16) {
             Text("What’s New in **CotEditor \(NewFeature.version)**", tableName: "WhatsNew", comment: "%@ is version number")
                 .font(.title)
                 .fontWeight(.medium)
@@ -42,7 +42,7 @@ struct WhatsNewView: View {
             
             HStack(alignment: .top, spacing: 20) {
                 ForEach(NewFeature.allCases, id: \.self) { feature in
-                    VStack {
+                    VStack(spacing: 8) {
                         feature.image
                             .font(.system(size: 56, weight: .thin))
                             .foregroundStyle(.tint)
@@ -53,20 +53,16 @@ struct WhatsNewView: View {
                             .fontWeight(.semibold)
                             .accessibilityAddTraits(.isHeader)
                             .accessibilityHeading(.h2)
-                            .padding(.vertical, 2)
                         
                         Text(feature.description)
                             .foregroundStyle(.secondary)
                             .fixedSize(horizontal: false, vertical: true)
                         
                         feature.supplementalView
-                            .padding(.top, 4)
                     }
                     .frame(maxWidth: .infinity)
                 }
-            }.padding(.vertical)
-            
-            Spacer()
+            }
             
             Button {
                 NSHelpManager.shared.openHelpAnchor("releasenotes", inBook: Bundle.main.helpBookName)
@@ -88,7 +84,6 @@ struct WhatsNewView: View {
             }
             .keyboardShortcut(.cancelAction)
             .buttonStyle(.borderedProminent)
-            .padding(.top, 6)
         }
         .scenePadding()
         .frame(width: 640, height: 300)
