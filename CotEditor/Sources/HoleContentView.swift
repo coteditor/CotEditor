@@ -76,11 +76,13 @@ final class HoleContentView: NSView {
         
         guard self.window?.isOpaque == false else { return super.draw(dirtyRect) }
         
+        let fillRect = dirtyRect.intersection(self.bounds)
+        
         NSColor.windowBackgroundColor.setFill()
-        dirtyRect.fill()
+        fillRect.fill()
         
         for hole in self.holes {
-            hole.intersection(dirtyRect).fill(using: .clear)
+            hole.intersection(fillRect).fill(using: .clear)
         }
     }
 }

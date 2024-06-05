@@ -151,10 +151,12 @@ final class LineNumberView: NSView {
         
         NSGraphicsContext.saveGraphicsState()
         
+        let fillView = dirtyRect.intersection(self.bounds)
+        
         // fill background
         if self.isOpaque {
             self.backgroundColor.setFill()
-            dirtyRect.fill()
+            fillView.fill()
         }
         
         // draw separator
@@ -167,7 +169,7 @@ final class LineNumberView: NSView {
             
             self.foregroundColor(.separator).set()
             self.backingAlignedRect(lineRect, options: .alignAllEdgesOutward)
-                .intersection(dirtyRect)
+                .intersection(fillView)
                 .fill()
         }
         
