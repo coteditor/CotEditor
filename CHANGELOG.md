@@ -30,6 +30,11 @@
 4.8.6 (unreleased)
 --------------------------
 
+### Implements
+
+- [non-AppStore ver.] Update Sparkle from 2.6.2 to 2.6.3.
+
+
 ### Fixes
 
 - Fix a trivial memory leak in the line ending menu (thanks to Yoshimasa Niwa).
