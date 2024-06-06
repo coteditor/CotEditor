@@ -21,6 +21,18 @@
 
     ]
   },
+  "Assembly" : {
+    "extensions" : [
+      "s",
+      "asm"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
   "AWK" : {
     "extensions" : [
       "awk"

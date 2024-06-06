@@ -1,0 +1,213 @@
+attributes:
+- beginString: (?<=\[)[^\]]+(?=\])
+  regularExpression: true
+characters: []
+commands:
+- beginString: aaa
+  ignoreCase: true
+- beginString: aad
+  ignoreCase: true
+- beginString: add
+  ignoreCase: true
+- beginString: and
+  ignoreCase: true
+- beginString: daa
+  ignoreCase: true
+- beginString: div
+  ignoreCase: true
+- beginString: enter
+  ignoreCase: true
+- beginString: idiv
+  ignoreCase: true
+- beginString: lad
+  ignoreCase: true
+- beginString: ld
+  ignoreCase: true
+- beginString: loop
+  ignoreCase: true
+- beginString: mov
+  description: mnemonic
+  ignoreCase: true
+- beginString: mul
+  ignoreCase: true
+- beginString: neg
+  ignoreCase: true
+- beginString: or
+  ignoreCase: true
+- beginString: pop
+  ignoreCase: true
+- beginString: push
+  ignoreCase: true
+- beginString: rcl
+  ignoreCase: true
+- beginString: rcr
+  ignoreCase: true
+- beginString: rol
+  ignoreCase: true
+- beginString: ror
+  ignoreCase: true
+- beginString: sal
+  ignoreCase: true
+- beginString: sar
+  ignoreCase: true
+- beginString: shl
+  ignoreCase: true
+- beginString: shr
+  ignoreCase: true
+- beginString: st
+  ignoreCase: true
+- beginString: sub
+  ignoreCase: true
+- beginString: svc
+  ignoreCase: true
+- beginString: xor
+  ignoreCase: true
+commentDelimiters:
+  inlineDelimiter: ;
+comments: []
+completions: []
+extensions:
+- keyString: s
+- keyString: asm
+filenames: []
+interpreters: []
+keywords:
+- beginString: \.\w+\b
+  regularExpression: true
+- beginString: ^[a-z0-9._]+(?=:)
+  ignoreCase: true
+  regularExpression: true
+kind: code
+metadata:
+  author: 1024jp
+  description: 'based on Netwide assembler (intel x86) syntax.
+
+
+    ref. https://www.nasm.us/doc/nasmdoc3.html'
+  distributionURL: https://coteditor.com
+  lastModified: '2022-08-31'
+  license: Same as CotEditor
+  version: 1.0.0
+numbers:
+- beginString: (\b|[-+])(0[dt])?[0-9][0-9_]*[dt]?\b
+  description: decimal with pre/suf-fix
+  ignoreCase: true
+  regularExpression: true
+- beginString: (\b|[-+])0[by][01][01_]*\b
+  description: binary with prefix
+  ignoreCase: true
+  regularExpression: true
+- beginString: (\b|[-+])0[hx][0-9a-f][0-9a-f_]*\b
+  description: hex with prefix
+  ignoreCase: true
+  regularExpression: true
+- beginString: (\b|[-+])0[qo][0-7][0-7_]*\b
+  description: octal with prefix
+  ignoreCase: true
+  regularExpression: true
+- beginString: (\b|[-+])0p[0-9][0-9_]\b
+  description: x87-style packed BCD constants with prefix
+  ignoreCase: true
+  regularExpression: true
+- beginString: (\b|[-+])0x[0-9a-z][0-9a-z_]*(\.[0-9a-z][0-9a-z_]*)?(p[-+]?[0-9][0-9_]*)\b
+  description: C99-style hex floating-point
+  ignoreCase: true
+  regularExpression: true
+- beginString: (\b|[-+])[0-7][0-7_]*[qo]\b
+  description: octal with suffix
+  ignoreCase: true
+  regularExpression: true
+- beginString: (\b|[-+])[0-9][0-9_]*\.([0-9][0-9_]*)?(e[-+]?[0-9][0-9_]*)?\b
+  description: floating-point
+  ignoreCase: true
+  regularExpression: true
+- beginString: (\b|[-+])[0-9][0-9_]*p\b
+  description: x87-style packed BCD constants with suffix
+  ignoreCase: true
+  regularExpression: true
+- beginString: (\b|[-+])[0-9a-f][0-9a-f_]*[hx]\b
+  description: hex with suffix
+  ignoreCase: true
+  regularExpression: true
+- beginString: (\b|[-+])[01][01_]*[by]\b
+  description: binary with suffix
+  ignoreCase: true
+  regularExpression: true
+- beginString: \$[0-9][0-9a-f_]*\b
+  description: hex with $
+  ignoreCase: true
+  regularExpression: true
+outlineMenu: []
+strings:
+- beginString: '"'
+  endString: '"'
+- beginString: ''''
+  endString: ''''
+- beginString: '`'
+  endString: '`'
+types:
+- beginString: '%!variable'
+- beginString: '%0'
+- beginString: '%00'
+- beginString: '%abs'
+- beginString: '%arg'
+- beginString: '%assign'
+- beginString: '%clear'
+- beginString: '%cond'
+- beginString: '%count'
+- beginString: '%defalias'
+- beginString: '%define'
+  description: macro
+- beginString: '%defstr'
+- beginString: '%deftok'
+- beginString: '%depend'
+- beginString: '%elif'
+- beginString: '%else'
+- beginString: '%endif'
+- beginString: '%error'
+- beginString: '%eval'
+- beginString: '%fatal'
+- beginString: '%hex'
+- beginString: '%if'
+- beginString: '%ifctx'
+- beginString: '%ifempty'
+- beginString: '%ifenv'
+- beginString: '%ifid'
+- beginString: '%ifidn'
+- beginString: '%ifidni'
+- beginString: '%ifmacro'
+- beginString: '%ifnum'
+- beginString: '%ifstr'
+- beginString: '%iftoken'
+- beginString: '%include'
+- beginString: '%is'
+- beginString: '%line'
+- beginString: '%local'
+- beginString: '%macro'
+- beginString: '%map'
+- beginString: '%num'
+- beginString: '%pathsearch'
+- beginString: '%pop'
+- beginString: '%pragma'
+- beginString: '%push'
+- beginString: '%rep'
+- beginString: '%repl'
+- beginString: '%rotate'
+- beginString: '%sel'
+- beginString: '%stacksize'
+- beginString: '%str'
+- beginString: '%strcat'
+- beginString: '%strlen'
+- beginString: '%substr'
+- beginString: '%tok'
+- beginString: '%undef'
+- beginString: '%use'
+- beginString: '%warning'
+- beginString: '%xdefine'
+  description: macro
+values:
+- beginString: __?Infinity?__
+- beginString: __?NaN?__
+- beginString: __?QNaN?__
+- beginString: __?SNaN?__
+variables: []

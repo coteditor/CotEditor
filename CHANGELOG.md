@@ -8,6 +8,7 @@
 - [AppStore ver.] Now users can donate to the CotEditor project via in-app purchase in the new Donate settings pane.
 - Add new “Select Enclosing Symbols” and “Split Selection by Lines” commands to the Edit > Select menu.
 - Support the alpha channel for the current line in theme settings.
+- Add Assembly syntax.
 - Add new “Resinifictrix (Dark)” theme.
 
 
