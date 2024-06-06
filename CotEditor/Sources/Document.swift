@@ -735,30 +735,14 @@ import OSLog
         
         guard strategy != .ignore, !self.isExternalUpdateAlertShown else { return }  // don't check twice if already notified
         
-        guard var fileURL = self.fileURL else { return assertionFailure() }
-        
-        fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
-        
         // check if the file content was changed from the stored file data
-        var didChange = false
-        var modificationDate: Date?
-        var coordinationError: NSError?
-        var readingError: (any Error)?
-        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: &coordinationError) { newURL in  // FILE_ACCESS
-            do {
-                // ignore if file's modificationDate is the same as document's modificationDate
-                modificationDate = try newURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
-                guard modificationDate != self.fileModificationDate else { return }
-                
-                // check if file contents was changed from the stored file data
-                let data = try Data(contentsOf: newURL)
-                didChange = data != self.fileData
-            } catch {
-                readingError = error
-            }
-        }
-        if let error = coordinationError ?? readingError {
+        let didChange: Bool
+        let modificationDate: Date?
+        do {
+            (didChange, modificationDate) = try self.checkFileContentDidChange()
+        } catch {
             Logger.app.error("Error on checking document file change: \(error.localizedDescription)")
+            return
         }
         
         guard didChange else {
@@ -1049,6 +1033,41 @@ import OSLog
         if !self.lineEndingScanner.inconsistentLineEndings.isEmpty, !self.isBrowsingVersions {
             self.showInconsistentLineEndingAlert()
         }
+    }
+    
+    
+    /// Checks if the file content did change since the last read.
+    ///
+    /// - Returns: A boolean whether the file did change and the content modification date if available.
+    private func checkFileContentDidChange() throws -> (Bool, Date?) {  // nonisolated
+        
+        guard var fileURL = self.fileURL else { throw CocoaError.error(.fileReadNoSuchFile) }
+        
+        fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
+        
+        // check if the file content was changed from the stored file data
+        var didChange = false
+        var modificationDate: Date?
+        var coordinationError: NSError?
+        var readingError: (any Error)?
+        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: &coordinationError) { newURL in  // FILE_ACCESS
+            do {
+                // ignore if file's modificationDate is the same as document's modificationDate
+                modificationDate = try newURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
+                guard modificationDate != self.fileModificationDate else { return }
+                
+                // check if file contents was changed from the stored file data
+                let data = try Data(contentsOf: newURL)
+                didChange = data != self.fileData
+            } catch {
+                readingError = error
+            }
+        }
+        if let error = coordinationError ?? readingError {
+            throw error
+        }
+        
+        return (didChange, modificationDate)
     }
     
     
