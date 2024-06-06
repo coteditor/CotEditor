@@ -731,56 +731,53 @@ import OSLog
         // [caution] DO NOT invoke `super.presentedItemDidChange()` that reverts document automatically if autosavesInPlace is enabled.
 //        super.presentedItemDidChange()
         
-        guard
-            UserDefaults.standard[.documentConflictOption] != .ignore,
-            !self.isExternalUpdateAlertShown,  // don't check twice if already notified
-            var fileURL = self.fileURL
-        else { return }
+        let strategy = UserDefaults.standard[.documentConflictOption]
+        
+        guard strategy != .ignore, !self.isExternalUpdateAlertShown else { return }  // don't check twice if already notified
+        
+        guard var fileURL = self.fileURL else { return assertionFailure() }
+        
+        fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
         
         // check if the file content was changed from the stored file data
         var didChange = false
         var modificationDate: Date?
-        var error: NSError?
-        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: &error) { newURL in  // FILE_ACCESS
+        var coordinationError: NSError?
+        var readingError: (any Error)?
+        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: &coordinationError) { newURL in  // FILE_ACCESS
             do {
                 // ignore if file's modificationDate is the same as document's modificationDate
-                fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
-                modificationDate = try fileURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
+                modificationDate = try newURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
                 guard modificationDate != self.fileModificationDate else { return }
                 
                 // check if file contents was changed from the stored file data
                 let data = try Data(contentsOf: newURL)
                 didChange = data != self.fileData
             } catch {
-                assertionFailure(error.localizedDescription)
+                readingError = error
             }
         }
-        if let error {
-            assertionFailure(error.localizedDescription)
+        if let error = coordinationError ?? readingError {
+            Logger.app.error("Error on checking document file change: \(error.localizedDescription)")
         }
         
         guard didChange else {
             // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
-            // -> If not, an alert shows up when user saves the file.
-            guard let modificationDate else { return }
-            DispatchQueue.main.async { [weak self] in
-                if self?.fileModificationDate?.compare(modificationDate) == .orderedAscending {
-                    self?.fileModificationDate = modificationDate
-                }
+            // -> Otherwise, an alert shows up when the user saves the file.
+            if let modificationDate, self.fileModificationDate?.compare(modificationDate) == .orderedAscending {
+                self.fileModificationDate = modificationDate
             }
             return
         }
         
         // notify about external file update
-        Task {
-            switch UserDefaults.standard[.documentConflictOption] {
-                case .ignore:
-                    assertionFailure()
-                case .notify:
-                    await self.showUpdatedByExternalProcessAlert()
-                case .revert:
-                    await self.revert()
-            }
+        switch strategy {
+            case .ignore:
+                assertionFailure()
+            case .notify:
+                Task { await self.showUpdatedByExternalProcessAlert() }
+            case .revert:
+                Task { await self.revert() }
         }
     }
     
