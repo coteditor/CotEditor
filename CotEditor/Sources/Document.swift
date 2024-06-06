@@ -830,21 +830,19 @@ import OSLog
     /// - Throws: `ReinterpretationError`
     func reinterpret(encoding: String.Encoding) throws {
         
+        // do nothing if given encoding is the same as current one
+        if encoding == self.fileEncoding.encoding { return }
+        
         guard let fileURL = self.fileURL else {
             throw ReinterpretationError.noFile
         }
-        
-        // do nothing if given encoding is the same as current one
-        if encoding == self.fileEncoding.encoding { return }
         
         // reinterpret
         self.readingEncoding = encoding
         do {
             try self.revert(toContentsOf: fileURL, ofType: self.fileType!)
-            
         } catch {
             self.readingEncoding = nil
-            
             throw ReinterpretationError.reinterpretationFailed(encoding)
         }
     }
