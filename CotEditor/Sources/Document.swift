@@ -1233,13 +1233,13 @@ import OSLog
         guard !self.isExternalUpdateAlertShown else { return }
         
         self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
-            self.isExternalUpdateAlertShown = true
-            
             guard let documentWindow = self.windowForSheet else {
                 activityCompletionHandler()
                 assertionFailure()
                 return
             }
+            
+            self.isExternalUpdateAlertShown = true
             
             let alert = NSAlert()
             alert.messageText = self.isDocumentEdited
