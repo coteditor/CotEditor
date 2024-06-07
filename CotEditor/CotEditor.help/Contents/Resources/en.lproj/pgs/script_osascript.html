@@ -147,6 +147,8 @@
 
 <p>The <code>selection</code> property doesn’t work by itself. Use this property with others such as <code>contents</code>.</p>
 
+<p>Starting form CotEditor 5.0, characters are counted in the Unicode grapheme cluster unit. This is the same as the specification of AppleScript 2.0.</p>
+
 <p>When ‘location’ is a negative value, the selection range starts from the ‘location’-th last character.<br/>
 When ‘length’ is a positive value, the selection range becomes the ‘length’ characters starting from ‘location.’ If ‘length’ is larger than the number of the rest characters in the document, the range is from ‘location’ to the end.<br/>
 When ‘length’ is a negative value, the selection range ends at the ‘length’-th last character. If the absolute value of ‘length’ is smaller than ‘location’ (that is, the selection’s end point is before ‘location’), the caret just moves to ‘location’ (same as when {location, 0} was input).</p>

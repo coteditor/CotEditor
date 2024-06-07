@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 1024jp
+//  © 2015-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -122,11 +122,11 @@ extension String {
     ///   e.g. Passing `FuzzyRange(location: 3, length: -1)` to a string that has 10 characters returns `NSRange(3..<9)`.
     ///
     /// - Parameters:
-    ///   - range: The character range that allows also negative values.
+    ///   - range: The character range using the grapheme cluster unit that allows also negative values.
     /// - Returns: A character range, or `nil` if the given value is out of range.
     func range(in range: FuzzyRange) -> NSRange? {
         
-        let wholeLength = self.length
+        let wholeLength = self.count
         let newLocation = (range.location >= 0) ? range.location : (wholeLength + range.location + 1)
         let newLength = (range.length >= 0) ? range.length : (wholeLength - newLocation + range.length)
         
@@ -136,7 +136,10 @@ extension String {
             newLocation <= wholeLength
         else { return nil }
         
-        return NSRange(newLocation..<min(newLocation + newLength, wholeLength))
+        let lowerBound = self.index(self.startIndex, offsetBy: newLocation)
+        let upperBound = self.index(lowerBound, offsetBy: newLength, limitedBy: self.endIndex) ?? self.endIndex
+        
+        return NSRange(lowerBound..<upperBound, in: self)
     }
     
     
