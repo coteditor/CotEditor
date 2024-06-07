@@ -94,8 +94,8 @@ private struct ModeListView: View {
                                 Text(mode.label)
                                 if !available {
                                     Spacer()
-                                    Image(systemName: "exclamationmark.triangle")
-                                        .accessibilityLabel(String(localized: "Not found", table: "ModeSettings", comment: "accessibility label"))
+                                    Label(String(localized: "Not found", table: "ModeSettings", comment: "accessibility label"), systemImage: "exclamationmark.triangle")
+                                        .labelStyle(.iconOnly)
                                 }
                             }
                             .tag(mode)
@@ -112,7 +112,7 @@ private struct ModeListView: View {
                 .padding(.horizontal, 6)
             
             HStack(spacing: 0) {
-                Menu {
+                Menu(String(localized: "Add", table: "ModeSettings"), systemImage: "plus") {
                     Section(String(localized: "Syntax", table: "ModeSettings")) {
                         ForEach(SyntaxManager.shared.settingNames, id: \.self) { syntaxName in
                             Button(syntaxName) {
@@ -131,12 +131,9 @@ private struct ModeListView: View {
                             }.disabled(self.syntaxModes.compactMap(\.syntaxName).contains(syntaxName))
                         }
                     }
-                } label: {
-                    Image(systemName: "plus")
                 }
                 .padding(4)
                 .menuIndicator(.hidden)
-                .accessibilityLabel(String(localized: "Add", table: "ModeSettings"))
                 .alert(error: $error)
                 
                 Button {
@@ -149,15 +146,15 @@ private struct ModeListView: View {
                         }
                     }
                 } label: {
-                    Image(systemName: "minus")
+                    Label(String(localized: "Remove", table: "ModeSettings"), systemImage: "minus")
                         .frame(width: 14, height: 14)
                         .fontWeight(.medium)
                 }
                 .padding(4)
-                .accessibilityLabel(String(localized: "Remove", table: "ModeSettings"))
                 .disabled(self.selection.syntaxName == nil)
             }
             .padding(2)
+            .labelStyle(.iconOnly)
             .buttonStyle(.borderless)
         }
         .task {

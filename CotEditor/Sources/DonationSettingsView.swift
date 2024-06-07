@@ -56,10 +56,10 @@ import StoreKit
                             .accessibilityAddTraits(.isHeader)
                         
                         ProductView(id: Donation.ProductID.continuous, prefersPromotionalIcon: true) {
-                            Image(.bagCoffee)
+                            Label(String(localized: "donation.continuous.yearly.displayName", table: "InAppPurchase"), image: .bagCoffee)
+                                .labelStyle(.iconOnly)
                                 .font(.system(size: 40))
                                 .foregroundStyle(.secondary)
-                                .accessibilityLabel(String(localized: "donation.continuous.yearly.displayName", table: "InAppPurchase"))
                                 .productIconBorder()
                         }
                         
@@ -99,8 +99,8 @@ import StoreKit
                             .accessibilityAddTraits(.isHeader)
                         
                         ProductView(id: Donation.ProductID.onetime, prefersPromotionalIcon: true) {
-                            Image(.espresso)
-                                .accessibilityLabel(String(localized: "donation.onetime.displayName", table: "InAppPurchase"))
+                            Label(String(localized: "donation.onetime.displayName", table: "InAppPurchase"), image: .espresso)
+                                .labelStyle(.iconOnly)
                         }.productViewStyle(OnetimeProductViewStyle())
                     }
                     .accessibilityElement(children: .contain)
