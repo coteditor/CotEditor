@@ -22,6 +22,7 @@
 <p>表示される情報は下記の通りです。</p>
 
 <table>
+	<caption>書類ファイル</caption>
 	<thead>
 		<tr><th>項目</th><th>説明</th></tr>
 	</thead>
@@ -33,10 +34,25 @@
 		<tr><th>アクセス権</th><td>このファイルのアクセス権を表示します。</td></tr>
 		<tr><th>フルパス</th><td>このファイルまでのUNIX形式の絶対パスです。</td></tr>
 	</tbody>
+</table>
+
+<table>
+	<caption>テキスト設定</caption>
+	<thead>
+		<tr><th>項目</th><th>説明</th></tr>
+	</thead>
 	<tbody>
 		<tr><th>エンコーディング</th><td>現在選択されているテキストエンコーディングです。</td></tr>
 		<tr><th>改行コード</th><td>現在の選択されている改行コードです。</td></tr>
+		<tr><th>モード</th><td>現在使われているエディタのモードです。</td></tr>
 	</tbody>
+</table>
+
+<table>
+	<caption>カウント</caption>
+	<thead>
+		<tr><th>項目</th><th>説明</th></tr>
+	</thead>
 	<tbody>
 		<tr><th>文字数</th><td>書類内（および選択範囲内）の文字数です。</td></tr>
         <tr><th>行数</th><td>書類内（および選択範囲内）の行数です。</td></tr>
@@ -45,6 +61,13 @@
 		<tr><th>行</th><td>現在挿入ポイントがある行の行数です。</td></tr>
 		<tr><th>列</th><td>現在挿入ポイントがある位置のその行頭からの文字数です。</td></tr>
 	</tbody>
+</table>
+
+<table>
+	<caption>文字</caption>
+	<thead>
+		<tr><th>項目</th><th>説明</th></tr>
+	</thead>
 	<tbody>
 		<tr><th>コードポイント</th><td>選択している文字のUnicodeコードポイントの16進コードです。1文字だけを選択している時に表示されます。</td></tr>
 	</tbody>
