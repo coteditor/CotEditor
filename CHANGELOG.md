@@ -5,6 +5,7 @@
 
 ### Implements
 
+- Improve the User Guide contents.
 - [non-AppStore ver.] Update Sparkle from 2.6.2 to 2.6.3.
 
 
