@@ -1167,60 +1167,66 @@ import OSLog
     /// Displays an alert about inconsistent line endings.
     @MainActor private func showInconsistentLineEndingAlert() {
         
-        assert(Thread.isMainThread)
-        
         guard
             !UserDefaults.standard[.suppressesInconsistentLineEndingAlert],
             !self.suppressesInconsistentLineEndingAlert
         else { return }
         
-        guard let documentWindow = self.windowForSheet else { return assertionFailure() }
-        
-        let alert = NSAlert()
-        alert.alertStyle = .warning
-        alert.messageText = String(localized: "InconsistentLineEndingAlert.message",
-                                   defaultValue: "The document has inconsistent line endings.")
-        alert.informativeText = String(localized: "InconsistentLineEndingAlert.informativeText",
-                                       defaultValue: "Do you want to convert all line endings to \(self.lineEnding.label), the most common line endings in this document?")
-        alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.convert",
-                                          defaultValue: "Convert",
-                                          comment: "button label"))
-        alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.review",
-                                          defaultValue: "Review",
-                                          comment: "button label"))
-        alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.ignore",
-                                          defaultValue: "Ignore",
-                                          comment: "button label"))
-        alert.showsSuppressionButton = true
-        alert.suppressionButton?.title = String(localized: "InconsistentLineEndingAlert.suppressionButton",
-                                                defaultValue: "Don’t ask again for this document",
-                                                comment: "toggle button label")
-        alert.showsHelp = true
-        alert.helpAnchor = "inconsistent_line_endings"
-        
-        alert.beginSheetModal(for: documentWindow) { [unowned self] returnCode in
-            if alert.suppressionButton?.state == .on {
-                self.suppressesInconsistentLineEndingAlert = true
-                self.invalidateRestorableState()
-                
-                // save xattr
-                if let fileURL = self.fileURL {
-                    var error: NSError?
-                    NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .contentIndependentMetadataOnly, error: &error) { newURL in  // FILE_ACCESS
-                        try? newURL.setExtendedAttribute(data: Data([1]), for: FileExtendedAttributeName.allowLineEndingInconsistency)
-                    }
-                }
+        self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
+            guard let documentWindow = self.windowForSheet else {
+                activityCompletionHandler()
+                assertionFailure()
+                return
             }
             
-            switch returnCode {
-                case .alertFirstButtonReturn:  // == Convert
-                    self.changeLineEnding(to: self.lineEnding)
-                case .alertSecondButtonReturn:  // == Review
-                    self.showWarningInspector()
-                case .alertThirdButtonReturn:  // == Ignore
-                    break
-                default:
-                    fatalError()
+            let alert = NSAlert()
+            alert.alertStyle = .warning
+            alert.messageText = String(localized: "InconsistentLineEndingAlert.message",
+                                       defaultValue: "The document has inconsistent line endings.")
+            alert.informativeText = String(localized: "InconsistentLineEndingAlert.informativeText",
+                                           defaultValue: "Do you want to convert all line endings to \(self.lineEnding.label), the most common line endings in this document?")
+            alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.convert",
+                                              defaultValue: "Convert",
+                                              comment: "button label"))
+            alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.review",
+                                              defaultValue: "Review",
+                                              comment: "button label"))
+            alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.ignore",
+                                              defaultValue: "Ignore",
+                                              comment: "button label"))
+            alert.showsSuppressionButton = true
+            alert.suppressionButton?.title = String(localized: "InconsistentLineEndingAlert.suppressionButton",
+                                                    defaultValue: "Don’t ask again for this document",
+                                                    comment: "toggle button label")
+            alert.showsHelp = true
+            alert.helpAnchor = "inconsistent_line_endings"
+            
+            alert.beginSheetModal(for: documentWindow) { [unowned self] returnCode in
+                if alert.suppressionButton?.state == .on {
+                    self.suppressesInconsistentLineEndingAlert = true
+                    self.invalidateRestorableState()
+                    
+                    // save xattr
+                    if let fileURL = self.fileURL {
+                        var error: NSError?
+                        NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .contentIndependentMetadataOnly, error: &error) { newURL in  // FILE_ACCESS
+                            try? newURL.setExtendedAttribute(data: Data([1]), for: FileExtendedAttributeName.allowLineEndingInconsistency)
+                        }
+                    }
+                }
+                
+                switch returnCode {
+                    case .alertFirstButtonReturn:  // == Convert
+                        self.changeLineEnding(to: self.lineEnding)
+                    case .alertSecondButtonReturn:  // == Review
+                        self.showWarningInspector()
+                    case .alertThirdButtonReturn:  // == Ignore
+                        break
+                    default:
+                        fatalError()
+                }
+                
+                activityCompletionHandler()
             }
         }
     }
