@@ -132,7 +132,7 @@ private struct ModeListView: View {
                         }
                     }
                 }
-                .padding(4)
+                .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
                 .menuIndicator(.hidden)
                 .alert(error: $error)
                 
@@ -150,7 +150,7 @@ private struct ModeListView: View {
                         .frame(width: 14, height: 14)
                         .fontWeight(.medium)
                 }
-                .padding(4)
+                .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
                 .disabled(self.selection.syntaxName == nil)
             }
             .padding(2)
