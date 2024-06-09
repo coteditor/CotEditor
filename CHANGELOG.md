@@ -3,7 +3,7 @@
 4.9.0 (unreleased)
 --------------------------
 
-### New Feature
+### New Features
 
 - [AppStore ver.] Now users can donate to the CotEditor project via in-app purchase in the new Donate settings pane.
 - Add new “Select Enclosing Symbols” and “Split Selection by Lines” commands to the Edit > Select menu.
@@ -23,7 +23,7 @@
 - Improve the performance of counting values in the editor for the status bar and the document inspector to avoid flicking.
 - Make more table columns sortable.
 - [trivial] Organize the structure of the Edit menu.
-- [trivial] Suppress display of “Extracting” message on the navigation bar in instantaneous parsing.
+- [trivial] Suppress display of the “Extracting” message on the navigation bar in instantaneous parsing.
 - [trivial] Make names of code contributors in the About window selectable.
 - [dev] Migrate the navigation bar and the Snippets settings view to SwiftUI.
 
