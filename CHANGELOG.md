@@ -14,6 +14,7 @@
 
 ### Improvements
 
+- Support __macOS 15 Sequoia__.
 - Change the system requirement to __macOS 14 Sonoma and later__.
 - Add “Select Column Up/Down“ commands to the Edit > Select menu.
 - Change the unit of character ranges handled in CotEditor Scripting for AppleScript from UTF-16 based to the Unicode grapheme cluster-based (This is to follow the specification change in AppleScript 2.0 introduced in Mac OS X 10.5).
