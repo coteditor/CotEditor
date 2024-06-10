@@ -91,7 +91,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
                 await self?.buildScriptMenu()
                 
             } else {
-                for await _ in await NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification) {
+                for await _ in NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification) {
                     try Task.checkCancellation()
                     await self?.buildScriptMenu()
                     return

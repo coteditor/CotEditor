@@ -46,7 +46,7 @@ extension Logger {
 
 private extension NSSound {
     
-    static let glass = NSSound(named: "Glass")
+    @MainActor static let glass = NSSound(named: "Glass")
 }
 
 
