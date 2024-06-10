@@ -23,14 +23,15 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Testing
+import Foundation
 @testable import SyntaxMap
 
-final class SyntaxMapTests: XCTestCase {
+struct SyntaxMapTests {
     
-    func testMapLoad() throws {
+    @Test func testMapLoad() throws {
         
-        let urls = try XCTUnwrap(Bundle.module.urls(forResourcesWithExtension: "yml", subdirectory: "Syntaxes"))
+        let urls = try #require(Bundle.module.urls(forResourcesWithExtension: "yml", subdirectory: "Syntaxes"))
         let maps = try SyntaxMap.loadMaps(at: urls)
         
         let expectedResult: [String: SyntaxMap] = [
@@ -42,6 +43,6 @@ final class SyntaxMapTests: XCTestCase {
                                 interpreters: ["python", "python2", "python3"]),
         ]
         
-        XCTAssertEqual(maps, expectedResult)
+        #expect(maps == expectedResult)
     }
 }
