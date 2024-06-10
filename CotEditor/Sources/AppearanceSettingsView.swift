@@ -227,9 +227,10 @@ private extension AppearanceMode {
     AppearanceSettingsView()
 }
 
+@available(macOS 15, *)
 #Preview("FontSettingView") {
-    @State var antialias = false
-    @State var ligature = false
+    @Previewable @State var antialias = false
+    @Previewable @State var ligature = false
     
     return FontSettingView(data: .constant(Data()), fallback: .systemFont(ofSize: 0), antialias: $antialias, ligature: $ligature)
         .padding()

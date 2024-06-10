@@ -341,14 +341,16 @@ private extension Theme.SystemDefaultStyle {
     ThemeView()
 }
 
+@available(macOS 15, *)
 #Preview("ThemeEditorView", traits: .fixedLayout(width: 360, height: 280)) {
-    @State var theme = try! ThemeManager.shared.setting(name: "Anura")
+    @Previewable @State var theme = try! ThemeManager.shared.setting(name: "Anura")
     
     return ThemeEditorView(theme: $theme, isBundled: false)
 }
 
+@available(macOS 15, *)
 #Preview("Metadata (editable)") {
-    @State var metadata = Theme.Metadata(
+    @Previewable @State var metadata = Theme.Metadata(
         author: "Clarus",
         distributionURL: "https://coteditor.com"
     )
@@ -356,8 +358,9 @@ private extension Theme.SystemDefaultStyle {
     return ThemeMetadataView(metadata: $metadata, isEditable: true)
 }
 
+@available(macOS 15, *)
 #Preview("Metadata (fixed)") {
-    @State var metadata = Theme.Metadata(
+    @Previewable @State var metadata = Theme.Metadata(
         author: "Claus"
     )
     

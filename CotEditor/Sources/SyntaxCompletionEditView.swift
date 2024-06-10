@@ -75,8 +75,9 @@ struct SyntaxCompletionEditView: View {
 
 // MARK: - Preview
 
+@available(macOS 15, *)
 #Preview {
-    @State var items: [SyntaxObject.KeyString] = [.init(string: "abc")]
+    @Previewable @State var items: [SyntaxObject.KeyString] = [.init(string: "abc")]
     
     return SyntaxCompletionEditView(items: $items)
         .padding()

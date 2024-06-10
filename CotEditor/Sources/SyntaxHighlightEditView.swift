@@ -120,8 +120,9 @@ struct SyntaxHighlightEditView: View {
 
 // MARK: - Preview
 
+@available(macOS 15, *)
 #Preview {
-    @State var items: [SyntaxObject.Highlight] = [
+    @Previewable @State var items: [SyntaxObject.Highlight] = [
         .init(begin: "(inu)", end: "(dog)"),
         .init(begin: "[Cc]at", end: "$0", isRegularExpression: true, description: "note"),
         .init(begin: "[]", isRegularExpression: true, ignoreCase: true),

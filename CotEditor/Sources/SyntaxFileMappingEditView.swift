@@ -122,10 +122,11 @@ struct SyntaxFileMappingEditView: View {
 
 // MARK: - Preview
 
+@available(macOS 15, *)
 #Preview {
-    @State var extensions: [SyntaxObject.KeyString] = [.init(string: "abc")]
-    @State var filenames: [SyntaxObject.KeyString] = []
-    @State var interpreters: [SyntaxObject.KeyString] = []
+    @Previewable @State var extensions: [SyntaxObject.KeyString] = [.init(string: "abc")]
+    @Previewable @State var filenames: [SyntaxObject.KeyString] = []
+    @Previewable @State var interpreters: [SyntaxObject.KeyString] = []
     
     return SyntaxFileMappingEditView(extensions: $extensions,
                                      filenames: $filenames,

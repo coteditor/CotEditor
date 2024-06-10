@@ -197,8 +197,10 @@ private final class InnerFilterField: NSSearchField {
 
 // MARK: - Preview
 
+@available(macOS 15, *)
 #Preview {
-    @State var text = ""
+    @Previewable @State var text = ""
+    
     return FilterField(text: $text)
         .autosaveName("FilterField Preview")
         .frame(width: 160)
