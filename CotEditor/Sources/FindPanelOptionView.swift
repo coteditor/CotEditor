@@ -66,6 +66,9 @@ struct FindPanelOptionView: View {
             Button(String(localized: "Advanced options", table: "TextFind", comment: "accessibility label"), systemImage: "ellipsis") {
                 self.isSettingsPresented.toggle()
             }
+            .popover(isPresented: $isSettingsPresented, arrowEdge: .trailing) {
+                FindSettingsView()
+            }
             .symbolVariant(.circle)
             .labelStyle(.iconOnly)
             .help(String(localized: "Show advanced options", table: "TextFind", comment: "tooltip"))
