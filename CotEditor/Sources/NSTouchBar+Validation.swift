@@ -190,7 +190,7 @@ extension NSTouchBar {
 
 // MARK: -
 
-extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
+extension NSCustomTouchBarItem: @retroactive NSValidatedUserInterfaceItem {
     
     /// Validates item if content view is NSControl.
     fileprivate func validate() {

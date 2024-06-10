@@ -27,7 +27,7 @@ import Foundation
 import SwiftUI
 import AppKit.NSFont
 
-extension NSFont: @unchecked Sendable { }
+extension NSFont: @retroactive @unchecked Sendable { }
 
 extension OutlineItem {
     

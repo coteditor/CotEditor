@@ -47,7 +47,7 @@ extension View {
 }
 
 
-extension NSError: LocalizedError {
+extension NSError: @retroactive LocalizedError {
     
     public var errorDescription: String? {
         

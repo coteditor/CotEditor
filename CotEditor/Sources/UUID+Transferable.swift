@@ -33,7 +33,7 @@ extension UTType {
 }
 
 
-extension UUID: Transferable {
+extension UUID: @retroactive Transferable {
     
     public static var transferRepresentation: some TransferRepresentation {
         
@@ -56,7 +56,7 @@ extension UUID {
 
 // MARK: Item Provider
 
-extension NSItemProvider: @unchecked Sendable { }
+extension NSItemProvider: @retroactive @unchecked Sendable { }
 
 extension NSItemProvider {
     

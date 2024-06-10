@@ -26,7 +26,7 @@
 import AppKit
 import Observation
 
-extension NSValue: @unchecked Sendable { }
+extension NSValue: @retroactive @unchecked Sendable { }
 
 
 protocol TextViewProvider: AnyObject {

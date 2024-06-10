@@ -28,7 +28,7 @@ import Foundation
 import AppKit.NSEvent
 import IOKit
 
-extension NSEvent.SpecialKey: @unchecked Sendable { }
+extension NSEvent.SpecialKey: @retroactive @unchecked Sendable { }
 
 
 /// Modifier keys for keyboard shortcut.

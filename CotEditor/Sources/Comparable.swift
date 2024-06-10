@@ -45,7 +45,7 @@ extension Comparable {
 }
 
 
-extension Bool: Comparable {
+extension Bool: @retroactive Comparable {
     
     /// Precedences `true` over `false`.
     public static func < (lhs: Bool, rhs: Bool) -> Bool {
