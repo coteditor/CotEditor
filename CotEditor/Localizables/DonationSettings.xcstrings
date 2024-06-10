@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "%lld cups" : {
+      "comment" : "accessibility label for item quantity",
       "localizations" : {
         "de" : {
           "variations" : {

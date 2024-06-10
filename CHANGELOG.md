@@ -26,6 +26,7 @@
 - [trivial] Organize the structure of the Edit menu.
 - [trivial] Suppress display of the “Extracting” message on the navigation bar in instantaneous parsing.
 - [trivial] Make names of code contributors in the About window selectable.
+- [dev] Update the build environment to Xcode 16.
 - [dev] Migrate the navigation bar and the Snippets settings view to SwiftUI.
 
 

@@ -3468,7 +3468,7 @@
       }
     },
     "Outline" : {
-      "comment" : "inspector pane title",
+      "comment" : "inspector pane title\nsection title in inspector",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
