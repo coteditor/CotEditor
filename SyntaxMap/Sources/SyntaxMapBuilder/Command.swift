@@ -52,7 +52,7 @@ struct Command: ParsableCommand {
 }
 
 
-extension URL: ExpressibleByArgument {
+extension URL: @retroactive ExpressibleByArgument {
     
     public init?(argument: String) {
         
