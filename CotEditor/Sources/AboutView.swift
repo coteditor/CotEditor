@@ -362,7 +362,7 @@ private struct LicenseView: View {
                 guard
                     let url =
                         Bundle.main.url(forResource: self.name, withExtension: "txt", subdirectory: "Licenses"),
-                    let string = try? String(contentsOf: url)
+                    let string = try? String(contentsOf: url, encoding: .utf8)
                 else { return assertionFailure() }
                 
                 self.content = string

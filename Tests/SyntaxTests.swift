@@ -59,7 +59,7 @@ final class SyntaxTests {
         
         // load test file
         let sourceURL = try #require(bundle.url(forResource: "sample", withExtension: "html"))
-        self.htmlSource = try String(contentsOf: sourceURL)
+        self.htmlSource = try String(contentsOf: sourceURL, encoding: .utf8)
     }
     
     
