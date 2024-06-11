@@ -24,34 +24,34 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Testing
 @testable import CotEditor
 
-final class FilePermissionTests: XCTestCase {
+struct FilePermissionTests {
     
-    func testFilePermissions() {
+    @Test func filePermissions() {
         
-        XCTAssertEqual(FilePermissions(mask: 0o777).mask, 0o777)
-        XCTAssertEqual(FilePermissions(mask: 0o643).mask, 0o643)
+        #expect(FilePermissions(mask: 0o777).mask == 0o777)
+        #expect(FilePermissions(mask: 0o643).mask == 0o643)
         
-        XCTAssertEqual(FilePermissions(mask: 0o777).symbolic, "rwxrwxrwx")
-        XCTAssertEqual(FilePermissions(mask: 0o643).symbolic, "rw-r---wx")
+        #expect(FilePermissions(mask: 0o777).symbolic == "rwxrwxrwx")
+        #expect(FilePermissions(mask: 0o643).symbolic == "rw-r---wx")
     }
     
     
-    func testFormatStyle() {
+    @Test func formatStyle() {
         
-        XCTAssertEqual(FilePermissions(mask: 0o777).formatted(.filePermissions(.full)), "777 (-rwxrwxrwx)")
-        XCTAssertEqual(FilePermissions(mask: 0o643).formatted(.filePermissions(.full)), "643 (-rw-r---wx)")
+        #expect(FilePermissions(mask: 0o777).formatted(.filePermissions(.full)) == "777 (-rwxrwxrwx)")
+        #expect(FilePermissions(mask: 0o643).formatted(.filePermissions(.full)) == "643 (-rw-r---wx)")
     }
     
     
-    func testCalculation() {
+    @Test func calculate() {
         
         var permissions = FilePermissions(mask: 0o644)
         permissions.user.insert(.execute)
         
-        XCTAssertTrue(permissions.user.contains(.execute))
-        XCTAssertEqual(permissions.mask, 0o744)
+        #expect(permissions.user.contains(.execute))
+        #expect(permissions.mask == 0o744)
     }
 }

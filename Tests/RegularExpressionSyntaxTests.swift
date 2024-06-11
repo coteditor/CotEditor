@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,64 +23,68 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import CotEditor
 
-final class RegularExpressionSyntaxTests: XCTestCase {
+struct RegularExpressionSyntaxTests {
     
-    func testBracketHighlight() throws {
+    @Test func highlightBracket() throws {
         
         // -> Only the `]` at the first position will be evaluated as a character.
         
         let character = RegularExpressionSyntaxType.character
         
-        XCTAssertEqual(character.ranges(in: "[abc]"), [NSRange(location: 1, length: 3)])
-        XCTAssertEqual(character.ranges(in: "\\[a[a]"), [NSRange(location: 0, length: 2), NSRange(location: 4, length: 1)])
-        XCTAssertEqual(character.ranges(in: "[a\\]]"), [NSRange(location: 2, length: 2), NSRange(location: 1, length: 3)])
-        XCTAssertEqual(character.ranges(in: "[]]"), [NSRange(location: 1, length: 1)])
-        XCTAssertEqual(character.ranges(in: "[a]]"), [NSRange(location: 1, length: 1)])
-        XCTAssertEqual(character.ranges(in: "[]a]"), [NSRange(location: 1, length: 2)])
-        XCTAssertEqual(character.ranges(in: "[a]b]"), [NSRange(location: 1, length: 1)])
+        #expect(character.ranges(in: "[abc]") == [NSRange(location: 1, length: 3)])
+        #expect(character.ranges(in: "\\[a[a]") == [NSRange(location: 0, length: 2), NSRange(location: 4, length: 1)])
+        #expect(character.ranges(in: "[a\\]]") == [NSRange(location: 2, length: 2), NSRange(location: 1, length: 3)])
+        #expect(character.ranges(in: "[]]") == [NSRange(location: 1, length: 1)])
+        #expect(character.ranges(in: "[a]]") == [NSRange(location: 1, length: 1)])
+        #expect(character.ranges(in: "[]a]") == [NSRange(location: 1, length: 2)])
+        #expect(character.ranges(in: "[a]b]") == [NSRange(location: 1, length: 1)])
         
-        XCTAssertEqual(character.ranges(in: "[a] [b]"), [NSRange(location: 1, length: 1),
-                                                         NSRange(location: 5, length: 1)])
+        #expect(character.ranges(in: "[a] [b]") == [NSRange(location: 1, length: 1),
+                                                    NSRange(location: 5, length: 1)])
         
-        XCTAssertEqual(character.ranges(in: "[^a]"), [NSRange(location: 2, length: 1)])
-        XCTAssertEqual(character.ranges(in: "[^^]"), [NSRange(location: 2, length: 1)])
-        XCTAssertEqual(character.ranges(in: "[^]]"), [NSRange(location: 2, length: 1)])
-        XCTAssertEqual(character.ranges(in: "[^]]]"), [NSRange(location: 2, length: 1)])
-        XCTAssertEqual(character.ranges(in: "[^a]]"), [NSRange(location: 2, length: 1)])
-        XCTAssertEqual(character.ranges(in: "[^]a]"), [NSRange(location: 2, length: 2)])
-        XCTAssertEqual(character.ranges(in: "[^a]b]"), [NSRange(location: 2, length: 1)])
+        #expect(character.ranges(in: "[^a]") == [NSRange(location: 2, length: 1)])
+        #expect(character.ranges(in: "[^^]") == [NSRange(location: 2, length: 1)])
+        #expect(character.ranges(in: "[^]]") == [NSRange(location: 2, length: 1)])
+        #expect(character.ranges(in: "[^]]]") == [NSRange(location: 2, length: 1)])
+        #expect(character.ranges(in: "[^a]]") == [NSRange(location: 2, length: 1)])
+        #expect(character.ranges(in: "[^]a]") == [NSRange(location: 2, length: 2)])
+        #expect(character.ranges(in: "[^a]b]") == [NSRange(location: 2, length: 1)])
         
         // just containing ranges for `\[`
-        XCTAssertEqual(character.ranges(in: "(?<=\\[)a]"), [NSRange(location: 4, length: 2)])
+        #expect(character.ranges(in: "(?<=\\[)a]") == [NSRange(location: 4, length: 2)])
+    }
         
+     
+    @Test func highlightSymbol() {
         
         let symbol = RegularExpressionSyntaxType.symbol
         
-        XCTAssertEqual(symbol.ranges(in: "[abc]"), [NSRange(location: 0, length: 5)])
-        XCTAssertEqual(symbol.ranges(in: "\\[a[a]"), [NSRange(location: 3, length: 3)])
-        XCTAssertEqual(symbol.ranges(in: "[a\\]]"), [NSRange(location: 0, length: 5)])
-        XCTAssertEqual(symbol.ranges(in: "[]]"), [NSRange(location: 0, length: 3)])
-        XCTAssertEqual(symbol.ranges(in: "[a]]"), [NSRange(location: 0, length: 3)])
-        XCTAssertEqual(symbol.ranges(in: "[]a]"), [NSRange(location: 0, length: 4)])
-        XCTAssertEqual(symbol.ranges(in: "[a]b]"), [NSRange(location: 0, length: 3)])
+        #expect(symbol.ranges(in: "[abc]") == [NSRange(location: 0, length: 5)])
+        #expect(symbol.ranges(in: "\\[a[a]") == [NSRange(location: 3, length: 3)])
+        #expect(symbol.ranges(in: "[a\\]]") == [NSRange(location: 0, length: 5)])
+        #expect(symbol.ranges(in: "[]]") == [NSRange(location: 0, length: 3)])
+        #expect(symbol.ranges(in: "[a]]") == [NSRange(location: 0, length: 3)])
+        #expect(symbol.ranges(in: "[]a]") == [NSRange(location: 0, length: 4)])
+        #expect(symbol.ranges(in: "[a]b]") == [NSRange(location: 0, length: 3)])
         
-        XCTAssertEqual(symbol.ranges(in: "[a] [b]"), [NSRange(location: 0, length: 3),
-                                                      NSRange(location: 4, length: 3)])
+        #expect(symbol.ranges(in: "[a] [b]") == [NSRange(location: 0, length: 3),
+                                                 NSRange(location: 4, length: 3)])
         
-        XCTAssertEqual(symbol.ranges(in: "[^a]"), [NSRange(location: 0, length: 4)])
-        XCTAssertEqual(symbol.ranges(in: "[^^]"), [NSRange(location: 0, length: 4)])
-        XCTAssertEqual(symbol.ranges(in: "[^]]"), [NSRange(location: 0, length: 4)])
-        XCTAssertEqual(symbol.ranges(in: "[^]]]"), [NSRange(location: 0, length: 4)])
-        XCTAssertEqual(symbol.ranges(in: "[^a]]"), [NSRange(location: 0, length: 4)])
-        XCTAssertEqual(symbol.ranges(in: "[^]a]"), [NSRange(location: 0, length: 5)])
-        XCTAssertEqual(symbol.ranges(in: "[^a]b]"), [NSRange(location: 0, length: 4)])
+        #expect(symbol.ranges(in: "[^a]") == [NSRange(location: 0, length: 4)])
+        #expect(symbol.ranges(in: "[^^]") == [NSRange(location: 0, length: 4)])
+        #expect(symbol.ranges(in: "[^]]") == [NSRange(location: 0, length: 4)])
+        #expect(symbol.ranges(in: "[^]]]") == [NSRange(location: 0, length: 4)])
+        #expect(symbol.ranges(in: "[^a]]") == [NSRange(location: 0, length: 4)])
+        #expect(symbol.ranges(in: "[^]a]") == [NSRange(location: 0, length: 5)])
+        #expect(symbol.ranges(in: "[^a]b]") == [NSRange(location: 0, length: 4)])
         
         // just containing ranges for `(?<=`, `(` and `)`
-        XCTAssertEqual(symbol.ranges(in: "(?<=\\[)a]"), [NSRange(location: 0, length: 4),
-                                                         NSRange(location: 0, length: 1),
-                                                         NSRange(location: 6, length: 1)])
+        #expect(symbol.ranges(in: "(?<=\\[)a]") == [NSRange(location: 0, length: 4),
+                                                    NSRange(location: 0, length: 1),
+                                                    NSRange(location: 6, length: 1)])
     }
 }

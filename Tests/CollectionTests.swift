@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2022 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,104 +24,100 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Testing
 @testable import CotEditor
 
-final class CollectionTests: XCTestCase {
+struct CollectionTests {
     
-    func testAppendUnique() {
+    @Test func appendUnique() {
         
         var array = [0, 1, 2, 3, 4]
         
         array.appendUnique(0, maximum: 5)
-        XCTAssertEqual(array, [1, 2, 3, 4, 0])
+        #expect(array == [1, 2, 3, 4, 0])
         
         array.appendUnique(6, maximum: 5)
-        XCTAssertEqual(array, [2, 3, 4, 0, 6])
+        #expect(array == [2, 3, 4, 0, 6])
         
         array.appendUnique(7, maximum: 6)
-        XCTAssertEqual(array, [2, 3, 4, 0, 6, 7])
+        #expect(array == [2, 3, 4, 0, 6, 7])
         
         array.appendUnique(6, maximum: 3)
-        XCTAssertEqual(array, [0, 7, 6])
+        #expect(array == [0, 7, 6])
     }
     
     
-    func testCount() {
+    @Test func count() {
         
-        XCTAssertEqual([1, 2, 0, -1, 3].count(where: { $0 > 0 }), 3)
-        XCTAssertEqual([0, 1, 2, 0, -1].count(where: { $0 > 0 }), 2)
-        XCTAssertEqual([1, 2, 3, 4, 5].count(where: { $0 > 0 }), 5)
+        #expect([1, 2, 0, -1, 3].count(where: { $0 > 0 }) == 3)
+        #expect([0, 1, 2, 0, -1].count(where: { $0 > 0 }) == 2)
+        #expect([1, 2, 3, 4, 5].count(where: { $0 > 0 }) == 5)
         
-        XCTAssertEqual([1, 2, 0, -1, 3].countPrefix(while: { $0 > 0 }), 2)
-        XCTAssertEqual([0, 1, 2, 0, -1].countPrefix(while: { $0 > 0 }), 0)
-        XCTAssertEqual([1, 2, 3, 4, 5].countPrefix(while: { $0 > 0 }), 5)
+        #expect([1, 2, 0, -1, 3].countPrefix(while: { $0 > 0 }) == 2)
+        #expect([0, 1, 2, 0, -1].countPrefix(while: { $0 > 0 }) == 0)
+        #expect([1, 2, 3, 4, 5].countPrefix(while: { $0 > 0 }) == 5)
     }
     
     
-    func testCountComparison() {
+    @Test func compareCount() {
         
-        XCTAssertEqual("".compareCount(with: 0), .equal)
-        XCTAssertEqual("".compareCount(with: 1), .less)
+        #expect("".compareCount(with: 0) == .equal)
+        #expect("".compareCount(with: 1) == .less)
         
-        XCTAssertEqual("a".compareCount(with: 1), .equal)
-        XCTAssertEqual("🐕".compareCount(with: 1), .equal)
-        XCTAssertEqual("🐕‍🦺".compareCount(with: 1), .equal)
+        #expect("a".compareCount(with: 1) == .equal)
+        #expect("🐕".compareCount(with: 1) == .equal)
+        #expect("🐕‍🦺".compareCount(with: 1) == .equal)
         
-        XCTAssertEqual("🐶🐱".compareCount(with: 3), .less)
-        XCTAssertEqual("🐶🐱".compareCount(with: 2), .equal)
-        XCTAssertEqual("🐶🐱".compareCount(with: 1), .greater)
+        #expect("🐶🐱".compareCount(with: 3) == .less)
+        #expect("🐶🐱".compareCount(with: 2) == .equal)
+        #expect("🐶🐱".compareCount(with: 1) == .greater)
     }
     
     
-    func testKeyMapping() {
+    @Test func mapKeys() {
         
         let dict = [1: 1, 2: 2, 3: 3]
         let mapped = dict.mapKeys { String($0 * 10) }
         
-        XCTAssertEqual(mapped, ["10": 1, "20": 2, "30": 3])
+        #expect(mapped == ["10": 1, "20": 2, "30": 3])
     }
     
     
-    func testRawRepresentable() {
+    @Test func rawRepresentable() {
         
         enum TestKey: String {
             case dog, cat, cow
         }
         var dict = ["dog": "🐶", "cat": "🐱"]
         
-        XCTAssertEqual(dict[TestKey.dog], dict[TestKey.dog.rawValue])
-        XCTAssertNil(dict[TestKey.cow])
+        #expect(dict[TestKey.dog] == dict[TestKey.dog.rawValue])
+        #expect(dict[TestKey.cow] == nil)
         
         dict[TestKey.cow] = "🐮"
-        XCTAssertEqual(dict[TestKey.cow], "🐮")
+        #expect(dict[TestKey.cow] == "🐮")
     }
     
     
-    func testSorting() {
+    @Test(arguments: 0..<10) func sort(index: Int) {
         
-        for _ in 0..<10 {
-            var array: [Int] = (0..<10).map { _ in .random(in: 0..<100) }
-            let sorted = array.sorted { $0 < $1 }
-            
-            XCTAssertEqual(array.sorted(), sorted)
-            
-            array.sort()
-            XCTAssertEqual(array, sorted)
-        }
+        var array: [Int] = (0..<10).map { _ in .random(in: 0..<100) }
+        let sorted = array.sorted { $0 < $1 }
+        
+        #expect(array.sorted() == sorted)
+        
+        array.sort()
+        #expect(array == sorted)
     }
     
     
-    func testBinarySearch() {
+    @Test(arguments: 0..<10) func binarySearch(index: Int) {
+        
+        let array = (0..<20).map { _ in Int.random(in: 0..<100) }.sorted()
         
         for _ in 0..<10 {
-            let array = (0..<20).map { _ in Int.random(in: 0..<100) }.sorted()
-            
-            for _ in 0..<10 {
-                let index = Int.random(in: 0..<100)
-                XCTAssertEqual(array.binarySearchedFirstIndex(where: { $0 > index }),
-                               array.firstIndex(where: { $0 > index }))
-            }
+            let index = Int.random(in: 0..<100)
+            #expect(array.binarySearchedFirstIndex(where: { $0 > index }) ==
+                    array.firstIndex(where: { $0 > index }))
         }
     }
 }

@@ -23,10 +23,11 @@
 //  limitations under the License.
 //
 
-import XCTest
+import AppKit
+import Testing
 @testable import CotEditor
 
-final class EditorCounterTests: XCTestCase {
+final class EditorCounterTests {
     
     @MainActor final class Provider: TextViewProvider {
         
@@ -47,7 +48,7 @@ final class EditorCounterTests: XCTestCase {
         Both are 👍🏼.
         """
     
-    @MainActor func testNoRequiredInfo() throws {
+    @MainActor @Test func noRequiredInfo() throws {
         
         let provider = Provider(string: self.testString, selectedRange: NSRange(0..<3))
         
@@ -56,16 +57,16 @@ final class EditorCounterTests: XCTestCase {
         counter.invalidateContent()
         counter.invalidateSelection()
         
-        XCTAssertNil(counter.result.lines.entire)
-        XCTAssertNil(counter.result.characters.entire)
-        XCTAssertNil(counter.result.words.entire)
-        XCTAssertNil(counter.result.location)
-        XCTAssertNil(counter.result.line)
-        XCTAssertNil(counter.result.column)
+        #expect(counter.result.lines.entire == nil)
+        #expect(counter.result.characters.entire == nil)
+        #expect(counter.result.words.entire == nil)
+        #expect(counter.result.location == nil)
+        #expect(counter.result.line == nil)
+        #expect(counter.result.column == nil)
     }
     
     
-    @MainActor func testAllRequiredInfo() throws {
+    @MainActor @Test func allRequiredInfo() throws {
         
         let provider = Provider(string: self.testString, selectedRange: NSRange(11..<21))
         
@@ -75,21 +76,21 @@ final class EditorCounterTests: XCTestCase {
         counter.invalidateContent()
         counter.invalidateSelection()
         
-//        XCTAssertEqual(counter.result.lines.entire, 3)
-//        XCTAssertEqual(counter.result.characters.entire, 31)
-//        XCTAssertEqual(counter.result.words.entire, 6)
+//        #expect(counter.result.lines.entire == 3)
+//        #expect(counter.result.characters.entire == 31)
+//        #expect(counter.result.words.entire == 6)
         
-//        XCTAssertEqual(counter.result.characters.selected, 9)
-//        XCTAssertEqual(counter.result.lines.selected, 1)
-//        XCTAssertEqual(counter.result.words.selected, 2)
+//        #expect(counter.result.characters.selected == 9)
+//        #expect(counter.result.lines.selected == 1)
+//        #expect(counter.result.words.selected == 2)
         
-//        XCTAssertEqual(counter.result.location, 10)
-//        XCTAssertEqual(counter.result.column, 0)
-//        XCTAssertEqual(counter.result.line, 2)
+//        #expect(counter.result.location == 10)
+//        #expect(counter.result.column == 0)
+//        #expect(counter.result.line == 2)
     }
     
     
-    @MainActor func testWholeTextSkip() throws {
+    @MainActor @Test func skipWholeText() throws {
         
         let provider = Provider(string: self.testString, selectedRange: NSRange(11..<21))
         
@@ -98,21 +99,21 @@ final class EditorCounterTests: XCTestCase {
         counter.updatesAll = true
         counter.invalidateSelection()
         
-        XCTAssertNil(counter.result.lines.entire)
-        XCTAssertNil(counter.result.characters.entire)
-        XCTAssertNil(counter.result.words.entire)
+        #expect(counter.result.lines.entire == nil)
+        #expect(counter.result.characters.entire == nil)
+        #expect(counter.result.words.entire == nil)
         
-//        XCTAssertEqual(counter.result.lines.selected, 1)
-//        XCTAssertEqual(counter.result.characters.selected, 9)
-//        XCTAssertEqual(counter.result.words.selected, 2)
+//        #expect(counter.result.lines.selected == 1)
+//        #expect(counter.result.characters.selected == 9)
+//        #expect(counter.result.words.selected == 2)
         
-//        XCTAssertEqual(counter.result.location, 10)
-//        XCTAssertEqual(counter.result.column, 0)
-//        XCTAssertEqual(counter.result.line, 2)
+//        #expect(counter.result.location == 10)
+//        #expect(counter.result.column == 0)
+//        #expect(counter.result.line == 2)
     }
     
     
-    @MainActor func testCRLF() throws {
+    @MainActor @Test func crlf() throws {
         
         let provider = Provider(string: "a\r\nb", selectedRange: NSRange(1..<4))
         
@@ -122,33 +123,33 @@ final class EditorCounterTests: XCTestCase {
         counter.invalidateContent()
         counter.invalidateSelection()
         
-//        XCTAssertEqual(counter.result.lines.entire, 2)
-//        XCTAssertEqual(counter.result.characters.entire, 3)
-//        XCTAssertEqual(counter.result.words.entire, 2)
+//        #expect(counter.result.lines.entire == 2)
+//        #expect(counter.result.characters.entire == 3)
+//        #expect(counter.result.words.entire == 2)
         
-//        XCTAssertEqual(counter.result.lines.selected, 2)
-//        XCTAssertEqual(counter.result.characters.selected, 2)
-//        XCTAssertEqual(counter.result.words.selected, 1)
+//        #expect(counter.result.lines.selected == 2)
+//        #expect(counter.result.characters.selected == 2)
+//        #expect(counter.result.words.selected == 1)
         
-//        XCTAssertEqual(counter.result.location, 1)
-//        XCTAssertEqual(counter.result.column, 1)
-//        XCTAssertEqual(counter.result.line, 1)
+//        #expect(counter.result.location == 1)
+//        #expect(counter.result.column == 1)
+//        #expect(counter.result.line == 1)
     }
     
     
-    func testEditorCountFormatting() {
+    @Test func formatEditorCount() {
         
         var count = EditorCount()
         
-        XCTAssertNil(count.formatted)
+        #expect(count.formatted == nil)
         
         count.entire = 1000
-        XCTAssertEqual(count.formatted, "1,000")
+        #expect(count.formatted == "1,000")
         
         count.selected = 100
-        XCTAssertEqual(count.formatted, "1,000 (100)")
+        #expect(count.formatted == "1,000 (100)")
         
         count.entire = nil
-        XCTAssertNil(count.formatted)
+        #expect(count.formatted == nil)
     }
 }

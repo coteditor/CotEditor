@@ -24,28 +24,27 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import CotEditor
 
-final class StringExtensionsTests: XCTestCase {
+struct StringExtensionsTests {
     
     /// Tests if the U+FEFF omitting bug on Swift 5 still exists.
-    ///
-    /// - Bug: <https://bugs.swift.org/browse/SR-10896>
-    func testFEFF() {
+    @Test(.bug("https://bugs.swift.org/browse/SR-10896")) func feff() {
         
         let bom = "\u{feff}"
         
         // -> Some of these test cases must fail if the bug fixed.
-        XCTAssertEqual(bom.count, 1)
-        XCTAssertEqual(("\(bom)abc").count, 4)
-        XCTAssertEqual(NSString(string: bom).length, 0)  // correct: 1
-        XCTAssertEqual(NSString(string: "\(bom)\(bom)").length, 1)  // correct: 2
-        XCTAssertEqual(NSString(string: "\(bom)abc").length, 3)  // correct: 4
-        XCTAssertEqual(NSString(string: "a\(bom)bc").length, 4)
+        #expect(bom.count == 1)
+        #expect(("\(bom)abc").count == 4)
+        #expect(NSString(string: bom).length == 0)  // correct: 1
+        #expect(NSString(string: "\(bom)\(bom)").length == 1)  // correct: 2
+        #expect(NSString(string: "\(bom)abc").length == 3)  // correct: 4
+        #expect(NSString(string: "a\(bom)bc").length == 4)
         
         let string = "\(bom)abc"
-        XCTAssertNotEqual(string.immutable, string)  // -> This test must fail if the bug fixed.
+        #expect(string.immutable != string)  // -> This test must fail if the bug fixed.
         
         // Implicit NSString cast is fixed.
         // -> However, still crashes when `string.immutable.enumerateSubstrings(in:)`
@@ -54,334 +53,334 @@ final class StringExtensionsTests: XCTestCase {
     }
     
     
-    func testCharacterEscape() {
+    @Test func escapeCharacter() {
         
         let string = "a\\a\\\\aa"
         
-        XCTAssertFalse(string.isCharacterEscaped(at: 0))
-        XCTAssertTrue(string.isCharacterEscaped(at: 2))
-        XCTAssertFalse(string.isCharacterEscaped(at: 5))
+        #expect(!string.isCharacterEscaped(at: 0))
+        #expect(string.isCharacterEscaped(at: 2))
+        #expect(!string.isCharacterEscaped(at: 5))
     }
     
     
-    func testUnescaping() {
+    @Test func unescape() {
         
-        XCTAssertEqual(#"\\"#.unescaped, "\\")
-        XCTAssertEqual(#"\'"#.unescaped, "\'")
-        XCTAssertEqual(#"\""#.unescaped, "\"")
-        XCTAssertEqual(#"a\n   "#.unescaped, "a\n   ")
-        XCTAssertEqual(#"a\\n  "#.unescaped, "a\\n  ")
-        XCTAssertEqual(#"a\\\n "#.unescaped, "a\\\n ")
-        XCTAssertEqual(#"a\\\\n"#.unescaped, "a\\\\n")
-        XCTAssertEqual(#"\\\\\t"#.unescaped, "\\\\\t")
-        XCTAssertEqual(#"\\foo\\\\\0bar\\"#.unescaped, "\\foo\\\\\u{0}bar\\")
-        XCTAssertEqual(#"\\\\\\\\foo"#.unescaped, "\\\\\\\\foo")
-        XCTAssertEqual(#"foo: \r\n1"#.unescaped, "foo: \r\n1")
+        #expect(#"\\"#.unescaped == "\\")
+        #expect(#"\'"#.unescaped == "\'")
+        #expect(#"\""#.unescaped == "\"")
+        #expect(#"a\n   "#.unescaped == "a\n   ")
+        #expect(#"a\\n  "#.unescaped == "a\\n  ")
+        #expect(#"a\\\n "#.unescaped == "a\\\n ")
+        #expect(#"a\\\\n"#.unescaped == "a\\\\n")
+        #expect(#"\\\\\t"#.unescaped == "\\\\\t")
+        #expect(#"\\foo\\\\\0bar\\"#.unescaped == "\\foo\\\\\u{0}bar\\")
+        #expect(#"\\\\\\\\foo"#.unescaped == "\\\\\\\\foo")
+        #expect(#"foo: \r\n1"#.unescaped == "foo: \r\n1")
     }
     
     
-    func testComposedCharactersCount() {
+    @Test func countComposedCharacters() {
         
         // make sure that `String.count` counts characters as I want
-        XCTAssertEqual("foo".count, 3)
-        XCTAssertEqual("\r\n".count, 1)
-        XCTAssertEqual("😀🇯🇵a".count, 3)
-        XCTAssertEqual("😀🏻".count, 1)
-        XCTAssertEqual("👍🏻".count, 1)
+        #expect("foo".count == 3)
+        #expect("\r\n".count == 1)
+        #expect("😀🇯🇵a".count == 3)
+        #expect("😀🏻".count == 1)
+        #expect("👍🏻".count == 1)
         
         // single regional indicator
-        XCTAssertEqual("🇦 ".count, 2)
+        #expect("🇦 ".count == 2)
     }
     
     
-    func testWordsCount() {
+    @Test func countWords() {
         
-        XCTAssertEqual("Clarus says moof!".numberOfWords, 3)
-        XCTAssertEqual("plain-text".numberOfWords, 2)
-        XCTAssertEqual("!".numberOfWords, 0)
-        XCTAssertEqual("".numberOfWords, 0)
+        #expect("Clarus says moof!".numberOfWords == 3)
+        #expect("plain-text".numberOfWords == 2)
+        #expect("!".numberOfWords == 0)
+        #expect("".numberOfWords == 0)
     }
     
     
-    func testLinesCount() {
+    @Test func countLines() {
         
-        XCTAssertEqual("".numberOfLines, 0)
-        XCTAssertEqual("a".numberOfLines, 1)
-        XCTAssertEqual("\n".numberOfLines, 1)
-        XCTAssertEqual("\n\n".numberOfLines, 2)
-        XCTAssertEqual("\u{feff}".numberOfLines, 1)
-        XCTAssertEqual("ab\r\ncd".numberOfLines, 2)
+        #expect("".numberOfLines == 0)
+        #expect("a".numberOfLines == 1)
+        #expect("\n".numberOfLines == 1)
+        #expect("\n\n".numberOfLines == 2)
+        #expect("\u{feff}".numberOfLines == 1)
+        #expect("ab\r\ncd".numberOfLines == 2)
         
         let testString = "a\nb c\n\n"
-        XCTAssertEqual(testString.numberOfLines, 3)
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<0)), 0)   // ""
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<1)), 1)   // "a"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<2)), 1)   // "a\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<6)), 2)   // "a\nb c\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<7)), 3)   // "a\nb c\n\n"
+        #expect(testString.numberOfLines == 3)
+        #expect(testString.numberOfLines(in: NSRange(0..<0)) == 0)   // ""
+        #expect(testString.numberOfLines(in: NSRange(0..<1)) == 1)   // "a"
+        #expect(testString.numberOfLines(in: NSRange(0..<2)) == 1)   // "a\n"
+        #expect(testString.numberOfLines(in: NSRange(0..<6)) == 2)   // "a\nb c\n"
+        #expect(testString.numberOfLines(in: NSRange(0..<7)) == 3)   // "a\nb c\n\n"
         
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<0), includesLastBreak: true), 0)   // ""
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<1), includesLastBreak: true), 1)   // "a"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<2), includesLastBreak: true), 2)   // "a\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<6), includesLastBreak: true), 3)   // "a\nb c\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<7), includesLastBreak: true), 4)   // "a\nb c\n\n"
+        #expect(testString.numberOfLines(in: NSRange(0..<0), includesLastBreak: true) == 0)   // ""
+        #expect(testString.numberOfLines(in: NSRange(0..<1), includesLastBreak: true) == 1)   // "a"
+        #expect(testString.numberOfLines(in: NSRange(0..<2), includesLastBreak: true) == 2)   // "a\n"
+        #expect(testString.numberOfLines(in: NSRange(0..<6), includesLastBreak: true) == 3)   // "a\nb c\n"
+        #expect(testString.numberOfLines(in: NSRange(0..<7), includesLastBreak: true) == 4)   // "a\nb c\n\n"
         
-        XCTAssertEqual(testString.lineNumber(at: 0), 1)
-        XCTAssertEqual(testString.lineNumber(at: 1), 1)
-        XCTAssertEqual(testString.lineNumber(at: 2), 2)
-        XCTAssertEqual(testString.lineNumber(at: 5), 2)
-        XCTAssertEqual(testString.lineNumber(at: 6), 3)
-        XCTAssertEqual(testString.lineNumber(at: 7), 4)
+        #expect(testString.lineNumber(at: 0) == 1)
+        #expect(testString.lineNumber(at: 1) == 1)
+        #expect(testString.lineNumber(at: 2) == 2)
+        #expect(testString.lineNumber(at: 5) == 2)
+        #expect(testString.lineNumber(at: 6) == 3)
+        #expect(testString.lineNumber(at: 7) == 4)
         
         let nsString = testString as NSString
-        XCTAssertEqual(nsString.lineNumber(at: 0), testString.lineNumber(at: 0))
-        XCTAssertEqual(nsString.lineNumber(at: 1), testString.lineNumber(at: 1))
-        XCTAssertEqual(nsString.lineNumber(at: 2), testString.lineNumber(at: 2))
-        XCTAssertEqual(nsString.lineNumber(at: 5), testString.lineNumber(at: 5))
-        XCTAssertEqual(nsString.lineNumber(at: 6), testString.lineNumber(at: 6))
-        XCTAssertEqual(nsString.lineNumber(at: 7), testString.lineNumber(at: 7))
+        #expect(nsString.lineNumber(at: 0) == testString.lineNumber(at: 0))
+        #expect(nsString.lineNumber(at: 1) == testString.lineNumber(at: 1))
+        #expect(nsString.lineNumber(at: 2) == testString.lineNumber(at: 2))
+        #expect(nsString.lineNumber(at: 5) == testString.lineNumber(at: 5))
+        #expect(nsString.lineNumber(at: 6) == testString.lineNumber(at: 6))
+        #expect(nsString.lineNumber(at: 7) == testString.lineNumber(at: 7))
         
-        XCTAssertEqual("\u{FEFF}".numberOfLines(in: NSRange(0..<1)), 1)  // "\u{FEFF}"
-        XCTAssertEqual("\u{FEFF}\nb".numberOfLines(in: NSRange(0..<3)), 2)  // "\u{FEFF}\nb"
-        XCTAssertEqual("a\u{FEFF}\nb".numberOfLines(in: NSRange(1..<4)), 2)  // "\u{FEFF}\nb"
-        XCTAssertEqual("a\u{FEFF}\u{FEFF}\nb".numberOfLines(in: NSRange(1..<5)), 2)  // "\u{FEFF}\nb"
+        #expect("\u{FEFF}".numberOfLines(in: NSRange(0..<1)) == 1)  // "\u{FEFF}"
+        #expect("\u{FEFF}\nb".numberOfLines(in: NSRange(0..<3)) == 2)  // "\u{FEFF}\nb"
+        #expect("a\u{FEFF}\nb".numberOfLines(in: NSRange(1..<4)) == 2)  // "\u{FEFF}\nb"
+        #expect("a\u{FEFF}\u{FEFF}\nb".numberOfLines(in: NSRange(1..<5)) == 2)  // "\u{FEFF}\nb"
         
-        XCTAssertEqual("a\u{FEFF}\nb".numberOfLines, 2)
-        XCTAssertEqual("\u{FEFF}\nb".numberOfLines, 2)
-        XCTAssertEqual("\u{FEFF}0000000000000000".numberOfLines, 1)
+        #expect("a\u{FEFF}\nb".numberOfLines == 2)
+        #expect("\u{FEFF}\nb".numberOfLines == 2)
+        #expect("\u{FEFF}0000000000000000".numberOfLines == 1)
         
         let bomString = "\u{FEFF}\nb"
         let range = bomString.startIndex..<bomString.index(bomString.startIndex, offsetBy: 2)
-        XCTAssertEqual(bomString.numberOfLines(in: [range, range]), 1)  // "\u{FEFF}\n"
+        #expect(bomString.numberOfLines(in: [range, range]) == 1)  // "\u{FEFF}\n"
     }
     
     
-    func testColumnCount() {
+    @Test func countColumns() {
         
         let string = "aaa \r\n🐱 "
         
-        XCTAssertEqual(string.columnNumber(at: string.index(string.startIndex, offsetBy: 3)), 3)
-        XCTAssertEqual(string.columnNumber(at: string.index(string.startIndex, offsetBy: 4)), 4)
-        XCTAssertEqual(string.columnNumber(at: string.index(string.startIndex, offsetBy: 5)), 0)
-        XCTAssertEqual(string.columnNumber(at: string.index(string.startIndex, offsetBy: 6)), 1)
-        XCTAssertEqual(string.columnNumber(at: string.index(string.startIndex, offsetBy: 7)), 2)
+        #expect(string.columnNumber(at: string.index(string.startIndex, offsetBy: 3)) == 3)
+        #expect(string.columnNumber(at: string.index(string.startIndex, offsetBy: 4)) == 4)
+        #expect(string.columnNumber(at: string.index(string.startIndex, offsetBy: 5)) == 0)
+        #expect(string.columnNumber(at: string.index(string.startIndex, offsetBy: 6)) == 1)
+        #expect(string.columnNumber(at: string.index(string.startIndex, offsetBy: 7)) == 2)
     }
     
     
-    func testCharacterCountOptions() {
+    @Test func countCharactersWithOptions() {
         
         var options = CharacterCountOptions()
         
         let string = "aaa \t 🐱\n\r\n c"
         
-        XCTAssertEqual(string.count(options: options), string.count)
+        #expect(string.count(options: options) == string.count)
         options.ignoresNewlines = true
-        XCTAssertEqual(string.count(options: options), 9)
+        #expect(string.count(options: options) == 9)
         options.ignoresWhitespaces = true
-        XCTAssertEqual(string.count(options: options), 5)
+        #expect(string.count(options: options) == 5)
         options.ignoresNewlines = false
         options.ignoresWhitespaces = true
-        XCTAssertEqual(string.count(options: options), 7)
+        #expect(string.count(options: options) == 7)
         
         // test .treatsConsecutiveWhitespaceAsSingle
         options = .init()
         options.treatsConsecutiveWhitespaceAsSingle = true
-        XCTAssertEqual(string.count(options: options), 7)
+        #expect(string.count(options: options) == 7)
         options.ignoresNewlines = true
-        XCTAssertEqual(string.count(options: options), 7)
+        #expect(string.count(options: options) == 7)
         options.treatsConsecutiveWhitespaceAsSingle = false
         options.ignoresNewlines = true
         options.ignoresWhitespaces = true
-        XCTAssertEqual(string.count(options: options), 5)
+        #expect(string.count(options: options) == 5)
         
         // test other units
         options = .init()
         options.unit = .unicodeScalar
-        XCTAssertEqual(string.count(options: options), 12)
+        #expect(string.count(options: options) == 12)
         options.unit = .utf16
-        XCTAssertEqual(string.count(options: options), 13)
+        #expect(string.count(options: options) == 13)
         
         // test normalization
         let aUmlaut = "Ä"
         options = .init()
         options.unit = .unicodeScalar
-        XCTAssertEqual(aUmlaut.count(options: options), 2)
+        #expect(aUmlaut.count(options: options) == 2)
         options.normalizationForm = .nfc
-        XCTAssertEqual(aUmlaut.count(options: options), 1)
+        #expect(aUmlaut.count(options: options) == 1)
     }
     
     
-    func testByteCountOptions() {
+    @Test func countBytes() {
         
         let string = "abc犬牛"
         var options = CharacterCountOptions(unit: .byte)
         
         options.encoding = .utf8
-        XCTAssertEqual(string.count(options: options), 9)
+        #expect(string.count(options: options) == 9)
         
         options.encoding = .shiftJIS
-        XCTAssertEqual(string.count(options: options), 7)
+        #expect(string.count(options: options) == 7)
         
         options.encoding = .ascii
-        XCTAssertNil(string.count(options: options))
+        #expect(string.count(options: options) == nil)
         
         options.encoding = .nonLossyASCII
-        XCTAssertEqual(string.count(options: options), 15)
+        #expect(string.count(options: options) == 15)
     }
     
     
-    func testProgrammingCases() {
+    @Test func codingCases() {
         
-        XCTAssertEqual("AbcDefg Hij".snakecased, "abc_defg hij")
-        XCTAssertEqual("abcDefg Hij".snakecased, "abc_defg hij")
-        XCTAssertEqual("_abcDefg Hij".snakecased, "_abc_defg hij")
-        XCTAssertEqual("AA\u{0308}".snakecased, "a_a\u{0308}")
-        XCTAssertEqual("abÄb".snakecased, "ab_äb")
+        #expect("AbcDefg Hij".snakecased == "abc_defg hij")
+        #expect("abcDefg Hij".snakecased == "abc_defg hij")
+        #expect("_abcDefg Hij".snakecased == "_abc_defg hij")
+        #expect("AA\u{0308}".snakecased == "a_a\u{0308}")
+        #expect("abÄb".snakecased == "ab_äb")
         
-        XCTAssertEqual("abc_defg Hij".camelcased, "abcDefg hij")
-        XCTAssertEqual("AbcDefg Hij".camelcased, "abcDefg hij")
-        XCTAssertEqual("_abcDefg Hij".camelcased, "_abcDefg hij")
-        XCTAssertEqual("a_a\u{0308}".camelcased, "aA\u{0308}")
+        #expect("abc_defg Hij".camelcased == "abcDefg hij")
+        #expect("AbcDefg Hij".camelcased == "abcDefg hij")
+        #expect("_abcDefg Hij".camelcased == "_abcDefg hij")
+        #expect("a_a\u{0308}".camelcased == "aA\u{0308}")
         
-        XCTAssertEqual("abc_defg Hij".pascalcased, "AbcDefg Hij")
-        XCTAssertEqual("abcDefg Hij".pascalcased, "AbcDefg Hij")
-        XCTAssertEqual("_abcDefg Hij".pascalcased, "_abcDefg Hij")
-        XCTAssertEqual("a_a\u{0308}".pascalcased, "AA\u{0308}")
+        #expect("abc_defg Hij".pascalcased == "AbcDefg Hij")
+        #expect("abcDefg Hij".pascalcased == "AbcDefg Hij")
+        #expect("_abcDefg Hij".pascalcased == "_abcDefg Hij")
+        #expect("a_a\u{0308}".pascalcased == "AA\u{0308}")
     }
     
     
-    func testJapaneseTransform() {
+    @Test func japaneseTransform() {
         
         let testString = "犬 イヌ いぬ Ｉｎｕ Dog 123 １２３"
         
-        XCTAssertEqual(testString.fullwidthRoman(reverse: false), "犬 イヌ いぬ Ｉｎｕ Ｄｏｇ １２３ １２３")
-        XCTAssertEqual(testString.fullwidthRoman(reverse: true), "犬 イヌ いぬ Inu Dog 123 123")
+        #expect(testString.fullwidthRoman(reverse: false) == "犬 イヌ いぬ Ｉｎｕ Ｄｏｇ １２３ １２３")
+        #expect(testString.fullwidthRoman(reverse: true) == "犬 イヌ いぬ Inu Dog 123 123")
     }
     
     
-    func testBeforeIndex() {
+    @Test func beforeIndex() {
         
-        XCTAssertEqual(("00" as NSString).index(before: 0), 0)
-        XCTAssertEqual(("00" as NSString).index(before: 1), 0)
-        XCTAssertEqual(("00" as NSString).index(before: 2), 1)
-        XCTAssertEqual(("0🇦🇦00" as NSString).index(before: 1), 0)
-        XCTAssertEqual(("0🇦🇦00" as NSString).index(before: 2), 1)
-        XCTAssertEqual(("0🇦🇦00" as NSString).index(before: 5), 1)
-        XCTAssertEqual(("0🇦🇦00" as NSString).index(before: 6), 5)
+        #expect(("00" as NSString).index(before: 0) == 0)
+        #expect(("00" as NSString).index(before: 1) == 0)
+        #expect(("00" as NSString).index(before: 2) == 1)
+        #expect(("0🇦🇦00" as NSString).index(before: 1) == 0)
+        #expect(("0🇦🇦00" as NSString).index(before: 2) == 1)
+        #expect(("0🇦🇦00" as NSString).index(before: 5) == 1)
+        #expect(("0🇦🇦00" as NSString).index(before: 6) == 5)
         
-        XCTAssertEqual(("0\r\n0" as NSString).index(before: 3), 1)
-        XCTAssertEqual(("0\r\n0" as NSString).index(before: 2), 1)
-        XCTAssertEqual(("0\r\n0" as NSString).index(before: 1), 0)
-        XCTAssertEqual(("0\n" as NSString).index(before: 1), 0)
-        XCTAssertEqual(("0\n" as NSString).index(before: 2), 1)
+        #expect(("0\r\n0" as NSString).index(before: 3) == 1)
+        #expect(("0\r\n0" as NSString).index(before: 2) == 1)
+        #expect(("0\r\n0" as NSString).index(before: 1) == 0)
+        #expect(("0\n" as NSString).index(before: 1) == 0)
+        #expect(("0\n" as NSString).index(before: 2) == 1)
     }
     
     
-    func testAfterIndex() {
+    @Test func afterIndex() {
         
-        XCTAssertEqual(("00" as NSString).index(after: 0), 1)
-        XCTAssertEqual(("00" as NSString).index(after: 1), 2)
-        XCTAssertEqual(("00" as NSString).index(after: 2), 2)
-        XCTAssertEqual(("0🇦🇦0" as NSString).index(after: 0), 1)
-        XCTAssertEqual(("0🇦🇦0" as NSString).index(after: 1), 5)
+        #expect(("00" as NSString).index(after: 0) == 1)
+        #expect(("00" as NSString).index(after: 1) == 2)
+        #expect(("00" as NSString).index(after: 2) == 2)
+        #expect(("0🇦🇦0" as NSString).index(after: 0) == 1)
+        #expect(("0🇦🇦0" as NSString).index(after: 1) == 5)
         
-        XCTAssertEqual(("0\r\n0" as NSString).index(after: 1), 3)
-        XCTAssertEqual(("0\r\n0" as NSString).index(after: 2), 3)
-        XCTAssertEqual(("0\r\n0" as NSString).index(after: 3), 4)
-        XCTAssertEqual(("0\r" as NSString).index(after: 1), 2)
-        XCTAssertEqual(("0\r" as NSString).index(after: 2), 2)
+        #expect(("0\r\n0" as NSString).index(after: 1) == 3)
+        #expect(("0\r\n0" as NSString).index(after: 2) == 3)
+        #expect(("0\r\n0" as NSString).index(after: 3) == 4)
+        #expect(("0\r" as NSString).index(after: 1) == 2)
+        #expect(("0\r" as NSString).index(after: 2) == 2)
         
         // composed character does not care CRLF
-        XCTAssertEqual(("\r\n" as NSString).rangeOfComposedCharacterSequence(at: 1), NSRange(1..<2))
+        #expect(("\r\n" as NSString).rangeOfComposedCharacterSequence(at: 1) == NSRange(1..<2))
     }
     
     
-    func testLineRange() {
+    @Test func lineRange() {
         
         let string = "foo\n\rbar\n\r"
         
-        XCTAssertEqual(string.lineContentsRange(for: string.startIndex..<string.endIndex),
-                       string.startIndex..<string.index(before: string.endIndex))
+        #expect(string.lineContentsRange(for: string.startIndex..<string.endIndex)  ==
+                string.startIndex..<string.index(before: string.endIndex))
         
-        XCTAssertEqual(string.lineRange(at: string.index(after: string.startIndex)),
-                       string.startIndex..<string.index(string.startIndex, offsetBy: 4))
-        XCTAssertEqual(string.lineContentsRange(for: string.startIndex..<string.index(after: string.startIndex)),
-                       string.startIndex..<string.index(string.startIndex, offsetBy: 3))
+        #expect(string.lineRange(at: string.index(after: string.startIndex)) ==
+                string.startIndex..<string.index(string.startIndex, offsetBy: 4))
+        #expect(string.lineContentsRange(for: string.startIndex..<string.index(after: string.startIndex)) ==
+                string.startIndex..<string.index(string.startIndex, offsetBy: 3))
         
-        XCTAssertEqual((string as NSString).lineContentsRange(for: NSRange(..<1)), NSRange(..<3))
-        XCTAssertEqual((string as NSString).lineContentsRange(at: 5), NSRange(5..<8))
+        #expect((string as NSString).lineContentsRange(for: NSRange(..<1)) == NSRange(..<3))
+        #expect((string as NSString).lineContentsRange(at: 5) == NSRange(5..<8))
         
         let emptyString = ""
         let emptyRange = emptyString.startIndex..<emptyString.endIndex
         
-        XCTAssertEqual(emptyString.lineContentsRange(for: emptyRange), emptyRange)
+        #expect(emptyString.lineContentsRange(for: emptyRange) == emptyRange)
     }
     
     
-    func testLineRanges() {
+    @Test func lineRanges() {
         
-        XCTAssertEqual("foo\nbar".lineContentsRanges(for: NSRange(1..<1)), [NSRange(1..<1)])
-        XCTAssertEqual("foo\nbar".lineContentsRanges(), [NSRange(0..<3), NSRange(4..<7)])
-        XCTAssertEqual("foo\nbar\n".lineContentsRanges(), [NSRange(0..<3), NSRange(4..<7)])
-        XCTAssertEqual("foo\r\nbar".lineContentsRanges(), [NSRange(0..<3), NSRange(5..<8)])
-        XCTAssertEqual("foo\r\r\rbar".lineContentsRanges().count, 4)
+        #expect("foo\nbar".lineContentsRanges(for: NSRange(1..<1)) == [NSRange(1..<1)])
+        #expect("foo\nbar".lineContentsRanges() == [NSRange(0..<3), NSRange(4..<7)])
+        #expect("foo\nbar\n".lineContentsRanges() == [NSRange(0..<3), NSRange(4..<7)])
+        #expect("foo\r\nbar".lineContentsRanges() == [NSRange(0..<3), NSRange(5..<8)])
+        #expect("foo\r\r\rbar".lineContentsRanges().count == 4)
     }
     
     
-    func testFirstLineEnding() {
+    @Test func firstLineEnding() {
         
-        XCTAssertEqual("foo\r\nbar".firstLineEnding, "\r\n")
+        #expect("foo\r\nbar".firstLineEnding == "\r\n")
     }
     
     
-    func testRangeOfCharacter() {
+    @Test func rangeOfCharacter() {
         
         let set = CharacterSet(charactersIn: "._")
         let string = "abc.d🐕f_ghij" as NSString
         
-        XCTAssertEqual(string.substring(with: string.rangeOfCharacter(until: set, at: 0)), "abc")
-        XCTAssertEqual(string.substring(with: string.rangeOfCharacter(until: set, at: 4)), "d🐕f")
-        XCTAssertEqual(string.substring(with: string.rangeOfCharacter(until: set, at: string.length - 1)), "ghij")
+        #expect(string.substring(with: string.rangeOfCharacter(until: set, at: 0)) == "abc")
+        #expect(string.substring(with: string.rangeOfCharacter(until: set, at: 4)) == "d🐕f")
+        #expect(string.substring(with: string.rangeOfCharacter(until: set, at: string.length - 1)) == "ghij")
     }
     
     
-    func testComposedCharacterSequence() {
+    @Test func composedCharacterSequence() {
         
         let blackDog = "🐕‍⬛"  // 4
-        XCTAssertEqual(blackDog.lowerBoundOfComposedCharacterSequence(2, offsetBy: 1), 0)
+        #expect(blackDog.lowerBoundOfComposedCharacterSequence(2, offsetBy: 1) == 0)
         
         let abcDog = "🐕‍⬛abc"  // 4 1 1 1
-        XCTAssertEqual(abcDog.lowerBoundOfComposedCharacterSequence(6, offsetBy: 1), "🐕‍⬛a".utf16.count)
-        XCTAssertEqual(abcDog.lowerBoundOfComposedCharacterSequence(5, offsetBy: 1), "🐕‍⬛".utf16.count)
+        #expect(abcDog.lowerBoundOfComposedCharacterSequence(6, offsetBy: 1) == "🐕‍⬛a".utf16.count)
+        #expect(abcDog.lowerBoundOfComposedCharacterSequence(5, offsetBy: 1) == "🐕‍⬛".utf16.count)
         
         let dogDog = "🐕‍⬛🐕"  // 4 2
-        XCTAssertEqual(dogDog.lowerBoundOfComposedCharacterSequence(5, offsetBy: 1), 0)
-        XCTAssertEqual(dogDog.lowerBoundOfComposedCharacterSequence(6, offsetBy: 1), "🐕‍⬛".utf16.count)
-        XCTAssertEqual(dogDog.lowerBoundOfComposedCharacterSequence(6, offsetBy: 0), "🐕‍⬛🐕".utf16.count)
+        #expect(dogDog.lowerBoundOfComposedCharacterSequence(5, offsetBy: 1) == 0)
+        #expect(dogDog.lowerBoundOfComposedCharacterSequence(6, offsetBy: 1) == "🐕‍⬛".utf16.count)
+        #expect(dogDog.lowerBoundOfComposedCharacterSequence(6, offsetBy: 0) == "🐕‍⬛🐕".utf16.count)
         
         let string = "🐕🏴‍☠️🇯🇵🧑‍💻"  // 2 5 4 5
-        XCTAssertEqual(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 3), 0)
-        XCTAssertEqual(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 2), 0)
-        XCTAssertEqual(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 1), "🐕".utf16.count)
-        XCTAssertEqual(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 0), "🐕🏴‍☠️".utf16.count)
+        #expect(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 3) == 0)
+        #expect(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 2) == 0)
+        #expect(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 1) == "🐕".utf16.count)
+        #expect(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 0) == "🐕🏴‍☠️".utf16.count)
         
         let abc = "abc"
-        XCTAssertEqual(abc.lowerBoundOfComposedCharacterSequence(1, offsetBy: 2), 0)
-        XCTAssertEqual(abc.lowerBoundOfComposedCharacterSequence(1, offsetBy: 1), 0)
-        XCTAssertEqual(abc.lowerBoundOfComposedCharacterSequence(1, offsetBy: 0), 1)
+        #expect(abc.lowerBoundOfComposedCharacterSequence(1, offsetBy: 2) == 0)
+        #expect(abc.lowerBoundOfComposedCharacterSequence(1, offsetBy: 1) == 0)
+        #expect(abc.lowerBoundOfComposedCharacterSequence(1, offsetBy: 0) == 1)
     }
     
     
-    func testUnicodeNormalization() {
+    @Test func normalizeUnicode() {
         
-        XCTAssertEqual("É \t 神 ㍑ ＡＢC".precomposedStringWithCompatibilityMappingWithCasefold, "é \t 神 リットル abc")
-        XCTAssertEqual("\u{1f71} \u{03b1}\u{0301}".precomposedStringWithHFSPlusMapping, "\u{1f71} \u{03ac}")
-        XCTAssertEqual("\u{1f71}".precomposedStringWithHFSPlusMapping, "\u{1f71}")  // test single char
-        XCTAssertEqual("\u{1f71}".decomposedStringWithHFSPlusMapping, "\u{03b1}\u{0301}")
+        #expect("É \t 神 ㍑ ＡＢC".precomposedStringWithCompatibilityMappingWithCasefold == "é \t 神 リットル abc")
+        #expect("\u{1f71} \u{03b1}\u{0301}".precomposedStringWithHFSPlusMapping == "\u{1f71} \u{03ac}")
+        #expect("\u{1f71}".precomposedStringWithHFSPlusMapping == "\u{1f71}")  // test single char
+        #expect("\u{1f71}".decomposedStringWithHFSPlusMapping == "\u{03b1}\u{0301}")
     }
     
     
-    func testWhitespaceTrimming() throws {
+    @Test func trimWhitespace() throws {
         
         let string = """
             
@@ -399,7 +398,7 @@ final class StringExtensionsTests: XCTestCase {
             white space ->
             abc
             """
-        XCTAssertEqual(trimmed, expectedTrimmed)
+        #expect(trimmed == expectedTrimmed)
         
         let trimmedIgnoringEmptyLines = try string.trim(ranges: string.rangesOfTrailingWhitespace(ignoresEmptyLines: true))
         let expectedTrimmedIgnoringEmptyLines =  """
@@ -409,36 +408,36 @@ final class StringExtensionsTests: XCTestCase {
             white space ->
             abc
             """
-        XCTAssertEqual(trimmedIgnoringEmptyLines, expectedTrimmedIgnoringEmptyLines)
+        #expect(trimmedIgnoringEmptyLines == expectedTrimmedIgnoringEmptyLines)
     }
     
     
-    func testAbbreviatedMatch() throws {
+    @Test func abbreviatedMatch() throws {
         
         let string = "The fox jumps over the lazy dogcow."
         
-        XCTAssertNil(string.abbreviatedMatch(with: "quick"))
+        #expect(string.abbreviatedMatch(with: "quick") == nil)
         
-        let dogcow = try XCTUnwrap(string.abbreviatedMatch(with: "dogcow"))
-        XCTAssertEqual(dogcow.score, 6)
-        XCTAssertEqual(dogcow.ranges.count, 6)
-        XCTAssertEqual(dogcow.remaining, "")
+        let dogcow = try #require(string.abbreviatedMatch(with: "dogcow"))
+        #expect(dogcow.score == 6)
+        #expect(dogcow.ranges.count == 6)
+        #expect(dogcow.remaining.isEmpty)
         
-        let ow = try XCTUnwrap(string.abbreviatedMatch(with: "ow"))
-        XCTAssertEqual(ow.score, 29)
-        XCTAssertEqual(ow.ranges.count, 2)
-        XCTAssertEqual(ow.remaining, "")
+        let ow = try #require(string.abbreviatedMatch(with: "ow"))
+        #expect(ow.score == 29)
+        #expect(ow.ranges.count == 2)
+        #expect(ow.remaining.isEmpty)
         
-        let lazyTanuki = try XCTUnwrap(string.abbreviatedMatch(with: "lazy tanuki"))
-        XCTAssertEqual(lazyTanuki.score, 5)
-        XCTAssertEqual(lazyTanuki.ranges.count, 5)
-        XCTAssertEqual(lazyTanuki.remaining, "tanuki")
+        let lazyTanuki = try #require(string.abbreviatedMatch(with: "lazy tanuki"))
+        #expect(lazyTanuki.score == 5)
+        #expect(lazyTanuki.ranges.count == 5)
+        #expect(lazyTanuki.remaining == "tanuki")
         
-        XCTAssertNil(string.abbreviatedMatchedRanges(with: "lazy tanuki"))
-        XCTAssertEqual(string.abbreviatedMatchedRanges(with: "lazy tanuki", incomplete: true)?.count, 5)
+        #expect(string.abbreviatedMatchedRanges(with: "lazy tanuki") == nil)
+        #expect(string.abbreviatedMatchedRanges(with: "lazy tanuki", incomplete: true)?.count == 5)
         
-        XCTAssertEqual(string.abbreviatedMatchedRanges(with: "lazy w")?.count, 6)
-        XCTAssertEqual(string.abbreviatedMatchedRanges(with: "lazy w", incomplete: true)?.count, 6)
+        #expect(string.abbreviatedMatchedRanges(with: "lazy w")?.count == 6)
+        #expect(string.abbreviatedMatchedRanges(with: "lazy w", incomplete: true)?.count == 6)
     }
 }
 
@@ -449,7 +448,7 @@ private extension String {
     func trim(ranges: [NSRange]) throws -> String {
         
         try ranges.reversed()
-            .map { try XCTUnwrap(Range($0, in: self)) }
+            .map { try #require(Range($0, in: self)) }
             .reduce(self) { $0.replacingCharacters(in: $1, with: "") }
     }
 }

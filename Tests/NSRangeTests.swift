@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,65 +23,66 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import CotEditor
 
-final class NSRangeTests: XCTestCase {
+struct NSRangeTests {
     
-    func testBoundaryTouch() {
+    @Test func touchBoundary() {
         
-        XCTAssert(NSRange(location: 2, length: 2).touches(NSRange(location: 4, length: 2)))
-        XCTAssert(NSRange(location: 2, length: 2).touches(NSRange(location: 0, length: 2)))
+        #expect(NSRange(location: 2, length: 2).touches(NSRange(location: 4, length: 2)))
+        #expect(NSRange(location: 2, length: 2).touches(NSRange(location: 0, length: 2)))
         
-        XCTAssert(NSRange(location: 2, length: 0).touches(NSRange(location: 2, length: 2)))
-        XCTAssert(NSRange(location: 2, length: 0).touches(NSRange(location: 0, length: 2)))
-        XCTAssert(NSRange(location: 2, length: 2).touches(NSRange(location: 2, length: 0)))
-        XCTAssert(NSRange(location: 2, length: 2).touches(NSRange(location: 4, length: 0)))
+        #expect(NSRange(location: 2, length: 0).touches(NSRange(location: 2, length: 2)))
+        #expect(NSRange(location: 2, length: 0).touches(NSRange(location: 0, length: 2)))
+        #expect(NSRange(location: 2, length: 2).touches(NSRange(location: 2, length: 0)))
+        #expect(NSRange(location: 2, length: 2).touches(NSRange(location: 4, length: 0)))
         
-        XCTAssert(NSRange(location: 2, length: 2).touches(2))
-        XCTAssert(NSRange(location: 2, length: 2).touches(4))
+        #expect(NSRange(location: 2, length: 2).touches(2))
+        #expect(NSRange(location: 2, length: 2).touches(4))
     }
     
     
-    func testNotFound() {
+    @Test func notFound() {
         
-        XCTAssert(NSRange.notFound.isNotFound)
-        XCTAssert(NSRange.notFound.isEmpty)
-        XCTAssert(NSRange(location: NSNotFound, length: 1).isNotFound)
-        XCTAssertFalse(NSRange(location: 1, length: 1).isNotFound)
+        #expect(NSRange.notFound.isNotFound)
+        #expect(NSRange.notFound.isEmpty)
+        #expect(NSRange(location: NSNotFound, length: 1).isNotFound)
+        #expect(!NSRange(location: 1, length: 1).isNotFound)
     }
     
     
-    func testRangeInsertion() {
+    @Test func insertRange() {
         
-        XCTAssertEqual(NSRange(0..<0).inserted(items: []), NSRange(0..<0))
-        XCTAssertEqual(NSRange(0..<0).inserted(items: [.init(string: "", location: 0, forward: true)]), NSRange(0..<0))
+        #expect(NSRange(0..<0).inserted(items: []) == NSRange(0..<0))
+        #expect(NSRange(0..<0).inserted(items: [.init(string: "", location: 0, forward: true)]) == NSRange(0..<0))
         
-        XCTAssertEqual(NSRange(0..<0).inserted(items: [.init(string: "abc", location: 0, forward: true)]), NSRange(3..<3))
-        XCTAssertEqual(NSRange(0..<0).inserted(items: [.init(string: "abc", location: 0, forward: false)]), NSRange(0..<0))
-        XCTAssertEqual(NSRange(1..<1).inserted(items: [.init(string: "abc", location: 0, forward: false)]), NSRange(4..<4))
-        XCTAssertEqual(NSRange(0..<5).inserted(items: [.init(string: "abc", location: 2, forward: true)]), NSRange(0..<8))
-        XCTAssertEqual(NSRange(0..<5).inserted(items: [.init(string: "abc", location: 6, forward: true)]), NSRange(0..<5))
+        #expect(NSRange(0..<0).inserted(items: [.init(string: "abc", location: 0, forward: true)]) == NSRange(3..<3))
+        #expect(NSRange(0..<0).inserted(items: [.init(string: "abc", location: 0, forward: false)]) == NSRange(0..<0))
+        #expect(NSRange(1..<1).inserted(items: [.init(string: "abc", location: 0, forward: false)]) == NSRange(4..<4))
+        #expect(NSRange(0..<5).inserted(items: [.init(string: "abc", location: 2, forward: true)]) == NSRange(0..<8))
+        #expect(NSRange(0..<5).inserted(items: [.init(string: "abc", location: 6, forward: true)]) == NSRange(0..<5))
         
-        XCTAssertEqual(NSRange(2..<2).inserted(items: [.init(string: "abc", location: 2, forward: true),
-                                                       .init(string: "abc", location: 2, forward: false)]), NSRange(5..<5))
-        XCTAssertEqual(NSRange(2..<3).inserted(items: [.init(string: "abc", location: 2, forward: true),
-                                                       .init(string: "abc", location: 2, forward: false)]), NSRange(2..<6))
-        XCTAssertEqual(NSRange(2..<3).inserted(items: [.init(string: "abc", location: 3, forward: true),
-                                                       .init(string: "abc", location: 3, forward: false)]), NSRange(2..<6))
+        #expect(NSRange(2..<2).inserted(items: [.init(string: "abc", location: 2, forward: true),
+                                                .init(string: "abc", location: 2, forward: false)]) == NSRange(5..<5))
+        #expect(NSRange(2..<3).inserted(items: [.init(string: "abc", location: 2, forward: true),
+                                                .init(string: "abc", location: 2, forward: false)]) == NSRange(2..<6))
+        #expect(NSRange(2..<3).inserted(items: [.init(string: "abc", location: 3, forward: true),
+                                                .init(string: "abc", location: 3, forward: false)]) == NSRange(2..<6))
     }
     
     
-    func testRangeRemoval() {
+    @Test func removeRange() {
         
-        XCTAssertEqual(NSRange(0..<0).removed(ranges: []), NSRange(0..<0))
-        XCTAssertEqual(NSRange(0..<0).removed(ranges: [NSRange(0..<0)]), NSRange(0..<0))
+        #expect(NSRange(0..<0).removed(ranges: []) == NSRange(0..<0))
+        #expect(NSRange(0..<0).removed(ranges: [NSRange(0..<0)]) == NSRange(0..<0))
         
-        XCTAssertEqual(NSRange(0..<10).removed(ranges: [NSRange(2..<4)]), NSRange(0..<8))
-        XCTAssertEqual(NSRange(1..<10).removed(ranges: [NSRange(0..<2)]), NSRange(0..<8))
-        XCTAssertEqual(NSRange(1..<10).removed(ranges: [NSRange(11..<20)]), NSRange(1..<10))
+        #expect(NSRange(0..<10).removed(ranges: [NSRange(2..<4)]) == NSRange(0..<8))
+        #expect(NSRange(1..<10).removed(ranges: [NSRange(0..<2)]) == NSRange(0..<8))
+        #expect(NSRange(1..<10).removed(ranges: [NSRange(11..<20)]) == NSRange(1..<10))
         
-        XCTAssertEqual(NSRange(1..<10).removed(ranges: [NSRange(2..<4), NSRange(3..<5)]), NSRange(1..<7))
-        XCTAssertEqual(NSRange(1..<10).removed(ranges: [NSRange(0..<2), NSRange(3..<5), NSRange(9..<20)]), NSRange(0..<5))
+        #expect(NSRange(1..<10).removed(ranges: [NSRange(2..<4), NSRange(3..<5)]) == NSRange(1..<7))
+        #expect(NSRange(1..<10).removed(ranges: [NSRange(0..<2), NSRange(3..<5), NSRange(9..<20)]) == NSRange(0..<5))
     }
 }

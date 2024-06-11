@@ -24,54 +24,55 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import CotEditor
 
-final class URLExtensionsTests: XCTestCase {
+struct URLExtensionsTests {
     
-    func testRelativeURLCreation() {
+    @Test func createRelativeURL() {
         
         let url = URL(filePath: "/foo/bar/file.txt")
         let baseURL = URL(filePath: "/foo/buz/file.txt")
         
-        XCTAssertEqual(url.path(relativeTo: baseURL), "../bar/file.txt")
+        #expect(url.path(relativeTo: baseURL) == "../bar/file.txt")
     }
     
     
-    func testRelativeURLCreation2() {
+    @Test func createRelativeURL2() {
         
         let url = URL(filePath: "/file1.txt")
         let baseURL = URL(filePath: "/file2.txt")
         
-        XCTAssertEqual(url.path(relativeTo: baseURL), "file1.txt")
+        #expect(url.path(relativeTo: baseURL) == "file1.txt")
     }
     
     
-    func testRelativeURLCreationWithSameURLs() {
+    @Test func createRelativeURLWithSameURLs() {
         
         let url = URL(filePath: "/file1.txt")
         let baseURL = URL(filePath: "/file1.txt")
         
-        XCTAssertEqual(url.path(relativeTo: baseURL), "file1.txt")
+        #expect(url.path(relativeTo: baseURL) == "file1.txt")
     }
     
     
-    func testRelativeURLCreationWithDirectoryURLs() {
+    @Test func createRelativeURLWithDirectoryURLs() {
         
         let url = URL(filePath: "Dog/Cow/Cat/file1.txt")
-        XCTAssertEqual(url.path(relativeTo: URL(filePath: "Dog/Cow", directoryHint: .isDirectory)), "Cat/file1.txt")
-        XCTAssertEqual(url.path(relativeTo: URL(filePath: "Dog/Cow/", directoryHint: .isDirectory)), "Cat/file1.txt")
-        XCTAssertEqual(url.path(relativeTo: URL(filePath: "Dog/Cow/Cat", directoryHint: .isDirectory)), "file1.txt")
-        XCTAssertEqual(url.path(relativeTo: URL(filePath: "", directoryHint: .isDirectory)), "Dog/Cow/Cat/file1.txt")
+        #expect(url.path(relativeTo: URL(filePath: "Dog/Cow", directoryHint: .isDirectory)) == "Cat/file1.txt")
+        #expect(url.path(relativeTo: URL(filePath: "Dog/Cow/", directoryHint: .isDirectory)) == "Cat/file1.txt")
+        #expect(url.path(relativeTo: URL(filePath: "Dog/Cow/Cat", directoryHint: .isDirectory)) == "file1.txt")
+        #expect(url.path(relativeTo: URL(filePath: "", directoryHint: .isDirectory)) == "Dog/Cow/Cat/file1.txt")
         
         let url2 = URL(filePath: "file1.txt")
-        XCTAssertEqual(url2.path(relativeTo: URL(filePath: "", directoryHint: .isDirectory)), "file1.txt")
-        XCTAssertEqual(url2.path(relativeTo: URL(filePath: "Dog", directoryHint: .isDirectory)), "../file1.txt")
+        #expect(url2.path(relativeTo: URL(filePath: "", directoryHint: .isDirectory)) == "file1.txt")
+        #expect(url2.path(relativeTo: URL(filePath: "Dog", directoryHint: .isDirectory)) == "../file1.txt")
     }
     
     
-    func testItemReplacementDirectoryCreation() throws {
+    @Test func createItemReplacementDirectory() throws {
         
-        XCTAssertNoThrow(try URL.itemReplacementDirectory)
+        #expect(throws: Never.self) { try URL.itemReplacementDirectory }
     }
 }

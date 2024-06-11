@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2023 1024jp
+//  © 2019-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,107 +24,94 @@
 //  limitations under the License.
 //
 
-import XCTest
+import AppKit
+import Testing
 @testable import CotEditor
 
-final class NSLayoutManagerTests: XCTestCase {
+struct NSLayoutManagerTests {
     
-    func testTemporaryAttributeExistence() {
+    @Test func checkTemporaryAttribute() {
         
         let layoutManager = NSLayoutManager()
         let textStorage = NSTextStorage(string: "cat dog cow")
         textStorage.addLayoutManager(layoutManager)
         
-        XCTAssertFalse(layoutManager.hasTemporaryAttribute(.foregroundColor))
-        XCTAssertFalse(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(..<0)))
+        #expect(!layoutManager.hasTemporaryAttribute(.foregroundColor))
+        #expect(!layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(..<0)))
         
         layoutManager.addTemporaryAttribute(.foregroundColor, value: NSColor.green, forCharacterRange: NSRange(4..<7))
         layoutManager.addTemporaryAttribute(.backgroundColor, value: NSColor.white, forCharacterRange: NSRange(6..<8))
-        XCTAssertTrue(layoutManager.hasTemporaryAttribute(.foregroundColor))
-        XCTAssertFalse(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(..<4)))
-        XCTAssertTrue(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(3..<6)))
-        XCTAssertTrue(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(6..<8)))
-        XCTAssertFalse(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(7..<7)))
-        XCTAssertFalse(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(7..<textStorage.length)))
+        #expect(layoutManager.hasTemporaryAttribute(.foregroundColor))
+        #expect(!layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(..<4)))
+        #expect(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(3..<6)))
+        #expect(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(6..<8)))
+        #expect(!layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(7..<7)))
+        #expect(!layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(7..<textStorage.length)))
     }
     
     
-    func testLeftCharacterIndex() {
+    @Test func characterIndex() {
         
         let layoutManager = NSLayoutManager()
         layoutManager.addTextContainer(NSTextContainer())
         let textStorage = NSTextStorage(string: "dog\r\n 🐕")
         textStorage.addLayoutManager(layoutManager)
         
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 0, baseWritingDirection: .leftToRight), 0)
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 1, baseWritingDirection: .leftToRight), 0)
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 2, baseWritingDirection: .leftToRight), 1)
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 3, baseWritingDirection: .leftToRight), 2)
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 4, baseWritingDirection: .leftToRight), 2)
+        // left characters
+        #expect(layoutManager.leftCharacterIndex(of: 0, baseWritingDirection: .leftToRight) == 0)
+        #expect(layoutManager.leftCharacterIndex(of: 1, baseWritingDirection: .leftToRight) == 0)
+        #expect(layoutManager.leftCharacterIndex(of: 2, baseWritingDirection: .leftToRight) == 1)
+        #expect(layoutManager.leftCharacterIndex(of: 3, baseWritingDirection: .leftToRight) == 2)
+        #expect(layoutManager.leftCharacterIndex(of: 4, baseWritingDirection: .leftToRight) == 2)
         
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 5, baseWritingDirection: .leftToRight), 3)
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 6, baseWritingDirection: .leftToRight), 5)
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 7, baseWritingDirection: .leftToRight), 5)
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 8, baseWritingDirection: .leftToRight), 6)
+        #expect(layoutManager.leftCharacterIndex(of: 5, baseWritingDirection: .leftToRight) == 3)
+        #expect(layoutManager.leftCharacterIndex(of: 6, baseWritingDirection: .leftToRight) == 5)
+        #expect(layoutManager.leftCharacterIndex(of: 7, baseWritingDirection: .leftToRight) == 5)
+        #expect(layoutManager.leftCharacterIndex(of: 8, baseWritingDirection: .leftToRight) == 6)
+
+        // right characters
+        #expect(layoutManager.rightCharacterIndex(of: 0, baseWritingDirection: .leftToRight) == 1)
+        #expect(layoutManager.rightCharacterIndex(of: 1, baseWritingDirection: .leftToRight) == 2)
+        #expect(layoutManager.rightCharacterIndex(of: 2, baseWritingDirection: .leftToRight) == 3)
+        #expect(layoutManager.rightCharacterIndex(of: 3, baseWritingDirection: .leftToRight) == 5)
+        #expect(layoutManager.rightCharacterIndex(of: 4, baseWritingDirection: .leftToRight) == 5)
+        
+        #expect(layoutManager.rightCharacterIndex(of: 5, baseWritingDirection: .leftToRight) == 6)
+        #expect(layoutManager.rightCharacterIndex(of: 6, baseWritingDirection: .leftToRight) == 8)
+        #expect(layoutManager.rightCharacterIndex(of: 7, baseWritingDirection: .leftToRight) == 8)
+        #expect(layoutManager.rightCharacterIndex(of: 8, baseWritingDirection: .leftToRight) == 8)
     }
     
     
-    func testRightCharacterIndex() {
-        
-        let layoutManager = NSLayoutManager()
-        layoutManager.addTextContainer(NSTextContainer())
-        let textStorage = NSTextStorage(string: "dog\r\n 🐕")
-        textStorage.addLayoutManager(layoutManager)
-        
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 0, baseWritingDirection: .leftToRight), 1)
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 1, baseWritingDirection: .leftToRight), 2)
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 2, baseWritingDirection: .leftToRight), 3)
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 3, baseWritingDirection: .leftToRight), 5)
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 4, baseWritingDirection: .leftToRight), 5)
-        
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 5, baseWritingDirection: .leftToRight), 6)
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 6, baseWritingDirection: .leftToRight), 8)
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 7, baseWritingDirection: .leftToRight), 8)
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 8, baseWritingDirection: .leftToRight), 8)
-    }
-    
-    
-    func testBidiLeftCharacterIndex() {
+    @Test func bidiCharacterIndex() {
         
         let layoutManager = NSLayoutManager()
         layoutManager.addTextContainer(NSTextContainer())
         let textStorage = NSTextStorage(string: "كلب\r\n 🐕")
         textStorage.addLayoutManager(layoutManager)
         
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 0, baseWritingDirection: .leftToRight), 1)
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 1, baseWritingDirection: .leftToRight), 2)
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 2, baseWritingDirection: .leftToRight), 3)
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 3, baseWritingDirection: .leftToRight), 0)
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 4, baseWritingDirection: .leftToRight), 1)
+        // left characters
+        #expect(layoutManager.leftCharacterIndex(of: 0, baseWritingDirection: .leftToRight) == 1)
+        #expect(layoutManager.leftCharacterIndex(of: 1, baseWritingDirection: .leftToRight) == 2)
+        #expect(layoutManager.leftCharacterIndex(of: 2, baseWritingDirection: .leftToRight) == 3)
+        #expect(layoutManager.leftCharacterIndex(of: 3, baseWritingDirection: .leftToRight) == 0)
+        #expect(layoutManager.leftCharacterIndex(of: 4, baseWritingDirection: .leftToRight) == 1)
         
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 5, baseWritingDirection: .leftToRight), 3)
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 6, baseWritingDirection: .leftToRight), 5)
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 7, baseWritingDirection: .leftToRight), 5)
-        XCTAssertEqual(layoutManager.leftCharacterIndex(of: 8, baseWritingDirection: .leftToRight), 6)
-    }
-    
-    
-    func testBidiRightCharacterIndex() {
+        #expect(layoutManager.leftCharacterIndex(of: 5, baseWritingDirection: .leftToRight) == 3)
+        #expect(layoutManager.leftCharacterIndex(of: 6, baseWritingDirection: .leftToRight) == 5)
+        #expect(layoutManager.leftCharacterIndex(of: 7, baseWritingDirection: .leftToRight) == 5)
+        #expect(layoutManager.leftCharacterIndex(of: 8, baseWritingDirection: .leftToRight) == 6)
+
+        // right characters
+        #expect(layoutManager.rightCharacterIndex(of: 0, baseWritingDirection: .leftToRight) == 5)
+        #expect(layoutManager.rightCharacterIndex(of: 1, baseWritingDirection: .leftToRight) == 0)
+        #expect(layoutManager.rightCharacterIndex(of: 2, baseWritingDirection: .leftToRight) == 1)
+        #expect(layoutManager.rightCharacterIndex(of: 3, baseWritingDirection: .leftToRight) == 2)
+        #expect(layoutManager.rightCharacterIndex(of: 4, baseWritingDirection: .leftToRight) == 5)
         
-        let layoutManager = NSLayoutManager()
-        layoutManager.addTextContainer(NSTextContainer())
-        let textStorage = NSTextStorage(string: "كلب\r\n 🐕")
-        textStorage.addLayoutManager(layoutManager)
-        
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 0, baseWritingDirection: .leftToRight), 5)
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 1, baseWritingDirection: .leftToRight), 0)
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 2, baseWritingDirection: .leftToRight), 1)
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 3, baseWritingDirection: .leftToRight), 2)
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 4, baseWritingDirection: .leftToRight), 5)
-        
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 5, baseWritingDirection: .leftToRight), 6)
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 6, baseWritingDirection: .leftToRight), 8)
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 7, baseWritingDirection: .leftToRight), 8)
-        XCTAssertEqual(layoutManager.rightCharacterIndex(of: 8, baseWritingDirection: .leftToRight), 8)
+        #expect(layoutManager.rightCharacterIndex(of: 5, baseWritingDirection: .leftToRight) == 6)
+        #expect(layoutManager.rightCharacterIndex(of: 6, baseWritingDirection: .leftToRight) == 8)
+        #expect(layoutManager.rightCharacterIndex(of: 7, baseWritingDirection: .leftToRight) == 8)
+        #expect(layoutManager.rightCharacterIndex(of: 8, baseWritingDirection: .leftToRight) == 8)
     }
 }

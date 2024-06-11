@@ -24,54 +24,54 @@
 //
 
 import UniformTypeIdentifiers
-import XCTest
+import Testing
 @testable import CotEditor
 
-final class UTTypeExtensionTests: XCTestCase {
+struct UTTypeExtensionTests {
     
-    func testFilenameExtensions() {
+    @Test func filenameExtensions() {
         
-        XCTAssertEqual(UTType.yaml.filenameExtensions, ["yml", "yaml"])
-        XCTAssertEqual(UTType.svg.filenameExtensions, ["svg", "svgz"])
-        XCTAssertEqual(UTType.mpeg2TransportStream.filenameExtensions, ["ts"])
-        XCTAssertEqual(UTType.propertyList.filenameExtensions, ["plist"])
+        #expect(UTType.yaml.filenameExtensions == ["yml", "yaml"])
+        #expect(UTType.svg.filenameExtensions == ["svg", "svgz"])
+        #expect(UTType.mpeg2TransportStream.filenameExtensions == ["ts"])
+        #expect(UTType.propertyList.filenameExtensions == ["plist"])
     }
     
     
-    func testURLConformance() {
+    @Test func conformURL() {
         
         let xmlURL = URL(filePath: "foo.xml")
-        XCTAssertFalse(xmlURL.conforms(to: .svg))
-        XCTAssertTrue(xmlURL.conforms(to: .xml))
-        XCTAssertFalse(xmlURL.conforms(to: .plainText))
+        #expect(!xmlURL.conforms(to: .svg))
+        #expect(xmlURL.conforms(to: .xml))
+        #expect(!xmlURL.conforms(to: .plainText))
         
         let svgzURL = URL(filePath: "FOO.SVGZ")
-        XCTAssertTrue(svgzURL.conforms(to: .svg))
+        #expect(svgzURL.conforms(to: .svg))
     }
     
     
-    func testSVG() throws {
+    @Test func svg() throws {
         
-        XCTAssertTrue(UTType.svg.conforms(to: .text))
-        XCTAssertTrue(UTType.svg.conforms(to: .image))
+        #expect(UTType.svg.conforms(to: .text))
+        #expect(UTType.svg.conforms(to: .image))
         
-        let svgz = try XCTUnwrap(UTType(filenameExtension: "svgz"))
-        XCTAssertEqual(svgz, .svg)
-        XCTAssertFalse(svgz.conforms(to: .gzip))
+        let svgz = try #require(UTType(filenameExtension: "svgz"))
+        #expect(svgz == .svg)
+        #expect(!svgz.conforms(to: .gzip))
     }
     
     
-    func testPlist() throws {
+    @Test func plist() {
         
-        XCTAssertTrue(UTType.propertyList.conforms(to: .data))
-        XCTAssertFalse(UTType.propertyList.conforms(to: .image))
+        #expect(UTType.propertyList.conforms(to: .data))
+        #expect(!UTType.propertyList.conforms(to: .image))
     }
     
     
-    func testIsPlainText() {
+    @Test func isPlainText() {
         
-        XCTAssertTrue(UTType.propertyList.isPlainText)
-        XCTAssertTrue(UTType.svg.isPlainText)
-        XCTAssertTrue(UTType(filenameExtension: "ts")!.isPlainText)
+        #expect(UTType.propertyList.isPlainText)
+        #expect(UTType.svg.isPlainText)
+        #expect(UTType(filenameExtension: "ts")!.isPlainText)
     }
 }

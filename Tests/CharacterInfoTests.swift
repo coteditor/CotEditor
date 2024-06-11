@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 1024jp
+//  © 2015-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,131 +24,132 @@
 //  limitations under the License.
 //
 
-import XCTest
+import AppKit
+import Testing
 @testable import CotEditor
 
-final class CharacterInfoTests: XCTestCase {
+struct CharacterInfoTests {
     
     // MARK: UTF32.CodeUnit Extension Tests
     
-    func testSingleSurrogate() {
+    @Test func singleSurrogate() {
         
         let character: UTF32.CodeUnit = 0xD83D
         
-        XCTAssertEqual(character.unicodeName, "<lead surrogate-D83D>")
-        XCTAssertEqual(character.blockName, "High Surrogates")
+        #expect(character.unicodeName == "<lead surrogate-D83D>")
+        #expect(character.blockName == "High Surrogates")
         
-        XCTAssertNil(Unicode.Scalar(character))
+        #expect(Unicode.Scalar(character) == nil)
     }
     
     
     // MARK: - UnicodeCharacter Tests
     
-    func testSingleChar() {
+    @Test func singleChar() {
         
         let unicode = Unicode.Scalar("あ")
-        XCTAssertEqual(unicode.codePoint, "U+3042")
-        XCTAssertFalse(unicode.isSurrogatePair)
-        XCTAssertNil(unicode.surrogateCodePoints)
-        XCTAssertEqual(unicode.name, "HIRAGANA LETTER A")
-        XCTAssertEqual(unicode.blockName, "Hiragana")
-        XCTAssertNotNil(unicode.localizedBlockName)
+        #expect(unicode.codePoint == "U+3042")
+        #expect(!unicode.isSurrogatePair)
+        #expect(unicode.surrogateCodePoints == nil)
+        #expect(unicode.name == "HIRAGANA LETTER A")
+        #expect(unicode.blockName == "Hiragana")
+        #expect(unicode.localizedBlockName != nil)
     }
     
     
-    func testSurrogateEmoji() {
+    @Test func surrogateEmoji() {
         
         let unicode = Unicode.Scalar("😀")
         
-        XCTAssertEqual(unicode.codePoint, "U+1F600")
-        XCTAssertTrue(unicode.isSurrogatePair)
-        XCTAssertEqual(unicode.surrogateCodePoints?.lead, "U+D83D")
-        XCTAssertEqual(unicode.surrogateCodePoints?.trail, "U+DE00")
-        XCTAssertEqual(unicode.name, "GRINNING FACE")
-        XCTAssertEqual(unicode.blockName, "Emoticons")
-        XCTAssertNotNil(unicode.localizedBlockName)
+        #expect(unicode.codePoint == "U+1F600")
+        #expect(unicode.isSurrogatePair)
+        #expect(unicode.surrogateCodePoints?.lead == "U+D83D")
+        #expect(unicode.surrogateCodePoints?.trail == "U+DE00")
+        #expect(unicode.name == "GRINNING FACE")
+        #expect(unicode.blockName == "Emoticons")
+        #expect(unicode.localizedBlockName != nil)
     }
     
     
-    func testUnicodeBlockNameWithHyphen() {
+    @Test func unicodeBlockNameWithHyphen() {
         
         let character = Unicode.Scalar("﷽")
         
-        XCTAssertEqual(character.codePoint, "U+FDFD")
-        XCTAssertEqual(character.name, "ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHEEM")
-        XCTAssertEqual(character.localizedBlockName, "Arabic Presentation Forms-A")
+        #expect(character.codePoint == "U+FDFD")
+        #expect(character.name == "ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHEEM")
+        #expect(character.localizedBlockName == "Arabic Presentation Forms-A")
     }
     
     
-    func testUnicodeControlPictures() throws {
+    @Test func unicodeControlPictures() throws {
         
         // test NULL
-        let nullCharacter = try XCTUnwrap(Unicode.Scalar(0x0000))
-        let nullPictureCharacter = try XCTUnwrap(Unicode.Scalar(0x2400))
-        XCTAssertEqual(nullCharacter.name, "NULL")
-        XCTAssertEqual(nullPictureCharacter.name, "SYMBOL FOR NULL")
-        XCTAssertEqual(nullCharacter.pictureRepresentation, nullPictureCharacter)
+        let nullCharacter = try #require(Unicode.Scalar(0x0000))
+        let nullPictureCharacter = try #require(Unicode.Scalar(0x2400))
+        #expect(nullCharacter.name == "NULL")
+        #expect(nullPictureCharacter.name == "SYMBOL FOR NULL")
+        #expect(nullCharacter.pictureRepresentation == nullPictureCharacter)
         
         // test SPACE
-        let spaceCharacter = try XCTUnwrap(Unicode.Scalar(0x0020))
-        let spacePictureCharacter = try XCTUnwrap(Unicode.Scalar(0x2420))
-        XCTAssertEqual(spaceCharacter.name, "SPACE")
-        XCTAssertEqual(spacePictureCharacter.name, "SYMBOL FOR SPACE")
-        XCTAssertEqual(spaceCharacter.pictureRepresentation, spacePictureCharacter)
+        let spaceCharacter = try #require(Unicode.Scalar(0x0020))
+        let spacePictureCharacter = try #require(Unicode.Scalar(0x2420))
+        #expect(spaceCharacter.name == "SPACE")
+        #expect(spacePictureCharacter.name == "SYMBOL FOR SPACE")
+        #expect(spaceCharacter.pictureRepresentation == spacePictureCharacter)
         
         // test DELETE
-        let deleteCharacter = try XCTUnwrap(Unicode.Scalar(NSDeleteCharacter))
+        let deleteCharacter = try #require(Unicode.Scalar(NSDeleteCharacter))
         let deletePictureCharacter = Unicode.Scalar("␡")
-        XCTAssertEqual(deleteCharacter.name, "DELETE")
-        XCTAssertEqual(deletePictureCharacter.name, "SYMBOL FOR DELETE")
-        XCTAssertEqual(deleteCharacter.pictureRepresentation, deletePictureCharacter)
+        #expect(deleteCharacter.name == "DELETE")
+        #expect(deletePictureCharacter.name == "SYMBOL FOR DELETE")
+        #expect(deleteCharacter.pictureRepresentation == deletePictureCharacter)
         
         // test one after the last C0 control character
-        let exclamationCharacter = try XCTUnwrap(Unicode.Scalar(0x0021))
-        XCTAssertEqual(exclamationCharacter.name, "EXCLAMATION MARK")
-        XCTAssertNil(exclamationCharacter.pictureRepresentation)
+        let exclamationCharacter = try #require(Unicode.Scalar(0x0021))
+        #expect(exclamationCharacter.name == "EXCLAMATION MARK")
+        #expect(exclamationCharacter.pictureRepresentation == nil)
     }
     
     
     // MARK: - CharacterInfo Tests
     
-    func testSingleCharWithVSInfo() {
+    @Test func singleCharacterWithVSInfo() {
         
         let charInfo = CharacterInfo(character: "☺︎")
         
-        XCTAssertEqual(charInfo.character, "☺︎")
-        XCTAssertFalse(charInfo.isComplex)
-        XCTAssertEqual(charInfo.character.unicodeScalars.map(\.codePoint), ["U+263A", "U+FE0E"])
-        XCTAssertEqual(charInfo.character.unicodeScalars.map(\.name), ["WHITE SMILING FACE", "VARIATION SELECTOR-15"])
-        XCTAssertEqual(charInfo.localizedDescription, "WHITE SMILING FACE (Text Style)")
+        #expect(charInfo.character == "☺︎")
+        #expect(!charInfo.isComplex)
+        #expect(charInfo.character.unicodeScalars.map(\.codePoint) == ["U+263A", "U+FE0E"])
+        #expect(charInfo.character.unicodeScalars.map(\.name) == ["WHITE SMILING FACE", "VARIATION SELECTOR-15"])
+        #expect(charInfo.localizedDescription == "WHITE SMILING FACE (Text Style)")
     }
     
     
-    func testCombiningCharacterInfo() {
+    @Test func combiningCharacterInfo() {
         
         let charInfo = CharacterInfo(character: "1️⃣")
         
-        XCTAssertTrue(charInfo.isComplex)
-        XCTAssertEqual(charInfo.character.unicodeScalars.map(\.codePoint), ["U+0031", "U+FE0F", "U+20E3"])
-        XCTAssertEqual(charInfo.localizedDescription, "<a letter consisting of 3 characters>")
+        #expect(charInfo.isComplex)
+        #expect(charInfo.character.unicodeScalars.map(\.codePoint) == ["U+0031", "U+FE0F", "U+20E3"])
+        #expect(charInfo.localizedDescription == "<a letter consisting of 3 characters>")
     }
     
     
-    func testNationalIndicatorInfo() {
+    @Test func nationalIndicatorInfo() {
         
         let charInfo = CharacterInfo(character: "🇯🇵")
         
-        XCTAssertTrue(charInfo.isComplex)
-        XCTAssertEqual(charInfo.character.unicodeScalars.map(\.codePoint), ["U+1F1EF", "U+1F1F5"])
+        #expect(charInfo.isComplex)
+        #expect(charInfo.character.unicodeScalars.map(\.codePoint) == ["U+1F1EF", "U+1F1F5"])
     }
     
     
-    func testControlCharacterInfo() {
+    @Test func controlCharacterInfo() {
         
         let charInfo = CharacterInfo(character: " ")
         
-        XCTAssertEqual(charInfo.character, " ")
-        XCTAssertEqual(charInfo.pictureCharacter, "␠")
-        XCTAssertEqual(charInfo.character.unicodeScalars.map(\.name), ["SPACE"])
+        #expect(charInfo.character == " ")
+        #expect(charInfo.pictureCharacter == "␠")
+        #expect(charInfo.character.unicodeScalars.map(\.name) == ["SPACE"])
     }
 }

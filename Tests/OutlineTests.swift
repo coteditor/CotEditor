@@ -23,10 +23,11 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import CotEditor
 
-final class OutlineTests: XCTestCase {
+struct OutlineTests {
     
     private let items: [OutlineItem] = [
         OutlineItem(title: "dog", range: NSRange(location: 10, length: 5)),         // 0
@@ -42,49 +43,49 @@ final class OutlineTests: XCTestCase {
     
     
     
-    func testIndex() throws {
+    @Test func index() throws {
         
-        XCTAssertNil(self.emptyItems.item(at: 10))
+        #expect(self.emptyItems.item(at: 10) == nil)
         
-        XCTAssertNil(self.items.item(at: 9))
-        XCTAssertEqual(self.items.item(at: 10), self.items[0])
-        XCTAssertEqual(self.items.item(at: 18), self.items[0])
-        XCTAssertEqual(self.items.item(at: 20), self.items[0])
-        XCTAssertEqual(self.items.item(at: 40), self.items[3])
-        XCTAssertEqual(self.items.item(at: 50), self.items[3])
-        XCTAssertEqual(self.items.item(at: 59), self.items[3])
-        XCTAssertEqual(self.items.item(at: 60), self.items[5])
+        #expect(self.items.item(at: 9) == nil)
+        #expect(self.items.item(at: 10) == self.items[0])
+        #expect(self.items.item(at: 18) == self.items[0])
+        #expect(self.items.item(at: 20) == self.items[0])
+        #expect(self.items.item(at: 40) == self.items[3])
+        #expect(self.items.item(at: 50) == self.items[3])
+        #expect(self.items.item(at: 59) == self.items[3])
+        #expect(self.items.item(at: 60) == self.items[5])
     }
     
     
-    func testPreviousItem() throws {
+    @Test func previousItem() throws {
         
-        XCTAssertNil(self.emptyItems.previousItem(for: NSRange(10..<20)))
+        #expect(self.emptyItems.previousItem(for: NSRange(10..<20)) == nil)
         
-        XCTAssertNil(self.items.previousItem(for: NSRange(10..<20)))
-        XCTAssertNil(self.items.previousItem(for: NSRange(19..<19)))
-        XCTAssertEqual(self.items.previousItem(for: NSRange(59..<70)), items[0])
-        XCTAssertEqual(self.items.previousItem(for: NSRange(60..<70)), items[3])
+        #expect(self.items.previousItem(for: NSRange(10..<20)) == nil)
+        #expect(self.items.previousItem(for: NSRange(19..<19)) == nil)
+        #expect(self.items.previousItem(for: NSRange(59..<70)) == items[0])
+        #expect(self.items.previousItem(for: NSRange(60..<70)) == items[3])
     }
     
     
-    func testNextItem() throws {
+    @Test func nextItem() throws {
         
-        XCTAssertNil(self.emptyItems.nextItem(for: NSRange(10..<20)))
+        #expect(self.emptyItems.nextItem(for: NSRange(10..<20)) == nil)
         
-        XCTAssertEqual(self.items.nextItem(for: NSRange(0..<0)), items[0])
-        XCTAssertEqual(self.items.nextItem(for: NSRange(0..<10)), items[3])
-        XCTAssertEqual(self.items.nextItem(for: NSRange(40..<40)), items[5])
-        XCTAssertNil(self.items.nextItem(for: NSRange(60..<60)))
-        XCTAssertNil(self.items.nextItem(for: NSRange(40..<61)))
+        #expect(self.items.nextItem(for: NSRange(0..<0)) == items[0])
+        #expect(self.items.nextItem(for: NSRange(0..<10)) == items[3])
+        #expect(self.items.nextItem(for: NSRange(40..<40)) == items[5])
+        #expect(self.items.nextItem(for: NSRange(60..<60)) == nil)
+        #expect(self.items.nextItem(for: NSRange(40..<61)) == nil)
     }
     
     
-    func testFilter() throws {
+    @Test func filter() throws {
         
-        XCTAssertEqual(self.items.compactMap { $0.filter("", keyPath: \.title) }.count, 7)
-        XCTAssertEqual(self.items.compactMap { $0.filter("cat", keyPath: \.title) }.count, 0)
-        XCTAssertEqual(self.items.compactMap { $0.filter("dog", keyPath: \.title) }.count, 2)
-        XCTAssertEqual(self.items.compactMap { $0.filter("dow", keyPath: \.title) }.count, 1)
+        #expect(self.items.compactMap { $0.filter("", keyPath: \.title) }.count == 7)
+        #expect(self.items.compactMap { $0.filter("cat", keyPath: \.title) }.count == 0)
+        #expect(self.items.compactMap { $0.filter("dog", keyPath: \.title) }.count == 2)
+        #expect(self.items.compactMap { $0.filter("dow", keyPath: \.title) }.count == 1)
     }
 }

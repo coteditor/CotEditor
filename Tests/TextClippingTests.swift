@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2023 1024jp
+//  © 2020-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,17 +23,18 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import CotEditor
 
-final class TextClippingTests: XCTestCase {
+actor TextClippingTests {
     
-    func testReadingTextClippingFile() throws {
+    @Test func readTextClippingFile() throws {
         
         let bundle = Bundle(for: type(of: self))
-        let url = try XCTUnwrap(bundle.url(forResource: "moof", withExtension: "textClipping"))
+        let url = try #require(bundle.url(forResource: "moof", withExtension: "textClipping"))
         let textClipping = try TextClipping(contentsOf: url)
         
-        XCTAssertEqual(textClipping.string, "🐕moof🐄")
+        #expect(textClipping.string == "🐕moof🐄")
     }
 }

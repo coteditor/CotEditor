@@ -23,59 +23,64 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import CotEditor
 
-final class ShiftJISTests: XCTestCase {
+struct ShiftJISTests {
     
-    func testIANACharSetNames() {
+    @Test func ianaCharSetNames() {
         
-        XCTAssertEqual(ShiftJIS.shiftJIS.ianaCharSet, "shift_jis")
-        XCTAssertEqual(ShiftJIS.shiftJIS_X0213.ianaCharSet, "Shift_JIS")
-        XCTAssertEqual(ShiftJIS.macJapanese.ianaCharSet, "x-mac-japanese")
-        XCTAssertEqual(ShiftJIS.dosJapanese.ianaCharSet, "cp932")
+        #expect(ShiftJIS.shiftJIS.ianaCharSet == "shift_jis")
+        #expect(ShiftJIS.shiftJIS_X0213.ianaCharSet == "Shift_JIS")
+        #expect(ShiftJIS.macJapanese.ianaCharSet == "x-mac-japanese")
+        #expect(ShiftJIS.dosJapanese.ianaCharSet == "cp932")
         
-        XCTAssertEqual(ShiftJIS(ianaCharSetName: ShiftJIS.shiftJIS.ianaCharSet!), .shiftJIS)
-        XCTAssertEqual(ShiftJIS(ianaCharSetName: ShiftJIS.shiftJIS_X0213.ianaCharSet!), .shiftJIS)
+        #expect(ShiftJIS(ianaCharSetName: ShiftJIS.shiftJIS.ianaCharSet!) == .shiftJIS)
+        #expect(ShiftJIS(ianaCharSetName: ShiftJIS.shiftJIS_X0213.ianaCharSet!) == .shiftJIS)
     }
     
     
-    func testTildaEncoding() {
+    @Test func encodeTilda() {
         
-        XCTAssertEqual(ShiftJIS.shiftJIS.encode("~"), "?")
-        XCTAssertEqual(ShiftJIS.shiftJIS_X0213.encode("~"), "〜")
-        XCTAssertEqual(ShiftJIS.macJapanese.encode("~"), "~")
-        XCTAssertEqual(ShiftJIS.dosJapanese.encode("~"), "~")
+        #expect(ShiftJIS.shiftJIS.encode("~") == "?")
+        #expect(ShiftJIS.shiftJIS_X0213.encode("~") == "〜")
+        #expect(ShiftJIS.macJapanese.encode("~") == "~")
+        #expect(ShiftJIS.dosJapanese.encode("~") == "~")
     }
     
     
-    func testBackslashEncoding() {
+    @Test func encodeBackslash() {
         
-        XCTAssertEqual(ShiftJIS.shiftJIS.encode("\\"), "＼")
-        XCTAssertEqual(ShiftJIS.shiftJIS_X0213.encode("\\"), "＼")
-        XCTAssertEqual(ShiftJIS.macJapanese.encode("\\"), "\\")
-        XCTAssertEqual(ShiftJIS.dosJapanese.encode("\\"), "\\")
+        #expect(ShiftJIS.shiftJIS.encode("\\") == "＼")
+        #expect(ShiftJIS.shiftJIS_X0213.encode("\\") == "＼")
+        #expect(ShiftJIS.macJapanese.encode("\\") == "\\")
+        #expect(ShiftJIS.dosJapanese.encode("\\") == "\\")
     }
     
     
-    func testYenEncoding() {
+    @Test func encodeYen() {
         
-        XCTAssertEqual(ShiftJIS.shiftJIS.encode("¥"), "¥")
-        XCTAssertEqual(ShiftJIS.shiftJIS_X0213.encode("¥"), "¥")
-        XCTAssertEqual(ShiftJIS.macJapanese.encode("¥"), "¥")
-        XCTAssertEqual(ShiftJIS.dosJapanese.encode("¥"), "?")
+        #expect(ShiftJIS.shiftJIS.encode("¥") == "¥")
+        #expect(ShiftJIS.shiftJIS_X0213.encode("¥") == "¥")
+        #expect(ShiftJIS.macJapanese.encode("¥") == "¥")
+        #expect(ShiftJIS.dosJapanese.encode("¥") == "?")
     }
     
     
-    func testYenConversion() {
+    @Test func convertYen() {
         
-        XCTAssertEqual("¥".convertYenSign(for: ShiftJIS.shiftJIS.encoding), "¥")
-        XCTAssertEqual("¥".convertYenSign(for: ShiftJIS.shiftJIS_X0213.encoding), "¥")
-        XCTAssertEqual("¥".convertYenSign(for: ShiftJIS.macJapanese.encoding), "¥")
-        XCTAssertEqual("¥".convertYenSign(for: ShiftJIS.dosJapanese.encoding), "\\")
+        #expect("¥".convertYenSign(for: ShiftJIS.shiftJIS.encoding) == "¥")
+        #expect("¥".convertYenSign(for: ShiftJIS.shiftJIS_X0213.encoding) == "¥")
+        #expect("¥".convertYenSign(for: ShiftJIS.macJapanese.encoding) == "¥")
+        #expect("¥".convertYenSign(for: ShiftJIS.dosJapanese.encoding) == "\\")
+    }
+    
+    
+    @Test(arguments: ShiftJIS.allCases)
+    private func convertYen(shiftJIS: ShiftJIS) {
         
-        ShiftJIS.allCases
-            .forEach { XCTAssertEqual("¥".convertYenSign(for: $0.encoding) == "¥", $0.encode("¥") == "¥") }
+        #expect(("¥".convertYenSign(for: shiftJIS.encoding) == "¥") == (shiftJIS.encode("¥") == "¥"))
     }
 }
 

@@ -24,28 +24,29 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import CotEditor
 
-final class LineEndingTests: XCTestCase {
+struct LineEndingTests {
     
-    func testLineEnding() {
+    @Test func lineEnding() {
         
-        XCTAssertEqual(LineEnding.lf.rawValue, "\n")
-        XCTAssertEqual(LineEnding.crlf.rawValue, "\r\n")
-        XCTAssertEqual(LineEnding.paragraphSeparator.rawValue, "\u{2029}")
+        #expect(LineEnding.lf.rawValue == "\n")
+        #expect(LineEnding.crlf.rawValue == "\r\n")
+        #expect(LineEnding.paragraphSeparator.rawValue == "\u{2029}")
     }
     
     
-    func testName() {
+    @Test func name() {
         
-        XCTAssertEqual(LineEnding.lf.label, "LF")
-        XCTAssertEqual(LineEnding.crlf.label, "CRLF")
-        XCTAssertEqual(LineEnding.paragraphSeparator.label, "PS")
+        #expect(LineEnding.lf.label == "LF")
+        #expect(LineEnding.crlf.label == "CRLF")
+        #expect(LineEnding.paragraphSeparator.label == "PS")
     }
     
     
-    func testLineEndingRanges() {
+    @Test func lineEndingRanges() {
         
         let string = "\rfoo\r\nbar \n \nb \n\r uz\u{2029}moin\r\n"
         let expected: [ValueRange<LineEnding>] = [
@@ -59,16 +60,16 @@ final class LineEndingTests: XCTestCase {
             .init(value: .crlf, location: 25),
         ]
         
-        XCTAssert("".lineEndingRanges().isEmpty)
-        XCTAssert("abc".lineEndingRanges().isEmpty)
-        XCTAssertEqual(string.lineEndingRanges(), expected)
+        #expect("".lineEndingRanges().isEmpty)
+        #expect("abc".lineEndingRanges().isEmpty)
+        #expect(string.lineEndingRanges() == expected)
     }
     
     
-    func testReplacement() {
+    @Test func replace() {
         
-        XCTAssertEqual("foo\r\nbar\n".replacingLineEndings(with: .cr), "foo\rbar\r")
-        XCTAssertEqual("foo\u{c}bar\n".replacingLineEndings(with: .cr), "foo\u{c}bar\r")
+        #expect("foo\r\nbar\n".replacingLineEndings(with: .cr) == "foo\rbar\r")
+        #expect("foo\u{c}bar\n".replacingLineEndings(with: .cr) == "foo\u{c}bar\r")
     }
 }
 

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,22 +23,23 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import CotEditor
 
-final class SnippetTests: XCTestCase {
+struct SnippetTests {
     
-    func testSimpleSnippet() {
+    @Test func simpleSnippet() {
         
         let snippet = Snippet(name: "", format: "<h1><<<SELECTION>>><<<CURSOR>>></h1>")
         let (string, selections) = snippet.insertion(selectedString: "abc")
         
-        XCTAssertEqual(string, "<h1>abc</h1>")
-        XCTAssertEqual(selections, [NSRange(location: 7, length: 0)])
+        #expect(string == "<h1>abc</h1>")
+        #expect(selections == [NSRange(location: 7, length: 0)])
     }
     
     
-    func testMultipleLines() {
+    @Test func multipleLines() {
         
         let format = """
             <ul>
@@ -55,9 +56,9 @@ final class SnippetTests: XCTestCase {
                 <li></li>
             </ul>
             """
-        XCTAssertEqual(string, expectedString)
-        XCTAssertEqual(selections, [NSRange(location: 13, length: 0),
-                                    NSRange(location: 27, length: 0)])
+        #expect(string == expectedString)
+        #expect(selections == [NSRange(location: 13, length: 0),
+                               NSRange(location: 27, length: 0)])
         
         let (indentedString, indentedSelections) = snippet.insertion(selectedString: "", indent: "    ")
         
@@ -67,13 +68,13 @@ final class SnippetTests: XCTestCase {
                     <li></li>
                 </ul>
             """
-        XCTAssertEqual(indentedString, expectedIndentString)
-        XCTAssertEqual(indentedSelections, [NSRange(location: 17, length: 0),
-                                            NSRange(location: 35, length: 0)])
+        #expect(indentedString == expectedIndentString)
+        #expect(indentedSelections == [NSRange(location: 17, length: 0),
+                                       NSRange(location: 35, length: 0)])
     }
     
     
-    func testMultipleInsertions() {
+    @Test func multipleInsertions() {
         
         let string = """
                 aaa
@@ -95,7 +96,7 @@ final class SnippetTests: XCTestCase {
         let expectedSelections = [NSRange(location: 11, length: 0),
                                   NSRange(location: 21, length: 0),
                                   NSRange(location: 33, length: 0)]
-        XCTAssertEqual(strings, expectedStrings)
-        XCTAssertEqual(selections, expectedSelections)
+        #expect(strings == expectedStrings)
+        #expect(selections == expectedSelections)
     }
 }

@@ -24,61 +24,62 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import CotEditor
 
-final class IncompatibleCharacterTests: XCTestCase {
+struct IncompatibleCharacterTests {
     
-    func testIncompatibleCharacterScan() throws {
+    @Test func scanIncompatibleCharacter() throws {
         
         let string = "abc\\ \n ¥ \n ~"
         let incompatibles = try string.charactersIncompatible(with: .plainShiftJIS)
         
-        XCTAssertEqual(incompatibles.count, 2)
+        #expect(incompatibles.count == 2)
         
-        let backslash = try XCTUnwrap(incompatibles.first)
+        let backslash = try #require(incompatibles.first)
         
-        XCTAssertEqual(backslash.value.character, "\\")
-        XCTAssertEqual(backslash.value.converted, "＼")
-        XCTAssertEqual(backslash.location, 3)
+        #expect(backslash.value.character == "\\")
+        #expect(backslash.value.converted == "＼")
+        #expect(backslash.location == 3)
         
         let tilde = incompatibles[1]
         
-        XCTAssertEqual(tilde.value.character, "~")
-        XCTAssertEqual(tilde.value.converted, "?")
-        XCTAssertEqual(tilde.location, 11)
+        #expect(tilde.value.character == "~")
+        #expect(tilde.value.converted == "?")
+        #expect(tilde.location == 11)
     }
     
     
-    func testSequentialIncompatibleCharactersScan() throws {
+    @Test func scanSequentialIncompatibleCharacters() throws {
         
         let string = "~~"
         let incompatibles = try string.charactersIncompatible(with: .plainShiftJIS)
         
-        XCTAssertEqual(incompatibles.count, 2)
+        #expect(incompatibles.count == 2)
         
         let tilde = incompatibles[1]
         
-        XCTAssertEqual(tilde.value.character, "~")
-        XCTAssertEqual(tilde.value.converted, "?")
-        XCTAssertEqual(tilde.location, 1)
+        #expect(tilde.value.character == "~")
+        #expect(tilde.value.converted == "?")
+        #expect(tilde.location == 1)
     }
     
     
-    func testIncompatibleCharacterScanWithLengthShift() throws {
+    @Test func scanIncompatibleCharacterWithLengthShift() throws {
         
         let string = "family 👨‍👨‍👦 with 🐕"
         let incompatibles = try string.charactersIncompatible(with: .japaneseEUC)
         
-        XCTAssertEqual(incompatibles.count, 2)
+        #expect(incompatibles.count == 2)
         
-        XCTAssertEqual(incompatibles[0].value.character, "👨‍👨‍👦")
-        XCTAssertEqual(incompatibles[0].value.converted, "????????")
-        XCTAssertEqual(incompatibles[0].location, 7)
+        #expect(incompatibles[0].value.character == "👨‍👨‍👦")
+        #expect(incompatibles[0].value.converted == "????????")
+        #expect(incompatibles[0].location == 7)
         
-        XCTAssertEqual(incompatibles[1].value.character, "🐕")
-        XCTAssertEqual(incompatibles[1].value.converted, "??")
-        XCTAssertEqual(incompatibles[1].location, 21)
+        #expect(incompatibles[1].value.character == "🐕")
+        #expect(incompatibles[1].value.converted == "??")
+        #expect(incompatibles[1].location == 21)
     }
 }
 

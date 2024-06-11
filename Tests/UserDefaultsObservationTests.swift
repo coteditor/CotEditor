@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2023 1024jp
+//  © 2019-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,110 +24,104 @@
 //  limitations under the License.
 //
 
+import Foundation
 import Combine
-import XCTest
+import Testing
 @testable import CotEditor
 
-final class UserDefaultsObservationTests: XCTestCase {
+struct UserDefaultsObservationTests {
     
-    func testKeyObservation() {
+    @Test func observeKey() async {
         
         let key = DefaultKey<Bool>("Test Key")
         defer { UserDefaults.standard.restore(key: key) }
         
-        let expectation = self.expectation(description: "UserDefaults observation for normal key")
-        
         UserDefaults.standard[key] = false
         
-        let observer = UserDefaults.standard.publisher(for: key)
-            .sink { value in
-                XCTAssertTrue(value)
-                XCTAssertEqual(OperationQueue.current, .main)
-                
-                expectation.fulfill()
-            }
-        
-        UserDefaults.standard[key] = true
-        self.wait(for: [expectation], timeout: .zero)
-        // -> Waiting with zero timeout can be failed when the closure is performed not immediately but in another runloop.
-        
-        observer.cancel()
-        UserDefaults.standard[key] = false
+        await confirmation("UserDefaults observation for normal key") { confirm in
+            let observer = UserDefaults.standard.publisher(for: key)
+                .sink { value in
+                    #expect(value)
+                    confirm()
+                }
+            
+            UserDefaults.standard[key] = true
+            
+            observer.cancel()
+            UserDefaults.standard[key] = false
+        }
     }
     
     
-    func testInitialEmission() {
+    @Test func initialEmit() async {
         
         let key = DefaultKey<Bool>("Initial Emission Test Key")
         defer { UserDefaults.standard.restore(key: key) }
         
-        let expectation = self.expectation(description: "UserDefaults observation for initial emission")
-        
         UserDefaults.standard[key] = false
         
-        let observer = UserDefaults.standard.publisher(for: key, initial: true)
-            .sink { value in
-                XCTAssertFalse(value)
-                expectation.fulfill()
-            }
-        
-        observer.cancel()
-        UserDefaults.standard[key] = true
-        
-        self.wait(for: [expectation], timeout: .zero)
+        await confirmation("UserDefaults observation for initial emission") { confirm in
+            let observer = UserDefaults.standard.publisher(for: key, initial: true)
+                .sink { value in
+                    #expect(!value)
+                    confirm()
+                }
+            
+            observer.cancel()
+            UserDefaults.standard[key] = true
+        }
     }
     
     
-    func testOptionalKey() {
+    @Test func optionalKey() async {
         
         let key = DefaultKey<String?>("Optional Test Key")
         defer { UserDefaults.standard.restore(key: key) }
         
-        XCTAssertNil(UserDefaults.standard[key])
+        #expect(UserDefaults.standard[key] == nil)
         
         UserDefaults.standard[key] = "cow"
-        XCTAssertEqual(UserDefaults.standard[key], "cow")
+        #expect(UserDefaults.standard[key] == "cow")
         
-        let expectation = self.expectation(description: "UserDefaults observation for optional key")
-        let observer = UserDefaults.standard.publisher(for: key)
-            .sink { value in
-                XCTAssertNil(value)
-                expectation.fulfill()
-            }
-        
-        UserDefaults.standard[key] = nil
-        self.wait(for: [expectation], timeout: .zero)
-        
-        XCTAssertNil(UserDefaults.standard[key])
-        
-        observer.cancel()
-        UserDefaults.standard[key] = "dog"
-        XCTAssertEqual(UserDefaults.standard[key], "dog")
+        await confirmation("UserDefaults observation for optional key") { confirm in
+            let observer = UserDefaults.standard.publisher(for: key)
+                .sink { value in
+                    #expect(value == nil)
+                    confirm()
+                }
+            
+            UserDefaults.standard[key] = nil
+            
+            #expect(UserDefaults.standard[key] == nil)
+            
+            observer.cancel()
+            UserDefaults.standard[key] = "dog"
+            #expect(UserDefaults.standard[key] == "dog")
+        }
     }
     
     
-    func testRawRepresentable() {
+    @Test func rawRepresentable() async {
         
         enum Clarus: Int  { case dog, cow }
         
         let key = RawRepresentableDefaultKey<Clarus>("Raw Representable Test Key")
         defer { UserDefaults.standard.restore(key: key) }
         
-        let expectation = self.expectation(description: "UserDefaults observation for raw representable")
-        
         UserDefaults.standard[key] = .dog
         
-        let observer = UserDefaults.standard.publisher(for: key)
-            .sink { value in
-                XCTAssertEqual(value, .cow)
-                expectation.fulfill()
-            }
-        
-        UserDefaults.standard[key] = .cow
-        self.wait(for: [expectation], timeout: .zero)
-        
-        observer.cancel()
-        UserDefaults.standard[key] = .dog
-        XCTAssertEqual(UserDefaults.standard[key], .dog)
+        await confirmation("UserDefaults observation for raw representable") { confirm in
+            let observer = UserDefaults.standard.publisher(for: key)
+                .sink { value in
+                    #expect(value == .cow)
+                    confirm()
+                }
+            
+            UserDefaults.standard[key] = .cow
+            
+            observer.cancel()
+            UserDefaults.standard[key] = .dog
+            #expect(UserDefaults.standard[key] == .dog)
+        }
     }
 }

@@ -24,10 +24,11 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import CotEditor
 
-final class LineSortTests: XCTestCase {
+struct LineSortTests {
     
     private let lines = """
             dog, 🐕, 2, イヌ
@@ -36,7 +37,7 @@ final class LineSortTests: XCTestCase {
             """
     
     
-    func testCSVSort() {
+    @Test func csvSort() {
         
         var pattern = CSVSortPattern()
         pattern.column = 3
@@ -47,14 +48,14 @@ final class LineSortTests: XCTestCase {
             cow, 🐄, 3, ｳｼ
             """
         
-        XCTAssertEqual(pattern.sort(self.lines), result)
-        XCTAssertEqual(pattern.sort(""), "")
-        XCTAssertNoThrow(try pattern.validate())
-        XCTAssertNil(pattern.range(for: "dog, 🐕,   , イヌ"))
+        #expect(pattern.sort(self.lines) == result)
+        #expect(pattern.sort("").isEmpty)
+        #expect(throws: Never.self) { try pattern.validate() }
+        #expect(pattern.range(for: "dog, 🐕,   , イヌ") == nil)
     }
     
     
-    func testRegexSort() throws {
+    @Test func regexSort() throws {
         
         var pattern = RegularExpressionSortPattern()
         pattern.searchPattern = ", ([0-9]),"
@@ -65,24 +66,24 @@ final class LineSortTests: XCTestCase {
             cow, 🐄, 3, ｳｼ
             """
         
-        XCTAssertEqual(pattern.sort(self.lines), result)
+        #expect(pattern.sort(self.lines) == result)
         
         pattern.usesCaptureGroup = true
         pattern.group = 1
-        XCTAssertEqual(pattern.sort(self.lines), result)
-        XCTAssertEqual(pattern.sort(""), "")
-        XCTAssertNoThrow(try pattern.validate())
+        #expect(pattern.sort(self.lines) == result)
+        #expect(pattern.sort("").isEmpty)
+        #expect(throws: Never.self) { try pattern.validate() }
         
         pattern.searchPattern = "\\"
-        XCTAssertThrowsError(try pattern.validate())
+        #expect(throws: SortPatternError.invalidRegularExpressionPattern) { try pattern.validate() }
         
         pattern.searchPattern = "(a)(b)c"
         try pattern.validate()
-        XCTAssertEqual(pattern.numberOfCaptureGroups, 2)
+        #expect(pattern.numberOfCaptureGroups == 2)
     }
     
     
-    func testFuzzySort() {
+    @Test func fuzzySort() {
         
         var pattern = CSVSortPattern()
         pattern.column = 4
@@ -96,13 +97,13 @@ final class LineSortTests: XCTestCase {
             cat, 🐈, 1, ねこ
             """
         
-        XCTAssertEqual(pattern.sort(self.lines, options: options), result)
-        XCTAssertEqual(pattern.sort(""), "")
-        XCTAssertNoThrow(try pattern.validate())
+        #expect(pattern.sort(self.lines, options: options) == result)
+        #expect(pattern.sort("").isEmpty)
+        #expect(throws: Never.self) { try pattern.validate() }
     }
     
     
-    func testNumericSorts() {
+    @Test func numericSort() {
         
         let pattern = EntireLineSortPattern()
         let numbers = """
@@ -114,71 +115,71 @@ final class LineSortTests: XCTestCase {
         var options = SortOptions()
         
         options.numeric = false
-        XCTAssertEqual(pattern.sort(numbers, options: options), "1\n12\n3")
+        #expect(pattern.sort(numbers, options: options) == "1\n12\n3")
         
         options.numeric = true
-        XCTAssertEqual(pattern.sort(numbers, options: options), "1\n3\n12")
+        #expect(pattern.sort(numbers, options: options) == "1\n3\n12")
         
         options.descending = true
-        XCTAssertEqual(pattern.sort(numbers, options: options), "12\n3\n1")
+        #expect(pattern.sort(numbers, options: options) == "12\n3\n1")
         
         options.descending = false
         options.keepsFirstLine = true
-        XCTAssertEqual(pattern.sort(numbers, options: options), "3\n1\n12")
+        #expect(pattern.sort(numbers, options: options) == "3\n1\n12")
     }
     
     
-    func testTargetRange() throws {
+    @Test func targetRange() throws {
         
         let string = "dog"
-        XCTAssertEqual(EntireLineSortPattern().range(for: string), string.startIndex..<string.endIndex)
-        XCTAssertEqual(CSVSortPattern().range(for: string), string.startIndex..<string.endIndex)
-        XCTAssertNil(RegularExpressionSortPattern().range(for: string))
+        #expect(EntireLineSortPattern().range(for: string) == string.startIndex..<string.endIndex)
+        #expect(CSVSortPattern().range(for: string) == string.startIndex..<string.endIndex)
+        #expect(RegularExpressionSortPattern().range(for: string) == nil)
         
-        XCTAssertEqual(CSVSortPattern().range(for: ""), Range(NSRange(0..<0), in: ""))
+        #expect(CSVSortPattern().range(for: "") == Range(NSRange(0..<0), in: ""))
         
         let csvString = " dog  , dog cow "
         var pattern = CSVSortPattern()
         pattern.column = 2
-        XCTAssertEqual(pattern.range(for: csvString), Range(NSRange(8..<15), in: csvString))
+        #expect(pattern.range(for: csvString) == Range(NSRange(8..<15), in: csvString))
         
         let tsvString = "a\tb"
         pattern.column = 1
-        let range = try XCTUnwrap(pattern.range(for: tsvString))
-        XCTAssertEqual(pattern.sortKey(for: tsvString), tsvString)
-        XCTAssertEqual(NSRange(range, in: tsvString), NSRange(0..<3))
+        let range = try #require(pattern.range(for: tsvString))
+        #expect(pattern.sortKey(for: tsvString) == tsvString)
+        #expect(NSRange(range, in: tsvString) == NSRange(0..<3))
     }
     
     
-    func testNumberParse() throws {
+    @Test func parseNumber() throws {
         
         var options = SortOptions()
         
         options.locale = .init(identifier: "en")
-        XCTAssertTrue(options.isLocalized)
-        XCTAssertTrue(options.numeric)
-        XCTAssertEqual(options.parse("0"), 0)
-        XCTAssertEqual(options.parse("10 000"), 10000)
-        XCTAssertEqual(options.parse("-1000.1 m/s"), -1000.1)
-        XCTAssertEqual(options.parse("-1000,1 m/s"), -1000)
-        XCTAssertEqual(options.parse("+1,000"), 1000)
-        XCTAssertNil(options.parse("dog 10"))
+        #expect(options.isLocalized)
+        #expect(options.numeric)
+        #expect(options.parse("0") == 0)
+        #expect(options.parse("10 000") == 10000)
+        #expect(options.parse("-1000.1 m/s") == -1000.1)
+        #expect(options.parse("-1000,1 m/s") == -1000)
+        #expect(options.parse("+1,000") == 1000)
+        #expect(options.parse("dog 10") == nil)
         
         options.locale = .init(identifier: "de")
-        XCTAssertTrue(options.numeric)
-        XCTAssertEqual(options.parse("0"), 0)
-        XCTAssertEqual(options.parse("10 000"), 10000)
-        XCTAssertEqual(options.parse("-1000.1 m/s"), -1000)
-        XCTAssertEqual(options.parse("-1000,1 m/s"), -1000.1)
-        XCTAssertEqual(options.parse("+1,000"), 1)
-        XCTAssertNil(options.parse("dog 10"))
+        #expect(options.numeric)
+        #expect(options.parse("0") == 0)
+        #expect(options.parse("10 000") == 10000)
+        #expect(options.parse("-1000.1 m/s") == -1000)
+        #expect(options.parse("-1000,1 m/s") == -1000.1)
+        #expect(options.parse("+1,000") == 1)
+        #expect(options.parse("dog 10") == nil)
         
         options.numeric = false
-        XCTAssertNil(options.parse("0"))
-        XCTAssertNil(options.parse("10 000"))
-        XCTAssertNil(options.parse("-1000.1 m/s"))
-        XCTAssertNil(options.parse("-1000,1 m/s"))
-        XCTAssertNil(options.parse("+1,000"))
-        XCTAssertNil(options.parse("dog 10"))
+        #expect(options.parse("0") == nil)
+        #expect(options.parse("10 000") == nil)
+        #expect(options.parse("-1000.1 m/s") == nil)
+        #expect(options.parse("-1000,1 m/s") == nil)
+        #expect(options.parse("+1,000") == nil)
+        #expect(options.parse("dog 10") == nil)
     }
 }

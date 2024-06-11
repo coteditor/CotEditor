@@ -24,12 +24,13 @@
 //  limitations under the License.
 //
 
-import XCTest
+import AppKit
+import Testing
 import Combine
 import Yams
 @testable import CotEditor
 
-final class SyntaxTests: XCTestCase {
+final class SyntaxTests {
     
     private let syntaxDirectoryName = "Syntaxes"
     
@@ -41,12 +42,10 @@ final class SyntaxTests: XCTestCase {
     
     
     
-    override func setUpWithError() throws {
-        
-        try super.setUpWithError()
+    init() throws {
         
         let bundle = Bundle(for: type(of: self))
-        let urls = try XCTUnwrap(bundle.urls(forResourcesWithExtension: "yml", subdirectory: self.syntaxDirectoryName))
+        let urls = try #require(bundle.urls(forResourcesWithExtension: "yml", subdirectory: self.syntaxDirectoryName))
         
         // load syntaxes
         let decoder = YAMLDecoder()
@@ -56,129 +55,128 @@ final class SyntaxTests: XCTestCase {
             
             dict[name] = try decoder.decode(Syntax.self, from: data)
         }
-        self.htmlSyntax = try XCTUnwrap(self.syntaxes["HTML"])
-        
-        XCTAssertNotNil(self.htmlSyntax)
+        self.htmlSyntax = try #require(self.syntaxes["HTML"])
         
         // load test file
-        let sourceURL = try XCTUnwrap(bundle.url(forResource: "sample", withExtension: "html"))
+        let sourceURL = try #require(bundle.url(forResource: "sample", withExtension: "html"))
         self.htmlSource = try String(contentsOf: sourceURL)
-        
-        XCTAssertNotNil(self.htmlSource)
     }
     
     
-    func testAllSyntaxes() {
+    @Test func loadHTML() {
+        
+        #expect(self.htmlSyntax != nil)
+        #expect(self.htmlSource != nil)
+    }
+    
+    
+    @Test func allSyntaxes() {
         
         for (name, syntax) in self.syntaxes {
             let model = SyntaxObject(value: syntax)
             let errors = model.validate()
             
-            XCTAssert(errors.isEmpty)
+            #expect(errors.isEmpty)
             for error in errors {
-                XCTFail("\(name): \(error)")
+                Issue.record("\(name): \(error)")
             }
         }
     }
     
     
-    func testSanitization() {
+    @Test func sanitize() {
         
         for (name, syntax) in self.syntaxes {
             let sanitized = syntax.sanitized
             
-            XCTAssertEqual(syntax.kind, sanitized.kind)
+            #expect(syntax.kind == sanitized.kind)
             
             for type in SyntaxType.allCases {
                 let keyPath = Syntax.highlightKeyPath(for: type)
-                XCTAssertEqual(syntax[keyPath: keyPath], sanitized[keyPath: keyPath],
-                               ".\(type.rawValue) of “\(name)” is not sanitized in the latest manner")
+                #expect(syntax[keyPath: keyPath] == sanitized[keyPath: keyPath],
+                        ".\(type.rawValue) of “\(name)” is not sanitized in the latest manner")
             }
             
-            XCTAssertEqual(syntax.outlines, sanitized.outlines,
-                           ".outlines of “\(name)” is not sanitized in the latest manner")
-            XCTAssertEqual(syntax.completions, sanitized.completions,
-                           ".completions of “\(name)” is not sanitized in the latest manner")
-            XCTAssertEqual(syntax.commentDelimiters, sanitized.commentDelimiters,
-                           ".commentDelimiters of “\(name)” is not sanitized in the latest manner")
-            XCTAssertEqual(syntax.extensions, sanitized.extensions,
-                           ".extensions of “\(name)” is not sanitized in the latest manner")
-            XCTAssertEqual(syntax.filenames, sanitized.filenames,
-                           ".filenames of “\(name)” is not sanitized in the latest manner")
-            XCTAssertEqual(syntax.interpreters, sanitized.interpreters,
-                           ".interpreters of “\(name)” is not sanitized in the latest manner")
-            XCTAssertEqual(syntax.metadata, sanitized.metadata,
-                           ".metadata of “\(name)” is not sanitized in the latest manner")
+            #expect(syntax.outlines == sanitized.outlines,
+                    ".outlines of “\(name)” is not sanitized in the latest manner")
+            #expect(syntax.completions == sanitized.completions,
+                    ".completions of “\(name)” is not sanitized in the latest manner")
+            #expect(syntax.commentDelimiters == sanitized.commentDelimiters,
+                    ".commentDelimiters of “\(name)” is not sanitized in the latest manner")
+            #expect(syntax.extensions == sanitized.extensions,
+                    ".extensions of “\(name)” is not sanitized in the latest manner")
+            #expect(syntax.filenames == sanitized.filenames,
+                    ".filenames of “\(name)” is not sanitized in the latest manner")
+            #expect(syntax.interpreters == sanitized.interpreters,
+                    ".interpreters of “\(name)” is not sanitized in the latest manner")
+            #expect(syntax.metadata == sanitized.metadata,
+                    ".metadata of “\(name)” is not sanitized in the latest manner")
         }
     }
     
     
-    func testEquality() {
-        
-        XCTAssertEqual(self.htmlSyntax, self.htmlSyntax)
-    }
-    
-    
-    func testNoneSyntax() {
+    @Test func noneSyntax() {
         
         let syntax = Syntax.none
         
-        XCTAssertEqual(syntax.kind, .code)
-        XCTAssert(syntax.highlightParser.isEmpty)
-        XCTAssertNil(syntax.commentDelimiters.inline)
-        XCTAssertNil(syntax.commentDelimiters.block)
+        #expect(syntax.kind == .code)
+        #expect(syntax.highlightParser.isEmpty)
+        #expect(syntax.commentDelimiters.inline == nil)
+        #expect(syntax.commentDelimiters.block == nil)
     }
     
     
-    func testXMLSyntax() throws {
+    @Test func xmlSyntax() throws {
         
-        let syntax = try XCTUnwrap(self.htmlSyntax)
+        let syntax = try #require(self.htmlSyntax)
         
-        XCTAssertFalse(syntax.highlightParser.isEmpty)
-        XCTAssertNil(syntax.commentDelimiters.inline)
-        XCTAssertEqual(syntax.commentDelimiters.block, Pair("<!--", "-->"))
+        #expect(!syntax.highlightParser.isEmpty)
+        #expect(syntax.commentDelimiters.inline == nil)
+        #expect(syntax.commentDelimiters.block == Pair("<!--", "-->"))
     }
     
     
-    func testOutlineParse() throws {
+    @Test func parseOutline() async throws {
         
-        let syntax = try XCTUnwrap(self.htmlSyntax)
-        let source = try XCTUnwrap(self.htmlSource)
+        let syntax = try #require(self.htmlSyntax)
+        let source = try #require(self.htmlSource)
         
         let textStorage = NSTextStorage(string: source)
         let parser = SyntaxParser(textStorage: textStorage, syntax: syntax, name: "HTML")
         
         // test outline parsing with publisher
-        let outlineParseExpectation = self.expectation(description: "didParseOutline")
-        self.outlineParseCancellable = parser.$outlineItems
-            .compactMap { $0 }  // ignore the initial invocation
-            .receive(on: RunLoop.main)
-            .sink { outlineItems in
-                outlineParseExpectation.fulfill()
-                
-                XCTAssertEqual(outlineItems.count, 3)
-                
-                XCTAssertEqual(parser.outlineItems, outlineItems)
-                
-                let item = outlineItems[1]
-                XCTAssertEqual(item.title, "   h2: 🐕🐄")
-                XCTAssertEqual(item.range.location, 354)
-                XCTAssertEqual(item.range.length, 13)
-                XCTAssertTrue(item.style.isEmpty)
-            }
-        parser.invalidateOutline()
-        self.waitForExpectations(timeout: 1)
+        try await confirmation("didParseOutline") { confirm in
+            self.outlineParseCancellable = parser.$outlineItems
+                .compactMap { $0 }  // ignore the initial invocation
+                .receive(on: RunLoop.main)
+                .sink { outlineItems in
+                    confirm()
+                    
+                    #expect(outlineItems.count == 3)
+                    
+                    #expect(parser.outlineItems == outlineItems)
+                    
+                    let item = outlineItems[1]
+                    #expect(item.title == "   h2: 🐕🐄")
+                    #expect(item.range.location == 354)
+                    #expect(item.range.length == 13)
+                    #expect(item.style.isEmpty)
+                }
+            
+            parser.invalidateOutline()
+            try await Task.sleep(for: .seconds(0.5))
+        }
     }
     
     
-    func testViewModelHighlightEquality() {
+    @Test func viewModelHighlightEquality() {
         
         let termA = SyntaxObject.Highlight(begin: "abc", end: "def")
         let termB = SyntaxObject.Highlight(begin: "abc", end: "def")
         let termC = SyntaxObject.Highlight(begin: "abc")
         
-        XCTAssertEqual(termA, termB)
-        XCTAssertNotEqual(termA, termC)
-        XCTAssertNotEqual(termA.id, termB.id)
+        #expect(termA == termB)
+        #expect(termA != termC)
+        #expect(termA.id != termB.id)
     }
 }

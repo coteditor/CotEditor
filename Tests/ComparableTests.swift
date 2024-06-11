@@ -23,26 +23,27 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import CotEditor
 
-final class ComparableTests: XCTestCase {
+struct ComparableTests {
     
-    func testClamp() {
+    @Test func clamp() {
         
-        XCTAssertEqual((-2).clamped(to: -10...10), -2)
-        XCTAssertEqual(5.clamped(to: 6...10), 6)
-        XCTAssertEqual(20.clamped(to: 6...10), 10)
+        #expect((-2).clamped(to: -10...10) == -2)
+        #expect(5.clamped(to: 6...10) == 6)
+        #expect(20.clamped(to: 6...10) == 10)
     }
     
     
-    func testBoolComparison() {
+    @Test func compareBool() {
         
-        XCTAssertEqual([false, true, false, true, false].sorted(), [true, true, false, false, false])
+        #expect([false, true, false, true, false].sorted() == [true, true, false, false, false])
     }
     
     
-    func testBoolItemComparison() {
+    @Test func compareBoolItem() {
         
         struct Item: Equatable {
             
@@ -58,7 +59,7 @@ final class ComparableTests: XCTestCase {
             Item(id: 4, bool: true),
         ]
         
-        XCTAssertEqual(items.sorted(\.bool), [
+        #expect(items.sorted(\.bool) == [
             Item(id: 1, bool: true),
             Item(id: 2, bool: true),
             Item(id: 4, bool: true),
@@ -66,7 +67,7 @@ final class ComparableTests: XCTestCase {
             Item(id: 3, bool: false),
         ])
         
-        XCTAssertEqual(items.sorted(using: [KeyPathComparator(\.bool)]), [
+        #expect(items.sorted(using: [KeyPathComparator(\.bool)]) == [
             Item(id: 1, bool: true),
             Item(id: 2, bool: true),
             Item(id: 4, bool: true),
