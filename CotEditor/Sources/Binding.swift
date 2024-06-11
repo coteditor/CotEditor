@@ -27,7 +27,7 @@ import SwiftUI
 
 // MARK: OptionSet
 
-extension Binding where Value: OptionSet {
+extension Binding where Value: OptionSet, Value.Element: Sendable {
     
     /// Enables binding to an option using Bool.
     ///
