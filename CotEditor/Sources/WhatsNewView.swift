@@ -146,7 +146,7 @@ private enum NewFeature: CaseIterable {
         switch self {
             case .macOSSupport:
                 String(localized: "NewFeature.macOSSupport.label",
-                       defaultValue: "macOS 15 Support", table: "WhatsNew")
+                       defaultValue: "macOS 15 Sequoia Support", table: "WhatsNew")
             case .donation:
                 String(localized: "NewFeature.donation.label",
                        defaultValue: "Donation", table: "WhatsNew")

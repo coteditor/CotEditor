@@ -214,25 +214,25 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unterstützung für macOS 15"
+            "value" : "Unterstützung für macOS 15 Sequoia"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "macOS 15 Support"
+            "value" : "macOS 15 Sequoia Support"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "macOS 15 Support"
+            "value" : "macOS 15 Sequoia Support"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "macOS 15サポート"
+            "value" : "macOS 15 Sequoiaサポート"
           }
         }
       }
