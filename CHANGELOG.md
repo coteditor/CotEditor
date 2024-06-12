@@ -5,7 +5,8 @@
 
 ### New Features
 
-- [AppStore ver.] Now users can donate to the CotEditor project via in-app purchase in the new Donate settings pane.
+- Support __macOS 15 Sequoia__.
+- [AppStore ver.] Now the user can donate to the CotEditor project via in-app purchase in the new Donate settings pane.
 - Add new “Select Enclosing Symbols” and “Split Selection by Lines” commands to the Edit > Select menu.
 - Support the alpha channel for the current line in theme settings.
 - Add Assembly syntax.
@@ -14,7 +15,6 @@
 
 ### Improvements
 
-- Support __macOS 15 Sequoia__.
 - Change the system requirement to __macOS 14 Sonoma and later__.
 - Add “Select Column Up/Down“ commands to the Edit > Select menu.
 - Change the unit of character ranges handled in CotEditor Scripting for AppleScript from UTF-16 based to the Unicode grapheme cluster-based (This is to follow the specification change in AppleScript 2.0 introduced in Mac OS X 10.5).
