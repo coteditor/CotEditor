@@ -36,7 +36,7 @@ enum InspectorPane: Int, CaseIterable {
 
 protocol DocumentOwner: NSViewController {
     
-    var document: Document? { get set }
+    @MainActor var document: Document? { get set }
 }
 
 
