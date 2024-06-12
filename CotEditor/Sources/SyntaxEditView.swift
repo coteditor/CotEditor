@@ -64,7 +64,7 @@ struct SyntaxEditView: View {
     weak var parent: NSHostingController<Self>?
     
     
-    @MainActor private static var viewSize = CGSize(width: 680, height: 525)
+    private static var viewSize = CGSize(width: 680, height: 525)
     
     @State private var name: String = ""
     @State private var message: String?
@@ -228,7 +228,7 @@ struct SyntaxEditView: View {
     // MARK: Private Methods
     
     /// Submits the syntax if it is valid.
-    @MainActor private func submit() {
+    private func submit() {
         
         // syntax name validation
         self.name = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -257,7 +257,7 @@ struct SyntaxEditView: View {
     
     
     /// Restores the current settings in editor to the user default.
-    @MainActor private func restore() {
+    private func restore() {
         
         guard
             self.isBundled,

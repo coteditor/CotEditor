@@ -26,7 +26,7 @@
 import SwiftUI
 import StoreKit
 
-@MainActor struct DonationSettingsView: View {
+struct DonationSettingsView: View {
     
 #if SPARKLE
     var isInAppPurchaseAvailable = false
@@ -210,7 +210,7 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
                         .accessibilityLabel(String(localized: "Quantity", table: "DonationSettings", comment: "accessibility label for item quantity stepper"))
                     Spacer()
                     Button((product.price * Decimal(self.quantity)).formatted(product.priceFormatStyle)) {
-                        Task { @MainActor in
+                        Task {
                             do {
                                 _ = try await self.purchase(product, options: [.quantity(self.quantity)])
                             } catch {

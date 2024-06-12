@@ -102,7 +102,7 @@ struct InconsistentLineEndingsView: View {
     /// Selects correspondence range of the item in the editor.
     ///
     /// - Parameter id: The `id` of the item to select.
-    @MainActor private func selectItem(id: Item.ID?) {
+    private func selectItem(id: Item.ID?) {
         
         guard
             let item = self.items[id: id],

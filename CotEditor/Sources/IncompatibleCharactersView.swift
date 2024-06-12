@@ -182,7 +182,7 @@ private extension IncompatibleCharactersView.Model {
     ///
     /// - Returns: An array of Item.
     /// - Throws: `CancellationError`
-    @MainActor private func scan() async throws -> [ValueRange<IncompatibleCharacter>] {
+    private func scan() async throws -> [ValueRange<IncompatibleCharacter>] {
         
         assert(Thread.isMainThread)
         
@@ -205,7 +205,7 @@ private extension IncompatibleCharactersView.Model {
     /// Update markup in the editors.
     ///
     /// - Parameter items: The new incompatible characters.
-    @MainActor private func updateMarkup(_ items: [ValueRange<IncompatibleCharacter>]) {
+    private func updateMarkup(_ items: [ValueRange<IncompatibleCharacter>]) {
         
         if !self.items.isEmpty {
             self.document?.textStorage.clearAllMarkup()

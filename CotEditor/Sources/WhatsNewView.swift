@@ -167,7 +167,7 @@ private enum NewFeature: CaseIterable {
     }
     
     
-    @ViewBuilder var supplementalView: some View {
+    @MainActor @ViewBuilder var supplementalView: some View {
         
         switch self {
             case .donation:
@@ -178,9 +178,7 @@ private enum NewFeature: CaseIterable {
                     .fixedSize()
                 #else
                 Button(String(localized: "Open Donation Settings", table: "WhatsNew")) {
-                    Task { @MainActor in
-                        SettingsWindowController.shared.openPane(.donation)
-                    }
+                    SettingsWindowController.shared.openPane(.donation)
                 }
                 .buttonStyle(.capsule)
                 #endif

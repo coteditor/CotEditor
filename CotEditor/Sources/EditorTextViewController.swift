@@ -159,9 +159,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         super.restoreState(with: coder)
         
         if coder.decodeBool(forKey: SerializationKey.showsAdvancedCounter) {
-            Task { @MainActor in
-                self.showAdvancedCharacterCounter()
-            }
+            self.showAdvancedCharacterCounter()
         }
     }
     

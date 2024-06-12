@@ -168,7 +168,7 @@ struct PatternSortView: View {
     
     
     /// Submits the current input.
-    @MainActor private func submit() {
+    private func submit() {
         
         guard
             self.parent?.commitEditing() == true

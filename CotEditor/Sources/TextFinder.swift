@@ -373,7 +373,7 @@ struct TextFindAllResult {
     /// Performs multiple replacement with a specific replacement definition.
     ///
     /// - Parameter name: The name of the multiple replacement definition.
-    @MainActor private func multiReplaceAll(name: String) {
+    private func multiReplaceAll(name: String) {
         
         guard let definition = try? ReplacementManager.shared.setting(name: name) else { return assertionFailure() }
         

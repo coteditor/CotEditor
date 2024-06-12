@@ -73,7 +73,7 @@ struct CustomTabWidthView: View {
     // MARK: Private Methods
     
     /// Submits the current input.
-    @MainActor private func submit() {
+    private func submit() {
         
         self.completionHandler(self.value)
         self.parent?.dismiss(nil)

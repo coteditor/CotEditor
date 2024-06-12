@@ -115,7 +115,7 @@ struct UnicodeInputView: View {
     
     
     /// Inputs Unicode character to the parent text view.
-    @MainActor private func submit() {
+    private func submit() {
         
         guard let character = self.character else { return NSSound.beep() }
         

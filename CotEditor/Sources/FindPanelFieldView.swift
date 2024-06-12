@@ -240,7 +240,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// Updates the result count in the input fields.
     ///
     /// - Parameter result: The find/replace result or `nil` to clear.
-    @MainActor private func update(result: TextFindResult?) {
+    private func update(result: TextFindResult?) {
         
         switch result {
             case .found:
@@ -257,14 +257,14 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     /// Updates the find history menu.
-    @MainActor private func updateFindHistoryMenu() {
+    private func updateFindHistoryMenu() {
         
         self.buildHistoryMenu(self.findHistoryMenu!, defaultsKey: .findHistory, action: #selector(selectFindHistory))
     }
     
     
     /// Updates the replace history menu.
-    @MainActor private func updateReplaceHistoryMenu() {
+    private func updateReplaceHistoryMenu() {
         
         self.buildHistoryMenu(self.replaceHistoryMenu!, defaultsKey: .replaceHistory, action: #selector(selectReplaceHistory))
     }
@@ -276,7 +276,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     ///   - menu: The menu to update the content.
     ///   - key: The default key for the history.
     ///   - action: The action selector for menu items.
-    @MainActor private func buildHistoryMenu(_ menu: NSMenu, defaultsKey key: DefaultKey<[String]>, action: Selector) {
+    private func buildHistoryMenu(_ menu: NSMenu, defaultsKey key: DefaultKey<[String]>, action: Selector) {
         
         assert(Thread.isMainThread)
         
@@ -299,7 +299,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// Updates the find result message on the input field.
     ///
     /// - Parameter message: The message to display in the input field, or `nil` to clear.
-    @MainActor private func updateFoundMessage(_ message: String?) {
+    private func updateFoundMessage(_ message: String?) {
         
         self.applyResult(message: message, textField: self.findResultField!, textView: self.findTextView!)
     }
@@ -308,7 +308,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// Updates the replacement result message on the input field.
     ///
     /// - Parameter message: The message to display in the input field, or `nil` to clear.
-    @MainActor private func updateReplacedMessage(_ message: String?) {
+    private func updateReplacedMessage(_ message: String?) {
         
         self.applyResult(message: message, textField: self.replacementResultField!, textView: self.replacementTextView!)
     }
@@ -320,7 +320,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     ///   - message: The localized message to display.
     ///   - textField: The text field displaying the message.
     ///   - textView: The input text view where shows the message.
-    @MainActor private func applyResult(message: String?, textField: NSTextField, textView: NSTextView) {
+    private func applyResult(message: String?, textField: NSTextField, textView: NSTextView) {
         
         textField.isHidden = (message == nil)
         textField.stringValue = message ?? ""

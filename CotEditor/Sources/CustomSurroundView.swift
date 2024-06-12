@@ -92,7 +92,7 @@ struct CustomSurroundView: View {
     // MARK: Private Methods
     
     /// Submits the current input.
-    @MainActor private func submit() {
+    private func submit() {
         
         self.parent?.commitEditing()
         

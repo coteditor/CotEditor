@@ -114,9 +114,7 @@ private struct ColorCodePanelAccessory: View {
         if let colorCode, let color = NSColor(colorCode: colorCode, type: &type), let type {
             self.colorCode = colorCode
             self.type = type.rawValue
-            Task { @MainActor in
-                panel.color = color
-            }
+            panel.color = color
         }
     }
     
@@ -165,7 +163,7 @@ private struct ColorCodePanelAccessory: View {
     // MARK: Private Methods
     
     /// Inserts the color code to the selection of the frontmost document.
-    @MainActor private func submit() {
+    private func submit() {
         
         self.apply(colorCode: self.colorCode)
         
@@ -179,7 +177,7 @@ private struct ColorCodePanelAccessory: View {
     /// Sets the color representing the given code to the color panel and selects the corresponding color code type.
     ///
     /// - Parameter colorCode: The color code of the color to set.
-    @MainActor private func apply(colorCode: String) {
+    private func apply(colorCode: String) {
         
         var type: ColorCodeType?
         guard
@@ -195,7 +193,7 @@ private struct ColorCodePanelAccessory: View {
     /// Converts the color code to the specified code type.
     ///
     /// - Parameter rawValue: The rawValue of ColorCodeType.
-    @MainActor private func apply(type rawValue: Int) {
+    private func apply(type rawValue: Int) {
         
         guard
             let type = ColorCodeType(rawValue: rawValue),

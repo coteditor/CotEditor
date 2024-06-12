@@ -69,7 +69,7 @@ struct GoToLineView: View {
     // MARK: Private Methods
     
     /// Submits the current input.
-    @MainActor private func submit() {
+    private func submit() {
         
         guard
             self.completionHandler(self.lineRange)

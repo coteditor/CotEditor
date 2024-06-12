@@ -146,7 +146,7 @@ struct CommandBarView: View {
     
     
     /// Performs the selected command and closes the view.
-    @MainActor private func perform() {
+    private func perform() {
         
         // first close the command bar and then take the action
         // so that the action is delivered to the correct (first) responder.

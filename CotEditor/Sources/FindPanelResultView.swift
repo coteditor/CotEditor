@@ -38,7 +38,7 @@ final class FindPanelResultViewController: NSHostingController<FindPanelResultVi
     }
     
     
-    @MainActor required dynamic init?(coder: NSCoder) {
+    required dynamic init?(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
     }
@@ -156,7 +156,7 @@ struct FindPanelResultView: View {
     
     // MARK: Private Methods
     
-    @MainActor private var message: String {
+    private var message: String {
         
         let documentName = self.model.target?.documentName ?? "Unknown"  // This should never be nil.
         
@@ -171,7 +171,7 @@ struct FindPanelResultView: View {
     /// Selects the match in the target text view.
     ///
     /// - Parameter id: The identifier of the match to select.
-    @MainActor private func selectMatch(_ id: Match.ID?) {
+    private func selectMatch(_ id: Match.ID?) {
         
         // abandon if text becomes shorter than range to select
         guard

@@ -79,7 +79,7 @@ struct FindPanelButtonView: View {
     /// Send a text finder action message to the legacy responder-chain.
     ///
     /// - Parameter action: The `TextFinder.Action` to perform.
-    @MainActor private func performAction(_ action: TextFinder.Action) {
+    private func performAction(_ action: TextFinder.Action) {
         
         // create a dummy sender for tag
         let sender = NSControl()
