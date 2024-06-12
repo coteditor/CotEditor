@@ -68,7 +68,7 @@ struct KeyBindingsSettingsView: View {
 }
 
 
-@Observable private final class KeyBindingModel {
+@MainActor @Observable private final class KeyBindingModel {
     
     typealias Item = Node<KeyBindingItem>
     
