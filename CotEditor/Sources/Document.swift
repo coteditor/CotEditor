@@ -452,6 +452,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         try super.writeSafely(to: url, ofType: typeName, for: saveOperation)
         
         if saveOperation != .autosaveElsewhereOperation {
+            // set/remove flag for vertical text orientation
+            if UserDefaults.standard[.savesTextOrientation] {
+                try? url.setExtendedAttribute(data: self.isVerticalText ? Data([1]) : nil, for: FileExtendedAttributeName.verticalText)
+            }
+            
             // get the latest file attributes
             do {
                 let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_ACCESS
@@ -480,15 +485,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         }
         
         // save document state to the extended file attributes
+        // -> Save FileExtendedAttributeName.verticalText at `super.writeSafely(to:ofType:for:)`
+        //     since the xattr already set to the file cannot remove at this point. (2024-06-12)
         var xattrs: [String: Data] = [:]
         if self.shouldSaveEncodingXattr {
             xattrs[FileExtendedAttributeName.encoding] = self.fileEncoding.encoding.xattrEncodingData
         }
         if self.suppressesInconsistentLineEndingAlert {
             xattrs[FileExtendedAttributeName.allowLineEndingInconsistency] = Data([1])
-        }
-        if UserDefaults.standard[.savesTextOrientation] {
-            xattrs[FileExtendedAttributeName.verticalText] = self.isVerticalText ? Data([1]) : nil
         }
         if !xattrs.isEmpty {
             attributes[FileAttributeKey.extendedAttributes.rawValue] = xattrs

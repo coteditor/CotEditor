@@ -12,6 +12,7 @@
 
 ### Fixes
 
+- Fix an issue that a saved document could not revert to the horizontal text orientation when it was saved once as a vertical text document.
 - Fix a trivial memory leak in the line ending menu (thanks to Yoshimasa Niwa).
 
 
