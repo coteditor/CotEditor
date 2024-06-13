@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,7 +27,10 @@ import Foundation
 
 extension URL {
     
-    /// Gets extended attribute
+    /// Gets extended attribute.
+    ///
+    /// - Parameter name: The key name of the attribute to get.
+    /// - Returns: Data.
     func extendedAttribute(for name: String) throws -> Data {
         
         try self.withUnsafeFileSystemRepresentation { fileSystemPath -> Data in
@@ -49,7 +52,11 @@ extension URL {
     }
     
     
-    /// Sets extended attribute
+    /// Sets extended attribute.
+    ///
+    /// - Parameters:
+    ///   - data: The data to set.
+    ///   - name: The attribute key name to set.
     func setExtendedAttribute(data: Data?, for name: String) throws {
         
         // remove if nil is passed
@@ -67,7 +74,9 @@ extension URL {
     }
     
     
-    /// Removes extended attribute
+    /// Removes extended attribute.
+    ///
+    /// - Parameter name: The attribute key name to remove.
     private func removeExtendedAttribute(for name: String) throws {
         
         try self.withUnsafeFileSystemRepresentation { fileSystemPath in

@@ -39,7 +39,7 @@ extensions:
 filenames: []
 interpreters: []
 keywords:
-- beginString: (?<!\\)\b~~(?![ \t])((?!\R{2})(?:.|\R))*?(?<![\\\t ])~~
+- beginString: (?<!\\)~~[^ \t~]((?!\R{2})(?:.|\R))*?(?<![\\ ])~~
   description: '[github] strikethrough'
   regularExpression: true
 - beginString: \R[\t ]*\R(?:\- *){3,}$
@@ -71,9 +71,9 @@ kind: general
 metadata:
   author: 1024jp
   distributionURL: https://coteditor.com
-  lastModified: '2024-05-10'
+  lastModified: '2024-06-09'
   license: Same as CotEditor
-  version: 1.4.0
+  version: 1.4.1
 numbers:
 - beginString: (?<!\\)!\[.*?(?<!\\)\](?=\()
   description: img

@@ -37,12 +37,14 @@
 
 ### Implements
 
+- Update the Markdown syntax to fix highlighting strikethrough.
 - Improve the User Guide contents.
 - [non-AppStore ver.] Update Sparkle from 2.6.2 to 2.6.3.
 
 
 ### Fixes
 
+- Fix an issue that a saved document could not revert to the horizontal text orientation when it was saved once as a vertical text document.
 - Fix a trivial memory leak in the line ending menu (thanks to Yoshimasa Niwa).
 
 
