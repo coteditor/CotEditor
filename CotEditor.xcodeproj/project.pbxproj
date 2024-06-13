@@ -1760,7 +1760,7 @@
 				2A37F4AFFDCFA73011CA2CEA /* Scripts */,
 				2AC71DE01BF0BDBC002E1434 /* Tests */,
 				2A3F18F8203270BE002F1CA7 /* UI Tests */,
-				2A8544E6267872E0006EF01A /* SyntaxMap */,
+				2A7E06EB2C1A79B600E5396D /* Packages */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
 			name = CotEditor;
@@ -2047,6 +2047,14 @@
 				2A3581931E597AFE00762AA5 /* Multiple Replace */,
 			);
 			name = "Text Finder";
+			sourceTree = "<group>";
+		};
+		2A7E06EB2C1A79B600E5396D /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				2A8544E6267872E0006EF01A /* SyntaxMap */,
+			);
+			path = Packages;
 			sourceTree = "<group>";
 		};
 		2A7FEF0D2B90B1800042BEFF /* Views */ = {

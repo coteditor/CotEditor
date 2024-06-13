@@ -20,15 +20,13 @@ let package = Package(
             dependencies: [
                 "SyntaxMap",
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
-            ],
-            swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]),
-        .target(name: "SyntaxMap", dependencies: ["Yams"],
-                swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]),
-        
+            ]),
+        .target(name: "SyntaxMap", dependencies: ["Yams"]),
+    
         .testTarget(
             name: "SyntaxMapTests",
             dependencies: ["SyntaxMap"],
-            resources: [.copy("Syntaxes")],
-            swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]),
-    ]
+            resources: [.copy("Syntaxes")]),
+    ],
+    swiftLanguageVersions: [.v6]
 )

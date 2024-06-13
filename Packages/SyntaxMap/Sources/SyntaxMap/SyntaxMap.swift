@@ -26,7 +26,7 @@
 import Foundation
 import Yams
 
-public struct SyntaxMap: Equatable, Codable {
+public struct SyntaxMap: Equatable, Sendable, Codable {
     
     struct InvalidError: Error {
         
