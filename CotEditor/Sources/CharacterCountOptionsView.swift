@@ -24,6 +24,13 @@
 //
 
 import SwiftUI
+import UnicodeNormalization
+
+extension UnicodeNormalizationForm: DefaultInitializable {
+
+    static let defaultValue: Self = .nfc
+}
+
 
 struct CharacterCountOptionsView: View {
     

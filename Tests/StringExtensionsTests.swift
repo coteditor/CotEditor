@@ -371,15 +371,6 @@ struct StringExtensionsTests {
     }
     
     
-    @Test func normalizeUnicode() {
-        
-        #expect("É \t 神 ㍑ ＡＢC".precomposedStringWithCompatibilityMappingWithCasefold == "é \t 神 リットル abc")
-        #expect("\u{1f71} \u{03b1}\u{0301}".precomposedStringWithHFSPlusMapping == "\u{1f71} \u{03ac}")
-        #expect("\u{1f71}".precomposedStringWithHFSPlusMapping == "\u{1f71}")  // test single char
-        #expect("\u{1f71}".decomposedStringWithHFSPlusMapping == "\u{03b1}\u{0301}")
-    }
-    
-    
     @Test func trimWhitespace() throws {
         
         let string = """

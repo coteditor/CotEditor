@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import UnicodeNormalization
 
 extension DefaultKeys {
     

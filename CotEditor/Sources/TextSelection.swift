@@ -25,6 +25,7 @@
 //
 
 import AppKit
+import UnicodeNormalization
 
 private enum OSACaseType: FourCharCode {
     

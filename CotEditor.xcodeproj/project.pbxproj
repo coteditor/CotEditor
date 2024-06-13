@@ -510,8 +510,6 @@
 		2A9BF3C51D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */; };
 		2A9BF3C71D38325200E3D3E2 /* String+FullwidthTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C61D38325200E3D3E2 /* String+FullwidthTransform.swift */; };
 		2A9BF3C81D38325200E3D3E2 /* String+FullwidthTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C61D38325200E3D3E2 /* String+FullwidthTransform.swift */; };
-		2A9BF3CB1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */; };
-		2A9BF3CC1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */; };
 		2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */; };
 		2A9C370B1D66E99400774BA4 /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C370A1D66E99400774BA4 /* Pair.swift */; };
 		2A9C370C1D66E99400774BA4 /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C370A1D66E99400774BA4 /* Pair.swift */; };
@@ -577,6 +575,10 @@
 		2AA7613B1D457BD500031AAF /* String+Indentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA761391D457BD500031AAF /* String+Indentation.swift */; };
 		2AA79C7821CB7251005AD6AD /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA79C7721CB7251005AD6AD /* SettingsWindow.swift */; };
 		2AA79C7921CB7251005AD6AD /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA79C7721CB7251005AD6AD /* SettingsWindow.swift */; };
+		2AA7BDD62C1B0CC10075BB6C /* UnicodeNormalization in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA7BDD52C1B0CC10075BB6C /* UnicodeNormalization */; };
+		2AA7BDD82C1B0CC70075BB6C /* UnicodeNormalization in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA7BDD72C1B0CC70075BB6C /* UnicodeNormalization */; };
+		2AA7BDDB2C1B10CB0075BB6C /* UnicodeNormalizationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA7BDDA2C1B10C80075BB6C /* UnicodeNormalizationForm.swift */; };
+		2AA7BDDC2C1B10CB0075BB6C /* UnicodeNormalizationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA7BDDA2C1B10C80075BB6C /* UnicodeNormalizationForm.swift */; };
 		2AA7E97D1DBAAC950083B7ED /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA7E97C1DBAAC950083B7ED /* Script.swift */; };
 		2AA7E97E1DBAAC950083B7ED /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA7E97C1DBAAC950083B7ED /* Script.swift */; };
 		2AA86282212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */; };
@@ -1144,7 +1146,6 @@
 		2A9BC2772BDE00B1008B58B5 /* Donation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donation.swift; sourceTree = "<group>"; };
 		2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Transformation.swift"; sourceTree = "<group>"; };
 		2A9BF3C61D38325200E3D3E2 /* String+FullwidthTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+FullwidthTransform.swift"; sourceTree = "<group>"; };
-		2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Normalization.swift"; sourceTree = "<group>"; };
 		2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacterTests.swift; sourceTree = "<group>"; };
 		2A9C370A1D66E99400774BA4 /* Pair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		2A9C370D1D672A1F00774BA4 /* BracePairTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BracePairTests.swift; sourceTree = "<group>"; };
@@ -1179,6 +1180,7 @@
 		2AA761341D45634400031AAF /* String+Counting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Counting.swift"; sourceTree = "<group>"; };
 		2AA761391D457BD500031AAF /* String+Indentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Indentation.swift"; sourceTree = "<group>"; };
 		2AA79C7721CB7251005AD6AD /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
+		2AA7BDDA2C1B10C80075BB6C /* UnicodeNormalizationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnicodeNormalizationForm.swift; sourceTree = "<group>"; };
 		2AA7E97C1DBAAC950083B7ED /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSplitView+Autosave.swift"; sourceTree = "<group>"; };
 		2AAB4BF81D2435AC0049A68B /* DocumentInspectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentInspectorView.swift; sourceTree = "<group>"; };
@@ -1334,6 +1336,7 @@
 			files = (
 				2A38536A2C1AF43100C282C0 /* FilePermissions in Frameworks */,
 				2ACD02BF22A87F0400893051 /* ColorCode in Frameworks */,
+				2AA7BDD62C1B0CC10075BB6C /* UnicodeNormalization in Frameworks */,
 				2AA2C6FC24399A920017D1EC /* Yams in Frameworks */,
 				2ADF96412C1B05CD00B6B722 /* FileEncoding in Frameworks */,
 				2A7E06E82C1A745400E5396D /* CharacterInfo in Frameworks */,
@@ -1347,6 +1350,7 @@
 			files = (
 				2A7E06EA2C1A745E00E5396D /* CharacterInfo in Frameworks */,
 				2A3853682C1AF42C00C282C0 /* FilePermissions in Frameworks */,
+				2AA7BDD82C1B0CC70075BB6C /* UnicodeNormalization in Frameworks */,
 				2AAAE6E526DB82F800C5F0AC /* Sparkle in Frameworks */,
 				2ACD02BD22A87EFD00893051 /* ColorCode in Frameworks */,
 				2ADF96432C1B05D300B6B722 /* FileEncoding in Frameworks */,
@@ -1686,7 +1690,6 @@
 				2AAD61FB1D2BD102008FE772 /* String+Additions.swift */,
 				2AA761341D45634400031AAF /* String+Counting.swift */,
 				2AA5BCF924FFB21C00618F83 /* String+Match.swift */,
-				2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */,
 				2A9BF3C61D38325200E3D3E2 /* String+FullwidthTransform.swift */,
 				2A733E8820BBB4AC0090D7CB /* String+Case.swift */,
 				2AA761391D457BD500031AAF /* String+Indentation.swift */,
@@ -1956,6 +1959,7 @@
 				2A359E001DAEA0EE00FEF7AA /* AppKit */,
 				2A180F462854E58400EBAF66 /* TextKit */,
 				2A04E9C127FEF737008C82D8 /* SwiftUI */,
+				2AA7BDD92C1B10A80075BB6C /* Libraries */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2148,6 +2152,14 @@
 				2A21E6722BB44D5E0054C8A1 /* DonationSettings.xcstrings */,
 			);
 			name = Panes;
+			sourceTree = "<group>";
+		};
+		2AA7BDD92C1B10A80075BB6C /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				2AA7BDDA2C1B10C80075BB6C /* UnicodeNormalizationForm.swift */,
+			);
+			path = Libraries;
 			sourceTree = "<group>";
 		};
 		2AB1BD21287D752300C6FEAF /* Views */ = {
@@ -2438,6 +2450,7 @@
 				2A7E06E72C1A745400E5396D /* CharacterInfo */,
 				2A3853692C1AF43100C282C0 /* FilePermissions */,
 				2ADF96402C1B05CD00B6B722 /* FileEncoding */,
+				2AA7BDD52C1B0CC10075BB6C /* UnicodeNormalization */,
 			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = CotEditor;
@@ -2486,6 +2499,7 @@
 				2A7E06E92C1A745E00E5396D /* CharacterInfo */,
 				2A3853672C1AF42C00C282C0 /* FilePermissions */,
 				2ADF96422C1B05D300B6B722 /* FileEncoding */,
+				2AA7BDD72C1B0CC70075BB6C /* UnicodeNormalization */,
 			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = CotEditor;
@@ -3103,7 +3117,6 @@
 				2A9BF3C81D38325200E3D3E2 /* String+FullwidthTransform.swift in Sources */,
 				2AA7613B1D457BD500031AAF /* String+Indentation.swift in Sources */,
 				2AA5BCFA24FFB21C00618F83 /* String+Match.swift in Sources */,
-				2A9BF3CC1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */,
 				2A2615892977FCF6008C2240 /* SubmitButtonGroup.swift in Sources */,
 				2A1B7E76216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */,
 				2A6FD9F71D3AE29E00A59784 /* Syntax.swift in Sources */,
@@ -3138,6 +3151,7 @@
 				2A0DD6371E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2A0DD6341E655C4A001CAAA3 /* TokenTextEditor.swift in Sources */,
 				2A4257B71D23153B0086DAAD /* UnicodeInputView.swift in Sources */,
+				2AA7BDDC2C1B10CB0075BB6C /* UnicodeNormalizationForm.swift in Sources */,
 				2AA14D001FA498E900EAF586 /* UnixScript.swift in Sources */,
 				2A8DA9481D28ED93003D0C4B /* URL.swift in Sources */,
 				2AE73F3E2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
@@ -3461,7 +3475,6 @@
 				2A9BF3C71D38325200E3D3E2 /* String+FullwidthTransform.swift in Sources */,
 				2AA7613A1D457BD500031AAF /* String+Indentation.swift in Sources */,
 				2AA5BCFB24FFB21C00618F83 /* String+Match.swift in Sources */,
-				2A9BF3CB1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */,
 				2A26158A2977FCF6008C2240 /* SubmitButtonGroup.swift in Sources */,
 				2A1B7E75216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */,
 				2A6FD9F61D3AE29E00A59784 /* Syntax.swift in Sources */,
@@ -3496,6 +3509,7 @@
 				2A0DD6361E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2A0DD6331E655C4A001CAAA3 /* TokenTextEditor.swift in Sources */,
 				2A4257B61D23153B0086DAAD /* UnicodeInputView.swift in Sources */,
+				2AA7BDDB2C1B10CB0075BB6C /* UnicodeNormalizationForm.swift in Sources */,
 				2AA14CFF1FA498E900EAF586 /* UnixScript.swift in Sources */,
 				2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */,
 				2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */,
@@ -3995,6 +4009,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */;
 			productName = Yams;
+		};
+		2AA7BDD52C1B0CC10075BB6C /* UnicodeNormalization */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UnicodeNormalization;
+		};
+		2AA7BDD72C1B0CC70075BB6C /* UnicodeNormalization */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UnicodeNormalization;
 		};
 		2AAAE6E426DB82F800C5F0AC /* Sparkle */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -29,6 +29,7 @@ import SwiftUI
 import Combine
 import UniformTypeIdentifiers
 import OSLog
+import UnicodeNormalization
 
 extension KeyPath: @retroactive @unchecked Sendable { }
 
