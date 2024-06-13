@@ -26,6 +26,7 @@
 import SwiftUI
 import Observation
 import AppKit.NSOpenPanel
+import FileEncoding
 
 @Observable final class OpenOptions {
     

@@ -26,6 +26,7 @@
 import SwiftUI
 import Observation
 import Combine
+import FileEncoding
 
 final class StatusBarController: NSHostingController<StatusBar> {
     

@@ -1,5 +1,6 @@
 //
 //  ShiftJISTests.swift
+//  FileEncodingTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import Foundation
 import Testing
-@testable import CotEditor
+@testable import FileEncoding
 
 struct ShiftJISTests {
     

@@ -1,5 +1,6 @@
 //
 //  FileEncoding.swift
+//  FileEncoding
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,23 +24,34 @@
 //  limitations under the License.
 //
 
-struct FileEncoding: Equatable, Hashable {
+import Foundation
+
+public struct FileEncoding: Equatable, Hashable, Sendable {
     
-    static let utf8 = FileEncoding(encoding: .utf8)
+    public static let utf8 = FileEncoding(encoding: .utf8)
     
-    var encoding: String.Encoding
-    var withUTF8BOM: Bool = false
+    public var encoding: String.Encoding
+    public var withUTF8BOM: Bool = false
+    
+    
+    public init(encoding: String.Encoding, withUTF8BOM: Bool = false) {
+        
+        assert(encoding == .utf8 || !withUTF8BOM)
+        
+        self.encoding = encoding
+        self.withUTF8BOM = withUTF8BOM
+    }
     
     
     /// Human-readable encoding name by taking UTF-8 BOM into consideration.
     ///
     /// The `withUTF8BOM` flag is just ignored when `encoding` is other than UTF-8.
-    var localizedName: String {
+    public var localizedName: String {
         
         let localizedName = String.localizedName(of: self.encoding)
         
         return (self.encoding == .utf8 && self.withUTF8BOM)
-            ? String(localized: "\(localizedName) with BOM", comment: "encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)")
+            ? String(localized: "\(localizedName) with BOM", bundle: .module, comment: "encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)")
             : localizedName
     }
 }

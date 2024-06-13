@@ -11,11 +11,15 @@ let package = Package(
     ],
     products: [
         .library(name: "CharacterInfo", targets: ["CharacterInfo"]),
+        .library(name: "FileEncoding", targets: ["FileEncoding"]),
         .library(name: "FilePermissions", targets: ["FilePermissions"]),
     ],
     targets: [
         .target(name: "CharacterInfo", resources: [.process("Resources")]),
         .testTarget(name: "CharacterInfoTests", dependencies: ["CharacterInfo"]),
+        
+        .target(name: "FileEncoding", resources: [.process("Resources")]),
+        .testTarget(name: "FileEncodingTests", dependencies: ["FileEncoding"], resources: [.process("Resources")]),
         
         .target(name: "FilePermissions"),
         .testTarget(name: "FilePermissionsTests", dependencies: ["FilePermissions"]),

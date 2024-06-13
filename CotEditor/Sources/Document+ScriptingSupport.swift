@@ -25,6 +25,7 @@
 //
 
 import AppKit
+import FileEncoding
 
 private enum OSALineEnding: FourCharCode {
     

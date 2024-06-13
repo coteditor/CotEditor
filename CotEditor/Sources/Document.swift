@@ -30,6 +30,7 @@ import Combine
 import SwiftUI
 import UniformTypeIdentifiers
 import OSLog
+import FileEncoding
 import FilePermissions
 
 @Observable final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging {

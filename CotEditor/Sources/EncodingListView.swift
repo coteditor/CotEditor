@@ -25,6 +25,7 @@
 
 import SwiftUI
 import Observation
+import FileEncoding
 
 private struct EncodingItem: Identifiable {
     

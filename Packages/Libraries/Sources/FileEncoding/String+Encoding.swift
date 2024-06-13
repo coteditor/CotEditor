@@ -1,5 +1,6 @@
 //
 //  String+Encodings.swift
+//  FileEncoding
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,54 +27,13 @@
 
 import Foundation
 
-extension Unicode {
-    
-    /// Byte order mark.
-    enum BOM: CaseIterable {
-        
-        case utf8
-        case utf32BigEndian
-        case utf32LittleEndian
-        case utf16BigEndian
-        case utf16LittleEndian
-        
-        
-        var sequence: [UInt8] {
-            
-            switch self {
-                case .utf8: [0xEF, 0xBB, 0xBF]
-                case .utf32BigEndian: [0x00, 0x00, 0xFE, 0xFF]
-                case .utf32LittleEndian: [0xFF, 0xFE, 0x00, 0x00]
-                case .utf16BigEndian: [0xFE, 0xFF]
-                case .utf16LittleEndian: [0xFF, 0xFE]
-            }
-        }
-        
-        
-        var encoding: String.Encoding {
-            
-            switch self {
-                case .utf8: .utf8
-                case .utf32BigEndian, .utf32LittleEndian: .utf32
-                case .utf16BigEndian, .utf16LittleEndian: .utf16
-            }
-        }
-    }
-}
-
-
-
-// MARK: -
-
-extension String.Encoding {
+public extension String.Encoding {
     
     init(cfEncoding: CFStringEncoding) {
         
         self.init(rawValue: CFStringConvertEncodingToNSStringEncoding(cfEncoding))
     }
     
-    
-    // MARK: Public Methods
     
     /// The name of the IANA registry “charset” that is the closest mapping to the encoding.
     var ianaCharSetName: String? {
@@ -86,7 +46,7 @@ extension String.Encoding {
 
 
 
-extension String {
+public extension String {
     
     /// An array of the encodings that strings support in the application’s environment. `nil` for section divider.
     static let sortedAvailableStringEncodings: [String.Encoding?] = Self.availableStringEncodings
@@ -125,7 +85,7 @@ extension String {
     ///   - suggestedEncodings: The prioritized list of encoding candidates.
     ///   - usedEncoding: The encoding used to interpret the data.
     /// - Throws: `CocoaError(.fileReadUnknownStringEncoding)`
-    init(data: Data, suggestedEncodings: [String.Encoding], usedEncoding: inout String.Encoding?) throws {
+    init(data: Data, suggestedEncodings: [String.Encoding], usedEncoding: inout String.Encoding?) throws(CocoaError) {
         
         // detect encoding from so-called "magic numbers"
         for bom in Unicode.BOM.allCases {
@@ -151,9 +111,6 @@ extension String {
         throw CocoaError(.fileReadUnknownStringEncoding)
     }
     
-    
-    
-    // MARK: Public Methods
     
     /// Scans an possible encoding declaration in the string.
     ///
@@ -186,52 +143,5 @@ extension String {
     func convertYenSign(for encoding: String.Encoding) -> String {
         
         "¥".canBeConverted(to: encoding) ? self : self.replacing("¥", with: "\\")
-    }
-}
-
-
-
-// MARK: - Xattr Encoding
-
-extension Data {
-    
-    /// Decodes `com.apple.TextEncoding` extended file attribute to encoding.
-    var decodingXattrEncoding: String.Encoding? {
-        
-        guard let string = String(data: self, encoding: .ascii) else { return nil }
-        
-        let components = string.split(separator: ";")
-        
-        guard
-            let cfEncoding: CFStringEncoding = if let cfEncodingNumber = components[safe: 1] {
-                UInt32(cfEncodingNumber)
-            } else if let ianaCharSetName = components[safe: 0] {
-                CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
-            } else {
-                nil
-            },
-        cfEncoding != kCFStringEncodingInvalidId
-        else { return nil }
-        
-        return String.Encoding(cfEncoding: cfEncoding)
-    }
-}
-
-
-extension String.Encoding {
-    
-    /// Encodes encoding to data for `com.apple.TextEncoding` extended file attribute.
-    var xattrEncodingData: Data? {
-        
-        let cfEncoding = CFStringConvertNSStringEncodingToEncoding(self.rawValue)
-        
-        guard
-            cfEncoding != kCFStringEncodingInvalidId,
-            let ianaCharSetName = CFStringConvertEncodingToIANACharSetName(cfEncoding)
-        else { return nil }
-        
-        let string = String(format: "%@;%u", ianaCharSetName as String, cfEncoding)
-        
-        return string.data(using: .ascii)
     }
 }
