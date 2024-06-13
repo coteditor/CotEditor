@@ -1725,7 +1725,6 @@
 				2A3F18F8203270BE002F1CA7 /* UI Tests */,
 				2A7E06EB2C1A79B600E5396D /* Packages */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
-				2A3853662C1AF42C00C282C0 /* Frameworks */,
 			);
 			name = CotEditor;
 			sourceTree = "<group>";
@@ -1777,13 +1776,6 @@
 			);
 			name = Resources;
 			path = CotEditor;
-			sourceTree = "<group>";
-		};
-		2A3853662C1AF42C00C282C0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		2A39AC942B8CE43100E216C9 /* Accessory Views */ = {
