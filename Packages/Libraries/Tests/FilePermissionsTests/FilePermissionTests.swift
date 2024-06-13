@@ -1,6 +1,6 @@
 //
 //  FilePermissionTests.swift
-//  Tests
+//  FilePermissionTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 //
 
 import Testing
-@testable import CotEditor
+@testable import FilePermissions
 
 struct FilePermissionTests {
     

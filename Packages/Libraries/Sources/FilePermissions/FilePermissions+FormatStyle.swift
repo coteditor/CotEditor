@@ -1,5 +1,6 @@
 //
 //  FilePermissions+FormatStyle.swift
+//  FilePermissions
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,11 +26,11 @@
 
 import Foundation
 
-extension FilePermissions {
+public extension FilePermissions {
     
-    struct FormatStyle: Codable {
+    struct FormatStyle: Codable, Sendable {
         
-        enum Style: Codable {
+        public enum Style: Codable, Sendable {
             
             /// Octal presentation like `644`
             case octal
@@ -56,7 +57,7 @@ extension FilePermissions {
 extension FilePermissions.FormatStyle: FormatStyle {
     
     /// Formats permission number to human readable permission expression.
-    func format(_ value: FilePermissions) -> String {
+    public func format(_ value: FilePermissions) -> String {
         
         switch self.style {
             case .octal:
@@ -70,7 +71,7 @@ extension FilePermissions.FormatStyle: FormatStyle {
 }
 
 
-extension FilePermissions {
+public extension FilePermissions {
     
     /// Converts `self` to its textual representation.
     ///
@@ -92,7 +93,7 @@ extension FilePermissions {
 }
 
 
-extension FormatStyle where Self == FilePermissions.FormatStyle {
+public extension FormatStyle where Self == FilePermissions.FormatStyle {
     
     /// Format POSIX permission mask in String.
     static var filePermissions: FilePermissions.FormatStyle { self.filePermissions() }

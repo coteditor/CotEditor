@@ -26,6 +26,7 @@
 import SwiftUI
 import Observation
 import Combine
+import FilePermissions
 
 final class DocumentInspectorViewController: NSHostingController<DocumentInspectorView>, DocumentOwner {
     

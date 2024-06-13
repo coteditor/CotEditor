@@ -11,10 +11,14 @@ let package = Package(
     ],
     products: [
         .library(name: "CharacterInfo", targets: ["CharacterInfo"]),
+        .library(name: "FilePermissions", targets: ["FilePermissions"]),
     ],
     targets: [
         .target(name: "CharacterInfo", resources: [.process("Resources")]),
         .testTarget(name: "CharacterInfoTests", dependencies: ["CharacterInfo"]),
+        
+        .target(name: "FilePermissions"),
+        .testTarget(name: "FilePermissionsTests", dependencies: ["FilePermissions"]),
     ],
     swiftLanguageVersions: [.v6]
 )

@@ -1,5 +1,6 @@
 //
 //  FilePermissions.swift
+//  FilePermissions
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,23 +24,29 @@
 //  limitations under the License.
 //
 
-struct FilePermissions: Equatable {
+public struct FilePermissions: Equatable, Sendable {
     
-    var user: Permission
-    var group: Permission
-    var others: Permission
+    public var user: Permission
+    public var group: Permission
+    public var others: Permission
     
     
-    struct Permission: OptionSet {
+    public struct Permission: OptionSet, Sendable {
         
-        let rawValue: Int16
+        public let rawValue: Int16
         
-        static let read    = Self(rawValue: 0b100)
-        static let write   = Self(rawValue: 0b010)
-        static let execute = Self(rawValue: 0b001)
+        public static let read    = Self(rawValue: 0b100)
+        public static let write   = Self(rawValue: 0b010)
+        public static let execute = Self(rawValue: 0b001)
         
         
-        var symbolic: String {
+        public init(rawValue: Int16) {
+            
+            self.rawValue = rawValue
+        }
+        
+        
+        public var symbolic: String {
             
             (self.contains(.read) ? "r" : "-") +
             (self.contains(.write) ? "w" : "-") +
@@ -48,7 +55,7 @@ struct FilePermissions: Equatable {
     }
     
     
-    init(mask: Int16) {
+    public init(mask: Int16) {
         
         self.user   = Permission(rawValue: (mask & 0b111 << 6) >> 6)
         self.group  = Permission(rawValue: (mask & 0b111 << 3) >> 3)
@@ -57,7 +64,7 @@ struct FilePermissions: Equatable {
     
     
     /// The `Int16` value.
-    var mask: Int16 {
+    public var mask: Int16 {
         
         let userMask = self.user.rawValue << 6
         let groupMask = self.group.rawValue << 3
@@ -68,14 +75,14 @@ struct FilePermissions: Equatable {
     
     
     /// The human-readable permission expression like “rwxr--r--”.
-    var symbolic: String {
+    public var symbolic: String {
         
         self.user.symbolic + self.group.symbolic + self.others.symbolic
     }
     
     
     /// The octal value expression like “644”.
-    var octal: String {
+    public var octal: String {
         
         String(self.mask, radix: 8)
     }
@@ -85,7 +92,7 @@ struct FilePermissions: Equatable {
 
 extension FilePermissions: CustomStringConvertible {
     
-    var description: String {
+    public var description: String {
         
         self.symbolic
     }

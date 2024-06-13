@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import FilePermissions
 
 extension FileAttributeKey {
     
