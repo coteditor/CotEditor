@@ -1,5 +1,6 @@
 //
 //  Unicode.Scalar+Information.swift
+//  CharacterInfo
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 1024jp
+//  © 2015-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,7 +24,7 @@
 //  limitations under the License.
 //
 
-extension Unicode.Scalar {
+public extension Unicode.Scalar {
     
     /// Code point string in format like `U+000F`.
     var codePoint: String {
@@ -76,7 +77,7 @@ extension Unicode.Scalar {
             .replacing(/\ ([A-Z])$/) { "-\($0.1)" }
             .replacing("Description", with: "Desc.")
         
-        return String(localized: String.LocalizationValue(key), table: "UnicodeBlock")
+        return String(localized: String.LocalizationValue(key), table: "UnicodeBlock", bundle: .module)
     }
 }
 
@@ -84,7 +85,7 @@ extension Unicode.Scalar {
 
 // MARK: -
 
-extension UTF32.CodeUnit {
+public extension UTF32.CodeUnit {
     
     /// Returns Unicode name.
     ///

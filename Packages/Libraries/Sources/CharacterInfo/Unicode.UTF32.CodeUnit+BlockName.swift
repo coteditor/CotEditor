@@ -1,5 +1,6 @@
 //
 //  Unicode.UTF32.CodeUnit+BlockName.swift
+//  CharacterInfo
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,7 +24,7 @@
 //  limitations under the License.
 //
 
-extension Unicode.UTF32.CodeUnit {
+public extension Unicode.UTF32.CodeUnit {
     
     /// Unicode block name.
     ///

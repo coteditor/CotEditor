@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import CharacterInfo
 import SwiftUI
 
 struct CharacterInspectorView: View {
@@ -233,6 +234,28 @@ private struct DeprecatedBadge: View {
             .padding(.horizontal, 3)
             .overlay(RoundedRectangle(cornerRadius: 3).stroke(.secondary))
             .foregroundStyle(.secondary)
+    }
+}
+
+
+private extension CharacterInfo {
+    
+    var localizedDescription: String? {
+        
+        let unicodes = self.character.unicodeScalars
+        if self.isComplex {
+            return String(localized: "<a letter consisting of \(unicodes.count) characters>",
+                          table: "CharacterInspector",
+                          comment: "%lld is always 2 or more.")
+        }
+        
+        guard var unicodeName = unicodes.first?.name else { return nil }
+        
+        if self.isVariant, let variantDescription = unicodes.last?.variantDescription {
+            unicodeName += String(localized: " (\(variantDescription))")
+        }
+        
+        return unicodeName
     }
 }
 

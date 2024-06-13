@@ -1,6 +1,6 @@
 //
-//  CharacterInfoTests.swift
-//  Tests
+//  UnicodeCharacterTests.swift
+//  CharacterInfoTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -24,26 +24,10 @@
 //  limitations under the License.
 //
 
-import AppKit
 import Testing
-@testable import CotEditor
+@testable import CharacterInfo
 
-struct CharacterInfoTests {
-    
-    // MARK: UTF32.CodeUnit Extension Tests
-    
-    @Test func singleSurrogate() {
-        
-        let character: UTF32.CodeUnit = 0xD83D
-        
-        #expect(character.unicodeName == "<lead surrogate-D83D>")
-        #expect(character.blockName == "High Surrogates")
-        
-        #expect(Unicode.Scalar(character) == nil)
-    }
-    
-    
-    // MARK: - UnicodeCharacter Tests
+struct UnicodeCharacterTests {
     
     @Test func singleChar() {
         
@@ -97,8 +81,8 @@ struct CharacterInfoTests {
         #expect(spacePictureCharacter.name == "SYMBOL FOR SPACE")
         #expect(spaceCharacter.pictureRepresentation == spacePictureCharacter)
         
-        // test DELETE
-        let deleteCharacter = try #require(Unicode.Scalar(NSDeleteCharacter))
+        // test DELETE (NSDeleteCharacter)
+        let deleteCharacter = try #require(Unicode.Scalar(0x007f))
         let deletePictureCharacter = Unicode.Scalar("␡")
         #expect(deleteCharacter.name == "DELETE")
         #expect(deletePictureCharacter.name == "SYMBOL FOR DELETE")
@@ -108,48 +92,5 @@ struct CharacterInfoTests {
         let exclamationCharacter = try #require(Unicode.Scalar(0x0021))
         #expect(exclamationCharacter.name == "EXCLAMATION MARK")
         #expect(exclamationCharacter.pictureRepresentation == nil)
-    }
-    
-    
-    // MARK: - CharacterInfo Tests
-    
-    @Test func singleCharacterWithVSInfo() {
-        
-        let charInfo = CharacterInfo(character: "☺︎")
-        
-        #expect(charInfo.character == "☺︎")
-        #expect(!charInfo.isComplex)
-        #expect(charInfo.character.unicodeScalars.map(\.codePoint) == ["U+263A", "U+FE0E"])
-        #expect(charInfo.character.unicodeScalars.map(\.name) == ["WHITE SMILING FACE", "VARIATION SELECTOR-15"])
-        #expect(charInfo.localizedDescription == "WHITE SMILING FACE (Text Style)")
-    }
-    
-    
-    @Test func combiningCharacterInfo() {
-        
-        let charInfo = CharacterInfo(character: "1️⃣")
-        
-        #expect(charInfo.isComplex)
-        #expect(charInfo.character.unicodeScalars.map(\.codePoint) == ["U+0031", "U+FE0F", "U+20E3"])
-        #expect(charInfo.localizedDescription == "<a letter consisting of 3 characters>")
-    }
-    
-    
-    @Test func nationalIndicatorInfo() {
-        
-        let charInfo = CharacterInfo(character: "🇯🇵")
-        
-        #expect(charInfo.isComplex)
-        #expect(charInfo.character.unicodeScalars.map(\.codePoint) == ["U+1F1EF", "U+1F1F5"])
-    }
-    
-    
-    @Test func controlCharacterInfo() {
-        
-        let charInfo = CharacterInfo(character: " ")
-        
-        #expect(charInfo.character == " ")
-        #expect(charInfo.pictureCharacter == "␠")
-        #expect(charInfo.character.unicodeScalars.map(\.name) == ["SPACE"])
     }
 }

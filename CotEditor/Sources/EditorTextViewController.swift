@@ -26,6 +26,7 @@
 
 import AppKit
 import Combine
+import CharacterInfo
 import SwiftUI
 
 final class EditorTextViewController: NSViewController, NSServicesMenuRequestor, NSTextViewDelegate {

@@ -1,5 +1,6 @@
 //
 //  Unicode.GeneralCategory.swift
+//  CharacterInfo
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2023 1024jp
+//  © 2020-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,7 +24,7 @@
 //  limitations under the License.
 //
 
-extension Unicode.GeneralCategory {
+public extension Unicode.GeneralCategory {
     
     /// The long value aliases for the category.
     var longName: String {
