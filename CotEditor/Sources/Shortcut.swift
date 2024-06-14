@@ -122,8 +122,8 @@ private extension [ModifierKey] {
 
 struct Shortcut {
     
-    let keyEquivalent: String
-    let modifiers: NSEvent.ModifierFlags
+    var keyEquivalent: String
+    var modifiers: NSEvent.ModifierFlags
     
     
     // MARK: Lifecycle
