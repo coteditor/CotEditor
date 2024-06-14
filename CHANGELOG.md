@@ -6,6 +6,7 @@
 ### Implements
 
 - Update the Markdown syntax to fix highlighting strikethrough.
+- Disable color wells in the theme editor when they use the system color.
 - Improve the User Guide contents.
 - [non-AppStore ver.] Update Sparkle from 2.6.2 to 2.6.3.
 

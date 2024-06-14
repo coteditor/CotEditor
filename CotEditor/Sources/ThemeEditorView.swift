@@ -169,6 +169,7 @@ private struct SystemColorPicker: View {
                 Text(self.label)
                     .accessibilityLabeledPair(role: .label, id: "color", in: self.accessibility)
             }
+            .disabled(self.selection.usesSystemSetting)
             Toggle(String(localized: "Use system color", table: "ThemeEditor", comment: "toggle button label"), isOn: $selection.usesSystemSetting)
                 .controlSize(.small)
                 .accessibilityLabeledPair(role: .content, id: "color", in: self.accessibility)
