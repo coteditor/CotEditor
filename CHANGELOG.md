@@ -11,6 +11,7 @@
 - Add new “Select Enclosing Symbols” and “Split Selection by Lines” commands to the Edit > Select menu.
 - Add new “Show in Finder” command to the File menu.
 - Add new “Create Document in CotEditor” shortcut action.
+- Add the “Highlight” color to the CotEditor theme format.
 - Support the alpha channel for the current line in theme settings.
 - Add Assembly syntax.
 - Add new “Resinifictrix (Dark)” theme.

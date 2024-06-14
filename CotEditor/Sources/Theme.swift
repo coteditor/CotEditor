@@ -73,6 +73,7 @@ struct Theme: Equatable {
     var selection: SystemDefaultStyle
     var insertionPoint: SystemDefaultStyle
     var lineHighlight: Style
+    var highlight: SystemDefaultStyle
     
     var keywords: Style
     var commands: Style
@@ -101,6 +102,7 @@ struct Theme: Equatable {
         self.selection = SystemDefaultStyle(color: .selectedTextBackgroundColor, usesSystemSetting: true)
         self.insertionPoint = SystemDefaultStyle(color: .textColor, usesSystemSetting: true)
         self.lineHighlight = Style(color: .init(white: 0.95, alpha: 1))
+        self.highlight = SystemDefaultStyle(color: .controlAccentColor, usesSystemSetting: true)
         
         self.keywords = Style(color: .gray)
         self.commands = Style(color: .gray)
@@ -164,6 +166,13 @@ struct Theme: Equatable {
             
             return NSColor(calibratedWhite: color.lightnessComponent, alpha: 1.0)
         }
+    }
+    
+    
+    /// Highlight color to use.
+    var highlightColor: NSColor {
+        
+        self.highlight.color(systemColor: .controlAccentColor, forDark: self.isDarkTheme)
     }
 }
 
