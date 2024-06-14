@@ -26,6 +26,7 @@
 import AppKit
 import SwiftUI
 import ColorCode
+import Defaults
 
 @objc protocol ColorCodeReceiver: AnyObject {
     

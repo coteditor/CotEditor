@@ -1,5 +1,6 @@
 //
 //  UserDefaults+DefaultKey.swift
+//  Defaults
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import Foundation
 
-extension UserDefaults {
+public extension UserDefaults {
     
     /// Restores default value to the factory default.
     ///

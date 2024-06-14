@@ -1,5 +1,6 @@
 //
 //  DefaultKey.swift
+//  Defaults
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,46 +24,52 @@
 //  limitations under the License.
 //
 
-class DefaultKeys: RawRepresentable, Hashable, CustomStringConvertible {
+public class DefaultKeys: RawRepresentable {
     
-    final let rawValue: String
+    public final let rawValue: String
     
     
-    required init(rawValue: String) {
+    public required init(rawValue: String) {
         
         self.rawValue = rawValue
     }
     
     
-    init(_ key: String) {
+    public init(_ key: String) {
         
         self.rawValue = key
     }
     
+}
+
+
+extension DefaultKeys: Hashable {
     
-    final func hash(into hasher: inout Hasher) {
+    public final func hash(into hasher: inout Hasher) {
         
         hasher.combine(self.rawValue)
     }
+}
+
+
+extension DefaultKeys: CustomStringConvertible {
     
-    
-    final var description: String {
+    public final var description: String {
         
         self.rawValue
     }
 }
 
 
-
-class DefaultKey<Value>: DefaultKeys, @unchecked Sendable {
+public class DefaultKey<Value>: DefaultKeys, @unchecked Sendable {
     
-    enum Error: Swift.Error {
+    public enum Error: Swift.Error, Sendable {
         
         case invalidValue
     }
     
     
-    func newValue(from value: Any?) throws -> Value {
+    public func newValue(from value: Any?) throws -> Value {
         
         // -> The second Optional cast is important for in case if `Value` is already an optional type.
         guard let newValue = value as? Value ?? Optional<Any>.none as? Value else {
@@ -76,9 +83,9 @@ class DefaultKey<Value>: DefaultKeys, @unchecked Sendable {
 
 // Specialize RawRepresentable types to use them for UserDefaults observation using UserDefaults.Publisher.
 // Otherwise, the type inference for RawRepresentable doesn't work unfortunately.
-final class RawRepresentableDefaultKey<Value>: DefaultKey<Value>, @unchecked Sendable where Value: RawRepresentable {
+public final class RawRepresentableDefaultKey<Value>: DefaultKey<Value>, @unchecked Sendable where Value: RawRepresentable {
     
-    override func newValue(from value: Any?) throws -> Value {
+    public override func newValue(from value: Any?) throws -> Value {
         
         guard let newValue = (value as? Value.RawValue).flatMap(Value.init) else {
             throw Error.invalidValue

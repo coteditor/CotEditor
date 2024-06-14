@@ -24,11 +24,12 @@
 //
 
 import SwiftUI
+import Defaults
 import UnicodeNormalization
 
-extension UnicodeNormalizationForm: DefaultInitializable {
+extension UnicodeNormalizationForm: @retroactive DefaultInitializable {
 
-    static let defaultValue: Self = .nfc
+    public static let defaultValue: Self = .nfc
 }
 
 

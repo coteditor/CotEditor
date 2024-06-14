@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Defaults
 import FileEncoding
 
 struct FormatSettingsView: View {

@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Defaults
 
 struct GeneralSettingsView: View {
     

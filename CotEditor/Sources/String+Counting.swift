@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import Defaults
 import UnicodeNormalization
 
 extension StringProtocol {

@@ -26,6 +26,7 @@
 import AppKit
 import Combine
 import SwiftUI
+import Defaults
 
 final class MultipleReplaceViewController: NSViewController {
     

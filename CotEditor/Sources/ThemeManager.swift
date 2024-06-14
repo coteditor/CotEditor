@@ -27,6 +27,7 @@ import AppKit
 import Combine
 import Foundation
 import UniformTypeIdentifiers
+import Defaults
 
 @MainActor @objc protocol ThemeChanging: AnyObject {
     

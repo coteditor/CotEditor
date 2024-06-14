@@ -1,5 +1,6 @@
 //
 //  UserDefaults.Publisher.swift
+//  Defaults
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2023 1024jp
+//  © 2020-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,7 +27,7 @@
 import Combine
 import Foundation
 
-extension UserDefaults {
+public extension UserDefaults {
     
     /// Publishes values when the value identified by a default key changes.
     ///
@@ -43,11 +44,11 @@ extension UserDefaults {
     
     struct Publisher<Value: Equatable>: Combine.Publisher {
         
-        typealias Output = Value
-        typealias Failure = Never
+        public typealias Output = Value
+        public typealias Failure = Never
         
         
-        // MARK: Public Properties
+        // MARK: Internal Properties
         
         let userDefaults: UserDefaults
         let key: DefaultKey<Value>
@@ -57,7 +58,7 @@ extension UserDefaults {
         
         // MARK: Publisher Methods
         
-        func receive(subscriber: some Combine.Subscriber<Output, Failure>) {
+        public func receive(subscriber: some Combine.Subscriber<Output, Failure>) {
             
             let subscription = Subscription(subscriber: subscriber, userDefaults: self.userDefaults, key: self.key)
             

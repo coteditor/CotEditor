@@ -27,6 +27,7 @@
 import AppKit
 import Observation
 import Combine
+import Defaults
 import FileEncoding
 
 @objc protocol EncodingChanging: AnyObject {

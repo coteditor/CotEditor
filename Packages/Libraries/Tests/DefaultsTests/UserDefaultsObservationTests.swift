@@ -1,6 +1,6 @@
 //
 //  UserDefaultsObservationTests.swift
-//  Tests
+//  DefaultsTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -27,7 +27,7 @@
 import Foundation
 import Combine
 import Testing
-@testable import CotEditor
+@testable import Defaults
 
 struct UserDefaultsObservationTests {
     

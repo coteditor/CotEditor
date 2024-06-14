@@ -25,6 +25,7 @@
 
 import SwiftUI
 import StoreKit
+import Defaults
 
 struct DonationSettingsView: View {
     

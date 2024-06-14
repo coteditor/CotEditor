@@ -26,8 +26,9 @@
 
 import AppKit
 import Combine
-import CharacterInfo
 import SwiftUI
+import CharacterInfo
+import Defaults
 
 final class EditorTextViewController: NSViewController, NSServicesMenuRequestor, NSTextViewDelegate {
     

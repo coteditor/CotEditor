@@ -26,6 +26,7 @@
 import AppKit
 import SwiftUI
 import Observation
+import Defaults
 
 final class FindPanelResultViewController: NSHostingController<FindPanelResultView> {
     

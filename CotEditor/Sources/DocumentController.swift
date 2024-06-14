@@ -28,6 +28,7 @@ import AppKit
 import Combine
 import SwiftUI
 import UniformTypeIdentifiers
+import Defaults
 
 protocol AdditionalDocumentPreparing: NSDocument {
     

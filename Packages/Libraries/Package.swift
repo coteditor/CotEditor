@@ -11,6 +11,7 @@ let package = Package(
     ],
     products: [
         .library(name: "CharacterInfo", targets: ["CharacterInfo"]),
+        .library(name: "Defaults", targets: ["Defaults"]),
         .library(name: "FileEncoding", targets: ["FileEncoding"]),
         .library(name: "FilePermissions", targets: ["FilePermissions"]),
         .library(name: "UnicodeNormalization", targets: ["UnicodeNormalization"]),
@@ -18,6 +19,9 @@ let package = Package(
     targets: [
         .target(name: "CharacterInfo", resources: [.process("Resources")]),
         .testTarget(name: "CharacterInfoTests", dependencies: ["CharacterInfo"]),
+        
+        .target(name: "Defaults"),
+        .testTarget(name: "DefaultsTests", dependencies: ["Defaults"]),
         
         .target(name: "FileEncoding", resources: [.process("Resources")]),
         .testTarget(name: "FileEncodingTests", dependencies: ["FileEncoding"], resources: [.process("Resources")]),

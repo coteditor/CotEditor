@@ -27,6 +27,7 @@
 import AppKit
 import Combine
 import Foundation
+import Defaults
 
 @MainActor @objc protocol SnippetInsertable: AnyObject {
     

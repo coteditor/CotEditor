@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import Defaults
 
 struct Console {
     

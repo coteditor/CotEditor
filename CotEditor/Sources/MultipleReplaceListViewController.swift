@@ -28,6 +28,7 @@ import AudioToolbox
 import Combine
 import UniformTypeIdentifiers
 import OSLog
+import Defaults
 
 final class MultipleReplaceListViewController: NSViewController, NSMenuItemValidation {
     

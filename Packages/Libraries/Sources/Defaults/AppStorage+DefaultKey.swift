@@ -1,5 +1,6 @@
 //
 //  AppStorage+DefaultKey.swift
+//  Defaults
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import SwiftUI
 
-extension AppStorage {
+public extension AppStorage {
     
     /// Creates a property that can read and write to a boolean user default.
     ///
