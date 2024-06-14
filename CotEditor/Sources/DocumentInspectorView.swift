@@ -102,7 +102,7 @@ struct DocumentInspectorView: View {
     
     @MainActor @Observable final class Model {
         
-        fileprivate var attributes: DocumentFile.Attributes?
+        fileprivate var attributes: FileAttributes?
         fileprivate var fileURL: URL?
         fileprivate var textSettings: TextSettings?
         fileprivate var countResult: EditorCounter.Result?
@@ -157,7 +157,7 @@ struct DocumentInspectorView: View {
 
 private struct DocumentFileView: View {
     
-    var attributes: DocumentFile.Attributes?
+    var attributes: FileAttributes?
     var fileURL: URL?
     
     @State private var isExpanded = true

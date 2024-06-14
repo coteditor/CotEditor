@@ -62,7 +62,7 @@ import FilePermissions
     @ObservationIgnored @Published private(set) var fileEncoding: FileEncoding
     @ObservationIgnored @Published private(set) var lineEnding: LineEnding
     @ObservationIgnored @Published private(set) var mode: Mode
-    private(set) var fileAttributes: DocumentFile.Attributes?
+    private(set) var fileAttributes: FileAttributes?
     
     let lineEndingScanner: LineEndingScanner
     let counter = EditorCounter()
@@ -319,62 +319,68 @@ import FilePermissions
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        let strategy: DocumentFile.EncodingStrategy = {
+        let data = try Data(contentsOf: url)  // FILE_READ
+        let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
+        let extendedAttributes = ExtendedFileAttributes(dictionary: attributes)
+        
+        let strategy: String.DecodingStrategy = {
             if let encoding = self.readingEncoding {
                 return .specific(encoding)
             }
             
-            var encodingPriority = EncodingManager.shared.fileEncodings.compactMap { $0?.encoding }
+            var encodingCandidates = EncodingManager.shared.fileEncodings.compactMap { $0?.encoding }
             let isInitialOpen = (self.fileData == nil) && (self.textStorage.length == 0)
             if !isInitialOpen {  // prioritize the current encoding
-                encodingPriority.insert(self.fileEncoding.encoding, at: 0)
+                encodingCandidates.insert(self.fileEncoding.encoding, at: 0)
             }
             
-            return .automatic(priority: encodingPriority, refersToTag: UserDefaults.standard[.referToEncodingTag])
+            return .automatic(.init(candidates: encodingCandidates,
+                                    xattrEncoding: extendedAttributes.encoding,
+                                    tagScanLength: UserDefaults.standard[.referToEncodingTag] ? 2000 : nil))
         }()
         
         // .readingEncoding is only valid once
         self.readingEncoding = nil
         
-        let file = try DocumentFile(fileURL: url, encodingStrategy: strategy)  // FILE_ACCESS
+        let (string, fileEncoding) = try String.string(data: data, decodingStrategy: strategy)
         
         // store file data in order to check the file content identity in `presentedItemDidChange()`
-        self.fileData = file.data
+        self.fileData = data
         
         // use file attributes only if `fileURL` exists
         // -> The passed-in `url` in this method can point to a file that isn't the real document file,
         //    for example on resuming an unsaved document.
         if self.fileURL != nil {
-            self.fileAttributes = file.attributes
-            self.isExecutable = file.attributes.permissions.user.contains(.execute)
+            let fileAttributes = FileAttributes(dictionary: attributes)
+            self.fileAttributes = fileAttributes
+            self.isExecutable = fileAttributes.permissions.user.contains(.execute)
         }
         
         // do not save `com.apple.TextEncoding` extended attribute if it doesn't exists
-        self.shouldSaveEncodingXattr = (file.xattrEncoding != nil)
+        self.shouldSaveEncodingXattr = (extendedAttributes.encoding != nil)
         
         // set text orientation state
         // -> Ignore if no metadata found to avoid restoring to the horizontal layout while editing unwontedly.
-        if UserDefaults.standard[.savesTextOrientation], file.isVerticalText {
+        if UserDefaults.standard[.savesTextOrientation], extendedAttributes.isVerticalText {
             self.isVerticalText = true
         }
         
-        if file.allowsInconsistentLineEndings {
+        if extendedAttributes.allowsInconsistentLineEndings {
             self.suppressesInconsistentLineEndingAlert = true
-            self.invalidateRestorableState()
         }
         
         // update textStorage
-        self.textStorage.replaceContent(with: file.string)
+        self.textStorage.replaceContent(with: string)
         
         // set read values
-        self.fileEncoding = file.fileEncoding
+        self.fileEncoding = fileEncoding
         self.allowsLossySaving = false
         self.lineEnding = self.lineEndingScanner.majorLineEnding ?? self.lineEnding  // keep default if no line endings are found
         
         // determine syntax (only on the first file open)
         if self.windowForSheet == nil {
-            let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: file.string) ?? SyntaxName.none
-            self.setSyntax(name: syntaxName, isInitial: true)
+            let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: string)
+            self.setSyntax(name: syntaxName ?? SyntaxName.none, isInitial: true)
         }
     }
     
@@ -472,7 +478,7 @@ import FilePermissions
             // get the latest file attributes
             do {
                 let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_ACCESS
-                self.fileAttributes = DocumentFile.Attributes(dictionary: attributes)
+                self.fileAttributes = FileAttributes(dictionary: attributes)
             } catch {
                 assertionFailure(error.localizedDescription)
             }
@@ -1046,7 +1052,7 @@ import FilePermissions
     /// - Returns: A boolean whether the file did change and the content modification date if available.
     private func checkFileContentDidChange() throws -> (Bool, Date?) {  // nonisolated
         
-        guard var fileURL = self.fileURL else { throw CocoaError.error(.fileReadNoSuchFile) }
+        guard var fileURL = self.fileURL else { throw CocoaError(.fileReadNoSuchFile) }
         
         fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
         

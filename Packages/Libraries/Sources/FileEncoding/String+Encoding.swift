@@ -27,26 +27,35 @@
 
 import Foundation
 
-public extension String.Encoding {
-    
-    init(cfEncoding: CFStringEncoding) {
-        
-        self.init(rawValue: CFStringConvertEncodingToNSStringEncoding(cfEncoding))
-    }
-    
-    
-    /// The name of the IANA registry “charset” that is the closest mapping to the encoding.
-    var ianaCharSetName: String? {
-        
-        let cfEncoding = CFStringConvertNSStringEncodingToEncoding(self.rawValue)
-        
-        return CFStringConvertEncodingToIANACharSetName(cfEncoding) as String?
-    }
-}
-
-
-
 public extension String {
+    
+    enum DecodingStrategy: Sendable {
+        
+        case automatic(String.DetectionOptions)
+        case specific(String.Encoding)
+    }
+    
+    
+    struct DetectionOptions: Sendable {
+        
+        /// The list of encodings to test the encoding.
+        public var candidates: [String.Encoding]
+        
+        /// The text encoding read from the file's extended attributes.
+        public var xattrEncoding: String.Encoding?
+        
+        /// Maximal length to scan encoding declaration, or `nil` it not refer to encoding tag in the file content.
+        public var tagScanLength: Int?
+        
+        
+        public init(candidates: [String.Encoding], xattrEncoding: String.Encoding? = nil, tagScanLength: Int? = nil) {
+            
+            self.candidates = candidates
+            self.xattrEncoding = xattrEncoding
+            self.tagScanLength = tagScanLength
+        }
+    }
+    
     
     /// An array of the encodings that strings support in the application’s environment. `nil` for section divider.
     static let sortedAvailableStringEncodings: [String.Encoding?] = Self.availableStringEncodings
@@ -65,16 +74,82 @@ public extension String {
         }
     
     
-    /// Decodes data and remove UTF-8 BOM if exists.
+    /// Reads file at the given URL and initialize.
     ///
-    /// cf. <https://bugs.swift.org/browse/SR-10173>
-    init?(bomCapableData data: Data, encoding: String.Encoding) {
+    /// - Parameters:
+    ///   - data: The content file.
+    ///   - decodingStrategy: The text encoding to read the file.
+    static func string(data: Data, decodingStrategy: String.DecodingStrategy) throws(CocoaError) -> (String, FileEncoding) {
         
-        let bom = Unicode.BOM.utf8.sequence
-        let hasUTF8WithBOM = (encoding == .utf8 && data.starts(with: bom))
-        let bomFreeData = hasUTF8WithBOM ? data[bom.count...] : data
+        // decode Data to String
+        let content: String
+        let encoding: String.Encoding
+        switch decodingStrategy {
+            case .automatic(let options):
+                (content, encoding) = try String.string(data: data, options: options)
+            case .specific(let readingEncoding):
+                guard let string = String(bomCapableData: data, encoding: readingEncoding) else {
+                    throw CocoaError(.fileReadInapplicableStringEncoding, userInfo: [NSStringEncodingErrorKey: readingEncoding.rawValue])
+                }
+                content = string
+                encoding = readingEncoding
+        }
         
-        self.init(data: bomFreeData, encoding: encoding)
+        let hasUTF8BOM = (encoding == .utf8) && data.starts(with: Unicode.BOM.utf8.sequence)
+        let fileEncoding = FileEncoding(encoding: encoding, withUTF8BOM: hasUTF8BOM)
+        
+        return (content, fileEncoding)
+    }
+    
+    
+    /// Converts Yen signs (`U+00A5`) in consideration of the encoding.
+    ///
+    /// - Parameter encoding: The text encoding to keep compatibility.
+    /// - Returns: A new string converted all Yen signs.
+    func convertYenSign(for encoding: String.Encoding) -> String {
+        
+        "¥".canBeConverted(to: encoding) ? self : self.replacing("¥", with: "\\")
+    }
+}
+
+
+extension String {
+    
+    /// Reads string from data by detecting the text encoding automatically.
+    ///
+    /// - Parameters:
+    ///   - data: The data to encode.
+    ///   - options: The options for encoding detection.
+    /// - Returns: The decoded string and used encoding.
+    static func string(data: Data, options: String.DetectionOptions) throws(CocoaError) -> (String, String.Encoding) {
+        
+        // try interpreting with xattr encoding
+        if let xattrEncoding = options.xattrEncoding {
+            // just trust xattr encoding if content is empty
+            if let string = data.isEmpty ? "" : String(bomCapableData: data, encoding: xattrEncoding) {
+                return (string, xattrEncoding)
+            }
+        }
+        
+        // detect encoding from data
+        var usedEncoding: String.Encoding?
+        let string = try String(data: data, suggestedEncodings: options.candidates, usedEncoding: &usedEncoding)
+        
+        // try reading encoding declaration and take priority of it if it seems well
+        if let scanLength = options.tagScanLength,
+           let scannedEncoding = string.scanEncodingDeclaration(upTo: scanLength),
+           options.candidates.contains(scannedEncoding),
+           scannedEncoding != usedEncoding,
+           let string = String(bomCapableData: data, encoding: scannedEncoding)
+        {
+            return (string, scannedEncoding)
+        }
+        
+        guard let encoding = usedEncoding else {
+            throw CocoaError(.fileReadUnknownStringEncoding)
+        }
+        
+        return (string, encoding)
     }
     
     
@@ -112,6 +187,19 @@ public extension String {
     }
     
     
+    /// Decodes data and remove UTF-8 BOM if exists.
+    ///
+    /// cf. <https://bugs.swift.org/browse/SR-10173>
+    init?(bomCapableData data: Data, encoding: String.Encoding) {
+        
+        let bom = Unicode.BOM.utf8.sequence
+        let hasUTF8WithBOM = (encoding == .utf8 && data.starts(with: bom))
+        let bomFreeData = hasUTF8WithBOM ? data[bom.count...] : data
+        
+        self.init(data: bomFreeData, encoding: encoding)
+    }
+    
+    
     /// Scans an possible encoding declaration in the string.
     ///
     /// - Parameters:
@@ -133,15 +221,5 @@ public extension String {
         guard cfEncoding != kCFStringEncodingInvalidId else { return nil }
         
         return String.Encoding(cfEncoding: cfEncoding)
-    }
-    
-    
-    /// Converts Yen signs (`U+00A5`) in consideration of the encoding.
-    ///
-    /// - Parameter encoding: The text encoding to keep compatibility.
-    /// - Returns: A new string converted all Yen signs.
-    func convertYenSign(for encoding: String.Encoding) -> String {
-        
-        "¥".canBeConverted(to: encoding) ? self : self.replacing("¥", with: "\\")
     }
 }
