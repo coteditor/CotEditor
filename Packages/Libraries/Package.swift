@@ -15,6 +15,8 @@ let package = Package(
         .library(name: "FileEncoding", targets: ["FileEncoding"]),
         .library(name: "FilePermissions", targets: ["FilePermissions"]),
         .library(name: "UnicodeNormalization", targets: ["UnicodeNormalization"]),
+        
+        .library(name: "Shortcut", targets: ["Shortcut"]),
     ],
     targets: [
         .target(name: "CharacterInfo", resources: [.process("Resources")]),
@@ -31,6 +33,9 @@ let package = Package(
         
         .target(name: "UnicodeNormalization"),
         .testTarget(name: "UnicodeNormalizationTests", dependencies: ["UnicodeNormalization"]),
+        
+        .target(name: "Shortcut", resources: [.process("Resources")]),
+        .testTarget(name: "ShortcutTests", dependencies: ["Shortcut"]),
     ],
     swiftLanguageVersions: [.v6]
 )

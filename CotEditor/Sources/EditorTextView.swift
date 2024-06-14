@@ -27,6 +27,7 @@
 import AppKit
 import Combine
 import Defaults
+import Shortcut
 
 private extension NSAttributedString.Key {
     

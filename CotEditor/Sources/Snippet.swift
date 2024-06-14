@@ -24,6 +24,7 @@
 //
 
 import Foundation.NSString
+import Shortcut
 
 struct Snippet: Equatable, Identifiable {
     

@@ -1,6 +1,6 @@
 //
 //  ShortcutTests.swift
-//  Tests
+//  ShortcutTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -24,9 +24,9 @@
 //  limitations under the License.
 //
 
-import AppKit
+import AppKit.NSEvent
 import Testing
-@testable import CotEditor
+@testable import Shortcut
 
 struct ShortcutTests {
     
@@ -75,9 +75,12 @@ struct ShortcutTests {
         #expect(shortcut.modifiers == [.function])
         #expect(shortcut.symbol == "fn A" || shortcut.symbol == "🌐︎ A")
         #expect(shortcut.keySpecChars == "a", "The fn key should be ignored.")
+    }
+    
+    
+    @Test(arguments: ModifierKey.allCases) func symbol(modifierKey: ModifierKey) {
         
-        let symbolName = try #require(shortcut.modifierSymbolNames.first)
-        #expect(NSImage(systemSymbolName: symbolName, accessibilityDescription: nil) != nil)
+        #expect(NSImage(systemSymbolName: modifierKey.symbolName, accessibilityDescription: nil) != nil)
     }
     
     

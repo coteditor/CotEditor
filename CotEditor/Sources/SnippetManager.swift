@@ -28,6 +28,7 @@ import AppKit
 import Combine
 import Foundation
 import Defaults
+import Shortcut
 
 @MainActor @objc protocol SnippetInsertable: AnyObject {
     

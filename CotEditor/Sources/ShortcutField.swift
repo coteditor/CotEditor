@@ -27,6 +27,7 @@
 import SwiftUI
 import AppKit
 import Combine
+import Shortcut
 
 struct ShortcutField: NSViewRepresentable {
     

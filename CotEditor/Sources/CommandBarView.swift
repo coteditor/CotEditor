@@ -26,6 +26,7 @@
 import SwiftUI
 import AppKit
 import Observation
+import Shortcut
 
 struct CommandBarView: View {
     

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Shortcut
 
 struct ShortcutView: View {
     
@@ -63,16 +64,6 @@ struct ShortcutView: View {
 
 
 // MARK: - Preview
-
-private extension Shortcut {
-    
-    init(_ specialKey: NSEvent.SpecialKey, modifiers: NSEvent.ModifierFlags) {
-        
-        self.keyEquivalent = String(specialKey.unicodeScalar)
-        self.modifiers = modifiers
-    }
-}
-
 
 #Preview {
     VStack(alignment: .trailing, spacing: 6) {

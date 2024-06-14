@@ -25,6 +25,7 @@
 
 import AppKit
 import Foundation
+import Shortcut
 
 extension Shortcut {
     

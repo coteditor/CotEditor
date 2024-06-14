@@ -25,6 +25,7 @@
 //
 
 import AppKit
+import Shortcut
 
 @MainActor final class KeyBindingManager {
     

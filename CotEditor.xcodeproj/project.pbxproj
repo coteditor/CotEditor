@@ -187,6 +187,8 @@
 		2A2EEF192B778BB1001FEDFB /* WrappingHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2EEF172B778BB1001FEDFB /* WrappingHStack.swift */; };
 		2A30C7DB2B1380BE002F6381 /* ShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C7DA2B1380BE002F6381 /* ShortcutView.swift */; };
 		2A30C7DC2B1380BE002F6381 /* ShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C7DA2B1380BE002F6381 /* ShortcutView.swift */; };
+		2A32688E2C1B504500CF1AAF /* Shortcut in Frameworks */ = {isa = PBXBuildFile; productRef = 2A32688D2C1B504500CF1AAF /* Shortcut */; };
+		2A3268902C1B504B00CF1AAF /* Shortcut in Frameworks */ = {isa = PBXBuildFile; productRef = 2A32688F2C1B504B00CF1AAF /* Shortcut */; };
 		2A3268932C1C580800CF1AAF /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 2A3268922C1C580800CF1AAF /* Defaults */; };
 		2A3268952C1C580D00CF1AAF /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 2A3268942C1C580D00CF1AAF /* Defaults */; };
 		2A33D07E1D1C75B8005977B9 /* SyntaxValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D07D1D1C75B8005977B9 /* SyntaxValidationView.swift */; };
@@ -583,8 +585,6 @@
 		2AAB4C001D2444930049A68B /* InspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFE1D2444930049A68B /* InspectorViewController.swift */; };
 		2AACB1CD1D195ABD0073775B /* ShortcutField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutField.swift */; };
 		2AACB1CE1D195ABD0073775B /* ShortcutField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutField.swift */; };
-		2AAD61EC1D2A4CE5008FE772 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */; };
-		2AAD61ED1D2A4CE5008FE772 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */; };
 		2AAD61F01D2B0856008FE772 /* FuzzyRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EF1D2B0856008FE772 /* FuzzyRange.swift */; };
 		2AAD61F11D2B0856008FE772 /* FuzzyRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EF1D2B0856008FE772 /* FuzzyRange.swift */; };
 		2AAD61F41D2BA0E0008FE772 /* OutlineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */; };
@@ -595,8 +595,6 @@
 		2AAD61FD1D2BD102008FE772 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61FB1D2BD102008FE772 /* String+Additions.swift */; };
 		2AAE8E622AF8AE3B008954B5 /* Syntax+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAE8E612AF8AE3B008954B5 /* Syntax+Codable.swift */; };
 		2AAE8E632AF8AE3B008954B5 /* Syntax+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAE8E612AF8AE3B008954B5 /* Syntax+Codable.swift */; };
-		2AAF6E9129BB8B45003DFF4B /* NSMenuItem+Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAF6E9029BB8B45003DFF4B /* NSMenuItem+Shortcut.swift */; };
-		2AAF6E9229BB8B45003DFF4B /* NSMenuItem+Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAF6E9029BB8B45003DFF4B /* NSMenuItem+Shortcut.swift */; };
 		2AAF93562A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */; };
 		2AAF93572A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */; };
 		2AAFA7BC2B7A2DB000A2B228 /* MultipleReplaceListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AAFA7BA2B7A2DAF00A2B228 /* MultipleReplaceListView.storyboard */; };
@@ -625,7 +623,6 @@
 		2ABF49E4221A54AD00239278 /* TextClipping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF49E2221A54AD00239278 /* TextClipping.swift */; };
 		2ABF86BD208C3C630082D52B /* AudioToolbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF86BC208C3C630082D52B /* AudioToolbox.swift */; };
 		2ABF86BE208C3C630082D52B /* AudioToolbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF86BC208C3C630082D52B /* AudioToolbox.swift */; };
-		2ABFF6D71D02856A00BE2795 /* ShortcutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABFF6D61D02856A00BE2795 /* ShortcutTests.swift */; };
 		2AC13A0924F112D800799A93 /* CommandLineToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */; };
 		2AC13A0A24F112D800799A93 /* CommandLineToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */; };
 		2AC186DA1E2F414D002F4D27 /* NSDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186D91E2F414D002F4D27 /* NSDocument.swift */; };
@@ -1172,13 +1169,11 @@
 		2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharactersView.swift; sourceTree = "<group>"; };
 		2AAB4BFE1D2444930049A68B /* InspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorViewController.swift; sourceTree = "<group>"; };
 		2AACB1CC1D195ABD0073775B /* ShortcutField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutField.swift; sourceTree = "<group>"; };
-		2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
 		2AAD61EF1D2B0856008FE772 /* FuzzyRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuzzyRange.swift; sourceTree = "<group>"; };
 		2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineItem.swift; sourceTree = "<group>"; };
 		2AAD61F71D2BA3F5008FE772 /* HighlightParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightParser.swift; sourceTree = "<group>"; };
 		2AAD61FB1D2BD102008FE772 /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		2AAE8E612AF8AE3B008954B5 /* Syntax+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Syntax+Codable.swift"; sourceTree = "<group>"; };
-		2AAF6E9029BB8B45003DFF4B /* NSMenuItem+Shortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMenuItem+Shortcut.swift"; sourceTree = "<group>"; };
 		2AAF93552A73DEE600CCC4A7 /* LineEnding.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = LineEnding.xcstrings; sourceTree = "<group>"; };
 		2AAFA7BB2B7A2DAF00A2B228 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MultipleReplaceListView.storyboard; sourceTree = "<group>"; };
 		2AAFA7D42B7A2F5800A2B228 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/MultipleReplaceView.xcstrings; sourceTree = "<group>"; };
@@ -1196,7 +1191,6 @@
 		2ABEFB6923DC0CA0008769F4 /* EditorCounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorCounterTests.swift; sourceTree = "<group>"; };
 		2ABF49E2221A54AD00239278 /* TextClipping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextClipping.swift; sourceTree = "<group>"; };
 		2ABF86BC208C3C630082D52B /* AudioToolbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioToolbox.swift; sourceTree = "<group>"; };
-		2ABFF6D61D02856A00BE2795 /* ShortcutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutTests.swift; sourceTree = "<group>"; };
 		2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineToolManager.swift; sourceTree = "<group>"; };
 		2AC186D91E2F414D002F4D27 /* NSDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDocument.swift; sourceTree = "<group>"; };
 		2AC186DC1E2F4264002F4D27 /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
@@ -1324,6 +1318,7 @@
 				2ACD02BF22A87F0400893051 /* ColorCode in Frameworks */,
 				2AA7BDD62C1B0CC10075BB6C /* UnicodeNormalization in Frameworks */,
 				2AA2C6FC24399A920017D1EC /* Yams in Frameworks */,
+				2A32688E2C1B504500CF1AAF /* Shortcut in Frameworks */,
 				2ADF96412C1B05CD00B6B722 /* FileEncoding in Frameworks */,
 				2A7E06E82C1A745400E5396D /* CharacterInfo in Frameworks */,
 				2ACAAC1C2B85E74C0041B095 /* SyntaxMap in Frameworks */,
@@ -1336,6 +1331,7 @@
 			files = (
 				2A7E06EA2C1A745E00E5396D /* CharacterInfo in Frameworks */,
 				2A3853682C1AF42C00C282C0 /* FilePermissions in Frameworks */,
+				2A3268902C1B504B00CF1AAF /* Shortcut in Frameworks */,
 				2AA7BDD82C1B0CC70075BB6C /* UnicodeNormalization in Frameworks */,
 				2A3268952C1C580D00CF1AAF /* Defaults in Frameworks */,
 				2AAAE6E526DB82F800C5F0AC /* Sparkle in Frameworks */,
@@ -1775,7 +1771,6 @@
 			isa = PBXGroup;
 			children = (
 				2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */,
-				2A505C042988D44E002080AA /* ShortcutFormatter.swift */,
 				2AE214E12BEB3011007EF0E9 /* CSVFormatStyle.swift */,
 				2A57B98E294ED75900771696 /* RangedIntegerFormatStyle.swift */,
 			);
@@ -1873,7 +1868,7 @@
 			children = (
 				2A89847C1C3CE1CE006290FF /* Syntax */,
 				2AA14CFA1FA47E9000EAF586 /* Script */,
-				2A505C07298952E5002080AA /* Shortcut */,
+				2A505C07298952E5002080AA /* KeyBinding */,
 				2A78F571298C90520084B8B4 /* Snippet */,
 				2AC6BFCF21D00A8500FF325C /* Regex Parser */,
 				2AA375461D40BDCB0080C27C /* LineEnding.swift */,
@@ -1896,16 +1891,14 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		2A505C07298952E5002080AA /* Shortcut */ = {
+		2A505C07298952E5002080AA /* KeyBinding */ = {
 			isa = PBXGroup;
 			children = (
-				2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */,
 				2A64F2471D26327C001B229F /* Shortcut+Error.swift */,
-				2AAF6E9029BB8B45003DFF4B /* NSMenuItem+Shortcut.swift */,
 				2A10C5F61FD19237002AB5AE /* KeyBinding.swift */,
 				2A64F24A1D26615A001B229F /* KeyBindingItem.swift */,
 			);
-			name = Shortcut;
+			name = KeyBinding;
 			sourceTree = "<group>";
 		};
 		2A53F5692758912600ED16DF /* SwiftUI */ = {
@@ -2238,7 +2231,6 @@
 				2ACC65311C98033D000574DC /* ThemeTests.swift */,
 				2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */,
 				2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */,
-				2ABFF6D61D02856A00BE2795 /* ShortcutTests.swift */,
 				2A9C370D1D672A1F00774BA4 /* BracePairTests.swift */,
 				2AED46721E43942300751C45 /* TextFindTests.swift */,
 				2A1893AC1FFF6A0100AD244F /* LineSortTests.swift */,
@@ -2413,10 +2405,11 @@
 				2AA2C6FB24399A920017D1EC /* Yams */,
 				2ACAAC1B2B85E74C0041B095 /* SyntaxMap */,
 				2A7E06E72C1A745400E5396D /* CharacterInfo */,
+				2A3268922C1C580800CF1AAF /* Defaults */,
 				2A3853692C1AF43100C282C0 /* FilePermissions */,
 				2ADF96402C1B05CD00B6B722 /* FileEncoding */,
 				2AA7BDD52C1B0CC10075BB6C /* UnicodeNormalization */,
-				2A3268922C1C580800CF1AAF /* Defaults */,
+				2A32688D2C1B504500CF1AAF /* Shortcut */,
 			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = CotEditor;
@@ -2467,6 +2460,7 @@
 				2ADF96422C1B05D300B6B722 /* FileEncoding */,
 				2A3268942C1C580D00CF1AAF /* Defaults */,
 				2AA7BDD72C1B0CC70075BB6C /* UnicodeNormalization */,
+				2A32688F2C1B504B00CF1AAF /* Shortcut */,
 			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = CotEditor;
@@ -2991,7 +2985,6 @@
 				2A9AC937244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */,
 				2A484A3A236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
 				2AEAA1432C00B37300B5332F /* NSMenu.swift in Sources */,
-				2AAF6E9129BB8B45003DFF4B /* NSMenuItem+Shortcut.swift in Sources */,
 				2AF99621235ACDD60041872E /* NSPrintInfo.swift in Sources */,
 				2A8E47E9299C6064006A40D8 /* NSRange.swift in Sources */,
 				2AF1D85921B8D9250060BC04 /* NSRegularExpression+Additions.swift in Sources */,
@@ -3061,10 +3054,8 @@
 				2A44321D219AC1F8008A0A6B /* SettingsTabViewController.swift in Sources */,
 				2AA79C7921CB7251005AD6AD /* SettingsWindow.swift in Sources */,
 				2A938ACF297E4D7B007FBE5F /* SettingsWindowController.swift in Sources */,
-				2AAD61ED1D2A4CE5008FE772 /* Shortcut.swift in Sources */,
 				2A64F2491D26327C001B229F /* Shortcut+Error.swift in Sources */,
 				2AACB1CE1D195ABD0073775B /* ShortcutField.swift in Sources */,
-				2A505C052988D44E002080AA /* ShortcutFormatter.swift in Sources */,
 				2A30C7DB2B1380BE002F6381 /* ShortcutView.swift in Sources */,
 				2AB1BD1F287D747200C6FEAF /* SizeGetter.swift in Sources */,
 				2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */,
@@ -3164,7 +3155,6 @@
 				2A8E47E7299B2F5C006A40D8 /* NSRangeTests.swift in Sources */,
 				2A7B279924E435FE00F02304 /* OutlineTests.swift in Sources */,
 				2AFD328F2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift in Sources */,
-				2ABFF6D71D02856A00BE2795 /* ShortcutTests.swift in Sources */,
 				2A04E9BB27FD6911008C82D8 /* SnippetTests.swift in Sources */,
 				2AE12DFE1E7DB7D200681F72 /* StringCollectionTests.swift in Sources */,
 				2A902B9A236E3AA600A6A9BB /* StringCommentingTests.swift in Sources */,
@@ -3343,7 +3333,6 @@
 				2A9AC938244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */,
 				2A484A39236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
 				2AEAA1442C00B37300B5332F /* NSMenu.swift in Sources */,
-				2AAF6E9229BB8B45003DFF4B /* NSMenuItem+Shortcut.swift in Sources */,
 				2AF99620235ACDD60041872E /* NSPrintInfo.swift in Sources */,
 				2A8E47EA299C6064006A40D8 /* NSRange.swift in Sources */,
 				2AF1D85821B8D9250060BC04 /* NSRegularExpression+Additions.swift in Sources */,
@@ -3413,10 +3402,8 @@
 				2A44321C219AC1F8008A0A6B /* SettingsTabViewController.swift in Sources */,
 				2AA79C7821CB7251005AD6AD /* SettingsWindow.swift in Sources */,
 				2A938AD0297E4D7B007FBE5F /* SettingsWindowController.swift in Sources */,
-				2AAD61EC1D2A4CE5008FE772 /* Shortcut.swift in Sources */,
 				2A64F2481D26327C001B229F /* Shortcut+Error.swift in Sources */,
 				2AACB1CD1D195ABD0073775B /* ShortcutField.swift in Sources */,
-				2A505C062988D44E002080AA /* ShortcutFormatter.swift in Sources */,
 				2A30C7DC2B1380BE002F6381 /* ShortcutView.swift in Sources */,
 				2AB1BD20287D747200C6FEAF /* SizeGetter.swift in Sources */,
 				2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */,
@@ -3936,6 +3923,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2A32688D2C1B504500CF1AAF /* Shortcut */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shortcut;
+		};
+		2A32688F2C1B504B00CF1AAF /* Shortcut */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shortcut;
+		};
 		2A3268922C1C580800CF1AAF /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Defaults;

@@ -1,5 +1,6 @@
 //
 //  Shortcut.swift
+//  Shortcut
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,104 +27,13 @@
 
 import Foundation
 import AppKit.NSEvent
-import IOKit
 
 extension NSEvent.SpecialKey: @retroactive @unchecked Sendable { }
 
-
-/// Modifier keys for keyboard shortcut.
-///
-/// - Note: The order of cases (control, option, shift, and command) is determined in the HIG.
-private enum ModifierKey: CaseIterable {
+public struct Shortcut: Sendable {
     
-    case control
-    case option
-    case shift
-    case command
-    case function  // This key modifier is reserved for system applications.
-    
-    static let validCases: [Self] = Array(Self.allCases[0..<4])
-    
-    
-    /// NSEvent.ModifierFlags representation.
-    var mask: NSEvent.ModifierFlags {
-        
-        switch self {
-            case .control: .control
-            case .option: .option
-            case .shift: .shift
-            case .command: .command
-            case .function: .function
-        }
-    }
-    
-    
-    /// Symbol to display in GUI.
-    var symbol: String {
-        
-        switch self {
-            case .control: "^"
-            case .option: "⌥"
-            case .shift: "⇧"
-            case .command: "⌘"
-            case .function: Self.supportsGlobeKey ? "🌐︎" : "fn"
-        }
-    }
-    
-    
-    /// SF Symbol name to display in GUI.
-    var symbolName: String {
-        
-        switch self {
-            case .control: "control"
-            case .option: "option"
-            case .shift: "shift"
-            case .command: "command"
-            case .function: Self.supportsGlobeKey ? "globe" : "fn"
-        }
-    }
-    
-    
-    /// Symbol to store.
-    var keySpecChar: String {
-        
-        switch self {
-            case .control: "^"
-            case .option: "~"
-            case .shift: "$"
-            case .command: "@"
-            case .function: preconditionFailure("Fn/Globe key cannot be used for custom shortcuts.")
-        }
-    }
-    
-    
-    /// Returns `true` if the user keyboard is supposed to have the Globe key.
-    private static let supportsGlobeKey = {
-        
-        let entry = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceMatching("AppleHIDKeyboardEventDriverV2"))
-        defer { IOObjectRelease(entry) }
-        
-        guard let property = IORegistryEntryCreateCFProperty(entry, "SupportsGlobeKey" as CFString, kCFAllocatorDefault, 0)?.takeRetainedValue() else { return false }
-        
-        return (property as? Int) == 1
-    }()
-}
-
-
-private extension [ModifierKey] {
-    
-    /// NSEvent.ModifierFlags representation.
-    var mask: NSEvent.ModifierFlags {
-        
-        self.reduce(into: []) { $0.formUnion($1.mask) }
-    }
-}
-
-
-struct Shortcut {
-    
-    var keyEquivalent: String
-    var modifiers: NSEvent.ModifierFlags
+    public var keyEquivalent: String
+    public var modifiers: NSEvent.ModifierFlags
     
     
     // MARK: Lifecycle
@@ -131,7 +41,7 @@ struct Shortcut {
     /// Initializes Shortcut directly from a key equivalent character and modifiers.
     ///
     /// - Note: This initializer accepts the fn key while the others not.
-    init?(_ keyEquivalent: String, modifiers: NSEvent.ModifierFlags) {
+    public init?(_ keyEquivalent: String, modifiers: NSEvent.ModifierFlags) {
         
         guard !keyEquivalent.isEmpty else { return nil }
         
@@ -140,10 +50,17 @@ struct Shortcut {
     }
     
     
+    public init(_ specialKey: NSEvent.SpecialKey, modifiers: NSEvent.ModifierFlags) {
+        
+        self.keyEquivalent = String(specialKey.unicodeScalar)
+        self.modifiers = modifiers
+    }
+    
+    
     /// Initializes Shortcut from a stored string.
     ///
     /// - Parameter keySpecChars: The storable representation.
-    init?(keySpecChars: String) {
+    public init?(keySpecChars: String) {
         
         guard let keyEquivalent = keySpecChars.last else { return nil }
         
@@ -160,7 +77,7 @@ struct Shortcut {
     /// Initializes Shortcut from a display representation.
     ///
     /// - Parameter string: The shortcut string to display in GUI.
-    init?(symbolRepresentation string: String) {
+    public init?(symbolRepresentation string: String) {
         
         let components = string.split(whereSeparator: \.isWhitespace)
         
@@ -184,7 +101,7 @@ struct Shortcut {
     /// Initializes Shortcut from a key down event.
     ///
     /// - Parameter event: The key down event.
-    init?(keyDownEvent event: NSEvent) {
+    public init?(keyDownEvent event: NSEvent) {
         
         assert(event.type == .keyDown)
         
@@ -216,7 +133,7 @@ struct Shortcut {
     // MARK: Public Methods
     
     /// Unique string to store in plist.
-    var keySpecChars: String {
+    public var keySpecChars: String {
         
         let shortcut = self.normalized
         let modifierCharacters = ModifierKey.validCases
@@ -229,7 +146,7 @@ struct Shortcut {
     
     
     /// Shortcut string to display.
-    var symbol: String {
+    public var symbol: String {
         
         let shortcut = self.normalized
         
@@ -238,7 +155,7 @@ struct Shortcut {
     
     
     /// Whether key combination is valid for a shortcut.
-    var isValid: Bool {
+    public var isValid: Bool {
         
         guard
             self.keyEquivalent.count == 1,
@@ -256,7 +173,7 @@ struct Shortcut {
     
     
     /// Modifier key strings to display.
-    var modifierSymbols: [String] {
+    public var modifierSymbols: [String] {
         
         ModifierKey.allCases
             .filter { self.modifiers.contains($0.mask) }
@@ -265,7 +182,7 @@ struct Shortcut {
     
     
     /// SF Symbol name for modifier keys to display.
-    var modifierSymbolNames: [String] {
+    public var modifierSymbolNames: [String] {
         
         ModifierKey.allCases
             .filter { self.modifiers.contains($0.mask) }
@@ -274,7 +191,7 @@ struct Shortcut {
     
     
     /// Key equivalent to display.
-    var keyEquivalentSymbol: String {
+    public var keyEquivalentSymbol: String {
         
         guard let scalar = self.keyEquivalent.unicodeScalars.first else { return "" }
         
@@ -283,11 +200,25 @@ struct Shortcut {
     
     
     /// SF Symbol name for key equivalent if exists
-    var keyEquivalentSymbolName: String? {
+    public var keyEquivalentSymbolName: String? {
         
         guard let scalar = self.keyEquivalent.unicodeScalars.first else { return nil }
         
         return Self.keyEquivalentSymbolNames[scalar]
+    }
+    
+    
+    /// Normalizes Shortcut by preferring to use the Shift key rather than an upper key equivalent character.
+    ///
+    /// According to the AppKit's specification, the Command-Shift-c and Command-C should be considered to be identical.
+    public var normalized: Self {
+        
+        let needsShift = self.keyEquivalent.last?.isUppercase == true
+        
+        let keyEquivalent = self.keyEquivalent.lowercased()
+        let modifiers = self.modifiers.union(needsShift ? .shift : [])
+        
+        return Shortcut(keyEquivalent, modifiers: modifiers) ?? self
     }
     
     
@@ -396,7 +327,7 @@ struct Shortcut {
         .f33: "F33",
         .f34: "F34",
         .f35: "F35",
-        .space: String(localized: "Space", comment: "keyboard key name"),
+        .space: String(localized: "Space", bundle: .module, comment: "keyboard key name"),
         .mic: "🎤︎",  // U+1F3A4, U+FE0E
     ].mapKeys(\.unicodeScalar)
     
@@ -440,33 +371,19 @@ private extension NSEvent.SpecialKey {
 
 extension Shortcut: Equatable {
     
-    static func == (lhs: Self, rhs: Self) -> Bool {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
         
         let lhs = lhs.normalized
         let rhs = rhs.normalized
         
         return lhs.modifiers == rhs.modifiers && lhs.keyEquivalent == rhs.keyEquivalent
     }
-    
-    
-    /// Normalizes Shortcut by preferring to use the Shift key rather than an upper key equivalent character.
-    ///
-    /// According to the AppKit's specification, the Command-Shift-c and Command-C should be considered to be identical.
-    var normalized: Self {
-        
-        let needsShift = self.keyEquivalent.last?.isUppercase == true
-        
-        let keyEquivalent = self.keyEquivalent.lowercased()
-        let modifiers = self.modifiers.union(needsShift ? .shift : [])
-        
-        return Shortcut(keyEquivalent, modifiers: modifiers) ?? self
-    }
 }
 
 
 extension Shortcut: CustomDebugStringConvertible {
     
-    var debugDescription: String {
+    public var debugDescription: String {
         
         self.symbol
     }
@@ -475,7 +392,7 @@ extension Shortcut: CustomDebugStringConvertible {
 
 extension Shortcut: Hashable {
     
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         
         hasher.combine(self.keyEquivalent)
         hasher.combine(self.modifiers.rawValue)
@@ -485,7 +402,7 @@ extension Shortcut: Hashable {
 
 extension Shortcut: Codable {
     
-    init(from decoder: any Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         
         let container = try decoder.singleValueContainer()
         let string = try container.decode(String.self)
@@ -498,10 +415,39 @@ extension Shortcut: Codable {
     }
     
     
-    func encode(to encoder: any Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         
         var container = encoder.singleValueContainer()
         
         try container.encode(self.keySpecChars)
+    }
+}
+
+
+private extension String {
+    
+    static let thinSpace = "\u{2009}"
+}
+
+
+private extension Dictionary {
+    
+    /// Returns a new dictionary containing the keys transformed by the given closure with the values of this dictionary.
+    ///
+    /// - Parameter transform: A closure that transforms a key. Every transformed key must be unique.
+    /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
+    func mapKeys<T>(_ transform: (Key) throws -> T) rethrows -> [T: Value] {
+        
+        try self.reduce(into: [:]) { $0[try transform($1.key)] = $1.value }
+    }
+    
+    
+    /// Returns a new dictionary containing the keys transformed by the given keyPath with the values of this dictionary.
+    ///
+    /// - Parameter keyPath: The keyPath to the value to transform key. Every transformed key must be unique.
+    /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
+    func mapKeys<T>(_ keyPath: KeyPath<Key, T>) -> [T: Value] {
+        
+        self.mapKeys { $0[keyPath: keyPath] }
     }
 }

@@ -1,5 +1,6 @@
 //
 //  NSMenuItem+Shortcut.swift
+//  Shortcut
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +26,7 @@
 
 import AppKit
 
-extension NSMenuItem {
+public extension NSMenuItem {
     
     final var shortcut: Shortcut? {
         
@@ -41,7 +42,7 @@ extension NSMenuItem {
 }
 
 
-extension NSMenu {
+public extension NSMenu {
     
     /// Finds the menu item that has the given shortcut.
     ///
