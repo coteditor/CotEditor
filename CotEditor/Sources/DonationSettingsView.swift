@@ -169,8 +169,6 @@ struct DonationSettingsView: View {
 
 private struct OnetimeProductViewStyle: ProductViewStyle {
     
-    @Environment(\.purchase) private var purchase: PurchaseAction
-    
     @State private var quantity = 1
     @State private var error: (any Error)?
     
@@ -213,7 +211,7 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
                     Button((product.price * Decimal(self.quantity)).formatted(product.priceFormatStyle)) {
                         Task {
                             do {
-                                _ = try await self.purchase(product, options: [.quantity(self.quantity)])
+                                _ = try await product.purchase(options: [.quantity(self.quantity)])
                             } catch {
                                 self.error = error
                             }
