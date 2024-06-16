@@ -32,26 +32,26 @@ extension EditorTextView: Indenting {
     /// Increases indent level.
     @IBAction func shiftRight(_ sender: Any?) {
         
-        if self.baseWritingDirection == .rightToLeft {
-            guard self.outdent() else { return }
-        } else {
-            guard self.indent() else { return }
-        }
+        let actionName = String(localized: "Shift Right", table: "MainMenu")
         
-        self.undoManager?.setActionName(String(localized: "Shift Right", table: "MainMenu"))
+        if self.baseWritingDirection == .rightToLeft {
+            guard self.outdent(actionName: actionName) else { return }
+        } else {
+            guard self.indent(actionName: actionName) else { return }
+        }
     }
     
     
     /// Decreases indent level.
     @IBAction func shiftLeft(_ sender: Any?) {
         
-        if self.baseWritingDirection == .rightToLeft {
-            guard self.indent() else { return }
-        } else {
-            guard self.outdent() else { return }
-        }
+        let actionName = String(localized: "Shift Left", table: "MainMenu")
         
-        self.undoManager?.setActionName(String(localized: "Shift Left", table: "MainMenu"))
+        if self.baseWritingDirection == .rightToLeft {
+            guard self.indent(actionName: actionName) else { return }
+        } else {
+            guard self.outdent(actionName: actionName) else { return }
+        }
     }
     
     
@@ -96,114 +96,47 @@ extension EditorTextView: Indenting {
 
 extension Indenting {
     
+    private var indentStyle: IndentStyle  { self.isAutomaticTabExpansionEnabled ? .space : .tab }
+    
+    
     /// Increases indent level.
     @discardableResult
-    func indent() -> Bool {
+    func indent(actionName: String? = nil) -> Bool {
         
         guard
             self.tabWidth > 0,
             let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue)
         else { return false }
         
-        // get indent target
-        let string = self.string as NSString
+        let textEditing = self.string.indent(style: self.indentStyle, indentWidth: self.tabWidth, in: selectedRanges)
         
-        // create indent string to prepend
-        let indent = self.isAutomaticTabExpansionEnabled ? String(repeating: " ", count: self.tabWidth) : "\t"
-        let indentLength = indent.length
-        
-        // create shifted string
-        let lineRanges = string.lineRanges(for: selectedRanges, includingLastEmptyLine: true)
-        let newLines = lineRanges.map { indent + string.substring(with: $0) }
-        
-        // calculate new selection range
-        let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
-            let shift = lineRanges.countPrefix { $0.location <= selectedRange.location }
-            let lineCount = lineRanges.count { selectedRange.intersects($0) }
-            let lengthDiff = max(lineCount - 1, 0) * indentLength
-            
-            return NSRange(location: selectedRange.location + shift * indentLength,
-                           length: selectedRange.length + lengthDiff)
-        }
-        
-        // apply to textView
-        return self.replace(with: newLines, ranges: lineRanges, selectedRanges: newSelectedRanges)
+        return self.edit(with: textEditing, actionName: actionName)
     }
     
     
     /// Decreases indent level.
     @discardableResult
-    func outdent() -> Bool {
+    func outdent(actionName: String? = nil) -> Bool {
         
         guard
             self.tabWidth > 0,
-            let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue)
+            let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue),
+            let textEditing = self.string.outdent(style: self.indentStyle, indentWidth: self.tabWidth, in: selectedRanges)
         else { return false }
         
-        // get indent target
-        let string = self.string as NSString
-        
-        // find ranges to remove
-        let lineRanges = string.lineRanges(for: selectedRanges)
-        let lines = lineRanges.map { string.substring(with: $0) }
-        let dropCounts = lines.map { line -> Int in
-            switch line.first {
-                case "\t": 1
-                case " ": line.prefix(self.tabWidth).countPrefix { $0 == " " }
-                default: 0
-            }
-        }
-        
-        // cancel if nothing to shift
-        guard dropCounts.contains(where: { $0 > 0 }) else { return false }
-        
-        // create shifted string
-        let newLines = zip(lines, dropCounts).map { String($0.dropFirst($1)) }
-        
-        // calculate new selection range
-        let droppedRanges: [NSRange] = zip(lineRanges, dropCounts)
-            .filter { $1 > 0 }
-            .map { NSRange(location: $0.location, length: $1) }
-        let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
-            let offset = droppedRanges
-                .prefix { $0.location < selectedRange.location }
-                .map { (selectedRange.intersection($0) ?? $0).length }
-                .reduce(0, +)
-            let lengthDiff = droppedRanges
-                .compactMap { selectedRange.intersection($0)?.length }
-                .reduce(0, +)
-            
-            return NSRange(location: selectedRange.location - offset,
-                           length: selectedRange.length - lengthDiff)
-        }
-        
-        // apply to textView
-        return self.replace(with: newLines, ranges: lineRanges, selectedRanges: newSelectedRanges)
+        return self.edit(with: textEditing)
     }
     
     
     /// Standardizes indentation of given ranges.
     func convertIndentation(style: IndentStyle) {
         
-        guard !self.string.isEmpty else { return }
+        guard
+            self.tabWidth > 0,
+            let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue),
+            let textEditing = self.string.convertIndentation(to: self.indentStyle, indentWidth: self.tabWidth, in: selectedRanges)
+        else { return }
         
-        // process whole document if no text selected
-        let ranges = self.selectedRange.isEmpty ? [self.string.nsRange] : self.selectedRanges.map(\.rangeValue)
-        
-        var replacementRanges: [NSRange] = []
-        var replacementStrings: [String] = []
-        
-        for range in ranges {
-            let selectedString = (self.string as NSString).substring(with: range)
-            let convertedString = selectedString.standardizingIndent(to: style, tabWidth: self.tabWidth)
-            
-            guard convertedString != selectedString else { continue }  // no need to convert
-            
-            replacementRanges.append(range)
-            replacementStrings.append(convertedString)
-        }
-        
-        self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: nil,
-                     actionName: String(localized: "Convert Indentation", table: "MainMenu"))
+        self.edit(with: textEditing, actionName: String(localized: "Convert Indentation", table: "MainMenu"))
     }
 }
