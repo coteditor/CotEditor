@@ -52,7 +52,7 @@ import FilePermissions
     // MARK: Public Properties
     
     var isTransient = false  // untitled & empty document that was created automatically
-    var isVerticalText = false
+    nonisolated(unsafe) var isVerticalText = false
     
     
     // MARK: Readonly Properties
@@ -62,7 +62,7 @@ import FilePermissions
     @ObservationIgnored @Published private(set) var fileEncoding: FileEncoding
     @ObservationIgnored @Published private(set) var lineEnding: LineEnding
     @ObservationIgnored @Published private(set) var mode: Mode
-    private(set) var fileAttributes: FileAttributes?
+    private(set) nonisolated(unsafe) var fileAttributes: FileAttributes?
     
     let lineEndingScanner: LineEndingScanner
     let counter = EditorCounter()
@@ -75,22 +75,23 @@ import FilePermissions
     
     @ObservationIgnored private lazy var printPanelAccessoryController: PrintPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory", bundle: nil).instantiateInitialController()!
     
-    private var readingEncoding: String.Encoding?  // encoding to read document file
-    private var fileData: Data?
-    private var shouldSaveEncodingXattr = true
-    private var isExecutable = false
-    private let saveOptions = SaveOptions()
-    private var suppressesInconsistentLineEndingAlert = false
-    private var isExternalUpdateAlertShown = false
-    private var allowsLossySaving = false
+    private nonisolated(unsafe) var readingEncoding: String.Encoding?  // encoding to read document file
+    private nonisolated(unsafe) var fileData: Data?
+    private nonisolated(unsafe) var shouldSaveEncodingXattr = true
+    private nonisolated(unsafe) var isExecutable = false
+    private nonisolated(unsafe) let saveOptions = SaveOptions()
+    private nonisolated(unsafe) var suppressesInconsistentLineEndingAlert = false
+    private nonisolated(unsafe) var isExternalUpdateAlertShown = false
+    private nonisolated(unsafe) var allowsLossySaving = false
+    private nonisolated(unsafe) var isInitialized = false
     
     @ObservationIgnored private lazy var urlDetector = URLDetector(textStorage: self.textStorage)
     
-    private var syntaxUpdateObserver: AnyCancellable?
-    private var textStorageObserver: AnyCancellable?
-    private var defaultObservers: Set<AnyCancellable> = []
+    private nonisolated(unsafe) var syntaxUpdateObserver: AnyCancellable?
+    private nonisolated(unsafe) var textStorageObserver: AnyCancellable?
+    private nonisolated(unsafe) var defaultObservers: Set<AnyCancellable> = []
     
-    private var lastSavedData: Data?  // temporal data used only within saving process
+    private nonisolated(unsafe) var lastSavedData: Data?  // temporal data used only within saving process
     
     
     
@@ -137,12 +138,6 @@ import FilePermissions
         self.syntaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
             .filter { [weak self] change in change.old == self?.syntaxParser.name }
             .sink { [weak self] change in self?.setSyntax(name: change.new ?? SyntaxName.none) }
-    }
-    
-    
-    deinit {
-        self.syntaxParser.cancel()
-        self.urlDetector.cancel()
     }
     
     
@@ -252,6 +247,8 @@ import FilePermissions
     
     
     override func makeWindowControllers() {
+        
+        self.isInitialized = true
         
         if self.windowControllers.isEmpty {  // -> A transient document already has one.
             let windowController = DocumentWindowController(document: self)
@@ -370,7 +367,9 @@ import FilePermissions
         }
         
         // update textStorage
-        self.textStorage.replaceContent(with: string)
+        Task { @MainActor in
+            self.textStorage.replaceContent(with: string)
+        }
         
         // set read values
         self.fileEncoding = fileEncoding
@@ -378,7 +377,7 @@ import FilePermissions
         self.lineEnding = self.lineEndingScanner.majorLineEnding ?? self.lineEnding  // keep default if no line endings are found
         
         // determine syntax (only on the first file open)
-        if self.windowForSheet == nil {
+        if !self.isInitialized {
             let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: string)
             self.setSyntax(name: syntaxName ?? SyntaxName.none, isInitial: true)
         }
@@ -593,6 +592,8 @@ import FilePermissions
         
         self.textStorageObserver?.cancel()
         self.counter.cancel()
+        self.syntaxParser.cancel()
+        self.urlDetector.cancel()
     }
     
     
@@ -739,7 +740,7 @@ import FilePermissions
     
     // MARK: Protocols
     
-    override func presentedItemDidChange() {  // nonisolated
+    nonisolated override func presentedItemDidChange() {
         
         // [caution] DO NOT invoke `super.presentedItemDidChange()` that reverts document automatically if autosavesInPlace is enabled.
 //        super.presentedItemDidChange()
@@ -831,7 +832,7 @@ import FilePermissions
     ///
     /// - Parameter fileEncoding: The text encoding to test, or `nil` to test with the current file encoding.
     /// - Returns: `true` if the content can be encoded in encoding without loss of information; otherwise, `false`.
-    nonisolated(unsafe) func canBeConverted(to fileEncoding: FileEncoding? = nil) -> Bool {
+    func canBeConverted(to fileEncoding: FileEncoding? = nil) -> Bool {
         
         self.textStorage.string.canBeConverted(to: (fileEncoding ?? self.fileEncoding).encoding)
     }
@@ -865,7 +866,7 @@ import FilePermissions
     ///
     /// - Parameters:
     ///   - fileEncoding: The text encoding to change with.
-    @MainActor func changeEncoding(to fileEncoding: FileEncoding) {
+    func changeEncoding(to fileEncoding: FileEncoding) {
         
         assert(Thread.isMainThread)
         
@@ -895,7 +896,7 @@ import FilePermissions
     /// Change line endings and register the process to the undo manager.
     ///
     /// - Parameter lineEnding: The line ending type to change with.
-    @MainActor func changeLineEnding(to lineEnding: LineEnding) {
+    func changeLineEnding(to lineEnding: LineEnding) {
         
         assert(Thread.isMainThread)
         
@@ -1050,7 +1051,7 @@ import FilePermissions
     /// Checks if the file content did change since the last read.
     ///
     /// - Returns: A boolean whether the file did change and the content modification date if available.
-    private func checkFileContentDidChange() throws -> (Bool, Date?) {  // nonisolated
+    nonisolated private func checkFileContentDidChange() throws -> (Bool, Date?) {
         
         guard var fileURL = self.fileURL else { throw CocoaError(.fileReadNoSuchFile) }
         
@@ -1085,7 +1086,7 @@ import FilePermissions
     /// Changes the text encoding by asking options to the user.
     ///
     /// - Parameter fileEncoding: The text encoding to change.
-    @MainActor func askChangingEncoding(to fileEncoding: FileEncoding) {
+    func askChangingEncoding(to fileEncoding: FileEncoding) {
         
         assert(Thread.isMainThread)
         
@@ -1178,7 +1179,7 @@ import FilePermissions
     
     
     /// Displays an alert about inconsistent line endings.
-    @MainActor private func showInconsistentLineEndingAlert() {
+    private func showInconsistentLineEndingAlert() {
         
         guard
             !UserDefaults.standard[.suppressesInconsistentLineEndingAlert],
@@ -1246,7 +1247,7 @@ import FilePermissions
     
     
     /// Displays an alert about file modification by an external process.
-    @MainActor private func showUpdatedByExternalProcessAlert() {
+    private func showUpdatedByExternalProcessAlert() {
         
         // do nothing if alert is already shown
         guard !self.isExternalUpdateAlertShown else { return }
@@ -1299,7 +1300,7 @@ import FilePermissions
     
     
     /// Shows the warning inspector in the document window.
-    @MainActor private func showWarningInspector() {
+    private func showWarningInspector() {
         
         (self.windowControllers.first?.contentViewController as? WindowContentViewController)?.showInspector(pane: .warnings)
     }
