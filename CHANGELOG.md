@@ -31,6 +31,12 @@
 - [dev] Migrate the navigation bar and the Snippets settings view to SwiftUI.
 
 
+### TODO
+
+- Improve Assembly syntax.
+- Localized strings added.
+
+
 
 4.8.6 (unreleased)
 --------------------------
