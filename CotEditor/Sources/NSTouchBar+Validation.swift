@@ -116,11 +116,6 @@ extension NSTouchBar {
     private init() { }
     
     
-    deinit {
-        self.validationTimer?.invalidate()
-    }
-    
-    
     
     // MARK: Private Methods
     
