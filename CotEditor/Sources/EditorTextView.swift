@@ -339,11 +339,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // observe key window state for insertion points drawing
         if let window {
             self.keyStateObservers = [
-                NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: window, queue: .main) { [weak self] _ in
-                    self?.invalidateInsertionIndicatorDisplayMode()
+                NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: window, queue: .main) { [unowned self] _ in
+                    MainActor.assumeIsolated {
+                        self.invalidateInsertionIndicatorDisplayMode()
+                    }
                 },
-                NotificationCenter.default.addObserver(forName: NSWindow.didResignKeyNotification, object: window, queue: .main) { [weak self] _ in
-                    self?.invalidateInsertionIndicatorDisplayMode()
+                NotificationCenter.default.addObserver(forName: NSWindow.didResignKeyNotification, object: window, queue: .main) { [unowned self] _ in
+                    MainActor.assumeIsolated {
+                        self.invalidateInsertionIndicatorDisplayMode()
+                    }
                 },
             ]
         } else {
