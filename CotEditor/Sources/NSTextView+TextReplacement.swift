@@ -29,6 +29,14 @@ extension NSTextView {
     
     // MARK: Public Methods
     
+    /// Replaces content according to EditingContext.
+    @discardableResult
+    final func edit(with context: EditingContext, actionName: String? = nil) -> Bool {
+        
+        self.replace(with: context.strings, ranges: context.ranges, selectedRanges: context.selectedRanges, actionName: actionName)
+    }
+    
+    
     /// Performs simple text replacement.
     @discardableResult
     final func replace(with string: String, range: NSRange, selectedRange: NSRange?, actionName: String? = nil) -> Bool {

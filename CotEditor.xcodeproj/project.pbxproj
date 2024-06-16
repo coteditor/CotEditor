@@ -276,8 +276,6 @@
 		2A4D69291D40032300FBBD0B /* EncodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A18A5BC1C4A730D00BAD817 /* EncodingTests.swift */; };
 		2A4E638020ADC45F0033CE63 /* NSBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4E637F20ADC45F0033CE63 /* NSBezierPath.swift */; };
 		2A4E638120ADC45F0033CE63 /* NSBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4E637F20ADC45F0033CE63 /* NSBezierPath.swift */; };
-		2A505C052988D44E002080AA /* ShortcutFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A505C042988D44E002080AA /* ShortcutFormatter.swift */; };
-		2A505C062988D44E002080AA /* ShortcutFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A505C042988D44E002080AA /* ShortcutFormatter.swift */; };
 		2A50AA62204D513500D10A10 /* FileAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50AA61204D513500D10A10 /* FileAttributes.swift */; };
 		2A50AA63204D513500D10A10 /* FileAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50AA61204D513500D10A10 /* FileAttributes.swift */; };
 		2A53F56727585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */; };
@@ -623,6 +621,10 @@
 		2ABF49E4221A54AD00239278 /* TextClipping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF49E2221A54AD00239278 /* TextClipping.swift */; };
 		2ABF86BD208C3C630082D52B /* AudioToolbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF86BC208C3C630082D52B /* AudioToolbox.swift */; };
 		2ABF86BE208C3C630082D52B /* AudioToolbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF86BC208C3C630082D52B /* AudioToolbox.swift */; };
+		2ABF9E932C1E8CFF0033D5E6 /* EditingContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF9E922C1E8CFB0033D5E6 /* EditingContext.swift */; };
+		2ABF9E942C1E8CFF0033D5E6 /* EditingContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF9E922C1E8CFB0033D5E6 /* EditingContext.swift */; };
+		2ABF9E962C1E8D7E0033D5E6 /* String+LineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF9E952C1E8D780033D5E6 /* String+LineProcessing.swift */; };
+		2ABF9E972C1E8D7E0033D5E6 /* String+LineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF9E952C1E8D780033D5E6 /* String+LineProcessing.swift */; };
 		2AC13A0924F112D800799A93 /* CommandLineToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */; };
 		2AC13A0A24F112D800799A93 /* CommandLineToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */; };
 		2AC186DA1E2F414D002F4D27 /* NSDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186D91E2F414D002F4D27 /* NSDocument.swift */; };
@@ -1000,7 +1002,6 @@
 		2A4AF76620759BE500C47606 /* RegexFindPanelTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFindPanelTextView.swift; sourceTree = "<group>"; };
 		2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+LineProcessing.swift"; sourceTree = "<group>"; };
 		2A4E637F20ADC45F0033CE63 /* NSBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSBezierPath.swift; sourceTree = "<group>"; };
-		2A505C042988D44E002080AA /* ShortcutFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutFormatter.swift; sourceTree = "<group>"; };
 		2A50AA61204D513500D10A10 /* FileAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileAttributes.swift; sourceTree = "<group>"; };
 		2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionReferenceView.swift; sourceTree = "<group>"; };
 		2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineEndingTests.swift; sourceTree = "<group>"; };
@@ -1191,6 +1192,8 @@
 		2ABEFB6923DC0CA0008769F4 /* EditorCounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorCounterTests.swift; sourceTree = "<group>"; };
 		2ABF49E2221A54AD00239278 /* TextClipping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextClipping.swift; sourceTree = "<group>"; };
 		2ABF86BC208C3C630082D52B /* AudioToolbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioToolbox.swift; sourceTree = "<group>"; };
+		2ABF9E922C1E8CFB0033D5E6 /* EditingContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingContext.swift; sourceTree = "<group>"; };
+		2ABF9E952C1E8D780033D5E6 /* String+LineProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+LineProcessing.swift"; sourceTree = "<group>"; };
 		2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineToolManager.swift; sourceTree = "<group>"; };
 		2AC186D91E2F414D002F4D27 /* NSDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDocument.swift; sourceTree = "<group>"; };
 		2AC186DC1E2F4264002F4D27 /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
@@ -1663,6 +1666,7 @@
 				2A9BF3C61D38325200E3D3E2 /* String+FullwidthTransform.swift */,
 				2A733E8820BBB4AC0090D7CB /* String+Case.swift */,
 				2AA761391D457BD500031AAF /* String+Indentation.swift */,
+				2ABF9E952C1E8D780033D5E6 /* String+LineProcessing.swift */,
 				2A8E47E8299C6064006A40D8 /* NSRange.swift */,
 				2A6FD9EC1D3A85D700A59784 /* NSString.swift */,
 				2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */,
@@ -1871,6 +1875,7 @@
 				2A505C07298952E5002080AA /* KeyBinding */,
 				2A78F571298C90520084B8B4 /* Snippet */,
 				2AC6BFCF21D00A8500FF325C /* Regex Parser */,
+				2ABF9E922C1E8CFB0033D5E6 /* EditingContext.swift */,
 				2AA375461D40BDCB0080C27C /* LineEnding.swift */,
 				2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */,
 				2AAD61EF1D2B0856008FE772 /* FuzzyRange.swift */,
@@ -2886,6 +2891,7 @@
 				2ACDC0921D1726BD009B72D6 /* DotView.swift in Sources */,
 				2A68722F288A5C44006D6B41 /* DraggableHostingView.swift in Sources */,
 				2A8E47E2299A2314006A40D8 /* EditedRangeSet.swift in Sources */,
+				2ABF9E942C1E8CFF0033D5E6 /* EditingContext.swift in Sources */,
 				2AD7B9B01D3E832E00E5D6D7 /* EditorCounter.swift in Sources */,
 				2A158C222945F54B000A4EC1 /* EditorOpacityView.swift in Sources */,
 				2AEC69C51D41A1BE0089F96F /* EditorTextView.swift in Sources */,
@@ -3071,6 +3077,7 @@
 				2AA761361D45634400031AAF /* String+Counting.swift in Sources */,
 				2A9BF3C81D38325200E3D3E2 /* String+FullwidthTransform.swift in Sources */,
 				2AA7613B1D457BD500031AAF /* String+Indentation.swift in Sources */,
+				2ABF9E972C1E8D7E0033D5E6 /* String+LineProcessing.swift in Sources */,
 				2AA5BCFA24FFB21C00618F83 /* String+Match.swift in Sources */,
 				2A2615892977FCF6008C2240 /* SubmitButtonGroup.swift in Sources */,
 				2A1B7E76216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */,
@@ -3234,6 +3241,7 @@
 				2ACDC0911D1726BD009B72D6 /* DotView.swift in Sources */,
 				2A687230288A5C44006D6B41 /* DraggableHostingView.swift in Sources */,
 				2A8E47E3299A2314006A40D8 /* EditedRangeSet.swift in Sources */,
+				2ABF9E932C1E8CFF0033D5E6 /* EditingContext.swift in Sources */,
 				2AD7B9AF1D3E832E00E5D6D7 /* EditorCounter.swift in Sources */,
 				2A158C232945F54B000A4EC1 /* EditorOpacityView.swift in Sources */,
 				2AEC69C41D41A1BE0089F96F /* EditorTextView.swift in Sources */,
@@ -3419,6 +3427,7 @@
 				2AA761351D45634400031AAF /* String+Counting.swift in Sources */,
 				2A9BF3C71D38325200E3D3E2 /* String+FullwidthTransform.swift in Sources */,
 				2AA7613A1D457BD500031AAF /* String+Indentation.swift in Sources */,
+				2ABF9E962C1E8D7E0033D5E6 /* String+LineProcessing.swift in Sources */,
 				2AA5BCFB24FFB21C00618F83 /* String+Match.swift in Sources */,
 				2A26158A2977FCF6008C2240 /* SubmitButtonGroup.swift in Sources */,
 				2A1B7E75216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */,
