@@ -27,7 +27,7 @@ import AppKit
 import Testing
 @testable import CotEditor
 
-final class EditorCounterTests {
+@MainActor final class EditorCounterTests {
     
     @MainActor final class Provider: TextViewProvider {
         
@@ -48,7 +48,7 @@ final class EditorCounterTests {
         Both are 👍🏼.
         """
     
-    @MainActor @Test func noRequiredInfo() throws {
+    @Test func noRequiredInfo() throws {
         
         let provider = Provider(string: self.testString, selectedRange: NSRange(0..<3))
         
@@ -66,7 +66,7 @@ final class EditorCounterTests {
     }
     
     
-    @MainActor @Test func allRequiredInfo() throws {
+    @Test func allRequiredInfo() throws {
         
         let provider = Provider(string: self.testString, selectedRange: NSRange(11..<21))
         
@@ -90,7 +90,7 @@ final class EditorCounterTests {
     }
     
     
-    @MainActor @Test func skipWholeText() throws {
+    @Test func skipWholeText() throws {
         
         let provider = Provider(string: self.testString, selectedRange: NSRange(11..<21))
         
@@ -113,7 +113,7 @@ final class EditorCounterTests {
     }
     
     
-    @MainActor @Test func crlf() throws {
+    @Test func crlf() throws {
         
         let provider = Provider(string: "a\r\nb", selectedRange: NSRange(1..<4))
         
