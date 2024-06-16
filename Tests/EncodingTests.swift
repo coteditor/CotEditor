@@ -28,7 +28,7 @@ import Foundation
 import Testing
 @testable import CotEditor
 
-final class EncodingTests {
+struct EncodingTests {
     
     @Test func encodeYen() throws {
         

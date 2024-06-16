@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import AppKit
+import AppKit.NSTextStorage
 import Testing
 import Combine
 import Yams
@@ -32,20 +32,13 @@ import Yams
 
 final class SyntaxTests {
     
-    private let syntaxDirectoryName = "Syntaxes"
-    
     private var syntaxes: [String: Syntax] = [:]
-    private var htmlSyntax: Syntax?
-    private var htmlSource: String?
-    
-    private var outlineParseCancellable: AnyCancellable?
-    
     
     
     init() throws {
         
         let bundle = Bundle(for: type(of: self))
-        let urls = try #require(bundle.urls(forResourcesWithExtension: "yml", subdirectory: self.syntaxDirectoryName))
+        let urls = try #require(bundle.urls(forResourcesWithExtension: "yml", subdirectory: "Syntaxes"))
         
         // load syntaxes
         let decoder = YAMLDecoder()
@@ -55,18 +48,6 @@ final class SyntaxTests {
             
             dict[name] = try decoder.decode(Syntax.self, from: data)
         }
-        self.htmlSyntax = try #require(self.syntaxes["HTML"])
-        
-        // load test file
-        let sourceURL = try #require(bundle.url(forResource: "sample", withExtension: "html"))
-        self.htmlSource = try String(contentsOf: sourceURL, encoding: .utf8)
-    }
-    
-    
-    @Test func loadHTML() {
-        
-        #expect(self.htmlSyntax != nil)
-        #expect(self.htmlSource != nil)
     }
     
     
@@ -128,7 +109,7 @@ final class SyntaxTests {
     
     @Test func xmlSyntax() throws {
         
-        let syntax = try #require(self.htmlSyntax)
+        let syntax = try #require(self.syntaxes["HTML"])
         
         #expect(!syntax.highlightParser.isEmpty)
         #expect(syntax.commentDelimiters.inline == nil)
@@ -138,15 +119,19 @@ final class SyntaxTests {
     
     @Test func parseOutline() async throws {
         
-        let syntax = try #require(self.htmlSyntax)
-        let source = try #require(self.htmlSource)
+        let syntax = try #require(self.syntaxes["HTML"])
+        
+        // load test file
+        let bundle = Bundle(for: type(of: self))
+        let sourceURL = try #require(bundle.url(forResource: "sample", withExtension: "html"))
+        let source = try String(contentsOf: sourceURL, encoding: .utf8)
         
         let textStorage = NSTextStorage(string: source)
         let parser = SyntaxParser(textStorage: textStorage, syntax: syntax, name: "HTML")
         
         // test outline parsing with publisher
         try await confirmation("didParseOutline") { confirm in
-            self.outlineParseCancellable = parser.$outlineItems
+            let cancellable = parser.$outlineItems
                 .compactMap { $0 }  // ignore the initial invocation
                 .receive(on: RunLoop.main)
                 .sink { outlineItems in
@@ -165,6 +150,8 @@ final class SyntaxTests {
             
             parser.invalidateOutline()
             try await Task.sleep(for: .seconds(0.5))
+            
+            cancellable.cancel()
         }
     }
     
