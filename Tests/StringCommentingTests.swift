@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import AppKit
+import Foundation
 import Testing
 @testable import CotEditor
 
@@ -80,106 +80,122 @@ struct StringCommentingTests {
     }
     
     
-    
     // MARK: TextView extension Tests
     
-    @MainActor @Test func textViewInlineComment() {
+    @Test func textViewInlineComment() throws {
         
-        let textView = CommentingTextView()
+        var editor = Editor(string: "foo\nbar", selectedRanges: [NSRange(0..<3), NSRange(4..<7)])
         
-        textView.string = "foo\nbar"
-        textView.selectedRanges = [NSRange(0..<3), NSRange(4..<7)] as [NSValue]
-        textView.commentOut(types: .inline, fromLineHead: true)
-        #expect(textView.string == "//foo\n//bar")
-        #expect(textView.selectedRanges == [NSRange(0..<5), NSRange(6..<11)] as [NSValue])
-        #expect(textView.canUncomment(partly: false))
-        textView.uncomment()
-        #expect(textView.string == "foo\nbar")
-        #expect(textView.selectedRanges == [NSRange(0..<3), NSRange(4..<7)] as [NSValue])
+        editor.commentOut(types: .inline, fromLineHead: true)
+        #expect(editor.string == "//foo\n//bar")
+        #expect(editor.selectedRanges == [NSRange(0..<5), NSRange(6..<11)])
+        #expect(editor.canUncomment(partly: false))
+        editor.uncomment()
+        #expect(editor.string == "foo\nbar")
+        #expect(editor.selectedRanges == [NSRange(0..<3), NSRange(4..<7)])
         
-        textView.selectedRanges = [NSRange(1..<1)] as [NSValue]
-        textView.insertionLocations = [5]
-        textView.commentOut(types: .inline, fromLineHead: true)
-        #expect(textView.string == "//foo\n//bar")
-        #expect(textView.rangesForUserTextChange == [NSRange(3..<3), NSRange(9..<9)] as [NSValue])
-        #expect(textView.canUncomment(partly: false))
-        textView.uncomment()
-        #expect(textView.string == "foo\nbar")
-        #expect(textView.rangesForUserTextChange == [NSRange(1..<1), NSRange(5..<5)] as [NSValue])
+        editor.selectedRanges = [NSRange(1..<1), NSRange(5..<5)]
+        editor.commentOut(types: .inline, fromLineHead: true)
+        #expect(editor.string == "//foo\n//bar")
+        #expect(editor.selectedRanges == [NSRange(3..<3), NSRange(9..<9)])
+        #expect(editor.canUncomment(partly: false))
+        editor.uncomment()
+        #expect(editor.string == "foo\nbar")
+        #expect(editor.selectedRanges == [NSRange(1..<1), NSRange(5..<5)])
     }
     
     
-    @MainActor @Test func textViewBlockComment() {
+    @Test func textViewBlockComment() {
         
-        let textView = CommentingTextView()
+        var editor = Editor(string: "foo\nbar", selectedRanges: [NSRange(0..<3), NSRange(4..<7)])
         
-        textView.string = "foo\nbar"
-        textView.selectedRanges = [NSRange(0..<3), NSRange(4..<7)] as [NSValue]
-        textView.commentOut(types: .block, fromLineHead: true)
-        #expect(textView.string == "<-foo->\n<-bar->")
-        #expect(textView.selectedRanges == [NSRange(0..<7), NSRange(8..<15)] as [NSValue])
-        #expect(textView.canUncomment(partly: false))
-        textView.uncomment()
-        #expect(textView.string == "foo\nbar")
-        #expect(textView.selectedRanges == [NSRange(0..<3), NSRange(4..<7)] as [NSValue])
+        editor.commentOut(types: .block, fromLineHead: true)
+        #expect(editor.string == "<-foo->\n<-bar->")
+        #expect(editor.selectedRanges == [NSRange(0..<7), NSRange(8..<15)])
+        #expect(editor.canUncomment(partly: false))
+        editor.uncomment()
+        #expect(editor.string == "foo\nbar")
+        #expect(editor.selectedRanges == [NSRange(0..<3), NSRange(4..<7)])
         
-        textView.selectedRanges = [NSRange(1..<1)] as [NSValue]
-        textView.insertionLocations = [5]
-        textView.commentOut(types: .block, fromLineHead: true)
-        #expect(textView.string == "<-foo->\n<-bar->")
-        #expect(textView.rangesForUserTextChange == [NSRange(3..<3), NSRange(11..<11)] as [NSValue])
-        #expect(textView.canUncomment(partly: false))
-        textView.uncomment()
-        #expect(textView.string == "foo\nbar")
-        #expect(textView.rangesForUserTextChange == [NSRange(1..<1), NSRange(5..<5)] as [NSValue])
+        editor.selectedRanges = [NSRange(1..<1), NSRange(5..<5)]
+        editor.commentOut(types: .block, fromLineHead: true)
+        #expect(editor.string == "<-foo->\n<-bar->")
+        #expect(editor.selectedRanges == [NSRange(3..<3), NSRange(11..<11)])
+        #expect(editor.canUncomment(partly: false))
+        editor.uncomment()
+        #expect(editor.string == "foo\nbar")
+        #expect(editor.selectedRanges == [NSRange(1..<1), NSRange(5..<5)])
     }
     
     
-    @MainActor @Test func checkIncompatibility() {
+    @Test func checkIncompatibility() {
         
-        let textView = CommentingTextView()
-        
-        textView.string = """
+        let string = """
             // foo
             //
             // foo bar
             """
-        textView.selectedRange = textView.string.nsRange
-        #expect(textView.canUncomment(partly: false))
-        #expect(textView.canUncomment(partly: true))
+        let editor = Editor(string: string, selectedRanges: [string.nsRange])
         
-        textView.string = """
+        #expect(editor.canUncomment(partly: false))
+        #expect(editor.canUncomment(partly: true))
+    }
+    
+    
+    @Test func checkPartialIncompatibility() {
+        
+        let string = """
             // foo
             
             // foo bar
             """
-        textView.selectedRange = textView.string.nsRange
-        #expect(!textView.canUncomment(partly: false))
-        #expect(textView.canUncomment(partly: true))
+        let editor = Editor(string: string, selectedRanges: [string.nsRange])
+        
+        #expect(!editor.canUncomment(partly: false))
+        #expect(editor.canUncomment(partly: true))
     }
 }
 
 
-
-private final class CommentingTextView: NSTextView, Commenting, MultiCursorEditing {
+/// TextView mock
+private struct Editor {
     
-    // Commenting
-    var commentDelimiters = Syntax.Comment(inline: "//", blockBegin: "<-", blockEnd: "->")
+    let delimiters = Syntax.Comment(inline: "//", blockBegin: "<-", blockEnd: "->")
     
-    // MultiCursorEditing
-    var insertionLocations: [Int] = []
-    var selectionOrigins: [Int] = []
-    var insertionPointTimer: (any DispatchSourceTimer)?
-    var insertionPointOn: Bool = false
-    var isPerformingRectangularSelection: Bool = false
-    var insertionIndicators: [NSTextInsertionIndicator] = []
+    var string: String
+    var selectedRanges: [NSRange] = []
     
     
-    override var rangesForUserTextChange: [NSValue]? {
+    mutating func commentOut(types: CommentTypes, fromLineHead: Bool) {
         
-        let selectedRanges = self.selectedRanges.map(\.rangeValue)
-        let insertionRanges = self.insertionLocations.map { NSRange(location: $0, length: 0) }
+        guard let content = self.string.commentOut(types: types, delimiters: self.delimiters, fromLineHead: true, in: self.selectedRanges) else { return }
         
-        return (selectedRanges + insertionRanges).sorted(\.location) as [NSValue]
+        self.edit(with: content)
+    }
+    
+    
+    mutating func uncomment() {
+        
+        guard let content = self.string.uncomment(delimiters: self.delimiters, in: self.selectedRanges) else { return }
+        
+        self.edit(with: content)
+    }
+    
+    
+    func canUncomment(partly: Bool) -> Bool {
+        
+        self.string.canUncomment(partly: partly, delimiters: self.delimiters, in: self.selectedRanges)
+    }
+    
+    
+    mutating func edit(with context: EditingContext) {
+        
+        let mutableString = NSMutableString(string: self.string)
+        for (string, range) in zip(context.strings, context.ranges).reversed() {
+            mutableString.replaceCharacters(in: range, with: string)
+        }
+        
+        self.string = mutableString as String
+        self.selectedRanges = context.selectedRanges ?? self.selectedRanges
     }
 }

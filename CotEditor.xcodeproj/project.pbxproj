@@ -627,6 +627,8 @@
 		2ABF9E9D2C1EC2A50033D5E6 /* String+Escaping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF9E9B2C1EC29D0033D5E6 /* String+Escaping.swift */; };
 		2ABF9E9F2C1EC8620033D5E6 /* String+Filename.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF9E9E2C1EC8590033D5E6 /* String+Filename.swift */; };
 		2ABF9EA02C1EC8620033D5E6 /* String+Filename.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF9E9E2C1EC8590033D5E6 /* String+Filename.swift */; };
+		2ABF9EA22C1ED4BF0033D5E6 /* String+Commenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF9EA12C1ED4B90033D5E6 /* String+Commenting.swift */; };
+		2ABF9EA32C1ED4BF0033D5E6 /* String+Commenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF9EA12C1ED4B90033D5E6 /* String+Commenting.swift */; };
 		2AC13A0924F112D800799A93 /* CommandLineToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */; };
 		2AC13A0A24F112D800799A93 /* CommandLineToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */; };
 		2AC186DA1E2F414D002F4D27 /* NSDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186D91E2F414D002F4D27 /* NSDocument.swift */; };
@@ -1197,6 +1199,7 @@
 		2ABF9E952C1E8D780033D5E6 /* String+LineProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+LineProcessing.swift"; sourceTree = "<group>"; };
 		2ABF9E9B2C1EC29D0033D5E6 /* String+Escaping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Escaping.swift"; sourceTree = "<group>"; };
 		2ABF9E9E2C1EC8590033D5E6 /* String+Filename.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Filename.swift"; sourceTree = "<group>"; };
+		2ABF9EA12C1ED4B90033D5E6 /* String+Commenting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Commenting.swift"; sourceTree = "<group>"; };
 		2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineToolManager.swift; sourceTree = "<group>"; };
 		2AC186D91E2F414D002F4D27 /* NSDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDocument.swift; sourceTree = "<group>"; };
 		2AC186DC1E2F4264002F4D27 /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
@@ -1669,6 +1672,7 @@
 				2A9BF3C61D38325200E3D3E2 /* String+FullwidthTransform.swift */,
 				2A733E8820BBB4AC0090D7CB /* String+Case.swift */,
 				2AA761391D457BD500031AAF /* String+Indentation.swift */,
+				2ABF9EA12C1ED4B90033D5E6 /* String+Commenting.swift */,
 				2ABF9E952C1E8D780033D5E6 /* String+LineProcessing.swift */,
 				2ABF9E9E2C1EC8590033D5E6 /* String+Filename.swift */,
 				2A8E47E8299C6064006A40D8 /* NSRange.swift */,
@@ -3075,6 +3079,7 @@
 				2AD21FCD1D2E3BE80018C8D1 /* StatusBar.swift in Sources */,
 				2A26156E2977B87F008C2240 /* StepperNumberField.swift in Sources */,
 				2A733E8A20BBB4AC0090D7CB /* String+Case.swift in Sources */,
+				2ABF9EA32C1ED4BF0033D5E6 /* String+Commenting.swift in Sources */,
 				2A2792961D1DBDAC00F3FC5D /* String+Constants.swift in Sources */,
 				2AA761361D45634400031AAF /* String+Counting.swift in Sources */,
 				2ABF9E9D2C1EC2A50033D5E6 /* String+Escaping.swift in Sources */,
@@ -3426,6 +3431,7 @@
 				2AD21FCC1D2E3BE80018C8D1 /* StatusBar.swift in Sources */,
 				2A26156F2977B87F008C2240 /* StepperNumberField.swift in Sources */,
 				2A733E8920BBB4AC0090D7CB /* String+Case.swift in Sources */,
+				2ABF9EA22C1ED4BF0033D5E6 /* String+Commenting.swift in Sources */,
 				2A2792951D1DBDAC00F3FC5D /* String+Constants.swift in Sources */,
 				2AA761351D45634400031AAF /* String+Counting.swift in Sources */,
 				2ABF9E9C2C1EC2A50033D5E6 /* String+Escaping.swift in Sources */,

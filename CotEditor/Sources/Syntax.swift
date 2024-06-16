@@ -100,6 +100,11 @@ struct Syntax: Equatable {
             
             if let begin = self.blockBegin, let end = self.blockEnd { Pair(begin, end) } else { nil }
         }
+        
+        var isEmpty: Bool {
+            
+            self.block == nil && self.inline == nil
+        }
     }
     
     
