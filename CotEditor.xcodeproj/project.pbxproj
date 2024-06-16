@@ -442,8 +442,6 @@
 		2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A836F7E1D572A5D0044E8EC /* Main.storyboard */; };
 		2A885E331D5C3A1B00288723 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A885E321D5C3A1B00288723 /* Comparable.swift */; };
 		2A885E341D5C3A1B00288723 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A885E321D5C3A1B00288723 /* Comparable.swift */; };
-		2A88E7711E81A2C7000019C6 /* OrderedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A88E7701E81A2C7000019C6 /* OrderedSet.swift */; };
-		2A88E7721E81A2C7000019C6 /* OrderedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A88E7701E81A2C7000019C6 /* OrderedSet.swift */; };
 		2A89160C2394B87100AC13EE /* NSLayoutManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89160B2394B87100AC13EE /* NSLayoutManagerTests.swift */; };
 		2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8961911DB76A3400E9E0EC /* MainMenu.swift */; };
 		2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8961911DB76A3400E9E0EC /* MainMenu.swift */; };
@@ -1097,7 +1095,6 @@
 		2A836F7F1D572A5D0044E8EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2A8544E6267872E0006EF01A /* SyntaxMap */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SyntaxMap; sourceTree = "<group>"; };
 		2A885E321D5C3A1B00288723 /* Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
-		2A88E7701E81A2C7000019C6 /* OrderedSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedSet.swift; sourceTree = "<group>"; };
 		2A89160B2394B87100AC13EE /* NSLayoutManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutManagerTests.swift; sourceTree = "<group>"; };
 		2A8961911DB76A3400E9E0EC /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacter.swift; sourceTree = "<group>"; };
@@ -1451,7 +1448,6 @@
 			children = (
 				2A3E61C627C4962B00C6E5B6 /* Formatters */,
 				2AC186DC1E2F4264002F4D27 /* Debug.swift */,
-				2A88E7701E81A2C7000019C6 /* OrderedSet.swift */,
 				2A8E47E1299A2314006A40D8 /* EditedRangeSet.swift */,
 				2AA704CD2987878B008CBCB5 /* Node.swift */,
 				2A11F2121E669BFA005E1675 /* PointerBridge.swift */,
@@ -3025,7 +3021,6 @@
 				2ACDA2502B81201A00B2EBA8 /* OpacitySlider.swift in Sources */,
 				2AC6069C20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */,
 				2A3E61BF27C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,
-				2A88E7721E81A2C7000019C6 /* OrderedSet.swift in Sources */,
 				2A4714E7209630510093E27F /* OutlineExtractor.swift in Sources */,
 				2AE7A8DA20450FE600830830 /* OutlineInspectorView.swift in Sources */,
 				2AAD61F51D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
@@ -3375,7 +3370,6 @@
 				2ACDA2512B81201A00B2EBA8 /* OpacitySlider.swift in Sources */,
 				2AC6069B20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */,
 				2A3E61C027C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,
-				2A88E7711E81A2C7000019C6 /* OrderedSet.swift in Sources */,
 				2A4714E6209630510093E27F /* OutlineExtractor.swift in Sources */,
 				2AE7A8D920450FE600830830 /* OutlineInspectorView.swift in Sources */,
 				2AAD61F41D2BA0E0008FE772 /* OutlineItem.swift in Sources */,

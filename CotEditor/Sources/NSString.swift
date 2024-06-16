@@ -186,7 +186,7 @@ extension NSString {
             return ranges
         }
         
-        var lineRanges = OrderedSet<NSRange>()
+        var lineRanges: [NSRange] = []
         
         // get line ranges to process
         for range in ranges {
@@ -198,7 +198,7 @@ extension NSString {
             }
         }
         
-        return lineRanges.array
+        return lineRanges.uniqued
     }
     
     

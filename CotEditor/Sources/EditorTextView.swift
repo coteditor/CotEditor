@@ -1629,7 +1629,7 @@ extension EditorTextView {
         // do nothing if completion is not suggested from the typed characters
         guard !charRange.isEmpty else { return nil }
         
-        var candidateWords = OrderedSet<String>()
+        var candidateWords: [String] = []
         let partialWord = (self.string as NSString).substring(with: charRange)
         
         // add words in document
@@ -1666,7 +1666,7 @@ extension EditorTextView {
             return []
         }
         
-        return candidateWords.array
+        return candidateWords.uniqued
     }
     
     
