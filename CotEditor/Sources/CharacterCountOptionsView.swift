@@ -33,6 +33,12 @@ extension UnicodeNormalizationForm: @retroactive DefaultInitializable {
 }
 
 
+extension CharacterCountOptions.CharacterUnit: DefaultInitializable {
+    
+    static let defaultValue: Self = .graphemeCluster
+}
+
+
 struct CharacterCountOptionsView: View {
     
     @Namespace private var accessibility
