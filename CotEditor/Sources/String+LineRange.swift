@@ -1,5 +1,5 @@
 //
-//  String+Additions.swift
+//  String+LineRange.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,35 +25,7 @@
 
 import Foundation
 
-private let kMaxEscapesCheckLength = 8
-
 extension String {
-    
-    /// Copied string to make sure the string is not a kind of NSMutableString.
-    var immutable: String {
-        
-        NSString(string: self) as String
-    }
-    
-    
-    /// Unescaped version of the string by unescaping the characters with backslashes.
-    var unescaped: String {
-        
-        // -> According to the Swift documentation, these are the all combinations with backslash.
-        //    cf. https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID295
-        let entities = [
-            #"0"#: "\0",  // null character
-            #"t"#: "\t",  // horizontal tab
-            #"n"#: "\n",  // line feed
-            #"r"#: "\r",  // carriage return
-            #"""#: "\"",  // double quotation mark
-            #"'"#: "\'",  // single quotation mark
-            #"\"#: "\\",  // backslash
-        ]
-        
-        return self.replacing(/\\([0tnr"'\\])/) { entities[String($0.1)]! }
-    }
-    
     
     /// The first appeared line ending character.
     var firstLineEnding: Character? {
@@ -134,18 +106,6 @@ extension StringProtocol {
         
         return contentsEnd
     }
-    
-    
-    /// Checks if character at the index is escaped with backslash.
-    ///
-    /// - Parameter index: The index of the character to check.
-    /// - Returns: `true` when the character at the given index is escaped.
-    func isCharacterEscaped(at index: Index) -> Bool {
-        
-        let escapes = self[..<index].suffix(kMaxEscapesCheckLength).reversed().prefix { $0 == "\\" }
-        
-        return !escapes.count.isMultiple(of: 2)
-    }
 }
 
 
@@ -164,19 +124,5 @@ extension String {
         let regex = try! NSRegularExpression(pattern: "^.*", options: [.anchorsMatchLines])
         
         return regex.matches(in: self, range: range).map(\.range)
-    }
-    
-    
-    /// Checks if character at the location in UTF16 is escaped with backslash.
-    ///
-    /// - Parameter location: The UTF16-based location of the character to check.
-    /// - Returns: `true` when the character at the given index is escaped.
-    func isCharacterEscaped(at location: Int) -> Bool {
-        
-        let escape = 0x005C
-        let index = UTF16View.Index(utf16Offset: location, in: self)
-        let escapes = self.utf16[..<index].suffix(kMaxEscapesCheckLength).reversed().prefix { $0 == escape }
-        
-        return !escapes.count.isMultiple(of: 2)
     }
 }

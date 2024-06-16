@@ -25,8 +25,6 @@
 
 extension StringProtocol {
     
-    // MARK: Public Properties
-    
     /// Transforms half-width roman characters to full-width forms, or vice versa.
     ///
     /// - Parameter reverse: `True` to transform from full-width to half-width.
