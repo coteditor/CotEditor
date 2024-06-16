@@ -135,31 +135,6 @@ extension NSTextView {
     }
     
     
-    /// Trims all trailing whitespace with/without keeping editing point.
-    final func trimTrailingWhitespace(ignoresEmptyLines: Bool, keepingEditingPoint: Bool = false) {
-        
-        assert(Thread.isMainThread)
-        
-        let whitespaceRanges = self.string.rangesOfTrailingWhitespace(ignoresEmptyLines: ignoresEmptyLines)
-        
-        guard !whitespaceRanges.isEmpty else { return }
-        
-        let editingRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map(\.rangeValue)
-        
-        let trimmingRanges: [NSRange] = keepingEditingPoint
-            ? whitespaceRanges.filter { range in editingRanges.allSatisfy { !$0.touches(range) } }
-            : whitespaceRanges
-        
-        guard !trimmingRanges.isEmpty else { return }
-        
-        let replacementStrings = [String](repeating: "", count: trimmingRanges.count)
-        let selectedRanges = editingRanges.map { $0.removed(ranges: trimmingRanges) }
-        
-        self.replace(with: replacementStrings, ranges: trimmingRanges, selectedRanges: selectedRanges,
-                     actionName: String(localized: "Trim Trailing Whitespace", table: "MainMenu"))
-    }
-    
-    
     // MARK: Actions
     
     /// Inputs a backslash (\\) to the insertion points.
@@ -190,17 +165,5 @@ extension String {
             case let attributedString as NSAttributedString: attributedString.string
             default: preconditionFailure()
         }
-    }
-}
-
-
-extension String {
-    
-    func rangesOfTrailingWhitespace(ignoresEmptyLines: Bool) -> [NSRange] {
-        
-        let pattern = ignoresEmptyLines ? "(?<!^|[ \\t])[ \\t]++$" : "[ \\t]++$"
-        let regex = try! NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
-        
-        return regex.matches(in: self, range: self.nsRange).map(\.range)
     }
 }

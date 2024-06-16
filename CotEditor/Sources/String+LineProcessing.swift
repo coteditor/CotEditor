@@ -300,3 +300,35 @@ extension String {
         return EditingContext(strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
     }
 }
+
+
+extension String {
+    
+    /// Trims all trailing whitespace with/without keeping editing point.
+    func trimTrailingWhitespace(ignoringEmptyLines: Bool, keepingEditingPoint: Bool = false, in editingRanges: [NSRange]) -> EditingContext? {
+        
+        let whitespaceRanges = self.rangesOfTrailingWhitespace(ignoringEmptyLines: ignoringEmptyLines)
+        
+        guard !whitespaceRanges.isEmpty else { return nil }
+        
+        let trimmingRanges: [NSRange] = keepingEditingPoint
+            ? whitespaceRanges.filter { range in editingRanges.allSatisfy { !$0.touches(range) } }
+            : whitespaceRanges
+        
+        guard !trimmingRanges.isEmpty else { return nil }
+        
+        let replacementStrings = [String](repeating: "", count: trimmingRanges.count)
+        let selectedRanges = editingRanges.map { $0.removed(ranges: trimmingRanges) }
+        
+        return EditingContext(strings: replacementStrings, ranges: trimmingRanges, selectedRanges: selectedRanges)
+    }
+    
+    
+    func rangesOfTrailingWhitespace(ignoringEmptyLines: Bool) -> [NSRange] {
+        
+        let pattern = ignoringEmptyLines ? "(?<!^|[ \\t])[ \\t]++$" : "[ \\t]++$"
+        let regex = try! NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
+        
+        return regex.matches(in: self, range: self.nsRange).map(\.range)
+    }
+}

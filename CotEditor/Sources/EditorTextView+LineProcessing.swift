@@ -149,7 +149,7 @@ extension EditorTextView {
         
         let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
         
-        self.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines)
+        self.trimTrailingWhitespace(ignoringEmptyLines: !trimsWhitespaceOnlyLines)
     }
     
     
@@ -197,5 +197,19 @@ extension EditorTextView {
         
         self.replace(with: newString, range: lineRange, selectedRange: lineRange,
                      actionName: String(localized: "Sort Lines", table: "MainMenu"))
+    }
+}
+
+
+extension NSTextView {
+    
+    /// Trims all trailing whitespace with/without keeping editing point.
+    final func trimTrailingWhitespace(ignoringEmptyLines: Bool, keepingEditingPoint: Bool = false) {
+        
+        let editingRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map(\.rangeValue)
+        
+        guard let context = self.string.trimTrailingWhitespace(ignoringEmptyLines: ignoringEmptyLines, keepingEditingPoint: keepingEditingPoint, in: editingRanges) else { return }
+        
+        self.edit(with: context, actionName: String(localized: "Trim Trailing Whitespace", table: "MainMenu"))
     }
 }

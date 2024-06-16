@@ -426,7 +426,7 @@ import FilePermissions
         
         // trim trailing whitespace if needed
         if !saveOperation.isAutosave, UserDefaults.standard[.autoTrimsTrailingWhitespace] {
-            textViews.first?.trimTrailingWhitespace(ignoresEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines])
+            textViews.first?.trimTrailingWhitespace(ignoringEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines])
         }
         
         // workaround the issue that invoking the async version super blocks the save process

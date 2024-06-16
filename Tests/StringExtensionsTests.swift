@@ -381,7 +381,7 @@ struct StringExtensionsTests {
             abc
             """
         
-        let trimmed = try string.trim(ranges: string.rangesOfTrailingWhitespace(ignoresEmptyLines: false))
+        let trimmed = try string.trim(ranges: string.rangesOfTrailingWhitespace(ignoringEmptyLines: false))
         let expectedTrimmed = """
             
             abc def
@@ -391,7 +391,7 @@ struct StringExtensionsTests {
             """
         #expect(trimmed == expectedTrimmed)
         
-        let trimmedIgnoringEmptyLines = try string.trim(ranges: string.rangesOfTrailingWhitespace(ignoresEmptyLines: true))
+        let trimmedIgnoringEmptyLines = try string.trim(ranges: string.rangesOfTrailingWhitespace(ignoringEmptyLines: true))
         let expectedTrimmedIgnoringEmptyLines =  """
             
             abc def
