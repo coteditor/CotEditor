@@ -30,7 +30,7 @@ import Combine
 import Yams
 @testable import CotEditor
 
-final class SyntaxTests {
+actor SyntaxTests {
     
     private var syntaxes: [String: Syntax] = [:]
     
