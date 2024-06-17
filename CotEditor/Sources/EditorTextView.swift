@@ -92,8 +92,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     var insertionLocations: [Int] = []  { didSet { self.needsUpdateInsertionIndicators = true } }
     var selectionOrigins: [Int] = []
-    var insertionPointTimer: (any DispatchSourceTimer)?
-    var insertionPointOn = false
     var insertionIndicators: [NSTextInsertionIndicator] = []
     private(set) var isPerformingRectangularSelection = false
     
@@ -230,7 +228,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     
     deinit {
-        self.insertionPointTimer?.cancel()
         self.instanceHighlightTask?.cancel()
     }
     
