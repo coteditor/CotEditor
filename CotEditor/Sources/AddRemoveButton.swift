@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,19 +25,15 @@
 
 import SwiftUI
 
-protocol EmptyInitializable {
-    
-    init()
-}
-
-
-struct AddRemoveButton<Item: Identifiable & EmptyInitializable>: View {
+struct AddRemoveButton<Item: Identifiable>: View {
     
     @Binding private var items: [Item]
     @Binding private var selection: Set<Item.ID>
     
     private var focus: FocusState<Item.ID?>.Binding?
     @State private var added: Item.ID?
+    
+    private var newItem: () -> Item
     
     
     /// Creates a  segmented add/remove control.
@@ -46,11 +42,13 @@ struct AddRemoveButton<Item: Identifiable & EmptyInitializable>: View {
     ///   - items: The identifiable data array where adding/removing items.
     ///   - selection: A binding to a set that identifies selected items IDs.
     ///   - focus: A binding to the focus state in the window.
-    init(_ items: Binding<[Item]>, selection: Binding<Set<Item.ID>>, focus: FocusState<Item.ID?>.Binding? = nil) {
+    ///   - newItem: A closure to return an item for when adding a new item from the button.
+    init(_ items: Binding<[Item]>, selection: Binding<Set<Item.ID>>, focus: FocusState<Item.ID?>.Binding? = nil, newItem: @escaping () -> Item) {
         
         self._items = items
         self._selection = selection
         self.focus = focus
+        self.newItem = newItem
     }
     
     
@@ -58,7 +56,7 @@ struct AddRemoveButton<Item: Identifiable & EmptyInitializable>: View {
         
         ControlGroup {
             Button(String(localized: "Add", table: "AddRemoveButton", comment: "button label"), systemImage: "plus") {
-                let item = Item()
+                let item = self.newItem()
                 let index = self.items.lastIndex { self.selection.contains($0.id) } ?? self.items.endIndex - 1
                 
                 self.selection.removeAll()
@@ -69,7 +67,7 @@ struct AddRemoveButton<Item: Identifiable & EmptyInitializable>: View {
                     self.selection = [item.id]
                 }
             }
-            .onChange(of: self.added) { newValue in
+            .onChange(of: self.added) { (_, newValue) in
                 self.focus?.wrappedValue = newValue
             }
             .help(String(localized: "Add new item", table: "AddRemoveButton", comment: "tooltip"))

@@ -127,13 +127,15 @@ struct TextFindAllResult {
         case highlight = 103
         case unhighlight = 104
         case showMultipleReplaceInterface = 105
+        case multipleReplace = 106
     }
     
     
     // MARK: Public Properties
     
-    static let didFindNotification = Notification.Name("didFindNotification")
-    static let didFindAllNotification = Notification.Name("didFindAllNotification")
+    nonisolated static let didFindNotification = Notification.Name("didFindNotification")
+    nonisolated static let didFindAllNotification = Notification.Name("didFindAllNotification")
+    
     
     weak var client: NSTextView!
     
@@ -190,7 +192,8 @@ struct TextFindAllResult {
                 
             case .replaceAll,
                  .replace,
-                 .replaceAndFind:
+                 .replaceAndFind,
+                 .multipleReplace:
                 self.client.isEditable
                 
             case .highlight,
@@ -211,7 +214,7 @@ struct TextFindAllResult {
     /// Performs the specified text finding action.
     ///
     /// - Parameter action: The text finding action.
-    func performAction(_ action: Action) {
+    func performAction(_ action: Action, representedItem: Any? = nil) {
         
         guard self.validateAction(action) else { return }
         
@@ -262,6 +265,10 @@ struct TextFindAllResult {
                 
             case .showMultipleReplaceInterface:
                 MultipleReplacePanelController.shared.showWindow(nil)
+                
+            case .multipleReplace:
+                guard let name = representedItem as? String else { return assertionFailure() }
+                self.multiReplaceAll(name: name)
         }
     }
     
@@ -359,6 +366,19 @@ struct TextFindAllResult {
         
         Task {
             await self.replaceAll()
+        }
+    }
+    
+    
+    /// Performs multiple replacement with a specific replacement definition.
+    ///
+    /// - Parameter name: The name of the multiple replacement definition.
+    private func multiReplaceAll(name: String) {
+        
+        guard let definition = try? ReplacementManager.shared.setting(name: name) else { return assertionFailure() }
+        
+        Task {
+            try await self.client.replaceAll(definition, inSelection: TextFinderSettings.shared.inSelection)
         }
     }
     
@@ -469,7 +489,7 @@ struct TextFindAllResult {
             
             if result.wrapped {
                 client.enclosingScrollView?.superview?.showHUD(symbol: .wrap(flipped: !forward))
-                client.requestAccessibilityAnnouncement(String(localized: "Search wrapped.", table: "TextFind", comment: "Announced when the search restarted from the beginning."))
+                AccessibilityNotification.Announcement(String(localized: "Search wrapped.", table: "TextFind", comment: "Announced when the search restarted from the beginning.")).post()
             }
         } else if !isIncremental {
             client.enclosingScrollView?.superview?.showHUD(symbol: forward ? .reachBottom : .reachTop)
@@ -650,7 +670,7 @@ struct TextFindAllResult {
         self.findResult = result
         NotificationCenter.default.post(name: TextFinder.didFindNotification, object: self)
         
-        self.client?.requestAccessibilityAnnouncement(result.message)
+        AccessibilityNotification.Announcement(result.message).post()
     }
 }
 

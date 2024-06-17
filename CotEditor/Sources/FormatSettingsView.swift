@@ -24,6 +24,8 @@
 //
 
 import SwiftUI
+import Defaults
+import FileEncoding
 
 struct FormatSettingsView: View {
     
@@ -37,7 +39,7 @@ struct FormatSettingsView: View {
     
     @AppStorage(.syntax) private var syntax
     
-    @State private var fileEncodings: [FileEncoding?] = []
+    @State private var encodingManager: EncodingManager = .shared
     @State private var syntaxNames: [String] = []
     
     
@@ -86,7 +88,7 @@ struct FormatSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 Picker(selection: self.fileEncoding) {
-                    ForEach(Array(self.fileEncodings.enumerated()), id: \.offset) { (_, encoding) in
+                    ForEach(Array(self.encodingManager.fileEncodings.enumerated()), id: \.offset) { (_, encoding) in
                         if let encoding {
                             Text(encoding.localizedName)
                                 .tag(encoding)
@@ -164,11 +166,8 @@ struct FormatSettingsView: View {
             
             HStack {
                 Spacer()
-                HelpButton(anchor: "settings_format")
+                HelpLink(anchor: "settings_format")
             }
-        }
-        .onReceive(EncodingManager.shared.$fileEncodings) { fileEncodings in
-            self.fileEncodings = fileEncodings
         }
         .onReceive(SyntaxManager.shared.$settingNames) { settingNames in
             self.syntaxNames = settingNames

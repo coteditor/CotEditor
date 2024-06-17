@@ -24,16 +24,17 @@
 //
 
 import SwiftUI
+import Observation
 
 final class WarningInspectorViewController: NSHostingController<WarningInspectorView>, DocumentOwner {
     
     // MARK: Public Properties
     
-    var document: Document {
+    var document: Document? {
         
         didSet {
             if self.isViewShown {
-                self.model.document = document
+                self.model.updateDocument(to: document)
             }
         }
     }
@@ -47,9 +48,10 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
     
     // MARK: Lifecycle
     
-    required init(document: Document) {
+    required init(document: Document?) {
         
         self.document = document
+        self.model.updateDocument(to: document)
         
         super.init(rootView: WarningInspectorView(model: self.model))
     }
@@ -65,7 +67,7 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
         
         super.viewWillAppear()
         
-        self.model.document = self.document
+        self.model.updateDocument(to: self.document)
     }
     
     
@@ -73,29 +75,29 @@ final class WarningInspectorViewController: NSHostingController<WarningInspector
         
         super.viewDidDisappear()
         
-        self.model.document = nil
+        self.model.updateDocument(to: nil)
     }
 }
 
 
 struct WarningInspectorView: View {
     
-    @MainActor final class Model: ObservableObject {
+    @MainActor @Observable final class Model {
         
-        var document: Document? {
-            
-            didSet {
-                self.incompatibleCharactersModel.document = document
-                self.inconsistentLineEndingsModel.document = document
-            }
-        }
+        private(set) var document: Document?
         
         let incompatibleCharactersModel = IncompatibleCharactersView.Model()
-        let inconsistentLineEndingsModel = InconsistentLineEndingsView.Model()
+        
+        
+        func updateDocument(to document: Document?) {
+            
+            self.document = document
+            self.incompatibleCharactersModel.document = document
+        }
     }
     
     
-    @ObservedObject var model: Model
+    @State var model: Model
     
     
     var body: some View {
@@ -103,7 +105,7 @@ struct WarningInspectorView: View {
         VSplitView {
             IncompatibleCharactersView(model: self.model.incompatibleCharactersModel)
                 .padding(.bottom, 12)
-            InconsistentLineEndingsView(model: self.model.inconsistentLineEndingsModel)
+            InconsistentLineEndingsView(document: self.model.document)
                 .padding(.top, 8)
         }
         .padding(EdgeInsets(top: 8, leading: 12, bottom: 12, trailing: 12))
@@ -115,7 +117,6 @@ struct WarningInspectorView: View {
 
 // MARK: - Preview
 
-@available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
     WarningInspectorView(model: .init())
 }

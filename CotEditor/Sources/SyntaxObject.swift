@@ -24,69 +24,39 @@
 //
 
 import Foundation
+import Observation
 
-final class SyntaxObject: ObservableObject {
+@Observable final class SyntaxObject {
     
+    typealias Highlight = SyntaxObjectHighlight
+    typealias Outline = SyntaxObjectOutline
+    typealias KeyString = SyntaxObjectKeyString
     typealias Comment = Syntax.Comment
     typealias Metadata = Syntax.Metadata
     
     
-    struct Highlight: Identifiable, EmptyInitializable {
-        
-        let id = UUID()
-        
-        var begin: String = ""
-        var end: String?
-        var isRegularExpression: Bool = false
-        var ignoreCase: Bool = false
-        var description: String?
-    }
+    var kind: Syntax.Kind = .general
     
+    var keywords: [Highlight] = []
+    var commands: [Highlight] = []
+    var types: [Highlight] = []
+    var attributes: [Highlight] = []
+    var variables: [Highlight] = []
+    var values: [Highlight] = []
+    var numbers: [Highlight] = []
+    var strings: [Highlight] = []
+    var characters: [Highlight] = []
+    var comments: [Highlight] = []
     
-    struct Outline: Identifiable, EmptyInitializable {
-        
-        let id = UUID()
-        
-        var pattern: String = ""
-        var template: String = ""
-        var ignoreCase: Bool = false
-        var bold: Bool = false
-        var italic: Bool = false
-        var underline: Bool = false
-        var description: String?
-    }
+    var commentDelimiters: Comment = Comment()
+    var outlines: [Outline] = []
+    var completions: [KeyString] = []
     
+    var filenames: [KeyString] = []
+    var extensions: [KeyString] = []
+    var interpreters: [KeyString] = []
     
-    struct KeyString: Identifiable, EmptyInitializable {
-        
-        let id = UUID()
-        
-        var string: String = ""
-    }
-    
-    
-    @Published var kind: Syntax.Kind = .general
-    
-    @Published var keywords: [Highlight] = []
-    @Published var commands: [Highlight] = []
-    @Published var types: [Highlight] = []
-    @Published var attributes: [Highlight] = []
-    @Published var variables: [Highlight] = []
-    @Published var values: [Highlight] = []
-    @Published var numbers: [Highlight] = []
-    @Published var strings: [Highlight] = []
-    @Published var characters: [Highlight] = []
-    @Published var comments: [Highlight] = []
-    
-    @Published var commentDelimiters: Comment = Comment()
-    @Published var outlines: [Outline] = []
-    @Published var completions: [KeyString] = []
-    
-    @Published var filenames: [KeyString] = []
-    @Published var extensions: [KeyString] = []
-    @Published var interpreters: [KeyString] = []
-    
-    @Published var metadata: Metadata = Metadata()
+    var metadata: Metadata = Metadata()
     
     
     static func highlightKeyPath(for type: SyntaxType) -> WritableKeyPath<SyntaxObject, [Highlight]> {
@@ -104,6 +74,40 @@ final class SyntaxObject: ObservableObject {
             case .comments: \.comments
         }
     }
+}
+
+
+struct SyntaxObjectHighlight: Identifiable {
+    
+    let id = UUID()
+    
+    var begin: String = ""
+    var end: String?
+    var isRegularExpression: Bool = false
+    var ignoreCase: Bool = false
+    var description: String?
+}
+
+
+struct SyntaxObjectOutline: Identifiable {
+    
+    let id = UUID()
+    
+    var pattern: String = ""
+    var template: String = ""
+    var ignoreCase: Bool = false
+    var bold: Bool = false
+    var italic: Bool = false
+    var underline: Bool = false
+    var description: String?
+}
+
+
+struct SyntaxObjectKeyString: Identifiable {
+    
+    let id = UUID()
+    
+    var string: String = ""
 }
 
 
@@ -178,7 +182,7 @@ extension SyntaxObject {
 }
 
 
-extension SyntaxObject.Highlight {
+extension SyntaxObjectHighlight {
     
     typealias Value = Syntax.Highlight
     
@@ -203,7 +207,7 @@ extension SyntaxObject.Highlight {
 }
 
 
-extension SyntaxObject.Outline {
+extension SyntaxObjectOutline {
     
     typealias Value = Syntax.Outline
     
@@ -232,7 +236,7 @@ extension SyntaxObject.Outline {
 }
 
 
-extension SyntaxObject.KeyString {
+extension SyntaxObjectKeyString {
     
     typealias Value = String
     
@@ -249,7 +253,7 @@ extension SyntaxObject.KeyString {
 }
 
 
-extension SyntaxObject.Highlight: Equatable {
+extension SyntaxObjectHighlight: Equatable {
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         

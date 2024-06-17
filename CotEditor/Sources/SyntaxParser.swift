@@ -28,6 +28,7 @@ import Combine
 import Foundation
 import AppKit.NSTextStorage
 import OSLog
+import Defaults
 
 extension NSAttributedString.Key {
     

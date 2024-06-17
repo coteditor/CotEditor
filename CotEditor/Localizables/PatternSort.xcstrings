@@ -842,6 +842,7 @@
       }
     },
     "Recents" : {
+      "comment" : "menu header",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

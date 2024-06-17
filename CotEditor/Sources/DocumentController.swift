@@ -28,6 +28,7 @@ import AppKit
 import Combine
 import SwiftUI
 import UniformTypeIdentifiers
+import Defaults
 
 protocol AdditionalDocumentPreparing: NSDocument {
     
@@ -350,11 +351,9 @@ final class DocumentController: NSDocumentController {
     private nonisolated func checkOpeningSafetyOfDocument(at url: URL, type typeName: String) throws {
         
         // check if the file is possible binary
-        let binaryTypes: [UTType] = [.image, .audiovisualContent, .archive]
         if let type = UTType(typeName),
-           binaryTypes.contains(where: type.conforms(to:)),
-           !type.conforms(to: .svg),  // SVG is plain-text (except SVGZ)
-           url.pathExtension != "ts"  // "ts" extension conflicts between MPEG-2 streamclip file and TypeScript
+           !type.isPlainText,
+           [.image, .audiovisualContent, .archive].contains(where: type.conforms(to:))
         {
             throw DocumentOpeningError(.binaryFile(type: type), url: url)
         }

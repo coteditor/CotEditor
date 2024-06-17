@@ -25,12 +25,13 @@
 //
 
 import AppKit
+import Shortcut
 
-final class KeyBindingManager {
+@MainActor final class KeyBindingManager {
     
     // MARK: Public Properties
     
-    nonisolated(unsafe) static let shared = KeyBindingManager()
+    static let shared = KeyBindingManager()
     
     
     // MARK: Private Properties

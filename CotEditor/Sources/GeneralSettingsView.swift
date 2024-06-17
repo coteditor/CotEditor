@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Defaults
 
 struct GeneralSettingsView: View {
     
@@ -85,7 +86,7 @@ struct GeneralSettingsView: View {
                 
                 VStack(alignment: .leading) {
                     Toggle(String(localized: "Enable Auto Save with Versions", table: "GeneralSettings"), isOn: $enablesAutosaveInPlace)
-                        .onChange(of: self.enablesAutosaveInPlace) { newValue in
+                        .onChange(of: self.enablesAutosaveInPlace) { (_, newValue) in
                             if newValue != self.initialEnablesAutosaveInPlace {
                                 self.isAutosaveChangeDialogPresented = true
                             }
@@ -191,7 +192,7 @@ struct GeneralSettingsView: View {
             
             HStack {
                 Spacer()
-                HelpButton(anchor: "settings_general")
+                HelpLink(anchor: "settings_general")
             }
         }
         .onAppear {
@@ -252,7 +253,7 @@ private struct WarningsSettingView: View {
             }
             
             HStack {
-                HelpButton(anchor: "howto_manage_warnings")
+                HelpLink(anchor: "howto_manage_warnings")
                 Spacer()
                 Button(String(localized: "Done", table: "GeneralSettings", comment: "button label")) {
                     self.dismiss()

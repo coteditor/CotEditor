@@ -25,33 +25,11 @@
 
 import AppKit
 
-public extension NSMenuItem {
-    
-    /// A back deployed version of the NSMenuItem.sectionHeader(title:) method.
-    ///
-    /// - Parameter title: The title to display.
-    /// - Returns: A menu item.
-    @backDeployed(before: macOS 14)
-    static func sectionHeader(title: String) -> NSMenuItem {
-        
-        HeadingMenuItem(title: title)
-    }
-    
-    
-    /// A Boolean value indicating whether the menu item is a section header.
-    @backDeployed(before: macOS 14)
-    final var isSectionHeader: Bool {
-        
-        self is HeadingMenuItem
-    }
-}
-
-
-public final class HeadingMenuItem: NSMenuItem {
+final class HeadingMenuItem: NSMenuItem {
     
     // MARK: Lifecycle
     
-    public convenience init(title: String) {
+    convenience init(title: String) {
         
         self.init(title: title, action: nil, keyEquivalent: "")
         self.isEnabled = false
@@ -60,11 +38,17 @@ public final class HeadingMenuItem: NSMenuItem {
     }
     
     
-    public override func awakeFromNib() {
+    override func awakeFromNib() {
         
         super.awakeFromNib()
         
         self.updateAttributedTitle()
+    }
+    
+    
+    override var isSectionHeader: Bool {
+        
+        true
     }
     
     

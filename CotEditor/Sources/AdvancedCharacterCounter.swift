@@ -24,15 +24,16 @@
 //
 
 import AppKit
+import Observation
 import Combine
-import SwiftUI
+import Defaults
 
-@MainActor final class AdvancedCharacterCounter: ObservableObject {
+@MainActor @Observable final class AdvancedCharacterCounter {
     
     // MARK: Public Properties
     
-    @Published private(set) var entireCount: Int? = 0
-    @Published private(set) var selectionCount: Int? = 0
+    private(set) var entireCount: Int? = 0
+    private(set) var selectionCount: Int? = 0
     
     
     // MARK: Private Properties

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,21 +24,21 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Testing
 @testable import CotEditor
 
-final class StringCollectionTests: XCTestCase {
+struct StringCollectionTests {
     
-    func testAvailableNameCreation() {
+    @Test func createAvailableNames() {
         
         let names = ["foo", "foo 3", "foo copy 3", "foo 4", "foo 7"]
         let copy = "copy"
         
-        XCTAssertEqual(names.createAvailableName(for: "foo"), "foo 2")
-        XCTAssertEqual(names.createAvailableName(for: "foo 3"), "foo 5")
+        #expect(names.createAvailableName(for: "foo") == "foo 2")
+        #expect(names.createAvailableName(for: "foo 3") == "foo 5")
         
-        XCTAssertEqual(names.createAvailableName(for: "foo", suffix: copy), "foo copy")
-        XCTAssertEqual(names.createAvailableName(for: "foo 3", suffix: copy), "foo 3 copy")
-        XCTAssertEqual(names.createAvailableName(for: "foo copy 3", suffix: copy), "foo copy 4")
+        #expect(names.createAvailableName(for: "foo", suffix: copy) == "foo copy")
+        #expect(names.createAvailableName(for: "foo 3", suffix: copy) == "foo 3 copy")
+        #expect(names.createAvailableName(for: "foo copy 3", suffix: copy) == "foo copy 4")
     }
 }

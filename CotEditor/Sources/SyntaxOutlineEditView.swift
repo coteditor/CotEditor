@@ -47,8 +47,9 @@ struct SyntaxOutlineEditView: View {
                 TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { item in
                     Toggle(isOn: item.ignoreCase, label: EmptyView.init)
                         .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
-                        .frame(maxWidth: .infinity, alignment: .center)
-                }.width(20)
+                }
+                .width(24)
+                .alignment(.center)
                 
                 TableColumn(String(localized: "Regular Expression Pattern", table: "SyntaxEditor", comment: "table column header")) { item in
                     RegexTextField(text: item.pattern, showsError: true, showsInvisible: true)
@@ -63,15 +64,13 @@ struct SyntaxOutlineEditView: View {
             .tableStyle(.bordered)
             .border(Color(nsColor: .gridColor))
             
-            AddRemoveButton($items, selection: $selection, focus: $focusedField)
+            AddRemoveButton($items, selection: $selection, focus: $focusedField, newItem: Item.init)
                 .padding(.bottom, 8)
             
             if self.selection.count > 1 {
                 PatternView(outline: .constant(.init()), error: .multipleSelection)
                     .disabled(true)
-            } else if let selection = self.selection.first,
-               let outline = $items.first(where: { $0.id == selection })
-            {
+            } else if let outline = $items[id: self.selection.first] {
                 PatternView(outline: outline)
             } else {
                 PatternView(outline: .constant(.init()), error: .noSelection)
@@ -80,7 +79,7 @@ struct SyntaxOutlineEditView: View {
             
             HStack {
                 Spacer()
-                HelpButton(anchor: "syntax_outline_settings")
+                HelpLink(anchor: "syntax_outline_settings")
             }
         }
     }
@@ -102,7 +101,7 @@ struct SyntaxOutlineEditView: View {
                         .accessibilityLabeledPair(role: .label, id: "titlePattern", in: self.accessibility)
                     Text("(Blank matches the whole string.)", tableName: "SyntaxEditor", comment: "label")
                         .controlSize(.small)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 
                 RegexTextField(text: $outline.template, mode: .replacement(unescapes: false), prompt: self.prompt)
@@ -148,8 +147,9 @@ enum SelectionError: Error {
 
 // MARK: - Preview
 
+@available(macOS 15, *)
 #Preview {
-    @State var items: [SyntaxObject.Outline] = [
+    @Previewable @State var items: [SyntaxObject.Outline] = [
         .init(pattern: "abc"),
         .init(pattern: "def", ignoreCase: true, italic: true),
     ]

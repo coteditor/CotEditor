@@ -26,12 +26,13 @@
 
 import AppKit
 import Combine
+import Shortcut
 
 // NSObject-based NSAppleEventDescriptor must be used but not sendable
 // -> According to the documentation, NSAppleEventDescriptor is just a wrapper of AEDesc,
 //    so seems safe to conform to Sendable. (macOS 12, Xcode 14.0)
-extension NSAppleEventDescriptor: @unchecked Sendable { }
-extension NSScriptObjectSpecifier: @unchecked Sendable { }
+extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
+extension NSScriptObjectSpecifier: @retroactive @unchecked Sendable { }
 
 
 final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
@@ -47,7 +48,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     
     private var scriptsDirectoryURL: URL?
     private var currentContext: String?  { didSet { Task { await self.applyShortcuts() } } }
-    @Atomic private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
+    @MainActor private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
     
     private var debounceTask: Task<Void, any Error>?
     private var syntaxObserver: AnyCancellable?
@@ -60,9 +61,11 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         
         super.init()
         
-        self.syntaxObserver = (DocumentController.shared as! DocumentController).$currentSyntaxName
-            .removeDuplicates()
-            .sink { [unowned self] styleName in Task { @MainActor in self.currentContext = styleName } }
+        Task { @MainActor in
+            self.syntaxObserver = (DocumentController.shared as! DocumentController).$currentSyntaxName
+                .removeDuplicates()
+                .sink { [unowned self] styleName in Task { @MainActor in self.currentContext = styleName } }
+        }
     }
     
     
@@ -91,7 +94,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
                 await self?.buildScriptMenu()
                 
             } else {
-                for await _ in await NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification) {
+                for await _ in NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification) {
                     try Task.checkCancellation()
                     await self?.buildScriptMenu()
                     return
@@ -148,12 +151,9 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     /// - Parameters:
     ///   - eventType: The event trigger to perform script.
     ///   - documentSpecifier: The script object specifier of the target document.
-    func dispatch(event eventType: ScriptingEventType, document documentSpecifier: NSScriptObjectSpecifier) {
+    func dispatch(event eventType: ScriptingEventType, document documentSpecifier: NSScriptObjectSpecifier) async {
         
-        guard
-            let scripts = self.scriptHandlersTable[eventType],
-            !scripts.isEmpty
-        else { return }
+        guard let scripts = await self.scriptHandlersTable[eventType], !scripts.isEmpty else { return }
         
         // Create an Apple event caused by the given `Document`.
         let documentDescriptor = documentSpecifier.descriptor ?? NSAppleEventDescriptor(string: "BUG: document.objectSpecifier.descriptor was nil")
@@ -164,9 +164,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
                                            transactionID: AETransactionID(kAnyTransactionID))
         event.setParam(documentDescriptor, forKeyword: keyDirectObject)
         
-        Task {
-            await self.dispatch(event, handlers: scripts)
-        }
+        await self.dispatch(event, handlers: scripts)
     }
     
     
@@ -231,7 +229,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     @MainActor private func buildScriptMenu() async {
         
         self.debounceTask?.cancel()
-        self.$scriptHandlersTable.mutate { $0.removeAll() }
+        self.scriptHandlersTable.removeAll()
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
         
@@ -241,9 +239,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         let eventScripts = scriptMenuItems.flatMap(\.scripts)
             .compactMap { $0 as? any EventScript }
         for type in ScriptingEventType.allCases {
-            self.$scriptHandlersTable.mutate {
-                $0[type] = eventScripts.filter { $0.eventTypes.contains(type) }
-            }
+            self.scriptHandlersTable[type] = eventScripts.filter { $0.eventTypes.contains(type) }
         }
         
         let menuItems = scriptMenuItems.map { $0.menuItem(action: #selector(launchScript), target: self) }
@@ -305,7 +301,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         
         guard let urls = try? FileManager.default
             .contentsOfDirectory(at: directoryURL,
-                                 includingPropertiesForKeys: [.contentTypeKey, .isDirectoryKey, .isExecutableKey],
+                                 includingPropertiesForKeys: [.contentTypeKey, .isExecutableKey],
                                  options: [.skipsHiddenFiles])
         else { return [] }
         
@@ -316,21 +312,16 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
                 let name = url.deletingPathExtension().lastPathComponent
                     .replacing(/^\d+\)/.asciiOnlyDigits(), with: "", maxReplacements: 1)  // remove ordering prefix
                 
-                if name == .separator {
-                    return .separator
-                    
-                } else if let descriptor = ScriptDescriptor(contentsOf: url, name: name),
-                          let script = try? descriptor.makeScript()
-                {
+                return if name == .separator {
+                    .separator
+                } else if let script = try? ScriptDescriptor(contentsOf: url, name: name)?.makeScript() {
                     // -> Check script possibility before folder because a script can be a directory, e.g. .scptd.
-                    return .script(script.name, script)
-                    
-                } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {
-                    let items = Self.scriptMenuItems(at: url)
-                    return .folder(name, items)
+                    .script(script.name, script)
+                } else if url.hasDirectoryPath {
+                    .folder(name, Self.scriptMenuItems(at: url))
+                } else {
+                    nil
                 }
-                
-                return nil
             }
     }
     

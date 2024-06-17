@@ -25,6 +25,7 @@
 
 import AppKit
 import Combine
+import Defaults
 
 final class TextFinderSettings: NSObject {
     

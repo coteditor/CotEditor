@@ -81,7 +81,7 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
     /// Checks the state of the modifier key press and update the item visibility.
     ///
     /// - Parameter forcibly: Whether forcing to update the item visibility.
-    @objc private func validateKeyEvent(forcibly: Bool = false) {
+    private func validateKeyEvent(forcibly: Bool = false) {
         
         let shows = NSEvent.modifierFlags.contains(.option)
         

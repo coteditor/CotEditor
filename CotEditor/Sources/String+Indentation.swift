@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2023 1024jp
+//  © 2015-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,6 +39,115 @@ private enum DetectionLines {
 }
 
 
+extension String {
+    
+    /// Increases indent level in.
+    func indent(style: IndentStyle, indentWidth: Int, in selectedRanges: [NSRange]) -> EditingContext {
+        
+        assert(indentWidth > 0)
+        
+        // get indent target
+        let string = self as NSString
+        
+        // create indent string to prepend
+        let indent = switch style {
+            case .tab: "\t"
+            case .space: String(repeating: " ", count: indentWidth)
+        }
+        let indentLength = indent.length
+        
+        // create shifted string
+        let lineRanges = string.lineRanges(for: selectedRanges, includingLastEmptyLine: true)
+        let newLines = lineRanges.map { indent + string.substring(with: $0) }
+        
+        // calculate new selection range
+        let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
+            let shift = lineRanges.countPrefix { $0.location <= selectedRange.location }
+            let lineCount = lineRanges.count { selectedRange.intersects($0) }
+            let lengthDiff = max(lineCount - 1, 0) * indentLength
+            
+            return NSRange(location: selectedRange.location + shift * indentLength,
+                           length: selectedRange.length + lengthDiff)
+        }
+        
+        return EditingContext(strings: newLines, ranges: lineRanges, selectedRanges: newSelectedRanges)
+    }
+    
+    
+    /// Decreases indent level.
+    func outdent(style: IndentStyle, indentWidth: Int, in selectedRanges: [NSRange]) -> EditingContext? {
+        
+        assert(indentWidth > 0)
+        
+        // get indent target
+        let string = self as NSString
+        
+        // find ranges to remove
+        let lineRanges = string.lineRanges(for: selectedRanges)
+        let lines = lineRanges.map { string.substring(with: $0) }
+        let dropCounts = lines.map { line -> Int in
+            switch line.first {
+                case "\t": 1
+                case " ": line.prefix(indentWidth).countPrefix { $0 == " " }
+                default: 0
+            }
+        }
+        
+        // cancel if nothing to shift
+        guard dropCounts.contains(where: { $0 > 0 }) else { return nil }
+        
+        // create shifted string
+        let newLines = zip(lines, dropCounts).map { String($0.dropFirst($1)) }
+        
+        // calculate new selection range
+        let droppedRanges: [NSRange] = zip(lineRanges, dropCounts)
+            .filter { $1 > 0 }
+            .map { NSRange(location: $0.location, length: $1) }
+        let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
+            let offset = droppedRanges
+                .prefix { $0.location < selectedRange.location }
+                .map { (selectedRange.intersection($0) ?? $0).length }
+                .reduce(0, +)
+            let lengthDiff = droppedRanges
+                .compactMap { selectedRange.intersection($0)?.length }
+                .reduce(0, +)
+            
+            return NSRange(location: selectedRange.location - offset,
+                           length: selectedRange.length - lengthDiff)
+        }
+        
+        return EditingContext(strings: newLines, ranges: lineRanges, selectedRanges: newSelectedRanges)
+    }
+    
+    
+    /// Standardizes indentation of given ranges.
+    func convertIndentation(to style: IndentStyle, indentWidth: Int, in selectedRanges: [NSRange]) -> EditingContext? {
+        
+        guard !self.isEmpty else { return nil }
+        
+        let string = self as NSString
+        
+        // process whole document if no text selected
+        let ranges = selectedRanges.contains(where: { !$0.isEmpty }) ? [string.range] : selectedRanges
+        
+        var replacementRanges: [NSRange] = []
+        var replacementStrings: [String] = []
+        
+        for range in ranges {
+            let selectedString = string.substring(with: range)
+            let convertedString = selectedString.standardizingIndent(to: style, tabWidth: indentWidth)
+            
+            guard convertedString != selectedString else { continue }  // no need to convert
+            
+            replacementRanges.append(range)
+            replacementStrings.append(convertedString)
+        }
+        
+        return EditingContext(strings: replacementStrings, ranges: replacementRanges)
+    }
+}
+
+    
 extension String {
     
     // MARK: Public Methods

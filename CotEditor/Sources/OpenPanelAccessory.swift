@@ -24,17 +24,19 @@
 //
 
 import SwiftUI
+import Observation
 import AppKit.NSOpenPanel
+import FileEncoding
 
-final class OpenOptions: ObservableObject {
+@Observable final class OpenOptions {
     
-    @Published var encoding: String.Encoding?
+    var encoding: String.Encoding?
 }
 
 
 struct OpenPanelAccessory: View {
     
-    @ObservedObject var options: OpenOptions
+    @State var options: OpenOptions
     
     weak var openPanel: NSOpenPanel?
     let fileEncodings: [FileEncoding?]
@@ -64,7 +66,7 @@ struct OpenPanelAccessory: View {
                 }
                 
                 Toggle(String(localized: "Show invisible files", table: "OpenPanelAccessory", comment: "toggle button label"), isOn: $showsHiddenFiles)
-                    .onChange(of: self.showsHiddenFiles) { newValue in
+                    .onChange(of: self.showsHiddenFiles) { (_, newValue) in
                         guard let openPanel = self.openPanel else { return }
                         
                         openPanel.showsHiddenFiles = newValue

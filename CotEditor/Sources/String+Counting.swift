@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import UnicodeNormalization
 
 extension StringProtocol {
     
@@ -176,9 +177,7 @@ extension String {
 
 struct CharacterCountOptions {
     
-    enum CharacterUnit: String, CaseIterable, DefaultInitializable {
-        
-        static let defaultValue: Self = .graphemeCluster
+    enum CharacterUnit: String, Sendable, CaseIterable {
         
         case graphemeCluster
         case unicodeScalar

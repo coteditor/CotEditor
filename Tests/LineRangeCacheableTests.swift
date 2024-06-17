@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2023 1024jp
+//  © 2020-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,29 +23,30 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import CotEditor
 
-final class LineRangeCacheableTests: XCTestCase {
+struct LineRangeCacheableTests {
     
     private let repeatCount = 20
     
     
-    func testLineNumberCalculation() {
+    @Test func calculateLineNumber() {
         
         let lineString = LineString("dog \n\n cat \n cow \n")
-        XCTAssertEqual(lineString.lineNumber(at: 0), 1)
-        XCTAssertEqual(lineString.lineNumber(at: 1), 1)
-        XCTAssertEqual(lineString.lineNumber(at: 4), 1)
-        XCTAssertEqual(lineString.lineNumber(at: 5), 2)
-        XCTAssertEqual(lineString.lineNumber(at: 6), 3)
-        XCTAssertEqual(lineString.lineNumber(at: 11), 3)
-        XCTAssertEqual(lineString.lineNumber(at: 12), 4)
-        XCTAssertEqual(lineString.lineNumber(at: 17), 4)
-        XCTAssertEqual(lineString.lineNumber(at: 18), 5)
+        #expect(lineString.lineNumber(at: 0) == 1)
+        #expect(lineString.lineNumber(at: 1) == 1)
+        #expect(lineString.lineNumber(at: 4) == 1)
+        #expect(lineString.lineNumber(at: 5) == 2)
+        #expect(lineString.lineNumber(at: 6) == 3)
+        #expect(lineString.lineNumber(at: 11) == 3)
+        #expect(lineString.lineNumber(at: 12) == 4)
+        #expect(lineString.lineNumber(at: 17) == 4)
+        #expect(lineString.lineNumber(at: 18) == 5)
         
         let lineString2 = LineString("dog \n\n cat \n cow ")
-        XCTAssertEqual(lineString2.lineNumber(at: 17), 4)
+        #expect(lineString2.lineNumber(at: 17) == 4)
         
         for _ in 0..<self.repeatCount {
             let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
@@ -53,27 +54,28 @@ final class LineRangeCacheableTests: XCTestCase {
             
             for index in (0...string.length).shuffled() {
                 let result = (string as NSString).lineNumber(at: index)
-                XCTAssertEqual(lineString.lineNumber(at: index), result, "At \(index) with string \"\(string)\"")
+                #expect(lineString.lineNumber(at: index) == result,
+                        "At \(index) with string \"\(string)\"")
             }
         }
     }
     
     
-    func testIndexToLineRangeCalculation() {
+    @Test func calculateIndexToLineRange() {
         
         let lineString = LineString("dog \n\n cat \n cow \n")
-        XCTAssertEqual(lineString.lineRange(at: 0), NSRange(0..<5))
-        XCTAssertEqual(lineString.lineRange(at: 1), NSRange(0..<5))
-        XCTAssertEqual(lineString.lineRange(at: 4), NSRange(0..<5))
-        XCTAssertEqual(lineString.lineRange(at: 5), NSRange(5..<6))
-        XCTAssertEqual(lineString.lineRange(at: 6), NSRange(6..<12))
-        XCTAssertEqual(lineString.lineRange(at: 11), NSRange(6..<12))
-        XCTAssertEqual(lineString.lineRange(at: 12), NSRange(12..<18))
-        XCTAssertEqual(lineString.lineRange(at: 17), NSRange(12..<18))
-        XCTAssertEqual(lineString.lineRange(at: 18), NSRange(18..<18))
+        #expect(lineString.lineRange(at: 0) == NSRange(0..<5))
+        #expect(lineString.lineRange(at: 1) == NSRange(0..<5))
+        #expect(lineString.lineRange(at: 4) == NSRange(0..<5))
+        #expect(lineString.lineRange(at: 5) == NSRange(5..<6))
+        #expect(lineString.lineRange(at: 6) == NSRange(6..<12))
+        #expect(lineString.lineRange(at: 11) == NSRange(6..<12))
+        #expect(lineString.lineRange(at: 12) == NSRange(12..<18))
+        #expect(lineString.lineRange(at: 17) == NSRange(12..<18))
+        #expect(lineString.lineRange(at: 18) == NSRange(18..<18))
         
         let lineString2 = LineString("dog \n\n cat \n cow ")
-        XCTAssertEqual(lineString2.lineRange(at: 17), NSRange(12..<17))
+        #expect(lineString2.lineRange(at: 17) == NSRange(12..<17))
         
         for _ in 0..<self.repeatCount {
             let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
@@ -81,66 +83,69 @@ final class LineRangeCacheableTests: XCTestCase {
             
             for index in (0...string.length).shuffled() {
                 let result = (string as NSString).lineRange(at: index)
-                XCTAssertEqual(lineString.lineRange(at: index), result, "At \(index) with string \"\(string)\"")
-                XCTAssertEqual(lineString.lineStartIndex(at: index), result.lowerBound, "At \(index) with string \"\(string)\"")
+                #expect(lineString.lineRange(at: index) == result,
+                        "At \(index) with string \"\(string)\"")
+                #expect(lineString.lineStartIndex(at: index) == result.lowerBound,
+                        "At \(index) with string \"\(string)\"")
             }
         }
     }
     
     
-    func testLineContentRange() {
+    @Test func lineContentRange() {
         
         let lineString = LineString("dog \n\n cat \n cow")
-        XCTAssertEqual(lineString.lineContentRange(for: NSRange(0..<3)), NSRange(0..<4))
-        XCTAssertEqual(lineString.lineContentRange(for: NSRange(4..<6)), NSRange(0..<6))
-        XCTAssertEqual(lineString.lineContentRange(for: NSRange(5..<6)), NSRange(5..<6))
-        XCTAssertEqual(lineString.lineContentRange(for: NSRange(7..<13)), NSRange(6..<16))
+        #expect(lineString.lineContentRange(for: NSRange(0..<3)) == NSRange(0..<4))
+        #expect(lineString.lineContentRange(for: NSRange(4..<6)) == NSRange(0..<6))
+        #expect(lineString.lineContentRange(for: NSRange(5..<6)) == NSRange(5..<6))
+        #expect(lineString.lineContentRange(for: NSRange(7..<13)) == NSRange(6..<16))
     }
     
     
-    func testRangeToLineRangeCalculation() throws {
+    @Test func calculateRangeToLineRange() throws {
         
         let lineString = LineString("dog \n\n cat \n cow \n")
-        XCTAssertEqual(lineString.lineRange(for: NSRange(0..<3)), NSRange(0..<5))
-        XCTAssertEqual(lineString.lineRange(for: NSRange(0..<5)), NSRange(0..<5))
-        XCTAssertEqual(lineString.lineRange(for: NSRange(0..<6)), NSRange(0..<6))
-        XCTAssertEqual(lineString.lineRange(for: NSRange(5..<5)), NSRange(5..<6))
-        XCTAssertEqual(lineString.lineRange(for: NSRange(5..<6)), NSRange(5..<6))
-        XCTAssertEqual(lineString.lineRange(for: NSRange(5..<7)), NSRange(5..<12))
-        XCTAssertEqual(lineString.lineRange(for: NSRange(6..<6)), NSRange(6..<12))
-        XCTAssertEqual(lineString.lineRange(for: NSRange(6..<7)), NSRange(6..<12))
-        XCTAssertEqual(lineString.lineRange(for: NSRange(6..<17)), NSRange(6..<18))
-        XCTAssertEqual(lineString.lineRange(for: NSRange(17..<17)), NSRange(12..<18))
-        XCTAssertEqual(lineString.lineRange(for: NSRange(17..<18)), NSRange(12..<18))
-        XCTAssertEqual(lineString.lineRange(for: NSRange(18..<18)), NSRange(18..<18))
+        #expect(lineString.lineRange(for: NSRange(0..<3)) == NSRange(0..<5))
+        #expect(lineString.lineRange(for: NSRange(0..<5)) == NSRange(0..<5))
+        #expect(lineString.lineRange(for: NSRange(0..<6)) == NSRange(0..<6))
+        #expect(lineString.lineRange(for: NSRange(5..<5)) == NSRange(5..<6))
+        #expect(lineString.lineRange(for: NSRange(5..<6)) == NSRange(5..<6))
+        #expect(lineString.lineRange(for: NSRange(5..<7)) == NSRange(5..<12))
+        #expect(lineString.lineRange(for: NSRange(6..<6)) == NSRange(6..<12))
+        #expect(lineString.lineRange(for: NSRange(6..<7)) == NSRange(6..<12))
+        #expect(lineString.lineRange(for: NSRange(6..<17)) == NSRange(6..<18))
+        #expect(lineString.lineRange(for: NSRange(17..<17)) == NSRange(12..<18))
+        #expect(lineString.lineRange(for: NSRange(17..<18)) == NSRange(12..<18))
+        #expect(lineString.lineRange(for: NSRange(18..<18)) == NSRange(18..<18))
         
         let lineString2 = LineString("dog \n\n cat \n cow ")
-        XCTAssertEqual(lineString2.lineRange(for: NSRange(15..<17)), NSRange(12..<17))
-        XCTAssertEqual(lineString2.lineRange(for: NSRange(17..<17)), NSRange(12..<17))
+        #expect(lineString2.lineRange(for: NSRange(15..<17)) == NSRange(12..<17))
+        #expect(lineString2.lineRange(for: NSRange(17..<17)) == NSRange(12..<17))
         
         for _ in 0..<self.repeatCount {
             let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
             let lineString = LineString(string)
             
             for index in (0...string.length).shuffled() {
-                let endIndex = try XCTUnwrap((index...string.length).randomElement())
+                let endIndex = try #require((index...string.length).randomElement())
                 let range = NSRange(index..<endIndex)
                 let result = (string as NSString).lineRange(for: range)
                 
-                XCTAssertEqual(lineString.lineRange(for: range), result, "At \(index) with string \"\(string)\"")
+                #expect(lineString.lineRange(for: range) == result,
+                        "At \(index) with string \"\(string)\"")
             }
         }
     }
     
     
-    func testStringInvalidation() {
+    @Test func invalidateString() {
         
         let lineString = LineString("\n🐶")
         let lineNumber = lineString.lineNumber(at: 1)
         let lineRange = lineString.lineRange(at: 1)
         lineString.invalidateLineRanges(in: NSRange(1..<2), changeInLength: 0)
-        XCTAssertEqual(lineString.lineNumber(at: 1), lineNumber)  // 2
-        XCTAssertEqual(lineString.lineRange(at: 1), lineRange)    // NSRange(1..<3)
+        #expect(lineString.lineNumber(at: 1) == lineNumber)  // 2
+        #expect(lineString.lineRange(at: 1) == lineRange)    // NSRange(1..<3)
         
         for _ in 0..<self.repeatCount {
             let lineString = LineString(String(" 🐶 \n 🐱 \n 🐮 \n".shuffled()))
@@ -152,58 +157,61 @@ final class LineRangeCacheableTests: XCTestCase {
                 
                 lineString.invalidateLineRanges(in: range, changeInLength: 0)
                 
-                XCTAssertEqual(lineString.lineNumber(at: index), lineNumber, "At \(index) with string \"\(lineString.string)\"")
-                XCTAssertEqual(lineString.lineRange(at: index), lineRange, "At \(index) with string \"\(lineString.string)\"")
-                XCTAssertEqual(lineString.lineStartIndex(at: index), lineRange.lowerBound, "At \(index) with string \"\(lineString.string)\"")
+                #expect(lineString.lineNumber(at: index) == lineNumber,
+                        "At \(index) with string \"\(lineString.string)\"")
+                #expect(lineString.lineRange(at: index) == lineRange,
+                        "At \(index) with string \"\(lineString.string)\"")
+                #expect(lineString.lineStartIndex(at: index) == lineRange.lowerBound,
+                        "At \(index) with string \"\(lineString.string)\"")
             }
         }
     }
     
     
-    func testStringRemoval() {
+    @Test func removeString() {
         
         let lineString = LineString("dog \n\n\n cat \n ")
         _ = lineString.lineNumber(at: lineString.string.length)
         
         lineString.replaceCharacters(in: NSRange(1..<3), with: "")  // "og"
-        XCTAssertEqual(lineString.string, "d \n\n\n cat \n ")
-        XCTAssertEqual(lineString.lineNumber(at: 1), 1)
-        XCTAssertEqual(lineString.lineRange(at: 1), NSRange(0..<3))  // "d \n"
-        XCTAssertEqual(lineString.lineNumber(at: 3), 2)
-        XCTAssertEqual(lineString.lineRange(at: 3), NSRange(3..<4))  // "\n"
-        XCTAssertEqual(lineString.lineRange(at: 4), NSRange(4..<5))  // "\n"
-        XCTAssertEqual(lineString.lineRange(at: 5), NSRange(5..<11))  // " cat \n"
+        #expect(lineString.string == "d \n\n\n cat \n ")
+        #expect(lineString.lineNumber(at: 1) == 1)
+        #expect(lineString.lineRange(at: 1) == NSRange(0..<3))  // "d \n"
+        #expect(lineString.lineNumber(at: 3) == 2)
+        #expect(lineString.lineRange(at: 3) == NSRange(3..<4))  // "\n"
+        #expect(lineString.lineRange(at: 4) == NSRange(4..<5))  // "\n"
+        #expect(lineString.lineRange(at: 5) == NSRange(5..<11))  // " cat \n"
         
         lineString.replaceCharacters(in: NSRange(1..<2), with: "")  // 1st " "
-        XCTAssertEqual(lineString.string, "d\n\n\n cat \n ")
-        XCTAssertEqual(lineString.lineNumber(at: 1), 1)
-        XCTAssertEqual(lineString.lineRange(at: 1), NSRange(0..<2))  // "d\n"
-        XCTAssertEqual(lineString.lineRange(at: 2), NSRange(2..<3))  // "\n"
-        XCTAssertEqual(lineString.lineRange(at: 3), NSRange(3..<4))  // "\n"
-        XCTAssertEqual(lineString.lineRange(at: 4), NSRange(4..<10))  // " cat \n"
+        #expect(lineString.string == "d\n\n\n cat \n ")
+        #expect(lineString.lineNumber(at: 1) == 1)
+        #expect(lineString.lineRange(at: 1) == NSRange(0..<2))  // "d\n"
+        #expect(lineString.lineRange(at: 2) == NSRange(2..<3))  // "\n"
+        #expect(lineString.lineRange(at: 3) == NSRange(3..<4))  // "\n"
+        #expect(lineString.lineRange(at: 4) == NSRange(4..<10))  // " cat \n"
         
         lineString.replaceCharacters(in: NSRange(2..<4), with: "")  // "\n\n"
-        XCTAssertEqual(lineString.string, "d\n cat \n ")
-        XCTAssertEqual(lineString.lineNumber(at: 1), 1)
-        XCTAssertEqual(lineString.lineRange(at: 1), NSRange(0..<2))  // "d\n"
-        XCTAssertEqual(lineString.lineRange(at: 2), NSRange(2..<8))  // " cat \n"
+        #expect(lineString.string == "d\n cat \n ")
+        #expect(lineString.lineNumber(at: 1) == 1)
+        #expect(lineString.lineRange(at: 1) == NSRange(0..<2))  // "d\n"
+        #expect(lineString.lineRange(at: 2) == NSRange(2..<8))  // " cat \n"
     }
     
     
-    func testStringModification() {
+    @Test func modifyString() {
         
         let lineString = LineString("\n🐶")
         _ = lineString.lineNumber(at: 1)
         lineString.replaceCharacters(in: NSRange(1..<3), with: "a\nb")
         lineString.invalidateLineRanges(in: NSRange(1..<3), changeInLength: 1)
-        XCTAssertEqual(lineString.lineNumber(at: 1), 2)
-        XCTAssertEqual(lineString.lineRange(at: 1), NSRange(1..<3))  // "a\n"
+        #expect(lineString.lineNumber(at: 1) == 2)
+        #expect(lineString.lineRange(at: 1) == NSRange(1..<3))  // "a\n"
         
         for _ in 0..<self.repeatCount {
             let string = String(" dog \n cat \n cow \n".shuffled())
             let lineString = LineString(string)
             
-            XCTAssertEqual(lineString.lineNumber(at: string.length), 4)
+            #expect(lineString.lineNumber(at: string.length) == 4)
             
             let location = Int.random(in: 0..<(string.length - 1))
             let length = Int.random(in: 0..<(string.length - location))
@@ -213,30 +221,29 @@ final class LineRangeCacheableTests: XCTestCase {
             lineString.replaceCharacters(in: range, with: replacement)
             
             for index in (0...lineString.string.length).shuffled() {
-                XCTAssertEqual(lineString.lineNumber(at: index), lineString.string.lineNumber(at: index),
-                               "at \(index) with string \"\(lineString.string)\"")
-                XCTAssertEqual(lineString.lineRange(at: index), lineString.string.lineRange(at: index),
-                               "at \(index) with string \"\(lineString.string)\"")
-                XCTAssertEqual(lineString.lineStartIndex(at: index), lineString.string.lineStartIndex(at: index),
-                               "at \(index) with string \"\(lineString.string)\"")
+                #expect(lineString.lineNumber(at: index) == lineString.string.lineNumber(at: index),
+                        "at \(index) with string \"\(lineString.string)\"")
+                #expect(lineString.lineRange(at: index) == lineString.string.lineRange(at: index),
+                        "at \(index) with string \"\(lineString.string)\"")
+                #expect(lineString.lineStartIndex(at: index) == lineString.string.lineStartIndex(at: index),
+                        "at \(index) with string \"\(lineString.string)\"")
             }
         }
     }
     
     
-    func testEdgeModification() {
+    @Test func modifyEdge() {
         
         let lineString = LineString("\n  \n")
         
-        XCTAssertEqual(lineString.lineNumber(at: 4), 3)
+        #expect(lineString.lineNumber(at: 4) == 3)
         
         lineString.replaceCharacters(in: NSRange(0..<0), with: "  ")
         
-        let index = 4
-        XCTAssertEqual(lineString.string, "  \n  \n")
-        XCTAssertEqual(lineString.lineNumber(at: index), 2)
-        XCTAssertEqual(lineString.lineRange(at: index), NSRange(location: 3, length: 3))
-        XCTAssertEqual(lineString.lineStartIndex(at: index), 3)
+        #expect(lineString.string == "  \n  \n")
+        #expect(lineString.lineNumber(at: 4) == 2)
+        #expect(lineString.lineRange(at: 4) == NSRange(location: 3, length: 3))
+        #expect(lineString.lineStartIndex(at: 4) == 3)
     }
 }
 

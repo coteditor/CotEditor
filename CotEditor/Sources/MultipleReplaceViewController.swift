@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2023 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@
 import AppKit
 import Combine
 import SwiftUI
+import Defaults
 
 final class MultipleReplaceViewController: NSViewController {
     
@@ -53,6 +54,8 @@ final class MultipleReplaceViewController: NSViewController {
         
         super.viewDidLoad()
         
+        // register dragged type
+        self.tableView?.registerForDraggedTypes([.row])
         self.tableView?.setDraggingSourceOperationMask([.delete], forLocal: false)
     }
     
@@ -403,7 +406,7 @@ private extension NSUserInterfaceItemIdentifier {
 
 private extension NSPasteboard.PasteboardType {
     
-    static let rows = NSPasteboard.PasteboardType("rows")
+    static let row = NSPasteboard.PasteboardType("com.coteditor.row")
 }
 
 
@@ -454,7 +457,7 @@ extension MultipleReplaceViewController: NSTableViewDelegate {
                 do {
                     try replacement.validate(regexOptions: self.definition.settings.regexOptions)
                 } catch {
-                    guard let suggestion = (error as? any LocalizedError)?.recoverySuggestion else { return error.localizedDescription }
+                    guard let suggestion = (error as any LocalizedError).recoverySuggestion else { return error.localizedDescription }
                     
                     return "[" + error.localizedDescription + "] " + suggestion
                 }
@@ -548,22 +551,10 @@ extension MultipleReplaceViewController: NSTableViewDataSource {
     }
     
     
-    /// Starts dragging.
-    func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
+    /// Sets items per row to drag.
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> (any NSPasteboardWriting)? {
         
-        // register dragged type
-        tableView.registerForDraggedTypes([.rows])
-        pboard.declareTypes([.rows], owner: self)
-        
-        // select rows to drag
-        tableView.selectRowIndexes(rowIndexes, byExtendingSelection: false)
-        
-        // store row index info to pasteboard
-        guard let rows = try? NSKeyedArchiver.archivedData(withRootObject: rowIndexes, requiringSecureCoding: true) else { return false }
-        
-        pboard.setData(rows, forType: .rows)
-        
-        return true
+        NSPasteboardItem(pasteboardPropertyList: row, ofType: .row)
     }
     
     
@@ -581,22 +572,18 @@ extension MultipleReplaceViewController: NSTableViewDataSource {
     }
     
     
-    /// Checks the acceptability of dragged items and inserts them to table.
+    /// Inserts dragged items to table.
     func tableView(_ tableView: NSTableView, acceptDrop info: any NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         // accept only self drag-and-drop
         guard info.draggingSource as? NSTableView == tableView else { return false }
         
-        // obtain original rows from paste board
-        guard
-            let data = info.draggingPasteboard.data(forType: .rows),
-            let sourceRows = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSIndexSet.self, from: data) as IndexSet?
-        else { return false }
+        // obtain original rows from pasteboard
+        guard let sourceRows = info.draggingPasteboard.rows else { return false }
         
         let destinationRow = row - sourceRows.count(in: 0...row)  // real insertion point after removing items to move
         let destinationRows = IndexSet(destinationRow..<(destinationRow + sourceRows.count))
         
-        // move
         self.moveReplacements(from: sourceRows, to: destinationRows)
         
         return true
@@ -608,15 +595,23 @@ extension MultipleReplaceViewController: NSTableViewDataSource {
         
         switch operation {
             case .delete:  // ended at the Trash
-                guard
-                    let data = session.draggingPasteboard.data(forType: .rows),
-                    let rows = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSIndexSet.self, from: data) as IndexSet?
-                else { return }
+                guard let rows = session.draggingPasteboard.rows else { return }
                 
                 self.removeReplacements(at: rows)
                 
             default:
                 break
         }
+    }
+}
+
+
+private extension NSPasteboard {
+    
+    var rows: IndexSet? {
+        
+         self.pasteboardItems?
+            .compactMap { $0.propertyList(forType: .row) as? Int }
+            .reduce(into: IndexSet()) { $0.insert($1) }
     }
 }

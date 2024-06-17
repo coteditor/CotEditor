@@ -148,11 +148,7 @@ struct Theme: Equatable {
     /// Insertion point color to use.
     var effectiveInsertionPointColor: NSColor {
         
-        if #available(macOS 14, *) {
-            self.insertionPoint.usesSystemSetting ? .textInsertionPointColor : self.insertionPoint.color
-        } else {
-            self.insertionPoint.color
-        }
+        self.insertionPoint.usesSystemSetting ? .textInsertionPointColor : self.insertionPoint.color
     }
     
     
@@ -191,18 +187,6 @@ struct Theme: Equatable {
             
             return NSColor(calibratedWhite: color.lightnessComponent, alpha: 1.0)
         }
-    }
-    
-    
-    /// Returns the color for line highlight by considering the background opacity.
-    ///
-    /// - Parameter flag: `true` if the editor background to draw the highlight is opaque.
-    /// - Returns: A color.
-    func lineHighlightColor(forOpaqueBackground flag: Bool = true) -> NSColor {
-        
-        let color = self.lineHighlight.color
-        
-        return (flag || color.alphaComponent < 1) ? color : color.withAlphaComponent(0.7 * color.alphaComponent)
     }
 }
 

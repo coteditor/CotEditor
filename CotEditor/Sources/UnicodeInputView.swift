@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Defaults
 
 struct UnicodeInputView: View {
     
@@ -70,7 +71,7 @@ struct UnicodeInputView: View {
                                         .monospacedDigit() +
                                     Text(scalar.name ?? "–")
                                         .font(.system(size: NSFont.smallSystemFontSize))
-                                        .foregroundColor(.secondary)
+                                        .foregroundStyle(.secondary)
                                 }
                             }
                         }
@@ -115,7 +116,7 @@ struct UnicodeInputView: View {
     
     
     /// Inputs Unicode character to the parent text view.
-    @MainActor private func submit() {
+    private func submit() {
         
         guard let character = self.character else { return NSSound.beep() }
         

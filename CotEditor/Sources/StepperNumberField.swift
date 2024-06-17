@@ -57,10 +57,10 @@ struct StepperNumberField: View {
     var body: some View {
         
         HStack(spacing: 4) {
-            TextField(text: $value.string(in: self.bounds, defaultValue: self.defaultValue), prompt: self.prompt, label: EmptyView.init)
-            .monospacedDigit()
-            .environment(\.layoutDirection, .rightToLeft)
-            .frame(width: self.fieldWidth)
+            TextField(value: $value, format: .ranged(self.bounds), prompt: self.prompt, label: EmptyView.init)
+                .monospacedDigit()
+                .environment(\.layoutDirection, .rightToLeft)
+                .frame(width: self.fieldWidth)
             
             Stepper(value: $value, in: self.bounds, step: self.step, label: EmptyView.init)
         }
@@ -94,25 +94,11 @@ struct StepperNumberField: View {
 
 
 
-@available(macOS, deprecated: 14, message: "Simply bind with `format: .ranged(self.bounds)`.")
-private extension Binding where Value == Int {
-    
-    /// Workarounds the issue on macOS 13 that Stepper cannot share its bound value with another controllers.
-    func string(in bounds: ClosedRange<Value>, defaultValue: Value? = nil) -> Binding<String> {
-        
-        Binding<String>(
-            get: { self.wrappedValue.formatted(.number) },
-            set: { self.wrappedValue = ((try? Value($0, format: .number)) ?? defaultValue ?? 0).clamped(to: bounds) }
-        )
-    }
-}
-
-
-
 // MARK: - Preview
 
+@available(macOS 15, *)
 #Preview {
-    @State var value = 4
+    @Previewable @State var value = 4
     
     return StepperNumberField(value: $value, in: 0...10)
 }

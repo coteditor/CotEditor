@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import Defaults
 
 final class SettingsTabViewController: NSTabViewController {
     

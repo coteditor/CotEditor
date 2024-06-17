@@ -27,8 +27,7 @@ import Foundation
 import SwiftUI
 import AppKit.NSFont
 
-extension NSFont: @unchecked Sendable { }
-extension NSParagraphStyle: @unchecked Sendable { }
+extension NSFont: @retroactive @unchecked Sendable { }
 
 extension OutlineItem {
     
@@ -36,11 +35,10 @@ extension OutlineItem {
     ///
     /// - Parameters:
     ///   - baseFont: The base font of change.
-    ///   - paragraphStyle: The paragraph style to apply.
     /// - Returns: An AttributedString.
-    func attributedTitle(for baseFont: NSFont, paragraphStyle: NSParagraphStyle) -> AttributedString {
+    func attributes(baseFont: NSFont) -> [NSAttributedString.Key: Any] {
         
-        var attributes = AttributeContainer().paragraphStyle(paragraphStyle)
+        var attributes: [NSAttributedString.Key: Any] = [:]
         var traits: NSFontDescriptor.SymbolicTraits = []
         
         if self.style.contains(.bold) {
@@ -50,24 +48,24 @@ extension OutlineItem {
             traits.insert(.italic)
         }
         if self.style.contains(.underline) {
-            attributes.underlineStyle = .single
+            attributes[.underlineStyle] = NSUnderlineStyle.single.rawValue
         }
         
-        attributes.font = traits.isEmpty
-        ? baseFont
-        : NSFont(descriptor: baseFont.fontDescriptor.withSymbolicTraits(traits), size: baseFont.pointSize)
+        attributes[.font] = traits.isEmpty
+            ? baseFont
+            : NSFont(descriptor: baseFont.fontDescriptor.withSymbolicTraits(traits), size: baseFont.pointSize)
         
-        return AttributedString(self.title, attributes: attributes)
+        return attributes
     }
     
     
     /// Returns styled title applying the filter match highlight for a view in SwiftUI.
     ///
-    /// - Parameter attributes: The attributes for the matched parts of filtering.
+    /// - Parameter fontSize: The size of the font.
     /// - Returns: An AttributedString.
-    func attributedTitle(_ attributes: AttributeContainer? = nil, fontSize: Double = 0) -> AttributedString {
+    func attributes(fontSize: Double = 0) -> AttributeContainer {
         
-        var attrTitle = AttributedString(self.title)
+        var attributes = AttributeContainer()
         var font: Font = .system(size: fontSize)
         
         if self.style.contains(.bold) {
@@ -77,19 +75,11 @@ extension OutlineItem {
             font = font.italic()
         }
         if self.style.contains(.underline) {
-            attrTitle.underlineStyle = .single
+            attributes.underlineStyle = .single
         }
         
-        attrTitle.font = font
+        attributes.font = font
         
-        guard let ranges = self.filteredRanges, let attributes else { return attrTitle }
-        
-        for range in ranges {
-            guard let attrRange = Range(range, in: attrTitle) else { continue }
-            
-            attrTitle[attrRange].mergeAttributes(attributes)
-        }
-        
-        return attrTitle
+        return attributes
     }
 }

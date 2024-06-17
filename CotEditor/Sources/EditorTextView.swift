@@ -26,6 +26,8 @@
 
 import AppKit
 import Combine
+import Defaults
+import Shortcut
 
 private extension NSAttributedString.Key {
     
@@ -35,12 +37,18 @@ private extension NSAttributedString.Key {
 
 // MARK: -
 
-class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursorEditing {
+final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursorEditing {
+    
+    @MainActor protocol Delegate: AnyObject {
+        
+        func editorTextView(_ textView: EditorTextView, readDroppedURLs URLs: [URL]) -> Bool
+    }
+    
     
     // MARK: Notification Names
     
-    static let didBecomeFirstResponderNotification = Notification.Name("TextViewDidBecomeFirstResponder")
-    static let didLiveChangeSelectionNotification = Notification.Name("TextViewDidLiveChangeSelectionNotification")
+    nonisolated static let didBecomeFirstResponderNotification = Notification.Name("TextViewDidBecomeFirstResponder")
+    nonisolated static let didLiveChangeSelectionNotification = Notification.Name("TextViewDidLiveChangeSelectionNotification")
     
     
     // MARK: Enums
@@ -56,6 +64,9 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     
     // MARK: Public Properties
     
+    var lineEnding: LineEnding = .lf
+    
+    var syntaxName: String = SyntaxName.none
     var mode: ModeOptions = ModeOptions()  { didSet { if mode != oldValue { self.applyMode() } } }
     
     var theme: Theme?  { didSet { self.applyTheme() } }
@@ -79,25 +90,10 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     var lineHighlightRects: [NSRect] = []
     private(set) var lineHighlightColor: NSColor?
     
-    var insertionLocations: [Int] = []  {
-        
-        didSet {
-            self.needsUpdateInsertionIndicators = true
-            self.updateInsertionPointTimer()
-        }
-    }
+    var insertionLocations: [Int] = []  { didSet { self.needsUpdateInsertionIndicators = true } }
     var selectionOrigins: [Int] = []
-    var insertionPointTimer: (any DispatchSourceTimer)?
-    var insertionPointOn = false
+    var insertionIndicators: [NSTextInsertionIndicator] = []
     private(set) var isPerformingRectangularSelection = false
-    
-    @available(macOS 14, *)
-    var insertionIndicators: [NSTextInsertionIndicator] {
-        
-        get { self._insertionIndicators.compactMap { $0 as? NSTextInsertionIndicator } }
-        set { self._insertionIndicators = newValue }
-    }
-    private var _insertionIndicators: [NSView] = []
     
     // for Scaling extension
     var initialMagnificationScale: CGFloat = 0
@@ -129,7 +125,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     private var partialCompletionWord: String?
     private lazy var completionDebouncer = Debouncer { [weak self] in self?.performCompletion() }
     
-    private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in self?.trimTrailingWhitespace(ignoresEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines], keepingEditingPoint: true) }
+    private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in self?.trimTrailingWhitespace(ignoringEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines], keepingEditingPoint: true) }
     
     private var defaultsObservers: Set<AnyCancellable> = []
     private var fontObservers: Set<AnyCancellable> = []
@@ -140,15 +136,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     
     // MARK: Lifecycle
     
-    convenience init() {
-        
-        self.init(frame: .zero, textContainer: nil)
-    }
-    
-    
-    required override init(frame: NSRect, textContainer: NSTextContainer?) {
-        
-        assert(textContainer == nil)
+    required override init(frame: NSRect = .zero) {
         
         // setup textContainer and layoutManager
         let textContainer = TextContainer()
@@ -171,12 +159,9 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.textContainerInset = Self.textContainerInset
         
         // set NSTextView behaviors
-        self.baseWritingDirection = .leftToRight  // default is fixed in LTR
-        self.allowsDocumentBackgroundColorChange = false
         self.allowsUndo = true
         self.isRichText = false
-        self.usesFindPanel = true
-        self.acceptsGlyphInfo = true
+        self.baseWritingDirection = .leftToRight  // default is fixed in LTR
         self.linkTextAttributes = [.cursor: NSCursor.pointingHand,
                                    .underlineStyle: NSUnderlineStyle.single.rawValue]
         
@@ -243,7 +228,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     
     
     deinit {
-        self.insertionPointTimer?.cancel()
         self.instanceHighlightTask?.cancel()
     }
     
@@ -347,17 +331,20 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
             .sink { [weak self] in
                 self?.drawsBackground = $0
                 self?.enclosingScrollView?.drawsBackground = $0
-                self?.lineHighlightColor = self?.theme?.lineHighlightColor(forOpaqueBackground: $0)
             }
         
         // observe key window state for insertion points drawing
-        if #available(macOS 14, *), let window {
+        if let window {
             self.keyStateObservers = [
-                NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: window, queue: .main) { [weak self] _ in
-                    self?.invalidateInsertionIndicatorDisplayMode()
+                NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: window, queue: .main) { [unowned self] _ in
+                    MainActor.assumeIsolated {
+                        self.invalidateInsertionIndicatorDisplayMode()
+                    }
                 },
-                NotificationCenter.default.addObserver(forName: NSWindow.didResignKeyNotification, object: window, queue: .main) { [weak self] _ in
-                    self?.invalidateInsertionIndicatorDisplayMode()
+                NotificationCenter.default.addObserver(forName: NSWindow.didResignKeyNotification, object: window, queue: .main) { [unowned self] _ in
+                    MainActor.assumeIsolated {
+                        self.invalidateInsertionIndicatorDisplayMode()
+                    }
                 },
             ]
         } else {
@@ -408,7 +395,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.mouseDownPoint = self.convert(event.locationInWindow, from: nil)
         self.isPerformingRectangularSelection = event.modifierFlags.contains(.option)
         self.needsUpdateInsertionIndicators = true  // to draw dummy indicator for proper one while selecting
-        self.updateInsertionPointTimer()
         
         let selectedRange = self.selectedRange.isEmpty ? self.selectedRange : nil
         
@@ -440,7 +426,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         }
         
         self.isPerformingRectangularSelection = false
-        self.updateInsertionPointTimer()
     }
     
     
@@ -449,8 +434,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         // perform snippet insertion if not in the middle of Japanese input
         if !self.hasMarkedText(),
            let shortcut = Shortcut(keyDownEvent: event),
-           let document = self.document,
-           let snippet = SnippetManager.shared.snippet(for: shortcut, scope: document.syntaxParser.name)
+           let snippet = SnippetManager.shared.snippet(for: shortcut, scope: self.syntaxName)
         {
             return self.insert(snippet: snippet)
         }
@@ -484,9 +468,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         self.instanceHighlightTask?.cancel()
         
         // trim trailing whitespace if needed
-        if UserDefaults.standard[.autoTrimsTrailingWhitespace],
-           self.document?.isLocked != true
-        {
+        if UserDefaults.standard[.autoTrimsTrailingWhitespace] {
             self.trimTrailingWhitespaceTask.schedule(delay: .seconds(3))
         }
         
@@ -787,8 +769,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
             self.selectionOrigins = [self.selectedRange.location]
         }
         
-        self.updateInsertionPointTimer()
-        
         self.needsUpdateLineHighlight = true
         
         // invalidate current instances highlight
@@ -943,7 +923,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         super.viewWillDraw()
         
-        if #available(macOS 14, *), self.needsUpdateInsertionIndicators {
+        if self.needsUpdateInsertionIndicators {
             self.updateInsertionIndicators()
             self.needsUpdateInsertionIndicators = false
         }
@@ -992,16 +972,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
                 NSGraphicsContext.restoreGraphicsState()
             }
         }
-        
-        // draw zero-width insertion points while rectangular selection
-        // -> Because the insertion point blink timer stops while dragging. (macOS 10.14)
-        if self.needsDrawInsertionPoints, ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 14 {
-            self.insertionRanges
-                .filter(\.isEmpty)
-                .flatMap { self.insertionPointRects(at: $0.location) }
-                .filter { $0.intersects(dirtyRect) }
-                .forEach { super.drawInsertionPoint(in: $0, color: self.insertionPointColor, turnedOn: self.insertionPointOn) }
-        }
     }
     
     
@@ -1043,6 +1013,9 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
             let keyPath = (orientation == .vertical) ? \NSSize.height : \NSSize.width
             self.frame.size[keyPath: keyPath] = self.visibleRect.width * self.scale
         }
+        
+        // update keyboard shortcuts
+        NSApp.mainMenu?.updateAll()
     }
     
     
@@ -1052,7 +1025,7 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         // on file drop
         if pboard.name == .drag,
            let urls = pboard.readObjects(forClasses: [NSURL.self]) as? [URL],
-           self.insertDroppedFiles(urls)
+           (self.delegate as? any Delegate)?.editorTextView(self, readDroppedURLs: urls) == true
         {
             return true
         }
@@ -1131,6 +1104,44 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
+            case #selector(selectColumnUp):
+                if let menuItem = item as? NSMenuItem {
+                    switch self.layoutOrientation {
+                        case .horizontal:
+                            if menuItem.keyEquivalent == NSEvent.SpecialKey.rightArrow.string {
+                                menuItem.keyEquivalent = NSEvent.SpecialKey.upArrow.string
+                            }
+                            menuItem.title = String(localized: "Select Column Up", table: "MainMenu")
+                        case .vertical:
+                            if menuItem.keyEquivalent == NSEvent.SpecialKey.upArrow.string {
+                                menuItem.keyEquivalent = NSEvent.SpecialKey.rightArrow.string
+                            }
+                            menuItem.title = String(localized: "Select Column Right", table: "MainMenu",
+                                                    comment: "vertical orientation version of the Select Column Up command")
+                        @unknown default:
+                            assertionFailure()
+                    }
+                }
+                
+            case #selector(selectColumnDown):
+                if let menuItem = item as? NSMenuItem {
+                    switch self.layoutOrientation {
+                        case .horizontal:
+                            if menuItem.keyEquivalent == NSEvent.SpecialKey.leftArrow.string {
+                                menuItem.keyEquivalent = NSEvent.SpecialKey.downArrow.string
+                            }
+                            menuItem.title = String(localized: "Select Column down", table: "MainMenu")
+                        case .vertical:
+                            if menuItem.keyEquivalent == NSEvent.SpecialKey.downArrow.string {
+                                menuItem.keyEquivalent = NSEvent.SpecialKey.leftArrow.string
+                            }
+                            menuItem.title = String(localized: "Select Column Left", table: "MainMenu",
+                                                    comment: "vertical orientation version of the Select Column Down command")
+                        @unknown default:
+                            assertionFailure()
+                    }
+                }
+                
             case #selector(performTextFinderAction):
                 guard let action = TextFinder.Action(rawValue: item.tag) else { return false }
                 return self.textFinder.validateAction(action)
@@ -1167,12 +1178,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     
     
     // MARK: Public Accessors
-    
-    var lineEnding: LineEnding {
-        
-        self.document?.lineEnding ?? .lf
-    }
-    
     
     /// Tab width in number of spaces.
     var tabWidth: Int = 4 {
@@ -1337,15 +1342,20 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    
-    // MARK: Private Methods
-    
-    /// The document object representing the text view contents.
-    private var document: Document? {
+    /// Selects the content of the enclosing paired symbols, such as brackets or quotation marks.
+    @IBAction func selectEnclosingSymbols(_ sender: Any?) {
         
-        self.window?.windowController?.document as? Document
+        guard
+            let selectedRange = Range(self.selectedRange, in: self.string),
+            let enclosingRange = self.string.rangeOfEnclosingBracePair(at: selectedRange, candidates: BracePair.braces + [.ltgt])
+        else { return }
+        
+        self.selectedRange = NSRange(enclosingRange, in: self.string)
     }
     
+    
+    
+    // MARK: Private Methods
     
     /// Updates coloring settings with the current theme.
     private func applyTheme() {
@@ -1358,12 +1368,10 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
         
         self.textColor = theme.text.color
         self.backgroundColor = theme.background.color
-        self.lineHighlightColor = theme.lineHighlightColor(forOpaqueBackground: self.isOpaque)
+        self.lineHighlightColor = theme.lineHighlight.color
         self.insertionPointColor = theme.effectiveInsertionPointColor
-        if #available(macOS 14, *) {
-            for indicator in self.insertionIndicators {
-                indicator.color = self.insertionPointColor
-            }
+        for indicator in self.insertionIndicators {
+            indicator.color = self.insertionPointColor
         }
         self.selectedTextAttributes[.backgroundColor] = theme.effectiveSelectionColor(for: self.effectiveAppearance)
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
@@ -1481,48 +1489,6 @@ class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursor
     }
     
     
-    /// Inserts string representation of dropped files applying the user's file drop settings.
-    ///
-    /// - Parameter urls: The file URLs of dropped files.
-    /// - Returns: Whether the file drop was performed.
-    private func insertDroppedFiles(_ urls: [URL]) -> Bool {
-        
-        guard !urls.isEmpty else { return false }
-        
-        let fileDropItems = UserDefaults.standard[.fileDropArray].map(FileDropItem.init(dictionary:))
-        let documentURL = self.document?.fileURL
-        let syntax = self.document?.syntaxParser.name
-        
-        let replacementString = urls.reduce(into: "") { (string, url) in
-            if url.pathExtension == "textClipping", let textClipping = try? TextClipping(contentsOf: url) {
-                string += textClipping.string
-                return
-            }
-            
-            if let fileDropItem = fileDropItems.first(where: { $0.supports(extension: url.pathExtension, scope: syntax) }) {
-                string += fileDropItem.dropText(forFileURL: url, documentURL: documentURL)
-                return
-            }
-            
-            // just insert the absolute path if no specific setting for the file type was found
-            // -> This is the default behavior of NSTextView by file dropping.
-            if !string.isEmpty {
-                string += self.lineEnding.string
-            }
-            
-            string += url.isFileURL ? url.path : url.absoluteString
-        }
-        
-        // insert drop text to view
-        guard self.shouldChangeText(in: self.rangeForUserTextChange, replacementString: replacementString) else { return false }
-        
-        self.replaceCharacters(in: self.rangeForUserTextChange, with: replacementString)
-        self.didChangeText()
-        
-        return true
-    }
-    
-    
     /// Highlights the brace matching to the brace next to the cursor.
     private func highlightMatchingBrace() {
         
@@ -1607,7 +1573,7 @@ extension EditorTextView: TextFinderClient {
             let action = TextFinder.Action(rawValue: tag)
         else { return }
         
-        self.textFinder.performAction(action)
+        self.textFinder.performAction(action, representedItem: (sender as? NSMenuItem)?.representedObject)
     }
     
     
@@ -1664,7 +1630,7 @@ extension EditorTextView {
         // do nothing if completion is not suggested from the typed characters
         guard !charRange.isEmpty else { return nil }
         
-        var candidateWords = OrderedSet<String>()
+        var candidateWords: [String] = []
         let partialWord = (self.string as NSString).substring(with: charRange)
         
         // add words in document
@@ -1701,7 +1667,7 @@ extension EditorTextView {
             return []
         }
         
-        return candidateWords.array
+        return candidateWords.uniqued
     }
     
     

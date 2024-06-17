@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,26 +24,54 @@
 //
 
 import UniformTypeIdentifiers
-import XCTest
+import Testing
 @testable import CotEditor
 
-final class UTTypeExtensionTests: XCTestCase {
+struct UTTypeExtensionTests {
     
-    func testFilenameExtensions() {
+    @Test func filenameExtensions() {
         
-        XCTAssertEqual(UTType.yaml.filenameExtensions, ["yml", "yaml"])
-        XCTAssertEqual(UTType.svg.filenameExtensions, ["svg", "svgz"])
+        #expect(UTType.yaml.filenameExtensions == ["yml", "yaml"])
+        #expect(UTType.svg.filenameExtensions == ["svg", "svgz"])
+        #expect(UTType.mpeg2TransportStream.filenameExtensions == ["ts"])
+        #expect(UTType.propertyList.filenameExtensions == ["plist"])
     }
     
     
-    func testURLConformance() {
+    @Test func conformURL() {
         
         let xmlURL = URL(filePath: "foo.xml")
-        XCTAssertFalse(xmlURL.conforms(to: .svg))
-        XCTAssertTrue(xmlURL.conforms(to: .xml))
-        XCTAssertFalse(xmlURL.conforms(to: .plainText))
+        #expect(!xmlURL.conforms(to: .svg))
+        #expect(xmlURL.conforms(to: .xml))
+        #expect(!xmlURL.conforms(to: .plainText))
         
         let svgzURL = URL(filePath: "FOO.SVGZ")
-        XCTAssertTrue(svgzURL.conforms(to: .svg))
+        #expect(svgzURL.conforms(to: .svg))
+    }
+    
+    
+    @Test func svg() throws {
+        
+        #expect(UTType.svg.conforms(to: .text))
+        #expect(UTType.svg.conforms(to: .image))
+        
+        let svgz = try #require(UTType(filenameExtension: "svgz"))
+        #expect(svgz == .svg)
+        #expect(!svgz.conforms(to: .gzip))
+    }
+    
+    
+    @Test func plist() {
+        
+        #expect(UTType.propertyList.conforms(to: .data))
+        #expect(!UTType.propertyList.conforms(to: .image))
+    }
+    
+    
+    @Test func isPlainText() {
+        
+        #expect(UTType.propertyList.isPlainText)
+        #expect(UTType.svg.isPlainText)
+        #expect(UTType(filenameExtension: "ts")!.isPlainText)
     }
 }

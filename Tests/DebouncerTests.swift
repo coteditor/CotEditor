@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,71 +23,55 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Testing
 @testable import CotEditor
 
-final class DebouncerTests: XCTestCase {
+struct DebouncerTests {
     
-    func testDebounce() {
+    @Test func debounce() async throws {
         
-        let expectation = self.expectation(description: "Debouncer executed")
-        let waitingExpectation = self.expectation(description: "Debouncer waiting")
-        waitingExpectation.isInverted = true
-        
-        var value = 0
-        let debouncer = Debouncer(delay: .seconds(0.5)) {
-            value += 1
-            expectation.fulfill()
-            waitingExpectation.fulfill()
+        try await confirmation("Debouncer executed", expectedCount: 1) { confirm in
+            let debouncer = Debouncer(delay: .seconds(0.5)) {
+                confirm()
+            }
+            
+            debouncer.schedule()
+            debouncer.schedule()
+            
+            try await Task.sleep(for: .seconds(1))
         }
-        
-        XCTAssertEqual(value, 0)
-        
-        debouncer.schedule()
-        debouncer.schedule()
-        
-        self.wait(for: [waitingExpectation], timeout: 0.1)
-        
-        XCTAssertEqual(value, 0)
-        
-        self.wait(for: [expectation], timeout: 0.5)
-        
-        XCTAssertEqual(value, 1)
     }
     
     
-    func testImidiateFire() {
+    @Test func immediateFire() {
         
         var value = 0
         let debouncer = Debouncer {
             value += 1
         }
         
-        XCTAssertEqual(0, value)
+        #expect(0 == value)
         
         debouncer.fireNow()
-        XCTAssertEqual(value, 0, "The action is performed only when scheduled.")
+        #expect(value == 0, "The action is performed only when scheduled.")
         
         debouncer.schedule()
-        XCTAssertEqual(value, 0)
+        #expect(value == 0)
         
         debouncer.fireNow()
-        XCTAssertEqual(value, 1, "The scheduled action must be performed immediately.")
+        #expect(value == 1, "The scheduled action must be performed immediately.")
     }
     
     
-    func testCancellation() {
+    @Test func cancel() async {
         
-        let expectation = self.expectation(description: "Debouncer cancelled")
-        expectation.isInverted = true
-        
-        let debouncer = Debouncer {
-            expectation.fulfill()
+        await confirmation("Debouncer cancelled", expectedCount: 0) { confirm in
+            let debouncer = Debouncer {
+                confirm()
+            }
+            
+            debouncer.schedule()
+            debouncer.cancel()
         }
-        
-        debouncer.schedule()
-        debouncer.cancel()
-        
-        self.waitForExpectations(timeout: 1)
     }
 }

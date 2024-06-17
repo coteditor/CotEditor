@@ -26,6 +26,7 @@
 
 import Foundation
 import AppKit.NSDocument
+import Shortcut
 
 struct UnixScript: Script {
     
@@ -86,7 +87,7 @@ struct UnixScript: Script {
         guard try self.url.resourceValues(forKeys: [.isExecutableKey]).isExecutable ?? false else {
             throw ScriptFileError(.permission, url: self.url)
         }
-        guard let script = try? String(contentsOf: self.url), !script.isEmpty else {
+        guard let script = try? String(contentsOf: self.url, encoding: .utf8), !script.isEmpty else {
             throw ScriptFileError(.read, url: self.url)
         }
         

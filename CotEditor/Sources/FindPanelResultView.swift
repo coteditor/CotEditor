@@ -25,6 +25,8 @@
 
 import AppKit
 import SwiftUI
+import Observation
+import Defaults
 
 final class FindPanelResultViewController: NSHostingController<FindPanelResultView> {
     
@@ -37,7 +39,7 @@ final class FindPanelResultViewController: NSHostingController<FindPanelResultVi
     }
     
     
-    @MainActor required dynamic init?(coder: NSCoder) {
+    required dynamic init?(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
     }
@@ -59,15 +61,15 @@ struct FindPanelResultView: View {
     
     typealias Match = TextFindAllResult.Match
     
-    @MainActor final class Model: ObservableObject {
+    @MainActor @Observable final class Model {
         
-        @Published var matches: [Match] = []
-        @Published var findString: String = ""
+        var matches: [Match] = []
+        var findString: String = ""
         weak var target: NSTextView?
     }
     
     
-    @ObservedObject var model: Model
+    @State var model: Model
     
     @State private var selection: Set<Match.ID> = []
     @State private var sortOrder = [KeyPathComparator(\Match.range.location)]
@@ -82,14 +84,12 @@ struct FindPanelResultView: View {
         
         VStack(alignment: .leading) {
             HStack {
-                Button {
+                Button(String(localized: "Close", table: "TextFind", comment: "button label"), systemImage: "chevron.up") {
                     NSApp.sendAction(#selector(FindPanelContentViewController.closeResultView), to: nil, from: nil)
-                } label: {
-                    Image(systemName: "chevron.up")
-                        .fontWeight(.medium)
-                        .imageScale(.small)
                 }
-                .accessibilityLabel(String(localized: "Close", table: "TextFind", comment: "button label"))
+                .fontWeight(.medium)
+                .imageScale(.small)
+                .labelStyle(.iconOnly)
                 .help(String(localized: "Close find result.", table: "TextFind", comment: "tooltip"))
                 
                 Text(self.message)
@@ -103,9 +103,10 @@ struct FindPanelResultView: View {
                 TableColumn(String(localized: "Line", table: "TextFind", comment: "table column header"), value: \.range.location) {
                     Text(self.model.target?.lineNumber(at: $0.range.location) ?? 0, format: .number)
                         .monospacedDigit()
-                        .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(.vertical, -2)
-                }.width(ideal: 30, max: 64)
+                }
+                .width(ideal: 30, max: 64)
+                .alignment(.trailing)
                 
                 TableColumn(String(localized: "Found String", table: "TextFind", comment: "table column header")) {
                     Text(AttributedString($0.attributedLineString(offset: 16)))
@@ -121,7 +122,7 @@ struct FindPanelResultView: View {
             .copyable(self.model.matches
                 .filter(with: self.selection)
                 .map(\.attributedLineString.string))
-            .onChange(of: self.selection) { newValue in
+            .onChange(of: self.selection) { (_, newValue) in
                 // remove selection of previous data
                 if newValue.count > 1 {
                     let ids = self.model.matches.map(\.id)
@@ -133,7 +134,7 @@ struct FindPanelResultView: View {
                 guard newValue.count == 1 else { return }
                 self.selectMatch(newValue.first)
             }
-            .onChange(of: self.sortOrder) { newValue in
+            .onChange(of: self.sortOrder) { (_, newValue) in
                 self.model.matches.sort(using: newValue)
             }
             .contextMenu {
@@ -156,7 +157,7 @@ struct FindPanelResultView: View {
     
     // MARK: Private Methods
     
-    @MainActor private var message: String {
+    private var message: String {
         
         let documentName = self.model.target?.documentName ?? "Unknown"  // This should never be nil.
         
@@ -171,11 +172,11 @@ struct FindPanelResultView: View {
     /// Selects the match in the target text view.
     ///
     /// - Parameter id: The identifier of the match to select.
-    @MainActor private func selectMatch(_ id: Match.ID?) {
+    private func selectMatch(_ id: Match.ID?) {
         
         // abandon if text becomes shorter than range to select
         guard
-            let range = self.model.matches.first(where: { $0.id == id })?.range,
+            let range = self.model.matches[id: id]?.range,
             let textView = self.model.target,
             textView.string.length >= range.upperBound
         else { return }

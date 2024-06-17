@@ -51,11 +51,11 @@ private extension Edge {
 }
 
 
-private struct PopoverHolderView<T: View>: NSViewRepresentable {
+private struct PopoverHolderView<Content: View>: NSViewRepresentable {
     
     @Binding var isPresented: Bool
     let arrowEdge: Edge
-    var content: () -> T
+    @ViewBuilder var content: () -> Content
     
     
     func makeNSView(context: Context) -> NSView {

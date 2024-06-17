@@ -83,9 +83,8 @@ struct HUDView: View {
                 .onAppear {
                     withAnimation(.default.delay(0.5)) {
                         self.isPresented = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                            self.parent?.removeFromSuperview()
-                        }
+                    } completion: {
+                        self.parent?.removeFromSuperview()
                     }
                 }
         }

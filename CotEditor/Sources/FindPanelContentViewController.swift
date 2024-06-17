@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,8 +33,8 @@ final class FindPanelContentViewController: NSSplitViewController {
     
     private static let defaultResultViewHeight: Double = 200
     
-    private var fieldSplitViewItem: NSSplitViewItem?
-    private var resultSplitViewItem: NSSplitViewItem?
+    @ViewLoading private var fieldSplitViewItem: NSSplitViewItem
+    @ViewLoading private var resultSplitViewItem: NSSplitViewItem
     
     private var resultObserver: AnyCancellable?
     
@@ -87,17 +87,17 @@ final class FindPanelContentViewController: NSSplitViewController {
         
         super.viewWillAppear()
         
-        self.fieldSplitViewItem?.holdingPriority = .defaultLow + 1
+        self.fieldSplitViewItem.holdingPriority = .defaultLow + 1
         
     }
     
     
-    override func viewWillDisappear() {
+    override func viewDidDisappear() {
         
-        super.viewWillDisappear()
+        super.viewDidDisappear()
         
-        self.fieldSplitViewItem?.holdingPriority = .defaultHigh
-        self.resultSplitViewItem?.isCollapsed = true
+        self.fieldSplitViewItem.holdingPriority = .defaultHigh
+        self.resultSplitViewItem.isCollapsed = true
     }
     
     
@@ -106,8 +106,8 @@ final class FindPanelContentViewController: NSSplitViewController {
         super.splitViewDidResizeSubviews(notification)
         
         // collapse result view if closed
-        if let item = self.resultSplitViewItem,
-           item.viewController.isViewShown,
+        let item = self.resultSplitViewItem
+        if item.viewController.isViewShown,
            item.viewController.view.frame.height < 1
         {
             item.isCollapsed = true
@@ -118,7 +118,7 @@ final class FindPanelContentViewController: NSSplitViewController {
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
         // avoid showing draggable cursor when result view collapsed
-        (self.resultSplitViewItem?.isCollapsed == true) ? .zero : proposedEffectiveRect
+        self.resultSplitViewItem.isCollapsed ? .zero : proposedEffectiveRect
     }
     
     
@@ -138,7 +138,7 @@ final class FindPanelContentViewController: NSSplitViewController {
     /// The view controller for the result view.
     private var resultViewController: FindPanelResultViewController? {
         
-        self.resultSplitViewItem?.viewController as? FindPanelResultViewController
+        self.resultSplitViewItem.viewController as? FindPanelResultViewController
     }
     
     
@@ -163,7 +163,7 @@ final class FindPanelContentViewController: NSSplitViewController {
     /// - Parameter shown: `true` to open the result view; otherwise, `false`.
     private func setResultShown(_ shown: Bool) {
         
-        guard let item = self.resultSplitViewItem else { return assertionFailure() }
+        let item = self.resultSplitViewItem
         
         if shown {
             item.viewController.view.frame.size.height.clamp(to: Self.defaultResultViewHeight...(.infinity))

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,32 +23,47 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Testing
 @testable import CotEditor
 
-final class FormatStylesTests: XCTestCase {
+struct FormatStylesTests {
     
-    func testRangedInteger() throws {
+    @Test func formatCSV() throws {
         
-        let formatter = RangedIntegerFormatStyle(range: 1...(.max))
+        #expect(["dog", "cat"].formatted(.csv) == "dog, cat")
+        #expect(["dog"].formatted(.csv) == "dog")
+        #expect(["dog", "", "dog", ""].formatted(.csv) == "dog, , dog, ")
+        #expect(["dog", "", "dog", ""].formatted(.csv(omittingEmptyItems: true)) == "dog, dog")
         
-        XCTAssertEqual(formatter.format(-3), "1")
-        XCTAssertEqual(try formatter.parseStrategy.parse("0"), 1)
-        XCTAssertEqual(try formatter.parseStrategy.parse("1"), 1)
-        XCTAssertEqual(try formatter.parseStrategy.parse("2"), 2)
-        XCTAssertEqual(try formatter.parseStrategy.parse("a"), 1)
+        let strategy = CSVFormatStyle().parseStrategy
+        #expect(try strategy.parse("dog,  cat") == ["dog", "cat"])
+        #expect(try strategy.parse(" a,b,c") == ["a", "b", "c"])
+        #expect(try strategy.parse(" a, ,c") == ["a", "", "c"])
+        #expect(try CSVFormatStyle(omittingEmptyItems: true).parseStrategy.parse(" a,,c") == ["a", "c"])
     }
     
     
-    func testRangedIntegerWithDefault() throws {
+    @Test func rangedInteger() throws {
+        
+        let formatter = RangedIntegerFormatStyle(range: 1...(.max))
+        
+        #expect(formatter.format(-3) == "1")
+        #expect(try formatter.parseStrategy.parse("0") == 1)
+        #expect(try formatter.parseStrategy.parse("1") == 1)
+        #expect(try formatter.parseStrategy.parse("2") == 2)
+        #expect(try formatter.parseStrategy.parse("a") == 1)
+    }
+    
+    
+    @Test func rangedIntegerWithDefault() throws {
         
         let formatter = RangedIntegerFormatStyle(range: -1...(.max), defaultValue: 4)
         
-        XCTAssertEqual(formatter.format(-3), "-1")
-        XCTAssertEqual(try formatter.parseStrategy.parse("-2"), -1)
-        XCTAssertEqual(try formatter.parseStrategy.parse("-1"), -1)
-        XCTAssertEqual(try formatter.parseStrategy.parse("0"), 0)
-        XCTAssertEqual(try formatter.parseStrategy.parse("2"), 2)
-        XCTAssertEqual(try formatter.parseStrategy.parse("a"), 4)
+        #expect(formatter.format(-3) == "-1")
+        #expect(try formatter.parseStrategy.parse("-2") == -1)
+        #expect(try formatter.parseStrategy.parse("-1") == -1)
+        #expect(try formatter.parseStrategy.parse("0") == 0)
+        #expect(try formatter.parseStrategy.parse("2") == 2)
+        #expect(try formatter.parseStrategy.parse("a") == 4)
     }
 }

@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import CharacterInfo
 import SwiftUI
 
 struct CharacterInspectorView: View {
@@ -54,7 +55,6 @@ private struct CharacterDetailView: View {
             if let description = self.info.localizedDescription {
                 Text(description)
                     .fontWeight(self.info.isComplex ? .regular : .semibold)
-                    .foregroundColor(.label)  // Workaround to keep text color when selected (2022-12, macOS 13, FB10747746, fixed on macOS 14).
                     .textSelection(.enabled)
             } else {
                 Text("Unknown", tableName: "CharacterInspector")
@@ -91,7 +91,6 @@ private struct CharacterDetailView: View {
                     }
                 }
                 .controlSize(.small)
-                .foregroundColor(.label)
                 .textSelection(.enabled)
             }
         }.fixedSize()
@@ -141,7 +140,6 @@ private struct ScalarDetailView: View {
                         }
                     }
                     .monospacedDigit()
-                    .foregroundColor(.label)
                     .textSelection(.enabled)
                     .accessibilityLabeledPair(role: .content, id: "codePoint", in: self.accessibility)
                 }
@@ -156,7 +154,6 @@ private struct ScalarDetailView: View {
                     Group {
                         if let blockName = self.scalar.localizedBlockName {
                             Text(blockName)
-                                .foregroundColor(.label)
                                 .textSelection(.enabled)
                         } else {
                             Text("No Block", tableName: "CharacterInspector")
@@ -174,7 +171,6 @@ private struct ScalarDetailView: View {
                     
                     let category = self.scalar.properties.generalCategory
                     Text(verbatim: "\(category.longName) (\(category.shortName))")
-                        .foregroundColor(.label)
                         .textSelection(.enabled)
                         .accessibilityLabeledPair(role: .content, id: "category", in: self.accessibility)
                 }
@@ -238,6 +234,28 @@ private struct DeprecatedBadge: View {
             .padding(.horizontal, 3)
             .overlay(RoundedRectangle(cornerRadius: 3).stroke(.secondary))
             .foregroundStyle(.secondary)
+    }
+}
+
+
+private extension CharacterInfo {
+    
+    var localizedDescription: String? {
+        
+        let unicodes = self.character.unicodeScalars
+        if self.isComplex {
+            return String(localized: "<a letter consisting of \(unicodes.count) characters>",
+                          table: "CharacterInspector",
+                          comment: "%lld is always 2 or more.")
+        }
+        
+        guard var unicodeName = unicodes.first?.name else { return nil }
+        
+        if self.isVariant, let variantDescription = unicodes.last?.variantDescription {
+            unicodeName += String(localized: " (\(variantDescription))")
+        }
+        
+        return unicodeName
     }
 }
 

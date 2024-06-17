@@ -24,6 +24,20 @@
 //
 
 import SwiftUI
+import Defaults
+import UnicodeNormalization
+
+extension UnicodeNormalizationForm: @retroactive DefaultInitializable {
+
+    public static let defaultValue: Self = .nfc
+}
+
+
+extension CharacterCountOptions.CharacterUnit: DefaultInitializable {
+    
+    static let defaultValue: Self = .graphemeCluster
+}
+
 
 struct CharacterCountOptionsView: View {
     

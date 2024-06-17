@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -130,7 +130,7 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
     // MARK: Private Methods
     
     /// The area the receiver located in the superview.
-    @MainActor private var preferredEdge: Edge? {
+    private var preferredEdge: Edge? {
         
         self.superview.flatMap { superview in
             Edge(horizontal: superview.frame.width/2 < self.frame.midX ? .right : .left,
@@ -140,7 +140,7 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
     
     
     /// Keeps position to be inside of the parent frame.
-    @MainActor private func adjustPosition() {
+    private func adjustPosition() {
         
         guard let superFrame = self.superview?.frame else { return assertionFailure() }
         

@@ -24,18 +24,19 @@
 //
 
 import SwiftUI
+import Observation
 import Combine
 import AppKit.NSTextStorage
 
 struct IncompatibleCharactersView: View {
     
-    @MainActor final class Model: ObservableObject {
+    @MainActor @Observable final class Model {
         
         typealias Item = ValueRange<IncompatibleCharacter>
         
         
-        @Published var items: [Item] = []
-        @Published private(set) var isScanning = false
+        var items: [Item] = []
+        private(set) var isScanning = false
         
         var document: Document?  { didSet { self.invalidateObservation() } }
         
@@ -44,7 +45,7 @@ struct IncompatibleCharactersView: View {
     }
     
     
-    @ObservedObject var model: Model
+    @State var model: Model
     
     @State private var selection: Model.Item.ID?
     @State private var sortOrder: [KeyPathComparator<Model.Item>] = []
@@ -76,9 +77,9 @@ struct IncompatibleCharactersView: View {
                         if let line = self.model.document?.lineEndingScanner.lineNumber(at: $0.location) {
                             Text(line, format: .number)
                                 .monospacedDigit()
-                                .frame(maxWidth: .infinity, alignment: .trailing)
                         }
                     }
+                    .alignment(.trailing)
                     
                     TableColumn(String(localized: "Character", table: "Document", comment: "table column header"), value: \.value.character) {
                         let character = $0.value.character
@@ -93,16 +94,16 @@ struct IncompatibleCharactersView: View {
                         }
                     }
                     
-                    TableColumn(String(localized: "Converted", table: "Document", comment: "table column header for converted character")) {
+                    TableColumn(String(localized: "Converted", table: "Document", comment: "table column header for converted character"), sortUsing: KeyPathComparator(\.value.converted)) {
                         if let converted = $0.value.converted {
                             Text(converted)
                         }
                     }
                 }
-                .onChange(of: self.selection) { newValue in
+                .onChange(of: self.selection) { (_, newValue) in
                     self.model.selectItem(id: newValue)
                 }
-                .onChange(of: self.sortOrder) { newValue in
+                .onChange(of: self.sortOrder) { (_, newValue) in
                     withAnimation {
                         self.model.items.sort(using: newValue)
                     }
@@ -130,7 +131,7 @@ private extension IncompatibleCharactersView.Model {
     func selectItem(id: Item.ID?) {
         
         guard
-            let item = self.items.first(where: { $0.id == id }),
+            let item = self.items[id: id],
             let textView = self.document?.textView,
             textView.string.length >= item.range.upperBound
         else { return }
@@ -165,10 +166,11 @@ private extension IncompatibleCharactersView.Model {
                     self.items = items
                 }
             }
-            
         } else {
             self.observer = nil
             self.task?.cancel()
+            self.items.removeAll()
+            self.isScanning = false
             self.updateMarkup([])
         }
     }
@@ -180,7 +182,7 @@ private extension IncompatibleCharactersView.Model {
     ///
     /// - Returns: An array of Item.
     /// - Throws: `CancellationError`
-    @MainActor private func scan() async throws -> [ValueRange<IncompatibleCharacter>] {
+    private func scan() async throws -> [ValueRange<IncompatibleCharacter>] {
         
         assert(Thread.isMainThread)
         
@@ -203,7 +205,7 @@ private extension IncompatibleCharactersView.Model {
     /// Update markup in the editors.
     ///
     /// - Parameter items: The new incompatible characters.
-    @MainActor private func updateMarkup(_ items: [ValueRange<IncompatibleCharacter>]) {
+    private func updateMarkup(_ items: [ValueRange<IncompatibleCharacter>]) {
         
         if !self.items.isEmpty {
             self.document?.textStorage.clearAllMarkup()
@@ -247,7 +249,6 @@ private extension NSTextStorage {
 
 // MARK: - Preview
 
-@available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
     let model = IncompatibleCharactersView.Model()
     model.items = [
@@ -259,7 +260,6 @@ private extension NSTextStorage {
         .padding(12)
 }
 
-@available(macOS 14, *)
 #Preview("Empty", traits: .fixedLayout(width: 240, height: 300)) {
     IncompatibleCharactersView(model: .init())
         .padding(12)

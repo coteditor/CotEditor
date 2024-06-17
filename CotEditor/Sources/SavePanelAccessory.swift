@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,16 +24,17 @@
 //
 
 import SwiftUI
+import Observation
 
-final class SaveOptions: ObservableObject {
+@Observable final class SaveOptions {
     
-    @Published var isExecutable = false
+    var isExecutable = false
 }
 
 
 struct SavePanelAccessory: View {
     
-    @ObservedObject var options: SaveOptions
+    @State var options: SaveOptions
     
     
     // MARK: View

@@ -25,6 +25,7 @@
 
 import AppKit
 import SwiftUI
+import Defaults
 
 extension EditorTextView {
     
@@ -35,10 +36,10 @@ extension EditorTextView {
         
         guard
             let ranges = self.rangesForUserTextChange?.map(\.rangeValue),
-            let editingInfo = self.string.moveLineUp(in: ranges)
+            let context = self.string.moveLineUp(in: ranges)
         else { return NSSound.beep() }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Move Line", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Move Line", table: "MainMenu"))
         self.scrollRangeToVisible(self.selectedRange)
     }
     
@@ -48,10 +49,10 @@ extension EditorTextView {
         
         guard
             let ranges = self.rangesForUserTextChange?.map(\.rangeValue),
-            let editingInfo = self.string.moveLineDown(in: ranges)
+            let context = self.string.moveLineDown(in: ranges)
         else { return NSSound.beep() }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Move Line", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Move Line", table: "MainMenu"))
         self.scrollRangeToVisible(self.selectedRange)
     }
     
@@ -62,9 +63,9 @@ extension EditorTextView {
         // process whole document if no text selected
         let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
         
-        guard let editingInfo = self.string.sortLinesAscending(in: range) else { return }
+        guard let context = self.string.sortLinesAscending(in: range) else { return }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Sort Lines", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Sort Lines", table: "MainMenu"))
     }
     
     
@@ -74,9 +75,9 @@ extension EditorTextView {
         // process whole document if no text selected
         let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
         
-        guard let editingInfo = self.string.reverseLines(in: range) else { return }
+        guard let context = self.string.reverseLines(in: range) else { return }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Reverse Lines", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Reverse Lines", table: "MainMenu"))
     }
     
     
@@ -86,9 +87,9 @@ extension EditorTextView {
         // process whole document if no text selected
         let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
         
-        guard let editingInfo = self.string.shuffleLines(in: range) else { return }
+        guard let context = self.string.shuffleLines(in: range) else { return }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Shuffle Lines", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Shuffle Lines", table: "MainMenu"))
     }
     
     
@@ -100,9 +101,9 @@ extension EditorTextView {
         // process whole document if no text selected
         let ranges = self.selectedRange.isEmpty ? [self.string.nsRange] : selectedRanges
         
-        guard let editingInfo = self.string.deleteDuplicateLine(in: ranges) else { return }
+        guard let context = self.string.deleteDuplicateLine(in: ranges) else { return }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Delete Duplicate Lines", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Delete Duplicate Lines", table: "MainMenu"))
     }
     
     
@@ -111,9 +112,9 @@ extension EditorTextView {
         
         guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
         
-        guard let editingInfo = self.string.duplicateLine(in: selectedRanges, lineEnding: self.lineEnding.rawValue) else { return }
+        guard let context = self.string.duplicateLine(in: selectedRanges, lineEnding: self.lineEnding.rawValue) else { return }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Duplicate Line", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Duplicate Line", table: "MainMenu"))
     }
     
     
@@ -122,9 +123,9 @@ extension EditorTextView {
         
         guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
         
-        guard let editingInfo = self.string.deleteLine(in: selectedRanges) else { return }
+        guard let context = self.string.deleteLine(in: selectedRanges) else { return }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Delete Line", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Delete Line", table: "MainMenu"))
     }
     
     
@@ -133,13 +134,13 @@ extension EditorTextView {
         
         guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
         
-        let editingInfo = if selectedRanges.contains(where: { !$0.isEmpty }) {
+        let context = if selectedRanges.contains(where: { !$0.isEmpty }) {
             self.string.joinLines(in: selectedRanges)
         } else {
             self.string.joinLines(after: selectedRanges)
         }
         
-        self.edit(with: editingInfo, actionName: String(localized: "Join Lines", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Join Lines", table: "MainMenu"))
     }
     
     
@@ -148,7 +149,7 @@ extension EditorTextView {
         
         let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
         
-        self.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines)
+        self.trimTrailingWhitespace(ignoringEmptyLines: !trimsWhitespaceOnlyLines)
     }
     
     
@@ -175,15 +176,7 @@ extension EditorTextView {
     }
     
     
-    
     // MARK: Private Methods
-    
-    /// Replaces content according to EditingInfo.
-    private func edit(with info: String.EditingInfo, actionName: String) {
-        
-        self.replace(with: info.strings, ranges: info.ranges, selectedRanges: info.selectedRanges, actionName: actionName)
-    }
-    
     
     /// Sorts lines in the text content.
     ///
@@ -208,287 +201,15 @@ extension EditorTextView {
 }
 
 
-
-// MARK: -
-
-extension String {
+extension NSTextView {
     
-    struct EditingInfo {
+    /// Trims all trailing whitespace with/without keeping editing point.
+    final func trimTrailingWhitespace(ignoringEmptyLines: Bool, keepingEditingPoint: Bool = false) {
         
-        var strings: [String]
-        var ranges: [NSRange]
-        var selectedRanges: [NSRange]?
-    }
-    
-    
-    /// Moves selected line up.
-    func moveLineUp(in ranges: [NSRange]) -> EditingInfo? {
+        let editingRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map(\.rangeValue)
         
-        // get line ranges to process
-        let lineRanges = (self as NSString).lineRanges(for: ranges, includingLastEmptyLine: true)
+        guard let context = self.string.trimTrailingWhitespace(ignoringEmptyLines: ignoringEmptyLines, keepingEditingPoint: keepingEditingPoint, in: editingRanges) else { return }
         
-        // cannot perform Move Line Up if one of the selections is already in the first line
-        guard !lineRanges.isEmpty, lineRanges.first!.lowerBound != 0 else { return nil }
-        
-        var string = self as NSString
-        var replacementRange = NSRange()
-        var selectedRanges: [NSRange] = []
-        
-        // swap lines
-        for lineRange in lineRanges {
-            let upperLineRange = string.lineRange(at: lineRange.location - 1)
-            var lineString = string.substring(with: lineRange)
-            var upperLineString = string.substring(with: upperLineRange)
-            
-            // last line
-            if lineString.last?.isNewline != true, let lineEnding = upperLineString.popLast() {
-                lineString.append(lineEnding)
-            }
-            
-            // swap
-            let editRange = lineRange.union(upperLineRange)
-            string = string.replacingCharacters(in: editRange, with: lineString + upperLineString) as NSString
-            replacementRange.formUnion(editRange)
-            
-            // move selected ranges in the line to move
-            for selectedRange in ranges {
-                if let intersectionRange = selectedRange.intersection(editRange) {
-                    selectedRanges.append(intersectionRange.shifted(by: -upperLineRange.length))
-                    
-                } else if editRange.touches(selectedRange.location) {
-                    selectedRanges.append(selectedRange.shifted(by: -upperLineRange.length))
-                }
-            }
-        }
-        selectedRanges = selectedRanges.uniqued.sorted(\.location)
-        
-        let replacementString = string.substring(with: replacementRange)
-        
-        return EditingInfo(strings: [replacementString], ranges: [replacementRange], selectedRanges: selectedRanges)
-    }
-    
-    
-    /// Moves selected line down.
-    func moveLineDown(in ranges: [NSRange]) -> EditingInfo? {
-        
-        // get line ranges to process
-        let lineRanges = (self as NSString).lineRanges(for: ranges)
-        
-        // cannot perform Move Line Down if one of the selections is already in the last line
-        guard !lineRanges.isEmpty, (lineRanges.last!.upperBound != self.length || self.last?.isNewline == true) else { return nil }
-        
-        var string = self as NSString
-        var replacementRange = NSRange()
-        var selectedRanges: [NSRange] = []
-        
-        // swap lines
-        for lineRange in lineRanges.reversed() {
-            let lowerLineRange = string.lineRange(at: lineRange.upperBound)
-            var lineString = string.substring(with: lineRange)
-            var lowerLineString = string.substring(with: lowerLineRange)
-            
-            // last line
-            if lowerLineString.last?.isNewline != true, let lineEnding = lineString.popLast() {
-                lowerLineString.append(lineEnding)
-            }
-            
-            // swap
-            let editRange = lineRange.union(lowerLineRange)
-            string = string.replacingCharacters(in: editRange, with: lowerLineString + lineString) as NSString
-            replacementRange.formUnion(editRange)
-            
-            // move selected ranges in the line to move
-            for selectedRange in ranges {
-                if let intersectionRange = selectedRange.intersection(editRange) {
-                    let offset = (lineString.last?.isNewline == true)
-                        ? lowerLineRange.length
-                        : lowerLineRange.length + lowerLineString.last!.utf16.count
-                    selectedRanges.append(intersectionRange.shifted(by: offset))
-                    
-                } else if editRange.touches(selectedRange.location) {
-                    selectedRanges.append(selectedRange.shifted(by: lowerLineRange.length))
-                }
-            }
-        }
-        selectedRanges = selectedRanges.uniqued.sorted(\.location)
-        
-        let replacementString = string.substring(with: replacementRange)
-        
-        return EditingInfo(strings: [replacementString], ranges: [replacementRange], selectedRanges: selectedRanges)
-    }
-    
-    
-    /// Sorts selected lines ascending.
-    func sortLinesAscending(in range: NSRange) -> EditingInfo? {
-        
-        self.sortLines(in: range) { $0.sorted(options: [.localized, .caseInsensitive]) }
-    }
-    
-    
-    /// Reverses selected lines.
-    func reverseLines(in range: NSRange) -> EditingInfo? {
-        
-        self.sortLines(in: range) { $0.reversed() }
-    }
-    
-    
-    /// Shuffles selected lines.
-    func shuffleLines(in range: NSRange) -> EditingInfo? {
-        
-        self.sortLines(in: range) { $0.shuffled() }
-    }
-    
-    
-    /// Deletes duplicate lines in selection.
-    func deleteDuplicateLine(in ranges: [NSRange]) -> EditingInfo? {
-        
-        let string = self as NSString
-        let lineContentRanges = ranges
-            .map { string.lineRange(for: $0) }
-            .flatMap { self.lineContentsRanges(for: $0) }
-            .uniqued
-            .sorted(\.location)
-        
-        var replacementRanges: [NSRange] = []
-        var uniqueLines: [String] = []
-        for lineContentRange in lineContentRanges {
-            let line = string.substring(with: lineContentRange)
-            
-            if uniqueLines.contains(line) {
-                replacementRanges.append(string.lineRange(for: lineContentRange))
-            } else {
-                uniqueLines.append(line)
-            }
-        }
-        
-        guard !replacementRanges.isEmpty else { return nil }
-        
-        let replacementStrings = [String](repeating: "", count: replacementRanges.count)
-        
-        return EditingInfo(strings: replacementStrings, ranges: replacementRanges, selectedRanges: nil)
-    }
-    
-    
-    /// Duplicates selected lines below.
-    func duplicateLine(in ranges: [NSRange], lineEnding: Character) -> EditingInfo? {
-        
-        let string = self as NSString
-        var replacementStrings: [String] = []
-        var replacementRanges: [NSRange] = []
-        var selectedRanges: [NSRange] = []
-        
-        // group the ranges sharing the same lines
-        let rangeGroups: [[NSRange]] = ranges.sorted(\.location)
-            .reduce(into: []) { (groups, range) in
-                if let last = groups.last?.last,
-                   string.lineRange(for: last).intersects(string.lineRange(for: range))
-                {
-                    groups[groups.endIndex - 1].append(range)
-                } else {
-                    groups.append([range])
-                }
-            }
-        
-        var offset = 0
-        for group in rangeGroups {
-            let unionRange = group.reduce(into: group[0]) { $0.formUnion($1) }
-            let lineRange = string.lineRange(for: unionRange)
-            let replacementRange = NSRange(location: lineRange.location, length: 0)
-            var lineString = string.substring(with: lineRange)
-            
-            // add line break if it's the last line
-            if lineString.last?.isNewline != true {
-                lineString.append(lineEnding)
-            }
-            
-            replacementStrings.append(lineString)
-            replacementRanges.append(replacementRange)
-            
-            offset += lineString.length
-            for range in group {
-                selectedRanges.append(range.shifted(by: offset))
-            }
-        }
-        
-        return EditingInfo(strings: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)
-    }
-    
-    
-    /// Removes selected lines.
-    func deleteLine(in ranges: [NSRange]) -> EditingInfo? {
-        
-        guard !ranges.isEmpty else { return nil }
-        
-        let lineRanges = (self as NSString).lineRanges(for: ranges)
-        let replacementStrings = [String](repeating: "", count: lineRanges.count)
-        
-        var selectedRanges: [NSRange] = []
-        var offset = 0
-        for range in lineRanges {
-            selectedRanges.append(NSRange(location: range.location + offset, length: 0))
-            offset -= range.length
-        }
-        selectedRanges = selectedRanges.uniqued.sorted(\.location)
-        
-        return EditingInfo(strings: replacementStrings, ranges: lineRanges, selectedRanges: selectedRanges)
-    }
-    
-    
-    /// Joins lines in the ranges by replacing continuous whitespaces with a space.
-    func joinLines(in ranges: [NSRange]) -> EditingInfo {
-        
-        let replacementStrings = ranges
-            .map { (self as NSString).substring(with: $0) }
-            .map { $0.replacing(/\s*\R\s*/, with: " ") }
-        var selectedRanges: [NSRange] = []
-        var offset = 0
-        for (range, replacementString) in zip(ranges, replacementStrings) {
-            selectedRanges.append(NSRange(location: range.location + offset, length: replacementString.length))
-            offset += replacementString.length - range.length
-        }
-        
-        return EditingInfo(strings: replacementStrings, ranges: ranges, selectedRanges: selectedRanges)
-    }
-    
-    
-    /// Joins each of lines containing the given ranges with the subsequent line by replacing continuous whitespaces with a space.
-    func joinLines(after ranges: [NSRange]) -> EditingInfo {
-        
-        let lineRanges = (self as NSString).lineRanges(for: ranges)
-        let replacementRanges = lineRanges
-            .map { (self as NSString).range(of: #"\s*\R\s*"#, options: .regularExpression, range: NSRange($0.lowerBound..<self.length)) }
-            .filter { !$0.isNotFound }  // when in the last line
-        let replacementStrings = Array(repeating: " ", count: replacementRanges.count)
-        
-        return EditingInfo(strings: replacementStrings, ranges: replacementRanges, selectedRanges: nil)
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// Sorts lines in the range using the given predicate.
-    ///
-    /// - Parameters:
-    ///   - range: The range where sort lines.
-    ///   - predicate: The way to sort lines.
-    /// - Returns: The editing info.
-    private func sortLines(in range: NSRange, predicate: ([String]) -> [String]) -> EditingInfo? {
-        
-        let string = self as NSString
-        let lineEndingRange = string.range(of: "\\R", options: .regularExpression, range: range)
-        
-        // do nothing with single line
-        guard !lineEndingRange.isNotFound else { return nil }
-        
-        let lineEnding = string.substring(with: lineEndingRange)
-        let lineRange = string.lineContentsRange(for: range)
-        let lines = string
-            .substring(with: lineRange)
-            .components(separatedBy: .newlines)
-        let newString = predicate(lines)
-            .joined(separator: lineEnding)
-        
-        return EditingInfo(strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
+        self.edit(with: context, actionName: String(localized: "Trim Trailing Whitespace", table: "MainMenu"))
     }
 }

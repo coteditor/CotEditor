@@ -33,6 +33,7 @@ enum SettingsPane: String, CaseIterable {
     case format
     case snippets
     case keyBindings
+    case donation
     
     
     /// Localized label.
@@ -71,6 +72,10 @@ enum SettingsPane: String, CaseIterable {
                 String(localized: "SettingsPane.keyBindings.label",
                        defaultValue: "Key Bindings",
                        table: "Settings")
+            case .donation:
+                String(localized: "SettingsPane.donation.label",
+                       defaultValue: "Donation",
+                       table: "Settings")
         }
     }
     
@@ -87,6 +92,7 @@ enum SettingsPane: String, CaseIterable {
             case .format: "doc.text"
             case .snippets: "note.text"
             case .keyBindings: "keyboard"
+            case .donation: "mug"
         }
     }
 }

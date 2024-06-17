@@ -24,7 +24,10 @@
 //
 
 import SwiftUI
+import Observation
 import Combine
+import Defaults
+import FileEncoding
 
 final class StatusBarController: NSHostingController<StatusBar> {
     
@@ -45,9 +48,9 @@ final class StatusBarController: NSHostingController<StatusBar> {
     }
     
     
-    override func viewDidAppear() {
+    override func viewWillAppear() {
         
-        super.viewDidAppear()
+        super.viewWillAppear()
         
         self.model.onAppear()
     }
@@ -64,9 +67,11 @@ final class StatusBarController: NSHostingController<StatusBar> {
 
 private extension StatusBar.Model {
     
-    @MainActor func onAppear() {
+    func onAppear() {
         
-        self.observeDocument()
+        self.isActive = true
+        
+        self.invalidateObservation(document: self.document)
         
         // observe changes in defaults
         let editorDefaultKeys: [DefaultKey<Bool>] = [
@@ -80,44 +85,41 @@ private extension StatusBar.Model {
         let publishers = editorDefaultKeys.map { UserDefaults.standard.publisher(for: $0) }
         self.defaultsObserver = Publishers.MergeMany(publishers)
             .map { _ in UserDefaults.standard.statusBarEditorInfo }
-            .sink { [weak self] in self?.document?.analyzer.statusBarRequirements = $0 }
+            .sink { [weak self] in self?.document?.counter.statusBarRequirements = $0 }
     }
     
     
-    @MainActor func onDisappear() {
+    func onDisappear() {
+        
+        self.isActive = false
         
         self.defaultsObserver = nil
         self.documentObservers.removeAll()
-        self.document?.analyzer.statusBarRequirements = []
+        self.document?.counter.statusBarRequirements = []
     }
     
     
-    @MainActor private func observeDocument() {
+    private func invalidateObservation(document: Document?) {
         
-        guard let document else {
+        self.document?.counter.statusBarRequirements = []
+        self.countResult = document?.counter.result
+        
+        if let document, self.isActive {
+            document.counter.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
+            
+            self.documentObservers = [
+                document.$fileEncoding
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in self?.fileEncoding = $0 },
+                document.$lineEnding
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in self?.lineEnding = $0 },
+            ]
+        } else {
             self.documentObservers.removeAll()
-            return
+            self.fileEncoding = nil
+            self.lineEnding = nil
         }
-        
-        document.analyzer.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
-        
-        self.documentObservers = [
-            document.analyzer.$result
-                .removeDuplicates()
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] in self?.countResult = $0 },
-            document.$fileAttributes
-                .map { $0?.size }
-                .removeDuplicates()
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] in self?.fileSize = $0 },
-            document.$fileEncoding
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] in self?.fileEncoding = $0 },
-            document.$lineEnding
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] in self?.lineEnding = $0 },
-        ]
     }
 }
 
@@ -143,16 +145,16 @@ private extension UserDefaults {
 
 struct StatusBar: View {
     
-    final class Model: ObservableObject {
+    @MainActor @Observable final class Model {
         
-        @MainActor var document: Document?  { didSet { Task { @MainActor in self.observeDocument() } } }
+        private(set) var document: Document?
         
-        @Published var fileEncoding: FileEncoding = .utf8
-        @Published var lineEnding: LineEnding = .lf
+        var countResult: EditorCounter.Result?
         
-        @Published fileprivate(set) var countResult: EditorCounter.Result = .init()
-        @Published fileprivate(set) var fileSize: Int64?
+        var fileEncoding: FileEncoding?
+        var lineEnding: LineEnding?
         
+        private var isActive: Bool = false
         private var defaultsObserver: AnyCancellable?
         private var documentObservers: Set<AnyCancellable> = []
         
@@ -161,73 +163,93 @@ struct StatusBar: View {
             
             self.document = document
         }
+        
+        
+        func updateDocument(to document: Document?) {
+            
+            self.invalidateObservation(document: document)
+            self.document = document
+        }
     }
     
     
-    @ObservedObject var model: Model
+    @State var model: Model
     
-    @State private(set) var fileEncodings: [FileEncoding?] = []
+    @AppStorage(.donationBadgeType) private var badgeType
     
-    @State private var isAcknowledgementPresented = false
+    @State private var encodingManager: EncodingManager = .shared
+    @State private var hasDonated: Bool = false
     
     
     var body: some View {
         
         HStack {
-            EditorCountView(result: self.model.countResult)
+            if self.hasDonated, self.badgeType != .invisible {
+                CoffeeBadge(type: self.badgeType)
+                    .transition(.symbolEffect)
+            }
+            if let result = self.model.countResult {
+                EditorCountView(result: result)
+            }
             
             Spacer()
             
-            if let fileSize = self.model.fileSize {
-                Text(fileSize, format: .byteCount(style: .file, spellsOutZero: false))
-                    .monospacedDigit()
-                    .help(String(localized: "File size", table: "Document", comment: "tooltip"))
-            } else {
-                Text(verbatim: "–")
-                    .foregroundStyle(.tertiary)
+            if let document = self.model.document {
+                if let fileSize = document.fileAttributes?.size {
+                    Text(fileSize, format: .byteCount(style: .file, spellsOutZero: false))
+                        .monospacedDigit()
+                        .help(String(localized: "File size", table: "Document", comment: "tooltip"))
+                } else {
+                    Text(verbatim: "–")
+                        .foregroundStyle(.tertiary)
+                }
             }
             
             HStack(spacing: 2) {
-                Divider()
-                    .padding(.vertical, 4)
-                
-                Picker(selection: $model.fileEncoding) {
-                    if !self.fileEncodings.contains(self.model.fileEncoding) {
-                        Text(self.model.fileEncoding.localizedName).tag(self.model.fileEncoding)
-                    }
-                    Section(String(localized: "Text Encoding", table: "Document", comment: "menu item header")) {
-                        ForEach(Array(self.fileEncodings.enumerated()), id: \.offset) { (_, fileEncoding) in
-                            if let fileEncoding {
-                                Text(fileEncoding.localizedName).tag(fileEncoding)
-                            } else {
-                                Divider()
+                if let fileEncoding = self.model.fileEncoding {
+                    Divider()
+                        .padding(.vertical, 4)
+                    
+                    Picker(selection: $model.fileEncoding ?? .utf8) {
+                        if !self.encodingManager.fileEncodings.contains(fileEncoding) {
+                            Text(fileEncoding.localizedName).tag(fileEncoding)
+                        }
+                        Section(String(localized: "Text Encoding", table: "Document", comment: "menu item header")) {
+                            ForEach(Array(self.encodingManager.fileEncodings.enumerated()), id: \.offset) { (_, fileEncoding) in
+                                if let fileEncoding {
+                                    Text(fileEncoding.localizedName).tag(fileEncoding)
+                                } else {
+                                    Divider()
+                                }
                             }
                         }
+                    } label: {
+                        EmptyView()
                     }
-                } label: {
-                    EmptyView()
+                    .onChange(of: fileEncoding) { (_, newValue) in
+                        self.model.document?.askChangingEncoding(to: newValue)
+                    }
+                    .help(String(localized: "Text Encoding", table: "Document"))
+                    .accessibilityLabel(String(localized: "Text Encoding", table: "Document"))
                 }
-                .onChange(of: self.model.fileEncoding) { newValue in
-                    self.model.document?.askChangingEncoding(to: newValue)
-                }
-                .help(String(localized: "Text Encoding", table: "Document"))
-                .accessibilityLabel(String(localized: "Text Encoding", table: "Document"))
                 
-                Divider()
-                    .padding(.vertical, 4)
-                
-                LineEndingPicker(String(localized: "Line Endings", table: "Document", comment: "menu item header"),
-                                 selection: $model.lineEnding)
-                .onChange(of: self.model.lineEnding) { newValue in
-                    self.model.document?.changeLineEnding(to: newValue)
+                if let lineEnding = self.model.lineEnding {
+                    Divider()
+                        .padding(.vertical, 4)
+                    
+                    LineEndingPicker(String(localized: "Line Endings", table: "Document", comment: "menu item header"),
+                                     selection: $model.lineEnding ?? .lf)
+                    .onChange(of: lineEnding) { (_, newValue) in
+                        self.model.document?.changeLineEnding(to: newValue)
+                    }
+                    .help(String(localized: "Line Endings", table: "Document"))
+                    .accessibilityLabel(String(localized: "Line Endings", table: "Document", comment: "menu item header"))
+                    .frame(width: 48)
                 }
-                .help(String(localized: "Line Endings", table: "Document"))
-                .accessibilityLabel(String(localized: "Line Endings", table: "Document", comment: "menu item header"))
-                .frame(width: 48)
             }
         }
-        .onReceive(EncodingManager.shared.$fileEncodings.receive(on: RunLoop.main)) { encodings in
-            self.fileEncodings = encodings
+        .subscriptionStatusTask(for: Donation.groupID) { taskState in
+            self.hasDonated = taskState.value?.map(\.state).contains(.subscribed) == true
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Status Bar", table: "Document", comment: "accessibility label"))
@@ -235,7 +257,7 @@ struct StatusBar: View {
         .controlSize(.small)
         .padding(.leading, 10)
         .frame(height: 21)
-        .background(.thinMaterial)  // .windowBackground on macOS 14
+        .background(.windowBackground)
     }
 }
 
@@ -308,9 +330,8 @@ private extension AttributedString {
     /// - Returns: An attributed string.
     init(_ label: String, value: String?) {
         
-        self = Self(label, attributes: .init().foregroundColor(.secondary))
-        + Self(value ?? "–", attributes: .init()
-            .foregroundColor((value == nil) ? NSColor.disabledControlTextColor : .labelColor))
+        self = Self(label, attributes: AttributeContainer.foregroundColor(.secondary))
+        + Self(value ?? "–", attributes: AttributeContainer.foregroundColor((value == nil) ? .disabledControlTextColor : .labelColor))
     }
 }
 
@@ -390,12 +411,43 @@ private struct LineEndingPicker: NSViewRepresentable {
 }
 
 
+private struct CoffeeBadge: View {
+    
+    var type: BadgeType
+    
+    @State private var isMessagePresented = false
+    
+    
+    var body: some View {
+        
+        Button {
+            self.isMessagePresented.toggle()
+        } label: {
+            Label {
+                Text(self.type.label)
+            } icon: {
+                Image(systemName: self.type.symbolName)
+            }
+
+        }
+        .fontWeight(.semibold)
+        .labelStyle(.iconOnly)
+        .popover(isPresented: $isMessagePresented) {
+            Text("Thank you for your kind support!", tableName: "Document", comment: "message for users who made a donation")
+                .padding(.vertical, 8)
+                .padding(.horizontal)
+        }
+    }
+}
+
 
 // MARK: - Preview
 
 #Preview {
     let model = StatusBar.Model()
-    model.countResult.characters = .init(entire: 1024, selected: 64)
+    let result = EditorCounter.Result()
+    result.characters = .init(entire: 1024, selected: 64)
+    model.countResult = result
     
-    return StatusBar(model: model)
+    return StatusBar(model: StatusBar.Model())
 }

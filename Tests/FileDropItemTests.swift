@@ -23,41 +23,53 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Testing
 @testable import CotEditor
 
-final class FileDropItemTests: XCTestCase {
+struct FileDropItemTests {
     
-    func testAvailability() {
+    @Test func emptyAvailability() {
         
-        let emptyItem = FileDropItem()
-        XCTAssertTrue(emptyItem.supports(extension: "JPG", scope: "foo"))
-        XCTAssertTrue(emptyItem.supports(extension: "jpg", scope: nil))
-        XCTAssertTrue(emptyItem.supports(extension: nil, scope: ""))
-        XCTAssertTrue(emptyItem.supports(extension: nil, scope: nil))
+        let item = FileDropItem()
+        #expect(item.supports(extension: "JPG", scope: "foo"))
+        #expect(item.supports(extension: "jpg", scope: nil))
+        #expect(item.supports(extension: nil, scope: ""))
+        #expect(item.supports(extension: nil, scope: nil))
+    }
+    
+    
+    @Test func extensionAvailability() {
         
-        let extensionItem = FileDropItem(format: "", extensions: ["jpg", "JPEG"])
-        XCTAssertTrue(extensionItem.supports(extension: "JPG", scope: "foo"))
-        XCTAssertTrue(extensionItem.supports(extension: "JPG", scope: nil))
-        XCTAssertFalse(extensionItem.supports(extension: "gif", scope: "foo"))
-        XCTAssertFalse(extensionItem.supports(extension: nil, scope: "foo"))
-        XCTAssertFalse(extensionItem.supports(extension: nil, scope: nil))
+        let item = FileDropItem(format: "", extensions: ["jpg", "JPEG"])
+        #expect(item.supports(extension: "JPG", scope: "foo"))
+        #expect(item.supports(extension: "JPG", scope: nil))
+        #expect(!item.supports(extension: "gif", scope: "foo"))
+        #expect(!item.supports(extension: nil, scope: "foo"))
+        #expect(!item.supports(extension: nil, scope: nil))
+    }
+    
+    
+    @Test func scopeAvailability() {
         
-        let scopeItem = FileDropItem(format: "", scope: "foo")
-        XCTAssertTrue(scopeItem.supports(extension: "JPG", scope: "foo"))
-        XCTAssertTrue(scopeItem.supports(extension: "gif", scope: "foo"))
-        XCTAssertTrue(scopeItem.supports(extension: nil, scope: "foo"))
-        XCTAssertFalse(scopeItem.supports(extension: nil, scope: "bar"))
-        XCTAssertFalse(scopeItem.supports(extension: "JPG", scope: nil))
-        XCTAssertFalse(scopeItem.supports(extension: nil, scope: nil))
+        let item = FileDropItem(format: "", scope: "foo")
+        #expect(item.supports(extension: "JPG", scope: "foo"))
+        #expect(item.supports(extension: "gif", scope: "foo"))
+        #expect(item.supports(extension: nil, scope: "foo"))
+        #expect(!item.supports(extension: nil, scope: "bar"))
+        #expect(!item.supports(extension: "JPG", scope: nil))
+        #expect(!item.supports(extension: nil, scope: nil))
+    }
+    
+    
+    @Test func mixAvailability() {
         
         let item = FileDropItem(format: "", extensions: ["jpg", "JPEG"], scope: "foo")
-        XCTAssertTrue(item.supports(extension: "JPG", scope: "foo"))
-        XCTAssertTrue(item.supports(extension: "jpeg", scope: "foo"))
-        XCTAssertFalse(item.supports(extension: "gif", scope: "foo"))
-        XCTAssertFalse(item.supports(extension: nil, scope: "foo"))
-        XCTAssertFalse(item.supports(extension: nil, scope: "bar"))
-        XCTAssertFalse(item.supports(extension: "JPG", scope: nil))
-        XCTAssertFalse(item.supports(extension: nil, scope: nil))
+        #expect(item.supports(extension: "JPG", scope: "foo"))
+        #expect(item.supports(extension: "jpeg", scope: "foo"))
+        #expect(!item.supports(extension: "gif", scope: "foo"))
+        #expect(!item.supports(extension: nil, scope: "foo"))
+        #expect(!item.supports(extension: nil, scope: "bar"))
+        #expect(!item.supports(extension: "JPG", scope: nil))
+        #expect(!item.supports(extension: nil, scope: nil))
     }
 }

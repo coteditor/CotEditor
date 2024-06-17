@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2023 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,45 +24,32 @@
 //  limitations under the License.
 //
 
-import XCTest
+import AppKit
+import Testing
 @testable import CotEditor
 
-final class TextFindTests: XCTestCase {
+struct TextFindTests {
     
-    func testTextFinderActions() {
+    @Test func finderActions() {
         
-        XCTAssertEqual(TextFinder.Action.showFindInterface.rawValue,
-                       NSTextFinder.Action.showFindInterface.rawValue)
-        XCTAssertEqual(TextFinder.Action.nextMatch.rawValue,
-                       NSTextFinder.Action.nextMatch.rawValue)
-        XCTAssertEqual(TextFinder.Action.previousMatch.rawValue,
-                       NSTextFinder.Action.previousMatch.rawValue)
-        XCTAssertEqual(TextFinder.Action.replaceAll.rawValue,
-                       NSTextFinder.Action.replaceAll.rawValue)
-        XCTAssertEqual(TextFinder.Action.replace.rawValue,
-                       NSTextFinder.Action.replace.rawValue)
-        XCTAssertEqual(TextFinder.Action.replaceAndFind.rawValue,
-                       NSTextFinder.Action.replaceAndFind.rawValue)
-        XCTAssertEqual(TextFinder.Action.setSearchString.rawValue,
-                       NSTextFinder.Action.setSearchString.rawValue)
-        XCTAssertEqual(TextFinder.Action.replaceAllInSelection.rawValue,
-                       NSTextFinder.Action.replaceAllInSelection.rawValue)
-        XCTAssertEqual(TextFinder.Action.selectAll.rawValue,
-                       NSTextFinder.Action.selectAll.rawValue)
-        XCTAssertEqual(TextFinder.Action.selectAllInSelection.rawValue,
-                       NSTextFinder.Action.selectAllInSelection.rawValue)
-        XCTAssertEqual(TextFinder.Action.hideFindInterface.rawValue,
-                       NSTextFinder.Action.hideFindInterface.rawValue)
-        XCTAssertEqual(TextFinder.Action.showReplaceInterface.rawValue,
-                       NSTextFinder.Action.showReplaceInterface.rawValue)
-        XCTAssertEqual(TextFinder.Action.showReplaceInterface.rawValue,
-                       NSTextFinder.Action.showReplaceInterface.rawValue)
-        XCTAssertEqual(TextFinder.Action.hideReplaceInterface.rawValue,
-                       NSTextFinder.Action.hideReplaceInterface.rawValue)
+        #expect(TextFinder.Action.showFindInterface.rawValue == NSTextFinder.Action.showFindInterface.rawValue)
+        #expect(TextFinder.Action.nextMatch.rawValue == NSTextFinder.Action.nextMatch.rawValue)
+        #expect(TextFinder.Action.previousMatch.rawValue == NSTextFinder.Action.previousMatch.rawValue)
+        #expect(TextFinder.Action.replaceAll.rawValue == NSTextFinder.Action.replaceAll.rawValue)
+        #expect(TextFinder.Action.replace.rawValue == NSTextFinder.Action.replace.rawValue)
+        #expect(TextFinder.Action.replaceAndFind.rawValue == NSTextFinder.Action.replaceAndFind.rawValue)
+        #expect(TextFinder.Action.setSearchString.rawValue == NSTextFinder.Action.setSearchString.rawValue)
+        #expect(TextFinder.Action.replaceAllInSelection.rawValue == NSTextFinder.Action.replaceAllInSelection.rawValue)
+        #expect(TextFinder.Action.selectAll.rawValue == NSTextFinder.Action.selectAll.rawValue)
+        #expect(TextFinder.Action.selectAllInSelection.rawValue == NSTextFinder.Action.selectAllInSelection.rawValue)
+        #expect(TextFinder.Action.hideFindInterface.rawValue == NSTextFinder.Action.hideFindInterface.rawValue)
+        #expect(TextFinder.Action.showReplaceInterface.rawValue == NSTextFinder.Action.showReplaceInterface.rawValue)
+        #expect(TextFinder.Action.showReplaceInterface.rawValue == NSTextFinder.Action.showReplaceInterface.rawValue)
+        #expect(TextFinder.Action.hideReplaceInterface.rawValue == NSTextFinder.Action.hideReplaceInterface.rawValue)
     }
     
     
-    func testCaptureGroupCount() throws {
+    @Test func countCaptureGroup() throws {
         
         var mode: TextFind.Mode
         var textFind: TextFind
@@ -70,18 +57,18 @@ final class TextFindTests: XCTestCase {
         mode = .regularExpression(options: [], unescapesReplacement: false)
         
         textFind = try TextFind(for: "", findString: "a", mode: mode)
-        XCTAssertEqual(textFind.numberOfCaptureGroups, 0)
+        #expect(textFind.numberOfCaptureGroups == 0)
         
         textFind = try TextFind(for: "", findString: "(?!=a)(b)(c)(?=d)", mode: mode)
-        XCTAssertEqual(textFind.numberOfCaptureGroups, 2)
+        #expect(textFind.numberOfCaptureGroups == 2)
         
         mode = .textual(options: [], fullWord: false)
         textFind = try TextFind(for: "", findString: "(?!=a)(b)(c)(?=d)", mode: mode)
-        XCTAssertEqual(textFind.numberOfCaptureGroups, 0)
+        #expect(textFind.numberOfCaptureGroups == 0)
     }
     
     
-    func testSingleFind() throws {
+    @Test func singleFind() throws {
         
         let text = "abcdefg abcdefg ABCDEFG"
         let findString = "abc"
@@ -93,40 +80,40 @@ final class TextFindTests: XCTestCase {
         textFind = try TextFind(for: text, findString: findString, mode: .textual(options: [], fullWord: false))
         matches = try textFind.matches
         
-        result = try XCTUnwrap(textFind.find(in: matches, forward: true, wraps: false))
-        XCTAssertEqual(matches.count, 2)
-        XCTAssertEqual(result.range, NSRange(location: 0, length: 3))
-        XCTAssertFalse(result.wrapped)
+        result = try #require(textFind.find(in: matches, forward: true, wraps: false))
+        #expect(matches.count == 2)
+        #expect(result.range == NSRange(location: 0, length: 3))
+        #expect(!result.wrapped)
         
-        XCTAssertNil(textFind.find(in: matches, forward: false, wraps: false))
+        #expect(textFind.find(in: matches, forward: false, wraps: false) == nil)
         
         
         textFind = try TextFind(for: text, findString: findString, mode: .textual(options: [], fullWord: false), selectedRanges: [NSRange(location: 1, length: 0)])
         
         matches = try textFind.matches
-        XCTAssertEqual(matches.count, 2)
+        #expect(matches.count == 2)
         
-        result = try XCTUnwrap(textFind.find(in: matches, forward: true, wraps: true))
-        XCTAssertEqual(result.range, NSRange(location: 8, length: 3))
-        XCTAssertFalse(result.wrapped)
+        result = try #require(textFind.find(in: matches, forward: true, wraps: true))
+        #expect(result.range == NSRange(location: 8, length: 3))
+        #expect(!result.wrapped)
         
-        result = try XCTUnwrap(textFind.find(in: matches, forward: false, wraps: true))
-        XCTAssertEqual(result.range, NSRange(location: 8, length: 3))
-        XCTAssertTrue(result.wrapped)
+        result = try #require(textFind.find(in: matches, forward: false, wraps: true))
+        #expect(result.range == NSRange(location: 8, length: 3))
+        #expect(result.wrapped)
         
         
         textFind = try TextFind(for: text, findString: findString, mode: .textual(options: .caseInsensitive, fullWord: false), selectedRanges: [NSRange(location: 1, length: 0)])
         
         matches = try textFind.matches
-        XCTAssertEqual(matches.count, 3)
+        #expect(matches.count == 3)
         
-        result = try XCTUnwrap(textFind.find(in: matches, forward: false, wraps: true))
-        XCTAssertEqual(result.range, NSRange(location: 16, length: 3))
-        XCTAssertTrue(result.wrapped)
+        result = try #require(textFind.find(in: matches, forward: false, wraps: true))
+        #expect(result.range == NSRange(location: 16, length: 3))
+        #expect(result.wrapped)
     }
     
     
-    func testFullWord() throws {
+    @Test func fullWord() throws {
         
         var textFind: TextFind
         var result: (range: NSRange, wrapped: Bool)
@@ -135,43 +122,43 @@ final class TextFindTests: XCTestCase {
         textFind = try TextFind(for: "apples apple Apple", findString: "apple",
                                 mode: .textual(options: .caseInsensitive, fullWord: true))
         matches = try textFind.matches
-        result = try XCTUnwrap(textFind.find(in: matches, forward: true, wraps: true))
-        XCTAssertEqual(matches.count, 2)
-        XCTAssertEqual(result.range, NSRange(location: 7, length: 5))
+        result = try #require(textFind.find(in: matches, forward: true, wraps: true))
+        #expect(matches.count == 2)
+        #expect(result.range == NSRange(location: 7, length: 5))
         
         textFind = try TextFind(for: "apples apple Apple", findString: "apple",
                                 mode: .textual(options: [.caseInsensitive, .literal], fullWord: true))
         matches = try textFind.matches
-        result = try XCTUnwrap(textFind.find(in: matches, forward: true, wraps: true))
-        XCTAssertEqual(matches.count, 2)
-        XCTAssertEqual(result.range, NSRange(location: 7, length: 5))
+        result = try #require(textFind.find(in: matches, forward: true, wraps: true))
+        #expect(matches.count == 2)
+        #expect(result.range == NSRange(location: 7, length: 5))
         
         textFind = try TextFind(for: "Apfel Äpfel Äpfelchen", findString: "Äpfel",
                                 mode: .textual(options: .diacriticInsensitive, fullWord: true))
         matches = try textFind.matches
-        result = try XCTUnwrap(textFind.find(in: matches, forward: true, wraps: true))
-        XCTAssertEqual(matches.count, 2)
-        XCTAssertEqual(result.range, NSRange(location: 0, length: 5))
+        result = try #require(textFind.find(in: matches, forward: true, wraps: true))
+        #expect(matches.count == 2)
+        #expect(result.range == NSRange(location: 0, length: 5))
         
         textFind = try TextFind(for: "イヌら ｲﾇ イヌ", findString: "イヌ",
                                 mode: .textual(options: .widthInsensitive, fullWord: true))
         matches = try textFind.matches
-        result = try XCTUnwrap(textFind.find(in: matches, forward: true, wraps: true))
-        XCTAssertEqual(matches.count, 2)
-        XCTAssertEqual(result.range, NSRange(location: 4, length: 2))
+        result = try #require(textFind.find(in: matches, forward: true, wraps: true))
+        #expect(matches.count == 2)
+        #expect(result.range == NSRange(location: 4, length: 2))
     }
     
     
-    func testUnescapedRegexFind() throws {
+    @Test func unescapedRegexFind() throws {
         
         let mode: TextFind.Mode = .regularExpression(options: .caseInsensitive, unescapesReplacement: true)
         let textFind = try TextFind(for: "1", findString: "1", mode: mode, selectedRanges: [NSRange(0..<1)])
-        let replacementResult = try XCTUnwrap(textFind.replace(with: #"foo：\n1"#))
-        XCTAssertEqual(replacementResult.value, "foo：\n1")
+        let replacementResult = try #require(textFind.replace(with: #"foo：\n1"#))
+        #expect(replacementResult.value == "foo：\n1")
     }
     
     
-    func testSingleRegexFindAndReplacement() throws {
+    @Test func findAndReplaceSingleRegex() throws {
         
         let findString = "(?!=a)b(c)(?=d)"
         let mode: TextFind.Mode = .regularExpression(options: .caseInsensitive, unescapesReplacement: true)
@@ -184,42 +171,42 @@ final class TextFindTests: XCTestCase {
         textFind = try TextFind(for: "abcdefg abcdefg ABCDEFG", findString: findString, mode: mode, selectedRanges: [NSRange(location: 1, length: 1)])
         
         matches = try textFind.matches
-        XCTAssertEqual(matches.count, 3)
+        #expect(matches.count == 3)
         
-        result = try XCTUnwrap(textFind.find(in: matches, forward: true, wraps: true))
-        XCTAssertEqual(result.range, NSRange(location: 9, length: 2))
-        XCTAssertFalse(result.wrapped)
+        result = try #require(textFind.find(in: matches, forward: true, wraps: true))
+        #expect(result.range == NSRange(location: 9, length: 2))
+        #expect(!result.wrapped)
         
-        result = try XCTUnwrap(textFind.find(in: matches, forward: false, wraps: true))
-        XCTAssertEqual(result.range, NSRange(location: 17, length: 2))
-        XCTAssertTrue(result.wrapped)
+        result = try #require(textFind.find(in: matches, forward: false, wraps: true))
+        #expect(result.range == NSRange(location: 17, length: 2))
+        #expect(result.wrapped)
         
         
         textFind = try TextFind(for: "ABCDEFG", findString: findString, mode: mode, selectedRanges: [NSRange(location: 1, length: 1)])
         
         matches = try textFind.matches
-        XCTAssertEqual(matches.count, 1)
+        #expect(matches.count == 1)
         
-        result = try XCTUnwrap(textFind.find(in: matches, forward: true, wraps: true))
-        XCTAssertEqual(result.range, NSRange(location: 1, length: 2))
-        XCTAssertTrue(result.wrapped)
+        result = try #require(textFind.find(in: matches, forward: true, wraps: true))
+        #expect(result.range == NSRange(location: 1, length: 2))
+        #expect(result.wrapped)
         
-        result = try XCTUnwrap(textFind.find(in: matches, forward: false, wraps: true))
-        XCTAssertEqual(result.range, NSRange(location: 1, length: 2))
-        XCTAssertTrue(result.wrapped)
+        result = try #require(textFind.find(in: matches, forward: false, wraps: true))
+        #expect(result.range == NSRange(location: 1, length: 2))
+        #expect(result.wrapped)
         
-        XCTAssertNil(textFind.replace(with: "$1"))
+        #expect(textFind.replace(with: "$1") == nil)
         
         
         textFind = try TextFind(for: "ABCDEFG", findString: findString, mode: mode, selectedRanges: [NSRange(location: 1, length: 2)])
         
-        let replacementResult = try XCTUnwrap(textFind.replace(with: "$1\\t"))
-        XCTAssertEqual(replacementResult.value, "C\t")
-        XCTAssertEqual(replacementResult.range, NSRange(location: 1, length: 2))
+        let replacementResult = try #require(textFind.replace(with: "$1\\t"))
+        #expect(replacementResult.value == "C\t")
+        #expect(replacementResult.range == NSRange(location: 1, length: 2))
     }
     
     
-    func testFindAll() throws {
+    @Test func findAll() throws {
         
         let mode: TextFind.Mode = .regularExpression(options: .caseInsensitive, unescapesReplacement: false)
         var textFind: TextFind
@@ -230,13 +217,13 @@ final class TextFindTests: XCTestCase {
         textFind.findAll { (matchedRanges, _) in
             matches.append(matchedRanges)
         }
-        XCTAssertEqual(matches.count, 2)
-        XCTAssertEqual(matches[0].count, 2)
-        XCTAssertEqual(matches[0][0], NSRange(location: 1, length: 2))
-        XCTAssertEqual(matches[0][1], NSRange(location: 2, length: 1))
-        XCTAssertEqual(matches[1].count, 2)
-        XCTAssertEqual(matches[1][0], NSRange(location: 9, length: 2))
-        XCTAssertEqual(matches[1][1], NSRange(location: 10, length: 1))
+        #expect(matches.count == 2)
+        #expect(matches[0].count == 2)
+        #expect(matches[0][0] == NSRange(location: 1, length: 2))
+        #expect(matches[0][1] == NSRange(location: 2, length: 1))
+        #expect(matches[1].count == 2)
+        #expect(matches[1][0] == NSRange(location: 9, length: 2))
+        #expect(matches[1][1] == NSRange(location: 10, length: 1))
         
         
         textFind = try TextFind(for: "abcdefg ABCDEFG", findString: "ab", mode: mode)
@@ -245,15 +232,15 @@ final class TextFindTests: XCTestCase {
         textFind.findAll { (matchedRanges, _) in
             matches.append(matchedRanges)
         }
-        XCTAssertEqual(matches.count, 2)
-        XCTAssertEqual(matches[0].count, 1)
-        XCTAssertEqual(matches[0][0], NSRange(location: 0, length: 2))
-        XCTAssertEqual(matches[1].count, 1)
-        XCTAssertEqual(matches[1][0], NSRange(location: 8, length: 2))
+        #expect(matches.count == 2)
+        #expect(matches[0].count == 1)
+        #expect(matches[0][0] == NSRange(location: 0, length: 2))
+        #expect(matches[1].count == 1)
+        #expect(matches[1][0] == NSRange(location: 8, length: 2))
     }
     
     
-    func testReplaceAll() throws {
+    @Test func replaceAll() throws {
         
         var textFind: TextFind
         var replacementItems: [TextFind.ReplacementItem]
@@ -263,10 +250,10 @@ final class TextFindTests: XCTestCase {
                                 mode: .regularExpression(options: .caseInsensitive, unescapesReplacement: false))
         
         (replacementItems, selectedRanges) = textFind.replaceAll(with: "$1\\\\t") { (_, _, _)  in }
-        XCTAssertEqual(replacementItems.count, 1)
-        XCTAssertEqual(replacementItems[0].value, "ac\\tdefg AC\\tDEFG")
-        XCTAssertEqual(replacementItems[0].range, NSRange(location: 0, length: 15))
-        XCTAssertNil(selectedRanges)
+        #expect(replacementItems.count == 1)
+        #expect(replacementItems[0].value == "ac\\tdefg AC\\tDEFG")
+        #expect(replacementItems[0].range == NSRange(location: 0, length: 15))
+        #expect(selectedRanges == nil)
         
         
         textFind = try TextFind(for: "abcdefg abcdefg abcdefg", findString: "abc",
@@ -276,12 +263,12 @@ final class TextFindTests: XCTestCase {
                                                  NSRange(location: 16, length: 7)])
         
         (replacementItems, selectedRanges) = textFind.replaceAll(with: "_") { (_, _, _)  in }
-        XCTAssertEqual(replacementItems.count, 2)
-        XCTAssertEqual(replacementItems[0].value, "bcdefg _defg")
-        XCTAssertEqual(replacementItems[0].range, NSRange(location: 1, length: 14))
-        XCTAssertEqual(replacementItems[1].value, "_defg")
-        XCTAssertEqual(replacementItems[1].range, NSRange(location: 16, length: 7))
-        XCTAssertEqual(selectedRanges?[0], NSRange(location: 1, length: 12))
-        XCTAssertEqual(selectedRanges?[1], NSRange(location: 14, length: 5))
+        #expect(replacementItems.count == 2)
+        #expect(replacementItems[0].value == "bcdefg _defg")
+        #expect(replacementItems[0].range == NSRange(location: 1, length: 14))
+        #expect(replacementItems[1].value == "_defg")
+        #expect(replacementItems[1].range == NSRange(location: 16, length: 7))
+        #expect(selectedRanges?[0] == NSRange(location: 1, length: 12))
+        #expect(selectedRanges?[1] == NSRange(location: 14, length: 5))
     }
 }

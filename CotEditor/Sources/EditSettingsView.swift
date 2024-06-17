@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Defaults
 
 struct EditSettingsView: View {
     
@@ -114,7 +115,7 @@ struct EditSettingsView: View {
             
             HStack {
                 Spacer()
-                HelpButton(anchor: "settings_edit")
+                HelpLink(anchor: "settings_edit")
             }
         }
         .scenePadding()

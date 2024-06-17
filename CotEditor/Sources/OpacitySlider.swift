@@ -122,7 +122,6 @@ private struct OpacitySample: View {
 
 // MARK: - Preview
 
-@available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 200, height: 50)) {
     
     VStack {

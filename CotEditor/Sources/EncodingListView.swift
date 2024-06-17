@@ -24,6 +24,9 @@
 //
 
 import SwiftUI
+import Observation
+import Defaults
+import FileEncoding
 
 private struct EncodingItem: Identifiable {
     
@@ -39,12 +42,12 @@ private struct EncodingItem: Identifiable {
 
 struct EncodingListView: View {
     
-    fileprivate final class Model: ObservableObject {
+     @Observable fileprivate final class Model {
         
         typealias Item = EncodingItem
         
         
-        @Published var items: [Item]
+        var items: [Item]
         
         private let defaults: UserDefaults
         
@@ -57,7 +60,7 @@ struct EncodingListView: View {
     }
     
     
-    @StateObject private var model = Model()
+    @State private var model = Model()
     @Environment(\.undoManager) private var undoManager
     @Environment(\.dismiss) private var dismiss
     
@@ -112,7 +115,7 @@ struct EncodingListView: View {
                 .padding(.bottom)
             
             HStack {
-                HelpButton(anchor: "howto_customize_encoding_order")
+                HelpLink(anchor: "howto_customize_encoding_order")
                 
                 Button(String(localized: "Restore Defaults", table: "EncodingList", comment: "button label")) {
                     self.model.restore()
@@ -286,7 +289,6 @@ private extension CFStringEncoding {
 
 // MARK: - Preview
 
-@available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 400, height: 400)) {
     EncodingListView()
 }

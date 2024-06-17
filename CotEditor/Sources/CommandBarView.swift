@@ -25,12 +25,14 @@
 
 import SwiftUI
 import AppKit
+import Observation
+import Shortcut
 
 struct CommandBarView: View {
     
-    final class Model: ObservableObject {
+    @Observable final class Model {
         
-        @Published var commands: [ActionCommand] = []
+        var commands: [ActionCommand] = []
     }
     
     
@@ -43,12 +45,10 @@ struct CommandBarView: View {
     }
     
     
-    let model: Model
+    @State var model: Model
     
     weak var parent: NSWindow?
     
-    
-    @Environment(\.controlActiveState) private var controlActiveState
     
     @State private var input: String = ""
     @State var candidates: [Candidate] = []
@@ -56,8 +56,6 @@ struct CommandBarView: View {
     @State private var selection: ActionCommand.ID?
     @FocusState private var focus: ActionCommand.ID?
     @AccessibilityFocusState private var accessibilityFocus: ActionCommand.ID?
-    
-    @State private var keyMonitor: Any?
     
     
     var body: some View {
@@ -96,16 +94,16 @@ struct CommandBarView: View {
                         }
                         .padding(.horizontal, 10)
                     }
-                    .onChange(of: self.selection) { newValue in
+                    .onChange(of: self.selection) { (_, newValue) in
                         proxy.scrollTo(newValue)
                     }
                 }
-                .compatibleContentMargins(.vertical, 10)
+                .contentMargins(.vertical, 10, for: .scrollContent)
                 .frame(maxHeight: 300)
                 .fixedSize(horizontal: false, vertical: true)
             }
         }
-        .onChange(of: self.input) { newValue in
+        .onChange(of: self.input) { (_, newValue) in
             self.candidates = self.model.commands
                 .compactMap {
                     guard let result = $0.match(command: newValue) else { return nil }
@@ -113,35 +111,17 @@ struct CommandBarView: View {
                 }
                 .sorted(\.score)
             self.selection = self.candidates.first?.id
+            
+            // post a VoiceOver announcement
+            let announcement = String(localized: "\(self.candidates.count) commands found", table: "CommandBar", comment: "VoiceOver announcement when incrementally updated the command search result.")
+            AccessibilityNotification.Announcement(announcement).post()
+            
         }
-        .onChange(of: self.controlActiveState) { newValue in
-            switch newValue {
-                case .key, .active:
-                    self.keyMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
-                        if let key = event.specialKey,
-                           event.modifierFlags.isDisjoint(with: [.shift, .control, .option, .command])
-                        {
-                            switch key {
-                                case .downArrow, .upArrow:
-                                    self.move(down: (key == .downArrow))
-                                    return nil
-                                default:
-                                    break
-                            }
-                        }
-                        return event
-                    }
-                    
-                case .inactive:
-                    self.input = ""
-                    if let keyMonitor {
-                        NSEvent.removeMonitor(keyMonitor)
-                        self.keyMonitor = nil
-                    }
-                    
-                @unknown default:
-                    break
-            }
+        .onKeyPress(.upArrow) {
+            self.move(down: false) ? .handled : .ignored
+        }
+        .onKeyPress(.downArrow) {
+            self.move(down: true) ? .handled : .ignored
         }
         .frame(width: 500)
         .ignoresSafeArea()
@@ -151,27 +131,29 @@ struct CommandBarView: View {
     /// Moves the selection to the next one, if any exists.
     ///
     /// - Parameter down: Whether move down or up the selection.
-    private func move(down: Bool) {
+    /// - Returns: Whether the move action is performed.
+    private func move(down: Bool) -> Bool {
         
         guard
             let index = self.candidates.firstIndex(where: { $0.id == self.selection }),
             let candidate = self.candidates[safe: index + (down ? 1 : -1)]
-        else { return }
+        else { return false }
         
         self.selection = candidate.id
         self.focus = candidate.id
         self.accessibilityFocus = candidate.id
+        return true
     }
     
     
     /// Performs the selected command and closes the view.
-    @MainActor private func perform() {
+    private func perform() {
         
         // first close the command bar and then take the action
         // so that the action is delivered to the correct (first) responder.
         self.parent?.close()
         
-        if let command = self.candidates.first(where: { $0.id == self.selection })?.command {
+        if let command = self.candidates[id: self.selection]?.command {
             command.perform()
         }
     }
@@ -303,17 +285,6 @@ private extension ActionCommand.Kind {
 
 
 private extension View {
-    
-    @available(macOS, deprecated: 14)
-    func compatibleContentMargins(_ edges: Edge.Set = .all, _ length: CGFloat?) -> some View {
-        
-        if #available(macOS 14, *) {
-            return self.contentMargins(edges, length, for: .scrollContent)
-        } else {
-            return self.padding(edges, length)
-        }
-    }
-    
     
     /// Performs actions when clicking the mouse on the view.
     ///

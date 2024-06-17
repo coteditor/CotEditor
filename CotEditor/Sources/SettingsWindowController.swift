@@ -28,6 +28,9 @@ import SwiftUI
 
 final class SettingsWindowController: NSWindowController {
     
+    static let shared = SettingsWindowController()
+    
+    
     // MARK: Lifecycle
     
     convenience init() {
@@ -77,7 +80,7 @@ private extension SettingsPane {
     }
     
     
-    private var view: any View {
+    @MainActor private var view: any View {
         
         switch self {
             case .general: GeneralSettingsView()
@@ -88,6 +91,7 @@ private extension SettingsPane {
             case .format: FormatSettingsView()
             case .snippets: SnippetsSettingsView()
             case .keyBindings: KeyBindingsSettingsView()
+            case .donation: DonationSettingsView()
         }
     }
 }

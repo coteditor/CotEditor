@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Defaults
 
 struct PatternSortView: View {
     
@@ -99,17 +100,17 @@ struct PatternSortView: View {
                         .horizontalRadioGroupLayout()
                         .labelsHidden()
                         .fixedSize()
-                        .onChange(of: self.sortKey) { _ in self.validate() }
+                        .onChange(of: self.sortKey) { self.validate() }
                         
                         switch self.sortKey {
                             case .entire:
                                 EmptyView()
                             case .column:
                                 ColumnSortPatternView(pattern: $columnSortPattern)
-                                    .onChange(of: self.columnSortPattern) { _ in self.validate() }
+                                    .onChange(of: self.columnSortPattern) { self.validate() }
                             case .regularExpression:
                                 RegularExpressionSortPatternView(pattern: $regularExpressionSortPattern, error: $error)
-                                    .onChange(of: self.regularExpressionSortPattern) { _ in self.validate() }
+                                    .onChange(of: self.regularExpressionSortPattern) { self.validate() }
                         }
                     }
                 }
@@ -136,7 +137,7 @@ struct PatternSortView: View {
             }
             
             HStack {
-                HelpButton(anchor: "howto_pattern_sort")
+                HelpLink(anchor: "howto_pattern_sort")
                 Spacer()
                 SubmitButtonGroup(String(localized: "Sort", table: "PatternSort", comment: "button label")) {
                     self.submit()
@@ -168,7 +169,7 @@ struct PatternSortView: View {
     
     
     /// Submits the current input.
-    @MainActor private func submit() {
+    private func submit() {
         
         guard
             self.parent?.commitEditing() == true

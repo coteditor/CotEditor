@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import Shortcut
 
 extension Selector: @unchecked Sendable { }
 

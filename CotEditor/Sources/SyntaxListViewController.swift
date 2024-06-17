@@ -29,6 +29,7 @@ import AudioToolbox
 import Combine
 import SwiftUI
 import UniformTypeIdentifiers
+import Defaults
 
 final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate {
     

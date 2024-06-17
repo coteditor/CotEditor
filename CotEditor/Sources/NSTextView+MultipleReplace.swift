@@ -35,7 +35,7 @@ extension NSTextView {
     ///   - inSelection: Whether find string only in selectedRanges.
     /// - Returns: A result message.
     /// - Throws: `CancellationError`
-    @MainActor final func highlight(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
+    final func highlight(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
         
         self.isEditable = false
         defer { self.isEditable = true }
@@ -79,7 +79,7 @@ extension NSTextView {
             ? String(localized: "Not found", table: "TextFind")
             : String(localized: "\(progress.count) found", table: "TextFind")
         
-        self.requestAccessibilityAnnouncement(message)
+        AccessibilityNotification.Announcement(message).post()
         
         return message
     }
@@ -92,7 +92,7 @@ extension NSTextView {
     ///   - inSelection: Whether find string only in selectedRanges.
     /// - Returns: A result message.
     /// - Throws: `CancellationError`
-    @MainActor final func replaceAll(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
+    final func replaceAll(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
         
         self.isEditable = false
         defer { self.isEditable = true }
@@ -127,7 +127,7 @@ extension NSTextView {
             ? String(localized: "Not replaced", table: "TextFind")
             : String(localized: "\(progress.count) replaced", table: "TextFind")
         
-        self.requestAccessibilityAnnouncement(message)
+        AccessibilityNotification.Announcement(message).post()
         
         return message
     }

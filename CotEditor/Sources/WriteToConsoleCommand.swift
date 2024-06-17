@@ -34,7 +34,7 @@ final class WriteToConsoleCommand: NSScriptCommand {
         Task { @MainActor in
             let log = Console.Log(message: message, title: ScriptManager.shared.currentScriptName)
             ConsolePanelController.shared.append(log: log)
-            ConsolePanelController.shared.showWindow(self)
+            ConsolePanelController.shared.showWindow(nil)
         }
         
         return true

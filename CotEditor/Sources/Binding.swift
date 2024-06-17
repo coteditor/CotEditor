@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import SwiftUI
 
 // MARK: OptionSet
 
-extension Binding where Value: OptionSet {
+extension Binding where Value: OptionSet, Value.Element: Sendable {
     
     /// Enables binding to an option using Bool.
     ///
@@ -53,7 +53,7 @@ extension Binding where Value: OptionSet {
 
 // MARK: Optional Binding
 
-func ?? <T>(lhs: Binding<T?>, rhs: T) -> Binding<T> {
+func ?? <T: Sendable>(lhs: Binding<T?>, rhs: T) -> Binding<T> {
     
     Binding(
         get: { lhs.wrappedValue ?? rhs },

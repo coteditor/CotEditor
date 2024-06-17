@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2023 1024jp
+//  © 2020-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,69 +23,70 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import CotEditor
 
-final class NSAttributedStringTests: XCTestCase {
+struct NSAttributedStringTests {
     
-    func testAddition() throws {
+    @Test func add() throws {
         
         let foo = NSMutableAttributedString(string: "foo", attributes: [.toolTip: "moof"])
         let bar = NSAttributedString(string: "bar", attributes: [:])
         let fooBar = foo + bar
         
-        XCTAssertFalse(fooBar is NSMutableAttributedString)
-        XCTAssertEqual(fooBar.string, "foobar")
-        XCTAssertEqual(fooBar.attribute(.toolTip, at: 1, effectiveRange: nil) as? String, "moof")
-        XCTAssertNil(fooBar.attribute(.toolTip, at: 3, effectiveRange: nil))
+        #expect(!(fooBar is NSMutableAttributedString))
+        #expect(fooBar.string == "foobar")
+        #expect(fooBar.attribute(.toolTip, at: 1, effectiveRange: nil) as? String == "moof")
+        #expect(fooBar.attribute(.toolTip, at: 3, effectiveRange: nil) == nil)
     }
     
     
-    func testAdditionEqual() throws {
+    @Test func addEqual() throws {
         
         var fooBar = NSAttributedString(string: "foo", attributes: [.toolTip: "moof"])
         fooBar += NSAttributedString(string: "bar", attributes: [:])
         
-        XCTAssertFalse(fooBar is NSMutableAttributedString)
-        XCTAssertEqual(fooBar.string, "foobar")
-        XCTAssertEqual(fooBar.attribute(.toolTip, at: 1, effectiveRange: nil) as? String, "moof")
-        XCTAssertNil(fooBar.attribute(.toolTip, at: 3, effectiveRange: nil))
+        #expect(!(fooBar is NSMutableAttributedString))
+        #expect(fooBar.string == "foobar")
+        #expect(fooBar.attribute(.toolTip, at: 1, effectiveRange: nil) as? String == "moof")
+        #expect(fooBar.attribute(.toolTip, at: 3, effectiveRange: nil) == nil)
     }
     
     
-    func testTruncation() throws {
+    @Test func truncate() throws {
         
         let string1 = NSMutableAttributedString(string: "0123456")
         string1.truncateHead(until: 5, offset: 2)
-        XCTAssertEqual(string1.string, "…3456")
+        #expect(string1.string == "…3456")
         
         let string2 = NSMutableAttributedString(string: "0123456")
         string2.truncateHead(until: 2, offset: 3)
-        XCTAssertEqual(string2.string, "0123456")
+        #expect(string2.string == "0123456")
         
         let string3 = NSMutableAttributedString(string: "🐱🐶🐮")
         string3.truncateHead(until: 4, offset: 1)
-        XCTAssertEqual(string3.string, "…🐶🐮")
+        #expect(string3.string == "…🐶🐮")
         
         let string4 = NSMutableAttributedString(string: "🐈‍⬛🐕🐄")
         string4.truncateHead(until: 4, offset: 1)
-        XCTAssertEqual(string4.string, "🐈‍⬛🐕🐄")
+        #expect(string4.string == "🐈‍⬛🐕🐄")
         
         let string5 = NSMutableAttributedString(string: "🐈‍⬛🐕🐄")
         string5.truncateHead(until: 5, offset: 1)
-        XCTAssertEqual(string5.string, "🐈‍⬛🐕🐄")
+        #expect(string5.string == "🐈‍⬛🐕🐄")
         
         let string6 = NSMutableAttributedString(string: "🐈‍⬛ab")
         string6.truncateHead(until: 5, offset: 1)
-        XCTAssertEqual(string6.string, "…ab")
+        #expect(string6.string == "…ab")
         
         let string7 = NSMutableAttributedString(string: "🐈‍⬛🐕🐄")
         string7.truncateHead(until: 6, offset: 1)
-        XCTAssertEqual(string7.string, "…🐕🐄")
+        #expect(string7.string == "…🐕🐄")
     }
     
     
-    func testJoin() {
+    @Test func join() {
         
         let attrs: [NSAttributedString] = [
             NSMutableAttributedString(string: "foo", attributes: [.toolTip: "moof"]),
@@ -95,26 +96,26 @@ final class NSAttributedStringTests: XCTestCase {
         let space = NSAttributedString(string: " ", attributes: [.toolTip: "space"])
         
         let joined = attrs.joined()
-        XCTAssertFalse(joined is NSMutableAttributedString)
-        XCTAssertEqual(joined.string, "foobarbuz")
-        XCTAssertEqual(joined.attribute(.toolTip, at: 1, effectiveRange: nil) as? String, "moof")
-        XCTAssertNil(joined.attribute(.toolTip, at: 3, effectiveRange: nil))
+        #expect(!(joined is NSMutableAttributedString))
+        #expect(joined.string == "foobarbuz")
+        #expect(joined.attribute(.toolTip, at: 1, effectiveRange: nil) as? String == "moof")
+        #expect(joined.attribute(.toolTip, at: 3, effectiveRange: nil) == nil)
         
         let spaceJoined = attrs.joined(separator: space)
-        XCTAssertFalse(spaceJoined is NSMutableAttributedString)
-        XCTAssertEqual(spaceJoined.string, "foo bar buz")
-        XCTAssertEqual(spaceJoined.attribute(.toolTip, at: 0, effectiveRange: nil) as? String, "moof")
-        XCTAssertEqual(spaceJoined.attribute(.toolTip, at: 3, effectiveRange: nil) as? String, "space")
-        XCTAssertNil(spaceJoined.attribute(.toolTip, at: 4, effectiveRange: nil))
+        #expect(!(spaceJoined is NSMutableAttributedString))
+        #expect(spaceJoined.string == "foo bar buz")
+        #expect(spaceJoined.attribute(.toolTip, at: 0, effectiveRange: nil) as? String == "moof")
+        #expect(spaceJoined.attribute(.toolTip, at: 3, effectiveRange: nil) as? String == "space")
+        #expect(spaceJoined.attribute(.toolTip, at: 4, effectiveRange: nil) == nil)
         
         let empty: [NSAttributedString] = []
         let emptyJoined = empty.joined(separator: space)
-        XCTAssertFalse(emptyJoined is NSMutableAttributedString)
-        XCTAssertEqual(emptyJoined.string, "")
+        #expect(!(emptyJoined is NSMutableAttributedString))
+        #expect(emptyJoined.string.isEmpty)
         
         let single: [NSAttributedString] = [NSMutableAttributedString(string: "foo", attributes: [.toolTip: "moof"])]
         let singleJoined = single.joined(separator: space)
-        XCTAssertFalse(singleJoined is NSMutableAttributedString)
-        XCTAssertEqual(singleJoined.string, "foo")
+        #expect(!(singleJoined is NSMutableAttributedString))
+        #expect(singleJoined.string == "foo")
     }
 }

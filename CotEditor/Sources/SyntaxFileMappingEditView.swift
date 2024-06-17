@@ -64,7 +64,7 @@ struct SyntaxFileMappingEditView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        HelpButton(anchor: "syntax_file_mapping")
+                        HelpLink(anchor: "syntax_file_mapping")
                     }
                 }
             }
@@ -78,7 +78,7 @@ struct SyntaxFileMappingEditView: View {
         
         
         @Binding var items: [Item]
-        let label: () -> (Label)
+        let label: () -> Label
         
         @State private var selection: Set<Item.ID> = []
         @FocusState private var focusedField: Item.ID?
@@ -108,10 +108,11 @@ struct SyntaxFileMappingEditView: View {
                         }
                     }
                 }
-                .listStyle(.bordered(alternatesRowBackgrounds: true))
+                .listStyle(.bordered)
+                .alternatingRowBackgrounds()
                 .border(Color(nsColor: .gridColor))
                 
-                AddRemoveButton($items, selection: $selection, focus: $focusedField)
+                AddRemoveButton($items, selection: $selection, focus: $focusedField, newItem: Item.init)
             }.accessibilityElement(children: .contain)
         }
     }
@@ -121,10 +122,11 @@ struct SyntaxFileMappingEditView: View {
 
 // MARK: - Preview
 
+@available(macOS 15, *)
 #Preview {
-    @State var extensions: [SyntaxObject.KeyString] = [.init(string: "abc")]
-    @State var filenames: [SyntaxObject.KeyString] = []
-    @State var interpreters: [SyntaxObject.KeyString] = []
+    @Previewable @State var extensions: [SyntaxObject.KeyString] = [.init(string: "abc")]
+    @Previewable @State var filenames: [SyntaxObject.KeyString] = []
+    @Previewable @State var interpreters: [SyntaxObject.KeyString] = []
     
     return SyntaxFileMappingEditView(extensions: $extensions,
                                      filenames: $filenames,

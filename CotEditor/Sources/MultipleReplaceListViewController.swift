@@ -28,6 +28,7 @@ import AudioToolbox
 import Combine
 import UniformTypeIdentifiers
 import OSLog
+import Defaults
 
 final class MultipleReplaceListViewController: NSViewController, NSMenuItemValidation {
     
@@ -36,7 +37,6 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     private var settingNames: [String] = []
     
     private var settingUpdateObserver: AnyCancellable?
-    private var listUpdateObserver: AnyCancellable?
     private lazy var filePromiseQueue = OperationQueue()
     
     @IBOutlet private weak var tableView: NSTableView?
@@ -78,9 +78,13 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         self.tableView?.selectRowIndexes([row], byExtendingSelection: false)
         
         // observe replacement setting list change
-        self.listUpdateObserver = ReplacementManager.shared.$settingNames
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in self?.updateSettingList() }
+        withContinuousObservationTracking(initial: true) {
+            _ = ReplacementManager.shared.settingNames
+        } onChange: {
+            Task { @MainActor in
+                self.updateSettingList()
+            }
+        }
     }
     
     
@@ -92,6 +96,14 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         assert(self.detailViewController != nil)
         self.settingUpdateObserver = self.detailViewController?.didSettingUpdate
             .sink { [weak self] in self?.saveSetting(setting: $0) }
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.settingUpdateObserver?.cancel()
     }
 
     

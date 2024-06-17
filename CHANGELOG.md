@@ -1,5 +1,43 @@
 # Change Log
 
+4.9.0 (unreleased)
+--------------------------
+
+### New Features
+
+- Support __macOS 15 Sequoia__.
+- [AppStore ver.] Now the user can donate to the CotEditor project via in-app purchase in the new Donate settings pane.
+- Add new “Select Enclosing Symbols” and “Split Selection by Lines” commands to the Edit > Select menu.
+- Support the alpha channel for the current line in theme settings.
+- Add Assembly syntax.
+- Add new “Resinifictrix (Dark)” theme.
+
+
+### Improvements
+
+- Change the system requirement to __macOS 14 Sonoma and later__.
+- Add “Select Column Up/Down“ commands to the Edit > Select menu.
+- Change the unit of character ranges handled in CotEditor Scripting for AppleScript from UTF-16 based to the Unicode grapheme cluster-based (This is to follow the specification change in AppleScript 2.0 introduced in Mac OS X 10.5).
+- Improve VoiceOver support in the Quick Action bar.
+- Remove Solarized themes from the bundle.
+- Update all the bundled themes to have a 70% opacity in the current line highlight.
+- Improve the performance of counting values in the editor for the status bar and the document inspector to avoid flicking.
+- Make more table columns sortable.
+- [trivial] Organize the structure of the Edit menu.
+- [trivial] Suppress display of the “Extracting” message on the navigation bar in instantaneous parsing.
+- [trivial] Make names of code contributors in the About window selectable.
+- [dev] Update the build environment to Xcode 16.
+- [dev] Migrate all unit tests to Swift Testing.
+- [dev] Migrate the navigation bar and the Snippets settings view to SwiftUI.
+
+
+### TODO
+
+- Improve Assembly syntax.
+- Localized strings added.
+
+
+
 4.8.6 (655)
 --------------------------
 

@@ -25,6 +25,7 @@
 //
 
 import AppKit
+import Defaults
 
 final class PrintTextView: NSTextView, Themable {
     

@@ -56,7 +56,7 @@ struct SyntaxEditView: View {
     }
     
     
-    @StateObject var syntax: SyntaxObject
+    @State var syntax: SyntaxObject
     var originalName: String?
     var isBundled: Bool = false
     let saveAction: SaveAction
@@ -64,7 +64,7 @@ struct SyntaxEditView: View {
     weak var parent: NSHostingController<Self>?
     
     
-    @MainActor private static var viewSize = CGSize(width: 680, height: 525)
+    private static var viewSize = CGSize(width: 680, height: 525)
     
     @State private var name: String = ""
     @State private var message: String?
@@ -79,7 +79,7 @@ struct SyntaxEditView: View {
     
     init(syntax: Syntax? = nil, originalName: String? = nil, isBundled: Bool = false, saveAction: @escaping SaveAction) {
         
-        self._syntax = StateObject(wrappedValue: SyntaxObject(value: syntax))
+        self._syntax = State(wrappedValue: SyntaxObject(value: syntax))
         self.originalName = originalName
         self.isBundled = isBundled
         self.saveAction = saveAction
@@ -111,14 +111,12 @@ struct SyntaxEditView: View {
             VStack(spacing: 16) {
                 HStack(alignment: .firstTextBaseline) {
                     if self.columnVisibility == .detailOnly {
-                        Button {
+                        Button(String(localized: "Show Sidebar", table: "SyntaxEditor"), systemImage: "sidebar.leading") {
                             withAnimation {
                                 self.columnVisibility = .all
                             }
-                        } label: {
-                            Image(systemName: "sidebar.leading")
-                                .accessibilityLabel(String(localized: "Show Sidebar", table: "SyntaxEditor"))
                         }
+                        .labelStyle(.iconOnly)
                         .buttonStyle(.borderless)
                     }
                     
@@ -131,7 +129,7 @@ struct SyntaxEditView: View {
                             .focused($isNameFieldFocused)
                             .fontWeight(.medium)
                             .frame(minWidth: 80, maxWidth: 160)
-                            .onChange(of: self.name) { newValue in
+                            .onChange(of: self.name) { (_, newValue) in
                                 self.validate(name: newValue)
                             }
                     }
@@ -175,13 +173,15 @@ struct SyntaxEditView: View {
         .onAppear {
             self.name = self.originalName ?? ""
         }
-        .onChange(of: self.pane) { _ in
+        .onChange(of: self.pane) {
             self.errors = self.syntax.validate()
         }
         .alert(error: $error)
         .background {  // store last view size
             GeometryReader { geometry in
-                Color.clear.onChange(of: geometry.size) { Self.viewSize = $0 }
+                Color.clear.onChange(of: geometry.size) { (_, newValue) in
+                    Self.viewSize = newValue
+                }
             }
         }
         .frame(idealWidth: Self.viewSize.width, minHeight: 525, idealHeight: Self.viewSize.height)
@@ -228,7 +228,7 @@ struct SyntaxEditView: View {
     // MARK: Private Methods
     
     /// Submits the syntax if it is valid.
-    @MainActor private func submit() {
+    private func submit() {
         
         // syntax name validation
         self.name = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -257,7 +257,7 @@ struct SyntaxEditView: View {
     
     
     /// Restores the current settings in editor to the user default.
-    @MainActor private func restore() {
+    private func restore() {
         
         guard
             self.isBundled,

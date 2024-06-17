@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import Defaults
 
 enum FontType: String, CaseIterable, Codable {
     

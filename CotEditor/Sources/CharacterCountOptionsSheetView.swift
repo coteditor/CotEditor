@@ -40,7 +40,7 @@ struct CharacterCountOptionsSheetView: View {
             CharacterCountOptionsView()
             
             HStack {
-                HelpButton(anchor: "howto_count_characters")
+                HelpLink(anchor: "howto_count_characters")
                 
                 Spacer()
                 

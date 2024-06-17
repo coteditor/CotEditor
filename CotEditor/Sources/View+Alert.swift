@@ -47,6 +47,27 @@ extension View {
 }
 
 
+extension NSError: @retroactive LocalizedError {
+    
+    public var errorDescription: String? {
+        
+        self.localizedDescription
+    }
+    
+    
+    public var failureReason: String? {
+        
+        self.localizedFailureReason
+    }
+    
+    
+    public var recoverySuggestion: String? {
+        
+        self.localizedRecoverySuggestion
+    }
+}
+
+
 // MARK: Private Structs
 
 private struct LocalizedAlertError: LocalizedError {

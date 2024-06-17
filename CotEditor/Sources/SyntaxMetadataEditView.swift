@@ -47,6 +47,7 @@ struct SyntaxMetadataEditView: View {
                             .foregroundStyle(.secondary)
                             .padding(.trailing, 4)
                     }
+                    .textContentType(.URL)
             }
             TextField(String(localized: "Author:", table: "SyntaxEditor", comment: "label"),
                       text: $metadata.author ?? "")
@@ -59,7 +60,7 @@ struct SyntaxMetadataEditView: View {
         Spacer()
         HStack {
             Spacer()
-            HelpButton(anchor: "syntax_metadata_settings")
+            HelpLink(anchor: "syntax_metadata_settings")
         }
     }
 }

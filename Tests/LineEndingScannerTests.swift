@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,56 +23,42 @@
 //  limitations under the License.
 //
 
-import XCTest
+import AppKit
+import Testing
 @testable import CotEditor
 
-final class LineEndingScannerTests: XCTestCase {
+struct LineEndingScannerTests {
     
-    func testScanner() {
+    @Test func scan() {
         
         let storage = NSTextStorage(string: "dog\ncat\r\ncow")
         let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
         
         storage.replaceCharacters(in: NSRange(0..<3), with: "dog\u{85}cow")
         
-        // test async line ending scan
-        let expectation = self.expectation(description: "didScanLineEndings")
-        let observer = scanner.$inconsistentLineEndings
-            .sink { lineEndings in
-                XCTAssertEqual(lineEndings, [ValueRange(value: .nel, range: NSRange(location: 3, length: 1)),
-                                             ValueRange(value: .crlf, range: NSRange(location: 11, length: 2))])
-                expectation.fulfill()
-            }
-        self.wait(for: [expectation], timeout: .zero)
-        
-        observer.cancel()
+        // test line ending scan
+        #expect(scanner.inconsistentLineEndings ==
+                [ValueRange(value: .nel, range: NSRange(location: 3, length: 1)),
+                 ValueRange(value: .crlf, range: NSRange(location: 11, length: 2))])
     }
     
     
-    func testEmpty() {
+    @Test func empty() {
         
         let storage = NSTextStorage(string: "\r")
         let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
         
-        XCTAssertEqual(scanner.inconsistentLineEndings, [ValueRange(value: .cr, range: NSRange(location: 0, length: 1))])
+        #expect(scanner.inconsistentLineEndings == [ValueRange(value: .cr, range: NSRange(location: 0, length: 1))])
         
         // test scanRange does not expand to the out of range
         storage.replaceCharacters(in: NSRange(0..<1), with: "")
         
-        // test async line ending scan
-        let expectation = self.expectation(description: "didScanLineEndings")
-        let observer = scanner.$inconsistentLineEndings
-            .sink { lineEndings in
-                XCTAssert(lineEndings.isEmpty)
-                expectation.fulfill()
-            }
-        self.wait(for: [expectation], timeout: .zero)
-        
-        observer.cancel()
+        // test line ending scan
+        #expect(scanner.inconsistentLineEndings.isEmpty)
     }
     
     
-    func testCRLFEditing() {
+    @Test func editCRLF() {
         
         let storage = NSTextStorage(string: "dog\ncat\r\ncow")
         let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
@@ -82,72 +68,64 @@ final class LineEndingScannerTests: XCTestCase {
         // remove \n after \r (CRLF -> CR)
         storage.replaceCharacters(in: NSRange(9..<10), with: "")
         
-        // test async line ending scan
-        let expectation = self.expectation(description: "didScanLineEndings")
-        let observer = scanner.$inconsistentLineEndings
-            .sink { lineEndings in
-                XCTAssertEqual(lineEndings, [ValueRange(value: .crlf, range: NSRange(location: 3, length: 2)),
-                                             ValueRange(value: .cr, range: NSRange(location: 8, length: 1))])
-                expectation.fulfill()
-            }
-        self.wait(for: [expectation], timeout: .zero)
-        
-        observer.cancel()
+        // test line ending scan
+        #expect(scanner.inconsistentLineEndings ==
+                [ValueRange(value: .crlf, range: NSRange(location: 3, length: 2)),
+                 ValueRange(value: .cr, range: NSRange(location: 8, length: 1))])
     }
     
     
-    func testDetection() {
+    @Test func detect() {
         
         let storage = NSTextStorage()
         let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
         
-        XCTAssertNil(scanner.majorLineEnding)
+        #expect(scanner.majorLineEnding == nil)
         
         storage.string = "a"
-        XCTAssertNil(scanner.majorLineEnding)
+        #expect(scanner.majorLineEnding == nil)
         
         storage.string = "\n"
-        XCTAssertEqual(scanner.majorLineEnding, .lf)
+        #expect(scanner.majorLineEnding == .lf)
         
         storage.string = "\r"
-        XCTAssertEqual(scanner.majorLineEnding, .cr)
+        #expect(scanner.majorLineEnding == .cr)
         
         storage.string = "\r\n"
-        XCTAssertEqual(scanner.majorLineEnding, .crlf)
+        #expect(scanner.majorLineEnding == .crlf)
         
         storage.string = "\u{85}"
-        XCTAssertEqual(scanner.majorLineEnding, .nel)
+        #expect(scanner.majorLineEnding == .nel)
         
         storage.string = "abc\u{2029}def"
-        XCTAssertEqual(scanner.majorLineEnding, .paragraphSeparator)
+        #expect(scanner.majorLineEnding == .paragraphSeparator)
         
         storage.string = "\rfoo\r\nbar\nbuz\u{2029}moin\r\n"
-        XCTAssertEqual(scanner.majorLineEnding, .crlf)  // most used new line must be detected
+        #expect(scanner.majorLineEnding == .crlf)  // most used new line must be detected
     }
     
     
-    func testLineNumberCalculation() {
+    @Test func calculateLineNumber() {
         
         let storage = NSTextStorage(string: "dog \n\n cat \n cow \n")
         let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
         
-        XCTAssertEqual(scanner.lineNumber(at: 0), 1)
-        XCTAssertEqual(scanner.lineNumber(at: 1), 1)
-        XCTAssertEqual(scanner.lineNumber(at: 4), 1)
-        XCTAssertEqual(scanner.lineNumber(at: 5), 2)
-        XCTAssertEqual(scanner.lineNumber(at: 6), 3)
-        XCTAssertEqual(scanner.lineNumber(at: 11), 3)
-        XCTAssertEqual(scanner.lineNumber(at: 12), 4)
-        XCTAssertEqual(scanner.lineNumber(at: 17), 4)
-        XCTAssertEqual(scanner.lineNumber(at: 18), 5)
+        #expect(scanner.lineNumber(at: 0) == 1)
+        #expect(scanner.lineNumber(at: 1) == 1)
+        #expect(scanner.lineNumber(at: 4) == 1)
+        #expect(scanner.lineNumber(at: 5) == 2)
+        #expect(scanner.lineNumber(at: 6) == 3)
+        #expect(scanner.lineNumber(at: 11) == 3)
+        #expect(scanner.lineNumber(at: 12) == 4)
+        #expect(scanner.lineNumber(at: 17) == 4)
+        #expect(scanner.lineNumber(at: 18) == 5)
         
         for _ in 0..<20 {
             storage.string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
             
             for index in (0..<storage.length).shuffled() {
-                XCTAssertEqual(scanner.lineNumber(at: index),
-                               storage.string.lineNumber(at: index),
-                               "At \(index) with string \"\(storage.string)\"")
+                #expect(scanner.lineNumber(at: index) == storage.string.lineNumber(at: index),
+                        "At \(index) with string \"\(storage.string)\"")
             }
         }
     }

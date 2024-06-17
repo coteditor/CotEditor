@@ -25,6 +25,8 @@
 //
 
 import AppKit.NSFont
+import Defaults
+import UnicodeNormalization
 
 struct DefaultSettings {
     
@@ -114,6 +116,8 @@ struct DefaultSettings {
             FileDropItem(format: "url(\"<<<RELATIVE-PATH>>>\")",
                          scope: "CSS"),
         ].map(\.dictionary),
+        
+        .donationBadgeType: BadgeType.mug.rawValue,
         
         .printFontSize: NSFont.systemFontSize,
         .printBackground: false,

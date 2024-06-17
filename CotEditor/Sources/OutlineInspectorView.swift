@@ -24,13 +24,15 @@
 //
 
 import SwiftUI
+import Observation
 import Combine
+import Defaults
 
 final class OutlineInspectorViewController: NSHostingController<OutlineInspectorView>, DocumentOwner {
     
     // MARK: Public Properties
     
-    var document: Document {
+    var document: Document? {
         
         didSet {
             if self.isViewShown {
@@ -48,7 +50,7 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
     
     // MARK: Lifecycle
     
-    required init(document: Document) {
+    required init(document: Document?) {
         
         self.document = document
         
@@ -81,13 +83,13 @@ final class OutlineInspectorViewController: NSHostingController<OutlineInspector
 
 struct OutlineInspectorView: View {
     
-    @MainActor final class Model: ObservableObject {
+    @MainActor @Observable final class Model {
         
         typealias Item = OutlineItem
         
         
-        @Published var items: [Item] = []
-        @Published var selection: Item.ID?
+        var items: [Item] = []
+        var selection: Item.ID?
         
         var document: Document?  { didSet { self.invalidateObservation() } }
         
@@ -98,7 +100,7 @@ struct OutlineInspectorView: View {
     }
     
     
-    @ObservedObject var model: Model
+    @State var model: Model
     
     @AppStorage(.outlineViewFontSize) private var fontSize: Double
     
@@ -115,7 +117,7 @@ struct OutlineInspectorView: View {
                 .foregroundStyle(.secondary)
                 .accessibilityRemoveTraits(.isHeader)
             
-            let items = self.model.items.filterItems(with: self.filterString)
+            let items = self.model.items.compactMap { $0.filter(self.filterString, keyPath: \.title) }
             
             List(items, selection: $model.selection) { item in
                 OutlineRowView(item: item, fontSize: self.fontSize)
@@ -129,8 +131,7 @@ struct OutlineInspectorView: View {
                         .controlSize(.regular)
                 }
             }
-            .onReceive(self.model.$selection) { id in
-                // use .onReceive(_:) instead of .onChange(of:) to control the timing
+            .onChange(of: self.model.selection) { (_, id) in
                 self.model.selectItem(id: id)
             }
             .contextMenu {
@@ -184,23 +185,23 @@ struct OutlineInspectorView: View {
 
 private struct OutlineRowView: View {
     
-    var item: OutlineItem
+    var item: FilteredItem<OutlineItem>
     var fontSize: Double = 0
     
     
     var body: some View {
         
-        if self.item.isSeparator {
-            if #available(macOS 14, *) {
-                Divider().selectionDisabled()
-            } else {
-                Divider()
-            }
+        if self.item.value.isSeparator {
+            Divider().selectionDisabled()
+            
         } else {
-            Text(self.item.attributedTitle(.init()
-                .backgroundColor(.findHighlightColor)
-                .foregroundColor(.black.withAlphaComponent(0.9)),  // for legibility in Dark Mode
-                                           fontSize: self.fontSize))
+            Text(self.item.attributedString
+                .replacingAttributes(AttributeContainer.inlinePresentationIntent(.emphasized),
+                                     with: AttributeContainer
+                    .backgroundColor(.findHighlightColor)
+                    .foregroundColor(.black.withAlphaComponent(0.9)))  // for legibility in Dark Mode
+                .mergingAttributes(self.item.value.attributes(fontSize: fontSize), mergePolicy: .keepCurrent)
+            )
         }
     }
 }
@@ -215,7 +216,7 @@ private extension OutlineInspectorView.Model {
         
         guard
             !self.isOwnSelectionChange,
-            let item = self.items.first(where: { $0.id == id }),
+            let item = self.items[id: id],
             let textView = self.document?.textView,
             textView.string.length >= item.range.upperBound
         else { return }
@@ -255,6 +256,7 @@ private extension OutlineInspectorView.Model {
             self.documentObserver = nil
             self.syntaxObserver = nil
             self.selectionObserver = nil
+            self.items.removeAll()
         }
     }
     
@@ -271,7 +273,10 @@ private extension OutlineInspectorView.Model {
         
         self.isOwnSelectionChange = true
         self.selection = item.id
-        self.isOwnSelectionChange = false
+        // adjust the timing to restore flag
+        Task {
+            self.isOwnSelectionChange = false
+        }
     }
 }
 
@@ -279,7 +284,6 @@ private extension OutlineInspectorView.Model {
 
 // MARK: - Preview
 
-@available(macOS 14, *)
 #Preview(traits: .fixedLayout(width: 240, height: 300)) {
     let model = OutlineInspectorView.Model()
     model.items = [

@@ -26,7 +26,9 @@
 import Foundation
 import AppKit.NSImageRep
 
-struct FileDropItem {
+struct FileDropItem: Equatable, Identifiable {
+    
+    let id = UUID()
     
     var format: String = ""
     var extensions: [String] = [] {
@@ -128,6 +130,7 @@ extension FileDropItem {
         case imageWidth = "IMAGEWIDTH"
         case imageHeight = "IMAGEHEIGHT"
         
+        static let allCases: [Variable?] = Self.pathTokens + [nil] + Self.textTokens + [nil] + Self.imageTokens
         static let pathTokens: [Self] = [.absolutePath, .relativePath, .filename, .filenameWithoutExtension, .fileExtension, .fileExtensionLowercase, .fileExtensionUppercase, .directory]
         static let textTokens: [Self] = [.fileContent]
         static let imageTokens: [Self] = [.imageWidth, .imageHeight]
@@ -199,7 +202,7 @@ extension FileDropItem {
         // replace template
         var dropText = self.format
             .replacing(Variable.absolutePath.token, with: droppedFileURL.path)
-            .replacing(Variable.relativePath.token, with: droppedFileURL.path(relativeTo: documentURL) ?? droppedFileURL.path)
+            .replacing(Variable.relativePath.token, with: documentURL.flatMap(droppedFileURL.path(relativeTo:)) ?? droppedFileURL.path)
             .replacing(Variable.filename.token, with: droppedFileURL.lastPathComponent)
             .replacing(Variable.filenameWithoutExtension.token, with: droppedFileURL.deletingPathExtension().lastPathComponent)
             .replacing(Variable.fileExtension.token, with: droppedFileURL.pathExtension)
@@ -224,7 +227,7 @@ extension FileDropItem {
         // get text content if needed
         // -> Replace this at last because the file content can contain other tokens.
         if self.format.contains(Variable.fileContent.token) {
-            let content = try? String(contentsOf: droppedFileURL)
+            let content = try? String(contentsOf: droppedFileURL, encoding: .utf8)
             dropText = dropText.replacing(Variable.fileContent.token, with: content ?? "")
         }
         

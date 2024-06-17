@@ -24,10 +24,11 @@
 //
 
 import SwiftUI
+import Defaults
 
 struct AdvancedCharacterCounterView: View {
     
-    @StateObject var counter: AdvancedCharacterCounter
+    @State var counter: AdvancedCharacterCounter
     let dismissAction: () -> Void
     
     @AppStorage(.countUnit) private var unit: CharacterCountOptions.CharacterUnit
@@ -63,20 +64,18 @@ struct AdvancedCharacterCounterView: View {
             
             Spacer()
             
-            Button {
+            Button(String(localized: "Show options", table: "AdvancedCharacterCount"), systemImage: "gearshape") {
                 self.isSettingPresented.toggle()
-            } label: {
-                Image(systemName: "gearshape")
-                    .symbolVariant(.fill)
-                    .accessibilityLabel(String(localized: "Show options", table: "AdvancedCharacterCount"))
             }
+            .symbolVariant(.fill)
             .buttonStyle(.plain)
             .foregroundStyle(.secondary)
+            .labelStyle(.iconOnly)
             .help(String(localized: "Show options", table: "AdvancedCharacterCount", comment: "tooltip"))
             .popover(isPresented: self.$isSettingPresented) {
                 VStack {
                     CharacterCountOptionsView()
-                    HelpButton(anchor: "howto_count_characters")
+                    HelpLink(anchor: "howto_count_characters")
                         .frame(maxWidth: .infinity, alignment: .trailing)
                 }.padding()
             }

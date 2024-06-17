@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,5 +41,15 @@ extension Comparable {
     mutating func clamp(to range: ClosedRange<Self>) {
         
         self = self.clamped(to: range)
+    }
+}
+
+
+extension Bool: @retroactive Comparable {
+    
+    /// Precedences `true` over `false`.
+    public static func < (lhs: Bool, rhs: Bool) -> Bool {
+        
+        lhs && !rhs
     }
 }

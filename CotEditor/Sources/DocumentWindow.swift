@@ -24,6 +24,8 @@
 //
 
 import AppKit
+import Defaults
+import Shortcut
 
 final class DocumentWindow: NSWindow {
     
@@ -85,28 +87,6 @@ final class DocumentWindow: NSWindow {
         
         didSet {
             self.didChangeValue(for: \.isOpaque)
-        }
-    }
-    
-    
-    override func miniaturize(_ sender: Any?) {
-        
-        super.miniaturize(sender)
-        
-        // workaround an issue with Stage Manager (2023-04 macOS 13, FB12129976, fixed on macOS 14)
-        if self.isFloating, ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 14 {
-            self.level = .normal
-        }
-    }
-    
-    
-    override func makeKey() {
-        
-        super.makeKey()
-        
-        // workaround an issue with Stage Manager (2023-04 macOS 13, FB12129976, fixed on macOS 14)
-        if self.isFloating, ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 14 {
-            self.level = .floating
         }
     }
     

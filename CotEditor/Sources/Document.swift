@@ -25,12 +25,16 @@
 //
 
 import AppKit
+import Observation
 import Combine
 import SwiftUI
 import UniformTypeIdentifiers
 import OSLog
+import Defaults
+import FileEncoding
+import FilePermissions
 
-final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging {
+@Observable final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging {
     
     // MARK: Enums
     
@@ -48,44 +52,46 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     // MARK: Public Properties
     
     var isTransient = false  // untitled & empty document that was created automatically
-    var isVerticalText = false
+    nonisolated(unsafe) var isVerticalText = false
     
     
     // MARK: Readonly Properties
     
     let textStorage = NSTextStorage()
     let syntaxParser: SyntaxParser
-    @Published private(set) var fileEncoding: FileEncoding
-    @Published private(set) var lineEnding: LineEnding
-    @Published private(set) var fileAttributes: DocumentFile.Attributes?
+    @ObservationIgnored @Published private(set) var fileEncoding: FileEncoding
+    @ObservationIgnored @Published private(set) var lineEnding: LineEnding
+    @ObservationIgnored @Published private(set) var mode: Mode
+    private(set) nonisolated(unsafe) var fileAttributes: FileAttributes?
     
     let lineEndingScanner: LineEndingScanner
-    let analyzer = DocumentAnalyzer()
-    private(set) lazy var selection = TextSelection(document: self)
+    let counter = EditorCounter()
+    @ObservationIgnored private(set) lazy var selection = TextSelection(document: self)
     
     let didChangeSyntax = PassthroughSubject<String, Never>()
     
     
     // MARK: Private Properties
     
-    private lazy var printPanelAccessoryController: PrintPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory", bundle: nil).instantiateInitialController()!
+    @ObservationIgnored private lazy var printPanelAccessoryController: PrintPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory", bundle: nil).instantiateInitialController()!
     
-    private var readingEncoding: String.Encoding?  // encoding to read document file
-    private var fileData: Data?
-    private var shouldSaveEncodingXattr = true
-    private var isExecutable = false
-    private let saveOptions = SaveOptions()
-    private var suppressesInconsistentLineEndingAlert = false
-    private var isExternalUpdateAlertShown = false
-    private var allowsLossySaving = false
+    private nonisolated(unsafe) var readingEncoding: String.Encoding?  // encoding to read document file
+    private nonisolated(unsafe) var fileData: Data?
+    private nonisolated(unsafe) var shouldSaveEncodingXattr = true
+    private nonisolated(unsafe) var isExecutable = false
+    private nonisolated(unsafe) let saveOptions = SaveOptions()
+    private nonisolated(unsafe) var suppressesInconsistentLineEndingAlert = false
+    private nonisolated(unsafe) var isExternalUpdateAlertShown = false
+    private nonisolated(unsafe) var allowsLossySaving = false
+    private nonisolated(unsafe) var isInitialized = false
     
-    private lazy var urlDetector = URLDetector(textStorage: self.textStorage)
+    @ObservationIgnored private lazy var urlDetector = URLDetector(textStorage: self.textStorage)
     
-    private var syntaxUpdateObserver: AnyCancellable?
-    private var textStorageObserver: AnyCancellable?
-    private var defaultObservers: Set<AnyCancellable> = []
+    private nonisolated(unsafe) var syntaxUpdateObserver: AnyCancellable?
+    private nonisolated(unsafe) var textStorageObserver: AnyCancellable?
+    private nonisolated(unsafe) var defaultObservers: Set<AnyCancellable> = []
     
-    private var lastSavedData: Data?  // temporal data used only within saving process
+    private nonisolated(unsafe) var lastSavedData: Data?  // temporal data used only within saving process
     
     
     
@@ -110,10 +116,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // observe for inconsistent line endings
         self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
         
+        self.mode = .kind(.general)
+        
         super.init()
         
         self.lineEndingScanner.observe(lineEnding: self.$lineEnding)
-        self.analyzer.document = self
+        self.counter.document = self
         
         // auto-link URLs in the content
         if UserDefaults.standard[.autoLinkDetection] {
@@ -121,19 +129,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         }
         self.defaultObservers = [
             UserDefaults.standard.publisher(for: .autoLinkDetection)
-                .sink { [weak self] in self?.urlDetector.isEnabled = $0 }
+                .sink { [weak self] in self?.urlDetector.isEnabled = $0 },
+            UserDefaults.standard.publisher(for: .modes)
+                .sink { [weak self] _ in Task { await self?.invalidateMode() } },
         ]
         
         // observe syntax update
         self.syntaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
             .filter { [weak self] change in change.old == self?.syntaxParser.name }
             .sink { [weak self] change in self?.setSyntax(name: change.new ?? SyntaxName.none) }
-    }
-    
-    
-    deinit {
-        self.syntaxParser.cancel()
-        self.urlDetector.cancel()
     }
     
     
@@ -244,6 +248,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     override func makeWindowControllers() {
         
+        self.isInitialized = true
+        
         if self.windowControllers.isEmpty {  // -> A transient document already has one.
             let windowController = DocumentWindowController(document: self)
             self.addWindowController(windowController)
@@ -310,61 +316,70 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        let strategy: DocumentFile.EncodingStrategy = {
+        let data = try Data(contentsOf: url)  // FILE_READ
+        let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
+        let extendedAttributes = ExtendedFileAttributes(dictionary: attributes)
+        
+        let strategy: String.DecodingStrategy = {
             if let encoding = self.readingEncoding {
                 return .specific(encoding)
             }
             
-            var encodingPriority = EncodingManager.shared.fileEncodings.compactMap { $0?.encoding }
+            var encodingCandidates = EncodingManager.shared.fileEncodings.compactMap { $0?.encoding }
             let isInitialOpen = (self.fileData == nil) && (self.textStorage.length == 0)
             if !isInitialOpen {  // prioritize the current encoding
-                encodingPriority.insert(self.fileEncoding.encoding, at: 0)
+                encodingCandidates.insert(self.fileEncoding.encoding, at: 0)
             }
             
-            return .automatic(priority: encodingPriority, refersToTag: UserDefaults.standard[.referToEncodingTag])
+            return .automatic(.init(candidates: encodingCandidates,
+                                    xattrEncoding: extendedAttributes.encoding,
+                                    tagScanLength: UserDefaults.standard[.referToEncodingTag] ? 2000 : nil))
         }()
         
         // .readingEncoding is only valid once
         self.readingEncoding = nil
         
-        let file = try DocumentFile(fileURL: url, encodingStrategy: strategy)  // FILE_ACCESS
+        let (string, fileEncoding) = try String.string(data: data, decodingStrategy: strategy)
         
         // store file data in order to check the file content identity in `presentedItemDidChange()`
-        self.fileData = file.data
+        self.fileData = data
         
         // use file attributes only if `fileURL` exists
         // -> The passed-in `url` in this method can point to a file that isn't the real document file,
         //    for example on resuming an unsaved document.
         if self.fileURL != nil {
-            self.fileAttributes = file.attributes
-            self.isExecutable = file.attributes.permissions.user.contains(.execute)
+            let fileAttributes = FileAttributes(dictionary: attributes)
+            self.fileAttributes = fileAttributes
+            self.isExecutable = fileAttributes.permissions.user.contains(.execute)
         }
         
         // do not save `com.apple.TextEncoding` extended attribute if it doesn't exists
-        self.shouldSaveEncodingXattr = (file.xattrEncoding != nil)
+        self.shouldSaveEncodingXattr = (extendedAttributes.encoding != nil)
         
         // set text orientation state
         // -> Ignore if no metadata found to avoid restoring to the horizontal layout while editing unwontedly.
-        if UserDefaults.standard[.savesTextOrientation], file.isVerticalText {
+        if UserDefaults.standard[.savesTextOrientation], extendedAttributes.isVerticalText {
             self.isVerticalText = true
         }
         
-        if file.allowsInconsistentLineEndings {
+        if extendedAttributes.allowsInconsistentLineEndings {
             self.suppressesInconsistentLineEndingAlert = true
         }
         
         // update textStorage
-        self.textStorage.replaceContent(with: file.string)
+        Task { @MainActor in
+            self.textStorage.replaceContent(with: string)
+        }
         
         // set read values
-        self.fileEncoding = file.fileEncoding
+        self.fileEncoding = fileEncoding
         self.allowsLossySaving = false
         self.lineEnding = self.lineEndingScanner.majorLineEnding ?? self.lineEnding  // keep default if no line endings are found
         
         // determine syntax (only on the first file open)
-        if self.windowForSheet == nil {
-            let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: file.string) ?? SyntaxName.none
-            self.setSyntax(name: syntaxName, isInitial: true)
+        if !self.isInitialized {
+            let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: string)
+            self.setSyntax(name: syntaxName ?? SyntaxName.none, isInitial: true)
         }
     }
     
@@ -410,7 +425,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // trim trailing whitespace if needed
         if !saveOperation.isAutosave, UserDefaults.standard[.autoTrimsTrailingWhitespace] {
-            textViews.first?.trimTrailingWhitespace(ignoresEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines])
+            textViews.first?.trimTrailingWhitespace(ignoringEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines])
         }
         
         // workaround the issue that invoking the async version super blocks the save process
@@ -436,7 +451,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             }
             
             if !saveOperation.isAutosave {
-                ScriptManager.shared.dispatch(event: .documentSaved, document: self.objectSpecifier)
+                Task {
+                    await ScriptManager.shared.dispatch(event: .documentSaved, document: self.objectSpecifier)
+                }
             }
         }
     }
@@ -460,7 +477,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             // get the latest file attributes
             do {
                 let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_ACCESS
-                self.fileAttributes = DocumentFile.Attributes(dictionary: attributes)
+                self.fileAttributes = FileAttributes(dictionary: attributes)
             } catch {
                 assertionFailure(error.localizedDescription)
             }
@@ -574,7 +591,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         super.close()
         
         self.textStorageObserver?.cancel()
-        self.analyzer.cancel()
+        self.counter.cancel()
+        self.syntaxParser.cancel()
+        self.urlDetector.cancel()
     }
     
     
@@ -721,61 +740,42 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     // MARK: Protocols
     
-    override func presentedItemDidChange() {  // nonisolated
+    nonisolated override func presentedItemDidChange() {
         
         // [caution] DO NOT invoke `super.presentedItemDidChange()` that reverts document automatically if autosavesInPlace is enabled.
 //        super.presentedItemDidChange()
         
-        guard
-            UserDefaults.standard[.documentConflictOption] != .ignore,
-            !self.isExternalUpdateAlertShown,  // don't check twice if already notified
-            var fileURL = self.fileURL
-        else { return }
+        let strategy = UserDefaults.standard[.documentConflictOption]
+        
+        guard strategy != .ignore, !self.isExternalUpdateAlertShown else { return }  // don't check twice if already notified
         
         // check if the file content was changed from the stored file data
-        var didChange = false
-        var modificationDate: Date?
-        var error: NSError?
-        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: &error) { newURL in  // FILE_ACCESS
-            do {
-                // ignore if file's modificationDate is the same as document's modificationDate
-                fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
-                modificationDate = try fileURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
-                guard modificationDate != self.fileModificationDate else { return }
-                
-                // check if file contents was changed from the stored file data
-                let data = try Data(contentsOf: newURL)
-                didChange = data != self.fileData
-            } catch {
-                assertionFailure(error.localizedDescription)
-            }
-        }
-        if let error {
-            assertionFailure(error.localizedDescription)
+        let didChange: Bool
+        let modificationDate: Date?
+        do {
+            (didChange, modificationDate) = try self.checkFileContentDidChange()
+        } catch {
+            Logger.app.error("Error on checking document file change: \(error.localizedDescription)")
+            return
         }
         
         guard didChange else {
             // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
-            // -> If not, an alert shows up when user saves the file.
-            guard let modificationDate else { return }
-            DispatchQueue.main.async { [weak self] in
-                if self?.fileModificationDate?.compare(modificationDate) == .orderedAscending {
-                    self?.fileModificationDate = modificationDate
-                }
+            // -> Otherwise, an alert shows up when the user saves the file.
+            if let modificationDate, self.fileModificationDate?.compare(modificationDate) == .orderedAscending {
+                self.fileModificationDate = modificationDate
             }
             return
         }
         
         // notify about external file update
-        Task {
-            switch UserDefaults.standard[.documentConflictOption] {
-                case .ignore:
-                    assertionFailure()
-                case .notify:
-                    await self.showUpdatedByExternalProcessAlert()
-                case .revert:
-                    await self.revertWithoutAsking()
-            }
+        switch strategy {
+            case .ignore:
+                assertionFailure()
+            case .notify:
+                Task { await self.showUpdatedByExternalProcessAlert() }
+            case .revert:
+                Task { await self.revert() }
         }
     }
     
@@ -806,7 +806,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // -> This method won't be invoked on Resume. (2015-01-26)
         
         Task {
-            ScriptManager.shared.dispatch(event: .documentOpened, document: await self.objectSpecifier)
+            await ScriptManager.shared.dispatch(event: .documentOpened, document: await self.objectSpecifier)
         }
     }
     
@@ -844,21 +844,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     /// - Throws: `ReinterpretationError`
     func reinterpret(encoding: String.Encoding) throws {
         
+        // do nothing if given encoding is the same as current one
+        if encoding == self.fileEncoding.encoding { return }
+        
         guard let fileURL = self.fileURL else {
             throw ReinterpretationError.noFile
         }
-        
-        // do nothing if given encoding is the same as current one
-        if encoding == self.fileEncoding.encoding { return }
         
         // reinterpret
         self.readingEncoding = encoding
         do {
             try self.revert(toContentsOf: fileURL, ofType: self.fileType!)
-            
         } catch {
             self.readingEncoding = nil
-            
             throw ReinterpretationError.reinterpretationFailed(encoding)
         }
     }
@@ -868,7 +866,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     ///
     /// - Parameters:
     ///   - fileEncoding: The text encoding to change with.
-    @MainActor func changeEncoding(to fileEncoding: FileEncoding) {
+    func changeEncoding(to fileEncoding: FileEncoding) {
         
         assert(Thread.isMainThread)
         
@@ -898,7 +896,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     /// Change line endings and register the process to the undo manager.
     ///
     /// - Parameter lineEnding: The line ending type to change with.
-    @MainActor func changeLineEnding(to lineEnding: LineEnding) {
+    func changeLineEnding(to lineEnding: LineEnding) {
         
         assert(Thread.isMainThread)
         
@@ -939,7 +937,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     /// - Parameters:
     ///   - name: The name of the syntax to change with.
     ///   - isInitial: Whether the setting is initial.
-    func setSyntax(name: String, isInitial: Bool = false) {
+    nonisolated(unsafe) func setSyntax(name: String, isInitial: Bool = false) {
+        
+        defer {
+            Task { await self.invalidateMode() }
+        }
         
         let syntax: Syntax
         do {
@@ -961,7 +963,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // to avoid redundant highlight parse due to async notification.
         guard !isInitial else { return }
         
-        self.didChangeSyntax.send(name)
+        Task { @MainActor in
+            self.didChangeSyntax.send(name)
+            self.invalidateRestorableState()
+        }
     }
     
     
@@ -1043,10 +1048,45 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
+    /// Checks if the file content did change since the last read.
+    ///
+    /// - Returns: A boolean whether the file did change and the content modification date if available.
+    nonisolated private func checkFileContentDidChange() throws -> (Bool, Date?) {
+        
+        guard var fileURL = self.fileURL else { throw CocoaError(.fileReadNoSuchFile) }
+        
+        fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
+        
+        // check if the file content was changed from the stored file data
+        var didChange = false
+        var modificationDate: Date?
+        var coordinationError: NSError?
+        var readingError: (any Error)?
+        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: &coordinationError) { newURL in  // FILE_ACCESS
+            do {
+                // ignore if file's modificationDate is the same as document's modificationDate
+                modificationDate = try newURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
+                guard modificationDate != self.fileModificationDate else { return }
+                
+                // check if file contents was changed from the stored file data
+                let data = try Data(contentsOf: newURL)
+                didChange = data != self.fileData
+            } catch {
+                readingError = error
+            }
+        }
+        if let error = coordinationError ?? readingError {
+            throw error
+        }
+        
+        return (didChange, modificationDate)
+    }
+    
+    
     /// Changes the text encoding by asking options to the user.
     ///
     /// - Parameter fileEncoding: The text encoding to change.
-    @MainActor func askChangingEncoding(to fileEncoding: FileEncoding) {
+    func askChangingEncoding(to fileEncoding: FileEncoding) {
         
         assert(Thread.isMainThread)
         
@@ -1139,81 +1179,87 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     
     /// Displays an alert about inconsistent line endings.
-    @MainActor private func showInconsistentLineEndingAlert() {
-        
-        assert(Thread.isMainThread)
+    private func showInconsistentLineEndingAlert() {
         
         guard
             !UserDefaults.standard[.suppressesInconsistentLineEndingAlert],
             !self.suppressesInconsistentLineEndingAlert
         else { return }
         
-        guard let documentWindow = self.windowForSheet else { return assertionFailure() }
-        
-        let alert = NSAlert()
-        alert.alertStyle = .warning
-        alert.messageText = String(localized: "InconsistentLineEndingAlert.message",
-                                   defaultValue: "The document has inconsistent line endings.")
-        alert.informativeText = String(localized: "InconsistentLineEndingAlert.informativeText",
-                                       defaultValue: "Do you want to convert all line endings to \(self.lineEnding.label), the most common line endings in this document?")
-        alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.convert",
-                                          defaultValue: "Convert",
-                                          comment: "button label"))
-        alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.review",
-                                          defaultValue: "Review",
-                                          comment: "button label"))
-        alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.ignore",
-                                          defaultValue: "Ignore",
-                                          comment: "button label"))
-        alert.showsSuppressionButton = true
-        alert.suppressionButton?.title = String(localized: "InconsistentLineEndingAlert.suppressionButton",
-                                                defaultValue: "Don’t ask again for this document",
-                                                comment: "toggle button label")
-        alert.showsHelp = true
-        alert.helpAnchor = "inconsistent_line_endings"
-        
-        alert.beginSheetModal(for: documentWindow) { [unowned self] returnCode in
-            if alert.suppressionButton?.state == .on {
-                self.suppressesInconsistentLineEndingAlert = true
-                self.invalidateRestorableState()
-                
-                // save xattr
-                if let fileURL = self.fileURL {
-                    var error: NSError?
-                    NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .contentIndependentMetadataOnly, error: &error) { newURL in  // FILE_ACCESS
-                        try? newURL.setExtendedAttribute(data: Data([1]), for: FileExtendedAttributeName.allowLineEndingInconsistency)
-                    }
-                }
+        self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
+            guard let documentWindow = self.windowForSheet else {
+                activityCompletionHandler()
+                assertionFailure()
+                return
             }
             
-            switch returnCode {
-                case .alertFirstButtonReturn:  // == Convert
-                    self.changeLineEnding(to: self.lineEnding)
-                case .alertSecondButtonReturn:  // == Review
-                    self.showWarningInspector()
-                case .alertThirdButtonReturn:  // == Ignore
-                    break
-                default:
-                    fatalError()
+            let alert = NSAlert()
+            alert.alertStyle = .warning
+            alert.messageText = String(localized: "InconsistentLineEndingAlert.message",
+                                       defaultValue: "The document has inconsistent line endings.")
+            alert.informativeText = String(localized: "InconsistentLineEndingAlert.informativeText",
+                                           defaultValue: "Do you want to convert all line endings to \(self.lineEnding.label), the most common line endings in this document?")
+            alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.convert",
+                                              defaultValue: "Convert",
+                                              comment: "button label"))
+            alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.review",
+                                              defaultValue: "Review",
+                                              comment: "button label"))
+            alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.ignore",
+                                              defaultValue: "Ignore",
+                                              comment: "button label"))
+            alert.showsSuppressionButton = true
+            alert.suppressionButton?.title = String(localized: "InconsistentLineEndingAlert.suppressionButton",
+                                                    defaultValue: "Don’t ask again for this document",
+                                                    comment: "toggle button label")
+            alert.showsHelp = true
+            alert.helpAnchor = "inconsistent_line_endings"
+            
+            alert.beginSheetModal(for: documentWindow) { [unowned self] returnCode in
+                if alert.suppressionButton?.state == .on {
+                    self.suppressesInconsistentLineEndingAlert = true
+                    self.invalidateRestorableState()
+                    
+                    // save xattr
+                    if let fileURL = self.fileURL {
+                        var error: NSError?
+                        NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .contentIndependentMetadataOnly, error: &error) { newURL in  // FILE_ACCESS
+                            try? newURL.setExtendedAttribute(data: Data([1]), for: FileExtendedAttributeName.allowLineEndingInconsistency)
+                        }
+                    }
+                }
+                
+                switch returnCode {
+                    case .alertFirstButtonReturn:  // == Convert
+                        self.changeLineEnding(to: self.lineEnding)
+                    case .alertSecondButtonReturn:  // == Review
+                        self.showWarningInspector()
+                    case .alertThirdButtonReturn:  // == Ignore
+                        break
+                    default:
+                        fatalError()
+                }
+                
+                activityCompletionHandler()
             }
         }
     }
     
     
     /// Displays an alert about file modification by an external process.
-    @MainActor private func showUpdatedByExternalProcessAlert() {
+    private func showUpdatedByExternalProcessAlert() {
         
         // do nothing if alert is already shown
         guard !self.isExternalUpdateAlertShown else { return }
         
         self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
-            self.isExternalUpdateAlertShown = true
-            
             guard let documentWindow = self.windowForSheet else {
                 activityCompletionHandler()
                 assertionFailure()
                 return
             }
+            
+            self.isExternalUpdateAlertShown = true
             
             let alert = NSAlert()
             alert.messageText = self.isDocumentEdited
@@ -1237,7 +1283,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             
             alert.beginSheetModal(for: documentWindow) { [unowned self] returnCode in
                 if returnCode == .alertSecondButtonReturn {  // == Revert
-                    self.revertWithoutAsking()
+                    self.revert()
                 }
                 
                 self.isExternalUpdateAlertShown = false
@@ -1247,24 +1293,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     }
     
     
-    /// Reverts the receiver with current document file without asking to the user in advance.
-    @MainActor private func revertWithoutAsking() {
+    private func invalidateMode() async {
         
-        guard
-            let fileURL = self.fileURL,
-            let fileType = self.fileType
-        else { return }
-        
-        do {
-            try self.revert(toContentsOf: fileURL, ofType: fileType)
-        } catch {
-            self.presentErrorAsSheet(error)
-        }
+        self.mode = await ModeManager.shared.mode(for: self.syntaxParser.name)
     }
     
     
     /// Shows the warning inspector in the document window.
-    @MainActor private func showWarningInspector() {
+    private func showWarningInspector() {
         
         (self.windowControllers.first?.contentViewController as? WindowContentViewController)?.showInspector(pane: .warnings)
     }

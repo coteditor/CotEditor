@@ -189,8 +189,9 @@ final class PaddingTextField: NSTextField {
 
 // MARK: - Preview
 
+@available(macOS 15, *)
 #Preview {
-    @State var text = ""
+    @Previewable @State var text = ""
     
     return InsetTextField(text: $text, prompt: "Prompt")
         .inset(.leading, 20)

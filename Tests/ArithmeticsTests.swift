@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,14 +23,14 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Testing
 @testable import CotEditor
 
-final class ArithmeticsTests: XCTestCase {
+struct ArithmeticsTests {
     
-    func testDigits() {
+    @Test func digits() {
         
-        XCTAssertEqual(0.digits, [0])
-        XCTAssertEqual(1024.digits, [4, 2, 0, 1])
+        #expect(0.digits == [0])
+        #expect(1024.digits == [4, 2, 0, 1])
     }
 }

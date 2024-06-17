@@ -29,12 +29,10 @@ import SwiftUI
 import Combine
 import UniformTypeIdentifiers
 import OSLog
+import Defaults
+import UnicodeNormalization
 
-extension Notification.Name: @unchecked Sendable { }
-
-// Logger should be Sendable. (2024-04, macOS 14.3, Xcode 15.3)
-// cf. https://forums.developer.apple.com/forums/thread/747816
-extension Logger: @unchecked Sendable { }
+extension KeyPath: @retroactive @unchecked Sendable { }
 
 extension Logger {
     
@@ -44,7 +42,7 @@ extension Logger {
 
 private extension NSSound {
     
-    static let glass = NSSound(named: "Glass")
+    @MainActor static let glass = NSSound(named: "Glass")
 }
 
 
@@ -79,7 +77,7 @@ private enum BundleIdentifier {
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
     private lazy var aboutPanel = NSPanel(contentViewController: NSHostingController(rootView: AboutView()))
-    private lazy var settingsWindowController = SettingsWindowController()
+    private lazy var whatsNewPanel = NSPanel(contentViewController: NSHostingController(rootView: WhatsNewView()))
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxesMenu: NSMenu?
@@ -87,6 +85,7 @@ private enum BundleIdentifier {
     @IBOutlet private weak var themesMenu: NSMenu?
     @IBOutlet private weak var normalizationMenu: NSMenu?
     @IBOutlet private weak var snippetMenu: NSMenu?
+    @IBOutlet private weak var multipleReplaceMenu: NSMenu?
     
     
     #if DEBUG
@@ -123,11 +122,13 @@ private enum BundleIdentifier {
         self.menuUpdateObservers.removeAll()
         
         // sync menus with setting list updates
-        EncodingManager.shared.$fileEncodings
-            .receive(on: RunLoop.main)
-            .map(\.menuItems)
-            .assign(to: \.items, on: self.encodingsMenu!)
-            .store(in: &self.menuUpdateObservers)
+        withContinuousObservationTracking(initial: true) {
+            _ = EncodingManager.shared.fileEncodings
+        } onChange: {
+            Task { @MainActor in
+                self.encodingsMenu?.items = EncodingManager.shared.fileEncodings.map(\.menuItem)
+            }
+        }
         
         self.lineEndingsMenu?.items = LineEnding.allCases.map { lineEnding in
             let item = NSMenuItem()
@@ -189,18 +190,33 @@ private enum BundleIdentifier {
                 item.toolTip = form.localizedDescription
                 return item
             }
+        
+        // build multiple replacement menu items
+        withContinuousObservationTracking(initial: true) {
+            _ = ReplacementManager.shared.settingNames
+        } onChange: {
+            Task { @MainActor in
+                guard let menu = self.multipleReplaceMenu else { return }
+                
+                let manageItem = menu.items.last
+                menu.items = ReplacementManager.shared.settingNames.map {
+                    let item = NSMenuItem()
+                    item.title = $0
+                    item.action = #selector(NSTextView.performTextFinderAction)
+                    item.tag = TextFinder.Action.multipleReplace.rawValue
+                    item.representedObject = $0
+                    return item
+                } + [
+                    .separator(),
+                    manageItem!,
+                ]
+            }
+        }
     }
     
     
     
     // MARK: Application Delegate
-    
-    @available(macOS, deprecated: 14, message: "The secure restoration became automatically enabled on macOS 14 and later.")
-    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
-        
-        true
-    }
-    
     
     func applicationWillFinishLaunching(_ notification: Notification) {
         
@@ -220,6 +236,11 @@ private enum BundleIdentifier {
         
         NSApp.servicesProvider = ServicesProvider()
         NSTouchBar.isAutomaticCustomizeTouchBarMenuItemEnabled = true
+        
+        // Show What's New panel for CotEditor 4.9.0
+        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion <= 650 {
+            self.showWhatsNew(nil)
+        }
     }
     
     
@@ -328,11 +349,7 @@ private enum BundleIdentifier {
     /// Activates self and perform New menu action (from Dock menu).
     @IBAction func newDocumentActivatingApplication(_ sender: Any?) {
         
-        if #available(macOS 14, *) {
-            NSApp.activate()
-        } else {
-            NSApp.activate(ignoringOtherApps: true)
-        }
+        NSApp.activate()
         NSDocumentController.shared.newDocument(sender)
     }
     
@@ -353,10 +370,26 @@ private enum BundleIdentifier {
     }
     
     
+    /// Shows the What's New panel.
+    @IBAction func showWhatsNew(_ sender: Any?) {
+        
+        // initialize panel settings
+        if !self.whatsNewPanel.styleMask.contains(.fullSizeContentView) {
+            self.whatsNewPanel.styleMask = [.closable, .titled, .fullSizeContentView]
+            self.whatsNewPanel.titleVisibility = .hidden
+            self.whatsNewPanel.titlebarAppearsTransparent = true
+            self.whatsNewPanel.hidesOnDeactivate = false
+            self.whatsNewPanel.becomesKeyOnlyIfNeeded = true
+        }
+        
+        self.whatsNewPanel.makeKeyAndOrderFront(sender)
+    }
+    
+    
     /// Shows the Settings window.
     @IBAction func showSettingsWindow(_ sender: Any?) {
         
-        self.settingsWindowController.showWindow(sender)
+        SettingsWindowController.shared.showWindow(sender)
     }
     
     
@@ -370,7 +403,7 @@ private enum BundleIdentifier {
     /// Shows Snippet pane in the Settings window.
     @IBAction func showSnippetEditor(_ sender: Any?) {
         
-        self.settingsWindowController.openPane(.snippets)
+        SettingsWindowController.shared.openPane(.snippets)
     }
     
     

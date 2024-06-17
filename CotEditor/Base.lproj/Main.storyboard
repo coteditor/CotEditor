@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22689"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -184,6 +183,56 @@
                                                 <action selector="delete:" target="Ady-hI-5gd" id="Ftk-bU-BQH"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Select" id="6fK-Zl-wdN">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Select" id="Bm6-Jh-1mk">
+                                                <items>
+                                                    <menuItem title="Select All" keyEquivalent="a" id="172">
+                                                        <connections>
+                                                            <action selector="selectAll:" target="Ady-hI-5gd" id="Rho-pS-oPz"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Select Line" keyEquivalent="A" id="Cwp-ys-LJc">
+                                                        <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="selectParagraph:" target="Ady-hI-5gd" id="i5P-vu-hGU"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Select Word" keyEquivalent="d" id="0HX-j9-5jF">
+                                                        <connections>
+                                                            <action selector="selectWord:" target="Ady-hI-5gd" id="hYk-Nd-XPC"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Select Enclosing Symbols" id="hYd-RY-2dc">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="selectEnclosingSymbols:" target="Ady-hI-5gd" id="jgc-AB-qMh"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="Cpy-7b-POT"/>
+                                                    <menuItem title="Select Column Up" keyEquivalent="" id="yVo-uW-dls">
+                                                        <modifierMask key="keyEquivalentModifierMask" shift="YES" control="YES"/>
+                                                        <connections>
+                                                            <action selector="selectColumnUp:" target="Ady-hI-5gd" id="ADH-vC-UMS"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Select Column Down" keyEquivalent="" id="m1A-zz-piF">
+                                                        <modifierMask key="keyEquivalentModifierMask" shift="YES" control="YES"/>
+                                                        <connections>
+                                                            <action selector="selectColumnDown:" target="Ady-hI-5gd" id="eta-Ij-JMA"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="5PI-LC-fl2"/>
+                                                    <menuItem title="Split Selection by Lines" keyEquivalent="L" id="jkL-Tg-nug">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                                        <connections>
+                                                            <action selector="splitSelectionByLines:" target="Ady-hI-5gd" id="Wj0-pS-FPH"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="630"/>
                                         <menuItem title="Complete" id="Qa9-dA-CF1">
                                             <string key="keyEquivalent" base64-UTF8="YES">
 Gw
@@ -193,23 +242,7 @@ Gw
                                                 <action selector="complete:" target="Ady-hI-5gd" id="xdV-uV-Chm"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Select All" keyEquivalent="a" id="172">
-                                            <connections>
-                                                <action selector="selectAll:" target="Ady-hI-5gd" id="Rho-pS-oPz"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Select Line" keyEquivalent="A" id="Cwp-ys-LJc">
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="selectParagraph:" target="Ady-hI-5gd" id="i5P-vu-hGU"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Select Word" keyEquivalent="d" id="0HX-j9-5jF">
-                                            <connections>
-                                                <action selector="selectWord:" target="Ady-hI-5gd" id="hYk-Nd-XPC"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="630"/>
+                                        <menuItem isSeparatorItem="YES" id="ngg-iN-BYh"/>
                                         <menuItem title="Input Backslash" keyEquivalent="¥" id="631">
                                             <connections>
                                                 <action selector="inputBackSlash:" target="Ady-hI-5gd" id="PpN-Zj-7Zc"/>
@@ -1060,11 +1093,19 @@ CA
                                                 <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="pda-dk-WF2"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Multiple Replace…" tag="105" id="o7K-sI-KJA">
+                                        <menuItem title="Multiple Replace" id="h4w-vU-ArK">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="hfZ-b9-U43"/>
-                                            </connections>
+                                            <menu key="submenu" title="Multiple Replace" id="OaT-5c-bMY">
+                                                <items>
+                                                    <menuItem isSeparatorItem="YES" id="95O-Ht-HSc"/>
+                                                    <menuItem title="Manage Multiple Replace…" tag="105" id="o7K-sI-KJA">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="hfZ-b9-U43"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="vue-8R-4Kg"/>
                                         <menuItem title="Highlight All" tag="103" keyEquivalent="H" id="JAO-3o-fRo">
@@ -1176,7 +1217,7 @@ CA
                                         <menuItem title="What’s New in CotEditor" identifier="whats_new" id="DCW-Ij-540">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="openHelpAnchor:" target="Ady-hI-5gd" id="FNJ-oW-5gq"/>
+                                                <action selector="showWhatsNew:" target="Ady-hI-5gd" id="BdY-Zk-DOK"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Release Notes" identifier="releasenotes" id="822">
@@ -1219,6 +1260,7 @@ CA
                     <connections>
                         <outlet property="encodingsMenu" destination="300" id="Oy6-3l-RCI"/>
                         <outlet property="lineEndingsMenu" destination="296" id="U4V-rN-Wn0"/>
+                        <outlet property="multipleReplaceMenu" destination="OaT-5c-bMY" id="YLT-05-lBG"/>
                         <outlet property="normalizationMenu" destination="600" id="Ned-B7-VAN"/>
                         <outlet property="snippetMenu" destination="dZy-7n-iCq" id="3hf-hr-ScA"/>
                         <outlet property="syntaxesMenu" destination="304" id="KxC-5F-otD"/>

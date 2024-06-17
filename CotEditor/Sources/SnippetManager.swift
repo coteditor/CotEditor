@@ -27,6 +27,8 @@
 import AppKit
 import Combine
 import Foundation
+import Defaults
+import Shortcut
 
 @MainActor @objc protocol SnippetInsertable: AnyObject {
     
@@ -60,9 +62,11 @@ final class SnippetManager: @unchecked Sendable {
         
         self.migrateIfNeeded()
         
-        self.scopeObserver = (DocumentController.shared as! DocumentController).$currentSyntaxName
-            .removeDuplicates()
-            .sink { [unowned self] in self.scope = $0 }
+        Task { @MainActor in
+            self.scopeObserver = (DocumentController.shared as! DocumentController).$currentSyntaxName
+                .removeDuplicates()
+                .sink { [unowned self] in self.scope = $0 }
+        }
     }
     
     

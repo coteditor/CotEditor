@@ -25,7 +25,10 @@
 //
 
 import AppKit
+import Observation
 import Combine
+import Defaults
+import FileEncoding
 
 @objc protocol EncodingChanging: AnyObject {
     
@@ -33,34 +36,37 @@ import Combine
 }
 
 
-extension Array<FileEncoding?> {
+extension Optional<FileEncoding> {
     
-    /// Creates menu items for available encodings with action `changeEncoding(_:)`.
-    var menuItems: [NSMenuItem] {
+    /// Creates menu item with action `changeEncoding(_:)`.
+    var menuItem: NSMenuItem {
         
-        self.map { fileEncoding in
-            if let fileEncoding {
+        switch self {
+            case .some(let fileEncoding):
                 let item = NSMenuItem(title: fileEncoding.localizedName, action: #selector((any EncodingChanging).changeEncoding), keyEquivalent: "")
                 item.representedObject = fileEncoding
                 return item
-            } else {
+            case .none:
                 return .separator()
-            }
         }
     }
 }
 
 
-
 // MARK: -
 
-final class EncodingManager {
+@Observable final class EncodingManager {
     
     // MARK: Public Properties
     
     nonisolated(unsafe) static let shared = EncodingManager()
     
-    @Published private(set) var fileEncodings: [FileEncoding?] = []
+    private(set) var fileEncodings: [FileEncoding?] = []
+    
+    
+    // MARK: Private Properties
+
+    private var defaultObserver: AnyCancellable?
     
     
     
@@ -74,14 +80,14 @@ final class EncodingManager {
             self.sanitizeEncodingListSetting()
         }
         
-        UserDefaults.standard.publisher(for: .encodingList, initial: true)
+        self.defaultObserver = UserDefaults.standard.publisher(for: .encodingList, initial: true)
             .map { $0.map { $0 != kCFStringEncodingInvalidId ? FileEncoding(encoding: String.Encoding(cfEncoding: $0)) : nil }
                     .flatMap {
                         // add "UTF-8 with BOM" item just after the normal UTF-8
                         ($0?.encoding == .utf8) ? [$0, FileEncoding(encoding: .utf8, withUTF8BOM: true)] : [$0]
                     }
             }
-            .assign(to: &self.$fileEncodings)
+            .sink { [weak self] in self?.fileEncodings = $0 }
     }
     
     

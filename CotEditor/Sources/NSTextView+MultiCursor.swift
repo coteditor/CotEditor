@@ -30,13 +30,7 @@ import AppKit
     var insertionLocations: [Int] { get set }
     var selectionOrigins: [Int] { get set }
     var isPerformingRectangularSelection: Bool { get }
-    
-    @available(macOS 14, *)
     var insertionIndicators: [NSTextInsertionIndicator] { get set }
-    
-    @available(macOS, deprecated: 14)
-    var insertionPointTimer: (any DispatchSourceTimer)? { get set }
-    var insertionPointOn: Bool { get set }
 }
 
 
@@ -383,7 +377,6 @@ extension MultiCursorEditing {
     
     
     /// Updates insertion indicators.
-    @available(macOS 14, *)
     func updateInsertionIndicators() {
         
         assert(Thread.isMainThread)
@@ -425,7 +418,7 @@ extension MultiCursorEditing {
     /// This method should be Invoked when changing the state whether the receiver is the key editor receiving text input in the system.
     func invalidateInsertionIndicatorDisplayMode() {
         
-        guard #available(macOS 14, *), !self.insertionIndicators.isEmpty else { return }
+        guard !self.insertionIndicators.isEmpty else { return }
         
         let shouldDraw = self.shouldDrawInsertionPoints
         for indicator in self.insertionIndicators {
@@ -545,112 +538,5 @@ private extension NSLayoutManager {
         assert(!rects.isEmpty)
         
         return rects.uniqued
-    }
-}
-
-
-
-// MARK: - LegacyEditorTextView
-
-/// Workaround subclass to let NSTextView uses the new NSTextInsertionIndicator (FB12964810).
-@available(macOS, deprecated: 14, message: "Just remove this subclass and also all the codes related to insertion point drawing.")
-final class LegacyEditorTextView: EditorTextView {
-    
-    override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
-        
-        super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
-        
-        // draw sub insertion rects
-        self.insertionLocations
-            .flatMap { self.insertionPointRects(at: $0) }
-            .forEach { super.drawInsertionPoint(in: $0, color: color, turnedOn: flag) }
-    }
-}
-
-
-@available(macOS, deprecated: 14)
-extension MultiCursorEditing {
-    
-    /// Whether the receiver needs to draw insertion points by itself.
-    var needsDrawInsertionPoints: Bool {
-        
-        self.insertionPointTimer?.isCancelled == false
-    }
-    
-    
-    /// Enables or disables `insertionPointTimer` according to the selection state.
-    func updateInsertionPointTimer() {
-        
-        if #available(macOS 14, *) { return }
-        
-        if self.isPerformingRectangularSelection || (!self.insertionLocations.isEmpty && self.selectedRanges.allSatisfy({ !$0.rangeValue.isEmpty })) {
-            self.enableOwnInsertionPointTimer()
-        } else {
-            self.insertionPointTimer?.cancel()
-        }
-    }
-    
-    
-    /// Calculates rect for insertion point at `index`.
-    ///
-    /// - Parameter index: The character index where the insertion point will locate.
-    /// - Returns: Rect where insertion point filled.
-    func insertionPointRects(at index: Int) -> [NSRect] {
-        
-        guard let layoutManager = self.layoutManager else { assertionFailure(); return [] }
-        
-        let scale = self.scale
-        return layoutManager.insertionPointRects(at: index)
-            .map { $0.offset(by: self.textContainerOrigin) }
-            .map { rect in
-                NSRect(x: (rect.minX * scale).rounded(.down) / scale,
-                       y: rect.minY,
-                       width: 1 / scale,
-                       height: rect.height)
-            }
-    }
-    
-    
-    /// Enables insertion point blink timer to draw insertion points forcibly.
-    private func enableOwnInsertionPointTimer() {
-        
-        guard self.insertionPointTimer?.isCancelled ?? true else { return }
-        
-        let period = UserDefaults.standard.textInsertionPointBlinkPeriod
-        
-        let timer = DispatchSource.makeTimerSource(queue: .main)
-        timer.schedule(deadline: .now())
-        timer.setEventHandler { [unowned self] in
-            self.insertionPointOn.toggle()
-            let interval = self.insertionPointOn ? period.on : period.off
-            timer.schedule(deadline: .now() + .milliseconds(interval))
-            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-        }
-        timer.resume()
-        
-        self.insertionPointTimer?.cancel()
-        self.insertionPointTimer = timer
-    }
-}
-
-
-@available(macOS, deprecated: 14)
-private struct BlinkPeriod {
-    
-    var on: Int
-    var off: Int
-}
-
-
-@available(macOS, deprecated: 14)
-private extension UserDefaults {
-    
-    var textInsertionPointBlinkPeriod: BlinkPeriod {
-        
-        let onPeriod = self.integer(forKey: "NSTextInsertionPointBlinkPeriodOn")
-        let offPeriod = self.integer(forKey: "NSTextInsertionPointBlinkPeriodOff")
-        
-        return BlinkPeriod(on: (onPeriod > 0) ? onPeriod : 500,
-                           off: (offPeriod > 0) ? offPeriod : 500)
     }
 }

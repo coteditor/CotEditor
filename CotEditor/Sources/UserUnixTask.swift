@@ -25,7 +25,7 @@
 
 import Foundation
 
-extension NSUserUnixTask: @unchecked Sendable { }
+extension NSUserUnixTask: @retroactive @unchecked Sendable { }
 
 
 actor UserUnixTask {

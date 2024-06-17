@@ -27,6 +27,8 @@
 import AppKit
 import Combine
 import SwiftUI
+import CharacterInfo
+import Defaults
 
 final class EditorTextViewController: NSViewController, NSServicesMenuRequestor, NSTextViewDelegate {
     
@@ -40,28 +42,52 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     // MARK: Public Properties
     
-    private(set) weak var textView: EditorTextView?
+    @ViewLoading private(set) var textView: EditorTextView
     
     
     // MARK: Private Properties
     
+    private let document: NSDocument
+    
     private var stackView: NSStackView?  { self.view as? NSStackView }
-    private weak var lineNumberView: LineNumberView?
+    @ViewLoading private var lineNumberView: LineNumberView
     
     private weak var advancedCounterView: NSView?
-    private weak var horizontalCounterConstraint: NSLayoutConstraint?
     
-    private var orientationObserver: AnyCancellable?
-    private var writingDirectionObserver: AnyCancellable?
-    private var defaultsObservers: Set<AnyCancellable> = []
+    private var observers: Set<AnyCancellable> = []
     
     
     
     // MARK: Lifecycle
     
+    init(document: NSDocument) {
+        
+        self.document = document
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    deinit {
+        // detach layoutManager safely
+        guard
+            let textStorage = self.textView.textStorage,
+            let layoutManager = self.textView.layoutManager
+        else { return assertionFailure() }
+        
+        textStorage.removeLayoutManager(layoutManager)
+    }
+    
+    
     override func loadView() {
         
-        let textView = if #available(macOS 14, *) { EditorTextView() } else { LegacyEditorTextView() }
+        let textView = EditorTextView()
         textView.delegate = self
         
         let scrollView = BidiScrollView()
@@ -71,7 +97,8 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         scrollView.documentView = textView
         scrollView.identifier = NSUserInterfaceItemIdentifier("EditorScrollView")
         
-        let lineNumberView = LineNumberView(textView: textView)
+        let lineNumberView = LineNumberView()
+        lineNumberView.textView = textView
         
         let stackView = NSStackView(views: [lineNumberView, scrollView])
         stackView.spacing = 0
@@ -90,30 +117,31 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         // set identifier for state restoration
         self.identifier = NSUserInterfaceItemIdentifier("EditorTextViewController")
         
-        // observe text orientation for line number view
-        self.orientationObserver = self.textView!.publisher(for: \.layoutOrientation, options: .initial)
-            .sink { [weak self] orientation in
-                self?.stackView?.orientation = switch orientation {
-                    case .horizontal: .horizontal
-                    case .vertical: .vertical
-                    @unknown default: fatalError()
-                }
-                self?.lineNumberView?.orientation = orientation
-            }
-        
-        // let line number view position follow writing direction
-        self.writingDirectionObserver = self.textView!.publisher(for: \.baseWritingDirection)
-            .removeDuplicates()
-            .map { ($0 == .rightToLeft) ? NSUserInterfaceLayoutDirection.rightToLeft : .leftToRight }
-            .sink { [weak self] direction in
-                self?.stackView?.userInterfaceLayoutDirection = direction
-                (self?.textView?.enclosingScrollView as? BidiScrollView)?.scrollerDirection = direction
-            }
-        
-        // toggle visibility of the separator of the line number view
-        self.defaultsObservers = [
+        self.observers = [
+            // observe text orientation for line number view
+            self.textView.publisher(for: \.layoutOrientation, options: .initial)
+                .sink { [weak self] orientation in
+                    self?.stackView?.orientation = switch orientation {
+                        case .horizontal: .horizontal
+                        case .vertical: .vertical
+                        @unknown default: fatalError()
+                    }
+                    self?.lineNumberView.orientation = orientation
+                },
+            
+            // let line number view position follow writing direction
+            self.textView.publisher(for: \.baseWritingDirection)
+                .removeDuplicates()
+                .map { ($0 == .rightToLeft) ? NSUserInterfaceLayoutDirection.rightToLeft : .leftToRight }
+                .sink { [weak self] direction in
+                    self?.stackView?.userInterfaceLayoutDirection = direction
+                    (self?.textView.enclosingScrollView as? BidiScrollView)?.scrollerDirection = direction
+                    self?.lineNumberView.layoutDirection = direction
+                },
+            
+            // toggle visibility of the separator of the line number view
             UserDefaults.standard.publisher(for: .showLineNumberSeparator, initial: true)
-                .assign(to: \.drawsSeparator, on: self.lineNumberView!),
+                .assign(to: \.drawsSeparator, on: self.lineNumberView),
         ]
     }
     
@@ -133,9 +161,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         super.restoreState(with: coder)
         
         if coder.decodeBool(forKey: SerializationKey.showsAdvancedCounter) {
-            Task { @MainActor in
-                self.showAdvancedCharacterCounter()
-            }
+            self.showAdvancedCharacterCounter()
         }
     }
     
@@ -180,6 +206,12 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     // MARK: Text View Delegate
     
+    func undoManager(for view: NSTextView) -> UndoManager? {
+        
+        self.document.undoManager
+    }
+    
+    
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         
         if textView.undoManager?.isUndoing == true { return true }  // = undo
@@ -216,7 +248,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         }
         
         // add "Inspect Character" menu item if single character is selected
-        if self.textView?.selectsSingleCharacter == true {
+        if self.textView.selectsSingleCharacter == true {
             menu.insertItem(withTitle: String(localized: "Inspect Character", table: "MainMenu"),
                             action: #selector(showSelectionInfo),
                             keyEquivalent: "",
@@ -233,8 +265,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// Shows the Go To sheet.
     @IBAction func gotoLocation(_ sender: Any?) {
         
-        guard let textView = self.textView else { return assertionFailure() }
-        
+        let textView = self.textView
         let string = textView.string
         let lineNumber = string.lineNumber(at: textView.selectedRange.location)
         let lineCount = (string as NSString).substring(with: textView.selectedRange).numberOfLines
@@ -257,8 +288,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// Shows the Unicode input view.
     @IBAction func showUnicodeInputPanel(_ sender: Any?) {
         
-        guard let textView = self.textView else { return assertionFailure() }
-        
+        let textView = self.textView
         let view = UnicodeInputView { [unowned textView] character in
             // flag to skip line ending sanitization
             textView.isApprovedTextChange = true
@@ -300,9 +330,8 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     @IBAction func showSelectionInfo(_ sender: Any?) {
         
         guard
-            let textView = self.textView,
-            textView.selectsSingleCharacter,
-            let character = textView.selectedString.first
+            self.textView.selectsSingleCharacter,
+            let character = self.textView.selectedString.first
         else { return assertionFailure() }
         
         let characterInfo = CharacterInfo(character: character)
@@ -310,6 +339,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         popoverController.view = NSHostingView(rootView: CharacterInspectorView(info: characterInfo))
         popoverController.view.frame.size = popoverController.view.intrinsicContentSize
         
+        let textView = self.textView
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -4, dy: -4) ?? .zero
         
         textView.scrollRangeToVisible(textView.selectedRange)
@@ -324,8 +354,8 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// The visibility of the line number view.
     var showsLineNumber: Bool {
         
-        get { self.lineNumberView?.isHidden == false }
-        set { self.lineNumberView?.isHidden = !newValue }
+        get { self.lineNumberView.isHidden == false }
+        set { self.lineNumberView.isHidden = !newValue }
     }
     
     
@@ -337,8 +367,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// - Parameter image: The image to scan text.
     private func popoverLiveText(image: NSImage) {
         
-        guard let textView = self.textView else { return assertionFailure() }
-        
+        let textView = self.textView
         let rootView = LiveTextInsertionView(image: image) { [weak textView] string in
             guard let textView else { return }
             textView.replace(with: string, range: textView.selectedRange, selectedRange: nil)
@@ -374,8 +403,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// Sets and shows advanced character counter.
     private func showAdvancedCharacterCounter() {
         
-        guard let textView = self.textView else { return assertionFailure() }
-        
+        let textView = self.textView
         let counter = AdvancedCharacterCounter()
         counter.observe(textView: textView)
         let rootView = AdvancedCharacterCounterView(counter: counter) { [weak self] in
@@ -409,7 +437,7 @@ extension EditorTextViewController: NSUserInterfaceValidations {
                 return true
                 
             case #selector(showSelectionInfo):
-                return self.textView?.selectsSingleCharacter == true
+                return self.textView.selectsSingleCharacter == true
                 
             case nil:
                 return false
@@ -417,6 +445,53 @@ extension EditorTextViewController: NSUserInterfaceValidations {
             default:
                 return true
         }
+    }
+}
+
+
+extension EditorTextViewController: EditorTextView.Delegate {
+    
+    /// Inserts string representation of dropped files applying the user's file drop snippets.
+    ///
+    /// - Parameter urls: The file URLs of dropped files.
+    /// - Returns: Whether the file drop was performed.
+    func editorTextView(_ textView: EditorTextView, readDroppedURLs urls: [URL]) -> Bool {
+        
+        guard !urls.isEmpty else { return false }
+        
+        let fileDropItems = UserDefaults.standard[.fileDropArray].map(FileDropItem.init(dictionary:))
+        
+        guard !fileDropItems.isEmpty else { return false }
+        
+        let replacementString = urls.reduce(into: "") { (string, url) in
+            if url.pathExtension == "textClipping", let textClipping = try? TextClipping(contentsOf: url) {
+                string += textClipping.string
+                return
+            }
+            
+            if let fileDropItem = fileDropItems.first(where: { $0.supports(extension: url.pathExtension, scope: textView.syntaxName) }) {
+                string += fileDropItem.dropText(forFileURL: url, documentURL: self.document.fileURL)
+                return
+            }
+            
+            // just insert the absolute path if no specific setting for the file type was found
+            // -> This is the default behavior of NSTextView by file dropping.
+            if !string.isEmpty {
+                string += textView.lineEnding.string
+            }
+            
+            string += url.isFileURL ? url.path : url.absoluteString
+        }
+        
+        guard replacementString.isEmpty else { return true }
+        
+        // insert snippets to view
+        guard textView.shouldChangeText(in: textView.rangeForUserTextChange, replacementString: replacementString) else { return false }
+        
+        textView.replaceCharacters(in: textView.rangeForUserTextChange, with: replacementString)
+        textView.didChangeText()
+        
+        return true
     }
 }
 

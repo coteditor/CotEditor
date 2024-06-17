@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@
 //
 
 import AppKit
+import UnicodeNormalization
 
 private enum OSACaseType: FourCharCode {
     
@@ -142,9 +143,14 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
     @objc var range: [Int]? {
         
         get {
-            guard let range = self.textView?.selectedRange else { return nil }
+            guard
+                let textView = self.textView,
+                let string = self.textView?.string,
+                let range = Range(textView.selectedRange, in: string)
+            else { return nil }
             
-            return [range.location, range.length]
+            return [string.distance(from: string.startIndex, to: range.lowerBound),
+                    string.distance(from: range.lowerBound, to: range.upperBound)]
         }
         
         set {

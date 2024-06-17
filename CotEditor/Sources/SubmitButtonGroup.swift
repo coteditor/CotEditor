@@ -31,8 +31,6 @@ struct SubmitButtonGroup: View {
     private let submitAction: () -> Void
     private let cancelAction: () -> Void
     
-    @State private var buttonWidth: CGFloat?
-    
     
     // MARK: View
     
@@ -52,22 +50,80 @@ struct SubmitButtonGroup: View {
     
     var body: some View {
         
-        HStack {
+        EqualWidthHStack {
             Button(role: .cancel, action: self.cancelAction) {
                 Text(String(localized: "Cancel"))
-                    .background(SizeGetter(key: MaxSizeKey.self))
-                    .frame(width: self.buttonWidth)
-            }.keyboardShortcut(.cancelAction)
-                .environment(\.isEnabled, true)  // Cancel button is always active
+                    .frame(maxWidth: .infinity)
+            }
+            .keyboardShortcut(.cancelAction)
+            .environment(\.isEnabled, true)  // Cancel button is always active
             
             Button(action: self.submitAction) {
                 Text(self.submitLabel)
-                    .background(SizeGetter(key: MaxSizeKey.self))
-                    .frame(width: self.buttonWidth)
-            }.keyboardShortcut(.defaultAction)
+                    .frame(maxWidth: .infinity)
+            }
+            .keyboardShortcut(.defaultAction)
         }
-        .onPreferenceChange(MaxSizeKey.self) { self.buttonWidth = $0.width }
-        .fixedSize()
+    }
+}
+
+
+/// cf. [Compose custom layouts with SwiftUI](https://developer.apple.com/wwdc22/10056)
+private struct EqualWidthHStack: Layout {
+    
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout Void) -> CGSize {
+        
+        guard !subviews.isEmpty else { return .zero }
+        
+        let maxSize = self.maxSize(subviews: subviews)
+        let spacing = self.spacing(subviews: subviews)
+        let totalSpacing = spacing.reduce(0) { $0 + $1 }
+        
+        return CGSize(width: maxSize.width * CGFloat(subviews.count) + totalSpacing,
+                      height: maxSize.height)
+    }
+    
+    
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout Void) {
+        
+        guard !subviews.isEmpty else { return }
+        
+        let maxSize = self.maxSize(subviews: subviews)
+        let spacing = self.spacing(subviews: subviews)
+        
+        let placementProposal = ProposedViewSize(width: maxSize.width, height: maxSize.height)
+        var x = bounds.minX + maxSize.width / 2
+        
+        for index in subviews.indices {
+            subviews[index]
+                .place(at: CGPoint(x: x, y: bounds.midY),
+                       anchor: .center,
+                       proposal: placementProposal)
+            
+            x += maxSize.width + spacing[index]
+        }
+    }
+    
+    
+    private func maxSize(subviews: Subviews) -> CGSize {
+        
+        let subviewSizes = subviews.map { $0.sizeThatFits(.unspecified) }
+        let maxSize: CGSize = subviewSizes.reduce(.zero) { currentMax, subviewSize in
+            CGSize(width: max(currentMax.width, subviewSize.width),
+                   height: max(currentMax.height, subviewSize.height))
+        }
+        
+        return maxSize
+    }
+    
+    private func spacing(subviews: Subviews) -> [CGFloat] {
+        subviews.indices.map { index in
+            
+            guard index < subviews.count - 1 else { return 0 }
+            
+            return subviews[index].spacing
+                .distance(to: subviews[index + 1].spacing, along: .horizontal)
+        }
     }
 }
 
@@ -76,5 +132,9 @@ struct SubmitButtonGroup: View {
 // MARK: - Preview
 
 #Preview {
-    SubmitButtonGroup(action: {}, cancelAction: {})
+    VStack {
+        SubmitButtonGroup(action: {}, cancelAction: {})
+    }
+    .padding()
+    .frame(width: 200)
 }

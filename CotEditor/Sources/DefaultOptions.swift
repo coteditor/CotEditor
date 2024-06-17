@@ -24,6 +24,7 @@
 //
 
 import Foundation.NSObjCRuntime
+import Defaults
 
 enum NoDocumentOnLaunchOption: Int, CaseIterable {
     

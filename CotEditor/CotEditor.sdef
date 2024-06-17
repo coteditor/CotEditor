@@ -114,7 +114,7 @@
                 <cocoa key="lineRange"/>
                 <type type="integer" list="yes"/>
             </property>
-            <property name="range" code="cRng" access="rw" description="The range of characters in the selection. The format is “{location, length}”.">
+            <property name="range" code="cRng" access="rw" description="The range of characters in the selection in the Unicode grapheme cluster unit. The format is “{location, length}”.">
                 <type type="integer" list="yes"/>
             </property>
             <responds-to command="change case">

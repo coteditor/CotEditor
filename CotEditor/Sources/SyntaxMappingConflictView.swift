@@ -83,7 +83,7 @@ struct SyntaxMappingConflictView: View {
             }
             
             HStack {
-                HelpButton(anchor: "syntax_file_mapping")
+                HelpLink(anchor: "syntax_file_mapping")
                 Spacer()
                 Button("OK") {
                     self.parent?.dismiss(nil)
@@ -124,11 +124,11 @@ private struct ConflictTable: View {
                 TableColumn(String(localized: "Used syntax", table: "SyntaxMappingConflict", comment: "table column header"), value: \.primarySyntax) {
                     Text($0.primarySyntax).fontWeight(.semibold)
                 }
-                TableColumn(String(localized: "Duplicated syntaxes", table: "SyntaxMappingConflict", comment: "table column header")) {
+                TableColumn(String(localized: "Duplicated syntaxes", table: "SyntaxMappingConflict", comment: "table column header"), sortUsing: KeyPathComparator(\.duplicatedSyntaxes.first)) {
                     Text($0.duplicatedSyntaxes, format: .list(type: .and, width: .narrow))
                 }
             }
-            .onChange(of: self.sortOrder) { newValue in
+            .onChange(of: self.sortOrder) { (_, newValue) in
                 self.conflicts.sort(using: newValue)
             }
             .tableStyle(.bordered)

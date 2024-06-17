@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@
 
 import AppKit
 import Combine
+import Defaults
 
 class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, LineRangeCacheable {
     
@@ -109,6 +110,15 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     
     
     // MARK: Layout Manager Methods
+    
+    override func replaceTextStorage(_ newTextStorage: NSTextStorage) {
+        
+        super.replaceTextStorage(newTextStorage)
+        
+        // reset line range cache
+        self.lineRangeCache = .init()
+    }
+    
     
     /// Adjusts rect of last empty line.
     override func setExtraLineFragmentRect(_ fragmentRect: NSRect, usedRect: NSRect, textContainer container: NSTextContainer) {

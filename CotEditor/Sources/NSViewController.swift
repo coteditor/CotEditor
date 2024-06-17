@@ -33,7 +33,7 @@ extension NSViewController {
     /// However, it does not check whether the view is actually visible. For that, see the discussion part of `isHiddenOrHasHiddenAncestor`.
     final var isViewShown: Bool {
         
-        self.isViewLoaded && !self.view.isHiddenOrHasHiddenAncestor
+        self.viewIfLoaded?.isHiddenOrHasHiddenAncestor == false
     }
     
     

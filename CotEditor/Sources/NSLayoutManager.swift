@@ -223,31 +223,6 @@ extension NSLayoutManager {
     }
     
     
-    /// Returns rects to draw insertion point for the given character index.
-    ///
-    /// - Note: The rects can be either in one or two when the cursor split at the boundary of the writing direction.
-    ///
-    /// - Parameter characterIndex: The character index.
-    /// - Returns: One-pixel-width rects to draw insertion point in the layout manager coordinate.
-    @available(macOS, deprecated: 14)
-    final func insertionPointRects(at characterIndex: Int) -> [NSRect] {
-        
-        guard
-            let primaryRect = self.insertionPointRect(at: characterIndex, alternate: false)
-        else { return [] }
-        
-        guard
-            UserDefaults.standard.useSplitCursor,
-            let alternateRect = self.insertionPointRect(at: characterIndex, alternate: true)
-        else { return [primaryRect] }
-        
-        return [NSRect(x: primaryRect.minX, y: primaryRect.minY,
-                       width: primaryRect.width, height: primaryRect.height / 2),
-                NSRect(x: alternateRect.minX, y: alternateRect.minY + alternateRect.height / 2,
-                       width: alternateRect.width, height: alternateRect.height / 2)]
-    }
-    
-    
     /// Returns a rect to draw insertion point for the given character index.
     ///
     /// - Parameters:
@@ -295,14 +270,6 @@ extension NSLayoutManager {
         
         return characterIndexes
     }
-}
-
-
-private extension UserDefaults {
-    
-    /// Whether the user enables the system-wide "Use split cursor" option in System Settings > Keyboard > Text Input > Input Source.
-    @available(macOS, deprecated: 14)
-    var useSplitCursor: Bool  { self.bool(forKey: "NSUseSplitCursor") }
 }
 
 

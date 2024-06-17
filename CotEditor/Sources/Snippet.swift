@@ -24,8 +24,9 @@
 //
 
 import Foundation.NSString
+import Shortcut
 
-struct Snippet: Identifiable {
+struct Snippet: Equatable, Identifiable {
     
     let id = UUID()
     

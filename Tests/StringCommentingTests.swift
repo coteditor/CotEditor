@@ -24,166 +24,178 @@
 //  limitations under the License.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import CotEditor
 
-final class StringCommentingTests: XCTestCase {
+struct StringCommentingTests {
     
     // MARK: String extension Tests
     
-    func testInlineCommentOut() {
+    @Test func inlineCommentOut() {
         
-        XCTAssertEqual("foo".inlineCommentOut(delimiter: "//", ranges: []), [])
+        #expect("foo".inlineCommentOut(delimiter: "//", ranges: []).isEmpty)
         
-        XCTAssertEqual("foo".inlineCommentOut(delimiter: "//", ranges: [NSRange(0..<0)]),
-                       [.init(string: "//", location: 0, forward: true)])
-        XCTAssertEqual("foo".inlineCommentOut(delimiter: "//", ranges: [NSRange(1..<2)]),
-                       [.init(string: "//", location: 1, forward: true)])
+        #expect("foo".inlineCommentOut(delimiter: "//", ranges: [NSRange(0..<0)]) ==
+                [.init(string: "//", location: 0, forward: true)])
+        #expect("foo".inlineCommentOut(delimiter: "//", ranges: [NSRange(1..<2)]) ==
+                [.init(string: "//", location: 1, forward: true)])
     }
     
     
-    func testBlockCommentOut() {
+    @Test func blockCommentOut() {
         
-        XCTAssertEqual("foo".blockCommentOut(delimiters: Pair("<-", "->"), ranges: []), [])
+        #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), ranges: []).isEmpty)
         
-        XCTAssertEqual("foo".blockCommentOut(delimiters: Pair("<-", "->"), ranges: [NSRange(0..<0)]),
-                       [.init(string: "<-", location: 0, forward: true), .init(string: "->", location: 0, forward: false)])
+        #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), ranges: [NSRange(0..<0)]) ==
+                [.init(string: "<-", location: 0, forward: true), .init(string: "->", location: 0, forward: false)])
     }
     
     
-    func testInlineUncomment() {
+    @Test func inlineUncomment() {
         
-        XCTAssertEqual("foo".rangesOfInlineDelimiter("//", ranges: []), [])
-        XCTAssertEqual("foo".rangesOfInlineDelimiter("//", ranges: [NSRange(0..<0)]), [])
+        #expect("foo".rangesOfInlineDelimiter("//", ranges: [])?.isEmpty == true)
+        #expect("foo".rangesOfInlineDelimiter("//", ranges: [NSRange(0..<0)])?.isEmpty == true)
         
-        XCTAssertEqual("//foo".rangesOfInlineDelimiter("//", ranges: [NSRange(0..<5)]), [NSRange(0..<2)])
-        XCTAssertEqual("// foo".rangesOfInlineDelimiter("//", ranges: [NSRange(0..<5)]), [NSRange(0..<2)])
+        #expect("//foo".rangesOfInlineDelimiter("//", ranges: [NSRange(0..<5)]) == [NSRange(0..<2)])
+        #expect("// foo".rangesOfInlineDelimiter("//", ranges: [NSRange(0..<5)]) == [NSRange(0..<2)])
         
-        XCTAssertEqual("  //foo".rangesOfInlineDelimiter("//", ranges: [NSRange(0..<7)]), [NSRange(2..<4)])
+        #expect("  //foo".rangesOfInlineDelimiter("//", ranges: [NSRange(0..<7)]) == [NSRange(2..<4)])
     }
     
     
-    func testBlockUncomment() {
+    @Test func blockUncomment() {
         
-        XCTAssertEqual("foo".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: []), [])
-        XCTAssertEqual("foo".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: [NSRange(0..<0)]), [])
+        #expect("foo".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: [])?.isEmpty == true)
+        #expect("foo".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: [NSRange(0..<0)])?.isEmpty == true)
         
-        XCTAssertEqual("<-foo->".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: [NSRange(0..<7)]), [NSRange(0..<2), NSRange(5..<7)])
-        XCTAssertEqual("<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: [NSRange(0..<9)]), [NSRange(0..<2), NSRange(7..<9)])
+        #expect("<-foo->".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: [NSRange(0..<7)]) == [NSRange(0..<2), NSRange(5..<7)])
+        #expect("<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: [NSRange(0..<9)]) == [NSRange(0..<2), NSRange(7..<9)])
         
-        XCTAssertEqual(" <-foo-> ".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: [NSRange(0..<9)]), [NSRange(1..<3), NSRange(6..<8)])
-        XCTAssertNil(" <-foo-> ".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: [NSRange(1..<7)]))
+        #expect(" <-foo-> ".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: [NSRange(0..<9)]) == [NSRange(1..<3), NSRange(6..<8)])
+        #expect(" <-foo-> ".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: [NSRange(1..<7)]) == nil)
         
         // ok, this is currently in spec, but not a good one...
-        XCTAssertEqual("<-foo-><-bar->".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: [NSRange(0..<14)]), [NSRange(0..<2), NSRange(12..<14)])
+        #expect("<-foo-><-bar->".rangesOfBlockDelimiters(Pair("<-", "->"), ranges: [NSRange(0..<14)]) == [NSRange(0..<2), NSRange(12..<14)])
     }
-    
     
     
     // MARK: TextView extension Tests
     
-    @MainActor func testTextViewInlineComment() {
+    @Test func textViewInlineComment() throws {
         
-        let textView = CommentingTextView()
+        var editor = Editor(string: "foo\nbar", selectedRanges: [NSRange(0..<3), NSRange(4..<7)])
         
-        textView.string = "foo\nbar"
-        textView.selectedRanges = [NSRange(0..<3), NSRange(4..<7)] as [NSValue]
-        textView.commentOut(types: .inline, fromLineHead: true)
-        XCTAssertEqual(textView.string, "//foo\n//bar")
-        XCTAssertEqual(textView.selectedRanges, [NSRange(0..<5), NSRange(6..<11)] as [NSValue])
-        XCTAssertTrue(textView.canUncomment(partly: false))
-        textView.uncomment()
-        XCTAssertEqual(textView.string, "foo\nbar")
-        XCTAssertEqual(textView.selectedRanges, [NSRange(0..<3), NSRange(4..<7)] as [NSValue])
+        editor.commentOut(types: .inline, fromLineHead: true)
+        #expect(editor.string == "//foo\n//bar")
+        #expect(editor.selectedRanges == [NSRange(0..<5), NSRange(6..<11)])
+        #expect(editor.canUncomment(partly: false))
+        editor.uncomment()
+        #expect(editor.string == "foo\nbar")
+        #expect(editor.selectedRanges == [NSRange(0..<3), NSRange(4..<7)])
         
-        textView.selectedRanges = [NSRange(1..<1)] as [NSValue]
-        textView.insertionLocations = [5]
-        textView.commentOut(types: .inline, fromLineHead: true)
-        XCTAssertEqual(textView.string, "//foo\n//bar")
-        XCTAssertEqual(textView.rangesForUserTextChange, [NSRange(3..<3), NSRange(9..<9)] as [NSValue])
-        XCTAssertTrue(textView.canUncomment(partly: false))
-        textView.uncomment()
-        XCTAssertEqual(textView.string, "foo\nbar")
-        XCTAssertEqual(textView.rangesForUserTextChange, [NSRange(1..<1), NSRange(5..<5)] as [NSValue])
+        editor.selectedRanges = [NSRange(1..<1), NSRange(5..<5)]
+        editor.commentOut(types: .inline, fromLineHead: true)
+        #expect(editor.string == "//foo\n//bar")
+        #expect(editor.selectedRanges == [NSRange(3..<3), NSRange(9..<9)])
+        #expect(editor.canUncomment(partly: false))
+        editor.uncomment()
+        #expect(editor.string == "foo\nbar")
+        #expect(editor.selectedRanges == [NSRange(1..<1), NSRange(5..<5)])
     }
     
     
-    @MainActor func testTextViewBlockComment() {
+    @Test func textViewBlockComment() {
         
-        let textView = CommentingTextView()
+        var editor = Editor(string: "foo\nbar", selectedRanges: [NSRange(0..<3), NSRange(4..<7)])
         
-        textView.string = "foo\nbar"
-        textView.selectedRanges = [NSRange(0..<3), NSRange(4..<7)] as [NSValue]
-        textView.commentOut(types: .block, fromLineHead: true)
-        XCTAssertEqual(textView.string, "<-foo->\n<-bar->")
-        XCTAssertEqual(textView.selectedRanges, [NSRange(0..<7), NSRange(8..<15)] as [NSValue])
-        XCTAssertTrue(textView.canUncomment(partly: false))
-        textView.uncomment()
-        XCTAssertEqual(textView.string, "foo\nbar")
-        XCTAssertEqual(textView.selectedRanges, [NSRange(0..<3), NSRange(4..<7)] as [NSValue])
+        editor.commentOut(types: .block, fromLineHead: true)
+        #expect(editor.string == "<-foo->\n<-bar->")
+        #expect(editor.selectedRanges == [NSRange(0..<7), NSRange(8..<15)])
+        #expect(editor.canUncomment(partly: false))
+        editor.uncomment()
+        #expect(editor.string == "foo\nbar")
+        #expect(editor.selectedRanges == [NSRange(0..<3), NSRange(4..<7)])
         
-        textView.selectedRanges = [NSRange(1..<1)] as [NSValue]
-        textView.insertionLocations = [5]
-        textView.commentOut(types: .block, fromLineHead: true)
-        XCTAssertEqual(textView.string, "<-foo->\n<-bar->")
-        XCTAssertEqual(textView.rangesForUserTextChange, [NSRange(3..<3), NSRange(11..<11)] as [NSValue])
-        XCTAssertTrue(textView.canUncomment(partly: false))
-        textView.uncomment()
-        XCTAssertEqual(textView.string, "foo\nbar")
-        XCTAssertEqual(textView.rangesForUserTextChange, [NSRange(1..<1), NSRange(5..<5)] as [NSValue])
+        editor.selectedRanges = [NSRange(1..<1), NSRange(5..<5)]
+        editor.commentOut(types: .block, fromLineHead: true)
+        #expect(editor.string == "<-foo->\n<-bar->")
+        #expect(editor.selectedRanges == [NSRange(3..<3), NSRange(11..<11)])
+        #expect(editor.canUncomment(partly: false))
+        editor.uncomment()
+        #expect(editor.string == "foo\nbar")
+        #expect(editor.selectedRanges == [NSRange(1..<1), NSRange(5..<5)])
     }
     
     
-    @MainActor func testIncompatibility() {
+    @Test func checkIncompatibility() {
         
-        let textView = CommentingTextView()
-        
-        textView.string = """
+        let string = """
             // foo
             //
             // foo bar
             """
-        textView.selectedRange = textView.string.nsRange
-        XCTAssertTrue(textView.canUncomment(partly: false))
-        XCTAssertTrue(textView.canUncomment(partly: true))
+        let editor = Editor(string: string, selectedRanges: [string.nsRange])
         
-        textView.string = """
+        #expect(editor.canUncomment(partly: false))
+        #expect(editor.canUncomment(partly: true))
+    }
+    
+    
+    @Test func checkPartialIncompatibility() {
+        
+        let string = """
             // foo
             
             // foo bar
             """
-        textView.selectedRange = textView.string.nsRange
-        XCTAssertFalse(textView.canUncomment(partly: false))
-        XCTAssertTrue(textView.canUncomment(partly: true))
+        let editor = Editor(string: string, selectedRanges: [string.nsRange])
+        
+        #expect(!editor.canUncomment(partly: false))
+        #expect(editor.canUncomment(partly: true))
     }
 }
 
 
-
-private final class CommentingTextView: NSTextView, Commenting, MultiCursorEditing {
+/// TextView mock
+private struct Editor {
     
-    // Commenting
-    var commentDelimiters = Syntax.Comment(inline: "//", blockBegin: "<-", blockEnd: "->")
+    let delimiters = Syntax.Comment(inline: "//", blockBegin: "<-", blockEnd: "->")
     
-    // MultiCursorEditing
-    var insertionLocations: [Int] = []
-    var selectionOrigins: [Int] = []
-    var insertionPointTimer: (any DispatchSourceTimer)?
-    var insertionPointOn: Bool = false
-    var isPerformingRectangularSelection: Bool = false
+    var string: String
+    var selectedRanges: [NSRange] = []
     
-    @available(macOS 14, *)
-    var insertionIndicators: [NSTextInsertionIndicator] {
-        get { [] }
-        set { _ = newValue }
+    
+    mutating func commentOut(types: CommentTypes, fromLineHead: Bool) {
+        
+        guard let content = self.string.commentOut(types: types, delimiters: self.delimiters, fromLineHead: true, in: self.selectedRanges) else { return }
+        
+        self.edit(with: content)
     }
     
     
-    override var rangesForUserTextChange: [NSValue]? {
+    mutating func uncomment() {
         
-        let selectedRanges = self.selectedRanges.map(\.rangeValue)
-        let insertionRanges = self.insertionLocations.map { NSRange(location: $0, length: 0) }
+        guard let content = self.string.uncomment(delimiters: self.delimiters, in: self.selectedRanges) else { return }
         
-        return (selectedRanges + insertionRanges).sorted(\.location) as [NSValue]
+        self.edit(with: content)
+    }
+    
+    
+    func canUncomment(partly: Bool) -> Bool {
+        
+        self.string.canUncomment(partly: partly, delimiters: self.delimiters, in: self.selectedRanges)
+    }
+    
+    
+    mutating func edit(with context: EditingContext) {
+        
+        let mutableString = NSMutableString(string: self.string)
+        for (string, range) in zip(context.strings, context.ranges).reversed() {
+            mutableString.replaceCharacters(in: range, with: string)
+        }
+        
+        self.string = mutableString as String
+        self.selectedRanges = context.selectedRanges ?? self.selectedRanges
     }
 }

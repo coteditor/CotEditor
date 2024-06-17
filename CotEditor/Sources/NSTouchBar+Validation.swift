@@ -116,11 +116,6 @@ extension NSTouchBar {
     private init() { }
     
     
-    deinit {
-        self.validationTimer?.invalidate()
-    }
-    
-    
     
     // MARK: Private Methods
     
@@ -190,7 +185,7 @@ extension NSTouchBar {
 
 // MARK: -
 
-extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
+extension NSCustomTouchBarItem: @retroactive NSValidatedUserInterfaceItem {
     
     /// Validates item if content view is NSControl.
     fileprivate func validate() {

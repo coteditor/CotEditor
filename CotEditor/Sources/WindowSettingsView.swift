@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Defaults
 
 struct WindowSettingsView: View {
     
@@ -72,7 +73,7 @@ struct WindowSettingsView: View {
                 
                 Picker(selection: $windowTabbing) {
                     (Text("Respect System Setting", tableName: "WindowSettings") +
-                     Text(" (\(NSWindow.userTabbingPreference.label))").foregroundColor(.secondary)).tag(-1)
+                     Text(" (\(NSWindow.userTabbingPreference.label))").foregroundStyle(.secondary)).tag(-1)
                     
                     Divider()
                     
@@ -249,7 +250,7 @@ struct WindowSettingsView: View {
             
             HStack {
                 Spacer()
-                HelpButton(anchor: "settings_window")
+                HelpLink(anchor: "settings_window")
             }.padding(.top, -8)
         }
         .scenePadding()

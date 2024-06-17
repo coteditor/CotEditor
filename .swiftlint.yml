@@ -1,5 +1,5 @@
 deployment_target:
-  macOS_deployment_target: 13
+  macOS_deployment_target: 14
 
 excluded:
   - "*/.build"
@@ -37,7 +37,6 @@ opt_in_rules:
   - legacy_multiple
   - let_var_whitespace
   - lower_acl_than_parent
-  - missing_docs
   - multiline_function_chains
   - multiline_parameters
   - multiline_parameters_brackets

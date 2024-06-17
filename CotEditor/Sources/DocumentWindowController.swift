@@ -27,6 +27,7 @@
 import AppKit
 import Combine
 import SwiftUI
+import Defaults
 
 final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
@@ -66,7 +67,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Lifecycle
     
-    convenience init(document: Document) {
+    required init(document: Document) {
         
         let window = DocumentWindow(contentViewController: WindowContentViewController(document: document))
         window.styleMask.update(with: .fullSizeContentView)
@@ -81,7 +82,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             window.setFrame(.init(origin: window.frame.origin, size: frameSize), display: false)
         }
         
-        self.init(window: window)
+        super.init(window: window)
         
         window.delegate = self
         
@@ -125,27 +126,22 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     
     // MARK: Window Controller Methods
     
     override unowned(unsafe) var document: AnyObject? {
         
-        willSet {
-            self.documentSyntaxObserver = nil
-        }
-        
         didSet {
-            guard let document = document as? Document else { return }
-            
-            if document != oldValue as? Document {
-                (self.contentViewController as? WindowContentViewController)?.document = document
+            self.documentSyntaxObserver = nil
+            if let document = document as? Document {
+                self.updateDocument(document)
             }
-            
-            // observe document's syntax change
-            self.documentSyntaxObserver = document.didChangeSyntax
-                .merge(with: Just(document.syntaxParser.name))
-                .receive(on: RunLoop.main)
-                .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
         }
     }
     
@@ -196,6 +192,23 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     
     // MARK: Private Methods
+    
+    /// Updates document by passing it to the content view controller and updating the observation.
+    ///
+    /// - Parameter document: The new document.
+    private func updateDocument(_ document: Document) {
+        
+        if let viewController = self.contentViewController as? WindowContentViewController, viewController.document != document {
+            viewController.document = document
+        }
+        
+        // observe document's syntax change for toolbar
+        self.documentSyntaxObserver = document.didChangeSyntax
+            .merge(with: Just(document.syntaxParser.name))
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
+    }
+    
     
     /// Restores the window opacity.
     private func restoreWindowOpacity() {
@@ -336,14 +349,6 @@ private extension NSToolbarItem.Identifier {
 }
 
 
-public extension NSToolbarItem.Identifier {
-    
-    /// The back-deployed version of the `.inspectorTrackingSeparator` to use the same identifier to the original one for the autosaving compatibility.
-    @backDeployed(before: macOS 14)
-    static var inspectorTrackingSeparator: Self  { Self("NSToolbarInspectorTrackingSeparatorItemIdentifier") }
-}
-
-
 extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarImmovableItemIdentifiers(_ toolbar: NSToolbar) -> Set<NSToolbarItem.Identifier> {
@@ -426,11 +431,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.toolTip = String(localized: "Toolbar.inspector.tooltip",
                                       defaultValue: "Show document information", table: "Document")
                 item.image = NSImage(systemSymbolName: "info.circle", accessibilityDescription: item.label)
-                item.action = if #available(macOS 14, *) {
-                    #selector(NSSplitViewController.toggleInspector)
-                } else {
-                    #selector(WindowContentViewController.toggleInspector)
-                }
+                item.action = #selector(NSSplitViewController.toggleInspector)
                 item.visibilityPriority = .high
                 return item
                 
@@ -566,8 +567,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                                     defaultValue: "Tab Style", table: "Document")
                 item.toolTip = String(localized: "Toolbar.tabStyle.tooltip.off",
                                       defaultValue: "Use spaces for indentation", table: "Document")
-                item.stateImages[.on] = NSImage(resource: .tabRightSplit)
-                item.stateImages[.off] = NSImage(resource: .tabRight)
+                item.stateImages[.on] = NSImage(resource: .tabForwardSplit)
+                item.stateImages[.off] = NSImage(resource: .tabForward)
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
                 item.menu.items = [
                     .sectionHeader(title: String(localized: "Toolbar.tabStyle.menu.tabWidth.label",
@@ -621,7 +622,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                                     defaultValue: "Indent Guides", table: "Document")
                 item.toolTip = String(localized: "Toolbar.indentGuides.tooltip.off",
                                       defaultValue: "Show indent guide lines", table: "Document")
-                item.stateImages[.on] = NSImage(resource: .textIndentguidesHide)
+                item.stateImages[.on] = NSImage(resource: .textIndentguides)
+                    .withSymbolConfiguration(.init(paletteColors: [.tertiaryLabelColor, .labelColor]))
                 item.stateImages[.off] = NSImage(resource: .textIndentguides)
                 item.action = #selector(DocumentViewController.toggleIndentGuides)
                 item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
@@ -640,21 +642,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .opacity:
-                guard #available(macOS 14, *) else {
-                    let menuItem = NSMenuItem()
-                    menuItem.view = OpacityHostingView(window: self.window as? DocumentWindow)
-                    let item = MenuToolbarItem(itemIdentifier: itemIdentifier)
-                    item.label = String(localized: "Toolbar.opacity.label",
-                                        defaultValue: "Opacity", table: "Document")
-                    item.toolTip = String(localized: "Toolbar.opacity.tooltip",
-                                          defaultValue: "Change editor’s opacity", table: "Document")
-                    item.image = NSImage(resource: .uiwindowOpacity)
-                    item.target = self
-                    item.showsIndicator = false
-                    item.menu = NSMenu()
-                    item.menu.items = [menuItem]
-                    return item
-                }
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = String(localized: "Toolbar.opacity.label",
@@ -742,11 +729,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                                       defaultValue: "Share document file", table: "Document",
                                       comment: "(label for the Share toolbar item is automatically set)")
                 item.delegate = self
-                return item
-                
-            case .inspectorTrackingSeparator where ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 14:
-                let splitView = (self.contentViewController as! NSSplitViewController).splitView
-                let item = NSTrackingSeparatorToolbarItem(identifier: itemIdentifier, splitView: splitView, dividerIndex: 0)
                 return item
                 
             default:

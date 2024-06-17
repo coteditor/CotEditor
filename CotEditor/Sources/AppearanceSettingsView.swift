@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Defaults
 
 struct AppearanceSettingsView: View {
     
@@ -64,7 +65,7 @@ struct AppearanceSettingsView: View {
                     .accessibilityLabeledPair(role: .label, id: "monospacedFont", in: self.accessibility)
                 
                 FontSettingView(data: $monospacedFont, fallback: FontType.monospaced.systemFont(), antialias: $monospacedShouldAntialias, ligature: $monospacedLigature)
-                    .onChange(of: self.monospacedFont) { [oldValue = self.monospacedFont] newValue in
+                    .onChange(of: self.monospacedFont) { (oldValue, newValue) in
                         guard
                             let newValue,
                             let font = NSFont(archivedData: newValue),
@@ -145,7 +146,7 @@ struct AppearanceSettingsView: View {
             
             HStack {
                 Spacer()
-                HelpButton(anchor: "settings_appearance")
+                HelpLink(anchor: "settings_appearance")
             }
         }
         .scenePadding()
@@ -198,22 +199,6 @@ private struct FontSettingView: View {
 }
 
 
-private struct ThemeView: NSViewControllerRepresentable {
-    
-    typealias NSViewControllerType = ThemeViewController
-    
-    
-    func makeNSViewController(context: Context) -> ThemeViewController {
-        
-        NSStoryboard(name: "ThemeView", bundle: nil).instantiateInitialController()!
-    }
-    
-    func updateNSViewController(_ nsViewController: ThemeViewController, context: Context) {
-        
-    }
-}
-
-
 private extension AppearanceMode {
     
     var label: String {
@@ -243,9 +228,10 @@ private extension AppearanceMode {
     AppearanceSettingsView()
 }
 
+@available(macOS 15, *)
 #Preview("FontSettingView") {
-    @State var antialias = false
-    @State var ligature = false
+    @Previewable @State var antialias = false
+    @Previewable @State var ligature = false
     
     return FontSettingView(data: .constant(Data()), fallback: .systemFont(ofSize: 0), antialias: $antialias, ligature: $ligature)
         .padding()

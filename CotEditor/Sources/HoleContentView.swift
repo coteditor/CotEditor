@@ -49,6 +49,7 @@ final class HoleContentView: NSView {
         
         super.viewWillMove(toWindow: newWindow)
         
+        self.holeViewObserver?.cancel()
         self.windowOpacityObserver = newWindow?.publisher(for: \.isOpaque, options: .initial)
             .sink { [unowned self] isOpaque in
                 self.holes.removeAll()
@@ -75,11 +76,13 @@ final class HoleContentView: NSView {
         
         guard self.window?.isOpaque == false else { return super.draw(dirtyRect) }
         
+        let fillRect = dirtyRect.intersection(self.bounds)
+        
         NSColor.windowBackgroundColor.setFill()
-        dirtyRect.fill()
+        fillRect.fill()
         
         for hole in self.holes {
-            hole.intersection(dirtyRect).fill(using: .clear)
+            hole.intersection(fillRect).fill(using: .clear)
         }
     }
 }

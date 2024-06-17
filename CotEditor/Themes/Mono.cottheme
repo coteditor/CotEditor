@@ -1,57 +1,59 @@
 {
-  "text" : {
-    "color" : "#000000"
-  },
-  "insertionPoint" : {
-    "color" : "#000000"
-  },
-  "invisibles" : {
-    "color" : "#cbcbcb"
+  "attributes" : {
+    "color" : "#797979"
   },
   "background" : {
     "color" : "#ffffff"
   },
-  "lineHighlight" : {
-    "color" : "#ebebeb"
-  },
-  "selection" : {
-    "color" : "#a7caff",
-    "usesSystemSetting" : true
-  },
-  "keywords" : {
-    "color" : "#515151"
+  "characters" : {
+    "color" : "#797979"
   },
   "commands" : {
-    "color" : "#797979"
-  },
-  "types" : {
-    "color" : "#797979"
-  },
-  "attributes" : {
-    "color" : "#797979"
-  },
-  "variables" : {
-    "color" : "#797979"
-  },
-  "values" : {
-    "color" : "#797979"
-  },
-  "numbers" : {
-    "color" : "#797979"
-  },
-  "strings" : {
-    "color" : "#797979"
-  },
-  "characters" : {
     "color" : "#797979"
   },
   "comments" : {
     "color" : "#929292"
   },
+  "insertionPoint" : {
+    "color" : "#000000",
+    "usesSystemSetting" : false
+  },
+  "invisibles" : {
+    "color" : "#cbcbcb"
+  },
+  "keywords" : {
+    "color" : "#515151"
+  },
+  "lineHighlight" : {
+    "color" : "#e8e8e8b3"
+  },
   "metadata" : {
     "author" : "1024jp",
-    "distributionURL" : "https://coteditor.com",
-    "license" : "Same as CotEditor (Apache, ver.2)",
-    "description" : "CotEditor bundled theme."
+    "description" : "CotEditor bundled theme.",
+    "distributionURL" : "https:\/\/coteditor.com",
+    "license" : "Same as CotEditor (Apache, ver.2)"
+  },
+  "name" : "Mono",
+  "numbers" : {
+    "color" : "#797979"
+  },
+  "selection" : {
+    "color" : "#a7caff",
+    "usesSystemSetting" : true
+  },
+  "strings" : {
+    "color" : "#797979"
+  },
+  "text" : {
+    "color" : "#000000"
+  },
+  "types" : {
+    "color" : "#797979"
+  },
+  "values" : {
+    "color" : "#797979"
+  },
+  "variables" : {
+    "color" : "#797979"
   }
 }

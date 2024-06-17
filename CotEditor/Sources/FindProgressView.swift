@@ -36,7 +36,7 @@ struct FindProgressView: View {
     
     weak var parent: NSHostingController<Self>?
     
-    @ObservedObject private var progress: FindProgress
+    @State private var progress: FindProgress
     private let unit: Unit
     private let label: String
     
@@ -72,14 +72,13 @@ struct FindProgressView: View {
                 Text(self.description)
             }
             
-            Button(role: .cancel) {
+            Button("Cancel", systemImage: "xmark", role: .cancel) {
                 self.progress.cancel()
-            } label: {
-                Image(systemName: "xmark")
-                    .symbolVariant(.circle)
-                    .symbolVariant(.fill)
-                    .accessibilityLabel("Cancel")
-            }.buttonStyle(.borderless)
+            }
+            .symbolVariant(.circle)
+            .symbolVariant(.fill)
+            .labelStyle(.iconOnly)
+            .buttonStyle(.borderless)
         }
         .onAppear {
             self.updateDescription()
@@ -87,12 +86,12 @@ struct FindProgressView: View {
         .onReceive(self.timer) { _ in
             self.updateDescription()
         }
-        .onChange(of: self.progress.isCancelled) { newValue in
+        .onChange(of: self.progress.isCancelled) { (_, newValue) in
             if newValue {
                 self.parent?.dismiss(nil)
             }
         }
-        .onChange(of: self.progress.isFinished) { newValue in
+        .onChange(of: self.progress.isFinished) { (_, newValue) in
             if newValue {
                 self.updateDescription()
                 self.parent?.dismiss(nil)

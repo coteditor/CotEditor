@@ -25,39 +25,6 @@
 
 import SwiftUI
 
-@available(macOS, deprecated: 14)
-@MainActor final class OpacityHostingView: NSHostingView<EditorOpacityView> {
-    
-    convenience init(window: DocumentWindow?) {
-        
-        assert(window != nil)
-        
-        self.init(rootView: EditorOpacityView(window: window))
-        
-        self.frame.size = self.intrinsicContentSize
-    }
-    
-    
-    required init?(coder aDecoder: NSCoder) {
-        
-        // Implementing `init(coder:)` is required for toolbar item menu representation.
-        
-        let window = NSDocumentController.shared.currentDocument?.windowControllers.first?.window as? DocumentWindow
-        assert(window != nil)
-        
-        super.init(rootView: EditorOpacityView(window: window))
-        
-        self.frame.size = self.intrinsicContentSize
-    }
-    
-    
-    @MainActor required init(rootView: EditorOpacityView) {
-        
-        super.init(rootView: rootView)
-    }
-}
-
-
 struct EditorOpacityView: View {
     
     weak var window: DocumentWindow?
@@ -73,7 +40,7 @@ struct EditorOpacityView: View {
                 .foregroundStyle(.secondary)
             
             OpacitySlider(value: $opacity)
-                .onChange(of: self.opacity) { newValue in
+                .onChange(of: self.opacity) { (_, newValue) in
                     self.window?.backgroundAlpha = newValue
                 }
                 .controlSize(.small)

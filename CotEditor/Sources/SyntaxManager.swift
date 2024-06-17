@@ -29,6 +29,7 @@ import Combine
 import AppKit.NSMenuItem
 import UniformTypeIdentifiers
 import Yams
+import Defaults
 import SyntaxMap
 
 @MainActor @objc protocol SyntaxChanging: AnyObject {

@@ -58,18 +58,12 @@ struct FindPanelButtonView: View {
             .fixedSize()
             
             ControlGroup {
-                Button {
+                Button(String(localized: "Find Previous", table: "TextFind", comment: "button label"), systemImage: "chevron.backward") {
                     self.performAction(.previousMatch)
-                } label: {
-                    Label(String(localized: "Find Previous", table: "TextFind", comment: "button label"),
-                          systemImage: "chevron.backward")
                 }.help(String(localized: "Find previous match.", table: "TextFind", comment: "tooltip"))
                 
-                Button {
+                Button(String(localized: "Find Next", table: "TextFind", comment: "button label"), systemImage: "chevron.forward") {
                     self.performAction(.nextMatch)
-                } label: {
-                    Label(String(localized: "Find Next", table: "TextFind", comment: "button label"),
-                          systemImage: "chevron.forward")
                 }.help(String(localized: "Find next match.", table: "TextFind", comment: "tooltip"))
             }
             .labelStyle(.iconOnly)
@@ -85,7 +79,7 @@ struct FindPanelButtonView: View {
     /// Send a text finder action message to the legacy responder-chain.
     ///
     /// - Parameter action: The `TextFinder.Action` to perform.
-    @MainActor private func performAction(_ action: TextFinder.Action) {
+    private func performAction(_ action: TextFinder.Action) {
         
         // create a dummy sender for tag
         let sender = NSControl()
