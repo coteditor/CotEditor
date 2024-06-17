@@ -579,7 +579,7 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
     
     var name: String
     var type: UTType
-    var continuationHandler: (() throws -> Void)
+    var continuationHandler: (@Sendable () throws -> Void)
     
     
     var errorDescription: String? {

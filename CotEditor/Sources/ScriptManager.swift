@@ -61,9 +61,11 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         
         super.init()
         
-        self.syntaxObserver = (DocumentController.shared as! DocumentController).$currentSyntaxName
-            .removeDuplicates()
-            .sink { [unowned self] styleName in Task { @MainActor in self.currentContext = styleName } }
+        Task { @MainActor in
+            self.syntaxObserver = (DocumentController.shared as! DocumentController).$currentSyntaxName
+                .removeDuplicates()
+                .sink { [unowned self] styleName in Task { @MainActor in self.currentContext = styleName } }
+        }
     }
     
     
