@@ -60,18 +60,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     private static let maximumNumberOfSplitEditors = 4
     
-    /// Keys for NSNumber values to be restored from the last session (Bool is also an NSNumber).
-    private static let restorableNumberStateKeyPaths: [String] = [
-        #keyPath(showsLineNumber),
-        #keyPath(showsPageGuide),
-        #keyPath(showsIndentGuides),
-        #keyPath(showsInvisibles),
-        #keyPath(wrapsLines),
-        #keyPath(verticalLayoutOrientation),
-        #keyPath(isAutoTabExpandEnabled),
-        #keyPath(writingDirection),
-    ]
-    
     private let splitState = SplitState()
     
     private weak var focusedChild: EditorViewController?
@@ -210,16 +198,34 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     override class var restorableStateKeyPaths: [String] {
         
-        super.restorableStateKeyPaths + self.restorableNumberStateKeyPaths
+        super.restorableStateKeyPaths + [
+            #keyPath(showsLineNumber),
+            #keyPath(showsPageGuide),
+            #keyPath(showsIndentGuides),
+            #keyPath(showsInvisibles),
+            #keyPath(wrapsLines),
+            #keyPath(verticalLayoutOrientation),
+            #keyPath(isAutoTabExpandEnabled),
+            #keyPath(writingDirection),
+        ]
     }
     
     
     override class func allowedClasses(forRestorableStateKeyPath keyPath: String) -> [AnyClass] {
         
-        if self.restorableNumberStateKeyPaths.contains(keyPath) {
-            [NSNumber.self]
-        } else {
-            super.allowedClasses(forRestorableStateKeyPath: keyPath)
+        switch keyPath {
+            case #keyPath(showsLineNumber),
+                #keyPath(showsPageGuide),
+                #keyPath(showsIndentGuides),
+                #keyPath(showsInvisibles),
+                #keyPath(wrapsLines),
+                #keyPath(verticalLayoutOrientation),
+                #keyPath(isAutoTabExpandEnabled),
+                #keyPath(writingDirection):
+                // -> Bool is also an NSNumber
+                [NSNumber.self]
+            default:
+                super.allowedClasses(forRestorableStateKeyPath: keyPath)
         }
     }
     
