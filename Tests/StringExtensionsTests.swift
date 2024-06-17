@@ -31,25 +31,15 @@ import Testing
 struct StringExtensionsTests {
     
     /// Tests if the U+FEFF omitting bug on Swift 5 still exists.
-    @Test(.bug("https://bugs.swift.org/browse/SR-10896")) func feff() {
+    @Test(.bug("https://bugs.swift.org/browse/SR-10896")) func immutable() {
+        
+        #expect("abc".immutable == "abc")
         
         let bom = "\u{feff}"
-        
-        // -> Some of these test cases must fail if the bug fixed.
-        #expect(bom.count == 1)
-        #expect(("\(bom)abc").count == 4)
-        #expect(NSString(string: bom).length == 0)  // correct: 1
-        #expect(NSString(string: "\(bom)\(bom)").length == 1)  // correct: 2
-        #expect(NSString(string: "\(bom)abc").length == 3)  // correct: 4
-        #expect(NSString(string: "a\(bom)bc").length == 4)
-        
         let string = "\(bom)abc"
-        #expect(string.immutable != string)  // -> This test must fail if the bug fixed.
-        
-        // Implicit NSString cast is fixed.
-        // -> However, still crashes when `string.immutable.enumerateSubstrings(in:)`
-        let middleIndex = string.index(string.startIndex, offsetBy: 2)
-        string.enumerateSubstrings(in: middleIndex..<string.endIndex, options: .byLines) { (_, _, _, _) in }
+        withKnownIssue {
+            #expect(string.immutable == string)
+        }
     }
     
     

@@ -42,9 +42,13 @@ actor ThemeTests {
         #expect(theme.name == themeName)
         #expect(theme.text.color == NSColor.black.usingColorSpace(.genericRGB))
         #expect(theme.insertionPoint.color == NSColor.black.usingColorSpace(.genericRGB))
-//        #expect(theme.invisibles.color.brightnessComponent == 0.725)  // accuracy: 0.01
+        withKnownIssue("Test-side issue") {
+            #expect(theme.invisibles.color.brightnessComponent == 0.725)  // accuracy: 0.01
+        }
         #expect(theme.background.color == NSColor.white.usingColorSpace(.genericRGB))
-//        #expect(theme.lineHighlight.color.brightnessComponent == 0.929)  // accuracy: 0.01
+        withKnownIssue("Test-side issue") {
+            #expect(theme.lineHighlight.color.brightnessComponent == 0.929)  // accuracy: 0.01
+        }
         #expect(theme.effectiveSecondarySelectionColor(for: NSAppearance(named: .aqua)!) == .unemphasizedSelectedContentBackgroundColor)
         #expect(!theme.isDarkTheme)
         

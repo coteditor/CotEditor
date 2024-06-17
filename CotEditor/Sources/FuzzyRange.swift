@@ -207,7 +207,7 @@ extension String {
 
 
 
-enum FuzzyLocationError: Error {
+enum FuzzyLocationError: Error, Equatable {
     
     case invalidLine(Int)
     case invalidColumn(Int)

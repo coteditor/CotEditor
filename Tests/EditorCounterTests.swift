@@ -76,17 +76,19 @@ import Testing
         counter.invalidateContent()
         counter.invalidateSelection()
         
-//        #expect(counter.result.lines.entire == 3)
-//        #expect(counter.result.characters.entire == 31)
-//        #expect(counter.result.words.entire == 6)
-        
-//        #expect(counter.result.characters.selected == 9)
-//        #expect(counter.result.lines.selected == 1)
-//        #expect(counter.result.words.selected == 2)
-        
-//        #expect(counter.result.location == 10)
-//        #expect(counter.result.column == 0)
-//        #expect(counter.result.line == 2)
+        withKnownIssue("values will be updated asynchronously (This is the issue on the test side.)") {
+            #expect(counter.result.lines.entire == 3)
+            #expect(counter.result.characters.entire == 31)
+            #expect(counter.result.words.entire == 6)
+            
+            #expect(counter.result.characters.selected == 9)
+            #expect(counter.result.lines.selected == 1)
+            #expect(counter.result.words.selected == 2)
+            
+            #expect(counter.result.location == 10)
+            #expect(counter.result.column == 0)
+            #expect(counter.result.line == 2)
+        }
     }
     
     
@@ -103,13 +105,15 @@ import Testing
         #expect(counter.result.characters.entire == nil)
         #expect(counter.result.words.entire == nil)
         
-//        #expect(counter.result.lines.selected == 1)
-//        #expect(counter.result.characters.selected == 9)
-//        #expect(counter.result.words.selected == 2)
-        
-//        #expect(counter.result.location == 10)
-//        #expect(counter.result.column == 0)
-//        #expect(counter.result.line == 2)
+        withKnownIssue("values will be updated asynchronously (This is the issue on the test side.)") {
+            #expect(counter.result.lines.selected == 1)
+            #expect(counter.result.characters.selected == 9)
+            #expect(counter.result.words.selected == 2)
+            
+            #expect(counter.result.location == 10)
+            #expect(counter.result.column == 0)
+            #expect(counter.result.line == 2)
+        }
     }
     
     

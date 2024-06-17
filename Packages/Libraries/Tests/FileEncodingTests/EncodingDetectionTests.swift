@@ -30,11 +30,13 @@ import Testing
 
 struct EncodingDetectionTests {
     
-    @Test func utf8BOM() throws {
+    @Test(.bug("https://bugs.swift.org/browse/SR-10173")) func utf8BOM() throws {
         
         // -> String(data:encoding:) preserves BOM since Swift 5 (2019-03)
-        //    cf. https://bugs.swift.org/browse/SR-10173
         let data = try self.dataForFileName("UTF-8 BOM")
+        withKnownIssue {
+            #expect(String(decoding: data, as: UTF8.self) == "0")
+        }
         #expect(String(decoding: data, as: UTF8.self) == "\u{FEFF}0")
         #expect(String(bomCapableData: data, encoding: .utf8) == "0")
         
@@ -46,6 +48,35 @@ struct EncodingDetectionTests {
         
         #expect(String(bomCapableData: Data(Unicode.BOM.utf8.sequence), encoding: .utf8)?.isEmpty == true)
         #expect(String(bomCapableData: Data(), encoding: .utf8)?.isEmpty == true)
+    }
+    
+    
+    /// Tests if the U+FEFF omitting bug on Swift 5 still exists.
+    @Test(.bug("https://bugs.swift.org/browse/SR-10896")) func feff() {
+        
+        let bom = "\u{feff}"
+        #expect(bom.count == 1)
+        #expect(("\(bom)abc").count == 4)
+        
+        #expect(NSString(string: "a\(bom)bc").length == 4)
+        withKnownIssue {
+            #expect(NSString(string: bom) as String == bom)
+            #expect(NSString(string: bom).length == 1)
+            #expect(NSString(string: "\(bom)\(bom)").length == 2)
+            #expect(NSString(string: "\(bom)abc").length == 4)
+        }
+        
+        // -> These test cases must fail if the bug fixed.
+        #expect(NSString(string: bom).length == 0)
+        #expect(NSString(string: "\(bom)\(bom)").length == 1)
+        #expect(NSString(string: "\(bom)abc").length == 3)
+        
+        let string = "\(bom)abc"
+        
+        // Implicit NSString cast is fixed.
+        // -> However, still crashes when `string.immutable.enumerateSubstrings(in:)`
+        let middleIndex = string.index(string.startIndex, offsetBy: 2)
+        string.enumerateSubstrings(in: middleIndex..<string.endIndex, options: .byLines) { (_, _, _, _) in }
     }
     
     

@@ -117,13 +117,13 @@ struct FuzzyRangeTests {
         #expect(try string.fuzzyLocation(line: -1) == 13)
         #expect(try string.fuzzyLocation(line: -2) == 9)
         #expect(try string.fuzzyLocation(line: -5) == 0)
-        #expect(throws: FuzzyLocationError.self) { try string.fuzzyLocation(line: -6) }
+        #expect(throws: FuzzyLocationError.invalidLine(-6)) { try string.fuzzyLocation(line: -6) }
         
         // line with a line ending
         #expect(try string.fuzzyLocation(line: 4, column: 0) == 9)
         #expect(try string.fuzzyLocation(line: 4, column: 1) == 10)
         #expect(try string.fuzzyLocation(line: 4, column: 3) == 12)
-        #expect(throws: FuzzyLocationError.self) { try string.fuzzyLocation(line: 4, column: 4) }
+        #expect(throws: FuzzyLocationError.invalidColumn(4)) { try string.fuzzyLocation(line: 4, column: 4) }
         #expect(try string.fuzzyLocation(line: 4, column: -1) == 12)
         #expect(try string.fuzzyLocation(line: 4, column: -2) == 11)
         
@@ -131,7 +131,7 @@ struct FuzzyRangeTests {
         #expect(try string.fuzzyLocation(line: 5, column: 0) == 13)
         #expect(try string.fuzzyLocation(line: 5, column: 1) == 14)
         #expect(try string.fuzzyLocation(line: 5, column: 3) == 16)
-        #expect(throws: FuzzyLocationError.self) { try string.fuzzyLocation(line: 5, column: 4) }
+        #expect(throws: FuzzyLocationError.invalidColumn(4)) { try string.fuzzyLocation(line: 5, column: 4) }
         #expect(try string.fuzzyLocation(line: 5, column: -1) == 16)
         #expect(try string.fuzzyLocation(line: 5, column: -2) == 15)
     }
