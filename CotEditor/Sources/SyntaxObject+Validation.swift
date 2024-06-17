@@ -39,7 +39,7 @@ extension SyntaxObject {
         
         
         var code: Code
-        var type: PartialKeyPath<SyntaxObject>
+        nonisolated(unsafe) var type: PartialKeyPath<SyntaxObject>
         var string: String
         
         
