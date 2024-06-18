@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import AppKit.NSTextStorage
 import Testing
 @testable import CotEditor
 
@@ -40,6 +41,17 @@ struct StringExtensionsTests {
         withKnownIssue {
             #expect(string.immutable == string)
         }
+    }
+    
+    
+    @Test func bigMutableString() {
+        
+        let string = NSTextStorage(string: String(repeating: "a", count: 512)).string
+        let bigString = NSTextStorage(string: String(repeating: "a", count: 513)).string
+        
+        #expect((string as NSString).className == "__NSCFString")
+        #expect((bigString as NSString).className == "NSBigMutableString")
+        #expect(!(bigString.immutable as NSString).className.contains("Mutable"))
     }
     
     
