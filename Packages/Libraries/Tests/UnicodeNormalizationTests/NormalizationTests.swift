@@ -36,4 +36,28 @@ struct NormalizationTests {
         #expect("\u{1f71}".precomposedStringWithHFSPlusMapping == "\u{1f71}")  // test single char
         #expect("\u{1f71}".decomposedStringWithHFSPlusMapping == "\u{03b1}\u{0301}")
     }
+    
+    
+    @Test(arguments: UnicodeNormalizationForm.allCases) func normalize(form: UnicodeNormalizationForm) {
+        
+        #expect("abc".normalizing(in: form) == "abc")
+        
+        let normalized = "É \t 神 ㍑ ＡＢC".normalizing(in: form)
+        switch form {
+            case .nfd:
+                #expect(normalized == "É \t 神 ㍑ ＡＢC")
+            case .nfc:
+                #expect(normalized == "É \t 神 ㍑ ＡＢC")
+            case .nfkd:
+                #expect(normalized == "É \t 神 リットル ABC")
+            case .nfkc:
+                #expect(normalized == "É \t 神 リットル ABC")
+            case .nfkcCasefold:
+                #expect(normalized == "é \t 神 リットル abc")
+            case .modifiedNFD:
+                #expect(normalized == "É \t 神 ㍑ ＡＢC")
+            case .modifiedNFC:
+                #expect(normalized == "É \t 神 ㍑ ＡＢC")
+        }
+    }
 }

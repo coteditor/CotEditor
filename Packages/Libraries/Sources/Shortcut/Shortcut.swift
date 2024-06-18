@@ -333,7 +333,7 @@ public struct Shortcut: Sendable {
     
     
     /// Table for key equivalent that have SF Symbols to display.
-    private static let keyEquivalentSymbolNames: [Unicode.Scalar: String] = [
+    static let keyEquivalentSymbolNames: [Unicode.Scalar: String] = [
         NSEvent.SpecialKey
         .backspace: "delete.backward",
         .carriageReturn: "return",

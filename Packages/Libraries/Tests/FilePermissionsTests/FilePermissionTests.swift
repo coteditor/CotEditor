@@ -36,6 +36,9 @@ struct FilePermissionTests {
         
         #expect(FilePermissions(mask: 0o777).symbolic == "rwxrwxrwx")
         #expect(FilePermissions(mask: 0o643).symbolic == "rw-r---wx")
+        
+        #expect(FilePermissions(mask: 0o777).description == "rwxrwxrwx")
+        #expect(FilePermissions(mask: 0o643).description == "rw-r---wx")
     }
     
     
@@ -43,6 +46,10 @@ struct FilePermissionTests {
         
         #expect(FilePermissions(mask: 0o777).formatted(.filePermissions(.full)) == "777 (-rwxrwxrwx)")
         #expect(FilePermissions(mask: 0o643).formatted(.filePermissions(.full)) == "643 (-rw-r---wx)")
+        
+        #expect(FilePermissions(mask: 0o643).formatted(.filePermissions(.octal)) == "643")
+        #expect(FilePermissions(mask: 0o643).formatted() == "643 (-rw-r---wx)")
+        #expect(FilePermissions(mask: 0o643).formatted(.filePermissions) == "643 (-rw-r---wx)")
     }
     
     

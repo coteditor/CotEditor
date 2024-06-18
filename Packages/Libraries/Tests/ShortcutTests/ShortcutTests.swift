@@ -53,6 +53,8 @@ struct ShortcutTests {
         #expect(Shortcut("", modifiers: [.control, .shift]) == nil)
         #expect(Shortcut("a", modifiers: [.control, .shift])?.isValid == true)
         #expect(Shortcut("ab", modifiers: [.control, .shift])?.isValid == false)
+        
+        #expect(Shortcut(.backspace, modifiers: []).keyEquivalent == String(NSEvent.SpecialKey.backspace.unicodeScalar))
     }
     
     
@@ -84,6 +86,12 @@ struct ShortcutTests {
     }
     
     
+    @Test(arguments: Shortcut.keyEquivalentSymbolNames.values) func symbol(name: String) {
+        
+        #expect(NSImage(systemSymbolName: name, accessibilityDescription: nil) != nil)
+    }
+    
+    
     @Test func menuItemShortcut() {
         
         let menuItem = NSMenuItem(title: "", action: nil, keyEquivalent: "C")
@@ -93,6 +101,10 @@ struct ShortcutTests {
         
         #expect(shortcut?.symbol == "⇧ ⌘ C")
         #expect(shortcut == menuItem.shortcut)
+        
+        let shortcutA = Shortcut("A", modifiers: [.shift])
+        menuItem.shortcut = shortcutA
+        #expect(menuItem.shortcut == shortcutA)
     }
     
     
@@ -117,5 +129,6 @@ struct ShortcutTests {
         #expect(Shortcut(symbolRepresentation: "⌥ ⌘ B")?.keySpecChars == "~@b")
         #expect(Shortcut(symbolRepresentation: "⌘ F10")?.keySpecChars == "@" + f10)
         #expect(Shortcut(symbolRepresentation: "⌘ ⌦")?.keySpecChars == "@" + deleteForward)
+        
     }
 }
