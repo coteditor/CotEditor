@@ -190,7 +190,17 @@ private struct ActionCommandView: View {
     
     var body: some View {
         
-        Label {
+        HStack {
+            Image(systemName: self.command.kind.systemImage)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .font(.system(size: 23))
+                .fontWeight(.light)
+                .foregroundStyle(self.isSelected ? .primary : .secondary)
+                .frame(width: 26, height: 22, alignment: .center)
+                .accessibilityLabel(self.command.kind.label)
+                .padding(.horizontal, 4)
+            
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     ForEach(Array(self.matches.enumerated()), id: \.offset) { (offset, match) in
@@ -228,16 +238,6 @@ private struct ActionCommandView: View {
                     .foregroundStyle(self.isSelected ? .primary : .secondary)
                     .layoutPriority(100)
             }
-        } icon: {
-            Image(systemName: self.command.kind.systemImage)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .font(.system(size: 23))
-                .fontWeight(.light)
-                .foregroundStyle(self.isSelected ? .primary : .secondary)
-                .frame(width: 26, height: 22, alignment: .center)
-                .accessibilityLabel(self.command.kind.label)
-                .padding(.horizontal, 4)
         }
         .lineLimit(1)
         .padding(.vertical, 4)

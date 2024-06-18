@@ -3,6 +3,10 @@
 4.8.7 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix the view layout in the Quick Action bar.
+
 
 
 4.8.6 (655)
