@@ -1,5 +1,6 @@
 //
 //  Collection+String.swift
+//  TextEditing
 //
 //  CotEditor
 //  https://coteditor.com
@@ -27,16 +28,22 @@ import Foundation
 
 // MARK: Sort
 
-struct StringComparisonOptions: OptionSet {
+public struct StringComparisonOptions: OptionSet, Equatable, Sendable {
     
-    let rawValue: Int
+    public let rawValue: Int
     
-    static let localized       = Self(rawValue: 1 << 0)
-    static let caseInsensitive = Self(rawValue: 1 << 1)
+    public static let localized       = Self(rawValue: 1 << 0)
+    public static let caseInsensitive = Self(rawValue: 1 << 1)
+    
+    
+    public init(rawValue: Int) {
+        
+        self.rawValue = rawValue
+    }
 }
 
 
-extension MutableCollection where Self: RandomAccessCollection {
+public extension MutableCollection where Self: RandomAccessCollection {
     
     /// Sorts the collection in place, using the string value that the given key path refers as the comparison between elements.
     ///
@@ -64,7 +71,7 @@ extension MutableCollection where Self: RandomAccessCollection {
 }
 
 
-extension Sequence {
+public extension Sequence {
     
     /// Returns the elements of the sequence, sorted using the string value that the given key path refers with the desired string comparison strategy.
     ///

@@ -1,14 +1,14 @@
 //
-//  Pair.swift
+//  NSTextStorageTests.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2016-08-19.
+//  Created by imanishi on 2024/06/19.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2024 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,20 +23,18 @@
 //  limitations under the License.
 //
 
-struct Pair<T> {
+import AppKit.NSTextStorage
+import Testing
+
+struct NSTextStorageTests {
     
-    var begin: T
-    var end: T
-    
-    
-    init(_ begin: T, _ end: T) {
+    @Test func bigMutableString() {
         
-        self.begin = begin
-        self.end = end
+        let string = NSTextStorage(string: String(repeating: "a", count: 512)).string
+        let bigString = NSTextStorage(string: String(repeating: "a", count: 513)).string
+        
+        #expect((string as NSString).className == "__NSCFString")
+        #expect((bigString as NSString).className == "NSBigMutableString")
+        #expect(!(bigString.immutable as NSString).className.contains("Mutable"))
     }
 }
-
-
-extension Pair: Equatable where T: Equatable { }
-extension Pair: Hashable where T: Hashable { }
-extension Pair: Sendable where T: Sendable { }

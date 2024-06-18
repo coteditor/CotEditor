@@ -1,6 +1,6 @@
 //
 //  StringIndentationTests.swift
-//  Tests
+//  TextEditingTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,7 @@
 
 import Foundation
 import Testing
-@testable import CotEditor
+@testable import TextEditing
 
 struct StringIndentationTests {
     

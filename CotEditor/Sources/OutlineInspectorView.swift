@@ -27,6 +27,7 @@ import SwiftUI
 import Observation
 import Combine
 import Defaults
+import TextEditing
 
 final class OutlineInspectorViewController: NSHostingController<OutlineInspectorView>, DocumentOwner {
     

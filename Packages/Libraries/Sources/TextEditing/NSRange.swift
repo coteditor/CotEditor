@@ -1,5 +1,6 @@
 //
 //  NSRange.swift
+//  TextEditing
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import Foundation
 
-extension NSRange {
+public extension NSRange {
     
     static let notFound = NSRange(location: NSNotFound, length: 0)
     
@@ -89,13 +90,21 @@ extension NSRange {
 
 
 
-extension NSRange {
+public extension NSRange {
     
-    struct InsertionItem: Equatable {
+    struct InsertionItem: Equatable, Sendable {
         
-        var string: String
-        var location: Int
-        var forward: Bool
+        public var string: String
+        public var location: Int
+        public var forward: Bool
+        
+        
+        public init(string: String, location: Int, forward: Bool) {
+            
+            self.string = string
+            self.location = location
+            self.forward = forward
+        }
     }
     
     
@@ -134,7 +143,7 @@ extension NSRange {
 }
 
 
-extension Sequence<NSRange> {
+public extension Sequence<NSRange> {
     
     /// The range that contains all ranges.
     var union: NSRange? {
@@ -149,7 +158,7 @@ extension Sequence<NSRange> {
 }
 
 
-extension IndexSet {
+public extension IndexSet {
     
     /// Initializes an index set with multiple NSRanges.
     ///

@@ -25,6 +25,7 @@
 
 import AppKit
 import SwiftUI
+import TextEditing
 
 extension EditorTextView {
     

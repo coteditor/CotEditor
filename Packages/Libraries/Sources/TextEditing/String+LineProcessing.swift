@@ -1,5 +1,6 @@
 //
 //  String+LineProcessing.swift
+//  TextEditing
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
     
     /// Moves selected line up.
     func moveLineUp(in ranges: [NSRange]) -> EditingContext? {
@@ -250,7 +251,7 @@ extension String {
 }
     
     
-extension String {
+public extension String {
     
     /// Sorts selected lines ascending.
     func sortLinesAscending(in range: NSRange) -> EditingContext? {
@@ -302,7 +303,7 @@ extension String {
 }
 
 
-extension String {
+public extension String {
     
     /// Trims all trailing whitespace with/without keeping editing point.
     func trimTrailingWhitespace(ignoringEmptyLines: Bool, keepingEditingPoint: Bool = false, in editingRanges: [NSRange]) -> EditingContext? {

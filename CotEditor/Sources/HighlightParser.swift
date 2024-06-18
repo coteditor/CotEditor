@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import TextEditing
 
 typealias Highlight = ValueRange<SyntaxType>
 

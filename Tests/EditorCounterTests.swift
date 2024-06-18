@@ -127,17 +127,19 @@ import Testing
         counter.invalidateContent()
         counter.invalidateSelection()
         
-//        #expect(counter.result.lines.entire == 2)
-//        #expect(counter.result.characters.entire == 3)
-//        #expect(counter.result.words.entire == 2)
-        
-//        #expect(counter.result.lines.selected == 2)
-//        #expect(counter.result.characters.selected == 2)
-//        #expect(counter.result.words.selected == 1)
-        
-//        #expect(counter.result.location == 1)
-//        #expect(counter.result.column == 1)
-//        #expect(counter.result.line == 1)
+        withKnownIssue("values will be updated asynchronously (This is the issue on the test side.)") {
+            #expect(counter.result.lines.entire == 2)
+            #expect(counter.result.characters.entire == 3)
+            #expect(counter.result.words.entire == 2)
+            
+            #expect(counter.result.lines.selected == 2)
+            #expect(counter.result.characters.selected == 2)
+            #expect(counter.result.words.selected == 1)
+            
+            #expect(counter.result.location == 1)
+            #expect(counter.result.column == 1)
+            #expect(counter.result.line == 1)
+        }
     }
     
     

@@ -28,6 +28,7 @@ import AppKit.NSTextStorage
 import Testing
 import Combine
 import Yams
+import TextEditing
 @testable import CotEditor
 
 actor SyntaxTests {

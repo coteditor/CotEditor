@@ -1,5 +1,6 @@
 //
 //  String+Indentation.swift
+//  TextEditing
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import Foundation
 
-enum IndentStyle {
+public enum IndentStyle: Equatable, Sendable {
     
     case tab
     case space
@@ -39,7 +40,7 @@ private enum DetectionLines {
 }
 
 
-extension String {
+public extension String {
     
     /// Increases indent level in.
     func indent(style: IndentStyle, indentWidth: Int, in selectedRanges: [NSRange]) -> EditingContext {
@@ -62,8 +63,8 @@ extension String {
         
         // calculate new selection range
         let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
-            let shift = lineRanges.countPrefix { $0.location <= selectedRange.location }
-            let lineCount = lineRanges.count { selectedRange.intersects($0) }
+            let shift = lineRanges.prefix(while: { $0.location <= selectedRange.location }).count
+            let lineCount = lineRanges.prefix(while: { selectedRange.intersects($0) }).count
             let lengthDiff = max(lineCount - 1, 0) * indentLength
             
             return NSRange(location: selectedRange.location + shift * indentLength,
@@ -88,7 +89,7 @@ extension String {
         let dropCounts = lines.map { line -> Int in
             switch line.first {
                 case "\t": 1
-                case " ": line.prefix(indentWidth).countPrefix { $0 == " " }
+                case " ": line.prefix(indentWidth).prefix(while: { $0 == " " }).count
                 default: 0
             }
         }
@@ -148,9 +149,7 @@ extension String {
 }
 
     
-extension String {
-    
-    // MARK: Public Methods
+public extension String {
     
     /// Detected indent style.
     var detectedIndentStyle: IndentStyle? {

@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import TextEditing
 
 enum SyntaxType: String, CaseIterable {
     

@@ -1,5 +1,6 @@
 //
 //  String+LineRange.swift
+//  TextEditing
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
     
     /// The first appeared line ending character.
     var firstLineEnding: Character? {
@@ -35,7 +36,7 @@ extension String {
 }
 
 
-extension StringProtocol {
+public extension StringProtocol {
     
     /// Returns the range of the line containing a given index.
     ///
@@ -112,7 +113,7 @@ extension StringProtocol {
 
 // MARK: NSRange based
 
-extension String {
+public extension String {
     
     /// Divides the given range into logical line contents ranges.
     ///
@@ -120,7 +121,7 @@ extension String {
     /// - Returns: Logical line ranges.
     func lineContentsRanges(for range: NSRange? = nil) -> [NSRange] {
         
-        let range = range ?? self.nsRange
+        let range = range ?? NSRange(..<self.utf16.count)
         let regex = try! NSRegularExpression(pattern: "^.*", options: [.anchorsMatchLines])
         
         return regex.matches(in: self, range: range).map(\.range)

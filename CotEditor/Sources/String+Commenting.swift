@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import TextEditing
 
 extension String {
     

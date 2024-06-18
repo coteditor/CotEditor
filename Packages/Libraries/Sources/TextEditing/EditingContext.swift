@@ -1,5 +1,6 @@
 //
 //  EditingContext.swift
+//  TextEditing
 //
 //  CotEditor
 //  https://coteditor.com

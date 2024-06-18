@@ -1,5 +1,6 @@
 //
 //  String+NSRange.swift
+//  TextEditing
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import Foundation.NSString
 
-extension String {
+public extension String {
     
     /// Copied string to make sure the string is not a kind of NSMutableString.
     var immutable: String {
@@ -35,7 +36,7 @@ extension String {
 }
 
 
-extension StringProtocol {
+public extension StringProtocol {
     
     /// Whole range in NSRange.
     var nsRange: NSRange {
@@ -51,7 +52,7 @@ extension StringProtocol {
 }
 
 
-extension NSString {
+public extension NSString {
     
     /// Whole range in NSRange
     var range: NSRange {
@@ -296,7 +297,7 @@ extension NSString {
 }
 
 
-extension unichar {
+public extension unichar {
     
     /// A Boolean value indicating whether this character represents a newline.
     ///

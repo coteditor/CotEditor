@@ -1,5 +1,6 @@
 //
 //  BracePair.swift
+//  TextEditing
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,9 +26,9 @@
 
 import Foundation
 
-typealias BracePair = Pair<Character>
+public typealias BracePair = Pair<Character>
 
-extension Pair where T == Character {
+public extension Pair where T == Character {
     
     static let braces: [BracePair] = [BracePair("(", ")"),
                                       BracePair("{", "}"),
@@ -36,7 +37,7 @@ extension Pair where T == Character {
     static let doubleQuotes = BracePair("\"", "\"")
     
     
-    enum PairIndex {
+    enum PairIndex: Equatable, Sendable {
         
         case begin(String.Index)
         case end(String.Index)
@@ -45,7 +46,7 @@ extension Pair where T == Character {
 }
 
 
-extension StringProtocol {
+public extension StringProtocol {
     
     /// Finds the range enclosed by one of given brace pairs.
     ///

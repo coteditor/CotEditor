@@ -1,5 +1,5 @@
 //
-//  StringCollectionTests.swift
+//  StringFilename.swift
 //  Tests
 //
 //  CotEditor
@@ -27,7 +27,7 @@
 import Testing
 @testable import CotEditor
 
-struct StringCollectionTests {
+struct StringFilename {
     
     @Test func createAvailableNames() {
         

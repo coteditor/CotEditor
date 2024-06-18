@@ -1,5 +1,6 @@
 //
 //  String+Escaping.swift
+//  TextEditing
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
     
     /// Unescaped version of the string by unescaping the characters with backslashes.
     var unescaped: String {
@@ -49,7 +50,7 @@ extension String {
 
 private let maxEscapesCheckLength = 8
 
-extension StringProtocol {
+public extension StringProtocol {
     
     /// Checks if character at the index is escaped with backslash.
     ///

@@ -1,5 +1,6 @@
 //
 //  StringLineProcessingTests.swift
+//  TextEditingTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import Foundation
 import Testing
-@testable import CotEditor
+@testable import TextEditing
 
 struct StringLineProcessingTests {
     
@@ -245,8 +246,54 @@ struct StringLineProcessingTests {
 }
 
 
+struct StringTrimmingTests {
+    
+    @Test func trimWhitespace() throws {
+        
+        let string = """
+            
+            abc def
+                \t
+            white space -> \t
+            abc
+            """
+        
+        let trimmed = try string.trim(ranges: string.rangesOfTrailingWhitespace(ignoringEmptyLines: false))
+        let expectedTrimmed = """
+            
+            abc def
+            
+            white space ->
+            abc
+            """
+        #expect(trimmed == expectedTrimmed)
+        
+        let trimmedIgnoringEmptyLines = try string.trim(ranges: string.rangesOfTrailingWhitespace(ignoringEmptyLines: true))
+        let expectedTrimmedIgnoringEmptyLines =  """
+            
+            abc def
+                \t
+            white space ->
+            abc
+            """
+        #expect(trimmedIgnoringEmptyLines == expectedTrimmedIgnoringEmptyLines)
+    }
+}
+
+
 
 // MARK: -
+
+private extension String {
+    
+    func trim(ranges: [NSRange]) throws -> String {
+        
+        try ranges.reversed()
+            .map { try #require(Range($0, in: self)) }
+            .reduce(self) { $0.replacingCharacters(in: $1, with: "") }
+    }
+}
+
 
 private extension NSRange {
     

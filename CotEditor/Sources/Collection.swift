@@ -198,18 +198,6 @@ enum QuantityComparisonResult {
 
 extension Sequence {
     
-    /// Counts up elements that satisfy the given predicate.
-    ///
-    /// - Parameters:
-    ///    - predicate: A closure that takes an element of the sequence as its argument
-    ///                 and returns a Boolean value indicating whether the element should be counted.
-    /// - Returns: The number of elements that satisfies the given predicate.
-    func count(where predicate: (Element) throws -> Bool) rethrows -> Int {
-        
-        try self.filter(predicate).count
-    }
-    
-    
     /// Counts up elements by enumerating collection until encountering the element that doesn't satisfy the given predicate.
     ///
     /// - Parameters:

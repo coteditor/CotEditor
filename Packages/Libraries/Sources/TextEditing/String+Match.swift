@@ -1,5 +1,6 @@
 //
 //  String+Match.swift
+//  TextEditing
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,20 +26,23 @@
 
 import Foundation
 
-struct FilteredItem<Value: Identifiable & Sendable>: Identifiable, Sendable {
+public struct FilteredItem<Value: Identifiable & Sendable>: Identifiable, Sendable {
     
-    enum State {
+    public enum State: Sendable {
         
         case noFilter
         case filtered([Range<String.Index>])
     }
     
-    var value: Value
-    var state: State
-    var string: String
+    public var value: Value
+    public var state: State
+    public var string: String
     
-    var id: Value.ID { self.value.id }
-    
+    public var id: Value.ID { self.value.id }
+}
+
+
+public extension FilteredItem {
     
     /// Attributed string of which matched parts are styled as `.inlinePresentationIntent = .stronglyEmphasized`.
     var attributedString: AttributedString {
@@ -62,7 +66,7 @@ struct FilteredItem<Value: Identifiable & Sendable>: Identifiable, Sendable {
 }
 
 
-extension Identifiable where Self: Sendable {
+public extension Identifiable where Self: Sendable {
     
     /// Filters with given string.
     ///
@@ -83,13 +87,13 @@ extension Identifiable where Self: Sendable {
 }
 
 
-extension String {
+public extension String {
     
-    struct AbbreviatedMatchResult {
+    struct AbbreviatedMatchResult: Equatable, Sendable {
         
-        var ranges: [Range<String.Index>]
-        var remaining: String
-        var score: Int
+        public var ranges: [Range<String.Index>]
+        public var remaining: String
+        public var score: Int
     }
     
     

@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import TextEditing
 
 struct CustomSurroundView: View {
     

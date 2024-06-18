@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import TextEditing
 import Testing
 @testable import CotEditor
 

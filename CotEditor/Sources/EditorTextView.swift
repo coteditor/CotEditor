@@ -28,6 +28,7 @@ import AppKit
 import Combine
 import Defaults
 import Shortcut
+import TextEditing
 
 private extension NSAttributedString.Key {
     

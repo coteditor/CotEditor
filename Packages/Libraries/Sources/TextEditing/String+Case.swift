@@ -1,5 +1,6 @@
 //
 //  String+Case.swift
+//  TextEditing
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +26,7 @@
 
 import Foundation.NSRegularExpression
 
-extension String {
+public extension String {
     
     /// Transform all camel and pascal case words to snake case.
     var snakecased: String {
@@ -66,7 +67,7 @@ extension String {
     private func ranges(pattern: String) -> [Range<Index>] {
         
         (try! NSRegularExpression(pattern: pattern))
-            .matches(in: self, range: self.nsRange)
+            .matches(in: self, range: NSRange(..<self.utf16.count))
             .map(\.range)
             .map { String.Index(utf16Offset: $0.lowerBound, in: self)..<String.Index(utf16Offset: $0.upperBound, in: self) }
     }
