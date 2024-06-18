@@ -29,6 +29,18 @@ import Testing
 
 struct StringFilename {
     
+    @Test func removeExtension() {
+        
+        #expect("test".deletingPathExtension == "test")
+        #expect("test.".deletingPathExtension == "test.")
+        #expect("test.txt".deletingPathExtension == "test")
+        #expect("test..txt".deletingPathExtension == "test.")
+        #expect("test.txt.txt".deletingPathExtension == "test.txt")
+        #expect(".htaccess".deletingPathExtension == ".htaccess")
+        #expect("1.2 file".deletingPathExtension == "1.2 file")
+    }
+    
+    
     @Test func createAvailableNames() {
         
         let names = ["foo", "foo 3", "foo copy 3", "foo 4", "foo 7"]

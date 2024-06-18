@@ -25,6 +25,16 @@
 
 import Foundation
 
+extension String {
+    
+    /// The remainder of string after last dot removed.
+    var deletingPathExtension: String {
+        
+        self.replacing(/^(.+)\.[^ .]+$/, with: \.1)
+    }
+}
+
+
 extension Collection<String> {
     
     /// Creates a unique name from the receiver's elements by adding the suffix and also a number if needed.
