@@ -4,12 +4,22 @@
 import PackageDescription
 
 let package = Package(
-    name: "Libraries",
+    name: "EditorKit",
     defaultLocalization: "en",
     platforms: [
         .macOS(.v14),
     ],
     products: [
+        .library(name: "EditorKit", targets: [
+            "CharacterInfo",
+            "Defaults",
+            "FileEncoding",
+            "FilePermissions",
+            "TextEditing",
+            "UnicodeNormalization",
+            "Shortcut",
+        ]),
+        
         .library(name: "CharacterInfo", targets: ["CharacterInfo"]),
         .library(name: "Defaults", targets: ["Defaults"]),
         .library(name: "FileEncoding", targets: ["FileEncoding"]),
