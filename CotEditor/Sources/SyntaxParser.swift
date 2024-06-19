@@ -28,7 +28,6 @@ import Combine
 import Foundation
 import AppKit.NSTextStorage
 import OSLog
-import Defaults
 
 extension NSAttributedString.Key {
     
@@ -47,6 +46,8 @@ final class SyntaxParser: @unchecked Sendable {
     
     
     // MARK: Private Properties
+    
+    private static let bufferLength = 5_000
     
     private let textStorage: NSTextStorage
     
@@ -176,8 +177,7 @@ extension SyntaxParser {
             guard let editedRange, editedRange != wholeRange else { return wholeRange }
             
             // highlight whole if string is enough short
-            let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
-            if wholeRange.length <= bufferLength {
+            if wholeRange.length <= Self.bufferLength {
                 return wholeRange
             }
             
@@ -204,7 +204,7 @@ extension SyntaxParser {
                 }
             }
             
-            if highlightRange.upperBound < bufferLength {
+            if highlightRange.upperBound < Self.bufferLength {
                 return NSRange(location: 0, length: highlightRange.upperBound)
             }
             

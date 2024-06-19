@@ -172,7 +172,6 @@ struct DefaultSettings {
         // hidden settings
         .autoCompletionDelay: 0.25,
         .minimumAutomaticCompletionLength: 3,
-        .coloringRangeBufferLength: 5000,
         .largeFileAlertThreshold: 200 * pow(1024, 2),  // 200 MB
         .savesTextOrientation: true,
         .maximumRecentSyntaxCount: 6,
