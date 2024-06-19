@@ -446,7 +446,7 @@ extension Document {
     /// - Parameters:
     ///   - value: The value to set.
     ///   - keyPath: The keyPath of the DocumentViewController to set the value.
-    private func setViewControllerValue<Value>(_ value: Value, for keyPath: ReferenceWritableKeyPath<DocumentViewController, Value>) {
+    private func setViewControllerValue<Value: Sendable>(_ value: Value, for keyPath: ReferenceWritableKeyPath<DocumentViewController, Value>) {
         
         if let viewController = self.viewController {
             viewController[keyPath: keyPath] = value
@@ -455,13 +455,15 @@ extension Document {
         
         weak var observer: (any NSObjectProtocol)?
         observer = NotificationCenter.default.addObserver(forName: EditorTextView.didBecomeFirstResponderNotification, object: nil, queue: .main) { [weak self] _ in
-            guard let viewController = self?.viewController else { return }
-            
-            if let observer {
-                NotificationCenter.default.removeObserver(observer)
+            MainActor.assumeIsolated {
+                guard let viewController = self?.viewController else { return }
+                
+                if let observer {
+                    NotificationCenter.default.removeObserver(observer)
+                }
+                
+                viewController[keyPath: keyPath] = value
             }
-            
-            viewController[keyPath: keyPath] = value
         }
     }
 }
