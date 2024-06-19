@@ -66,6 +66,7 @@ disabled_rules:
   - control_statement
   - force_cast
   - force_try
+  - identifier_name
   - opening_brace
   - static_over_final_class
   - switch_case_alignment

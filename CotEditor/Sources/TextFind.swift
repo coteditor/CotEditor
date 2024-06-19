@@ -111,8 +111,7 @@ struct TextFind {
     ///   - mode: The settable options for the text search.
     ///   - inSelection: Whether find string only in selectedRanges.
     ///   - selectedRanges: The selected ranges in the text view.
-    /// - Throws: `TextFind.Error`
-    init(for string: String, findString: String, mode: TextFind.Mode, inSelection: Bool = false, selectedRanges: [NSRange] = [NSRange()]) throws {
+    init(for string: String, findString: String, mode: TextFind.Mode, inSelection: Bool = false, selectedRanges: [NSRange] = [NSRange()]) throws(TextFind.Error) {
         
         assert(!selectedRanges.isEmpty)
         

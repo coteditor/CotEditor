@@ -196,11 +196,9 @@ struct PatternSortView: View {
         
         do {
             try self.sortPattern.validate()
-        } catch let error as SortPatternError {
+        } catch {
             self.error = error
             return false
-        } catch {
-            fatalError()
         }
         self.error = nil
         

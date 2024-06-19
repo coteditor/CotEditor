@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2023 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -81,8 +81,7 @@ extension MultipleReplace {
     ///   - inSelection: Whether find only in selection.
     ///   - progress: The progress object to observe cancellation by the user and notify the find progress.
     /// - Returns: The found ranges. This method will return first all search finished.
-    /// - Throws: `CancellationError`
-    func find(string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress? = nil) throws -> [NSRange] {
+    func find(string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress? = nil) throws(CancellationError) -> [NSRange] {
         
         var result: [NSRange] = []
         
@@ -122,8 +121,7 @@ extension MultipleReplace {
     ///   - inSelection: Whether replace only in selection.
     ///   - progress: The progress object to observe cancellation by the user and notify the replacement progress.
     /// - Returns: The result of the replacement. This method will return first all replacement finished.
-    /// - Throws: `CancellationError`
-    func replace(string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress? = nil) throws -> Result {
+    func replace(string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress? = nil) throws(CancellationError) -> Result {
         
         var result = Result(string: string, selectedRanges: ranges)
         
@@ -192,9 +190,7 @@ private extension MultipleReplace.Replacement {
 extension MultipleReplace.Replacement {
     
     /// Checks if replacement rule is valid.
-    ///
-    /// - Throws: `TextFind.Error`
-    func validate(regexOptions: NSRegularExpression.Options = []) throws {
+    func validate(regexOptions: NSRegularExpression.Options = []) throws(TextFind.Error) {
         
         guard !self.findString.isEmpty else {
             throw TextFind.Error.emptyFindString

@@ -100,7 +100,7 @@ protocol SettingFileManaging: AnyObject {
     
     
     /// Returns setting instance corresponding to the given setting name, or throws error if not a valid one found.
-    func setting(name: String) throws -> Setting
+    func setting(name: String) throws(SettingFileError) -> Setting
     
     /// Loads setting from the file at the given URL.
     func loadSetting(at fileURL: URL) throws -> Setting
@@ -119,8 +119,7 @@ extension SettingFileManaging {
     ///
     /// - Parameter name: The setting name.
     /// - Returns: A Setting instance.
-    /// - Throws: `SettingFileError`
-    func setting(name: String) throws -> Setting {
+    func setting(name: String) throws(SettingFileError) -> Setting {
         
         if let setting = self.cachedSettings[name] {
             return setting
@@ -230,8 +229,7 @@ extension SettingFileManaging {
     /// - Parameters:
     ///   - settingName: The setting name to validate.
     ///   - originalName: The original name of the setting file if it was renamed.
-    /// - Throws: `InvalidNameError`
-    func validate(settingName: String, originalName: String?) throws {
+    func validate(settingName: String, originalName: String?) throws(InvalidNameError) {
         
         // just case difference is OK
         if originalName?.caseInsensitiveCompare(settingName) == .orderedSame {
@@ -265,9 +263,7 @@ extension SettingFileManaging {
     
     
     /// Deletes user's setting file for the setting name.
-    ///
-    /// - Throws: `SettingFileError`
-    func removeSetting(name: String) throws {
+    func removeSetting(name: String) throws(SettingFileError) {
         
         guard let url = self.urlForUserSetting(name: name) else { return }  // not exist or already removed
         
@@ -349,7 +345,7 @@ extension SettingFileManaging {
         resourceValues.hasHiddenExtension = hidesExtension
         
         var coordinationError: NSError?
-        var writingError: NSError?
+        var writingError: (any Error)?
         NSFileCoordinator().coordinate(readingItemAt: sourceURL, options: .withoutChanges,
                                        writingItemAt: fileURL, options: .forMoving, error: &coordinationError)
         { (newReadingURL, newWritingURL) in
@@ -436,7 +432,6 @@ extension SettingFileManaging {
     /// Forces importing the setting at the passed-in URL.
     ///
     /// - Parameter fileURL: The URL of the file to import.
-    /// - Throws: `SettingFileError`
     private func overwriteSetting(fileURL: URL) throws {
         
         let name = self.settingName(from: fileURL)

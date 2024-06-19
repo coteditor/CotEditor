@@ -347,8 +347,7 @@ final class DocumentController: NSDocumentController {
     /// - Parameters:
     ///   - url: The location of the new document object.
     ///   - typeName: The type of the document.
-    /// - Throws: `DocumentOpeningError`
-    private nonisolated func checkOpeningSafetyOfDocument(at url: URL, type typeName: String) throws {
+    private nonisolated func checkOpeningSafetyOfDocument(at url: URL, type typeName: String) throws(DocumentOpeningError) {
         
         // check if the file is possible binary
         if let type = UTType(typeName),

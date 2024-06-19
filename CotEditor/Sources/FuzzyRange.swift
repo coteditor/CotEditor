@@ -92,8 +92,7 @@ struct FuzzyRangeParseStrategy: ParseStrategy {
     ///
     /// - Parameter value: The string representation of `FuzzyRange` instance.
     /// - Returns: A `FuzzyRange` instance.
-    /// - Throws: `ParseError`.
-    func parse(_ value: String) throws -> FuzzyRange {
+    func parse(_ value: String) throws(ParseError) -> FuzzyRange {
         
         let components = value.split(separator: ":").map(String.init).map(Int.init)
         
@@ -187,9 +186,8 @@ extension String {
     /// - Parameters:
     ///   - line: The number of the line that allows also negative values.
     ///   - column: The number of the column that allows also negative values.
-    /// - Throws: `FuzzyLocationError`.
     /// - Returns: An NSRange-based cursor location.
-    func fuzzyLocation(line: Int, column: Int = 0) throws -> Int {
+    func fuzzyLocation(line: Int, column: Int = 0) throws(FuzzyLocationError) -> Int {
         
         let fuzzyLineRange = FuzzyRange(location: line == 0 ? 1 : line, length: 0)
         guard let lineRange = self.rangeForLine(in: fuzzyLineRange, includingLineEnding: false) else {

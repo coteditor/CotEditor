@@ -50,7 +50,7 @@ protocol SortPattern: Equatable {
     
     func sortKey(for line: String) -> String?
     func range(for line: String) -> Range<String.Index>?
-    func validate() throws
+    func validate() throws(SortPatternError)
 }
 
 
@@ -123,7 +123,7 @@ struct EntireLineSortPattern: SortPattern {
     }
     
     
-    func validate() throws { }
+    func validate() throws(SortPatternError) { }
 }
 
 
@@ -173,7 +173,7 @@ struct CSVSortPattern: SortPattern {
     }
     
     
-    func validate() throws { }
+    func validate() throws(SortPatternError) { }
 }
 
 
@@ -212,7 +212,7 @@ struct RegularExpressionSortPattern: SortPattern {
     
     
     /// Tests the regular expression pattern is valid.
-    func validate() throws {
+    func validate() throws(SortPatternError) {
         
         if self.searchPattern.isEmpty {
             throw SortPatternError.emptyPattern

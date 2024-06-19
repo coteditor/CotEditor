@@ -841,8 +841,7 @@ import FilePermissions
     /// Reinterprets the document file with the desired encoding.
     ///
     /// - Parameter encoding: The text encoding to read.
-    /// - Throws: `ReinterpretationError`
-    func reinterpret(encoding: String.Encoding) throws {
+    func reinterpret(encoding: String.Encoding) throws(ReinterpretationError) {
         
         // do nothing if given encoding is the same as current one
         if encoding == self.fileEncoding.encoding { return }
@@ -1310,7 +1309,7 @@ import FilePermissions
 
 // MARK: - Errors
 
-private enum ReinterpretationError: LocalizedError {
+enum ReinterpretationError: LocalizedError {
     
     case noFile
     case reinterpretationFailed(String.Encoding)

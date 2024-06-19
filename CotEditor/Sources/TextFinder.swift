@@ -425,7 +425,7 @@ struct TextFindAllResult {
         do {
             return try TextFind(for: string, findString: findString, mode: mode, inSelection: inSelection, selectedRanges: selectedRanges)
             
-        } catch let error as TextFind.Error {
+        } catch {
             guard presentsError else { return nil }
             
             switch error {
@@ -437,10 +437,6 @@ struct TextFindAllResult {
             }
             NSSound.beep()
             
-            return nil
-            
-        } catch {
-            assertionFailure(error.localizedDescription)
             return nil
         }
     }

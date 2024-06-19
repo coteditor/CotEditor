@@ -129,8 +129,7 @@ struct UnixScript: Script {
     ///   - type: The type of input target.
     ///   - editor: The editor to read the input.
     /// - Returns: The read string.
-    /// - Throws: `ScriptError`
-    @MainActor private func readInput(type: InputType, editor: NSTextView?) throws -> String {
+    @MainActor private func readInput(type: InputType, editor: NSTextView?) throws(ScriptError) -> String {
         
         guard let editor else { throw ScriptError.noInputTarget }
         
@@ -149,7 +148,7 @@ struct UnixScript: Script {
     ///   - output: The output string.
     ///   - type: The type of output target.
     ///   - editor: The textView to write the output.
-    /// - Throws: `ScriptError`
+    /// - Throws: `ScriptError`, or error by NSDocumentController
     @MainActor private func applyOutput(_ output: String, type: OutputType, editor: NSTextView?) throws {
         
         switch type {
