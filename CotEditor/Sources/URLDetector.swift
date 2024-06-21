@@ -73,6 +73,7 @@ final class URLDetector: @unchecked Sendable {
     func cancel() {
         
         self.task?.cancel()
+        self.task = nil
     }
     
     

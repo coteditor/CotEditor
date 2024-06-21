@@ -70,6 +70,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     
     
     deinit {
+        self.debounceTask?.cancel()
         if self.presentedItemURL != nil {
             NSFileCoordinator.removeFilePresenter(self)
         }
@@ -229,6 +230,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     @MainActor private func buildScriptMenu() async {
         
         self.debounceTask?.cancel()
+        self.debounceTask = nil
         self.scriptHandlersTable.removeAll()
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
