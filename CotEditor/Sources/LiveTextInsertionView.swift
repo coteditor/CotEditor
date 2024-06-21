@@ -25,9 +25,10 @@
 
 import AppKit
 import SwiftUI
-@preconcurrency import VisionKit
+import VisionKit
 
 extension NSImage: @retroactive @unchecked Sendable { }
+extension ImageAnalysis: @retroactive @unchecked Sendable { }
 
 
 struct LiveTextInsertionView: View {
