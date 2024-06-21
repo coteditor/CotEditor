@@ -159,12 +159,14 @@ extension String {
     /// Creates a String from Any but `anyString` must be either String or NSAttributedString.
     ///
     /// - Parameter anyString: String or NSAttributedString.
-    init(anyString: Any) {
+    init?(anyString: Any) {
         
-        self = switch anyString {
+        guard let string = switch anyString {
             case let string as String: string
             case let attributedString as NSAttributedString: attributedString.string
-            default: preconditionFailure()
-        }
+            default: nil
+        } else { return nil }
+        
+        self = string
     }
 }

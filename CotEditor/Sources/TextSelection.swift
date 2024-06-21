@@ -117,22 +117,15 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
             
             let string = textView.selectedString
             let textStorage = NSTextStorage(string: string)
-            
-            textStorage.observeDirectEditing { editedString in
-                textView.insert(string: editedString, at: .replaceSelection)
+            textStorage.observeDirectEditing { [weak textView] editedString in
+                textView?.insert(string: editedString, at: .replaceSelection)
             }
             
             return textStorage
         }
         
         set {
-            guard let string: String = {
-                switch newValue {
-                    case let storage as NSTextStorage: storage.string
-                    case let string as String: string
-                    default: nil
-                }
-            }() else { return }
+            guard let newValue, let string = String(anyString: newValue) else { return }
             
             self.textView?.insert(string: string, at: .replaceSelection)
         }

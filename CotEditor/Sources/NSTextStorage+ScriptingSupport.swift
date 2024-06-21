@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2023 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,13 +23,13 @@
 //  limitations under the License.
 //
 
-import AppKit
+import AppKit.NSTextStorage
 
 extension NSTextStorage {
     
-    /// Observes text storage update for in case when a part of the contents is directly edited from an AppleScript.
+    /// Observes text storage update for in case when a part of the contents is directly edited from AppleScript.
     ///
-    /// e.g.:
+    /// example:
     /// ```AppleScript
     /// tell first document of application "CotEditor"
     ///     set first paragraph of contents to "foo bar"
@@ -38,29 +38,32 @@ extension NSTextStorage {
     ///
     /// - Attention: This method is aimed to be used only for text storages that will be passed to AppleScript.
     ///
-    /// - Parameters
+    /// - Parameters:
     ///   - block: The block to be executed when the textStorage is edited.
     ///   - editedString: The contents of the textStorage after the editing.
-    final func observeDirectEditing(block: @escaping (_ editedString: String) -> Void) {
+    final func observeDirectEditing(block: @MainActor @Sendable @escaping (_ editedString: String) -> Void) {
         
-        weak var observer: (any NSObjectProtocol)?
-        observer = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self, queue: .main) { [weak self] notification in
-            if let observer {
-                NotificationCenter.default.removeObserver(observer)
-            }
-            
-            guard let textStorage = notification.object as? NSTextStorage else { return assertionFailure() }
-            
-            // -> After `self` becoming `nil`, notifications by other objects come also into this block.
-            guard textStorage == self else { return }
-            
-            block(textStorage.string)
-        }
+        let notifications = NotificationCenter.default.notifications(named: NSTextStorage.didProcessEditingNotification, object: self)
         
-        // disconnect the observation after 0.5 sec. anyway (otherwise app may crash)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            if let observer {
-                NotificationCenter.default.removeObserver(observer)
+        Task {
+            try await withThrowingTaskGroup(of: Void.self) { group in
+                // observe text storage update
+                group.addTask {
+                    for await textStorage in notifications.map({ $0.object as! NSTextStorage }) {
+                        let string = textStorage.string
+                        await block(string)
+                        break
+                    }
+                }
+                
+                // timeout
+                group.addTask {
+                    try await Task.sleep(for: .seconds(0.5))
+                    throw CancellationError()
+                }
+                
+                _ = try await group.next()!
+                group.cancelAll()
             }
         }
     }

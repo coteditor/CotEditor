@@ -73,7 +73,6 @@ extension Document {
         
         get {
             let textStorage = NSTextStorage(string: self.textStorage.string)
-            
             textStorage.observeDirectEditing { [weak self] editedString in
                 self?.textView?.insert(string: editedString, at: .replaceAll)
             }
@@ -82,15 +81,7 @@ extension Document {
         }
         
         set {
-            let string: String
-            switch newValue {
-                case let textStorage as NSTextStorage:
-                    string = textStorage.string
-                case let str as String:
-                    string = str
-                default:
-                    return assertionFailure()
-            }
+            guard let string = String(anyString: newValue) else { return }
             
             self.textView?.insert(string: string, at: .replaceAll)
         }

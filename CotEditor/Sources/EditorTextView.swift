@@ -485,7 +485,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // do not use this method for programmatic insertion.
         
-        let plainString = String(anyString: string)
+        let plainString = String(anyString: string)!
         
         // enter multi-cursor editing
         let insertionRanges = self.insertionRanges
