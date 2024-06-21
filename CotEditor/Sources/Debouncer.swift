@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,7 +40,6 @@ final class Debouncer {
     // MARK: Private Properties
     
     private let action: () -> Void
-    private let queue: DispatchQueue
     private let defaultDelay: DispatchTimeInterval
     
     private var currentWorkItem: DispatchWorkItem?
@@ -53,12 +52,10 @@ final class Debouncer {
     ///
     /// - Parameters:
     ///   - delay: The default time to wait since last call.
-    ///   - queue: The dispatch queue to perform action.
     ///   - action: The action to debounce.
-    init(delay: DispatchTimeInterval = .seconds(0), queue: DispatchQueue = .main, action: @escaping () -> Void) {
+    init(delay: DispatchTimeInterval = .seconds(0), action: @escaping () -> Void) {
         
         self.action = action
-        self.queue = queue
         self.defaultDelay = delay
     }
     
@@ -86,7 +83,7 @@ final class Debouncer {
         self.cancel()
         self.currentWorkItem = workItem
         
-        self.queue.asyncAfter(deadline: .now() + delay, execute: workItem)
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: workItem)
     }
     
     
@@ -94,7 +91,7 @@ final class Debouncer {
     func perform() {
         
         self.currentWorkItem?.cancel()
-        self.queue.async(execute: self.action)
+        DispatchQueue.main.async(execute: self.action)
     }
     
     
