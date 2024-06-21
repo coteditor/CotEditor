@@ -2321,7 +2321,6 @@
 			buildPhases = (
 				2A53326126799AB4000DE73D /* Build Syntax Map */,
 				2A6F0DA31B5500E100C2D03C /* Sources */,
-				2ACC21B91E546CCF0078241F /* Lint Swift Code */,
 				2A6F0D541B5500E100C2D03C /* Resources */,
 				2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */,
 				2A6F0DFD1B5500E100C2D03C /* Frameworks */,
@@ -2329,6 +2328,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2AB756B12C25BBB9005E04C3 /* PBXTargetDependency */,
 				2A53326326799B08000DE73D /* PBXTargetDependency */,
 			);
 			name = CotEditor;
@@ -2353,6 +2353,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2AB756B52C25BC18005E04C3 /* PBXTargetDependency */,
 				2AA2C6F7243996EC0017D1EC /* PBXTargetDependency */,
 			);
 			name = Tests;
@@ -2366,7 +2367,6 @@
 			buildPhases = (
 				2A53326426799B3B000DE73D /* Build Syntax Map */,
 				8D15AC300486D014006FF6A4 /* Sources */,
-				2ACC21B81E5445BA0078241F /* Lint Swift Code */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
@@ -2374,6 +2374,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2AB756B32C25BBCF005E04C3 /* PBXTargetDependency */,
 				2AD543792726B996001000CA /* PBXTargetDependency */,
 			);
 			name = "CotEditor -Sparkle";
@@ -2467,6 +2468,7 @@
 				2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */,
 				2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */,
 				2AAAE6E326DB82F800C5F0AC /* XCRemoteSwiftPackageReference "Sparkle" */,
+				2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			preferredProjectObjectVersion = 73;
 			projectDirPath = "";
@@ -2702,36 +2704,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$BUILT_PRODUCTS_DIR/SyntaxMapBuilder\" \"$SCRIPT_INPUT_FILE_0\" \"$SCRIPT_OUTPUT_FILE_0\"\n";
-		};
-		2ACC21B81E5445BA0078241F /* Lint Swift Code */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Lint Swift Code";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if test -d /opt/homebrew/bin; then\n    PATH=/opt/homebrew/bin/:$PATH\nfi\n\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		2ACC21B91E546CCF0078241F /* Lint Swift Code */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Lint Swift Code";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if test -d /opt/homebrew/bin; then\n    PATH=/opt/homebrew/bin/:$PATH\nfi\n\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -3394,6 +3366,18 @@
 			target = 2A6F0D4E1B5500E100C2D03C /* CotEditor */;
 			targetProxy = 2AA2C6F8243996EF0017D1EC /* PBXContainerItemProxy */;
 		};
+		2AB756B12C25BBB9005E04C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2AB756B02C25BBB9005E04C3 /* SwiftLintBuildToolPlugin */;
+		};
+		2AB756B32C25BBCF005E04C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2AB756B22C25BBCF005E04C3 /* SwiftLintBuildToolPlugin */;
+		};
+		2AB756B52C25BC18005E04C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2AB756B42C25BC18005E04C3 /* SwiftLintBuildToolPlugin */;
+		};
 		2AD543792726B996001000CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 2AD543782726B996001000CA /* SyntaxMapBuilder */;
@@ -3817,6 +3801,14 @@
 				minimumVersion = 2.6.0;
 			};
 		};
+		2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.55.1;
+			};
+		};
 		2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/1024jp/WFColorCode";
@@ -3854,6 +3846,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2AAAE6E326DB82F800C5F0AC /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
+		};
+		2AB756B02C25BBB9005E04C3 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		2AB756B22C25BBCF005E04C3 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		2AB756B42C25BC18005E04C3 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 		2ACAAC1B2B85E74C0041B095 /* SyntaxMap */ = {
 			isa = XCSwiftPackageProductDependency;
