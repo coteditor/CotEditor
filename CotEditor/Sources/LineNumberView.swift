@@ -39,17 +39,17 @@ final class LineNumberView: NSView {
         let tickLength: CGFloat
         
         
-        init(fontSize: CGFloat, scale: CGFloat) {
+        init(font: CGFont, fontSize: CGFloat, scale: CGFloat) {
             
             // calculate font size for number
             self.fontSize = scale * fontSize
             
             // prepare glyphs
-            let font = CTFontCreateWithGraphicsFont(LineNumberView.lineNumberFont, self.fontSize, nil, nil)
-            self.digitGlyphs = (0...9).map { font.glyph(for: Character(String($0))) }
+            let ctFont = CTFontCreateWithGraphicsFont(font, self.fontSize, nil, nil)
+            self.digitGlyphs = (0...9).map { ctFont.glyph(for: Character(String($0))) }
             
             // calculate character width by assuming the font is monospace
-            self.charWidth = font.advance(for: self.digitGlyphs[8]).width  // use '8' to get width
+            self.charWidth = ctFont.advance(for: self.digitGlyphs[8]).width  // use '8' to get width
             
             // calculate margins
             self.padding = self.charWidth
@@ -88,9 +88,9 @@ final class LineNumberView: NSView {
     
     // MARK: Private Properties
     
-    private static let lineNumberFont: CGFont = NSFont.lineNumberFont().cgFont
-    private static let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .medium).cgFont
-    private static let highContrastBoldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .semibold).cgFont
+    private let lineNumberFont: CGFont = NSFont.lineNumberFont().cgFont
+    private let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .medium).cgFont
+    private let highContrastBoldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .semibold).cgFont
     
     private let minimumNumberOfDigits = 3
     
@@ -207,11 +207,11 @@ final class LineNumberView: NSView {
     
     
     /// Returns line number font for selected lines by considering the current accessibility setting.
-    private var boldLineNumberFont: CGFont {
+    private var effectiveBoldLineNumberFont: CGFont {
         
         NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
-            ? Self.highContrastBoldLineNumberFont
-            : Self.boldLineNumberFont
+            ? self.highContrastBoldLineNumberFont
+            : self.boldLineNumberFont
     }
     
     
@@ -230,7 +230,7 @@ final class LineNumberView: NSView {
             let context = NSGraphicsContext.current?.cgContext
         else { return assertionFailure() }
         
-        context.setFont(Self.lineNumberFont)
+        context.setFont(self.lineNumberFont)
         context.setFontSize(drawingInfo.fontSize)
         context.setFillColor(self.foregroundColor().cgColor)
         context.setStrokeColor(self.foregroundColor(.stroke).cgColor)
@@ -281,12 +281,12 @@ final class LineNumberView: NSView {
             // draw number
             if isSelected {
                 context.setFillColor(self.foregroundColor(.bold).cgColor)
-                context.setFont(self.boldLineNumberFont)
+                context.setFont(self.effectiveBoldLineNumberFont)
             }
             context.showGlyphs(glyphs, at: positions)
             if isSelected {
                 context.setFillColor(self.foregroundColor().cgColor)
-                context.setFont(Self.lineNumberFont)
+                context.setFont(self.lineNumberFont)
             }
         }
     }
@@ -300,7 +300,7 @@ final class LineNumberView: NSView {
             let textFont = textView.font
         else { return assertionFailure() }
         
-        self.drawingInfo = DrawingInfo(fontSize: textFont.pointSize, scale: textView.scale)
+        self.drawingInfo = DrawingInfo(font: self.lineNumberFont, fontSize: textFont.pointSize, scale: textView.scale)
         
         self.invalidateThickness()
         self.needsDisplay = true
@@ -341,7 +341,7 @@ final class LineNumberView: NSView {
         
         assert(textView.enclosingScrollView?.contentView != nil)
         
-        self.drawingInfo = DrawingInfo(fontSize: textView.font!.pointSize, scale: textView.scale)
+        self.drawingInfo = DrawingInfo(font: self.lineNumberFont, fontSize: textView.font!.pointSize, scale: textView.scale)
         
         self.textViewSubscriptions = [
             // observe content change
