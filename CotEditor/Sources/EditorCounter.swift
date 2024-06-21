@@ -26,9 +26,6 @@
 import AppKit
 import Observation
 
-extension NSValue: @retroactive @unchecked Sendable { }
-
-
 protocol TextViewProvider: AnyObject {
     
     @MainActor var textView: NSTextView? { get }
