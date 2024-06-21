@@ -240,9 +240,10 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
         
         switch invisible {
             case .newLine:
-                (self.firstTextView?.window?.windowController?.document as? Document)?.lineEndingScanner.isInvalidLineEnding(at: characterIndex) == true
+                let textView = self.firstTextView
+                return MainActor.assumeIsolated { (textView?.window?.windowController?.document as? Document)?.lineEndingScanner.isInvalidLineEnding(at: characterIndex) == true }
             default:
-                false
+                return false
         }
     }
     
@@ -253,7 +254,8 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     /// Fixed line height to avoid having different line height by composite font.
     var lineHeight: CGFloat {
         
-        let multiple = self.firstTextView?.defaultParagraphStyle?.lineHeightMultiple ?? 1.0
+        let textView = self.firstTextView
+        let multiple = MainActor.assumeIsolated { textView?.defaultParagraphStyle?.lineHeightMultiple } ?? 1.0
         
         return multiple * self.defaultLineHeight
     }
