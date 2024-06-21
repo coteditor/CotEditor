@@ -444,16 +444,14 @@ extension Document {
             return
         }
         
-        weak var observer: (any NSObjectProtocol)?
-        observer = NotificationCenter.default.addObserver(forName: EditorTextView.didBecomeFirstResponderNotification, object: nil, queue: .main) { [weak self] _ in
-            MainActor.assumeIsolated {
-                guard let viewController = self?.viewController else { return }
+        Task.detached { [weak self] in
+            for await _ in NotificationCenter.default.notifications(named: EditorTextView.didBecomeFirstResponderNotification).map(\.name) {
+                guard let viewController = await self?.viewController else { return }
                 
-                if let observer {
-                    NotificationCenter.default.removeObserver(observer)
+                await MainActor.run {
+                    viewController[keyPath: keyPath] = value
                 }
-                
-                viewController[keyPath: keyPath] = value
+                break
             }
         }
     }
