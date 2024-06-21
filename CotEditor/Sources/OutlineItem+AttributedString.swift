@@ -27,8 +27,6 @@ import Foundation
 import SwiftUI
 import AppKit.NSFont
 
-extension NSFont: @retroactive @unchecked Sendable { }
-
 extension OutlineItem {
     
     /// Returns styled title for a view in AppKit.

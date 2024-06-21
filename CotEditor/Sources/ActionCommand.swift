@@ -26,9 +26,6 @@
 import AppKit
 import Shortcut
 
-extension Selector: @unchecked Sendable { }
-
-
 struct ActionCommand: Identifiable {
     
     enum Kind {

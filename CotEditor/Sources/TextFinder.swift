@@ -27,6 +27,9 @@ import AppKit
 import Combine
 import SwiftUI
 
+extension NSAttributedString: @retroactive @unchecked Sendable { }
+
+
 @MainActor @objc protocol TextFinderClient: AnyObject {
     
     func performEditorTextFinderAction(_ sender: Any?)
@@ -84,7 +87,7 @@ enum TextFindResult {
 
 struct TextFindAllResult {
     
-    struct Match: Identifiable, @unchecked Sendable {
+    struct Match: Identifiable {
         
         let id = UUID()
         
