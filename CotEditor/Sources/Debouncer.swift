@@ -23,26 +23,15 @@
 //  limitations under the License.
 //
 
-import Dispatch
-
-extension DispatchTimeInterval {
-    
-    static func seconds(_ interval: Double) -> DispatchTimeInterval {
-        
-        .milliseconds(Int(interval * 1000))
-    }
-}
-
-
 /// Object invoking the registered block when a specific time interval is passed after the last call.
-final class Debouncer {
+@MainActor final class Debouncer {
     
     // MARK: Private Properties
     
-    private let action: () -> Void
-    private let defaultDelay: DispatchTimeInterval
+    private let action: @MainActor @Sendable () -> Void
+    private let defaultDelay: ContinuousClock.Duration
     
-    private var currentWorkItem: DispatchWorkItem?
+    private var task: Task<Void, any Error>?
     
     
     
@@ -53,7 +42,7 @@ final class Debouncer {
     /// - Parameters:
     ///   - delay: The default time to wait since last call.
     ///   - action: The action to debounce.
-    init(delay: DispatchTimeInterval = .seconds(0), action: @escaping () -> Void) {
+    init(delay: ContinuousClock.Duration = .seconds(0), action: @MainActor @Sendable @escaping () -> Void) {
         
         self.action = action
         self.defaultDelay = delay
@@ -61,9 +50,10 @@ final class Debouncer {
     
     
     deinit {
-        self.cancel()
+        Task { [task] in
+            task?.cancel()
+        }
     }
-    
     
     
     // MARK: Public Methods
@@ -72,40 +62,42 @@ final class Debouncer {
     ///
     /// - Parameters:
     ///   - delay: The time to wait for fire. If nil, receiver's default delay is used.
-    func schedule(delay: DispatchTimeInterval? = nil) {
+    func schedule(delay: ContinuousClock.Duration? = nil) {
         
         let delay = delay ?? self.defaultDelay
-        let workItem = DispatchWorkItem { [weak self] in
+        
+        self.task?.cancel()
+        self.task = Task { [weak self] in
+            try await Task.sleep(for: delay)
+            
             self?.action()
-            self?.currentWorkItem = nil
+            self?.task = nil
         }
-        
-        self.cancel()
-        self.currentWorkItem = workItem
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: workItem)
     }
     
     
     /// Performs the action immediately.
     func perform() {
         
-        self.currentWorkItem?.cancel()
-        DispatchQueue.main.async(execute: self.action)
+        self.cancel()
+        self.action()
     }
     
     
     /// Performs the action immediately if scheduled.
     func fireNow() {
         
-        self.currentWorkItem?.perform()
+        guard self.task != nil else { return }
+        
+        self.cancel()
+        self.action()
     }
     
     
     /// Cancels the action if scheduled.
     func cancel() {
         
-        self.currentWorkItem?.cancel()
-        self.currentWorkItem = nil
+        self.task?.cancel()
+        self.task = nil
     }
 }

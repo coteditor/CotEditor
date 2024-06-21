@@ -30,7 +30,7 @@ struct DebouncerTests {
     
     @Test func debounce() async throws {
         
-        try await confirmation("Debouncer executed", expectedCount: 1) { confirm in
+        try await confirmation("Debouncer executed", expectedCount: 1) { @MainActor confirm in
             let debouncer = Debouncer(delay: .seconds(0.5)) {
                 confirm()
             }
@@ -43,7 +43,7 @@ struct DebouncerTests {
     }
     
     
-    @Test func immediateFire() {
+    @MainActor @Test func immediateFire() {
         
         var value = 0
         let debouncer = Debouncer {
@@ -65,7 +65,7 @@ struct DebouncerTests {
     
     @Test func cancel() async {
         
-        await confirmation("Debouncer cancelled", expectedCount: 0) { confirm in
+        await confirmation("Debouncer cancelled", expectedCount: 0) {  @MainActor confirm in
             let debouncer = Debouncer {
                 confirm()
             }
