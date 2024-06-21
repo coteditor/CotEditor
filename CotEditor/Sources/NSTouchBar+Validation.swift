@@ -123,6 +123,7 @@ extension NSTouchBar {
     @objc private func validateTouchBar(timer: Timer?) {
         
         self.validationTimer?.invalidate()
+        self.validationTimer = nil
         
         NSApp.touchBar?.validateVisibleItems()
         

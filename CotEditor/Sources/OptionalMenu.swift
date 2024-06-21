@@ -61,9 +61,7 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
         self.update()  // UI validation is performed here
         self.validateKeyEvent(forcibly: true)
         
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
-            self?.validateKeyEvent()
-        }
+        let timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(validateKeyEvent), userInfo: nil, repeats: true)
         RunLoop.current.add(timer, forMode: .eventTracking)
         self.trackingTimer = timer
     }
@@ -72,6 +70,7 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
     func menuDidClose(_ menu: NSMenu) {
         
         self.trackingTimer?.invalidate()
+        self.trackingTimer = nil
         self.updateOptionalItems(shows: false)
     }
     
@@ -81,7 +80,7 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
     /// Checks the state of the modifier key press and update the item visibility.
     ///
     /// - Parameter forcibly: Whether forcing to update the item visibility.
-    private func validateKeyEvent(forcibly: Bool = false) {
+    @objc private func validateKeyEvent(forcibly: Bool = false) {
         
         let shows = NSEvent.modifierFlags.contains(.option)
         
