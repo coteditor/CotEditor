@@ -182,12 +182,16 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
         //    when the window appearance and theme are inconsistent.
         if color == .unemphasizedSelectedContentBackgroundColor,  // check if inactive
            let textView = self.textContainer(forGlyphAt: self.glyphIndexForCharacter(at: charRange.location),
-                                             effectiveRange: nil, withoutAdditionalLayout: true)?.textView,
-           let theme = (textView as? any Themable)?.theme,
-           let newColor = theme.effectiveSecondarySelectionColor(for: textView.effectiveAppearance),
-           newColor != color
+                                             effectiveRange: nil, withoutAdditionalLayout: true)?.textView
         {
-            newColor.setFill()
+            MainActor.assumeIsolated {
+                if let theme = (textView as? any Themable)?.theme,
+                   let newColor = theme.effectiveSecondarySelectionColor(for: textView.effectiveAppearance),
+                   newColor != color
+                {
+                    newColor.setFill()
+                }
+            }
         }
         
         super.fillBackgroundRectArray(rectArray, count: rectCount, forCharacterRange: charRange, color: color)

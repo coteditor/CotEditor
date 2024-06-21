@@ -29,7 +29,7 @@ import ColorCode
 
 protocol Themable: AnyObject {
     
-    var theme: Theme? { get }
+    @MainActor var theme: Theme? { get }
 }
 
 
