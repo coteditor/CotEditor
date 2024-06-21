@@ -24,9 +24,9 @@
 //  limitations under the License.
 //
 
+import Foundation
 import AppKit
 import Combine
-import Foundation
 import Defaults
 import Shortcut
 
@@ -36,19 +36,19 @@ import Shortcut
 }
 
 
-final class SnippetManager: @unchecked Sendable {
+@MainActor final class SnippetManager {
     
     // MARK: Public Properties
     
     static let shared = SnippetManager()
     
     private(set) var snippets: [Snippet]
-    @MainActor weak var menu: NSMenu?  { didSet { self.updateMenu() } }
+    weak var menu: NSMenu?  { didSet { self.updateMenu() } }
     
     
     // MARK: Private Properties
     
-    private var scope: String?  { didSet { Task { await self.updateMenu() } } }
+    private var scope: String?  { didSet { self.updateMenu() } }
     private var scopeObserver: AnyCancellable?
     
     
@@ -60,12 +60,12 @@ final class SnippetManager: @unchecked Sendable {
         self.snippets = UserDefaults.standard[.snippets]
             .compactMap(Snippet.init(dictionary:))
         
-        self.migrateIfNeeded()
+        self.scopeObserver = (DocumentController.shared as! DocumentController).$currentSyntaxName
+            .removeDuplicates()
+            .sink { [unowned self] in self.scope = $0 }
         
-        Task { @MainActor in
-            self.scopeObserver = (DocumentController.shared as! DocumentController).$currentSyntaxName
-                .removeDuplicates()
-                .sink { [unowned self] in self.scope = $0 }
+        Task.detached {
+            self.migrateIfNeeded()
         }
     }
     
@@ -106,18 +106,16 @@ final class SnippetManager: @unchecked Sendable {
         self.snippets = snippets
         UserDefaults.standard[.snippets] = snippets.map(\.dictionary)
         
-        Task {
-            await self.updateMenu()
-        }
+        self.updateMenu()
     }
     
     
     // MARK: Private Methods
     
     /// Updates the Snippet menu in the main menu.
-    @MainActor private func updateMenu() {
+    private func updateMenu() {
         
-        guard let menu else { return assertionFailure() }
+        guard let menu else { return }
         guard menu.items.count > 1 || !self.snippets.isEmpty else { return }
         
         let generalSnippets = self.snippets.filter { $0.scope == nil }
@@ -169,7 +167,9 @@ private extension SnippetManager {
     
     
     /// Migrates old format user snippet settings if exists (CotEditor 4.5.0, 2023-02).
-    func migrateIfNeeded() {
+    nonisolated func migrateIfNeeded() {
+        
+        assert(!Thread.isMainThread)
         
         let defaultKey = "insertCustomTextArray"
         
@@ -203,7 +203,9 @@ private extension SnippetManager {
             }
         
         // save new format
-        self.save(self.snippets + snippets)
+        Task { @MainActor in
+            self.save(self.snippets + snippets)
+        }
         
         // remove old settings
         UserDefaults.standard.removeObject(forKey: defaultKey)
