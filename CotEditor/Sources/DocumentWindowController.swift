@@ -203,8 +203,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         }
         
         // observe document's syntax change for toolbar
+        self.selectSyntaxPopUpItem(with: document.syntaxParser.name)
         self.documentSyntaxObserver = document.didChangeSyntax
-            .merge(with: Just(document.syntaxParser.name))
             .receive(on: RunLoop.main)
             .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
     }

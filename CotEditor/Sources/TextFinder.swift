@@ -24,7 +24,6 @@
 //
 
 import AppKit
-import Combine
 import SwiftUI
 
 extension NSAttributedString: @retroactive @unchecked Sendable { }
@@ -149,7 +148,7 @@ struct TextFindAllResult {
     // MARK: Private Properties
     
     private var findTask: Task<Void, any Error>?
-    private var highlightObserver: AnyCancellable?
+    private var highlightObservationTask: Task<Void, any Error>?
     
     
     
@@ -157,6 +156,7 @@ struct TextFindAllResult {
     
     deinit {
         self.findTask?.cancel()
+        self.highlightObservationTask?.cancel()
     }
     
     
@@ -476,9 +476,12 @@ struct TextFindAllResult {
             }
             
             // unmark either when the client view resigned the key window or when the Find panel closed
-            self.highlightObserver = NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification)
-                .first()
-                .sink { [weak client] _ in client?.unhighlight(nil) }
+            self.highlightObservationTask = Task { [weak client] in
+                for await _ in NotificationCenter.default.notifications(named: NSWindow.didResignKeyNotification).map(\.name) {
+                    client?.unhighlight(nil)
+                    break
+                }
+            }
         }
         
         // found feedback

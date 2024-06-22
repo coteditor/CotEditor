@@ -45,7 +45,7 @@ final class EditorViewController: NSSplitViewController {
     private lazy var textViewController = EditorTextViewController(document: self.document)
     @ViewLoading private var navigationBarItem: NSSplitViewItem
     
-    private var observers: [AnyCancellable] = []
+    private var observers: Set<AnyCancellable> = []
     
     
     // MARK: Lifecycle
