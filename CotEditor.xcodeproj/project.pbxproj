@@ -3512,7 +3512,6 @@
 				MARKETING_VERSION = "4.9.0-alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
-				SWIFT_STRICT_CONCURRENCY = targeted;
 			};
 			name = Debug;
 		};
@@ -3530,7 +3529,6 @@
 				MARKETING_VERSION = "4.9.0-alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
-				SWIFT_STRICT_CONCURRENCY = targeted;
 			};
 			name = Release;
 		};
@@ -3573,7 +3571,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SPARKLE";
-				SWIFT_STRICT_CONCURRENCY = targeted;
 			};
 			name = Debug;
 		};
@@ -3592,7 +3589,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SPARKLE";
-				SWIFT_STRICT_CONCURRENCY = targeted;
 			};
 			name = Release;
 		};
