@@ -27,7 +27,7 @@ import AppKit
 import Observation
 import Combine
 
-@Observable @MainActor final class OutlineNavigator {
+@MainActor @Observable final class OutlineNavigator {
     
     // MARK: Public Properties
     
