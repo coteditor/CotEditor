@@ -107,6 +107,9 @@ protocol SettingFileManaging: AnyObject {
     
     /// Loads settings in the user domain.
     func loadUserSettings()
+    
+    /// Tells that a setting did update.
+    func didUpdateSetting(change: SettingChange)
 }
 
 
@@ -151,6 +154,13 @@ extension SettingFileManaging {
         guard let url = self.urlForBundledSetting(name: name) else { return nil }
         
         return try? self.loadSetting(at: url)
+    }
+    
+    
+    /// Tells that a setting did update.
+    func didUpdateSetting(change: SettingChange) {
+        
+        // do nothing
     }
     
     
@@ -398,6 +408,7 @@ extension SettingFileManaging {
     func updateSettingList(change: SettingChange) {
         
         defer {
+            self.didUpdateSetting(change: change)
             self.didUpdateSetting.send(change)
         }
         

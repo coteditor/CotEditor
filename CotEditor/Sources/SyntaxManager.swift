@@ -83,8 +83,6 @@ final class SyntaxManager: SettingFileManaging {
                                                       \.filenames: [:],
                                                       \.interpreters: [:]]
     
-    private var settingUpdateObserver: AnyCancellable?
-    
     
     
     // MARK: Lifecycle
@@ -102,10 +100,6 @@ final class SyntaxManager: SettingFileManaging {
         
         // cache user syntaxes
         self.loadUserSettings()
-        
-        // update also .mappingTable
-        self.settingUpdateObserver = self.didUpdateSetting
-            .sink { [weak self] _ in self?.loadUserSettings() }
     }
     
     
@@ -256,6 +250,14 @@ final class SyntaxManager: SettingFileManaging {
                 }
             }
         }
+    }
+    
+    
+    /// Tells that a setting did update.
+    func didUpdateSetting(change: SettingChange) {
+        
+        // update also .mappingTable
+        self.loadUserSettings()
     }
     
     
