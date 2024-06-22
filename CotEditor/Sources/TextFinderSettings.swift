@@ -27,11 +27,11 @@ import AppKit
 import Combine
 import Defaults
 
-final class TextFinderSettings: NSObject {
+@MainActor final class TextFinderSettings: NSObject {
     
     // MARK: Public Properties
     
-    nonisolated(unsafe) static let shared = TextFinderSettings()
+    static let shared = TextFinderSettings()
     
     @objc dynamic var findString: String  { didSet { self.shareFindString() } }
     @objc dynamic var replacementString: String

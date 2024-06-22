@@ -462,7 +462,7 @@ struct TextFindAllResult {
         // find in background thread
         let (matches, result) = try await Task.detached(priority: .userInitiated) {
             let matches = try textFind.matches
-            let result = textFind.find(in: matches, forward: forward, includingSelection: isIncremental, wraps: TextFinderSettings.shared.isWrap)
+            let result = textFind.find(in: matches, forward: forward, includingSelection: isIncremental, wraps: await TextFinderSettings.shared.isWrap)
             return (matches, result)
         }.value
         
