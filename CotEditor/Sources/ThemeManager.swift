@@ -50,8 +50,6 @@ final class ThemeManager: SettingFileManaging {
     
     // MARK: Setting File Managing Properties
     
-    let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
-    
     static let directoryName: String = "Themes"
     let fileType: UTType = .cotTheme
     let reservedNames: [String] = []

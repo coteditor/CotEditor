@@ -62,7 +62,9 @@ struct ThemeView: View {
         .onChange(of: self.themeName, initial: true) { (_, newValue) in
             self.setTheme(name: newValue)
         }
-        .onReceive(ThemeManager.shared.didUpdateSetting) { change in
+        .onReceive(NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: ThemeManager.shared)) { notification in
+            guard let change = notification.userInfo?["change"] as? SettingChange else { return }
+            
             Task { @MainActor in
                 guard
                     let name = change.new,

@@ -68,7 +68,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
         super.viewWillAppear()
         
         self.observer = Publishers.Merge(SyntaxManager.shared.$settingNames.eraseToVoid(),
-                                         SyntaxManager.shared.didUpdateSetting.eraseToVoid())
+                                         NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: SyntaxManager.shared).eraseToVoid())
         .debounce(for: 0, scheduler: RunLoop.main)
         .sink { [weak self] _ in self?.setupMenus() }
     }

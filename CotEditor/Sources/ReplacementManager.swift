@@ -23,7 +23,6 @@
 //  limitations under the License.
 //
 
-import Combine
 import Foundation
 import Observation
 import UniformTypeIdentifiers
@@ -39,8 +38,6 @@ import UniformTypeIdentifiers
     
     
     // MARK: Setting File Managing Properties
-    
-    let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
     
     static let directoryName: String = "Replacements"
     let fileType: UTType = .cotReplacement

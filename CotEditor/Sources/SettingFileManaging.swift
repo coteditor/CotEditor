@@ -23,7 +23,6 @@
 //  limitations under the License.
 //
 
-import Combine
 import Foundation
 import UniformTypeIdentifiers
 import AppKit.NSApplication
@@ -68,16 +67,19 @@ struct SettingState: Equatable {
 }
 
 
+extension NSNotification.Name {
+    
+    /// Notification when a setting file is updated with new/previous setting names.
+    static let didUpdateSettingNotification = Notification.Name(rawValue: "SettingFileManaging.didUpdateSettingNotification")
+}
+
+
 
 // MARK: -
 
 protocol SettingFileManaging: AnyObject {
     
     associatedtype Setting
-    
-    
-    /// Publishes when a setting file is updated with new/previous setting names.
-    var didUpdateSetting: PassthroughSubject<SettingChange, Never> { get }
     
     
     /// Directory name in both Application Support and bundled Resources.
@@ -409,7 +411,7 @@ extension SettingFileManaging {
         
         defer {
             self.didUpdateSetting(change: change)
-            self.didUpdateSetting.send(change)
+            NotificationCenter.default.post(name: .didUpdateSettingNotification, object: self, userInfo: ["change": change])
         }
         
         guard change.old != change.new else { return }

@@ -65,8 +65,6 @@ final class SyntaxManager: SettingFileManaging {
     
     // MARK: Setting File Managing Properties
     
-    let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
-    
     static let directoryName: String = "Syntaxes"
     let fileType: UTType = .yaml
     let reservedNames: [SettingName] = [SyntaxName.none, "General", "Code"]

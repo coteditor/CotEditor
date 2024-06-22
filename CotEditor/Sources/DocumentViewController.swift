@@ -157,7 +157,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 .sink { [weak self] in self?.showsIndentGuides = $0 },
             
             // observe theme change
-            ThemeManager.shared.didUpdateSetting
+            NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: ThemeManager.shared)
+                .map { $0.userInfo!["change"] as! SettingChange }
                 .filter { [weak self] in $0.old == self?.theme?.name }
                 .compactMap(\.new)
                 .throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true)

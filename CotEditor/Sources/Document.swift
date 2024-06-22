@@ -135,7 +135,8 @@ import FilePermissions
         ]
         
         // observe syntax update
-        self.syntaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
+        self.syntaxUpdateObserver = NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: SyntaxManager.shared)
+            .map { $0.userInfo!["change"] as! SettingChange }
             .filter { [weak self] change in change.old == self?.syntaxParser.name }
             .sink { [weak self] change in self?.setSyntax(name: change.new ?? SyntaxName.none) }
     }
@@ -590,6 +591,7 @@ import FilePermissions
         
         super.close()
         
+        self.syntaxUpdateObserver?.cancel()
         self.textStorageObserver?.cancel()
         self.counter.cancel()
         self.syntaxParser.cancel()
