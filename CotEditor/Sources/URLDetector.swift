@@ -26,7 +26,7 @@
 import Combine
 import AppKit.NSTextStorage
 
-final class URLDetector: @unchecked Sendable {
+@MainActor final class URLDetector {
     
     // MARK: Private Properties
     
@@ -99,7 +99,7 @@ final class URLDetector: @unchecked Sendable {
     /// Updates URLs around the edited ranges.
     ///
     /// - Parameter delay: The debounce delay.
-    @MainActor private func detectInvalidRanges(after delay: Duration = .zero) async throws {
+    private func detectInvalidRanges(after delay: Duration = .zero) async throws {
         
         try await Task.sleep(for: delay, tolerance: delay * 0.5)
         

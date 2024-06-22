@@ -85,7 +85,7 @@ import FilePermissions
     private nonisolated(unsafe) var allowsLossySaving = false
     private nonisolated(unsafe) var isInitialized = false
     
-    @ObservationIgnored private lazy var urlDetector = URLDetector(textStorage: self.textStorage)
+    private let urlDetector: URLDetector
     
     private nonisolated(unsafe) var syntaxUpdateObserver: AnyCancellable?
     private nonisolated(unsafe) var textStorageObserver: AnyCancellable?
@@ -117,6 +117,8 @@ import FilePermissions
         self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
         
         self.mode = .kind(.general)
+        
+        self.urlDetector = URLDetector(textStorage: self.textStorage)
         
         super.init()
         
