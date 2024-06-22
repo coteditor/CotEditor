@@ -85,13 +85,13 @@ import FilePermissions
     private nonisolated(unsafe) var allowsLossySaving = false
     private nonisolated(unsafe) var isInitialized = false
     
+    private nonisolated(unsafe) var lastSavedData: Data?  // temporal data used only within saving process
+    
     private let urlDetector: URLDetector
     
-    private nonisolated(unsafe) var syntaxUpdateObserver: AnyCancellable?
-    private nonisolated(unsafe) var textStorageObserver: AnyCancellable?
-    private nonisolated(unsafe) var defaultObservers: Set<AnyCancellable> = []
-    
-    private nonisolated(unsafe) var lastSavedData: Data?  // temporal data used only within saving process
+    private var syntaxUpdateObserver: AnyCancellable?
+    private var textStorageObserver: AnyCancellable?
+    private var defaultObservers: Set<AnyCancellable> = []
     
     
     
@@ -352,8 +352,10 @@ import FilePermissions
         //    for example on resuming an unsaved document.
         if self.fileURL != nil {
             let fileAttributes = FileAttributes(dictionary: attributes)
-            self.fileAttributes = fileAttributes
-            self.isExecutable = fileAttributes.permissions.user.contains(.execute)
+            Task { @MainActor in
+                self.fileAttributes = fileAttributes
+                self.isExecutable = fileAttributes.permissions.user.contains(.execute)
+            }
         }
         
         // do not save `com.apple.TextEncoding` extended attribute if it doesn't exists
@@ -369,15 +371,15 @@ import FilePermissions
             self.suppressesInconsistentLineEndingAlert = true
         }
         
-        // update textStorage
+        // set read values
         Task { @MainActor in
             self.textStorage.replaceContent(with: string)
+            
+            self.fileEncoding = fileEncoding
+            self.lineEnding = self.lineEndingScanner.majorLineEnding ?? self.lineEnding  // keep default if no line endings are found
         }
         
-        // set read values
-        self.fileEncoding = fileEncoding
         self.allowsLossySaving = false
-        self.lineEnding = self.lineEndingScanner.majorLineEnding ?? self.lineEnding  // keep default if no line endings are found
         
         // determine syntax (only on the first file open)
         if !self.isInitialized {
@@ -480,7 +482,10 @@ import FilePermissions
             // get the latest file attributes
             do {
                 let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_ACCESS
-                self.fileAttributes = FileAttributes(dictionary: attributes)
+                let fileAttributes =  FileAttributes(dictionary: attributes)
+                Task { @MainActor in
+                    self.fileAttributes = fileAttributes
+                }
             } catch {
                 assertionFailure(error.localizedDescription)
             }
