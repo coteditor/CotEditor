@@ -131,7 +131,7 @@ import FilePermissions
             UserDefaults.standard.publisher(for: .autoLinkDetection)
                 .sink { [weak self] in self?.urlDetector.isEnabled = $0 },
             UserDefaults.standard.publisher(for: .modes)
-                .sink { [weak self] _ in Task { await self?.invalidateMode() } },
+                .sink { [weak self] _ in self?.invalidateMode() },
         ]
         
         // observe syntax update
@@ -1294,9 +1294,9 @@ import FilePermissions
     }
     
     
-    private func invalidateMode() async {
+    private func invalidateMode() {
         
-        self.mode = await ModeManager.shared.mode(for: self.syntaxParser.name)
+        self.mode = ModeManager.shared.mode(for: self.syntaxParser.name)
     }
     
     

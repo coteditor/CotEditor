@@ -25,7 +25,7 @@
 
 import Foundation
 
-actor ModeManager {
+@MainActor final class ModeManager {
     
     typealias Setting = ModeOptions
     

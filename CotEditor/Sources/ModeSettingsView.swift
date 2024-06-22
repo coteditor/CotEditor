@@ -42,9 +42,7 @@ struct ModeSettingsView: View {
                     ModeOptionsView(options: $options)
                         .disabled(!self.selection.available)
                         .onChange(of: self.options) { (_, newValue) in
-                            Task {
-                                await ModeManager.shared.save(setting: newValue, mode: self.selection)
-                            }
+                            ModeManager.shared.save(setting: newValue, mode: self.selection)
                         }
                         .frame(maxWidth: .infinity)
                 }
@@ -56,9 +54,7 @@ struct ModeSettingsView: View {
             }
         }
         .onChange(of: self.selection, initial: true) { (_, newValue) in
-            Task {
-                self.options = await ModeManager.shared.setting(for: newValue)
-            }
+            self.options = ModeManager.shared.setting(for: newValue)
         }
         .scenePadding()
         .frame(minWidth: 600, idealWidth: 600)
@@ -116,17 +112,15 @@ private struct ModeListView: View {
                     Section(String(localized: "Syntax", table: "ModeSettings")) {
                         ForEach(SyntaxManager.shared.settingNames, id: \.self) { syntaxName in
                             Button(syntaxName) {
-                                Task {
-                                    do {
-                                        try await ModeManager.shared.addSetting(for: syntaxName)
-                                    } catch {
-                                        self.error = error
-                                    }
-                                    let syntaxModes = await ModeManager.shared.syntaxModes
-                                    withAnimation {
-                                        self.syntaxModes = syntaxModes
-                                        self.selection = .syntax(syntaxName)
-                                    }
+                                do {
+                                    try ModeManager.shared.addSetting(for: syntaxName)
+                                } catch {
+                                    self.error = error
+                                }
+                                let syntaxModes = ModeManager.shared.syntaxModes
+                                withAnimation {
+                                    self.syntaxModes = syntaxModes
+                                    self.selection = .syntax(syntaxName)
                                 }
                             }.disabled(self.syntaxModes.compactMap(\.syntaxName).contains(syntaxName))
                         }
@@ -137,13 +131,11 @@ private struct ModeListView: View {
                 .alert(error: $error)
                 
                 Button {
-                    Task {
-                        await ModeManager.shared.removeSetting(for: self.selection)
-                        let syntaxModes = await ModeManager.shared.syntaxModes
-                        withAnimation {
-                            self.syntaxModes = syntaxModes
-                            self.selection = .kind(.general)
-                        }
+                    ModeManager.shared.removeSetting(for: self.selection)
+                    let syntaxModes = ModeManager.shared.syntaxModes
+                    withAnimation {
+                        self.syntaxModes = syntaxModes
+                        self.selection = .kind(.general)
                     }
                 } label: {
                     Label(String(localized: "Remove", table: "ModeSettings"), systemImage: "minus")
@@ -157,8 +149,8 @@ private struct ModeListView: View {
             .labelStyle(.iconOnly)
             .buttonStyle(.borderless)
         }
-        .task {
-            self.syntaxModes = await ModeManager.shared.syntaxModes
+        .onAppear {
+            self.syntaxModes = ModeManager.shared.syntaxModes
         }
         .border(.separator)
         .background()

@@ -96,11 +96,7 @@ final class EditorViewController: NSSplitViewController {
                 .sink { [weak self] in self?.outlineNavigator.items = $0 },
             self.document.$mode
                 .removeDuplicates()
-                .sink { [weak self] mode in
-                    Task { @MainActor in
-                        self?.textView?.mode = await ModeManager.shared.setting(for: mode)
-                    }
-                },
+                .sink { [weak self] in self?.textView?.mode = ModeManager.shared.setting(for: $0) },
             UserDefaults.standard.publisher(for: .showNavigationBar)
                 .sink { [weak self] in self?.navigationBarItem.animator().isCollapsed = !$0 },
         ]
