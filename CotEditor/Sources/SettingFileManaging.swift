@@ -83,19 +83,19 @@ protocol SettingFileManaging: AnyObject {
     
     
     /// Directory name in both Application Support and bundled Resources.
-    static var directoryName: String { get }
+    nonisolated static var directoryName: String { get }
     
     /// UTType of user setting file
-    var fileType: UTType { get }
+    nonisolated static var fileType: UTType { get }
     
     /// List of names that cannot be used for user setting names.
-    var reservedNames: [String] { get }
+    nonisolated var reservedNames: [String] { get }
+    
+    /// List of names of setting filename which are bundled (without extension).
+    nonisolated var bundledSettingNames: [String] { get }
     
     /// List of names of setting filename (without extension).
     var settingNames: [String] { get set }
-    
-    /// List of names of setting filename which are bundled (without extension).
-    var bundledSettingNames: [String] { get }
     
     /// Stored settings to avoid loading frequently-used setting files multiple times.
     var cachedSettings: [String: Setting] { get set }
@@ -105,7 +105,7 @@ protocol SettingFileManaging: AnyObject {
     func setting(name: String) throws(SettingFileError) -> Setting
     
     /// Loads setting from the file at the given URL.
-    func loadSetting(at fileURL: URL) throws -> Setting
+    nonisolated func loadSetting(at fileURL: URL) throws -> Setting
     
     /// Loads settings in the user domain.
     func loadUserSettings()
@@ -170,17 +170,17 @@ extension SettingFileManaging {
     // MARK: Public Methods
     
     /// File urls for user settings.
-    var userSettingFileURLs: [URL] {
+    nonisolated var userSettingFileURLs: [URL] {
         
         (try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
                                                       includingPropertiesForKeys: nil,
                                                       options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]))?
-            .filter { $0.conforms(to: self.fileType) } ?? []
+            .filter { $0.conforms(to: Self.fileType) } ?? []
     }
     
     
     /// Creates the setting name from a URL (don't care if it exists).
-    func settingName(from fileURL: URL) -> String {
+    nonisolated static func settingName(from fileURL: URL) -> String {
         
         fileURL.deletingPathExtension().lastPathComponent
     }
@@ -194,9 +194,9 @@ extension SettingFileManaging {
     
     
     /// Returns a setting file URL in the application's Resources domain or nil if not exists.
-    func urlForBundledSetting(name: String) -> URL? {
+    nonisolated func urlForBundledSetting(name: String) -> URL? {
         
-        Bundle.main.url(forResource: name, withExtension: self.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)
+        Bundle.main.url(forResource: name, withExtension: Self.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)
     }
     
     
@@ -212,9 +212,9 @@ extension SettingFileManaging {
     
     
     /// Returns a setting file URL in the user's Application Support domain (don't care if it exists).
-    func preparedURLForUserSetting(name: String) -> URL {
+    nonisolated func preparedURLForUserSetting(name: String) -> URL {
         
-        self.userSettingDirectoryURL.appendingPathComponent(name, conformingTo: self.fileType)
+        self.userSettingDirectoryURL.appendingPathComponent(name, conformingTo: Self.fileType)
     }
     
     
@@ -387,14 +387,14 @@ extension SettingFileManaging {
     /// - Throws: `SettingFileError` or `ImportDuplicationError`
     func importSetting(fileURL: URL) throws {
         
-        let importName = self.settingName(from: fileURL)
+        let importName = Self.settingName(from: fileURL)
         
         // check duplication
         for name in self.settingNames {
             guard name.caseInsensitiveCompare(importName) == .orderedSame else { continue }
             
             guard self.urlForUserSetting(name: name) == nil else {  // duplicated
-                throw ImportDuplicationError(name: name, type: self.fileType, continuationHandler: { [unowned self] in
+                throw ImportDuplicationError(name: name, type: Self.fileType, continuationHandler: { [unowned self] in
                     try self.overwriteSetting(fileURL: fileURL)
                 })
             }
@@ -436,7 +436,7 @@ extension SettingFileManaging {
     // MARK: Private Methods
     
     /// The user setting directory URL in Application Support.
-    private var userSettingDirectoryURL: URL {
+    nonisolated private var userSettingDirectoryURL: URL {
         
         .applicationSupportDirectory(component: Self.directoryName)
     }
@@ -447,7 +447,7 @@ extension SettingFileManaging {
     /// - Parameter fileURL: The URL of the file to import.
     private func overwriteSetting(fileURL: URL) throws {
         
-        let name = self.settingName(from: fileURL)
+        let name = Self.settingName(from: fileURL)
         let destURL = self.preparedURLForUserSetting(name: name)
         
         try FileManager.default.createIntermediateDirectories(to: destURL)

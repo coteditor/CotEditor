@@ -333,7 +333,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
         savePanel.isExtensionHidden = false
         savePanel.nameFieldLabel = String(localized: "Export As:", comment: "filename field label for save panel")
         savePanel.nameFieldStringValue = settingName
-        savePanel.allowedContentTypes = [SyntaxManager.shared.fileType]
+        savePanel.allowedContentTypes = [SyntaxManager.fileType]
         
         Task {
             guard await savePanel.beginSheetModal(for: self.view.window!) == .OK else { return }
@@ -355,7 +355,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
-        openPanel.allowedContentTypes = [SyntaxManager.shared.fileType]
+        openPanel.allowedContentTypes = [SyntaxManager.fileType]
         
         Task {
             guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }

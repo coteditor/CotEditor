@@ -66,11 +66,11 @@ final class SyntaxManager: SettingFileManaging {
     // MARK: Setting File Managing Properties
     
     static let directoryName: String = "Syntaxes"
-    let fileType: UTType = .yaml
+    static let fileType: UTType = .yaml
     let reservedNames: [SettingName] = [SyntaxName.none, "General", "Code"]
     
-    @Published var settingNames: [SettingName] = []
     let bundledSettingNames: [SettingName]
+    @Published var settingNames: [SettingName] = []
     @Atomic var cachedSettings: [SettingName: Setting] = [:]
     
     
@@ -218,7 +218,7 @@ final class SyntaxManager: SettingFileManaging {
     
     
     /// Loads setting from the file at the given URL.
-    func loadSetting(at fileURL: URL) throws -> Setting {
+    nonisolated func loadSetting(at fileURL: URL) throws -> Setting {
         
         let decoder = YAMLDecoder()
         let data = try Data(contentsOf: fileURL)
@@ -235,19 +235,22 @@ final class SyntaxManager: SettingFileManaging {
         let maps = self.bundledMaps.merging(userMaps) { (_, new) in new }
         
         // sort syntaxes alphabetically
-        self.settingNames = maps.keys.sorted(options: [.localized, .caseInsensitive])
+        let settingNames = maps.keys.sorted(options: [.localized, .caseInsensitive])
         // remove syntaxes not exist
-        UserDefaults.standard[.recentSyntaxNames].removeAll { !self.settingNames.contains($0) }
+        UserDefaults.standard[.recentSyntaxNames].removeAll { !settingNames.contains($0) }
         
         // update file mapping tables
-        let settingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled syntaxes
-        self.mappingTable = self.mappingTable.keys.reduce(into: [:]) { (tables, keyPath) in
-            tables[keyPath] = settingNames.reduce(into: [String: [SettingName]]()) { (table, settingName) in
+        let sortedSettingNames = settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled syntaxes
+        let mappingTable = self.mappingTable.keys.reduce(into: [:]) { (tables, keyPath) in
+            tables[keyPath] = sortedSettingNames.reduce(into: [String: [SettingName]]()) { (table, settingName) in
                 for item in maps[settingName]?[keyPath: keyPath] ?? [] {
                     table[item, default: []].append(settingName)
                 }
             }
         }
+        
+        self.settingNames = settingNames
+        self.mappingTable = mappingTable
     }
     
     

@@ -226,7 +226,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         savePanel.isExtensionHidden = true
         savePanel.nameFieldLabel = String(localized: "Export As:", comment: "filename field label for save panel")
         savePanel.nameFieldStringValue = settingName
-        savePanel.allowedContentTypes = [ReplacementManager.shared.fileType]
+        savePanel.allowedContentTypes = [ReplacementManager.fileType]
         
         Task {
             guard await savePanel.beginSheetModal(for: self.view.window!) == .OK else { return }
@@ -248,7 +248,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = false
-        openPanel.allowedContentTypes = [ReplacementManager.shared.fileType]
+        openPanel.allowedContentTypes = [ReplacementManager.fileType]
         
         Task {
             guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }

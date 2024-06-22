@@ -51,11 +51,11 @@ final class ThemeManager: SettingFileManaging {
     // MARK: Setting File Managing Properties
     
     static let directoryName: String = "Themes"
-    let fileType: UTType = .cotTheme
+    static let fileType: UTType = .cotTheme
     let reservedNames: [String] = []
     
+    let bundledSettingNames: [String]
     @Published var settingNames: [String] = []
-    private(set) var bundledSettingNames: [String] = []
     var cachedSettings: [String: Setting] = [:]
     
     
@@ -65,8 +65,8 @@ final class ThemeManager: SettingFileManaging {
     private init() {
         
         // cache bundled setting names
-        self.bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: self.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)!
-            .map { self.settingName(from: $0) }
+        self.bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: Self.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)!
+            .map { Self.settingName(from: $0) }
             .sorted(options: [.localized, .caseInsensitive])
         
         // cache user setting names
@@ -81,7 +81,7 @@ final class ThemeManager: SettingFileManaging {
     ///
     /// - Parameter name: The setting name to test.
     /// - Returns: A bool value.
-    static func isDark(name: String) -> Bool {
+    nonisolated static func isDark(name: String) -> Bool {
         
         name.hasSuffix("(Dark)")
     }
@@ -203,7 +203,7 @@ final class ThemeManager: SettingFileManaging {
     // MARK: Setting File Managing
     
     /// Loads the setting from the file at the given URL.
-    func loadSetting(at fileURL: URL) throws -> Setting {
+    nonisolated func loadSetting(at fileURL: URL) throws -> Setting {
         
         try Theme(contentsOf: fileURL)
     }
@@ -214,14 +214,16 @@ final class ThemeManager: SettingFileManaging {
         
         // get user setting names if exists
         let userSettingNames = self.userSettingFileURLs
-            .map { self.settingName(from: $0) }
+            .map { Self.settingName(from: $0) }
         
-        self.settingNames = (self.bundledSettingNames + userSettingNames).uniqued
+        let settingNames = (self.bundledSettingNames + userSettingNames).uniqued
             .sorted(options: [.localized, .caseInsensitive])
         
         // reset user default if not found
-        if !self.settingNames.contains(UserDefaults.standard[.theme]) {
+        if !settingNames.contains(UserDefaults.standard[.theme]) {
             UserDefaults.standard.restore(key: .theme)
         }
+        
+        self.settingNames = settingNames
     }
 }

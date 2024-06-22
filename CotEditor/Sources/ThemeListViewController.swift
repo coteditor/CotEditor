@@ -399,7 +399,7 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
         savePanel.isExtensionHidden = true
         savePanel.nameFieldLabel = String(localized: "Export As:", comment: "filename field label for save panel")
         savePanel.nameFieldStringValue = settingName
-        savePanel.allowedContentTypes = [ThemeManager.shared.fileType]
+        savePanel.allowedContentTypes = [ThemeManager.fileType]
         
         Task {
             guard await savePanel.beginSheetModal(for: self.view.window!) == .OK else { return }
@@ -421,7 +421,7 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
-        openPanel.allowedContentTypes = [ThemeManager.shared.fileType]
+        openPanel.allowedContentTypes = [ThemeManager.fileType]
         
         Task {
             guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }

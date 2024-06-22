@@ -40,11 +40,11 @@ import UniformTypeIdentifiers
     // MARK: Setting File Managing Properties
     
     static let directoryName: String = "Replacements"
-    let fileType: UTType = .cotReplacement
+    static let fileType: UTType = .cotReplacement
     let reservedNames: [String] = []
     
-    var settingNames: [String] = []
     let bundledSettingNames: [String] = []
+    var settingNames: [String] = []
     var cachedSettings: [String: Setting] = [:]
     
     
@@ -103,7 +103,7 @@ import UniformTypeIdentifiers
     // MARK: Setting File Managing
     
     /// Loads the setting from the file at the given URL.
-    func loadSetting(at fileURL: URL) throws -> Setting {
+    nonisolated func loadSetting(at fileURL: URL) throws -> Setting {
         
         let decoder = JSONDecoder()
         let data = try Data(contentsOf: fileURL)
@@ -116,9 +116,11 @@ import UniformTypeIdentifiers
     func loadUserSettings() {
         
         // get user setting names if exists
-        self.settingNames = self.userSettingFileURLs
+        let userSettingNames = self.userSettingFileURLs
             .filter { (try? self.loadSetting(at: $0)) != nil }  // just try loading but not store
-            .map { self.settingName(from: $0) }
+            .map { Self.settingName(from: $0) }
             .sorted(options: [.localized, .caseInsensitive])
+        
+        self.settingNames = userSettingNames
     }
 }

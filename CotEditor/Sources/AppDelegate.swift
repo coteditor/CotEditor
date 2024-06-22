@@ -498,7 +498,7 @@ private enum BundleIdentifier {
         }
         
         // feedback for success
-        let themeName = ThemeManager.shared.settingName(from: url)
+        let themeName = ThemeManager.settingName(from: url)
         let feedbackAlert = NSAlert()
         feedbackAlert.messageText = String(localized: "ThemeImportAlert.success",
                                            defaultValue: "A new theme named “\(themeName)” has been successfully installed.")
