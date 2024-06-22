@@ -32,7 +32,21 @@ actor ModeManager {
     
     // MARK: Public Properties
     
-    static let shared = ModeManager()
+    static let shared = ModeManager(defaults: .standard)
+    
+    
+    // MARK: Private Properties
+    
+    private let defaults: UserDefaults
+    
+    
+    
+    // MARK: Lifecycle
+    
+    init(defaults: UserDefaults) {
+        
+        self.defaults = defaults
+    }
     
     
     
@@ -41,7 +55,7 @@ actor ModeManager {
     /// The user syntax modes currently available.
     var syntaxModes: [Mode] {
         
-        UserDefaults.standard[.modes].keys
+        self.defaults[.modes].keys
             .sorted(options: [.localized, .caseInsensitive])
             .compactMap(Mode.init(rawValue:))
             .filter { if case .syntax = $0 { true } else { false } }
@@ -56,12 +70,13 @@ actor ModeManager {
         
         if let mode = self.syntaxModes.first(where: { $0 == .syntax(syntaxName) }) {
             mode
-        } else if let kind = try? SyntaxManager.shared.setting(name: syntaxName).kind {
+        } else if let kind = try? self.syntaxKind(name: syntaxName) {
             .kind(kind)
         } else {
             .kind(.general)
         }
     }
+    
     
     
     /// Returns the setting instance corresponding to the given mode.
@@ -76,7 +91,7 @@ actor ModeManager {
         
         let kind = switch mode {
             case .kind(let kind): kind
-            case .syntax(let name): (try? SyntaxManager.shared.setting(name: name).kind) ?? .general
+            case .syntax(let name): (try? self.syntaxKind(name: name)) ?? .general
         }
         
         return self.loadSetting(for: .kind(kind)) ?? kind.defaultOptions
@@ -89,9 +104,9 @@ actor ModeManager {
     /// - Throws: `SettingFileError`
     func addSetting(for syntaxName: String) throws {
         
-        let syntax = try SyntaxManager.shared.setting(name: syntaxName)
+        let kind = try self.syntaxKind(name: syntaxName)
         
-        self.save(setting: syntax.kind.defaultOptions, mode: .syntax(syntaxName))
+        self.save(setting: kind.defaultOptions, mode: .syntax(syntaxName))
     }
     
     
@@ -104,7 +119,7 @@ actor ModeManager {
         // setting for syntax kind can't be removed
         guard case .syntax = mode else { return }
 
-        UserDefaults.standard[.modes].removeValue(forKey: mode.rawValue)
+        self.defaults[.modes].removeValue(forKey: mode.rawValue)
     }
     
     
@@ -116,17 +131,27 @@ actor ModeManager {
     func save(setting: Setting, mode: Mode) {
         
         if case .kind(let kind) = mode, setting == kind.defaultOptions {
-            UserDefaults.standard[.modes].removeValue(forKey: mode.rawValue)
-            if UserDefaults.standard[.modes].isEmpty {
-                UserDefaults.standard.restore(key: .modes)
+            self.defaults[.modes].removeValue(forKey: mode.rawValue)
+            if self.defaults[.modes].isEmpty {
+                self.defaults.restore(key: .modes)
             }
         } else {
-            UserDefaults.standard[.modes][mode.rawValue] = setting.dictionary
+            self.defaults[.modes][mode.rawValue] = setting.dictionary
         }
     }
     
     
     // MARK: Private Methods
+    
+    /// Returns the kind of the syntax with the given name.
+    ///
+    /// - Parameter name: The name of the syntax.
+    /// - Returns: Syntax.Kind.
+    nonisolated private func syntaxKind(name: SyntaxManager.SettingName) throws -> Syntax.Kind {
+        
+        try SyntaxManager.shared.setting(name: name).kind
+    }
+    
     
     /// Loads setting for the given mode from the user defaults.
     ///
@@ -134,7 +159,7 @@ actor ModeManager {
     /// - Returns: The user mode setting if available.
     private func loadSetting(for mode: Mode) -> Setting? {
         
-        guard let dictionary = UserDefaults.standard[.modes][mode.rawValue] as? [String: AnyHashable] else { return nil }
+        guard let dictionary = self.defaults[.modes][mode.rawValue] as? [String: AnyHashable] else { return nil }
         
         return ModeOptions(dictionary: dictionary)
     }
