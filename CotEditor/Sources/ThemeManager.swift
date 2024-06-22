@@ -90,7 +90,7 @@ final class ThemeManager: SettingFileManaging {
     
     
     /// The default setting by taking the appearance state into consideration.
-    var defaultSettingName: String {
+    @MainActor var defaultSettingName: String {
         
         let defaultSettingName = DefaultSettings.defaults[.theme] as! String
         let forDark = self.usesDarkAppearance
@@ -100,7 +100,7 @@ final class ThemeManager: SettingFileManaging {
     
     
     /// The user default setting by taking the appearance state into consideration.
-    var userDefaultSettingName: String {
+    @MainActor var userDefaultSettingName: String {
         
         let settingName = UserDefaults.standard[.theme]
         
@@ -119,7 +119,7 @@ final class ThemeManager: SettingFileManaging {
     
     
     /// Whether document windows currently use the dark appearance.
-    var usesDarkAppearance: Bool {
+    @MainActor var usesDarkAppearance: Bool {
         
         switch UserDefaults.standard[.documentAppearance] {
             case .default: NSApp.effectiveAppearance.isDark
