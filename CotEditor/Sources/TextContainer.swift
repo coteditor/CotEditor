@@ -32,32 +32,16 @@ final class TextContainer: NSTextContainer {
     var isHangingIndentEnabled = false  { didSet { self.invalidateLayout() } }
     var hangingIndentWidth = 0  { didSet { self.invalidateLayout() } }
     
+    var indentAttributes: [NSAttributedString.Key: Any] = [:]  { didSet { self.indentWidthCache.removeAll() } }
+    
     
     // MARK: Private Properties
     
-    private var indentWidthCache: [String: CGFloat] = [:]
-    private var indentAttributes: [NSAttributedString.Key: Any] = [:]
-    private var typingAttributesObservation: NSKeyValueObservation?
+    private var indentWidthCache: [String: Double] = [:]
     
     
     
     // MARK: Text Container Methods
-    
-    override weak var textView: NSTextView? {
-        
-        didSet {
-            self.typingAttributesObservation = textView?.observe(\.typingAttributes, options: [.initial, .new]) { [weak self] (textView, change) in
-                guard let typingAttributes = change.newValue else { return }
-                
-                // -> The font can differ from the specified text font while typing marked text.
-                guard textView.hasMarkedText() != true else { return }
-                
-                self?.indentAttributes = typingAttributes
-                self?.indentWidthCache.removeAll()
-            }
-        }
-    }
-    
     
     override var isSimpleRectangularTextContainer: Bool {
         

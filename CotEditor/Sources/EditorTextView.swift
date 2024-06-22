@@ -858,6 +858,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    override var typingAttributes: [NSAttributedString.Key: Any] {
+        
+        didSet {
+            // -> The font can differ from the specified text font while typing marked text.
+            guard self.hasMarkedText() != true else { return }
+            
+            (self.textContainer as? TextContainer)?.indentAttributes = typingAttributes
+        }
+    }
+    
+    
     override var font: NSFont? {
         
         get {
