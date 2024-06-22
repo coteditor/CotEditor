@@ -24,7 +24,6 @@
 //
 
 import AppKit
-import Combine
 import Defaults
 
 @MainActor final class TextFinderSettings: NSObject {
@@ -42,7 +41,7 @@ import Defaults
     private static let maximumRecents = 20
     
     private let defaults: UserDefaults
-    private var applicationActivationObserver: AnyCancellable?
+    private var applicationActivationObservationTask: Task<Void, any Error>?
     
     
     
@@ -57,9 +56,12 @@ import Defaults
         super.init()
         
         // observe application activation to sync find string with other apps
-        self.applicationActivationObserver = NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)
-            .compactMap { _ in NSPasteboard(name: .find).string(forType: .string) }
-            .sink { [weak self] in self?.findString = $0 }
+        self.applicationActivationObservationTask = Task { [weak self] in
+            for await _ in NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification).map(\.name) {
+                guard let findString = NSPasteboard(name: .find).string(forType: .string) else { continue }
+                self?.findString = findString
+            }
+        }
     }
     
     

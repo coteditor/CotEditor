@@ -26,7 +26,6 @@
 
 import SwiftUI
 import AppKit
-import Combine
 import Shortcut
 
 struct ShortcutField: NSViewRepresentable {
@@ -121,11 +120,16 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
     // MARK: Private Properties
     
     private var keyDownMonitor: Any?
-    private var windowObserver: AnyCancellable?
+    private var windowObservationTask: Task<Void, any Error>?
     
     
     
     // MARK: Text Field Methods
+    
+    deinit {
+        self.windowObservationTask?.cancel()
+    }
+    
     
     override func awakeFromNib() {
         
@@ -166,9 +170,11 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
         }
         
         if let window = self.window {
-            self.windowObserver = NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification, object: window)
-                .map { $0.object as! NSWindow }
-                .sink { $0.makeFirstResponder(nil) }
+            self.windowObservationTask = Task {
+                for await _ in NotificationCenter.default.notifications(named: NSWindow.didResignKeyNotification, object: window).map(\.name) {
+                    window.makeFirstResponder(nil)
+                }
+            }
         }
         
         return true
@@ -189,7 +195,8 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
             NSEvent.removeMonitor(monitor)
             self.keyDownMonitor = nil
         }
-        self.windowObserver = nil
+        self.windowObservationTask?.cancel()
+        self.windowObservationTask = nil
         
         super.textDidEndEditing(notification)
     }

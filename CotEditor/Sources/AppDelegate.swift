@@ -90,9 +90,10 @@ private enum BundleIdentifier {
     
     #if DEBUG
     private let textKitObserver = NotificationCenter.default
-        .publisher(for: NSTextView.didSwitchToNSLayoutManagerNotification)
-        .compactMap { $0.object as? NSTextView }
-        .sink { Logger.app.debug("\($0.className) did switch to NSLayoutManager.") }
+        .addObserver(forName: NSTextView.didSwitchToNSLayoutManagerNotification, object: nil, queue: .main) { notification in
+            let textView = notification.object as! NSTextView
+            Logger.app.debug("\(textView.className) did switch to NSLayoutManager.")
+        }
     #endif
     
     

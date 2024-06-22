@@ -24,7 +24,6 @@
 //
 
 import AppKit
-import Combine
 
 protocol TouchBarItemValidations: AnyObject {
     
@@ -86,12 +85,14 @@ extension NSTouchBar {
         didSet {
             guard isEnabled != oldValue else { return }
             
-            if isEnabled {
-                self.applicationObserver = NotificationCenter.default.publisher(for: NSApplication.didUpdateNotification)
-                    .sink { [weak self] _ in self?.validateTouchBarIfNeeded() }
-            } else {
-                self.applicationObserver = nil
-            }
+            self.applicationObservationTask?.cancel()
+            self.applicationObservationTask = if isEnabled {
+                Task { [weak self] in
+                    for await _ in NotificationCenter.default.notifications(named: NSApplication.didUpdateNotification).map(\.name) {
+                        self?.validateTouchBarIfNeeded()
+                    }
+                }
+            } else { nil }
         }
     }
     
@@ -100,7 +101,7 @@ extension NSTouchBar {
     // MARK: Private Properties
     
     private weak var validationTimer: Timer?
-    private var applicationObserver: AnyCancellable?
+    private var applicationObservationTask: Task<Void, any Error>?
     
     
     private enum ValidationDelay: TimeInterval {
@@ -114,6 +115,11 @@ extension NSTouchBar {
     // MARK: Lifecycle
     
     private init() { }
+    
+    
+    deinit {
+        self.applicationObservationTask?.cancel()
+    }
     
     
     

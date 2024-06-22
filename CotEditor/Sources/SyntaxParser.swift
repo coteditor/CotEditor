@@ -56,7 +56,6 @@ final class SyntaxParser: @unchecked Sendable {
     
     private var outlineParseTask: Task<Void, any Error>?
     private var highlightParseTask: Task<Void, any Error>?
-    private var textEditingObservationTask: Task<Void, any Error>?
     private var isHighlighting = false
     
     private var textEditingObserver: AnyCancellable?

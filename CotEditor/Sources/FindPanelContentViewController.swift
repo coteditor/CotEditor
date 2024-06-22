@@ -25,7 +25,6 @@
 
 import AppKit
 import SwiftUI
-import Combine
 
 final class FindPanelContentViewController: NSSplitViewController {
     
@@ -36,11 +35,16 @@ final class FindPanelContentViewController: NSSplitViewController {
     @ViewLoading private var fieldSplitViewItem: NSSplitViewItem
     @ViewLoading private var resultSplitViewItem: NSSplitViewItem
     
-    private var resultObserver: AnyCancellable?
+    private var resultObservationTask: Task<Void, any Error>?
     
     
     
-    // MARK: Split View Controller Methods
+    // MARK: Lifecycle
+    
+    deinit {
+        self.resultObservationTask?.cancel()
+    }
+    
     
     override func loadView() {
         
@@ -77,9 +81,11 @@ final class FindPanelContentViewController: NSSplitViewController {
         
         self.splitViewItems = [fieldViewItem, resultViewItem, buttonViewItem]
         
-        self.resultObserver = NotificationCenter.default.publisher(for: TextFinder.didFindAllNotification)
-            .compactMap { $0.object as? TextFinder }
-            .sink { [weak self] in self?.didFinishFindAll(in: $0) }
+        self.resultObservationTask = Task { [weak self] in
+            for await textFinder in NotificationCenter.default.notifications(named: TextFinder.didFindAllNotification).map({ $0.object as! TextFinder }) {
+                self?.didFinishFindAll(in: textFinder)
+            }
+        }
     }
     
     
@@ -100,6 +106,9 @@ final class FindPanelContentViewController: NSSplitViewController {
         self.resultSplitViewItem.isCollapsed = true
     }
     
+    
+    
+    // MARK: Split View Controller Methods
     
     override func splitViewDidResizeSubviews(_ notification: Notification) {
         
