@@ -148,7 +148,7 @@ struct TextFindAllResult {
     // MARK: Private Properties
     
     private var findTask: Task<Void, any Error>?
-    private var highlightObservationTask: Task<Void, any Error>?
+    private var highlightObservationTask: Task<Void, Never>?
     
     
     

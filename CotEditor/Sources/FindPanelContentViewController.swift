@@ -35,7 +35,7 @@ final class FindPanelContentViewController: NSSplitViewController {
     @ViewLoading private var fieldSplitViewItem: NSSplitViewItem
     @ViewLoading private var resultSplitViewItem: NSSplitViewItem
     
-    private var resultObservationTask: Task<Void, any Error>?
+    private var resultObservationTask: Task<Void, Never>?
     
     
     

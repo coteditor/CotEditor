@@ -101,7 +101,7 @@ extension NSTouchBar {
     // MARK: Private Properties
     
     private weak var validationTimer: Timer?
-    private var applicationObservationTask: Task<Void, any Error>?
+    private var applicationObservationTask: Task<Void, Never>?
     
     
     private enum ValidationDelay: TimeInterval {

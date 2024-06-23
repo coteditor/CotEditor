@@ -41,7 +41,7 @@ import Defaults
     private static let maximumRecents = 20
     
     private let defaults: UserDefaults
-    private var applicationActivationObservationTask: Task<Void, any Error>?
+    private var applicationActivationObservationTask: Task<Void, Never>?
     
     
     

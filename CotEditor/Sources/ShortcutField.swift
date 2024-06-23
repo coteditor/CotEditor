@@ -120,7 +120,7 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
     // MARK: Private Properties
     
     private var keyDownMonitor: Any?
-    private var windowObservationTask: Task<Void, any Error>?
+    private var windowObservationTask: Task<Void, Never>?
     
     
     
