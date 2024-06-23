@@ -211,7 +211,7 @@ import FilePermissions
     }
     
     
-    override var autosavedContentsFileURL: URL? {  // nonisolated
+    override nonisolated var autosavedContentsFileURL: URL? {
         
         get {
             // modify place to create backup file to save backup file always in `~/Library/Autosaved Information/` directory.
@@ -315,7 +315,7 @@ import FilePermissions
     }
     
     
-    override func read(from url: URL, ofType typeName: String) throws {  // nonisolated
+    override nonisolated func read(from url: URL, ofType typeName: String) throws {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
@@ -422,6 +422,12 @@ import FilePermissions
     
     override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping ((any Error)?) -> Void) {
         
+        // check if the content can be saved with the current text encoding
+        guard saveOperation.isAutosaveElsewhere || self.allowsLossySaving || self.canBeConverted() else {
+            let error = DocumentSavingError(.lossyEncoding(self.fileEncoding), attempter: self)
+            return completionHandler(error)
+        }
+        
         // break undo grouping
         let textViews = self.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection)
         for textView in textViews {
@@ -464,12 +470,7 @@ import FilePermissions
     }
     
     
-    override func writeSafely(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) throws {  // nonisolated
-        
-        // check if the content can be saved with the current text encoding.
-        guard saveOperation.isAutosaveElsewhere || self.allowsLossySaving || self.canBeConverted() else {
-            throw DocumentSavingError(.lossyEncoding(self.fileEncoding), attempter: self)
-        }
+    override nonisolated func writeSafely(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) throws {
         
         try super.writeSafely(to: url, ofType: typeName, for: saveOperation)
         
@@ -498,7 +499,7 @@ import FilePermissions
     }
     
     
-    override func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String: Any] {  // nonisolated
+    override nonisolated func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String: Any] {
         
         var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
@@ -749,7 +750,7 @@ import FilePermissions
     
     // MARK: Protocols
     
-    nonisolated override func presentedItemDidChange() {
+    override nonisolated func presentedItemDidChange() {
         
         // [caution] DO NOT invoke `super.presentedItemDidChange()` that reverts document automatically if autosavesInPlace is enabled.
 //        super.presentedItemDidChange()
