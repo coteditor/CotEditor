@@ -30,20 +30,6 @@ extension DispatchQueue {
     
     /// Synchronously but thread-safely invokes passed-in block on main thread to avoid deadlock.
     ///
-    /// - Parameter block: The block that contains the work to perform.
-    static func syncOnMain(execute block: () -> Void) {
-        
-        if Thread.isMainThread {
-            block()
-            
-        } else {
-            DispatchQueue.main.sync(execute: block)
-        }
-    }
-    
-    
-    /// Synchronously but thread-safely invokes passed-in block on main thread to avoid deadlock.
-    ///
     /// - Parameter work: The work item containing the work to perform.
     /// - Returns: The return value of the item in the work parameter.
     static func syncOnMain<T>(execute work: () throws -> T) rethrows -> T {
