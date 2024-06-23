@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import AppKit
+import AppKit.NSApplication
 import Combine
 import Foundation
 import UniformTypeIdentifiers

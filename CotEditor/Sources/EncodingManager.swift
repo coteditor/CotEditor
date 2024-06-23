@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import AppKit
+import AppKit.NSMenuItem
 import Observation
 import Combine
 import Defaults
