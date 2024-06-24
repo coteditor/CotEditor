@@ -169,6 +169,7 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
             return nil
         }
         
+        self.windowObservationTask?.cancel()
         if let window = self.window {
             self.windowObservationTask = Task {
                 for await _ in NotificationCenter.default.notifications(named: NSWindow.didResignKeyNotification, object: window).map(\.name) {

@@ -476,6 +476,7 @@ struct TextFindAllResult {
             }
             
             // unmark either when the client view resigned the key window or when the Find panel closed
+            self.highlightObservationTask?.cancel()
             self.highlightObservationTask = Task { [weak client] in
                 for await _ in NotificationCenter.default.notifications(named: NSWindow.didResignKeyNotification).map(\.name) {
                     client?.unhighlight(nil)

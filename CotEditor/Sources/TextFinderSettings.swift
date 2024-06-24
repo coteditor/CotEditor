@@ -65,6 +65,13 @@ import Defaults
     }
     
     
+    deinit {
+        Task { @MainActor [applicationActivationObservationTask] in
+            applicationActivationObservationTask?.cancel()
+        }
+    }
+    
+    
     
     // MARK: Public Methods
     
