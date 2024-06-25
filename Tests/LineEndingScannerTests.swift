@@ -25,6 +25,7 @@
 
 import AppKit
 import Testing
+import ValueRange
 @testable import CotEditor
 
 struct LineEndingScannerTests {

@@ -26,6 +26,7 @@
 
 import Foundation
 import TextEditing
+import ValueRange
 
 typealias Highlight = ValueRange<SyntaxType>
 

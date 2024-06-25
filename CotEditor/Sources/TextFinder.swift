@@ -25,6 +25,7 @@
 
 import AppKit
 import SwiftUI
+import ValueRange
 
 extension NSAttributedString: @retroactive @unchecked Sendable { }
 

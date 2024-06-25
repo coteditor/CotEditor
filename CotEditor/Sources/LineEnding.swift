@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import ValueRange
 
 enum LineEnding: Character, CaseIterable {
     

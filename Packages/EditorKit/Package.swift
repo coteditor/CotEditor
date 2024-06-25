@@ -17,6 +17,7 @@ let package = Package(
             "FilePermissions",
             "TextEditing",
             "UnicodeNormalization",
+            "ValueRange",
             "Shortcut",
         ]),
         
@@ -47,6 +48,8 @@ let package = Package(
         
         .target(name: "UnicodeNormalization"),
         .testTarget(name: "UnicodeNormalizationTests", dependencies: ["UnicodeNormalization"]),
+        
+        .target(name: "ValueRange"),
         
         .target(name: "Shortcut", resources: [.process("Resources")]),
         .testTarget(name: "ShortcutTests", dependencies: ["Shortcut"]),

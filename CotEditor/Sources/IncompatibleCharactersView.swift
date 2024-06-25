@@ -27,6 +27,7 @@ import SwiftUI
 import Observation
 import Combine
 import AppKit.NSTextStorage
+import ValueRange
 
 struct IncompatibleCharactersView: View {
     

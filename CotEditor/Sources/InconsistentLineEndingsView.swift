@@ -25,6 +25,7 @@
 
 import SwiftUI
 import Observation
+import ValueRange
 
 struct InconsistentLineEndingsView: View {
     

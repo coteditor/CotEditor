@@ -1,5 +1,6 @@
 //
 //  ValueRange.swift
+//  ValueRange
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,19 +26,27 @@
 
 import struct Foundation.NSRange
 
-struct ValueRange<Value> {
+public struct ValueRange<Value> {
     
-    var value: Value
-    var range: NSRange
+    public var value: Value
+    public var range: NSRange
     
-    var location: Int  { self.range.location }
+    public var location: Int  { self.range.location }
+    
+    
+    
+    public init(value: Value, range: NSRange) {
+        
+        self.value = value
+        self.range = range
+    }
     
     
     /// Returns a copy by shifting the range location toward the given offset.
     ///
     /// - Parameter offset: The offset to shift.
     /// - Returns: A new ValueRange.
-    func shifted(by offset: Int) -> Self {
+    public func shifted(by offset: Int) -> Self {
         
         Self(value: self.value, range: self.range.shifted(by: offset))
     }
@@ -46,7 +55,7 @@ struct ValueRange<Value> {
     /// Shifts the range location toward the given offset.
     ///
     /// - Parameter offset: The offset to shift.
-    mutating func shift(by offset: Int) {
+    public mutating func shift(by offset: Int) {
         
         self.range.location += offset
     }
@@ -57,7 +66,18 @@ extension ValueRange: Equatable where Value: Equatable { }
 extension ValueRange: Hashable where Value: Hashable { }
 extension ValueRange: Sendable where Value: Sendable { }
 
-extension ValueRange: Identifiable where Self: Hashable {
+
+
+// MARK: - Private
+
+private extension NSRange {
     
-    var id: Int { self.hashValue }
+    /// Returns a copied NSRange but whose location is shifted toward the given `offset`.
+    ///
+    /// - Parameter offset: The offset to shift.
+    /// - Returns: A new NSRange.
+    func shifted(by offset: Int) -> NSRange {
+        
+        NSRange(location: self.location + offset, length: self.length)
+    }
 }

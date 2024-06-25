@@ -25,6 +25,7 @@
 //
 
 import Foundation.NSRange
+import ValueRange
 
 struct IncompatibleCharacter: Equatable, Hashable {
     
