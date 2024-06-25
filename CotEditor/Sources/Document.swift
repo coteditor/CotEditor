@@ -83,7 +83,7 @@ import FilePermissions
     private nonisolated(unsafe) var suppressesInconsistentLineEndingAlert = false
     private nonisolated(unsafe) var isExternalUpdateAlertShown = false
     private nonisolated(unsafe) var allowsLossySaving = false
-    private nonisolated(unsafe) var isInitialized = false
+    private var isInitialized = false
     
     private nonisolated(unsafe) var lastSavedData: Data?  // temporal data used only within saving process
     
@@ -371,20 +371,20 @@ import FilePermissions
             self.suppressesInconsistentLineEndingAlert = true
         }
         
+        self.allowsLossySaving = false
+        
         // set read values
         Task { @MainActor in
             self.textStorage.replaceContent(with: string)
             
             self.fileEncoding = fileEncoding
             self.lineEnding = self.lineEndingScanner.majorLineEnding ?? self.lineEnding  // keep default if no line endings are found
-        }
-        
-        self.allowsLossySaving = false
-        
-        // determine syntax (only on the first file open)
-        if !self.isInitialized {
-            let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: string)
-            self.setSyntax(name: syntaxName ?? SyntaxName.none, isInitial: true)
+            
+            // determine syntax (only on the first file open)
+            if !self.isInitialized {
+                let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: string)
+                self.setSyntax(name: syntaxName ?? SyntaxName.none, isInitial: true)
+            }
         }
     }
     
@@ -946,10 +946,10 @@ import FilePermissions
     /// - Parameters:
     ///   - name: The name of the syntax to change with.
     ///   - isInitial: Whether the setting is initial.
-    nonisolated(unsafe) func setSyntax(name: String, isInitial: Bool = false) {
+    func setSyntax(name: String, isInitial: Bool = false) {
         
         defer {
-            Task { await self.invalidateMode() }
+            self.invalidateMode()
         }
         
         let syntax: Syntax
@@ -957,9 +957,7 @@ import FilePermissions
             syntax = try SyntaxManager.shared.setting(name: name)
         } catch {
             // present error dialog if failed
-            Task { @MainActor [error] in
-                self.presentErrorAsSheet(error)
-            }
+            self.presentErrorAsSheet(error)
             return
         }
         
@@ -972,10 +970,8 @@ import FilePermissions
         // to avoid redundant highlight parse due to async notification.
         guard !isInitial else { return }
         
-        Task { @MainActor in
-            self.didChangeSyntax.send(name)
-            self.invalidateRestorableState()
-        }
+        self.didChangeSyntax.send(name)
+        self.invalidateRestorableState()
     }
     
     
