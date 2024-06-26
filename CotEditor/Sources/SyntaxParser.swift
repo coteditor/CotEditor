@@ -24,7 +24,6 @@
 //  limitations under the License.
 //
 
-import Combine
 import Foundation
 import AppKit.NSTextStorage
 import OSLog
@@ -54,10 +53,7 @@ final class SyntaxParser: @unchecked Sendable {
     
     private var outlineParseTask: Task<Void, any Error>?
     private var highlightParseTask: Task<Void, any Error>?
-    private var textEditingObservationTask: Task<Void, any Error>?
     private var isHighlighting = false
-    
-    private var textEditingObserver: AnyCancellable?
     
     
     
@@ -68,12 +64,6 @@ final class SyntaxParser: @unchecked Sendable {
         self.textStorage = textStorage
         self.syntax = syntax
         self.name = name
-        
-        // give up if the string is changed while parsing
-        self.textEditingObserver = NotificationCenter.default.publisher(for: NSTextStorage.willProcessEditingNotification, object: textStorage)
-            .map { $0.object as! NSTextStorage }
-            .filter { $0.editedMask.contains(.editedCharacters) }
-            .sink { [weak self] _ in self?.highlightParseTask?.cancel() }
     }
     
     

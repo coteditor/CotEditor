@@ -383,10 +383,12 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         let textStorage = notification.object as! NSTextStorage
         
-        guard
-            textStorage.editedMask.contains(.editedCharacters),
-            self.focusedTextView?.hasMarkedText() != true
-        else { return }
+        guard textStorage.editedMask.contains(.editedCharacters) else { return }
+        
+        // give up the current parsing
+        self.document.syntaxParser.cancel()
+        
+        guard self.focusedTextView?.hasMarkedText() != true else { return }
         
         self.document.analyzer.invalidateContent()
         self.outlineParseDebouncer.schedule()
