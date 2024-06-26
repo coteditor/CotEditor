@@ -26,7 +26,6 @@
 
 import AppKit.NSTextStorage
 import Testing
-import Combine
 import Yams
 import Syntax
 import TextEditing
@@ -117,33 +116,18 @@ actor SyntaxTests {
         let sourceURL = try #require(bundle.url(forResource: "sample", withExtension: "html"))
         let source = try String(contentsOf: sourceURL, encoding: .utf8)
         
-        let textStorage = NSTextStorage(string: source)
-        let parser = SyntaxParser(textStorage: textStorage, syntax: syntax, name: "HTML")
+        let outlineItems = try syntax.outlineExtractors
+            .flatMap { try $0.items(in: source, range: source.nsRange) }
+            .sorted(\.range.location)
         
-        // test outline parsing with publisher
-        try await confirmation("didParseOutline") { confirm in
-            let cancellable = parser.$outlineItems
-                .compactMap { $0 }  // ignore the initial invocation
-                .receive(on: RunLoop.main)
-                .sink { outlineItems in
-                    confirm()
-                    
-                    #expect(outlineItems.count == 3)
-                    
-                    #expect(parser.outlineItems == outlineItems)
-                    
-                    let item = outlineItems[1]
-                    #expect(item.title == "   h2: 🐕🐄")
-                    #expect(item.range.location == 354)
-                    #expect(item.range.length == 13)
-                    #expect(item.style.isEmpty)
-                }
-            
-            parser.invalidateOutline()
-            try await Task.sleep(for: .seconds(0.5))
-            
-            cancellable.cancel()
-        }
+        
+        #expect(outlineItems.count == 3)
+        
+        let item = outlineItems[1]
+        #expect(item.title == "   h2: 🐕🐄")
+        #expect(item.range.location == 354)
+        #expect(item.range.length == 13)
+        #expect(item.style.isEmpty)
     }
     
     
