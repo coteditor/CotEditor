@@ -1,5 +1,6 @@
 //
 //  HighlightParser.swift
+//  Syntax
 //
 //  CotEditor
 //  https://coteditor.com
@@ -9,7 +10,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2023 1024jp
+//  © 2014-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,10 +29,10 @@ import Foundation
 import TextEditing
 import ValueRange
 
-typealias Highlight = ValueRange<SyntaxType>
+public typealias Highlight = ValueRange<SyntaxType>
 
 
-enum NestableToken: Equatable, Hashable {
+public enum NestableToken: Equatable, Hashable, Sendable {
     
     case inline(String)
     case pair(Pair<String>)
@@ -59,7 +60,7 @@ private struct NestableItem {
 
 // MARK: -
 
-struct HighlightParser {
+public struct HighlightParser: Sendable {
     
     // MARK: Public Properties
     
@@ -70,7 +71,7 @@ struct HighlightParser {
     
     // MARK: Public Methods
     
-    var isEmpty: Bool {
+    public var isEmpty: Bool {
         
         self.extractors.isEmpty && self.nestables.isEmpty
     }
@@ -83,7 +84,7 @@ struct HighlightParser {
     ///   - range: The range where to parse.
     /// - Returns: A dictionary of ranges to highlight per syntax types.
     /// - Throws: CancellationError.
-    func parse(string: String, range: NSRange) async throws -> [Highlight] {
+    public func parse(string: String, range: NSRange) async throws -> [Highlight] {
         
         let highlightDictionary: [SyntaxType: [NSRange]] = try await withThrowingTaskGroup(of: [SyntaxType: [NSRange]].self) { group in
             
@@ -209,6 +210,6 @@ struct HighlightParser {
             }
             .mapValues { $0.rangeView.map(NSRange.init) }
             .flatMap { (type, ranges) in ranges.map { ValueRange(value: type, range: $0) } }
-            .sorted(\.range.location)
+            .sorted { $0.range.location < $1.range.location }
     }
 }

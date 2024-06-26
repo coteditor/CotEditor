@@ -25,6 +25,7 @@
 
 import Foundation
 import Observation
+import Syntax
 
 @Observable final class SyntaxObject {
     

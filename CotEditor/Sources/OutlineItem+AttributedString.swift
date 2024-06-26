@@ -26,6 +26,7 @@
 import Foundation
 import SwiftUI
 import AppKit.NSFont
+import Syntax
 
 extension OutlineItem {
     

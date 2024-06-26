@@ -1,5 +1,6 @@
 //
 //  Syntax+Codable.swift
+//  Syntax
 //
 //  CotEditor
 //  https://coteditor.com
@@ -60,7 +61,7 @@ extension Syntax: Codable {
     }
     
     
-    init(from decoder: any Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -88,7 +89,7 @@ extension Syntax: Codable {
     }
     
     
-    func encode(to encoder: any Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         
@@ -130,7 +131,7 @@ extension Syntax.Highlight: Codable {
     }
     
     
-    init(from decoder: any Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -142,7 +143,7 @@ extension Syntax.Highlight: Codable {
     }
     
     
-    func encode(to encoder: any Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         
@@ -177,7 +178,7 @@ extension Syntax.Outline: Codable {
     }
     
     
-    init(from decoder: any Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -191,7 +192,7 @@ extension Syntax.Outline: Codable {
     }
     
     
-    func encode(to encoder: any Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         

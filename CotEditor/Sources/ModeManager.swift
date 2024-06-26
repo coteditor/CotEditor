@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import Syntax
 
 @MainActor final class ModeManager {
     

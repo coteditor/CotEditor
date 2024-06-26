@@ -46,6 +46,8 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     
     // MARK: Private Properties
     
+    private static let separator = ""
+    
     private var scriptsDirectoryURL: URL?
     private var currentContext: String?  { didSet { Task { await self.applyShortcuts() } } }
     @MainActor private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
@@ -314,7 +316,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
                 let name = url.deletingPathExtension().lastPathComponent
                     .replacing(/^\d+\)/.asciiOnlyDigits(), with: "", maxReplacements: 1)  // remove ordering prefix
                 
-                return if name == .separator {
+                return if name == Self.separator {
                     .separator
                 } else if let script = try? ScriptDescriptor(contentsOf: url, name: name)?.makeScript() {
                     // -> Check script possibility before folder because a script can be a directory, e.g. .scptd.

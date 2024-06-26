@@ -15,6 +15,8 @@ let package = Package(
             "Defaults",
             "FileEncoding",
             "FilePermissions",
+            "Shortcut",
+            "Syntax",
             "TextEditing",
             "UnicodeNormalization",
             "ValueRange",
@@ -25,6 +27,7 @@ let package = Package(
         .library(name: "Defaults", targets: ["Defaults"]),
         .library(name: "FileEncoding", targets: ["FileEncoding"]),
         .library(name: "FilePermissions", targets: ["FilePermissions"]),
+        .library(name: "Syntax", targets: ["Syntax"]),
         .library(name: "TextEditing", targets: ["TextEditing"]),
         .library(name: "UnicodeNormalization", targets: ["UnicodeNormalization"]),
         
@@ -42,6 +45,9 @@ let package = Package(
         
         .target(name: "FilePermissions"),
         .testTarget(name: "FilePermissionsTests", dependencies: ["FilePermissions"]),
+        
+        .target(name: "Syntax", dependencies: ["TextEditing", "ValueRange"]),
+        .testTarget(name: "SyntaxTests", dependencies: ["Syntax"]),
         
         .target(name: "TextEditing"),
         .testTarget(name: "TextEditingTests", dependencies: ["TextEditing"]),

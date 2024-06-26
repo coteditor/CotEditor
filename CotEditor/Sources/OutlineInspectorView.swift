@@ -27,6 +27,7 @@ import SwiftUI
 import Observation
 import Combine
 import Defaults
+import Syntax
 import TextEditing
 
 final class OutlineInspectorViewController: NSHostingController<OutlineInspectorView>, DocumentOwner {
@@ -290,7 +291,7 @@ private extension OutlineInspectorView.Model {
     model.items = [
         OutlineItem(title: "Hallo", range: .notFound),
         OutlineItem(title: "Guten Tag!", range: .notFound, style: [.bold]),
-        OutlineItem(title: .separator, range: .notFound),
+        OutlineItem.separator(range: .notFound),
         OutlineItem(title: "Hund", range: .notFound, style: [.underline]),
     ]
     

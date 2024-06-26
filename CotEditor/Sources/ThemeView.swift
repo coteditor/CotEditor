@@ -26,6 +26,7 @@
 import SwiftUI
 import AppKit.NSColor
 import Defaults
+import Syntax
 
 struct ThemeView: View {
     

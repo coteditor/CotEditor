@@ -1,5 +1,6 @@
 //
 //  OutlineItem.swift
+//  Syntax
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,25 +26,45 @@
 
 import Foundation
 
-struct OutlineItem: Equatable, Identifiable {
+public struct OutlineItem: Equatable, Sendable, Identifiable {
     
-    struct Style: OptionSet {
+    public struct Style: OptionSet, Sendable {
         
-        let rawValue: Int
+        public let rawValue: Int
         
-        static let bold      = Self(rawValue: 1 << 0)
-        static let italic    = Self(rawValue: 1 << 1)
-        static let underline = Self(rawValue: 1 << 2)
+        public static let bold      = Self(rawValue: 1 << 0)
+        public static let italic    = Self(rawValue: 1 << 1)
+        public static let underline = Self(rawValue: 1 << 2)
+        
+        
+        public init(rawValue: Int) {
+            
+            self.rawValue = rawValue
+        }
     }
     
     
-    let id = UUID()
+    public let id = UUID()
     
-    var title: String
-    var range: NSRange
-    var style: Style = []
+    public var title: String
+    public var range: NSRange
+    public var style: Style
     
-    var isSeparator: Bool  { self.title == .separator }
+    public var isSeparator: Bool  { self.title == .separator }
+    
+    
+    public init(title: String, range: NSRange, style: Style = []) {
+        
+        self.title = title
+        self.range = range
+        self.style = style
+    }
+    
+    
+    public static func separator(range: NSRange) -> Self {
+        
+        self.init(title: .separator, range: range)
+    }
 }
 
 
@@ -53,7 +74,7 @@ extension BidirectionalCollection<OutlineItem> {
     ///
     /// - Parameter range: The character range to refer.
     /// - Returns: The corresponding outline item, or `nil` if not exist.
-    func item(at location: Int) -> Element? {
+    public func item(at location: Int) -> Element? {
         
         self.last { $0.range.location <= location && !$0.isSeparator }
     }
@@ -63,7 +84,7 @@ extension BidirectionalCollection<OutlineItem> {
     ///
     /// - Parameter range: The character range to refer.
     /// - Returns: The previous outline item, or `nil` if not exist.
-    func previousItem(for range: NSRange) -> OutlineItem? {
+    public func previousItem(for range: NSRange) -> OutlineItem? {
         
         guard let currentIndex = self.indexOfItem(at: range.lowerBound) else { return nil }
         
@@ -75,7 +96,7 @@ extension BidirectionalCollection<OutlineItem> {
     ///
     /// - Parameter range: The character range to refer.
     /// - Returns: The next outline item, or `nil` if not exist.
-    func nextItem(for range: NSRange) -> OutlineItem? {
+    public func nextItem(for range: NSRange) -> OutlineItem? {
         
         if let first = self.first(where: { !$0.isSeparator }), range.upperBound < first.range.location {
             return first

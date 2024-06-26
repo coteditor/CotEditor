@@ -28,6 +28,7 @@ import AppKit.NSTextStorage
 import Testing
 import Combine
 import Yams
+import Syntax
 import TextEditing
 @testable import CotEditor
 
@@ -52,7 +53,7 @@ actor SyntaxTests {
     }
     
     
-    @Test func allSyntaxes() {
+    @Test func validateAllSyntaxes() {
         
         for (name, syntax) in self.syntaxes {
             let model = SyntaxObject(value: syntax)
@@ -94,17 +95,6 @@ actor SyntaxTests {
             #expect(syntax.metadata == sanitized.metadata,
                     ".metadata of “\(name)” is not sanitized in the latest manner")
         }
-    }
-    
-    
-    @Test func noneSyntax() {
-        
-        let syntax = Syntax.none
-        
-        #expect(syntax.kind == .code)
-        #expect(syntax.highlightParser.isEmpty)
-        #expect(syntax.commentDelimiters.inline == nil)
-        #expect(syntax.commentDelimiters.block == nil)
     }
     
     

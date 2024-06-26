@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import Syntax
 
 extension EditorTextView: Commenting {
     

@@ -1,5 +1,6 @@
 //
 //  Syntax.swift
+//  Syntax
 //
 //  CotEditor
 //  https://coteditor.com
@@ -27,7 +28,7 @@
 import Foundation
 import TextEditing
 
-enum SyntaxType: String, CaseIterable {
+public enum SyntaxType: String, Sendable, CaseIterable {
     
     case keywords
     case commands
@@ -42,48 +43,70 @@ enum SyntaxType: String, CaseIterable {
 }
 
 
-struct Syntax: Equatable {
+public struct Syntax: Equatable, Sendable {
     
-    enum Kind: String, CaseIterable, Codable {
+    public enum Kind: String, Sendable, CaseIterable, Codable {
         
         case general
         case code
     }
     
     
-    struct Highlight: Equatable {
+    public struct Highlight: Equatable, Sendable {
         
-        var begin: String = ""
-        var end: String?
-        var isRegularExpression: Bool = false
-        var ignoreCase: Bool = false
-        var description: String?
+        public var begin: String
+        public var end: String?
+        public var isRegularExpression: Bool
+        public var ignoreCase: Bool
+        public var description: String?
         
-        var isEmpty: Bool {
+        public var isEmpty: Bool {
             
             self.begin.isEmpty && self.end?.isEmpty != false && self.description?.isEmpty != false
         }
-    }
-    
-    
-    struct Outline: Equatable {
         
-        var pattern: String = ""
-        var template: String = ""
-        var ignoreCase: Bool = false
-        var bold: Bool = false
-        var italic: Bool = false
-        var underline: Bool = false
-        var description: String?
         
-        var isEmpty: Bool {
+        public init(begin: String = "", end: String? = nil, isRegularExpression: Bool = false, ignoreCase: Bool = false, description: String? = nil) {
             
-            self.pattern.isEmpty && self.pattern.isEmpty && self.description?.isEmpty != false
+            self.begin = begin
+            self.end = end
+            self.isRegularExpression = isRegularExpression
+            self.ignoreCase = ignoreCase
+            self.description = description
         }
     }
     
     
-    struct Comment: Equatable, Codable {
+    public struct Outline: Equatable, Sendable {
+        
+        public var pattern: String
+        public var template: String
+        public var ignoreCase: Bool
+        public var bold: Bool
+        public var italic: Bool
+        public var underline: Bool
+        public var description: String?
+        
+        public var isEmpty: Bool {
+            
+            self.pattern.isEmpty && self.pattern.isEmpty && self.description?.isEmpty != false
+        }
+        
+        
+        public init(pattern: String = "", template: String = "", ignoreCase: Bool = false, bold: Bool = false, italic: Bool = false, underline: Bool = false, description: String? = nil) {
+            
+            self.pattern = pattern
+            self.template = template
+            self.ignoreCase = ignoreCase
+            self.bold = bold
+            self.italic = italic
+            self.underline = underline
+            self.description = description
+        }
+    }
+    
+    
+    public struct Comment: Equatable, Sendable, Codable {
         
         private enum CodingKeys: String, CodingKey {
             
@@ -93,60 +116,79 @@ struct Syntax: Equatable {
         }
         
         
-        var inline: String?
-        var blockBegin: String?
-        var blockEnd: String?
+        public var inline: String?
+        public var blockBegin: String?
+        public var blockEnd: String?
         
-        var block: Pair<String>? {
+        public var block: Pair<String>? {
             
             if let begin = self.blockBegin, let end = self.blockEnd { Pair(begin, end) } else { nil }
         }
         
-        var isEmpty: Bool {
+        public var isEmpty: Bool {
             
             self.block == nil && self.inline == nil
+        }
+        
+        
+        public init(inline: String? = nil, blockBegin: String? = nil, blockEnd: String? = nil) {
+            
+            self.inline = inline
+            self.blockBegin = blockBegin
+            self.blockEnd = blockEnd
         }
     }
     
     
-    struct Metadata: Equatable, Codable {
+    public struct Metadata: Equatable, Sendable, Codable {
         
-        var version: String?
-        var lastModified: String?
-        var distributionURL: String?
-        var author: String?
-        var license: String?
-        var description: String?
+        public var version: String?
+        public var lastModified: String?
+        public var distributionURL: String?
+        public var author: String?
+        public var license: String?
+        public var description: String?
+        
+        
+        public init(version: String? = nil, lastModified: String? = nil, distributionURL: String? = nil, author: String? = nil, license: String? = nil, description: String? = nil) {
+            
+            self.version = version
+            self.lastModified = lastModified
+            self.distributionURL = distributionURL
+            self.author = author
+            self.license = license
+            self.description = description
+        }
     }
     
     
-    static let none = Syntax(kind: .code)
+    public static let none = Syntax(kind: .code)
     
-    var kind: Kind = .general
+    public var kind: Kind
     
-    var keywords: [Highlight] = []
-    var commands: [Highlight] = []
-    var types: [Highlight] = []
-    var attributes: [Highlight] = []
-    var variables: [Highlight] = []
-    var values: [Highlight] = []
-    var numbers: [Highlight] = []
-    var strings: [Highlight] = []
-    var characters: [Highlight] = []
-    var comments: [Highlight] = []
+    public var keywords: [Highlight]
+    public var commands: [Highlight]
+    public var types: [Highlight]
+    public var attributes: [Highlight]
+    public var variables: [Highlight]
+    public var values: [Highlight]
+    public var numbers: [Highlight]
+    public var strings: [Highlight]
+    public var characters: [Highlight]
+    public var comments: [Highlight]
     
-    var commentDelimiters: Comment = Comment()
-    var outlines: [Outline] = []
-    var completions: [String] = []
+    public var commentDelimiters: Comment
+    public var outlines: [Outline]
+    public var completions: [String]
     
-    var filenames: [String] = []
-    var extensions: [String] = []
-    var interpreters: [String] = []
+    public var filenames: [String]
+    public var extensions: [String]
+    public var interpreters: [String]
     
-    var metadata: Metadata = Metadata()
+    public var metadata: Metadata
     
     
-    static func highlightKeyPath(for type: SyntaxType) -> WritableKeyPath<Syntax, [Highlight]> {
+    public static func highlightKeyPath(for type: SyntaxType) -> WritableKeyPath<Syntax, [Highlight]> {
         
         switch type {
             case .keywords: \.keywords
@@ -166,8 +208,31 @@ struct Syntax: Equatable {
     
     // MARK: Public Methods
     
+    public init(kind: Kind = .general, keywords: [Highlight] = [], commands: [Highlight] = [], types: [Highlight] = [], attributes: [Highlight] = [], variables: [Highlight] = [], values: [Highlight] = [], numbers: [Highlight] = [], strings: [Highlight] = [], characters: [Highlight] = [], comments: [Highlight] = [], commentDelimiters: Comment = .init(), outlines: [Outline] = [], completions: [String] = [], filenames: [String] = [], extensions: [String] = [], interpreters: [String] = [], metadata: Metadata = .init()) {
+        
+        self.kind = kind
+        self.keywords = keywords
+        self.commands = commands
+        self.types = types
+        self.attributes = attributes
+        self.variables = variables
+        self.values = values
+        self.numbers = numbers
+        self.strings = strings
+        self.characters = characters
+        self.comments = comments
+        self.commentDelimiters = commentDelimiters
+        self.outlines = outlines
+        self.completions = completions
+        self.filenames = filenames
+        self.extensions = extensions
+        self.interpreters = interpreters
+        self.metadata = metadata
+    }
+    
+    
     /// Sorted and removed empty items for saving.
-    var sanitized: Self {
+    public var sanitized: Self {
         
         var syntax = self
         for keyPath in SyntaxType.allCases.map(Syntax.highlightKeyPath(for:)) {
@@ -186,13 +251,13 @@ struct Syntax: Equatable {
     }
     
     
-    var outlineExtractors: [OutlineExtractor] {
+    public var outlineExtractors: [OutlineExtractor] {
         
         self.outlines.compactMap { try? OutlineExtractor(definition: $0) }
     }
     
     
-    var highlightParser: HighlightParser {
+    public var highlightParser: HighlightParser {
         
         var nestables: [NestableToken: SyntaxType] = [:]
         let extractors = SyntaxType.allCases
@@ -254,7 +319,7 @@ struct Syntax: Equatable {
     }
     
     
-    var completionWords: [String] {
+    public var completionWords: [String] {
         
         let completions = self.completions.filter { !$0.isEmpty }
         
@@ -269,18 +334,6 @@ struct Syntax: Equatable {
                 .map { $0.begin.trimmingCharacters(in: .whitespacesAndNewlines) }
                 .filter { !$0.isEmpty }
                 .sorted()
-        }
-    }
-}
-
-
-extension Syntax.Kind {
-    
-    var fontType: FontType {
-        
-        switch self {
-            case .general: .standard
-            case .code: .monospaced
         }
     }
 }

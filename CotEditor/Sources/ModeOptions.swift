@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import Syntax
 
 struct ModeOptions: Equatable, Codable {
     

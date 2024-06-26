@@ -27,6 +27,7 @@
 import Foundation
 import TextEditing
 import Testing
+import Syntax
 @testable import CotEditor
 
 struct StringCommentingTests {

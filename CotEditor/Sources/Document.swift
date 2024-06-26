@@ -33,6 +33,7 @@ import OSLog
 import Defaults
 import FileEncoding
 import FilePermissions
+import Syntax
 
 @Observable final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging {
     

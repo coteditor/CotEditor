@@ -30,6 +30,7 @@ import AppKit.NSMenuItem
 import UniformTypeIdentifiers
 import Yams
 import Defaults
+import Syntax
 import SyntaxMap
 
 @MainActor @objc protocol SyntaxChanging: AnyObject {

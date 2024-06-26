@@ -1,5 +1,6 @@
 //
 //  HighlightExtractors.swift
+//  Syntax
 //
 //  CotEditor
 //  https://coteditor.com
@@ -24,9 +25,8 @@
 //
 
 import Foundation
-import TextEditing
 
-protocol HighlightExtractable: Sendable {
+public protocol HighlightExtractable: Sendable {
     
     func ranges(in: String, range: NSRange) throws -> [NSRange]
 }

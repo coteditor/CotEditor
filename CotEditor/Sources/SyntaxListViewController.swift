@@ -28,6 +28,7 @@ import AppKit
 import AudioToolbox
 import Combine
 import SwiftUI
+import Syntax
 import UniformTypeIdentifiers
 import Defaults
 

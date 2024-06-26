@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Syntax
 
 struct SyntaxMetadataEditView: View {
     

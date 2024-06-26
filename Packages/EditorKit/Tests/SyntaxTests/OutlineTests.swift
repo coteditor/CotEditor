@@ -1,5 +1,6 @@
 //
 //  OutlineTests.swift
+//  SyntaxTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import Foundation
 import Testing
-@testable import CotEditor
+@testable import Syntax
 
 struct OutlineTests {
     

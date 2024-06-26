@@ -28,6 +28,7 @@ import AppKit
 import Combine
 import SwiftUI
 import Defaults
+import Syntax
 
 @Observable final class SplitState {
     

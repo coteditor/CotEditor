@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import Syntax
 
 extension SyntaxObject {
     
