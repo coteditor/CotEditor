@@ -26,6 +26,7 @@
 
 import Foundation
 import Testing
+import ValueRange
 @testable import CotEditor
 
 struct LineEndingTests {
