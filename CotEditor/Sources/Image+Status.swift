@@ -69,9 +69,9 @@ private extension Image.Status {
 
 #Preview {
     VStack(alignment: .leading) {
-        Label(title: { Text(verbatim: "none") }, icon: { Image(status: .none) })
-        Label(title: { Text(verbatim: "available") }, icon: { Image(status: .available) })
-        Label(title: { Text(verbatim: "partiallyAvailable") }, icon: { Image(status: .partiallyAvailable) })
-        Label(title: { Text(verbatim: "unavailable") }, icon: { Image(status: .unavailable) })
+        Label(title: { Text("none") }, icon: { Image(status: .none) })
+        Label(title: { Text("available") }, icon: { Image(status: .available) })
+        Label(title: { Text("partiallyAvailable") }, icon: { Image(status: .partiallyAvailable) })
+        Label(title: { Text("unavailable") }, icon: { Image(status: .unavailable) })
     }.padding()
 }
