@@ -3,6 +3,11 @@
 4.8.7 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update the Lisp, Lua, Scheme, and Tcl syntaxes to update interpreters (thanks to Renfei!).
+
+
 ### Fixes
 
 - Fix the view layout in the Quick Action bar.
