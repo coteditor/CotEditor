@@ -1306,9 +1306,9 @@ metadata:
   author: 1024jp
   description: Support Tcl 8.6 / incl. Tcl and Tk commands
   distributionURL: https://coteditor.com
-  lastModified: '2023-05-05'
+  lastModified: '2024-06-26'
   license: Same as CotEditor
-  version: 1.1.0
+  version: 1.2.0
 numbers:
 - beginString: (?<![-_.[:alnum:]])\-?\d+(\.\d+)?\b
   description: decimal

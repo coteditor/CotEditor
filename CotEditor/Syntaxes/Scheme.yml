@@ -405,9 +405,9 @@ metadata:
   author: 1024jp
   description: support R5RS and R6RS
   distributionURL: https://coteditor.com
-  lastModified: '2023-05-05'
+  lastModified: '2024-06-26'
   license: Same as CotEditor
-  version: 1.2.0
+  version: 1.3.0
 numbers:
 - beginString: '#[0-9a-f]+\b'
   ignoreCase: true
