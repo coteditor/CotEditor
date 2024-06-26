@@ -36,7 +36,7 @@ extensions:
 - keyString: edn
 filenames: []
 interpreters:
-- keyString: lua
+- keyString: sbcl
 keywords:
 - beginString: (?<=\()[^[:space:],)]+
   regularExpression: true

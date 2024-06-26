@@ -277,7 +277,9 @@ completions: []
 extensions:
 - keyString: lua
 filenames: []
-interpreters: []
+interpreters:
+- keyString: lua
+- keyString: luajit
 keywords:
 - beginString: and
 - beginString: break

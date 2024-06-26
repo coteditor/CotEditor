@@ -343,7 +343,11 @@ extensions:
 - keyString: ss
 filenames: []
 interpreters:
-- keyString: tclsh
+- keyString: chicken-scheme
+- keyString: csi
+- keyString: gosh
+- keyString: guile
+- keyString: gsi
 keywords:
 - beginString: =>
 - beginString: and
