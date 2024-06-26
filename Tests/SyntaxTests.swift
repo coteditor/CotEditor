@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import AppKit.NSTextStorage
+import Foundation
 import Testing
 import Yams
 import Syntax
