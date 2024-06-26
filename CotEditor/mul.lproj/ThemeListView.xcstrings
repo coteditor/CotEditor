@@ -1175,7 +1175,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "ueG-D7-DSV.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Export…\"; ObjectID = \"ueG-D7-DSV\";",

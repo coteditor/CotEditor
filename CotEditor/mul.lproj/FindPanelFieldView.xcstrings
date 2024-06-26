@@ -83,7 +83,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "2Xr-us-IiG.ibShadowedIsNilPlaceholder" : {
       "comment" : "Class = \"CocoaBindingsConnection\"; ibShadowedIsNilPlaceholder = \"Replace with\"; ObjectID = \"2Xr-us-IiG\";",
@@ -503,7 +504,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "Hw7-zz-RG8.ibExternalAccessibilityDescription" : {
       "comment" : "Class = \"NSPopUpButton\"; ibExternalAccessibilityDescription = \"Recent Replacements\"; ObjectID = \"Hw7-zz-RG8\";",
@@ -1007,7 +1009,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "pDj-vD-VPN.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"DUMMY\"; ObjectID = \"pDj-vD-VPN\";",
@@ -1091,7 +1094,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "qiQ-tb-XCa.ibExternalAccessibilityDescription" : {
       "comment" : "Class = \"NSTextView\"; ibExternalAccessibilityDescription = \"Replace\"; ObjectID = \"qiQ-tb-XCa\";",

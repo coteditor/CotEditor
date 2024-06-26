@@ -251,7 +251,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "5oN-VC-ot9.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Duplicate\"; ObjectID = \"5oN-VC-ot9\";",

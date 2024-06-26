@@ -503,7 +503,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "cZ9-i9-VsM.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Rename\"; ObjectID = \"cZ9-i9-VsM\";",

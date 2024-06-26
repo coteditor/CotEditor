@@ -587,7 +587,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "mY6-Zh-2Uc.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Footer\"; ObjectID = \"mY6-Zh-2Uc\";",
@@ -839,7 +840,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "U13-G4-pKV.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"pt\"; ObjectID = \"U13-G4-pKV\";",
@@ -1007,7 +1009,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "Y5Z-M5-b2b.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"DUMMY\"; ObjectID = \"Y5Z-M5-b2b\";",
@@ -1091,7 +1094,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "yQ7-YE-ZK9.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Color\"; ObjectID = \"yQ7-YE-ZK9\";",

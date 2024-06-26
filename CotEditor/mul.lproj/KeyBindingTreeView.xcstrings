@@ -83,7 +83,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "597-z1-wgd.headerCell.title" : {
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Menu\"; ObjectID = \"597-z1-wgd\";",
@@ -335,7 +336,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "PSD-Um-TfH.headerCell.title" : {
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Key\"; ObjectID = \"PSD-Um-TfH\";",

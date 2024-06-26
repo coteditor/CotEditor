@@ -587,7 +587,8 @@
             "value" : ""
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "i8z-Xa-PxI.ibExternalAccessibilityDescription" : {
       "comment" : "Class = \"NSButton\"; ibExternalAccessibilityDescription = \"Advanced options\"; ObjectID = \"i8z-Xa-PxI\";",
