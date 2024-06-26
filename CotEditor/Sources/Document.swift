@@ -80,6 +80,7 @@ import Syntax
     private nonisolated(unsafe) var fileData: Data?
     private nonisolated(unsafe) var shouldSaveEncodingXattr = true
     private nonisolated(unsafe) var isExecutable = false
+    private nonisolated(unsafe) var syntaxFileExtension: String?
     private nonisolated(unsafe) let saveOptions = SaveOptions()
     private nonisolated(unsafe) var suppressesInconsistentLineEndingAlert = false
     private nonisolated(unsafe) var isExternalUpdateAlertShown = false
@@ -109,6 +110,7 @@ import Syntax
         let syntax = try? SyntaxManager.shared.setting(name: syntaxName)
         syntaxName = (syntax == nil) ? SyntaxName.none : syntaxName
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage, syntax: syntax ?? Syntax.none, name: syntaxName)
+        self.syntaxFileExtension = syntax?.extensions.first
         
         // use the encoding selected by the user in the open panel, if exists
         self.fileEncoding = EncodingManager.shared.defaultEncoding
@@ -280,7 +282,7 @@ import Syntax
             return pathExtension
         }
         
-        return self.syntaxParser.syntax.extensions.first
+        return self.syntaxFileExtension
     }
     
     
@@ -965,6 +967,7 @@ import Syntax
         guard syntax != self.syntaxParser.syntax else { return }
         
         // update
+        self.syntaxFileExtension = syntax.extensions.first
         self.syntaxParser.update(syntax: syntax, name: name)
         
         // skip notification when initial syntax was set on file open

@@ -35,7 +35,7 @@ extension NSAttributedString.Key {
 }
 
 
-final class SyntaxParser: @unchecked Sendable {
+@MainActor final class SyntaxParser {
     
     // MARK: Public Properties
     
@@ -97,7 +97,7 @@ final class SyntaxParser: @unchecked Sendable {
 
 
 
-// MARK: - Outline
+// MARK: Outline
 
 extension SyntaxParser {
     
@@ -118,8 +118,8 @@ extension SyntaxParser {
         
         let extractors = self.outlineExtractors
         let string = self.textStorage.string.immutable
-        self.outlineParseTask = Task.detached(priority: .utility) {
-            self.outlineItems = try await withThrowingTaskGroup(of: [OutlineItem].self) { group in
+        self.outlineParseTask = Task.detached(priority: .utility) { [weak self] in
+            let outlineItems = try await withThrowingTaskGroup(of: [OutlineItem].self) { group in
                 for extractor in extractors {
                     group.addTask { try extractor.items(in: string, range: string.range) }
                 }
@@ -127,13 +127,17 @@ extension SyntaxParser {
                 return try await group.reduce(into: []) { $0 += $1 }
                     .sorted(\.range.location)
             }
+            
+            await MainActor.run { [weak self] in
+                self?.outlineItems = outlineItems
+            }
         }
     }
 }
 
 
 
-// MARK: - Syntax Highlight
+// MARK: Syntax Highlight
 
 extension SyntaxParser {
     
@@ -141,7 +145,7 @@ extension SyntaxParser {
     ///
     /// - Parameters:
     ///   - editedRange: The character range that was edited, or `nil` to highlight the entire range.
-    @MainActor func highlight(around editedRange: NSRange? = nil) {
+    func highlight(around editedRange: NSRange? = nil) {
         
         // retry entire parsing if the last one has not finished yet
         var editedRange = editedRange
@@ -226,13 +230,16 @@ extension SyntaxParser {
         let parser = self.highlightParser
         
         self.highlightParseTask?.cancel()
-        self.highlightParseTask = Task.detached(priority: .userInitiated) {
+        self.highlightParseTask = Task.detached(priority: .userInitiated) { [weak self] in
             defer {
-                self.isHighlighting = false
+                Task { @MainActor [weak self] in
+                    self?.isHighlighting = false
+                }
             }
+            
             let highlights = try await parser.parse(string: string, range: range)
             
-            await self.apply(highlights: highlights, range: range)
+            await self?.apply(highlights: highlights, range: range)
         }
         
         // make large parse cancellable
@@ -242,8 +249,8 @@ extension SyntaxParser {
     }
     
     
-    /// Applies highlights to all the layoutManagers..
-    @MainActor private func apply(highlights: [Highlight], range: NSRange) {
+    /// Applies highlights to all the layout managers.
+    private func apply(highlights: [Highlight], range: NSRange) {
         
         for layoutManager in self.textStorage.layoutManagers {
             layoutManager.apply(highlights: highlights, range: range)
