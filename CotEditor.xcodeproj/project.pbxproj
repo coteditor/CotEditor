@@ -755,8 +755,6 @@
 		2AF0C1281D3DA6F800B6FCB6 /* FourCharCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0C1271D3DA6F800B6FCB6 /* FourCharCodeTests.swift */; };
 		2AF0C12D1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */; };
 		2AF0C12E1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */; };
-		2AF1D85821B8D9250060BC04 /* NSRegularExpression+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */; };
-		2AF1D85921B8D9250060BC04 /* NSRegularExpression+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */; };
 		2AF29EC42882EE7700DF31D2 /* AdvancedCharacterCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF29EC32882EE7700DF31D2 /* AdvancedCharacterCounter.swift */; };
 		2AF29EC52882EE7700DF31D2 /* AdvancedCharacterCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF29EC32882EE7700DF31D2 /* AdvancedCharacterCounter.swift */; };
 		2AF5D0E5286D9AB3000BE826 /* ArithmeticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5D0E4286D9AB3000BE826 /* ArithmeticsTests.swift */; };
@@ -1230,7 +1228,6 @@
 		2AF1229E2B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/ThemeListView.xcstrings; sourceTree = "<group>"; };
 		2AF1229F2B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/KeyBindingTreeView.xcstrings; sourceTree = "<group>"; };
 		2AF122A22B7A3D50004BA1FF /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/SyntaxListView.xcstrings; sourceTree = "<group>"; };
-		2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression+Additions.swift"; sourceTree = "<group>"; };
 		2AF29EC32882EE7700DF31D2 /* AdvancedCharacterCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCharacterCounter.swift; sourceTree = "<group>"; };
 		2AF482D9279288CF00A86481 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		2AF482DA279288CF00A86481 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -1603,7 +1600,6 @@
 				2ABF9EA12C1ED4B90033D5E6 /* String+Commenting.swift */,
 				2ABF9E9E2C1EC8590033D5E6 /* String+Filename.swift */,
 				2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */,
-				2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */,
 				2A8DA9461D28ED93003D0C4B /* URL.swift */,
 				2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */,
 				2AE214E42BEBAD1A007EF0E9 /* UUID+Transferable.swift */,
@@ -2878,7 +2874,6 @@
 				2A484A3A236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
 				2AEAA1432C00B37300B5332F /* NSMenu.swift in Sources */,
 				2AF99621235ACDD60041872E /* NSPrintInfo.swift in Sources */,
-				2AF1D85921B8D9250060BC04 /* NSRegularExpression+Additions.swift in Sources */,
 				2A1ABCA827F07CED0054795D /* NSScroller.swift in Sources */,
 				2AA86283212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */,
 				2AF63BA82A6FA4D900E1258E /* NSTableView.swift in Sources */,
@@ -3214,7 +3209,6 @@
 				2A484A39236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
 				2AEAA1442C00B37300B5332F /* NSMenu.swift in Sources */,
 				2AF99620235ACDD60041872E /* NSPrintInfo.swift in Sources */,
-				2AF1D85821B8D9250060BC04 /* NSRegularExpression+Additions.swift in Sources */,
 				2A1ABCA927F07CED0054795D /* NSScroller.swift in Sources */,
 				2AA86282212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */,
 				2AF63BA92A6FA4D900E1258E /* NSTableView.swift in Sources */,

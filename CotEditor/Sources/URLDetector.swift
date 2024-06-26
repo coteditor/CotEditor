@@ -25,6 +25,7 @@
 
 import Combine
 import AppKit.NSTextStorage
+import TextEditing
 import ValueRange
 
 @MainActor final class URLDetector {
