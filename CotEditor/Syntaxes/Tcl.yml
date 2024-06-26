@@ -1296,7 +1296,10 @@ completions: []
 extensions:
 - keyString: tcl
 filenames: []
-interpreters: []
+interpreters:
+- keyString: jimsh
+- keyString: tclsh
+- keyString: wish
 keywords: []
 kind: code
 metadata:
