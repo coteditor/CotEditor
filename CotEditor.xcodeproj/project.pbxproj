@@ -838,7 +838,7 @@
 		2A18560A1D47FA37008FA79E /* TextFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFinder.swift; sourceTree = "<group>"; };
 		2A1856111D48AFEA008FA79E /* PrintPanelAccessoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintPanelAccessoryController.swift; sourceTree = "<group>"; };
 		2A1893A61FFF16A400AD244F /* PatternSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternSortView.swift; sourceTree = "<group>"; };
-		2A1893A91FFF422D00AD244F /* SortPatternError+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SortPatternError+Localization.swift"; path = "../SortPatternError+Localization.swift"; sourceTree = "<group>"; };
+		2A1893A91FFF422D00AD244F /* SortPatternError+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SortPatternError+Localization.swift"; sourceTree = "<group>"; };
 		2A18A5BC1C4A730D00BAD817 /* EncodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingTests.swift; sourceTree = "<group>"; };
 		2A19AF852AE0D15300EFFDCB /* FormPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPopUpButton.swift; sourceTree = "<group>"; };
 		2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
@@ -1985,7 +1985,7 @@
 				2AA7BDDA2C1B10C80075BB6C /* UnicodeNormalizationForm.swift */,
 				2A1893A91FFF422D00AD244F /* SortPatternError+Localization.swift */,
 			);
-			path = Libraries;
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 		2AB1BD21287D752300C6FEAF /* Views */ = {
@@ -2765,7 +2765,6 @@
 				2A80BE8D27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */,
 				2A6416A41D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
 				2A1125C423F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */,
-				2A1893AB1FFF422D00AD244F /* SortPatternError+Localization.swift in Sources */,
 				2A59B7032957089A0094F03B /* LinkButton.swift in Sources */,
 				2AE144C42B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */,
 				2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */,
@@ -2865,6 +2864,7 @@
 				2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A64F2461D259E49001B229F /* SnippetManager.swift in Sources */,
 				2ACDA2532B813FA500B2EBA8 /* SnippetsSettingsView.swift in Sources */,
+				2A1893AB1FFF422D00AD244F /* SortPatternError+Localization.swift in Sources */,
 				2AD551EB20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */,
 				2A5D13261D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */,
 				2AD21FCD1D2E3BE80018C8D1 /* StatusBar.swift in Sources */,
@@ -3082,7 +3082,6 @@
 				2A80BE8E27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */,
 				2A6416A31D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
 				2A1125C323F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */,
-				2A1893AA1FFF422D00AD244F /* SortPatternError+Localization.swift in Sources */,
 				2A59B7042957089A0094F03B /* LinkButton.swift in Sources */,
 				2AE144C52B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */,
 				2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */,
@@ -3182,6 +3181,7 @@
 				2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A64F2451D259E49001B229F /* SnippetManager.swift in Sources */,
 				2ACDA2542B813FA500B2EBA8 /* SnippetsSettingsView.swift in Sources */,
+				2A1893AA1FFF422D00AD244F /* SortPatternError+Localization.swift in Sources */,
 				2AD551EA20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */,
 				2A5D13251D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */,
 				2AD21FCC1D2E3BE80018C8D1 /* StatusBar.swift in Sources */,
