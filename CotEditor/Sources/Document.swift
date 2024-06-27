@@ -575,6 +575,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         super.close()
         
         self.textStorageObserver?.cancel()
+        self.lineEndingScanner.cancel()
         self.analyzer.cancel()
     }
     
