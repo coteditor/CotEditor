@@ -29,15 +29,6 @@ import Foundation
 import UniformTypeIdentifiers
 import Defaults
 
-@MainActor @objc protocol ThemeChanging: AnyObject {
-    
-    func changeTheme(_ sender: NSMenuItem)
-}
-
-
-
-// MARK: -
-
 final class ThemeManager: SettingFileManaging {
     
     typealias Setting = Theme

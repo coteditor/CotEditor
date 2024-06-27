@@ -26,19 +26,11 @@
 
 import Foundation
 import Combine
-import AppKit.NSMenuItem
 import UniformTypeIdentifiers
 import Yams
 import Defaults
 import Syntax
 import SyntaxMap
-
-@MainActor @objc protocol SyntaxChanging: AnyObject {
-    
-    func changeSyntax(_ sender: NSMenuItem)
-    func recolorAll(_ sender: Any?)
-}
-
 
 enum SyntaxName {
     
@@ -47,9 +39,6 @@ enum SyntaxName {
     static let markdown: SyntaxManager.SettingName = "Markdown"
 }
 
-
-
-// MARK: -
 
 final class SyntaxManager: SettingFileManaging {
     

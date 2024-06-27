@@ -30,6 +30,7 @@ import Combine
 import UniformTypeIdentifiers
 import OSLog
 import Defaults
+import FileEncoding
 import UnicodeNormalization
 
 extension KeyPath: @retroactive @unchecked Sendable { }
@@ -49,6 +50,25 @@ private extension NSSound {
 private enum BundleIdentifier {
     
     static let scriptEditor = "com.apple.ScriptEditor2"
+}
+
+
+@MainActor @objc protocol EncodingChanging: AnyObject {
+    
+    func changeEncoding(_ sender: NSMenuItem)
+}
+
+
+@MainActor @objc protocol ThemeChanging: AnyObject {
+    
+    func changeTheme(_ sender: NSMenuItem)
+}
+
+
+@MainActor @objc protocol SyntaxChanging: AnyObject {
+    
+    func changeSyntax(_ sender: NSMenuItem)
+    func recolorAll(_ sender: Any?)
 }
 
 
@@ -508,6 +528,23 @@ private enum BundleIdentifier {
         feedbackAlert.runModal()
         
         return true
+    }
+}
+
+
+private extension Optional<FileEncoding> {
+    
+    /// Creates menu item with action `changeEncoding(_:)`.
+    var menuItem: NSMenuItem {
+        
+        switch self {
+            case .some(let fileEncoding):
+                let item = NSMenuItem(title: fileEncoding.localizedName, action: #selector((any EncodingChanging).changeEncoding), keyEquivalent: "")
+                item.representedObject = fileEncoding
+                return item
+            case .none:
+                return .separator()
+        }
     }
 }
 

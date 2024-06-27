@@ -24,47 +24,24 @@
 //  limitations under the License.
 //
 
-import AppKit.NSMenuItem
+import Foundation
 import Observation
 import Combine
 import Defaults
 import FileEncoding
 
-@objc protocol EncodingChanging: AnyObject {
-    
-    @MainActor func changeEncoding(_ sender: NSMenuItem)
-}
-
-
-extension Optional<FileEncoding> {
-    
-    /// Creates menu item with action `changeEncoding(_:)`.
-    var menuItem: NSMenuItem {
-        
-        switch self {
-            case .some(let fileEncoding):
-                let item = NSMenuItem(title: fileEncoding.localizedName, action: #selector((any EncodingChanging).changeEncoding), keyEquivalent: "")
-                item.representedObject = fileEncoding
-                return item
-            case .none:
-                return .separator()
-        }
-    }
-}
-
-
-// MARK: -
-
 @Observable final class EncodingManager {
     
     // MARK: Public Properties
     
-    nonisolated(unsafe) static let shared = EncodingManager()
+    nonisolated(unsafe) static let shared = EncodingManager(defaults: .standard)
     
     private(set) var fileEncodings: [FileEncoding?] = []
     
     
     // MARK: Private Properties
+    
+    private let defaults: UserDefaults
 
     private var defaultObserver: AnyCancellable?
     
@@ -72,15 +49,17 @@ extension Optional<FileEncoding> {
     
     // MARK: Lifecycle
     
-    private init() {
+    init(defaults: UserDefaults) {
+        
+        self.defaults = defaults
         
         // -> UserDefaults.standard[.encodingList] can be empty if the user's list contains negative values.
         //    It seems to be possible if the setting was made a long time ago. (2018-01 CotEditor 3.3.0)
-        if UserDefaults.standard[.encodingList].isEmpty {
+        if defaults[.encodingList].isEmpty {
             self.sanitizeEncodingListSetting()
         }
         
-        self.defaultObserver = UserDefaults.standard.publisher(for: .encodingList, initial: true)
+        self.defaultObserver = defaults.publisher(for: .encodingList, initial: true)
             .map { $0.map { $0 != kCFStringEncodingInvalidId ? FileEncoding(encoding: String.Encoding(cfEncoding: $0)) : nil }
                     .flatMap {
                         // add "UTF-8 with BOM" item just after the normal UTF-8
@@ -98,17 +77,17 @@ extension Optional<FileEncoding> {
     var defaultEncoding: FileEncoding {
         
         get {
-            let rawValue = UserDefaults.standard[.encoding]
+            let rawValue = self.defaults[.encoding]
             let encoding = (rawValue >= 0) ? String.Encoding(rawValue: UInt(rawValue)) : .utf8
             let availableEncoding = String.availableStringEncodings.contains(encoding) ? encoding : .utf8
-            let withBOM = (availableEncoding == .utf8) && UserDefaults.standard[.saveUTF8BOM]
+            let withBOM = (availableEncoding == .utf8) && self.defaults[.saveUTF8BOM]
             
             return FileEncoding(encoding: availableEncoding, withUTF8BOM: withBOM)
         }
         
         set {
-            UserDefaults.standard[.encoding] = Int(newValue.encoding.rawValue)
-            UserDefaults.standard[.saveUTF8BOM] = newValue.withUTF8BOM
+            self.defaults[.encoding] = Int(newValue.encoding.rawValue)
+            self.defaults[.saveUTF8BOM] = newValue.withUTF8BOM
         }
     }
     
@@ -146,14 +125,14 @@ extension Optional<FileEncoding> {
     private func sanitizeEncodingListSetting() {
         
         guard
-            let list = UserDefaults.standard.array(forKey: DefaultKeys.encodingList.rawValue) as? [Int],
+            let list = self.defaults.array(forKey: DefaultKeys.encodingList.rawValue) as? [Int],
             !list.isEmpty
         else {
             // just restore to default if failed
-            UserDefaults.standard.restore(key: .encodingList)
+            self.defaults.restore(key: .encodingList)
             return
         }
         
-        UserDefaults.standard[.encodingList] = list.map { CFStringEncoding(exactly: $0) ?? kCFStringEncodingInvalidId }
+        self.defaults[.encodingList] = list.map { CFStringEncoding(exactly: $0) ?? kCFStringEncodingInvalidId }
     }
 }
