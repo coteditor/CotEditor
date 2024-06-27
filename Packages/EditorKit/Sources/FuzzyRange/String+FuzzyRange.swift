@@ -71,7 +71,7 @@ public extension String {
     /// - Returns: A character range, or `nil` if the given value is out of range.
     func rangeForLine(in lineRange: FuzzyRange, includingLineEnding: Bool = true) -> NSRange? {
         
-        let length = self.utf16.count
+        let length = (self as NSString).length
         let pattern = includingLineEnding ? "(?<=\\A|\\R).*(?:\\R|\\z)" : "(?<=\\A|\\R).*$"
         let regex = try! NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
         let lineRanges = regex.matches(in: self, range: NSRange(..<length)).map(\.range)
@@ -87,7 +87,7 @@ public extension String {
             default: lineRange.length - 1
         }
         
-        guard lineRanges.count <= newLocation + newLength else { return nil }
+        guard lineRanges.indices.contains(newLocation + newLength) else { return nil }
         
         let firstLineRange = lineRanges[newLocation]
         let lastLineRange = lineRanges[newLocation + newLength]
