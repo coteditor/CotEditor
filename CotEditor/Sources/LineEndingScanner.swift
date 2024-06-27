@@ -31,13 +31,12 @@ import ValueRange
 
 @Observable final class LineEndingScanner {
     
-    private(set) var documentLineEnding: LineEnding
+    private(set) var baseLineEnding: LineEnding
     private(set) var inconsistentLineEndings: [ValueRange<LineEnding>] = []
     
     
     // MARK: Private Properties
     
-    private let textStorage: NSTextStorage
     private var lineEndings: [ValueRange<LineEnding>]
     
     private var lineEndingObserver: AnyCancellable?
@@ -49,8 +48,7 @@ import ValueRange
     
     required init(textStorage: NSTextStorage, lineEnding: LineEnding) {
         
-        self.textStorage = textStorage
-        self.documentLineEnding = lineEnding
+        self.baseLineEnding = lineEnding
         
         self.lineEndings = textStorage.string.lineEndingRanges()
         self.inconsistentLineEndings = self.lineEndings.filter { $0.value != lineEnding }
@@ -58,12 +56,7 @@ import ValueRange
         self.storageObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textStorage)
             .compactMap { $0.object as? NSTextStorage }
             .filter { $0.editedMask.contains(.editedCharacters) }
-            .sink { [weak self] in
-                guard let self else { return }
-                
-                self.invalidate(in: $0.editedRange, changeInLength: $0.changeInLength)
-                self.inconsistentLineEndings = self.lineEndings.filter { $0.value != self.documentLineEnding }
-            }
+            .sink { [weak self] in self?.invalidate(string: $0.string, in: $0.editedRange, changeInLength: $0.changeInLength) }
     }
     
     
@@ -71,7 +64,7 @@ import ValueRange
         
         self.lineEndingObserver = publisher
             .removeDuplicates()
-            .sink { [weak self] in self?.documentLineEnding = $0 }
+            .sink { [weak self] in self?.baseLineEnding = $0 }
     }
     
     
@@ -102,13 +95,11 @@ import ValueRange
     /// - Returns: The 1-based line number.
     func lineNumber(at index: Int) -> Int {
         
-        assert(index <= self.textStorage.string.length)
-        
         return self.lineEndings.countPrefix { $0.range.upperBound <= index } + 1
     }
     
     
-    /// Returns whether the character at the given index is a line ending inconsistent with the `documentLineEnding`.
+    /// Returns whether the character at the given index is a line ending inconsistent with the `baseLineEnding`.
     ///
     /// - Parameter characterIndex: The index of character to test.
     /// - Returns: A boolean indicating whether the character is an inconsistent line ending.
@@ -124,12 +115,13 @@ import ValueRange
     /// Updates inconsistent line endings by assuming the textStorage was edited.
     ///
     /// - Parameters:
+    ///   - string: The string to scan.
     ///   - editedRange: The edited range.
     ///   - delta: The change in length.
-    private func invalidate(in editedRange: NSRange, changeInLength delta: Int) {
+    private func invalidate(string: String, in editedRange: NSRange, changeInLength delta: Int) {
         
         // expand range to scan by considering the possibility that a part of CRLF was edited
-        let nsString = self.textStorage.string as NSString
+        let nsString = string as NSString
         let lowerScanBound: Int = (0..<editedRange.lowerBound).reversed().lazy
             .prefix { [0xA, 0xD].contains(nsString.character(at: $0)) }
             .last ?? editedRange.lowerBound
@@ -138,8 +130,8 @@ import ValueRange
             .last.flatMap { $0 + 1 } ?? editedRange.upperBound
         let scanRange = NSRange(lowerScanBound..<upperScanBound)
         
-        let insertedLineEndings = self.textStorage.string.lineEndingRanges(in: scanRange)
-        let inconsistentLineEndings = insertedLineEndings.filter { $0.value != self.documentLineEnding }
+        let insertedLineEndings = string.lineEndingRanges(in: scanRange)
+        let inconsistentLineEndings = insertedLineEndings.filter { $0.value != self.baseLineEnding }
         
         self.lineEndings.replace(items: insertedLineEndings, in: scanRange, changeInLength: delta)
         self.inconsistentLineEndings.replace(items: inconsistentLineEndings, in: scanRange, changeInLength: delta)

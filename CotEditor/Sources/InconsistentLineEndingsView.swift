@@ -88,7 +88,7 @@ struct InconsistentLineEndingsView: View {
         .onChange(of: self.document?.lineEndingScanner.inconsistentLineEndings, initial: true) { (_, newValue) in
             self.items = (newValue ?? []).sorted(using: self.sortOrder)
         }
-        .onChange(of: self.document?.lineEndingScanner.documentLineEnding, initial: true) { (_, newValue) in
+        .onChange(of: self.document?.lineEndingScanner.baseLineEnding, initial: true) { (_, newValue) in
             self.lineEnding = newValue ?? .lf
         }
         .accessibilityElement(children: .contain)
