@@ -78,6 +78,14 @@ import ValueRange
     
     // MARK: Public Methods
     
+    /// Cancels all observations.
+    func cancel() {
+        
+        self.lineEndingObserver?.cancel()
+        self.storageObserver?.cancel()
+    }
+    
+    
     /// The line endings mostly occurred in the storage.
     var majorLineEnding: LineEnding? {
         

@@ -556,6 +556,7 @@ import Syntax
         
         // avoid the Hide Extension option removes actual file extension (macOS 14, 2024-05)
         savePanel.canSelectHiddenExtension = false
+        savePanel.isExtensionHidden = false
         
         // set accessory view
         let accessory = SavePanelAccessory(options: self.saveOptions)
@@ -607,6 +608,7 @@ import Syntax
         self.counter.cancel()
         self.syntaxParser.cancel()
         self.urlDetector.cancel()
+        self.lineEndingScanner.cancel()
     }
     
     
