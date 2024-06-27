@@ -26,7 +26,7 @@
 import Foundation
 import LineSort
 
-extension SortPatternError: LocalizedError {
+extension SortPatternError: @retroactive LocalizedError {
     
     public var errorDescription: String? {
         
