@@ -55,7 +55,7 @@ final class HoleContentView: NSView {
         self.windowOpacityObserver?.cancel()
         self.windowOpacityObserver = newWindow?.publisher(for: \.isOpaque, options: .initial)
             .sink { [unowned self] isOpaque in
-                self.holes.removeAll()
+                self.invalidateHoles(isOpaque: isOpaque)
                 
                 self.holeViewObserver?.cancel()
                 self.holeViewObserver = if isOpaque {
@@ -65,13 +65,7 @@ final class HoleContentView: NSView {
                         .map { $0.object as! NSView }
                         .filter { $0 is NSStackView }
                         .filter { $0.isDescendant(of: self) }
-                        .eraseToVoid()
-                        .merge(with: Just(Void()))
-                        .sink { [unowned self] _ in
-                            self.holes = self.descendants(type: NSStackView.self)
-                                .map { $0.convert($0.frame, to: self) }
-                                .filter { !$0.isEmpty }
-                        }
+                        .sink { [unowned self] _ in self.invalidateHoles(isOpaque: false) }
                 }
             }
     }
@@ -88,6 +82,18 @@ final class HoleContentView: NSView {
         
         for hole in self.holes {
             hole.intersection(fillRect).fill(using: .clear)
+        }
+    }
+    
+    
+    private func invalidateHoles(isOpaque: Bool) {
+        
+        if isOpaque {
+            self.holes.removeAll()
+        } else {
+            self.holes = self.descendants(type: NSStackView.self)
+                .map { $0.convert($0.frame, to: self) }
+                .filter { !$0.isEmpty }
         }
     }
 }

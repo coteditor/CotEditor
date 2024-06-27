@@ -18,6 +18,7 @@ let package = Package(
             "Shortcut",
             "StringBasics",
             "Syntax",
+            "TextClipping",
             "TextEditing",
             "UnicodeNormalization",
             "ValueRange",
@@ -30,6 +31,7 @@ let package = Package(
         .library(name: "FilePermissions", targets: ["FilePermissions"]),
         .library(name: "StringBasics", targets: ["StringBasics"]),
         .library(name: "Syntax", targets: ["Syntax"]),
+        .library(name: "TextClipping", targets: ["TextClipping"]),
         .library(name: "TextEditing", targets: ["TextEditing"]),
         .library(name: "UnicodeNormalization", targets: ["UnicodeNormalization"]),
         
@@ -53,6 +55,9 @@ let package = Package(
         
         .target(name: "Syntax", dependencies: ["StringBasics", "ValueRange"]),
         .testTarget(name: "SyntaxTests", dependencies: ["Syntax"]),
+        
+        .target(name: "TextClipping"),
+        .testTarget(name: "TextClippingTests", dependencies: ["TextClipping"], resources: [.process("Resources")]),
         
         .target(name: "TextEditing", dependencies: ["StringBasics", "Syntax"]),
         .testTarget(name: "TextEditingTests", dependencies: ["TextEditing"]),

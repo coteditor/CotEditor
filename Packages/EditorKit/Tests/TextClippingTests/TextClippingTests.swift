@@ -1,5 +1,6 @@
 //
 //  TextClippingTests.swift
+//  TextClippingTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,13 +26,13 @@
 
 import Foundation
 import Testing
-@testable import CotEditor
+@testable import TextClipping
 
-actor TextClippingTests {
+struct TextClippingTests {
     
     @Test func readTextClippingFile() throws {
         
-        let bundle = Bundle(for: type(of: self))
+        let bundle = Bundle.module
         let url = try #require(bundle.url(forResource: "moof", withExtension: "textClipping"))
         let textClipping = try TextClipping(contentsOf: url)
         

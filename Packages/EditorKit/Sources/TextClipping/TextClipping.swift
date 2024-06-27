@@ -1,5 +1,6 @@
 //
 //  TextClipping.swift
+//  TextClipping
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2023 1024jp
+//  © 2019-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,9 +26,11 @@
 
 import Foundation
 
-struct TextClipping: Decodable {
+public struct TextClipping: Equatable, Sendable, Decodable {
     
-    let string: String
+    public static let pathExtension = "textClipping"
+    
+    public let string: String
     
     
     enum CodingKeys: String, CodingKey {
@@ -37,7 +40,7 @@ struct TextClipping: Decodable {
     
     
     
-    init(contentsOf url: URL) throws {
+    public init(contentsOf url: URL) throws {
         
         let data = try Data(contentsOf: url)
         let plist = try PropertyListDecoder().decode([String: TextClipping].self, from: data)

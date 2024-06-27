@@ -29,6 +29,7 @@ import Combine
 import SwiftUI
 import CharacterInfo
 import Defaults
+import TextClipping
 
 final class EditorTextViewController: NSViewController, NSServicesMenuRequestor, NSTextViewDelegate {
     
@@ -467,7 +468,7 @@ extension EditorTextViewController: EditorTextView.Delegate {
         guard !fileDropItems.isEmpty else { return false }
         
         let replacementString = urls.reduce(into: "") { (string, url) in
-            if url.pathExtension == "textClipping", let textClipping = try? TextClipping(contentsOf: url) {
+            if url.pathExtension == TextClipping.pathExtension, let textClipping = try? TextClipping(contentsOf: url) {
                 string += textClipping.string
                 return
             }
