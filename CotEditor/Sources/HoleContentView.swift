@@ -49,9 +49,15 @@ final class HoleContentView: NSView {
         
         super.viewWillMove(toWindow: newWindow)
         
+        self.holeViewObserver?.cancel()
+        self.holeViewObserver = nil
+        
+        self.windowOpacityObserver?.cancel()
         self.windowOpacityObserver = newWindow?.publisher(for: \.isOpaque, options: .initial)
             .sink { [unowned self] isOpaque in
                 self.holes.removeAll()
+                
+                self.holeViewObserver?.cancel()
                 self.holeViewObserver = if isOpaque {
                     nil
                 } else {
