@@ -413,7 +413,7 @@
 
     ],
     "interpreters" : [
-      "lua"
+      "sbcl"
     ]
   },
   "Lua" : {
@@ -424,7 +424,8 @@
 
     ],
     "interpreters" : [
-
+      "lua",
+      "luajit"
     ]
   },
   "Makefile" : {
@@ -656,7 +657,11 @@
 
     ],
     "interpreters" : [
-      "tclsh"
+      "chicken-scheme",
+      "csi",
+      "gosh",
+      "guile",
+      "gsi"
     ]
   },
   "Shell Script" : {
@@ -728,7 +733,9 @@
 
     ],
     "interpreters" : [
-
+      "jimsh",
+      "tclsh",
+      "wish"
     ]
   },
   "Textile" : {
