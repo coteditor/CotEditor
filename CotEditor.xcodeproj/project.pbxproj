@@ -97,9 +97,8 @@
 		2A1856131D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1856111D48AFEA008FA79E /* PrintPanelAccessoryController.swift */; };
 		2A1893A71FFF16A400AD244F /* PatternSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1893A61FFF16A400AD244F /* PatternSortView.swift */; };
 		2A1893A81FFF16A400AD244F /* PatternSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1893A61FFF16A400AD244F /* PatternSortView.swift */; };
-		2A1893AA1FFF422D00AD244F /* LineSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1893A91FFF422D00AD244F /* LineSort.swift */; };
-		2A1893AB1FFF422D00AD244F /* LineSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1893A91FFF422D00AD244F /* LineSort.swift */; };
-		2A1893AD1FFF6A0100AD244F /* LineSortTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1893AC1FFF6A0100AD244F /* LineSortTests.swift */; };
+		2A1893AA1FFF422D00AD244F /* SortPatternError+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1893A91FFF422D00AD244F /* SortPatternError+Localization.swift */; };
+		2A1893AB1FFF422D00AD244F /* SortPatternError+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1893A91FFF422D00AD244F /* SortPatternError+Localization.swift */; };
 		2A19AF862AE0D15300EFFDCB /* FormPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19AF852AE0D15300EFFDCB /* FormPopUpButton.swift */; };
 		2A19AF872AE0D15300EFFDCB /* FormPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19AF852AE0D15300EFFDCB /* FormPopUpButton.swift */; };
 		2A1A4EB024FB9D9300B50AA0 /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */; };
@@ -845,8 +844,7 @@
 		2A18560A1D47FA37008FA79E /* TextFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFinder.swift; sourceTree = "<group>"; };
 		2A1856111D48AFEA008FA79E /* PrintPanelAccessoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintPanelAccessoryController.swift; sourceTree = "<group>"; };
 		2A1893A61FFF16A400AD244F /* PatternSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternSortView.swift; sourceTree = "<group>"; };
-		2A1893A91FFF422D00AD244F /* LineSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineSort.swift; sourceTree = "<group>"; };
-		2A1893AC1FFF6A0100AD244F /* LineSortTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineSortTests.swift; sourceTree = "<group>"; };
+		2A1893A91FFF422D00AD244F /* SortPatternError+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SortPatternError+Localization.swift"; path = "../SortPatternError+Localization.swift"; sourceTree = "<group>"; };
 		2A18A5BC1C4A730D00BAD817 /* EncodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingTests.swift; sourceTree = "<group>"; };
 		2A19AF852AE0D15300EFFDCB /* FormPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPopUpButton.swift; sourceTree = "<group>"; };
 		2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
@@ -1770,7 +1768,6 @@
 				2ACF23AD26302A4C002B5E10 /* Theme+Syntax.swift */,
 				2A1E7DD32B8C5A23004F0C07 /* Mode.swift */,
 				2AB857EA2B93050E0079CFA2 /* ModeOptions.swift */,
-				2A1893A91FFF422D00AD244F /* LineSort.swift */,
 				2A341D19281EE23C00B85CB6 /* UserActivity.swift */,
 				2A55D5E92B7A86190092DE48 /* IssueReport.swift */,
 			);
@@ -1998,6 +1995,7 @@
 			children = (
 				2A428D432C2B03670051AD4F /* ValueRange+Identifiable.swift */,
 				2AA7BDDA2C1B10C80075BB6C /* UnicodeNormalizationForm.swift */,
+				2A1893A91FFF422D00AD244F /* SortPatternError+Localization.swift */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -2110,7 +2108,6 @@
 				2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */,
 				2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */,
 				2AED46721E43942300751C45 /* TextFindTests.swift */,
-				2A1893AC1FFF6A0100AD244F /* LineSortTests.swift */,
 				2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */,
 				2ABEFB6923DC0CA0008769F4 /* EditorCounterTests.swift */,
 				2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */,
@@ -2781,7 +2778,7 @@
 				2A80BE8D27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */,
 				2A6416A41D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
 				2A1125C423F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */,
-				2A1893AB1FFF422D00AD244F /* LineSort.swift in Sources */,
+				2A1893AB1FFF422D00AD244F /* SortPatternError+Localization.swift in Sources */,
 				2A59B7032957089A0094F03B /* LinkButton.swift in Sources */,
 				2AE144C42B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */,
 				2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */,
@@ -2961,7 +2958,6 @@
 				2A80BE9227FFFA8900D2F7FF /* LineEndingScannerTests.swift in Sources */,
 				2A54BE2C1D40EB24000816B0 /* LineEndingTests.swift in Sources */,
 				2A1125C123F180FF006A1DB2 /* LineRangeCacheableTests.swift in Sources */,
-				2A1893AD1FFF6A0100AD244F /* LineSortTests.swift in Sources */,
 				2AEBD25A246BB4C200EC97A3 /* NSAttributedStringTests.swift in Sources */,
 				2A89160C2394B87100AC13EE /* NSLayoutManagerTests.swift in Sources */,
 				2A1380072C225FAF00093BF3 /* NSTextStorageTests.swift in Sources */,
@@ -3102,7 +3098,7 @@
 				2A80BE8E27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */,
 				2A6416A31D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
 				2A1125C323F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */,
-				2A1893AA1FFF422D00AD244F /* LineSort.swift in Sources */,
+				2A1893AA1FFF422D00AD244F /* SortPatternError+Localization.swift in Sources */,
 				2A59B7042957089A0094F03B /* LinkButton.swift in Sources */,
 				2AE144C52B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */,
 				2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */,

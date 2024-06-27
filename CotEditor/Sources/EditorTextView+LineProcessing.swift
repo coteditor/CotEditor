@@ -26,6 +26,7 @@
 import AppKit
 import SwiftUI
 import Defaults
+import LineSort
 
 extension EditorTextView {
     

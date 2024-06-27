@@ -25,6 +25,7 @@
 
 import SwiftUI
 import Defaults
+import LineSort
 
 struct PatternSortView: View {
     

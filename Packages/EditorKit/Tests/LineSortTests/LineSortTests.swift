@@ -1,6 +1,6 @@
 //
 //  LineSortTests.swift
-//  Tests
+//  LineSortTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,7 @@
 
 import Foundation
 import Testing
-@testable import CotEditor
+@testable import LineSort
 
 struct LineSortTests {
     
