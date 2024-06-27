@@ -1,5 +1,5 @@
 //
-//  Unicode.GeneralCategory.swift
+//  Unicode.GeneralCategory+Name.swift
 //  CharacterInfo
 //
 //  CotEditor

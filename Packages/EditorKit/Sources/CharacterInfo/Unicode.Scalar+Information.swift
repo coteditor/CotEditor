@@ -43,26 +43,12 @@ public extension Unicode.Scalar {
     }
     
     
-    /// Boolean value indicating whether character becomes a surrogate pair in UTF-16.
-    var isSurrogatePair: Bool {
-        
-        (UTF16.width(self) == 2)
-    }
-    
-    
     /// Unicode name.
     var name: String? {
         
         self.properties.nameAlias
             ?? self.properties.name
             ?? self.controlCharacterName  // get control character name from special table
-    }
-    
-    
-    /// Unicode block name.
-    var blockName: String? {
-        
-        self.value.blockName
     }
     
     
@@ -82,30 +68,18 @@ public extension Unicode.Scalar {
 }
 
 
-
-// MARK: -
-
-public extension UTF32.CodeUnit {
+extension Unicode.Scalar {
     
-    /// Returns Unicode name.
-    ///
-    /// Implemented at UTF32.CodeUnit level in order to cover single surrogate characters
-    /// that are not allowed by Unicode.Scalar.
-    var unicodeName: String? {
+    /// Boolean value indicating whether character becomes a surrogate pair in UTF-16.
+    var isSurrogatePair: Bool {
         
-        if let name = Unicode.Scalar(self)?.name {
-            return name
-        }
+        (UTF16.width(self) == 2)
+    }
+    
+    
+    /// Unicode block name.
+    var blockName: String? {
         
-        if let codeUnit = UTF16.CodeUnit(exactly: self) {
-            if UTF16.isLeadSurrogate(codeUnit) {
-                return "<lead surrogate-" + String(format: "%04X", self) + ">"
-            }
-            if UTF16.isTrailSurrogate(codeUnit) {
-                return "<tail surrogate-" + String(format: "%04X", self) + ">"
-            }
-        }
-        
-        return nil
+        self.value.blockName
     }
 }

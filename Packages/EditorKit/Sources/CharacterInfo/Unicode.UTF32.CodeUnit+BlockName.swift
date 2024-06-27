@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-public extension Unicode.UTF32.CodeUnit {
+extension Unicode.UTF32.CodeUnit {
     
     /// Unicode block name.
     ///

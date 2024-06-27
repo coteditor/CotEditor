@@ -26,7 +26,7 @@
 
 import Foundation
 
-public protocol HighlightExtractable: Sendable {
+protocol HighlightExtractable: Sendable {
     
     func ranges(in: String, range: NSRange) throws -> [NSRange]
 }

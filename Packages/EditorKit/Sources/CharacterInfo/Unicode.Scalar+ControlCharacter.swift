@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-public extension Unicode.Scalar {
+extension Unicode.Scalar {
     
     /// The alternate picture character for invisible control character if available.
     var pictureRepresentation: Unicode.Scalar? {
