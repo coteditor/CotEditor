@@ -1,6 +1,6 @@
 //
 //  StringCommentingTests.swift
-//  Tests
+//  TextEditingTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,10 +25,10 @@
 //
 
 import Foundation
-import TextEditing
 import Testing
 import Syntax
-@testable import CotEditor
+import struct StringBasics.Pair
+@testable import TextEditing
 
 struct StringCommentingTests {
     

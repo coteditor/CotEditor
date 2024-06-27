@@ -26,7 +26,7 @@
 //
 
 import Foundation
-import TextEditing
+import StringBasics
 
 public enum SyntaxType: String, Sendable, CaseIterable {
     

@@ -1,6 +1,6 @@
 //
 //  NSRangeTests.swift
-//  TextEditingTests
+//  StringBasicsTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,7 @@
 
 import Foundation
 import Testing
-@testable import TextEditing
+@testable import StringBasics
 
 struct NSRangeTests {
     

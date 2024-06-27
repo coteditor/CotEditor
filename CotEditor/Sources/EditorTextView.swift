@@ -29,7 +29,7 @@ import Combine
 import Defaults
 import Shortcut
 import Syntax
-import TextEditing
+import StringBasics
 
 private extension NSAttributedString.Key {
     

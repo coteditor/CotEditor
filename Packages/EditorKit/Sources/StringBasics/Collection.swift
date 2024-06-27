@@ -1,11 +1,11 @@
 //
-//  Pair.swift
-//  TextEditing
+//  Collection.swift
+//  StringBasics
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2016-08-19.
+//  Created by 1024jp on 2024-06-19.
 //
 //  ---------------------------------------------------------------------------
 //
@@ -24,20 +24,15 @@
 //  limitations under the License.
 //
 
-public struct Pair<T> {
+extension Sequence where Element: Equatable {
     
-    public var begin: T
-    public var end: T
-    
-    
-    public init(_ begin: T, _ end: T) {
+    /// An array consists of unique elements of receiver by keeping ordering.
+    var uniqued: [Element] {
         
-        self.begin = begin
-        self.end = end
+        self.reduce(into: []) { (unique, element) in
+            guard !unique.contains(element) else { return }
+            
+            unique.append(element)
+        }
     }
 }
-
-
-extension Pair: Equatable where T: Equatable { }
-extension Pair: Hashable where T: Hashable { }
-extension Pair: Sendable where T: Sendable { }

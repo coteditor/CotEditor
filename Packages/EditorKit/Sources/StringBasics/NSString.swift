@@ -1,6 +1,6 @@
 //
 //  String+NSRange.swift
-//  TextEditing
+//  StringBasics
 //
 //  CotEditor
 //  https://coteditor.com

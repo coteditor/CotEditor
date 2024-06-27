@@ -24,7 +24,7 @@
 //
 
 import Foundation
-import TextEditing
+import StringBasics
 import ValueRange
 
 struct TextFind {

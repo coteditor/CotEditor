@@ -1,6 +1,6 @@
 //
 //  String+Match.swift
-//  TextEditing
+//  StringBasics
 //
 //  CotEditor
 //  https://coteditor.com

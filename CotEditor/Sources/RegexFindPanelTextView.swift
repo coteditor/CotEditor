@@ -24,7 +24,7 @@
 //
 
 import AppKit
-import TextEditing
+import StringBasics
 
 final class RegexFindPanelTextView: FindPanelTextView {
     

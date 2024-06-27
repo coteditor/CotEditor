@@ -1,6 +1,6 @@
 //
 //  String+Counting.swift
-//  TextEditing
+//  StringBasics
 //
 //  CotEditor
 //  https://coteditor.com

@@ -1,6 +1,6 @@
 //
 //  BracePairTests.swift
-//  TextEditingTests
+//  StringBasicsTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 //
 
 import Testing
-@testable import TextEditing
+@testable import StringBasics
 
 struct BracePairTests {
     

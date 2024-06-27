@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import StringBasics
 
 public extension String {
     

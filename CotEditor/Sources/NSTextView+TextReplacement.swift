@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import StringBasics
 import TextEditing
 
 extension NSTextView {

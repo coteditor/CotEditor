@@ -1,5 +1,6 @@
 //
 //  String+Commenting.swift
+//  TextEditing
 //
 //  CotEditor
 //  https://coteditor.com
@@ -24,10 +25,27 @@
 //
 
 import Foundation
+import StringBasics
 import Syntax
-import TextEditing
 
-extension String {
+public struct CommentTypes: OptionSet, Sendable {
+    
+    public let rawValue: Int
+    
+    public static let inline = Self(rawValue: 1 << 0)
+    public static let block = Self(rawValue: 1 << 1)
+    
+    public static let both: Self = [.inline, .block]
+    
+    
+    public init(rawValue: Int) {
+        
+        self.rawValue = rawValue
+    }
+}
+
+
+public extension String {
     
     /// Comments out the selections by appending comment delimiters.
     ///

@@ -25,6 +25,7 @@
 
 import AppKit
 import Syntax
+import TextEditing
 
 extension EditorTextView: Commenting {
     
@@ -72,17 +73,6 @@ extension EditorTextView: Commenting {
 
 
 // MARK: - Protocol
-
-struct CommentTypes: OptionSet {
-    
-    let rawValue: Int
-    
-    static let inline = Self(rawValue: 1 << 0)
-    static let block = Self(rawValue: 1 << 1)
-    
-    static let both: Self = [.inline, .block]
-}
-
 
 @MainActor protocol Commenting: NSTextView {
     

@@ -1,6 +1,6 @@
 //
 //  String+FullwidthTransform.swift
-//  TextEditing
+//  StringBasics
 //
 //  CotEditor
 //  https://coteditor.com

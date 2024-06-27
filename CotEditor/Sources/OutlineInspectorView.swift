@@ -28,7 +28,7 @@ import Observation
 import Combine
 import Defaults
 import Syntax
-import TextEditing
+import StringBasics
 
 final class OutlineInspectorViewController: NSHostingController<OutlineInspectorView>, DocumentOwner {
     

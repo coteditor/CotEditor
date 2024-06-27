@@ -1,6 +1,6 @@
 //
 //  String+Case.swift
-//  TextEditing
+//  StringBasics
 //
 //  CotEditor
 //  https://coteditor.com
