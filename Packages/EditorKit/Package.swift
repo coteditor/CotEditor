@@ -15,6 +15,7 @@ let package = Package(
             "Defaults",
             "FileEncoding",
             "FilePermissions",
+            "FuzzyRange",
             "Shortcut",
             "StringBasics",
             "Syntax",
@@ -29,6 +30,7 @@ let package = Package(
         .library(name: "Defaults", targets: ["Defaults"]),
         .library(name: "FileEncoding", targets: ["FileEncoding"]),
         .library(name: "FilePermissions", targets: ["FilePermissions"]),
+        .library(name: "FuzzyRange", targets: ["FuzzyRange"]),
         .library(name: "StringBasics", targets: ["StringBasics"]),
         .library(name: "Syntax", targets: ["Syntax"]),
         .library(name: "TextClipping", targets: ["TextClipping"]),
@@ -49,6 +51,9 @@ let package = Package(
         
         .target(name: "FilePermissions"),
         .testTarget(name: "FilePermissionsTests", dependencies: ["FilePermissions"]),
+        
+        .target(name: "FuzzyRange"),
+        .testTarget(name: "FuzzyRangeTests", dependencies: ["FuzzyRange"]),
         
         .target(name: "StringBasics"),
         .testTarget(name: "StringBasicsTests", dependencies: ["StringBasics"]),

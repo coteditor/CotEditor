@@ -25,6 +25,7 @@
 //
 
 import AppKit
+import FuzzyRange
 import UnicodeNormalization
 
 private enum OSACaseType: FourCharCode {

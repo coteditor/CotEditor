@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import FuzzyRange
 
 struct GoToLineView: View {
     

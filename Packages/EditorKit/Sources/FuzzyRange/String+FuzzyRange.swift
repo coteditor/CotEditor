@@ -1,5 +1,6 @@
 //
-//  FuzzyRange.swift
+//  String+FuzzyRange.swift
+//  FuzzyRange
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,91 +26,7 @@
 
 import Foundation
 
-/// A range representation that allows negative values.
-///
-/// When a negative value is set, it generally counts the elements from the end of the sequence.
-struct FuzzyRange: Equatable {
-    
-    var location: Int
-    var length: Int = 0
-}
-
-
-
-// MARK: - Format Style
-
-extension FuzzyRange {
-    
-    /// Gets a formatted string from a format style.
-    ///
-    /// - Parameter style: The fuzzy range format style.
-    /// - Returns: A formatted string.
-    func formatted(_ style: FuzzyRangeFormatStyle = .init()) -> FuzzyRangeFormatStyle.FormatOutput {
-        
-        style.format(self)
-    }
-}
-
-
-extension FormatStyle where Self == FuzzyRange.FuzzyRangeFormatStyle {
-    
-    static var fuzzyRange: FuzzyRange.FuzzyRangeFormatStyle {
-        
-        FuzzyRange.FuzzyRangeFormatStyle()
-    }
-}
-
-
-extension FuzzyRange {
-    
-    struct FuzzyRangeFormatStyle: ParseableFormatStyle {
-        
-        var parseStrategy: FuzzyRangeParseStrategy {
-            
-            FuzzyRangeParseStrategy()
-        }
-        
-        
-        func format(_ value: FuzzyRange) -> String {
-            
-            (0...1).contains(value.length)
-                ? String(value.location)
-                : String(value.location) + ":" + String(value.length)
-        }
-    }
-}
-
-
-struct FuzzyRangeParseStrategy: ParseStrategy {
-    
-    enum ParseError: Error {
-        
-        case invalidValue
-    }
-    
-    
-    /// Creates an instance of the `ParseOutput` type from `value`.
-    ///
-    /// - Parameter value: The string representation of `FuzzyRange` instance.
-    /// - Returns: A `FuzzyRange` instance.
-    func parse(_ value: String) throws(ParseError) -> FuzzyRange {
-        
-        let components = value.split(separator: ":").map(String.init).map(Int.init)
-        
-        guard
-            (1...2).contains(components.count),
-            let location = components[0],
-            let length = (components.count > 1) ? components[1] : 0
-        else { throw ParseError.invalidValue }
-        
-        return FuzzyRange(location: location, length: length)
-    }
-}
-
-
-// MARK: - NSRange conversion
-
-extension String {
+public extension String {
     
     /// Converts FuzzyRange that allows negative values to a valid NSRange.
     ///
@@ -154,13 +71,14 @@ extension String {
     /// - Returns: A character range, or `nil` if the given value is out of range.
     func rangeForLine(in lineRange: FuzzyRange, includingLineEnding: Bool = true) -> NSRange? {
         
+        let length = self.utf16.count
         let pattern = includingLineEnding ? "(?<=\\A|\\R).*(?:\\R|\\z)" : "(?<=\\A|\\R).*$"
         let regex = try! NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
-        let lineRanges = regex.matches(in: self, range: self.nsRange).map(\.range)
+        let lineRanges = regex.matches(in: self, range: NSRange(..<length)).map(\.range)
         let count = lineRanges.count
         
         guard lineRange.location != 0 else { return NSRange(0..<0) }
-        guard lineRange.location <= count else { return NSRange(location: self.length, length: 0) }
+        guard lineRange.location <= count else { return NSRange(location: length, length: 0) }
         
         let newLocation = (lineRange.location > 0) ? lineRange.location - 1 : (count + lineRange.location)  // 1-based to 0-based
         let newLength: Int = switch lineRange.length {
@@ -169,10 +87,10 @@ extension String {
             default: lineRange.length - 1
         }
         
-        guard
-            let firstLineRange = lineRanges[safe: newLocation],
-            let lastLineRange = lineRanges[safe: newLocation + newLength]
-        else { return nil }
+        guard lineRanges.count <= newLocation + newLength else { return nil }
+        
+        let firstLineRange = lineRanges[newLocation]
+        let lastLineRange = lineRanges[newLocation + newLength]
         
         return NSRange(firstLineRange.lowerBound..<lastLineRange.upperBound)
     }
@@ -205,7 +123,7 @@ extension String {
 
 
 
-enum FuzzyLocationError: Error, Equatable {
+public enum FuzzyLocationError: Error, Equatable {
     
     case invalidLine(Int)
     case invalidColumn(Int)

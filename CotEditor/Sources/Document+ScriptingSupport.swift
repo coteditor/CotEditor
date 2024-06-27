@@ -26,6 +26,7 @@
 
 import AppKit
 import FileEncoding
+import FuzzyRange
 
 private enum OSALineEnding: FourCharCode {
     

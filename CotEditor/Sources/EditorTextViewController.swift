@@ -29,6 +29,7 @@ import Combine
 import SwiftUI
 import CharacterInfo
 import Defaults
+import FuzzyRange
 import TextClipping
 
 final class EditorTextViewController: NSViewController, NSServicesMenuRequestor, NSTextViewDelegate {
