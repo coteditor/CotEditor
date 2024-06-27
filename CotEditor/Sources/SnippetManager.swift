@@ -26,7 +26,6 @@
 
 import Foundation
 import AppKit.NSMenuItem
-import Combine
 import Defaults
 import Shortcut
 
@@ -49,7 +48,6 @@ import Shortcut
     // MARK: Private Properties
     
     private var scope: String?  { didSet { self.updateMenu() } }
-    private var scopeObserver: AnyCancellable?
     
     
     
@@ -60,12 +58,15 @@ import Shortcut
         self.snippets = UserDefaults.standard[.snippets]
             .compactMap(Snippet.init(dictionary:))
         
-        self.scopeObserver = (DocumentController.shared as! DocumentController).$currentSyntaxName
-            .removeDuplicates()
-            .sink { [unowned self] in self.scope = $0 }
-        
         Task.detached {
             self.migrateIfNeeded()
+        }
+        
+        let scopes = (DocumentController.shared as! DocumentController).$currentSyntaxName.values
+        Task {
+            for await scope in scopes where self.scope != scope {
+                self.scope = scope
+            }
         }
     }
     
