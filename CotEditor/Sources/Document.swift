@@ -35,6 +35,13 @@ import FileEncoding
 import FilePermissions
 import Syntax
 
+extension Document: EditorSource {
+    
+    var string: String? { self.textView?.string }
+    var selectedRanges: [NSRange] { self.textView?.selectedRanges.map(\.rangeValue) ?? [] }
+}
+
+
 @Observable final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging {
     
     // MARK: Enums
@@ -126,7 +133,7 @@ import Syntax
         super.init()
         
         self.lineEndingScanner.observe(lineEnding: self.$lineEnding)
-        self.counter.document = self
+        self.counter.source = self
         
         // auto-link URLs in the content
         if UserDefaults.standard[.autoLinkDetection] {

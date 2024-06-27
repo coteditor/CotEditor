@@ -23,21 +23,22 @@
 //  limitations under the License.
 //
 
-import AppKit
+import Foundation
 import Testing
 @testable import CotEditor
 
 @MainActor final class EditorCounterTests {
     
-    @MainActor final class Provider: TextViewProvider {
+    @MainActor final class Source: EditorSource {
         
-        var textView: NSTextView? = NSTextView()
+        var string: String?
+        var selectedRanges: [NSRange]
         
         
         init(string: String, selectedRange: NSRange) {
             
-            self.textView?.string = string
-            self.textView?.selectedRange = selectedRange
+            self.string = string
+            self.selectedRanges = [selectedRange]
         }
     }
     
@@ -50,10 +51,10 @@ import Testing
     
     @Test func noRequiredInfo() throws {
         
-        let provider = Provider(string: self.testString, selectedRange: NSRange(0..<3))
+        let source = Source(string: self.testString, selectedRange: NSRange(0..<3))
         
         let counter = EditorCounter()
-        counter.document = provider
+        counter.source = source
         counter.invalidateContent()
         counter.invalidateSelection()
         
@@ -68,10 +69,10 @@ import Testing
     
     @Test func allRequiredInfo() throws {
         
-        let provider = Provider(string: self.testString, selectedRange: NSRange(11..<21))
+        let source = Source(string: self.testString, selectedRange: NSRange(11..<21))
         
         let counter = EditorCounter()
-        counter.document = provider
+        counter.source = source
         counter.updatesAll = true
         counter.invalidateContent()
         counter.invalidateSelection()
@@ -94,10 +95,10 @@ import Testing
     
     @Test func skipWholeText() throws {
         
-        let provider = Provider(string: self.testString, selectedRange: NSRange(11..<21))
+        let source = Source(string: self.testString, selectedRange: NSRange(11..<21))
         
         let counter = EditorCounter()
-        counter.document = provider
+        counter.source = source
         counter.updatesAll = true
         counter.invalidateSelection()
         
@@ -119,10 +120,10 @@ import Testing
     
     @Test func crlf() throws {
         
-        let provider = Provider(string: "a\r\nb", selectedRange: NSRange(1..<4))
+        let source = Source(string: "a\r\nb", selectedRange: NSRange(1..<4))
         
         let counter = EditorCounter()
-        counter.document = provider
+        counter.source = source
         counter.updatesAll = true
         counter.invalidateContent()
         counter.invalidateSelection()
