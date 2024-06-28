@@ -55,8 +55,7 @@ struct FindProgressView: View {
     ///   - unit: The unit to count results in the description.
     init(_ label: String, progress: FindProgress, unit: Unit) {
         
-        assert(!progress.isCancelled)
-        assert(!progress.isFinished)
+        assert(!progress.state.isTerminated)
         
         self.progress = progress
         self.unit = unit
@@ -87,15 +86,15 @@ struct FindProgressView: View {
         .onReceive(self.timer) { _ in
             self.updateDescription()
         }
-        .onChange(of: self.progress.isCancelled) { (_, newValue) in
-            if newValue {
-                self.parent?.dismiss(nil)
-            }
-        }
-        .onChange(of: self.progress.isFinished) { (_, newValue) in
-            if newValue {
-                self.updateDescription()
-                self.parent?.dismiss(nil)
+        .onChange(of: self.progress.state) { (_, newValue) in
+            switch newValue {
+                case .ready, .processing:
+                    break
+                case .finished:
+                    self.updateDescription()
+                    self.parent?.dismiss(nil)
+                case .cancelled:
+                    self.parent?.dismiss(nil)
             }
         }
         .scenePadding()
@@ -136,7 +135,7 @@ private extension FindProgressView.Unit {
 
 #Preview {
     let progress = FindProgress(scope: 0..<100)
-    progress.completedUnit = 30
+    progress.updateCompletedUnit(to: 30)
     
     return FindProgressView("Label", progress: progress, unit: .find)
 }

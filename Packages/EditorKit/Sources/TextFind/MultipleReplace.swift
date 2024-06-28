@@ -120,20 +120,20 @@ extension MultipleReplace {
             
             // process find
             textFind.findAll { (ranges, stop) in
-                guard progress?.isCancelled != true else {
+                guard progress?.state != .cancelled else {
                     stop = true
                     return
                 }
                 
                 result.append(ranges.first!)
-                progress?.increment()
+                progress?.incrementCount()
             }
             
             // finish if cancelled
-            guard progress?.isCancelled != true else { throw CancellationError() }
+            guard progress?.state != .cancelled else { throw CancellationError() }
             
             // notify
-            progress?.completedUnit += 1
+            progress?.incrementCompletedUnit()
         }
         
         return result
@@ -161,16 +161,16 @@ extension MultipleReplace {
             
             // process replacement
             let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacement.replacementString) { (_, count, stop) in
-                guard progress?.isCancelled != true else {
+                guard progress?.state != .cancelled else {
                     stop = true
                     return
                 }
                 
-                progress?.increment(by: count)
+                progress?.incrementCount(by: count)
             }
             
             // finish if cancelled
-            guard progress?.isCancelled != true else { throw CancellationError() }
+            guard progress?.state != .cancelled else { throw CancellationError() }
             
             // update string
             for item in replacementItems.reversed() {
@@ -181,7 +181,7 @@ extension MultipleReplace {
             result.selectedRanges = selectedRanges
             
             // notify
-            progress?.completedUnit += 1
+            progress?.incrementCompletedUnit()
         }
         
         return result

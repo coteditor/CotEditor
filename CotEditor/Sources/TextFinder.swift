@@ -553,7 +553,7 @@ struct TextFindAllResult {
             var resultMatches: [TextFindAllResult.Match] = []  // not used if showsList is false
             
             textFind.findAll { (matches: [NSRange], stop) in
-                guard !progress.isCancelled else {
+                guard progress.state != .cancelled else {
                     stop = true
                     return
                 }
@@ -579,8 +579,8 @@ struct TextFindAllResult {
                     resultMatches.append(.init(range: matchedRange, lineLocation: matchedRange.location - lineRange.location, attributedLineString: attrLineString))
                 }
                 
-                progress.completedUnit = matches[0].upperBound
-                progress.increment()
+                progress.updateCompletedUnit(to: matches[0].upperBound)
+                progress.incrementCount()
             }
             
             return (highlights, resultMatches)
@@ -588,7 +588,7 @@ struct TextFindAllResult {
         
         client.isEditable = true
         
-        guard !progress.isCancelled else { return }
+        guard progress.state != .cancelled else { return }
         
         // highlight in client
         if let layoutManager = client.layoutManager {
@@ -637,19 +637,19 @@ struct TextFindAllResult {
         
         let (replacementItems, selectedRanges) = await Task.detached(priority: .userInitiated) {
             textFind.replaceAll(with: replacementString) { (range, count, stop) in
-                guard !progress.isCancelled else {
+                guard progress.state != .cancelled else {
                     stop = true
                     return
                 }
                 
-                progress.completedUnit = range.upperBound
-                progress.increment(by: count)
+                progress.updateCompletedUnit(to: range.upperBound)
+                progress.incrementCount(by: count)
             }
         }.value
         
         client.isEditable = true
         
-        guard !progress.isCancelled else { return }
+        guard progress.state != .cancelled else { return }
         
         if !replacementItems.isEmpty {
             // apply found strings to the text view

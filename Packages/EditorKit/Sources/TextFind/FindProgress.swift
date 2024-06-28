@@ -28,13 +28,29 @@ import Observation
 
 @Observable public final class FindProgress: @unchecked Sendable {
     
-    @ObservationIgnored public private(set) var count = 0
-    @ObservationIgnored public var completedUnit = 0
+    public enum State: Equatable, Sendable {
+        
+        case ready
+        case processing
+        case finished
+        case cancelled
+        
+        
+        public var isTerminated: Bool {
+            
+            switch self {
+                case .ready, .processing: false
+                case .finished, .cancelled: true
+            }
+        }
+    }
     
-    public private(set) var isCancelled = false
-    public private(set) var isFinished = false
+    
+    public private(set) var state: State = .ready
+    @ObservationIgnored public private(set) var count = 0
     
     private let scope: Range<Int>
+    private var completedUnit = 0
     
     
     /// Instantiates a progress.
@@ -49,7 +65,7 @@ import Observation
     /// The fraction of task completed in between 0...1.0.
     public var fractionCompleted: Double {
         
-        if self.isFinished || self.scope.isEmpty {
+        if self.state == .finished || self.scope.isEmpty {
             return 1
         } else {
             return Double(self.completedUnit) / Double(self.scope.count)
@@ -57,25 +73,41 @@ import Observation
     }
     
     
+    /// Changes the state to `.cancelled`.
+    public func cancel() {
+        
+        self.state = .cancelled
+    }
+    
+    
+    /// Changes the state to `.finished`.
+    public func finish() {
+        
+        self.state = .finished
+    }
+    
+    
     /// Increments count.
     ///
     /// - Parameter count: The amount to increment.
-    public func increment(by count: Int = 1) {
+    public func incrementCount(by count: Int = 1) {
         
         self.count += count
     }
     
     
-    /// Raise `isCancelled` flag.
-    public func cancel() {
+    /// Updates the `completedUnit` to a new value.
+    ///
+    /// - Parameter unit: The new completed unit.
+    public func updateCompletedUnit(to unit: Int) {
         
-        self.isCancelled = true
+        self.completedUnit = unit
     }
     
     
-    /// Raise `isFinished` flag.
-    public func finish() {
+    /// Increments the `completedUnit` by one.
+    func incrementCompletedUnit() {
         
-        self.isFinished = true
+        self.completedUnit += 1
     }
 }
