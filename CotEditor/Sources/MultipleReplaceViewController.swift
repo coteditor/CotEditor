@@ -27,6 +27,7 @@ import AppKit
 import Combine
 import SwiftUI
 import Defaults
+import TextFind
 
 final class MultipleReplaceViewController: NSViewController {
     

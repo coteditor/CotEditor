@@ -25,30 +25,57 @@
 
 import Foundation
 
-struct MultipleReplace: Codable {
+public struct MultipleReplace: Equatable, Sendable, Codable {
     
-    struct Replacement: Equatable {
+    public struct Replacement: Equatable, Sendable {
         
-        var findString: String = ""
-        var replacementString: String = ""
-        var usesRegularExpression: Bool = false
-        var ignoresCase: Bool = false
-        var description: String?
-        var isEnabled = true
+        public var findString: String
+        public var replacementString: String
+        public var usesRegularExpression: Bool
+        public var ignoresCase: Bool
+        public var description: String?
+        public var isEnabled: Bool
+        
+        
+        public init(findString: String = "", replacementString: String = "", usesRegularExpression: Bool = false, ignoresCase: Bool = false, description: String? = nil, isEnabled: Bool = true) {
+            
+            self.findString = findString
+            self.replacementString = replacementString
+            self.usesRegularExpression = usesRegularExpression
+            self.ignoresCase = ignoresCase
+            self.description = description
+            self.isEnabled = isEnabled
+        }
     }
     
     
-    struct Settings: Equatable {
+    public struct Settings: Equatable, Sendable {
         
-        var textualOptions: String.CompareOptions = []
-        var regexOptions: NSRegularExpression.Options = [.anchorsMatchLines]
-        var matchesFullWord: Bool = false
-        var unescapesReplacementString: Bool = true
+        public var textualOptions: String.CompareOptions
+        public var regexOptions: NSRegularExpression.Options
+        public var matchesFullWord: Bool
+        public var unescapesReplacementString: Bool
+        
+        
+        public init(textualOptions: String.CompareOptions = [], regexOptions: NSRegularExpression.Options = [.anchorsMatchLines], matchesFullWord: Bool = false, unescapesReplacementString: Bool = true) {
+            
+            self.textualOptions = textualOptions
+            self.regexOptions = regexOptions
+            self.matchesFullWord = matchesFullWord
+            self.unescapesReplacementString = unescapesReplacementString
+        }
     }
     
     
-    var replacements: [Replacement] = []
-    var settings: Settings = .init()
+    public var replacements: [Replacement]
+    public var settings: Settings
+    
+    
+    public init(replacements: [Replacement] = [], settings: Settings = .init()) {
+        
+        self.replacements = replacements
+        self.settings = settings
+    }
 }
 
 
@@ -57,14 +84,14 @@ struct MultipleReplace: Codable {
 
 extension MultipleReplace {
     
-    struct Result {
+    public struct Result: Equatable, Sendable {
         
-        var string: String
-        var selectedRanges: [NSRange]?
+        public var string: String
+        public var selectedRanges: [NSRange]?
     }
     
     
-    enum Status {
+    public enum Status: Equatable, Sendable {
         
         case processed
         case unitChanged
@@ -81,7 +108,7 @@ extension MultipleReplace {
     ///   - inSelection: Whether find only in selection.
     ///   - progress: The progress object to observe cancellation by the user and notify the find progress.
     /// - Returns: The found ranges. This method will return first all search finished.
-    func find(string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress? = nil) throws(CancellationError) -> [NSRange] {
+    public func find(string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress? = nil) throws(CancellationError) -> [NSRange] {
         
         var result: [NSRange] = []
         
@@ -121,7 +148,7 @@ extension MultipleReplace {
     ///   - inSelection: Whether replace only in selection.
     ///   - progress: The progress object to observe cancellation by the user and notify the replacement progress.
     /// - Returns: The result of the replacement. This method will return first all replacement finished.
-    func replace(string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress? = nil) throws(CancellationError) -> Result {
+    public func replace(string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress? = nil) throws(CancellationError) -> Result {
         
         var result = Result(string: string, selectedRanges: ranges)
         
@@ -190,7 +217,7 @@ private extension MultipleReplace.Replacement {
 extension MultipleReplace.Replacement {
     
     /// Checks if replacement rule is valid.
-    func validate(regexOptions: NSRegularExpression.Options = []) throws(TextFind.Error) {
+    public func validate(regexOptions: NSRegularExpression.Options = []) throws(TextFind.Error) {
         
         guard !self.findString.isEmpty else {
             throw TextFind.Error.emptyFindString

@@ -24,30 +24,11 @@
 //  limitations under the License.
 //
 
-import AppKit
+import Foundation
 import Testing
-@testable import CotEditor
+@testable import TextFind
 
 struct TextFindTests {
-    
-    @Test func finderActions() {
-        
-        #expect(TextFinder.Action.showFindInterface.rawValue == NSTextFinder.Action.showFindInterface.rawValue)
-        #expect(TextFinder.Action.nextMatch.rawValue == NSTextFinder.Action.nextMatch.rawValue)
-        #expect(TextFinder.Action.previousMatch.rawValue == NSTextFinder.Action.previousMatch.rawValue)
-        #expect(TextFinder.Action.replaceAll.rawValue == NSTextFinder.Action.replaceAll.rawValue)
-        #expect(TextFinder.Action.replace.rawValue == NSTextFinder.Action.replace.rawValue)
-        #expect(TextFinder.Action.replaceAndFind.rawValue == NSTextFinder.Action.replaceAndFind.rawValue)
-        #expect(TextFinder.Action.setSearchString.rawValue == NSTextFinder.Action.setSearchString.rawValue)
-        #expect(TextFinder.Action.replaceAllInSelection.rawValue == NSTextFinder.Action.replaceAllInSelection.rawValue)
-        #expect(TextFinder.Action.selectAll.rawValue == NSTextFinder.Action.selectAll.rawValue)
-        #expect(TextFinder.Action.selectAllInSelection.rawValue == NSTextFinder.Action.selectAllInSelection.rawValue)
-        #expect(TextFinder.Action.hideFindInterface.rawValue == NSTextFinder.Action.hideFindInterface.rawValue)
-        #expect(TextFinder.Action.showReplaceInterface.rawValue == NSTextFinder.Action.showReplaceInterface.rawValue)
-        #expect(TextFinder.Action.showReplaceInterface.rawValue == NSTextFinder.Action.showReplaceInterface.rawValue)
-        #expect(TextFinder.Action.hideReplaceInterface.rawValue == NSTextFinder.Action.hideReplaceInterface.rawValue)
-    }
-    
     
     @Test func countCaptureGroup() throws {
         

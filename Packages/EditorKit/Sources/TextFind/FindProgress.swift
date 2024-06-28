@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2023 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,13 +26,13 @@
 import Foundation
 import Observation
 
-@Observable final class FindProgress: @unchecked Sendable {
+@Observable public final class FindProgress: @unchecked Sendable {
     
-    @ObservationIgnored private(set) var count = 0
-    @ObservationIgnored var completedUnit = 0
+    @ObservationIgnored public private(set) var count = 0
+    @ObservationIgnored public var completedUnit = 0
     
-    private(set) var isCancelled = false
-    private(set) var isFinished = false
+    public private(set) var isCancelled = false
+    public private(set) var isFinished = false
     
     private let scope: Range<Int>
     
@@ -40,14 +40,14 @@ import Observation
     /// Instantiates a progress.
     ///
     /// - Parameter scope: The range of progress unit to work with.
-    init(scope: Range<Int>) {
+    public init(scope: Range<Int>) {
         
         self.scope = scope
     }
     
     
     /// The fraction of task completed in between 0...1.0.
-    var fractionCompleted: Double {
+    public var fractionCompleted: Double {
         
         if self.isFinished || self.scope.isEmpty {
             return 1
@@ -60,21 +60,21 @@ import Observation
     /// Increments count.
     ///
     /// - Parameter count: The amount to increment.
-    func increment(by count: Int = 1) {
+    public func increment(by count: Int = 1) {
         
         self.count += count
     }
     
     
     /// Raise `isCancelled` flag.
-    func cancel() {
+    public func cancel() {
         
         self.isCancelled = true
     }
     
     
     /// Raise `isFinished` flag.
-    func finish() {
+    public func finish() {
         
         self.isFinished = true
     }

@@ -25,6 +25,7 @@
 
 import Foundation
 import Observation
+import TextFind
 import UniformTypeIdentifiers
 
 @Observable final class ReplacementManager: SettingFileManaging {

@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-extension Sequence where Element: Equatable {
+public extension Sequence where Element: Equatable {
     
     /// An array consists of unique elements of receiver by keeping ordering.
     var uniqued: [Element] {
@@ -34,5 +34,16 @@ extension Sequence where Element: Equatable {
             
             unique.append(element)
         }
+    }
+}
+
+
+
+public extension Array where Element: Equatable {
+    
+    /// Removes duplicated elements by keeping ordering.
+    mutating func unique() {
+        
+        self = self.uniqued
     }
 }

@@ -29,6 +29,7 @@ import Combine
 import UniformTypeIdentifiers
 import OSLog
 import Defaults
+import TextFind
 
 final class MultipleReplaceListViewController: NSViewController, NSMenuItemValidation {
     

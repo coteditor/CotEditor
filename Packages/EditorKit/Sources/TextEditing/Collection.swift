@@ -24,24 +24,6 @@
 //  limitations under the License.
 //
 
-// MARK: - Unique
-
-extension Sequence where Element: Equatable {
-    
-    /// An array consists of unique elements of receiver by keeping ordering.
-    var uniqued: [Element] {
-        
-        self.reduce(into: []) { (unique, element) in
-            guard !unique.contains(element) else { return }
-            
-            unique.append(element)
-        }
-    }
-}
-
-
-// MARK: - Sort
-
 extension Sequence {
     
     /// Returns the elements of the sequence, sorted using the value that the given key path refers as the comparison between elements.

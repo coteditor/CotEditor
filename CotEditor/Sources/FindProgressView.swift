@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import TextFind
 
 struct FindProgressView: View {
     

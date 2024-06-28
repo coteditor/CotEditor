@@ -23,8 +23,10 @@
 //  limitations under the License.
 //
 
-import AppKit
+import Foundation
+import AppKit.NSPasteboard
 import Defaults
+import TextFind
 
 @MainActor final class TextFinderSettings: NSObject {
     

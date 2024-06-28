@@ -22,6 +22,7 @@ let package = Package(
             "Syntax",
             "TextClipping",
             "TextEditing",
+            "TextFind",
             "UnicodeNormalization",
             "ValueRange",
             "Shortcut",
@@ -37,6 +38,7 @@ let package = Package(
         .library(name: "Syntax", targets: ["Syntax"]),
         .library(name: "TextClipping", targets: ["TextClipping"]),
         .library(name: "TextEditing", targets: ["TextEditing"]),
+        .library(name: "TextFind", targets: ["TextFind"]),
         .library(name: "UnicodeNormalization", targets: ["UnicodeNormalization"]),
         
         .library(name: "Shortcut", targets: ["Shortcut"]),
@@ -71,6 +73,9 @@ let package = Package(
         
         .target(name: "TextEditing", dependencies: ["StringBasics", "Syntax"]),
         .testTarget(name: "TextEditingTests", dependencies: ["TextEditing"]),
+        
+            .target(name: "TextFind", dependencies: ["StringBasics", "ValueRange"]),
+        .testTarget(name: "TextFindTests", dependencies: ["TextFind"]),
         
         .target(name: "UnicodeNormalization"),
         .testTarget(name: "UnicodeNormalizationTests", dependencies: ["UnicodeNormalization"]),

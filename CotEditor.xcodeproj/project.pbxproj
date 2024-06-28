@@ -136,12 +136,8 @@
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
 		2A21E6732BB44D5E0054C8A1 /* DonationSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A21E6722BB44D5E0054C8A1 /* DonationSettings.xcstrings */; };
 		2A21E6742BB44D5E0054C8A1 /* DonationSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A21E6722BB44D5E0054C8A1 /* DonationSettings.xcstrings */; };
-		2A231A251E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* MultipleReplace+Codable.swift */; };
-		2A231A261E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* MultipleReplace+Codable.swift */; };
 		2A231A281E7BD82700C2A909 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* Binding.swift */; };
 		2A231A291E7BD82700C2A909 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* Binding.swift */; };
-		2A231A2D1E7BE8B700C2A909 /* FindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */; };
-		2A231A2E1E7BE8B700C2A909 /* FindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */; };
 		2A231A361E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */; };
 		2A231A371E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */; };
 		2A231A391E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */; };
@@ -189,8 +185,6 @@
 		2A33D07F1D1C75B8005977B9 /* SyntaxValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D07D1D1C75B8005977B9 /* SyntaxValidationView.swift */; };
 		2A341D1A281EE23C00B85CB6 /* UserActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A341D19281EE23C00B85CB6 /* UserActivity.swift */; };
 		2A341D1B281EE23C00B85CB6 /* UserActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A341D19281EE23C00B85CB6 /* UserActivity.swift */; };
-		2A3581981E597ECE00762AA5 /* MultipleReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3581971E597ECE00762AA5 /* MultipleReplace.swift */; };
-		2A3581991E597ECE00762AA5 /* MultipleReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3581971E597ECE00762AA5 /* MultipleReplace.swift */; };
 		2A359DFE1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */; };
 		2A359DFF1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */; };
 		2A3643E61E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3643E51E7C3D2400EA3CE8 /* ReplacementManager.swift */; };
@@ -715,9 +709,9 @@
 		2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC48321E641E4F00FB0F89 /* Snippet.swift */; };
 		2AEC69C41D41A1BE0089F96F /* EditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */; };
 		2AEC69C51D41A1BE0089F96F /* EditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */; };
-		2AED46701E425CD200751C45 /* TextFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED466F1E425CD200751C45 /* TextFind.swift */; };
-		2AED46711E425CD200751C45 /* TextFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED466F1E425CD200751C45 /* TextFind.swift */; };
-		2AED46731E43942300751C45 /* TextFindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED46721E43942300751C45 /* TextFindTests.swift */; };
+		2AED46701E425CD200751C45 /* TextFind.Error+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED466F1E425CD200751C45 /* TextFind.Error+Localization.swift */; };
+		2AED46711E425CD200751C45 /* TextFind.Error+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED466F1E425CD200751C45 /* TextFind.Error+Localization.swift */; };
+		2AED46731E43942300751C45 /* TextFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED46721E43942300751C45 /* TextFinderTests.swift */; };
 		2AED70EE1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED70ED1D2E36EF006FFBCE /* DocumentViewController.swift */; };
 		2AED70EF1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AED70ED1D2E36EF006FFBCE /* DocumentViewController.swift */; };
 		2AEE84B21E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */; };
@@ -866,9 +860,7 @@
 		2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
 		2A21E6722BB44D5E0054C8A1 /* DonationSettings.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = DonationSettings.xcstrings; sourceTree = "<group>"; };
-		2A231A241E7B4EDC00C2A909 /* MultipleReplace+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultipleReplace+Codable.swift"; sourceTree = "<group>"; };
 		2A231A271E7BD82700C2A909 /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
-		2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindProgress.swift; sourceTree = "<group>"; };
 		2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceSplitViewController.swift; sourceTree = "<group>"; };
 		2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceListViewController.swift; sourceTree = "<group>"; };
 		2A24F90F2BEDDFEF00CB6CCF /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
@@ -893,7 +885,6 @@
 		2A30C7DA2B1380BE002F6381 /* ShortcutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutView.swift; sourceTree = "<group>"; };
 		2A33D07D1D1C75B8005977B9 /* SyntaxValidationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxValidationView.swift; sourceTree = "<group>"; };
 		2A341D19281EE23C00B85CB6 /* UserActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivity.swift; sourceTree = "<group>"; };
-		2A3581971E597ECE00762AA5 /* MultipleReplace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplace.swift; sourceTree = "<group>"; };
 		2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+Responder.swift"; sourceTree = "<group>"; };
 		2A3643E51E7C3D2400EA3CE8 /* ReplacementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplacementManager.swift; sourceTree = "<group>"; };
 		2A36CE7B1FF654C000020702 /* NSTextView+Snippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Snippet.swift"; sourceTree = "<group>"; };
@@ -1175,8 +1166,8 @@
 		2AEBD259246BB4C200EC97A3 /* NSAttributedStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTests.swift; sourceTree = "<group>"; };
 		2AEC48321E641E4F00FB0F89 /* Snippet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snippet.swift; sourceTree = "<group>"; };
 		2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextView.swift; sourceTree = "<group>"; };
-		2AED466F1E425CD200751C45 /* TextFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFind.swift; sourceTree = "<group>"; };
-		2AED46721E43942300751C45 /* TextFindTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFindTests.swift; sourceTree = "<group>"; };
+		2AED466F1E425CD200751C45 /* TextFind.Error+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextFind.Error+Localization.swift"; sourceTree = "<group>"; };
+		2AED46721E43942300751C45 /* TextFinderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFinderTests.swift; sourceTree = "<group>"; };
 		2AED70ED1D2E36EF006FFBCE /* DocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteToConsoleCommand.swift; sourceTree = "<group>"; };
 		2AF073E21D33C3AB00770BA6 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -1479,8 +1470,6 @@
 		2A231A2A1E7BD92F00C2A909 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2A3581971E597ECE00762AA5 /* MultipleReplace.swift */,
-				2A231A241E7B4EDC00C2A909 /* MultipleReplace+Codable.swift */,
 				2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplace.swift */,
 			);
 			name = Models;
@@ -1849,8 +1838,7 @@
 			children = (
 				2A18560A1D47FA37008FA79E /* TextFinder.swift */,
 				2A6876A72963DE38006257A6 /* TextFinderSettings.swift */,
-				2AED466F1E425CD200751C45 /* TextFind.swift */,
-				2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */,
+				2AED466F1E425CD200751C45 /* TextFind.Error+Localization.swift */,
 				2AB1BD21287D752300C6FEAF /* Views */,
 				2A009ADB1A5AB96F00C3D542 /* Text View */,
 				2A3581931E597AFE00762AA5 /* Multiple Replace */,
@@ -2107,7 +2095,7 @@
 				2ACC65311C98033D000574DC /* ThemeTests.swift */,
 				2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */,
 				2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */,
-				2AED46721E43942300751C45 /* TextFindTests.swift */,
+				2AED46721E43942300751C45 /* TextFinderTests.swift */,
 				2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */,
 				2ABEFB6923DC0CA0008769F4 /* EditorCounterTests.swift */,
 				2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */,
@@ -2745,7 +2733,6 @@
 				2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2A5D13361D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
 				2A5D13331D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
-				2A231A2E1E7BE8B700C2A909 /* FindProgress.swift in Sources */,
 				2A5D13111D1EE66500D38E6A /* FindProgressView.swift in Sources */,
 				2AF98CAB294B9488009AD47F /* FindSettingsView.swift in Sources */,
 				2A65EC262B80C01B008096C5 /* FontPicker.swift in Sources */,
@@ -2786,8 +2773,6 @@
 				2AB857E82B922D7D0079CFA2 /* ModeManager.swift in Sources */,
 				2AB857EB2B93050E0079CFA2 /* ModeOptions.swift in Sources */,
 				2A836D9F2AB1528700B4D458 /* ModeSettingsView.swift in Sources */,
-				2A3581991E597ECE00762AA5 /* MultipleReplace.swift in Sources */,
-				2A231A261E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */,
 				2A231A3A1E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */,
 				2A6876AB29641547006257A6 /* MultipleReplacePanelController.swift in Sources */,
 				2AF98CAF294C0670009AD47F /* MultipleReplaceSettingsView.swift in Sources */,
@@ -2904,7 +2889,7 @@
 				2A4714E42093A2D40093E27F /* SyntaxParser.swift in Sources */,
 				2A33D07F1D1C75B8005977B9 /* SyntaxValidationView.swift in Sources */,
 				2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */,
-				2AED46711E425CD200751C45 /* TextFind.swift in Sources */,
+				2AED46711E425CD200751C45 /* TextFind.Error+Localization.swift in Sources */,
 				2A18560C1D47FA37008FA79E /* TextFinder.swift in Sources */,
 				2A6876A82963DE38006257A6 /* TextFinderSettings.swift in Sources */,
 				2AD69B861D3E42F700FBD998 /* TextSelection.swift in Sources */,
@@ -2966,7 +2951,7 @@
 				2AC71DE21BF0BDBC002E1434 /* StringAdvancedCountTests.swift in Sources */,
 				2AE12DFE1E7DB7D200681F72 /* StringFilenameTests.swift in Sources */,
 				2A63CEC41D0B06D800ED8186 /* SyntaxTests.swift in Sources */,
-				2AED46731E43942300751C45 /* TextFindTests.swift in Sources */,
+				2AED46731E43942300751C45 /* TextFinderTests.swift in Sources */,
 				2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */,
 				2A476CAE1D09C8C80088E37A /* URLExtensionsTests.swift in Sources */,
 				2AFD218D27E0442B00E83E88 /* UTTypeExtensionTests.swift in Sources */,
@@ -3065,7 +3050,6 @@
 				2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2A5D13351D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
 				2A5D13321D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
-				2A231A2D1E7BE8B700C2A909 /* FindProgress.swift in Sources */,
 				2A5D13101D1EE66500D38E6A /* FindProgressView.swift in Sources */,
 				2AF98CAC294B9488009AD47F /* FindSettingsView.swift in Sources */,
 				2A65EC272B80C01B008096C5 /* FontPicker.swift in Sources */,
@@ -3106,8 +3090,6 @@
 				2AB857E92B922D7D0079CFA2 /* ModeManager.swift in Sources */,
 				2AB857EC2B93050E0079CFA2 /* ModeOptions.swift in Sources */,
 				2A836DA02AB1528700B4D458 /* ModeSettingsView.swift in Sources */,
-				2A3581981E597ECE00762AA5 /* MultipleReplace.swift in Sources */,
-				2A231A251E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */,
 				2A231A391E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */,
 				2A6876AC29641547006257A6 /* MultipleReplacePanelController.swift in Sources */,
 				2AF98CB0294C0670009AD47F /* MultipleReplaceSettingsView.swift in Sources */,
@@ -3224,7 +3206,7 @@
 				2A4714E32093A2D40093E27F /* SyntaxParser.swift in Sources */,
 				2A33D07E1D1C75B8005977B9 /* SyntaxValidationView.swift in Sources */,
 				2AFE848622AE71130001C4ED /* TextContainer.swift in Sources */,
-				2AED46701E425CD200751C45 /* TextFind.swift in Sources */,
+				2AED46701E425CD200751C45 /* TextFind.Error+Localization.swift in Sources */,
 				2A18560B1D47FA37008FA79E /* TextFinder.swift in Sources */,
 				2A6876A92963DE38006257A6 /* TextFinderSettings.swift in Sources */,
 				2AD69B851D3E42F700FBD998 /* TextSelection.swift in Sources */,

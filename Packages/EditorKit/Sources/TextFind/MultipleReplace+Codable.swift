@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2023 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ extension MultipleReplace.Replacement: Codable {
     }
     
     
-    init(from decoder: any Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -51,7 +51,7 @@ extension MultipleReplace.Replacement: Codable {
     }
     
     
-    func encode(to encoder: any Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         
@@ -86,7 +86,7 @@ extension MultipleReplace.Settings: Codable {
     }
     
     
-    init(from decoder: any Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -102,7 +102,7 @@ extension MultipleReplace.Settings: Codable {
     }
     
     
-    func encode(to encoder: any Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         

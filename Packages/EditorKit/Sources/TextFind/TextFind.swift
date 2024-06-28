@@ -27,71 +27,35 @@ import Foundation
 import StringBasics
 import ValueRange
 
-struct TextFind {
+public struct TextFind: Equatable, Sendable {
     
-    typealias ReplacementItem = ValueRange<String>
+    public typealias ReplacementItem = ValueRange<String>
     
     
-    enum Mode: Equatable {
+    public enum Mode: Equatable, Sendable {
         
         case textual(options: String.CompareOptions, fullWord: Bool)  // don't include .backwards to options
         case regularExpression(options: NSRegularExpression.Options, unescapesReplacement: Bool)
     }
     
     
-    enum `Error`: LocalizedError {
+    public enum `Error`: Swift.Error, Sendable {
         
         case regularExpression(reason: String)
         case emptyFindString
         case emptyInSelectionSearch
-        
-        
-        var errorDescription: String? {
-            
-            switch self {
-                case .regularExpression:
-                    String(localized: "TextFind.Error.regularExpression.errorDescription",
-                           defaultValue: "Invalid regular expression",
-                           table: "TextFind")
-                case .emptyFindString:
-                    String(localized: "TextFind.Error.emptyFindString.errorDescription",
-                           defaultValue: "Empty find string",
-                           table: "TextFind")
-                case .emptyInSelectionSearch:
-                    String(localized: "TextFind.Error.emptyInSelectionSearch.errorDescription",
-                           defaultValue: "The option “in selection” is selected, although nothing is selected.",
-                           table: "TextFind")
-            }
-        }
-        
-        
-        var recoverySuggestion: String? {
-            
-            switch self {
-                case .regularExpression(let reason):
-                    reason
-                case .emptyFindString:
-                    String(localized: "TextFind.Error.emptyFindString.recoverySuggestion",
-                           defaultValue: "Input text to find.",
-                           table: "TextFind")
-                case .emptyInSelectionSearch:
-                    String(localized: "TextFind.Error.emptyInSelectionSearch.recoverySuggestion",
-                           defaultValue: "Select the search scope in the document or turn off the “in selection” option.",
-                           table: "TextFind")
-            }
-        }
     }
     
     
     
     // MARK: Public Properties
     
-    let findString: String
-    let mode: TextFind.Mode
-    let inSelection: Bool
+    public let findString: String
+    public let mode: TextFind.Mode
+    public let inSelection: Bool
     
-    let string: String
-    let selectedRanges: [NSRange]
+    public let string: String
+    public let selectedRanges: [NSRange]
     
     
     // MARK: Private Properties
@@ -112,7 +76,7 @@ struct TextFind {
     ///   - mode: The settable options for the text search.
     ///   - inSelection: Whether find string only in selectedRanges.
     ///   - selectedRanges: The selected ranges in the text view.
-    init(for string: String, findString: String, mode: TextFind.Mode, inSelection: Bool = false, selectedRanges: [NSRange] = [NSRange()]) throws(TextFind.Error) {
+    public init(for string: String, findString: String, mode: TextFind.Mode, inSelection: Bool = false, selectedRanges: [NSRange] = [NSRange()]) throws(TextFind.Error) {
         
         assert(!selectedRanges.isEmpty)
         
@@ -151,14 +115,14 @@ struct TextFind {
     // MARK: Public Methods
     
     /// The number of capture groups in the regular expression.
-    var numberOfCaptureGroups: Int {
+    public var numberOfCaptureGroups: Int {
         
         self.regex?.numberOfCaptureGroups ?? 0
     }
     
     
     /// The range large enough to contain all scope ranges.
-    var scopeRange: Range<Int> {
+    public var scopeRange: Range<Int> {
         
         self.scopeRanges.map(\.lowerBound).min()!..<self.scopeRanges.map(\.upperBound).max()!
     }
@@ -167,7 +131,7 @@ struct TextFind {
     /// All matched ranges.
     ///
     /// - Throws: `CancellationError`
-    var matches: [NSRange] {
+    public var matches: [NSRange] {
         
         get throws {
             var ranges: [NSRange] = []
@@ -193,7 +157,7 @@ struct TextFind {
     ///   - includingCurrentSelection: Whether includes the current selection to search.
     ///   - wraps: Whether the search wraps around.
     /// - Returns: A character range and flag whether the search wrapped; or `nil` when not found.
-    func find(in matches: [NSRange], forward: Bool, includingSelection: Bool = false, wraps: Bool) -> (range: NSRange, wrapped: Bool)? {
+    public func find(in matches: [NSRange], forward: Bool, includingSelection: Bool = false, wraps: Bool) -> (range: NSRange, wrapped: Bool)? {
         
         assert(forward || !includingSelection)
         
@@ -231,7 +195,7 @@ struct TextFind {
     /// - Parameters:
     ///   - replacementString: The string with which to replace.
     /// - Returns: The struct of a string to replace with and a range to replace if found. Otherwise, nil.
-    func replace(with replacementString: String) -> ReplacementItem? {
+    public func replace(with replacementString: String) -> ReplacementItem? {
         
         let string = self.string
         let selectedRange = self.selectedRanges.first!
@@ -262,7 +226,7 @@ struct TextFind {
     ///   - block: The block enumerates the matches.
     ///   - matches: The array of matches including group matches.
     ///   - stop: The `block` can set the value to true to stop further processing.
-    func findAll(using block: (_ matches: [NSRange], _ stop: inout Bool) -> Void) {
+    public func findAll(using block: (_ matches: [NSRange], _ stop: inout Bool) -> Void) {
         
         for range in self.scopeRanges {
             self.enumerateMatches(in: range) { (matchedRange, match, stop) in
@@ -288,7 +252,7 @@ struct TextFind {
     /// - Returns:
     ///   - replacementItems: ReplacementItem per selectedRange.
     ///   - selectedRanges: New selections for textView only if the replacement is performed within selection. Otherwise, `nil`.
-    func replaceAll(with replacementString: String, using block: @escaping (_ range: NSRange, _ count: Int, _ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
+    public func replaceAll(with replacementString: String, using block: @escaping (_ range: NSRange, _ count: Int, _ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
         
         let replacementString = self.replacementString(from: replacementString)
         var replacementItems: [ReplacementItem] = []
