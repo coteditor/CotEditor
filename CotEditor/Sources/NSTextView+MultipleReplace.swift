@@ -44,20 +44,20 @@ extension NSTextView {
         let string = self.string.immutable
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
         
-        // setup progress sheet
         let progress = FindProgress(scope: 0..<definition.replacements.count)
+        let task = Task.detached(priority: .userInitiated) {
+            try definition.find(string: string, ranges: selectedRanges, inSelection: inSelection, progress: progress)
+                .sorted(\.location)
+        }
+        
+        // setup progress sheet
         let indicatorView = FindProgressView(String(localized: "Highlight All", table: "TextFind"), progress: progress, unit: .find)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         self.viewControllerForSheet?.presentAsSheet(indicator)
         
-        // find in background thread
-        let ranges = try await Task.detached(priority: .userInitiated) {
-            try definition.find(string: string, ranges: selectedRanges, inSelection: inSelection, progress: progress)
-                .sorted(\.location)
-        }.value
-        
-        self.isEditable = true
+        // perform
+        let ranges = try await task.value
         
         if progress.count > 0 {
             // apply to the text view
@@ -101,19 +101,19 @@ extension NSTextView {
         let string = self.string.immutable
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
         
-        // setup progress sheet
         let progress = FindProgress(scope: 0..<definition.replacements.count)
+        let task = Task.detached(priority: .userInitiated) {
+            try definition.replace(string: string, ranges: selectedRanges, inSelection: inSelection, progress: progress)
+        }
+        
+        // setup progress sheet
         let indicatorView = FindProgressView(String(localized: "Replace All", table: "TextFind"), progress: progress, unit: .replacement)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         self.viewControllerForSheet?.presentAsSheet(indicator)
         
-        // find in background thread
-        let result = try await Task.detached(priority: .userInitiated) {
-            try definition.replace(string: string, ranges: selectedRanges, inSelection: inSelection, progress: progress)
-        }.value
-        
-        self.isEditable = true
+        // perform
+        let result = try await task.value
         
         if progress.count > 0 {
             // apply to the text view

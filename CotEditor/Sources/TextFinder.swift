@@ -460,13 +460,15 @@ struct TextFindAllResult {
         guard let textFind = self.prepareTextFind(presentsError: !isIncremental) else { return }
         
         let client = self.client!
+        let wraps = TextFinderSettings.shared.isWrap
         
         // find in background thread
-        let (matches, result) = try await Task.detached(priority: .userInitiated) {
+        let task = Task.detached(priority: .userInitiated) {
             let matches = try textFind.matches
-            let result = textFind.find(in: matches, forward: forward, includingSelection: isIncremental, wraps: await TextFinderSettings.shared.isWrap)
+            let result = textFind.find(in: matches, forward: forward, includingSelection: isIncremental, wraps: wraps)
             return (matches, result)
-        }.value
+        }
+        let (matches, result) = try await task.value
         
         // mark all matches
         if isIncremental, let layoutManager = client.layoutManager {
@@ -537,18 +539,13 @@ struct TextFindAllResult {
         
         let client = self.client!
         client.isEditable = false
+        defer { client.isEditable = true }
         
         let highlightColors = NSColor.textHighlighterColor.decompose(into: textFind.numberOfCaptureGroups + 1)
         let lineCounter = LineCounter(textFind.string as NSString)
         
-        // setup progress sheet
         let progress = FindProgress(scope: textFind.scopeRange)
-        let indicatorView = FindProgressView(actionName, progress: progress, unit: .find)
-        let indicator = NSHostingController(rootView: indicatorView)
-        indicator.rootView.parent = indicator
-        client.viewControllerForSheet?.presentAsSheet(indicator)
-        
-        let (highlights, matches) = await Task.detached(priority: .userInitiated) {
+        let task = Task.detached(priority: .userInitiated) {
             var highlights: [ValueRange<NSColor>] = []
             var resultMatches: [TextFindAllResult.Match] = []  // not used if showsList is false
             
@@ -584,9 +581,16 @@ struct TextFindAllResult {
             }
             
             return (highlights, resultMatches)
-        }.value
+        }
         
-        client.isEditable = true
+        // setup progress sheet
+        let indicatorView = FindProgressView(actionName, progress: progress, unit: .find)
+        let indicator = NSHostingController(rootView: indicatorView)
+        indicator.rootView.parent = indicator
+        client.viewControllerForSheet?.presentAsSheet(indicator)
+        
+        // perform
+        let (highlights, matches) = await task.value
         
         guard progress.state != .cancelled else { return }
         
@@ -625,17 +629,12 @@ struct TextFindAllResult {
         
         let client = self.client!
         client.isEditable = false
+        defer { client.isEditable = true }
         
         let replacementString = TextFinderSettings.shared.replacementString
         
-        // setup progress sheet
         let progress = FindProgress(scope: textFind.scopeRange)
-        let indicatorView = FindProgressView(String(localized: "Replace All", table: "TextFind"), progress: progress, unit: .replacement)
-        let indicator = NSHostingController(rootView: indicatorView)
-        indicator.rootView.parent = indicator
-        client.viewControllerForSheet?.presentAsSheet(indicator)
-        
-        let (replacementItems, selectedRanges) = await Task.detached(priority: .userInitiated) {
+        let task = Task.detached(priority: .userInitiated) {
             textFind.replaceAll(with: replacementString) { (range, count, stop) in
                 guard progress.state != .cancelled else {
                     stop = true
@@ -645,9 +644,16 @@ struct TextFindAllResult {
                 progress.updateCompletedUnit(to: range.upperBound)
                 progress.incrementCount(by: count)
             }
-        }.value
+        }
         
-        client.isEditable = true
+        // setup progress sheet
+        let indicatorView = FindProgressView(String(localized: "Replace All", table: "TextFind"), progress: progress, unit: .replacement)
+        let indicator = NSHostingController(rootView: indicatorView)
+        indicator.rootView.parent = indicator
+        client.viewControllerForSheet?.presentAsSheet(indicator)
+        
+        // perform
+        let (replacementItems, selectedRanges) = await task.value
         
         guard progress.state != .cancelled else { return }
         
