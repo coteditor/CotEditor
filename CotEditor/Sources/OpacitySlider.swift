@@ -30,44 +30,19 @@ struct OpacitySlider: View {
     @Binding var value: Double
     
     var bounds: ClosedRange<Double> = 0.2...1
-    var step: Double?
     
     
     var body: some View {
         
-        if let step {
-            Slider(value: $value, in: self.bounds, step: step) {
-                EmptyView()
-            } minimumValueLabel: {
-                OpacitySample(opacity: self.bounds.lowerBound)
-                    .help(self.minimumHelp)
-            } maximumValueLabel: {
-                OpacitySample(opacity: self.bounds.upperBound)
-                    .help(self.maximumHelp)
-            }
-        } else {
-            Slider(value: $value, in: self.bounds) {
-                EmptyView()
-            } minimumValueLabel: {
-                OpacitySample(opacity: self.bounds.lowerBound)
-                    .help(self.minimumHelp)
-            } maximumValueLabel: {
-                OpacitySample(opacity: self.bounds.upperBound)
-                    .help(self.maximumHelp)
-            }
+        Slider(value: $value, in: self.bounds) {
+            EmptyView()
+        } minimumValueLabel: {
+            OpacitySample(opacity: self.bounds.lowerBound)
+                .help(String(localized: "Transparent", table: "OpacitySlider", comment: "tooltip for min label in opacity slider"))
+        } maximumValueLabel: {
+            OpacitySample(opacity: self.bounds.upperBound)
+                .help(String(localized: "Opaque", table: "OpacitySlider", comment: "tooltip for max label in opacity slider"))
         }
-    }
-    
-    
-    private var minimumHelp: String {
-        
-        String(localized: "Transparent", table: "OpacitySlider", comment: "tooltip for min label in opacity slider")
-    }
-    
-    
-    private var maximumHelp: String {
-        
-        String(localized: "Opaque", table: "OpacitySlider", comment: "tooltip for max label in opacity slider")
     }
 }
 
@@ -122,16 +97,15 @@ private struct OpacitySample: View {
 
 // MARK: - Preview
 
+@available(macOS 15, *)
 #Preview(traits: .fixedLayout(width: 200, height: 50)) {
+    @Previewable @State var value = 0.6
     
-    VStack {
-        OpacitySlider(value: .constant(0.6))
-        OpacitySlider(value: .constant(0.6), step: 0.2)
-    }
-    .padding()
+    return OpacitySlider(value: $value).padding()
 }
 
 #Preview("OpacitySample") {
     OpacitySample(opacity: 0.5)
         .frame(width: 16, height: 16)
+        .padding()
 }
