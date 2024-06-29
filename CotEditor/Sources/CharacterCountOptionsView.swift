@@ -105,8 +105,11 @@ struct CharacterCountOptionsView: View {
                                     Divider()
                                 }
                             }
-                        }.fixedSize()
-                            .background(SizeGetter(key: MaxSizeKey.self))
+                        }
+                        .fixedSize()
+                        .onGeometryChange(for: CGFloat.self, of: \.size.width) { newWidth in
+                            self.contentWidth = newWidth
+                        }
                     }
                     
                     if self.unit != .graphemeCluster {
@@ -133,7 +136,6 @@ struct CharacterCountOptionsView: View {
             }
             .accessibilityElement(children: .contain)
         }
-        .onPreferenceChange(MaxSizeKey.self) { self.contentWidth = $0.width }
         .animation(.default, value: self.unit)
     }
 }
