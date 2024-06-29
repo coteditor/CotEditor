@@ -261,8 +261,6 @@ extension Document: EditorSource {
     
     override func makeWindowControllers() {
         
-        self.isInitialized = true
-        
         if self.windowControllers.isEmpty {  // -> A transient document already has one.
             let windowController = DocumentWindowController(document: self)
             self.addWindowController(windowController)
@@ -395,6 +393,7 @@ extension Document: EditorSource {
                 let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: string)
                 self.setSyntax(name: syntaxName ?? SyntaxName.none, isInitial: true)
             }
+            self.isInitialized = true
         }
     }
     
