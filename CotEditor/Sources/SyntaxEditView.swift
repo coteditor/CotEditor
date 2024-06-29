@@ -178,10 +178,7 @@ struct SyntaxEditView: View {
             self.errors = self.syntax.validate()
         }
         .alert(error: $error)
-        .onGeometryChange(for: CGSize.self, of: \.size) { newValue in
-            // store last view size
-            Self.viewSize = newValue
-        }
+        .onGeometryChange(for: CGSize.self, of: \.size) { Self.viewSize = $0 }
         .frame(idealWidth: Self.viewSize.width, minHeight: 525, idealHeight: Self.viewSize.height)
     }
     

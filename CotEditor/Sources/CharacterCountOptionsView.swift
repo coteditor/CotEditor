@@ -107,9 +107,7 @@ struct CharacterCountOptionsView: View {
                             }
                         }
                         .fixedSize()
-                        .onGeometryChange(for: CGFloat.self, of: \.size.width) { newWidth in
-                            self.contentWidth = newWidth
-                        }
+                        .onGeometryChange(for: CGFloat.self, of: \.size.width) { self.contentWidth = $0 }
                     }
                     
                     if self.unit != .graphemeCluster {
