@@ -43,9 +43,18 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
+    weak var fileDocument: Document? {
+        
+        didSet {
+            self.updateDocument(fileDocument)
+        }
+    }
+    
+    
     // MARK: Private Properties
     
-    private static let windowFrameName = NSWindow.FrameAutosaveName("Document")
+    private var directoryDocument: DirectoryDocument?
+    private var hasDirectoryBrowser: Bool  { self.directoryDocument != nil }
     
     private lazy var editedIndicator: NSView = NSHostingView(rootView: Circle()
         .fill(.tertiary)
@@ -67,11 +76,15 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Lifecycle
     
-    required init(document: Document) {
+    required init(document: Document? = nil, directoryDocument: DirectoryDocument? = nil) {
         
-        let window = DocumentWindow(contentViewController: WindowContentViewController(document: document))
+        let window = DocumentWindow(contentViewController: WindowContentViewController(document: document, directoryDocument: directoryDocument))
         window.styleMask.update(with: .fullSizeContentView)
-        window.setFrameAutosaveName(Self.windowFrameName)
+        window.setFrameAutosaveName((directoryDocument == nil) ? "Document" : "DirectoryDocument")
+        
+        if directoryDocument != nil {
+            window.tabbingMode = .disallowed
+        }
         
         // set window size
         let width = UserDefaults.standard[.windowWidth] ?? 0
@@ -82,12 +95,16 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             window.setFrame(.init(origin: window.frame.origin, size: frameSize), display: false)
         }
         
+        self.directoryDocument = directoryDocument
+        
         super.init(window: window)
+        
+        self.updateDocument(document)
         
         window.delegate = self
         
         // setup toolbar
-        let toolbar = NSToolbar(identifier: .document)
+        let toolbar = NSToolbar(identifier: self.hasDirectoryBrowser ? .directoryDocument : .document)
         toolbar.displayMode = .iconOnly
         toolbar.allowsUserCustomization = true
         toolbar.autosavesConfiguration = true
@@ -102,7 +119,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         // observe opacity setting change
         // -> Keep opaque when the window was created as a browsing window (the right side ones in the browsing mode).
-        if !document.isInViewingMode {
+        if document?.isInViewingMode != true {
             self.opacityObserver = UserDefaults.standard.publisher(for: .windowAlpha, initial: true)
                 .assign(to: \.backgroundAlpha, on: window)
         }
@@ -154,6 +171,17 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
+    override func synchronizeWindowTitleWithDocumentName() {
+        
+        super.synchronizeWindowTitleWithDocumentName()
+        
+        if let directoryURL = self.directoryDocument?.fileURL, let fileDocument = self.fileDocument {
+            // display current document title as window subtitle
+            self.window?.subtitle = fileDocument.fileURL?.path(relativeTo: directoryURL) ?? fileDocument.displayName
+        }
+    }
+    
+    
     
     // MARK: Window Delegate
     
@@ -162,7 +190,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         guard self.isWindowLoaded, let window = self.window else { return }
         
         // workaround issue that window frame is not saved automatically (2022-08 macOS 12.5, FB11082729)
-        window.saveFrame(usingName: Self.windowFrameName)
+        window.saveFrame(usingName: window.frameAutosaveName)
     }
     
     
@@ -196,17 +224,23 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     /// Updates document by passing it to the content view controller and updating the observation.
     ///
     /// - Parameter document: The new document.
-    private func updateDocument(_ document: Document) {
+    private func updateDocument(_ document: Document?) {
         
         if let viewController = self.contentViewController as? WindowContentViewController, viewController.document != document {
             viewController.document = document
         }
         
+        self.synchronizeWindowTitleWithDocumentName()
+        
+        self.syntaxPopUpButton?.isEnabled = (document != nil)
+        
         // observe document's syntax change for toolbar
-        self.selectSyntaxPopUpItem(with: document.syntaxParser.name)
-        self.documentSyntaxObserver = document.didChangeSyntax
-            .receive(on: RunLoop.main)
-            .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
+        self.documentSyntaxObserver = nil
+        if let document {
+            self.documentSyntaxObserver = document.didChangeSyntax
+                .merge(with: Just(document.syntaxParser.name))
+                .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
+        }
     }
     
     
@@ -253,7 +287,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             return item
         }
         
-        if let syntaxName = (self.document as? Document)?.syntaxParser.name {
+        if let syntaxName = self.fileDocument?.syntaxParser.name {
             self.selectSyntaxPopUpItem(with: syntaxName)
         }
     }
@@ -304,6 +338,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
 private extension NSToolbar.Identifier {
     
     static let document = Self("Document")
+    static let directoryDocument = Self("DirectoryDocument")
 }
 
 
@@ -351,18 +386,28 @@ private extension NSToolbarItem.Identifier {
 
 extension DocumentWindowController: NSToolbarDelegate {
     
+    private var directoryIdentifiers: [NSToolbarItem.Identifier] {
+        
+        self.hasDirectoryBrowser ? [
+            .toggleSidebar,
+            .sidebarTrackingSeparator,
+        ] : []
+    }
+    
+    
     func toolbarImmovableItemIdentifiers(_ toolbar: NSToolbar) -> Set<NSToolbarItem.Identifier> {
         
-        [
-            .flexibleSpace,
+        Set(self.directoryIdentifiers).union([
             .inspectorTrackingSeparator,
-        ]
+            .flexibleSpace,
+            .inspector,
+        ])
     }
     
     
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
-        [
+        self.directoryIdentifiers + [
             .syntax,
             .inspectorTrackingSeparator,
             .flexibleSpace,
@@ -373,7 +418,7 @@ extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
-        [
+        self.directoryIdentifiers + [
             .syntax,
             .inspector,
             .textSize,
@@ -402,9 +447,15 @@ extension DocumentWindowController: NSToolbarDelegate {
     func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
         
         switch itemIdentifier {
+            case .toggleSidebar:
+                let item = NSToolbarItem(itemIdentifier: itemIdentifier)
+                item.autovalidates = true
+                return item
+                
             case .syntax:
                 let popUpButton = NSPopUpButton()
                 popUpButton.bezelStyle = .toolbar
+                popUpButton.isEnabled = false  // enable later
                 self.syntaxPopUpButton = popUpButton
                 self.buildSyntaxPopUpButton()
                 
@@ -756,7 +807,7 @@ extension DocumentWindowController: NSSharingServicePickerToolbarItemDelegate {
     
     public func items(for pickerToolbarItem: NSSharingServicePickerToolbarItem) -> [Any] {
         
-        guard let document = self.document else { return [] }
+        guard let document = self.fileDocument else { return [] }
         
         return [document]
     }

@@ -64,7 +64,8 @@ final class DocumentController: NSDocumentController {
         
         // observe the frontmost syntax change
         self.mainWindowObserver = NSApp.publisher(for: \.mainWindow)
-            .map { $0?.windowController?.document as? Document }
+            .map { $0?.windowController as? DocumentWindowController }
+            .map { $0?.fileDocument }
             .sink { [unowned self] in
                 self.currentSyntaxName = $0?.syntaxParser.name
                 self.syntaxObserver = $0?.didChangeSyntax
@@ -83,6 +84,11 @@ final class DocumentController: NSDocumentController {
     // MARK: Document Controller Methods
     
     override func openDocument(withContentsOf url: URL, display displayDocument: Bool) async throws -> (NSDocument, Bool) {
+        
+        // do nothing for DirectoryDocument
+        if url.hasDirectoryPath {
+            return try await super.openDocument(withContentsOf: url, display: displayDocument)
+        }
         
         // obtain transient document if exists
         let transientDocument: Document? = self.transientDocumentLock.withLock { [unowned self] in
@@ -181,6 +187,8 @@ final class DocumentController: NSDocumentController {
         let accessoryView = NSHostingView(rootView: accessory)
         accessoryView.sizingOptions = .intrinsicContentSize
         
+        openPanel.delegate = options
+        openPanel.canChooseDirectories = true
         openPanel.accessoryView = accessoryView
         openPanel.isAccessoryViewDisclosed = true
         
@@ -223,7 +231,7 @@ final class DocumentController: NSDocumentController {
         
         switch item.action {
             case #selector(newDocumentAsTab):
-                return self.currentDocument != nil
+                return self.currentDocument is Document
             default:
                 break
         }

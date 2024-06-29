@@ -160,6 +160,11 @@ struct DefaultSettings {
             .countTreatsConsecutiveWhitespaceAsSingle: false,
             .countEncoding: String.Encoding.utf8.rawValue,
             
+            // file browser
+            .fileBrowserKeepsFoldersOnTop: true,
+            .fileBrowserShowsHiddenFiles: false,
+            .fileBrowserShowsFilenameExtensions: true,
+            
             // settings not in the Settings window
             .pinsThemeAppearance: false,
             .colorCodeType: 1,

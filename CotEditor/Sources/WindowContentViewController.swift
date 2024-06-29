@@ -24,30 +24,38 @@
 //
 
 import AppKit
+import SwiftUI
 
-final class WindowContentViewController: NSSplitViewController {
+final class WindowContentViewController: NSSplitViewController, NSToolbarItemValidation {
     
     // MARK: Public Properties
     
-    var document: Document  { didSet { self.updateDocument() } }
+    var document: Document?  { didSet { self.updateDocument() } }
+    var directoryDocument: DirectoryDocument?
     
     var documentViewController: DocumentViewController? { self.contentViewController.documentViewController }
     
     
     // MARK: Private Properties
     
+    private var sidebarStateCache: Bool?
+    
+    private var sidebarViewItem: NSSplitViewItem?
     @ViewLoading private var contentViewItem: NSSplitViewItem
     @ViewLoading private var inspectorViewItem: NSSplitViewItem
     
     private var windowObserver: NSKeyValueObservation?
+    private var versionBrowserEnterObservationTask: Task<Void, any Error>?
+    private var versionBrowserExitObservationTask: Task<Void, any Error>?
     
     
     
     // MARK: Split View Controller Methods
     
-    init(document: Document) {
+    init(document: Document?, directoryDocument: DirectoryDocument?) {
         
         self.document = document
+        self.directoryDocument = directoryDocument
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -74,9 +82,16 @@ final class WindowContentViewController: NSSplitViewController {
         super.viewDidLoad()
         
         // -> Need to set *both* identifier and autosaveName to make autosaving work.
-        let autosaveName = "WindowContentSplitView"
+        let autosaveName = (self.directoryDocument == nil) ? "WindowContentSplitView" : "DirectoryWindowContentSplitView"
         self.splitView.identifier = NSUserInterfaceItemIdentifier(autosaveName)
         self.splitView.autosaveName = autosaveName
+        
+        if let directoryDocument {
+            let rootView = FileBrowserView(document: directoryDocument)
+            let sidebarViewItem = NSSplitViewItem(sidebarWithViewController: NSHostingController(rootView: rootView))
+            self.addSplitViewItem(sidebarViewItem)
+            self.sidebarViewItem = sidebarViewItem
+        }
         
         let contentViewController = ContentViewController(document: self.document)
         self.contentViewItem = NSSplitViewItem(viewController: contentViewController)
@@ -100,23 +115,74 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        // forcibly collapse sidebar while version browse
+        if let sidebarViewItem, let window = self.view.window {
+            self.versionBrowserEnterObservationTask = Task {
+                for await _ in NotificationCenter.default.notifications(named: NSWindow.willEnterVersionBrowserNotification, object: window).map(\.name) {
+                    self.sidebarStateCache = sidebarViewItem.isCollapsed
+                    sidebarViewItem.isCollapsed = true
+                }
+            }
+            self.versionBrowserExitObservationTask = Task {
+                for await _ in NotificationCenter.default.notifications(named: NSWindow.didExitVersionBrowserNotification, object: window).map(\.name) {
+                    self.sidebarStateCache = nil
+                    sidebarViewItem.isCollapsed = false
+                }
+            }
+        }
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.versionBrowserEnterObservationTask?.cancel()
+        self.versionBrowserExitObservationTask?.cancel()
+        if let sidebarStateCache {
+            self.sidebarViewItem?.isCollapsed = sidebarStateCache
+            self.sidebarStateCache = nil
+        }
+    }
+    
+    
     override func supplementalTarget(forAction action: Selector, sender: Any?) -> Any? {
         
         // reel responders from the ideal first responder in the content view
         // for when the actual first responder is on the sidebar/inspector
-        if let textView = self.documentViewController?.focusedTextView,
-           let responder = sequence(first: textView, next: \.nextResponder).first(where: { $0.responds(to: action) })
-        {
-            responder
+        let endResponder = self.documentViewController?.focusedTextView ?? self.contentViewController
+        if let responder = sequence(first: endResponder, next: \.nextResponder).first(where: { $0.responds(to: action) }) {
+            return responder
         } else {
-            super.supplementalTarget(forAction: action, sender: sender)
+            return super.supplementalTarget(forAction: action, sender: sender)
         }
+    }
+    
+    
+    func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
+        
+        switch item.action {
+            case #selector(toggleSidebar):
+                // validation of `toggleSidebar` is implemented in `validateToolbarItem`
+                return self.sidebarStateCache == nil
+            default:
+                break
+        }
+        
+        return true
     }
     
     
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
+            case #selector(toggleSidebar):
+                return self.sidebarStateCache == nil
+                
             case #selector(toggleInspector):
                 (item as? NSMenuItem)?.title = self.isInspectorShown
                     ? String(localized: "Hide Inspector", table: "MainMenu")

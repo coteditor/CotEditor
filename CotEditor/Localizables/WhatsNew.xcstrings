@@ -179,6 +179,64 @@
         }
       }
     },
+    "NewFeature.folderNavigation.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einen Ordner in CotEditor öffnen, um durch seinen Inhalt in der neuen Seitenleiste zu navigieren."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Open a folder in CotEditor to navigate its content in the new sidebar."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open a folder in CotEditor to navigate its content in the new sidebar."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フォルダをCotEditorで開いて新しいサイドバーで内容をナビゲート。"
+          }
+        }
+      }
+    },
+    "NewFeature.folderNavigation.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordnernavigation"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Folder Navigation"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder Navigation"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フォルダナビゲーション"
+          }
+        }
+      }
+    },
     "NewFeature.macOSSupport.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {

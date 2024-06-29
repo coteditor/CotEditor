@@ -1,11 +1,12 @@
 # Change Log
 
-4.9.0 (unreleased)
+5.0.0 (unreleased)
 --------------------------
 
 ### New Features
 
 - Support __macOS 15 Sequoia__.
+- Accept folders to open and navigate the content in the new directory navigation sidebar.
 - [AppStore ver.] Now the user can donate to the CotEditor project via in-app purchase in the new Donate settings pane.
 - Add new “Select Enclosing Symbols” and “Split Selection by Lines” commands to the Edit > Select menu.
 - Support the alpha channel for the current line in theme settings.

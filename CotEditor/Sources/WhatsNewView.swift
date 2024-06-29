@@ -124,9 +124,10 @@ private struct SectionView<Content: View>: View {
 
 private enum NewFeature: CaseIterable {
     
-    static let version = "4.9"
+    static let version = "5.0"
     
     case macOSSupport
+    case folderNavigation
     case donation
     
     
@@ -135,6 +136,8 @@ private enum NewFeature: CaseIterable {
         switch self {
             case .macOSSupport:
                 Image(systemName: "sparkles")
+            case .folderNavigation:
+                Image(systemName: "folder")
             case .donation:
                 Image(.bagCoffee)
         }
@@ -147,6 +150,9 @@ private enum NewFeature: CaseIterable {
             case .macOSSupport:
                 String(localized: "NewFeature.macOSSupport.label",
                        defaultValue: "macOS 15 Sequoia Support", table: "WhatsNew")
+            case .folderNavigation:
+                String(localized: "NewFeature.folderNavigation.label",
+                       defaultValue: "Folder Navigation", table: "WhatsNew")
             case .donation:
                 String(localized: "NewFeature.donation.label",
                        defaultValue: "Donation", table: "WhatsNew")
@@ -160,6 +166,9 @@ private enum NewFeature: CaseIterable {
             case .macOSSupport:
                 String(localized: "NewFeature.macOSSupport.description",
                        defaultValue: "Work perfectly with new macOS 15.", table: "WhatsNew")
+            case .folderNavigation:
+                String(localized: "NewFeature.folderNavigation.description",
+                       defaultValue: "Open a folder in CotEditor to navigate its content in the new sidebar.", table: "WhatsNew")
             case .donation:
                 String(localized: "NewFeature.donation.description",
                        defaultValue: "Support the CotEditor project by offering coffee to the developer.", table: "WhatsNew")

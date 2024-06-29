@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import SwiftUI
 import Combine
 import Defaults
 
@@ -31,7 +32,7 @@ final class ContentViewController: NSSplitViewController {
     
     // MARK: Public Properties
     
-    var document: Document  { didSet { self.updateDocument(from: oldValue) } }
+    var document: Document?  { didSet { self.updateDocument(from: oldValue) } }
     
     var documentViewController: DocumentViewController? {
         
@@ -50,7 +51,7 @@ final class ContentViewController: NSSplitViewController {
     
     // MARK: Lifecycle
     
-    init(document: Document) {
+    init(document: Document?) {
         
         self.document = document
         
@@ -69,7 +70,7 @@ final class ContentViewController: NSSplitViewController {
         super.viewDidLoad()
         
         // set document view
-        self.documentViewItem = NSSplitViewItem(viewController: DocumentViewController(document: self.document))
+        self.documentViewItem = NSSplitViewItem(viewController: self.createDocumentViewController())
         
         // set status bar
         self.statusBarItem = NSSplitViewItem(viewController: StatusBarController(model: self.statusBarModel))
@@ -121,14 +122,25 @@ final class ContentViewController: NSSplitViewController {
     // MARK: Private Methods
     
     /// Updates the document in children.
-    private func updateDocument(from oldDocument: Document) {
+    private func updateDocument(from oldDocument: Document?) {
         
         guard oldDocument != self.document else { return }
         
         self.removeSplitViewItem(self.documentViewItem)
-        self.documentViewItem = NSSplitViewItem(viewController: DocumentViewController(document: self.document))
+        self.documentViewItem = NSSplitViewItem(viewController: self.createDocumentViewController())
         self.insertSplitViewItem(self.documentViewItem, at: 0)
         
         self.statusBarModel.updateDocument(to: self.document)
+    }
+    
+    
+    /// Creates a new view controller with the current document.
+    private func createDocumentViewController() -> NSViewController {
+        
+        if let document {
+            DocumentViewController(document: document)
+        } else {
+            NSHostingController(rootView: NoDocumentView())
+        }
     }
 }
