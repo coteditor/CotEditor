@@ -581,6 +581,8 @@
 		2AC39F731E8AC80E009F97D5 /* CollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC39F721E8AC80E009F97D5 /* CollectionTests.swift */; };
 		2AC434F31D494EA700980E66 /* SyntaxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */; };
 		2AC434F41D494EA800980E66 /* SyntaxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */; };
+		2AC499622BFAE0920010BBB6 /* NoDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC499612BFAE0920010BBB6 /* NoDocumentView.swift */; };
+		2AC499632BFAE0920010BBB6 /* NoDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC499612BFAE0920010BBB6 /* NoDocumentView.swift */; };
 		2AC52BDB1D48CC0E007D6371 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */; };
 		2AC52BDC1D48CC0E007D6371 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */; };
 		2AC6069B20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6069A20416ADE00F9C839 /* OpenPanelAccessory.swift */; };
@@ -1108,6 +1110,7 @@
 		2AC186DC1E2F4264002F4D27 /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		2AC2462D1D1BC70C00E46CFA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AC39F721E8AC80E009F97D5 /* CollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionTests.swift; sourceTree = "<group>"; };
+		2AC499612BFAE0920010BBB6 /* NoDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDocumentView.swift; sourceTree = "<group>"; };
 		2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		2AC6069A20416ADE00F9C839 /* OpenPanelAccessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPanelAccessory.swift; sourceTree = "<group>"; };
 		2AC6BFD021D00ABD00FF325C /* NSTextView+RegexParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+RegexParse.swift"; sourceTree = "<group>"; };
@@ -1465,6 +1468,7 @@
 			isa = PBXGroup;
 			children = (
 				2AE44DBA2BE67F81002A787D /* ContentViewController.swift */,
+				2AC499612BFAE0920010BBB6 /* NoDocumentView.swift */,
 				2AD21FCB1D2E3BE80018C8D1 /* StatusBar.swift */,
 				2AED70ED1D2E36EF006FFBCE /* DocumentViewController.swift */,
 				2A71BC7A1DDC50530085AE1C /* DocumentViewController+TouchBar.swift */,
@@ -2796,6 +2800,7 @@
 				2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */,
 				2AA45A521D2E938500A1A401 /* NavigationBar.swift in Sources */,
 				2AA704CE2987878B008CBCB5 /* Node.swift in Sources */,
+				2AC499622BFAE0920010BBB6 /* NoDocumentView.swift in Sources */,
 				2A10B6F621450A3B00B4205E /* NSAppearance.swift in Sources */,
 				2A685F6B2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */,
 				2A9003B9267715E600EC766F /* NSApplication.swift in Sources */,
@@ -3116,6 +3121,7 @@
 				2A1FAD5820A74D0A00566D7C /* MutableCopying.swift in Sources */,
 				2AA45A511D2E938500A1A401 /* NavigationBar.swift in Sources */,
 				2AA704CF2987878B008CBCB5 /* Node.swift in Sources */,
+				2AC499632BFAE0920010BBB6 /* NoDocumentView.swift in Sources */,
 				2A10B6F521450A3B00B4205E /* NSAppearance.swift in Sources */,
 				2A685F6A2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */,
 				2A9003BA267715E600EC766F /* NSApplication.swift in Sources */,

@@ -3391,6 +3391,28 @@
         }
       }
     },
+    "No document selected" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Dokument ausgewählt"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No document selected"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書類未選択"
+          }
+        }
+      }
+    },
     "No Filter Results" : {
       "comment" : "display on the outline list when no results in filtering outline items",
       "localizations" : {

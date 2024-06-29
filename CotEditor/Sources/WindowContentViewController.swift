@@ -30,7 +30,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     
     // MARK: Public Properties
     
-    var document: Document  { didSet { self.updateDocument() } }
+    var document: Document?  { didSet { self.updateDocument() } }
     var directoryDocument: DirectoryDocument?
     
     var documentViewController: DocumentViewController? { self.contentViewController.documentViewController }
@@ -52,7 +52,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     
     // MARK: Split View Controller Methods
     
-    init(document: Document, directoryDocument: DirectoryDocument?) {
+    init(document: Document?, directoryDocument: DirectoryDocument?) {
         
         self.document = document
         self.directoryDocument = directoryDocument
@@ -154,12 +154,11 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         // reel responders from the ideal first responder in the content view
         // for when the actual first responder is on the sidebar/inspector
-        if let textView = self.documentViewController?.focusedTextView,
-           let responder = sequence(first: textView, next: \.nextResponder).first(where: { $0.responds(to: action) })
-        {
-            responder
+        let endResponder = self.documentViewController?.focusedTextView ?? self.contentViewController
+        if let responder = sequence(first: endResponder, next: \.nextResponder).first(where: { $0.responds(to: action) }) {
+            return responder
         } else {
-            super.supplementalTarget(forAction: action, sender: sender)
+            return super.supplementalTarget(forAction: action, sender: sender)
         }
     }
     

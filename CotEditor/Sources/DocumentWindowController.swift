@@ -46,9 +46,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     weak var fileDocument: Document? {
         
         didSet {
-            if let fileDocument {
-                self.updateDocument(fileDocument)
-            }
+            self.updateDocument(fileDocument)
         }
     }
     
@@ -80,7 +78,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Lifecycle
     
-    required init(document: Document, directoryDocument: DirectoryDocument? = nil) {
+    required init(document: Document? = nil, directoryDocument: DirectoryDocument? = nil) {
         
         let window = DocumentWindow(contentViewController: WindowContentViewController(document: document, directoryDocument: directoryDocument))
         window.styleMask.update(with: .fullSizeContentView)
@@ -123,7 +121,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         // observe opacity setting change
         // -> Keep opaque when the window was created as a browsing window (the right side ones in the browsing mode).
-        if !document.isInViewingMode {
+        if document?.isInViewingMode != true {
             self.opacityObserver = UserDefaults.standard.publisher(for: .windowAlpha, initial: true)
                 .assign(to: \.backgroundAlpha, on: window)
         }
@@ -228,7 +226,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     /// Updates document by passing it to the content view controller and updating the observation.
     ///
     /// - Parameter document: The new document.
-    private func updateDocument(_ document: Document) {
+    private func updateDocument(_ document: Document?) {
         
         if let viewController = self.contentViewController as? WindowContentViewController, viewController.document != document {
             viewController.document = document
@@ -237,10 +235,12 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         self.synchronizeWindowTitleWithDocumentName()
         
         // observe document's syntax change for toolbar
-        self.selectSyntaxPopUpItem(with: document.syntaxParser.name)
-        self.documentSyntaxObserver = document.didChangeSyntax
-            .receive(on: RunLoop.main)
-            .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
+        self.documentSyntaxObserver = nil
+        if let document {
+            self.documentSyntaxObserver = document.didChangeSyntax
+                .merge(with: Just(document.syntaxParser.name))
+                .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
+        }
     }
     
     

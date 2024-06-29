@@ -94,14 +94,7 @@ import OSLog
     
     override func makeWindowControllers() {
         
-        let document = Document()
-        self.documents.append(document)
-        NSDocumentController.shared.addDocument(document)
-        
-        let windowController = DocumentWindowController(document: document, directoryDocument: self)
-        self.addWindowController(windowController)
-        
-        document.windowController = windowController
+        self.addWindowController(DocumentWindowController(directoryDocument: self))
     }
     
     
