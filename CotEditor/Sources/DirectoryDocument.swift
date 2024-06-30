@@ -451,7 +451,8 @@ private enum DirectoryDocumentError: LocalizedError {
         
         switch self {
             case .alreadyOpen(let fileURL):
-                String(localized: "DirectoryDocumentError.alreadyOpen.description", defaultValue: "The file “\(fileURL.lastPathComponent)” is already open in a different window.")
+                String(localized: "DirectoryDocumentError.alreadyOpen.description",
+                       defaultValue: "The file “\(fileURL.lastPathComponent)” is already open in a different window.")
                 
         }
     }
@@ -461,7 +462,9 @@ private enum DirectoryDocumentError: LocalizedError {
         
         switch self {
             case .alreadyOpen:
-                String(localized: "DirectoryDocumentError.alreadyOpen.recoverySuggestion", defaultValue: "To open it in this window, close the existing window first.", comment: "“it” is the file in description.")
+                String(localized: "DirectoryDocumentError.alreadyOpen.recoverySuggestion",
+                       defaultValue: "To open it in this window, close the existing window first.",
+                       comment: "“it” is the file in description.")
         }
     }
 }
