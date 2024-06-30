@@ -44,7 +44,7 @@ import Syntax
     
     // MARK: Lifecycle
     
-    init(defaults: UserDefaults) {
+    private init(defaults: UserDefaults) {
         
         self.defaults = defaults
     }

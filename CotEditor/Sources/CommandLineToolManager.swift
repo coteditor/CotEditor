@@ -55,7 +55,7 @@ final class CommandLineToolManager: Sendable {
     
     // MARK: Public Methods
     
-    init(bundle: Bundle) {
+    private init(bundle: Bundle) {
         
         self.bundledCommandURL = bundle.cotURL!
         self.preferredLinkURL = URL(filePath: "/usr/local/bin/cot")

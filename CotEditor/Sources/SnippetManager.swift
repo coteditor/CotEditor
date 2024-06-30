@@ -39,7 +39,7 @@ import Shortcut
     
     // MARK: Public Properties
     
-    static let shared = SnippetManager()
+    static let shared = SnippetManager(defaults: .standard)
     
     private(set) var snippets: [Snippet]
     weak var menu: NSMenu?  { didSet { self.updateMenu() } }
@@ -47,16 +47,18 @@ import Shortcut
     
     // MARK: Private Properties
     
+    private let defaults: UserDefaults
+    
     private var scope: String?  { didSet { self.updateMenu() } }
     
     
     
     // MARK: Lifecycle
     
-    private init() {
+    private init(defaults: UserDefaults) {
         
-        self.snippets = UserDefaults.standard[.snippets]
-            .compactMap(Snippet.init(dictionary:))
+        self.defaults = defaults
+        self.snippets = defaults[.snippets].compactMap(Snippet.init(dictionary:))
         
         Task.detached {
             self.migrateIfNeeded()
@@ -105,7 +107,7 @@ import Shortcut
     func save(_ snippets: [Snippet]) {
         
         self.snippets = snippets
-        UserDefaults.standard[.snippets] = snippets.map(\.dictionary)
+        self.defaults[.snippets] = snippets.map(\.dictionary)
         
         self.updateMenu()
     }
@@ -174,7 +176,7 @@ private extension SnippetManager {
         
         let defaultKey = "insertCustomTextArray"
         
-        guard let texts = UserDefaults.standard.stringArray(forKey: defaultKey) else { return }
+        guard let texts = self.defaults.stringArray(forKey: defaultKey) else { return }
         
         let shortcuts: [Int: Shortcut]
         let fileURL = URL.applicationSupportDirectory(component: "KeyBindings")
@@ -209,7 +211,7 @@ private extension SnippetManager {
         }
         
         // remove old settings
-        UserDefaults.standard.removeObject(forKey: defaultKey)
+        self.defaults.removeObject(forKey: defaultKey)
         if fileURL.isReachable {
             try? FileManager.default.removeItem(at: fileURL)
             let parent = fileURL.deletingLastPathComponent()
