@@ -43,6 +43,9 @@ let package = Package(
         
         .library(name: "Shortcut", targets: ["Shortcut"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/realm/SwiftLint", from: Version(0, 55, 0)),
+    ],
     targets: [
         .target(name: "CharacterInfo", resources: [.process("Resources")]),
         .testTarget(name: "CharacterInfoTests", dependencies: ["CharacterInfo"]),
@@ -74,7 +77,7 @@ let package = Package(
         .target(name: "TextEditing", dependencies: ["StringBasics", "Syntax"]),
         .testTarget(name: "TextEditingTests", dependencies: ["TextEditing"]),
         
-            .target(name: "TextFind", dependencies: ["StringBasics", "ValueRange"]),
+        .target(name: "TextFind", dependencies: ["StringBasics", "ValueRange"]),
         .testTarget(name: "TextFindTests", dependencies: ["TextFind"]),
         
         .target(name: "UnicodeNormalization"),
@@ -87,3 +90,10 @@ let package = Package(
     ],
     swiftLanguageVersions: [.v6]
 )
+
+
+for target in package.targets {
+    target.plugins = [
+        .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLint")
+    ]
+}

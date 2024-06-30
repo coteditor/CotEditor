@@ -55,6 +55,7 @@ public extension StringProtocol {
 
 
 extension StringProtocol {
+    
     /// A string made by normalizing the receiver’s contents using the Unicode Normalization Form KC with Casefold a.k.a. `NFKC_Casefold` or `NFKC_CF`.
     var precomposedStringWithCompatibilityMappingWithCasefold: String {
         

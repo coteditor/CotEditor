@@ -15,6 +15,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: Version(1, 3, 0)),
         .package(url: "https://github.com/jpsim/Yams", from: Version(5, 0, 0)),
+        .package(url: "https://github.com/realm/SwiftLint", from: Version(0, 55, 0)),
     ],
     targets: [
         .executableTarget(
@@ -24,7 +25,7 @@ let package = Package(
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]),
         .target(name: "SyntaxMap", dependencies: ["Yams"]),
-    
+        
         .testTarget(
             name: "SyntaxMapTests",
             dependencies: ["SyntaxMap"],
@@ -32,3 +33,10 @@ let package = Package(
     ],
     swiftLanguageVersions: [.v6]
 )
+
+
+for target in package.targets {
+    target.plugins = [
+        .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLint")
+    ]
+}

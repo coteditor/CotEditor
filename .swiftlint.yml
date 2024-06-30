@@ -8,6 +8,7 @@ analyzer_rules:
   - capture_variable
   - typesafe_array_init
   - unused_declaration
+  - unused_import
 
 opt_in_rules:
   - array_init
@@ -23,7 +24,6 @@ opt_in_rules:
   - empty_string
   - empty_xctest_method
   - explicit_init
-  - extension_access_modifier
   - fallthrough
   - file_header
   - file_name_no_space
@@ -72,9 +72,6 @@ disabled_rules:
   - trailing_comma
   - unneeded_override
 
-private_outlet:
-  allow_private_set: true
-
 trailing_whitespace:
   ignores_empty_lines: true
 
@@ -88,43 +85,32 @@ nesting:
 vertical_whitespace:
   max_empty_lines: 3
 
-type_name:
-  max_length: 50
-  allowed_symbols: ['`']
-
 file_length:
   warning: 2000
-  error: 3000
 
 line_length:
   warning: 1000
-  error: 2000
 
 type_body_length:
-  warning: 1200
-  error: 1500
+  warning: 1000
 
 function_body_length:
   warning: 350
-  error: 400
 
 large_tuple:
   warning: 3
 
 cyclomatic_complexity:
   warning: 30
-  error: 40
 
 identifier_name:
   max_length:
-    warning: 60
-    error: 100
+    warning: 50
   min_length:
     warning: 2
   excluded:
     - x
     - y
-    - shiftJIS_X0213
 
 
 custom_rules:
