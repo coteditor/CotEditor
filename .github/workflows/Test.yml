@@ -19,10 +19,10 @@ jobs:
         git submodule update --init
     - name: Unit Test for EditorKit
       run: |
-        swift test --package-path Packages/EditorKit --enable-swift-testing
+        swift test --package-path Packages/EditorKit --enable-swift-testing  --quiet
     - name: Unit Test for SyntaxMap
       run: |
-        swift test --package-path Packages/SyntaxMap --enable-swift-testing
+        swift test --package-path Packages/SyntaxMap --enable-swift-testing  --quiet
     - name: Unit Test for CotEditor
       run: |
         xcodebuild test -project CotEditor.xcodeproj -scheme CotEditor CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -skipPackagePluginValidation
