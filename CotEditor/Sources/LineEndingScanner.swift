@@ -54,7 +54,7 @@ import ValueRange
         self.inconsistentLineEndings = self.lineEndings.filter { $0.value != lineEnding }
         
         self.storageObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textStorage)
-            .compactMap { $0.object as? NSTextStorage }
+            .map { $0.object as! NSTextStorage }
             .filter { $0.editedMask.contains(.editedCharacters) }
             .sink { [weak self] in self?.invalidate(string: $0.string, in: $0.editedRange, changeInLength: $0.changeInLength) }
     }
