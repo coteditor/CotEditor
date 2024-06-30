@@ -176,7 +176,7 @@ private extension SnippetManager {
         
         let defaultKey = "insertCustomTextArray"
         
-        guard let texts = self.defaults.stringArray(forKey: defaultKey) else { return }
+        guard let texts = UserDefaults.standard.stringArray(forKey: defaultKey) else { return }
         
         let shortcuts: [Int: Shortcut]
         let fileURL = URL.applicationSupportDirectory(component: "KeyBindings")
@@ -211,7 +211,7 @@ private extension SnippetManager {
         }
         
         // remove old settings
-        self.defaults.removeObject(forKey: defaultKey)
+        UserDefaults.standard.removeObject(forKey: defaultKey)
         if fileURL.isReachable {
             try? FileManager.default.removeItem(at: fileURL)
             let parent = fileURL.deletingLastPathComponent()
