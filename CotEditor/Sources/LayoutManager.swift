@@ -32,16 +32,21 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     
     // MARK: Protocol Properties
     
+    // InvisibleDrawing
     var showsControls = false
     var invisiblesDefaultsObserver: AnyCancellable?
     
+    // ValidationIgnorable
     var ignoresDisplayValidation = false
     
+    // LineRangeCacheable
     var string: NSString  { self.textStorage?.string as? NSString ?? "" }
     var lineRangeCache = LineRangeCache()
     
     
     // MARK: Public Properties
+    
+    weak var lineEndingScanner: LineEndingScanner?
     
     var usesAntialias = true
     
@@ -240,10 +245,9 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
         
         switch invisible {
             case .newLine:
-                let textView = self.firstTextView
-                return MainActor.assumeIsolated { (textView?.window?.windowController as? DocumentWindowController)?.fileDocument?.lineEndingScanner.isInvalidLineEnding(at: characterIndex) == true }
+                self.lineEndingScanner?.isInvalidLineEnding(at: characterIndex) == true
             default:
-                return false
+                false
         }
     }
     

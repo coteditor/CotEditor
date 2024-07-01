@@ -654,7 +654,7 @@ extension Document: EditorSource {
                                               fileURL: self.fileURL,
                                               lastModifiedDate: lastModifiedDate,
                                               syntaxName: self.syntaxParser.name)
-        let printView = PrintTextView(info: info)
+        let printView = PrintTextView(info: info, lineEndingScanner: self.lineEndingScanner)
         
         printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
         printView.baseWritingDirection = viewController.writingDirection

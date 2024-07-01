@@ -79,7 +79,9 @@ final class EditorViewController: NSSplitViewController {
         self.addSplitViewItem(self.navigationBarItem)
         
         // setup text view controller
-        self.textView?.layoutManager?.replaceTextStorage(self.document.textStorage)
+        let layoutManager = self.textView!.layoutManager as! LayoutManager
+        layoutManager.replaceTextStorage(self.document.textStorage)
+        layoutManager.lineEndingScanner = self.document.lineEndingScanner
         self.applySyntax()
         self.addChild(self.textViewController)
         

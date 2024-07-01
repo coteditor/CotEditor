@@ -65,7 +65,7 @@ final class PrintTextView: NSTextView, Themable {
     
     // MARK: Lifecycle
     
-    init(info: DocumentInfo) {
+    init(info: DocumentInfo, lineEndingScanner: LineEndingScanner) {
         
         self.documentInfo = info
         self.tabWidth = UserDefaults.standard[.tabWidth]
@@ -82,6 +82,7 @@ final class PrintTextView: NSTextView, Themable {
         // setup textView components
         let textStorage = NSTextStorage()
         let layoutManager = PrintLayoutManager()
+        layoutManager.lineEndingScanner = lineEndingScanner
         textStorage.addLayoutManager(layoutManager)
         layoutManager.addTextContainer(textContainer)
         
