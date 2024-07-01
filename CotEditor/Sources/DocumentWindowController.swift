@@ -78,6 +78,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     required init(document: Document? = nil, directoryDocument: DirectoryDocument? = nil) {
         
+        self.fileDocument = document
+        self.directoryDocument = directoryDocument
+        
         let window = DocumentWindow(contentViewController: WindowContentViewController(document: document, directoryDocument: directoryDocument))
         window.styleMask.update(with: .fullSizeContentView)
         window.setFrameAutosaveName((directoryDocument == nil) ? "Document" : "DirectoryDocument")
@@ -94,8 +97,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                                    height: height > window.minSize.height ? height : window.frame.height)
             window.setFrame(.init(origin: window.frame.origin, size: frameSize), display: false)
         }
-        
-        self.directoryDocument = directoryDocument
         
         super.init(window: window)
         
