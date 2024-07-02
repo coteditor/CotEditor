@@ -45,6 +45,7 @@
 
 ### Improvements
 
+- Change to disable the smart quotes option in the Mode settings by default.
 - Draw invisible symbols for invisible operators (U+2061, U+2062, U+2063, and U+2064).
 - Update the Lisp, Lua, Scheme, and Tcl syntaxes to update interpreters (thanks to Renfei!).
 - [non-AppStore ver.] Update Sparkle from 2.6.3 to 2.6.4.
@@ -52,6 +53,7 @@
 
 ### Fixes
 
+- Fix an issue that a document kept in the Dock was not brought to the front on the reopen event even though no documents were displayed.
 - Fix the view layout in the Quick Action bar.
 - Fix a potential memory leak.
 
