@@ -322,7 +322,6 @@ extension Document: EditorSource {
         // do nothing if already no textView exists
         guard !selection.isEmpty else { return }
         
-        self.applyContentToWindow()
         self.textStorage.restoreEditorSelection(selection)
     }
     
@@ -412,6 +411,8 @@ extension Document: EditorSource {
                 self.setSyntax(name: syntaxName ?? SyntaxName.none, isInitial: true)
             }
             self.isInitialized = true
+            
+            self.viewController?.invalidateStyleInTextStorage()
         }
     }
     
@@ -1079,7 +1080,6 @@ extension Document: EditorSource {
         guard let viewController = self.viewController else { return }
         
         // update view
-        viewController.invalidateStyleInTextStorage()
         if self.isVerticalText {
             viewController.verticalLayoutOrientation = true
         }
