@@ -63,17 +63,21 @@ struct ThemeView: View {
         .onChange(of: self.themeName, initial: true) { (_, newValue) in
             self.setTheme(name: newValue)
         }
-        .onReceive(NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: ThemeManager.shared)) { notification in
-            guard let change = notification.userInfo?["change"] as? SettingChange else { return }
+        .task {
+            let changes = NotificationCenter.default
+                .notifications(named: .didUpdateSettingNotification, object: ThemeManager.shared)
+                .compactMap { $0.userInfo?["change"] as? SettingChange }
             
-            Task { @MainActor in
-                guard
-                    let name = change.new,
-                    name == self.themeName,
-                    let theme = try? ThemeManager.shared.setting(name: name)
-                else { return }
+            for await name in changes.compactMap(\.new) {
+                await MainActor.run {
+                    guard
+                        name == self.themeName,
+                        let theme = try? ThemeManager.shared.setting(name: name)
+                    else { return }
+                    
+                    self.theme = theme
+                }
                 
-                self.theme = theme
             }
         }
         .background()
