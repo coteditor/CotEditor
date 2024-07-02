@@ -73,7 +73,7 @@ extension Document: EditorSource {
     let textStorage = NSTextStorage()
     let syntaxParser: SyntaxParser
     @ObservationIgnored @Published private(set) var fileEncoding: FileEncoding
-    @ObservationIgnored @Published private(set) var lineEnding: LineEnding
+    @ObservationIgnored @Published private(set) var lineEnding: LineEnding  { didSet { self.lineEndingScanner.baseLineEnding = lineEnding } }
     @ObservationIgnored @Published private(set) var mode: Mode
     private(set) nonisolated(unsafe) var fileAttributes: FileAttributes?
     
@@ -137,7 +137,6 @@ extension Document: EditorSource {
         
         super.init()
         
-        self.lineEndingScanner.observe(lineEnding: self.$lineEnding)
         self.counter.source = self
         
         self.defaultObservers = [
@@ -958,9 +957,7 @@ extension Document: EditorSource {
         
         assert(Thread.isMainThread)
         
-        guard lineEnding != self.lineEnding ||
-                !self.lineEndingScanner.inconsistentLineEndings.isEmpty
-        else { return }
+        guard lineEnding != self.lineEnding || !self.lineEndingScanner.inconsistentLineEndings.isEmpty else { return }
         
         // register undo
         if let undoManager = self.undoManager {
@@ -979,14 +976,14 @@ extension Document: EditorSource {
                                              table: "MainMenu", comment: "undo action name"))
         }
         
+        // update line ending
+        self.lineEnding = lineEnding
+        
         // update line endings in text storage
         let selection = self.textStorage.editorSelection
         let string = self.textStorage.string.replacingLineEndings(with: lineEnding)
         self.textStorage.replaceContent(with: string)
         self.textStorage.restoreEditorSelection(selection)
-        
-        // update line ending
-        self.lineEnding = lineEnding
     }
     
     

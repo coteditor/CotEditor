@@ -32,15 +32,15 @@ import ValueRange
 
 @Observable final class LineEndingScanner {
     
-    private(set) var baseLineEnding: LineEnding
+    var baseLineEnding: LineEnding
     private(set) var inconsistentLineEndings: [ValueRange<LineEnding>] = []
     
     
     // MARK: Private Properties
     
+    private let textStorage: NSTextStorage
     private var lineEndings: [ValueRange<LineEnding>]
     
-    private var lineEndingObserver: AnyCancellable?
     private var storageObserver: AnyCancellable?
     
     
@@ -51,21 +51,14 @@ import ValueRange
         
         self.baseLineEnding = lineEnding
         
+        self.textStorage = textStorage
         self.lineEndings = textStorage.string.lineEndingRanges()
         self.inconsistentLineEndings = self.lineEndings.filter { $0.value != lineEnding }
         
         self.storageObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textStorage)
             .map { $0.object as! NSTextStorage }
             .filter { $0.editedMask.contains(.editedCharacters) }
-            .sink { [weak self] in self?.invalidate(string: $0.string, in: $0.editedRange, changeInLength: $0.changeInLength) }
-    }
-    
-    
-    func observe(lineEnding publisher: Published<LineEnding>.Publisher) {
-        
-        self.lineEndingObserver = publisher
-            .removeDuplicates()
-            .sink { [weak self] in self?.baseLineEnding = $0 }
+            .sink { [weak self] in self?.invalidate(in: $0.editedRange, changeInLength: $0.changeInLength) }
     }
     
     
@@ -75,7 +68,6 @@ import ValueRange
     /// Cancels all observations.
     func cancel() {
         
-        self.lineEndingObserver?.cancel()
         self.storageObserver?.cancel()
     }
     
@@ -110,16 +102,14 @@ import ValueRange
     }
     
     
-    
-    // MARK: Private Methods
-    
     /// Updates inconsistent line endings by assuming the textStorage was edited.
     ///
     /// - Parameters:
-    ///   - string: The string to scan.
     ///   - editedRange: The edited range.
     ///   - delta: The change in length.
-    private func invalidate(string: String, in editedRange: NSRange, changeInLength delta: Int) {
+    private func invalidate(in editedRange: NSRange, changeInLength delta: Int) {
+        
+        let string = self.textStorage.string.immutable
         
         // expand range to scan by considering the possibility that a part of CRLF was edited
         let nsString = string as NSString

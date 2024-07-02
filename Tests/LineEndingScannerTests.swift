@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import AppKit
+import AppKit.NSTextStorage
 import Testing
 import ValueRange
 @testable import CotEditor
