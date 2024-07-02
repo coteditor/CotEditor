@@ -69,6 +69,7 @@ enum Invisible {
                  0x2060,  // WORD JOINER (Cf)
                  0xFEFF,  // ZERO WIDTH NO-BREAK SPACE a.k.a. BOM (Cf)
                  0x061C, 0x200E...0x200F, 0x202A...0x202E, 0x2066...0x206F,  // bidi controls (Cf)
+                 0x2061...0x2065,  // invisible operators (Cf)
                  0xFFF9...0xFFFB:  // interlinear annotations, controls for ruby (Cf)
                 self = .otherControl
             default:
