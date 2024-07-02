@@ -6,6 +6,7 @@
 ### Improvements
 
 - Update the Lisp, Lua, Scheme, and Tcl syntaxes to update interpreters (thanks to Renfei!).
+- [non-AppStore ver.] Update Sparkle from 2.6.3 to 2.6.4.
 
 
 ### Fixes
