@@ -12,6 +12,7 @@
 
 ### Fixes
 
+- Fix an issue that a document kept in the Dock was not brought to the front on the reopen event even though no documents were displayed.
 - Fix the view layout in the Quick Action bar.
 - Fix a potential memory leak.
 

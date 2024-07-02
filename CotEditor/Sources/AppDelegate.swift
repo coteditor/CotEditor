@@ -259,9 +259,11 @@ private enum BundleIdentifier {
         // execute the action directly by self (2024-05, macOS 14).
         if !flag {
             (DocumentController.shared as? DocumentController)?.performOnLaunchAction(isReopen: true)
+            return false
+        } else {
+            // -> bring a document in the Dock to the front if any exists.
+            return true
         }
-        
-        return false
     }
     
     
