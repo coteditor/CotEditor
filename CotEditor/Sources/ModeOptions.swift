@@ -62,7 +62,7 @@ extension Syntax.Kind {
                 ModeOptions(
                     fontType: .standard,
                     smartInsertDelete: true,
-                    automaticQuoteSubstitution: true,
+                    automaticQuoteSubstitution: false,
                     automaticDashSubstitution: false,
                     automaticSymbolBalancing: false,
                     continuousSpellChecking: true,
