@@ -62,7 +62,7 @@ private struct NestableItem {
 
 public struct HighlightParser: Sendable {
     
-    // MARK: Public Properties
+    // MARK: Internal Properties
     
     let extractors: [SyntaxType: [any HighlightExtractable]]
     let nestables: [NestableToken: SyntaxType]
@@ -86,8 +86,7 @@ public struct HighlightParser: Sendable {
     /// - Throws: CancellationError.
     public func parse(string: String, range: NSRange) async throws -> [Highlight] {
         
-        let highlightDictionary: [SyntaxType: [NSRange]] = try await withThrowingTaskGroup(of: [SyntaxType: [NSRange]].self) { group in
-            
+        try await withThrowingTaskGroup(of: [SyntaxType: [NSRange]].self) { group in
             for (type, extractors) in self.extractors {
                 for extractor in extractors {
                     group.addTask { [type: try extractor.ranges(in: string, range: range)] }
@@ -95,12 +94,12 @@ public struct HighlightParser: Sendable {
             }
             group.addTask { try self.extractNestables(string: string, range: range) }
             
-            return try await group.reduce(into: .init()) {
+            let dictionary = try await group.reduce(into: [SyntaxType: [NSRange]]()) {
                 $0.merge($1, uniquingKeysWith: +)
             }
+            
+            return try Self.sanitize(dictionary)
         }
-        
-        return try Self.sanitize(highlightDictionary)
     }
     
     

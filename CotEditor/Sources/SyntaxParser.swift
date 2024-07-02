@@ -227,19 +227,16 @@ extension SyntaxParser {
         assert(!range.isEmpty)
         assert(!self.highlightParser.isEmpty)
         
-        let parser = self.highlightParser
-        
         self.highlightParseTask?.cancel()
-        self.highlightParseTask = Task.detached(priority: .userInitiated) { [weak self] in
+        self.highlightParseTask = Task {
             defer {
-                Task { @MainActor [weak self] in
-                    self?.isHighlighting = false
-                }
+                self.isHighlighting = false
             }
             
+            let parser = self.highlightParser
             let highlights = try await parser.parse(string: string, range: range)
             
-            await self?.apply(highlights: highlights, range: range)
+            self.apply(highlights: highlights, range: range)
         }
         
         // make large parse cancellable
