@@ -139,14 +139,10 @@ extension Document: EditorSource {
         self.lineEndingScanner.observe(lineEnding: self.$lineEnding)
         self.counter.source = self
         
-        // auto-link URLs in the content
-        if UserDefaults.standard[.autoLinkDetection] {
-            self.urlDetector.isEnabled = true
-        }
         self.defaultObservers = [
-            UserDefaults.standard.publisher(for: .autoLinkDetection)
+            UserDefaults.standard.publisher(for: .autoLinkDetection, initial: true)
                 .sink { [weak self] in self?.urlDetector.isEnabled = $0 },
-            UserDefaults.standard.publisher(for: .modes)
+            UserDefaults.standard.publisher(for: .modes, initial: true)
                 .sink { [weak self] _ in self?.invalidateMode() },
         ]
         
@@ -404,7 +400,7 @@ extension Document: EditorSource {
         self.allowsLossySaving = false
         
         // set read values
-        Task { @MainActor in
+        Task(priority: .high) { @MainActor in
             self.textStorage.replaceContent(with: string)
             
             self.fileEncoding = fileEncoding
@@ -992,10 +988,6 @@ extension Document: EditorSource {
     ///   - isInitial: Whether the setting is initial.
     func setSyntax(name: String, isInitial: Bool = false) {
         
-        defer {
-            self.invalidateMode()
-        }
-        
         let syntax: Syntax
         do {
             syntax = try SyntaxManager.shared.setting(name: name)
@@ -1010,6 +1002,7 @@ extension Document: EditorSource {
         // update
         self.syntaxFileExtension = syntax.extensions.first
         self.syntaxParser.update(syntax: syntax, name: name)
+        self.invalidateMode()
         
         // skip notification when initial syntax was set on file open
         // to avoid redundant highlight parse due to async notification.
