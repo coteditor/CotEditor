@@ -1,5 +1,6 @@
 //
 //  LineEnding.swift
+//  LineEnding
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +27,7 @@
 import Foundation
 import ValueRange
 
-enum LineEnding: Character, CaseIterable {
+public enum LineEnding: Character, Sendable, CaseIterable {
     
     case lf = "\n"
     case cr = "\r"
@@ -36,25 +37,25 @@ enum LineEnding: Character, CaseIterable {
     case paragraphSeparator = "\u{2029}"
     
     
-    var string: String {
+    public var string: String {
         
         String(self.rawValue)
     }
     
     
-    var length: Int {
+    public var length: Int {
         
         self.rawValue.unicodeScalars.count
     }
     
     
-    var index: Int {
+    public var index: Int {
         
         Self.allCases.firstIndex(of: self)!
     }
     
     
-    var isBasic: Bool {
+    public var isBasic: Bool {
         
         switch self {
             case .lf, .cr, .crlf: true
@@ -63,7 +64,7 @@ enum LineEnding: Character, CaseIterable {
     }
     
     
-    var label: String {
+    public var label: String {
         
         switch self {
             case .lf: "LF"
@@ -74,46 +75,13 @@ enum LineEnding: Character, CaseIterable {
             case .paragraphSeparator: "PS"
         }
     }
-    
-    
-    var description: String {
-        
-        switch self {
-            case .lf:
-                String(localized: "LineEnding.lf.description",
-                       defaultValue: "macOS / Unix",
-                       table: "LineEnding")
-            case .cr:
-                String(localized: "LineEnding.cr.description",
-                       defaultValue: "Classic Mac OS",
-                       table: "LineEnding")
-            case .crlf:
-                String(localized: "LineEnding.crlf.description",
-                       defaultValue: "Windows", table: "LineEnding")
-            case .nel:
-                String(localized: "LineEnding.nel.description",
-                       defaultValue: "Unix Next Line",
-                       table: "LineEnding",
-                       comment: "Since this is a technical term, it should be left as-is.")
-            case .lineSeparator:
-                String(localized: "LineEnding.lineSeparator.description",
-                       defaultValue: "Unix Line Separator",
-                       table: "LineEnding",
-                       comment: "Since this is a technical term, it should be left as-is.")
-            case .paragraphSeparator:
-                String(localized: "LineEnding.paragraphSeparator.description",
-                       defaultValue: "Unix Paragraph Separator",
-                       table: "LineEnding",
-                       comment: "Since this is a technical term, it should be left as-is.")
-        }
-    }
 }
 
 
 
 // MARK: -
 
-extension String {
+public extension String {
     
     /// Collects ranges of all line endings per line ending type from the beginning.
     ///
@@ -126,14 +94,15 @@ extension String {
         
         var lineEndingRanges: [ValueRange<LineEnding>] = []
         let string = self as NSString
+        let range = range ?? NSRange(..<self.utf16.count)
         
-        string.enumerateSubstrings(in: range ?? string.range, options: [.byLines, .substringNotRequired]) { (_, substringRange, enclosingRange, _) in
-            guard !enclosingRange.isEmpty else { return }
+        string.enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { (_, substringRange, enclosingRange, _) in
+            guard enclosingRange.length > 0 else { return }
             
             let lineEndingRange = NSRange(substringRange.upperBound..<enclosingRange.upperBound)
             
             guard
-                !lineEndingRange.isEmpty,
+                lineEndingRange.length > 0,
                 let lastCharacter = string.substring(with: lineEndingRange).first,  // line ending must be a single character
                 let lineEnding = LineEnding(rawValue: lastCharacter)
             else { return }
@@ -146,7 +115,7 @@ extension String {
 }
 
 
-extension StringProtocol {
+public extension StringProtocol {
     
     /// Returns a new string in which all line endings in the receiver are replaced with the given line endings.
     ///
@@ -160,7 +129,7 @@ extension StringProtocol {
 }
 
 
-extension NSMutableAttributedString {
+public extension NSMutableAttributedString {
     
     /// Replaces all line endings in the receiver with given line endings.
     ///
@@ -171,7 +140,7 @@ extension NSMutableAttributedString {
         // -> Intentionally avoid replacing characters in the mutableString directly,
         //    because it pots a quantity of small edited notifications,
         //    which costs high. (2023-11, macOS 14)
-        self.replaceCharacters(in: self.range, with: self.string.replacingLineEndings(with: lineEnding))
+        self.replaceCharacters(in: NSRange(..<self.length), with: self.string.replacingLineEndings(with: lineEnding))
     }
 }
 

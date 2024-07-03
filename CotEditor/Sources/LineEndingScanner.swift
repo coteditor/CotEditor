@@ -26,7 +26,8 @@
 import Combine
 import Foundation
 import Observation
-import class AppKit.NSTextStorage
+import AppKit.NSTextStorage
+import LineEnding
 import ValueRange
 
 @Observable final class LineEndingScanner {

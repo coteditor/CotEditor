@@ -33,6 +33,7 @@ import OSLog
 import Defaults
 import FileEncoding
 import FilePermissions
+import LineEnding
 import Syntax
 
 extension Document: EditorSource {

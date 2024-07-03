@@ -31,6 +31,7 @@ import UniformTypeIdentifiers
 import OSLog
 import Defaults
 import FileEncoding
+import LineEnding
 import UnicodeNormalization
 
 extension KeyPath: @retroactive @unchecked Sendable { }

@@ -28,6 +28,7 @@ import Observation
 import Combine
 import FileEncoding
 import FilePermissions
+import LineEnding
 import Syntax
 
 final class DocumentInspectorViewController: NSHostingController<DocumentInspectorView>, DocumentOwner {

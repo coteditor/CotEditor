@@ -26,6 +26,7 @@
 import SwiftUI
 import Defaults
 import FileEncoding
+import LineEnding
 
 struct FormatSettingsView: View {
     

@@ -1,6 +1,6 @@
 //
 //  LineEndingTests.swift
-//  Tests
+//  LineEndingTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -27,7 +27,7 @@
 import Foundation
 import Testing
 import ValueRange
-@testable import CotEditor
+@testable import LineEnding
 
 struct LineEndingTests {
     
@@ -73,7 +73,6 @@ struct LineEndingTests {
         #expect("foo\u{c}bar\n".replacingLineEndings(with: .cr) == "foo\u{c}bar\r")
     }
 }
-
 
 
 private extension ValueRange where Value == LineEnding {

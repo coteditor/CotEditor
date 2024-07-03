@@ -28,6 +28,7 @@ import Observation
 import Combine
 import Defaults
 import FileEncoding
+import LineEnding
 
 final class StatusBarController: NSHostingController<StatusBar> {
     
