@@ -457,6 +457,8 @@
 		2A94FC7B1BE225F000B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
 		2A954B242AB28B010070FB74 /* TextFind.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A954B232AB28B010070FB74 /* TextFind.xcstrings */; };
 		2A954B252AB28B010070FB74 /* TextFind.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A954B232AB28B010070FB74 /* TextFind.xcstrings */; };
+		2A9AB0222C35AF5E008437F9 /* Intents.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AB0212C35AF5E008437F9 /* Intents.xcstrings */; };
+		2A9AB0232C35AF5E008437F9 /* Intents.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A9AB0212C35AF5E008437F9 /* Intents.xcstrings */; };
 		2A9AC937244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */; };
 		2A9AC938244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */; };
 		2A9B134E27E2D84E009954A4 /* NSDraggingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9B134D27E2D84E009954A4 /* NSDraggingInfo.swift */; };
@@ -650,6 +652,10 @@
 		2AD21FCD1D2E3BE80018C8D1 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD21FCB1D2E3BE80018C8D1 /* StatusBar.swift */; };
 		2AD2387A2939AC7200209834 /* UserUnixTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD238792939AC7200209834 /* UserUnixTask.swift */; };
 		2AD2387B2939AC7200209834 /* UserUnixTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD238792939AC7200209834 /* UserUnixTask.swift */; };
+		2AD5440A2C2072CC001CD4C9 /* DocumentShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD544092C2072C6001CD4C9 /* DocumentShortcuts.swift */; };
+		2AD5440B2C2072CC001CD4C9 /* DocumentShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD544092C2072C6001CD4C9 /* DocumentShortcuts.swift */; };
+		2AD544232C21BCED001CD4C9 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AD544222C21BCED001CD4C9 /* AppShortcuts.xcstrings */; };
+		2AD544242C21BCED001CD4C9 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AD544222C21BCED001CD4C9 /* AppShortcuts.xcstrings */; };
 		2AD551EA20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */; };
 		2AD551EB20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */; };
 		2AD616CC1D3E583D0016EFB6 /* DocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */; };
@@ -1044,6 +1050,7 @@
 		2A938ACE297E4D7B007FBE5F /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = cot/cot; sourceTree = SOURCE_ROOT; };
 		2A954B232AB28B010070FB74 /* TextFind.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = TextFind.xcstrings; sourceTree = "<group>"; };
+		2A9AB0212C35AF5E008437F9 /* Intents.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Intents.xcstrings; sourceTree = "<group>"; };
 		2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+InvisibleDrawing.swift"; sourceTree = "<group>"; };
 		2A9B134D27E2D84E009954A4 /* NSDraggingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDraggingInfo.swift; sourceTree = "<group>"; };
 		2A9BC2772BDE00B1008B58B5 /* Donation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donation.swift; sourceTree = "<group>"; };
@@ -1141,6 +1148,8 @@
 		2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelContentViewController.swift; sourceTree = "<group>"; };
 		2AD21FCB1D2E3BE80018C8D1 /* StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		2AD238792939AC7200209834 /* UserUnixTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUnixTask.swift; sourceTree = "<group>"; };
+		2AD544092C2072C6001CD4C9 /* DocumentShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentShortcuts.swift; sourceTree = "<group>"; };
+		2AD544222C21BCED001CD4C9 /* AppShortcuts.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AppShortcuts.xcstrings; sourceTree = "<group>"; };
 		2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatableMenuToolbarItem.swift; sourceTree = "<group>"; };
 		2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
 		2AD69B841D3E42F700FBD998 /* TextSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSelection.swift; sourceTree = "<group>"; };
@@ -1728,6 +1737,7 @@
 				2AA71A3A2BE25C3F0084EC0A /* DirectoryDocument.swift */,
 				2A7DFA492BE96C06001D5BDD /* DirectoryDocument+Actions.swift */,
 				2A1679E51D3CE07100E8261D /* Document.swift */,
+				2AD544092C2072C6001CD4C9 /* DocumentShortcuts.swift */,
 				2AA71A432BE278880084EC0A /* FileNode.swift */,
 			);
 			name = Document;
@@ -2068,15 +2078,17 @@
 				2AA6731B2B9178AB00B8F7E6 /* Localizable.xcstrings */,
 				2AA672F52B916DA400B8F7E6 /* MainMenu.xcstrings */,
 				2AA672A12B8F8AA300B8F7E6 /* Document.xcstrings */,
+				2A9AB0212C35AF5E008437F9 /* Intents.xcstrings */,
 				2AB9E4BB2B7F2378004E5BDC /* Settings */,
 				2A1E7DE72B8D615A004F0C07 /* Text Finder */,
 				2A39AC942B8CE43100E216C9 /* Accessory Views */,
 				2A7FEF352B90EBEA0042BEFF /* Panels */,
 				2A7FEF0D2B90B1800042BEFF /* Views */,
 				2AA6725B2B8F74D900B8F7E6 /* Models */,
-				2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */,
-				2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */,
 				2A36E3702AF9ED0B00A73534 /* Sparkle.xcstrings */,
+				2A5E6FC32A723CE900E33EA7 /* InfoPlist.xcstrings */,
+				2AD544222C21BCED001CD4C9 /* AppShortcuts.xcstrings */,
+				2A5E6FC62A723F3C00E33EA7 /* ServicesMenu.xcstrings */,
 				2A65520A2BDF4D880082B7D6 /* InAppPurchase.xcstrings */,
 			);
 			path = Localizables;
@@ -2443,6 +2455,7 @@
 				2A39ACFC2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings in Resources */,
 				2A55D5D82B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */,
 				2ACDA2A52B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings in Resources */,
+				2AD544242C21BCED001CD4C9 /* AppShortcuts.xcstrings in Resources */,
 				2A1E7E3B2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */,
 				2ACDA2892B81E2AC00B2EBA8 /* ColorCode.xcstrings in Resources */,
 				2A07A9032BABC1FA007CABFD /* CommandBar.xcstrings in Resources */,
@@ -2460,13 +2473,14 @@
 				2AB9E4C02B830902004E5BDC /* FormatSettings.xcstrings in Resources */,
 				2ACDA2912B81E8B300B2EBA8 /* GeneralSettings.xcstrings in Resources */,
 				2A39AC922B8CE40400E216C9 /* GoToLine.xcstrings in Resources */,
+				2A9AB0232C35AF5E008437F9 /* Intents.xcstrings in Resources */,
 				2ACDA29D2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */,
 				2A902A9D2B86DC140053FC96 /* KeyBindingsSettings.xcstrings in Resources */,
+				2A1E7DD02B8C043F004F0C07 /* ModeSettings.xcstrings in Resources */,
 				2AAF93562A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
 				2A07A9002BABC1EB007CABFD /* LinkButton.xcstrings in Resources */,
 				2A39ACA82B8CE58100E216C9 /* LiveTextInsertion.xcstrings in Resources */,
 				2AA672F62B916DA400B8F7E6 /* MainMenu.xcstrings in Resources */,
-				2A1E7DD02B8C043F004F0C07 /* ModeSettings.xcstrings in Resources */,
 				2A1E7DE52B8D6102004F0C07 /* MultipleReplace.xcstrings in Resources */,
 				2AA672C62B91535A00B8F7E6 /* OpacitySlider.xcstrings in Resources */,
 				2A39ACE62B8CEAF800E216C9 /* OpenPanelAccessory.xcstrings in Resources */,
@@ -2529,6 +2543,7 @@
 				2A39ACFD2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings in Resources */,
 				2A55D5D92B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */,
 				2ACDA2A62B81EE0E00B2EBA8 /* AppearanceSettings.xcstrings in Resources */,
+				2AD544232C21BCED001CD4C9 /* AppShortcuts.xcstrings in Resources */,
 				2A1E7E3C2B8D7D48004F0C07 /* CharacterInspector.xcstrings in Resources */,
 				2ACDA28A2B81E2B100B2EBA8 /* ColorCode.xcstrings in Resources */,
 				2A07A9042BABC1FA007CABFD /* CommandBar.xcstrings in Resources */,
@@ -2546,6 +2561,7 @@
 				2AB9E4C12B830902004E5BDC /* FormatSettings.xcstrings in Resources */,
 				2ACDA2922B81E8B300B2EBA8 /* GeneralSettings.xcstrings in Resources */,
 				2A39AC932B8CE40400E216C9 /* GoToLine.xcstrings in Resources */,
+				2A9AB0222C35AF5E008437F9 /* Intents.xcstrings in Resources */,
 				2ACDA29E2B81E8C300B2EBA8 /* IssueReport.xcstrings in Resources */,
 				2A1E7DCA2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings in Resources */,
 				2AAF93572A73DEE600CCC4A7 /* LineEnding.xcstrings in Resources */,
@@ -2709,6 +2725,7 @@
 				2AF0C12E1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */,
 				2AD616CD1D3E583D0016EFB6 /* DocumentController.swift in Sources */,
 				2AAB4BFA1D2435AC0049A68B /* DocumentInspectorView.swift in Sources */,
+				2AD5440B2C2072CC001CD4C9 /* DocumentShortcuts.swift in Sources */,
 				2AED70EF1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */,
 				2A71BC7C1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */,
 				2A17A3171D2D4319001DD717 /* DocumentWindow.swift in Sources */,
@@ -3029,6 +3046,7 @@
 				2AF0C12D1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */,
 				2AD616CC1D3E583D0016EFB6 /* DocumentController.swift in Sources */,
 				2AAB4BF91D2435AC0049A68B /* DocumentInspectorView.swift in Sources */,
+				2AD5440A2C2072CC001CD4C9 /* DocumentShortcuts.swift in Sources */,
 				2AED70EE1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */,
 				2A71BC7B1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */,
 				2A17A3161D2D4319001DD717 /* DocumentWindow.swift in Sources */,

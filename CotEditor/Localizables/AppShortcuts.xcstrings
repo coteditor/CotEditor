@@ -1,0 +1,43 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Create Document in ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Dokument in ${applicationName} erstellen"
+            ]
+          }
+        },
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "Create Document in ${applicationName}"
+            ]
+          }
+        },
+        "en-GB" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Create Document in ${applicationName}"
+            ]
+          }
+        },
+        "ja" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName}で書類を作成"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
