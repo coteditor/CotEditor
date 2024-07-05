@@ -371,7 +371,7 @@
 		<h2>Improvements</h2>
 
 		<ul>
-			<li>When the file encoding is incompatible with the document content, display a notification instead of silently overwriting the document file with lossy data in autosaving until the user explicitly allows it.</li>
+			<li>When the file encoding is incompatible with the document contents, display a notification instead of silently overwriting the document file with lossy data in autosaving until the user explicitly allows it.</li>
 			<li>Suppress displaying the dialog for saving in an incompatible encoding when the user once allowed it.</li>
 			<li>Update the C syntax to improve highlighting numbers.</li>
 			<li>Deprecate the future to interpret <code>Shift_JIS</code> as Shift JIS or Shift JIS X0213 according to the user’s priority setting when referring to encoding declarations in documents in encoding detection.</li>
@@ -2230,7 +2230,7 @@
 	<li>Scroll editor by swiping the line number area.</li>
 	<li>Reduce the priority that CotEditor implicitly becomes the default application for specific file types.</li>
 	<li>Previously, CotEditor scripts written in Unix scripts, such as Ruby or Python, were decoded using the user-preferred file-encoding set in the Format preferences pane for normal documents, now they are always interpreted as UTF-8.</li>
-	<li>Avoid showing the “edited” indicator in the close button of document windows when the document content is empty and therefore can close the window without the confirmation dialog.</li>
+	<li>Avoid showing the “edited” indicator in the close button of document windows when the document contents are empty and therefore can close the window without the confirmation dialog.</li>
 	<li>Avoid discarding the current input when a new item is added while another item is in editing in the syntax style editor.</li>
 	<li>Round the corners of current line highlight.</li>
 	<li>Put only the filename rather than the absolute path for the relative path insertion (<code>&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;</code>) when the document file itself is dropped into the editor.</li>
@@ -3063,7 +3063,7 @@
 <h2>New Features</h2>
 
 <ul>
-	<li>Add new variable “file content” to File Drop feature to insert the file content when the dropped file is a text file.</li>
+	<li>Add new variable “file content” to File Drop feature to insert the file contents when the dropped file is a text file.</li>
 </ul>
 </section>
 
@@ -6319,7 +6319,7 @@
 	<ul>
 		<li><strong>for advanced users</strong>: In this feature, CotEditor saves an <i>extended attribute</i> which named <code>com.coteditor.VerticalText</code> to the file <strong>only when</strong> the editor’s text orientation is vertical. You can even disable the feature running the command <code>defaults write com.coteditor.CotEditor savesTextOrientation -bool NO</code> in Terminal.</li>
 	</ul></li>
-	<li>Add interpreter name list to the syntax style definition to determine syntax style from the shebang in the file content for in case when syntax style cannot be determined from the file name.</li>
+	<li>Add interpreter name list to the syntax style definition to determine syntax style from the shebang in the file contents for in case when syntax style cannot be determined from the file name.</li>
 	<ul>
 		<li>From this change, some of the bundled syntax styles are also updated.</li>
 	</ul>
@@ -6367,7 +6367,7 @@
 		<li>Add stylesheet keyword color list to editor panel.</li>
 		<li>Make editor panel resizable.</li>
 	</ul></li>
-	<li>Now syntax style is automatically set to XML on file opening if no appropriate style can be found but the file content starts with an XML declaration.</li>
+	<li>Now syntax style is automatically set to XML on file opening if no appropriate style can be found but the file contents start with an XML declaration.</li>
 	<li>Update Swift syntax style:
 	<ul>
 		<li>Add new terms available in Swift 2.0.</li>
