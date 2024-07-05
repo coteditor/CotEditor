@@ -268,7 +268,6 @@ extension Document: EditorSource {
         if self.windowController == nil {
             let windowController = DocumentWindowController(document: self)
             self.addWindowController(windowController)
-            self.windowController = windowController
             
             // avoid showing "edited" indicator in the close button when the contents are empty
             if !Self.autosavesInPlace {
@@ -283,6 +282,26 @@ extension Document: EditorSource {
         }
         
         self.applyContentToWindow()
+    }
+    
+    
+    override func addWindowController(_ windowController: NSWindowController) {
+        
+        assert(windowController is DocumentWindowController)
+        
+        super.addWindowController(windowController)
+        
+        self.windowController = windowController as? DocumentWindowController
+    }
+    
+    
+    override func removeWindowController(_ windowController: NSWindowController) {
+        
+        super.removeWindowController(windowController)
+        
+        if windowController == self.windowController {
+            self.windowController = nil
+        }
     }
     
     
