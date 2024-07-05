@@ -120,7 +120,7 @@ import ValueRange
 
 extension NSTextStorage {
     
-    /// Links detected URLs in the content.
+    /// Links detected URLs in the contents.
     ///
     /// - Parameter range: The range where links are detected, or nil to detect all.
     /// - Throws: `CancellationError`

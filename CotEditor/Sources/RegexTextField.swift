@@ -217,7 +217,7 @@ private final class RegexNSTextField: NSTextField {
     }
     
     
-    /// Invoked when the receiver was focused to edit content.
+    /// Invoked when the receiver was focused to edit the contents.
     override func becomeFirstResponder() -> Bool {
         
         guard super.becomeFirstResponder() else { return false }

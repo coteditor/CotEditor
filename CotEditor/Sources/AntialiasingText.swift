@@ -120,7 +120,7 @@ private final class AntialiasingTextField: NSTextField {
 
 private final class CenteringTextFieldCell: NSTextFieldCell {
     
-    /// Returns the rect of content text.
+    /// Returns the rect of the content text.
     override func titleRect(forBounds rect: NSRect) -> NSRect {
         
         var titleRect = super.titleRect(forBounds: rect)

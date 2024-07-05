@@ -179,7 +179,7 @@ extension EditorTextView {
     
     // MARK: Private Methods
     
-    /// Sorts lines in the text content.
+    /// Sorts lines in the text.
     ///
     /// - Parameters:
     ///   - pattern: The sort pattern.

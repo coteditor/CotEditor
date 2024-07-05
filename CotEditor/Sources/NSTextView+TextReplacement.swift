@@ -31,7 +31,7 @@ extension NSTextView {
     
     // MARK: Public Methods
     
-    /// Replaces content according to EditingContext.
+    /// Replaces the contents according to EditingContext.
     @discardableResult
     final func edit(with context: EditingContext, actionName: String? = nil) -> Bool {
         

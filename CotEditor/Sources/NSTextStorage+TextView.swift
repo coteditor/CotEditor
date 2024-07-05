@@ -55,7 +55,7 @@ extension NSTextStorage {
     }
     
     
-    /// Replaces whole content with the given `string` and move the insertion point to the beginning of the content.
+    /// Replaces whole contents with the given `string` and move the insertion point to the beginning of the contents.
     ///
     /// - Parameters:
     ///   - string: The content string to replace with.
@@ -67,7 +67,7 @@ extension NSTextStorage {
         
         guard !string.isEmpty else { return }
         
-        // otherwise, the insertion point moves to the end of the content
+        // otherwise, the insertion point moves to the end of the contents
         for textView in self.layoutManagers.compactMap(\.firstTextView) {
             textView.selectedRange = NSRange(0..<0)
         }

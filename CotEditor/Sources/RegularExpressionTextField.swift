@@ -81,7 +81,7 @@ final class RegularExpressionTextField: NSTextField {
     }
     
     
-    /// The Receiver was focused to edit content.
+    /// The Receiver was focused to edit the contents.
     override func becomeFirstResponder() -> Bool {
         
         guard super.becomeFirstResponder() else { return false }

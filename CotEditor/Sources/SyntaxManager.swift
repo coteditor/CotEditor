@@ -98,11 +98,11 @@ final class SyntaxManager: SettingFileManaging {
     ///
     /// - Parameters:
     ///   - fileName: The  file name of the document to detect the corresponding syntax name.
-    ///   - content: The content of the document.
+    ///   - contents: The contents of the document.
     /// - Returns: A setting name.
-    func settingName(documentName fileName: String, content: String) -> SettingName? {
+    func settingName(documentName fileName: String, contents: String) -> SettingName? {
         
-        self.settingName(documentName: fileName) ?? self.settingName(documentContent: content)
+        self.settingName(documentName: fileName) ?? self.settingName(documentContents: contents)
     }
     
     
@@ -306,21 +306,21 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// Returns the syntax name scanning the shebang in content.
+    /// Returns the syntax name scanning the shebang in the contents.
     ///
     /// - Parameters:
-    ///   - content: The content of the document.
+    ///   - contents: The contents of the document.
     /// - Returns: A setting name, or `nil` if not exists.
-    private func settingName(documentContent content: String) -> SettingName? {
+    private func settingName(documentContents contents: String) -> SettingName? {
         
-        if let interpreter = content.scanInterpreterInShebang(),
+        if let interpreter = contents.scanInterpreterInShebang(),
            let settingName = self.mappingTable[\.interpreters]?[interpreter]?.first
         {
             return settingName
         }
         
         // check XML declaration
-        if content.hasPrefix("<?xml ") {
+        if contents.hasPrefix("<?xml ") {
             return SyntaxName.xml
         }
         

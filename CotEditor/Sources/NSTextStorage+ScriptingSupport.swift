@@ -27,7 +27,7 @@ import AppKit.NSTextStorage
 
 extension NSTextStorage {
     
-    /// Observes text storage update for in case when a part of the contents is directly edited from AppleScript.
+    /// Observes text storage update for in case when a part of the contents are directly edited from AppleScript.
     ///
     /// example:
     /// ```AppleScript

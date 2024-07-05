@@ -170,17 +170,17 @@ private struct Editor {
     
     mutating func commentOut(types: CommentTypes, fromLineHead: Bool) {
         
-        guard let content = self.string.commentOut(types: types, delimiters: self.delimiters, fromLineHead: true, in: self.selectedRanges) else { return }
+        guard let contents = self.string.commentOut(types: types, delimiters: self.delimiters, fromLineHead: true, in: self.selectedRanges) else { return }
         
-        self.edit(with: content)
+        self.edit(with: contents)
     }
     
     
     mutating func uncomment() {
         
-        guard let content = self.string.uncomment(delimiters: self.delimiters, in: self.selectedRanges) else { return }
+        guard let contents = self.string.uncomment(delimiters: self.delimiters, in: self.selectedRanges) else { return }
         
-        self.edit(with: content)
+        self.edit(with: contents)
     }
     
     

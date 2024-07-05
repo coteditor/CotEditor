@@ -168,7 +168,7 @@ private enum NewFeature: CaseIterable {
                        defaultValue: "Work perfectly with new macOS 15.", table: "WhatsNew")
             case .folderNavigation:
                 String(localized: "NewFeature.folderNavigation.description",
-                       defaultValue: "Open a folder in CotEditor to navigate its content in the new sidebar.", table: "WhatsNew")
+                       defaultValue: "Open a folder in CotEditor to navigate its contents in the new sidebar.", table: "WhatsNew")
             case .donation:
                 String(localized: "NewFeature.donation.description",
                        defaultValue: "Support the CotEditor project by offering coffee to the developer.", table: "WhatsNew")

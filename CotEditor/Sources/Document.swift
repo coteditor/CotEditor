@@ -270,7 +270,7 @@ extension Document: EditorSource {
             self.addWindowController(windowController)
             self.windowController = windowController
             
-            // avoid showing "edited" indicator in the close button when the content is empty
+            // avoid showing "edited" indicator in the close button when the contents are empty
             if !Self.autosavesInPlace {
                 self.textStorageObserver = NotificationCenter.default
                     .publisher(for: NSTextStorage.didProcessEditingNotification, object: self.textStorage)
@@ -370,7 +370,7 @@ extension Document: EditorSource {
         
         let (string, fileEncoding) = try String.string(data: data, decodingStrategy: strategy)
         
-        // store file data in order to check the file content identity in `presentedItemDidChange()`
+        // store file data in order to check the file contents identity in `presentedItemDidChange()`
         self.fileData = data
         
         // use file attributes only if `fileURL` exists
@@ -408,7 +408,7 @@ extension Document: EditorSource {
             
             // determine syntax (only on the first file open)
             if !self.isInitialized {
-                let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: string)
+                let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, contents: string)
                 self.setSyntax(name: syntaxName ?? SyntaxName.none, isInitial: true)
             }
             self.isInitialized = true
@@ -451,7 +451,7 @@ extension Document: EditorSource {
     
     override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping ((any Error)?) -> Void) {
         
-        // check if the content can be saved with the current text encoding
+        // check if the contents can be saved with the current text encoding
         guard saveOperation.isAutosaveElsewhere || self.allowsLossySaving || self.canBeConverted() else {
             let error = DocumentSavingError(.lossyEncoding(self.fileEncoding), attempter: self)
             return completionHandler(error)
@@ -483,7 +483,7 @@ extension Document: EditorSource {
             
             // apply syntax that is inferred from the filename or the shebang
             if saveOperation == .saveAsOperation,
-               let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: self.textStorage.string)
+               let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, contents: self.textStorage.string)
             {
                 // -> Due to the async-saving, self.textStorage can be changed from the actual saved contents.
                 //    But we don't care about that.
@@ -520,7 +520,7 @@ extension Document: EditorSource {
                 assertionFailure(error.localizedDescription)
             }
             
-            // store file data in order to check the file content identity in `presentedItemDidChange()`
+            // store file data in order to check the file contents identity in `presentedItemDidChange()`
             assert(self.lastSavedData != nil)
             self.fileData = self.lastSavedData
         }
@@ -603,7 +603,7 @@ extension Document: EditorSource {
     
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
-        // suppress save dialog if content is empty and not saved explicitly
+        // suppress save dialog if contents are empty and not saved explicitly
         suppression: if (self.isDraft || self.fileURL == nil), self.textStorage.string.isEmpty {
             // delete autosaved file if exists
             // -> An engineer at Apple told there is no need to wrap the file access here with NSFileCoordinator (2023-06).
@@ -801,11 +801,11 @@ extension Document: EditorSource {
         
         guard strategy != .ignore, !self.isExternalUpdateAlertShown else { return }  // don't check twice if already notified
         
-        // check if the file content was changed from the stored file data
+        // check if the file contents were changed from the stored file data
         let didChange: Bool
         let modificationDate: Date?
         do {
-            (didChange, modificationDate) = try self.checkFileContentDidChange()
+            (didChange, modificationDate) = try self.checkFileContentsDidChange()
         } catch {
             Logger.app.error("Error on checking document file change: \(error.localizedDescription)")
             return
@@ -880,10 +880,10 @@ extension Document: EditorSource {
     }
     
     
-    /// Checks if the content can be converted in the given encoding without loss of information.
+    /// Checks if the contents can be converted in the given encoding without loss of information.
     ///
     /// - Parameter fileEncoding: The text encoding to test, or `nil` to test with the current file encoding.
-    /// - Returns: `true` if the content can be encoded in encoding without loss of information; otherwise, `false`.
+    /// - Returns: `true` if the contents can be encoded in encoding without loss of information; otherwise, `false`.
     func canBeConverted(to fileEncoding: FileEncoding? = nil) -> Bool {
         
         self.textStorage.string.canBeConverted(to: (fileEncoding ?? self.fileEncoding).encoding)
@@ -1092,16 +1092,16 @@ extension Document: EditorSource {
     }
     
     
-    /// Checks if the file content did change since the last read.
+    /// Checks if the file contents did change since the last read.
     ///
     /// - Returns: A boolean whether the file did change and the content modification date if available.
-    nonisolated private func checkFileContentDidChange() throws -> (Bool, Date?) {
+    nonisolated private func checkFileContentsDidChange() throws -> (Bool, Date?) {
         
         guard var fileURL = self.fileURL else { throw CocoaError(.fileReadNoSuchFile) }
         
         fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
         
-        // check if the file content was changed from the stored file data
+        // check if the file contents were changed from the stored file data
         var didChange = false
         var modificationDate: Date?
         var coordinationError: NSError?
@@ -1112,7 +1112,7 @@ extension Document: EditorSource {
                 modificationDate = try newURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
                 guard modificationDate != self.fileModificationDate else { return }
                 
-                // check if file contents was changed from the stored file data
+                // check if file contents were changed from the stored file data
                 let data = try Data(contentsOf: newURL)
                 didChange = data != self.fileData
             } catch {

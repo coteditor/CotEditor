@@ -243,19 +243,19 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Public Methods
     
-    /// Opens an untitled document with the given content or recycles the transient document if available.
+    /// Opens an untitled document with the given contents or recycles the transient document if available.
     ///
     /// - Parameters:
-    ///   - content: The text content to fill in the created document.
+    ///   - contents: The text contents to fill in the created document.
     ///   - title: The document title to display in the window, or `nil` to leave it as untitled.
     ///   - displayDocument: `true` if the user interface for the document should be shown, otherwise `false`.
     /// - Returns: Returns the new Document object.
     @discardableResult
-    func openUntitledDocument(content: String, title: String? = nil, display displayDocument: Bool) throws -> Document {
+    func openUntitledDocument(contents: String, title: String? = nil, display displayDocument: Bool) throws -> Document {
         
         let document = try self.transientDocument ?? (try self.openUntitledDocumentAndDisplay(false) as! Document)
         
-        document.textStorage.replaceContent(with: content)
+        document.textStorage.replaceContent(with: contents)
         document.updateChangeCount(.changeDone)
         
         if displayDocument {

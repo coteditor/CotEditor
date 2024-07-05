@@ -183,7 +183,7 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
     }
     
     
-    /// The content of the table cell.
+    /// The contents of the table cell.
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
         self.settingNames[safe: row]

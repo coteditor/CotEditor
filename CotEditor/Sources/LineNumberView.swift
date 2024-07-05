@@ -344,7 +344,7 @@ final class LineNumberView: NSView {
         self.drawingInfo = DrawingInfo(font: self.lineNumberFont, fontSize: textView.font!.pointSize, scale: textView.scale)
         
         self.textViewSubscriptions = [
-            // observe content change
+            // observe contents change
             textView.layoutManager!.publisher(for: \.textStorage, options: .initial)
                 .sink { [weak self] in
                     self?.invalidateThickness()

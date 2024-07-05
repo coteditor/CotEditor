@@ -191,13 +191,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open a folder in CotEditor to navigate its content in the new sidebar."
+            "value" : "Open a folder in CotEditor to navigate its contents in the new sidebar."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open a folder in CotEditor to navigate its content in the new sidebar."
+            "value" : "Open a folder in CotEditor to navigate its contents in the new sidebar."
           }
         },
         "ja" : {
