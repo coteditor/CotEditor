@@ -27,6 +27,7 @@
 import AppKit
 import Combine
 import Defaults
+import Invisible
 
 class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, LineRangeCacheable {
     

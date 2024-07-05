@@ -1,5 +1,6 @@
 //
 //  Invisible.swift
+//  Invisible
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,10 +24,7 @@
 //  limitations under the License.
 //
 
-import class Foundation.UserDefaults
-import Defaults
-
-enum Invisible {
+public enum Invisible: Sendable, CaseIterable {
     
     case newLine
     case tab
@@ -37,7 +35,7 @@ enum Invisible {
     case otherControl  // Unicode Category Cc and some of Cf
     
     
-    init?(codeUnit: UTF16.CodeUnit) {
+    public init?(codeUnit: UTF16.CodeUnit) {
         
         // > NSGlyphGenerator generates NSControlGlyph for all characters
         // > in the Unicode General Category C* and U200B (ZERO WIDTH SPACE).
@@ -49,20 +47,20 @@ enum Invisible {
                  0x0085,  // NEW LINE (Cc)
                  0x2028,  // LINE SEPARATOR (Zl)
                  0x2029:  // PARAGRAPH SEPARATOR (Zp)
-                self = .newLine
+                 self = .newLine
             case 0x0009:  // HORIZONTAL TABULATION (Cc) a.k.a. \t
-                self = .tab
+                 self = .tab
             case 0x0020:  // SPACE (Zs)
-                self = .space
+                 self = .space
             case 0x00A0,  // NO-BREAK SPACE (Zs)
                  0x2007,  // FIGURE SPACE (Zs)
                  0x202F:  // NARROW NO-BREAK SPACE (Zs)
-                self = .noBreakSpace
+                 self = .noBreakSpace
             case 0x3000:  // IDEOGRAPHIC SPACE (Zs) a.k.a. Japanese full-width space
-                self = .fullwidthSpace
+                 self = .fullwidthSpace
             case 0x2000...0x200A,  // (Zs) various width spaces, such as THREE-PER-EM SPACE
                  0x205F:  // MEDIUM MATHEMATICAL SPACE (Zs)
-                self = .otherWhitespace
+                 self = .otherWhitespace
             case 0x0000...0x001F, 0x007F...0x009F,  // C0 and C1 (Cc)
                  0x200B,  // ZERO WIDTH SPACE (Cf)
                  0x200C,  // ZERO WIDTH NON-JOINER (Cf)
@@ -71,14 +69,17 @@ enum Invisible {
                  0x061C, 0x200E...0x200F, 0x202A...0x202E, 0x2066...0x206F,  // bidi controls (Cf)
                  0x2061...0x2065,  // invisible operators (Cf)
                  0xFFF9...0xFFFB:  // interlinear annotations, controls for ruby (Cf)
-                self = .otherControl
+                 self = .otherControl
             default:
-                return nil
+                 return nil
         }
     }
+}
+
+
+extension Invisible {
     
-    
-    var symbol: Character {
+    public var symbol: Character {
         
         switch self {
             case .newLine: "↩"
@@ -89,37 +90,5 @@ enum Invisible {
             case .otherWhitespace: "⹀"
             case .otherControl: "�"
         }
-    }
-}
-
-
-
-// MARK: User Defaults
-
-extension Invisible: CaseIterable {
-    
-    var visibilityDefaultKey: DefaultKey<Bool> {
-        
-        switch self {
-            case .newLine: .showInvisibleNewLine
-            case .tab: .showInvisibleTab
-            case .space: .showInvisibleSpace
-            case .noBreakSpace: .showInvisibleWhitespaces
-            case .fullwidthSpace: .showInvisibleWhitespaces
-            case .otherWhitespace: .showInvisibleWhitespaces
-            case .otherControl: .showInvisibleControl
-        }
-    }
-}
-
-
-extension UserDefaults {
-    
-    var showsInvisible: Set<Invisible> {
-        
-        let invisibles = Invisible.allCases
-            .filter { self[$0.visibilityDefaultKey] }
-        
-        return Set(invisibles)
     }
 }

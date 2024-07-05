@@ -235,8 +235,8 @@
 		2A4257B71D23153B0086DAAD /* UnicodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B51D23153B0086DAAD /* UnicodeInputView.swift */; };
 		2A4257B91D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B81D2392A40086DAAD /* EditorTextView+ColorCode.swift */; };
 		2A4257BA1D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B81D2392A40086DAAD /* EditorTextView+ColorCode.swift */; };
-		2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257BB1D239F850086DAAD /* Invisible.swift */; };
-		2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257BB1D239F850086DAAD /* Invisible.swift */; };
+		2A4257BC1D239F850086DAAD /* Invisible+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257BB1D239F850086DAAD /* Invisible+UserDefaults.swift */; };
+		2A4257BD1D239F850086DAAD /* Invisible+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257BB1D239F850086DAAD /* Invisible+UserDefaults.swift */; };
 		2A42823A2638DAEB00D03C5C /* CharacterInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4282392638DAEB00D03C5C /* CharacterInspectorView.swift */; };
 		2A42823B2638DAEB00D03C5C /* CharacterInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4282392638DAEB00D03C5C /* CharacterInspectorView.swift */; };
 		2A428D442C2B03710051AD4F /* ValueRange+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A428D432C2B03670051AD4F /* ValueRange+Identifiable.swift */; };
@@ -930,7 +930,7 @@
 		2A4257AF1D22FD490086DAAD /* ColorCodePanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCodePanelController.swift; sourceTree = "<group>"; };
 		2A4257B51D23153B0086DAAD /* UnicodeInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnicodeInputView.swift; sourceTree = "<group>"; };
 		2A4257B81D2392A40086DAAD /* EditorTextView+ColorCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+ColorCode.swift"; sourceTree = "<group>"; };
-		2A4257BB1D239F850086DAAD /* Invisible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invisible.swift; sourceTree = "<group>"; };
+		2A4257BB1D239F850086DAAD /* Invisible+UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Invisible+UserDefaults.swift"; sourceTree = "<group>"; };
 		2A4282392638DAEB00D03C5C /* CharacterInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInspectorView.swift; sourceTree = "<group>"; };
 		2A428D432C2B03670051AD4F /* ValueRange+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueRange+Identifiable.swift"; sourceTree = "<group>"; };
 		2A44321B219AC1F8008A0A6B /* SettingsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabViewController.swift; sourceTree = "<group>"; };
@@ -1790,7 +1790,6 @@
 				2A78F571298C90520084B8B4 /* Snippet */,
 				2AC6BFCF21D00A8500FF325C /* Regex Parser */,
 				2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */,
-				2A4257BB1D239F850086DAAD /* Invisible.swift */,
 				2A50AA61204D513500D10A10 /* FileAttributes.swift */,
 				2AF073E21D33C3AB00770BA6 /* Theme.swift */,
 				2ACF23AD26302A4C002B5E10 /* Theme+Syntax.swift */,
@@ -2025,6 +2024,7 @@
 				2AA7BDDA2C1B10C80075BB6C /* UnicodeNormalizationForm.swift */,
 				2AA375461D40BDCB0080C27C /* LineEnding+Localization.swift */,
 				2A1893A91FFF422D00AD244F /* SortPatternError+Localization.swift */,
+				2A4257BB1D239F850086DAAD /* Invisible+UserDefaults.swift */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -2819,7 +2819,7 @@
 				2ACDC0A41D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
 				2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2AAB4C001D2444930049A68B /* InspectorViewController.swift in Sources */,
-				2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */,
+				2A4257BD1D239F850086DAAD /* Invisible+UserDefaults.swift in Sources */,
 				2A55D5EA2B7A86190092DE48 /* IssueReport.swift in Sources */,
 				2A10C5F81FD19237002AB5AE /* KeyBinding.swift in Sources */,
 				2A64F24C1D26615A001B229F /* KeyBindingItem.swift in Sources */,
@@ -3140,7 +3140,7 @@
 				2ACDC0A31D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
 				2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2AAB4BFF1D2444930049A68B /* InspectorViewController.swift in Sources */,
-				2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */,
+				2A4257BC1D239F850086DAAD /* Invisible+UserDefaults.swift in Sources */,
 				2A55D5EB2B7A86190092DE48 /* IssueReport.swift in Sources */,
 				2A10C5F71FD19237002AB5AE /* KeyBinding.swift in Sources */,
 				2A64F24B1D26615A001B229F /* KeyBindingItem.swift in Sources */,

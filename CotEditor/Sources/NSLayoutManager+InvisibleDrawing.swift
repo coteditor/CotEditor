@@ -26,6 +26,7 @@
 import AppKit
 import Combine
 import Defaults
+import Invisible
 
 protocol InvisibleDrawing: NSLayoutManager {
     
