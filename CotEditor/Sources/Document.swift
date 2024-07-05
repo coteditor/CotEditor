@@ -397,10 +397,8 @@ extension Document: EditorSource {
         //    for example on resuming an unsaved document.
         if self.fileURL != nil {
             let fileAttributes = FileAttributes(dictionary: attributes)
-            Task { @MainActor in
-                self.fileAttributes = fileAttributes
-                self.isExecutable = fileAttributes.permissions.user.contains(.execute)
-            }
+            self.fileAttributes = fileAttributes
+            self.isExecutable = fileAttributes.permissions.user.contains(.execute)
         }
         
         // do not save `com.apple.TextEncoding` extended attribute if it doesn't exists
@@ -537,10 +535,7 @@ extension Document: EditorSource {
             // get the latest file attributes
             do {
                 let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_ACCESS
-                let fileAttributes =  FileAttributes(dictionary: attributes)
-                Task { @MainActor in
-                    self.fileAttributes = fileAttributes
-                }
+                self.fileAttributes = FileAttributes(dictionary: attributes)
             } catch {
                 assertionFailure(error.localizedDescription)
             }
