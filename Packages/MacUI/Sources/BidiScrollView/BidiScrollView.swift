@@ -1,5 +1,6 @@
 //
 //  BidiScrollView.swift
+//  BidiScrollView
 //
 //  CotEditor
 //  https://coteditor.com
@@ -28,18 +29,36 @@ import AppKit
 /// A scroll view that allows switching the vertical scroller position regardless of the user interface layout direction.
 ///
 /// The implementation referred a lot to <https://github.com/aiaf/MKKRightToLeftScrollView>. Thank you!
-final class BidiScrollView: NSScrollView {
+public final class BidiScrollView: NSScrollView {
     
     // MARK: Public Properties
     
-    var scrollerDirection: NSUserInterfaceLayoutDirection = .rightToLeft  { didSet { self.tile() } }
+    public var scrollerDirection: NSUserInterfaceLayoutDirection = .rightToLeft  { didSet { self.tile() } }
+    
+    
+    // MARK: internal Properties
     
     var isInconsistentScrollerDirection: Bool { self.scrollerDirection != self.userInterfaceLayoutDirection }
     
     
     // MARK: View Methods
     
-    override func tile() {
+    public override init(frame frameRect: NSRect) {
+        
+        super.init(frame: frameRect)
+        
+        self.verticalScroller = BidiScroller()
+        self.horizontalScroller = BidiScroller()
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    public override func tile() {
         
         super.tile()
         

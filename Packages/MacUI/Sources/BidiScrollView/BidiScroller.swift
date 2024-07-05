@@ -1,5 +1,6 @@
 //
 //  BidiScroller.swift
+//  BidiScrollView
 //
 //  CotEditor
 //  https://coteditor.com

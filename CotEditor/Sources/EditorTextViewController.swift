@@ -27,6 +27,7 @@
 import AppKit
 import Combine
 import SwiftUI
+import BidiScrollView
 import CharacterInfo
 import Defaults
 import FuzzyRange
@@ -82,8 +83,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         textView.delegate = self
         
         let scrollView = BidiScrollView()
-        scrollView.verticalScroller = BidiScroller()
-        scrollView.horizontalScroller = BidiScroller()
         scrollView.hasVerticalScroller = true
         scrollView.documentView = textView
         scrollView.identifier = NSUserInterfaceItemIdentifier("EditorScrollView")

@@ -151,3 +151,9 @@ private final class HostingViewSuppressingSafeArea<T: View>: NSHostingView<T> {
         set { _ = newValue }
     }
 }
+
+
+private extension NSEdgeInsets {
+    
+    static let zero = NSEdgeInsetsZero
+}

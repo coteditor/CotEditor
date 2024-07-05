@@ -103,10 +103,6 @@
 		2A19AF872AE0D15300EFFDCB /* FormPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19AF852AE0D15300EFFDCB /* FormPopUpButton.swift */; };
 		2A1A4EB024FB9D9300B50AA0 /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */; };
 		2A1A4EB124FB9D9300B50AA0 /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */; };
-		2A1ABC9B27F056E60054795D /* BidiScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ABC9A27F056E60054795D /* BidiScrollView.swift */; };
-		2A1ABC9C27F056E60054795D /* BidiScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ABC9A27F056E60054795D /* BidiScrollView.swift */; };
-		2A1ABCA527F079120054795D /* BidiScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ABCA427F079120054795D /* BidiScroller.swift */; };
-		2A1ABCA627F079120054795D /* BidiScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ABCA427F079120054795D /* BidiScroller.swift */; };
 		2A1ABCA827F07CED0054795D /* NSScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ABCA727F07CED0054795D /* NSScroller.swift */; };
 		2A1ABCA927F07CED0054795D /* NSScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ABCA727F07CED0054795D /* NSScroller.swift */; };
 		2A1B7E75216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */; };
@@ -858,8 +854,6 @@
 		2A18A5BC1C4A730D00BAD817 /* EncodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingTests.swift; sourceTree = "<group>"; };
 		2A19AF852AE0D15300EFFDCB /* FormPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPopUpButton.swift; sourceTree = "<group>"; };
 		2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
-		2A1ABC9A27F056E60054795D /* BidiScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidiScrollView.swift; sourceTree = "<group>"; };
-		2A1ABCA427F079120054795D /* BidiScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidiScroller.swift; sourceTree = "<group>"; };
 		2A1ABCA727F07CED0054795D /* NSScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSScroller.swift; sourceTree = "<group>"; };
 		2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedScrollView.swift; sourceTree = "<group>"; };
 		2A1E7DCB2B889A1F004F0C07 /* KeyBindingsSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = KeyBindingsSettings.xcstrings; sourceTree = "<group>"; };
@@ -1387,7 +1381,6 @@
 			isa = PBXGroup;
 			children = (
 				2ADD36991CFCADAD00F3175D /* Inspector Tab View */,
-				2A1ABCA327F0785B0054795D /* Bidi Scroll View */,
 				2AE95A192A86270000E85CF5 /* HoleContentView.swift */,
 				2A68722E288A5C44006D6B41 /* DraggableHostingView.swift */,
 				2ACDC0901D1726BD009B72D6 /* DotView.swift */,
@@ -1453,15 +1446,6 @@
 				2AA71A522BE366520084EC0A /* Observation.swift */,
 			);
 			name = Swift;
-			sourceTree = "<group>";
-		};
-		2A1ABCA327F0785B0054795D /* Bidi Scroll View */ = {
-			isa = PBXGroup;
-			children = (
-				2A1ABC9A27F056E60054795D /* BidiScrollView.swift */,
-				2A1ABCA427F079120054795D /* BidiScroller.swift */,
-			);
-			name = "Bidi Scroll View";
 			sourceTree = "<group>";
 		};
 		2A1E7DE72B8D615A004F0C07 /* Text Finder */ = {
@@ -2717,8 +2701,6 @@
 				2AA056AD26FCA171000E0CB2 /* Arithmetics.swift in Sources */,
 				2ADBC91621C9F30000B884FF /* Atomic.swift in Sources */,
 				2ABF86BE208C3C630082D52B /* AudioToolbox.swift in Sources */,
-				2A1ABCA527F079120054795D /* BidiScroller.swift in Sources */,
-				2A1ABC9B27F056E60054795D /* BidiScrollView.swift in Sources */,
 				2A231A291E7BD82700C2A909 /* Binding.swift in Sources */,
 				2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
 				2A24F9132BEDF6D000CB6CCF /* CapsuleButtonStyle.swift in Sources */,
@@ -3038,8 +3020,6 @@
 				2AA056AE26FCA171000E0CB2 /* Arithmetics.swift in Sources */,
 				2ADBC91521C9F30000B884FF /* Atomic.swift in Sources */,
 				2ABF86BD208C3C630082D52B /* AudioToolbox.swift in Sources */,
-				2A1ABCA627F079120054795D /* BidiScroller.swift in Sources */,
-				2A1ABC9C27F056E60054795D /* BidiScrollView.swift in Sources */,
 				2A231A281E7BD82700C2A909 /* Binding.swift in Sources */,
 				2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
 				2A24F9142BEDF6D000CB6CCF /* CapsuleButtonStyle.swift in Sources */,
