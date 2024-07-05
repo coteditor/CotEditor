@@ -93,13 +93,13 @@ extension Document: EditorSource {
     private nonisolated(unsafe) var shouldSaveEncodingXattr = true
     private nonisolated(unsafe) var isExecutable = false
     private nonisolated(unsafe) var syntaxFileExtension: String?
-    private nonisolated(unsafe) let saveOptions = SaveOptions()
     private nonisolated(unsafe) var suppressesInconsistentLineEndingAlert = false
     private nonisolated(unsafe) var isExternalUpdateAlertShown = false
     private nonisolated(unsafe) var allowsLossySaving = false
     private var isInitialized = false
     
     private nonisolated(unsafe) var lastSavedData: Data?  // temporal data used only within saving process
+    private var saveOptions: SaveOptions?
     
     private let urlDetector: URLDetector
     
@@ -487,6 +487,12 @@ extension Document: EditorSource {
             textViews.first?.trimTrailingWhitespace(ignoringEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines])
         }
         
+        // apply save panel options
+        if let saveOptions {
+            self.isExecutable = saveOptions.isExecutable
+            self.saveOptions = nil
+        }
+        
         // workaround the issue that invoking the async version super blocks the save process
         // with macOS 12-14 + Xcode 13-15 (2022 FB11203469).
         // To reproduce the issue:
@@ -552,7 +558,7 @@ extension Document: EditorSource {
         var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
         // give the execute permission if user requested
-        if self.saveOptions.isExecutable, !saveOperation.isAutosave {
+        if self.isExecutable, !saveOperation.isAutosave {
             var permissions = self.fileAttributes?.permissions ?? FilePermissions(mask: 0o644)  // ???: Is the default permission really always 644?
             permissions.user.insert(.execute)
             attributes[FileAttributeKey.posixPermissions] = permissions.mask
@@ -576,21 +582,6 @@ extension Document: EditorSource {
     }
     
     
-    override func runModalSavePanel(for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
-        
-        self.saveOptions.isExecutable = self.isExecutable
-        
-        let context = DelegateContext(delegate: delegate, selector: didSaveSelector, contextInfo: contextInfo)
-        super.runModalSavePanel(for: saveOperation, delegate: self, didSave: #selector(document(_:didSave:contextInfo:)), contextInfo: bridgeWrapped(context))
-    }
-    
-    
-    override var shouldRunSavePanelWithAccessoryView: Bool {
-        
-        false
-    }
-    
-    
     override func prepareSavePanel(_ savePanel: NSSavePanel) -> Bool {
         
         savePanel.allowsOtherFileTypes = true
@@ -604,7 +595,9 @@ extension Document: EditorSource {
         savePanel.isExtensionHidden = false
         
         // set accessory view
-        let accessory = SavePanelAccessory(options: self.saveOptions)
+        let saveOptions = SaveOptions(isExecutable: self.isExecutable)
+        self.saveOptions = saveOptions
+        let accessory = SavePanelAccessory(options: saveOptions)
         let accessoryView = NSHostingView(rootView: accessory)
         accessoryView.sizingOptions = .intrinsicContentSize
         savePanel.accessoryView = accessoryView
@@ -1079,20 +1072,6 @@ extension Document: EditorSource {
     
     
     // MARK: Private Methods
-    
-    /// Callback from save panel after calling `runModalSavePanel(for:didSave:contextInfo)`.
-    @objc private func document(_ document: NSDocument, didSave didSaveSuccessfully: Bool, contextInfo: UnsafeMutableRawPointer) {
-        
-        if didSaveSuccessfully {
-            self.isExecutable = self.saveOptions.isExecutable
-        }
-        
-        // manually invoke the original delegate method
-        guard let context: DelegateContext = bridgeUnwrapped(contextInfo) else { return assertionFailure() }
-        
-        context.perform(from: self, flag: didSaveSuccessfully)
-    }
-    
     
     /// Transfers the file information to UI.
     private func applyContentToWindow() {

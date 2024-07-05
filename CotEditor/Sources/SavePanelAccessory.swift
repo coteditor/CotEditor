@@ -28,7 +28,13 @@ import Observation
 
 @Observable final class SaveOptions {
     
-    var isExecutable = false
+    var isExecutable: Bool
+    
+    
+    init(isExecutable: Bool) {
+        
+        self.isExecutable = isExecutable
+    }
 }
 
 
@@ -51,5 +57,5 @@ struct SavePanelAccessory: View {
 // MARK: - Preview
 
 #Preview {
-    SavePanelAccessory(options: SaveOptions())
+    SavePanelAccessory(options: SaveOptions(isExecutable: false))
 }
