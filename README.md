@@ -27,7 +27,7 @@ CotEditor is a purely macOS native application written in Swift. It adopts Cocoa
 
 ## Contribution
 
-CotEditor has its own contributing guidelines. Read [CONTRIBUTING.md](CONTRIBUTING.md) through before you create an issue or make a pull-request.
+CotEditor has its own contributing guidelines. Read [CONTRIBUTING.md](CONTRIBUTING.md) through before you create an issue or make a pull request.
 
 
 
