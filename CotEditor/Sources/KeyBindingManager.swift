@@ -278,7 +278,7 @@ import Shortcut
     private static func scanKeyBindings(in menu: NSMenu) -> [KeyBinding] {
         
         menu.items
-            .filter(Self.allowsModifying)
+            .filter { Self.allowsModifying($0) }
             .flatMap { menuItem -> [KeyBinding] in
                 if let submenu = menuItem.submenu {
                     return self.scanKeyBindings(in: submenu)
@@ -297,7 +297,7 @@ import Shortcut
     private func clearShortcuts(in menu: NSMenu) {
         
         menu.items
-            .filter(self.allowsModifying)
+            .filter { self.allowsModifying($0) }
             .forEach { menuItem in
                 if let submenu = menuItem.submenu {
                     return self.clearShortcuts(in: submenu)
@@ -316,7 +316,7 @@ import Shortcut
     private func applyShortcuts(to menu: NSMenu) {
         
         menu.items
-            .filter(self.allowsModifying)
+            .filter { self.allowsModifying($0) }
             .forEach { menuItem in
                 if let submenu = menuItem.submenu {
                     return self.applyShortcuts(to: submenu)
@@ -341,7 +341,7 @@ import Shortcut
     private func menuTree(of menu: NSMenu) -> [Node<KeyBindingItem>] {
         
         menu.items
-            .filter(self.allowsModifying)
+            .filter { self.allowsModifying($0) }
             .compactMap { menuItem in
                 if let submenu = menuItem.submenu {
                     let subtree = self.menuTree(of: submenu)
