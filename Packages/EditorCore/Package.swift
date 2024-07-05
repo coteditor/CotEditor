@@ -4,13 +4,13 @@
 import PackageDescription
 
 let package = Package(
-    name: "EditorKit",
+    name: "EditorCore",
     defaultLocalization: "en",
     platforms: [
         .macOS(.v14),
     ],
     products: [
-        .library(name: "EditorKit", targets: [
+        .library(name: "EditorCore", targets: [
             "CharacterInfo",
             "Defaults",
             "FileEncoding",
