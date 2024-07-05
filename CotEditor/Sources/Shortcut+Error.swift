@@ -65,7 +65,9 @@ extension Shortcut {
     
 
     /// Validates whether the shortcut is available for user customization.
-    @MainActor func checkCustomizationAvailability() throws(Shortcut.CustomizationError) {
+    ///
+    /// - Parameter menu: The menu tree for duplication check.
+    @MainActor func checkCustomizationAvailability(for menu: NSMenu?) throws(Shortcut.CustomizationError) {
         
         // Tab or Backtab
         if self.keyEquivalent == "\u{9}" || self.keyEquivalent == "\u{19}" {
@@ -84,7 +86,7 @@ extension Shortcut {
         }
         
         // duplication check
-        if let duplicatedName = NSApp.mainMenu?.commandName(for: self) {
+        if let duplicatedName = menu?.commandName(for: self) {
             throw CustomizationError.alreadyTaken(self, name: duplicatedName)
         }
     }
