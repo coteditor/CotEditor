@@ -18,7 +18,6 @@ let package = Package(
             "FuzzyRange",
             "LineEnding",
             "LineSort",
-            "Shortcut",
             "StringBasics",
             "Syntax",
             "TextClipping",
@@ -26,7 +25,6 @@ let package = Package(
             "TextFind",
             "UnicodeNormalization",
             "ValueRange",
-            "Shortcut",
         ]),
         
         .library(name: "CharacterInfo", targets: ["CharacterInfo"]),
@@ -42,8 +40,6 @@ let package = Package(
         .library(name: "TextEditing", targets: ["TextEditing"]),
         .library(name: "TextFind", targets: ["TextFind"]),
         .library(name: "UnicodeNormalization", targets: ["UnicodeNormalization"]),
-        
-        .library(name: "Shortcut", targets: ["Shortcut"]),
     ],
     dependencies: [
         .package(url: "https://github.com/realm/SwiftLint", from: Version(0, 55, 0)),
@@ -89,9 +85,6 @@ let package = Package(
         .testTarget(name: "UnicodeNormalizationTests", dependencies: ["UnicodeNormalization"]),
         
         .target(name: "ValueRange"),
-        
-        .target(name: "Shortcut", resources: [.process("Resources")]),
-        .testTarget(name: "ShortcutTests", dependencies: ["Shortcut"]),
     ],
     swiftLanguageVersions: [.v6]
 )

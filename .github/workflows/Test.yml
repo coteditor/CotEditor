@@ -20,6 +20,9 @@ jobs:
     - name: Unit Test for EditorCore
       run: |
         swift test --package-path Packages/EditorCore --enable-swift-testing  --quiet
+    - name: Unit Test for EditorKit
+      run: |
+        swift test --package-path Packages/EditorKit --enable-swift-testing  --quiet
     - name: Unit Test for SyntaxMap
       run: |
         swift test --package-path Packages/SyntaxMap --enable-swift-testing  --quiet

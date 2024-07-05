@@ -564,6 +564,8 @@
 		2AB9E4C02B830902004E5BDC /* FormatSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */; };
 		2AB9E4C12B830902004E5BDC /* FormatSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */; };
 		2ABB27D22C38268300AFCD0B /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB27CD2C3824DE00AFCD0B /* Numerics */; };
+		2ABB27D62C382AD400AFCD0B /* MacUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB27D52C382AD400AFCD0B /* MacUI */; };
+		2ABB27D82C382ADF00AFCD0B /* MacUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB27D72C382ADF00AFCD0B /* MacUI */; };
 		2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
 		2ABBACA21E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
@@ -1107,6 +1109,7 @@
 		2AB857ED2B930B070079CFA2 /* Syntax+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Syntax+Localization.swift"; sourceTree = "<group>"; };
 		2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxManager.swift; sourceTree = "<group>"; };
 		2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = FormatSettings.xcstrings; sourceTree = "<group>"; };
+		2ABB27D32C382A7D00AFCD0B /* MacUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MacUI; sourceTree = "<group>"; };
 		2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+ScriptingSupport.swift"; sourceTree = "<group>"; };
 		2ABEFB6923DC0CA0008769F4 /* EditorCounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorCounterTests.swift; sourceTree = "<group>"; };
 		2ABF86BC208C3C630082D52B /* AudioToolbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioToolbox.swift; sourceTree = "<group>"; };
@@ -1235,6 +1238,7 @@
 			files = (
 				2ACD02BF22A87F0400893051 /* ColorCode in Frameworks */,
 				2A1380092C22E9B500093BF3 /* EditorCore in Frameworks */,
+				2ABB27D62C382AD400AFCD0B /* MacUI in Frameworks */,
 				2ACAAC1C2B85E74C0041B095 /* SyntaxMap in Frameworks */,
 				2AA2C6FC24399A920017D1EC /* Yams in Frameworks */,
 			);
@@ -1254,6 +1258,7 @@
 			files = (
 				2ACD02BD22A87EFD00893051 /* ColorCode in Frameworks */,
 				2A13800B2C22EA4100093BF3 /* EditorCore in Frameworks */,
+				2ABB27D82C382ADF00AFCD0B /* MacUI in Frameworks */,
 				2ACAAC1E2B85E7530041B095 /* SyntaxMap in Frameworks */,
 				2AA2C6FE24399AA20017D1EC /* Yams in Frameworks */,
 				2AAAE6E526DB82F800C5F0AC /* Sparkle in Frameworks */,
@@ -1602,6 +1607,7 @@
 				2A3F18F8203270BE002F1CA7 /* UI Tests */,
 				2A7E06EB2C1A79B600E5396D /* Packages */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
+				2ABB27D42C382AD400AFCD0B /* Frameworks */,
 			);
 			name = CotEditor;
 			sourceTree = "<group>";
@@ -1882,6 +1888,7 @@
 		2A7E06EB2C1A79B600E5396D /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				2ABB27D32C382A7D00AFCD0B /* MacUI */,
 				2A7E06E52C1A711B00E5396D /* EditorCore */,
 				2A8544E6267872E0006EF01A /* SyntaxMap */,
 			);
@@ -2059,6 +2066,13 @@
 				2AA6731F2B917B8F00B8F7E6 /* Other Views */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		2ABB27D42C382AD400AFCD0B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		2AC6BFCF21D00A8500FF325C /* Regex Parser */ = {
@@ -2298,6 +2312,7 @@
 				2AA2C6FB24399A920017D1EC /* Yams */,
 				2ACAAC1B2B85E74C0041B095 /* SyntaxMap */,
 				2A1380082C22E9B500093BF3 /* EditorCore */,
+				2ABB27D52C382AD400AFCD0B /* MacUI */,
 			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = CotEditor;
@@ -2349,6 +2364,7 @@
 				2AAAE6E426DB82F800C5F0AC /* Sparkle */,
 				2ACAAC1D2B85E7530041B095 /* SyntaxMap */,
 				2A13800A2C22EA4100093BF3 /* EditorCore */,
+				2ABB27D72C382ADF00AFCD0B /* MacUI */,
 			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = CotEditor;
@@ -3832,6 +3848,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2ABB27CC2C3824DE00AFCD0B /* XCRemoteSwiftPackageReference "swift-numerics" */;
 			productName = Numerics;
+		};
+		2ABB27D52C382AD400AFCD0B /* MacUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MacUI;
+		};
+		2ABB27D72C382ADF00AFCD0B /* MacUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MacUI;
 		};
 		2ACAAC1B2B85E74C0041B095 /* SyntaxMap */ = {
 			isa = XCSwiftPackageProductDependency;
