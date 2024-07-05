@@ -1,5 +1,6 @@
 //
 //  InspectorTabView.swift
+//  InspectorTabView
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import AppKit
 
-protocol InspectorTabViewDelegate: NSTabViewDelegate {
+public protocol InspectorTabViewDelegate: NSTabViewDelegate {
     
     /// Provides custom image for selected tab view item.
     ///
@@ -37,7 +38,7 @@ protocol InspectorTabViewDelegate: NSTabViewDelegate {
 }
 
 
-final class InspectorTabView: NSTabView {
+public final class InspectorTabView: NSTabView {
     
     // MARK: Private Properties
     
@@ -49,7 +50,7 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Lifecycle
     
-    override init(frame frameRect: NSRect) {
+    public override init(frame frameRect: NSRect) {
         
         super.init(frame: frameRect)
         
@@ -101,7 +102,7 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Tab View Methods
     
-    override var contentRect: NSRect {
+    public override var contentRect: NSRect {
         
         // take off control space
         let controlHeight = self.segmentedControl.frame.height + self.controlOffset * 2
@@ -115,7 +116,7 @@ final class InspectorTabView: NSTabView {
     }
     
     
-    override func layout() {
+    public override func layout() {
         
         super.layout()
         
@@ -123,7 +124,7 @@ final class InspectorTabView: NSTabView {
     }
     
     
-    override func selectTabViewItem(at index: Int) {
+    public override func selectTabViewItem(at index: Int) {
         
         super.selectTabViewItem(at: index)
         
@@ -131,7 +132,7 @@ final class InspectorTabView: NSTabView {
     }
     
     
-    override func insertTabViewItem(_ tabViewItem: NSTabViewItem, at index: Int) {
+    public override func insertTabViewItem(_ tabViewItem: NSTabViewItem, at index: Int) {
         
         super.insertTabViewItem(tabViewItem, at: index)
         
@@ -139,7 +140,7 @@ final class InspectorTabView: NSTabView {
     }
     
     
-    override func removeTabViewItem(_ tabViewItem: NSTabViewItem) {
+    public override func removeTabViewItem(_ tabViewItem: NSTabViewItem) {
         
         super.removeTabViewItem(tabViewItem)
         

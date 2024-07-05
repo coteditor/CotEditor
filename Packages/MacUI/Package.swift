@@ -12,6 +12,7 @@ let package = Package(
     products: [
         .library(name: "MacUI", targets: [
             "BidiScrollView",
+            "InspectorTabView",
             "Shortcut",
         ]),
         
@@ -22,6 +23,7 @@ let package = Package(
     ],
     targets: [
         .target(name: "BidiScrollView"),
+        .target(name: "InspectorTabView"),
         
         .target(name: "Shortcut", resources: [.process("Resources")]),
         .testTarget(name: "ShortcutTests", dependencies: ["Shortcut"]),

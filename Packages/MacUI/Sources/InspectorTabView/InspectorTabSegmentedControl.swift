@@ -1,5 +1,6 @@
 //
 //  InspectorTabSegmentedControl.swift
+//  InspectorTabView
 //
 //  CotEditor
 //  https://coteditor.com

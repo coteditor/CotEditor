@@ -632,10 +632,6 @@
 		2ACDC0981D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0961D172B2A009B72D6 /* PaddingTextFieldCell.swift */; };
 		2ACDC09A1D172CDE009B72D6 /* AntialiasingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0991D172CDE009B72D6 /* AntialiasingText.swift */; };
 		2ACDC09B1D172CDE009B72D6 /* AntialiasingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0991D172CDE009B72D6 /* AntialiasingText.swift */; };
-		2ACDC0A31D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A21D173250009B72D6 /* InspectorTabSegmentedControl.swift */; };
-		2ACDC0A41D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A21D173250009B72D6 /* InspectorTabSegmentedControl.swift */; };
-		2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */; };
-		2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */; };
 		2ACDE28D2406B9C000FC31EC /* ThemeListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1261E714D230027192A /* ThemeListView.storyboard */; };
 		2ACDE29A2406B9C000FC31EC /* FindPanelFieldView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D13401D1FE34F00D38E6A /* FindPanelFieldView.storyboard */; };
 		2ACDE29C2406B9C000FC31EC /* SyntaxListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1361E715E5B0027192A /* SyntaxListView.storyboard */; };
@@ -1139,8 +1135,6 @@
 		2ACDC0901D1726BD009B72D6 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		2ACDC0961D172B2A009B72D6 /* PaddingTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingTextFieldCell.swift; sourceTree = "<group>"; };
 		2ACDC0991D172CDE009B72D6 /* AntialiasingText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntialiasingText.swift; sourceTree = "<group>"; };
-		2ACDC0A21D173250009B72D6 /* InspectorTabSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorTabSegmentedControl.swift; sourceTree = "<group>"; };
-		2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorTabView.swift; sourceTree = "<group>"; };
 		2ACF23AD26302A4C002B5E10 /* Theme+Syntax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Theme+Syntax.swift"; sourceTree = "<group>"; };
 		2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetachablePopoverViewController.swift; sourceTree = "<group>"; };
 		2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelContentViewController.swift; sourceTree = "<group>"; };
@@ -1380,7 +1374,6 @@
 		2A15832C18E3A29A00601026 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2ADD36991CFCADAD00F3175D /* Inspector Tab View */,
 				2AE95A192A86270000E85CF5 /* HoleContentView.swift */,
 				2A68722E288A5C44006D6B41 /* DraggableHostingView.swift */,
 				2ACDC0901D1726BD009B72D6 /* DotView.swift */,
@@ -2163,15 +2156,6 @@
 			name = Inspector;
 			sourceTree = "<group>";
 		};
-		2ADD36991CFCADAD00F3175D /* Inspector Tab View */ = {
-			isa = PBXGroup;
-			children = (
-				2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */,
-				2ACDC0A21D173250009B72D6 /* InspectorTabSegmentedControl.swift */,
-			);
-			name = "Inspector Tab View";
-			sourceTree = "<group>";
-		};
 		2AF601CB296F925200F6F1E8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -2798,8 +2782,6 @@
 				2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersView.swift in Sources */,
 				2AF6A5C728053179005F580B /* InconsistentLineEndingsView.swift in Sources */,
 				2A1083F02944837E00751DAE /* InsetTextField.swift in Sources */,
-				2ACDC0A41D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
-				2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2AAB4C001D2444930049A68B /* InspectorViewController.swift in Sources */,
 				2A4257BD1D239F850086DAAD /* Invisible+UserDefaults.swift in Sources */,
 				2A55D5EA2B7A86190092DE48 /* IssueReport.swift in Sources */,
@@ -3117,8 +3099,6 @@
 				2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersView.swift in Sources */,
 				2AF6A5C828053179005F580B /* InconsistentLineEndingsView.swift in Sources */,
 				2A1083F12944837E00751DAE /* InsetTextField.swift in Sources */,
-				2ACDC0A31D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
-				2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2AAB4BFF1D2444930049A68B /* InspectorViewController.swift in Sources */,
 				2A4257BC1D239F850086DAAD /* Invisible+UserDefaults.swift in Sources */,
 				2A55D5EB2B7A86190092DE48 /* IssueReport.swift in Sources */,
