@@ -47,7 +47,7 @@
 ### Improvements
 
 - Change to disable the smart quotes option in the Mode settings by default.
-- Draw invisible symbols for invisible operators (U+2061, U+2062, U+2063, and U+2064).
+- Draw invisible operators (U+2061, U+2062, U+2063, and U+2064) as invisible control symbols.
 - Update the Lisp, Lua, Scheme, and Tcl syntaxes to update interpreters (thanks to Renfei!).
 - [non-AppStore ver.] Update Sparkle from 2.6.3 to 2.6.4.
 
@@ -55,6 +55,7 @@
 ### Fixes
 
 - Fix an issue that a document kept in the Dock was not brought to the front on the reopen event even though no documents were displayed.
+- Fix an issue that the line number view went under the toolbar when the text orientation was vertical and the navigation bar was hidden.
 - Fix the view layout in the Quick Action bar.
 - Fix a potential memory leak.
 
@@ -322,7 +323,7 @@
 
 ### Improvements
 
-- When the file encoding is incompatible with the document content, display a notification instead of silently overwriting the document file with lossy data in autosaving until the user explicitly allows it.
+- When the file encoding is incompatible with the document contents, display a notification instead of silently overwriting the document file with lossy data in autosaving until the user explicitly allows it.
 - Suppress displaying the dialog for saving in an incompatible encoding when the user once allowed it.
 - Update the C syntax to improve highlighting numbers.
 -  Deprecate the future to interpret `Shift_JIS` as Shift JIS or Shift JIS X0213 according to the user's priority setting when referring to encoding declarations in documents in encoding detection.
@@ -1920,7 +1921,7 @@
 - Live update selection counts while moving the selection.
 - Scroll editor by swiping the line number area.
 - Previously, CotEditor scripts written in Unix scripts, such as Ruby or Python, were decoded using the user-preferred file-encoding set in the Format preferences pane for normal documents, now they are always interpreted as UTF-8.
-- Avoid showing the "edited" indicator in the close button of document windows when the document content is empty and therefore can close the window without the confirmation dialog.
+- Avoid showing the "edited" indicator in the close button of document windows when the document contents are empty and therefore can close the window without the confirmation dialog.
 - Remove the toolbar button to toggle page guide visibility.
 - Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x.
 - [trivial] Improve tooltips of toolbar icons to reflect the current document state.
@@ -2550,7 +2551,7 @@ no change.
 
 ### New Features
 
-- Add new variable “file content” to File Drop feature to insert the file content when the dropped file is a text file.
+- Add new variable “file content” to File Drop feature to insert the file contents when the dropped file is a text file.
 
 
 ### Improvements
@@ -5183,7 +5184,7 @@ no change.
     - Add stylesheet keyword to color code type.
     - Add stylesheet keyword color list to editor panel.
     - Make editor panel resizable.
-- Now syntax style is automatically set to XML on file opening if no appropriate style can be found but the file content starts with an XML declaration.
+- Now syntax style is automatically set to XML on file opening if no appropriate style can be found but the file contents start with an XML declaration.
 - Update word completion list setting in Edit pane in Preferences (The previous setting has been reset).
 - Support “swipe to delete” for some tables in Preferences on El Capitan.
 - Improve contextual menu for theme list on preferences.
@@ -5224,7 +5225,7 @@ no change.
     - __for advanced users__: In this feature, CotEditor saves an *extended attribute* which named `com.coteditor.VerticalText` to the file *only when* the editor's text orientation is vertical. You can even disable the feature running the command `defaults write com.coteditor.CotEditor savesTextOrientation -bool NO` in Terminal.
 - Line number view for vertical text orientation.
 - Print with vertical text orientation.
-- Add interpreter name list to the syntax style definition to determine syntax style from the shebang in the file content for in case when syntax style cannot be determined from the file name.
+- Add interpreter name list to the syntax style definition to determine syntax style from the shebang in the file contents for in case when syntax style cannot be determined from the file name.
     - From this change, some of the bundled syntax styles are also updated.
 - Add `encoding:` and `coding:` to the encoding declaration keywords which will be used on encoding auto-detection (interpreting priorities are: `charset=` > `encoding=` > `@charset` > `encoding:` > `coding:`).
 

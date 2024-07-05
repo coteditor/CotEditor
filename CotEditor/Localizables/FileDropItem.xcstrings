@@ -167,7 +167,7 @@
         }
       }
     },
-    "FileDropItem.Variable.fileContent.description" : {
+    "FileDropItem.Variable.fileContents.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -185,13 +185,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "(If the dropped file is a text file) file content."
+            "value" : "(If the dropped file is a text file) file contents."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(If the dropped file is a text file) file content."
+            "value" : "(If the dropped file is a text file) file contents."
           }
         },
         "es" : {

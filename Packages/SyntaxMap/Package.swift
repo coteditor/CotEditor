@@ -9,7 +9,6 @@ let package = Package(
         .macOS(.v14),
     ],
     products: [
-        .executable(name: "SyntaxMapBuilder", targets: ["SyntaxMapBuilder"]),
         .library(name: "SyntaxMap", targets: ["SyntaxMap"]),
     ],
     dependencies: [

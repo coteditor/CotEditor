@@ -69,6 +69,15 @@ final class ContentViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
+        // add hidden view for toolbar area
+        // -> To avoid the line number view goes under the toolbar when the text orientation is vertical
+        //    and the navigation bar is hidden. (2024-07, macOS 14)
+        let safeAreaView = NSVisualEffectView()
+        safeAreaView.material = .windowBackground
+        let safeAreaViewController = NSViewController()
+        safeAreaViewController.view = safeAreaView
+        let safeAreaViewItem = NSSplitViewItem(viewController: safeAreaViewController)
+        
         // set document view
         self.documentViewItem = NSSplitViewItem(viewController: self.createDocumentViewController())
         
@@ -77,7 +86,11 @@ final class ContentViewController: NSSplitViewController {
         self.statusBarItem.isCollapsed = !UserDefaults.standard[.showStatusBar]
         
         self.splitView.isVertical = false
-        self.splitViewItems = [self.documentViewItem, self.statusBarItem]
+        self.splitViewItems = [safeAreaViewItem, self.documentViewItem, self.statusBarItem]
+        
+        let constraint = safeAreaView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: -1)
+        constraint.priority = .defaultHigh
+        constraint.isActive = true
         
         // observe user defaults
         self.defaultsObserver = UserDefaults.standard.publisher(for: .showStatusBar, initial: false)
