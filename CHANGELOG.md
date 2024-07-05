@@ -14,6 +14,7 @@
 ### Fixes
 
 - Fix an issue that a document kept in the Dock was not brought to the front on the reopen event even though no documents were displayed.
+- Fix an issue that the line number view went under the toolbar when the text orientation was vertical and the navigation bar was hidden.
 - Fix the view layout in the Quick Action bar.
 - Fix a potential memory leak.
 

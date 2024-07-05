@@ -111,6 +111,18 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         // set identifier for state restoration
         self.identifier = NSUserInterfaceItemIdentifier("DocumentViewController")
         
+        // add hidden view for toolbar area
+        // -> To avoid the line number view goes under the toolbar when the text orientation is vertical
+        //    and the navigation bar is hidden. (2024-07, macOS 14)
+        let safeAreaView = NSVisualEffectView()
+        safeAreaView.material = .windowBackground
+        let safeAreaViewController = NSViewController()
+        safeAreaViewController.view = safeAreaView
+        self.addChild(safeAreaViewController)
+        let constraint = safeAreaView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: -1)
+        constraint.priority = .defaultHigh
+        constraint.isActive = true
+        
         self.addChild(self.splitViewController)
         
         // set status bar
