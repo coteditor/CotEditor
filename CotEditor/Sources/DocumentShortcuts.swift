@@ -32,9 +32,10 @@ struct DocumentShortcuts: AppShortcutsProvider {
         
         AppShortcut(intent: CreateDocumentIntent(),
                     phrases: [
-                        "Create Document in \(.applicationName)",
+                        "Create a document in \(.applicationName)",
                     ],
-                    shortTitle: "Create Document",
+                    shortTitle: LocalizedStringResource("CreateDocumentIntent.shortTitle",
+                                                        defaultValue: "Create Document", table: "Intents"),
                     systemImageName: "text.document")
     }
     
@@ -45,19 +46,18 @@ struct DocumentShortcuts: AppShortcutsProvider {
 struct CreateDocumentIntent: AppIntent {
     
     static let title = LocalizedStringResource("CreateDocumentIntent.title",
-                                               defaultValue: "Create Document",
-                                               table: "Intents")
+                                               defaultValue: "Create Document", table: "Intents")
     
     static let description = IntentDescription(
-        .init("CreateDocumentIntent.description",
-              defaultValue: "Create a new document with the specified text in CotEditor.",
-              table: "Intents")
+        LocalizedStringResource("CreateDocumentIntent.description",
+                                defaultValue: "Create a new document with the specified text in CotEditor.",
+                                table: "Intents")
     )
     
     static let openAppWhenRun: Bool = true
     
-    @Parameter(title: .init("CreateDocumentIntent.Parameter.contents",
-                            defaultValue: "Contents", table: "Intents"),
+    @Parameter(title: LocalizedStringResource("CreateDocumentIntent.Parameter.contents",
+                                              defaultValue: "Contents", table: "Intents"),
                inputOptions: .init(multiline: true))
     var contents: String?
     

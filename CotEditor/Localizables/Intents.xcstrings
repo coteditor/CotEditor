@@ -59,6 +59,35 @@
         }
       }
     },
+    "CreateDocumentIntent.shortTitle" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokument erstellen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Create Document"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Document"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書類を作成"
+          }
+        }
+      }
+    },
     "CreateDocumentIntent.title" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
