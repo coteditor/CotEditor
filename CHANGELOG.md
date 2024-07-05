@@ -6,7 +6,7 @@
 ### Improvements
 
 - Change to disable the smart quotes option in the Mode settings by default.
-- Draw invisible symbols for invisible operators (U+2061, U+2062, U+2063, and U+2064).
+- Draw invisible operators (U+2061, U+2062, U+2063, and U+2064) as invisible control symbols.
 - Update the Lisp, Lua, Scheme, and Tcl syntaxes to update interpreters (thanks to Renfei!).
 - [non-AppStore ver.] Update Sparkle from 2.6.3 to 2.6.4.
 
