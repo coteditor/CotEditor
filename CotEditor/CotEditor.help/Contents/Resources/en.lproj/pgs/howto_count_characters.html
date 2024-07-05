@@ -21,7 +21,7 @@
 
 <p>CotEditor can show the character count both in the status bar and the document inspector.</p>
 
-<p>The standard character count counts each grapheme cluster, that is defined as the “extended grapheme cluster” in Unicode. A grapheme cluster is a sequence of one or more Unicode code points that should be treated as a single unit for humans. For instance, while a normal character, such as A, is naturally counted as one character, an emoji consisting of multiple Unicode code points, such as 1️⃣ (<code>U+0031</code> <code>U+FE0F</code> <code>U+20E3</code>), is also counted as one character.</p>
+<p>The standard character count counts each grapheme cluster, which is defined as the “extended grapheme cluster” in Unicode. A grapheme cluster is a sequence of one or more Unicode code points that should be treated as a single unit for humans. For instance, while a normal character, such as A, is naturally counted as one character, an emoji consisting of multiple Unicode code points, such as 1️⃣ (<code>U+0031</code> <code>U+FE0F</code> <code>U+20E3</code>), is also counted as one character.</p>
 
 
 <h2>Advanced character count</h2>
@@ -32,8 +32,8 @@
 	<img src="../gfx/advancedCount@2x.png" width="725" alt="Advanced character count option dialog"/>
 </figure>
 
-<p>When starting the advanced character count, the counter appears at the bottom of the editor. The counter live-counts the characters in the way you set in the advanced character count option dialog. While text is selected in the editor, the counter shows the number of the selected characters; otherwise, it shows the number of the entire character in the document. You can drag the counter to put it out of the way.</p>
-<p>The options are shared in the application. When you changed the options in an editor, the way to count in other editors are also changed.</p>
+<p>When starting the advanced character count, the counter appears at the bottom of the editor. The counter live-counts the characters in the way you set in the advanced character count option dialog. While a part of the text is selected in the editor, the counter shows the number of the selected characters; otherwise, it indicates the number of the entire character in the document. You can drag the counter to put it out of the way.</p>
+<p>The options are shared in the application. When you change the options in an editor, the way they are counted in other editors also changes.</p>
 
 <p>Note that the advanced character count can affect the processing performance according to the combination of the settings especially when the document to count has a large size. To stop the count, choose the Stop Advanced Character Count command in the Text menu.</p>
 

@@ -312,7 +312,7 @@
 
 ### Fixes
 
-- Fix an issue that the application crashed when trying to convert the encoding of an unsaved document to one incompatible with the content.
+- Fix an issue that the application crashed when trying to convert the encoding of an unsaved document to one incompatible with the contents.
 - Fix an issue that the application could not open a document containing a specific pattern of letters.
 - Fix an issue that the validation error message in the syntax editor did not change even when errors exist.
 - Fix an issue that the incompatible characters list did not update under the specific condition.
@@ -1345,7 +1345,7 @@
 
 - [beta] Fix an issue that the Line Endings submenu in the Format menu did not display minor line ending types even with the Option key.
 - [beta] Fix an issue the item fields in the Outline inspector did not resize properly.
-- [beta] Fix a possible issue that the initial massage in the incompatible character list did not reflect the actual result.
+- [beta] Fix a possible issue that the initial message in the incompatible character list did not reflect the actual result.
 
 
 
@@ -1373,7 +1373,7 @@
 - Ability to handle documents holding multiple types of line endings.
 - Alert inconsistent line endings in the document when opening or reloading.
 - List the inconsistent line endings in the Warnings pane in the inspector.
-- Minor line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either when pressing the Option key or when the document's line ending is one of these).
+- Minor line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator) are added to the line endings options (These items are visible only either when pressing the Option key or when the document's line ending is one of these).
 - Add the hidden Paste Exactly command (Command-Option-V) that pastes text in the clipboard without any modification, such as adjusting line endings to the document setting.
 - Add an option Selection to the Pages section in the Print dialog to print only the selected text in the document.
 - Add history to the Unicode code point input.
@@ -1433,7 +1433,7 @@
 
 - Update Swift syntax style to add keywords added in Swift 5.6.
 - Update YAML syntax style for better coloring.
-- [trivial] Improve progress message for the Find/Replace All.
+- [trivial] Improve the progress message for the Find/Replace All.
 - [dev] Update the build environment to Xcode 13.3 (Swift 5.6).
 
 
@@ -1535,16 +1535,16 @@
 - Change the behavior to include the last empty line in the calculation when specifying lines with a negative value in the Go to Line command or via AppleScript.
 - Improve the character info section in the document inspector to display the list of code points for the selected character instead of displaying only when a single Unicode character is selected.
 - Update the Unicode block name list for the character inspector from Unicode 13.0.0 to Unicode 14.0.0.
-- Make sure the application relaunches even other tasks interrupt before termination.
+- Make sure the application relaunches even if other tasks interrupt before termination.
 - Improve some toolbar items to make their state distinguish even collapsed.
 - Display the command name in the error message when the input shortcut for key bindings is already taken by another command.
 - Improve VoiceOver accessibility.
 - Update the AppleScript guide in the help.
 - Improve the animation by drag & drop in tables.
-- Optimize several document parse.
+- Optimize several document parses.
 - [trivial] Adjust the margin of the editor area.
 - [trivial] Hide the filename extension of setting files by export by default.
-- [trivial] Finish key binding input in Key Bindings pane when another window becomes frontmost.
+- [trivial] Finish key binding input in the Key Bindings pane when another window becomes frontmost.
 - [trivial] Update some symbols for shortcut keys in the key binding settings.
 - [dev] Update the build environment to Xcode 13.2 (Swift 5.5).
 - [dev] Remove xcworkspace.
@@ -1560,7 +1560,7 @@
 - Fix an issue that the slider in the editor opacity toolbar item did not work when collapsed.
 - Fix an issue that the editor's opacity change did not apply immediately.
 - Fix an issue that some uncustomizable menu commands were provided in the Key Bindings preference pane.
-- Fix an issue in the snippet key bindings that shortcuts with only Shift key for modifier keys were accepted though does not work correctly.
+- Fix an issue in the snippet key bindings that shortcuts with only the Shift key for modifier keys were accepted though does not work correctly.
 - Fix an issue that some help buttons did not work (thanks to Alex Newson!).
 - Fix and minor update on localized strings.
 - Fix `cot` command to work also with Python 3.
@@ -1574,7 +1574,7 @@
 ### Fixes
 
 - Fix an issue that File Drop settings were not saved if both the extensions and syntax styles are for “all.”
-- Fix an issue that shortcuts for snippet did not accept Shift with a non-letter character, such as Shift + Return.
+- Fix an issue that shortcuts for snippets did not accept the Shift key with a non-letter character, such as Shift + Return.
 - Fix an issue that the rainbow cursor appeared when the document has a large number of incompatible characters.
 - Fix an issue that the rainbow cursor appeared when expanding the selection by “⌥⇧←” shortcut and invisible characters are contained in the new selection.
 - Fix an issue that the writing direction could be changed to right to left although when the text orientation is vertical.
@@ -1664,7 +1664,7 @@
 ### Fixes
 
 - Fix an issue that the application did not terminate when all windows are closed.
-- Fix an issue that annoying dialog that alerts saving was failed could be shown while typing when autosaving is disabled.
+- Fix an issue that an annoying dialog that alerts saving was failed could be shown while typing when autosaving is disabled.
 - Address an issue that typing in a large document could be slow when the Autosave feature is disabled.
 
 
@@ -1684,10 +1684,10 @@
 
 - Fix an issue that the application did not terminate when all windows are closed.
 - Fix an issue in the script menu that a script bundle (.scptd) was handled not as a script but as a folder.
-- Fix an issue in the snippet key bindings that shortcuts with only Shift key for modifier keys were accepted though does not work correctly.
+- Fix an issue in the snippet key bindings that shortcuts with only the Shift key for modifier keys were accepted though does not work correctly.
 - Fix an issue that the application rarely showed the open dialog on launch even when the user setting for the startup behavior is not “show open dialog.”
 - Fix literal number highlight with Ruby syntax style.
-- Address an issue that annoying dialog that alerts saving was failed could be shown while typing when autosaving is disabled.
+- Address an issue that an annoying dialog that alerts saving was failed could be shown while typing when autosaving is disabled.
 
 
 
@@ -1721,7 +1721,7 @@
 ### Fixes
 
 - Fix French localization.
-- [trivial] Fix script icon in the User Guide in Dark mode.
+- [trivial] Fix the script icon in the User Guide in Dark mode.
 
 
 
@@ -1830,7 +1830,7 @@
 - Checkmarks are not applied to the corresponding items in the menus for the collapsed toolbar items.
 - [Big Sur] Syntax highlight for the regular expression disappears when the text field becomes in editing (FB8719584).
 - [Big Sur] Screenshots in the User Guide are not updated yet.
-- [Big Sur] Document icons are not updated yet for Big Sur style.
+- [Big Sur] Document icons are not updated yet for the Big Sur style.
 
 
 
@@ -1839,7 +1839,7 @@
 
 ### Improvements
 
-- Round the corners of current line highlight.
+- Round the corners of current line highlights.
 - [beta][Big Sur] Match the inspector background to desktop color.
 - [beta][trivial] Update title bar color.
 
@@ -1847,8 +1847,8 @@
 ### Fixes
 
 - [beta] Fix an issue in the navigation bar that the split editor button did not update when changing the split orientation.
-- [beta] Fix an issue in the appearance pane and the multiple replacement panel that the newly added setting was not selected.
-- [beta] Address an issue that the status bar rarely compressed vertically.
+- [beta] Fix an issue in the Appearance pane and the multiple replacement panel that the newly added setting was not selected.
+- [beta] Address an issue that the status bar was rarely compressed vertically.
 - [beta] Workaround an issue that the initial text color of the pop-up menus in the status bar dimmed.
 
 
@@ -1900,7 +1900,7 @@
 ### Known Issues
 
 - Some of the contents in the User Guide are not updated yet.
-- Document icons are not updated yet for Big Sur style.
+- Document icons are not updated yet for the Big Sur style.
 
 
 
@@ -2089,7 +2089,7 @@
 - Improve the encodings list edit view.
 - Adjust the width of toolbar items.
 - Remove “vertical orientation” from the selections of the Writing Direction toolbar button.
-- Update help content.
+- Update help contents.
 - [trivial] Rename “Auto-Detect,” the option detecting the file encoding automatically, to “Automatic.”
 - [trivial] Update some labels in the Format pane.
 - [beta] Add menu item, toolbar item, and Touch Bar item to toggle visibility of indent guides in the current document.
@@ -3775,7 +3775,7 @@ no change.
 - Fix an issue where “Reset to Default” action in Font menu was ignored.
 - Fix an issue where matching brace was highlighted unwontedly also by text finding.
 - Fix an issue where the encoding and the line endings in the status bar were occasionally not displayed.
-- Fix an issue where the application froze by getting the content of a large document via the Script menu.
+- Fix an issue where the application froze by getting the contents of a large document via the Script menu.
 - Fix an issue where the second value of the printed time in the console was not sexagesimal.
 - Improve general stability.
 
@@ -3794,7 +3794,7 @@ no change.
 
 ### Fixes
 
-- Fix an issue where UNIX scripts could fail getting the content of the document.
+- Fix an issue where UNIX scripts could fail getting the contents of the document.
 - Fix an issue where font change in the preferences pane could be ignored.
 - Fix a potential issue where syntax keywords could be highlighted incorrectly if whitespaces accidentally get into keywords definition.
 - Workaround an issue where word suggestion in the Touch Bar cannot insert a word starts with a symbol correctly.
@@ -4230,7 +4230,7 @@ no change.
 - Fix an issue where find panel position was not saved.
 - Fix an issue where no beep sound was made when there was no match on find/replace.
 - Fix an issue where the application could freeze after replacing large document.
-- Fix an issue where editable area didn't spread to the full width after changing text orientation when content is empty.
+- Fix an issue where editable area didn't spread to the full width after changing text orientation when contents were empty.
 - Fix an issue where matched brackets in unfocused split editors were highlighted without the need while editing one of split editors.
 - Improve general stability.
 
@@ -5208,7 +5208,7 @@ no change.
     - Print settings preset can be stored in the print panel.
 - Better file encoding handling on revert action.
 - Set access-group `com.coteditor.CotEditor.edit` to CotEditor's script definition.
-- Change behavior to save `com.apple.TextEncoding` xattr on saving if the file had no content.
+- Change behavior to save `com.apple.TextEncoding` xattr on saving if the file had no contents.
 - Improve window restoration:
     - To restore also the last scroll position and cursor position.
     - To restore also the last syntax style mode of unsaved documents.
