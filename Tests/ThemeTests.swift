@@ -27,6 +27,7 @@
 import AppKit
 import UniformTypeIdentifiers
 import Testing
+import Numerics
 import Syntax
 @testable import CotEditor
 
@@ -43,13 +44,9 @@ actor ThemeTests {
         #expect(theme.name == themeName)
         #expect(theme.text.color == NSColor.black.usingColorSpace(.genericRGB))
         #expect(theme.insertionPoint.color == NSColor.black.usingColorSpace(.genericRGB))
-        withKnownIssue("Test-side issue") {
-            #expect(theme.invisibles.color.brightnessComponent == 0.725)  // accuracy: 0.01
-        }
+        #expect(theme.invisibles.color.brightnessComponent.isApproximatelyEqual(to: 0.725, relativeTolerance: 0.01))
         #expect(theme.background.color == NSColor.white.usingColorSpace(.genericRGB))
-        withKnownIssue("Test-side issue") {
-            #expect(theme.lineHighlight.color.brightnessComponent == 0.929)  // accuracy: 0.01
-        }
+        #expect(theme.lineHighlight.color.brightnessComponent.isApproximatelyEqual(to: 0.929, relativeTolerance: 0.01))
         #expect(theme.effectiveSecondarySelectionColor(for: NSAppearance(named: .aqua)!) == .unemphasizedSelectedContentBackgroundColor)
         #expect(!theme.isDarkTheme)
         

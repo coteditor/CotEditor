@@ -26,6 +26,7 @@
 
 import AppKit.NSFont
 import Testing
+import Numerics
 @testable import CotEditor
 
 struct FontExtensionTests {
@@ -44,9 +45,7 @@ struct FontExtensionTests {
         let boldFont = try #require(NSFont(name: "Menlo-Bold", size: 11))
         
         #expect(regularFont.weight == .regular)
-        withKnownIssue("Test-side issue") {
-            #expect(boldFont.weight.rawValue == NSFont.Weight.bold.rawValue)  // accuracy: 0.00001
-        }
+        #expect(boldFont.weight.rawValue.isApproximatelyEqual(to: NSFont.Weight.bold.rawValue, relativeTolerance: 0.00001))
         
         // The const value is (unfortunately) not exact equal...
         #expect(boldFont.weight.rawValue == 0.4)
@@ -61,8 +60,6 @@ struct FontExtensionTests {
         
         let avenirNextCondensed = try #require(NSFont(named: .avenirNextCondensed, weight: .bold, size: 11))
         #expect(avenirNextCondensed == NSFont(name: "AvenirNextCondensed-Bold", size: 11))
-        withKnownIssue("Test-side issue") {
-            #expect(avenirNextCondensed.weight.rawValue == NSFont.Weight.bold.rawValue)  // accuracy: 0.00001
-        }
+        #expect(avenirNextCondensed.weight.rawValue.isApproximatelyEqual(to: NSFont.Weight.bold.rawValue, relativeTolerance: 0.00001))
     }
 }

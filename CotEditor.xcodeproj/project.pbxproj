@@ -563,6 +563,7 @@
 		2AB857EF2B930B070079CFA2 /* Syntax+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB857ED2B930B070079CFA2 /* Syntax+Localization.swift */; };
 		2AB9E4C02B830902004E5BDC /* FormatSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */; };
 		2AB9E4C12B830902004E5BDC /* FormatSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */; };
+		2ABB27D22C38268300AFCD0B /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABB27CD2C3824DE00AFCD0B /* Numerics */; };
 		2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
 		2ABBACA21E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
@@ -1236,6 +1237,14 @@
 				2A1380092C22E9B500093BF3 /* EditorKit in Frameworks */,
 				2ACAAC1C2B85E74C0041B095 /* SyntaxMap in Frameworks */,
 				2AA2C6FC24399A920017D1EC /* Yams in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2ABB27CE2C38250A00AFCD0B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2ABB27D22C38268300AFCD0B /* Numerics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2301,6 +2310,7 @@
 			buildPhases = (
 				2AC71DDB1BF0BDBC002E1434 /* Sources */,
 				2AC71DDD1BF0BDBC002E1434 /* Resources */,
+				2ABB27CE2C38250A00AFCD0B /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2309,6 +2319,9 @@
 				2AA2C6F7243996EC0017D1EC /* PBXTargetDependency */,
 			);
 			name = Tests;
+			packageProductDependencies = (
+				2ABB27CD2C3824DE00AFCD0B /* Numerics */,
+			);
 			productName = CotEditorTests;
 			productReference = 2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -2421,6 +2434,7 @@
 				2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */,
 				2AAAE6E326DB82F800C5F0AC /* XCRemoteSwiftPackageReference "Sparkle" */,
 				2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				2ABB27CC2C3824DE00AFCD0B /* XCRemoteSwiftPackageReference "swift-numerics" */,
 			);
 			preferredProjectObjectVersion = 73;
 			projectDirPath = "";
@@ -3748,6 +3762,14 @@
 				minimumVersion = 0.55.1;
 			};
 		};
+		2ABB27CC2C3824DE00AFCD0B /* XCRemoteSwiftPackageReference "swift-numerics" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-numerics.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
 		2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/1024jp/WFColorCode";
@@ -3805,6 +3827,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		2ABB27CD2C3824DE00AFCD0B /* Numerics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2ABB27CC2C3824DE00AFCD0B /* XCRemoteSwiftPackageReference "swift-numerics" */;
+			productName = Numerics;
 		};
 		2ACAAC1B2B85E74C0041B095 /* SyntaxMap */ = {
 			isa = XCSwiftPackageProductDependency;
