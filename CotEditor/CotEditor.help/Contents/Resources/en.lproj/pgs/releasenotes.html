@@ -419,7 +419,7 @@
 		<h2>Fixes</h2>
 
 		<ul>
-			<li>Fix an issue that the application crashed when trying to convert the encoding of an unsaved document to one incompatible with the content.</li>
+			<li>Fix an issue that the application crashed when trying to convert the encoding of an unsaved document to one incompatible with the contents.</li>
 			<li>Fix an issue that the application could not open a document containing a specific pattern of letters.</li>
 			<li>Fix an issue that the validation error message in the syntax editor did not change even when errors exist.</li>
 			<li>Fix an issue that the incompatible characters list did not update under the specific condition.</li>
@@ -1614,7 +1614,7 @@
 			<li>Ability to handle documents holding multiple types of line endings.</li>
 			<li>Alert inconsistent line endings in the document when opening or reloading.</li>
 			<li>List the inconsistent line endings in the Warnings pane in the inspector.</li>
-			<li>Minor line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either when pressing the <kbd>Option</kbd> key or when the document’s line ending is one of these).</li>
+			<li>Minor line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator) are added to the line endings options (These items are visible only either when pressing the <kbd>Option</kbd> key or when the document’s line ending is one of these).</li>
 			<li>Add the hidden Paste Exactly command (<kbd>Command</kbd>-<kbd>Option</kbd>-<kbd>V</kbd>) that pastes text in the clipboard without any modification, such as adjusting line endings to the document setting.</li>
 			<li>Add an option Selection to the Pages section in the Print dialog to print only the selected text in the document.</li>
 			<li>Add history to the Unicode code point input.</li>
@@ -1716,7 +1716,7 @@
 		<ul>
 			<li>Update Swift syntax style to add keywords added in Swift 5.6.</li>
 			<li>Update YAML syntax style for better coloring.</li>
-			<li><span class="trivial">trivial</span>: Improve progress message for the Find/Replace All.</li>
+			<li><span class="trivial">trivial</span>: Improve the progress message for the Find/Replace All.</li>
 			<li><span class="trivial">dev</span>: Update the build environment to Xcode 13.3 (Swift 5.6).</li>
 		</ul>
 	</section>
@@ -1860,16 +1860,16 @@
 			<li>Change the behavior to include the last empty line in the calculation when specifying lines with a negative value in the Go to Line command or via AppleScript.</li>
 			<li>Improve the character info section in the document inspector to display the list of code points for the selected character instead of displaying only when a single Unicode character is selected.</li>
 			<li>Update the Unicode block name list for the character inspector from Unicode 13.0.0 to Unicode 14.0.0.</li>
-			<li>Make sure the application relaunches even other tasks interrupt before termination.</li>
+			<li>Make sure the application relaunches even if other tasks interrupt before termination.</li>
 			<li>Improve some toolbar items to make their state distinguish even collapsed.</li>
 			<li>Display the command name in the error message when the input shortcut for key bindings is already taken by another command.</li>
 			<li>Improve VoiceOver accessibility.</li>
 			<li>Update the AppleScript guide in the help.</li>
 			<li>Improve the animation by drag &amp; drop in tables.</li>
-			<li>Optimize several document parse.</li>
+			<li>Optimize several document parses.</li>
 			<li><span class="trivial">trivial</span>: Adjust the margin of the editor area.</li>
 			<li><span class="trivial">trivial</span>: Hide the filename extension of setting files by export by default.</li>
-			<li><span class="trivial">trivial</span>: Finish key binding input in Key Bindings pane when another window becomes frontmost.</li>
+			<li><span class="trivial">trivial</span>: Finish key binding input in the Key Bindings pane when another window becomes frontmost.</li>
 			<li><span class="trivial">trivial</span>: Update some symbols for shortcut keys in the key binding settings.</li>
 			<li><span class="trivial">dev</span>: Update the build environment to Xcode 13.2 (Swift 5.5).</li>
 			<li><span class="trivial">dev</span>: Remove xcworkspace.</li>
@@ -1889,7 +1889,7 @@
 			<li>Fix an issue that the slider in the editor opacity toolbar item did not work when collapsed.</li>
 			<li>Fix an issue that the editor’s opacity change did not apply immediately.</li>
 			<li>Fix an issue that some uncustomizable menu commands were provided in the Key Bindings preference pane.</li>
-			<li>Fix an issue in the snippet key bindings that shortcuts with only Shift key for modifier keys were accepted though does not work correctly.</li>
+			<li>Fix an issue in the snippet key bindings that shortcuts with only the Shift key for modifier keys were accepted though does not work correctly.</li>
 			<li>Fix an issue that the initial position of the side pane was occasionally stacked under the window toolbar.</li>
 			<li>Fix an issue that some help buttons did not work (thanks to Alex Newson!).</li>
 			<li>Fix and minor update on localized strings.</li>
@@ -1913,7 +1913,7 @@
 
 		<ul>
 			<li>Fix an issue that File Drop settings were not saved if both the extensions and syntax styles are for “all.”</li>
-			<li>Fix an issue that shortcuts for snippet did not accept Shift with a non-letter character, such as Shift + Return.</li>
+			<li>Fix an issue that shortcuts for snippets did not accept the Shift key with a non-letter character, such as Shift + Return.</li>
 			<li>Fix an issue that the rainbow cursor appeared when the document has a large number of incompatible characters.</li>
 			<li>Fix an issue that the rainbow cursor appeared when expanding the selection by <kbd>⌥⇧←</kbd> shortcut and invisible characters are contained in the new selection.</li>
 			<li>Fix an issue that the writing direction could be changed to right to left although when the text orientation is vertical.</li>
@@ -2062,7 +2062,7 @@
 
 <ul>
 	<li>Fix an issue that the application did not terminate when all windows are closed.</li>
-	<li>Fix an issue that annoying dialog that alerts saving was failed could be shown while typing when autosaving is disabled.</li>
+	<li>Fix an issue that an annoying dialog that alerts saving was failed could be shown while typing when autosaving is disabled.</li>
 	<li>Address an issue that typing in a large document could be slow when the Autosave feature is disabled. </li>
 </ul>
 </section>
@@ -2095,10 +2095,10 @@
 <ul>
 	<li>Fix an issue that the application did not terminate when all windows are closed.</li>
 	<li>Fix an issue in the script menu that a script bundle (.scptd) was handled not as a script but as a folder.</li>
-	<li>Fix an issue in the snippet key bindings that shortcuts with only Shift key for modifier keys were accepted though does not work correctly.</li>
+	<li>Fix an issue in the snippet key bindings that shortcuts with only the Shift key for modifier keys were accepted though does not work correctly.</li>
 	<li>Fix an issue that the application rarely showed the open dialog on launch even when the user setting for the startup behavior is not “show open dialog.”</li>
 	<li>Fix literal number highlight with Ruby syntax style.</li>
-	<li>Address an issue that annoying dialog that alerts saving was failed could be shown while typing when autosaving is disabled.</li>
+	<li>Address an issue that an annoying dialog that alerts saving was failed could be shown while typing when autosaving is disabled.</li>
 </ul>
 </section>
 </article>
@@ -2155,7 +2155,7 @@
 
 <ul>
 	<li>Fix French localization.</li>
-	<li><span class="trivial">trivial</span>: Fix script icon in the User Guide in Dark mode.</li>
+	<li><span class="trivial">trivial</span>: Fix the script icon in the User Guide in Dark mode.</li>
 </ul>
 </section>
 </article>
@@ -2232,7 +2232,7 @@
 	<li>Previously, CotEditor scripts written in Unix scripts, such as Ruby or Python, were decoded using the user-preferred file-encoding set in the Format preferences pane for normal documents, now they are always interpreted as UTF-8.</li>
 	<li>Avoid showing the “edited” indicator in the close button of document windows when the document contents are empty and therefore can close the window without the confirmation dialog.</li>
 	<li>Avoid discarding the current input when a new item is added while another item is in editing in the syntax style editor.</li>
-	<li>Round the corners of current line highlight.</li>
+	<li>Round the corners of current line highlights.</li>
 	<li>Put only the filename rather than the absolute path for the relative path insertion (<code>&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;</code>) when the document file itself is dropped into the editor.</li>
 	<li>Remove the toolbar button to toggle page guide visibility.</li>
 	<li>Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x.</li>
@@ -2506,7 +2506,7 @@
 	<li>Make borders of line number views and opacity sample tips more distinct in the high-contrast mode.</li>
 	<li>Adjust the visible area after unwrapping lines in RTL text mode.</li>
 	<li>Remove the default value of the snippet key bindings, that inserts <code>&lt;br /&gt;</code> with <kbd>⇧↩</kbd>.</li>
-	<li>Update help content.</li>
+	<li>Update help contents.</li>
 	<li><span class="trivial">trivial</span>: Rename “Auto-Detect,” the option detecting the file encoding automatically, to “Automatic.”</li>
 	<li><span class="trivial">trivial</span>: Omit surrogate pair code points in the character inspector if the character consists of multiple Unicode characters.</li>
 	<li><span class="trivial">trivial</span>: Adjust the drawing position of the zoomed character in the character inspector.</li>
@@ -4527,7 +4527,7 @@
 	<li>Fix an issue where “Reset to Default” action in Font menu was ignored.</li>
 	<li>Fix an issue where matching brace was highlighted unwontedly also by text finding.</li>
 	<li>Fix an issue where the encoding and the line endings in the status bar were occasionally not displayed.</li>
-	<li>Fix an issue where the application froze by getting the content of a large document via the Script menu.</li>
+	<li>Fix an issue where the application froze by getting the contents of a large document via the Script menu.</li>
 	<li>Fix an issue where the second value of the printed time in the console was not sexagesimal.</li>
 	<li>Improve general stability.</li>
 </ul>
@@ -4561,7 +4561,7 @@
 <h2>Fixes</h2>
 
 <ul>
-	<li>Fix an issue where UNIX scripts could fail getting the content of the document.</li>
+	<li>Fix an issue where UNIX scripts could fail getting the contents of the document.</li>
 	<li>Fix an issue where font change in the preferences pane could be ignored.</li>
 	<li>Fix a potential issue where syntax keywords could be highlighted incorrectly if whitespaces accidentally get into keywords definition.</li>
 	<li>Workaround an issue where word suggestion in the Touch Bar cannot insert a word starts with a symbol correctly.</li>
@@ -5214,7 +5214,7 @@
 	<li>Fix an issue where find panel position was not saved.</li>
 	<li>Fix an issue where no beep sound was made when there was no match on find/replace.</li>
 	<li>Fix an issue where the application could freeze after replace large document.</li>
-	<li>Fix an issue where editable area didn’t spread to the full width after changing text orientation when content is empty.</li>
+	<li>Fix an issue where editable area didn’t spread to the full width after changing text orientation when contents were empty.</li>
 	<li>Fix an issue where matched brackets in unfocused split editors were highlighted without the need while editing one of split editors.</li>
 	<li>Improve general stability.</li>
 </ul>
@@ -8021,7 +8021,7 @@
 	<li>After changing the line height or the font size, the scroll position is now adjusted so that the caret/selection can be seen.</li>
 	<li>Slightly enlarged the “Chars” and “Lines” fields on the Get Info drawer.</li>
 	<li>The Key Bindings preferences pane now has explanations of changing/assigning the Script menu’s keyboard shortcuts.</li>
-	<li>Bundled an instruction for ATOK users.</li>
+	<li>Bundled instructions for ATOK users.</li>
 	<li>Updated development environment, changed some build options.</li>
 </ul>
 </section>
