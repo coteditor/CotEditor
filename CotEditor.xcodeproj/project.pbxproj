@@ -127,8 +127,8 @@
 		2A1E7E602B8DC879004F0C07 /* Settings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E5F2B8DC879004F0C07 /* Settings.xcstrings */; };
 		2A1E7E612B8DC879004F0C07 /* Settings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A1E7E5F2B8DC879004F0C07 /* Settings.xcstrings */; };
 		2A1EB5C419AD469500C1E37E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Assets.xcassets */; };
-		2A1FAD5820A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
-		2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
+		2A1FAD5820A74D0A00566D7C /* NSParagraphStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* NSParagraphStyle.swift */; };
+		2A1FAD5920A74D0A00566D7C /* NSParagraphStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* NSParagraphStyle.swift */; };
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
 		2A21E6732BB44D5E0054C8A1 /* DonationSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A21E6722BB44D5E0054C8A1 /* DonationSettings.xcstrings */; };
 		2A21E6742BB44D5E0054C8A1 /* DonationSettings.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A21E6722BB44D5E0054C8A1 /* DonationSettings.xcstrings */; };
@@ -688,8 +688,6 @@
 		2AE214E32BEB3011007EF0E9 /* CSVFormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE214E12BEB3011007EF0E9 /* CSVFormatStyle.swift */; };
 		2AE214E52BEBAD1A007EF0E9 /* UUID+Transferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE214E42BEBAD1A007EF0E9 /* UUID+Transferable.swift */; };
 		2AE214E62BEBAD1A007EF0E9 /* UUID+Transferable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE214E42BEBAD1A007EF0E9 /* UUID+Transferable.swift */; };
-		2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */; };
-		2AE3F3191D3F8A1F005B8724 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */; };
 		2AE44DB82BE65C1F002A787D /* OutlineNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE44DB72BE65C1F002A787D /* OutlineNavigator.swift */; };
 		2AE44DB92BE65C1F002A787D /* OutlineNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE44DB72BE65C1F002A787D /* OutlineNavigator.swift */; };
 		2AE44DBB2BE67F81002A787D /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE44DBA2BE67F81002A787D /* ContentViewController.swift */; };
@@ -712,7 +710,6 @@
 		2AE95A1B2A86270000E85CF5 /* HoleContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE95A192A86270000E85CF5 /* HoleContentView.swift */; };
 		2AEAA1432C00B37300B5332F /* NSMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAA1422C00B37300B5332F /* NSMenu.swift */; };
 		2AEAA1442C00B37300B5332F /* NSMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAA1422C00B37300B5332F /* NSMenu.swift */; };
-		2AEBD25A246BB4C200EC97A3 /* NSAttributedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEBD259246BB4C200EC97A3 /* NSAttributedStringTests.swift */; };
 		2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC48321E641E4F00FB0F89 /* Snippet.swift */; };
 		2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC48321E641E4F00FB0F89 /* Snippet.swift */; };
 		2AEC69C41D41A1BE0089F96F /* EditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */; };
@@ -863,7 +860,7 @@
 		2A1E7E4E2B8D9706004F0C07 /* Console.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Console.xcstrings; sourceTree = "<group>"; };
 		2A1E7E5F2B8DC879004F0C07 /* Settings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Settings.xcstrings; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
+		2A1FAD5720A74D0A00566D7C /* NSParagraphStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSParagraphStyle.swift; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
 		2A21E6722BB44D5E0054C8A1 /* DonationSettings.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = DonationSettings.xcstrings; sourceTree = "<group>"; };
 		2A231A271E7BD82700C2A909 /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
@@ -1161,7 +1158,6 @@
 		2AE144C32B0222DB005E8CF1 /* LiveTextInsertionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTextInsertionView.swift; sourceTree = "<group>"; };
 		2AE214E12BEB3011007EF0E9 /* CSVFormatStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVFormatStyle.swift; sourceTree = "<group>"; };
 		2AE214E42BEBAD1A007EF0E9 /* UUID+Transferable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+Transferable.swift"; sourceTree = "<group>"; };
-		2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		2AE44DB72BE65C1F002A787D /* OutlineNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineNavigator.swift; sourceTree = "<group>"; };
 		2AE44DBA2BE67F81002A787D /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		2AE44DD02BE7CF48002A787D /* Donation.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Donation.xcstrings; sourceTree = "<group>"; };
@@ -1174,7 +1170,6 @@
 		2AE7A8D820450FE600830830 /* OutlineInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineInspectorView.swift; sourceTree = "<group>"; };
 		2AE95A192A86270000E85CF5 /* HoleContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoleContentView.swift; sourceTree = "<group>"; };
 		2AEAA1422C00B37300B5332F /* NSMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenu.swift; sourceTree = "<group>"; };
-		2AEBD259246BB4C200EC97A3 /* NSAttributedStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTests.swift; sourceTree = "<group>"; };
 		2AEC48321E641E4F00FB0F89 /* Snippet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snippet.swift; sourceTree = "<group>"; };
 		2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextView.swift; sourceTree = "<group>"; };
 		2AED466F1E425CD200751C45 /* TextFind.Error+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextFind.Error+Localization.swift"; sourceTree = "<group>"; };
@@ -1419,6 +1414,7 @@
 		2A180F462854E58400EBAF66 /* TextKit */ = {
 			isa = PBXGroup;
 			children = (
+				2A1FAD5720A74D0A00566D7C /* NSParagraphStyle.swift */,
 				2A7470682B12FA5700669A7B /* NSTextStorage+TextView.swift */,
 				2AE73F3F203D2FBB00D8903B /* NSLayoutManager.swift */,
 				2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */,
@@ -1523,7 +1519,6 @@
 		2A359E001DAEA0EE00FEF7AA /* AppKit */ = {
 			isa = PBXGroup;
 			children = (
-				2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */,
 				2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */,
 				2A5D2DC221908F4A006814D5 /* NSFont+Name.swift */,
 				2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */,
@@ -1555,7 +1550,6 @@
 				2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */,
 				2AA761341D45634400031AAF /* String+Counting.swift */,
 				2ABF9E9E2C1EC8590033D5E6 /* String+Filename.swift */,
-				2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */,
 				2A8DA9461D28ED93003D0C4B /* URL.swift */,
 				2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */,
 				2AE214E42BEBAD1A007EF0E9 /* UUID+Transferable.swift */,
@@ -2108,7 +2102,6 @@
 				2AFD218C27E0442B00E83E88 /* UTTypeExtensionTests.swift */,
 				2A476CB01D09D0500088E37A /* FontExtensionTests.swift */,
 				2AF0C1271D3DA6F800B6FCB6 /* FourCharCodeTests.swift */,
-				2AEBD259246BB4C200EC97A3 /* NSAttributedStringTests.swift */,
 				2A1380062C225FAF00093BF3 /* NSTextStorageTests.swift */,
 				2A89160B2394B87100AC13EE /* NSLayoutManagerTests.swift */,
 			);
@@ -2806,14 +2799,12 @@
 				2AF98CAF294C0670009AD47F /* MultipleReplaceSettingsView.swift in Sources */,
 				2A231A371E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift in Sources */,
 				2ACC5E421E7B08D300109ABC /* MultipleReplaceViewController.swift in Sources */,
-				2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */,
 				2AA45A521D2E938500A1A401 /* NavigationBar.swift in Sources */,
 				2AA704CE2987878B008CBCB5 /* Node.swift in Sources */,
 				2AC499622BFAE0920010BBB6 /* NoDocumentView.swift in Sources */,
 				2A10B6F621450A3B00B4205E /* NSAppearance.swift in Sources */,
 				2A685F6B2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */,
 				2A9003B9267715E600EC766F /* NSApplication.swift in Sources */,
-				2AE3F3191D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
 				2A4E638120ADC45F0033CE63 /* NSBezierPath.swift in Sources */,
 				2A5ADE891D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */,
 				2AC186DB1E2F414D002F4D27 /* NSDocument.swift in Sources */,
@@ -2825,6 +2816,7 @@
 				2A9AC937244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */,
 				2A484A3A236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
 				2AEAA1432C00B37300B5332F /* NSMenu.swift in Sources */,
+				2A1FAD5920A74D0A00566D7C /* NSParagraphStyle.swift in Sources */,
 				2AF99621235ACDD60041872E /* NSPrintInfo.swift in Sources */,
 				2A1ABCA827F07CED0054795D /* NSScroller.swift in Sources */,
 				2AA86283212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */,
@@ -2971,7 +2963,6 @@
 				2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */,
 				2A80BE9227FFFA8900D2F7FF /* LineEndingScannerTests.swift in Sources */,
 				2A1125C123F180FF006A1DB2 /* LineRangeCacheableTests.swift in Sources */,
-				2AEBD25A246BB4C200EC97A3 /* NSAttributedStringTests.swift in Sources */,
 				2A89160C2394B87100AC13EE /* NSLayoutManagerTests.swift in Sources */,
 				2A1380072C225FAF00093BF3 /* NSTextStorageTests.swift in Sources */,
 				2AFD328F2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift in Sources */,
@@ -3123,14 +3114,12 @@
 				2AF98CB0294C0670009AD47F /* MultipleReplaceSettingsView.swift in Sources */,
 				2A231A361E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift in Sources */,
 				2ACC5E411E7B08D300109ABC /* MultipleReplaceViewController.swift in Sources */,
-				2A1FAD5820A74D0A00566D7C /* MutableCopying.swift in Sources */,
 				2AA45A511D2E938500A1A401 /* NavigationBar.swift in Sources */,
 				2AA704CF2987878B008CBCB5 /* Node.swift in Sources */,
 				2AC499632BFAE0920010BBB6 /* NoDocumentView.swift in Sources */,
 				2A10B6F521450A3B00B4205E /* NSAppearance.swift in Sources */,
 				2A685F6A2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */,
 				2A9003BA267715E600EC766F /* NSApplication.swift in Sources */,
-				2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
 				2A4E638020ADC45F0033CE63 /* NSBezierPath.swift in Sources */,
 				2A5ADE881D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */,
 				2AC186DA1E2F414D002F4D27 /* NSDocument.swift in Sources */,
@@ -3142,6 +3131,7 @@
 				2A9AC938244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */,
 				2A484A39236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
 				2AEAA1442C00B37300B5332F /* NSMenu.swift in Sources */,
+				2A1FAD5820A74D0A00566D7C /* NSParagraphStyle.swift in Sources */,
 				2AF99620235ACDD60041872E /* NSPrintInfo.swift in Sources */,
 				2A1ABCA927F07CED0054795D /* NSScroller.swift in Sources */,
 				2AA86282212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */,

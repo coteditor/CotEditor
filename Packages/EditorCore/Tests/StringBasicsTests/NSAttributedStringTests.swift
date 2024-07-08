@@ -1,5 +1,6 @@
 //
 //  NSAttributedStringTests.swift
+//  StringBasicsTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,32 +26,32 @@
 
 import Foundation
 import Testing
-@testable import CotEditor
+@testable import StringBasics
 
 struct NSAttributedStringTests {
     
     @Test func add() throws {
         
-        let foo = NSMutableAttributedString(string: "foo", attributes: [.toolTip: "moof"])
+        let foo = NSMutableAttributedString(string: "foo", attributes: [.test: "moof"])
         let bar = NSAttributedString(string: "bar", attributes: [:])
         let fooBar = foo + bar
         
         #expect(!(fooBar is NSMutableAttributedString))
         #expect(fooBar.string == "foobar")
-        #expect(fooBar.attribute(.toolTip, at: 1, effectiveRange: nil) as? String == "moof")
-        #expect(fooBar.attribute(.toolTip, at: 3, effectiveRange: nil) == nil)
+        #expect(fooBar.attribute(.test, at: 1, effectiveRange: nil) as? String == "moof")
+        #expect(fooBar.attribute(.test, at: 3, effectiveRange: nil) == nil)
     }
     
     
     @Test func addEqual() throws {
         
-        var fooBar = NSAttributedString(string: "foo", attributes: [.toolTip: "moof"])
+        var fooBar = NSAttributedString(string: "foo", attributes: [.test: "moof"])
         fooBar += NSAttributedString(string: "bar", attributes: [:])
         
         #expect(!(fooBar is NSMutableAttributedString))
         #expect(fooBar.string == "foobar")
-        #expect(fooBar.attribute(.toolTip, at: 1, effectiveRange: nil) as? String == "moof")
-        #expect(fooBar.attribute(.toolTip, at: 3, effectiveRange: nil) == nil)
+        #expect(fooBar.attribute(.test, at: 1, effectiveRange: nil) as? String == "moof")
+        #expect(fooBar.attribute(.test, at: 3, effectiveRange: nil) == nil)
     }
     
     
@@ -89,33 +90,39 @@ struct NSAttributedStringTests {
     @Test func join() {
         
         let attrs: [NSAttributedString] = [
-            NSMutableAttributedString(string: "foo", attributes: [.toolTip: "moof"]),
+            NSMutableAttributedString(string: "foo", attributes: [.test: "moof"]),
             NSAttributedString(string: "bar"),
             NSAttributedString(string: "buz"),
         ]
-        let space = NSAttributedString(string: " ", attributes: [.toolTip: "space"])
+        let space = NSAttributedString(string: " ", attributes: [.test: "space"])
         
         let joined = attrs.joined()
         #expect(!(joined is NSMutableAttributedString))
         #expect(joined.string == "foobarbuz")
-        #expect(joined.attribute(.toolTip, at: 1, effectiveRange: nil) as? String == "moof")
-        #expect(joined.attribute(.toolTip, at: 3, effectiveRange: nil) == nil)
+        #expect(joined.attribute(.test, at: 1, effectiveRange: nil) as? String == "moof")
+        #expect(joined.attribute(.test, at: 3, effectiveRange: nil) == nil)
         
         let spaceJoined = attrs.joined(separator: space)
         #expect(!(spaceJoined is NSMutableAttributedString))
         #expect(spaceJoined.string == "foo bar buz")
-        #expect(spaceJoined.attribute(.toolTip, at: 0, effectiveRange: nil) as? String == "moof")
-        #expect(spaceJoined.attribute(.toolTip, at: 3, effectiveRange: nil) as? String == "space")
-        #expect(spaceJoined.attribute(.toolTip, at: 4, effectiveRange: nil) == nil)
+        #expect(spaceJoined.attribute(.test, at: 0, effectiveRange: nil) as? String == "moof")
+        #expect(spaceJoined.attribute(.test, at: 3, effectiveRange: nil) as? String == "space")
+        #expect(spaceJoined.attribute(.test, at: 4, effectiveRange: nil) == nil)
         
         let empty: [NSAttributedString] = []
         let emptyJoined = empty.joined(separator: space)
         #expect(!(emptyJoined is NSMutableAttributedString))
         #expect(emptyJoined.string.isEmpty)
         
-        let single: [NSAttributedString] = [NSMutableAttributedString(string: "foo", attributes: [.toolTip: "moof"])]
+        let single: [NSAttributedString] = [NSMutableAttributedString(string: "foo", attributes: [.test: "moof"])]
         let singleJoined = single.joined(separator: space)
         #expect(!(singleJoined is NSMutableAttributedString))
         #expect(singleJoined.string == "foo")
     }
+}
+
+
+private extension NSAttributedString.Key {
+    
+    static let test = NSAttributedString.Key("test")
 }

@@ -26,6 +26,7 @@
 import Foundation
 import AppKit.NSColor
 import Invisible
+import StringBasics
 
 final class RegularExpressionFormatter: Formatter {
     

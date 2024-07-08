@@ -1,5 +1,6 @@
 //
 //  NSAttributedString.swift
+//  StringBasics
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,12 +26,19 @@
 
 import Foundation.NSAttributedString
 
-extension NSAttributedString {
+public extension NSAttributedString {
     
     /// Whole range.
     final var range: NSRange {
         
         NSRange(location: 0, length: self.length)
+    }
+    
+    
+    /// The mutable object of the receiver.
+    final var mutable: NSMutableAttributedString {
+     
+        self.mutableCopy() as! NSMutableAttributedString
     }
     
     
@@ -111,7 +119,7 @@ extension NSAttributedString {
 
 
 
-extension NSMutableAttributedString {
+public extension NSMutableAttributedString {
     
     /// Appends another attributed string.
     static func += (lhs: inout NSMutableAttributedString, rhs: NSAttributedString) {
@@ -143,7 +151,7 @@ extension NSMutableAttributedString {
 
 
 
-extension Sequence<NSAttributedString> {
+public extension Sequence<NSAttributedString> {
     
     /// Returns a new attributed string by concatenating the elements of the sequence, adding the given separator between each element.
     ///

@@ -1,5 +1,5 @@
 //
-//  MutableCopying.swift
+//  NSParagraphStyle.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,36 +23,12 @@
 //  limitations under the License.
 //
 
-import Foundation
 import AppKit.NSParagraphStyle
 
-protocol MutableCopying: NSMutableCopying {
+extension NSParagraphStyle {
     
-    associatedtype MutableType
-    
-    var mutable: MutableType { get }
-}
-
-
-extension MutableCopying {
-    
-    var mutable: MutableType {
+    final var mutable: NSMutableParagraphStyle {
         
-        self.mutableCopy() as! MutableType
+        self.mutableCopy() as! NSMutableParagraphStyle
     }
-}
-
-
-
-// MARK: - Implementations
-
-extension NSAttributedString: MutableCopying {
-    
-    typealias MutableType = NSMutableAttributedString
-}
-
-
-extension NSParagraphStyle: MutableCopying {
-    
-    typealias MutableType = NSMutableParagraphStyle
 }
