@@ -26,7 +26,7 @@
 import AppKit
 import SwiftUI
 import Defaults
-import InspectorTabView
+import ControlUI
 
 enum InspectorPane: Int, CaseIterable {
     

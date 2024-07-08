@@ -27,7 +27,7 @@
 import AppKit
 import Combine
 import SwiftUI
-import BidiScrollView
+import ControlUI
 import CharacterInfo
 import Defaults
 import FuzzyRange
