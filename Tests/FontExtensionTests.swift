@@ -55,9 +55,6 @@ struct FontExtensionTests {
     
     @Test func namedFont() throws {
         
-        let menlo = try #require(NSFont(named: .menlo, size: 11))
-        #expect(menlo == NSFont(name: "Menlo-Regular", size: 11))
-        
         let avenirNextCondensed = try #require(NSFont(named: .avenirNextCondensed, weight: .bold, size: 11))
         #expect(avenirNextCondensed == NSFont(name: "AvenirNextCondensed-Bold", size: 11))
         #expect(avenirNextCondensed.weight.rawValue.isApproximatelyEqual(to: NSFont.Weight.bold.rawValue, relativeTolerance: 0.00001))

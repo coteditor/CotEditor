@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,7 +29,6 @@ extension NSFont {
     
     enum Name: String {
         
-        case menlo = "Menlo"
         case avenirNextCondensed = "AvenirNextCondensed"
     }
     
@@ -73,13 +72,6 @@ private extension NSFont.Name {
     private func weightName(of weight: NSFont.Weight) -> String? {
         
         switch self {
-            case .menlo:
-                switch weight {
-                    case .regular: "Regular"
-                    case .bold: "Bold"
-                    default: nil
-                }
-                
             case .avenirNextCondensed:
                 switch weight {
                     case .ultraLight: "UltraLight"
