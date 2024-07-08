@@ -11,8 +11,7 @@ let package = Package(
     ],
     products: [
         .library(name: "MacUI", targets: [
-            "BidiScrollView",
-            "InspectorTabView",
+            "UIControls",
             "Shortcut",
         ]),
         
@@ -22,8 +21,7 @@ let package = Package(
         .package(url: "https://github.com/realm/SwiftLint", from: Version(0, 55, 0)),
     ],
     targets: [
-        .target(name: "BidiScrollView"),
-        .target(name: "InspectorTabView"),
+        .target(name: "UIControls"),
         
         .target(name: "Shortcut", resources: [.process("Resources")]),
         .testTarget(name: "ShortcutTests", dependencies: ["Shortcut"]),
