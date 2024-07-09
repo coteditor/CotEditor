@@ -88,7 +88,13 @@ import ValueRange
     /// - Returns: The 1-based line number.
     func lineNumber(at index: Int) -> Int {
         
-        return self.lineEndings.countPrefix { $0.range.upperBound <= index } + 1
+        if let last = self.lineEndings.last?.range, last.upperBound <= index {
+            self.lineEndings.count + 1
+        } else if let index = self.lineEndings.binarySearchedFirstIndex(where: { $0.range.upperBound > index }) {
+            index + 1
+        } else {
+            1
+        }
     }
     
     
