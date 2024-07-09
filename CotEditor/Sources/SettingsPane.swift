@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import AppKit.NSImage
 
 enum SettingsPane: String, CaseIterable {
     
