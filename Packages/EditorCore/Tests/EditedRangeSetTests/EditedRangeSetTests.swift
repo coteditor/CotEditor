@@ -1,5 +1,6 @@
 //
 //  EditedRangeSetTests.swift
+//  EditedRangeSetTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +27,7 @@
 import AppKit.NSTextStorage
 import Combine
 import Testing
-@testable import CotEditor
+@testable import EditedRangeSet
 
 struct EditedRangeSetTests {
     

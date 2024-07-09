@@ -1,5 +1,6 @@
 //
 //  EditedRangeSet.swift
+//  EditedRangeSet
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,20 +25,35 @@
 //
 
 import Foundation
+import StringBasics
 
 /// Edited range storage to postpone validations.
 ///
 /// This is similar to the IndexSet but preserving zero-width edited ranges.
-struct EditedRangeSet {
+public struct EditedRangeSet: Sendable {
     
-    private(set) var ranges: [NSRange] = []
+    public private(set) var ranges: [NSRange] = []
     
+    
+    public init(range: NSRange? = nil) {
+        
+        if let range {
+            self.ranges = [range]
+        }
+    }
     
     
     /// The range that contains all ranges.
-    var range: NSRange? {
+    public var range: NSRange? {
         
         self.ranges.union
+    }
+    
+    
+    /// Clears all stored ranges.
+    public mutating func clear() {
+        
+        self.ranges.removeAll()
     }
     
     
@@ -46,7 +62,7 @@ struct EditedRangeSet {
     /// - Parameters:
     ///   - editedRange: The current remained range where edited.
     ///   - changeInLength: The difference between the current length of the edited range and its length before editing.
-    mutating func append(editedRange: NSRange, changeInLength: Int = 0) {
+    public mutating func append(editedRange: NSRange, changeInLength: Int) {
         
         assert(editedRange.location != NSNotFound)
         
@@ -78,27 +94,5 @@ struct EditedRangeSet {
             
             self.ranges.insert(editedRange, at: index)
         }
-    }
-    
-    
-    /// Clears all stored ranges.
-    mutating func clear() {
-        
-        self.ranges.removeAll()
-    }
-}
-
-
-private extension Sequence<NSRange> {
-    
-    /// The range that contains all ranges.
-    var union: NSRange? {
-        
-        guard
-            let lowerBound = self.map(\.lowerBound).min(),
-            let upperBound = self.map(\.upperBound).max()
-        else { return nil }
-        
-        return NSRange(lowerBound..<upperBound)
     }
 }

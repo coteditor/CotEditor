@@ -24,6 +24,7 @@
 //
 
 import AppKit.NSTextStorage
+import EditedRangeSet
 import StringBasics
 import ValueRange
 
@@ -32,7 +33,7 @@ import ValueRange
     // MARK: Private Properties
     
     private let textStorage: NSTextStorage
-    private var editedRanges = EditedRangeSet()
+    private var editedRanges: EditedRangeSet
     private let delay: Duration = .seconds(0.5)
     
     private var textEditingObserver: (any NSObjectProtocol)?
@@ -45,7 +46,7 @@ import ValueRange
         
         self.textStorage = textStorage
         
-        self.editedRanges.append(editedRange: textStorage.range)
+        self.editedRanges = EditedRangeSet(range: textStorage.range)
         self.textEditingObserver = self.observeTextStorage(textStorage)
         self.task = Task { try await self.detectInvalidRanges() }
     }

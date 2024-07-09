@@ -13,6 +13,7 @@ let package = Package(
         .library(name: "EditorCore", targets: [
             "CharacterInfo",
             "Defaults",
+            "EditedRangeSet",
             "FileEncoding",
             "FilePermissions",
             "FuzzyRange",
@@ -30,6 +31,7 @@ let package = Package(
         
         .library(name: "CharacterInfo", targets: ["CharacterInfo"]),
         .library(name: "Defaults", targets: ["Defaults"]),
+        .library(name: "EditedRangeSet", targets: ["EditedRangeSet"]),
         .library(name: "FileEncoding", targets: ["FileEncoding"]),
         .library(name: "FilePermissions", targets: ["FilePermissions"]),
         .library(name: "FuzzyRange", targets: ["FuzzyRange"]),
@@ -52,6 +54,9 @@ let package = Package(
         
         .target(name: "Defaults"),
         .testTarget(name: "DefaultsTests", dependencies: ["Defaults"]),
+        
+        .target(name: "EditedRangeSet", dependencies: ["StringBasics"]),
+        .testTarget(name: "EditedRangeSetTests", dependencies: ["EditedRangeSet"]),
         
         .target(name: "FileEncoding", dependencies: ["ValueRange"], resources: [.process("Resources")]),
         .testTarget(name: "FileEncodingTests", dependencies: ["FileEncoding"], resources: [.process("Resources")]),
