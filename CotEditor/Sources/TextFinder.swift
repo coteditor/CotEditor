@@ -542,11 +542,11 @@ struct TextFindAllResult {
         client.isEditable = false
         defer { client.isEditable = true }
         
-        let highlightColors = NSColor.textHighlighterColor.decompose(into: textFind.numberOfCaptureGroups + 1)
-        let lineCounter = LineCounter(textFind.string as NSString)
-        
         let progress = FindProgress(scope: textFind.scopeRange)
         let task = Task.detached(priority: .userInitiated) {
+            let highlightColors = NSColor.textHighlighterColor.decompose(into: textFind.numberOfCaptureGroups + 1)
+            let lineCounter = LineCounter(textFind.string as NSString)
+            
             var highlights: [ValueRange<NSColor>] = []
             var resultMatches: [TextFindAllResult.Match] = []  // not used if showsList is false
             
@@ -703,7 +703,7 @@ extension NSTextView {
 }
 
 
-private final class LineCounter: LineRangeCacheable, @unchecked Sendable {
+private final class LineCounter: LineRangeCacheable {
     
     let string: NSString
     var lineRangeCache = LineRangeCache()
