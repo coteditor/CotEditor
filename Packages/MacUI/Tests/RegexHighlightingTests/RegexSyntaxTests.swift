@@ -1,5 +1,6 @@
 //
-//  RegularExpressionSyntaxTests.swift
+//  RegexSyntaxTests.swift
+//  RegexHighlightingTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,15 +26,15 @@
 
 import Foundation
 import Testing
-@testable import CotEditor
+@testable import RegexHighlighting
 
-struct RegularExpressionSyntaxTests {
+struct RegexSyntaxTests {
     
     @Test func highlightBracket() throws {
         
         // -> Only the `]` at the first position will be evaluated as a character.
         
-        let character = RegularExpressionSyntaxType.character
+        let character = RegexSyntaxType.character
         
         #expect(character.ranges(in: "[abc]") == [NSRange(location: 1, length: 3)])
         #expect(character.ranges(in: "\\[a[a]") == [NSRange(location: 0, length: 2), NSRange(location: 4, length: 1)])
@@ -61,7 +62,7 @@ struct RegularExpressionSyntaxTests {
      
     @Test func highlightSymbol() {
         
-        let symbol = RegularExpressionSyntaxType.symbol
+        let symbol = RegexSyntaxType.symbol
         
         #expect(symbol.ranges(in: "[abc]") == [NSRange(location: 0, length: 5)])
         #expect(symbol.ranges(in: "\\[a[a]") == [NSRange(location: 3, length: 3)])

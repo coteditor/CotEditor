@@ -1,5 +1,6 @@
 //
-//  RegularExpressionSyntaxType.swift
+//  RegexSyntaxType.swift
+//  RegexHighlighting
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,15 +26,7 @@
 
 import Foundation.NSRegularExpression
 
-enum RegularExpressionParseMode {
-    
-    case search
-    case replacement(unescapes: Bool)
-}
-
-
-
-enum RegularExpressionSyntaxType: CaseIterable {
+enum RegexSyntaxType: CaseIterable {
     
     case character
     case backReference
@@ -42,13 +35,19 @@ enum RegularExpressionSyntaxType: CaseIterable {
     case anchor
     
     
-    // MARK: Public Methods
+    // MARK: Internal Methods
     
-    func ranges(in string: String, mode: RegularExpressionParseMode = .search) -> [NSRange] {
+    /// Extracts the ranges of the receiver type in the given string.
+    ///
+    /// - Parameters:
+    ///   - string: The string to parse.
+    ///   - mode: The regular expression parse mode.
+    /// - Returns: The ranges of the receiver type in the given string.
+    func ranges(in string: String, mode: RegexParseMode = .search) -> [NSRange] {
         
         var ranges = self.patterns(for: mode)
             .map { try! NSRegularExpression(pattern: $0) }
-            .flatMap { $0.matches(in: string, range: string.nsRange) }
+            .flatMap { $0.matches(in: string, range: NSRange(..<string.utf16.count)) }
             .map(\.range)
         
         if case .search = mode {
@@ -68,7 +67,11 @@ enum RegularExpressionSyntaxType: CaseIterable {
     
     // MARK: Private Methods
     
-    private func patterns(for mode: RegularExpressionParseMode) -> [String] {
+    /// Returns regular expression patterns to extract the ranges of the receiver type in a string.
+    ///
+    /// - Parameter mode: The regular expression parse mode.
+    /// - Returns: The regular expression patterns.
+    private func patterns(for mode: RegexParseMode) -> [String] {
         
         // regex pattern to avoid matching escaped character
         let escapeIgnorer = "(?<!\\\\)(?:\\\\\\\\)*"
@@ -133,7 +136,6 @@ enum RegularExpressionSyntaxType: CaseIterable {
         }
     }
 }
-
 
 
 private extension StringProtocol {

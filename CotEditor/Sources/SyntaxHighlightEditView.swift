@@ -80,7 +80,7 @@ struct SyntaxHighlightEditView: View {
                 
                 TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header"), value: \.begin) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
-                        RegexTextField(text: item.begin, showsError: true, showsInvisible: true)
+                        RegexTextField(text: item.begin, showsError: true)
                             .regexHighlighted(item.isRegularExpression.wrappedValue)
                             .style(.table)
                             .focused($focusedField, equals: item.id)
@@ -89,7 +89,7 @@ struct SyntaxHighlightEditView: View {
                 
                 TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.end)) { wrappedItem in
                     if let item = $items[id: wrappedItem.id] {
-                        RegexTextField(text: item.end ?? "", showsError: true, showsInvisible: true)
+                        RegexTextField(text: item.end ?? "", showsError: true)
                             .regexHighlighted(item.isRegularExpression.wrappedValue)
                             .style(.table)
                     }

@@ -1,5 +1,6 @@
 //
 //  NSTextSelectionDataSource.swift
+//  RegexHighlighting
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,8 +26,6 @@
 
 import AppKit
 
-// MARK: Range Conversion
-
 extension NSTextSelectionDataSource {
     
     /// Converts NSRange to NSTextRange.
@@ -41,18 +40,5 @@ extension NSTextSelectionDataSource {
         else { return nil }
         
         return NSTextRange(location: location, end: end)
-    }
-    
-    
-    /// Converts NSTextRange to NSRange.
-    ///
-    /// - Parameter textRange: The NSTextRange to convert.
-    /// - Returns: An NSRange.
-    func range(for textRange: NSTextRange) -> NSRange {
-        
-        let location = self.offset(from: self.documentRange.location, to: textRange.location)
-        let length = self.offset(from: textRange.location, to: textRange.endLocation)
-        
-        return NSRange(location: location, length: length)
     }
 }

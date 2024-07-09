@@ -245,8 +245,6 @@ struct RegularExpressionSortPatternView: View {
     
     @Namespace private var accessibility
     
-    private let formatter = RegularExpressionFormatter()
-    
     
     var body: some View {
         

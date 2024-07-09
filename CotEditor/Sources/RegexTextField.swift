@@ -25,6 +25,7 @@
 
 import AppKit
 import SwiftUI
+import RegexHighlighting
 
 struct RegexTextField: NSViewRepresentable {
     
@@ -38,9 +39,8 @@ struct RegexTextField: NSViewRepresentable {
     
     @Binding private var text: String
     private var isHighlighted: Bool = true
-    private let mode: RegularExpressionParseMode
+    private let mode: RegexParseMode
     private let showsError: Bool
-    private let showsInvisibles: Bool
     
     private let prompt: String?
     private let onSubmit: () -> Void
@@ -49,7 +49,7 @@ struct RegexTextField: NSViewRepresentable {
     private var style: Style = .automatic
     
     
-    init(text: Binding<String>, mode: RegularExpressionParseMode = .search, showsError: Bool = false, showsInvisible: Bool = true, prompt: String? = nil, onSubmit: @escaping () -> Void = {}) {
+    init(text: Binding<String>, mode: RegexParseMode = .search, showsError: Bool = false, prompt: String? = nil, onSubmit: @escaping () -> Void = {}) {
         
         self._text = text
         self.prompt = prompt
@@ -57,7 +57,6 @@ struct RegexTextField: NSViewRepresentable {
         
         self.mode = mode
         self.showsError = showsError
-        self.showsInvisibles = showsInvisible
     }
     
     
@@ -101,7 +100,7 @@ struct RegexTextField: NSViewRepresentable {
     
     func makeNSView(context: Context) -> NSTextField {
         
-        let textField = RegexNSTextField(string: self.text, mode: self.mode, showsError: self.showsError, showsInvisibles: self.showsInvisibles)
+        let textField = RegexNSTextField(string: self.text, mode: self.mode, showsError: self.showsError)
         textField.delegate = context.coordinator
         textField.placeholderString = self.prompt
         textField.isEditable = true
@@ -183,18 +182,16 @@ private final class RegexNSTextField: NSTextField {
     
     // MARK: Private Properties
     
-    private let regexFormatter: RegularExpressionFormatter
+    private let regexFormatter: RegexFormatter<NSColor>
     
     
     
     // MARK: Text Field Methods
     
-    init(string: String = "", mode: RegularExpressionParseMode, showsError: Bool, showsInvisibles: Bool) {
+    init(string: String = "", mode: RegexParseMode, showsError: Bool) {
         
-        let formatter = RegularExpressionFormatter()
+        let formatter = RegexFormatter(theme: .default, showsError: showsError)
         formatter.mode = mode
-        formatter.showsError = showsError
-        formatter.showsInvisibles = showsInvisibles
         self.regexFormatter = formatter
         
         super.init(frame: .zero)
@@ -254,7 +251,7 @@ private final class RegexNSTextField: NSTextField {
         
         guard let editor = self.currentEditor() as? NSTextView else { return }
         
-        editor.highlightAsRegularExpressionPattern(mode: self.regexFormatter.mode, enabled: self.isRegexHighlighted)
+        editor.highlightAsRegularExpressionPattern(mode: self.regexFormatter.mode, theme: self.regexFormatter.theme, enabled: self.isRegexHighlighted)
     }
 }
 

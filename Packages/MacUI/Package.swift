@@ -12,16 +12,22 @@ let package = Package(
     products: [
         .library(name: "MacUI", targets: [
             "ControlUI",
+            "RegexHighlighting",
             "Shortcut",
         ]),
         
+        .library(name: "RegexHighlighting", targets: ["RegexHighlighting"]),
         .library(name: "Shortcut", targets: ["Shortcut"]),
     ],
     dependencies: [
+        .package(path: "EditorCore"),
         .package(url: "https://github.com/realm/SwiftLint", from: Version(0, 55, 0)),
     ],
     targets: [
         .target(name: "ControlUI"),
+        
+        .target(name: "RegexHighlighting", dependencies: ["EditorCore"]),
+        .testTarget(name: "RegexHighlightingTests", dependencies: ["RegexHighlighting"]),
         
         .target(name: "Shortcut", resources: [.process("Resources")]),
         .testTarget(name: "ShortcutTests", dependencies: ["Shortcut"]),

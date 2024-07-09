@@ -24,16 +24,19 @@
 //
 
 import AppKit
+import RegexHighlighting
 import StringBasics
 
 final class RegexFindPanelTextView: FindPanelTextView {
     
     // MARK: Public Properties
     
-    var parseMode: RegularExpressionParseMode = .search  { didSet { self.invalidateRegularExpression() } }
+    var parseMode: RegexParseMode = .search  { didSet { self.invalidateRegularExpression() } }
     var isRegularExpressionMode: Bool = false  { didSet { self.invalidateRegularExpression() } }
     
     private(set) var isValid = true
+    
+    private let theme: RegexTheme<NSColor> = .default
     
     
     // MARK: Text View Methods
@@ -100,6 +103,6 @@ final class RegexFindPanelTextView: FindPanelTextView {
     /// Highlights the content string as a regular expression pattern.
     private func invalidateRegularExpression() {
         
-        self.isValid = self.highlightAsRegularExpressionPattern(mode: self.parseMode, enabled: self.isRegularExpressionMode)
+        self.isValid = self.highlightAsRegularExpressionPattern(mode: self.parseMode, theme: self.theme, enabled: self.isRegularExpressionMode)
     }
 }

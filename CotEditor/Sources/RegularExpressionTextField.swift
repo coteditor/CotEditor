@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import RegexHighlighting
 
 final class RegularExpressionTextField: NSTextField {
     
@@ -48,7 +49,7 @@ final class RegularExpressionTextField: NSTextField {
     
     // MARK: Private Properties
     
-    private let regexFormatter = RegularExpressionFormatter()
+    private let regexFormatter = RegexFormatter(theme: .default)
     
     @IBInspectable private var isReplacement: Bool = false
     
@@ -77,7 +78,6 @@ final class RegularExpressionTextField: NSTextField {
         
         // setup regex formatter
         self.regexFormatter.mode = self.parseMode
-        self.regexFormatter.showsInvisibles = true
     }
     
     
@@ -113,7 +113,7 @@ final class RegularExpressionTextField: NSTextField {
     
     // MARK: Private Methods
     
-    private var parseMode: RegularExpressionParseMode {
+    private var parseMode: RegexParseMode {
         
         self.isReplacement ? .replacement(unescapes: self.unescapesReplacement) : .search
     }
@@ -124,6 +124,6 @@ final class RegularExpressionTextField: NSTextField {
         
         guard let editor = self.currentEditor() as? NSTextView else { return }
         
-        editor.highlightAsRegularExpressionPattern(mode: self.parseMode, enabled: self.parsesRegularExpression)
+        editor.highlightAsRegularExpressionPattern(mode: self.parseMode, theme: self.regexFormatter.theme, enabled: self.parsesRegularExpression)
     }
 }

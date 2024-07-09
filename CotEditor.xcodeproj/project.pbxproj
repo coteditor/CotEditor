@@ -26,8 +26,6 @@
 		2A04E9C427FEFA87008C82D8 /* AdvancedCharacterCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE56CC6265F2F4C00B8A278 /* AdvancedCharacterCounterView.swift */; };
 		2A05081323D6B9E900602F5E /* NSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A05081223D6B9E900602F5E /* NSViewController.swift */; };
 		2A05081423D6B9E900602F5E /* NSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A05081223D6B9E900602F5E /* NSViewController.swift */; };
-		2A0778612072040500876277 /* RegularExpressionSyntaxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */; };
-		2A0778622072040500876277 /* RegularExpressionSyntaxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */; };
 		2A07A8FA2BABC182007CABFD /* About.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A07A8F92BABC182007CABFD /* About.xcstrings */; };
 		2A07A8FB2BABC182007CABFD /* About.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A07A8F92BABC182007CABFD /* About.xcstrings */; };
 		2A07A8FD2BABC1C3007CABFD /* Syntax.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A07A8FC2BABC1C3007CABFD /* Syntax.xcstrings */; };
@@ -81,12 +79,8 @@
 		2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17A3121D2D16F1001DD717 /* WindowContentViewController.swift */; };
 		2A17A3161D2D4319001DD717 /* DocumentWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17A3151D2D4319001DD717 /* DocumentWindow.swift */; };
 		2A17A3171D2D4319001DD717 /* DocumentWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17A3151D2D4319001DD717 /* DocumentWindow.swift */; };
-		2A180F4B2854E71800EBAF66 /* NSTextSelectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A180F4A2854E71800EBAF66 /* NSTextSelectionDataSource.swift */; };
-		2A180F4C2854E71800EBAF66 /* NSTextSelectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A180F4A2854E71800EBAF66 /* NSTextSelectionDataSource.swift */; };
-		2A1814B821CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */; };
-		2A1814B921CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */; };
-		2A1814BB21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814BA21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift */; };
-		2A1814BC21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814BA21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift */; };
+		2A1814BB21CF8F3800602214 /* RegexTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814BA21CF8F3800602214 /* RegexTheme.swift */; };
+		2A1814BC21CF8F3800602214 /* RegexTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814BA21CF8F3800602214 /* RegexTheme.swift */; };
 		2A1814BE21CFC9CF00602214 /* RegularExpressionTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814BD21CFC9CF00602214 /* RegularExpressionTextField.swift */; };
 		2A1814BF21CFC9CF00602214 /* RegularExpressionTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814BD21CFC9CF00602214 /* RegularExpressionTextField.swift */; };
 		2A1856051D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1856041D47E7FE008FA79E /* NSTextView+TextReplacement.swift */; };
@@ -587,8 +581,6 @@
 		2AC52BDC1D48CC0E007D6371 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */; };
 		2AC6069B20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6069A20416ADE00F9C839 /* OpenPanelAccessory.swift */; };
 		2AC6069C20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6069A20416ADE00F9C839 /* OpenPanelAccessory.swift */; };
-		2AC6BFD121D00ABD00FF325C /* NSTextView+RegexParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6BFD021D00ABD00FF325C /* NSTextView+RegexParse.swift */; };
-		2AC6BFD221D00ABD00FF325C /* NSTextView+RegexParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6BFD021D00ABD00FF325C /* NSTextView+RegexParse.swift */; };
 		2AC7044824EBB76B00454706 /* NSToolbarItem+Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC7044724EBB76B00454706 /* NSToolbarItem+Validatable.swift */; };
 		2AC7044924EBB76B00454706 /* NSToolbarItem+Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC7044724EBB76B00454706 /* NSToolbarItem+Validatable.swift */; };
 		2AC71DE21BF0BDBC002E1434 /* StringAdvancedCountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC71DE11BF0BDBC002E1434 /* StringAdvancedCountTests.swift */; };
@@ -750,7 +742,6 @@
 		2AFD218A27E0434100E83E88 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD218927E0434100E83E88 /* UTType.swift */; };
 		2AFD218B27E0434100E83E88 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD218927E0434100E83E88 /* UTType.swift */; };
 		2AFD218D27E0442B00E83E88 /* UTTypeExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD218C27E0442B00E83E88 /* UTTypeExtensionTests.swift */; };
-		2AFD328F2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD328E2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift */; };
 		2AFE848622AE71130001C4ED /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE848522AE71130001C4ED /* TextContainer.swift */; };
 		2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE848522AE71130001C4ED /* TextContainer.swift */; };
 		2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
@@ -806,7 +797,6 @@
 /* Begin PBXFileReference section */
 		2A04E9BA27FD6911008C82D8 /* SnippetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetTests.swift; sourceTree = "<group>"; };
 		2A05081223D6B9E900602F5E /* NSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewController.swift; sourceTree = "<group>"; };
-		2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionSyntaxType.swift; sourceTree = "<group>"; };
 		2A07A8F92BABC182007CABFD /* About.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = About.xcstrings; sourceTree = "<group>"; };
 		2A07A8FC2BABC1C3007CABFD /* Syntax.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = Syntax.xcstrings; sourceTree = "<group>"; };
 		2A07A8FF2BABC1EA007CABFD /* LinkButton.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = LinkButton.xcstrings; sourceTree = "<group>"; };
@@ -835,9 +825,7 @@
 		2A1679E51D3CE07100E8261D /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		2A17A3121D2D16F1001DD717 /* WindowContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowContentViewController.swift; sourceTree = "<group>"; };
 		2A17A3151D2D4319001DD717 /* DocumentWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindow.swift; sourceTree = "<group>"; };
-		2A180F4A2854E71800EBAF66 /* NSTextSelectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextSelectionDataSource.swift; sourceTree = "<group>"; };
-		2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionFormatter.swift; sourceTree = "<group>"; };
-		2A1814BA21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegularExpressionSyntaxType+Color.swift"; sourceTree = "<group>"; };
+		2A1814BA21CF8F3800602214 /* RegexTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexTheme.swift; sourceTree = "<group>"; };
 		2A1814BD21CFC9CF00602214 /* RegularExpressionTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionTextField.swift; sourceTree = "<group>"; };
 		2A1856041D47E7FE008FA79E /* NSTextView+TextReplacement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+TextReplacement.swift"; sourceTree = "<group>"; };
 		2A18560A1D47FA37008FA79E /* TextFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFinder.swift; sourceTree = "<group>"; };
@@ -1109,7 +1097,6 @@
 		2AC499612BFAE0920010BBB6 /* NoDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDocumentView.swift; sourceTree = "<group>"; };
 		2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		2AC6069A20416ADE00F9C839 /* OpenPanelAccessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPanelAccessory.swift; sourceTree = "<group>"; };
-		2AC6BFD021D00ABD00FF325C /* NSTextView+RegexParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+RegexParse.swift"; sourceTree = "<group>"; };
 		2AC7044724EBB76B00454706 /* NSToolbarItem+Validatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSToolbarItem+Validatable.swift"; sourceTree = "<group>"; };
 		2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC71DE11BF0BDBC002E1434 /* StringAdvancedCountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringAdvancedCountTests.swift; sourceTree = "<group>"; };
@@ -1197,7 +1184,6 @@
 		2AFB5AE71D597ABB003895A7 /* DefaultSettings+Encodings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DefaultSettings+Encodings.swift"; sourceTree = "<group>"; };
 		2AFD218927E0434100E83E88 /* UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		2AFD218C27E0442B00E83E88 /* UTTypeExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTTypeExtensionTests.swift; sourceTree = "<group>"; };
-		2AFD328E2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionSyntaxTests.swift; sourceTree = "<group>"; };
 		2AFE848522AE71130001C4ED /* TextContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextContainer.swift; sourceTree = "<group>"; };
 		2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppInfo.swift"; sourceTree = "<group>"; };
 		2AFFA7C22B16E93B005652CD /* FormatSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatSettingsView.swift; sourceTree = "<group>"; };
@@ -1419,7 +1405,6 @@
 				2AE73F3F203D2FBB00D8903B /* NSLayoutManager.swift */,
 				2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */,
 				2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */,
-				2A180F4A2854E71800EBAF66 /* NSTextSelectionDataSource.swift */,
 			);
 			name = TextKit;
 			sourceTree = "<group>";
@@ -1654,7 +1639,6 @@
 		2A3E61C627C4962B00C6E5B6 /* Formatters */ = {
 			isa = PBXGroup;
 			children = (
-				2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */,
 				2AE214E12BEB3011007EF0E9 /* CSVFormatStyle.swift */,
 				2A57B98E294ED75900771696 /* RangedIntegerFormatStyle.swift */,
 			);
@@ -1759,7 +1743,6 @@
 				2AA14CFA1FA47E9000EAF586 /* Script */,
 				2A505C07298952E5002080AA /* KeyBinding */,
 				2A78F571298C90520084B8B4 /* Snippet */,
-				2AC6BFCF21D00A8500FF325C /* Regex Parser */,
 				2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */,
 				2A50AA61204D513500D10A10 /* FileAttributes.swift */,
 				2AF073E21D33C3AB00770BA6 /* Theme.swift */,
@@ -1991,6 +1974,7 @@
 		2AA7BDD92C1B10A80075BB6C /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				2A1814BA21CF8F3800602214 /* RegexTheme.swift */,
 				2A428D432C2B03670051AD4F /* ValueRange+Identifiable.swift */,
 				2AA7BDDA2C1B10C80075BB6C /* UnicodeNormalizationForm.swift */,
 				2AA375461D40BDCB0080C27C /* LineEnding+Localization.swift */,
@@ -2044,16 +2028,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2AC6BFCF21D00A8500FF325C /* Regex Parser */ = {
-			isa = PBXGroup;
-			children = (
-				2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */,
-				2A1814BA21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift */,
-				2AC6BFD021D00ABD00FF325C /* NSTextView+RegexParse.swift */,
-			);
-			name = "Regex Parser";
 			sourceTree = "<group>";
 		};
 		2AC71DE01BF0BDBC002E1434 /* Tests */ = {
@@ -2122,7 +2096,6 @@
 				2A3F8F672429E04000CBBA89 /* DebouncerTests.swift */,
 				2A04E9BA27FD6911008C82D8 /* SnippetTests.swift */,
 				2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */,
-				2AFD328E2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift */,
 				2A57B991294EDD9600771696 /* FormatStylesTests.swift */,
 			);
 			name = Models;
@@ -2821,7 +2794,6 @@
 				2A1ABCA827F07CED0054795D /* NSScroller.swift in Sources */,
 				2AA86283212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */,
 				2AF63BA82A6FA4D900E1258E /* NSTableView.swift in Sources */,
-				2A180F4B2854E71800EBAF66 /* NSTextSelectionDataSource.swift in Sources */,
 				2ABBACA21E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */,
 				2A7470692B12FA5700669A7B /* NSTextStorage+TextView.swift in Sources */,
 				2A3A19E3206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */,
@@ -2831,7 +2803,6 @@
 				2ADD0AD9217A967200F78732 /* NSTextView+LineNumber.swift in Sources */,
 				2A72DA11209B778B005242B9 /* NSTextView+MultiCursor.swift in Sources */,
 				2A3A19E02068A76600516DE4 /* NSTextView+MultipleReplace.swift in Sources */,
-				2AC6BFD221D00ABD00FF325C /* NSTextView+RegexParse.swift in Sources */,
 				2AA4F6A120A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */,
 				2AD69B891D3E4FCD00FBD998 /* NSTextView+ScriptingSupport.swift in Sources */,
 				2AE73F44203E753C00D8903B /* NSTextView+Selection.swift in Sources */,
@@ -2862,10 +2833,8 @@
 				2A57B98F294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */,
 				2A4AF76820759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
 				2A73B9332A8F6620002F3A16 /* RegexTextField.swift in Sources */,
-				2A1814B921CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */,
+				2A1814BC21CF8F3800602214 /* RegexTheme.swift in Sources */,
 				2A53F56727585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */,
-				2A0778622072040500876277 /* RegularExpressionSyntaxType.swift in Sources */,
-				2A1814BC21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift in Sources */,
 				2A1814BF21CFC9CF00602214 /* RegularExpressionTextField.swift in Sources */,
 				2A3643E71E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */,
 				2A158C1F2945E423000A4EC1 /* SavePanelAccessory.swift in Sources */,
@@ -2965,7 +2934,6 @@
 				2A1125C123F180FF006A1DB2 /* LineRangeCacheableTests.swift in Sources */,
 				2A89160C2394B87100AC13EE /* NSLayoutManagerTests.swift in Sources */,
 				2A1380072C225FAF00093BF3 /* NSTextStorageTests.swift in Sources */,
-				2AFD328F2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift in Sources */,
 				2A04E9BB27FD6911008C82D8 /* SnippetTests.swift in Sources */,
 				2AC71DE21BF0BDBC002E1434 /* StringAdvancedCountTests.swift in Sources */,
 				2AE12DFE1E7DB7D200681F72 /* StringFilenameTests.swift in Sources */,
@@ -3136,7 +3104,6 @@
 				2A1ABCA927F07CED0054795D /* NSScroller.swift in Sources */,
 				2AA86282212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */,
 				2AF63BA92A6FA4D900E1258E /* NSTableView.swift in Sources */,
-				2A180F4C2854E71800EBAF66 /* NSTextSelectionDataSource.swift in Sources */,
 				2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */,
 				2A74706A2B12FA5700669A7B /* NSTextStorage+TextView.swift in Sources */,
 				2A3A19E2206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */,
@@ -3146,7 +3113,6 @@
 				2ADD0AD8217A967200F78732 /* NSTextView+LineNumber.swift in Sources */,
 				2A72DA10209B778B005242B9 /* NSTextView+MultiCursor.swift in Sources */,
 				2A3A19DF2068A76600516DE4 /* NSTextView+MultipleReplace.swift in Sources */,
-				2AC6BFD121D00ABD00FF325C /* NSTextView+RegexParse.swift in Sources */,
 				2AA4F6A020A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */,
 				2AD69B881D3E4FCD00FBD998 /* NSTextView+ScriptingSupport.swift in Sources */,
 				2AE73F43203E753C00D8903B /* NSTextView+Selection.swift in Sources */,
@@ -3177,10 +3143,8 @@
 				2A57B990294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */,
 				2A4AF76720759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
 				2A73B9342A8F6620002F3A16 /* RegexTextField.swift in Sources */,
-				2A1814B821CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */,
+				2A1814BB21CF8F3800602214 /* RegexTheme.swift in Sources */,
 				2A53F56827585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */,
-				2A0778612072040500876277 /* RegularExpressionSyntaxType.swift in Sources */,
-				2A1814BB21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift in Sources */,
 				2A1814BE21CFC9CF00602214 /* RegularExpressionTextField.swift in Sources */,
 				2A3643E61E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */,
 				2A158C202945E423000A4EC1 /* SavePanelAccessory.swift in Sources */,

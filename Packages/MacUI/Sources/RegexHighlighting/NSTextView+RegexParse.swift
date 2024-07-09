@@ -1,5 +1,6 @@
 //
 //  NSTextView+RegexParse.swift
+//  RegexHighlighting
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,20 +26,21 @@
 
 import AppKit
 
-extension NSTextView {
+public extension NSTextView {
     
     /// Invalidates the content string as a regular expression pattern and highlight them.
     ///
     /// - Parameters:
     ///   - mode: Parse mode of regular expression.
+    ///   - theme: The color theme for regex highlighting.
     ///   - enabled: If true, parse and highlight, otherwise just remove the current highlight.
     /// - Returns: Whether the contents are not invalid.
     @discardableResult
-    final func highlightAsRegularExpressionPattern(mode: RegularExpressionParseMode, enabled: Bool = true) -> Bool {
+    final func highlightAsRegularExpressionPattern(mode: RegexParseMode, theme: RegexTheme<NSColor>, enabled: Bool = true) -> Bool {
         
         guard
             let layoutManager = self.textLayoutManager
-        else { return self.highlightAsRegularExpressionPatternWithLegacyTextKit(mode: mode, enabled: enabled) }
+        else { return self.highlightAsRegularExpressionPatternWithLegacyTextKit(mode: mode, theme: theme, enabled: enabled) }
         
         // clear the last highlight anyway
         layoutManager.removeRenderingAttribute(.foregroundColor, for: layoutManager.documentRange)
@@ -54,10 +56,11 @@ extension NSTextView {
         }
         
         // highlight
-        for type in RegularExpressionSyntaxType.allCases.reversed() {
+        for type in RegexSyntaxType.allCases.reversed() {
+            let color = theme.color(for: type)
             for range in type.ranges(in: self.string, mode: mode) {
                 guard let textRange = layoutManager.textRange(for: range) else { continue }
-                layoutManager.addRenderingAttribute(.foregroundColor, value: type.color, for: textRange)
+                layoutManager.addRenderingAttribute(.foregroundColor, value: color, for: textRange)
             }
         }
         
@@ -69,14 +72,15 @@ extension NSTextView {
     ///
     /// - Parameters:
     ///   - mode: Parse mode of regular expression.
+    ///   - theme: The color theme for regex highlighting.
     ///   - enabled: If true, parse and highlight, otherwise just remove the current highlight.
     /// - Returns: Whether the contents are not invalid.
-    private func highlightAsRegularExpressionPatternWithLegacyTextKit(mode: RegularExpressionParseMode, enabled: Bool = true) -> Bool {
+    private func highlightAsRegularExpressionPatternWithLegacyTextKit(mode: RegexParseMode, theme: RegexTheme<NSColor>, enabled: Bool = true) -> Bool {
         
         guard let layoutManager = self.layoutManager else { assertionFailure(); return false }
         
         // clear the last highlight anyway
-        layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: self.string.nsRange)
+        layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: NSRange(..<self.string.utf16.count))
         
         guard enabled else { return true }
         
@@ -89,9 +93,10 @@ extension NSTextView {
         }
         
         // highlight
-        for type in RegularExpressionSyntaxType.allCases.reversed() {
+        for type in RegexSyntaxType.allCases.reversed() {
+            let color = theme.color(for: type)
             for range in type.ranges(in: self.string, mode: mode) {
-                layoutManager.addTemporaryAttribute(.foregroundColor, value: type.color, forCharacterRange: range)
+                layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
             }
         }
         

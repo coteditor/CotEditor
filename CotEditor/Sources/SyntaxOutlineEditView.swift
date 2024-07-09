@@ -52,7 +52,7 @@ struct SyntaxOutlineEditView: View {
                 .alignment(.center)
                 
                 TableColumn(String(localized: "Regular Expression Pattern", table: "SyntaxEditor", comment: "table column header")) { item in
-                    RegexTextField(text: item.pattern, showsError: true, showsInvisible: true)
+                    RegexTextField(text: item.pattern, showsError: true)
                         .style(.table)
                         .focused($focusedField, equals: item.id)
                 }

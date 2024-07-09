@@ -1,14 +1,15 @@
 //
-//  RegularExpressionSyntaxType+Color.swift
+//  NSAttributedString.swift
+//  RegexHighlighting
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2018-12-23.
+//  Created by 1024jp on 2024-07-09.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2023 1024jp
+//  © 2020-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,18 +24,16 @@
 //  limitations under the License.
 //
 
-import AppKit.NSColor
+import AppKit
 
-extension RegularExpressionSyntaxType {
+extension NSAttributedString {
     
-    var color: NSColor {
+    convenience init(systemSymbolName: String, configuration: NSImage.SymbolConfiguration? = nil, accessibilityDescription: String? = nil) {
         
-        switch self {
-            case .character: .Regex.character
-            case .backReference: .Regex.backReference
-            case .symbol: .Regex.symbol
-            case .quantifier: .Regex.quantifier
-            case .anchor: .Regex.anchor
-        }
+        let attachment = NSTextAttachment()
+        attachment.image = NSImage(systemSymbolName: systemSymbolName, accessibilityDescription: accessibilityDescription)?
+            .withSymbolConfiguration(configuration ?? .init())
+        
+        self.init(attachment: attachment)
     }
 }
