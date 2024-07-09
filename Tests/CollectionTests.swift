@@ -55,21 +55,6 @@ struct CollectionTests {
     }
     
     
-    @Test func compareCount() {
-        
-        #expect("".compareCount(with: 0) == .equal)
-        #expect("".compareCount(with: 1) == .less)
-        
-        #expect("a".compareCount(with: 1) == .equal)
-        #expect("🐕".compareCount(with: 1) == .equal)
-        #expect("🐕‍🦺".compareCount(with: 1) == .equal)
-        
-        #expect("🐶🐱".compareCount(with: 3) == .less)
-        #expect("🐶🐱".compareCount(with: 2) == .equal)
-        #expect("🐶🐱".compareCount(with: 1) == .greater)
-    }
-    
-    
     @Test func mapKeys() {
         
         let dict = [1: 1, 2: 2, 3: 3]

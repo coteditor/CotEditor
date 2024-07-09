@@ -2091,11 +2091,11 @@
 				2AED46721E43942300751C45 /* TextFinderTests.swift */,
 				2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */,
 				2ABEFB6923DC0CA0008769F4 /* EditorCounterTests.swift */,
+				2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */,
 				2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */,
 				2A8E47E4299A2401006A40D8 /* EditedRangeSetTests.swift */,
 				2A3F8F672429E04000CBBA89 /* DebouncerTests.swift */,
 				2A04E9BA27FD6911008C82D8 /* SnippetTests.swift */,
-				2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */,
 				2A57B991294EDD9600771696 /* FormatStylesTests.swift */,
 			);
 			name = Models;
