@@ -53,7 +53,7 @@ let package = Package(
         .target(name: "Defaults"),
         .testTarget(name: "DefaultsTests", dependencies: ["Defaults"]),
         
-        .target(name: "FileEncoding", resources: [.process("Resources")]),
+        .target(name: "FileEncoding", dependencies: ["ValueRange"], resources: [.process("Resources")]),
         .testTarget(name: "FileEncodingTests", dependencies: ["FileEncoding"], resources: [.process("Resources")]),
         
         .target(name: "FilePermissions"),

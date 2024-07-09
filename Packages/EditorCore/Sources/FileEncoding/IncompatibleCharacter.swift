@@ -1,5 +1,6 @@
 //
 //  IncompatibleCharacter.swift
+//  FileEncoding
 //
 //  CotEditor
 //  https://coteditor.com
@@ -27,14 +28,21 @@
 import Foundation.NSRange
 import ValueRange
 
-struct IncompatibleCharacter: Equatable, Hashable {
+public struct IncompatibleCharacter: Equatable, Hashable, Sendable {
     
-    var character: Character
-    var converted: String?
+    public var character: Character
+    public var converted: String?
+    
+    
+    public init(character: Character, converted: String? = nil) {
+        
+        self.character = character
+        self.converted = converted
+    }
 }
 
 
-extension String {
+public extension String {
     
     /// Lists characters cannot be converted to the passed-in encoding.
     ///

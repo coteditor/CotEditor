@@ -26,7 +26,7 @@
 
 import Foundation
 import Testing
-@testable import CotEditor
+@testable import FileEncoding
 
 struct IncompatibleCharacterTests {
     

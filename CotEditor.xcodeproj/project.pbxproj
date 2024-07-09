@@ -408,8 +408,6 @@
 		2A89160C2394B87100AC13EE /* NSLayoutManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89160B2394B87100AC13EE /* NSLayoutManagerTests.swift */; };
 		2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8961911DB76A3400E9E0EC /* MainMenu.swift */; };
 		2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8961911DB76A3400E9E0EC /* MainMenu.swift */; };
-		2A8C338F1D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */; };
-		2A8C33901D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */; };
 		2A8DA9441D286C53003D0C4B /* ScriptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA9431D286C53003D0C4B /* ScriptManager.swift */; };
 		2A8DA9451D286C53003D0C4B /* ScriptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA9431D286C53003D0C4B /* ScriptManager.swift */; };
 		2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA9461D28ED93003D0C4B /* URL.swift */; };
@@ -457,7 +455,6 @@
 		2A9BC2792BDE00B1008B58B5 /* Donation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BC2772BDE00B1008B58B5 /* Donation.swift */; };
 		2A9BF3C41D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */; };
 		2A9BF3C51D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */; };
-		2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */; };
 		2AA056AD26FCA171000E0CB2 /* Arithmetics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA056AC26FCA171000E0CB2 /* Arithmetics.swift */; };
 		2AA056AE26FCA171000E0CB2 /* Arithmetics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA056AC26FCA171000E0CB2 /* Arithmetics.swift */; };
 		2AA106B02470F05F00979CB7 /* EncodingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE881D18FFDB00D5D74C /* EncodingListView.swift */; };
@@ -1008,7 +1005,6 @@
 		2A885E321D5C3A1B00288723 /* Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
 		2A89160B2394B87100AC13EE /* NSLayoutManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutManagerTests.swift; sourceTree = "<group>"; };
 		2A8961911DB76A3400E9E0EC /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
-		2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacter.swift; sourceTree = "<group>"; };
 		2A8DA9431D286C53003D0C4B /* ScriptManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptManager.swift; sourceTree = "<group>"; };
 		2A8DA9461D28ED93003D0C4B /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		2A8E47E1299A2314006A40D8 /* EditedRangeSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditedRangeSet.swift; sourceTree = "<group>"; };
@@ -1033,7 +1029,6 @@
 		2A9B134D27E2D84E009954A4 /* NSDraggingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDraggingInfo.swift; sourceTree = "<group>"; };
 		2A9BC2772BDE00B1008B58B5 /* Donation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donation.swift; sourceTree = "<group>"; };
 		2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Transformation.swift"; sourceTree = "<group>"; };
-		2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacterTests.swift; sourceTree = "<group>"; };
 		2AA056AC26FCA171000E0CB2 /* Arithmetics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arithmetics.swift; sourceTree = "<group>"; };
 		2AA14CF71FA47E8900EAF586 /* ScriptDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptDescriptor.swift; sourceTree = "<group>"; };
 		2AA14CFB1FA4983500EAF586 /* AppleScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleScript.swift; sourceTree = "<group>"; };
@@ -1743,7 +1738,6 @@
 				2AA14CFA1FA47E9000EAF586 /* Script */,
 				2A505C07298952E5002080AA /* KeyBinding */,
 				2A78F571298C90520084B8B4 /* Snippet */,
-				2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */,
 				2A50AA61204D513500D10A10 /* FileAttributes.swift */,
 				2AF073E21D33C3AB00770BA6 /* Theme.swift */,
 				2ACF23AD26302A4C002B5E10 /* Theme+Syntax.swift */,
@@ -2087,7 +2081,6 @@
 			children = (
 				2A63CEC31D0B06D800ED8186 /* SyntaxTests.swift */,
 				2ACC65311C98033D000574DC /* ThemeTests.swift */,
-				2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */,
 				2AED46721E43942300751C45 /* TextFinderTests.swift */,
 				2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */,
 				2ABEFB6923DC0CA0008769F4 /* EditorCounterTests.swift */,
@@ -2744,7 +2737,6 @@
 				2A5D13141D1EE8FF00D38E6A /* HUDView.swift in Sources */,
 				2AE144B62B00A963005E8CF1 /* Identifiable.swift in Sources */,
 				2A8321742980C41600F87D35 /* Image+Status.swift in Sources */,
-				2A8C33901D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
 				2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersView.swift in Sources */,
 				2AF6A5C728053179005F580B /* InconsistentLineEndingsView.swift in Sources */,
 				2A1083F02944837E00751DAE /* InsetTextField.swift in Sources */,
@@ -2929,7 +2921,6 @@
 				2A57B992294EDD9600771696 /* FormatStylesTests.swift in Sources */,
 				2AF0C1281D3DA6F800B6FCB6 /* FourCharCodeTests.swift in Sources */,
 				2A9082EF1D325ED900228F50 /* GeometryTests.swift in Sources */,
-				2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */,
 				2A80BE9227FFFA8900D2F7FF /* LineEndingScannerTests.swift in Sources */,
 				2A1125C123F180FF006A1DB2 /* LineRangeCacheableTests.swift in Sources */,
 				2A89160C2394B87100AC13EE /* NSLayoutManagerTests.swift in Sources */,
@@ -3054,7 +3045,6 @@
 				2A5D13131D1EE8FF00D38E6A /* HUDView.swift in Sources */,
 				2AE144B72B00A963005E8CF1 /* Identifiable.swift in Sources */,
 				2A8321752980C41600F87D35 /* Image+Status.swift in Sources */,
-				2A8C338F1D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
 				2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersView.swift in Sources */,
 				2AF6A5C828053179005F580B /* InconsistentLineEndingsView.swift in Sources */,
 				2A1083F12944837E00751DAE /* InsetTextField.swift in Sources */,
