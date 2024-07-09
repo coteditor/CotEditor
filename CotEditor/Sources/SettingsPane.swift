@@ -23,6 +23,8 @@
 //  limitations under the License.
 //
 
+import SwiftUI
+
 enum SettingsPane: String, CaseIterable {
     
     case general
@@ -36,7 +38,7 @@ enum SettingsPane: String, CaseIterable {
     case donation
     
     
-    /// Localized label.
+    /// The localized label.
     var label: String {
         
         switch self {
@@ -80,10 +82,10 @@ enum SettingsPane: String, CaseIterable {
     }
     
     
-    /// Symbol image name.
-    var symbolName: String {
+    /// The image for tab item.
+    var image: NSImage {
         
-        switch self {
+        let symbolName = switch self {
             case .general: "gearshape"
             case .appearance: "eyeglasses"
             case .window: "uiwindow.split.2x1"
@@ -93,6 +95,25 @@ enum SettingsPane: String, CaseIterable {
             case .snippets: "note.text"
             case .keyBindings: "keyboard"
             case .donation: "mug"
+        }
+        
+        return NSImage(systemSymbolName: symbolName, accessibilityDescription: self.label)!
+    }
+    
+    
+    /// The content view.
+    @MainActor var view: any View {
+        
+        switch self {
+            case .general: GeneralSettingsView()
+            case .appearance: AppearanceSettingsView()
+            case .window: WindowSettingsView()
+            case .edit: EditSettingsView()
+            case .mode: ModeSettingsView()
+            case .format: FormatSettingsView()
+            case .snippets: SnippetsSettingsView()
+            case .keyBindings: KeyBindingsSettingsView()
+            case .donation: DonationSettingsView()
         }
     }
 }

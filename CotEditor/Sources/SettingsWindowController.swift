@@ -63,8 +63,6 @@ final class SettingsWindowController: NSWindowController {
 }
 
 
-// MARK: -
-
 private extension SettingsPane {
     
     @MainActor var tabViewItem: NSTabViewItem {
@@ -73,25 +71,9 @@ private extension SettingsPane {
         viewController.sizingOptions = .preferredContentSize
         let tabViewItem = NSTabViewItem(viewController: viewController)
         tabViewItem.label = self.label
-        tabViewItem.image = NSImage(systemSymbolName: self.symbolName, accessibilityDescription: self.label)
+        tabViewItem.image = self.image
         tabViewItem.identifier = self.rawValue
         
         return tabViewItem
-    }
-    
-    
-    @MainActor private var view: any View {
-        
-        switch self {
-            case .general: GeneralSettingsView()
-            case .appearance: AppearanceSettingsView()
-            case .window: WindowSettingsView()
-            case .edit: EditSettingsView()
-            case .mode: ModeSettingsView()
-            case .format: FormatSettingsView()
-            case .snippets: SnippetsSettingsView()
-            case .keyBindings: KeyBindingsSettingsView()
-            case .donation: DonationSettingsView()
-        }
     }
 }
