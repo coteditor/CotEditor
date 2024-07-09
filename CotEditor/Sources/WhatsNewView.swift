@@ -25,6 +25,7 @@
 
 import SwiftUI
 import AppKit
+import ControlUI
 
 struct WhatsNewView: View {
     

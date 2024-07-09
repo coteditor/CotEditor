@@ -25,8 +25,16 @@
 
 import SwiftUI
 import AppKit.NSImage
+import ControlUI
+import Defaults
 
-enum SettingsPane: String, CaseIterable {
+extension SettingsWindowController<SettingsPane> {
+    
+    static let shared = SettingsWindowController<SettingsPane>(lastPaneIdentifier: DefaultKeys.lastSettingsPaneIdentifier.rawValue)
+}
+
+
+enum SettingsPane: String, ControlUI.SettingsPane {
     
     case general
     case appearance

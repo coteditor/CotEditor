@@ -231,8 +231,6 @@
 		2A42823B2638DAEB00D03C5C /* CharacterInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4282392638DAEB00D03C5C /* CharacterInspectorView.swift */; };
 		2A428D442C2B03710051AD4F /* ValueRange+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A428D432C2B03670051AD4F /* ValueRange+Identifiable.swift */; };
 		2A428D452C2B03710051AD4F /* ValueRange+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A428D432C2B03670051AD4F /* ValueRange+Identifiable.swift */; };
-		2A44321C219AC1F8008A0A6B /* SettingsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A44321B219AC1F8008A0A6B /* SettingsTabViewController.swift */; };
-		2A44321D219AC1F8008A0A6B /* SettingsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A44321B219AC1F8008A0A6B /* SettingsTabViewController.swift */; };
 		2A4682B21D2F6B580005410E /* FileDropItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4682B11D2F6B580005410E /* FileDropItem.swift */; };
 		2A4682B31D2F6B580005410E /* FileDropItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4682B11D2F6B580005410E /* FileDropItem.swift */; };
 		2A4714E32093A2D40093E27F /* SyntaxParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4714E22093A2D40093E27F /* SyntaxParser.swift */; };
@@ -438,8 +436,6 @@
 		2A91C31C1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C31A1D1BFE47007CF8BE /* UTType+SettingFile.swift */; };
 		2A938ACC297E4BA9007FBE5F /* SettingsPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A938ACB297E4BA9007FBE5F /* SettingsPane.swift */; };
 		2A938ACD297E4BA9007FBE5F /* SettingsPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A938ACB297E4BA9007FBE5F /* SettingsPane.swift */; };
-		2A938ACF297E4D7B007FBE5F /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A938ACE297E4D7B007FBE5F /* SettingsWindowController.swift */; };
-		2A938AD0297E4D7B007FBE5F /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A938ACE297E4D7B007FBE5F /* SettingsWindowController.swift */; };
 		2A94FC791BE225A200B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
 		2A94FC7B1BE225F000B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
 		2A954B242AB28B010070FB74 /* TextFind.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A954B232AB28B010070FB74 /* TextFind.xcstrings */; };
@@ -514,8 +510,6 @@
 		2AA749C41D3C263300850802 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C21D3C263300850802 /* DocumentWindowController.swift */; };
 		2AA761351D45634400031AAF /* String+Counting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA761341D45634400031AAF /* String+Counting.swift */; };
 		2AA761361D45634400031AAF /* String+Counting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA761341D45634400031AAF /* String+Counting.swift */; };
-		2AA79C7821CB7251005AD6AD /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA79C7721CB7251005AD6AD /* SettingsWindow.swift */; };
-		2AA79C7921CB7251005AD6AD /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA79C7721CB7251005AD6AD /* SettingsWindow.swift */; };
 		2AA7BDDB2C1B10CB0075BB6C /* UnicodeNormalizationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA7BDDA2C1B10C80075BB6C /* UnicodeNormalizationForm.swift */; };
 		2AA7BDDC2C1B10CB0075BB6C /* UnicodeNormalizationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA7BDDA2C1B10C80075BB6C /* UnicodeNormalizationForm.swift */; };
 		2AA7E97D1DBAAC950083B7ED /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA7E97C1DBAAC950083B7ED /* Script.swift */; };
@@ -904,7 +898,6 @@
 		2A4257BB1D239F850086DAAD /* Invisible+UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Invisible+UserDefaults.swift"; sourceTree = "<group>"; };
 		2A4282392638DAEB00D03C5C /* CharacterInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInspectorView.swift; sourceTree = "<group>"; };
 		2A428D432C2B03670051AD4F /* ValueRange+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueRange+Identifiable.swift"; sourceTree = "<group>"; };
-		2A44321B219AC1F8008A0A6B /* SettingsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabViewController.swift; sourceTree = "<group>"; };
 		2A4682B11D2F6B580005410E /* FileDropItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDropItem.swift; sourceTree = "<group>"; };
 		2A4714E22093A2D40093E27F /* SyntaxParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxParser.swift; sourceTree = "<group>"; };
 		2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtensionsTests.swift; sourceTree = "<group>"; };
@@ -1019,7 +1012,6 @@
 		2A91C3171D1BE91E007CF8BE /* DefaultSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSettings.swift; sourceTree = "<group>"; };
 		2A91C31A1D1BFE47007CF8BE /* UTType+SettingFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UTType+SettingFile.swift"; sourceTree = "<group>"; };
 		2A938ACB297E4BA9007FBE5F /* SettingsPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPane.swift; sourceTree = "<group>"; };
-		2A938ACE297E4D7B007FBE5F /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = cot/cot; sourceTree = SOURCE_ROOT; };
 		2A954B232AB28B010070FB74 /* TextFind.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = TextFind.xcstrings; sourceTree = "<group>"; };
 		2A9AB0212C35AF5E008437F9 /* Intents.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Intents.xcstrings; sourceTree = "<group>"; };
@@ -1057,7 +1049,6 @@
 		2AA71A522BE366520084EC0A /* Observation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
 		2AA749C21D3C263300850802 /* DocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		2AA761341D45634400031AAF /* String+Counting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Counting.swift"; sourceTree = "<group>"; };
-		2AA79C7721CB7251005AD6AD /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
 		2AA7BDDA2C1B10C80075BB6C /* UnicodeNormalizationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnicodeNormalizationForm.swift; sourceTree = "<group>"; };
 		2AA7E97C1DBAAC950083B7ED /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSplitView+Autosave.swift"; sourceTree = "<group>"; };
@@ -1365,9 +1356,6 @@
 		2A15832D18E3A3E000601026 /* Settings Window */ = {
 			isa = PBXGroup;
 			children = (
-				2A938ACE297E4D7B007FBE5F /* SettingsWindowController.swift */,
-				2A44321B219AC1F8008A0A6B /* SettingsTabViewController.swift */,
-				2AA79C7721CB7251005AD6AD /* SettingsWindow.swift */,
 				2A938ACB297E4BA9007FBE5F /* SettingsPane.swift */,
 				2A149DC619018F9200A9D6EF /* Panes */,
 				2A2E03471A4BF808006ABE9F /* Syntax Editor */,
@@ -2834,9 +2822,6 @@
 				2A78BFBD1D1B376000A583D2 /* ServicesProvider.swift in Sources */,
 				2A7646EC1D49035500350674 /* SettingFileManaging.swift in Sources */,
 				2A938ACC297E4BA9007FBE5F /* SettingsPane.swift in Sources */,
-				2A44321D219AC1F8008A0A6B /* SettingsTabViewController.swift in Sources */,
-				2AA79C7921CB7251005AD6AD /* SettingsWindow.swift in Sources */,
-				2A938ACF297E4D7B007FBE5F /* SettingsWindowController.swift in Sources */,
 				2A64F2491D26327C001B229F /* Shortcut+Error.swift in Sources */,
 				2AACB1CE1D195ABD0073775B /* ShortcutField.swift in Sources */,
 				2A30C7DB2B1380BE002F6381 /* ShortcutView.swift in Sources */,
@@ -3141,9 +3126,6 @@
 				2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */,
 				2A7646ED1D49035500350674 /* SettingFileManaging.swift in Sources */,
 				2A938ACD297E4BA9007FBE5F /* SettingsPane.swift in Sources */,
-				2A44321C219AC1F8008A0A6B /* SettingsTabViewController.swift in Sources */,
-				2AA79C7821CB7251005AD6AD /* SettingsWindow.swift in Sources */,
-				2A938AD0297E4D7B007FBE5F /* SettingsWindowController.swift in Sources */,
 				2A64F2481D26327C001B229F /* Shortcut+Error.swift in Sources */,
 				2AACB1CD1D195ABD0073775B /* ShortcutField.swift in Sources */,
 				2A30C7DC2B1380BE002F6381 /* ShortcutView.swift in Sources */,

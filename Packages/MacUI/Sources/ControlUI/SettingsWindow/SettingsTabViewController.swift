@@ -1,5 +1,6 @@
 //
 //  SettingsTabViewController.swift
+//  ControlUI
 //
 //  CotEditor
 //  https://coteditor.com
@@ -24,9 +25,32 @@
 //
 
 import AppKit
-import Defaults
 
 final class SettingsTabViewController: NSTabViewController {
+    
+    // MARK: Private properties
+    
+    private let lastPaneIdentifier: String
+    
+    
+    // MARK: Lifecycle
+    
+    /// Instantiates a SettingsTabViewController.
+    ///
+    /// - Parameter lastPaneIdentifier: The user default key to store the last opened pane.
+    init(lastPaneIdentifier: String) {
+        
+        self.lastPaneIdentifier = lastPaneIdentifier
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     // MARK: Tab View Controller Methods
     
@@ -34,7 +58,7 @@ final class SettingsTabViewController: NSTabViewController {
         
         didSet {
             if self.isViewLoaded {  // avoid storing initial state
-                UserDefaults.standard[.lastSettingsPaneIdentifier] = self.tabViewItems[selectedTabViewItemIndex].identifier as? String
+                UserDefaults.standard.setValue(self.tabViewItems[selectedTabViewItemIndex].identifier as? String, forKey: self.lastPaneIdentifier)
             }
         }
     }
@@ -45,7 +69,7 @@ final class SettingsTabViewController: NSTabViewController {
         super.viewDidLoad()
         
         // select last used pane
-        if let identifier = UserDefaults.standard[.lastSettingsPaneIdentifier],
+        if let identifier = UserDefaults.standard.string(forKey: self.lastPaneIdentifier),
            let index = self.tabViewItems.firstIndex(where: { $0.identifier as? String == identifier })
         {
             self.selectedTabViewItemIndex = index
@@ -63,7 +87,6 @@ final class SettingsTabViewController: NSTabViewController {
         
         self.switchPane(to: tabViewItem)
     }
-    
     
     
     // MARK: Private Methods
@@ -97,7 +120,6 @@ final class SettingsTabViewController: NSTabViewController {
         }
     }
 }
-
 
 
 private extension NSWindow {

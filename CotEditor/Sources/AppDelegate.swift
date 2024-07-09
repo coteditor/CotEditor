@@ -29,6 +29,7 @@ import SwiftUI
 import Combine
 import UniformTypeIdentifiers
 import OSLog
+import ControlUI
 import Defaults
 import FileEncoding
 import LineEnding

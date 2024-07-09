@@ -1,5 +1,6 @@
 //
 //  SettingsWindowController.swift
+//  ControlUI
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,54 +27,44 @@
 import AppKit
 import SwiftUI
 
-final class SettingsWindowController: NSWindowController {
-    
-    static let shared = SettingsWindowController()
-    
+public final class SettingsWindowController<Pane: SettingsPane>: NSWindowController {
     
     // MARK: Lifecycle
     
-    convenience init() {
+    /// Instantiates a SettingsWindowController.
+    ///
+    /// - Parameter lastPaneIdentifier: The user default key to store the last opened pane.
+    public init(lastPaneIdentifier: String) {
         
-        let viewController = SettingsTabViewController()
+        let viewController = SettingsTabViewController(lastPaneIdentifier: lastPaneIdentifier)
         viewController.tabStyle = .toolbar
         viewController.canPropagateSelectedChildViewControllerTitle = false
-        viewController.tabViewItems = SettingsPane.allCases.map(\.tabViewItem)
+        viewController.tabViewItems = Pane.allCases.map(\.tabViewItem)
         
         let window = SettingsWindow(contentViewController: viewController)
         window.styleMask = [.closable, .titled]
         window.hidesOnDeactivate = false
         
-        self.init(window: window)
+        super.init(window: window)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
     }
     
     
     // MARK: Public Methods
     
-    /// Opens a specific setting pane.
+    /// Opens a specific pane.
     ///
     /// - Parameter pane: The pane to display.
-    func openPane(_ pane: SettingsPane) {
+    public func openPane(_ pane: Pane) {
         
-        let index = SettingsPane.allCases.firstIndex(of: pane) ?? 0
+        let index = Pane.allCases.firstIndex { $0.rawValue == pane.rawValue } as? Int ?? 0
         (self.contentViewController as? NSTabViewController)?.selectedTabViewItemIndex = index
         
         self.showWindow(nil)
-    }
-}
-
-
-private extension SettingsPane {
-    
-    @MainActor var tabViewItem: NSTabViewItem {
-        
-        let viewController = NSHostingController(rootView: AnyView(self.view))
-        viewController.sizingOptions = .preferredContentSize
-        let tabViewItem = NSTabViewItem(viewController: viewController)
-        tabViewItem.label = self.label
-        tabViewItem.image = self.image
-        tabViewItem.identifier = self.rawValue
-        
-        return tabViewItem
     }
 }
