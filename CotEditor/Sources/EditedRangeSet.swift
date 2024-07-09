@@ -33,6 +33,14 @@ struct EditedRangeSet {
     private(set) var ranges: [NSRange] = []
     
     
+    
+    /// The range that contains all ranges.
+    var range: NSRange? {
+        
+        self.ranges.union
+    }
+    
+    
     /// Updates edit ranges by assuming the string was edited in an NSTextStorage and the storage returns the given `editedRange` and `changeInLength`.
     ///
     /// - Parameters:
@@ -77,5 +85,20 @@ struct EditedRangeSet {
     mutating func clear() {
         
         self.ranges.removeAll()
+    }
+}
+
+
+private extension Sequence<NSRange> {
+    
+    /// The range that contains all ranges.
+    var union: NSRange? {
+        
+        guard
+            let lowerBound = self.map(\.lowerBound).min(),
+            let upperBound = self.map(\.upperBound).max()
+        else { return nil }
+        
+        return NSRange(lowerBound..<upperBound)
     }
 }

@@ -23,7 +23,6 @@
 //  limitations under the License.
 //
 
-import Combine
 import AppKit.NSTextStorage
 import StringBasics
 import ValueRange
@@ -36,7 +35,7 @@ import ValueRange
     private var editedRanges = EditedRangeSet()
     private let delay: Duration = .seconds(0.5)
     
-    private var textEditingObserver: AnyCancellable?
+    private var textEditingObserver: (any NSObjectProtocol)?
     private var task: Task<Void, any Error>?
     
     
@@ -45,74 +44,79 @@ import ValueRange
     init(textStorage: NSTextStorage) {
         
         self.textStorage = textStorage
+        
+        self.editedRanges.append(editedRange: textStorage.range)
+        self.textEditingObserver = self.observeTextStorage(textStorage)
+        self.task = Task { try await self.detectInvalidRanges() }
     }
     
     
     // MARK: Public Methods
     
-    /// Whether the auto URL detection is enabled.
-    var isEnabled: Bool = false {
-        
-        didSet {
-            guard oldValue != isEnabled else { return }
-            
-            if isEnabled {
-                self.editedRanges.append(editedRange: self.textStorage.range)
-                self.observeTextStorage(self.textStorage)
-                self.task = Task { try await self.detectInvalidRanges() }
-                
-            } else {
-                self.textEditingObserver?.cancel()
-                self.task?.cancel()
-                self.editedRanges.clear()
-                self.textStorage.removeAttribute(.link, range: self.textStorage.range)
-            }
-        }
-    }
-    
-    
-    /// Cancels the current detection task, if any exists.
+    /// Stops the detection and removes highlights.
     func cancel() {
+        
+        if let textEditingObserver {
+            NotificationCenter.default.removeObserver(textEditingObserver)
+            self.textEditingObserver = nil
+        }
         
         self.task?.cancel()
         self.task = nil
+        
+        self.textStorage.removeAttribute(.link, range: self.textStorage.range)
     }
     
     
     // MARK: Private Methods
     
     /// Observes the changes of the given textStorage to detect URLs around the edited area.
-    ///
+    /// 
     /// - Parameter textStorage: The text storage to observe.
-    private func observeTextStorage(_ textStorage: NSTextStorage) {
+    /// - Returns: The notification observer.
+    private func observeTextStorage(_ textStorage: NSTextStorage) -> any NSObjectProtocol {
         
-        // -> `NotificationCenter.default.notifications(named:)` cannot obtain the notification at the timing when the correspondent .editedMask and .editedRange exist. (macOS 13, 2023-02)
-        self.textEditingObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textStorage)
-            .map { $0.object as! NSTextStorage }
-            .filter { $0.editedMask.contains(.editedCharacters) }
-            .sink { [unowned self] in
-                self.editedRanges.append(editedRange: $0.editedRange, changeInLength: $0.changeInLength)
-                self.task?.cancel()
-                self.task = Task { try await self.detectInvalidRanges(after: self.delay) }
+        NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: textStorage, queue: .main) { [unowned self] notification in
+            let textStorage = notification.object as! NSTextStorage
+            
+            guard textStorage.editedMask.contains(.editedCharacters) else { return }
+            
+            MainActor.assumeIsolated {
+                self.invalidate(in: textStorage.editedRange, changeInLength: textStorage.changeInLength)
             }
+        }
+    }
+    
+    
+    /// Updates edited ranges by assuming the textStorage was edited.
+    ///
+    /// - Parameters:
+    ///   - editedRange: The edited range.
+    ///   - delta: The change in length.
+    private func invalidate(in editedRange: NSRange, changeInLength delta: Int) {
+        
+        self.editedRanges.append(editedRange: editedRange, changeInLength: delta)
+        
+        self.task?.cancel()
+        self.task = Task {
+            try await Task.sleep(for: self.delay, tolerance: self.delay * 0.5)
+            try await self.detectInvalidRanges()
+        }
     }
     
     
     /// Updates URLs around the edited ranges.
-    ///
-    /// - Parameter delay: The debounce delay.
-    private func detectInvalidRanges(after delay: Duration = .zero) async throws {
+    private func detectInvalidRanges() async throws {
         
-        try await Task.sleep(for: delay, tolerance: delay * 0.5)
+        guard let invalidRange = self.editedRanges.range else { return }
         
-        guard let invalidRange = self.editedRanges.ranges.union else { return }
-        
-        let string = self.textStorage.string
+        let string = self.textStorage.string as NSString
         let lowerBound = max(invalidRange.lowerBound - 1, 0)
         let upperBound = min(invalidRange.upperBound + 1, string.length)
-        let parseRange = (string as NSString).lineRange(for: NSRange(lowerBound..<upperBound))
+        let parseRange = string.lineRange(for: NSRange(lowerBound..<upperBound))
         
         try await self.textStorage.linkURLs(in: parseRange)
+        
         self.editedRanges.clear()
     }
 }

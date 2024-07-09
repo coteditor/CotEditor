@@ -143,21 +143,6 @@ public extension NSRange {
 }
 
 
-public extension Sequence<NSRange> {
-    
-    /// The range that contains all ranges.
-    var union: NSRange? {
-        
-        guard
-            let lowerBound = self.map(\.lowerBound).min(),
-            let upperBound = self.map(\.upperBound).max()
-        else { return nil }
-        
-        return NSRange(lowerBound..<upperBound)
-    }
-}
-
-
 public extension IndexSet {
     
     /// Initializes an index set with multiple NSRanges.

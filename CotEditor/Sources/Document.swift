@@ -101,7 +101,7 @@ extension Document: EditorSource {
     private nonisolated(unsafe) var lastSavedData: Data?  // temporal data used only within saving process
     private var saveOptions: SaveOptions?
     
-    private let urlDetector: URLDetector
+    private var urlDetector: URLDetector?
     
     private var syntaxUpdateObserver: AnyCancellable?
     private var textStorageObserver: AnyCancellable?
@@ -133,15 +133,17 @@ extension Document: EditorSource {
         
         self.mode = .kind(.general)
         
-        self.urlDetector = URLDetector(textStorage: self.textStorage)
-        
         super.init()
         
         self.counter.source = self
         
         self.defaultObservers = [
             UserDefaults.standard.publisher(for: .autoLinkDetection, initial: true)
-                .sink { [weak self] in self?.urlDetector.isEnabled = $0 },
+                .removeDuplicates()
+                .sink { [unowned self] enabled in
+                    self.urlDetector?.cancel()
+                    self.urlDetector = enabled ? URLDetector(textStorage: self.textStorage) : nil
+                },
             UserDefaults.standard.publisher(for: .modes, initial: true)
                 .sink { [weak self] _ in self?.invalidateMode() },
         ]
@@ -639,7 +641,7 @@ extension Document: EditorSource {
         self.textStorageObserver?.cancel()
         self.counter.cancel()
         self.syntaxParser.cancel()
-        self.urlDetector.cancel()
+        self.urlDetector?.cancel()
         self.lineEndingScanner.cancel()
     }
     
