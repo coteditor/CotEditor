@@ -60,7 +60,7 @@ extension NSItemProvider: @retroactive @unchecked Sendable { }
 
 extension NSItemProvider {
     
-    func load<T: Transferable>(type: T.Type) async throws -> T {
+    func load<T: Transferable & Sendable>(type: T.Type) async throws -> T {
         
         try await withCheckedThrowingContinuation { continuation in
             _ = self.loadTransferable(type: T.self) { result in
