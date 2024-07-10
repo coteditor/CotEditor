@@ -27,6 +27,8 @@
 import Foundation
 import AppKit.NSTextStorage
 import OSLog
+import EditedRangeSet
+import StringBasics
 import Syntax
 
 extension NSAttributedString.Key {
@@ -56,7 +58,7 @@ extension NSAttributedString.Key {
     
     private var outlineParseTask: Task<Void, any Error>?
     private var highlightParseTask: Task<Void, any Error>?
-    private var isHighlighting = false
+    private var invalidRanges: EditedRangeSet
     
     
     
@@ -67,6 +69,8 @@ extension NSAttributedString.Key {
         self.textStorage = textStorage
         self.syntax = syntax
         self.name = name
+        
+        self.invalidRanges = EditedRangeSet(range: textStorage.range)
     }
     
     
@@ -92,6 +96,7 @@ extension NSAttributedString.Key {
         
         self.syntax = syntax
         self.name = name
+        self.invalidRanges.clear()
     }
 }
 
@@ -118,7 +123,7 @@ extension SyntaxParser {
         
         let extractors = self.outlineExtractors
         let string = self.textStorage.string.immutable
-        self.outlineParseTask = Task.detached(priority: .utility) { [weak self] in
+        self.outlineParseTask = Task.detached { [weak self] in
             let outlineItems = try await withThrowingTaskGroup(of: [OutlineItem].self) { group in
                 for extractor in extractors {
                     group.addTask { try extractor.items(in: string, range: string.range) }
@@ -141,35 +146,56 @@ extension SyntaxParser {
 
 extension SyntaxParser {
     
-    /// Updates highlights around passed-in range.
+    /// Updates the ranges to update the syntax highlight..
     ///
     /// - Parameters:
-    ///   - editedRange: The character range that was edited, or `nil` to highlight the entire range.
-    func highlight(around editedRange: NSRange? = nil) {
+    ///   - editedRange: The edited range.
+    ///   - delta: The change in length.
+    func invalidateHighlight(in editedRange: NSRange, changeInLength delta: Int) {
         
-        // retry entire parsing if the last one has not finished yet
-        var editedRange = editedRange
-        if self.isHighlighting {
-            self.highlightParseTask?.cancel()
-            editedRange = nil
+        self.highlightParseTask?.cancel()
+        self.highlightParseTask = nil
+        
+        self.invalidRanges.append(editedRange: editedRange, changeInLength: delta)
+    }
+    
+    
+    /// Updates highlights of the entire range.
+    func highlightAll() {
+        
+        self.invalidRanges.update(editedRange: self.textStorage.range)
+        self.highlightIfNeeded()
+    }
+    
+    
+    /// Updates highlights around the invalid ranges.
+    func highlightIfNeeded() {
+        
+        guard let invalidRange = self.invalidRanges.range else { return }
+        
+        self.highlightParseTask?.cancel()
+        
+        guard !self.textStorage.string.isEmpty else {
+            self.invalidRanges.clear()
+            return
         }
         
-        guard !self.textStorage.string.isEmpty else { return }
-        
-        // in case that wholeRange length is changed from editedRange
-        guard editedRange.flatMap({ $0.upperBound > self.textStorage.length }) != true else {
-            return Logger.app.debug("Invalid range \(editedRange?.description ?? "nil") for \(self.textStorage.length) length textStorage is passed in to \(#function)")
+        // just clear current highlight and return if no coloring required
+        guard !self.highlightParser.isEmpty else {
+            self.invalidRanges.clear()
+            self.apply(highlights: [], in: self.textStorage.range)
+            return
         }
         
         let wholeRange = self.textStorage.range
         
-        // just clear current highlight and return if no coloring required
-        guard !self.highlightParser.isEmpty else {
-            return self.apply(highlights: [], in: wholeRange)
+        // in case that wholeRange length becomes shorter than invalidRange
+        guard invalidRange.upperBound <= wholeRange.upperBound else {
+            return Logger.app.debug("Invalid range \(invalidRange.description) for \(self.textStorage.length) length textStorage is passed in to \(#function)")
         }
         
         let highlightRange: NSRange = {
-            guard let editedRange, editedRange != wholeRange else { return wholeRange }
+            guard invalidRange != wholeRange else { return wholeRange }
             
             // highlight whole if string is enough short
             if wholeRange.length <= Self.bufferLength {
@@ -179,8 +205,8 @@ extension SyntaxParser {
             // highlight whole visible area if edited point is visible
             var highlightRange = self.textStorage.layoutManagers
                 .compactMap(\.textViewForBeginningOfSelection?.visibleRange)
-                .filter { $0.intersects(editedRange) }
-                .reduce(into: editedRange) { $0.formUnion($1) }
+                .filter { $0.intersects(invalidRange) }
+                .reduce(into: invalidRange) { $0.formUnion($1) }
             
             highlightRange = (self.textStorage.string as NSString).lineRange(for: highlightRange)
             
@@ -205,7 +231,6 @@ extension SyntaxParser {
             
             return highlightRange
         }()
-        guard !highlightRange.isEmpty else { return }
         
         // make sure the string is immutable
         // -> `string` of NSTextStorage is actually a mutable object
@@ -233,19 +258,11 @@ extension SyntaxParser {
         
         self.highlightParseTask?.cancel()
         self.highlightParseTask = Task {
-            defer {
-                self.isHighlighting = false
-            }
-            
             let parser = self.highlightParser
             let highlights = try await parser.parse(string: string, range: range)
             
             self.apply(highlights: highlights, in: range)
-        }
-        
-        // make large parse cancellable
-        if range.length > 10_000 {
-            self.isHighlighting = true
+            self.invalidRanges.clear()
         }
     }
     

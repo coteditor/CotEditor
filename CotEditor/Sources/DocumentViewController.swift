@@ -124,7 +124,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         // start parsing syntax for highlighting and outlines
         self.outlineParseDebouncer.perform()
-        self.document.syntaxParser.highlight()
+        self.document.syntaxParser.highlightAll()
         
         NotificationCenter.default.addObserver(self, selector: #selector(textStorageDidProcessEditing),
                                                name: NSTextStorage.didProcessEditingNotification,
@@ -140,7 +140,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             self.document.didChangeSyntax
                 .sink { [weak self] _ in
                     self?.outlineParseDebouncer.perform()
-                    self?.document.syntaxParser.highlight()
+                    self?.document.syntaxParser.highlightAll()
                 },
             
             // observe user defaults
@@ -413,8 +413,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         guard textStorage.editedMask.contains(.editedCharacters) else { return }
         
-        // give up the current parsing
-        self.document.syntaxParser.cancel()
+        // tell the parser that text was changed
+        self.document.syntaxParser.invalidateHighlight(in: textStorage.editedRange,
+                                                       changeInLength: textStorage.changeInLength)
         
         guard self.focusedTextView?.hasMarkedText() != true else { return }
         
@@ -422,9 +423,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         self.outlineParseDebouncer.schedule()
         
         // -> Perform in the next run loop to give layoutManagers time to update their values.
-        let editedRange = textStorage.editedRange
         DispatchQueue.main.async { [weak self] in
-            self?.document.syntaxParser.highlight(around: editedRange)
+            self?.document.syntaxParser.highlightIfNeeded()
         }
     }
     
@@ -592,7 +592,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Recolors whole document.
     @IBAction func recolorAll(_ sender: Any?) {
         
-        self.document.syntaxParser.highlight()
+        self.document.syntaxParser.highlightAll()
     }
     
     
