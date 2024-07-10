@@ -593,6 +593,8 @@ struct TextFindAllResult {
         // perform
         let (highlights, matches) = await task.value
         
+        client.isEditable = true
+        
         guard progress.state != .cancelled else { return }
         
         // highlight in client
@@ -655,6 +657,8 @@ struct TextFindAllResult {
         
         // perform
         let (replacementItems, selectedRanges) = await task.value
+        
+        client.isEditable = true
         
         guard progress.state != .cancelled else { return }
         

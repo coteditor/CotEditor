@@ -59,6 +59,8 @@ extension NSTextView {
         // perform
         let ranges = try await task.value
         
+        self.isEditable = true
+        
         if progress.count > 0 {
             // apply to the text view
             if let layoutManager = self.layoutManager {
@@ -114,6 +116,8 @@ extension NSTextView {
         
         // perform
         let result = try await task.value
+        
+        self.isEditable = true
         
         if progress.count > 0 {
             // apply to the text view
