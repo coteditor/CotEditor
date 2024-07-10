@@ -896,7 +896,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             
             // copy parsed syntax highlight
             if let highlights = baseTextView.layoutManager?.syntaxHighlights(), !highlights.isEmpty {
-                textView.layoutManager?.apply(highlights: highlights, range: textView.string.range)
+                textView.layoutManager?.apply(highlights: highlights, in: textView.string.range)
             }
         }
         

@@ -165,7 +165,7 @@ extension SyntaxParser {
         
         // just clear current highlight and return if no coloring required
         guard !self.highlightParser.isEmpty else {
-            return self.apply(highlights: [], range: wholeRange)
+            return self.apply(highlights: [], in: wholeRange)
         }
         
         let highlightRange: NSRange = {
@@ -220,7 +220,11 @@ extension SyntaxParser {
     
     // MARK: Private Methods
     
-    /// Performs highlighting.
+    /// Parses the given string and performs highlighting.
+    ///
+    /// - Parameters:
+    ///   - string: The string to parse.
+    ///   - range: The character range where updates highlights.
     private func parse(string: String, range: NSRange) {
         
         assert(!(string as NSString).className.contains("Mutable"))
@@ -236,7 +240,7 @@ extension SyntaxParser {
             let parser = self.highlightParser
             let highlights = try await parser.parse(string: string, range: range)
             
-            self.apply(highlights: highlights, range: range)
+            self.apply(highlights: highlights, in: range)
         }
         
         // make large parse cancellable
@@ -247,83 +251,14 @@ extension SyntaxParser {
     
     
     /// Applies highlights to all the layout managers.
-    private func apply(highlights: [Highlight], range: NSRange) {
+    ///
+    /// - Parameters:
+    ///   - highlights: The syntax highlights to apply.
+    ///   - range: The character range where updates highlights.
+    private func apply(highlights: [Highlight], in range: NSRange) {
         
         for layoutManager in self.textStorage.layoutManagers {
-            layoutManager.apply(highlights: highlights, range: range)
-        }
-    }
-}
-
-
-
-extension NSLayoutManager {
-    
-    /// Extracts all syntax highlights in the given range.
-    ///
-    /// - Returns: An array of Highlights in order.
-    @MainActor final func syntaxHighlights() -> [Highlight] {
-        
-        let targetRange = self.attributedString().range
-        
-        var highlights: [Highlight] = []
-        self.enumerateTemporaryAttribute(.syntaxType, type: SyntaxType.self, in: targetRange) { (type, range, _) in
-            highlights.append(Highlight(value: type, range: range))
-        }
-        
-        return highlights
-    }
-    
-    
-    /// Applies highlights as temporary attributes.
-    ///
-    /// - Note: Sanitize the `highlights` before so that the ranges do not overlap each other.
-    ///
-    /// - Parameters:
-    ///   - highlights: The highlight definitions to apply.
-    ///   - range: The range to update syntax highlight.
-    @MainActor final func apply(highlights: [Highlight], range: NSRange) {
-        
-        assert(highlights.sorted(\.range.location) == highlights)
-        
-        // skip if never colorized yet to avoid heavy `self.invalidateDisplay(forCharacterRange:)`
-        guard !highlights.isEmpty || self.hasTemporaryAttribute(.syntaxType, in: range) else { return }
-        
-        let theme = (self.firstTextView as? any Themable)?.theme
-        
-        self.groupTemporaryAttributesUpdate(in: range) {
-            self.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
-            self.removeTemporaryAttribute(.syntaxType, forCharacterRange: range)
-            
-            for highlight in highlights {
-                self.addTemporaryAttribute(.syntaxType, value: highlight.value, forCharacterRange: highlight.range)
-                
-                if let color = theme?.style(for: highlight.value)?.color {
-                    self.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: highlight.range)
-                }
-            }
-        }
-    }
-    
-    
-    /// Applies the theme based on the current `syntaxType` attributes.
-    ///
-    /// - Parameters:
-    ///   - theme: The theme to apply.
-    @MainActor final func invalidateHighlight(theme: Theme) {
-        
-        let targetRange = self.attributedString().range
-        
-        guard self.hasTemporaryAttribute(.syntaxType, in: targetRange) else { return }
-        
-        self.groupTemporaryAttributesUpdate(in: targetRange) {
-            self.enumerateTemporaryAttribute(.syntaxType, type: SyntaxType.self, in: targetRange) { (type, range, _) in
-                if let color = theme.style(for: type)?.color {
-                    self.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
-                } else {
-                    self.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
-                }
-            }
+            layoutManager.apply(highlights: highlights, in: range)
         }
     }
 }

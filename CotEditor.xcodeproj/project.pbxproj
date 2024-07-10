@@ -350,6 +350,8 @@
 		2A6C8E3221E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */; };
 		2A6C8E3321E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */; };
 		2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E3F3C19B5218300A63E97 /* CotEditor.help */; };
+		2A6E3F422C3E3FD400702039 /* NSLayoutManager+SyntaxHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6E3F412C3E3FCB00702039 /* NSLayoutManager+SyntaxHighlight.swift */; };
+		2A6E3F432C3E3FD400702039 /* NSLayoutManager+SyntaxHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6E3F412C3E3FCB00702039 /* NSLayoutManager+SyntaxHighlight.swift */; };
 		2A6F0D551B5500E100C2D03C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Assets.xcassets */; };
 		2A6F0D561B5500E100C2D03C /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
 		2A6F0D571B5500E100C2D03C /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
@@ -968,6 +970,7 @@
 		2A6876AA29641547006257A6 /* MultipleReplacePanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleReplacePanelController.swift; sourceTree = "<group>"; };
 		2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorTextView+CursorMovement.swift"; sourceTree = "<group>"; };
 		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
+		2A6E3F412C3E3FCB00702039 /* NSLayoutManager+SyntaxHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+SyntaxHighlight.swift"; sourceTree = "<group>"; };
 		2A6F0E071B5500E100C2D03C /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6F0E091B55043800C2D03C /* CotEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CotEditor.entitlements; sourceTree = "<group>"; };
 		2A6FD9D01D38933100A59784 /* EditorTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextViewController.swift; sourceTree = "<group>"; };
@@ -1874,6 +1877,7 @@
 			children = (
 				2AB857ED2B930B070079CFA2 /* Syntax+Localization.swift */,
 				2A4714E22093A2D40093E27F /* SyntaxParser.swift */,
+				2A6E3F412C3E3FCB00702039 /* NSLayoutManager+SyntaxHighlight.swift */,
 				2A39AC462B8B5C9700E216C9 /* OutlineItem+AttributedString.swift */,
 				2A26158B2979052C008C2240 /* SyntaxObject.swift */,
 				2A7725631D50401300A53C09 /* SyntaxObject+Validation.swift */,
@@ -2771,6 +2775,7 @@
 				2A71BC7F1DDC70A80085AE1C /* NSImage.swift in Sources */,
 				2AE73F41203D2FBB00D8903B /* NSLayoutManager.swift in Sources */,
 				2A9AC937244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */,
+				2A6E3F432C3E3FD400702039 /* NSLayoutManager+SyntaxHighlight.swift in Sources */,
 				2A484A3A236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
 				2AEAA1432C00B37300B5332F /* NSMenu.swift in Sources */,
 				2A1FAD5920A74D0A00566D7C /* NSParagraphStyle.swift in Sources */,
@@ -3077,6 +3082,7 @@
 				2A71BC7E1DDC70A80085AE1C /* NSImage.swift in Sources */,
 				2AE73F40203D2FBB00D8903B /* NSLayoutManager.swift in Sources */,
 				2A9AC938244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */,
+				2A6E3F422C3E3FD400702039 /* NSLayoutManager+SyntaxHighlight.swift in Sources */,
 				2A484A39236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
 				2AEAA1442C00B37300B5332F /* NSMenu.swift in Sources */,
 				2A1FAD5820A74D0A00566D7C /* NSParagraphStyle.swift in Sources */,
