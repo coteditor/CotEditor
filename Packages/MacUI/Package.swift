@@ -20,7 +20,7 @@ let package = Package(
         .library(name: "Shortcut", targets: ["Shortcut"]),
     ],
     dependencies: [
-        .package(path: "EditorCore"),
+        .package(name: "EditorCore", path: "../EditorCore"),
         .package(url: "https://github.com/realm/SwiftLint", from: Version(0, 55, 0)),
     ],
     targets: [
