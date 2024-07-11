@@ -47,8 +47,17 @@ actor ThemeTests {
         #expect(theme.invisibles.color.brightnessComponent.isApproximatelyEqual(to: 0.725, relativeTolerance: 0.01))
         #expect(theme.background.color == NSColor.white.usingColorSpace(.genericRGB))
         #expect(theme.lineHighlight.color.brightnessComponent.isApproximatelyEqual(to: 0.929, relativeTolerance: 0.01))
-        #expect(theme.effectiveSecondarySelectionColor(for: NSAppearance(named: .aqua)!) == .unemphasizedSelectedContentBackgroundColor)
         #expect(!theme.isDarkTheme)
+        
+        let aqua = try #require(NSAppearance(named: .aqua))
+        aqua.performAsCurrentDrawingAppearance {
+            #expect(theme.unemphasizedSelectionColor != nil)
+        }
+        
+        let darkAppearance = try #require(NSAppearance(named: .darkAqua))
+        darkAppearance.performAsCurrentDrawingAppearance {
+            #expect(theme.unemphasizedSelectionColor != nil)
+        }
         
         for type in SyntaxType.allCases {
             let style = try #require(theme.style(for: type))

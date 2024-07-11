@@ -75,6 +75,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     }
     
     var invisiblesColor: NSColor = .disabledControlTextColor
+    var unemphasizedSelectedContentBackgroundColor: NSColor?
     
     var showsIndentGuides = false
     var tabWidth = 0
@@ -187,17 +188,10 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
         // -> Otherwise, `.unemphasizedSelectedContentBackgroundColor` will be used forcibly and text becomes unreadable
         //    when the window appearance and theme are inconsistent.
         if color == .unemphasizedSelectedContentBackgroundColor,  // check if inactive
-           let textView = self.textContainer(forGlyphAt: self.glyphIndexForCharacter(at: charRange.location),
-                                             effectiveRange: nil, withoutAdditionalLayout: true)?.textView
+           let newColor = self.unemphasizedSelectedContentBackgroundColor,
+           newColor != color
         {
-            MainActor.assumeIsolated {
-                if let theme = (textView as? any Themable)?.theme,
-                   let newColor = theme.effectiveSecondarySelectionColor(for: textView.effectiveAppearance),
-                   newColor != color
-                {
-                    newColor.setFill()
-                }
-            }
+            newColor.setFill()
         }
         
         super.fillBackgroundRectArray(rectArray, count: rectCount, forCharacterRange: charRange, color: color)

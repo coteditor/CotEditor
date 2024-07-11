@@ -152,17 +152,16 @@ struct Theme: Equatable {
     }
     
     
-    /// Returns the selection color to use with the given appearance.
-    ///
-    /// - Parameter appearance: The current appearance of the text view to draw.
-    /// - Returns: A color.
-    func effectiveSelectionColor(for appearance: NSAppearance) -> NSColor {
+    /// The selection color to use.
+    var selectionColor: NSColor {
         
         if self.selection.usesSystemSetting {
-            if self.isDarkTheme == appearance.isDark {
-                .selectedTextBackgroundColor
-            } else {
-                .selectedTextBackgroundColor.solve(for: appearance.appearance(for: self.isDarkTheme))
+            NSColor(name: nil) { [isDarkTheme = self.isDarkTheme] appearance in
+                if isDarkTheme == appearance.isDark {
+                    .selectedTextBackgroundColor
+                } else {
+                    .selectedTextBackgroundColor.solve(for: appearance.appearance(for: isDarkTheme))
+                }
             }
         } else {
             self.selection.color
@@ -170,17 +169,16 @@ struct Theme: Equatable {
     }
     
     
-    /// Returns the selection color to use for inactive views.
-    ///
-    /// - Parameter appearance: The current appearance of the text view to draw.
-    /// - Returns: A color.
-    func effectiveSecondarySelectionColor(for appearance: NSAppearance) -> NSColor? {
+    /// The selection color to use for inactive views.
+    var unemphasizedSelectionColor: NSColor? {
         
         if self.selection.usesSystemSetting {
-            return if self.isDarkTheme == appearance.isDark {
-                .unemphasizedSelectedContentBackgroundColor
-            } else {
-                .unemphasizedSelectedContentBackgroundColor.solve(for: appearance.appearance(for: self.isDarkTheme))
+            return NSColor(name: nil) { [isDarkTheme = self.isDarkTheme] appearance in
+                if isDarkTheme == appearance.isDark {
+                    .unemphasizedSelectedContentBackgroundColor
+                } else {
+                    .unemphasizedSelectedContentBackgroundColor.solve(for: appearance.appearance(for: isDarkTheme))
+                }
             }
         } else {
             guard let color = self.selection.color.usingColorSpace(.genericRGB) else { return nil }

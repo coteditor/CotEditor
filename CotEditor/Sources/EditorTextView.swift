@@ -1387,8 +1387,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         for indicator in self.insertionIndicators {
             indicator.color = self.insertionPointColor
         }
-        self.selectedTextAttributes[.backgroundColor] = theme.effectiveSelectionColor(for: self.effectiveAppearance)
+        self.selectedTextAttributes[.backgroundColor] = theme.selectionColor
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
+        (self.layoutManager as? LayoutManager)?.unemphasizedSelectedContentBackgroundColor = theme.unemphasizedSelectionColor
         
         (self.window as? DocumentWindow)?.contentBackgroundColor = theme.background.color
         self.enclosingScrollView?.backgroundColor = theme.background.color
