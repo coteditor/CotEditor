@@ -29,8 +29,6 @@ import Foundation
 import StringBasics
 import ValueRange
 
-public typealias Highlight = ValueRange<SyntaxType>
-
 
 public enum NestableToken: Equatable, Hashable, Sendable {
     
@@ -98,7 +96,7 @@ public struct HighlightParser: Sendable {
                 $0.merge($1, uniquingKeysWith: +)
             }
             
-            return try Self.sanitize(dictionary)
+            return try Highlight.highlights(dictionary: dictionary)
         }
     }
     
@@ -184,31 +182,5 @@ public struct HighlightParser: Sendable {
         }
         
         return highlights
-    }
-    
-    
-    /// Removes overlapped ranges and converts to sorted Highlights.
-    ///
-    /// - Note:
-    /// This sanitization reduces the performance time of `SyntaxParser.apply(highlights:range:)` significantly.
-    ///
-    /// - Parameter dictionary: The syntax highlight dictionary.
-    /// - Returns: An array of sorted Highlight structs.
-    /// - Throws: CancellationError
-    private static func sanitize(_ dictionary: [SyntaxType: [NSRange]]) throws -> [Highlight] {
-        
-        try SyntaxType.allCases.reversed()
-            .reduce(into: [SyntaxType: IndexSet]()) { (dict, type) in
-                guard let ranges = dictionary[type] else { return }
-                
-                try Task.checkCancellation()
-                
-                let indexes = IndexSet(integersIn: ranges)
-                
-                dict[type] = dict.values.reduce(into: indexes) { $0.subtract($1) }
-            }
-            .mapValues { $0.rangeView.map(NSRange.init) }
-            .flatMap { (type, ranges) in ranges.map { ValueRange(value: type, range: $0) } }
-            .sorted { $0.range.location < $1.range.location }
     }
 }
