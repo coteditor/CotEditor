@@ -31,6 +31,7 @@
 - [dev] Update the build environment to Xcode 16 (Swift 6).
 - [dev] Migrate all unit tests to Swift Testing.
 - [dev] Migrate the navigation bar and the Snippets settings view to SwiftUI.
+- [dev] Update Yams from 5.1.2 to 5.1.3.
 
 
 ### TODO
