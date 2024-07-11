@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 75;
+	objectVersion = 73;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -2366,7 +2366,7 @@
 				2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				2ABB27CC2C3824DE00AFCD0B /* XCRemoteSwiftPackageReference "swift-numerics" */,
 			);
-			preferredProjectObjectVersion = 75;
+			preferredProjectObjectVersion = 73;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
