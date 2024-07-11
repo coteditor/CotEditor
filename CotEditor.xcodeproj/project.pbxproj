@@ -964,6 +964,7 @@
 		2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorTextView+CursorMovement.swift"; sourceTree = "<group>"; };
 		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
 		2A6E3F412C3E3FCB00702039 /* NSLayoutManager+SyntaxHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+SyntaxHighlight.swift"; sourceTree = "<group>"; };
+		2A6E3F452C3F5BB400702039 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		2A6F0E071B5500E100C2D03C /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6F0E091B55043800C2D03C /* CotEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CotEditor.entitlements; sourceTree = "<group>"; };
 		2A6FD9D01D38933100A59784 /* EditorTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextViewController.swift; sourceTree = "<group>"; };
@@ -1635,6 +1636,7 @@
 				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
 				2A65520B2BE001A10082B7D6 /* CotEditor.storekit */,
 				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
+				2A6E3F452C3F5BB400702039 /* .swiftlint.yml */,
 			);
 			name = "Supporting Files";
 			path = CotEditor;
