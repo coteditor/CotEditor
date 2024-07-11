@@ -27,13 +27,6 @@ import Foundation
 import AppKit.NSColor
 import ColorCode
 
-protocol Themable: AnyObject {
-    
-    @MainActor var theme: Theme? { get }
-}
-
-
-
 struct Theme: Equatable {
     
     struct Style: Equatable {

@@ -51,15 +51,14 @@ extension NSLayoutManager {
     ///
     /// - Parameters:
     ///   - highlights: The highlight definitions to apply.
+    ///   - theme: The theme to apply, or `nil` to add just `syntaxType` attributes.
     ///   - range: The range to update syntax highlight.
-    @MainActor final func apply(highlights: [Highlight], in range: NSRange) {
+    @MainActor final func apply(highlights: [Highlight], theme: Theme?, in range: NSRange) {
         
         assert(highlights.sorted(\.range.location) == highlights)
         
         // skip if never colorized yet to avoid heavy `self.invalidateDisplay(forCharacterRange:)`
         guard !highlights.isEmpty || self.hasTemporaryAttribute(.syntaxType, in: range) else { return }
-        
-        let theme = (self.firstTextView as? any Themable)?.theme
         
         self.groupTemporaryAttributesUpdate(in: range) {
             self.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)

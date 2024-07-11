@@ -44,6 +44,8 @@ extension NSAttributedString.Key {
     private(set) var name: String
     private(set) var syntax: Syntax
     
+    var theme: Theme?
+    
     @Published private(set) var outlineItems: [OutlineItem]?
     
     
@@ -275,7 +277,7 @@ extension SyntaxParser {
     private func apply(highlights: [Highlight], in range: NSRange) {
         
         for layoutManager in self.textStorage.layoutManagers {
-            layoutManager.apply(highlights: highlights, in: range)
+            layoutManager.apply(highlights: highlights, theme: self.theme, in: range)
         }
     }
 }

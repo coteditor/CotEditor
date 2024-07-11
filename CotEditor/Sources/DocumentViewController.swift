@@ -896,7 +896,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             
             // copy parsed syntax highlight
             if let highlights = baseTextView.layoutManager?.syntaxHighlights(), !highlights.isEmpty {
-                textView.layoutManager?.apply(highlights: highlights, in: textView.string.range)
+                textView.layoutManager?.apply(highlights: highlights, theme: self.theme, in: textView.string.range)
             }
         }
         
@@ -952,6 +952,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         } catch {
             return self.presentErrorAsSheet(error)
         }
+        
+        self.document.syntaxParser.theme = theme
         
         for textView in self.editorViewControllers.compactMap(\.textView) {
             textView.theme = theme

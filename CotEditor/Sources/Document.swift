@@ -674,7 +674,7 @@ extension Document: EditorSource {
         }
         
         if let highlights = self.textStorage.layoutManagers.first?.syntaxHighlights(), !highlights.isEmpty {
-            printView.layoutManager?.apply(highlights: highlights, in: printView.string.range)
+            printView.layoutManager?.apply(highlights: highlights, theme: nil, in: printView.string.range)
         }
         
         // detect URLs manually (2019-05 macOS 10.14).

@@ -27,7 +27,7 @@
 import AppKit
 import Defaults
 
-final class PrintTextView: NSTextView, Themable {
+final class PrintTextView: NSTextView {
     
     struct DocumentInfo {
         
