@@ -57,7 +57,7 @@ final class RegularExpressionTextField: NSTextField {
     
     // MARK: Text Field Methods
     
-    override class var cellClass: AnyClass? {
+    override static var cellClass: AnyClass? {
         
         get { PaddingTextFieldCell.self }
         set { _ = newValue }

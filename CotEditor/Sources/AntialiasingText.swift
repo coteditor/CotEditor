@@ -94,7 +94,7 @@ private final class AntialiasingTextField: NSTextField {
     @Invalidating(.display) var antialiasDisabled = false
     
     
-    override class var cellClass: AnyClass? {
+    override static var cellClass: AnyClass? {
         
         get { CenteringTextFieldCell.self }
         set { _ = newValue }

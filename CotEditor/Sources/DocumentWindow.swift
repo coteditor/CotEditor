@@ -62,13 +62,13 @@ final class DocumentWindow: NSWindow {
     
     // MARK: Window Methods
     
-    override class var restorableStateKeyPaths: [String] {
+    override static var restorableStateKeyPaths: [String] {
         
         super.restorableStateKeyPaths + [#keyPath(backgroundAlpha), #keyPath(level)]
     }
     
     
-    override class func allowedClasses(forRestorableStateKeyPath keyPath: String) -> [AnyClass] {
+    override static func allowedClasses(forRestorableStateKeyPath keyPath: String) -> [AnyClass] {
     
         switch keyPath {
             case #keyPath(backgroundAlpha), #keyPath(level):

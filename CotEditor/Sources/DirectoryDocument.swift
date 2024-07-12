@@ -53,13 +53,13 @@ import OSLog
     
     // MARK: Document Methods
     
-    override class var autosavesInPlace: Bool {
+    override static var autosavesInPlace: Bool {
         
         true  // for moving location from the proxy icon
     }
     
     
-    override class func canConcurrentlyReadDocuments(ofType typeName: String) -> Bool {
+    override static func canConcurrentlyReadDocuments(ofType typeName: String) -> Bool {
         
         true
     }

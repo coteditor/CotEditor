@@ -67,7 +67,6 @@ disabled_rules:
   - force_try
   - identifier_name
   - opening_brace
-  - static_over_final_class
   - switch_case_alignment
   - trailing_comma
   - unneeded_override

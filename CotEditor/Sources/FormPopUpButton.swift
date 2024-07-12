@@ -30,7 +30,7 @@ final class FormPopUpButton: NSPopUpButton {
     @Invalidating(.display) private(set) var isHovered = false
     
     
-    override class var cellClass: AnyClass? {
+    override static var cellClass: AnyClass? {
         
         get { FormPopUpButtonCell.self }
         set { _ = newValue }

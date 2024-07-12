@@ -207,7 +207,7 @@ private final class RegexNSTextField: NSTextField {
     }
     
     
-    override class var cellClass: AnyClass? {
+    override static var cellClass: AnyClass? {
         
         get { PaddingTextFieldCell.self }
         set { _ = newValue }

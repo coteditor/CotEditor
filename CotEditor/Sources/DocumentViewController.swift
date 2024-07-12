@@ -198,7 +198,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    override class var restorableStateKeyPaths: [String] {
+    override static var restorableStateKeyPaths: [String] {
         
         super.restorableStateKeyPaths + [
             #keyPath(showsLineNumber),
@@ -213,7 +213,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    override class func allowedClasses(forRestorableStateKeyPath keyPath: String) -> [AnyClass] {
+    override static func allowedClasses(forRestorableStateKeyPath keyPath: String) -> [AnyClass] {
         
         switch keyPath {
             case #keyPath(showsLineNumber),

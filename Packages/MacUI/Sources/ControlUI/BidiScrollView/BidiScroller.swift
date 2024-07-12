@@ -30,7 +30,7 @@ final class BidiScroller: NSScroller {
     
     // MARK: Scroller methods
     
-    override class var isCompatibleWithOverlayScrollers: Bool  { true }
+    override static var isCompatibleWithOverlayScrollers: Bool  { true }
     
     
     override var frame: NSRect {

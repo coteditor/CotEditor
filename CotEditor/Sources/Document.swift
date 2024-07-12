@@ -202,7 +202,7 @@ extension Document: EditorSource {
     
     // MARK: Document Methods
     
-    override class var autosavesInPlace: Bool {
+    override static var autosavesInPlace: Bool {
         
         // avoid changing the value while the application is running
         struct InitialValue { static let autosavesInPlace = UserDefaults.standard[.enablesAutosaveInPlace] }
@@ -211,7 +211,7 @@ extension Document: EditorSource {
     }
     
     
-    override class func canConcurrentlyReadDocuments(ofType: String) -> Bool {
+    override static func canConcurrentlyReadDocuments(ofType: String) -> Bool {
         
         true
     }
