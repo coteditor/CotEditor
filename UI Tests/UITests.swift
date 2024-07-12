@@ -25,9 +25,9 @@
 
 import XCTest
 
-final class UITests: XCTestCase {
+@MainActor final class UITests: XCTestCase {
     
-    @MainActor override func setUp() {
+    override func setUp() {
         
         super.setUp()
         
@@ -38,7 +38,7 @@ final class UITests: XCTestCase {
     }
     
     
-    @MainActor func testTyping() {
+    func testTyping() {
         
         let app = XCUIApplication()
         
@@ -73,7 +73,7 @@ final class UITests: XCTestCase {
     }
     
     
-    @MainActor func testLaunchPerformance() throws {
+    func testLaunchPerformance() throws {
         
         // This measures how long it takes to launch your application.
         self.measure(metrics: [XCTApplicationLaunchMetric()]) {
