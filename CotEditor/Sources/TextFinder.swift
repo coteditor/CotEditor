@@ -566,7 +566,7 @@ struct TextFindAllResult {
                     let matchedRange = matches[0]
                     
                     // build a highlighted line string for result table
-                    let lineRange = lineCounter.lineContentRange(for: matchedRange)
+                    let lineRange = lineCounter.lineContentsRange(for: matchedRange)
                     let lineString = (textFind.string as NSString).substring(with: lineRange)
                     let attrLineString = NSMutableAttributedString(string: lineString)
                     for (color, range) in zip(highlightColors, matches) where !range.isEmpty {

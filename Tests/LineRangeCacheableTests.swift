@@ -92,13 +92,13 @@ struct LineRangeCacheableTests {
     }
     
     
-    @Test func lineContentRange() {
+    @Test func lineContentsRange() {
         
         let lineString = LineString("dog \n\n cat \n cow")
-        #expect(lineString.lineContentRange(for: NSRange(0..<3)) == NSRange(0..<4))
-        #expect(lineString.lineContentRange(for: NSRange(4..<6)) == NSRange(0..<6))
-        #expect(lineString.lineContentRange(for: NSRange(5..<6)) == NSRange(5..<6))
-        #expect(lineString.lineContentRange(for: NSRange(7..<13)) == NSRange(6..<16))
+        #expect(lineString.lineContentsRange(for: NSRange(0..<3)) == NSRange(0..<4))
+        #expect(lineString.lineContentsRange(for: NSRange(4..<6)) == NSRange(0..<6))
+        #expect(lineString.lineContentsRange(for: NSRange(5..<6)) == NSRange(5..<6))
+        #expect(lineString.lineContentsRange(for: NSRange(7..<13)) == NSRange(6..<16))
     }
     
     

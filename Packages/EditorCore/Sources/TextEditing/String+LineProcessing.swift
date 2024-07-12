@@ -133,7 +133,7 @@ public extension String {
     func deleteDuplicateLine(in ranges: [NSRange]) -> EditingContext? {
         
         let string = self as NSString
-        let lineContentRanges = ranges
+        let lineContentsRanges = ranges
             .map { string.lineRange(for: $0) }
             .flatMap { self.lineContentsRanges(for: $0) }
             .uniqued
@@ -141,11 +141,11 @@ public extension String {
         
         var replacementRanges: [NSRange] = []
         var uniqueLines: [String] = []
-        for lineContentRange in lineContentRanges {
-            let line = string.substring(with: lineContentRange)
+        for lineContentsRange in lineContentsRanges {
+            let line = string.substring(with: lineContentsRange)
             
             if uniqueLines.contains(line) {
-                replacementRanges.append(string.lineRange(for: lineContentRange))
+                replacementRanges.append(string.lineRange(for: lineContentsRange))
             } else {
                 uniqueLines.append(line)
             }
