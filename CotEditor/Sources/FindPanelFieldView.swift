@@ -127,7 +127,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             UserDefaults.standard.publisher(for: .findRegexUnescapesReplacementString, initial: true)
                 .sink { [unowned self] value in
                     self.replacementTextView?.parseMode = .replacement(unescapes: value)
-                }
+                },
         ]
     }
     

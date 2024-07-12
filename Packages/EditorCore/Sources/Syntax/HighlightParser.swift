@@ -168,9 +168,9 @@ public struct HighlightParser: Sendable {
             else { continue }
             
             // search corresponding end delimiter
-            guard let endIndex = positions[index...].firstIndex(where: {
-                $0.role.contains(.end) && $0.token == beginPosition.token
-            }) else { continue }  // give up if no end delimiter found
+            guard let endIndex = positions[index...]
+                .firstIndex(where: { $0.role.contains(.end) && $0.token == beginPosition.token })
+            else { continue }  // give up if no end delimiter found
             
             let endPosition = positions[endIndex]
             let range = NSRange(beginPosition.range.lowerBound..<endPosition.range.upperBound)

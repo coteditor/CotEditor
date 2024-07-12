@@ -101,7 +101,7 @@ import Syntax
             //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
                 .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
                 .debounce(for: .seconds(0.05), scheduler: RunLoop.main)
-                .sink { [weak self] in self?.select(range: $0.selectedRange) }
+                .sink { [weak self] in self?.select(range: $0.selectedRange) },
         ]
     }
     

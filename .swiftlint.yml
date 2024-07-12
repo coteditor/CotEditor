@@ -4,12 +4,6 @@ deployment_target:
 excluded:
   - "*/.build"
 
-analyzer_rules:
-  - capture_variable
-  - typesafe_array_init
-  - unused_declaration
-  - unused_import
-
 opt_in_rules:
   - array_init
   - closure_end_indentation
@@ -64,14 +58,15 @@ disabled_rules:
   - block_based_kvo
   - force_cast
   - force_try
-  - identifier_name
   - opening_brace
-  - switch_case_alignment
   - trailing_comma
   - unneeded_override
 
 trailing_whitespace:
   ignores_empty_lines: true
+    
+switch_case_alignment:
+  indented_cases: true
 
 function_parameter_count:
   warning: 6
@@ -102,8 +97,9 @@ cyclomatic_complexity:
   warning: 30
 
 identifier_name:
+  validates_start_with_lowercase: false
   max_length:
-    warning: 50
+    warning: 60
   min_length:
     warning: 2
   excluded:

@@ -110,10 +110,10 @@ struct DonationSettingsView: View {
                     if let error = self.error {
                         VStack {
                             let description = switch error {
-                            case StoreKitError.networkError:
-                                String(localized: "An internet connection is required to donate.", table: "DonationSettings")
-                            default:
-                                error.localizedDescription
+                                case StoreKitError.networkError:
+                                    String(localized: "An internet connection is required to donate.", table: "DonationSettings")
+                                default:
+                                    error.localizedDescription
                             }
                             Text("Donation is currently not available.", tableName: "DonationSettings")
                             Text(description)
