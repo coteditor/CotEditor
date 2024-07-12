@@ -612,7 +612,7 @@ extension Document: EditorSource {
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
         // suppress save dialog if contents are empty and not saved explicitly
-        suppression: if (self.isDraft || self.fileURL == nil), self.textStorage.string.isEmpty {
+        suppression: if self.isDraft || self.fileURL == nil, self.textStorage.string.isEmpty {
             // delete autosaved file if exists
             // -> An engineer at Apple told there is no need to wrap the file access here with NSFileCoordinator (2023-06).
             if let fileURL = self.fileURL {

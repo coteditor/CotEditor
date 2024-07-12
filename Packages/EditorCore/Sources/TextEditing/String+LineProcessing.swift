@@ -83,7 +83,10 @@ public extension String {
         let lineRanges = (self as NSString).lineRanges(for: ranges)
         
         // cannot perform Move Line Down if one of the selections is already in the last line
-        guard !lineRanges.isEmpty, (lineRanges.last!.upperBound != self.length || self.last?.isNewline == true) else { return nil }
+        guard
+            !lineRanges.isEmpty,
+            lineRanges.last!.upperBound != self.length || self.last?.isNewline == true
+        else { return nil }
         
         var string = self as NSString
         var replacementRange = NSRange()

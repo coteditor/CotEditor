@@ -62,7 +62,6 @@ opt_in_rules:
 
 disabled_rules:
   - block_based_kvo
-  - control_statement
   - force_cast
   - force_try
   - identifier_name

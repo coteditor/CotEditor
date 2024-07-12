@@ -93,7 +93,7 @@ extension NSTextView {
         
         guard
             !options.contains(.bySkippingExtraLine),
-            (range.upperBound == length || lineNumber == 1),
+            range.upperBound == length || lineNumber == 1,
             !layoutManager.extraLineFragmentRect.isEmpty
         else { return }
         

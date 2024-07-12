@@ -1439,8 +1439,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         }
         
         // -> This guard is certainly passed on the first time because the initial values of defaultParagraphStyle are zero. (2024-02, macOS 14)
-        guard (paragraphStyle.lineHeightMultiple != self.defaultParagraphStyle?.lineHeightMultiple ||
-               paragraphStyle.defaultTabInterval != self.defaultParagraphStyle?.defaultTabInterval)
+        guard
+            paragraphStyle.lineHeightMultiple != self.defaultParagraphStyle?.lineHeightMultiple ||
+            paragraphStyle.defaultTabInterval != self.defaultParagraphStyle?.defaultTabInterval
         else { return }
         
         self.defaultParagraphStyle = paragraphStyle

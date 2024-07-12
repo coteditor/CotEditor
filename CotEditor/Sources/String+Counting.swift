@@ -64,7 +64,9 @@ extension String {
         if options.ignoresWhitespaces {
             string.replace(/[\t\p{Zs}]/, with: "")
         }
-        if options.treatsConsecutiveWhitespaceAsSingle, (!options.ignoresNewlines || !options.ignoresWhitespaces) {
+        if options.treatsConsecutiveWhitespaceAsSingle,
+           !options.ignoresNewlines || !options.ignoresWhitespaces
+        {
             // \s = [\t\n\f\r\p{Z}]
             string.replace(/\s{2,}/, with: " ")
         }
