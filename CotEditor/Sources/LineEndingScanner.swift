@@ -76,7 +76,7 @@ import ValueRange
     var majorLineEnding: LineEnding? {
         
         Dictionary(grouping: self.lineEndings, by: \.value)
-            .sorted(\.value.first!.location)
+            .sorted(\.value.first!.lowerBound)
             .max { $0.value.count < $1.value.count }?
             .key
     }
@@ -104,7 +104,7 @@ import ValueRange
     /// - Returns: A boolean indicating whether the character is an inconsistent line ending.
     func isInvalidLineEnding(at characterIndex: Int) -> Bool {
         
-        self.inconsistentLineEndings.lazy.map(\.location).contains(characterIndex)
+        self.inconsistentLineEndings.lazy.map(\.lowerBound).contains(characterIndex)
     }
     
     
@@ -141,12 +141,12 @@ private extension Array where Element == ValueRange<LineEnding> {
     
     mutating func replace(items: [Element], in editedRange: NSRange, changeInLength delta: Int) {
         
-        guard let lowerEditedIndex = self.binarySearchedFirstIndex(where: { $0.location >= editedRange.lowerBound }) else {
+        guard let lowerEditedIndex = self.binarySearchedFirstIndex(where: { $0.lowerBound >= editedRange.lowerBound }) else {
             self += items
             return
         }
         
-        if let upperEditedIndex = self[lowerEditedIndex...].firstIndex(where: { $0.location >= (editedRange.upperBound - delta) }) {
+        if let upperEditedIndex = self[lowerEditedIndex...].firstIndex(where: { $0.lowerBound >= (editedRange.upperBound - delta) }) {
             for index in upperEditedIndex..<self.endIndex {
                 self[index].shift(by: delta)
             }

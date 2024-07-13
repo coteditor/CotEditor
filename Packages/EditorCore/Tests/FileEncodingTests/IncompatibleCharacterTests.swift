@@ -41,13 +41,13 @@ struct IncompatibleCharacterTests {
         
         #expect(backslash.value.character == "\\")
         #expect(backslash.value.converted == "＼")
-        #expect(backslash.location == 3)
+        #expect(backslash.lowerBound == 3)
         
         let tilde = incompatibles[1]
         
         #expect(tilde.value.character == "~")
         #expect(tilde.value.converted == "?")
-        #expect(tilde.location == 11)
+        #expect(tilde.lowerBound == 11)
     }
     
     
@@ -62,7 +62,7 @@ struct IncompatibleCharacterTests {
         
         #expect(tilde.value.character == "~")
         #expect(tilde.value.converted == "?")
-        #expect(tilde.location == 1)
+        #expect(tilde.lowerBound == 1)
     }
     
     
@@ -75,11 +75,11 @@ struct IncompatibleCharacterTests {
         
         #expect(incompatibles[0].value.character == "👨‍👨‍👦")
         #expect(incompatibles[0].value.converted == "????????")
-        #expect(incompatibles[0].location == 7)
+        #expect(incompatibles[0].lowerBound == 7)
         
         #expect(incompatibles[1].value.character == "🐕")
         #expect(incompatibles[1].value.converted == "??")
-        #expect(incompatibles[1].location == 21)
+        #expect(incompatibles[1].lowerBound == 21)
     }
 }
 

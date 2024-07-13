@@ -74,9 +74,9 @@ struct IncompatibleCharactersView: View {
             
             if !self.model.items.isEmpty {
                 Table(self.model.items, selection: $selection, sortOrder: $sortOrder) {
-                    TableColumn(String(localized: "Line", table: "Document", comment: "table column header"), value: \.location) {
+                    TableColumn(String(localized: "Line", table: "Document", comment: "table column header"), value: \.lowerBound) {
                         // calculate the line number first at this point to postpone the high cost processing as much as possible
-                        if let line = self.model.document?.lineEndingScanner.lineNumber(at: $0.location) {
+                        if let line = self.model.document?.lineEndingScanner.lineNumber(at: $0.lowerBound) {
                             Text(line, format: .number)
                                 .monospacedDigit()
                         }

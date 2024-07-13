@@ -31,7 +31,8 @@ public struct ValueRange<Value> {
     public var value: Value
     public var range: NSRange
     
-    public var location: Int  { self.range.location }
+    public var lowerBound: Int  { self.range.lowerBound }
+    public var upperBound: Int  { self.range.upperBound }
     
     
     
