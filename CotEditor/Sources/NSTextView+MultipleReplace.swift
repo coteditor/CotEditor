@@ -44,7 +44,7 @@ extension NSTextView {
         let string = self.string.immutable
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
         
-        let progress = FindProgress(scope: 0..<definition.replacements.count)
+        let progress = FindProgress(scope: 0..<definition.replacements.endIndex)
         let task = Task.detached(priority: .userInitiated) {
             try definition.find(string: string, ranges: selectedRanges, inSelection: inSelection, progress: progress)
                 .sorted(\.location)
@@ -103,7 +103,7 @@ extension NSTextView {
         let string = self.string.immutable
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
         
-        let progress = FindProgress(scope: 0..<definition.replacements.count)
+        let progress = FindProgress(scope: 0..<definition.replacements.endIndex)
         let task = Task.detached(priority: .userInitiated) {
             try definition.replace(string: string, ranges: selectedRanges, inSelection: inSelection, progress: progress)
         }

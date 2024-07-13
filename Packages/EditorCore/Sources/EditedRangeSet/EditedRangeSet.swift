@@ -100,7 +100,7 @@ public struct EditedRangeSet: Sendable {
         }
         
         if !added {
-            let index = self.ranges.firstIndex { editedRange.location < $0.location } ?? self.ranges.count
+            let index = self.ranges.firstIndex { editedRange.location < $0.location } ?? self.ranges.endIndex
             
             self.ranges.insert(editedRange, at: index)
         }
