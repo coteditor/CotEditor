@@ -53,7 +53,7 @@ extension URL {
         let pathComponents = self.pathComponents.dropLast()
         let basePathComponents = baseURL.pathComponents.dropLast(baseURL.hasDirectoryPath ? 0 : 1)
         
-        let sameCount = zip(basePathComponents, pathComponents).countPrefix { $0.0 == $0.1 }
+        let sameCount = zip(basePathComponents, pathComponents).prefix(while: { $0.0 == $0.1 }).count
         let parentCount = basePathComponents.count - sameCount
         let parentComponents = [String](repeating: "..", count: parentCount)
         let diffComponents = pathComponents[sameCount...]

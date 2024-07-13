@@ -47,14 +47,6 @@ struct CollectionTests {
     }
     
     
-    @Test func countPrefix() {
-        
-        #expect([1, 2, 0, -1, 3].countPrefix(while: { $0 > 0 }) == 2)
-        #expect([0, 1, 2, 0, -1].countPrefix(while: { $0 > 0 }) == 0)
-        #expect([1, 2, 3, 4, 5].countPrefix(while: { $0 > 0 }) == 5)
-    }
-    
-    
     @Test func mapKeys() {
         
         let dict = [1: 1, 2: 2, 3: 3]
