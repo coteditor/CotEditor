@@ -70,7 +70,7 @@ let package = Package(
         .target(name: "Invisible"),
         
         .target(name: "LineEnding", dependencies: ["ValueRange"]),
-        .testTarget(name: "LineEndingTests", dependencies: ["LineEnding"]),
+        .testTarget(name: "LineEndingTests", dependencies: ["LineEnding", "StringBasics"]),
         
         .target(name: "LineSort", dependencies: ["StringBasics"]),
         .testTarget(name: "LineSortTests", dependencies: ["LineSort"]),

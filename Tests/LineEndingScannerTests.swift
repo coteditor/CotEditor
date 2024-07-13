@@ -104,32 +104,6 @@ struct LineEndingScannerTests {
         storage.string = "\rfoo\r\nbar\nbuz\u{2029}moin\r\n"
         #expect(scanner.majorLineEnding == .crlf)  // most used new line must be detected
     }
-    
-    
-    @Test func calculateLineNumber() {
-        
-        let storage = NSTextStorage(string: "dog \n\n cat \n cow \n")
-        let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
-        
-        #expect(scanner.lineNumber(at: 0) == 1)
-        #expect(scanner.lineNumber(at: 1) == 1)
-        #expect(scanner.lineNumber(at: 4) == 1)
-        #expect(scanner.lineNumber(at: 5) == 2)
-        #expect(scanner.lineNumber(at: 6) == 3)
-        #expect(scanner.lineNumber(at: 11) == 3)
-        #expect(scanner.lineNumber(at: 12) == 4)
-        #expect(scanner.lineNumber(at: 17) == 4)
-        #expect(scanner.lineNumber(at: 18) == 5)
-        
-        for _ in 0..<20 {
-            storage.string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
-            
-            for index in (0..<storage.length).shuffled() {
-                #expect(scanner.lineNumber(at: index) == storage.string.lineNumber(at: index),
-                        "At \(index) with string \"\(storage.string)\"")
-            }
-        }
-    }
 }
 
 

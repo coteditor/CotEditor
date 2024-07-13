@@ -1,5 +1,6 @@
 //
 //  Collection+BinarySearch.swift
+//  LineEnding
 //
 //  CotEditor
 //  https://coteditor.com

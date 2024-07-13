@@ -71,7 +71,7 @@ struct CollectionTests {
     }
     
     
-    @Test(arguments: 0..<10) func sort(index: Int) {
+    @Test(arguments: 0..<10) func sort(_: Int) {
         
         var array: [Int] = (0..<10).map { _ in .random(in: 0..<100) }
         let sorted = array.sorted { $0 < $1 }
@@ -80,17 +80,5 @@ struct CollectionTests {
         
         array.sort()
         #expect(array == sorted)
-    }
-    
-    
-    @Test(arguments: 0..<10) func binarySearch(index: Int) {
-        
-        let array = (0..<20).map { _ in Int.random(in: 0..<100) }.sorted()
-        
-        for _ in 0..<10 {
-            let index = Int.random(in: 0..<100)
-            #expect(array.binarySearchedFirstIndex(where: { $0 > index }) ==
-                    array.firstIndex(where: { $0 > index }))
-        }
     }
 }

@@ -30,28 +30,30 @@ import AppKit.NSTextStorage
 import LineEnding
 import ValueRange
 
-@Observable final class LineEndingScanner {
+@Observable final class LineEndingScanner: LineRangeCalculating {
     
     var baseLineEnding: LineEnding
+    
+    private(set) var lineEndings: [ValueRange<LineEnding>]
     private(set) var inconsistentLineEndings: [ValueRange<LineEnding>] = []
+    
+    var string: NSString  { self.textStorage.string as NSString }
     
     
     // MARK: Private Properties
     
     private let textStorage: NSTextStorage
-    private var lineEndings: [ValueRange<LineEnding>]
     
     private var storageObserver: AnyCancellable?
-    
     
     
     // MARK: Lifecycle
     
     required init(textStorage: NSTextStorage, lineEnding: LineEnding) {
         
+        self.textStorage = textStorage
         self.baseLineEnding = lineEnding
         
-        self.textStorage = textStorage
         self.lineEndings = textStorage.string.lineEndingRanges()
         self.inconsistentLineEndings = self.lineEndings.filter { $0.value != lineEnding }
         
@@ -60,7 +62,6 @@ import ValueRange
             .filter { $0.editedMask.contains(.editedCharacters) }
             .sink { [weak self] in self?.invalidate(in: $0.editedRange, changeInLength: $0.changeInLength) }
     }
-    
     
     
     // MARK: Public Methods
@@ -82,22 +83,6 @@ import ValueRange
     }
     
     
-    /// Returns the 1-based line number at the given character index.
-    ///
-    /// - Parameter index: The character index.
-    /// - Returns: The 1-based line number.
-    func lineNumber(at index: Int) -> Int {
-        
-        if let last = self.lineEndings.last?.range, last.upperBound <= index {
-            self.lineEndings.count + 1
-        } else if let index = self.lineEndings.binarySearchedFirstIndex(where: { $0.range.upperBound > index }) {
-            index + 1
-        } else {
-            1
-        }
-    }
-    
-    
     /// Returns whether the character at the given index is a line ending inconsistent with the `baseLineEnding`.
     ///
     /// - Parameter characterIndex: The index of character to test.
@@ -107,6 +92,8 @@ import ValueRange
         self.inconsistentLineEndings.lazy.map(\.lowerBound).contains(characterIndex)
     }
     
+    
+    // MARK: Private Methods
     
     /// Updates inconsistent line endings by assuming the textStorage was edited.
     ///
@@ -132,29 +119,5 @@ import ValueRange
         
         self.lineEndings.replace(items: insertedLineEndings, in: scanRange, changeInLength: delta)
         self.inconsistentLineEndings.replace(items: inconsistentLineEndings, in: scanRange, changeInLength: delta)
-    }
-}
-
-
-
-private extension Array where Element == ValueRange<LineEnding> {
-    
-    mutating func replace(items: [Element], in editedRange: NSRange, changeInLength delta: Int) {
-        
-        guard let lowerEditedIndex = self.binarySearchedFirstIndex(where: { $0.lowerBound >= editedRange.lowerBound }) else {
-            self += items
-            return
-        }
-        
-        if let upperEditedIndex = self[lowerEditedIndex...].firstIndex(where: { $0.lowerBound >= (editedRange.upperBound - delta) }) {
-            for index in upperEditedIndex..<self.endIndex {
-                self[index].shift(by: delta)
-            }
-            self.removeSubrange(lowerEditedIndex..<upperEditedIndex)
-        } else {
-            self.removeSubrange(lowerEditedIndex...)
-        }
-        
-        self.insert(contentsOf: items, at: lowerEditedIndex)
     }
 }
