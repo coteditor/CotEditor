@@ -37,7 +37,7 @@ import ValueRange
     private(set) var lineEndings: [ValueRange<LineEnding>]
     private(set) var inconsistentLineEndings: [ValueRange<LineEnding>] = []
     
-    var string: NSString  { self.textStorage.string as NSString }
+    var length: Int  { self.textStorage.length }
     
     
     // MARK: Private Properties
