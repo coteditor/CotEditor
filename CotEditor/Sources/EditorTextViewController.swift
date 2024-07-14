@@ -51,7 +51,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     // MARK: Private Properties
     
-    private let document: NSDocument
+    private let document: Document
     
     private var stackView: NSStackView?  { self.view as? NSStackView }
     @ViewLoading private var lineNumberView: LineNumberView
@@ -64,7 +64,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     // MARK: Lifecycle
     
-    init(document: NSDocument) {
+    init(document: Document) {
         
         self.document = document
         
@@ -80,7 +80,8 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     override func loadView() {
         
-        let textView = EditorTextView()
+        let textView = EditorTextView(textStorage: self.document.textStorage,
+                                      lineEndingScanner: self.document.lineEndingScanner)
         textView.delegate = self
         
         let scrollView = BidiScrollView()

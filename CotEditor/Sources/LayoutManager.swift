@@ -47,7 +47,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     
     // MARK: Public Properties
     
-    weak var lineEndingScanner: LineEndingScanner?
+    let lineEndingScanner: LineEndingScanner
     
     var usesAntialias = true
     
@@ -95,7 +95,9 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     
     // MARK: Lifecycle
     
-    override init() {
+    init(lineEndingScanner: LineEndingScanner) {
+        
+        self.lineEndingScanner = lineEndingScanner
         
         super.init()
         
@@ -240,7 +242,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
         
         switch invisible {
             case .newLine:
-                self.lineEndingScanner?.isInvalidLineEnding(at: characterIndex) == true
+                self.lineEndingScanner.isInvalidLineEnding(at: characterIndex)
             default:
                 false
         }

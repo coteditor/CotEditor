@@ -65,7 +65,7 @@ final class PrintTextView: NSTextView {
     
     // MARK: Lifecycle
     
-    init(info: DocumentInfo, lineEndingScanner: LineEndingScanner) {
+    init(textStorage: NSTextStorage, lineEndingScanner: LineEndingScanner, info: DocumentInfo) {
         
         self.documentInfo = info
         self.tabWidth = UserDefaults.standard[.tabWidth]
@@ -80,9 +80,7 @@ final class PrintTextView: NSTextView {
         // -> If padding is changed while printing, the print area can be cropped due to text wrapping.
         
         // setup textView components
-        let textStorage = NSTextStorage()
-        let layoutManager = PrintLayoutManager()
-        layoutManager.lineEndingScanner = lineEndingScanner
+        let layoutManager = PrintLayoutManager(lineEndingScanner: lineEndingScanner)
         textStorage.addLayoutManager(layoutManager)
         layoutManager.addTextContainer(textContainer)
         

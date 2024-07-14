@@ -660,18 +660,16 @@ extension Document: EditorSource {
                                               fileURL: self.fileURL,
                                               lastModifiedDate: lastModifiedDate,
                                               syntaxName: self.syntaxParser.name)
-        let printView = PrintTextView(info: info, lineEndingScanner: self.lineEndingScanner)
+        let textStorage = NSTextStorage(string: self.textStorage.string)
+        let printView = PrintTextView(textStorage: textStorage, lineEndingScanner: self.lineEndingScanner, info: info)
+        if let selectedRanges = self.textView?.selectedRanges {
+            printView.selectedRanges = selectedRanges
+        }
         
         printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
         printView.baseWritingDirection = viewController.writingDirection
         printView.ligature = self.textView?.ligature ?? .standard
         printView.font = viewController.font?.withSize(UserDefaults.standard[.printFontSize])
-        
-        // [caution] need to set string after setting other properties
-        printView.string = self.textStorage.string
-        if let selectedRanges = self.textView?.selectedRanges {
-            printView.selectedRanges = selectedRanges
-        }
         
         if let highlights = self.textStorage.layoutManagers.first?.syntaxHighlights(), !highlights.isEmpty {
             printView.layoutManager?.apply(highlights: highlights, theme: nil, in: printView.string.range)
