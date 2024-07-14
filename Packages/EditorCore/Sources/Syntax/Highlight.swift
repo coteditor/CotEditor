@@ -54,6 +54,6 @@ extension Highlight {
             }
             .mapValues { $0.rangeView.map(NSRange.init) }
             .flatMap { (type, ranges) in ranges.map { ValueRange(value: type, range: $0) } }
-            .sorted { $0.range.location < $1.range.location }
+            .sorted(using: KeyPathComparator(\.range.location))
     }
 }

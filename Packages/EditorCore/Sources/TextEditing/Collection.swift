@@ -35,15 +35,3 @@ extension Sequence {
         self.sorted { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
     }
 }
-
-
-extension MutableCollection where Self: RandomAccessCollection {
-    
-    /// Sorts the collection in place, using the value that the given key path refers as the comparison between elements.
-    ///
-    /// - Parameter keyPath: The key path to the value to compare.
-    mutating func sort(_ keyPath: KeyPath<Element, some Comparable>) {
-        
-        self.sort { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
-    }
-}
