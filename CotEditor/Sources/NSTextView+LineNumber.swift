@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import LineEnding
 
 extension NSTextView {
     
@@ -39,13 +40,13 @@ extension NSTextView {
     
     /// Returns the 1-based line number at the given character index.
     ///
-    /// This method has a performance advantage if the receiver's layoutManager conforms LineRangeCacheable.
+    /// This method has a performance advantage if the receiver has any LineRangeCalculating.
     ///
     /// - Parameter location: NSRange-based character index.
     /// - Returns: The number of lines (1-based).
     final func lineNumber(at location: Int) -> Int {
         
-        (self.layoutManager as? any LineRangeCacheable)?.lineNumber(at: location) ?? (self.string as NSString).lineNumber(at: location)
+        self.lineRangeCalculating?.lineNumber(at: location) ?? (self.string as NSString).lineNumber(at: location)
     }
     
     
@@ -107,14 +108,21 @@ extension NSTextView {
     
     // MARK: Private Methods
     
+    /// The object calculating line range.
+    private var lineRangeCalculating: (any LineRangeCalculating)? {
+        
+        (self.layoutManager as? LayoutManager)?.lineEndingScanner
+    }
+    
+    
     /// Returns the 1-based line number at the given character index.
     ///
-    /// This method has a performance advantage if the receiver's layoutManager conforms LineRangeCacheable.
+    /// This method has a performance advantage if the receiver has any LineRangeCalculating.
     ///
     /// - Parameter location: NSRange-based character index.
     /// - Returns: The number of lines (1-based).
     private func lineRange(at location: Int) -> NSRange {
         
-        (self.layoutManager as? any LineRangeCacheable)?.lineRange(at: location) ?? (self.string as NSString).lineRange(at: location)
+        self.lineRangeCalculating?.lineRange(at: location) ?? (self.string as NSString).lineRange(at: location)
     }
 }

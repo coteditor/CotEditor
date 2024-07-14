@@ -70,13 +70,13 @@ final class TextContainer: NSTextContainer {
             let layoutManager = self.layoutManager as? LayoutManager
         else { return rect }
         
-        let lineStartIndex = layoutManager.lineStartIndex(at: characterIndex)
+        let lineStartIndex = layoutManager.lineEndingScanner.lineStartIndex(at: characterIndex)
         
         // no hanging indent for new line
         guard characterIndex != lineStartIndex else { return rect }
         
         // get base indent
-        let string = layoutManager.string
+        let string = layoutManager.attributedString().string as NSString
         let indentString = string.indentString(in: lineStartIndex..<characterIndex)
         let baseIndent: CGFloat
         if indentString.isEmpty {

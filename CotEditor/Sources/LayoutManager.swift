@@ -29,7 +29,7 @@ import Combine
 import Defaults
 import Invisible
 
-class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, LineRangeCacheable {
+class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
     
     // MARK: Protocol Properties
     
@@ -39,10 +39,6 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     
     // ValidationIgnorable
     var ignoresDisplayValidation = false
-    
-    // LineRangeCacheable
-    var string: NSString  { self.textStorage?.string as? NSString ?? "" }
-    var lineRangeCache = LineRangeCache()
     
     
     // MARK: Public Properties
@@ -119,15 +115,6 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     
     
     // MARK: Layout Manager Methods
-    
-    override func replaceTextStorage(_ newTextStorage: NSTextStorage) {
-        
-        super.replaceTextStorage(newTextStorage)
-        
-        // reset line range cache
-        self.lineRangeCache = .init()
-    }
-    
     
     /// Adjusts rect of last empty line.
     override func setExtraLineFragmentRect(_ fragmentRect: NSRect, usedRect: NSRect, textContainer container: NSTextContainer) {
@@ -222,16 +209,6 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
         }
         
         super.setGlyphs(glyphs, properties: newProps, characterIndexes: charIndexes, font: aFont, forGlyphRange: glyphRange)
-    }
-    
-    
-    override func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange) {
-        
-        if editMask.contains(.editedCharacters) {
-            self.invalidateLineRanges(in: newCharRange, changeInLength: delta)
-        }
-        
-        super.processEditing(for: textStorage, edited: editMask, range: newCharRange, changeInLength: delta, invalidatedRange: invalidatedCharRange)
     }
     
     
