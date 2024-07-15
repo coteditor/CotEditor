@@ -58,6 +58,31 @@ public extension String {
         
         return lineEndingRanges
     }
+    
+    
+    /// Collects ranges of all line endings with line ending types in the specified range.
+    ///
+    /// This API can return line endings out of the specified range by considering the possibility
+    /// that the boundary of the specified range lies between CRLF.
+    ///
+    /// - Parameters:
+    ///   - range: The range to parse.
+    ///   - effectiveRange: Upon return, the actual range of line endings collected.
+    /// - Returns: Ranges of line endings.
+    func lineEndingRanges(in range: NSRange, effectiveRange: inout NSRange) -> [ValueRange<LineEnding>] {
+        
+        let nsString = self as NSString
+        let lowerScanBound: Int = (0..<range.lowerBound).reversed().lazy
+            .prefix { [0xA, 0xD].contains(nsString.character(at: $0)) }
+            .last ?? range.lowerBound
+        let upperScanBound: Int = (range.upperBound..<nsString.length)
+            .prefix { [0xA, 0xD].contains(nsString.character(at: $0)) }
+            .last.flatMap { $0 + 1 } ?? range.upperBound
+        
+        effectiveRange = NSRange(lowerScanBound..<upperScanBound)
+        
+        return self.lineEndingRanges(in: effectiveRange)
+    }
 }
 
 

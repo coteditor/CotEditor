@@ -56,3 +56,16 @@ public extension Array {
         self.insert(contentsOf: items, at: lowerEditedIndex)
     }
 }
+
+
+public extension Collection {
+    
+    /// Returns the Value mostly occurred in the collection.
+    func majorValue<Value: Hashable>() -> Value? where Element == ValueRange<Value> {
+        
+        Dictionary(grouping: self, by: \.value)
+            .sorted(using: KeyPathComparator(\.value.first?.lowerBound))
+            .max { $0.value.count < $1.value.count }?
+            .key
+    }
+}

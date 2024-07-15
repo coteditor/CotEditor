@@ -39,4 +39,17 @@ struct CollectionTests {
                     array.firstIndex(where: { $0 > index }))
         }
     }
+    
+    
+    @Test func majorValue() {
+        
+        #expect("".lineEndingRanges().majorValue() == nil)
+        #expect("a".lineEndingRanges().majorValue() == nil)
+        #expect("\n".lineEndingRanges().majorValue() == .lf)
+        #expect("\r".lineEndingRanges().majorValue() == .cr)
+        #expect("\r\n".lineEndingRanges().majorValue() == .crlf)
+        #expect("\u{85}".lineEndingRanges().majorValue() == .nel)
+        #expect("abc\u{2029}def".lineEndingRanges().majorValue() == .paragraphSeparator)
+        #expect("\rfoo\r\nbar\nbuz\u{2029}moin\r\n".lineEndingRanges().majorValue() == .crlf)
+    }
 }

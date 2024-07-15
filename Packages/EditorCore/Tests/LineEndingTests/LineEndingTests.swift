@@ -67,6 +67,20 @@ struct LineEndingTests {
     }
     
     
+    @Test func lineEndingEffectiveRange() {
+        
+        let string = "\r\n \n \r\n"
+        var range: NSRange = .notFound
+        
+        #expect(string.lineEndingRanges(in: NSRange(1..<6), effectiveRange: &range) == [
+            .init(value: .crlf, location: 0),
+            .init(value: .lf, location: 3),
+            .init(value: .crlf, location: 5),
+        ])
+        #expect(range == NSRange(0..<7))
+    }
+    
+    
     @Test func replace() {
         
         #expect("foo\r\nbar\n".replacingLineEndings(with: .cr) == "foo\rbar\r")

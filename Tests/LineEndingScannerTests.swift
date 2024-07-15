@@ -74,36 +74,6 @@ struct LineEndingScannerTests {
                 [ValueRange(value: .crlf, range: NSRange(location: 3, length: 2)),
                  ValueRange(value: .cr, range: NSRange(location: 8, length: 1))])
     }
-    
-    
-    @Test func detect() {
-        
-        let storage = NSTextStorage()
-        let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
-        
-        #expect(scanner.majorLineEnding == nil)
-        
-        storage.string = "a"
-        #expect(scanner.majorLineEnding == nil)
-        
-        storage.string = "\n"
-        #expect(scanner.majorLineEnding == .lf)
-        
-        storage.string = "\r"
-        #expect(scanner.majorLineEnding == .cr)
-        
-        storage.string = "\r\n"
-        #expect(scanner.majorLineEnding == .crlf)
-        
-        storage.string = "\u{85}"
-        #expect(scanner.majorLineEnding == .nel)
-        
-        storage.string = "abc\u{2029}def"
-        #expect(scanner.majorLineEnding == .paragraphSeparator)
-        
-        storage.string = "\rfoo\r\nbar\nbuz\u{2029}moin\r\n"
-        #expect(scanner.majorLineEnding == .crlf)  // most used new line must be detected
-    }
 }
 
 

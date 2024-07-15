@@ -76,10 +76,7 @@ import ValueRange
     /// The line endings mostly occurred in the storage.
     var majorLineEnding: LineEnding? {
         
-        Dictionary(grouping: self.lineEndings, by: \.value)
-            .sorted(\.value.first!.lowerBound)
-            .max { $0.value.count < $1.value.count }?
-            .key
+        self.lineEndings.majorValue()
     }
     
     
@@ -104,17 +101,8 @@ import ValueRange
         
         let string = self.textStorage.string.immutable
         
-        // expand range to scan by considering the possibility that a part of CRLF was edited
-        let nsString = string as NSString
-        let lowerScanBound: Int = (0..<editedRange.lowerBound).reversed().lazy
-            .prefix { [0xA, 0xD].contains(nsString.character(at: $0)) }
-            .last ?? editedRange.lowerBound
-        let upperScanBound: Int = (editedRange.upperBound..<nsString.length)
-            .prefix { [0xA, 0xD].contains(nsString.character(at: $0)) }
-            .last.flatMap { $0 + 1 } ?? editedRange.upperBound
-        let scanRange = NSRange(lowerScanBound..<upperScanBound)
-        
-        let insertedLineEndings = string.lineEndingRanges(in: scanRange)
+        var scanRange: NSRange = .notFound
+        let insertedLineEndings = string.lineEndingRanges(in: editedRange, effectiveRange: &scanRange)
         let inconsistentLineEndings = insertedLineEndings.filter { $0.value != self.baseLineEnding }
         
         self.lineEndings.replace(items: insertedLineEndings, in: scanRange, changeInLength: delta)
