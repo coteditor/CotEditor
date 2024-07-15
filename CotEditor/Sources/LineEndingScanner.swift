@@ -86,7 +86,7 @@ import ValueRange
     /// - Returns: A boolean indicating whether the character is an inconsistent line ending.
     func isInvalidLineEnding(at characterIndex: Int) -> Bool {
         
-        self.inconsistentLineEndings.lazy.map(\.lowerBound).contains(characterIndex)
+        self.inconsistentLineEndings.contains { $0.lowerBound == characterIndex }
     }
     
     
