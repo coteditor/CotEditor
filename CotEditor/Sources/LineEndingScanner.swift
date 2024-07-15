@@ -35,7 +35,7 @@ import ValueRange
     var baseLineEnding: LineEnding
     
     private(set) var lineEndings: [ValueRange<LineEnding>]
-    private(set) var inconsistentLineEndings: [ValueRange<LineEnding>] = []
+    private(set) var inconsistentLineEndings: [ValueRange<LineEnding>]
     
     var length: Int  { self.textStorage.length }
     
@@ -54,8 +54,9 @@ import ValueRange
         self.textStorage = textStorage
         self.baseLineEnding = lineEnding
         
-        self.lineEndings = textStorage.string.lineEndingRanges()
-        self.inconsistentLineEndings = self.lineEndings.filter { $0.value != lineEnding }
+        let lineEndings = textStorage.string.lineEndingRanges()
+        self.lineEndings = lineEndings
+        self.inconsistentLineEndings = lineEndings.filter { $0.value != lineEnding }
         
         self.storageObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textStorage)
             .map { $0.object as! NSTextStorage }
