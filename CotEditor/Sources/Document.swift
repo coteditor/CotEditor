@@ -850,6 +850,9 @@ extension Document: EditorSource {
             case #selector(changeSyntax(_:)):
                 menuItem.state = (menuItem.representedObject as? String == self.syntaxParser.name) ? .on : .off
                 
+            case #selector(showInFinder):
+                return self.fileURL != nil
+                
             default: break
         }
         
@@ -1046,6 +1049,15 @@ extension Document: EditorSource {
         guard let name = sender.representedObject as? String else { return assertionFailure() }
         
         self.setSyntax(name: name)
+    }
+    
+    
+    /// Opens the document file in the Finder.
+    @IBAction func showInFinder(_ sender: Any?) {
+        
+        guard let fileURL else { return }
+        
+        NSWorkspace.shared.activateFileViewerSelecting([fileURL])
     }
     
     

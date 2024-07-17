@@ -33,7 +33,8 @@ extension DirectoryDocument {
         switch menuItem.action {
             case #selector(changeEncoding),
                  #selector(changeLineEnding),
-                 #selector(changeSyntax):
+                 #selector(changeSyntax),
+                 #selector(showInFinder):
                 return self.currentDocument?.validateMenuItem(menuItem) ?? false
                 
             default:
@@ -58,6 +59,7 @@ extension DirectoryDocument {
                  #selector(unlock(_:)),
                  #selector(runPageLayout),
                  #selector(printDocument),
+                 #selector(showInFinder),
                  #selector(shareDocument):
                 return self.currentDocument?.validateUserInterfaceItem(item) ?? false
                 
@@ -140,6 +142,12 @@ extension DirectoryDocument {
     @objc func changeSyntax(_ sender: NSMenuItem) {
         
         self.currentDocument?.changeSyntax(sender)
+    }
+    
+    
+    @objc func showInFinder(_ sender: Any?) {
+        
+        self.currentDocument?.showInFinder(sender)
     }
     
     
