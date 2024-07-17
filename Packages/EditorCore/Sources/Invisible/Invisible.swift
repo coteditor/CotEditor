@@ -79,6 +79,7 @@ public enum Invisible: Sendable, CaseIterable {
 
 extension Invisible {
     
+    /// The character representation to print in text.
     public var symbol: Character {
         
         switch self {

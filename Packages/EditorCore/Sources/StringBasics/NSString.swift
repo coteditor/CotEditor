@@ -45,6 +45,7 @@ public extension StringProtocol {
     }
     
     
+    /// The `NSRange` like length.
     var length: Int {
         
         self.utf16.count

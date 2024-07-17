@@ -28,6 +28,9 @@ import Foundation
 
 public extension String.Encoding {
     
+    /// Initializes String.Encoding most closely to a given Core Foundation encoding constant.
+    /// 
+    /// - Parameter cfEncoding: The Core Foundation encoding constant.
     init(cfEncoding: CFStringEncoding) {
         
         self.init(rawValue: CFStringConvertEncodingToNSStringEncoding(cfEncoding))

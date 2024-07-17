@@ -327,7 +327,10 @@ public extension String {
         
         return EditingContext(strings: replacementStrings, ranges: trimmingRanges, selectedRanges: selectedRanges)
     }
+}
+
     
+extension String {
     
     func rangesOfTrailingWhitespace(ignoringEmptyLines: Bool) -> [NSRange] {
         

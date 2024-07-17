@@ -26,6 +26,7 @@
 
 public extension Unicode.Scalar {
     
+    /// The description about the Unicode variant selector if the scalar is a variant selector.
     var variantDescription: String? {
         
         if let selector = EmojiVariationSelector(rawValue: self.value) {

@@ -28,6 +28,7 @@ import AppKit
 
 public extension NSMenuItem {
     
+    /// The `Shortcut` representation of the keyboard shortcut.
     final var shortcut: Shortcut? {
         
         get {
