@@ -47,7 +47,7 @@ extension NSAppearance {
     }
     
     
-    /// THe corresponding appearance for the light/dark mode.
+    /// The corresponding appearance for the light/dark mode.
     ///
     /// - Parameter isDark: Whether the return value to be for dark mode or not.
     /// - Returns: A new appearance, or `self` if no change required.

@@ -37,7 +37,6 @@ extension NSTextView {
     }
     
     
-    
     /// Returns the 1-based line number at the given character index.
     ///
     /// This method has a performance advantage if the receiver has any LineRangeCalculating.

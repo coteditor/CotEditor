@@ -167,7 +167,6 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    
     /// Invoked when the selected syntax in the "Installed syntaxes" list table did change.
     func tableViewSelectionDidChange(_ notification: Notification) {
         

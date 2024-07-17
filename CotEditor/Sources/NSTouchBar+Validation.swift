@@ -43,7 +43,6 @@ extension NSTouchBar {
     }
     
     
-    
     /// Validates currently visible touch bar items
     final func validateVisibleItems() {
         

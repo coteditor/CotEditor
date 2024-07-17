@@ -24,7 +24,6 @@
 //
 
 import AppKit
-import ControlUI
 
 private extension NSTouchBar.CustomizationIdentifier {
     

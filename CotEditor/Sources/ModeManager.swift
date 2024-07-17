@@ -79,7 +79,6 @@ import Syntax
     }
     
     
-    
     /// Returns the setting instance corresponding to the given mode.
     ///
     /// - Parameter mode: The mode.
