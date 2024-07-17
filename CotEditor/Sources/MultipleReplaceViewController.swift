@@ -102,7 +102,7 @@ final class MultipleReplaceViewController: NSViewController {
         
         self.endEditing()
         
-        let row = self.tableView?.selectedRowIndexes.last.flatMap { $0 + 1 } ?? self.definition.replacements.endIndex
+        let row = self.tableView?.selectedRowIndexes.last?.advanced(by: 1) ?? self.definition.replacements.endIndex
         let replacements = [MultipleReplace.Replacement()]
         
         self.insertReplacements(replacements, at: [row])

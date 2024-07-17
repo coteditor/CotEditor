@@ -77,7 +77,7 @@ private struct EqualWidthHStack: Layout {
         
         let maxSize = self.maxSize(subviews: subviews)
         let spacing = self.spacing(subviews: subviews)
-        let totalSpacing = spacing.reduce(0) { $0 + $1 }
+        let totalSpacing = spacing.reduce(0, +)
         
         return CGSize(width: maxSize.width * CGFloat(subviews.count) + totalSpacing,
                       height: maxSize.height)
