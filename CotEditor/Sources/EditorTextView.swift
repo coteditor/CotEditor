@@ -887,6 +887,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 self.didChangeValue(for: \.font)
             }
             
+            if font.isFixedPitch {
+                self.typingAttributes[.kern] = 0
+                self.textStorage?.addAttribute(.kern, value: 0, range: self.string.nsRange)
+            } else {
+                self.typingAttributes[.kern] = nil
+                self.textStorage?.removeAttribute(.kern, range: self.string.nsRange)
+            }
+            
             // let LayoutManager keep the set font to avoid an inconsistent line height
             // -> Because NSTextView's .font returns the font used for the first character of .string when it exists,
             //    not the font defined by user but a fallback font is returned through this property
@@ -1287,13 +1295,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.font = defaults.font(for: type)
         self.ligature = defaults[.ligature(for: type)] ? .standard : .none
         self.usesAntialias = defaults[.antialias(for: type)]
-        self.typingAttributes[.kern] = (type == .monospaced) ? 0 : nil
-        switch type {
-            case .standard:
-                self.textStorage?.removeAttribute(.kern, range: self.string.nsRange)
-            case .monospaced:
-                self.textStorage?.addAttribute(.kern, value: 0, range: self.string.nsRange)
-        }
         
         self.fontObservers = [
             defaults.publisher(for: .fontKey(for: type))
