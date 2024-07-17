@@ -51,7 +51,7 @@ extension NSAppearance {
     ///
     /// - Parameter isDark: Whether the return value to be for dark mode or not.
     /// - Returns: A new appearance, or `self` if no change required.
-    final func appearance(for isDark: Bool) -> Self {
+    fileprivate final func appearance(for isDark: Bool) -> Self {
         
         if isDark == self.isDark {
             self
@@ -64,31 +64,37 @@ extension NSAppearance {
 
 extension NSColor {
     
-    /// Forcibly creates the appropriate color for the given appearance.
-    ///
-    /// - Parameter appearance: The appearance to match.
-    /// - Returns: A new color.
-    func solve(for appearance: NSAppearance?) -> NSColor {
-        
-        guard self.type != .componentBased else { return self }
-        
-        var color = self
-        appearance?.performAsCurrentDrawingAppearance {
-            color = NSColor(cgColor: color.cgColor) ?? color
-        }
-        return color
-    }
-    
-    
     /// Forcibly creates the appropriate color for the light/dark mode.
     ///
     /// - Parameter isDark: Whether the return value to be for dark mode or not.
     /// - Returns: A new color.
-    func forDarkMode(_ isDark: Bool) -> NSColor {
+    final func forDarkMode(_ isDark: Bool) -> NSColor {
         
         guard self.type != .componentBased else { return self }
         
-        return self.solve(for: NSAppearance(named: isDark ? .darkAqua : .aqua)!)
+        return NSColor(name: nil) { appearance in
+            if isDark == appearance.isDark {
+                self
+            } else {
+                self.solve(for: appearance.appearance(for: isDark))
+            }
+        }
+    }
+    
+    
+    /// Forcibly creates the appropriate color for the given appearance.
+    ///
+    /// - Parameter appearance: The appearance to match.
+    /// - Returns: A new color.
+    private final func solve(for appearance: NSAppearance) -> NSColor {
+        
+        guard self.type != .componentBased else { return self }
+        
+        var color = self
+        appearance.performAsCurrentDrawingAppearance {
+            color = NSColor(cgColor: color.cgColor) ?? color
+        }
+        return color
     }
 }
 

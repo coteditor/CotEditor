@@ -139,26 +139,16 @@ struct Theme: Equatable {
     
     
     /// Insertion point color to use.
-    var effectiveInsertionPointColor: NSColor {
+    var insertionPointColor: NSColor {
         
-        self.insertionPoint.usesSystemSetting ? .textInsertionPointColor : self.insertionPoint.color
+        self.insertionPoint.color(systemColor: .textInsertionPointColor, forDark: self.isDarkTheme)
     }
     
     
     /// The selection color to use.
     var selectionColor: NSColor {
         
-        if self.selection.usesSystemSetting {
-            NSColor(name: nil) { [isDarkTheme = self.isDarkTheme] appearance in
-                if isDarkTheme == appearance.isDark {
-                    .selectedTextBackgroundColor
-                } else {
-                    .selectedTextBackgroundColor.solve(for: appearance.appearance(for: isDarkTheme))
-                }
-            }
-        } else {
-            self.selection.color
-        }
+        self.selection.color(systemColor: .selectedTextBackgroundColor, forDark: self.isDarkTheme)
     }
     
     
@@ -166,13 +156,7 @@ struct Theme: Equatable {
     var unemphasizedSelectionColor: NSColor? {
         
         if self.selection.usesSystemSetting {
-            return NSColor(name: nil) { [isDarkTheme = self.isDarkTheme] appearance in
-                if isDarkTheme == appearance.isDark {
-                    .unemphasizedSelectedContentBackgroundColor
-                } else {
-                    .unemphasizedSelectedContentBackgroundColor.solve(for: appearance.appearance(for: isDarkTheme))
-                }
-            }
+            return .unemphasizedSelectedContentBackgroundColor.forDarkMode(self.isDarkTheme)
         } else {
             guard let color = self.selection.color.usingColorSpace(.genericRGB) else { return nil }
             
@@ -181,6 +165,24 @@ struct Theme: Equatable {
     }
 }
 
+
+private extension Theme.SystemDefaultStyle {
+    
+    /// Returns the effective color.
+    ///
+    /// - Parameters:
+    ///   - systemColor: The default system color.
+    ///   - forDark: Whether the theme is a dark theme or not.
+    /// - Returns: An NSColor.
+    func color(systemColor: NSColor, forDark isDarkTheme: Bool) -> NSColor {
+        
+        if self.usesSystemSetting {
+            systemColor.forDarkMode(isDarkTheme)
+        } else {
+            self.color
+        }
+    }
+}
 
 
 // MARK: - Codable

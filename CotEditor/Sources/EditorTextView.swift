@@ -1384,7 +1384,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.textColor = theme.text.color
         self.backgroundColor = theme.background.color
         self.lineHighlightColor = theme.lineHighlight.color
-        self.insertionPointColor = theme.effectiveInsertionPointColor
+        self.insertionPointColor = theme.insertionPointColor
         for indicator in self.insertionIndicators {
             indicator.color = self.insertionPointColor
         }
