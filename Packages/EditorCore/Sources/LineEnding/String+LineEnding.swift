@@ -72,12 +72,12 @@ public extension String {
     func lineEndingRanges(in range: NSRange, effectiveRange: inout NSRange) -> [ValueRange<LineEnding>] {
         
         let nsString = self as NSString
-        let lowerScanBound: Int = (0..<range.lowerBound).reversed().lazy
+        let lowerScanBound = (0..<range.lowerBound).reversed().lazy
             .prefix { [0xA, 0xD].contains(nsString.character(at: $0)) }
             .last ?? range.lowerBound
-        let upperScanBound: Int = (range.upperBound..<nsString.length)
+        let upperScanBound = (range.upperBound..<nsString.length)
             .prefix { [0xA, 0xD].contains(nsString.character(at: $0)) }
-            .last.flatMap { $0 + 1 } ?? range.upperBound
+            .last?.advanced(by: 1) ?? range.upperBound
         
         effectiveRange = NSRange(lowerScanBound..<upperScanBound)
         

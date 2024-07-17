@@ -69,15 +69,28 @@ struct LineEndingTests {
     
     @Test func lineEndingEffectiveRange() {
         
-        let string = "\r\n \n \r\n"
         var range: NSRange = .notFound
         
-        #expect(string.lineEndingRanges(in: NSRange(1..<6), effectiveRange: &range) == [
+        #expect("".lineEndingRanges(in: NSRange(0..<0), effectiveRange: &range).isEmpty)
+        #expect(range == NSRange(0..<0))
+        
+        #expect("abc".lineEndingRanges(in: NSRange(1..<1), effectiveRange: &range).isEmpty)
+        #expect(range == NSRange(1..<1))
+        
+        #expect("\r\n \n \r\n".lineEndingRanges(in: NSRange(1..<6), effectiveRange: &range) == [
             .init(value: .crlf, location: 0),
             .init(value: .lf, location: 3),
             .init(value: .crlf, location: 5),
         ])
         #expect(range == NSRange(0..<7))
+        
+        #expect("\n \n\r\n\n\n \r\n".lineEndingRanges(in: NSRange(3..<3), effectiveRange: &range) == [
+            .init(value: .lf, location: 2),
+            .init(value: .crlf, range: NSRange(location: 3, length: 2)),
+            .init(value: .lf, location: 5),
+            .init(value: .lf, location: 6),
+        ])
+        #expect(range == NSRange(2..<7))
     }
     
     
@@ -85,6 +98,18 @@ struct LineEndingTests {
         
         #expect("foo\r\nbar\n".replacingLineEndings(with: .cr) == "foo\rbar\r")
         #expect("foo\u{c}bar\n".replacingLineEndings(with: .cr) == "foo\u{c}bar\r")
+    }
+    
+    
+    @Test func replaceAttributedString() {
+        
+        let string = NSMutableAttributedString(string: "foo\r\nbar\n")
+        string.replaceLineEndings(with: .cr)
+        #expect(string.string == "foo\rbar\r")
+        
+        let string2 = NSMutableAttributedString(string: "foo\u{c}bar\n")
+        string2.replaceLineEndings(with: .cr)
+        #expect(string2.string == "foo\u{c}bar\r")
     }
 }
 
