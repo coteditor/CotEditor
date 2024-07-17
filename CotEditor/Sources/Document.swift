@@ -423,7 +423,7 @@ extension Document: EditorSource {
             self.textStorage.replaceContent(with: string)
             
             self.fileEncoding = fileEncoding
-            self.lineEnding = self.lineEndingScanner.majorLineEnding ?? self.lineEnding  // keep default if no line endings are found
+            self.lineEnding = self.lineEndingScanner.lineEndings.majorValue() ?? self.lineEnding  // keep default if no line endings are found
             
             // determine syntax (only on the first file open)
             if !self.isInitialized {

@@ -74,13 +74,6 @@ import ValueRange
     }
     
     
-    /// The line endings mostly occurred in the storage.
-    var majorLineEnding: LineEnding? {
-        
-        self.lineEndings.majorValue()
-    }
-    
-    
     /// Returns whether the character at the given index is a line ending inconsistent with the `baseLineEnding`.
     ///
     /// - Parameter characterIndex: The index of character to test.
