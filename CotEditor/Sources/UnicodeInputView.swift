@@ -53,7 +53,7 @@ struct UnicodeInputView: View {
             .foregroundStyle(self.unicodeName != nil ? .primary : .secondary)
             
             InsetTextField(text: $codePoint, prompt: "U+1F600")
-                .onSubmit { self.submit() }
+                .onSubmit(self.submit)
                 .inset(.leading, 18)
                 .monospacedDigit()
                 .overlay(alignment: .leadingFirstTextBaseline) {

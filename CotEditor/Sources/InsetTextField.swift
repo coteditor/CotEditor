@@ -28,7 +28,7 @@ import SwiftUI
 
 struct InsetTextField: NSViewRepresentable {
     
-    typealias NSViewType = PaddingTextField
+    typealias NSViewType = NSTextField
     
     @Binding private var text: String
     private let prompt: String?
@@ -45,7 +45,7 @@ struct InsetTextField: NSViewRepresentable {
     }
     
     
-    func makeNSView(context: Context) -> PaddingTextField {
+    func makeNSView(context: Context) -> NSTextField {
         
         let textField = PaddingTextField(string: self.text)
         textField.leadingPadding = self.insets.leading
@@ -58,11 +58,11 @@ struct InsetTextField: NSViewRepresentable {
     }
     
     
-    func updateNSView(_ nsView: PaddingTextField, context: Context) {
+    func updateNSView(_ nsView: NSTextField, context: Context) {
         
         nsView.stringValue = self.text
-        nsView.leadingPadding = self.insets.leading
-        nsView.trailingPadding = self.insets.trailing
+        (nsView as! PaddingTextField).leadingPadding = self.insets.leading
+        (nsView as! PaddingTextField).trailingPadding = self.insets.trailing
         if self.usesMonospacedDigit, let font = nsView.font {
             nsView.font = .monospacedDigitSystemFont(ofSize: font.pointSize, weight: font.weight)
         }
@@ -111,23 +111,15 @@ struct InsetTextField: NSViewRepresentable {
 
 extension InsetTextField {
     
-    struct Edges: OptionSet {
-        
-        let rawValue: Int
-        
-        static let leading = Self(rawValue: 1 << 0)
-        static let trailing = Self(rawValue: 1 << 1)
-    }
-    
-    
     /// Sets the inset value inside the field.
     ///
     /// - Parameters:
     ///   - edges: The set of edges to inset for this view.
     ///   - length: An amount, given in points, to inset this view on the specified edges.
-    func inset(_ edges: Edges, _ length: CGFloat) -> Self {
+    func inset(_ edges: Edge.Set, _ length: CGFloat) -> Self {
         
         assert(!edges.isEmpty)
+        assert(edges.isDisjoint(with: .vertical))
         
         var view = self
         if edges.contains(.leading) {
@@ -162,8 +154,7 @@ extension InsetTextField {
 }
 
 
-
-final class PaddingTextField: NSTextField {
+private final class PaddingTextField: NSTextField {
     
     override static var cellClass: AnyClass? {
         
