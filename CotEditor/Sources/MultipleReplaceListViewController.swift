@@ -68,14 +68,8 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         self.settingNames = ReplacementManager.shared.settingNames
         
         // select an item in list
-        let row: Int = {
-            guard
-                let lastSelectedName = UserDefaults.standard[.selectedMultipleReplaceSettingName],
-                let row = self.settingNames.firstIndex(of: lastSelectedName)
-            else { return 0 }
-            
-            return row
-        }()
+        let row = UserDefaults.standard[.selectedMultipleReplaceSettingName]
+            .flatMap(self.settingNames.firstIndex(of:)) ?? 0
         self.tableView?.selectRowIndexes([row], byExtendingSelection: false)
         
         // observe replacement setting list change

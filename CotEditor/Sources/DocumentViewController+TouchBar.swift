@@ -142,14 +142,12 @@ extension DocumentViewController: TouchBarItemValidations {
         
         guard let button = item.view as? NSButton else { return true }
         
-        guard let isEnabled: Bool = {
-            switch item.identifier {
-                case .invisibles: self.showsInvisibles
-                case .indentGuides: self.showsIndentGuides
-                case .wrapLines: self.wrapsLines
-                default: nil
-            }
-        }() else { return true }
+        guard let isEnabled: Bool = switch item.identifier {
+            case .invisibles: self.showsInvisibles
+            case .indentGuides: self.showsIndentGuides
+            case .wrapLines: self.wrapsLines
+            default: nil
+        } else { return true }
         
         let color: NSColor? = isEnabled ? nil : .offStateButtonBezelColor
         if button.bezelColor != color {
