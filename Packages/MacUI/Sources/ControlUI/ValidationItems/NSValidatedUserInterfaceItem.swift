@@ -1,5 +1,6 @@
 //
 //  NSValidatedUserInterfaceItem.swift
+//  ControlUI
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,17 +26,9 @@
 
 import AppKit
 
-protocol StatableItem: AnyObject {
+public extension NSValidatedUserInterfaceItem {
     
-    @MainActor var state: NSControl.StateValue { get set }
-}
-
-extension NSMenuItem: StatableItem { }
-
-
-
-extension NSValidatedUserInterfaceItem {
-    
+    /// The tooltip to display when someone hovers over the item.
     @MainActor var toolTip: String? {
         
         get {
@@ -45,7 +38,7 @@ extension NSValidatedUserInterfaceItem {
                 case let item as NSToolbarItem:
                     item.toolTip
                 case let item as NSCustomTouchBarItem:
-                    item.toolTip
+                    item.view.toolTip
                 default:
                     // -> Only NSMenuItem and NSToolbarItem inherit NSValidatedUserInterfaceItem.
                     preconditionFailure()
@@ -59,7 +52,7 @@ extension NSValidatedUserInterfaceItem {
                 case let item as NSToolbarItem:
                     item.toolTip = newValue
                 case let item as NSCustomTouchBarItem:
-                    item.toolTip = newValue
+                    item.view.toolTip = newValue
                 default:
                     preconditionFailure()
             }

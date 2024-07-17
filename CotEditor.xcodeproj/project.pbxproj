@@ -239,8 +239,6 @@
 		2A476CB11D09D0500088E37A /* FontExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A476CB01D09D0500088E37A /* FontExtensionTests.swift */; };
 		2A478F3F22BE743200AEA45E /* NSTextView+Ligature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A478F3E22BE743200AEA45E /* NSTextView+Ligature.swift */; };
 		2A478F4022BE743200AEA45E /* NSTextView+Ligature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A478F3E22BE743200AEA45E /* NSTextView+Ligature.swift */; };
-		2A47CD3821D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */; };
-		2A47CD3921D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */; };
 		2A484A39236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */; };
 		2A484A3A236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */; };
 		2A4AF76720759BE500C47606 /* RegexFindPanelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4AF76620759BE500C47606 /* RegexFindPanelTextView.swift */; };
@@ -275,8 +273,6 @@
 		2A5D13141D1EE8FF00D38E6A /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13121D1EE8FF00D38E6A /* HUDView.swift */; };
 		2A5D13161D1EF5AA00D38E6A /* GoToLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13151D1EF5AA00D38E6A /* GoToLineView.swift */; };
 		2A5D13171D1EF5AA00D38E6A /* GoToLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13151D1EF5AA00D38E6A /* GoToLineView.swift */; };
-		2A5D13251D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */; };
-		2A5D13261D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */; };
 		2A5D132F1D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */; };
 		2A5D13301D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */; };
 		2A5D13321D1FB90300D38E6A /* FindPanelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */; };
@@ -569,8 +565,6 @@
 		2AC52BDC1D48CC0E007D6371 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */; };
 		2AC6069B20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6069A20416ADE00F9C839 /* OpenPanelAccessory.swift */; };
 		2AC6069C20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6069A20416ADE00F9C839 /* OpenPanelAccessory.swift */; };
-		2AC7044824EBB76B00454706 /* NSToolbarItem+Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC7044724EBB76B00454706 /* NSToolbarItem+Validatable.swift */; };
-		2AC7044924EBB76B00454706 /* NSToolbarItem+Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC7044724EBB76B00454706 /* NSToolbarItem+Validatable.swift */; };
 		2AC71DE21BF0BDBC002E1434 /* StringAdvancedCountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC71DE11BF0BDBC002E1434 /* StringAdvancedCountTests.swift */; };
 		2AC72EA2253478D5001D3CA0 /* FileDropItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */; };
 		2AC94B3B2B6EAAE90086F9F2 /* RegexReference.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AC94B3A2B6EAAE90086F9F2 /* RegexReference.xcstrings */; };
@@ -631,8 +625,6 @@
 		2AD5440B2C2072CC001CD4C9 /* DocumentShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD544092C2072C6001CD4C9 /* DocumentShortcuts.swift */; };
 		2AD544232C21BCED001CD4C9 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AD544222C21BCED001CD4C9 /* AppShortcuts.xcstrings */; };
 		2AD544242C21BCED001CD4C9 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2AD544222C21BCED001CD4C9 /* AppShortcuts.xcstrings */; };
-		2AD551EA20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */; };
-		2AD551EB20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */; };
 		2AD616CC1D3E583D0016EFB6 /* DocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */; };
 		2AD616CD1D3E583D0016EFB6 /* DocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */; };
 		2AD69B851D3E42F700FBD998 /* TextSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69B841D3E42F700FBD998 /* TextSelection.swift */; };
@@ -901,7 +893,6 @@
 		2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtensionsTests.swift; sourceTree = "<group>"; };
 		2A476CB01D09D0500088E37A /* FontExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtensionTests.swift; sourceTree = "<group>"; };
 		2A478F3E22BE743200AEA45E /* NSTextView+Ligature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Ligature.swift"; sourceTree = "<group>"; };
-		2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSValidatedUserInterfaceItem.swift; sourceTree = "<group>"; };
 		2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+ValidationIgnorable.swift"; sourceTree = "<group>"; };
 		2A4AF76620759BE500C47606 /* RegexFindPanelTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFindPanelTextView.swift; sourceTree = "<group>"; };
 		2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+LineProcessing.swift"; sourceTree = "<group>"; };
@@ -919,7 +910,6 @@
 		2A5D130F1D1EE66500D38E6A /* FindProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindProgressView.swift; sourceTree = "<group>"; };
 		2A5D13121D1EE8FF00D38E6A /* HUDView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
 		2A5D13151D1EF5AA00D38E6A /* GoToLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToLineView.swift; sourceTree = "<group>"; };
-		2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatableToolbarItem.swift; sourceTree = "<group>"; };
 		2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelLayoutManager.swift; sourceTree = "<group>"; };
 		2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelTextView.swift; sourceTree = "<group>"; };
 		2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelTextClipView.swift; sourceTree = "<group>"; };
@@ -1079,7 +1069,6 @@
 		2AC499612BFAE0920010BBB6 /* NoDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDocumentView.swift; sourceTree = "<group>"; };
 		2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		2AC6069A20416ADE00F9C839 /* OpenPanelAccessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPanelAccessory.swift; sourceTree = "<group>"; };
-		2AC7044724EBB76B00454706 /* NSToolbarItem+Validatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSToolbarItem+Validatable.swift"; sourceTree = "<group>"; };
 		2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC71DE11BF0BDBC002E1434 /* StringAdvancedCountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringAdvancedCountTests.swift; sourceTree = "<group>"; };
 		2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropItemTests.swift; sourceTree = "<group>"; };
@@ -1108,7 +1097,6 @@
 		2AD238792939AC7200209834 /* UserUnixTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUnixTask.swift; sourceTree = "<group>"; };
 		2AD544092C2072C6001CD4C9 /* DocumentShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentShortcuts.swift; sourceTree = "<group>"; };
 		2AD544222C21BCED001CD4C9 /* AppShortcuts.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AppShortcuts.xcstrings; sourceTree = "<group>"; };
-		2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatableMenuToolbarItem.swift; sourceTree = "<group>"; };
 		2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
 		2AD69B841D3E42F700FBD998 /* TextSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSelection.swift; sourceTree = "<group>"; };
 		2AD69B871D3E4FCD00FBD998 /* NSTextView+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+ScriptingSupport.swift"; sourceTree = "<group>"; };
@@ -1409,17 +1397,6 @@
 			name = "Text Finder";
 			sourceTree = "<group>";
 		};
-		2A2184121D0426E800522EF5 /* Window */ = {
-			isa = PBXGroup;
-			children = (
-				2A17A3151D2D4319001DD717 /* DocumentWindow.swift */,
-				2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */,
-				2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */,
-				2AC7044724EBB76B00454706 /* NSToolbarItem+Validatable.swift */,
-			);
-			name = Window;
-			sourceTree = "<group>";
-		};
 		2A2184221D043D7E00522EF5 /* Content View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1496,7 +1473,6 @@
 				2A1ABCA727F07CED0054795D /* NSScroller.swift */,
 				2AF9961F235ACDD60041872E /* NSPrintInfo.swift */,
 				2AEAA1422C00B37300B5332F /* NSMenu.swift */,
-				2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */,
 				2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */,
 				2A9B134D27E2D84E009954A4 /* NSDraggingInfo.swift */,
 				2AF63BA72A6FA4D900E1258E /* NSTableView.swift */,
@@ -1693,9 +1669,9 @@
 			isa = PBXGroup;
 			children = (
 				2AA749C21D3C263300850802 /* DocumentWindowController.swift */,
+				2A17A3151D2D4319001DD717 /* DocumentWindow.swift */,
 				2A17A3121D2D16F1001DD717 /* WindowContentViewController.swift */,
 				2AA71A3D2BE25FB30084EC0A /* FileBrowserView.swift */,
-				2A2184121D0426E800522EF5 /* Window */,
 				2ADD36941CFCAD4200F3175D /* Inspector */,
 				2A2184221D043D7E00522EF5 /* Content View */,
 				2A6602EB1D05E04E003E8D87 /* Accessory Views */,
@@ -2774,9 +2750,7 @@
 				2AE73F44203E753C00D8903B /* NSTextView+Selection.swift in Sources */,
 				2A36CE7D1FF654C000020702 /* NSTextView+Snippet.swift in Sources */,
 				2A1856061D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
-				2AC7044824EBB76B00454706 /* NSToolbarItem+Validatable.swift in Sources */,
 				2A07E8491DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
-				2A47CD3921D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */,
 				2AB541DB20A5B6A400367DD5 /* NSView.swift in Sources */,
 				2A05081423D6B9E900602F5E /* NSViewController.swift in Sources */,
 				2A359DFF1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */,
@@ -2818,8 +2792,6 @@
 				2A64F2461D259E49001B229F /* SnippetManager.swift in Sources */,
 				2ACDA2532B813FA500B2EBA8 /* SnippetsSettingsView.swift in Sources */,
 				2A1893AB1FFF422D00AD244F /* SortPatternError+Localization.swift in Sources */,
-				2AD551EB20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */,
-				2A5D13261D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */,
 				2AD21FCD1D2E3BE80018C8D1 /* StatusBar.swift in Sources */,
 				2A26156E2977B87F008C2240 /* StepperNumberField.swift in Sources */,
 				2AA761361D45634400031AAF /* String+Counting.swift in Sources */,
@@ -3077,9 +3049,7 @@
 				2AE73F43203E753C00D8903B /* NSTextView+Selection.swift in Sources */,
 				2A36CE7C1FF654C000020702 /* NSTextView+Snippet.swift in Sources */,
 				2A1856051D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
-				2AC7044924EBB76B00454706 /* NSToolbarItem+Validatable.swift in Sources */,
 				2A07E8481DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
-				2A47CD3821D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */,
 				2AB541DA20A5B6A400367DD5 /* NSView.swift in Sources */,
 				2A05081323D6B9E900602F5E /* NSViewController.swift in Sources */,
 				2A359DFE1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */,
@@ -3121,8 +3091,6 @@
 				2A64F2451D259E49001B229F /* SnippetManager.swift in Sources */,
 				2ACDA2542B813FA500B2EBA8 /* SnippetsSettingsView.swift in Sources */,
 				2A1893AA1FFF422D00AD244F /* SortPatternError+Localization.swift in Sources */,
-				2AD551EA20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */,
-				2A5D13251D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */,
 				2AD21FCC1D2E3BE80018C8D1 /* StatusBar.swift in Sources */,
 				2A26156F2977B87F008C2240 /* StepperNumberField.swift in Sources */,
 				2AA761351D45634400031AAF /* String+Counting.swift in Sources */,

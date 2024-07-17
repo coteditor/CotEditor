@@ -1,5 +1,6 @@
 //
 //  NSToolbarItem+Validatable.swift
+//  ControlUI
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,11 +26,11 @@
 
 import AppKit
 
-protocol Validatable: AnyObject { }
+public protocol Validatable: AnyObject { }
 
-
-extension Validatable where Self: NSToolbarItem {
+public extension Validatable where Self: NSToolbarItem {
     
+    /// Validates the item.
     @MainActor func validate() -> Bool {
         
         guard

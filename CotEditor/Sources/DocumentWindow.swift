@@ -26,6 +26,7 @@
 import AppKit
 import Defaults
 import Shortcut
+import ControlUI
 
 final class DocumentWindow: NSWindow {
     

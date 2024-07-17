@@ -1,5 +1,6 @@
 //
 //  StatableMenuToolbarItem.swift
+//  ControlUI
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,33 +26,32 @@
 
 import AppKit
 
-final class StatableMenuToolbarItem: NSMenuToolbarItem, StatableItem, Validatable {
+public final class StatableMenuToolbarItem: NSMenuToolbarItem, StatableItem, Validatable {
     
     // MARK: Public Properties
     
-    var state: NSControl.StateValue = .on  { didSet { self.invalidateImage() } }
-    var stateImages: [NSControl.StateValue: NSImage] = [:]  { didSet { self.invalidateImage() } }
-    
+    public var state: NSControl.StateValue = .on  { didSet { self.invalidateImage() } }
+    public var stateImages: [NSControl.StateValue: NSImage] = [:]  { didSet { self.invalidateImage() } }
     
     
     // MARK: Toolbar Item Methods
     
-    override var image: NSImage? {
+    public override var image: NSImage? {
         
         get { super.image }
         @available(*, unavailable, message: "Set images through 'stateImages' instead.") set {  }
     }
     
     
-    override func validate() {
+    public override func validate() {
         
         self.isEnabled = self.validate()
     }
     
     
-    
     // MARK: Private Methods
     
+    /// Invalidates `.image` according to the `.state`.
     private func invalidateImage() {
         
         assert(self.state != .mixed)

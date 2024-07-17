@@ -29,6 +29,7 @@ import Combine
 import SwiftUI
 import Defaults
 import Syntax
+import ControlUI
 
 @Observable final class SplitState {
     

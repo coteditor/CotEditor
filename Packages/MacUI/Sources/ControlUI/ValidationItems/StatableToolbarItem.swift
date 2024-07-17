@@ -1,5 +1,6 @@
 //
 //  NSToolbarItem+Statable.swift
+//  ControlUI
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2021 1024jp
+//  © 2016-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,27 +26,26 @@
 
 import AppKit
 
-final class StatableToolbarItem: NSToolbarItem, StatableItem {
+public final class StatableToolbarItem: NSToolbarItem, StatableItem {
     
     // MARK: Public Properties
     
-    var state: NSControl.StateValue = .off  { didSet { self.invalidateImage() } }
-    var stateImages: [NSControl.StateValue: NSImage] = [:]  { didSet { self.invalidateImage() } }
-    
+    public var state: NSControl.StateValue = .off  { didSet { self.invalidateImage() } }
+    public var stateImages: [NSControl.StateValue: NSImage] = [:]  { didSet { self.invalidateImage() } }
     
     
     // MARK: Toolbar Item Methods
     
-    override var image: NSImage? {
+    public override var image: NSImage? {
         
         get { super.image }
         @available(*, unavailable, message: "Set images through 'stateImages' instead.") set {  }
     }
     
     
-    
     // MARK: Private Methods
     
+    /// Invalidates `.image` according to the `.state`.
     private func invalidateImage() {
         
         assert(self.state != .mixed)
