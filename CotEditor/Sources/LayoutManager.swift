@@ -234,6 +234,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
         
         let textView = self.firstTextView
         let multiple = MainActor.assumeIsolated { textView?.defaultParagraphStyle?.lineHeightMultiple } ?? 1.0
+        assert(multiple > 0)
         
         return multiple * self.defaultLineHeight
     }
