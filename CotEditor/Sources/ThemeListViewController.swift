@@ -29,6 +29,7 @@ import AudioToolbox
 import Combine
 import SwiftUI
 import UniformTypeIdentifiers
+import URLUtils
 
 final class ThemeListViewController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSTextFieldDelegate {
     

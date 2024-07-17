@@ -31,6 +31,7 @@ import Yams
 import Defaults
 import Syntax
 import SyntaxMap
+import URLUtils
 
 enum SyntaxName {
     

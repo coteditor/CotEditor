@@ -25,6 +25,7 @@
 
 import Foundation
 import Shortcut
+import URLUtils
 
 struct AppleScript: EventScript {
     

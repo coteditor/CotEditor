@@ -27,6 +27,7 @@ import AppKit
 import Observation
 import UniformTypeIdentifiers
 import OSLog
+import URLUtils
 
 @Observable final class DirectoryDocument: NSDocument {
     

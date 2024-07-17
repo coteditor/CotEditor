@@ -31,6 +31,7 @@ import SwiftUI
 import Syntax
 import UniformTypeIdentifiers
 import Defaults
+import URLUtils
 
 final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate {
     

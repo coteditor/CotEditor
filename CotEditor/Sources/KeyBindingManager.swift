@@ -26,6 +26,7 @@
 
 import AppKit
 import Shortcut
+import URLUtils
 
 @MainActor final class KeyBindingManager {
     

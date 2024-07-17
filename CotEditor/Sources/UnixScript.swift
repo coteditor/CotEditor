@@ -27,6 +27,7 @@
 import Foundation
 import AppKit.NSDocument
 import Shortcut
+import URLUtils
 
 struct UnixScript: Script {
     

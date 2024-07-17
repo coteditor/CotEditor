@@ -16,6 +16,7 @@ let package = Package(
             "EditedRangeSet",
             "FileEncoding",
             "FilePermissions",
+            "URLUtils",
             "FuzzyRange",
             "Invisible",
             "LineEnding",
@@ -34,6 +35,7 @@ let package = Package(
         .library(name: "EditedRangeSet", targets: ["EditedRangeSet"]),
         .library(name: "FileEncoding", targets: ["FileEncoding"]),
         .library(name: "FilePermissions", targets: ["FilePermissions"]),
+        .library(name: "URLUtils", targets: ["URLUtils"]),
         .library(name: "FuzzyRange", targets: ["FuzzyRange"]),
         .library(name: "Invisible", targets: ["Invisible"]),
         .library(name: "LineEnding", targets: ["LineEnding"]),
@@ -63,6 +65,9 @@ let package = Package(
         
         .target(name: "FilePermissions"),
         .testTarget(name: "FilePermissionsTests", dependencies: ["FilePermissions"]),
+        
+        .target(name: "URLUtils"),
+        .testTarget(name: "URLUtilsTests", dependencies: ["URLUtils"]),
         
         .target(name: "FuzzyRange"),
         .testTarget(name: "FuzzyRangeTests", dependencies: ["FuzzyRange"]),

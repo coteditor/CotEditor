@@ -26,6 +26,7 @@
 import Foundation
 import UniformTypeIdentifiers
 import AppKit.NSApplication
+import URLUtils
 
 enum SettingChange {
     
@@ -71,6 +72,21 @@ extension NSNotification.Name {
     
     /// Notification when a setting file is updated with new/previous setting names.
     static let didUpdateSettingNotification = Notification.Name(rawValue: "SettingFileManaging.didUpdateSettingNotification")
+}
+
+
+extension URL {
+    
+    /// Returns the URL for the given subdirectory in the application support directory in the user domain.
+    ///
+    /// - Parameter subDirectory: The name of the subdirectory in the application support.
+    /// - Returns: A directory URL.
+    static func applicationSupportDirectory(component subDirectory: String) -> URL {
+        
+        .applicationSupportDirectory
+        .appending(component: "CotEditor", directoryHint: .isDirectory)
+        .appending(component: subDirectory, directoryHint: .isDirectory)
+    }
 }
 
 

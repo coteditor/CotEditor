@@ -26,6 +26,7 @@
 
 import AppKit
 import Defaults
+import URLUtils
 
 final class PrintTextView: NSTextView {
     

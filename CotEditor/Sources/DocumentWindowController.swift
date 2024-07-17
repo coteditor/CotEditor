@@ -29,6 +29,7 @@ import Combine
 import SwiftUI
 import Defaults
 import ControlUI
+import URLUtils
 
 final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     

@@ -35,6 +35,7 @@ import FileEncoding
 import FilePermissions
 import LineEnding
 import Syntax
+import URLUtils
 
 extension Document: EditorSource {
     

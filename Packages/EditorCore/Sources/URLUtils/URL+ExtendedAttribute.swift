@@ -1,5 +1,6 @@
 //
 //  URL+ExtendedAttribute.swift
+//  URLUtils
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import Foundation
 
-extension URL {
+public extension URL {
     
     /// Gets extended attribute.
     ///

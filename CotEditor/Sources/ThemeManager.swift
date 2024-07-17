@@ -28,6 +28,7 @@ import Combine
 import Foundation
 import UniformTypeIdentifiers
 import Defaults
+import URLUtils
 
 final class ThemeManager: SettingFileManaging {
     

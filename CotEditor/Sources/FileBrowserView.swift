@@ -28,6 +28,7 @@ import AppKit
 import UniformTypeIdentifiers
 import AudioToolbox
 import Defaults
+import URLUtils
 
 struct FileBrowserView: View {
     

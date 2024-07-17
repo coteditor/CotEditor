@@ -1,5 +1,6 @@
 //
 //  URL.swift
+//  URLUtils
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import Foundation
 
-extension URL {
+public extension URL {
     
     /// Simply checks the reachability of the URL by ignoring errors.
     var isReachable: Bool {
@@ -109,7 +110,7 @@ extension URL {
 
 // MARK: User Domain
 
-extension URL {
+public extension URL {
     
     /// A temporary URL in the user domain for file replacement.
     static var itemReplacementDirectory: URL {
@@ -118,22 +119,10 @@ extension URL {
             try URL(for: .itemReplacementDirectory, in: .userDomainMask, appropriateFor: .userDirectory, create: true)
         }
     }
-    
-    
-    /// Returns the URL for the given subdirectory in the application support directory in the user domain.
-    ///
-    /// - Parameter subDirectory: The name of the subdirectory in the application support.
-    /// - Returns: A directory URL.
-    static func applicationSupportDirectory(component subDirectory: String) -> URL {
-        
-        .applicationSupportDirectory
-        .appending(component: "CotEditor", directoryHint: .isDirectory)
-        .appending(component: subDirectory, directoryHint: .isDirectory)
-    }
 }
 
 
-extension FileManager {
+public extension FileManager {
     
     /// Creates intermediate directories to the given URL if not available.
     ///
@@ -147,7 +136,7 @@ extension FileManager {
 
 // MARK: Sandboxing
 
-extension URL {
+public extension URL {
     
     private static let homeDirectory = getpwuid(getuid())?.pointee.pw_dir.flatMap { String(cString: $0) } ?? NSHomeDirectory()
     

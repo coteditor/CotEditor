@@ -27,6 +27,7 @@ import UniformTypeIdentifiers
 
 extension UTType {
     
+    /// All filename extensions.
     var filenameExtensions: [String] {
         
         self.tags[.filenameExtension] ?? []

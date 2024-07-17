@@ -28,6 +28,7 @@ import Foundation
 import AppKit.NSMenuItem
 import Defaults
 import Shortcut
+import URLUtils
 
 @MainActor @objc protocol SnippetInsertable: AnyObject {
     

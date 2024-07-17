@@ -27,6 +27,7 @@
 import AppKit
 import Combine
 import Shortcut
+import URLUtils
 
 // NSObject-based NSAppleEventDescriptor must be used but not sendable
 // -> According to the documentation, NSAppleEventDescriptor is just a wrapper of AEDesc,

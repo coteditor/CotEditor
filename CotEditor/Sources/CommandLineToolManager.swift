@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import URLUtils
 
 final class CommandLineToolManager: Sendable {
     
