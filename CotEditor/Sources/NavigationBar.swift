@@ -158,7 +158,6 @@ private struct OutlineNavigationView: View {
         .labelStyle(.iconOnly)
         .disabled(!self.navigator.canSelectPreviousItem)
         .help(String(localized: "Jump to previous outline item", table: "Document", comment: "tooltip for button"))
-        
     }
     
     

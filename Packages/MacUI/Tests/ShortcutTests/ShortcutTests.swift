@@ -129,6 +129,5 @@ struct ShortcutTests {
         #expect(Shortcut(symbolRepresentation: "⌥ ⌘ B")?.keySpecChars == "~@b")
         #expect(Shortcut(symbolRepresentation: "⌘ F10")?.keySpecChars == "@" + f10)
         #expect(Shortcut(symbolRepresentation: "⌘ ⌦")?.keySpecChars == "@" + deleteForward)
-        
     }
 }

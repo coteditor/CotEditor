@@ -94,7 +94,6 @@ final class FindPanelContentViewController: NSSplitViewController {
         super.viewWillAppear()
         
         self.fieldSplitViewItem.holdingPriority = .defaultLow + 1
-        
     }
     
     

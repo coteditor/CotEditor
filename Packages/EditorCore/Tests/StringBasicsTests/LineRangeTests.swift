@@ -66,5 +66,4 @@ struct LineRangeTests {
         
         #expect("foo\r\nbar".firstLineEnding == "\r\n")
     }
-    
 }
