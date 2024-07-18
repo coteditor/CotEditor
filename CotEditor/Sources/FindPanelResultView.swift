@@ -101,7 +101,7 @@ struct FindPanelResultView: View {
             
             Table(self.model.matches, selection: $selection, sortOrder: $sortOrder) {
                 TableColumn(String(localized: "Line", table: "TextFind", comment: "table column header"), value: \.range.location) {
-                    Text(self.model.target?.lineNumber(at: $0.range.location) ?? 0, format: .number)
+                    Text($0.lineNumber, format: .number)
                         .monospacedDigit()
                         .padding(.vertical, -2)
                 }
@@ -221,7 +221,7 @@ private extension TextFindAllResult.Match {
     
     func attributedLineString(offset: Int) -> NSAttributedString {
         
-        self.attributedLineString.truncatedHead(until: self.lineLocation, offset: offset)
+        self.attributedLineString.truncatedHead(until: self.inlineLocation, offset: offset)
     }
 }
 
@@ -232,9 +232,9 @@ private extension TextFindAllResult.Match {
 #Preview {
     let model = FindPanelResultView.Model()
     model.matches = [
-        .init(range: NSRange(12..<16), lineLocation: 12,
+        .init(range: NSRange(12..<16), lineNumber: 1, inlineLocation: 12,
               attributedLineString: .init("Clarus says moof!")),
-        .init(range: NSRange(64..<73), lineLocation: 64,
+        .init(range: NSRange(64..<73), lineNumber: 3, inlineLocation: 64,
               attributedLineString: .init("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")),
     ]
     model.findString = "Clarus"

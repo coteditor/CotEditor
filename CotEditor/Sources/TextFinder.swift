@@ -94,7 +94,8 @@ struct TextFindAllResult {
         let id = UUID()
         
         var range: NSRange
-        var lineLocation: Int
+        var lineNumber: Int
+        var inlineLocation: Int
         var attributedLineString: NSAttributedString
     }
     
@@ -574,7 +575,10 @@ struct TextFindAllResult {
                         attrLineString.addAttribute(.backgroundColor, value: color, range: inlineRange)
                     }
                     
-                    resultMatches.append(.init(range: matchedRange, lineLocation: matchedRange.location - lineRange.location, attributedLineString: attrLineString))
+                    let lineNumber = lineCounter.lineNumber(at: matchedRange.location)
+                    let inlineLocation = matchedRange.location - lineRange.location
+                    
+                    resultMatches.append(.init(range: matchedRange, lineNumber: lineNumber, inlineLocation: inlineLocation, attributedLineString: attrLineString))
                 }
                 
                 progress.updateCompletedUnit(to: matches[0].upperBound)
@@ -699,18 +703,5 @@ extension NSTextView {
     @IBAction final func unhighlight(_ sender: Any?) {
         
         self.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.nsRange)
-    }
-}
-
-
-private final class LineCounter: LineRangeCacheable {
-    
-    let string: NSString
-    var lineRangeCache = LineRangeCache()
-    
-    
-    init(_ string: NSString) {
-        
-        self.string = string
     }
 }
