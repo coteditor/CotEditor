@@ -565,13 +565,10 @@ private extension UserDefaults {
             let name = self.string(forKey: "fontName"),
             let font = NSFont(name: name, size: self.double(forKey: "fontSize")),
             self[.font] == nil,
-            self[.monospacedFont] == nil
+            self[.monospacedFont] == nil,
+            let data = try? font.archivedData
         else { return }
         
-        if font.isFixedPitch {
-            self[.monospacedFont] = try? font.archivedData
-        } else {
-            self[.font] = try? font.archivedData
-        }
+        self[font.isFixedPitch ? .monospacedFont : .font] = data
     }
 }
