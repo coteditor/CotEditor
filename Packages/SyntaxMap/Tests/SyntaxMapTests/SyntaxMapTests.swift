@@ -34,15 +34,13 @@ struct SyntaxMapTests {
         let urls = try #require(Bundle.module.urls(forResourcesWithExtension: "yml", subdirectory: "Syntaxes"))
         let maps = try SyntaxMap.loadMaps(at: urls)
         
-        let expectedResult: [String: SyntaxMap] = [
+        #expect(maps == [
             "Apache": SyntaxMap(extensions: ["conf"],
                                 filenames: [".htaccess"],
                                 interpreters: []),
             "Python": SyntaxMap(extensions: ["py"],
                                 filenames: [],
                                 interpreters: ["python", "python2", "python3"]),
-        ]
-        
-        #expect(maps == expectedResult)
+        ])
     }
 }

@@ -105,6 +105,23 @@ struct ShortcutTests {
         let shortcutA = Shortcut("A", modifiers: [.shift])
         menuItem.shortcut = shortcutA
         #expect(menuItem.shortcut == shortcutA)
+        
+        menuItem.shortcut = Shortcut("C", modifiers: .option)
+        #expect(menuItem.keyEquivalent == "C")
+        #expect(menuItem.keyEquivalentModifierMask == .option)
+    }
+    
+    
+    @Test func menuItemCommand() {
+        
+        let menu = NSMenu()
+        menu.items = [
+            NSMenuItem(title: "aaa", action: nil, keyEquivalent: "A"),
+            NSMenuItem(title: "bbb", action: nil, keyEquivalent: "B"),
+            NSMenuItem(title: "ccc", action: nil, keyEquivalent: "C"),
+        ]
+        
+        #expect(menu.commandName(for: Shortcut("B", modifiers: .command)!) == "bbb")
     }
     
     
