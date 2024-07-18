@@ -40,7 +40,7 @@
 
 - Scan line endings in background.
 - Improve Assembly syntax.
-- Localized strings added.
+- Localize strings added.
 
 
 
