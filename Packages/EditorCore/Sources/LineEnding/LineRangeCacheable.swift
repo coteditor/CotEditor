@@ -1,5 +1,6 @@
 //
 //  LineRangeCacheable.swift
+//  LineEnding
 //
 //  CotEditor
 //  https://coteditor.com
@@ -24,21 +25,22 @@
 //
 
 import Foundation
+import StringBasics
 
-final class LineCounter: LineRangeCacheable {
+public final class LineCounter: LineRangeCacheable {
     
-    let string: NSString
-    var lineRangeCache = LineRangeCache()
+    public let string: NSString
+    public var lineRangeCache = LineRangeCache()
     
     
-    init(_ string: NSString) {
+    public init(_ string: NSString) {
         
         self.string = string
     }
 }
 
 
-protocol LineRangeCacheable: AnyObject {
+public protocol LineRangeCacheable: AnyObject {
     
     var string: NSString { get }
     var lineRangeCache: LineRangeCache { get set }
@@ -54,11 +56,11 @@ protocol LineRangeCacheable: AnyObject {
 }
 
 
-struct LineRangeCache {
+public struct LineRangeCache {
     
-    fileprivate var lineStartIndexes = IndexSet()
-    fileprivate var parsedIndexes = IndexSet()
-    fileprivate var firstUncountedIndex = 0
+    var lineStartIndexes = IndexSet()
+    var parsedIndexes = IndexSet()
+    var firstUncountedIndex = 0
 }
 
 
@@ -71,7 +73,7 @@ extension LineRangeCacheable {
     ///
     /// - Parameter index: The character index.
     /// - Returns: The 1-based line number.
-    func lineNumber(at index: Int) -> Int {
+    public func lineNumber(at index: Int) -> Int {
         
         assert(index <= self.string.length)
         
@@ -125,7 +127,7 @@ extension LineRangeCacheable {
     ///
     /// - Parameter range: The range of character for finding the line range.
     /// - Returns: The character range of the contents line.
-    func lineContentsRange(for range: NSRange) -> NSRange {
+    public func lineContentsRange(for range: NSRange) -> NSRange {
         
         let lineRange = self.lineRange(for: range)
         
@@ -163,7 +165,7 @@ extension LineRangeCacheable {
     /// - Parameters:
     ///   - newRange: The range in the final string that was edited.
     ///   - delta: The length delta for the editing changes.
-    func invalidateLineRanges(in newRange: NSRange, changeInLength delta: Int) {
+    public func invalidateLineRanges(in newRange: NSRange, changeInLength delta: Int) {
         
         self.lineRangeCache.invalidate(in: newRange, changeInLength: delta)
     }
@@ -226,9 +228,9 @@ private extension LineRangeCache {
     /// Updates the first uncounted index.
     private mutating func invalidateFirstUncountedIndex() {
         
-        let firstInvalidIndex = self.parsedIndexes.contains(0)
+        let firstInvalidCharacterIndex = self.parsedIndexes.contains(0)
             ? self.parsedIndexes.rangeView.first?.upperBound ?? 0
             : 0
-        self.firstUncountedIndex = self.lineStartIndexes.integerLessThanOrEqualTo(firstInvalidIndex) ?? 0
+        self.firstUncountedIndex = self.lineStartIndexes.integerLessThanOrEqualTo(firstInvalidCharacterIndex) ?? 0
     }
 }

@@ -55,9 +55,6 @@
 		2A10D10A1E708CDF0027192A /* KeyBindingTreeView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1081E708CDF0027192A /* KeyBindingTreeView.storyboard */; };
 		2A10D1281E714D230027192A /* ThemeListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1261E714D230027192A /* ThemeListView.storyboard */; };
 		2A10D1381E715E5B0027192A /* SyntaxListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1361E715E5B0027192A /* SyntaxListView.storyboard */; };
-		2A1125C123F180FF006A1DB2 /* LineRangeCacheableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */; };
-		2A1125C323F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */; };
-		2A1125C423F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */; };
 		2A1125C623F6EFB2006A1DB2 /* URLDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C523F6EFB2006A1DB2 /* URLDetector.swift */; };
 		2A1125C723F6EFB2006A1DB2 /* URLDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C523F6EFB2006A1DB2 /* URLDetector.swift */; };
 		2A11F2131E669BFA005E1675 /* PointerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A11F2121E669BFA005E1675 /* PointerBridge.swift */; };
@@ -785,8 +782,6 @@
 		2A10D1091E708CDF0027192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/KeyBindingTreeView.storyboard; sourceTree = "<group>"; };
 		2A10D1271E714D230027192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ThemeListView.storyboard; sourceTree = "<group>"; };
 		2A10D1371E715E5B0027192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SyntaxListView.storyboard; sourceTree = "<group>"; };
-		2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRangeCacheableTests.swift; sourceTree = "<group>"; };
-		2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRangeCacheable.swift; sourceTree = "<group>"; };
 		2A1125C523F6EFB2006A1DB2 /* URLDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLDetector.swift; sourceTree = "<group>"; };
 		2A11F2121E669BFA005E1675 /* PointerBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerBridge.swift; sourceTree = "<group>"; };
 		2A1311D52127DCE1001D52C5 /* NSTextView+CurrentLineHighlighting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+CurrentLineHighlighting.swift"; sourceTree = "<group>"; };
@@ -1811,7 +1806,6 @@
 			children = (
 				2AD7B9AE1D3E832E00E5D6D7 /* EditorCounter.swift */,
 				2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */,
-				2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */,
 				2A1125C523F6EFB2006A1DB2 /* URLDetector.swift */,
 			);
 			name = Scanners;
@@ -2019,7 +2013,6 @@
 				2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */,
 				2ABEFB6923DC0CA0008769F4 /* EditorCounterTests.swift */,
 				2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */,
-				2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */,
 				2A3F8F672429E04000CBBA89 /* DebouncerTests.swift */,
 				2A04E9BA27FD6911008C82D8 /* SnippetTests.swift */,
 				2A57B991294EDD9600771696 /* FormatStylesTests.swift */,
@@ -2682,7 +2675,6 @@
 				2AA375481D40BDCB0080C27C /* LineEnding+Localization.swift in Sources */,
 				2A80BE8D27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */,
 				2A6416A41D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
-				2A1125C423F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */,
 				2A59B7032957089A0094F03B /* LinkButton.swift in Sources */,
 				2AE144C42B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */,
 				2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */,
@@ -2843,7 +2835,6 @@
 				2AF0C1281D3DA6F800B6FCB6 /* FourCharCodeTests.swift in Sources */,
 				2A9082EF1D325ED900228F50 /* GeometryTests.swift in Sources */,
 				2A80BE9227FFFA8900D2F7FF /* LineEndingScannerTests.swift in Sources */,
-				2A1125C123F180FF006A1DB2 /* LineRangeCacheableTests.swift in Sources */,
 				2A89160C2394B87100AC13EE /* NSLayoutManagerTests.swift in Sources */,
 				2A1380072C225FAF00093BF3 /* NSTextStorageTests.swift in Sources */,
 				2A04E9BB27FD6911008C82D8 /* SnippetTests.swift in Sources */,
@@ -2976,7 +2967,6 @@
 				2AA375471D40BDCB0080C27C /* LineEnding+Localization.swift in Sources */,
 				2A80BE8E27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */,
 				2A6416A31D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
-				2A1125C323F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */,
 				2A59B7042957089A0094F03B /* LinkButton.swift in Sources */,
 				2AE144C52B0222DB005E8CF1 /* LiveTextInsertionView.swift in Sources */,
 				2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */,

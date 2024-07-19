@@ -37,7 +37,7 @@ public extension Array {
     ///   - items: The items to replace with.
     ///   - editedRange: The edited range.
     ///   - delta: The change in length.
-    mutating func replace<Value>(items: [Element], in editedRange: NSRange, changeInLength delta: Int) where Element == ValueRange<Value> {
+    mutating func replace<Value>(items: [Element], in editedRange: NSRange, changeInLength delta: Int = 0) where Element == ValueRange<Value> {
         
         guard let lowerEditedIndex = self.binarySearchedFirstIndex(where: { $0.lowerBound >= editedRange.lowerBound }) else {
             self += items

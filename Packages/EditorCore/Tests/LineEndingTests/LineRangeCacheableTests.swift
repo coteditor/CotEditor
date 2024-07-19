@@ -1,5 +1,6 @@
 //
 //  LineRangeCacheableTests.swift
+//  LineEndingTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import Foundation
 import Testing
-@testable import CotEditor
+@testable import LineEnding
 
 struct LineRangeCacheableTests {
     
