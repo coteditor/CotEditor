@@ -27,7 +27,7 @@
 import Foundation
 import ValueRange
 
-public extension Array {
+public extension RangeReplaceableCollection {
     
     /// Replace the elements in the specified range with the given items.
     ///
@@ -44,11 +44,9 @@ public extension Array {
             return
         }
         
-        if let upperEditedIndex = self[lowerEditedIndex...].firstIndex(where: { $0.lowerBound >= (editedRange.upperBound - delta) }) {
-            for index in upperEditedIndex..<self.endIndex {
-                self[index].shift(by: delta)
-            }
-            self.removeSubrange(lowerEditedIndex..<upperEditedIndex)
+        if let upperEditedIndex = self[lowerEditedIndex...].firstIndex(where: { $0.lowerBound >= editedRange.upperBound - delta }) {
+            let shiftedElements = self[upperEditedIndex...].map { $0.shifted(by: delta) }
+            self.replaceSubrange(lowerEditedIndex..., with: shiftedElements)
         } else {
             self.removeSubrange(lowerEditedIndex...)
         }
@@ -58,7 +56,7 @@ public extension Array {
 }
 
 
-public extension Collection {
+public extension Sequence {
     
     /// Returns the Value mostly occurred in the collection.
     func majorValue<Value: Hashable>() -> Value? where Element == ValueRange<Value> {
