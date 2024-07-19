@@ -272,7 +272,6 @@ private struct CreditsView: View {
                     .fontWeight(.semibold)
                     .foregroundStyle(.secondary)
             }
-            
         }
     }
     

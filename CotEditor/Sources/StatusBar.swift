@@ -429,7 +429,6 @@ private struct CoffeeBadge: View {
             } icon: {
                 Image(systemName: self.type.symbolName)
             }
-
         }
         .fontWeight(.semibold)
         .labelStyle(.iconOnly)

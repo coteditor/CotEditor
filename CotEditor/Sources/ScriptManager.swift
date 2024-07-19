@@ -202,7 +202,6 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
                             self.currentScriptName = nil
                         }
                 }
-                
             } catch {
                 Self.presentError(error, scriptName: script.name)
             }

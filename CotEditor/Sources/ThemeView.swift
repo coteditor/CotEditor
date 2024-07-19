@@ -77,7 +77,6 @@ struct ThemeView: View {
                     
                     self.theme = theme
                 }
-                
             }
         }
         .background()
@@ -258,7 +257,6 @@ private struct SystemColorPicker: View {
                 .accessibilityLabeledPair(role: .content, id: "color", in: self.accessibility)
         }.accessibilityElement(children: .contain)
     }
-        
 }
 
 
