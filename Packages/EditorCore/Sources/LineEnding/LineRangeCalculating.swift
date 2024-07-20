@@ -47,6 +47,8 @@ public extension LineRangeCalculating {
         
         assert(characterIndex <= self.length)
         
+        (self as? any LazyLineEndingCaching)?.ensureLineEndings(upTo: characterIndex - 1)
+        
         return self.lineEndings.lineIndex(at: characterIndex) + 1
     }
     
@@ -59,6 +61,8 @@ public extension LineRangeCalculating {
         
         assert(characterIndex <= self.length)
         
+        (self as? any LazyLineEndingCaching)?.ensureLineEndings(upTo: characterIndex - 1)
+        
         return self.lineEndings.lineBounds(for: NSRange(location: characterIndex, length: 0)).start
     }
     
@@ -70,6 +74,8 @@ public extension LineRangeCalculating {
     func lineRange(at characterIndex: Int) -> NSRange {
         
         assert(characterIndex <= self.length)
+        
+        (self as? any LazyLineEndingCaching)?.ensureLineEndings(upTo: characterIndex, needsNextEnd: true)
         
         let bounds = self.lineEndings.lineBounds(for: NSRange(location: characterIndex, length: 0))
         
@@ -84,6 +90,8 @@ public extension LineRangeCalculating {
     func lineContentsRange(for range: NSRange) -> NSRange {
         
         assert(range.upperBound <= self.length)
+        
+        (self as? any LazyLineEndingCaching)?.ensureLineEndings(upTo: range.upperBound, needsNextEnd: true)
         
         let bounds = self.lineEndings.lineBounds(for: range)
         

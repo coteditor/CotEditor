@@ -83,6 +83,32 @@ public extension String {
         
         return self.lineEndingRanges(in: effectiveRange)
     }
+    
+    
+    /// Returns the next line ending with its range after the given character `location`.
+    ///
+    /// The method returns `nil` if there is no line ending until the end of the string.
+    ///
+    /// - Parameter location: The character location.
+    /// - Returns: The line ending type and the character range.
+    func nextLineEnding(at location: Int) -> ValueRange<LineEnding>? {
+        
+        let nsString = self as NSString
+        
+        var end: Int = 0
+        var contentsEnd: Int = 0
+        nsString.getLineStart(nil, end: &end, contentsEnd: &contentsEnd, for: NSRange(location: location, length: 0))
+        
+        let range = NSRange(contentsEnd..<end)
+        
+        guard
+            range.length > 0,
+            let lastCharacter = nsString.substring(with: range).first,  // line ending must be a single character
+            let lineEnding = LineEnding(rawValue: lastCharacter)
+        else { return nil }
+        
+        return ValueRange(value: lineEnding, range: range)
+    }
 }
 
 
