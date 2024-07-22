@@ -14,6 +14,10 @@
   "comments" : {
     "color" : "#236e25"
   },
+  "highlight" : {
+      "color" : "#5da810",
+      "usesSystemSetting" : true
+  },
   "insertionPoint" : {
     "color" : "#000000",
     "usesSystemSetting" : true

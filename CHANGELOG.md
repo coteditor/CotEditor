@@ -24,7 +24,7 @@
 - Change the unit of character ranges handled in CotEditor Scripting for AppleScript from UTF-16 based to the Unicode grapheme cluster-based (This is to follow the specification change in AppleScript 2.0 introduced in Mac OS X 10.5).
 - Improve VoiceOver support in the Quick Action bar.
 - Remove Solarized themes from the bundle.
-- Update all the bundled themes to have a 70% opacity in the current line highlight.
+- Update all the bundled themes to have the custom highlight color and a 70% opacity in the current line highlight.
 - Improve the performance of counting values in the editor for the status bar and the document inspector to avoid flicking.
 - Set the editor's kerning to zero when a monospaced font is set via the font panel.
 - Avoid loading errors on themes when missing value exists.

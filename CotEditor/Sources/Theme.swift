@@ -212,6 +212,7 @@ extension Theme: Codable {
         self.selection = try container.decodeIfPresent(SystemDefaultStyle.self, forKey: .selection) ?? .invalid
         self.insertionPoint = try container.decodeIfPresent(SystemDefaultStyle.self, forKey: .insertionPoint) ?? .invalid
         self.lineHighlight = try container.decodeIfPresent(Style.self, forKey: .lineHighlight) ?? .invalid
+        self.highlight = try container.decodeIfPresent(SystemDefaultStyle.self, forKey: .highlight) ?? .invalid
         self.keywords = try container.decodeIfPresent(Style.self, forKey: .keywords) ?? .invalid
         
         self.commands = try container.decodeIfPresent(Style.self, forKey: .commands) ?? .invalid
