@@ -120,7 +120,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     private lazy var overscrollResizingDebouncer = Debouncer { [weak self] in self?.invalidateOverscrollRate() }
     
-    private let instanceHighlightColor: NSColor = .accent.withAlphaComponent(0.3)
+    private var textHighlightColor: NSColor = .accent
     private var instanceHighlightTask: Task<Void, any Error>?
     
     private var needsRecompletion = false
@@ -1392,6 +1392,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.selectedTextAttributes[.backgroundColor] = theme.selectionColor
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
         (self.layoutManager as? LayoutManager)?.unemphasizedSelectedContentBackgroundColor = theme.unemphasizedSelectionColor
+        self.textHighlightColor = theme.highlightColor
         
         (self.window as? DocumentWindow)?.contentBackgroundColor = theme.background.color
         self.enclosingScrollView?.backgroundColor = theme.background.color
@@ -1559,7 +1560,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             await MainActor.run {
                 guard let layoutManager = self.layoutManager else { return }
                 
-                let color = self.instanceHighlightColor
+                let color = self.textHighlightColor.withAlphaComponent(0.3)
                 layoutManager.groupTemporaryAttributesUpdate(in: NSRange(lower..<upper)) {
                     for range in ranges {
                         layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: color, forCharacterRange: range)

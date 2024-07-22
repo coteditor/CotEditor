@@ -373,7 +373,7 @@ final class PrintTextView: NSTextView {
         
         return [.font: font,
                 .paragraphStyle: paragraphStyle]
-            .compactMapValues { $0 }
+            .compactMapValues(\.self)
     }
     
     

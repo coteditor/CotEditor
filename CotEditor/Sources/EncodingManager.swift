@@ -99,7 +99,7 @@ import FileEncoding
     func encoding(name encodingName: String) -> String.Encoding? {
         
         self.fileEncodings.lazy
-            .compactMap { $0 }
+            .compactMap(\.self)
             .map(\.encoding)
             .first { encodingName == String.localizedName(of: $0) }
     }
@@ -112,7 +112,7 @@ import FileEncoding
     func encoding(ianaCharSetName: String) -> String.Encoding? {
         
         self.fileEncodings.lazy
-            .compactMap { $0 }
+            .compactMap(\.self)
             .map(\.encoding)
             .first { $0.ianaCharSetName?.caseInsensitiveCompare(ianaCharSetName) == .orderedSame }
     }

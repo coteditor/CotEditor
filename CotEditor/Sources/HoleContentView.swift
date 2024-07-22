@@ -111,7 +111,7 @@ private extension NSView {
     private class func descendants<View: NSView>(of parenView: NSView) -> [View] {
         
         parenView.subviews.flatMap { subview in
-            self.descendants(of: subview) + [subview as? View].compactMap({ $0 })
+            self.descendants(of: subview) + [subview as? View].compactMap(\.self)
         }
     }
 }

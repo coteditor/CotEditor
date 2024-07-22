@@ -165,6 +165,10 @@ private struct ThemeEditorView: View {
                                       selection: $theme.selection,
                                       systemColor: Color(nsColor: .selectedTextBackgroundColor.forDarkMode(self.theme.isDarkTheme)),
                                       supportsOpacity: false)
+                    SystemColorPicker(String(localized: "Highlight:", table: "ThemeEditor"),
+                                      selection: $theme.highlight,
+                                      systemColor: .accentColor,
+                                      supportsOpacity: false)
                 }.accessibilityElement(children: .contain)
             }.accessibilityElement(children: .contain)
             
