@@ -33,7 +33,7 @@ struct Theme: Equatable {
         
         var color: NSColor
         
-        fileprivate static let invalidColor: NSColor = .gray
+        static let invalid = Self(color: .gray)
     }
     
     
@@ -41,6 +41,8 @@ struct Theme: Equatable {
         
         var color: NSColor
         var usesSystemSetting: Bool
+        
+        static let invalid = Self(color: .gray, usesSystemSetting: true)
     }
     
     
@@ -187,7 +189,35 @@ private extension Theme.SystemDefaultStyle {
 
 // MARK: - Codable
 
-extension Theme: Codable { }
+extension Theme: Codable {
+    
+    init(from decoder: any Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        
+        self.text = try container.decodeIfPresent(Style.self, forKey: .text) ?? .invalid
+        self.background = try container.decodeIfPresent(Style.self, forKey: .background) ?? .invalid
+        self.invisibles = try container.decodeIfPresent(Style.self, forKey: .invisibles) ?? .invalid
+        self.selection = try container.decodeIfPresent(SystemDefaultStyle.self, forKey: .selection) ?? .invalid
+        self.insertionPoint = try container.decodeIfPresent(SystemDefaultStyle.self, forKey: .insertionPoint) ?? .invalid
+        self.lineHighlight = try container.decodeIfPresent(Style.self, forKey: .lineHighlight) ?? .invalid
+        self.keywords = try container.decodeIfPresent(Style.self, forKey: .keywords) ?? .invalid
+        
+        self.commands = try container.decodeIfPresent(Style.self, forKey: .commands) ?? .invalid
+        self.types = try container.decodeIfPresent(Style.self, forKey: .types) ?? .invalid
+        self.attributes = try container.decodeIfPresent(Style.self, forKey: .attributes) ?? .invalid
+        self.variables = try container.decodeIfPresent(Style.self, forKey: .variables) ?? .invalid
+        self.values = try container.decodeIfPresent(Style.self, forKey: .values) ?? .invalid
+        self.numbers = try container.decodeIfPresent(Style.self, forKey: .numbers) ?? .invalid
+        self.strings = try container.decodeIfPresent(Style.self, forKey: .strings) ?? .invalid
+        self.characters = try container.decodeIfPresent(Style.self, forKey: .characters) ?? .invalid
+        self.comments = try container.decodeIfPresent(Style.self, forKey: .comments) ?? .invalid
+        
+        self.metadata = try container.decodeIfPresent(Metadata.self, forKey: .metadata)
+    }
+}
 
 
 
@@ -204,7 +234,11 @@ extension Theme.Style: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         let colorCode = try container.decode(String.self, forKey: .color)
-        let color = NSColor(colorCode: colorCode) ?? Theme.Style.invalidColor
+        
+        guard let color = NSColor(colorCode: colorCode) else {
+            self = .invalid
+            return
+        }
         
         self.init(color: color)
     }
@@ -240,7 +274,11 @@ extension Theme.SystemDefaultStyle: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         let colorCode = try container.decode(String.self, forKey: .color)
-        let color = NSColor(colorCode: colorCode) ?? Theme.Style.invalidColor
+        
+        guard let color = NSColor(colorCode: colorCode) else {
+            self = .invalid
+            return
+        }
         
         let usesSystemSetting = try container.decodeIfPresent(Bool.self, forKey: .usesSystemSetting) ?? false
         
