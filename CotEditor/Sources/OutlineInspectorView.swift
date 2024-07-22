@@ -235,7 +235,7 @@ private extension OutlineInspectorView.Model {
                 .merge(with: Just(""))  // initial
                 .sink { [weak self] _ in
                     self?.syntaxObserver = self?.document?.syntaxParser.$outlineItems
-                        .compactMap { $0 }
+                        .compactMap(\.self)
                         .receive(on: DispatchQueue.main)
                         .sink { [weak self] in
                             self?.items = $0

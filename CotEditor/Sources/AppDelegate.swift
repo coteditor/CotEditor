@@ -126,7 +126,7 @@ private enum BundleIdentifier {
         
         // register default setting values
         let defaults = DefaultSettings.defaults
-            .compactMapValues { $0 }
+            .compactMapValues(\.self)
             .mapKeys(\.rawValue)
         UserDefaults.standard.register(defaults: defaults)
         NSUserDefaultsController.shared.initialValues = defaults

@@ -55,7 +55,7 @@ struct Theme: Equatable {
         
         var isEmpty: Bool {
             
-            [self.author, self.distributionURL, self.license, self.description].compactMap({ $0 }).isEmpty
+            [self.author, self.distributionURL, self.license, self.description].compactMap(\.self).isEmpty
         }
     }
     

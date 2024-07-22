@@ -103,7 +103,7 @@ extension FileDropItem {
             CodingKeys.description: self.description,
         ]
         .mapKeys(\.rawValue)
-        .compactMapValues { $0 }
+        .compactMapValues(\.self)
     }
 }
 

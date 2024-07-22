@@ -102,7 +102,7 @@ struct UnixScript: Script {
         }
         
         let outputType = OutputType(scanning: script)
-        let arguments: [String] = [document?.fileURL?.path].compactMap { $0 }
+        let arguments: [String] = [document?.fileURL?.path].compactMap(\.self)
         let task = try UserUnixTask(url: self.url)
         
         if let input {

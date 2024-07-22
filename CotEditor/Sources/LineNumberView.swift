@@ -370,7 +370,7 @@ final class LineNumberView: NSView {
                 .sink { [weak self] _ in self?.needsDisplay = true },
             
             textView.publisher(for: \.textColor, options: .initial)
-                .compactMap { $0 }
+                .compactMap(\.self)
                 .sink { [weak self] in self?.textColor = $0 },
             
             textView.publisher(for: \.backgroundColor, options: .initial)
