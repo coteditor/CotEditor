@@ -29,6 +29,7 @@
 - Set the editor's kerning to zero when a monospaced font is set via the font panel.
 - Avoid loading errors on themes when missing value exists.
 - Make more table columns sortable.
+- Improve the User Guide contents.
 - [trivial] Organize the structure of the Edit menu.
 - [trivial] Suppress display of the “Extracting” message on the navigation bar in instantaneous parsing.
 - [trivial] Make names of code contributors in the About window selectable.

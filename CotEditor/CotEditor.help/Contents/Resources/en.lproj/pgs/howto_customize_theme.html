@@ -20,6 +20,66 @@
 </figure>
 
 
+<h2>Coloring components available in themes</h2>
+
+<p>CotEditor themes offer the ability to set the color scheme of the elements that compose the editor view.</p>
+
+
+<table>
+	<thead>
+		<tr><th>Item</th><th>System Color</th><th>Opacity</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr><th>Text</th>
+			<td></td>
+			<td></td>
+			<td>The basic text color used for non-highlighted text. Line numbers also use the color set here.</td>
+		</tr>
+		<tr><th>Invisibles</th>
+			<td></td>
+			<td align="center">✔︎</td>
+			<td>The color of invisible characters that can be set in the <a href="settings_window.html">Window settings</a>.</td>
+		</tr>
+		<tr><th>Cursor</th>
+			<td align="center">✔︎</td>
+			<td align="center">✔︎</td>
+			<td>The color of the cursor displayed at the text insertion point.</td>
+		</tr>
+		<tr><th>Background</th>
+			<td></td>
+			<td></td>
+			<td>The background of the entire editor.</td>
+		</tr>
+		<tr><th>Current Line</th>
+			<td></td>
+			<td align="center">✔︎</td>
+			<td>The background of the current line when the <a href="settings_window.html">Window settings</a> is set to show the current line.</td>
+		</tr>
+		<tr><th>Selection</th>
+			<td align="center">✔︎</td>
+			<td></td>
+			<td>Background of the selection when text is selected in the editor.</td>
+		</tr>
+		<tr><th>Highlight</th>
+			<td align="center">✔︎</td>
+			<td></td>
+			<td>Color for partial highlighting of text, e.g. when “Highlight instances of selected text” is enabled in the <a href="settings_window.html">Edit settings</a>. This color with reduced opacity is used as a base for the highlight background.</td>
+		</tr>
+		<tr><th>Syntax</th>
+			<td></td>
+			<td align="center">✔︎</td>
+			<td>Text color for each <a href="syntax_highlight_settings.html">syntax highlighting</a> element set in the syntax definition.</td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+<p>Some editor components, such as cursors and selections, have a system color determined by the macOS Appearance system settings. When “Use system colors” is turned on in a CotEditor theme, the highlight color set by the system (System Settings > Appearance) is used instead of the theme-specific color.</p>
+
+<p>Invisible characters, cursors, current lines, and syntax highlighting can have opacity set to a color. On the other hand, opacity cannot be set for the basic text color and some other components. These elements whose opacity cannot be set by the theme may adjust their opacity automatically depending on the opacity of the editor itself and other conditions.</p>
+
+
 <h2>Customize a theme</h2>
 
 <p>To select a theme to customize:</p>
