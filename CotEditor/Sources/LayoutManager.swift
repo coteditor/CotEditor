@@ -97,6 +97,8 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
         
         super.init()
         
+        self.allowsNonContiguousLayout = true
+        
         self.indentGuideObserver = UserDefaults.standard.publisher(for: .showIndentGuides)
             .sink { [weak self] _ in
                 guard let self, self.showsInvisibles else { return }
