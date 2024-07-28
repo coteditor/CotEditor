@@ -816,9 +816,10 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Closes one of the split editors.
     @IBAction func closeSplitTextView(_ sender: Any?) {
         
-        assert(self.splitViewItems.count > 1)
-        
-        guard let currentEditorViewController = self.baseEditorViewController(for: sender) else { return }
+        guard
+            self.splitViewItems.count > 1,
+            let currentEditorViewController = self.baseEditorViewController(for: sender)
+        else { return }
         
         if let textView = currentEditorViewController.textView {
             NotificationCenter.default.removeObserver(self, name: EditorTextView.didLiveChangeSelectionNotification, object: textView)
