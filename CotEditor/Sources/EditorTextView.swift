@@ -112,7 +112,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     private static let textContainerInset = NSSize(width: 4, height: 6)
     
     private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
-    private lazy var braceHighlightDebouncer = Debouncer { [weak self] in self?.highlightMatchingBrace() }
     private var isTypingPairedQuotes = false
     
     private var mouseDownPoint: NSPoint = .zero
@@ -786,7 +785,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         if !stillSelectingFlag, !self.isShowingCompletion {
             // highlight matching brace
             if UserDefaults.standard[.highlightBraces] {
-                self.braceHighlightDebouncer.schedule()
+                let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
+                self.highlightMatchingBrace(candidates: bracePairs)
             }
             
             // update instances highlight
@@ -1505,15 +1505,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         } else {
             self.string.length > UserDefaults.standard[.minimumLengthForNonContiguousLayout]
         }
-    }
-    
-    
-    /// Highlights the brace matching to the brace next to the cursor.
-    private func highlightMatchingBrace() {
-        
-        let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
-        
-        self.highlightMatchingBrace(candidates: bracePairs)
     }
     
     
