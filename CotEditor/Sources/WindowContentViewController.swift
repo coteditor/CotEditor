@@ -45,8 +45,8 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     @ViewLoading private var inspectorViewItem: NSSplitViewItem
     
     private var windowObserver: NSKeyValueObservation?
-    private var versionBrowserEnterObservationTask: Task<Void, any Error>?
-    private var versionBrowserExitObservationTask: Task<Void, any Error>?
+    private var versionBrowserEnterObservationTask: Task<Void, Never>?
+    private var versionBrowserExitObservationTask: Task<Void, Never>?
     
     
     
