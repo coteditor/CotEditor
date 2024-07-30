@@ -128,14 +128,6 @@ Please follow the style of the existing codes in CotEditor.
         print("moof")
     }
     ```
-- Don't declare `@IBOutlet` properties with `!`.
-    ```Swift
-    // OK
-    @IBOutlet private weak var button: NSButton?
-    
-    // NG
-    @IBOutlet private weak var button: NSButton!
-    ```
 - Write the `guard` statement in one-line if just returning a simple value.
     ```Swift
     // prefer
