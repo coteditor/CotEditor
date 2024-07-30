@@ -93,10 +93,8 @@ import ValueRange
     ///   - delta: The change in length.
     private func invalidate(in editedRange: NSRange, changeInLength delta: Int) {
         
-        let string = self.textStorage.string.immutable
-        
         var scanRange: NSRange = .notFound
-        let insertedLineEndings = string.lineEndingRanges(in: editedRange, effectiveRange: &scanRange)
+        let insertedLineEndings = self.textStorage.string.lineEndingRanges(in: editedRange, effectiveRange: &scanRange)
         let inconsistentLineEndings = insertedLineEndings.filter { $0.value != self.baseLineEnding }
         
         self.lineEndings.replace(items: insertedLineEndings, in: scanRange, changeInLength: delta)
