@@ -41,7 +41,6 @@
 
 ### TODO
 
-- Scan line endings in background.
 - Improve Assembly syntax.
 - Localize strings added.
 
