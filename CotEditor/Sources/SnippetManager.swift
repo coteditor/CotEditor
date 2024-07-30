@@ -50,7 +50,7 @@ import URLUtils
     
     private let defaults: UserDefaults
     
-    private var scope: String?  { didSet { self.updateMenu() } }
+    private var scope: String?
     
     
     
@@ -65,10 +65,11 @@ import URLUtils
             self.migrateIfNeeded()
         }
         
-        let scopes = (DocumentController.shared as! DocumentController).$currentSyntaxName.values
         Task {
+            let scopes = (DocumentController.shared as! DocumentController).$currentSyntaxName.values
             for await scope in scopes where self.scope != scope {
                 self.scope = scope
+                self.updateMenu()
             }
         }
     }

@@ -64,6 +64,7 @@ final class DocumentController: NSDocumentController {
         
         // observe the frontmost syntax change
         self.mainWindowObserver = NSApp.publisher(for: \.mainWindow)
+            .debounce(for: .seconds(0.1), scheduler: RunLoop.main)
             .map { $0?.windowController as? DocumentWindowController }
             .map { $0?.fileDocument }
             .sink { [unowned self] in

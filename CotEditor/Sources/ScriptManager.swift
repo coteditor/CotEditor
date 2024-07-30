@@ -25,7 +25,6 @@
 //
 
 import AppKit
-import Combine
 import Shortcut
 import URLUtils
 
@@ -50,11 +49,10 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     private static let separator = ""
     
     private var scriptsDirectoryURL: URL?
-    private var currentContext: String?  { didSet { Task { await self.applyShortcuts() } } }
+    private var scope: String?
     @MainActor private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
     
-    private var debounceTask: Task<Void, any Error>?
-    private var syntaxObserver: AnyCancellable?
+    private var menuUpdateTask: Task<Void, any Error>?
     
     
     
@@ -65,15 +63,17 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         super.init()
         
         Task { @MainActor in
-            self.syntaxObserver = (DocumentController.shared as! DocumentController).$currentSyntaxName
-                .removeDuplicates()
-                .sink { [unowned self] styleName in Task { @MainActor in self.currentContext = styleName } }
+            let scopes = (DocumentController.shared as! DocumentController).$currentSyntaxName.values
+            for await scope in scopes where scope != self.scope {
+                self.scope = scope
+                self.applyShortcuts()
+            }
         }
     }
     
     
     deinit {
-        self.debounceTask?.cancel()
+        self.menuUpdateTask?.cancel()
         if self.presentedItemURL != nil {
             NSFileCoordinator.removeFilePresenter(self)
         }
@@ -91,16 +91,14 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     /// Contents of the script folder did change.
     func presentedItemDidChange() {
         
-        self.debounceTask?.cancel()
-        self.debounceTask = Task.detached { [weak self] in
+        self.menuUpdateTask?.cancel()
+        self.menuUpdateTask = Task {
             if await NSApp.isActive {
                 try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.1))
-                await self?.buildScriptMenu()
-                
+                await self.buildScriptMenu()
             } else {
                 for await _ in NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification) {
-                    try Task.checkCancellation()
-                    await self?.buildScriptMenu()
+                    await self.buildScriptMenu()
                     return
                 }
             }
@@ -231,8 +229,8 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     /// Builds the Script menu and scan script handlers.
     @MainActor private func buildScriptMenu() async {
         
-        self.debounceTask?.cancel()
-        self.debounceTask = nil
+        self.menuUpdateTask?.cancel()
+        self.menuUpdateTask = nil
         self.scriptHandlersTable.removeAll()
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
@@ -339,11 +337,10 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         menu.items.forEach { $0.removeAllShortcuts() }
         
         // apply shortcuts for prioritized domain
-        let usedShortcuts: [Shortcut]
-        if let context = self.currentContext, let submenu = menu.item(withTitle: context)?.submenu {
-            usedShortcuts = submenu.items.flatMap { $0.applyShortcut(recursively: true) }
+        let usedShortcuts = if let scope = self.scope, let submenu = menu.item(withTitle: scope)?.submenu {
+            submenu.items.flatMap { $0.applyShortcut(recursively: true) }
         } else {
-            usedShortcuts = menu.items.flatMap { $0.applyShortcut(recursively: false) }
+            menu.items.flatMap { $0.applyShortcut(recursively: false) }
         }
         
         // apply shortcuts for the rest
