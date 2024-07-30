@@ -546,7 +546,7 @@ struct TextFindAllResult {
         let progress = FindProgress(scope: textFind.scopeRange)
         let task = Task.detached(priority: .userInitiated) {
             let highlightColors = NSColor.textHighlighterColor.decompose(into: textFind.numberOfCaptureGroups + 1)
-            let lineCounter = LineCounter(textFind.string as NSString)
+            let lineCounter = LineCounter(string: textFind.string)
             
             var highlights: [ValueRange<NSColor>] = []
             var resultMatches: [TextFindAllResult.Match] = []  // not used if showsList is false
