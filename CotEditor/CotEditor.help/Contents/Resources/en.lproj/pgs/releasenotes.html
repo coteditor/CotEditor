@@ -18,6 +18,58 @@
 
 <article>
 	<header>
+		<h1>CotEditor 5.0.0</h1>
+		<p>release: <time>2024-09</time></p>
+	</header>
+
+
+	<section>
+		<h2>New Features</h2>
+
+		<ul>
+			<li>Support <strong>macOS 15 Sequoia</strong>.</li>
+			<li>Open folders in CotEditor and browse the folder contents from the new sidebar to switch documents.</li>
+			<li><span class="label">AppStore ver.</span>: Now, the user can donate to the CotEditor project via in-app purchase in the new Donate settings pane.</li>
+			<li>Add new “Select Enclosing Symbols” and “Split Selection by Lines” commands to the Edit &gt; Select menu.</li>
+			<li>Add new “Show in Finder” command to the File menu.</li>
+			<li>Add new “Create Document in CotEditor” shortcut action.</li>
+			<li>Add the “Highlight” color to the CotEditor theme format.</li>
+			<li>Support the alpha channel for the current line in theme settings.</li>
+			<li>Add Assembly syntax.</li>
+			<li>Add new “Resinifictrix (Dark)” theme.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Change the system requirement to <strong>macOS 14 Sonoma and later</strong>.</li>
+			<li>Add “Select Column Up/Down“ commands to the Edit &gt; Select menu.</li>
+			<li>Change the unit of character ranges handled in CotEditor Scripting for AppleScript from UTF-16 based to the Unicode grapheme cluster-based (This is to follow the specification change in AppleScript 2.0 introduced in Mac OS X 10.5).</li>
+			<li>Improve VoiceOver support in the Quick Action bar.</li>
+			<li>Update all the bundled themes to have the custom highlight color and a 70% opacity in the current line highlight.</li>
+			<li>Improve the performance of counting values in the editor for the status bar and the document inspector to avoid flicking of the display.</li>
+			<li>Set the editor's kerning to zero when a monospaced font is set via the font panel.</li>
+			<li>Avoid the theme loading error when a value is missing.</li>
+			<li>Make more table columns sortable.</li>
+			<li>Improve the User Guide contents.</li>
+			<li>Remove Solarized themes from the bundle.</li>
+			<li><span class="trivial">trivial</span>: Organize the structure of the Edit menu.</li>
+			<li><span class="trivial">trivial</span>: Suppress display of the “Extracting” message on the navigation bar in instantaneous parsing.</li>
+			<li><span class="trivial">trivial</span>: Make names of code contributors in the About window selectable.</li>
+			<li><span class="trivial">dev</span>: Update the build environment to Xcode 16 (Swift 6, macOS 15 SDK).</li>
+			<li><span class="trivial">dev</span>: Migrate all unit tests to Swift Testing.</li>
+			<li><span class="trivial">dev</span>: Migrate the navigation bar and the Snippets settings view to SwiftUI.</li>
+			<li><span class="trivial">dev</span>: Update Yams from 5.1.2 to 5.1.3.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
 		<h1>CotEditor 4.8.7</h1>
 		<p>release: <time>2024-07-07</time></p>
 	</header>

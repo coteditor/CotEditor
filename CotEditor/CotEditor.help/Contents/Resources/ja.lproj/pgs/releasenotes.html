@@ -18,6 +18,58 @@
 
 <article>
 	<header>
+		<h1>CotEditor 5.0.0</h1>
+		<p>リリース: <time>2024-09</time></p>
+	</header>
+
+
+	<section>
+		<h2>新機能</h2>
+
+		<ul>
+			<li><strong>macOS 15 Sequoia</strong>に対応</li>
+			<li>フォルダをCotEditorで開いて、新しいサイドバーからフォルダ内容をブラウズして書類を切り替え</li>
+			<li><span class="label">AppStore版</span>: アプリ内課金でユーザがCotEditorプロジェクトにドネーションができる「ドネーション」設定ペインを追加</li>
+			<li>「編集」&gt;「選択」メニューに新しい「内包する記号を選択」コマンドと「選択範囲を行に分割」コマンドを追加</li>
+			<li>「ファイル」メニューに「Finderに表示」コマンドを追加</li>
+			<li>CotEditorで書類を作成するショートカット用アクションを追加</li>
+			<li>CotEditorテーマのフォーマットに「ハイライト」を追加</li>
+			<li>テーマの現在の行カラーでアルファ値をサポート</li>
+			<li>Assemblyシンタックスを追加</li>
+			<li>「Resinifictrix (Dark)」テーマを追加</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>改良</h2>
+
+		<ul>
+			<li>システム要件を<strong>macOS 14 Sonoma以降</strong>に変更</li>
+			<li>「編集」&gt;「選択」メニューに「上/下の列を選択」コマンドを追加</li>
+			<li>AppleScriptによるスクリプティングで扱う文字範囲の単位をUTF-16ベースからUnicode書記素ベースに変更（これはMac OS X 10.5で導入されたAppleScript 2.0の仕様変更に追従するものです）</li>
+			<li>クイックアクションバーのVoiceOverサポートを改良</li>
+			<li>バンドルされているすべてのテーマを更新し、ハイライト色を追加、また現在行のハイライトの不透明度を70%に変更</li>
+			<li>ステータスバーと書類インスペクタでのエディタのカウントのパフォーマンスを改善し更新時のチラつきを抑止</li>
+			<li>エディタのフォントが「フォント」パネルから変更されたときに、フォントが等幅ならばカーニングをゼロに</li>
+			<li>テーマの値が欠損していたときにテーマ読み込みエラーになるのを抑止</li>
+			<li>より多くの表のカラムをソート可能に</li>
+			<li>ユーザガイドを更新</li>
+			<li>Solarizedテーマをバンドルから削除</li>
+			<li><span class="trivial">trivial</span>: 「編集」メニューの構成を整理</li>
+			<li><span class="trivial">trivial</span>: 即時のアウトライン抽出でナビゲーションバーに一瞬だけ「抽出中」メッセージが出るのを抑止</li>
+			<li><span class="trivial">trivial</span>: 「CotEditorについて」ウインドウのコード貢献者の名前を選択可能に</li>
+			<li><span class="trivial">開発</span>: ビルド環境をXcode 16（Swift 6, macOS 15 SDK）に更新</li>
+			<li><span class="trivial">開発</span>: すべてのユニットテストをSwift Testingに移行</li>
+			<li><span class="trivial">開発</span>: ナビゲーションバーと「スニペット」設定ペインをSwiftUIに移行</li>
+			<li><span class="trivial">開発</span>: Yamsを5.1.2から5.1.3に更新</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
 		<h1>CotEditor 4.8.7</h1>
 		<p>リリース: <time>2024-07-07</time></p>
 	</header>

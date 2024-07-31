@@ -6,8 +6,8 @@
 ### New Features
 
 - Support __macOS 15 Sequoia__.
-- Accept folders to open and navigate the content in the new directory navigation sidebar.
-- [AppStore ver.] Now the user can donate to the CotEditor project via in-app purchase in the new Donate settings pane.
+- Open folders in CotEditor and browse the folder contents from the new sidebar to switch documents.
+- [AppStore ver.] Now, the user can donate to the CotEditor project via in-app purchase in the new Donate settings pane.
 - Add new “Select Enclosing Symbols” and “Split Selection by Lines” commands to the Edit > Select menu.
 - Add new “Show in Finder” command to the File menu.
 - Add new “Create Document in CotEditor” shortcut action.
@@ -23,17 +23,17 @@
 - Add “Select Column Up/Down“ commands to the Edit > Select menu.
 - Change the unit of character ranges handled in CotEditor Scripting for AppleScript from UTF-16 based to the Unicode grapheme cluster-based (This is to follow the specification change in AppleScript 2.0 introduced in Mac OS X 10.5).
 - Improve VoiceOver support in the Quick Action bar.
-- Remove Solarized themes from the bundle.
 - Update all the bundled themes to have the custom highlight color and a 70% opacity in the current line highlight.
-- Improve the performance of counting values in the editor for the status bar and the document inspector to avoid flicking.
+- Improve the performance of counting values in the editor for the status bar and the document inspector to avoid flicking of the display.
 - Set the editor's kerning to zero when a monospaced font is set via the font panel.
-- Avoid loading errors on themes when missing value exists.
+- Avoid the theme loading error when a value is missing.
 - Make more table columns sortable.
 - Improve the User Guide contents.
+- Remove Solarized themes from the bundle.
 - [trivial] Organize the structure of the Edit menu.
 - [trivial] Suppress display of the “Extracting” message on the navigation bar in instantaneous parsing.
 - [trivial] Make names of code contributors in the About window selectable.
-- [dev] Update the build environment to Xcode 16 (Swift 6).
+- [dev] Update the build environment to Xcode 16 (Swift 6, macOS 15 SDK).
 - [dev] Migrate all unit tests to Swift Testing.
 - [dev] Migrate the navigation bar and the Snippets settings view to SwiftUI.
 - [dev] Update Yams from 5.1.2 to 5.1.3.
