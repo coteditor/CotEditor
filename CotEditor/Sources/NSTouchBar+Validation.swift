@@ -85,9 +85,9 @@ extension NSTouchBar {
             guard isEnabled != oldValue else { return }
             
             self.applicationObservationTask?.cancel()
-            self.applicationObservationTask = isEnabled ? Task { [weak self] in
+            self.applicationObservationTask = isEnabled ? Task {
                 for await _ in NotificationCenter.default.notifications(named: NSApplication.didUpdateNotification).map(\.name) {
-                    self?.validateTouchBarIfNeeded()
+                    self.validateTouchBarIfNeeded()
                 }
             } : nil
         }

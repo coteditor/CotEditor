@@ -125,7 +125,7 @@ extension SyntaxParser {
         
         let extractors = self.outlineExtractors
         let string = self.textStorage.string.immutable
-        self.outlineParseTask = Task.detached { [weak self] in
+        self.outlineParseTask = Task.detached {
             let outlineItems = try await withThrowingTaskGroup(of: [OutlineItem].self) { group in
                 for extractor in extractors {
                     group.addTask { try extractor.items(in: string, range: string.range) }
@@ -135,8 +135,8 @@ extension SyntaxParser {
                     .sorted(\.range.location)
             }
             
-            await MainActor.run { [weak self] in
-                self?.outlineItems = outlineItems
+            await MainActor.run {
+                self.outlineItems = outlineItems
             }
         }
     }

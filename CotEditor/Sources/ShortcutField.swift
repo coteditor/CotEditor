@@ -126,11 +126,6 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
     
     // MARK: Text Field Methods
     
-    deinit {
-        self.windowObservationTask?.cancel()
-    }
-    
-    
     override func awakeFromNib() {
         
         super.awakeFromNib()
@@ -138,6 +133,16 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
         // fix the alignment to right regardless the UI layout direction
         self.alignment = .right
         self.baseWritingDirection = .leftToRight
+    }
+    
+    
+    override func viewWillMove(toWindow newWindow: NSWindow?) {
+        
+        super.viewWillMove(toWindow: newWindow)
+        
+        if newWindow == nil {
+            self.windowObservationTask?.cancel()
+        }
     }
     
     

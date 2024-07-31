@@ -58,18 +58,11 @@ import TextFind
         super.init()
         
         // observe application activation to sync find string with other apps
-        self.applicationActivationObservationTask = Task { [weak self] in
+        self.applicationActivationObservationTask = Task {
             for await _ in NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification).map(\.name) {
                 guard let findString = NSPasteboard(name: .find).string(forType: .string) else { continue }
-                self?.findString = findString
+                self.findString = findString
             }
-        }
-    }
-    
-    
-    deinit {
-        Task { @MainActor [applicationActivationObservationTask] in
-            applicationActivationObservationTask?.cancel()
         }
     }
     

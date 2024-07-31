@@ -230,11 +230,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
-    deinit {
-        self.instanceHighlightTask?.cancel()
-    }
-    
-    
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
@@ -355,6 +350,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 NotificationCenter.default.removeObserver(observer)
             }
             self.keyStateObservers.removeAll()
+            self.instanceHighlightTask?.cancel()
         }
     }
     
@@ -1514,10 +1510,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     private func highlightInstances(after delay: Duration) {
         
         self.instanceHighlightTask?.cancel()
-        self.instanceHighlightTask = Task.detached { [weak self] in
+        self.instanceHighlightTask = Task.detached {
             try await Task.sleep(for: delay, tolerance: delay * 0.2)  // debounce
-            
-            guard let self else { return }
             
             let (string, selectedRange): (String, NSRange) = try await MainActor.run {
                 guard

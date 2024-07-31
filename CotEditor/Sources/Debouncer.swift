@@ -49,13 +49,6 @@
     }
     
     
-    deinit {
-        Task { [task] in
-            task?.cancel()
-        }
-    }
-    
-    
     // MARK: Public Methods
     
     /// Invokes the action after when `delay` time have passed since last call.
@@ -67,11 +60,11 @@
         let delay = delay ?? self.defaultDelay
         
         self.task?.cancel()
-        self.task = Task { [weak self] in
+        self.task = Task {
             try await Task.sleep(for: delay)
             
-            self?.action()
-            self?.task = nil
+            self.action()
+            self.task = nil
         }
     }
     
