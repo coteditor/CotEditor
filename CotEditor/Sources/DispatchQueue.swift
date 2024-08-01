@@ -32,13 +32,16 @@ extension DispatchQueue {
     ///
     /// - Parameter work: The work item containing the work to perform.
     /// - Returns: The return value of the item in the work parameter.
-    static func syncOnMain<T>(execute work: () throws -> T) rethrows -> T {
+    static func syncOnMain<T: Sendable>(execute work: @MainActor @Sendable () throws -> T) rethrows -> T {
         
         if Thread.isMainThread {
-            try work()
-            
+            try MainActor.assumeIsolated {
+                try work()
+            }
         } else {
-            try DispatchQueue.main.sync(execute: work)
+            try MainActor.assumeIsolated {
+                try DispatchQueue.main.sync(execute: work)
+            }
         }
     }
 }

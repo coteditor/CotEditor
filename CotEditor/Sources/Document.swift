@@ -419,7 +419,7 @@ extension Document: EditorSource {
         self.allowsLossySaving = false
         
         // set read values
-        Task(priority: .high) { @MainActor in
+        DispatchQueue.syncOnMain {
             self.textStorage.replaceContent(with: string)
             
             self.fileEncoding = fileEncoding
