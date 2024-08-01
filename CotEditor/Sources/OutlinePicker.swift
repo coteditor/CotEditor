@@ -83,10 +83,11 @@ struct OutlinePicker: NSViewRepresentable {
     
     func sizeThatFits(_ proposal: ProposedViewSize, nsView: NSPopUpButton, context: Context) -> CGSize? {
         
-        guard let menuItemTitle = nsView.selectedItem?.attributedTitle else { return proposal.replacingUnspecifiedDimensions() }
+        var size = proposal.replacingUnspecifiedDimensions()
+        
+        guard let menuItemTitle = nsView.selectedItem?.attributedTitle else { return size }
         
         // trim indent width
-        var size = nsView.intrinsicContentSize
         size.width -= menuItemTitle.size().width - nsView.attributedTitle.size().width
         size.width += 4  // for aesthetic margin
         
