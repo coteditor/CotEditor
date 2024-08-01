@@ -45,10 +45,9 @@ extension NSTextView {
         
         guard let ranges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
         
-        let (strings, selectedRanges) = snippet.insertions(for: self.string, ranges: ranges)
+        let context = snippet.insertions(for: self.string, ranges: ranges)
         
-        self.replace(with: strings, ranges: ranges, selectedRanges: selectedRanges,
-                     actionName: String(localized: "Insert Snippet", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Insert Snippet", table: "MainMenu"))
         self.centerSelectionInVisibleArea(self)
     }
 }

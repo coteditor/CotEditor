@@ -82,21 +82,21 @@ struct SnippetTests {
             bbcc
             """
         let snippet = Snippet(name: "", format: "<li><<<SELECTION>>><<<CURSOR>>></li>")
-        let (strings, selections) = snippet.insertions(for: string, ranges: [
+        let context = snippet.insertions(for: string, ranges: [
             NSRange(location: 4, length: 3),
             NSRange(location: 8, length: 0),
             NSRange(location: 9, length: 2),
         ])
         
-        let expectedStrings = [
+        #expect(context.strings == [
             "<li>aaa</li>",
             "<li></li>",
             "<li>bb</li>",
-        ]
-        let expectedSelections = [NSRange(location: 11, length: 0),
-                                  NSRange(location: 21, length: 0),
-                                  NSRange(location: 33, length: 0)]
-        #expect(strings == expectedStrings)
-        #expect(selections == expectedSelections)
+        ])
+        #expect(context.selectedRanges == [
+            NSRange(location: 11, length: 0),
+            NSRange(location: 21, length: 0),
+            NSRange(location: 33, length: 0),
+        ])
     }
 }

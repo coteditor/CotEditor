@@ -25,6 +25,7 @@
 
 import Foundation.NSString
 import Shortcut
+import TextEditing
 
 struct Snippet: Equatable, Identifiable {
     
@@ -103,8 +104,7 @@ extension Snippet {
     /// - Parameters:
     ///   - string: The whole content string where to insert the snippet.
     ///   - ranges: The current selected ranges.
-    /// - Returns: Strings to insert and the content-based selected ranges.
-    func insertions(for string: String, ranges: [NSRange]) -> (strings: [String], selectedRanges: [NSRange]?) {
+    func insertions(for string: String, ranges: [NSRange]) -> EditingContext {
         
         var offset = 0
         let insertions = ranges.map { range in
@@ -120,7 +120,8 @@ extension Snippet {
         }
         let selectedRanges = insertions.flatMap(\.ranges)
         
-        return (insertions.map(\.string), selectedRanges.isEmpty ? nil : selectedRanges)
+        return EditingContext(strings: insertions.map(\.string), ranges: ranges,
+                              selectedRanges: selectedRanges.isEmpty ? nil : selectedRanges)
     }
     
     
