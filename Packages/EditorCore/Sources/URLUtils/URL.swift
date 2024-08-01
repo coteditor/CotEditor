@@ -35,34 +35,6 @@ public extension URL {
     }
     
     
-    /// Returns relative-path components.
-    ///
-    /// - Note: The `baseURL` is assumed its `directoryHint` is properly set.
-    ///
-    /// - Parameter baseURL: The URL the relative path based on.
-    /// - Returns: Path components.
-    func components(relativeTo baseURL: URL) -> [String] {
-        
-        assert(self.isFileURL)
-        assert(baseURL.isFileURL)
-        
-        if baseURL == self, !baseURL.hasDirectoryPath {
-            return [self.lastPathComponent]
-        }
-        
-        let filename = self.lastPathComponent
-        let pathComponents = self.pathComponents.dropLast()
-        let basePathComponents = baseURL.pathComponents.dropLast(baseURL.hasDirectoryPath ? 0 : 1)
-        
-        let sameCount = zip(basePathComponents, pathComponents).prefix(while: { $0.0 == $0.1 }).count
-        let parentCount = basePathComponents.count - sameCount
-        let parentComponents = [String](repeating: "..", count: parentCount)
-        let diffComponents = pathComponents[sameCount...]
-        
-        return parentComponents + diffComponents + [filename]
-    }
-    
-    
     /// Returns relative-path string.
     ///
     /// - Note: The `baseURL` is assumed its `directoryHint` is properly set.
@@ -71,7 +43,26 @@ public extension URL {
     /// - Returns: A path string.
     func path(relativeTo baseURL: URL) -> String {
         
-        self.components(relativeTo: baseURL).joined(separator: "/")
+        assert(self.isFileURL)
+        assert(baseURL.isFileURL)
+        
+        let isDirectory = (try? baseURL.resourceValues(forKeys: [.isDirectoryKey]).isDirectory) ?? baseURL.hasDirectoryPath
+        
+        if baseURL == self, !isDirectory {
+            return self.lastPathComponent
+        }
+        
+        let filename = self.lastPathComponent
+        let pathComponents = self.pathComponents.dropLast()
+        let basePathComponents = baseURL.pathComponents.dropLast(isDirectory ? 0 : 1)
+        
+        let sameCount = zip(basePathComponents, pathComponents).prefix(while: { $0.0 == $0.1 }).count
+        let parentCount = basePathComponents.count - sameCount
+        let parentComponents = [String](repeating: "..", count: parentCount)
+        let diffComponents = pathComponents[sameCount...]
+        let components = parentComponents + diffComponents + [filename]
+            
+        return components.joined(separator: "/")
     }
     
     
