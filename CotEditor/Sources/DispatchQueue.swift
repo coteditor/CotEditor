@@ -39,8 +39,10 @@ extension DispatchQueue {
                 try work()
             }
         } else {
-            try MainActor.assumeIsolated {
-                try DispatchQueue.main.sync(execute: work)
+            try DispatchQueue.main.sync {
+                try MainActor.assumeIsolated {
+                    try work()
+                }
             }
         }
     }
