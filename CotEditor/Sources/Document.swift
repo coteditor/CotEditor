@@ -1009,6 +1009,8 @@ extension Document: EditorSource {
         
         guard syntax != self.syntaxParser.syntax else { return }
         
+        SyntaxManager.shared.noteRecentSetting(name: name)
+        
         // update
         self.syntaxFileExtension = syntax.extensions.first
         self.syntaxParser.update(syntax: syntax, name: name)

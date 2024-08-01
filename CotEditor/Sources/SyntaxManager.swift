@@ -95,6 +95,15 @@ final class SyntaxManager: SettingFileManaging {
     
     // MARK: Public Methods
     
+    /// The map for the conflicted settings.
+    var mappingConflicts: MappingTable {
+        
+        self.mappingTable
+            .mapValues { $0.filter { $0.value.count > 1 } }
+            .filter { !$0.value.isEmpty }
+    }
+    
+    
     /// Returns the syntax name corresponding to the given document.
     ///
     /// - Parameters:
@@ -154,12 +163,13 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// The map for the conflicted settings.
-    var mappingConflicts: MappingTable {
+    /// Adds the given setting to recent syntaxes list.
+    ///
+    /// - Parameter name: The setting name to note.
+    func noteRecentSetting(name: String) {
         
-        self.mappingTable
-            .mapValues { $0.filter { $0.value.count > 1 } }
-            .filter { !$0.value.isEmpty }
+        let maximum = max(0, UserDefaults.standard[.maximumRecentSyntaxCount])
+        UserDefaults.standard[.recentSyntaxNames].appendUnique(name, maximum: maximum)
     }
     
     
@@ -196,13 +206,6 @@ final class SyntaxManager: SettingFileManaging {
             
             return setting
         }()
-        
-        // add to recent syntaxes list
-        let maximumRecentSyntaxCount = max(0, UserDefaults.standard[.maximumRecentSyntaxCount])
-        var recentSyntaxNames = UserDefaults.standard[.recentSyntaxNames]
-        recentSyntaxNames.removeFirst(name)
-        recentSyntaxNames.insert(name, at: 0)
-        UserDefaults.standard[.recentSyntaxNames] = Array(recentSyntaxNames.prefix(maximumRecentSyntaxCount))
         
         return setting
     }
