@@ -29,6 +29,7 @@
 - Ignore empty outline items.
 - Avoid the theme loading error when a value is missing.
 - Make more table columns sortable.
+- Update the Swift syntax.
 - Improve the User Guide contents.
 - Remove Solarized themes from the bundle.
 - [trivial] Organize the structure of the Edit menu.

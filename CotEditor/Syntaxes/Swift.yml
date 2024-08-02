@@ -43,6 +43,7 @@ attributes:
 - beginString: '@Published'
 - beginString: '@required'
 - beginString: '@requires_stored_property_inits'
+- beginString: '@retroactive'
 - beginString: '@Sendable'
 - beginString: '@State'
 - beginString: '@StateObject'
@@ -178,6 +179,7 @@ keywords:
 - beginString: operator
 - beginString: optional
 - beginString: override
+- beginString: package
 - beginString: postfix
 - beginString: precedence
 - beginString: precedencegroup
@@ -192,6 +194,7 @@ keywords:
 - beginString: return
 - beginString: right
 - beginString: safe
+- beginString: sending
 - beginString: set
 - beginString: some
 - beginString: static
@@ -212,11 +215,11 @@ keywords:
 kind: code
 metadata:
   author: 1024jp
-  description: Based on Swift 5.10
+  description: Based on Swift 6.0
   distributionURL: https://coteditor.com
-  lastModified: '2024-04-24'
+  lastModified: '2024-08-02'
   license: Same as CotEditor
-  version: 4.10.1
+  version: 4.11.0
 numbers:
 - beginString: (?<![0-9a-z_$])-?[0-9][0-9._]*(e[-+]?[0-9._]+)?\b
   ignoreCase: true
@@ -228,15 +231,22 @@ numbers:
 - beginString: \b0x[0-9a-fA-F][0-9a-fA-F_]*([pP]-?[0-9a-fA-F_]+)?\b
   regularExpression: true
 outlineMenu:
-- beginString: //[ \t]*(MARK:|TODO:|FIXME:)[ \t](.+)
+- beginString: //[ \t]*(TODO:|FIXME:)[ \t](.+)
   bold: true
-  description: MARK/TODO/FIXME
-  keyString: $2
+  description: TODO/FIXME
+  keyString: $1 $2
+- beginString: //[ \t]*MARK:[ \t]*(?:-[\t ]+)?(.*)
+  bold: true
+  description: MARK
+  keyString: $1
+- beginString: //[ \t]*MARK:[ \t]*-
+  description: separator
+  keyString: '-'
 - beginString: ^([ \t]*)(?:@?[a-zA-Z_]+ )*((?:class|static)[ \t]+)?func[ \t]*(\w*)(?:<[^>]+>)?\((.*)\)
   description: function
   keyString: $1$2func $3($4)
 - beginString: ^([ \t]*)(?:@?[a-zA-Z_]+ )*(class )?subscript[ \t]*\((.*)\)
-  description: subscipt
+  description: subscript
   keyString: $1$2subscript($3)
 - beginString: ^([ \t]*)(?:@?[a-zA-Z_]+ )*(class )?var[ \t]*(\w*)(?=[ \t]*:[ \t]*\w*\s*\{)
   description: var
@@ -399,6 +409,7 @@ types:
 - beginString: ImplicitlyUnwrappedOptional
 - beginString: IndexingGenerator
 - beginString: Int
+- beginString: Int128
 - beginString: Int16
 - beginString: Int32
 - beginString: Int64
@@ -491,6 +502,7 @@ types:
 - beginString: ThrowingDiscardingTaskGroup
 - beginString: ThrowingTaskGroup
 - beginString: UInt
+- beginString: UInt128
 - beginString: UInt16
 - beginString: UInt32
 - beginString: UInt64
@@ -515,6 +527,7 @@ types:
 - beginString: UTF32
 - beginString: UTF8
 - beginString: VaListBuilder
+- beginString: Void
 - beginString: Zip2Generator
 - beginString: Zip2Sequence
 - beginString: ~Copyable
