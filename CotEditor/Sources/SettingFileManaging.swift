@@ -265,27 +265,27 @@ extension SettingFileManaging {
         }
         
         if settingName.isEmpty {
-            throw InvalidNameError.empty
+            throw .empty
         }
         
         if settingName.contains("/") {  // invalid for filename
-            throw InvalidNameError.invalidCharacter("/")
+            throw .invalidCharacter("/")
         }
         
         if settingName.contains(":") {  // invalid for filename
-            throw InvalidNameError.invalidCharacter(":")
+            throw .invalidCharacter(":")
         }
         
         if settingName.hasPrefix(".") {  // invalid for filename
-            throw InvalidNameError.startWithDot
+            throw .startWithDot
         }
         
         if let duplicateName = self.settingNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
-            throw InvalidNameError.duplicated(name: duplicateName)
+            throw .duplicated(name: duplicateName)
         }
         
         if let reservedName = self.reservedNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
-            throw InvalidNameError.reserved(name: reservedName)
+            throw .reserved(name: reservedName)
         }
     }
     

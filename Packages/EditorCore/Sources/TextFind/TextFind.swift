@@ -81,11 +81,11 @@ public struct TextFind: Equatable, Sendable {
         assert(!selectedRanges.isEmpty)
         
         guard !findString.isEmpty else {
-            throw TextFind.Error.emptyFindString
+            throw .emptyFindString
         }
         
         guard !inSelection || !selectedRanges.allSatisfy(\.isEmpty) else {
-            throw TextFind.Error.emptyInSelectionSearch
+            throw .emptyInSelectionSearch
         }
         
         switch mode {
@@ -98,7 +98,7 @@ public struct TextFind: Equatable, Sendable {
                 do {
                     self.regex = try NSRegularExpression(pattern: findString, options: options)
                 } catch {
-                    throw TextFind.Error.regularExpression(reason: error.localizedDescription)
+                    throw .regularExpression(reason: error.localizedDescription)
                 }
                 self.fullWordChecker = nil
         }

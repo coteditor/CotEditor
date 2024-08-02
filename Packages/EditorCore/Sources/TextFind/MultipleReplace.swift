@@ -220,14 +220,14 @@ extension MultipleReplace.Replacement {
     public func validate(regexOptions: NSRegularExpression.Options = []) throws(TextFind.Error) {
         
         guard !self.findString.isEmpty else {
-            throw TextFind.Error.emptyFindString
+            throw .emptyFindString
         }
         
         if self.usesRegularExpression {
             do {
                 _ = try NSRegularExpression(pattern: self.findString, options: regexOptions)
             } catch {
-                throw TextFind.Error.regularExpression(reason: error.localizedDescription)
+                throw .regularExpression(reason: error.localizedDescription)
             }
         }
     }

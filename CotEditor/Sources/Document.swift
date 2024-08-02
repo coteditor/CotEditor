@@ -908,9 +908,7 @@ extension Document: EditorSource {
         // do nothing if given encoding is the same as current one
         if encoding == self.fileEncoding.encoding { return }
         
-        guard let fileURL = self.fileURL else {
-            throw ReinterpretationError.noFile
-        }
+        guard let fileURL = self.fileURL else { throw .noFile }
         
         // reinterpret
         self.readingEncoding = encoding
@@ -918,7 +916,7 @@ extension Document: EditorSource {
             try self.revert(toContentsOf: fileURL, ofType: self.fileType!)
         } catch {
             self.readingEncoding = nil
-            throw ReinterpretationError.reinterpretationFailed(encoding)
+            throw .reinterpretationFailed(encoding)
         }
     }
     

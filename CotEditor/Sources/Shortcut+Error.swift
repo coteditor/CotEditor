@@ -71,23 +71,23 @@ extension Shortcut {
         
         // Tab or Backtab
         if self.keyEquivalent == "\u{9}" || self.keyEquivalent == "\u{19}" {
-            throw CustomizationError.unsupported(self)
+            throw .unsupported(self)
         }
         
         // avoid Shift-only modifier with a letter
         // -> typing Shift + letter inserting an uppercase letter instead of invoking a shortcut
         if self.modifiers == .shift, self.keyEquivalent.contains(where: \.isLetter) {
-            throw CustomizationError.shiftOnlyModifier
+            throw .shiftOnlyModifier
         }
         
         // single key is invalid
         if !self.isValid {
-            throw CustomizationError.singleType
+            throw .singleType
         }
         
         // duplication check
         if let duplicatedName = menu?.commandName(for: self) {
-            throw CustomizationError.alreadyTaken(self, name: duplicatedName)
+            throw .alreadyTaken(self, name: duplicatedName)
         }
     }
 }

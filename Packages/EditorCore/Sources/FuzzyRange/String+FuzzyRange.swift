@@ -109,12 +109,12 @@ public extension String {
         
         let fuzzyLineRange = FuzzyRange(location: line == 0 ? 1 : line, length: 0)
         guard let lineRange = self.rangeForLine(in: fuzzyLineRange, includingLineEnding: false) else {
-            throw FuzzyLocationError.invalidLine(line)
+            throw .invalidLine(line)
         }
         
         let fuzzyColumnRange = FuzzyRange(location: column, length: 0)
         guard let rangeInLine = (self as NSString).substring(with: lineRange).range(in: fuzzyColumnRange) else {
-            throw FuzzyLocationError.invalidColumn(column)
+            throw .invalidColumn(column)
         }
         
         return lineRange.location + rangeInLine.location

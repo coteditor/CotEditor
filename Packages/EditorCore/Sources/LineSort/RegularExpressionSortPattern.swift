@@ -73,13 +73,13 @@ public struct RegularExpressionSortPattern: SortPattern, Equatable, Sendable {
     public func validate() throws(SortPatternError) {
         
         if self.searchPattern.isEmpty {
-            throw SortPatternError.emptyPattern
+            throw .emptyPattern
         }
         
         do {
             _ = try self.regex
         } catch {
-            throw SortPatternError.invalidRegularExpressionPattern
+            throw .invalidRegularExpressionPattern
         }
     }
     

@@ -91,7 +91,7 @@ public struct FuzzyRangeParseStrategy: ParseStrategy {
             (1...2).contains(components.count),
             let location = components[0],
             let length = (components.count > 1) ? components[1] : 0
-        else { throw ParseError.invalidValue }
+        else { throw .invalidValue }
         
         return FuzzyRange(location: location, length: length)
     }

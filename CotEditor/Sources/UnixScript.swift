@@ -132,7 +132,7 @@ struct UnixScript: Script {
     /// - Returns: The read string.
     @MainActor private func readInput(type: InputType, editor: NSTextView?) throws(ScriptError) -> String {
         
-        guard let editor else { throw ScriptError.noInputTarget }
+        guard let editor else { throw .noInputTarget }
         
         switch type {
             case .selection:

@@ -72,7 +72,7 @@ public class DefaultKey<Value>: DefaultKeys, @unchecked Sendable {
         
         // -> The second Optional cast is important for in case if `Value` is already an optional type.
         guard let newValue = value as? Value ?? Optional<Any>.none as? Value else {
-            throw DefaultKeyError.invalidValue
+            throw .invalidValue
         }
         
         return newValue
@@ -87,7 +87,7 @@ public final class RawRepresentableDefaultKey<Value>: DefaultKey<Value>, @unchec
     public override func newValue(from value: Any?) throws(DefaultKeyError) -> Value {
         
         guard let newValue = (value as? Value.RawValue).flatMap(Value.init) else {
-            throw DefaultKeyError.invalidValue
+            throw .invalidValue
         }
         
         return newValue
