@@ -60,19 +60,22 @@ public struct OutlineExtractor: Sendable {
     /// - Returns: An array of `OutlineItem`.
     public func items(in string: String, range parseRange: NSRange) throws -> [OutlineItem] {
         
-        try self.regex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange).lazy.map { result in
-            // separator
-            if self.template == .separator {
-                return OutlineItem(title: self.template, range: result.range)
+        try self.regex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange).lazy
+            .compactMap { result in
+                // separator
+                if self.template == .separator {
+                    return OutlineItem(title: self.template, range: result.range)
+                }
+                
+                // standard outline
+                let title = (self.template.isEmpty
+                             ? (string as NSString).substring(with: result.range)
+                             : self.regex.replacementString(for: result, in: string, offset: 0, template: self.template))
+                    .replacing(/\R/, with: " ")
+                
+                guard !title.isEmpty else { return nil }
+                
+                return OutlineItem(title: title, range: result.range, style: self.style)
             }
-            
-            // standard outline
-            let title = (self.template.isEmpty
-                         ? (string as NSString).substring(with: result.range)
-                         : self.regex.replacementString(for: result, in: string, offset: 0, template: self.template))
-                .replacing(/\R/, with: " ")
-            
-            return OutlineItem(title: title, range: result.range, style: self.style)
-        }
     }
 }

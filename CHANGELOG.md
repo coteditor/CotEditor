@@ -26,6 +26,7 @@
 - Update all the bundled themes to have the custom highlight color and a 70% opacity in the current line highlight.
 - Improve the performance of counting values in the editor for the status bar and the document inspector to avoid flicking of the display.
 - Set the editor's kerning to zero when a monospaced font is set via the font panel.
+- Ignore empty outline items.
 - Avoid the theme loading error when a value is missing.
 - Make more table columns sortable.
 - Improve the User Guide contents.
