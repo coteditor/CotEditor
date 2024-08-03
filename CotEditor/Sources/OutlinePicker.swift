@@ -88,8 +88,10 @@ struct OutlinePicker: NSViewRepresentable {
         guard let menuItemTitle = nsView.selectedItem?.attributedTitle else { return size }
         
         // trim indent width
-        size.width -= menuItemTitle.size().width - nsView.attributedTitle.size().width
-        size.width += 4  // for aesthetic margin
+        var width = nsView.intrinsicContentSize.width
+        width -= menuItemTitle.size().width - nsView.attributedTitle.size().width
+        width += 4  // for aesthetic margin
+        size.width = min(width, size.width)
         
         return size
     }
