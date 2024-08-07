@@ -21,7 +21,7 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "EditorCore", path: "../EditorCore"),
-        .package(url: "https://github.com/realm/SwiftLint", from: Version(0, 55, 0)),
+        .package(url: "https://github.com/realm/SwiftLint", from: Version(0, 56, 0)),
     ],
     targets: [
         .target(name: "ControlUI"),

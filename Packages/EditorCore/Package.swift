@@ -48,7 +48,7 @@ let package = Package(
         .library(name: "UnicodeNormalization", targets: ["UnicodeNormalization"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/realm/SwiftLint", from: Version(0, 55, 0)),
+        .package(url: "https://github.com/realm/SwiftLint", from: Version(0, 56, 0)),
     ],
     targets: [
         .target(name: "CharacterInfo", resources: [.process("Resources")]),

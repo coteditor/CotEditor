@@ -14,7 +14,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: Version(1, 3, 0)),
         .package(url: "https://github.com/jpsim/Yams", from: Version(5, 0, 0)),
-        .package(url: "https://github.com/realm/SwiftLint", from: Version(0, 55, 0)),
+        .package(url: "https://github.com/realm/SwiftLint", from: Version(0, 56, 0)),
     ],
     targets: [
         .executableTarget(
