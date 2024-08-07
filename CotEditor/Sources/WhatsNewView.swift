@@ -41,27 +41,27 @@ struct WhatsNewView: View {
                 .accessibilityAddTraits(.isHeader)
                 .accessibilityHeading(.h1)
             
-            HStack(alignment: .top, spacing: 20) {
+            Grid(alignment: .leading, verticalSpacing: 12) {
                 ForEach(NewFeature.allCases, id: \.self) { feature in
-                    VStack(spacing: 8) {
+                    GridRow {
                         feature.image
-                            .font(.system(size: 56, weight: .thin))
+                            .font(.system(size: 48, weight: .thin))
                             .foregroundStyle(.tint)
-                            .frame(height: 60)
+                            .gridColumnAlignment(.center)
                         
-                        Text(feature.label)
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .accessibilityAddTraits(.isHeader)
-                            .accessibilityHeading(.h2)
-                        
-                        Text(feature.description)
-                            .foregroundStyle(.secondary)
-                            .fixedSize(horizontal: false, vertical: true)
-                        
-                        feature.supplementalView
+                        VStack(alignment: .leading) {
+                            Text(feature.label)
+                                .font(.title3)
+                                .fontWeight(.medium)
+                                .accessibilityAddTraits(.isHeader)
+                                .accessibilityHeading(.h2)
+                            
+                            Text(feature.description)
+                                .opacity(0.75)
+                            
+                            feature.supplementalView
+                        }
                     }
-                    .frame(maxWidth: .infinity)
                 }
             }
             
@@ -87,9 +87,15 @@ struct WhatsNewView: View {
             .buttonStyle(.borderedProminent)
         }
         .scenePadding()
-        .frame(width: 640, height: 300)
+        .frame(maxWidth: 580)
         .padding(.top, 30)  // for balancing with window titlebar space
         .ignoresSafeArea()
+        .background {
+            Image(systemName: "gearshape.2")
+                .font(.system(size: 750, weight: .ultraLight))
+                .rotationEffect(.degrees(180))
+                .opacity(0.02)
+        }
         .background()
     }
 }
@@ -192,6 +198,7 @@ private enum NewFeature: CaseIterable {
                 }
                 .buttonStyle(.capsule)
                 #endif
+                
             default:
                 EmptyView()
         }
