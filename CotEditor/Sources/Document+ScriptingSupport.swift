@@ -35,8 +35,8 @@ private enum OSALineEnding: FourCharCode {
     case cr = "leCR"
     case crlf = "leCL"
     case nel = "leNL"
-    case ls = "leLS"
-    case ps = "lePS"
+    case lineSeparator = "leLS"
+    case paragraphSeparator = "lePS"
     
     
     var lineEnding: LineEnding {
@@ -46,8 +46,8 @@ private enum OSALineEnding: FourCharCode {
             case .cr: .cr
             case .crlf: .crlf
             case .nel: .nel
-            case .ls: .lineSeparator
-            case .ps: .paragraphSeparator
+            case .lineSeparator: .lineSeparator
+            case .paragraphSeparator: .paragraphSeparator
         }
     }
     
@@ -59,8 +59,8 @@ private enum OSALineEnding: FourCharCode {
             case .cr: .cr
             case .crlf: .crlf
             case .nel: .nel
-            case .lineSeparator: .ls
-            case .paragraphSeparator: .ps
+            case .lineSeparator: .lineSeparator
+            case .paragraphSeparator: .paragraphSeparator
         }
     }
 }
