@@ -203,7 +203,7 @@ extension Document: EditorSource {
     
     // MARK: Document Methods
     
-    override static var autosavesInPlace: Bool {
+    nonisolated override static var autosavesInPlace: Bool {
         
         // avoid changing the value while the application is running
         struct InitialValue { static let autosavesInPlace = UserDefaults.standard[.enablesAutosaveInPlace] }
