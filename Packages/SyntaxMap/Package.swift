@@ -30,7 +30,7 @@ let package = Package(
             dependencies: ["SyntaxMap"],
             resources: [.copy("Syntaxes")]),
     ],
-    swiftLanguageVersions: [.v6]
+    swiftLanguageModes: [.v6]
 )
 
 

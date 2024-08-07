@@ -100,7 +100,7 @@ let package = Package(
         
         .target(name: "ValueRange"),
     ],
-    swiftLanguageVersions: [.v6]
+    swiftLanguageModes: [.v6]
 )
 
 
