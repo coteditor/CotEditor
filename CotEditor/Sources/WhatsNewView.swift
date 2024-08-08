@@ -87,8 +87,8 @@ struct WhatsNewView: View {
             .keyboardShortcut(.cancelAction)
             .buttonStyle(.borderedProminent)
         }
-        .padding(.horizontal)
-        .padding(.top, 30)  // for balancing with window titlebar space
+        .padding(.top, ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 15 ? 0 : 30)  // for balancing with window titlebar space
+        .padding([.horizontal, .bottom])
         .scenePadding()
         .frame(width: 580)
         .ignoresSafeArea(edges: .top)
