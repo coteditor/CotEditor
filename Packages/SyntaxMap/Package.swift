@@ -1,5 +1,4 @@
 // swift-tools-version: 6.0
-// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
@@ -29,13 +28,12 @@ let package = Package(
             name: "SyntaxMapTests",
             dependencies: ["SyntaxMap"],
             resources: [.copy("Syntaxes")]),
-    ],
-    swiftLanguageModes: [.v6]
+    ]
 )
 
 
 for target in package.targets {
     target.plugins = [
-        .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLint")
+        .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLint"),
     ]
 }
