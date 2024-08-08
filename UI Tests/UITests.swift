@@ -25,24 +25,21 @@
 
 import XCTest
 
-@MainActor final class UITests: XCTestCase {
+final class UITests: XCTestCase {
     
     override func setUp() {
         
-        super.setUp()
-        
         // In UI tests it is usually best to stop immediately when a failure occurs.
         self.continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
     }
     
     
-    func testTyping() {
+    @MainActor func testTyping() {
         
         let app = XCUIApplication()
+        app.launch()
         
-        // open new document
+        // open a new document
         let menuBarsQuery = app.menuBars
         menuBarsQuery.menuBarItems["File"].click()
         menuBarsQuery.menuItems["New Window"].click()
@@ -62,7 +59,7 @@ import XCTest
             textView.typeKey(.delete, modifierFlags: [])
         }
         
-        // close window without save
+        // close window without saving
         documentWindow.buttons[XCUIIdentifierCloseWindow].click()
         if documentWindow.sheets.count > 0 {
             // it actually depends on user settings and iCloud availability if save sheet appears...
@@ -73,7 +70,7 @@ import XCTest
     }
     
     
-    func testLaunchPerformance() throws {
+    @MainActor func testLaunchPerformance() throws {
         
         // This measures how long it takes to launch your application.
         self.measure(metrics: [XCTApplicationLaunchMetric()]) {
