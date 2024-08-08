@@ -41,6 +41,11 @@
 - [dev] Update Yams from 5.1.2 to 5.1.3.
 
 
+### Fixes
+
+- Fix an issue that the rectangular selection cannot stop the selection just until the second line from the end.
+
+
 ### TODO
 
 - Improve Assembly syntax.
