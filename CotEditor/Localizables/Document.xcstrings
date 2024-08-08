@@ -3873,79 +3873,79 @@
         }
       }
     },
-    "Open in Separate Window" : {
+    "Open in New Window" : {
       "comment" : "menu item label",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít v samostatném okně"
+            "value" : "Otevřít v novém okně"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "In eigenem Fenster öffnen"
+            "value" : "In neuem Fenster öffnen"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open in Separate Window"
+            "value" : "Open in New Window"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir en una ventana diferente"
+            "value" : "Abrir en una ventana nueva"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir dans une fenêtre distincte"
+            "value" : "Ouvrir dans une nouvelle fenêtre"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apri in un’altra finestra"
+            "value" : "Apri in una nuova finestra"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "別のウインドウで開く"
+            "value" : "新規ウインドウで開く"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open in afzonderlijk venster"
+            "value" : "Open in nieuw venster"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir em uma Janela Separada"
+            "value" : "Abrir em Nova Janela"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ayrı Pencerede Aç"
+            "value" : "Yeni Pencerede Aç"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在单独窗口中打开"
+            "value" : "在新窗口中打开"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在獨立視窗中打開"
+            "value" : "以新視窗打開"
           }
         }
       }

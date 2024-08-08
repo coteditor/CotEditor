@@ -142,7 +142,7 @@ struct FileBrowserView: View {
                 }
             }
             if NSDocumentController.shared.document(for: node.fileURL) == nil {
-                Button(String(localized: "Open in Separate Window", table: "Document", comment: "menu item label")) {
+                Button(String(localized: "Open in New Window", table: "Document", comment: "menu item label")) {
                     NSDocumentController.shared.openDocument(withContentsOf: node.fileURL, display: true) { (_, _, error) in
                         self.error = error
                     }
