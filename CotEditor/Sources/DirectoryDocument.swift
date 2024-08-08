@@ -280,6 +280,8 @@ import URLUtils
             throw error
         }
         
+        self.revert()
+        
         return fileURL
     }
     
@@ -309,6 +311,8 @@ import URLUtils
         if let error = coordinationError ?? writingError {
             throw error
         }
+        
+        self.revert()
         
         return folderURL
     }
@@ -367,6 +371,8 @@ import URLUtils
         if let error = coordinationError ?? movingError {
             throw error
         }
+        
+        self.revert()
     }
     
     
@@ -405,6 +411,8 @@ import URLUtils
             assertionFailure("This guard should success.")
             throw CocoaError(.fileWriteUnknown)
         }
+        
+        self.revert()
     }
     
     
