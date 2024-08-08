@@ -440,7 +440,7 @@ extension SettingFileManaging {
         if let new = change.new, !settingNames.contains(new) {
             settingNames.append(new)
         }
-        settingNames.sort(options: [.localized, .caseInsensitive])
+        settingNames.sort(using: .localizedStandard)
         
         guard settingNames != self.settingNames else { return }
         

@@ -205,7 +205,7 @@ private struct CreditsView: View {
             }
             
             SectionView(String(localized: "Code Contributors", table: "About", comment: "section heading")) {
-                Text(self.credits.contributors.map(\.name).sorted(options: [.caseInsensitive, .localized]), format: .list(type: .and))
+                Text(self.credits.contributors.map(\.name).sorted(using: .localized), format: .list(type: .and))
                     .textSelection(.enabled)
             }
             

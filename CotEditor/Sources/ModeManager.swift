@@ -57,7 +57,7 @@ import Syntax
     var syntaxModes: [Mode] {
         
         self.defaults[.modes].keys
-            .sorted(options: [.localized, .caseInsensitive])
+            .sorted(using: .localizedStandard)
             .compactMap(Mode.init(rawValue:))
             .filter { if case .syntax = $0 { true } else { false } }
     }

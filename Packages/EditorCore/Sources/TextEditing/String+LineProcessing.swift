@@ -68,7 +68,7 @@ public extension String {
                 }
             }
         }
-        selectedRanges = selectedRanges.uniqued.sorted(\.location)
+        selectedRanges = selectedRanges.uniqued.sorted()
         
         let replacementString = string.substring(with: replacementRange)
         
@@ -121,7 +121,7 @@ public extension String {
                 }
             }
         }
-        selectedRanges = selectedRanges.uniqued.sorted(\.location)
+        selectedRanges = selectedRanges.uniqued.sorted()
         
         let replacementString = string.substring(with: replacementRange)
         
@@ -137,7 +137,7 @@ public extension String {
             .map { string.lineRange(for: $0) }
             .flatMap { self.lineContentsRanges(for: $0) }
             .uniqued
-            .sorted(\.location)
+            .sorted()
         
         var replacementRanges: [NSRange] = []
         var uniqueLines: [String] = []
@@ -168,7 +168,7 @@ public extension String {
         var selectedRanges: [NSRange] = []
         
         // group the ranges sharing the same lines
-        let rangeGroups: [[NSRange]] = ranges.sorted(\.location)
+        let rangeGroups: [[NSRange]] = ranges.sorted()
             .reduce(into: []) { (groups, range) in
                 if let last = groups.last?.last,
                    string.lineRange(for: last).intersects(string.lineRange(for: range))
@@ -218,7 +218,7 @@ public extension String {
             selectedRanges.append(NSRange(location: range.location + offset, length: 0))
             offset -= range.length
         }
-        selectedRanges = selectedRanges.uniqued.sorted(\.location)
+        selectedRanges = selectedRanges.uniqued.sorted()
         
         return EditingContext(strings: replacementStrings, ranges: lineRanges, selectedRanges: selectedRanges)
     }
@@ -260,7 +260,7 @@ public extension String {
     /// Sorts selected lines ascending.
     func sortLinesAscending(in range: NSRange) -> EditingContext? {
         
-        self.sortLines(in: range) { $0.sorted(options: [.localized, .caseInsensitive]) }
+        self.sortLines(in: range) { $0.sorted(using: .localized) }
     }
     
     

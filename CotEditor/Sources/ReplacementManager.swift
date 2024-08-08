@@ -121,7 +121,7 @@ import URLUtils
         let userSettingNames = self.userSettingFileURLs
             .filter { (try? self.loadSetting(at: $0)) != nil }  // just try loading but not store
             .map { Self.settingName(from: $0) }
-            .sorted(options: [.localized, .caseInsensitive])
+            .sorted(using: .localizedStandard)
         
         self.settingNames = userSettingNames
     }

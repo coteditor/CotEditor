@@ -82,7 +82,7 @@ final class SyntaxManager: SettingFileManaging {
         let url = Bundle.main.url(forResource: "SyntaxMap", withExtension: "json")!
         let data = try! Data(contentsOf: url)
         self.bundledMaps = try! JSONDecoder().decode([SettingName: SyntaxMap].self, from: data)
-        self.bundledSettingNames = self.bundledMaps.keys.sorted(options: [.localized, .caseInsensitive])
+        self.bundledSettingNames = self.bundledMaps.keys.sorted(using: .localized)
         
         // sanitize user setting file extensions
         try? self.sanitizeUserSettings()
@@ -229,7 +229,7 @@ final class SyntaxManager: SettingFileManaging {
         let maps = self.bundledMaps.merging(userMaps) { (_, new) in new }
         
         // sort syntaxes alphabetically
-        let settingNames = maps.keys.sorted(options: [.localized, .caseInsensitive])
+        let settingNames = maps.keys.sorted(using: .localizedStandard)
         // remove syntaxes not exist
         UserDefaults.standard[.recentSyntaxNames].removeAll { !settingNames.contains($0) }
         

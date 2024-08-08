@@ -237,12 +237,12 @@ public struct Syntax: Equatable, Sendable {
         var syntax = self
         for keyPath in SyntaxType.allCases.map(Syntax.highlightKeyPath(for:)) {
             syntax[keyPath: keyPath].removeAll(where: \.isEmpty)
-            syntax[keyPath: keyPath].sort(\.begin, options: .caseInsensitive)
+            syntax[keyPath: keyPath].caseInsensitiveSort(\.begin)
         }
         syntax.outlines.removeAll(where: \.isEmpty)
-        syntax.outlines.sort(\.pattern, options: .caseInsensitive)
+        syntax.outlines.caseInsensitiveSort(\.pattern)
         syntax.completions.removeAll(where: \.isEmpty)
-        syntax.completions.sort(options: .caseInsensitive)
+        syntax.completions.caseInsensitiveSort(\.self)
         syntax.extensions.removeAll(where: \.isEmpty)
         syntax.filenames.removeAll(where: \.isEmpty)
         syntax.interpreters.removeAll(where: \.isEmpty)
@@ -360,5 +360,18 @@ private extension Syntax.Highlight {
         self.end = nil
         self.isRegularExpression = true
         self.ignoreCase = ignoreCase
+    }
+}
+
+
+private extension MutableCollection where Self: RandomAccessCollection {
+    
+    /// Sorts the collection in place, using the string value that the given key path refers as the comparison between elements.
+    ///
+    /// - Parameters:
+    ///   - keyPath: The key path to the string to compare.
+    mutating func caseInsensitiveSort(_ keyPath: KeyPath<Element, String>) {
+        
+        self.sort { $0[keyPath: keyPath].caseInsensitiveCompare($1[keyPath: keyPath]) == .orderedAscending }
     }
 }

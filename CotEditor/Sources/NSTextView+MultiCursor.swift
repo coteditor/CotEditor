@@ -49,7 +49,7 @@ extension MultiCursorEditing {
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
         let insertionRanges = self.insertionLocations.map { NSRange(location: $0, length: 0) }
         
-        return (selectedRanges + insertionRanges).sorted(\.location)
+        return (selectedRanges + insertionRanges).sorted()
     }
     
     
@@ -187,7 +187,7 @@ extension MultiCursorEditing {
         
         guard !ranges.isEmpty else { return nil }
         
-        let ranges = ranges.uniqued.sorted(\.location)
+        let ranges = ranges.uniqued.sorted()
         let selectionSet = IndexSet(integersIn: ranges)
         let nonemptyRanges = selectionSet.rangeView
             .map(NSRange.init)

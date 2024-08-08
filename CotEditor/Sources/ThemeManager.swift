@@ -59,7 +59,7 @@ final class ThemeManager: SettingFileManaging {
         // cache bundled setting names
         self.bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: Self.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)!
             .map { Self.settingName(from: $0) }
-            .sorted(options: [.localized, .caseInsensitive])
+            .sorted(using: .localizedStandard)
         
         // cache user setting names
         self.loadUserSettings()
@@ -209,7 +209,7 @@ final class ThemeManager: SettingFileManaging {
             .map { Self.settingName(from: $0) }
         
         let settingNames = (self.bundledSettingNames + userSettingNames).uniqued
-            .sorted(options: [.localized, .caseInsensitive])
+            .sorted(using: .localizedStandard)
         
         // reset user default if not found
         if !settingNames.contains(UserDefaults.standard[.theme]) {

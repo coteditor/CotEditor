@@ -309,7 +309,7 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
         
         return urls
             .filter { !$0.lastPathComponent.hasPrefix("_") }  // ignore files/folders of which name starts with "_"
-            .sorted(\.lastPathComponent)
+            .sorted(using: SortDescriptor(\.lastPathComponent))
             .compactMap { url in
                 let name = url.deletingPathExtension().lastPathComponent
                     .replacing(/^\d+\)/.asciiOnlyDigits(), with: "", maxReplacements: 1)  // remove ordering prefix

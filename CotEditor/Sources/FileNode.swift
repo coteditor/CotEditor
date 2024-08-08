@@ -85,7 +85,7 @@ extension [FileNode] {
             tree.children = tree.children?.sorted(keepsFoldersOnTop: keepsFoldersOnTop)
             return tree
         }
-        .sorted(\.name, options: [.caseInsensitive, .localized])
+        .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
         .sorted { keepsFoldersOnTop ? ($0.isDirectory && !$1.isDirectory) : false }
     }
     
