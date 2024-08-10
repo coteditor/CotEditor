@@ -53,6 +53,12 @@
             "value" : "修正NFDに対応するNFCを基にした非公式の正規化形式"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수정된 NFD에 대응되는 NFC 기반 비공식 정규화 형태"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -134,6 +140,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "修正NFC"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수정된 NFC"
           }
         },
         "nl" : {
@@ -220,6 +232,12 @@
             "value" : "HFS+で使用されているNFDを基にした非公式の正規化形式"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HFS+에서 사용되는 NFD 기반 비공식 정규화 형태"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -301,6 +319,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "修正NFD"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수정된 NFD"
           }
         },
         "nl" : {
@@ -387,6 +411,12 @@
             "value" : "正準等価によって分解し、正準等価によって合成"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "표준 분해를 하고 난 뒤 표준 합성"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -465,6 +495,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFC"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFC"
@@ -554,6 +590,12 @@
             "value" : "正準等価によって分解"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "표준 분해"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -632,6 +674,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFD"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFD"
@@ -721,6 +769,12 @@
             "value" : "互換性等価によって分解し、正準等価によって合成"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "호환 분해를 하고 난 뒤 표준 합성"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -799,6 +853,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC"
@@ -888,6 +948,12 @@
             "value" : "NFKCを適用しすべて小文字に変換（case folding）したのち、デフォルトの無視できるコードポイントを削除"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -966,6 +1032,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC Casefold"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC Casefold"
@@ -1055,6 +1127,12 @@
             "value" : "互換性等価によって分解"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "호환 분해"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1133,6 +1211,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKD"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKD"

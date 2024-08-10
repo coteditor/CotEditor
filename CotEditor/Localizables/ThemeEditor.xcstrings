@@ -45,6 +45,12 @@
             "value" : "作者:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "작성자:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -119,6 +125,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "背景:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "배경:"
           }
         },
         "nl" : {
@@ -197,6 +209,12 @@
             "value" : "現在の行:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현재 줄:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -271,6 +289,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "カーソル:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "커서:"
           }
         },
         "nl" : {
@@ -349,6 +373,12 @@
             "value" : "説明:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설명:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -423,6 +453,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ハイライト:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "강조:"
           }
         },
         "nl" : {
@@ -501,6 +537,12 @@
             "value" : "不可視文字:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보이지 않는 문자:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -575,6 +617,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ライセンス:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용권 계약:"
           }
         },
         "nl" : {
@@ -654,6 +702,12 @@
             "value" : "未設定"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정의되지 않음"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -728,6 +782,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択範囲:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택 부분:"
           }
         },
         "nl" : {
@@ -806,6 +866,12 @@
             "value" : "テーマファイル情報を表示"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "테마 파일 정보 보기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -880,6 +946,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "シンタックス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구문"
           }
         },
         "nl" : {
@@ -958,6 +1030,12 @@
             "value" : "文字:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "텍스트:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1034,6 +1112,12 @@
             "value" : "テーマエディタ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "테마 편집기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1105,6 +1189,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "URL:"
@@ -1185,6 +1275,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "システムカラーを使う"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시스템 색상 사용"
           }
         },
         "nl" : {

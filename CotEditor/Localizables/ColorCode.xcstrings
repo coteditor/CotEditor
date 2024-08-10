@@ -46,6 +46,12 @@
             "value" : "カラーコード"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "색상 코드"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -124,6 +130,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSL"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS HSL"
@@ -212,6 +224,12 @@
             "value" : "CSS HSLa"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSLa"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -295,6 +313,12 @@
             "value" : "CSSキーワード"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS 키워드"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -373,6 +397,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGB"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS RGB"
@@ -461,6 +491,12 @@
             "value" : "CSS RGBa"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGBa"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -542,6 +578,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "16進数"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "16진수"
           }
         },
         "nl" : {
@@ -627,6 +669,12 @@
             "value" : "16進数（アルファ値付き）"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "16진수 (알파 포함)"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -710,6 +758,12 @@
             "value" : "16進数（ショート）"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "16진수 (짧게)"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -787,6 +841,12 @@
             "value" : "挿入"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삽입"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -862,6 +922,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スタイルシートキーワード"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "스타일시트 키워드"
           }
         },
         "nl" : {

@@ -46,6 +46,12 @@
             "value" : "区切り線を追加"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구분선 추가"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -123,6 +129,12 @@
             "value" : "区切り線を削除"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구분선 삭제"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -197,6 +209,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "エンコーディングをドラッグして並び替えてください:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인코딩을 드래그하여 순서 변경:"
           }
         },
         "nl" : {
@@ -276,6 +294,12 @@
             "value" : "デフォルトに戻す"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본값 복원"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -350,6 +374,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "この順序はエンコーディングメニューや書類を開くときのエンコーディング認識で使われます。自動認識では上位のエンコーディングがより優先して適用されます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 순서는 인코딩 메뉴 및 파일 인코딩 탐지에 사용됩니다. 파일을 열 때 더 높은 위치에 있는 인코딩을 더 높은 우선 순위로 탐지합니다."
           }
         },
         "nl" : {

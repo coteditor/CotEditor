@@ -46,6 +46,12 @@
             "value" : "閉じる"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "닫기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -120,6 +126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "検出に失敗しました"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "감지 실패"
           }
         },
         "nl" : {
@@ -199,6 +211,12 @@
             "value" : "挿入"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삽입"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -273,6 +291,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テキストが検出されませんでした"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "감지된 텍스트 없음"
           }
         },
         "nl" : {

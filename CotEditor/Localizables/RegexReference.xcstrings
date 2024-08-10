@@ -45,6 +45,12 @@
             "value" : "0回以上"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0회 이상"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -121,6 +127,12 @@
             "value" : "1回または0回"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 또는 0회"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -195,6 +207,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1回以上"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1회 이상"
           }
         },
         "nl" : {
@@ -274,6 +292,12 @@
             "value" : "アンカー"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앵커"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -348,6 +372,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "任意の1文字"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아무 문자"
           }
         },
         "nl" : {
@@ -426,6 +456,12 @@
             "value" : "AからZの中の任意の1文字"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A부터 Z 안의 아무 문자"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -500,6 +536,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "AからZ以外の任意の1文字"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A부터 Z 안에 있지 않은 아무 문자"
           }
         },
         "nl" : {
@@ -578,6 +620,12 @@
             "value" : "0回以上n回以下"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0회 이상 n회 이하"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -654,6 +702,12 @@
             "value" : "n回以上m回以下"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "n회 이상 m회 이하"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -728,6 +782,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "n回以上"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "n회 의상"
           }
         },
         "nl" : {
@@ -807,6 +867,12 @@
             "value" : "後方参照"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "역참조"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -884,6 +950,12 @@
             "value" : "正規表現の基本文法"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본 정규표현식 구문"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -958,6 +1030,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行頭"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "줄의 시작"
           }
         },
         "nl" : {
@@ -1037,6 +1115,12 @@
             "value" : "文字"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문자"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1113,6 +1197,12 @@
             "value" : "10進数字"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10진법 숫자"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1187,6 +1277,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行末"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "줄의 끝"
           }
         },
         "nl" : {
@@ -1266,6 +1362,12 @@
             "value" : "拡張グループ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확장 그룹"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1340,6 +1442,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最初の一致"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "첫 번째 일치"
           }
         },
         "nl" : {
@@ -1418,6 +1526,12 @@
             "value" : "ICU正規表現"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ICU 정규표현식"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1492,6 +1606,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "先読み"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "전방 탐색"
           }
         },
         "nl" : {
@@ -1570,6 +1690,12 @@
             "value" : "戻り読み"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "후색 탐색"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1644,6 +1770,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "n回"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "n 번"
           }
         },
         "nl" : {
@@ -1722,6 +1854,12 @@
             "value" : "改行"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "개행 문자"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1796,6 +1934,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "非空白文字"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공백이 아닌 문자"
           }
         },
         "nl" : {
@@ -1875,6 +2019,12 @@
             "value" : "量指定子"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수량자"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1949,6 +2099,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "水平タブ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "탭 문자"
           }
         },
         "nl" : {
@@ -2028,6 +2184,12 @@
             "value" : "文法は%@の仕様に準拠しています。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 구문은 %@ 명세를 따릅니다. "
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2102,6 +2264,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空白文字"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공백 문자"
           }
         },
         "nl" : {
@@ -2180,6 +2348,12 @@
             "value" : "非単語境界"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단어 경계"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2254,6 +2428,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "単語構成文字"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단어 문자"
           }
         },
         "nl" : {

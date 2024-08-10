@@ -27,6 +27,12 @@
             "state" : "translated",
             "value" : "日々の開発のためのコーヒー"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일일 개발을 위한 커피"
+          }
         }
       }
     },
@@ -79,6 +85,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コーヒー豆"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "커피 원두"
           }
         },
         "nl" : {
@@ -139,6 +151,12 @@
             "state" : "translated",
             "value" : "おいしい1杯"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "커피 한 잔"
+          }
         }
       }
     },
@@ -191,6 +209,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "エスプレッソ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "에스프레소"
           }
         },
         "nl" : {

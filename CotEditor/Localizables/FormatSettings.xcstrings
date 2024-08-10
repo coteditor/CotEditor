@@ -45,6 +45,12 @@
             "value" : "利用可能なシンタックス:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "가능한 구문:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -119,6 +125,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "デフォルトのエンコーディング:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본 인코딩:"
           }
         },
         "nl" : {
@@ -197,6 +209,12 @@
             "value" : "デフォルトの改行コード:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본 줄바꿈:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -271,6 +289,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "デフォルトのシンタックス:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본 구문:"
           }
         },
         "nl" : {
@@ -349,6 +373,12 @@
             "value" : "リストを編集…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "목록 편집..."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -423,6 +453,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "エンコーディングの優先順位:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인코딩 우선 순위:"
           }
         },
         "nl" : {
@@ -501,6 +537,12 @@
             "value" : "書類中のエンコーディング宣言を参照"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서에 정의된 인코딩을 참고"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -576,6 +618,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "このシンタックスは存在しません"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "존재하지 않는 구문"
           }
         },
         "nl" : {

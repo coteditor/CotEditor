@@ -46,6 +46,12 @@
             "value" : "（空欄は一致した全文字列）"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(빈 칸은 전체 문자열을 일치합니다.)"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -123,6 +129,12 @@
             "value" : "（ドット不要）"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(점 없이)"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -194,6 +206,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@:"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@:"
@@ -372,6 +390,18 @@
             }
           }
         },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld개 오류 발견됨."
+                }
+              }
+            }
+          }
+        },
         "nl" : {
           "variations" : {
             "plural" : {
@@ -497,6 +527,12 @@
             "value" : "作者:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "작성자:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -572,6 +608,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "開始文字列"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시작 문자열"
           }
         },
         "nl" : {
@@ -651,6 +693,12 @@
             "value" : "開始:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음으로 시작:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -725,6 +773,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ブロックコメントは開始と終了の両方の文字列が必要です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주석 블록은 시작과 끝 구분자 모두 필요합니다."
           }
         },
         "nl" : {
@@ -804,6 +858,12 @@
             "value" : "ブロックコメント:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주석 블록:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -879,6 +939,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ボールド"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "볼드체"
           }
         },
         "nl" : {
@@ -958,6 +1024,12 @@
             "value" : "バンドルされているシンタックスの名前は変更できません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "번들로 제공되는 구문은 이름을 바꿀 수 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1033,6 +1105,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "入力補完"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완성"
           }
         },
         "nl" : {
@@ -1112,6 +1190,12 @@
             "value" : "定義ファイル"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정의 파일"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1187,6 +1271,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "説明"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설명"
           }
         },
         "nl" : {
@@ -1266,6 +1356,12 @@
             "value" : "説明:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설명:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1341,6 +1437,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "配布URL:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "배포 URL:"
           }
         },
         "nl" : {
@@ -1420,6 +1522,12 @@
             "value" : "終了文字列"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "끝 문자열"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1495,6 +1603,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "終了:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음으로 끝남:"
           }
         },
         "nl" : {
@@ -1574,6 +1688,12 @@
             "value" : "一致した全文字列"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모두 일치"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1649,6 +1769,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拡張子:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확장:"
           }
         },
         "nl" : {
@@ -1728,6 +1854,12 @@
             "value" : "機能"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기능"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1803,6 +1935,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイル関連付け"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 매핑"
           }
         },
         "nl" : {
@@ -1882,6 +2020,12 @@
             "value" : "ファイル名:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 이름:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1959,6 +2103,12 @@
             "value" : "ハイライト"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "강조"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2031,6 +2181,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IC"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IC"
@@ -2113,6 +2269,12 @@
             "value" : "設定がないときは、ハイライト設定からシンタックス補完単語が生成されます。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지정되지 않으면, 구문 완성 단어는 강조 설정으로부터 생성됩니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2188,6 +2350,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "大文字/小文字を無視"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "대소문자 무시"
           }
         },
         "nl" : {
@@ -2267,6 +2435,12 @@
             "value" : "情報"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정보"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2342,6 +2516,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "インラインコメント:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인라인 주석:"
           }
         },
         "nl" : {
@@ -2421,6 +2601,12 @@
             "value" : "インタープリタ:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인터프리터:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2495,6 +2681,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無効な正規表現です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유효하지 않은 정규표현식."
           }
         },
         "nl" : {
@@ -2574,6 +2766,12 @@
             "value" : "イタリック"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이탤릭체"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2648,6 +2846,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "種類:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "종류:"
           }
         },
         "nl" : {
@@ -2727,6 +2931,12 @@
             "value" : "最終更新日:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수정된 날짜:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2802,6 +3012,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ライセンス:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용권 계약:"
           }
         },
         "nl" : {
@@ -2881,6 +3097,12 @@
             "value" : "複数の項目が選択されています"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여러 개의 항목 선택됨"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2956,6 +3178,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "エラーは検出されませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "발견된 오류 없음."
           }
         },
         "nl" : {
@@ -3035,6 +3263,12 @@
             "value" : "項目が選択されていません"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택된 항목 없음"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3110,6 +3344,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未定義"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정의되지 않음"
           }
         },
         "nl" : {
@@ -3189,6 +3429,12 @@
             "value" : "アウトライン抽出ルール:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "개요 추출 규칙:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3261,6 +3507,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RE"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "RE"
@@ -3343,6 +3595,12 @@
             "value" : "正規表現"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정규표현식"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3418,6 +3676,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "正規表現パターン"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정규표현식 "
           }
         },
         "nl" : {
@@ -3496,6 +3760,12 @@
             "value" : "デフォルトに戻す"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본값 복원"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3570,6 +3840,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "サイドバーを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사이드바 보기"
           }
         },
         "nl" : {
@@ -3656,6 +3932,12 @@
             "value" : "入力補完"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완성"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3740,6 +4022,12 @@
             "value" : "アウトライン"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "개요"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3817,6 +4105,12 @@
             "value" : "インタープリタは書類内のシェバンからシンタックスを特定するときに使用されます。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인터프리터는 문서의 shebang으로부터 구문을 결정하는 데에 사용됩니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3891,6 +4185,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "登録が重複しています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "같은 단어가 여러번 등록됨."
           }
         },
         "nl" : {
@@ -3970,6 +4270,12 @@
             "value" : "タイトルパターン:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제목 형식:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4045,6 +4351,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "アンダーライン"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "밑줄체"
           }
         },
         "nl" : {
@@ -4124,6 +4436,12 @@
             "value" : "検証"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "검증"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4199,6 +4517,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "バージョン:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "버전:"
           }
         },
         "nl" : {

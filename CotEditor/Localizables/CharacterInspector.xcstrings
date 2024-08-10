@@ -46,6 +46,12 @@
             "value" : "<%lld字から成る文字>"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<%lld자로 구성된 문자>"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -120,6 +126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ブロック:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "영역:"
           }
         },
         "nl" : {
@@ -198,6 +210,12 @@
             "value" : "カテゴリ:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "카테고리:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -272,6 +290,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コードポイント:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "코드 포인트:"
           }
         },
         "nl" : {
@@ -351,6 +375,12 @@
             "value" : "非推奨"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제거됨"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -425,6 +455,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ブロックなし"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "영역 없음"
           }
         },
         "nl" : {
@@ -503,6 +539,12 @@
             "value" : "不明"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알 수 없음"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -577,6 +619,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "バージョン:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "버전:"
           }
         },
         "nl" : {

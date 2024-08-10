@@ -46,6 +46,12 @@
             "value" : "自動"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "자동"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -123,6 +129,12 @@
             "value" : "不可視ファイルを表示"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보이지 않는 파일 표시"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -197,6 +209,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テキストエンコーディング:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "텍스트 인코딩:"
           }
         },
         "nl" : {

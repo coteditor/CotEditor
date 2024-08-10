@@ -53,6 +53,12 @@
             "value" : "コード"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "코드"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -135,6 +141,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "一般"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일반"
           }
         },
         "nl" : {
@@ -220,6 +232,12 @@
             "value" : "なし"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "없음"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -301,6 +319,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "属性"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "속성"
           }
         },
         "nl" : {
@@ -386,6 +410,12 @@
             "value" : "文字"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문자"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -467,6 +497,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コマンド"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "명령"
           }
         },
         "nl" : {
@@ -552,6 +588,12 @@
             "value" : "コメント"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주석"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -633,6 +675,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "キーワード"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "키워드"
           }
         },
         "nl" : {
@@ -718,6 +766,12 @@
             "value" : "数値"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "숫자"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -799,6 +853,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字列"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문자열"
           }
         },
         "nl" : {
@@ -884,6 +944,12 @@
             "value" : "タイプ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "타입"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -967,6 +1033,12 @@
             "value" : "値"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "값"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1048,6 +1120,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "変数"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "변수"
           }
         },
         "nl" : {

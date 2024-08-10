@@ -46,6 +46,12 @@
             "value" : "デフォルトに戻す"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본값 복원"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -120,6 +126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ショートカットを変更するには、キー列をクリックして編集状態にしてから、新しいキーを入力してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단축키를 바꾸려면, 키 열을 클릭하고, 새 키를 입력하십시오."
           }
         },
         "nl" : {

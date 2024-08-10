@@ -52,6 +52,12 @@
             "value" : "ドロップ元ファイルの絶対パス"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "떨군 파일의 절대 경로."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -133,6 +139,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ドロップ元ファイルのあるディレクトリ名"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "떨군 파일의 부모 디렉토리 이름."
           }
         },
         "nl" : {
@@ -218,6 +230,12 @@
             "value" : "ファイル内容（ドロップ元ファイルがテキストファイルのときのみ有効）"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(떨군 파일이 텍스트인 경우) 파일 내용."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -299,6 +317,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ドロップ元ファイルの拡張子"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "떨군 파일의 확장자."
           }
         },
         "nl" : {
@@ -384,6 +408,12 @@
             "value" : "ドロップ元ファイルの拡張子（小文字）"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "떨군 파일의 확장자 (소문자)."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -465,6 +495,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ドロップ元ファイルの拡張子（大文字）"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "떨군 파일의 확장자 (대문자)."
           }
         },
         "nl" : {
@@ -550,6 +586,12 @@
             "value" : "ドロップ元ファイルの拡張子を含むファイル名"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "떨군 파일의 확장자를 포함한 이름 (존재하는 경우)."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -631,6 +673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ドロップ元ファイルの名前から拡張子を削除した文字列"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "떨군 파일의 확장자를 제외한 이름."
           }
         },
         "nl" : {
@@ -716,6 +764,12 @@
             "value" : "画像の高さ（ドロップ元ファイルが画像ファイルのときのみ有効）"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(떨군 파일이 이미지인 경우) 이미지 높이."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -799,6 +853,12 @@
             "value" : "画像の幅（ドロップ元ファイルが画像ファイルのときのみ有効）"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(떨군 파일이 이미지인 경우) 이미지 너비."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -880,6 +940,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ドロップ先ファイルからドロップ元ファイルへの相対パス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서와 떨군 파일의 상대 경로."
           }
         },
         "nl" : {

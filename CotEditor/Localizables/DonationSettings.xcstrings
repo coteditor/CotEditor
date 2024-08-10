@@ -69,6 +69,18 @@
               }
             }
           }
+        },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld 컵"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -112,6 +124,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "× %lld"
@@ -168,6 +186,12 @@
             "state" : "translated",
             "value" : "寄付にはインターネット接続が必要です。"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "후원하려면 인터넷 연결이 필요합니다."
+          }
         }
       }
     },
@@ -189,6 +213,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "寛大なサポートの証として、継続的な寄付の期間中ステータスバーにコーヒーバッジが表示されます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "후원에 보답하는 마음으로, 지속 후원을 해주시는 동안 상태 바에 커피 뱃지가 나타납니다."
           }
         }
       }
@@ -212,6 +242,12 @@
             "state" : "translated",
             "value" : "バッジタイプ:"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "뱃지 타입:"
+          }
         }
       }
     },
@@ -233,6 +269,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "継続的なサポート"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지속 후원"
           }
         }
       }
@@ -256,6 +298,12 @@
             "state" : "translated",
             "value" : "CotEditorはすべての人に無償ですべての機能を提供しています。コーヒーを送ることでこのプロジェクトをサポートすることができます。"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor는 모든 기능을 무료로 제공합니다. 커피를 사주시면 프로젝트를 후원할 수 있습니다."
+          }
         }
       }
     },
@@ -277,6 +325,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "現在、寄付はできません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현재 후원 기능을 사용할 수 없습니다."
           }
         }
       }
@@ -323,6 +377,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "サブスクリプションを管理"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구독 관리"
           }
         },
         "nl" : {
@@ -376,6 +436,12 @@
             "state" : "translated",
             "value" : "1回限りの寄付"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일회성 후원"
+          }
         }
       }
     },
@@ -398,6 +464,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "GitHub Sponsosを開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub Sponsors 열기"
           }
         }
       }
@@ -444,6 +516,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "App Storeで開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Store에서 열기"
           }
         },
         "nl" : {
@@ -498,6 +576,12 @@
             "state" : "translated",
             "value" : "個数"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수량"
+          }
         }
       }
     },
@@ -519,6 +603,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "寄付機能はApp Storeで配布されているCotEditorでのみ有効です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "후원 기능은 App Store에서 배포된 CotEditor에서만 사용할 수 있습니다."
           }
         }
       }

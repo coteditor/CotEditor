@@ -45,6 +45,12 @@
             "value" : "タブ幅:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "탭 너비:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",

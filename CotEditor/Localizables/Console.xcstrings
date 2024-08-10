@@ -46,6 +46,12 @@
             "value" : "エラーログを消去"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오류 로그 지우기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -123,6 +129,12 @@
             "value" : "ログを消去"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그 지우기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -198,6 +210,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コンソール"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "콘솔"
           }
         },
         "nl" : {

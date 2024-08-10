@@ -52,6 +52,12 @@
             "value" : "スニペット挿入後の挿入ポイント"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "상용구를 삽입한 후의 삽입 위치."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -133,6 +139,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択テキスト"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택된 텍스트."
           }
         },
         "nl" : {

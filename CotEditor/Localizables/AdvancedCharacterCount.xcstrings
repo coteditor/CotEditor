@@ -142,6 +142,18 @@
             }
           }
         },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* 바이트"
+                }
+              }
+            }
+          }
+        },
         "nl" : {
           "variations" : {
             "plural" : {
@@ -357,6 +369,18 @@
             }
           }
         },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* 문자"
+                }
+              }
+            }
+          }
+        },
         "nl" : {
           "variations" : {
             "plural" : {
@@ -476,6 +500,12 @@
             "value" : "高度な文字カウント…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "고급 문자 개수…"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -558,6 +588,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "指定したエンコーディングでエンコードしたときのバイト長をカウントします。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "특정한 인코딩으로 인코딩된 텍스트의 바이트를 셉니다."
           }
         },
         "nl" : {
@@ -644,6 +680,12 @@
             "value" : "バイト"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "바이트"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -726,6 +768,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unicodeで定義されている人の感覚に近い単位でカウントします。絵文字など複数のUnicodeコードポイントから成る文字も1文字で数えます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유니코드에서"
           }
         },
         "nl" : {
@@ -812,6 +860,12 @@
             "value" : "書記素クラスタ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grapheme cluster"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -894,6 +948,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unicodeコードポイント単位でカウントします。UTF-32のカウントと同一です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유니코드 코드 포인트를 셉니다. UTF-32를 세는 것과 같습니다."
           }
         },
         "nl" : {
@@ -980,6 +1040,12 @@
             "value" : "Unicodeスカラー"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유니코드 스칼라"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1062,6 +1128,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unicodeコードポイント単位でカウントしますがサロゲートペアは2文字でカウントします。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유니코드 코드 포인트를 세지만 대행 코드를 문자 두 개로 셉니다."
           }
         },
         "nl" : {
@@ -1148,6 +1220,12 @@
             "value" : "UTF-16"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1223,6 +1301,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コピー"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "복사"
           }
         },
         "nl" : {
@@ -1302,6 +1386,12 @@
             "value" : "エンコーディング:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인코딩:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1377,6 +1467,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "失敗"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "실패함"
           }
         },
         "nl" : {
@@ -1456,6 +1552,12 @@
             "value" : "改行を無視"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "줄바꿈 무시"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1531,6 +1633,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空白を無視"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공백 무시"
           }
         },
         "nl" : {
@@ -1610,6 +1718,12 @@
             "value" : "正規化:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정규화:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1685,6 +1799,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "オプションを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "옵션 보기"
           }
         },
         "nl" : {
@@ -1764,6 +1884,12 @@
             "value" : "開始"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시작"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1839,6 +1965,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "高度な文字カウントを停止"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "고급 문자 세기 중단"
           }
         },
         "nl" : {
@@ -1918,6 +2050,12 @@
             "value" : "カウントを停止"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "세기 중단"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1993,6 +2131,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "連続する空白を1文字として扱う"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "연속적인 공백을 한 개로 취급"
           }
         },
         "nl" : {
@@ -2072,6 +2216,12 @@
             "value" : "単位:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단위:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2147,6 +2297,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空白:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공백:"
           }
         },
         "nl" : {

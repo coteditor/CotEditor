@@ -45,6 +45,12 @@
             "value" : "アンチエイリアス"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "안티앨리어스"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -119,6 +125,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "外観モード:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "화면 모드:"
           }
         },
         "nl" : {
@@ -204,6 +216,12 @@
             "value" : "システムに合わせる"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시스템과 일치"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -285,6 +303,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ダーク"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "어둡게"
           }
         },
         "nl" : {
@@ -370,6 +394,12 @@
             "value" : "ライト"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "밝게"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -445,6 +475,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択したフォントを等幅フォントとして使用しますか?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택한 서체를 고정폭 서체로 사용하시겠습니까?"
           }
         },
         "nl" : {
@@ -523,6 +559,12 @@
             "value" : "エディタの不透明度:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "편집기 불투명도:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -597,6 +639,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "リガチャ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "합자"
           }
         },
         "nl" : {
@@ -675,6 +723,12 @@
             "value" : "行の高さ:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "줄 높이:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -749,6 +803,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "等幅フォント:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "고정폭 서체:"
           }
         },
         "nl" : {
@@ -828,6 +888,12 @@
             "value" : "選択…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택..."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -902,6 +968,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "標準フォント:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "표준 서체:"
           }
         },
         "nl" : {
@@ -980,6 +1052,12 @@
             "value" : "選択したフォントは等幅フォントではないようです。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택한 서체가 고정폭 서체가 아닌 것 같습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1055,6 +1133,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "倍"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "배"
           }
         },
         "nl" : {
