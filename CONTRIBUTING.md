@@ -43,7 +43,7 @@ Currently, the CotEditor project only accepts new localizations whose provider c
 You have two options for adding a new localization to CotEditor.app. Choose one of them depending on your knowledge and preference:
 
 - Option 1: Add a new localization in Xcode by yourself and make a pull request (for those who get used to git and Xcode projects):
-    - Open CotEditor.xcodeproj in Xcode, go to Project > CotEditor > Info > Localizations, and then add your language to the table. In the Resources group in the project, you can find all strings files (.xcstrings) in both the Localizations and Storyboards subgroups. The new language you added will automatically appear in the catalog list. Select your language and fill each cell of your language column in the table. Note that you don't need to localize the UnicodeBlock.strings file in Packages/Libraries/Sources/CharacterInfo/. It will be done by @1024jp based on Apple's localization data.
+    - Open CotEditor.xcodeproj in Xcode, go to Project > CotEditor > Info > Localizations, and then add your language to the table. In the Resources group in the project, you can find the most of strings files (.xcstrings) in both the Localizations and Storyboards subgroups. In addition to them, there are two .xcstrings files in Packages/EditorCore/Sources/CharacterInfo/Resources and .Packages/EditorCore/Sources/FileEncoding/Resources. The new language you added will automatically appear in the catalog list. Select your language and fill each cell of your language column in the table. Note that you don't need to localize the UnicodeBlock.strings file in Packages/Libraries/Sources/CharacterInfo/. It will be done by @1024jp based on Apple's localization data.
     - CotEditor currently uses the String Catalog format (.xcstrings), first introduced in Xcode 15, released in 2023. cf. [Localizing and varying text with a string catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog)
 - Option 2: Communicate with the maintainer personally and work with a provided localization template (.xcloc file):
     - Send a message to the maintainer (@1024jp) either by creating a new issue on GitHub or by e-mail to ask for the localization template (.xcloc file) for your language. When you receive the .xcloc file, open it in Xcode and fill each cell of your language column in the tables. When finished, send the template file back to the maintainer.
@@ -71,6 +71,11 @@ Currently, we already have maintainers for:
 - Japanese
 - Portuguese
 - Turkish
+
+We are now looking for a new maintainer for:
+
+- Spanish
+
 
 #### Localization for the App Store
 

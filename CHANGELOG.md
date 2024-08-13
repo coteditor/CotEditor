@@ -48,6 +48,7 @@
 
 ### TODO
 
+- Update the `cot` command.
 - Improve Assembly syntax.
 - Localize strings added.
 
