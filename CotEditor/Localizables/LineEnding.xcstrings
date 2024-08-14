@@ -52,6 +52,12 @@
             "value" : "クラシックMac OS"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "클래식 Mac OS"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -135,6 +141,12 @@
             "value" : "Windows"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -213,6 +225,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "macOS / Unix"
@@ -302,6 +320,12 @@
             "value" : "Unix Line Separator"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -386,6 +410,12 @@
             "value" : "Unix Next Line"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -465,6 +495,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unix Paragraph Separator"

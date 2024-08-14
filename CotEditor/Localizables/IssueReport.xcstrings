@@ -53,6 +53,12 @@
             "value" : "以下のテンプレートに記入して%1$@に投稿するか%2$@にメールをしてください。送られたメールの内容はIssueページで公開される可能があります。本文は英語か日本語、どちらかでお書きください。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음 양식을 채워, %1$@에 게시하거나 %2$@로 보내십시오. 이메일로 전송한 내용이 Issue 페이지에서 공개적으로 공유될 수 있음에 주의하세요. 내용을 영어 또는 일본어로 작성해주시길 바랍니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -134,6 +140,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "環境"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "환경"
           }
         },
         "nl" : {
@@ -219,6 +231,12 @@
             "value" : "期待される挙動"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "예상되는 결과"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -300,6 +318,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "簡単な説明"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "짧은 설명"
           }
         },
         "nl" : {
@@ -385,6 +409,12 @@
             "value" : "不具合が発生したときに行っていた操作、または再現手順"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문제"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -467,6 +497,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "不具合レポート"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문제 리포트"
           }
         },
         "nl" : {

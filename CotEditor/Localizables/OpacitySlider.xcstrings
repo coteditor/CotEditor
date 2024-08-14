@@ -46,6 +46,12 @@
             "value" : "不透明"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "불투명"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -121,6 +127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "透明"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "투명"
           }
         },
         "nl" : {

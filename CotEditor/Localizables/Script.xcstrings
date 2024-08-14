@@ -52,6 +52,12 @@
             "value" : "入力元となる書類が見つかりませんでした。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "입력 받을 문서가 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -133,6 +139,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "結果を出力する書類が見つかりませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "출력할 문서가 없습니다."
           }
         },
         "nl" : {
@@ -218,6 +230,12 @@
             "value" : "スクリプト“%@”は存在しません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "스크립트 ‘%@’가 존재하지 않습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -299,6 +317,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スクリプトファイル“%@”を開けませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "스크립트 파일 ‘%@’을(를) 열 수 없습니다."
           }
         },
         "nl" : {
@@ -384,6 +408,12 @@
             "value" : "実行権がないため、スクリプト“%@”を実行できません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "실행 권한이 없기 때문에 스크립트 ‘%@’을(를) 실행할 수 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -465,6 +495,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スクリプトファイルのアクセス権を確認してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "스크립트 파일의 권한을 확인하세요."
           }
         },
         "nl" : {
@@ -550,6 +586,12 @@
             "value" : "スクリプト“%@”を読み込めませんでした。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "스크립트 ‘%@’을(를) 읽을 수 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -631,6 +673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スクリプトファイルを確認してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "스크립트 파일을 확인하세요."
           }
         },
         "nl" : {

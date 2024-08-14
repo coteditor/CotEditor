@@ -46,6 +46,12 @@
             "value" : "（%@）"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (%@)"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -118,6 +124,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@:"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@:"
@@ -199,6 +211,12 @@
             "value" : "キャンセル"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -274,6 +292,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コピー"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "복사"
           }
         },
         "nl" : {
@@ -360,6 +384,12 @@
             "value" : "削除"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -441,6 +471,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "この操作は取り消せません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 작업은 되돌릴 수 없습니다."
           }
         },
         "nl" : {
@@ -526,6 +562,12 @@
             "value" : "“%@”を削除してもよろしいですか?"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정말 ‘%@’를 삭제하시겠습니까?"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -584,6 +626,12 @@
             "state" : "translated",
             "value" : "ファイル“%@”はすでに別のウインドウで開かれています。"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 ‘%@’은(는) 이미 다른 윈도우에 열려 있습니다."
+          }
         }
       }
     },
@@ -613,6 +661,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "このウインドウで開くには、先にすでにあるウインドウを閉じてください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 윈도우에서 열려면, 존재하는 윈도우를 먼저 닫으십시오."
           }
         }
       }
@@ -666,6 +720,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイル“%@”はテキストデータではないようです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 ‘%@’이(가) 텍스트가 아닌 것 같습니다."
           }
         },
         "nl" : {
@@ -752,6 +812,12 @@
             "value" : "このファイルは%@のようです。\n\n本当にファイルを開きますか?"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일이 %@(으)로 보입니다.\n\n파일을 정말 여시겠습니까?"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -834,6 +900,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "不明なタイプ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알 수 없는 유형"
           }
         },
         "nl" : {
@@ -920,6 +992,12 @@
             "value" : "開く"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "열기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1003,6 +1081,12 @@
             "value" : "ファイル“%1$@”はファイルサイズが%2$@あります。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 ‘%1$@’의 크기가 %2$@입니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1084,6 +1168,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "巨大なファイルを開くと、アプリの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이렇게 큰 파일을 열면 응용 프로그램이 느려지거나 반응하지 않을 수 있습니다.  이 파일을 여시겠습니까?"
           }
         },
         "nl" : {
@@ -1170,6 +1260,12 @@
             "value" : "非互換文字を確認"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "호환되지 않는 문자 검토"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1252,6 +1348,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "有効なテキストを保存"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용 가능한 텍스트 저장"
           }
         },
         "nl" : {
@@ -1337,6 +1439,12 @@
             "value" : "互換性のない文字は保存時に代替または削除されます。保存を続けますか?"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "호환되지 않는 문자는 저장하면 대체되거나 삭제됩니다. 계속 진행하시겠습니까?"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1412,6 +1520,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”を複製"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’ 복제"
           }
         },
         "nl" : {
@@ -1498,6 +1612,12 @@
             "value" : "変換"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "변환"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1580,6 +1700,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "再解釈"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "재해석"
           }
         },
         "nl" : {
@@ -1665,6 +1791,12 @@
             "value" : "“%@”を使って書類を変換または再解釈しますか?"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 문서를 ‘%@’(으)로 변환 또는 재해석하시겠습니까?"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1748,6 +1880,12 @@
             "value" : "テキストエンコーディングの変更"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "텍스트 인코딩 변경"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1823,6 +1961,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”を書き出す…"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’ 내보내기..."
           }
         },
         "nl" : {
@@ -1902,6 +2046,12 @@
             "value" : "名前:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음으로 내보내기:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1977,6 +2127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "読み込む"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "불러오기"
           }
         },
         "nl" : {
@@ -2063,6 +2219,12 @@
             "value" : "置換"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "대치"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2144,6 +2306,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新しい置換定義“%@”のインストールを試みましたが、同名の定義がすでに存在しています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새 대치 정의 ‘%@’를 설치하는 중에, 같은 이름을 사용 중인 정의를 발견했습니다."
           }
         },
         "nl" : {
@@ -2229,6 +2397,12 @@
             "value" : "定義を置き換えますか?\n削除した定義は元に戻せません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "해당 항목을 대치하시겠습니까? 대치된 정의는 복원할 수 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2310,6 +2484,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新しいシンタックス“%@”のインストールを試みましたが、同名のカスタムシンタックスがすでに存在しています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새 구문 ‘%@’를 설치하는 중에, 같은 이름을 사용 중인 구문을 발견했습니다."
           }
         },
         "nl" : {
@@ -2395,6 +2575,12 @@
             "value" : "シンタックスを置き換えますか?\n置き換えたシンタックスは元に戻せません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "해당 항목을 대치하시겠습니까? 대치된 구문은 복원할 수 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2478,6 +2664,12 @@
             "value" : "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새 테마 ‘%@’를 설치하는 중에, 같은 이름을 사용 중인 테마를 발견했습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2559,6 +2751,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テーマを置き換えますか?\n削除したテーマは元に戻せません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "해당 항목을 대치하시겠습니까? 대치된 테마는 복원할 수 없습니다."
           }
         },
         "nl" : {
@@ -2645,6 +2843,12 @@
             "value" : "変換"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "변환"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2727,6 +2931,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無視"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "무시"
           }
         },
         "nl" : {
@@ -2813,6 +3023,12 @@
             "value" : "確認"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "검토"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2896,6 +3112,12 @@
             "value" : "すべての改行コードをこの書類で最も使われている%@に変換しますか?"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 줄바꿈을, 이 문서에서 가장 많이 사용된 줄바꿈인 %@(으)로 변경하시겠습니까?"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2977,6 +3199,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類に複数の改行コードが混在しています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서의 줄바꿈이 일관적이지 않습니다."
           }
         },
         "nl" : {
@@ -3063,6 +3291,12 @@
             "value" : "この書類では次回から確認しない"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 문서에 대해 다시 묻지 않기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3138,6 +3372,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テキストを挿入%lld"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld 텍스트 삽입"
           }
         },
         "nl" : {
@@ -3223,6 +3463,12 @@
             "value" : "“%@”はすでに使用されています。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’는 사용된 이름입니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3304,6 +3550,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名前は空にできません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이름을 공백으로 남겨둘 수 없습니다."
           }
         },
         "nl" : {
@@ -3390,6 +3642,12 @@
             "value" : "名前に“%@”を含めることはできません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이름이"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3471,6 +3729,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "別の名前を指定してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다른 이름을 선택하십시오."
           }
         },
         "nl" : {
@@ -3556,6 +3820,12 @@
             "value" : "“%@”は予約されています。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’는 예약된 이름입니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3639,6 +3909,12 @@
             "value" : "名前を“.”から始めることはできません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이름은 ‘.’으로 시작할 수 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3714,6 +3990,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最終変更: %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최근 수정: %@"
           }
         },
         "nl" : {
@@ -3797,6 +4079,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類に“%@”と互換性のない文字が含まれています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서가 ‘%@’ 인코딩과 호환되지 않는 문자를 포함합니다."
           }
         },
         "nl" : {
@@ -3883,6 +4171,12 @@
             "value" : "エンコーディングを変更"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인코딩 변경"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3966,6 +4260,12 @@
             "value" : "互換性のない文字は保存時に代替または削除されます。エンコーディングを変更し非互換文字を確認しますか?"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "호환되지 않는 문자는 저장하면 대체되거나 삭제됩니다. 텍스트 인코딩을 변경하고 호환되지 않는 문자를 검토하시겠습니까?"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4040,6 +4340,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확인"
           }
         },
         "nl" : {
@@ -4117,6 +4423,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "プリント: %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "프린트한 날짜: %@"
           }
         },
         "nl" : {
@@ -4202,6 +4514,12 @@
             "value" : "再解釈をするファイルがありません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서에 재해석할 파일이 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4283,6 +4601,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テキストエンコーディング“%@”で書類を再解釈できませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서를 텍스트 인코딩 ‘%@’을(를) 이용하여 재해석할 수 없습니다."
           }
         },
         "nl" : {
@@ -4368,6 +4692,12 @@
             "value" : "この書類は、別のテキストエンコーディングで保存されているか、テキストファイルでない可能性があります。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서가 다른 텍스트 인코딩을 이용해 저장되었거나, 텍스트 파일이 아닌 것 같습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4443,6 +4773,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”を名称変更"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’ 이름 변경"
           }
         },
         "nl" : {
@@ -4522,6 +4858,12 @@
             "value" : "“%@”を元に戻す"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’ 복원"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4597,6 +4939,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”をFinderに表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finder에서 ‘%@’ 보기"
           }
         },
         "nl" : {
@@ -4682,6 +5030,12 @@
             "value" : "“%@”を削除できませんでした。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’를 삭제할 수 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4763,6 +5117,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”を読み込めませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’를 가져올 수 없습니다."
           }
         },
         "nl" : {
@@ -4848,6 +5208,12 @@
             "value" : "“%@”をロードできませんでした。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’를 로드할 수 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4931,6 +5297,12 @@
             "value" : "デコーディングエラー: %@"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "디코딩 오류: %@"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5012,6 +5384,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”のオリジナルファイルが見つかりませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’의 원본 파일을 찾지 못했습니다."
           }
         },
         "nl" : {
@@ -5098,6 +5476,12 @@
             "value" : "インストール"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설치"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5180,6 +5564,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テキストファイルとして開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "텍스트 파일로 열기"
           }
         },
         "nl" : {
@@ -5265,6 +5655,12 @@
             "value" : "テーマをインストールしますか?"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 테마를 설치하시겠습니까?"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5348,6 +5744,12 @@
             "value" : "“%@”はCotEditorテーマファイルです。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’는 CotEditor 테마 파일입니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5429,6 +5831,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新しいテーマ“%@”がインストールされました。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새 테마 ‘%@’을(를) 성공적으로 설치했습니다."
           }
         },
         "nl" : {
@@ -5515,6 +5923,12 @@
             "value" : "変更内容を破棄"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "변경 사항 복귀"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5597,6 +6011,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "変更を破棄して、“%@”で書類を開き直してもよろしいですか?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정말 저장하지 않은 변경 사항을 복귀하고 문서를 ‘%@’을(를) 이용해서 다시 여시겠습니까?"
           }
         },
         "nl" : {
@@ -5682,6 +6102,12 @@
             "value" : "ファイル“%@”の変更内容は保存されていません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서에 저장하지 않은 변경 사항이 있습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5759,6 +6185,12 @@
             "value" : "名称未設定"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "무제"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5834,6 +6266,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名称未設定フォルダ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "무제 폴더"
           }
         },
         "nl" : {
@@ -5920,6 +6358,12 @@
             "value" : "CotEditorの編集内容を保持"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor의 상태를 유지"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6002,6 +6446,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "更新"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "업데이트"
           }
         },
         "nl" : {
@@ -6087,6 +6537,12 @@
             "value" : "CotEditorでの編集内容を保持しますか、それとも変更された内容に更新しますか?"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor에 열린 상태를 유지하시겠습니까, 또는 수정된 상태로 업데이트하시겠습니까?"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6170,6 +6626,12 @@
             "value" : "このファイルは、別のアプリケーションによって変更されました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일이 다른 응용 프로그램에 의해 수정되었습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6251,6 +6713,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "このファイルは、別のアプリケーションによって変更されました。CotEditorで加えた編集もまだ保存されていません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일이 다른 응용 프로그램에 의해 수정되었습니다. CotEditor에 아직 저장하지 않은 변경사항이 있습니다."
           }
         },
         "nl" : {

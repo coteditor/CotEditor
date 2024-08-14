@@ -46,6 +46,12 @@
             "value" : "移動"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이동"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -123,6 +129,12 @@
             "value" : "行番号"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "줄 번호"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -197,6 +209,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "줄:"
           }
         },
         "nl" : {

@@ -46,6 +46,12 @@
             "value" : "実行可能ファイルにする"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일을 실행 가능하게"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",

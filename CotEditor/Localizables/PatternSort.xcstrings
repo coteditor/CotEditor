@@ -45,6 +45,12 @@
             "value" : "履歴を消去"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최근 항목 지우기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -122,6 +128,12 @@
             "value" : "列"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "열"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -196,6 +208,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "区切り文字:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구분자:"
           }
         },
         "nl" : {
@@ -275,6 +293,12 @@
             "value" : "空のパターン"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "빈 패턴"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -350,6 +374,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行全体"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "줄 전체"
           }
         },
         "nl" : {
@@ -428,6 +458,12 @@
             "value" : "大文字/小文字を無視"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "대소문자 무시"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -502,6 +538,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "降順"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "내림차순"
           }
         },
         "nl" : {
@@ -581,6 +623,12 @@
             "value" : "無効なパターン"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유효하지 않은 패턴"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -655,6 +703,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1行目は並び替えない"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "첫 번째 줄을 맨 위에 유지"
           }
         },
         "nl" : {
@@ -733,6 +787,12 @@
             "value" : "パターン:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "패턴:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -807,6 +867,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "位置:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위치:"
           }
         },
         "nl" : {
@@ -886,6 +952,12 @@
             "value" : "最近の項目"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최근 항목"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -961,6 +1033,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "正規表現"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정규표현식"
           }
         },
         "nl" : {
@@ -1040,6 +1118,12 @@
             "value" : "正規表現"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정규표현식"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1114,6 +1198,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "言語ルールに従う"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "언어 규칙을 준수"
           }
         },
         "nl" : {
@@ -1193,6 +1283,12 @@
             "value" : "比較に使用される部分を確認するためのサンプル行です。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "줄의 어떤 부분이 정렬 비교에 사용될지 확인하기 위한 예시 줄입니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1267,6 +1363,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "サンプル:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "예시:"
           }
         },
         "nl" : {
@@ -1346,6 +1448,12 @@
             "value" : "並び替え"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정렬"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1420,6 +1528,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "並び替えキー:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정렬 키:"
           }
         },
         "nl" : {
@@ -1498,6 +1612,12 @@
             "value" : "並び替えオプション:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정렬 옵션:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1574,6 +1694,12 @@
             "value" : "数字を数値として扱う"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "숫자를 숫자 값으로 취급"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1648,6 +1774,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "キャプチャされたグループを使用:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "캡처 그룹 사용:"
           }
         },
         "nl" : {

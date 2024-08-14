@@ -45,6 +45,12 @@
             "value" : "エディタの不透明度"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "편집기 불투명도"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",

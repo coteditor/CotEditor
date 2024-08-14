@@ -53,6 +53,12 @@
             "value" : "読み込む…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "불러오기..."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -137,6 +143,12 @@
             "value" : "新規シンタックスを追加"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "빈 구문 추가"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -219,6 +231,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구문 이름"
           }
         },
         "nl" : {
@@ -306,6 +324,12 @@
             "value" : "複製"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "복제"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -388,6 +412,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "このシンタックスはカスタマイズされています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 구문은 사용자화되었습니다."
           }
         },
         "nl" : {
@@ -474,6 +504,12 @@
             "value" : "編集…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "편집..."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -556,6 +592,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Finderに表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finder에서 보기"
           }
         },
         "nl" : {
@@ -642,6 +684,12 @@
             "value" : "書き出す…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "내보내기..."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -724,6 +772,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "複製"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "복제"
           }
         },
         "nl" : {
@@ -810,6 +864,12 @@
             "value" : "選択したシンタックスを削除"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택한 구문 제거"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -892,6 +952,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべてのシンタックスを再読み込み"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 구문 다시 로드"
           }
         },
         "nl" : {
@@ -978,6 +1044,12 @@
             "value" : "削除"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1060,6 +1132,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書き出す…"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "내보내기..."
           }
         },
         "nl" : {
@@ -1146,6 +1224,12 @@
             "value" : "共有…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공유..."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1228,6 +1312,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Finderに表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finder에서 보기"
           }
         },
         "nl" : {
@@ -1314,6 +1404,12 @@
             "value" : "ファイル関連付けのコンフリクトを表示"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 매핑 충돌 보기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1396,6 +1492,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "元に戻す"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "복원"
           }
         },
         "nl" : {
@@ -1482,6 +1584,12 @@
             "value" : "編集"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "편집"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1564,6 +1672,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択したシンタックスを編集"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택한 구문 편집"
           }
         },
         "nl" : {
@@ -1650,6 +1764,12 @@
             "value" : "共有…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공유..."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1732,6 +1852,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "元に戻す"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "복원"
           }
         },
         "nl" : {

@@ -45,6 +45,12 @@
             "value" : "開始:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시작:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -121,6 +127,12 @@
             "value" : "終了:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "끝:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -195,6 +207,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字で囲む:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음으로 감싸기:"
           }
         },
         "nl" : {

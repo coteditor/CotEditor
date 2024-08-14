@@ -52,6 +52,12 @@
             "value" : "“%@”はすでに“%@”コマンドで使用されています。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%1$@’는 이미 ‘%2$@’ 명령에 의해 사용되고 있습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -133,6 +139,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shiftキーはほかの修飾キーと合わせて使う必要があります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shift 키는 다른 조합 키와 함께 사용되어야 합니다."
           }
         },
         "nl" : {
@@ -218,6 +230,12 @@
             "value" : "単体のキーはショートカットに登録できません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단일 키는 단축키로 사용될 수 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -299,6 +317,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”の組み合わせはショートカットのカスタマイズに対応していません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’ 조합은 사용자화 단축키로 지원되지 않습니다."
           }
         },
         "nl" : {

@@ -52,6 +52,12 @@
             "value" : "外観"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "화면 모드"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -110,6 +116,12 @@
             "state" : "translated",
             "value" : "寄付"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "후원"
+          }
         }
       }
     },
@@ -162,6 +174,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "編集"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "편집"
           }
         },
         "nl" : {
@@ -247,6 +265,12 @@
             "value" : "フォーマット"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서식"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -328,6 +352,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "一般"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일반"
           }
         },
         "nl" : {
@@ -413,6 +443,12 @@
             "value" : "キーバインド"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단축키"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -494,6 +530,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "モード"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모드"
           }
         },
         "nl" : {
@@ -579,6 +621,12 @@
             "value" : "スニペット"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "상용구"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -660,6 +708,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ウインドウ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "윈도우"
           }
         },
         "nl" : {

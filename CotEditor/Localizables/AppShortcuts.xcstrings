@@ -37,6 +37,14 @@
               "${applicationName}で書類作成"
             ]
           }
+        },
+        "ko" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName}에서 새로운 문서 생성"
+            ]
+          }
         }
       }
     }

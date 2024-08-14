@@ -93,6 +93,24 @@
               }
             }
           }
+        },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld개의 명령을 찾음"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "명령을 찾지 못함"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -139,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コマンド"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "명령"
           }
         },
         "nl" : {
@@ -217,6 +241,12 @@
             "value" : "クイックアクション"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "빠른 동작"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -292,6 +322,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スクリプト"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "스크립트"
           }
         },
         "nl" : {

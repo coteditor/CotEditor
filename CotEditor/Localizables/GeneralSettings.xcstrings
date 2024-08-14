@@ -45,6 +45,12 @@
             "value" : "書類の編集中に自動でファイルを上書きするmacOSの機能です。この機能を無効にした場合も、CotEditorは予期しない終了に備えて裏でバックアップを作成します。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "편집하는 동안 파일을 자동으로 덮어쓰는 시스템 기능입니다. 이 옵션을 끄더라도, CotEditor는 예상하지 못한 종료로부터 복원하기 위해 백업을 생성합니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -121,6 +127,12 @@
             "value" : "自動的にアップデートを確認"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "업데이트를 수동으로 확인"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -195,6 +207,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コマンドラインツール:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "명령어 라인 도구:"
           }
         },
         "nl" : {
@@ -280,6 +298,12 @@
             "value" : "現在の`cot`シンボリックリンクはこのCotEditor以外に向けられています。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현재 `cot` 심볼릭 링크가 실행 중인 CotEditor를 가리키지 않습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -363,6 +387,12 @@
             "value" : "現在の`cot`シンボリックリンクは無効なパスに向けられています。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현재 `cot` 심볼릭 링크가 유효하지 않은 경로를 가리키고 있는 것 같습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -437,6 +467,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "警告ダイアログ:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "경고 대화상자:"
           }
         },
         "nl" : {
@@ -515,6 +551,12 @@
             "value" : "CotEditorを今すぐ再起動しますか?"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor를 재시작하시겠습니까?"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -589,6 +631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類の保存:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서 저장:"
           }
         },
         "nl" : {
@@ -674,6 +722,12 @@
             "value" : "CotEditorの編集内容を保持"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor의 상태를 유지"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -755,6 +809,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "解決方法を確認"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "해결 방법 묻기"
           }
         },
         "nl" : {
@@ -840,6 +900,12 @@
             "value" : "変更された内容に更新"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수정된 상태로 업데이트"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -915,6 +981,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "完了"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완료"
           }
         },
         "nl" : {
@@ -993,6 +1065,12 @@
             "value" : "オートセーブとバージョンを有効にする"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "자동 저장 켜기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1069,6 +1147,12 @@
             "value" : "改行コードの混在"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일관적이지 않은 줄바꿈"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1143,6 +1227,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@にインストール済み"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@에 설치됨"
           }
         },
         "nl" : {
@@ -1222,6 +1312,12 @@
             "value" : "あとで"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "나중에"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1298,6 +1394,12 @@
             "value" : "詳細情報…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "더 알아보기..."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1372,6 +1474,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "警告を管理…"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "경고 관리..."
           }
         },
         "nl" : {
@@ -1457,6 +1565,12 @@
             "value" : "何もしない"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아무 것도 안 함"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1538,6 +1652,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "”開く”ダイアログを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "열기 대화상자 보기"
           }
         },
         "nl" : {
@@ -1623,6 +1743,12 @@
             "value" : "新規書類を作成"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새 문서 생성"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1697,6 +1823,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "起動したとき:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시작할 때:"
           }
         },
         "nl" : {
@@ -1775,6 +1907,12 @@
             "value" : "この設定に関わらず、プレリリース版の使用中は必ず新しいプレリリースもアップデート対象に含まれます。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 설정과 관계 없이, 사전 발매 버전을 사용 중인 경우 항상 사전 발매 버전을 포함합니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1849,6 +1987,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最後のセッションのウインドウを開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지난 세션의 창 다시 열기"
           }
         },
         "nl" : {
@@ -1928,6 +2072,12 @@
             "value" : "今すぐ再起動"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지금 재시작"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2002,6 +2152,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ソフトウェアアップデート:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "소프트웨어 업데이트:"
           }
         },
         "nl" : {
@@ -2080,6 +2236,12 @@
             "value" : "以下を警告しない:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음 경고 억제:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2154,6 +2316,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "この変更は次回アプリ起動時に適用されます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 변화는 다음 시작 때 적용됩니다."
           }
         },
         "nl" : {
@@ -2232,6 +2400,12 @@
             "value" : "プレリリース版を対象に含める"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "가능한 경우 사전 발매 버전으로 업데이트"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2306,6 +2480,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類が別のアプリによって変更されたとき:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서가 다른 응용프로그램에 의해 수정되었을 때:"
           }
         },
         "nl" : {
@@ -2384,6 +2564,12 @@
             "value" : "何も開かれていなければ:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아무 것도 열려있지 않을 때:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2458,6 +2644,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "`cot`コマンドラインツールは、コマンドラインからのCotEditor起動やファイルオープンを可能にします。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "`cot` 명령어 라인 도구로, 명령어 라인에서 파일을 CotEditor로 열 수 있습니다."
           }
         },
         "nl" : {

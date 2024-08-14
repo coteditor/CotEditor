@@ -46,6 +46,12 @@
             "value" : "重複しているシンタックス"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "복제된 구문"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -121,6 +127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拡張子"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확장"
           }
         },
         "nl" : {
@@ -200,6 +212,12 @@
             "value" : "ファイル名"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일명"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -275,6 +293,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "インタープリタ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인터프리터"
           }
         },
         "nl" : {
@@ -354,6 +378,12 @@
             "value" : "ファイル関連付けのコンフリクト"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구문 매핑 충돌"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -428,6 +458,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "以下のファイル関連付けルールはいくつかのシンタックスで重複して登録されています。CotEditorは自動的に最初のシンタックスを使用します。解決するには、それぞれのシンタックス定義を編集してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음 파일 매핑 규칙은 여러개의 구문에서 사용되고 있습니다. CotEditor는 첫번째 구문을 자동으로 사용합니다. 충돌을 해소하려면, 각각의 구문 정의를 수정하십시오."
           }
         },
         "nl" : {
@@ -505,6 +541,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用するシンタックス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용된 구문"
           }
         },
         "nl" : {

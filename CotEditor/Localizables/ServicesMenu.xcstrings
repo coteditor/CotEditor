@@ -46,6 +46,12 @@
             "value" : "選択範囲を含む新規書類をCotEditorで開く"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택한 내용으로 새로운 CotEditor 문서 생성"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -121,6 +127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイルをCotEditorで開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor로 파일 열기"
           }
         },
         "nl" : {

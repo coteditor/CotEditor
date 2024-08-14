@@ -46,6 +46,12 @@
             "value" : "条件を削除"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "규칙 삭제"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -121,6 +127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "条件を編集"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "규칙 편집"
           }
         },
         "nl" : {
@@ -200,6 +212,12 @@
             "value" : "条件を追加"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "규칙 삽입"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -277,6 +295,12 @@
             "value" : "条件を移動"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "규칙 이동"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -352,6 +376,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "複数置換"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다중 대치"
           }
         },
         "nl" : {

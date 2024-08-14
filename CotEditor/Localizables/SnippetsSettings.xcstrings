@@ -45,6 +45,12 @@
             "value" : "すべて"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모두"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -120,6 +126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コマンド"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "명령"
           }
         },
         "nl" : {
@@ -199,6 +211,12 @@
             "value" : "説明"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설명"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -274,6 +292,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拡張子"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확장"
           }
         },
         "nl" : {
@@ -353,6 +377,12 @@
             "value" : "ファイルドロップ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 떨굼"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -428,6 +458,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ドロップされるファイルの拡張子（カンマ区切り）"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "떨군 파일의 확장자 (반점으로 구문됨)."
           }
         },
         "nl" : {
@@ -507,6 +543,12 @@
             "value" : "変数を挿入"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "변수 삽입"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -581,6 +623,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "挿入フォーマット:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삽입 포맷:"
           }
         },
         "nl" : {
@@ -666,6 +714,12 @@
             "value" : "キー"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "키"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -741,6 +795,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "複数の項目が選択されています"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여러개의 아이템 선택됨"
           }
         },
         "nl" : {
@@ -826,6 +886,12 @@
             "value" : "名前"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이름"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -903,6 +969,12 @@
             "value" : "項目が選択されていません"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택된 아이템 없음"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -978,6 +1050,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "デフォルトに戻す"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본값 복원"
           }
         },
         "nl" : {
@@ -1058,6 +1136,12 @@
             "value" : "編集するスニペットを選択してください。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "편집할 상용구를 선택하세요."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1133,6 +1217,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "シンタックス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구문"
           }
         },
         "nl" : {
@@ -1212,6 +1302,12 @@
             "value" : "このファイルドロップ定義を使用するシンタックス"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 파일 떨굼 설정이 사용될 구문입니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1288,6 +1384,12 @@
             "value" : "メニューコマンドやキーボードショートカットで挿入できるテキスト:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메뉴에서 명령을, 또는 키보드 단축키를 눌렀을 때 삽입될 텍스트:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1362,6 +1464,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイルをエディタにドロップして挿入できるテキスト:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일을 편집기에 떨굴 때 삽입될 텍스트:"
           }
         },
         "nl" : {
