@@ -58,6 +58,7 @@ extension FileNode {
         if fileWrapper.isDirectory {
             self.children = fileWrapper.fileWrappers?
                 .compactMap { FileNode(fileWrapper: $0.value, paths: paths + [filename], fileURL: fileURL.appending(component: $0.key)) }
+                .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
         }
     }
     

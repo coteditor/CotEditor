@@ -180,9 +180,20 @@ import URLUtils
         
         super.presentedItemDidChange()
         
-        // remake node tree
-        Task { @MainActor in
-            self.revert()
+        // pre-check file structure change in background in advance
+        // -> Consequently, the file node is build twice, but better than doing it every time on the main thread.
+        self.performAsynchronousFileAccess { [unowned self] fileAccessCompletionHandler in
+            defer { fileAccessCompletionHandler() }
+            guard
+                let fileURL,
+                let fileWrapper = try? FileWrapper(url: fileURL),
+                FileNode(fileWrapper: fileWrapper, fileURL: fileURL) != self.fileNode
+            else { return }
+            
+            // remake node tree
+            Task { @MainActor in
+                self.revert()
+            }
         }
     }
     
