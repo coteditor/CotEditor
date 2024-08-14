@@ -53,6 +53,12 @@
             "value" : "絵文字スタイル"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이모티콘 스타일"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -135,6 +141,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テキストスタイル"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "텍스트 스타일"
           }
         },
         "nl" : {
@@ -221,6 +233,12 @@
             "value" : "スキントーンIII"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "피부 색 III"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -303,6 +321,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スキントーンIV"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "피부 색 IV"
           }
         },
         "nl" : {
@@ -389,6 +413,12 @@
             "value" : "スキントーンV"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "피부 색 V"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -471,6 +501,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スキントーンVI"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "피부 색 VI"
           }
         },
         "nl" : {
@@ -557,6 +593,12 @@
             "value" : "スキントーンI-II"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "피부 색 I-II"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -632,6 +674,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "異体字"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "변형"
           }
         },
         "nl" : {

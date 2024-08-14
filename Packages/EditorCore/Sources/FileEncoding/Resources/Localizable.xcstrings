@@ -46,6 +46,12 @@
             "value" : "%@BOM付き"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ (BOM)"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
