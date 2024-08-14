@@ -178,6 +178,15 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
     }
     
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.listView?.rowSizeStyle = .medium
+        self.outlineView?.rowSizeStyle = .medium
+    }
+    
+    
     override func viewWillAppear() {
         
         super.viewWillAppear()
