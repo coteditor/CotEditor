@@ -13,6 +13,7 @@
 - Add new “Create Document in CotEditor” shortcut action.
 - Add the “Highlight” color to the CotEditor theme format.
 - Support the alpha channel for the current line in theme settings.
+- Add Korean localization (Thanks to Minseok Choe!).
 - Add Assembly syntax.
 - Add new “Resinifictrix (Dark)” theme.
 

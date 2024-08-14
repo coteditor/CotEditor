@@ -69,6 +69,7 @@ Currently, we already have maintainers for:
 - German
 - Italian
 - Japanese
+- Korean
 - Portuguese
 - Turkish
 
