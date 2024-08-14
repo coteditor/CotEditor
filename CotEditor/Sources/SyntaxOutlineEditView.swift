@@ -147,7 +147,6 @@ enum SelectionError: Error {
 
 // MARK: - Preview
 
-@available(macOS 15, *)
 #Preview {
     @Previewable @State var items: [SyntaxObject.Outline] = [
         .init(pattern: "abc"),

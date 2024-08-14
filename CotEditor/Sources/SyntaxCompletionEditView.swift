@@ -75,7 +75,6 @@ struct SyntaxCompletionEditView: View {
 
 // MARK: - Preview
 
-@available(macOS 15, *)
 #Preview {
     @Previewable @State var items: [SyntaxObject.KeyString] = [.init(string: "abc")]
     

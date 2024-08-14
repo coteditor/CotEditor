@@ -351,14 +351,12 @@ private extension Theme.SystemDefaultStyle {
     ThemeView()
 }
 
-@available(macOS 15, *)
 #Preview("ThemeEditorView", traits: .fixedLayout(width: 360, height: 280)) {
     @Previewable @State var theme = try! ThemeManager.shared.setting(name: "Anura")
     
     return ThemeEditorView(theme: $theme, isBundled: false)
 }
 
-@available(macOS 15, *)
 #Preview("Metadata (editable)") {
     @Previewable @State var metadata = Theme.Metadata(
         author: "Clarus",
@@ -368,7 +366,6 @@ private extension Theme.SystemDefaultStyle {
     return ThemeMetadataView(metadata: $metadata, isEditable: true)
 }
 
-@available(macOS 15, *)
 #Preview("Metadata (fixed)") {
     @Previewable @State var metadata = Theme.Metadata(
         author: "Claus"

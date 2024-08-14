@@ -120,7 +120,6 @@ struct SyntaxHighlightEditView: View {
 
 // MARK: - Preview
 
-@available(macOS 15, *)
 #Preview {
     @Previewable @State var items: [SyntaxObject.Highlight] = [
         .init(begin: "(inu)", end: "(dog)"),

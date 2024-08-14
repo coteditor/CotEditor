@@ -83,7 +83,6 @@ private struct CommentDelimitersEditView: View {
 
 // MARK: - Preview
 
-@available(macOS 15, *)
 #Preview {
     @Previewable @State var comment = SyntaxObject.Comment()
     @Previewable @State var highlights: [SyntaxObject.Highlight] = []

@@ -180,7 +180,6 @@ private final class PaddingTextField: NSTextField {
 
 // MARK: - Preview
 
-@available(macOS 15, *)
 #Preview {
     @Previewable @State var text = ""
     

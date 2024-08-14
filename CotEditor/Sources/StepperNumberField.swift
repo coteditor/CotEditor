@@ -96,7 +96,6 @@ struct StepperNumberField: View {
 
 // MARK: - Preview
 
-@available(macOS 15, *)
 #Preview {
     @Previewable @State var value = 4
     

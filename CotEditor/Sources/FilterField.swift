@@ -197,7 +197,6 @@ private final class InnerFilterField: NSSearchField {
 
 // MARK: - Preview
 
-@available(macOS 15, *)
 #Preview {
     @Previewable @State var text = ""
     

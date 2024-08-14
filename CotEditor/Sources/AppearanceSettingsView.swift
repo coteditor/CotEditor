@@ -229,7 +229,6 @@ private extension AppearanceMode {
     AppearanceSettingsView()
 }
 
-@available(macOS 15, *)
 #Preview("FontSettingView") {
     @Previewable @State var antialias = false
     @Previewable @State var ligature = false
