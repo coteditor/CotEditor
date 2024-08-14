@@ -713,7 +713,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                                     defaultValue: "Spell Check", table: "Document")
                 item.toolTip = String(localized: "Toolbar.spellCheck.tooltip",
                                       defaultValue: "Show spelling and grammar", table: "Document")
-                item.image = NSImage(systemSymbolName: "textformat.abc.dottedunderline", accessibilityDescription: item.label)
+                item.image = NSImage(systemSymbolName: "textformat.abc.dottedunderline", accessibilityDescription: item.label)?
+                    .withLocale(.init(identifier: "en"))  // fix the symbol with "abc"
                 item.action = #selector(NSTextView.showGuessPanel)
                 return item
                 
