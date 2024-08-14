@@ -34,7 +34,6 @@ struct FileBrowserView: View {
     
     @State var document: DirectoryDocument
     
-    @AppStorage(.fileBrowserKeepsFoldersOnTop) private var keepsFoldersOnTop
     @AppStorage(.fileBrowserShowsHiddenFiles) private var showsHiddenFiles
     @AppStorage(.fileBrowserShowsFilenameExtensions) private var showsFilenameExtensions
     
@@ -48,7 +47,6 @@ struct FileBrowserView: View {
         VStack(spacing: 0) {
             let fileNodes = (self.document.fileNode?.children ?? [])
                 .recursivelyFilter { self.showsHiddenFiles || !$0.isHidden }
-                .sorted(keepsFoldersOnTop: self.keepsFoldersOnTop)
             
             List(fileNodes, children: \.children, selection: $selection) { node in
                 NodeView(node: node) { name in
@@ -165,7 +163,6 @@ struct FileBrowserView: View {
         
         Toggle(String(localized: "Show Filename Extensions", table: "Document", comment: "menu item label (Check how Apple translates the term “filename extension.”)"), isOn: $showsFilenameExtensions)
         Toggle(String(localized: "Show Hidden Files", table: "Document", comment: "menu item label"), isOn: $showsHiddenFiles)
-        Toggle(String(localized: "Keep Folders on Top", table: "Document", comment: "menu item label"), isOn: $keepsFoldersOnTop)
     }
 }
 

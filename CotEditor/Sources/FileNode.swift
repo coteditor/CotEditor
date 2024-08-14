@@ -59,6 +59,7 @@ extension FileNode {
             self.children = fileWrapper.fileWrappers?
                 .compactMap { FileNode(fileWrapper: $0.value, paths: paths + [filename], fileURL: fileURL.appending(component: $0.key)) }
                 .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
+                .sorted(using: SortDescriptor(\.isDirectory))
         }
     }
     
@@ -78,18 +79,6 @@ extension FileNode {
 
 
 extension [FileNode] {
-    
-    func sorted(keepsFoldersOnTop: Bool) -> [FileNode] {
-        
-        self.map {
-            var tree = $0
-            tree.children = tree.children?.sorted(keepsFoldersOnTop: keepsFoldersOnTop)
-            return tree
-        }
-        .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
-        .sorted { keepsFoldersOnTop ? ($0.isDirectory && !$1.isDirectory) : false }
-    }
-    
     
     func recursivelyFilter(_ isIncluded: (FileNode) -> Bool) -> [FileNode] {
         

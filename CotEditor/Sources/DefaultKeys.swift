@@ -154,7 +154,6 @@ extension DefaultKeys {
     static let countEncoding = DefaultKey<Int>("countOptionEncoding")
     
     // file browser
-    static let fileBrowserKeepsFoldersOnTop = DefaultKey<Bool>("fileBrowserKeepsFoldersOnTop")
     static let fileBrowserShowsHiddenFiles = DefaultKey<Bool>("fileBrowserShowsHiddenFiles")
     static let fileBrowserShowsFilenameExtensions = DefaultKey<Bool>("fileBrowserShowsFilenameExtensions")
     

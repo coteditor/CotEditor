@@ -161,7 +161,6 @@ struct DefaultSettings {
             .countEncoding: String.Encoding.utf8.rawValue,
             
             // file browser
-            .fileBrowserKeepsFoldersOnTop: true,
             .fileBrowserShowsHiddenFiles: false,
             .fileBrowserShowsFilenameExtensions: true,
             
