@@ -109,7 +109,7 @@ struct CommandBarView: View {
                     guard let result = $0.match(command: newValue) else { return nil }
                     return Candidate(command: $0, matches: result.result, score: result.score)
                 }
-                .sorted(\.score)
+                .sorted(using: SortDescriptor(\.score))
             self.selection = self.candidates.first?.id
             
             // post a VoiceOver announcement

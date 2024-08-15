@@ -118,7 +118,7 @@ actor SyntaxTests {
         
         let outlineItems = try syntax.outlineExtractors
             .flatMap { try $0.items(in: source, range: source.nsRange) }
-            .sorted(\.range.location)
+            .sorted(using: SortDescriptor(\.range.location))
         
         
         #expect(outlineItems.count == 3)

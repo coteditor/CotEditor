@@ -59,14 +59,6 @@ struct ComparableTests {
             Item(id: 4, bool: true),
         ]
         
-        #expect(items.sorted(\.bool) == [
-            Item(id: 1, bool: true),
-            Item(id: 2, bool: true),
-            Item(id: 4, bool: true),
-            Item(id: 0, bool: false),
-            Item(id: 3, bool: false),
-        ])
-        
         #expect(items.sorted(using: [KeyPathComparator(\.bool)]) == [
             Item(id: 1, bool: true),
             Item(id: 2, bool: true),

@@ -116,7 +116,8 @@ import URLUtils
         } else {
             let encoder = PropertyListEncoder()
             encoder.outputFormat = .xml
-            let data = try encoder.encode(self.userKeyBindings.sorted(\.action.description))
+            let descriptions = self.userKeyBindings.sorted(using: SortDescriptor(\.action.description))
+            let data = try encoder.encode(descriptions)
             let fileURL = self.settingFileURL
             
             try FileManager.default.createIntermediateDirectories(to: fileURL)

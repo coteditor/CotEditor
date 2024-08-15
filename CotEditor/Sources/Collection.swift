@@ -87,32 +87,6 @@ extension Sequence {
 
 
 
-extension Sequence where Element: Equatable {
-    
-    /// An array consists of unique elements of receiver by keeping ordering.
-    var uniqued: [Element] {
-        
-        self.reduce(into: []) { (unique, element) in
-            guard !unique.contains(element) else { return }
-            
-            unique.append(element)
-        }
-    }
-}
-
-
-
-extension Array where Element: Equatable {
-    
-    /// Removes duplicated elements by keeping ordering.
-    mutating func unique() {
-        
-        self = self.uniqued
-    }
-}
-
-
-
 extension Dictionary {
     
     /// Returns a new dictionary containing the keys transformed by the given closure with the values of this dictionary.
@@ -122,16 +96,6 @@ extension Dictionary {
     func mapKeys<T>(_ transform: (Key) throws -> T) rethrows -> [T: Value] {
         
         try self.reduce(into: [:]) { $0[try transform($1.key)] = $1.value }
-    }
-    
-    
-    /// Returns a new dictionary containing the keys transformed by the given keyPath with the values of this dictionary.
-    ///
-    /// - Parameter keyPath: The keyPath to the value to transform key. Every transformed key must be unique.
-    /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
-    func mapKeys<T>(_ keyPath: KeyPath<Key, T>) -> [T: Value] {
-        
-        self.mapKeys { $0[keyPath: keyPath] }
     }
     
     
@@ -156,33 +120,5 @@ extension Dictionary {
         
         get { self[key.rawValue] }
         set { self[key.rawValue] = newValue }
-    }
-}
-
-
-
-// MARK: - Sort
-
-extension Sequence {
-    
-    /// Returns the elements of the sequence, sorted using the value that the given key path refers as the comparison between elements.
-    ///
-    /// - Parameter keyPath: The key path to the value to compare.
-    /// - Returns: A sorted array of the sequence’s elements.
-    func sorted(_ keyPath: KeyPath<Element, some Comparable>) -> [Element] {
-        
-        self.sorted { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
-    }
-}
-
-
-extension MutableCollection where Self: RandomAccessCollection {
-    
-    /// Sorts the collection in place, using the value that the given key path refers as the comparison between elements.
-    ///
-    /// - Parameter keyPath: The key path to the value to compare.
-    mutating func sort(_ keyPath: KeyPath<Element, some Comparable>) {
-        
-        self.sort { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
     }
 }
