@@ -3735,7 +3735,7 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%1lld string encontrada em “%2$@”."
+                  "value" : "Uma string encontrada em “%2$@”."
                 }
               },
               "other" : {
