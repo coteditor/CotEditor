@@ -74,6 +74,9 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @IBOutlet private weak var primaryFooterAlignmentControl: NSSegmentedControl?
     @IBOutlet private weak var secondaryFooterAlignmentControl: NSSegmentedControl?
     
+    @IBOutlet private weak var leadingPaddingConstraint: NSLayoutConstraint?
+    @IBOutlet private weak var trailingPaddingConstraint: NSLayoutConstraint?
+    
     
     
     // MARK: View Controller Method
@@ -81,6 +84,11 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        if #unavailable(macOS 15) {
+            self.leadingPaddingConstraint?.constant = 0
+            self.trailingPaddingConstraint?.constant = 0
+        }
         
         self.primaryHeaderPopUpButton!.menu!.items = PrintInfoType.menuItems
         self.secondaryHeaderPopUpButton!.menu!.items = PrintInfoType.menuItems
