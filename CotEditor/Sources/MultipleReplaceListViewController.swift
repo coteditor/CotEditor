@@ -101,7 +101,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         
         self.settingUpdateObserver?.cancel()
     }
-
+    
     
     
     // MARK: Menu Item Validation
@@ -271,6 +271,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
             picker.show(relativeTo: .zero, of: view, preferredEdge: .minY)
         }
     }
+    
     
     /// Opens the directory in Application Support in the Finder where the selected setting exists.
     @IBAction func revealSettingInFinder(_ sender: Any?) {

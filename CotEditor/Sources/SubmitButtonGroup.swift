@@ -116,6 +116,7 @@ private struct EqualWidthHStack: Layout {
         return maxSize
     }
     
+    
     private func spacing(subviews: Subviews) -> [CGFloat] {
         subviews.indices.map { index in
             

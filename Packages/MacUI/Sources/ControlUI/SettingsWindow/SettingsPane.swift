@@ -24,7 +24,6 @@
 //  limitations under the License.
 //
 
-
 import AppKit.NSImage
 import SwiftUI
 

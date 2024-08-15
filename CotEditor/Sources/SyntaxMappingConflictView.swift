@@ -116,6 +116,7 @@ private struct ConflictTable: View {
         self._conflicts = .init(wrappedValue: conflicts)
     }
     
+    
     var body: some View {
         
         Section {

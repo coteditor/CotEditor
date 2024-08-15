@@ -71,6 +71,7 @@ actor UserUnixTask {
         }
     }
     
+    
     /// Sends the input as the standard input to the script.
     ///
     /// - Parameter input: The string to input.

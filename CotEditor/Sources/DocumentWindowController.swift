@@ -138,7 +138,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             }
             .assign(to: \.appearance, on: window)
         
-        //  observe for syntax line-up change
+        // observe for syntax line-up change
         self.syntaxListObserver = Publishers.Merge(SyntaxManager.shared.$settingNames,
                                                    UserDefaults.standard.publisher(for: .recentSyntaxNames))
             .receive(on: RunLoop.main)

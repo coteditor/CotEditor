@@ -111,8 +111,8 @@ public struct Shortcut: Sendable {
         else { return nil }
         
         // correct the Backspace key
-        //  -> Backspace:      The key above the Return.
-        //     Forward Delete: The key with printed "Delete" where next to the ten key pad.
+        // -> Backspace:      The key above the Return.
+        //    Forward Delete: The key with printed "Delete" where next to the ten key pad.
         // cf. https://developer.apple.com/documentation/appkit/nsmenuitem/1514842-keyequivalent
         let keyEquivalent: String = switch event.specialKey {
             case NSEvent.SpecialKey.delete: String(NSEvent.SpecialKey.backspace.unicodeScalar)

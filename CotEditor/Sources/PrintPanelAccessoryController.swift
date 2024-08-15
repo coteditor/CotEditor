@@ -268,6 +268,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         }
     }
     
+    
     /// The theme.
     @objc dynamic var theme: String {
         

@@ -36,7 +36,7 @@ struct AddRemoveButton<Item: Identifiable>: View {
     private var newItem: () -> Item
     
     
-    /// Creates a  segmented add/remove control.
+    /// Creates a segmented add/remove control.
     ///
     /// - Parameters:
     ///   - items: The identifiable data array where adding/removing items.

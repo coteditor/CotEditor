@@ -107,7 +107,7 @@ final class SyntaxManager: SettingFileManaging {
     /// Returns the syntax name corresponding to the given document.
     ///
     /// - Parameters:
-    ///   - fileName: The  file name of the document to detect the corresponding syntax name.
+    ///   - fileName: The file name of the document to detect the corresponding syntax name.
     ///   - contents: The contents of the document.
     /// - Returns: A setting name.
     func settingName(documentName fileName: String, contents: String) -> SettingName? {
@@ -279,7 +279,7 @@ final class SyntaxManager: SettingFileManaging {
     /// Returns the syntax name corresponding to the given filename.
     ///
     /// - Parameters:
-    ///   - fileName: The  file name of the document to detect the corresponding syntax name.
+    ///   - fileName: The file name of the document to detect the corresponding syntax name.
     /// - Returns: A setting name, or `nil` if not exists.
     private func settingName(documentName fileName: String) -> SettingName? {
         

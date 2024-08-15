@@ -105,6 +105,7 @@ extension UnicodeNormalizationForm {
         }
     }
     
+    
     /// Unique identifier for menu item.
     var tag: Int {
         

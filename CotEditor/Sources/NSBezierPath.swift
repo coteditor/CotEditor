@@ -47,7 +47,7 @@ extension NSBezierPath {
     ///
     /// - Parameters:
     ///   - rect: The rectangle that defines the basic shape of the path.
-    ///   - corners: A bitmask value that identifies the corners that you want rounded. You can use this parameter to round only a subset of the corners of the rectangle.
+    ///   - corners: A bit mask value that identifies the corners that you want rounded. You can use this parameter to round only a subset of the corners of the rectangle.
     ///   - radius: The radius of each corner oval. Values larger than half the rectangle’s width are clamped to half the width.
     convenience init(roundedRect rect: NSRect, byRoundingCorners corners: RectCorner, cornerRadius radius: CGFloat) {
         
