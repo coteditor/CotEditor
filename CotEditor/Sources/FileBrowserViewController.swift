@@ -486,8 +486,6 @@ extension FileBrowserViewController: NSTextFieldDelegate {
             return false
         }
         
-        self.outlineView.reloadItem(node)
-        
         return true
     }
 }

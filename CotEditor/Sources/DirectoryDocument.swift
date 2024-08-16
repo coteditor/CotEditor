@@ -51,6 +51,7 @@ final class DirectoryDocument: NSDocument {
     private var windowController: DocumentWindowController?  { self.windowControllers.first as? DocumentWindowController }
     
     private var documentObserver: (any NSObjectProtocol)?
+    private var revertTask: Task<Void, any Error>?
     
     
     
@@ -170,6 +171,9 @@ final class DirectoryDocument: NSDocument {
         
         super.close()
         
+        self.revertTask?.cancel()
+        self.revertTask = nil
+        
         for document in self.documents {
             document.close()
         }
@@ -182,27 +186,33 @@ final class DirectoryDocument: NSDocument {
     
     // MARK: File Presenter Methods
     
-    override nonisolated func presentedItemDidChange() {
+    override nonisolated func presentedSubitemDidChange(at url: URL) {
         
-        // called also when:
+        // the following APIs are not called correctly:
         // - subitem moved (presentedSubitem(at:didMoveTo:))
         // - new subitem added (presentedSubitemDidAppear(at:))
         
-        super.presentedItemDidChange()
-        
-        // pre-check file structure change in background in advance
-        // -> Consequently, the file node is build twice, but better than doing it every time on the main thread.
-        self.performAsynchronousFileAccess { [unowned self] fileAccessCompletionHandler in
-            defer { fileAccessCompletionHandler() }
-            guard
-                let fileURL,
-                let fileWrapper = try? FileWrapper(url: fileURL),
-                FileNode(fileWrapper: fileWrapper, fileURL: fileURL) != self.fileNode
-            else { return }
+        // remake node tree if needed
+        Task { @MainActor in
+            guard self.currentDocument?.fileURL != url else { return }
             
-            // remake node tree
-            Task { @MainActor in
-                self.revert()
+            self.revertTask?.cancel()
+            self.revertTask = Task.detached {
+                try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.1))
+                
+                self.performAsynchronousFileAccess { [unowned self] fileAccessCompletionHandler in
+                    defer { fileAccessCompletionHandler() }
+                    guard
+                        let fileURL,
+                        let fileWrapper = try? FileWrapper(url: fileURL),
+                        FileNode(fileWrapper: fileWrapper, fileURL: fileURL) != self.fileNode
+                    else { return }
+                    
+                    // remake node tree if needed
+                    Task { @MainActor in
+                        self.revert()
+                    }
+                }
             }
         }
     }
@@ -217,6 +227,7 @@ final class DirectoryDocument: NSDocument {
             self.revert(fileURL: newURL)
         }
     }
+    
     
     
     // MARK: Public Methods
