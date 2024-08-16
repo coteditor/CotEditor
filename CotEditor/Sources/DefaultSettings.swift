@@ -162,7 +162,6 @@ struct DefaultSettings {
             
             // file browser
             .fileBrowserShowsHiddenFiles: false,
-            .fileBrowserShowsFilenameExtensions: true,
             
             // settings not in the Settings window
             .pinsThemeAppearance: false,

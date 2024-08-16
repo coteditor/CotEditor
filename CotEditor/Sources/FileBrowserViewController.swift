@@ -113,8 +113,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         contextMenu.items = [
             NSMenuItem(title: String(localized: "Show in Finder", table: "Document", comment: "menu item label"),
                        action: #selector(showInFinder), keyEquivalent: ""),
-            .separator(),
-            
             NSMenuItem(title: String(localized: "Open with External Editor", table: "Document", comment: "menu item label"),
                        action: #selector(openWithExternalEditor), keyEquivalent: ""),
             NSMenuItem(title: String(localized: "Open in New Window", table: "Document", comment: "menu item label"),
@@ -125,8 +123,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                        action: #selector(moveToTrash), keyEquivalent: ""),
             .separator(),
             
-            NSMenuItem(title: String(localized: "Show Filename Extensions", table: "Document", comment: "menu item label (Check how Apple translates the term “filename extension.”)"),
-                       action: #selector(toggleFilenameExtensionVisibility), keyEquivalent: ""),
             NSMenuItem(title: String(localized: "Show Hidden Files", table: "Document", comment: "menu item label"),
                        action: #selector(toggleHiddenFileVisibility), keyEquivalent: ""),
         ]
@@ -161,8 +157,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.defaultObservers = [
             UserDefaults.standard.publisher(for: .fileBrowserShowsHiddenFiles)
                 .sink { [unowned self] _ in self.outlineView.reloadData() },
-            UserDefaults.standard.publisher(for: .fileBrowserShowsFilenameExtensions)
-                .sink { [unowned self] _ in self.outlineView.reloadData() },
         ]
     }
     
@@ -195,9 +189,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             case #selector(moveToTrash):
                 menuItem.isHidden = self.clickedNode == nil
                 return self.clickedNode?.isWritable == true
-                
-            case #selector(toggleFilenameExtensionVisibility):
-                menuItem.state = self.showsFilenameExtensions ? .on : .off
                 
             case #selector(toggleHiddenFileVisibility):
                 menuItem.state = self.showsHiddenFiles ? .on : .off
@@ -293,12 +284,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
-    @IBAction func toggleFilenameExtensionVisibility(_ sender: Any?) {
-        
-        self.showsFilenameExtensions.toggle()
-    }
-    
-    
     @IBAction func toggleHiddenFileVisibility(_ sender: Any?) {
         
         self.showsHiddenFiles.toggle()
@@ -306,14 +291,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     
     // MARK: Private Methods
-    
-    /// Whether displaying the filename extensions.
-    private var showsFilenameExtensions: Bool {
-        
-        get { UserDefaults.standard[.fileBrowserShowsFilenameExtensions] }
-        set { UserDefaults.standard[.fileBrowserShowsFilenameExtensions] = newValue }
-    }
-    
     
     /// Whether displaying hidden files.
     private var showsHiddenFiles: Bool {
@@ -406,7 +383,7 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
                 comment: "accessibility description for document icon in file browser"))
         cellView.imageView!.alphaValue = node.isHidden ? 0.5 : 1
         
-        cellView.textField!.stringValue = self.showsFilenameExtensions ? node.name : node.name.deletingPathExtension
+        cellView.textField!.stringValue = node.name
         cellView.textField!.textColor = node.isHidden ? .disabledControlTextColor : .labelColor
         
         return cellView

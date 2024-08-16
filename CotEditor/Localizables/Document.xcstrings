@@ -4680,35 +4680,6 @@
         }
       }
     },
-    "Show Filename Extensions" : {
-      "comment" : "menu item label (Check how Apple translates the term “filename extension.”)",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dateinamensuffixe einblenden"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Show Filename Extensions"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ファイル名拡張子を表示"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "파일 확장자 보기"
-          }
-        }
-      }
-    },
     "Show Hidden Files" : {
       "comment" : "menu item label",
       "localizations" : {

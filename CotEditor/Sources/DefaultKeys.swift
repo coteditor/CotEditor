@@ -155,7 +155,6 @@ extension DefaultKeys {
     
     // file browser
     static let fileBrowserShowsHiddenFiles = DefaultKey<Bool>("fileBrowserShowsHiddenFiles")
-    static let fileBrowserShowsFilenameExtensions = DefaultKey<Bool>("fileBrowserShowsFilenameExtensions")
     
     // settings that are not in the Settings window
     static let pinsThemeAppearance = DefaultKey<Bool>("pinsThemeAppearance")
