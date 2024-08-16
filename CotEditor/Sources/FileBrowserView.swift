@@ -149,12 +149,14 @@ struct FileBrowserView: View {
             
             Divider()
             
-            Button(String(localized: "Move to Trash", table: "Document", comment: "menu item label")) {
-                do {
-                    try self.document.trashItem(at: node.fileURL)
-                    AudioServicesPlaySystemSound(.moveToTrash)
-                } catch {
-                    self.error = error
+            if node.isWritable {
+                Button(String(localized: "Move to Trash", table: "Document", comment: "menu item label")) {
+                    do {
+                        try self.document.trashItem(at: node.fileURL)
+                        AudioServicesPlaySystemSound(.moveToTrash)
+                    } catch {
+                        self.error = error
+                    }
                 }
             }
             
@@ -195,7 +197,9 @@ private struct NodeView: View {
             TextField(text: $name, label: EmptyView.init)
                 .focused($isFocused)
         } icon: {
-            Image(systemName: self.node.isDirectory ? "folder" : "doc")
+            Image(systemName: self.node.isDirectory
+                  ? "folder"
+                  : self.node.isWritable ? "doc" : "lock")
         }
         .opacity((self.node.isHidden && !self.isFocused) ? 0.5 : 1)
         .onChange(of: self.showsFilenameExtensions) {

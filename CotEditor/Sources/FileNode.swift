@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import FilePermissions
 
 struct FileNode: Equatable, Sendable {
     
@@ -31,9 +32,11 @@ struct FileNode: Equatable, Sendable {
     var paths: [String]
     var children: [FileNode]?
     var isDirectory: Bool
+    var permissions: FilePermissions
     var fileURL: URL
     
     var isHidden: Bool  { self.name.starts(with: ".") }
+    var isWritable: Bool { self.permissions.user.contains(.write) }
     var directoryURL: URL  { self.isDirectory ? self.fileURL : self.fileURL.deletingLastPathComponent() }
 }
 
@@ -54,6 +57,7 @@ extension FileNode {
         self.paths = paths
         self.isDirectory = fileWrapper.isDirectory
         self.fileURL = fileURL
+        self.permissions = FilePermissions(mask: fileWrapper.fileAttributes[FileAttributeKey.posixPermissions] as? Int16 ?? 0)
         
         if fileWrapper.isDirectory {
             self.children = fileWrapper.fileWrappers?
