@@ -87,8 +87,8 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         self.splitView.autosaveName = autosaveName
         
         if let directoryDocument {
-            let rootView = FileBrowserView(document: directoryDocument)
-            let sidebarViewItem = NSSplitViewItem(sidebarWithViewController: NSHostingController(rootView: rootView))
+            let viewController = FileBrowserViewController(document: directoryDocument)
+            let sidebarViewItem = NSSplitViewItem(sidebarWithViewController: viewController)
             self.addSplitViewItem(sidebarViewItem)
             self.sidebarViewItem = sidebarViewItem
         }

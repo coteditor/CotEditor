@@ -26,7 +26,7 @@
 import Foundation
 import FilePermissions
 
-struct FileNode: Equatable, Sendable {
+struct FileNode: Equatable {
     
     var name: String
     var paths: [String]
@@ -74,6 +74,24 @@ extension FileNode {
                 .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
                 .sorted(using: SortDescriptor(\.isDirectory))
         }
+    }
+    
+    
+    /// Returns the parent of the given node in the node tree.
+    ///
+    /// - Parameter node: The child node.
+    /// - Returns: The parent node.
+    func parent(of node: FileNode) -> FileNode? {
+        
+        guard let children else { return nil }
+        
+        if children.contains(node) { return self }
+        
+        for child in children {
+            if let parent = child.parent(of: node) { return parent }
+        }
+        
+        return nil
     }
     
     
