@@ -116,7 +116,7 @@ import URLUtils
         let fileWrapper = try FileWrapper(url: url)
         let node = FileNode(fileWrapper: fileWrapper, fileURL: url)
         
-        Task { @MainActor in
+        DispatchQueue.syncOnMain {
             self.fileNode = node
             self.windowController?.synchronizeWindowTitleWithDocumentName()
         }
