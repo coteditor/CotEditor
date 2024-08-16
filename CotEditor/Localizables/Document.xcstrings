@@ -996,6 +996,9 @@
         }
       }
     },
+    "Document" : {
+      "comment" : "accessibility description for document icon in file browser"
+    },
     "Document has unsaved changes" : {
       "comment" : "tooltip for the “edited” indicator in the window tab",
       "localizations" : {
@@ -1575,6 +1578,9 @@
           }
         }
       }
+    },
+    "Folder" : {
+      "comment" : "accessibility description for folder icon in file browser"
     },
     "Found %lld incompatible characters." : {
       "comment" : "%lld is the number of characters.",

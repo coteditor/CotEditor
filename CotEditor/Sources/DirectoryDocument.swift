@@ -24,12 +24,14 @@
 //
 
 import AppKit
-import Observation
 import UniformTypeIdentifiers
 import OSLog
 import URLUtils
 
-@Observable final class DirectoryDocument: NSDocument {
+final class DirectoryDocument: NSDocument {
+    
+    nonisolated static let didRevertNotification = Notification.Name("DirectoryDocument.didRevertNotification")
+    
     
     private enum SerializationKey {
         
@@ -135,6 +137,14 @@ import URLUtils
         
         // remake node tree
         self.revert()
+    }
+    
+    
+    override func revert(toContentsOf url: URL, ofType typeName: String) throws {
+        
+        try super.revert(toContentsOf: url, ofType: typeName)
+        
+        NotificationCenter.default.post(name: Self.didRevertNotification, object: self)
     }
     
     
@@ -270,8 +280,6 @@ import URLUtils
     /// - Returns: The URL of the created file.
     @discardableResult func addFile(at directoryURL: URL) throws -> URL {
         
-        assert(directoryURL.hasDirectoryPath)
-        
         let name = String(localized: "Untitled", comment: "default file name for new creation")
         let pathExtension = (try? SyntaxManager.shared.setting(name: UserDefaults.standard[.syntax]))?.extensions.first
         let fileURL = directoryURL.appending(component: name).appendingPathExtension(pathExtension ?? "").appendingUniqueNumber()
@@ -302,8 +310,6 @@ import URLUtils
     /// - Parameter directoryURL: The URL of the directory where creates a new folder.
     /// - Returns: The URL of the created folder.
     @discardableResult func addFolder(at directoryURL: URL) throws -> URL {
-        
-        assert(directoryURL.hasDirectoryPath)
         
         let name = String(localized: "untitled folder", comment: "default folder name for new creation")
         let folderURL = directoryURL.appending(component: name).appendingUniqueNumber()
