@@ -87,11 +87,9 @@ extension FileNode {
         
         if children.contains(node) { return self }
         
-        for child in children {
-            if let parent = child.parent(of: node) { return parent }
-        }
-        
-        return nil
+        return children.lazy
+            .compactMap { $0.parent(of: node) }
+            .first
     }
     
     
