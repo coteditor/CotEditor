@@ -41,6 +41,15 @@ struct FileNode: Equatable, Sendable {
 }
 
 
+extension FileNode: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        
+        hasher.combine(self.id)
+    }
+}
+
+
 extension FileNode: Identifiable {
     
     var id: [String]  { self.paths + [self.name] }
