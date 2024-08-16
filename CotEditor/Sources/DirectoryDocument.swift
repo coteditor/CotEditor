@@ -433,6 +433,33 @@ final class DirectoryDocument: NSDocument {
     }
     
     
+    /// Open the document at a given fileURL in a new window.
+    ///
+    /// - Parameter fileURL: The fileURL to open.
+    func openInWindow(fileURL: URL) {
+        
+        if let document = self.currentDocument, fileURL == document.fileURL {
+            // remove from the current window
+            self.windowController?.fileDocument = nil
+            self.documents.removeFirst(document)
+            self.invalidateRestorableState()
+            
+            // create a new window for the document
+            document.windowController = nil
+            document.makeWindowControllers()
+            document.showWindows()
+            
+        } else {
+            NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { (_, _, error) in
+                if let error {
+                    return self.presentErrorAsSheet(error)
+                }
+            }
+        }
+    }
+    
+    
+    
     // MARK: Private Methods
     
     /// Changes the frontmost document.

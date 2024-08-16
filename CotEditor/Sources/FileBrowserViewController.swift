@@ -190,7 +190,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                 menuItem.isHidden = self.clickedNode?.isDirectory != false
                 
             case #selector(openInNewWindow):
-                menuItem.isHidden = self.clickedNode == nil || self.clickedNode?.fileURL == self.document.currentDocument?.fileURL
+                menuItem.isHidden = self.clickedNode == nil
                 
             case #selector(moveToTrash):
                 menuItem.isHidden = self.clickedNode == nil
@@ -233,11 +233,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         guard let node = self.clickedNode else { return }
         
-        NSDocumentController.shared.openDocument(withContentsOf: node.fileURL, display: true) { (_, _, error) in
-            if let error {
-                return self.presentErrorAsSheet(error)
-            }
-        }
+        self.document.openInWindow(fileURL: node.fileURL)
     }
     
     
