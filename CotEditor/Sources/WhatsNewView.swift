@@ -35,11 +35,24 @@ struct WhatsNewView: View {
     var body: some View {
         
         VStack(spacing: 16) {
-            Text("What’s New in **CotEditor \(NewFeature.version)**", tableName: "WhatsNew", comment: "%@ is version number")
-                .font(.title)
-                .fontWeight(.medium)
-                .accessibilityAddTraits(.isHeader)
-                .accessibilityHeading(.h1)
+            HStack(alignment: .firstTextBaseline) {
+                Text("What’s New in **CotEditor \(NewFeature.version)**", tableName: "WhatsNew", comment: "%@ is version number")
+                    .font(.title)
+                    .fontWeight(.medium)
+                    .accessibilityAddTraits(.isHeader)
+                    .accessibilityHeading(.h1)
+                
+                if Bundle.main.isPrerelease {
+                    Text("Beta", tableName: "WhatsNew", comment: "label for when the app is a prerelease version")
+                        .font(.title)
+                        .fontWeight(.regular)
+                        .fontDesign(.rounded)
+                        .kerning(0.5)
+                        .padding(.horizontal, 6)
+                        .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).stroke(.secondary, lineWidth: 2))
+                        .foregroundStyle(.tint)
+                }
+            }
             
             VStack(alignment: .leading, spacing: 16) {
                 ForEach(NewFeature.allCases, id: \.self) { feature in
