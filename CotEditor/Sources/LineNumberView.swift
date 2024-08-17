@@ -71,7 +71,7 @@ final class LineNumberView: NSView {
     
     // MARK: Public Properties
     
-    weak var textView: NSTextView?  { didSet { self.updateTextView(textView)} }
+    weak var textView: NSTextView?  { didSet { self.updateTextView(textView) } }
     
     var orientation: NSLayoutManager.TextLayoutOrientation = .horizontal {
         

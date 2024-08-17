@@ -49,7 +49,7 @@ struct FileNode: Equatable {
     
     var isDirectory: Bool  { self.kind == .folder }
     var isHidden: Bool  { self.name.starts(with: ".") }
-    var isWritable: Bool { self.permissions.user.contains(.write) }
+    var isWritable: Bool  { self.permissions.user.contains(.write) }
     var directoryURL: URL  { self.isDirectory ? self.fileURL : self.fileURL.deletingLastPathComponent() }
 }
 

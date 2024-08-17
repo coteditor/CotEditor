@@ -39,7 +39,7 @@ public final class StatableMenuToolbarItem: NSMenuToolbarItem, StatableItem, Val
     public override var image: NSImage? {
         
         get { super.image }
-        @available(*, unavailable, message: "Set images through 'stateImages' instead.") set {  }
+        @available(*, unavailable, message: "Set images through 'stateImages' instead.") set { }
     }
     
     

@@ -65,7 +65,7 @@ struct DebouncerTests {
     
     @Test func cancel() async {
         
-        await confirmation("Debouncer cancelled", expectedCount: 0) {  @MainActor confirm in
+        await confirmation("Debouncer cancelled", expectedCount: 0) { @MainActor confirm in
             let debouncer = Debouncer {
                 confirm()
             }
