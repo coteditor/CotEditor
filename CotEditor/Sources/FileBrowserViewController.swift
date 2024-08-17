@@ -374,13 +374,7 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         let node = item as! FileNode
         let cellView = outlineView.makeView(withIdentifier: .node, owner: self) as? NSTableCellView ?? self.createCellView()
         
-        cellView.imageView!.image = node.isDirectory
-            ? NSImage(systemSymbolName: "folder", accessibilityDescription: String(
-                localized: "Folder", table: "Document",
-                comment: "accessibility description for folder icon in file browser"))
-            : NSImage(systemSymbolName: node.isWritable ? "doc" : "lock", accessibilityDescription: String(
-                localized: "Document", table: "Document",
-                comment: "accessibility description for document icon in file browser"))
+        cellView.imageView!.image = node.kind.image
         cellView.imageView!.alphaValue = node.isHidden ? 0.5 : 1
         
         cellView.textField!.stringValue = node.name
@@ -410,6 +404,7 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         
         let imageView = NSImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.alignment = .center
         
         let textField = NSTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -429,6 +424,7 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
             imageView.firstBaselineAnchor.constraint(equalTo: textField.firstBaselineAnchor),
             textField.centerYAnchor.constraint(equalTo: cellView.centerYAnchor),
             imageView.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 2),
+            imageView.widthAnchor.constraint(equalToConstant: 17),  // the value used in a sample code by Apple
             textField.leadingAnchor.constraint(equalToSystemSpacingAfter: imageView.trailingAnchor, multiplier: 1),
             textField.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -2),
         ])
@@ -467,5 +463,15 @@ extension FileBrowserViewController: NSTextFieldDelegate {
         }
         
         return true
+    }
+}
+
+
+private extension FileNode.Kind {
+    
+    /// The symbol image in `NSImage`.
+    var image: NSImage {
+        
+        NSImage(systemSymbolName: self.symbolName, accessibilityDescription: self.label)!
     }
 }

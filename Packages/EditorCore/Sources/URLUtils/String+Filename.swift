@@ -33,6 +33,15 @@ public extension String {
         
         self.replacing(/^(.+)\.[^ .]+$/, with: \.1)
     }
+    
+    
+    /// The file extension part of the receiver by assuming the string is a filename.
+    var pathExtension: String? {
+        
+        guard let match = self.firstMatch(of: /.\.([^ .]+)$/) else { return nil }
+        
+        return String(match.1)
+    }
 }
 
 

@@ -41,6 +41,19 @@ struct StringFilename {
     }
     
     
+    @Test func pathExtension() {
+        
+        let aa = "test.txt".firstMatch(of: /.\.([^ .]+)$/)?.output.1
+        #expect("test".pathExtension == nil)
+        #expect("test.".pathExtension == nil)
+        #expect("test.txt".pathExtension == "txt")
+        #expect("test..txt".pathExtension == "txt")
+        #expect("test.txt.txt".pathExtension == "txt")
+        #expect(".htaccess".pathExtension == nil)
+        #expect("1.2 file".pathExtension == nil)
+    }
+    
+    
     @Test func createAvailableNames() {
         
         let names = ["foo", "foo 3", "foo copy 3", "foo 4", "foo 7"]

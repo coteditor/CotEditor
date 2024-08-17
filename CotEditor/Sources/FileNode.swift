@@ -24,17 +24,30 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
 import FilePermissions
 
 struct FileNode: Equatable {
     
+    enum Kind {
+        
+        case folder
+        case general
+        case archive
+        case image
+        case movie
+        case audio
+    }
+    
+    
     var name: String
     var paths: [String]
     var children: [FileNode]?
-    var isDirectory: Bool
+    var kind: Kind
     var permissions: FilePermissions
     var fileURL: URL
     
+    var isDirectory: Bool  { self.kind == .folder }
     var isHidden: Bool  { self.name.starts(with: ".") }
     var isWritable: Bool { self.permissions.user.contains(.write) }
     var directoryURL: URL  { self.isDirectory ? self.fileURL : self.fileURL.deletingLastPathComponent() }
@@ -64,9 +77,9 @@ extension FileNode {
         
         self.name = filename
         self.paths = paths
-        self.isDirectory = fileWrapper.isDirectory
         self.fileURL = fileURL
         self.permissions = FilePermissions(mask: fileWrapper.fileAttributes[FileAttributeKey.posixPermissions] as? Int16 ?? 0)
+        self.kind = fileWrapper.isDirectory ? .folder : Kind(filenameExtension: filename.pathExtension)
         
         if fileWrapper.isDirectory {
             self.children = fileWrapper.fileWrappers?
@@ -115,6 +128,77 @@ extension [FileNode] {
             var tree = $0
             tree.children = tree.children?.recursivelyFilter(isIncluded)
             return tree
+        }
+    }
+}
+
+
+// MARK: FileNode.Kind
+
+extension FileNode.Kind {
+    
+    init(filenameExtension: String?) {
+        
+        guard
+            let filenameExtension,
+            let uti = UTType(filenameExtension: filenameExtension)
+        else {
+            self = .general
+            return
+        }
+        
+        if uti.conforms(to: .plainText) == true {
+            self = .general
+        } else if uti.conforms(to: .image) == true {
+            self = .image
+        } else if uti.conforms(to: .movie) == true {
+            self = .movie
+        } else if uti.conforms(to: .audio) == true {
+            self = .audio
+        } else if uti.conforms(to: .archive) == true {
+            self = .archive
+        } else {
+            self = .general
+        }
+    }
+    
+    
+    /// The system symbol name for label image.
+    var symbolName: String {
+        
+        switch self {
+            case .folder: "folder"
+            case .general: "doc"
+            case .archive: "zipper.page"
+            case .image: "photo"
+            case .movie: "film"
+            case .audio: "music.note"
+        }
+    }
+    
+    
+    /// The label.
+    var label: String {
+        
+        switch self {
+            case .folder:
+                String(localized: "FileNode.Kind.folder.label", defaultValue: "Folder", table: "Document",
+                       comment: "accessibility description for icon in file browser")
+            case .general:
+                String(localized: "FileNode.Kind.general.label", defaultValue: "Document", table: "Document",
+                       comment: "accessibility description for icon in file browser")
+            case .archive:
+                String(localized: "FileNode.Kind.archive.label", defaultValue: "Archive", table: "Document",
+                       comment: "accessibility description for icon in file browser")
+            case .image:
+                String(localized: "FileNode.Kind.image.label", defaultValue: "Image", table: "Document",
+                       comment: "accessibility description for icon in file browser")
+            case .movie:
+                String(localized: "FileNode.Kind.movie.label", defaultValue: "Movie", table: "Document",
+                       comment: "accessibility description for icon in file browser")
+            case .audio:
+                String(localized: "FileNode.Kind.audio.label", defaultValue: "Audio", table: "Document",
+                       comment: "accessibility description for icon in file browser")
         }
     }
 }
