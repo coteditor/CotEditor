@@ -44,12 +44,10 @@ struct WhatsNewView: View {
                 
                 if Bundle.main.isPrerelease {
                     Text("Beta", tableName: "WhatsNew", comment: "label for when the app is a prerelease version")
-                        .font(.title)
-                        .fontWeight(.regular)
-                        .fontDesign(.rounded)
+                        .font(.system(size: 20, weight: .regular, design: .rounded))
                         .kerning(0.5)
-                        .padding(.horizontal, 6)
-                        .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).stroke(.secondary, lineWidth: 2))
+                        .padding(.horizontal, 5)
+                        .overlay(RoundedRectangle(cornerRadius: 5).stroke())
                         .foregroundStyle(.tint)
                 }
             }
@@ -109,7 +107,7 @@ struct WhatsNewView: View {
             Image(systemName: "gearshape.2")
                 .font(.system(size: 750, weight: .ultraLight))
                 .rotationEffect(.degrees(180))
-                .opacity(0.02)
+                .opacity(0.025)
                 .background()
         }
     }
