@@ -50,7 +50,27 @@ struct FileNode: Equatable {
     var isDirectory: Bool  { self.kind == .folder }
     var isHidden: Bool  { self.name.starts(with: ".") }
     var isWritable: Bool  { self.permissions.user.contains(.write) }
+    
     var directoryURL: URL  { self.isDirectory ? self.fileURL : self.fileURL.deletingLastPathComponent() }
+    
+    
+    init?(fileWrapper: FileWrapper, paths: [String] = [], fileURL: URL) {
+        
+        guard let filename = fileWrapper.filename else { return nil }
+        
+        self.name = filename
+        self.paths = paths
+        self.fileURL = fileURL
+        self.permissions = FilePermissions(mask: fileWrapper.fileAttributes[FileAttributeKey.posixPermissions] as? Int16 ?? 0)
+        self.kind = fileWrapper.isDirectory ? .folder : Kind(filenameExtension: filename.pathExtension)
+        
+        if fileWrapper.isDirectory {
+            self.children = fileWrapper.fileWrappers?
+                .compactMap { FileNode(fileWrapper: $0.value, paths: paths + [filename], fileURL: fileURL.appending(component: $0.key)) }
+                .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
+                .sorted(using: SortDescriptor(\.isDirectory))
+        }
+    }
 }
 
 
@@ -70,25 +90,6 @@ extension FileNode: Identifiable {
 
 
 extension FileNode {
-    
-    init?(fileWrapper: FileWrapper, paths: [String] = [], fileURL: URL) {
-        
-        guard let filename = fileWrapper.filename else { return nil }
-        
-        self.name = filename
-        self.paths = paths
-        self.fileURL = fileURL
-        self.permissions = FilePermissions(mask: fileWrapper.fileAttributes[FileAttributeKey.posixPermissions] as? Int16 ?? 0)
-        self.kind = fileWrapper.isDirectory ? .folder : Kind(filenameExtension: filename.pathExtension)
-        
-        if fileWrapper.isDirectory {
-            self.children = fileWrapper.fileWrappers?
-                .compactMap { FileNode(fileWrapper: $0.value, paths: paths + [filename], fileURL: fileURL.appending(component: $0.key)) }
-                .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
-                .sorted(using: SortDescriptor(\.isDirectory))
-        }
-    }
-    
     
     /// Returns the parent of the given node in the node tree.
     ///
