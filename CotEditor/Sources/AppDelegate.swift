@@ -318,7 +318,7 @@ private enum BundleIdentifier {
         let documentURLs = filenames.map(URL.init(fileURLWithPath:))
             .filter {
                 // ask installation if the file is CotEditor theme file
-                $0.conforms(to: .cotTheme) ? !self.askThemeInstallation(fileURL: $0) : true
+                $0.conforms(to: .cotTheme) ? !self.askThemeInstallation(at: $0) : true
             }
         
         guard !documentURLs.isEmpty else { return NSApp.reply(toOpenOrPrint: .success) }
@@ -494,15 +494,15 @@ private enum BundleIdentifier {
     
     /// Asks user whether install the file as a CotEditor theme, or process as a text file.
     ///
-    /// - Parameter url: The file URL to a theme file.
+    /// - Parameter fileURL: The file URL to a theme file.
     /// - Returns: Whether the given file was handled as a theme file.
-    private func askThemeInstallation(fileURL url: URL) -> Bool {
+    private func askThemeInstallation(at fileURL: URL) -> Bool {
         
-        assert(url.conforms(to: .cotTheme))
+        assert(fileURL.conforms(to: .cotTheme))
         
         // ask whether theme file should be opened as a text file
         let alert = NSAlert()
-        alert.messageText = String(localized: "ThemeImportAlert.message", defaultValue: "“\(url.lastPathComponent)” is a CotEditor theme file.")
+        alert.messageText = String(localized: "ThemeImportAlert.message", defaultValue: "“\(fileURL.lastPathComponent)” is a CotEditor theme file.")
         alert.informativeText = String(localized: "ThemeImportAlert.informativeText", defaultValue: "Do you want to install this theme?")
         alert.addButton(withTitle: String(localized: "ThemeImportAlert.button.install", defaultValue: "Install", comment: "button label"))
         alert.addButton(withTitle: String(localized: "ThemeImportAlert.button.openAsText", defaultValue: "Open as Text File", comment: "button label"))
@@ -513,7 +513,7 @@ private enum BundleIdentifier {
         
         // import theme
         do {
-            try ThemeManager.shared.importSetting(fileURL: url)
+            try ThemeManager.shared.importSetting(at: fileURL)
             
         } catch {
             // ask whether the old theme should be replaced with new one if the same name theme is already exists
@@ -523,7 +523,7 @@ private enum BundleIdentifier {
         }
         
         // feedback for success
-        let themeName = ThemeManager.settingName(from: url)
+        let themeName = ThemeManager.settingName(from: fileURL)
         let feedbackAlert = NSAlert()
         feedbackAlert.messageText = String(localized: "ThemeImportAlert.success",
                                            defaultValue: "A new theme named “\(themeName)” has been successfully installed.")

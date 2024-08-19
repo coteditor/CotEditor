@@ -249,7 +249,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         Task {
             guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }
             
-            self.importSetting(fileURL: openPanel.url!)
+            self.importSetting(at: openPanel.url!)
         }
     }
     
@@ -380,10 +380,10 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     /// Tries to import setting file at given URL.
     ///
     /// - Parameter fileURL: The file URL of the setting to import.
-    private func importSetting(fileURL: URL) {
+    private func importSetting(at fileURL: URL) {
         
         do {
-            try ReplacementManager.shared.importSetting(fileURL: fileURL)
+            try ReplacementManager.shared.importSetting(at: fileURL)
         } catch {
             // ask for overwriting if a setting with the same name already exists
             self.presentErrorAsSheet(error)
@@ -480,13 +480,13 @@ extension MultipleReplaceListViewController: NSTableViewDataSource {
                         self?.presentErrorAsSheet(error)
                         return
                     }
-                    self?.importSetting(fileURL: fileURL)
+                    self?.importSetting(at: fileURL)
                 }
             }
             
         } else if let fileURLs = info.fileURLs(with: .cotReplacement, for: tableView) {
             for fileURL in fileURLs {
-                self.importSetting(fileURL: fileURL)
+                self.importSetting(at: fileURL)
             }
             
         } else {

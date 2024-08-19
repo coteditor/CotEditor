@@ -401,7 +401,7 @@ extension SettingFileManaging {
     /// Imports setting at passed-in URL.
     ///
     /// - Throws: `SettingFileError` or `ImportDuplicationError`
-    func importSetting(fileURL: URL) throws {
+    func importSetting(at fileURL: URL) throws {
         
         let importName = Self.settingName(from: fileURL)
         
@@ -411,12 +411,12 @@ extension SettingFileManaging {
             
             guard self.urlForUserSetting(name: name) == nil else {  // duplicated
                 throw ImportDuplicationError(name: name, type: Self.fileType, continuationHandler: { [unowned self] in
-                    try self.overwriteSetting(fileURL: fileURL)
+                    try self.forciblyImportSetting(at: fileURL)
                 })
             }
         }
         
-        try self.overwriteSetting(fileURL: fileURL)
+        try self.forciblyImportSetting(at: fileURL)
     }
     
     
@@ -458,10 +458,10 @@ extension SettingFileManaging {
     }
     
     
-    /// Forces importing the setting at the passed-in URL.
+    /// Forcibly imports the setting at the passed-in URL.
     ///
     /// - Parameter fileURL: The URL of the file to import.
-    private func overwriteSetting(fileURL: URL) throws {
+    private func forciblyImportSetting(at fileURL: URL) throws {
         
         let name = Self.settingName(from: fileURL)
         let destURL = self.preparedURLForUserSetting(name: name)

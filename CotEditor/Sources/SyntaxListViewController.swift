@@ -206,13 +206,13 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
                         self?.presentErrorAsSheet(error)
                         return
                     }
-                    self?.importSetting(fileURL: fileURL)
+                    self?.importSetting(at: fileURL)
                 }
             }
             
         } else if let fileURLs = info.fileURLs(with: .yaml, for: tableView) {
             for fileURL in fileURLs {
-                self.importSetting(fileURL: fileURL)
+                self.importSetting(at: fileURL)
             }
             
         } else {
@@ -362,7 +362,7 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
             guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }
             
             for url in openPanel.urls {
-                self.importSetting(fileURL: url)
+                self.importSetting(at: url)
             }
         }
     }
@@ -509,10 +509,10 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     /// Tries to import the syntax files at the given URL.
     ///
     /// - Parameter fileURL: The file name of the syntax.
-    private func importSetting(fileURL: URL) {
+    private func importSetting(at fileURL: URL) {
         
         do {
-            try SyntaxManager.shared.importSetting(fileURL: fileURL)
+            try SyntaxManager.shared.importSetting(at: fileURL)
         } catch {
             // ask for overwriting if a setting with the same name already exists
             self.presentErrorAsSheet(error)

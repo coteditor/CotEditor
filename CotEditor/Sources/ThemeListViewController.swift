@@ -222,13 +222,13 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
                         self?.presentErrorAsSheet(error)
                         return
                     }
-                    self?.importTheme(fileURL: fileURL)
+                    self?.importTheme(at: fileURL)
                 }
             }
             
         } else if let fileURLs = info.fileURLs(with: .cotTheme, for: tableView) {
             for fileURL in fileURLs {
-                self.importTheme(fileURL: fileURL)
+                self.importTheme(at: fileURL)
             }
             
         } else {
@@ -428,7 +428,7 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
             guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }
             
             for url in openPanel.urls {
-                self.importTheme(fileURL: url)
+                self.importTheme(at: url)
             }
         }
     }
@@ -560,10 +560,10 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
     /// Tries to import the theme files at the given URL.
     ///
     /// - Parameter fileURL: The file name of the theme.
-    private func importTheme(fileURL: URL) {
+    private func importTheme(at fileURL: URL) {
         
         do {
-            try ThemeManager.shared.importSetting(fileURL: fileURL)
+            try ThemeManager.shared.importSetting(at: fileURL)
         } catch {
             // ask for overwriting if a setting with the same name already exists
             self.presentErrorAsSheet(error)
