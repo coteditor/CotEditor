@@ -559,11 +559,13 @@ final class ThemeListViewController: NSViewController, NSMenuItemValidation, NST
     
     /// Tries to import the theme files at the given URL.
     ///
-    /// - Parameter fileURL: The file name of the theme.
-    private func importTheme(at fileURL: URL) {
+    /// - Parameters:
+    ///   - fileURL: The file name of the theme.
+    ///   - byDeletingOriginal: `true` if removing the original file at the `fileURL`; otherwise, it is kept.
+    private func importTheme(at fileURL: URL, byDeletingOriginal: Bool = false) {
         
         do {
-            try ThemeManager.shared.importSetting(at: fileURL)
+            try ThemeManager.shared.importSetting(at: fileURL, byDeletingOriginal: byDeletingOriginal)
         } catch {
             // ask for overwriting if a setting with the same name already exists
             self.presentErrorAsSheet(error)

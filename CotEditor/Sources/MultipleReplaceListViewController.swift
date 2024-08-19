@@ -379,11 +379,13 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
     
     /// Tries to import setting file at given URL.
     ///
-    /// - Parameter fileURL: The file URL of the setting to import.
-    private func importSetting(at fileURL: URL) {
+    /// - Parameters:
+    ///   - fileURL: The file URL of the setting to import.
+    ///   - byDeletingOriginal: `true` if removing the original file at the `fileURL`; otherwise, it is kept.
+    private func importSetting(at fileURL: URL, byDeletingOriginal: Bool = false) {
         
         do {
-            try ReplacementManager.shared.importSetting(at: fileURL)
+            try ReplacementManager.shared.importSetting(at: fileURL, byDeletingOriginal: byDeletingOriginal)
         } catch {
             // ask for overwriting if a setting with the same name already exists
             self.presentErrorAsSheet(error)

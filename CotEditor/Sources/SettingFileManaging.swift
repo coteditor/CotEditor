@@ -401,7 +401,7 @@ extension SettingFileManaging {
     /// Imports setting at passed-in URL.
     ///
     /// - Throws: `SettingFileError` or `ImportDuplicationError`
-    func importSetting(at fileURL: URL) throws {
+    func importSetting(at fileURL: URL, byDeletingOriginal: Bool = true) throws {
         
         let importName = Self.settingName(from: fileURL)
         
@@ -411,12 +411,12 @@ extension SettingFileManaging {
             
             guard self.urlForUserSetting(name: name) == nil else {  // duplicated
                 throw ImportDuplicationError(name: name, type: Self.fileType, continuationHandler: { [unowned self] in
-                    try self.forciblyImportSetting(at: fileURL)
+                    try self.forciblyImportSetting(at: fileURL, byDeletingOriginal: byDeletingOriginal)
                 })
             }
         }
         
-        try self.forciblyImportSetting(at: fileURL)
+        try self.forciblyImportSetting(at: fileURL, byDeletingOriginal: byDeletingOriginal)
     }
     
     
@@ -460,26 +460,33 @@ extension SettingFileManaging {
     
     /// Forcibly imports the setting at the passed-in URL.
     ///
-    /// - Parameter fileURL: The URL of the file to import.
-    private func forciblyImportSetting(at fileURL: URL) throws {
+    /// - Parameters:
+    ///   - fileURL: The URL of the file to import.
+    ///   - byDeletingOriginal: `true` if removing the original file at the `fileURL`; otherwise, it is kept.
+    private func forciblyImportSetting(at fileURL: URL, byDeletingOriginal: Bool) throws {
         
         let name = Self.settingName(from: fileURL)
         let destURL = self.preparedURLForUserSetting(name: name)
         
         try FileManager.default.createIntermediateDirectories(to: destURL)
         
-        // copy file
+        // copy/move the file
         var coordinationError: NSError?
         var writingError: NSError?
-        NSFileCoordinator().coordinate(readingItemAt: fileURL, options: [.withoutChanges, .resolvesSymbolicLink],
-                                       writingItemAt: destURL, options: .forReplacing, error: &coordinationError)
+        NSFileCoordinator().coordinate(readingItemAt: fileURL, options: [byDeletingOriginal ? [] : .withoutChanges, .resolvesSymbolicLink],
+                                       writingItemAt: destURL, options: byDeletingOriginal ? .forMoving : .forReplacing,
+                                       error: &coordinationError)
         { (newReadingURL, newWritingURL) in
             
             do {
                 if newWritingURL.isReachable {
                     try FileManager.default.removeItem(at: newWritingURL)
                 }
-                try FileManager.default.copyItem(at: newReadingURL, to: newWritingURL)
+                if byDeletingOriginal {
+                    try FileManager.default.moveItem(at: newReadingURL, to: newWritingURL)
+                } else {
+                    try FileManager.default.copyItem(at: newReadingURL, to: newWritingURL)
+                }
                 
             } catch {
                 writingError = error as NSError

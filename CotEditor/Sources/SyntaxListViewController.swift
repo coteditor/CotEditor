@@ -206,7 +206,13 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
                         self?.presentErrorAsSheet(error)
                         return
                     }
-                    self?.importSetting(at: fileURL)
+                    
+                    do {
+                        try SyntaxManager.shared.importSetting(at: fileURL, byDeletingOriginal: true)
+                    } catch {
+                        // ask for overwriting if a setting with the same name already exists
+                        self?.presentErrorAsSheet(error)
+                    }
                 }
             }
             
@@ -508,11 +514,13 @@ final class SyntaxListViewController: NSViewController, NSMenuItemValidation, NS
     
     /// Tries to import the syntax files at the given URL.
     ///
-    /// - Parameter fileURL: The file name of the syntax.
-    private func importSetting(at fileURL: URL) {
+    /// - Parameters:
+    ///   - fileURL: The file name of the syntax.
+    ///   - byDeletingOriginal: `true` if removing the original file at the `fileURL`; otherwise, it is kept.   
+    private func importSetting(at fileURL: URL, byDeletingOriginal: Bool = false) {
         
         do {
-            try SyntaxManager.shared.importSetting(at: fileURL)
+            try SyntaxManager.shared.importSetting(at: fileURL, byDeletingOriginal: byDeletingOriginal)
         } catch {
             // ask for overwriting if a setting with the same name already exists
             self.presentErrorAsSheet(error)
