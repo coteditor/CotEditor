@@ -30,6 +30,7 @@
       }
     },
     "Beta" : {
+      "comment" : "label for when the app is a prerelease version",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
