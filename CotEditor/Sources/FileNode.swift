@@ -148,15 +148,15 @@ extension FileNode.Kind {
             return
         }
         
-        if uti.conforms(to: .plainText) == true {
+        if uti.conforms(to: .plainText) || uti.conforms(to: .xml) {
             self = .general
-        } else if uti.conforms(to: .image) == true {
+        } else if uti.conforms(to: .image) {
             self = .image
-        } else if uti.conforms(to: .movie) == true {
+        } else if uti.conforms(to: .movie) {
             self = .movie
-        } else if uti.conforms(to: .audio) == true {
+        } else if uti.conforms(to: .audio) {
             self = .audio
-        } else if uti.conforms(to: .archive) == true {
+        } else if uti.conforms(to: .archive) {
             self = .archive
         } else {
             self = .general
