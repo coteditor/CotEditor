@@ -35,8 +35,6 @@ import FileEncoding
 import LineEnding
 import UnicodeNormalization
 
-extension KeyPath: @retroactive @unchecked Sendable { }
-
 extension Logger {
     
     static let app = Logger(subsystem: "com.coteditor.CotEditor", category: "application")
