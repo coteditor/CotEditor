@@ -76,8 +76,10 @@ final class RegularExpressionTextField: NSTextField {
         
         super.awakeFromNib()
         
-        // setup regex formatter
-        self.regexFormatter.mode = self.parseMode
+        MainActor.assumeIsolated {
+            // setup regex formatter
+            self.regexFormatter.mode = self.parseMode
+        }
     }
     
     

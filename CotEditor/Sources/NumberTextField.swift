@@ -31,7 +31,9 @@ final class NumberTextField: NSTextField {
         
         super.awakeFromNib()
         
-        let size = self.font?.pointSize ?? NSFont.systemFontSize(for: self.controlSize)
-        self.font = .monospacedDigitSystemFont(ofSize: size, weight: .regular)
+        MainActor.assumeIsolated {
+            let size = self.font?.pointSize ?? NSFont.systemFontSize(for: self.controlSize)
+            self.font = .monospacedDigitSystemFont(ofSize: size, weight: .regular)
+        }
     }
 }

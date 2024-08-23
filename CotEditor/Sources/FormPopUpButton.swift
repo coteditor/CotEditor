@@ -48,7 +48,9 @@ final class FormPopUpButton: NSPopUpButton {
         
         super.awakeFromNib()
         
-        self.addTrackingRect(self.bounds, owner: self, userData: nil, assumeInside: true)
+        MainActor.assumeIsolated {
+            _ = self.addTrackingRect(self.bounds, owner: self, userData: nil, assumeInside: true)
+        }
     }
     
     

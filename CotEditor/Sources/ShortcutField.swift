@@ -130,9 +130,11 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
         
         super.awakeFromNib()
         
-        // fix the alignment to right regardless the UI layout direction
-        self.alignment = .right
-        self.baseWritingDirection = .leftToRight
+        MainActor.assumeIsolated {
+            // fix the alignment to right regardless the UI layout direction
+            self.alignment = .right
+            self.baseWritingDirection = .leftToRight
+        }
     }
     
     

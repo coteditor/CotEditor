@@ -140,66 +140,67 @@ private enum BundleIdentifier {
         
         super.awakeFromNib()
         
-        self.menuUpdateObservers.removeAll()
-        
-        // sync menus with setting list updates
-        withContinuousObservationTracking(initial: true) {
-            _ = EncodingManager.shared.fileEncodings
-        } onChange: {
-            Task { @MainActor in
-                self.encodingsMenu?.items = EncodingManager.shared.fileEncodings.map(\.menuItem)
-            }
-        }
-        
-        self.lineEndingsMenu?.items = LineEnding.allCases.map { lineEnding in
-            let item = NSMenuItem()
-            item.title = "\(lineEnding.description) (\(lineEnding.label))"
-            item.tag = lineEnding.index
-            item.action = #selector(Document.changeLineEnding(_:))
-            item.isHidden = !lineEnding.isBasic
-            item.keyEquivalentModifierMask = lineEnding.isBasic ? [] : [.option]
+        MainActor.assumeIsolated {
+            self.menuUpdateObservers.removeAll()
             
-            return item
-        }
-        
-        SyntaxManager.shared.$settingNames
-            .map {
-                $0.map {
-                    let item = NSMenuItem(title: $0, action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
-                    item.representedObject = $0
-                    return item
+            // sync menus with setting list updates
+            withContinuousObservationTracking(initial: true) {
+                _ = EncodingManager.shared.fileEncodings
+            } onChange: {
+                Task { @MainActor in
+                    self.encodingsMenu?.items = EncodingManager.shared.fileEncodings.map(\.menuItem)
                 }
             }
-            .receive(on: RunLoop.main)
-            .sink { [weak self] items in
-                guard let menu = self?.syntaxesMenu else { return }
+            
+            self.lineEndingsMenu?.items = LineEnding.allCases.map { lineEnding in
+                let item = NSMenuItem()
+                item.title = "\(lineEnding.description) (\(lineEnding.label))"
+                item.tag = lineEnding.index
+                item.action = #selector(Document.changeLineEnding(_:))
+                item.isHidden = !lineEnding.isBasic
+                item.keyEquivalentModifierMask = lineEnding.isBasic ? [] : [.option]
                 
-                let recolorItem = menu.items.first { $0.action == #selector((any SyntaxChanging).recolorAll) }
-                let noneItem = NSMenuItem(title: String(localized: "SyntaxName.none", defaultValue: "None", table: "Syntax"), action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
-                noneItem.representedObject = SyntaxName.none
-                
-                menu.removeAllItems()
-                menu.addItem(noneItem)
-                menu.addItem(.separator())
-                menu.items += items
-                menu.addItem(.separator())
-                menu.addItem(recolorItem!)
+                return item
             }
-            .store(in: &self.menuUpdateObservers)
-        
-        ThemeManager.shared.$settingNames
-            .map { $0.map { NSMenuItem(title: $0, action: #selector((any ThemeChanging).changeTheme), keyEquivalent: "") } }
-            .receive(on: RunLoop.main)
-            .assign(to: \.items, on: self.themesMenu!)
-            .store(in: &self.menuUpdateObservers)
-        
-        SnippetManager.shared.menu = self.snippetMenu!
-        
-        ScriptManager.shared.observeScriptsDirectory()
-        
-        // build Unicode normalization menu items
-        self.normalizationMenu?.items = (UnicodeNormalizationForm.standardForms + [nil] +
-                                         UnicodeNormalizationForm.modifiedForms)
+            
+            SyntaxManager.shared.$settingNames
+                .map {
+                    $0.map {
+                        let item = NSMenuItem(title: $0, action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
+                        item.representedObject = $0
+                        return item
+                    }
+                }
+                .receive(on: RunLoop.main)
+                .sink { [weak self] items in
+                    guard let menu = self?.syntaxesMenu else { return }
+                    
+                    let recolorItem = menu.items.first { $0.action == #selector((any SyntaxChanging).recolorAll) }
+                    let noneItem = NSMenuItem(title: String(localized: "SyntaxName.none", defaultValue: "None", table: "Syntax"), action: #selector((any SyntaxChanging).changeSyntax), keyEquivalent: "")
+                    noneItem.representedObject = SyntaxName.none
+                    
+                    menu.removeAllItems()
+                    menu.addItem(noneItem)
+                    menu.addItem(.separator())
+                    menu.items += items
+                    menu.addItem(.separator())
+                    menu.addItem(recolorItem!)
+                }
+                .store(in: &self.menuUpdateObservers)
+            
+            ThemeManager.shared.$settingNames
+                .map { $0.map { NSMenuItem(title: $0, action: #selector((any ThemeChanging).changeTheme), keyEquivalent: "") } }
+                .receive(on: RunLoop.main)
+                .assign(to: \.items, on: self.themesMenu!)
+                .store(in: &self.menuUpdateObservers)
+            
+            SnippetManager.shared.menu = self.snippetMenu!
+            
+            ScriptManager.shared.observeScriptsDirectory()
+            
+            // build Unicode normalization menu items
+            self.normalizationMenu?.items = (UnicodeNormalizationForm.standardForms + [nil] +
+                                             UnicodeNormalizationForm.modifiedForms)
             .map { form in
                 guard let form else { return .separator() }
                 
@@ -211,27 +212,28 @@ private enum BundleIdentifier {
                 item.toolTip = form.localizedDescription
                 return item
             }
-        
-        // build multiple replacement menu items
-        ReplacementManager.shared.$settingNames
-            .receive(on: RunLoop.main)
-            .sink {
-                guard let menu = self.multipleReplaceMenu else { return }
-                
-                let manageItem = menu.items.last
-                menu.items = $0.map {
-                    let item = NSMenuItem()
-                    item.title = $0
-                    item.action = #selector(NSTextView.performTextFinderAction)
-                    item.tag = TextFinder.Action.multipleReplace.rawValue
-                    item.representedObject = $0
-                    return item
-                } + [
-                    .separator(),
-                    manageItem!,
-                ]
-            }
-            .store(in: &self.menuUpdateObservers)
+            
+            // build multiple replacement menu items
+            ReplacementManager.shared.$settingNames
+                .receive(on: RunLoop.main)
+                .sink {
+                    guard let menu = self.multipleReplaceMenu else { return }
+                    
+                    let manageItem = menu.items.last
+                    menu.items = $0.map {
+                        let item = NSMenuItem()
+                        item.title = $0
+                        item.action = #selector(NSTextView.performTextFinderAction)
+                        item.tag = TextFinder.Action.multipleReplace.rawValue
+                        item.representedObject = $0
+                        return item
+                    } + [
+                        .separator(),
+                        manageItem!,
+                    ]
+                }
+                .store(in: &self.menuUpdateObservers)
+        }
     }
     
     
