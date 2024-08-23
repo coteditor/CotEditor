@@ -32,6 +32,7 @@ struct FileNode: Equatable {
     enum Kind {
         
         case folder
+        case gitDirectory
         case general
         case archive
         case image
@@ -43,11 +44,11 @@ struct FileNode: Equatable {
     var name: String
     var paths: [String]
     var children: [FileNode]?
+    var isDirectory: Bool
     var kind: Kind
     var permissions: FilePermissions
     var fileURL: URL
     
-    var isDirectory: Bool  { self.kind == .folder }
     var isHidden: Bool  { self.name.starts(with: ".") }
     var isWritable: Bool  { self.permissions.user.contains(.write) }
     
@@ -60,11 +61,12 @@ struct FileNode: Equatable {
         
         self.name = filename
         self.paths = paths
+        self.isDirectory = fileWrapper.isDirectory
         self.fileURL = fileURL
         self.permissions = FilePermissions(mask: fileWrapper.fileAttributes[FileAttributeKey.posixPermissions] as? Int16 ?? 0)
-        self.kind = fileWrapper.isDirectory ? .folder : Kind(filenameExtension: filename.pathExtension)
+        self.kind = Kind(filename: filename, isDirectory: fileWrapper.isDirectory)
         
-        if fileWrapper.isDirectory {
+        if fileWrapper.isDirectory, self.kind != .gitDirectory {
             self.children = fileWrapper.fileWrappers?
                 .compactMap { FileNode(fileWrapper: $0.value, paths: paths + [filename], fileURL: fileURL.appending(component: $0.key)) }
                 .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
@@ -138,10 +140,18 @@ extension [FileNode] {
 
 extension FileNode.Kind {
     
-    init(filenameExtension: String?) {
+    init(filename: String, isDirectory: Bool) {
+        
+        if isDirectory {
+            self = switch filename {
+                case ".git": .gitDirectory
+                default: .folder
+            }
+            return
+        }
         
         guard
-            let filenameExtension,
+            let filenameExtension = filename.pathExtension,
             let uti = UTType(filenameExtension: filenameExtension)
         else {
             self = .general
@@ -169,6 +179,7 @@ extension FileNode.Kind {
         
         switch self {
             case .folder: "folder"
+            case .gitDirectory: "folder.badge.gearshape"
             case .general: "doc"
             case .archive: "zipper.page"
             case .image: "photo"
@@ -184,6 +195,9 @@ extension FileNode.Kind {
         switch self {
             case .folder:
                 String(localized: "FileNode.Kind.folder.label", defaultValue: "Folder", table: "Document",
+                       comment: "accessibility description for icon in file browser")
+            case .gitDirectory:
+                String(localized: "FileNode.Kind.gitDirectory.label", defaultValue: "Git directory", table: "Document",
                        comment: "accessibility description for icon in file browser")
             case .general:
                 String(localized: "FileNode.Kind.general.label", defaultValue: "Document", table: "Document",

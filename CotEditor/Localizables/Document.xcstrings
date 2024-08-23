@@ -1936,6 +1936,48 @@
         }
       }
     },
+    "FileNode.Kind.git.label" : {
+      "comment" : "accessibility description for icon in file browser",
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Git-Ordner"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Git directory"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Git directory"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gitディレクトリ"
+          }
+        }
+      }
+    },
+    "FileNode.Kind.gitDirectory.label" : {
+      "comment" : "accessibility description for icon in file browser",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Git directory"
+          }
+        }
+      }
+    },
     "FileNode.Kind.image.label" : {
       "comment" : "accessibility description for icon in file browser",
       "extractionState" : "extracted_with_value",
