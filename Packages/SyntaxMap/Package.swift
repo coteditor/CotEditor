@@ -36,4 +36,7 @@ for target in package.targets {
     target.plugins = [
         .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLint"),
     ]
+    target.swiftSettings = [
+        .enableUpcomingFeature("ExistentialAny"),
+    ]
 }
