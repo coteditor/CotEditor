@@ -97,9 +97,6 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
     }
     
     
-    private override init() { }
-    
-    
     /// Returns object name which is determined in the sdef file.
     override var objectSpecifier: NSScriptObjectSpecifier? {
         
