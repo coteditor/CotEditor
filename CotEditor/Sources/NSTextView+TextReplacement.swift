@@ -27,6 +27,8 @@ import AppKit
 import StringBasics
 import TextEditing
 
+extension NSValue: @unchecked @retroactive Sendable { }
+
 extension NSTextView {
     
     // MARK: Public Methods
