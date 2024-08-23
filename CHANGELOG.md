@@ -28,6 +28,7 @@
 - Improve the performance of counting values in the editor for the status bar and the document inspector to avoid flicking of the display.
 - Set the editor's kerning to zero when a monospaced font is set via the font panel.
 - Update the `cot` command to ignore piped text if a file to open is specified.
+- Rename the “New CotEditor Document with Selection” service with “New CotEditor Window Containing Selection”.
 - Ignore empty outline items.
 - Avoid the theme loading error when a value is missing.
 - Make more table columns sortable.

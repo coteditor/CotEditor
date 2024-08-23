@@ -129,7 +129,7 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>New CotEditor Document with Selection</string>
+				<string>New CotEditor Window Containing Selection</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>openSelection</string>

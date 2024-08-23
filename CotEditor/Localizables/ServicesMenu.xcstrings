@@ -1,84 +1,85 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "New CotEditor Document with Selection" : {
+    "New CotEditor Window Containing Selection" : {
+      "comment" : "Refer how Apple translates “New TextEdit Window Containing Selection”",
       "extractionState" : "manual",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Nový dokument CotEditoru s výběrem"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neues CotEditor-Dokument mit Auswahl"
+            "value" : "Auswahl in neuem CotEditor-Fenster"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "New CotEditor Document with Selection"
+            "value" : "New CotEditor Window Containing Selection"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Abrir fichero en CotEditor"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Nouveau document CotEditor avec la sélection"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Nuovo documento CotEditor dalla selezione"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選択範囲を含む新規書類をCotEditorで開く"
+            "value" : "選択部分を含む新しいCotEditorウインドウを開く"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "선택한 내용으로 새로운 CotEditor 문서 생성"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nieuw CotEditor-document met selectie"
+            "value" : "Nieuw CotEditor-venster met selectie"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Novo Documento do CotEditor com Seleção"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Seçimden Yeni CotEditor Belgesi"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "使用选中内容创建新的CotEditor文稿"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "使用選中內容創建新的CotEditor文件"
           }
         }
