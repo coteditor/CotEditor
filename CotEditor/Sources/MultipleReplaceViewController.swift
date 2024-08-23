@@ -269,7 +269,9 @@ final class MultipleReplaceViewController: NSViewController {
         // register undo
         if let undoManager = self.undoManager {
             undoManager.registerUndo(withTarget: self) { target in
-                target.removeReplacements(at: rowIndexes)
+                MainActor.assumeIsolated {
+                    target.removeReplacements(at: rowIndexes)
+                }
             }
             if !undoManager.isUndoing {
                 undoManager.setActionName(String(localized: "Insert Rule", table: "MultipleReplace", comment: "action name"))
@@ -297,7 +299,9 @@ final class MultipleReplaceViewController: NSViewController {
         // register undo
         if let undoManager = self.undoManager {
             undoManager.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
-                target.insertReplacements(replacements, at: rowIndexes)
+                MainActor.assumeIsolated {
+                    target.insertReplacements(replacements, at: rowIndexes)
+                }
             }
             if !undoManager.isUndoing {
                 undoManager.setActionName(String(localized: "Delete Rules", table: "MultipleReplace", comment: "action name"))
@@ -329,7 +333,9 @@ final class MultipleReplaceViewController: NSViewController {
         // register undo
         if let undoManager = self.undoManager {
             undoManager.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
-                target.updateReplacements(replacements, at: rowIndexes)
+                MainActor.assumeIsolated {
+                    target.updateReplacements(replacements, at: rowIndexes)
+                }
             }
             if !undoManager.isUndoing {
                 undoManager.setActionName(String(localized: "Edit Rule", table: "MultipleReplace", comment: "action name"))
@@ -364,7 +370,9 @@ final class MultipleReplaceViewController: NSViewController {
         // register undo
         if let undoManager = self.undoManager {
             undoManager.registerUndo(withTarget: self) { target in
-                target.moveReplacements(from: destinationRows, to: sourceRows)
+                MainActor.assumeIsolated {
+                    target.moveReplacements(from: destinationRows, to: sourceRows)
+                }
             }
             if !undoManager.isUndoing {
                 undoManager.setActionName(String(localized: "Move Rules", table: "MultipleReplace", comment: "action name"))

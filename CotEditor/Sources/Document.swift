@@ -934,12 +934,18 @@ extension Document: EditorSource {
         // register undo
         if let undoManager = self.undoManager {
             undoManager.registerUndo(withTarget: self) { [currentFileEncoding = self.fileEncoding, shouldSaveEncodingXattr = self.shouldSaveEncodingXattr] target in
-                target.fileEncoding = currentFileEncoding
-                target.shouldSaveEncodingXattr = shouldSaveEncodingXattr
-                target.allowsLossySaving = false
-                
-                // register redo
-                target.undoManager?.registerUndo(withTarget: target) { $0.changeEncoding(to: fileEncoding) }
+                MainActor.assumeIsolated {
+                    target.fileEncoding = currentFileEncoding
+                    target.shouldSaveEncodingXattr = shouldSaveEncodingXattr
+                    target.allowsLossySaving = false
+                    
+                    // register redo
+                    target.undoManager?.registerUndo(withTarget: target) { target in
+                        MainActor.assumeIsolated {
+                            target.changeEncoding(to: fileEncoding)
+                        }
+                    }
+                }
             }
             undoManager.setActionName(String(localized: "Encoding to “\(fileEncoding.localizedName)”",
                                              table: "MainMenu", comment: "undo action name"))
@@ -965,14 +971,20 @@ extension Document: EditorSource {
         if let undoManager = self.undoManager {
             let selectedRanges = self.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection).map(\.selectedRange)
             undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.textStorage.string] target in
-                target.textStorage.replaceContent(with: string)
-                target.lineEnding = currentLineEnding
-                for (textView, range) in zip(target.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection), selectedRanges) {
-                    textView.selectedRange = range
+                MainActor.assumeIsolated {
+                    target.textStorage.replaceContent(with: string)
+                    target.lineEnding = currentLineEnding
+                    for (textView, range) in zip(target.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection), selectedRanges) {
+                        textView.selectedRange = range
+                    }
+                    
+                    // register redo
+                    target.undoManager?.registerUndo(withTarget: target) { target in
+                        MainActor.assumeIsolated {
+                            target.changeLineEnding(to: lineEnding)
+                        }
+                    }
                 }
-                
-                // register redo
-                target.undoManager?.registerUndo(withTarget: target) { $0.changeLineEnding(to: lineEnding) }
             }
             undoManager.setActionName(String(localized: "Line Endings to \(lineEnding.label)",
                                              table: "MainMenu", comment: "undo action name"))

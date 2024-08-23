@@ -127,7 +127,9 @@ extension NSTextView {
         }
         
         self.undoManager?.registerUndo(withTarget: self) { target in
-            target.setSelectedRangesWithUndo(ranges)
+            MainActor.assumeIsolated {
+                target.setSelectedRangesWithUndo(ranges)
+            }
         }
     }
     
