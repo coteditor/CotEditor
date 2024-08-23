@@ -27,6 +27,7 @@ import AppKit
 import Combine
 import AudioToolbox
 import Defaults
+import ControlUI
 import URLUtils
 
 /// Column identifiers for outline view.
@@ -406,10 +407,11 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.alignment = .center
         
-        let textField = NSTextField()
+        let textField = PlainInputTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.drawsBackground = false
         textField.isBordered = false
+        textField.lineBreakMode = .byTruncatingMiddle
         textField.isEditable = true
         textField.delegate = self
         
