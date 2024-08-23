@@ -868,7 +868,7 @@ extension Document: EditorSource {
         // -> This method won't be invoked on Resume. (2015-01-26)
         
         Task {
-            await ScriptManager.shared.dispatch(event: .documentOpened, document: await self.objectSpecifier)
+            await ScriptManager.shared.dispatch(event: .documentOpened, document: self.objectSpecifier)
         }
     }
     
