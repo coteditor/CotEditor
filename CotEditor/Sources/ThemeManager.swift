@@ -30,14 +30,14 @@ import UniformTypeIdentifiers
 import Defaults
 import URLUtils
 
-final class ThemeManager: SettingFileManaging {
+final class ThemeManager: SettingFileManaging, @unchecked Sendable {
     
     typealias Setting = Theme
     
     
     // MARK: Public Properties
     
-    nonisolated(unsafe) static let shared = ThemeManager()
+    static let shared = ThemeManager()
     
     
     // MARK: Setting File Managing Properties

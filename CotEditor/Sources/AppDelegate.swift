@@ -213,14 +213,13 @@ private enum BundleIdentifier {
             }
         
         // build multiple replacement menu items
-        withContinuousObservationTracking(initial: true) {
-            _ = ReplacementManager.shared.settingNames
-        } onChange: {
-            Task { @MainActor in
+        ReplacementManager.shared.$settingNames
+            .receive(on: RunLoop.main)
+            .sink {
                 guard let menu = self.multipleReplaceMenu else { return }
                 
                 let manageItem = menu.items.last
-                menu.items = ReplacementManager.shared.settingNames.map {
+                menu.items = $0.map {
                     let item = NSMenuItem()
                     item.title = $0
                     item.action = #selector(NSTextView.performTextFinderAction)
@@ -232,7 +231,7 @@ private enum BundleIdentifier {
                     manageItem!,
                 ]
             }
-        }
+            .store(in: &self.menuUpdateObservers)
     }
     
     

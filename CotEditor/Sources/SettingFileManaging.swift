@@ -93,7 +93,7 @@ extension URL {
 
 // MARK: -
 
-protocol SettingFileManaging: AnyObject {
+protocol SettingFileManaging: AnyObject, Sendable {
     
     associatedtype Setting
     

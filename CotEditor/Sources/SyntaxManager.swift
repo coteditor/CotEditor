@@ -41,7 +41,7 @@ enum SyntaxName {
 }
 
 
-final class SyntaxManager: SettingFileManaging {
+final class SyntaxManager: SettingFileManaging, @unchecked Sendable {
     
     typealias Setting = Syntax
     
@@ -51,7 +51,7 @@ final class SyntaxManager: SettingFileManaging {
     
     // MARK: Public Properties
     
-    nonisolated(unsafe) static let shared = SyntaxManager()
+    static let shared = SyntaxManager()
     
     
     // MARK: Setting File Managing Properties

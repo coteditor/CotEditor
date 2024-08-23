@@ -29,14 +29,14 @@ import TextFind
 import UniformTypeIdentifiers
 import URLUtils
 
-@Observable final class ReplacementManager: SettingFileManaging {
+final class ReplacementManager: SettingFileManaging, @unchecked Sendable {
     
     typealias Setting = MultipleReplace
     
     
     // MARK: Public Properties
     
-    nonisolated(unsafe) static let shared = ReplacementManager()
+    static let shared = ReplacementManager()
     
     
     // MARK: Setting File Managing Properties
@@ -46,7 +46,7 @@ import URLUtils
     let reservedNames: [String] = []
     
     let bundledSettingNames: [String] = []
-    var settingNames: [String] = []
+    @Published var settingNames: [String] = []
     var cachedSettings: [String: Setting] = [:]
     
     
