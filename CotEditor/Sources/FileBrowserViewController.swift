@@ -67,21 +67,15 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     override func loadView() {
         
         let outlineView = NSOutlineView()
-        outlineView.style = .sourceList
         outlineView.headerView = nil
-        
-        let column = NSTableColumn()
-        outlineView.addTableColumn(column)
+        outlineView.addTableColumn(NSTableColumn())
         
         let scrollView = NSScrollView()
         scrollView.documentView = outlineView
-        scrollView.drawsBackground = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         let addButton = NSPopUpButton()
         addButton.pullsDown = true
         addButton.isBordered = false
-        addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.addItem(withTitle: "")
         addButton.item(at: 0)!.image = NSImage(systemSymbolName: "plus", accessibilityDescription: String(localized: "Add", table: "Document"))
         
@@ -92,6 +86,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.outlineView = outlineView
         self.addButton = addButton
         
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
