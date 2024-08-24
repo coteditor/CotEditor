@@ -64,7 +64,7 @@ actor UserUnixTask {
         
         do {
             try await self.task.execute(withArguments: arguments)
-        } catch where (error as? POSIXError)?.code == .ENOTBLK {  // on user cancellation
+        } catch let error as POSIXError where error.code == .ENOTBLK {  // on user cancellation
             return
         } catch {
             throw error

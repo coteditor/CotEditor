@@ -368,12 +368,10 @@ final class DirectoryDocument: NSDocument {
         
         do {
             try self.moveItem(from: fileURL, to: newURL)
+        } catch let error as CocoaError where error.errorCode == CocoaError.fileWriteFileExists.rawValue {
+            throw InvalidNameError.duplicated(name: name)
         } catch {
-            if (error as? CocoaError)?.errorCode == CocoaError.fileWriteFileExists.rawValue {
-                throw InvalidNameError.duplicated(name: name)
-            } else {
-                throw error
-            }
+            throw error
         }
     }
     
