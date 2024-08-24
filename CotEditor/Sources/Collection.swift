@@ -73,8 +73,8 @@ extension Collection {
 
 extension Sequence {
     
-    // Asynchronously returns an array containing the results of mapping the given closure over the sequence’s elements.
-    func asyncMap<T>(_ transform: @Sendable (Element) async throws -> T) async rethrows -> [T] {
+    /// Asynchronously returns an array containing the results of mapping the given closure over the sequence’s elements.
+    func asyncMap<T, E: Error>(_ transform: @Sendable (Element) async throws(E) -> T) async throws(E) -> [T] {
         
         var values = [T]()
         for element in self {

@@ -32,7 +32,7 @@ extension Collection {
     ///   - range: The range to find in.
     ///   - predicate: A closure that takes an element as its argument and returns a Boolean value that indicates whether the passed element represents a match.
     /// - Returns: The index.
-    func binarySearchedFirstIndex(in range: Range<Index>? = nil, where predicate: (Element) throws -> Bool) rethrows -> Index? {
+    func binarySearchedFirstIndex<E: Error>(in range: Range<Index>? = nil, where predicate: (Element) throws(E) -> Bool) throws(E) -> Index? {
         
         let range = range ?? self.startIndex..<self.endIndex
         
