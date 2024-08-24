@@ -201,12 +201,14 @@ final class DirectoryDocument: NSDocument {
                 try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.1))
                 
                 self.performAsynchronousFileAccess { [unowned self] fileAccessCompletionHandler in
-                    defer { fileAccessCompletionHandler() }
                     guard
                         let fileURL,
-                        let fileWrapper = try? FileWrapper(url: fileURL),
-                        FileNode(fileWrapper: fileWrapper, fileURL: fileURL) != self.fileNode
-                    else { return }
+                        let fileWrapper = try? FileWrapper(url: fileURL)
+                    else { return fileAccessCompletionHandler() }
+                    
+                    fileAccessCompletionHandler()
+                    
+                    guard FileNode(fileWrapper: fileWrapper, fileURL: fileURL) != self.fileNode else { return }
                     
                     // remake node tree if needed
                     Task { @MainActor in
