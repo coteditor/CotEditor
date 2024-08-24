@@ -25,7 +25,7 @@
 //
 
 import Foundation
-import StringBasics
+import StringUtils
 import Syntax
 
 public struct CommentTypes: OptionSet, Sendable {

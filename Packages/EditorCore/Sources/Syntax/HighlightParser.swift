@@ -26,7 +26,7 @@
 //
 
 import Foundation
-import StringBasics
+import StringUtils
 import ValueRange
 
 

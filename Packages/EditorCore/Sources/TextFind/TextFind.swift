@@ -24,7 +24,7 @@
 //
 
 import Foundation
-import StringBasics
+import StringUtils
 import ValueRange
 
 public struct TextFind: Equatable, Sendable {

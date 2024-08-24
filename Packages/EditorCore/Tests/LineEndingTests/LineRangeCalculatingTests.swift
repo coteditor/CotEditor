@@ -26,7 +26,7 @@
 
 import Foundation
 import Testing
-import StringBasics
+import StringUtils
 import ValueRange
 @testable import LineEnding
 

@@ -1,6 +1,6 @@
 //
 //  LineRangeTests.swift
-//  StringBasicsTests
+//  StringUtilsTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,7 @@
 
 import Foundation
 import Testing
-@testable import StringBasics
+@testable import StringUtils
 
 struct LineRangeTests {
     

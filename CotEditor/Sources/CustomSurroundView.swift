@@ -24,7 +24,7 @@
 //
 
 import SwiftUI
-import StringBasics
+import StringUtils
 
 struct CustomSurroundView: View {
     

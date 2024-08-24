@@ -27,7 +27,7 @@
 import Foundation
 import Testing
 import Syntax
-import struct StringBasics.Pair
+import struct StringUtils.Pair
 @testable import TextEditing
 
 struct StringCommentingTests {

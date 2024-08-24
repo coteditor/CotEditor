@@ -25,7 +25,7 @@
 //
 
 import Foundation
-import StringBasics
+import StringUtils
 
 /// Edited range storage to postpone validations.
 ///

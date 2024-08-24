@@ -28,7 +28,7 @@ import Foundation
 import Testing
 import Yams
 import Syntax
-import StringBasics
+import StringUtils
 @testable import CotEditor
 
 actor SyntaxTests {

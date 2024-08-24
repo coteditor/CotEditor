@@ -25,7 +25,7 @@
 
 import Foundation
 import Observation
-import StringBasics
+import StringUtils
 
 @MainActor protocol EditorSource: AnyObject {
     

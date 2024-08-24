@@ -25,7 +25,7 @@
 
 import AppKit
 import Defaults
-import StringBasics
+import StringUtils
 
 struct Console {
     

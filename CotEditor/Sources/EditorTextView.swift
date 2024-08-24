@@ -30,7 +30,7 @@ import Defaults
 import LineEnding
 import Shortcut
 import Syntax
-import StringBasics
+import StringUtils
 
 private extension NSAttributedString.Key {
     

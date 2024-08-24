@@ -1,6 +1,6 @@
 //
 //  String+LineRange.swift
-//  StringBasics
+//  StringUtils
 //
 //  CotEditor
 //  https://coteditor.com

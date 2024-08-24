@@ -20,7 +20,7 @@ let package = Package(
             "Invisible",
             "LineEnding",
             "LineSort",
-            "StringBasics",
+            "StringUtils",
             "Syntax",
             "TextClipping",
             "TextEditing",
@@ -39,7 +39,7 @@ let package = Package(
         .library(name: "Invisible", targets: ["Invisible"]),
         .library(name: "LineEnding", targets: ["LineEnding"]),
         .library(name: "LineSort", targets: ["LineSort"]),
-        .library(name: "StringBasics", targets: ["StringBasics"]),
+        .library(name: "StringUtils", targets: ["StringUtils"]),
         .library(name: "Syntax", targets: ["Syntax"]),
         .library(name: "TextClipping", targets: ["TextClipping"]),
         .library(name: "TextEditing", targets: ["TextEditing"]),
@@ -56,7 +56,7 @@ let package = Package(
         .target(name: "Defaults"),
         .testTarget(name: "DefaultsTests", dependencies: ["Defaults"]),
         
-        .target(name: "EditedRangeSet", dependencies: ["StringBasics"]),
+        .target(name: "EditedRangeSet", dependencies: ["StringUtils"]),
         .testTarget(name: "EditedRangeSetTests", dependencies: ["EditedRangeSet"]),
         
         .target(name: "FileEncoding", dependencies: ["ValueRange"], resources: [.process("Resources")]),
@@ -74,24 +74,24 @@ let package = Package(
         .target(name: "Invisible"),
         
         .target(name: "LineEnding", dependencies: ["ValueRange"]),
-        .testTarget(name: "LineEndingTests", dependencies: ["LineEnding", "StringBasics"]),
+        .testTarget(name: "LineEndingTests", dependencies: ["LineEnding", "StringUtils"]),
         
-        .target(name: "LineSort", dependencies: ["StringBasics"]),
+        .target(name: "LineSort", dependencies: ["StringUtils"]),
         .testTarget(name: "LineSortTests", dependencies: ["LineSort"]),
         
-        .target(name: "StringBasics"),
-        .testTarget(name: "StringBasicsTests", dependencies: ["StringBasics"]),
+        .target(name: "StringUtils"),
+        .testTarget(name: "StringUtilsTests", dependencies: ["StringUtils"]),
         
-        .target(name: "Syntax", dependencies: ["StringBasics", "ValueRange"]),
+        .target(name: "Syntax", dependencies: ["StringUtils", "ValueRange"]),
         .testTarget(name: "SyntaxTests", dependencies: ["Syntax"]),
         
         .target(name: "TextClipping"),
         .testTarget(name: "TextClippingTests", dependencies: ["TextClipping"], resources: [.process("Resources")]),
         
-        .target(name: "TextEditing", dependencies: ["StringBasics", "Syntax"]),
+        .target(name: "TextEditing", dependencies: ["StringUtils", "Syntax"]),
         .testTarget(name: "TextEditingTests", dependencies: ["TextEditing"]),
         
-        .target(name: "TextFind", dependencies: ["StringBasics", "ValueRange"]),
+        .target(name: "TextFind", dependencies: ["StringUtils", "ValueRange"]),
         .testTarget(name: "TextFindTests", dependencies: ["TextFind"]),
         
         .target(name: "UnicodeNormalization"),

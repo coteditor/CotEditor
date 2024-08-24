@@ -25,7 +25,7 @@
 //
 
 import Foundation
-import StringBasics
+import StringUtils
 import ValueRange
 
 protocol LazyLineEndingCaching: AnyObject, LineRangeCalculating {

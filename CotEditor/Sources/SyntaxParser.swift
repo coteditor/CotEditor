@@ -28,7 +28,7 @@ import Foundation
 import AppKit.NSTextStorage
 import OSLog
 import EditedRangeSet
-import StringBasics
+import StringUtils
 import Syntax
 
 extension NSAttributedString.Key {

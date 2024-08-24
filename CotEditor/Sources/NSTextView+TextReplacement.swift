@@ -24,7 +24,7 @@
 //
 
 import AppKit
-import StringBasics
+import StringUtils
 import TextEditing
 
 extension NSValue: @unchecked @retroactive Sendable { }

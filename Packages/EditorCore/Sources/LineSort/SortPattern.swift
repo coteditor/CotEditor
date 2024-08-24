@@ -25,7 +25,7 @@
 //
 
 import Foundation
-import StringBasics
+import StringUtils
 
 public enum SortPatternError: Error {
     

@@ -1,6 +1,6 @@
 //
 //  String+Escaping.swift
-//  StringBasics
+//  StringUtils
 //
 //  CotEditor
 //  https://coteditor.com

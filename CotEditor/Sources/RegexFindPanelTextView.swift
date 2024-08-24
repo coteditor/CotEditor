@@ -25,7 +25,7 @@
 
 import AppKit
 import RegexHighlighting
-import StringBasics
+import StringUtils
 
 final class RegexFindPanelTextView: FindPanelTextView {
     

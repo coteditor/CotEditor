@@ -31,7 +31,7 @@ import ControlUI
 import CharacterInfo
 import Defaults
 import FuzzyRange
-import StringBasics
+import StringUtils
 import TextClipping
 
 final class EditorTextViewController: NSViewController, NSServicesMenuRequestor, NSTextViewDelegate {
