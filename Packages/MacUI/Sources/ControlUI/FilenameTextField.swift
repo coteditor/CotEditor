@@ -1,6 +1,6 @@
 //
 //
-//  PlainInputTextField.swift
+//  FilenameTextField.swift
 //  ControlUI
 //
 //  CotEditor
@@ -26,19 +26,28 @@
 //
 
 import AppKit
+import URLUtils
 
 /// Text field that keeps the standard text color while editing.
-public final class PlainInputTextField: NSTextField {
+public final class FilenameTextField: NSTextField {
     
     public override static var cellClass: AnyClass? {
         
-        get { PlainInputTextFieldCell.self }
+        get { FilenameTextFieldCell.self }
         set { _ = newValue }
+    }
+    
+    
+    public override func mouseDown(with event: NSEvent) {
+        
+        super.mouseDown(with: event)
+        
+        self.currentEditor()?.selectFilename()
     }
 }
 
 
-private final class PlainInputTextFieldCell: NSTextFieldCell {
+private final class FilenameTextFieldCell: NSTextFieldCell {
     
     private var originalTextColor: NSColor?
     
@@ -57,5 +66,15 @@ private final class PlainInputTextFieldCell: NSTextFieldCell {
         super.endEditing(textObj)
         
         self.textColor = self.originalTextColor
+    }
+}
+
+
+private extension NSText {
+    
+    /// Selects all text without filename extension.
+    func selectFilename() {
+        
+        self.selectedRange = NSRange(..<self.string.deletingPathExtension.utf16.count)
     }
 }

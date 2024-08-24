@@ -407,7 +407,7 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.alignment = .center
         
-        let textField = PlainInputTextField()
+        let textField = FilenameTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.drawsBackground = false
         textField.isBordered = false
