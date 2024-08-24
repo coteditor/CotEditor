@@ -351,6 +351,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             }
             self.keyStateObservers.removeAll()
             self.instanceHighlightTask?.cancel()
+            self.instanceHighlightTask = nil
         }
     }
     

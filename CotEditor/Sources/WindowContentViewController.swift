@@ -142,7 +142,10 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         super.viewDidDisappear()
         
         self.versionBrowserEnterObservationTask?.cancel()
+        self.versionBrowserEnterObservationTask = nil
         self.versionBrowserExitObservationTask?.cancel()
+        self.versionBrowserExitObservationTask = nil
+        
         if let sidebarStateCache {
             self.sidebarViewItem?.isCollapsed = sidebarStateCache
             self.sidebarStateCache = nil

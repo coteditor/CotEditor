@@ -114,7 +114,9 @@ struct EditorCount: Equatable {
     func cancel() {
         
         self.contentTask?.cancel()
+        self.contentTask = nil
         self.selectionTask?.cancel()
+        self.selectionTask = nil
     }
     
     
@@ -215,8 +217,7 @@ struct EditorCount: Equatable {
         self.types = self.updatesAll ? .all : self.statusBarRequirements
         
         if self.types.isEmpty {
-            self.contentTask?.cancel()
-            self.selectionTask?.cancel()
+            self.cancel()
             return
         }
         

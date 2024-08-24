@@ -73,7 +73,6 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     
     
     deinit {
-        self.menuUpdateTask?.cancel()
         if self.presentedItemURL != nil {
             NSFileCoordinator.removeFilePresenter(self)
         }

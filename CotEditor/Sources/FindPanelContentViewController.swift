@@ -81,9 +81,9 @@ final class FindPanelContentViewController: NSSplitViewController {
         
         self.splitViewItems = [fieldViewItem, resultViewItem, buttonViewItem]
         
-        self.resultObservationTask = Task {
+        self.resultObservationTask = Task { [weak self] in
             for await textFinder in NotificationCenter.default.notifications(named: TextFinder.didFindAllNotification).map({ $0.object as! TextFinder }) {
-                self.didFinishFindAll(in: textFinder)
+                self?.didFinishFindAll(in: textFinder)
             }
         }
     }

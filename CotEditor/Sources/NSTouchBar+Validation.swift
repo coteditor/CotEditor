@@ -114,11 +114,6 @@ extension NSTouchBar {
     private init() { }
     
     
-    deinit {
-        self.applicationObservationTask?.cancel()
-    }
-    
-    
     
     // MARK: Private Methods
     

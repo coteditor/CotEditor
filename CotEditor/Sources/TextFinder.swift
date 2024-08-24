@@ -156,15 +156,6 @@ struct TextFindAllResult {
     
     
     
-    // MARK: Lifecycle
-    
-    deinit {
-        self.findTask?.cancel()
-        self.highlightObservationTask?.cancel()
-    }
-    
-    
-    
     // MARK: Public Methods
     
     /// Schedules an incremental search.

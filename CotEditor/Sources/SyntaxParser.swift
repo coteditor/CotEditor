@@ -80,7 +80,9 @@ extension NSAttributedString.Key {
     func cancel() {
         
         self.outlineParseTask?.cancel()
+        self.outlineParseTask = nil
         self.highlightParseTask?.cancel()
+        self.highlightParseTask = nil
     }
     
     

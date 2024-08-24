@@ -144,6 +144,7 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
         
         if newWindow == nil {
             self.windowObservationTask?.cancel()
+            self.windowObservationTask = nil
         }
     }
     
