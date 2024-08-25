@@ -116,8 +116,7 @@ final class DirectoryDocument: NSDocument {
     
     override nonisolated func read(from url: URL, ofType typeName: String) throws {
         
-        let fileWrapper = try FileWrapper(url: url)
-        let node = FileNode(fileWrapper: fileWrapper, fileURL: url)
+        let node = try FileNode(at: url)
         
         DispatchQueue.syncOnMain {
             self.fileNode = node
@@ -201,18 +200,18 @@ final class DirectoryDocument: NSDocument {
                 try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.1))
                 
                 self.performAsynchronousFileAccess { [unowned self] fileAccessCompletionHandler in
-                    guard
-                        let fileURL,
-                        let fileWrapper = try? FileWrapper(url: fileURL)
-                    else { return fileAccessCompletionHandler() }
+                    guard let fileURL else { return fileAccessCompletionHandler() }
                     
                     fileAccessCompletionHandler()
                     
-                    guard FileNode(fileWrapper: fileWrapper, fileURL: fileURL) != self.fileNode else { return }
+                    guard
+                        let fileNode = try? FileNode(at: fileURL),
+                        fileNode != self.fileNode
+                    else { return }
                     
                     // remake node tree if needed
-                    Task { @MainActor in
-                        self.revert()
+                    Task { @MainActor [weak self] in
+                        self?.revert()
                     }
                 }
             }

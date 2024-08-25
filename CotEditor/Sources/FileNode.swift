@@ -25,7 +25,6 @@
 
 import Foundation
 import UniformTypeIdentifiers
-import FilePermissions
 
 struct FileNode: Equatable {
     
@@ -42,36 +41,35 @@ struct FileNode: Equatable {
     
     
     var name: String
+    var isDirectory: Bool
     var paths: [String]
     var children: [FileNode]?
-    var isDirectory: Bool
     var kind: Kind
-    var permissions: FilePermissions
+    var isWritable: Bool
     var fileURL: URL
     
     var isHidden: Bool  { self.name.starts(with: ".") }
-    var isWritable: Bool  { self.permissions.user.contains(.write) }
-    
     var directoryURL: URL  { self.isDirectory ? self.fileURL : self.fileURL.deletingLastPathComponent() }
     
     
-    init?(fileWrapper: FileWrapper, paths: [String] = [], fileURL: URL) {
+    init(at fileURL: URL, paths: [String] = []) throws {
         
-        guard let filename = fileWrapper.filename else { return nil }
+        let resourceValues = try fileURL.resourceValues(forKeys: [.isDirectoryKey, .isWritableKey])
         
-        self.name = filename
+        self.name = fileURL.lastPathComponent
         self.paths = paths
-        self.isDirectory = fileWrapper.isDirectory
+        self.isDirectory = resourceValues.isDirectory ?? false
+        self.kind = Kind(filename: self.name, isDirectory: self.isDirectory)
+        self.isWritable = resourceValues.isWritable ?? true
         self.fileURL = fileURL
-        self.permissions = FilePermissions(mask: fileWrapper.fileAttributes[FileAttributeKey.posixPermissions] as? Int16 ?? 0)
-        self.kind = Kind(filename: filename, isDirectory: fileWrapper.isDirectory)
         
-        if fileWrapper.isDirectory, self.kind != .gitDirectory {
-            self.children = fileWrapper.fileWrappers?
-                .compactMap { FileNode(fileWrapper: $0.value, paths: paths + [filename], fileURL: fileURL.appending(component: $0.key)) }
-                .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
-                .sorted(using: SortDescriptor(\.isDirectory))
-        }
+        guard self.isDirectory, self.kind != .gitDirectory else { return }
+        
+        self.children = try FileManager.default
+            .contentsOfDirectory(at: fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey])
+            .map { try FileNode(at: $0, paths: paths + [self.name]) }
+            .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
+            .sorted(using: SortDescriptor(\.isDirectory))
     }
 }
 
@@ -119,19 +117,6 @@ extension FileNode {
             .lazy
             .compactMap { $0.node(with: value, keyPath: keyPath) }
             .first
-    }
-}
-
-
-extension [FileNode] {
-    
-    func recursivelyFilter(_ isIncluded: (FileNode) -> Bool) -> [FileNode] {
-        
-        self.filter(isIncluded).map {
-            var tree = $0
-            tree.children = tree.children?.recursivelyFilter(isIncluded)
-            return tree
-        }
     }
 }
 
