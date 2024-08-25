@@ -141,7 +141,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.outlineView.reloadData()
         
         self.treeObservationTask = Task {
-            for await _ in NotificationCenter.default.notifications(named: DirectoryDocument.didRevertNotification, object: self.document).map(\.name) {
+            for await _ in NotificationCenter.default.notifications(named: DirectoryDocument.didUpdateFileNodeNotification, object: self.document).map(\.name) {
                 let selectedNode = self.outlineView.item(atRow: self.outlineView.selectedRow)
                 self.outlineView.reloadData()
                 let index = self.outlineView.row(forItem: selectedNode)

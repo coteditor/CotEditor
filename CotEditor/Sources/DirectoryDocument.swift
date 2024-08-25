@@ -30,7 +30,7 @@ import URLUtils
 
 final class DirectoryDocument: NSDocument {
     
-    nonisolated static let didRevertNotification = Notification.Name("DirectoryDocument.didRevertNotification")
+    nonisolated static let didUpdateFileNodeNotification = Notification.Name("DirectoryDocument.didUpdateFileNodeNotification")
     
     
     private enum SerializationKey {
@@ -145,7 +145,7 @@ final class DirectoryDocument: NSDocument {
         
         try super.revert(toContentsOf: url, ofType: typeName)
         
-        NotificationCenter.default.post(name: Self.didRevertNotification, object: self)
+        NotificationCenter.default.post(name: Self.didUpdateFileNodeNotification, object: self)
     }
     
     
