@@ -63,9 +63,18 @@ struct FileNode: Equatable {
         self.isWritable = resourceValues.isWritable ?? true
         self.fileURL = fileURL
         
-        guard self.isDirectory, self.kind != .gitDirectory else { return }
+        self.children = try self.readChildren()
+    }
+    
+    
+    /// Reads the contents of the directory at the receiver's `fileURL`.
+    ///
+    /// - Returns: The child nodes, or `nil` if the receiver is not a directory.
+    private func readChildren() throws -> [FileNode]? {
         
-        self.children = try FileManager.default
+        guard self.isDirectory, self.kind != .gitDirectory else { return nil }
+        
+        return try FileManager.default
             .contentsOfDirectory(at: fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey])
             .map { try FileNode(at: $0, paths: paths + [self.name]) }
             .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
