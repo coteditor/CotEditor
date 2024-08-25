@@ -26,7 +26,7 @@
 import Foundation
 import UniformTypeIdentifiers
 
-struct FileNode: Equatable {
+final class FileNode {
     
     enum Kind {
         
@@ -83,11 +83,14 @@ struct FileNode: Equatable {
 }
 
 
-extension FileNode: Hashable {
+extension FileNode: Equatable {
     
-    func hash(into hasher: inout Hasher) {
+    static func == (lhs: FileNode, rhs: FileNode) -> Bool {
         
-        hasher.combine(self.id)
+        lhs.name == rhs.name &&
+        lhs.paths == rhs.paths &&
+        lhs.isDirectory == rhs.isDirectory &&
+        lhs.permissions == rhs.permissions
     }
 }
 
