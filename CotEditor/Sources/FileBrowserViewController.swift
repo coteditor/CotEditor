@@ -320,7 +320,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         self.outlineView.reloadData()
         
-        if byExpanding, let parentNode = self.document.fileNode?.parent(of: node) {
+        if byExpanding, let parentNode = node.parent {
             self.outlineView.expandItem(parentNode)
         }
         

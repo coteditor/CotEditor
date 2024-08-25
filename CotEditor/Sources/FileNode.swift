@@ -42,26 +42,26 @@ final class FileNode {
     
     var name: String
     var isDirectory: Bool
-    var paths: [String]
     var children: [FileNode]?
     var kind: Kind
     var isWritable: Bool
     var fileURL: URL
+    weak var parent: FileNode?
     
     var isHidden: Bool  { self.name.starts(with: ".") }
     var directoryURL: URL  { self.isDirectory ? self.fileURL : self.fileURL.deletingLastPathComponent() }
     
     
-    init(at fileURL: URL, paths: [String] = []) throws {
+    init(at fileURL: URL, parent: FileNode? = nil) throws {
         
         let resourceValues = try fileURL.resourceValues(forKeys: [.isDirectoryKey, .isWritableKey])
         
         self.name = fileURL.lastPathComponent
-        self.paths = paths
         self.isDirectory = resourceValues.isDirectory ?? false
         self.kind = Kind(filename: self.name, isDirectory: self.isDirectory)
         self.isWritable = resourceValues.isWritable ?? true
         self.fileURL = fileURL
+        self.parent = parent
         
         self.children = try self.readChildren()
     }
@@ -76,7 +76,7 @@ final class FileNode {
         
         return try FileManager.default
             .contentsOfDirectory(at: fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey])
-            .map { try FileNode(at: $0, paths: paths + [self.name]) }
+            .map { try FileNode(at: $0, parent: self) }
             .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
             .sorted(using: SortDescriptor(\.isDirectory))
     }
@@ -88,34 +88,30 @@ extension FileNode: Equatable {
     static func == (lhs: FileNode, rhs: FileNode) -> Bool {
         
         lhs.name == rhs.name &&
-        lhs.paths == rhs.paths &&
         lhs.isDirectory == rhs.isDirectory &&
-        lhs.permissions == rhs.permissions
+        lhs.parents.map(\.name) == rhs.parents.map(\.name) &&
+        lhs.children?.map(\.name) == rhs.children?.map(\.name) &&
+        lhs.isWritable == rhs.isWritable
     }
 }
 
 
 extension FileNode: Identifiable {
     
-    var id: [String]  { self.paths + [self.name] }
+    var id: [String]  { self.parents.map(\.name) + [self.name] }
 }
 
 
 extension FileNode {
     
-    /// Returns the parent of the given node in the node tree.
-    ///
-    /// - Parameter node: The child node.
-    /// - Returns: The parent node.
-    func parent(of node: FileNode) -> FileNode? {
+    /// The chain of the parents to the root node from the nearest.
+    private var parents: [FileNode]  {
         
-        guard let children else { return nil }
-        
-        if children.contains(node) { return self }
-        
-        return children.lazy
-            .compactMap { $0.parent(of: node) }
-            .first
+        if let parent {
+            Array(sequence(first: parent, next: \.parent))
+        } else {
+            []
+        }
     }
     
     
