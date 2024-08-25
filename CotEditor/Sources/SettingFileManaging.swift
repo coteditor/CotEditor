@@ -28,34 +28,7 @@ import UniformTypeIdentifiers
 import AppKit.NSApplication
 import URLUtils
 
-enum SettingChange {
-    
-    case added(_ name: String)
-    case removed(_ name: String)
-    case updated(from: String, to: String)
-    
-    
-    var old: String? {
-        
-        switch self {
-            case .removed(let name), .updated(from: let name, to: _):
-                name
-            case .added:
-                nil
-        }
-    }
-    
-    
-    var new: String? {
-        
-        switch self {
-            case .added(let name), .updated(from: _, to: let name):
-                name
-            case .removed:
-                nil
-        }
-    }
-}
+typealias SettingChange = ItemChange<String>
 
 
 struct SettingState: Equatable {
