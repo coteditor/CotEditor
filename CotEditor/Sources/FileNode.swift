@@ -39,19 +39,31 @@ final class FileNode {
     }
     
     
-    var name: String
-    var isDirectory: Bool
-    var kind: Kind
-    var isWritable: Bool
-    var fileURL: URL
+    private(set) var name: String
+    let isDirectory: Bool
+    private(set) var kind: Kind
+    private(set) var isWritable: Bool
+    private(set) var fileURL: URL
     weak var parent: FileNode?
     
     var isHidden: Bool  { self.name.starts(with: ".") }
-    var directoryURL: URL  { self.isDirectory ? self.fileURL : self.fileURL.deletingLastPathComponent() }
     
     private var _children: [FileNode]?
     
     
+    /// Initializes a file node instance.
+    init(at fileURL: URL, isDirectory: Bool, parent: FileNode?) {
+        
+        self.name = fileURL.lastPathComponent
+        self.isDirectory = isDirectory
+        self.kind = Kind(filename: self.name, isDirectory: isDirectory)
+        self.isWritable = true
+        self.fileURL = fileURL
+        self.parent = parent
+    }
+    
+    
+    /// Initializes a file node instance by reading the information from the actual file.
     init(at fileURL: URL, parent: FileNode? = nil) throws {
         
         let resourceValues = try fileURL.resourceValues(forKeys: [.isDirectoryKey, .isWritableKey])
@@ -98,7 +110,6 @@ extension FileNode: Equatable {
         lhs.name == rhs.name &&
         lhs.isDirectory == rhs.isDirectory &&
         lhs.parents.map(\.name) == rhs.parents.map(\.name) &&
-        lhs.children?.map(\.name) == rhs.children?.map(\.name) &&
         lhs.isWritable == rhs.isWritable
     }
 }
@@ -123,16 +134,62 @@ extension FileNode {
     }
     
     
-    /// Returns a file node with the given ID in the receiver's tree if exists.
-    ///
-    /// - Parameter id: The identifier of the node to find.
-    /// - Returns: A found file node.
-    func node<Value: Equatable>(with value: Value, keyPath: KeyPath<FileNode, Value>) -> FileNode? {
+    /// Deletes the current children node cache.
+    func invalidateChildren() {
         
-        (self[keyPath: keyPath] == value) ? self : self.children?
-            .lazy
-            .compactMap { $0.node(with: value, keyPath: keyPath) }
-            .first
+        guard self.isDirectory, self._children != nil else { return }
+        
+        self._children = nil
+    }
+    
+    
+    /// Renames and updates related properties.
+    ///
+    /// - Parameter newName: The new name to change.
+    func rename(with newName: String) {
+        
+        assert(!newName.isEmpty)
+        
+        self.name = newName
+        self.kind = Kind(filename: newName, isDirectory: self.isDirectory)
+        self.fileURL = self.fileURL.deletingLastPathComponent().appending(path: newName)
+        
+        self.parent?._children?.sort()
+    }
+    
+    
+    /// Adds a node at the receiver.
+    ///
+    /// - Parameter node: The file node to add.
+    func addNode(_ node: FileNode) {
+        
+        assert(self.isDirectory)
+        
+        self._children?.append(node)
+        self._children?.sort()
+    }
+    
+    
+    /// Deletes the receiver from the node tree.
+    func delete() {
+        
+        guard
+            let parent,
+            let index = parent.children?.firstIndex(of: self)
+        else { return assertionFailure() }
+        
+        parent._children?.remove(at: index)
+    }
+}
+
+
+private extension [FileNode] {
+    
+    /// Sorts items for display.
+    mutating func sort() {
+        
+        self.sort(using: SortDescriptor(\.name, comparator: .localizedStandard))
+        self.sort(using: SortDescriptor(\.isDirectory))
     }
 }
 
