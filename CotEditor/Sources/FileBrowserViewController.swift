@@ -342,7 +342,7 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         
-        (item as! FileNode).children != nil
+        (item as! FileNode).isDirectory
     }
     
     

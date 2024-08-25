@@ -1966,18 +1966,6 @@
         }
       }
     },
-    "FileNode.Kind.gitDirectory.label" : {
-      "comment" : "accessibility description for icon in file browser",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Git directory"
-          }
-        }
-      }
-    },
     "FileNode.Kind.image.label" : {
       "comment" : "accessibility description for icon in file browser",
       "extractionState" : "extracted_with_value",

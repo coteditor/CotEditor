@@ -31,7 +31,6 @@ final class FileNode {
     enum Kind {
         
         case folder
-        case gitDirectory
         case general
         case archive
         case image
@@ -42,7 +41,6 @@ final class FileNode {
     
     var name: String
     var isDirectory: Bool
-    var children: [FileNode]?
     var kind: Kind
     var isWritable: Bool
     var fileURL: URL
@@ -50,6 +48,8 @@ final class FileNode {
     
     var isHidden: Bool  { self.name.starts(with: ".") }
     var directoryURL: URL  { self.isDirectory ? self.fileURL : self.fileURL.deletingLastPathComponent() }
+    
+    private var _children: [FileNode]?
     
     
     init(at fileURL: URL, parent: FileNode? = nil) throws {
@@ -62,20 +62,28 @@ final class FileNode {
         self.isWritable = resourceValues.isWritable ?? true
         self.fileURL = fileURL
         self.parent = parent
+    }
+    
+    
+    /// The children of the node by reading them lazily.
+    var children: [FileNode]? {
         
-        self.children = try self.readChildren()
+        if self._children == nil, self.isDirectory {
+            self._children = try? self.readChildren()
+        }
+        return self._children
     }
     
     
     /// Reads the contents of the directory at the receiver's `fileURL`.
     ///
     /// - Returns: The child nodes, or `nil` if the receiver is not a directory.
-    private func readChildren() throws -> [FileNode]? {
+    private func readChildren() throws -> [FileNode] {
         
-        guard self.isDirectory, self.kind != .gitDirectory else { return nil }
+        assert(self.isDirectory)
         
         return try FileManager.default
-            .contentsOfDirectory(at: fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey])
+            .contentsOfDirectory(at: self.fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey])
             .map { try FileNode(at: $0, parent: self) }
             .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
             .sorted(using: SortDescriptor(\.isDirectory))
@@ -136,10 +144,7 @@ extension FileNode.Kind {
     init(filename: String, isDirectory: Bool) {
         
         if isDirectory {
-            self = switch filename {
-                case ".git": .gitDirectory
-                default: .folder
-            }
+            self = .folder
             return
         }
         
@@ -172,7 +177,6 @@ extension FileNode.Kind {
         
         switch self {
             case .folder: "folder"
-            case .gitDirectory: "folder.badge.gearshape"
             case .general: "doc"
             case .archive: "zipper.page"
             case .image: "photo"
@@ -188,9 +192,6 @@ extension FileNode.Kind {
         switch self {
             case .folder:
                 String(localized: "FileNode.Kind.folder.label", defaultValue: "Folder", table: "Document",
-                       comment: "accessibility description for icon in file browser")
-            case .gitDirectory:
-                String(localized: "FileNode.Kind.gitDirectory.label", defaultValue: "Git directory", table: "Document",
                        comment: "accessibility description for icon in file browser")
             case .general:
                 String(localized: "FileNode.Kind.general.label", defaultValue: "Document", table: "Document",

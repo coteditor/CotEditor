@@ -63,12 +63,6 @@ final class DirectoryDocument: NSDocument {
     }
     
     
-    override static func canConcurrentlyReadDocuments(ofType typeName: String) -> Bool {
-        
-        true
-    }
-    
-    
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
@@ -116,10 +110,8 @@ final class DirectoryDocument: NSDocument {
     
     override nonisolated func read(from url: URL, ofType typeName: String) throws {
         
-        let node = try FileNode(at: url)
-        
-        DispatchQueue.syncOnMain {
-            self.fileNode = node
+        try MainActor.assumeIsolated {
+            self.fileNode = try FileNode(at: url)
             self.windowController?.synchronizeWindowTitleWithDocumentName()
         }
     }
