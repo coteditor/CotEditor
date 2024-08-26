@@ -116,6 +116,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                        action: #selector(openInNewWindow), keyEquivalent: ""),
             .separator(),
             
+            NSMenuItem(title: String(localized: "New File", table: "Document", comment: "menu item label"),
+                       action: #selector(addFile), keyEquivalent: ""),
+            NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
+                       action: #selector(addFolder), keyEquivalent: ""),
             NSMenuItem(title: String(localized: "Move to Trash", table: "Document", comment: "menu item label"),
                        action: #selector(moveToTrash), keyEquivalent: ""),
             .separator(),
@@ -183,6 +187,12 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             case #selector(openInNewWindow):
                 menuItem.isHidden = self.clickedNode == nil
                 
+            case #selector(addFile):
+                return self.targetFolderNode(for: menuItem)?.isWritable != false
+                
+            case #selector(addFolder):
+                return self.targetFolderNode(for: menuItem)?.isWritable != false
+                
             case #selector(moveToTrash):
                 menuItem.isHidden = self.clickedNode == nil
                 return self.clickedNode?.isWritable == true
@@ -225,12 +235,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
-    @IBAction func addFile(_ sender: Any?) {
+    @IBAction func addFile(_ sender: NSMenuItem) {
         
-        guard
-            let targetNode = self.targetNode,
-            let folderNode = targetNode.isDirectory ? targetNode : targetNode.parent
-        else { return }
+        guard let folderNode = self.targetFolderNode(for: sender) else { return }
         
         let node: FileNode
         do {
@@ -250,12 +257,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
-    @IBAction func addFolder(_ sender: Any?) {
+    @IBAction func addFolder(_ sender: NSMenuItem) {
         
-        guard
-            let targetNode = self.targetNode,
-            let folderNode = targetNode.isDirectory ? targetNode : targetNode.parent
-        else { return }
+        guard let folderNode = self.targetFolderNode(for: sender) else { return }
         
         let node: FileNode
         do {
@@ -315,10 +319,28 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
-    /// The selected node in the outline view, or the root node.
-    private var targetNode: FileNode? {
+    /// Returns the target file node for the menu action.
+    ///
+    /// - Parameter menuItem: The sender of the action.
+    /// - Returns: A file node.
+    private func targetNode(for menuItem: NSMenuItem) -> FileNode? {
         
-        self.outlineView.item(atRow: self.outlineView.selectedRow) as? FileNode ?? self.document.fileNode
+        let isContextMenu = (menuItem.menu == self.outlineView.menu)
+        let row = isContextMenu ? self.outlineView.clickedRow : self.outlineView.selectedRow
+        
+        return self.outlineView.item(atRow: row) as? FileNode ?? self.document.fileNode
+    }
+    
+    
+    /// Returns the folder node to perform action of the menu item.
+    ///
+    /// - Parameter menuItem: The sender of the action.
+    /// - Returns: A file node.
+    private func targetFolderNode(for sender: NSMenuItem) -> FileNode? {
+        
+        guard let targetNode = self.targetNode(for: sender) else { return nil }
+        
+        return targetNode.isDirectory ? targetNode : targetNode.parent
     }
     
     
