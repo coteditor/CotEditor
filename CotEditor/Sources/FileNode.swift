@@ -39,12 +39,12 @@ final class FileNode {
     }
     
     
-    private(set) var name: String
     let isDirectory: Bool
+    private(set) var name: String
     private(set) var kind: Kind
     private(set) var isWritable: Bool
     private(set) var fileURL: URL
-    weak var parent: FileNode?
+    private(set) weak var parent: FileNode?
     
     var isHidden: Bool  { self.name.starts(with: ".") }
     
@@ -54,8 +54,8 @@ final class FileNode {
     /// Initializes a file node instance.
     init(at fileURL: URL, isDirectory: Bool, parent: FileNode?) {
         
-        self.name = fileURL.lastPathComponent
         self.isDirectory = isDirectory
+        self.name = fileURL.lastPathComponent
         self.kind = Kind(filename: self.name, isDirectory: isDirectory)
         self.isWritable = true
         self.fileURL = fileURL
@@ -68,8 +68,8 @@ final class FileNode {
         
         let resourceValues = try fileURL.resourceValues(forKeys: [.isDirectoryKey, .isWritableKey])
         
-        self.name = fileURL.lastPathComponent
         self.isDirectory = resourceValues.isDirectory ?? false
+        self.name = fileURL.lastPathComponent
         self.kind = Kind(filename: self.name, isDirectory: self.isDirectory)
         self.isWritable = resourceValues.isWritable ?? true
         self.fileURL = fileURL
@@ -107,8 +107,8 @@ extension FileNode: Equatable {
     
     static func == (lhs: FileNode, rhs: FileNode) -> Bool {
         
-        lhs.name == rhs.name &&
         lhs.isDirectory == rhs.isDirectory &&
+        lhs.name == rhs.name &&
         lhs.parents.map(\.name) == rhs.parents.map(\.name) &&
         lhs.isWritable == rhs.isWritable
     }
@@ -165,7 +165,6 @@ extension FileNode {
         else { return false }
         
         if fileURL.deletingLastPathComponent() == self.fileURL {
-            
             // -> The given fileURL is in this node.
             if let index = children.firstIndex(where: { $0.fileURL == fileURL }) {
                 if (try? fileURL.checkResourceIsReachable()) == true {
