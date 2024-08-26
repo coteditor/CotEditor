@@ -51,7 +51,6 @@ final class DirectoryDocument: NSDocument {
     private var windowController: DocumentWindowController?  { self.windowControllers.first as? DocumentWindowController }
     
     private var documentObserver: (any NSObjectProtocol)?
-    private var revertTask: Task<Void, any Error>?
     
     
     
@@ -60,12 +59,6 @@ final class DirectoryDocument: NSDocument {
     override static var autosavesInPlace: Bool {
         
         true  // for moving location from the proxy icon
-    }
-    
-    
-    override static func canConcurrentlyReadDocuments(ofType typeName: String) -> Bool {
-        
-        true
     }
     
     
@@ -116,10 +109,8 @@ final class DirectoryDocument: NSDocument {
     
     override nonisolated func read(from url: URL, ofType typeName: String) throws {
         
-        let node = try FileNode(at: url)
-        
-        DispatchQueue.syncOnMain {
-            self.fileNode = node
+        try MainActor.assumeIsolated {
+            self.fileNode = try FileNode(at: url)
             self.windowController?.synchronizeWindowTitleWithDocumentName()
         }
     }
@@ -136,7 +127,8 @@ final class DirectoryDocument: NSDocument {
         try await super.move(to: url)
         
         // remake node tree
-        self.revert()
+        self.fileNode?.move(to: url)
+        self.notifyNodeUpdate()
     }
     
     
@@ -144,7 +136,7 @@ final class DirectoryDocument: NSDocument {
         
         try super.revert(toContentsOf: url, ofType: typeName)
         
-        NotificationCenter.default.post(name: Self.didUpdateFileNodeNotification, object: self)
+        self.notifyNodeUpdate()
     }
     
     
@@ -170,9 +162,6 @@ final class DirectoryDocument: NSDocument {
         
         super.close()
         
-        self.revertTask?.cancel()
-        self.revertTask = nil
-        
         for document in self.documents {
             document.close()
         }
@@ -193,28 +182,9 @@ final class DirectoryDocument: NSDocument {
         
         // remake node tree if needed
         Task { @MainActor in
-            guard self.currentDocument?.fileURL != url else { return }
+            guard self.fileNode?.invalidateChildren(at: url) == true else { return }
             
-            self.revertTask?.cancel()
-            self.revertTask = Task.detached {
-                try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.1))
-                
-                self.performAsynchronousFileAccess { [unowned self] fileAccessCompletionHandler in
-                    guard let fileURL else { return fileAccessCompletionHandler() }
-                    
-                    fileAccessCompletionHandler()
-                    
-                    guard
-                        let fileNode = try? FileNode(at: fileURL),
-                        fileNode != self.fileNode
-                    else { return }
-                    
-                    // remake node tree if needed
-                    Task { @MainActor [weak self] in
-                        self?.revert()
-                    }
-                }
-            }
+            self.notifyNodeUpdate()
         }
     }
     
@@ -225,7 +195,8 @@ final class DirectoryDocument: NSDocument {
         
         // remake fileURLs with the new location
         Task { @MainActor in
-            self.revert(fileURL: newURL)
+            self.fileNode?.move(to: newURL)
+            self.notifyNodeUpdate()
         }
     }
     
@@ -286,15 +257,17 @@ final class DirectoryDocument: NSDocument {
     }
     
     
-    /// Creates a empty file at the same level of the given fileURL.
+    /// Creates a empty file in the given file node.
     ///
-    /// - Parameter directoryURL: The URL of the directory where creates a new file.
-    /// - Returns: The URL of the created file.
-    @discardableResult func addFile(at directoryURL: URL) throws -> URL {
+    /// - Parameter parentNode: The file node where creates a new file.
+    /// - Returns: The file node created.
+    @discardableResult func addFile(at parentNode: FileNode) throws -> FileNode {
+        
+        assert(parentNode.isDirectory)
         
         let name = String(localized: "Untitled", comment: "default file name for new creation")
         let pathExtension = (try? SyntaxManager.shared.setting(name: UserDefaults.standard[.syntax]))?.extensions.first
-        let fileURL = directoryURL.appending(component: name).appendingPathExtension(pathExtension ?? "").appendingUniqueNumber()
+        let fileURL = parentNode.fileURL.appending(component: name).appendingPathExtension(pathExtension ?? "").appendingUniqueNumber()
         
         var coordinationError: NSError?
         var writingError: (any Error)?
@@ -311,20 +284,23 @@ final class DirectoryDocument: NSDocument {
             throw error
         }
         
-        self.revert()
+        let node = FileNode(at: fileURL, isDirectory: false, parent: parentNode)
+        parentNode.addNode(node)
         
-        return fileURL
+        return node
     }
     
     
-    /// Creates a folder at the same level of the given fileURL.
+    /// Creates a folder at the same level in the given file node.
     ///
-    /// - Parameter directoryURL: The URL of the directory where creates a new folder.
-    /// - Returns: The URL of the created folder.
-    @discardableResult func addFolder(at directoryURL: URL) throws -> URL {
+    /// - Parameter parentNode: The file node where creates a new file.
+    /// - Returns: The file node created.
+    @discardableResult func addFolder(at parentNode: FileNode) throws -> FileNode {
+        
+        assert(parentNode.isDirectory)
         
         let name = String(localized: "untitled folder", comment: "default folder name for new creation")
-        let folderURL = directoryURL.appending(component: name).appendingUniqueNumber()
+        let folderURL = parentNode.fileURL.appending(component: name).appendingUniqueNumber()
         
         var coordinationError: NSError?
         var writingError: (any Error)?
@@ -341,18 +317,19 @@ final class DirectoryDocument: NSDocument {
             throw error
         }
         
-        self.revert()
+        let node = FileNode(at: folderURL, isDirectory: true, parent: parentNode)
+        parentNode.addNode(node)
         
-        return folderURL
+        return node
     }
     
     
     /// Renames the file at the given `fileURL` with a new name.
     ///
     /// - Parameters:
-    ///   - fileURL: The file URL at the file to rename.
+    ///   - node: The file node to rename.
     ///   - name: The new file name.
-    func renameItem(at fileURL: URL, with name: String) throws {
+    func renameItem(at node: FileNode, with name: String) throws {
         
         // validate new name
         guard !name.isEmpty else {
@@ -365,24 +342,28 @@ final class DirectoryDocument: NSDocument {
             throw InvalidNameError.invalidCharacter(":")
         }
         
-        let newURL = fileURL.deletingLastPathComponent().appending(component: name)
+        let newURL = node.fileURL.deletingLastPathComponent().appending(component: name)
         
         do {
-            try self.moveItem(from: fileURL, to: newURL)
+            try self.moveItem(from: node.fileURL, to: newURL)
         } catch let error as CocoaError where error.errorCode == CocoaError.fileWriteFileExists.rawValue {
             throw InvalidNameError.duplicated(name: name)
         } catch {
             throw error
         }
+        
+        node.rename(with: name)
     }
     
     
     /// Move the file to a new destination inside the directory.
     ///
+    /// - Note: This method doesn't update the file node.
+    ///
     /// - Parameters:
     ///   - sourceURL: The current file URL.
     ///   - destinationURL: The destination.
-    func moveItem(from sourceURL: URL, to destinationURL: URL) throws {
+    private func moveItem(from sourceURL: URL, to destinationURL: URL) throws {
         
         var coordinationError: NSError?
         var movingError: (any Error)?
@@ -398,19 +379,17 @@ final class DirectoryDocument: NSDocument {
         if let error = coordinationError ?? movingError {
             throw error
         }
-        
-        self.revert()
     }
     
     
     /// Properly moves the item to the trash.
     ///
     /// - Parameters:
-    ///   - fileURL: The URL of an item to move to trash.
-    func trashItem(at fileURL: URL) throws {
+    ///   - node: The file node to move to trash.
+    func trashItem(_ node: FileNode) throws {
         
         // close if the item to trash is opened as a document
-        if let document = self.documents.first(where: { $0.fileURL == fileURL }) {
+        if let document = self.documents.first(where: { $0.fileURL == node.fileURL }) {
             if document == self.currentDocument {
                 self.windowController?.fileDocument = nil
             }
@@ -422,7 +401,7 @@ final class DirectoryDocument: NSDocument {
         var trashedURL: NSURL?
         var coordinationError: NSError?
         var trashError: (any Error)?
-        NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .forDeleting, error: &coordinationError) { newURL in
+        NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: node.fileURL, options: .forDeleting, error: &coordinationError) { newURL in
             do {
                 try FileManager.default.trashItem(at: newURL, resultingItemURL: &trashedURL)
             } catch {
@@ -439,7 +418,7 @@ final class DirectoryDocument: NSDocument {
             throw CocoaError(.fileWriteUnknown)
         }
         
-        self.revert()
+        node.delete()
     }
     
     
@@ -471,6 +450,13 @@ final class DirectoryDocument: NSDocument {
     
     
     // MARK: Private Methods
+    
+    /// Notifies file node update.
+    private func notifyNodeUpdate() {
+        
+        NotificationCenter.default.post(name: Self.didUpdateFileNodeNotification, object: self)
+    }
+    
     
     /// Changes the frontmost document.
     ///

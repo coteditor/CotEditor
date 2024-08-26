@@ -227,38 +227,48 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     @IBAction func addFile(_ sender: Any?) {
         
-        guard let directoryURL = self.targetNode?.directoryURL else { return }
+        guard
+            let targetNode = self.targetNode,
+            let folderNode = targetNode.isDirectory ? targetNode : targetNode.parent
+        else { return }
         
-        let url: URL
+        let node: FileNode
         do {
-            url = try self.document.addFile(at: directoryURL)
+            node = try self.document.addFile(at: folderNode)
             Task {
-                await self.document.openDocument(at: url)
+                await self.document.openDocument(at: node.fileURL)
             }
         } catch {
             return self.presentErrorAsSheet(error)
         }
         
-        if let node = self.document.fileNode?.node(with: url, keyPath: \.fileURL) {
-            self.select(node: node)
+        // update UI
+        if let index = folderNode.children?.firstIndex(of: node) {
+            self.outlineView.insertItems(at: [index], inParent: folderNode, withAnimation: .slideDown)
         }
+        self.select(node: node, edit: true)
     }
     
     
     @IBAction func addFolder(_ sender: Any?) {
         
-        guard let directoryURL = self.targetNode?.directoryURL else { return }
+        guard
+            let targetNode = self.targetNode,
+            let folderNode = targetNode.isDirectory ? targetNode : targetNode.parent
+        else { return }
         
-        let url: URL
+        let node: FileNode
         do {
-            url = try self.document.addFolder(at: directoryURL)
+            node = try self.document.addFolder(at: folderNode)
         } catch {
             return self.presentErrorAsSheet(error)
         }
         
-        if let node = self.document.fileNode?.node(with: url, keyPath: \.fileURL) {
-            self.select(node: node)
+        // update UI
+        if let index = folderNode.children?.firstIndex(of: node) {
+            self.outlineView.insertItems(at: [index], inParent: folderNode, withAnimation: .slideDown)
         }
+        self.select(node: node, edit: true)
     }
     
     
@@ -267,17 +277,18 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         guard let node = self.clickedNode else { return }
         
         do {
-            try self.document.trashItem(at: node.fileURL)
+            try self.document.trashItem(node)
         } catch {
             return self.presentErrorAsSheet(error)
         }
         
         let parent = self.outlineView.parent(forItem: node)
         let index = self.outlineView.childIndex(forItem: node)
-        if index >= 0 {
-            self.outlineView.removeItems(at: [index], inParent: parent, withAnimation: .slideDown)
-            AudioServicesPlaySystemSound(.moveToTrash)
-        }
+        
+        guard index >= 0 else { return assertionFailure() }
+        
+        self.outlineView.removeItems(at: [index], inParent: parent, withAnimation: .slideDown)
+        AudioServicesPlaySystemSound(.moveToTrash)
     }
     
     
@@ -315,17 +326,20 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     ///
     /// - Parameters:
     ///   - node: The note item to select.
-    ///   - byExpanding: If true, the row will be expanded.
-    private func select(node: FileNode, byExpanding: Bool = true) {
+    ///   - edit: If `true`, the text field will be in the editing mode.
+    private func select(node: FileNode, edit: Bool = false) {
         
-        self.outlineView.reloadData()
-        
-        if byExpanding, let parentNode = self.document.fileNode?.parent(of: node) {
+        if let parentNode = node.parent {
             self.outlineView.expandItem(parentNode)
         }
         
         let row = self.outlineView.row(forItem: node)
-        if row >= 0 {
+        
+        guard row >= 0 else { return assertionFailure() }
+        
+        if edit {
+            self.outlineView.editColumn(0, row: row, with: nil, select: true)
+        } else {
             self.outlineView.selectRowIndexes([row], byExtendingSelection: false)
         }
     }
@@ -342,7 +356,7 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         
-        (item as! FileNode).children != nil
+        (item as! FileNode).isDirectory
     }
     
     
@@ -453,8 +467,10 @@ extension FileBrowserViewController: NSTextFieldDelegate {
         
         guard let node = self.outlineView.item(atRow: row) as? FileNode else { return false }
         
+        if fieldEditor.string == node.name { return true }  // not changed
+        
         do {
-            try self.document.renameItem(at: node.fileURL, with: fieldEditor.string)
+            try self.document.renameItem(at: node, with: fieldEditor.string)
         } catch {
             self.presentErrorAsSheet(error)
             return false
