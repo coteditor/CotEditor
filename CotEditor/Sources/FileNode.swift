@@ -165,12 +165,22 @@ extension FileNode {
         else { return false }
         
         if fileURL.deletingLastPathComponent() == self.fileURL {
-            // -> The given fileURL is in this node.
-            guard !children.map(\.fileURL).contains(fileURL) else { return false }
             
-            // just invalidate all children
-            self._children = nil
-            return true
+            // -> The given fileURL is in this node.
+            if let index = children.firstIndex(where: { $0.fileURL == fileURL }) {
+                if (try? fileURL.checkResourceIsReachable()) == true {
+                    return false
+                } else {
+                    // -> The file is deleted.
+                    self._children?.remove(at: index)
+                    return true
+                }
+                
+            } else {
+                // just invalidate all children
+                self._children = nil
+                return true
+            }
             
         } else {
             return children.contains { $0.invalidateChildren(at: fileURL) }
