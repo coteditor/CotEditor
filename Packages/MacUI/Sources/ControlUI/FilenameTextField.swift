@@ -44,6 +44,18 @@ public final class FilenameTextField: NSTextField {
         
         self.currentEditor()?.selectFilename()
     }
+    
+    
+    public override func becomeFirstResponder() -> Bool {
+        
+        guard super.becomeFirstResponder() else { return false }
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.currentEditor()?.selectFilename()
+        }
+        
+        return true
+    }
 }
 
 
