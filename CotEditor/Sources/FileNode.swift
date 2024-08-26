@@ -115,6 +115,15 @@ extension FileNode: Equatable {
 }
 
 
+extension FileNode: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        
+        hasher.combine(self.fileURL)
+    }
+}
+
+
 extension FileNode: Identifiable {
     
     var id: [String]  { self.parents.map(\.name) + [self.name] }
@@ -124,7 +133,7 @@ extension FileNode: Identifiable {
 extension FileNode {
     
     /// The chain of the parents to the root node from the nearest.
-    private var parents: [FileNode]  {
+    private var parents: [FileNode] {
         
         if let parent {
             Array(sequence(first: parent, next: \.parent))
@@ -134,14 +143,40 @@ extension FileNode {
     }
     
     
-    /// Deletes the current children node cache.
-    func invalidateChildren() {
+    func move(to fileURL: URL) {
         
-        guard self.isDirectory, self._children != nil else { return }
+        self.name = fileURL.lastPathComponent
+        self.kind = Kind(filename: self.name, isDirectory: self.isDirectory)
+        self.fileURL = fileURL
         
         self._children = nil
     }
     
+    
+    /// Invalidates file node tree.
+    ///
+    /// - Parameter fileURL: The URL of the file changed.
+    /// - Returns: Whether the file tree actually updated.
+    func invalidateChildren(at fileURL: URL) -> Bool {
+        
+        guard
+            self.isDirectory,
+            let children = self._children
+        else { return false }
+        
+        if fileURL.deletingLastPathComponent() == self.fileURL {
+            // -> The given fileURL is in this node.
+            guard !children.map(\.fileURL).contains(fileURL) else { return false }
+            
+            // just invalidate all children
+            self._children = nil
+            return true
+            
+        } else {
+            return children.contains { $0.invalidateChildren(at: fileURL) }
+        }
+    }
+
     
     /// Renames and updates related properties.
     ///

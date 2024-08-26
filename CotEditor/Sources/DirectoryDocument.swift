@@ -51,7 +51,6 @@ final class DirectoryDocument: NSDocument {
     private var windowController: DocumentWindowController?  { self.windowControllers.first as? DocumentWindowController }
     
     private var documentObserver: (any NSObjectProtocol)?
-    private var revertTask: Task<Void, any Error>?
     
     
     
@@ -128,7 +127,8 @@ final class DirectoryDocument: NSDocument {
         try await super.move(to: url)
         
         // remake node tree
-        self.revert()
+        self.fileNode?.move(to: url)
+        self.notifyNodeUpdate()
     }
     
     
@@ -136,7 +136,7 @@ final class DirectoryDocument: NSDocument {
         
         try super.revert(toContentsOf: url, ofType: typeName)
         
-        NotificationCenter.default.post(name: Self.didUpdateFileNodeNotification, object: self)
+        self.notifyNodeUpdate()
     }
     
     
@@ -162,9 +162,6 @@ final class DirectoryDocument: NSDocument {
         
         super.close()
         
-        self.revertTask?.cancel()
-        self.revertTask = nil
-        
         for document in self.documents {
             document.close()
         }
@@ -185,16 +182,9 @@ final class DirectoryDocument: NSDocument {
         
         // remake node tree if needed
         Task { @MainActor in
-            self.revertTask?.cancel()
-            self.revertTask = Task {
-                try await Task.sleep(for: .seconds(0.1), tolerance: .seconds(0.1))
-                
-                // remake node tree if needed
-                await MainActor.run {
-                    self.fileNode?.invalidateChildren()
-                    NotificationCenter.default.post(name: Self.didUpdateFileNodeNotification, object: self)
-                }
-            }
+            guard self.fileNode?.invalidateChildren(at: url) == true else { return }
+            
+            self.notifyNodeUpdate()
         }
     }
     
@@ -205,7 +195,8 @@ final class DirectoryDocument: NSDocument {
         
         // remake fileURLs with the new location
         Task { @MainActor in
-            self.revert(fileURL: newURL)
+            self.fileNode?.move(to: newURL)
+            self.notifyNodeUpdate()
         }
     }
     
@@ -459,6 +450,13 @@ final class DirectoryDocument: NSDocument {
     
     
     // MARK: Private Methods
+    
+    /// Notifies file node update.
+    private func notifyNodeUpdate() {
+        
+        NotificationCenter.default.post(name: Self.didUpdateFileNodeNotification, object: self)
+    }
+    
     
     /// Changes the frontmost document.
     ///
