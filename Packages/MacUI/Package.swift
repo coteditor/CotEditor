@@ -19,13 +19,13 @@ let package = Package(
         .library(name: "Shortcut", targets: ["Shortcut"]),
     ],
     dependencies: [
-        .package(name: "Invisible", path: "../EditorCore"),
+        .package(name: "EditorCore", path: "../EditorCore"),
         .package(url: "https://github.com/realm/SwiftLint", from: Version(0, 56, 0)),
     ],
     targets: [
         .target(name: "ControlUI"),
         
-        .target(name: "RegexHighlighting", dependencies: ["Invisible"]),
+        .target(name: "RegexHighlighting", dependencies: ["EditorCore"]),
         .testTarget(name: "RegexHighlightingTests", dependencies: ["RegexHighlighting"]),
         
         .target(name: "Shortcut", resources: [.process("Resources")]),
