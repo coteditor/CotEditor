@@ -96,6 +96,7 @@ final class FileNode {
         
         return try FileManager.default
             .contentsOfDirectory(at: self.fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey])
+            .filter { $0.lastPathComponent != ".DS_Store" }
             .map { try FileNode(at: $0, parent: self) }
             .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
             .sorted(using: SortDescriptor(\.isDirectory))
