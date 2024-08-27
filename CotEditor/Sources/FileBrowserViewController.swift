@@ -242,16 +242,14 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let node: FileNode
         do {
             node = try self.document.addFile(at: folderNode)
-            Task {
-                await self.document.openDocument(at: node.fileURL)
-            }
         } catch {
             return self.presentErrorAsSheet(error)
         }
         
         // update UI
         if let index = folderNode.children?.firstIndex(of: node) {
-            self.outlineView.insertItems(at: [index], inParent: folderNode, withAnimation: .slideDown)
+            let parent = (folderNode == self.document.fileNode) ? nil : folderNode
+            self.outlineView.insertItems(at: [index], inParent: parent, withAnimation: .effectGap)
         }
         self.select(node: node, edit: true)
     }
@@ -270,7 +268,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         // update UI
         if let index = folderNode.children?.firstIndex(of: node) {
-            self.outlineView.insertItems(at: [index], inParent: folderNode, withAnimation: .slideDown)
+            let parent = (folderNode == self.document.fileNode) ? nil : folderNode
+            self.outlineView.insertItems(at: [index], inParent: parent, withAnimation: .effectGap)
         }
         self.select(node: node, edit: true)
     }
@@ -291,7 +290,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         guard index >= 0 else { return assertionFailure() }
         
-        self.outlineView.removeItems(at: [index], inParent: parent, withAnimation: .slideDown)
+        self.outlineView.removeItems(at: [index], inParent: parent, withAnimation: .effectGap)
         AudioServicesPlaySystemSound(.moveToTrash)
     }
     
@@ -351,18 +350,18 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     ///   - edit: If `true`, the text field will be in the editing mode.
     private func select(node: FileNode, edit: Bool = false) {
         
-        if let parentNode = node.parent {
-            self.outlineView.expandItem(parentNode)
+        if let parent = node.parent {
+            self.outlineView.expandItem(parent)
         }
         
         let row = self.outlineView.row(forItem: node)
         
         guard row >= 0 else { return assertionFailure() }
         
+        self.outlineView.selectRowIndexes([row], byExtendingSelection: false)
+        
         if edit {
-            self.outlineView.editColumn(0, row: row, with: nil, select: true)
-        } else {
-            self.outlineView.selectRowIndexes([row], byExtendingSelection: false)
+            self.outlineView.editColumn(0, row: row, with: nil, select: false)
         }
     }
 }
