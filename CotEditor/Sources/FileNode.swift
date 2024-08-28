@@ -140,12 +140,6 @@ extension FileNode: Hashable {
 }
 
 
-extension FileNode: Identifiable {
-    
-    var id: [String]  { self.parents.map(\.name) + [self.name] }
-}
-
-
 extension FileNode {
     
     /// Finds the node at the given `fileURL` in the node tree.
