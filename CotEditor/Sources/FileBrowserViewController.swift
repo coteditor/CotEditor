@@ -74,6 +74,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         scrollView.documentView = outlineView
         
         let addButton = NSPopUpButton()
+        (addButton.cell as! NSPopUpButtonCell).arrowPosition = .noArrow
         addButton.pullsDown = true
         addButton.isBordered = false
         addButton.addItem(withTitle: "")
