@@ -43,6 +43,7 @@ final class FileNode {
     private(set) var name: String
     private(set) var kind: Kind
     private(set) var isWritable: Bool
+    private(set) var isAlias: Bool
     private(set) var fileURL: URL
     private(set) weak var parent: FileNode?
     
@@ -52,12 +53,13 @@ final class FileNode {
     
     
     /// Initializes a file node instance.
-    init(at fileURL: URL, isDirectory: Bool, parent: FileNode?) {
+    init(at fileURL: URL, isDirectory: Bool, parent: FileNode?, isWritable: Bool = true, isAlias: Bool = false) {
         
         self.isDirectory = isDirectory
         self.name = fileURL.lastPathComponent
         self.kind = Kind(filename: self.name, isDirectory: isDirectory)
-        self.isWritable = true
+        self.isWritable = isWritable
+        self.isAlias = false
         self.fileURL = fileURL
         self.parent = parent
     }
@@ -66,12 +68,13 @@ final class FileNode {
     /// Initializes a file node instance by reading the information from the actual file.
     init(at fileURL: URL, parent: FileNode? = nil) throws {
         
-        let resourceValues = try fileURL.resourceValues(forKeys: [.isDirectoryKey, .isWritableKey])
+        let resourceValues = try fileURL.resourceValues(forKeys: [.isDirectoryKey, .isWritableKey, .isAliasFileKey])
         
         self.isDirectory = resourceValues.isDirectory ?? false
         self.name = fileURL.lastPathComponent
         self.kind = Kind(filename: self.name, isDirectory: self.isDirectory)
         self.isWritable = resourceValues.isWritable ?? true
+        self.isAlias = resourceValues.isAliasFile ?? false
         self.fileURL = fileURL
         self.parent = parent
     }
@@ -106,7 +109,7 @@ final class FileNode {
         assert(self.isDirectory)
         
         return try FileManager.default
-            .contentsOfDirectory(at: self.fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey])
+            .contentsOfDirectory(at: self.fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey, .isAliasFileKey])
             .filter { $0.lastPathComponent != ".DS_Store" }
             .map { try FileNode(at: $0, parent: self) }
             .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))

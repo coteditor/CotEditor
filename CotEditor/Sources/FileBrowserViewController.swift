@@ -405,7 +405,7 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         let node = item as! FileNode
         let cellView = outlineView.makeView(withIdentifier: .node, owner: self) as? NSTableCellView ?? self.createCellView()
         
-        cellView.imageView!.image = node.kind.image
+        cellView.imageView!.image = node.image
         cellView.imageView!.alphaValue = node.isHidden ? 0.5 : 1
         
         cellView.textField!.stringValue = node.name
@@ -497,6 +497,16 @@ extension FileBrowserViewController: NSTextFieldDelegate {
         }
         
         return true
+    }
+}
+
+
+private extension FileNode {
+    
+    /// The symbol image in `NSImage`.
+    var image: NSImage {
+        
+        self.kind.image
     }
 }
 
