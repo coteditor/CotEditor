@@ -60,7 +60,7 @@ final class FileNode {
         self.kind = Kind(filename: self.name, isDirectory: isDirectory)
         self.isWritable = isWritable
         self.isAlias = false
-        self.fileURL = fileURL
+        self.fileURL = fileURL.standardizedFileURL
         self.parent = parent
     }
     
@@ -75,7 +75,7 @@ final class FileNode {
         self.kind = Kind(filename: self.name, isDirectory: self.isDirectory)
         self.isWritable = resourceValues.isWritable ?? true
         self.isAlias = resourceValues.isAliasFile ?? false
-        self.fileURL = fileURL
+        self.fileURL = fileURL.standardizedFileURL
         self.parent = parent
     }
     
@@ -188,7 +188,7 @@ extension FileNode {
         
         self.name = fileURL.lastPathComponent
         self.kind = Kind(filename: self.name, isDirectory: self.isDirectory)
-        self.fileURL = fileURL
+        self.fileURL = fileURL.standardizedFileURL
         
         self._children = nil
     }
