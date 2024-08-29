@@ -235,9 +235,7 @@ final class DirectoryDocument: NSDocument {
         let contentType = try? fileURL.resourceValues(forKeys: [.contentTypeKey]).contentType
         
         // ignore (possibly) unsupported files
-        guard contentType?.conforms(to: .text) == true || fileURL.pathExtension.isEmpty,
-              fileURL.lastPathComponent != ".DS_Store"
-        else { return true }
+        guard contentType?.conforms(to: .text) == true || fileURL.pathExtension.isEmpty else { return true }
         
         // make document
         let document: NSDocument
