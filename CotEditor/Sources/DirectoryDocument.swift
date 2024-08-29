@@ -77,14 +77,14 @@ final class DirectoryDocument: NSDocument {
         
         super.restoreState(with: coder)
         
-        if let fileData = coder.decodeArrayOfObjects(ofClass: NSData.self, forKey: SerializationKey.documents) as? [Data] {
-            let fileURLs = fileData.compactMap {
+        if let fileURL, let fileData = coder.decodeArrayOfObjects(ofClass: NSData.self, forKey: SerializationKey.documents) as? [Data] {
+            let urls = fileData.compactMap {
                 var isStale = false
                 return try? URL(resolvingBookmarkData: $0, options: .withSecurityScope, bookmarkDataIsStale: &isStale)
             }
             Task {
-                for fileURL in fileURLs {
-                    await self.openDocument(at: fileURL)
+                for url in urls where url.isReachable && fileURL.isAncestor(of: url) {
+                    await self.openDocument(at: url)
                 }
             }
         }
@@ -108,6 +108,8 @@ final class DirectoryDocument: NSDocument {
     
     
     override nonisolated func read(from url: URL, ofType typeName: String) throws {
+        
+        assert(url == self.fileURL)
         
         try MainActor.assumeIsolated {
             self.fileNode = try FileNode(at: url)
