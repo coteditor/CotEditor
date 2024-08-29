@@ -98,7 +98,6 @@ extension NSFont {
     final var archivedData: Data {
         
         get throws {
-            
             try NSKeyedArchiver.archivedData(withRootObject: self.fontDescriptor, requiringSecureCoding: true)
         }
     }
