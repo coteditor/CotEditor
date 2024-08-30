@@ -44,6 +44,8 @@ final class DirectoryDocument: NSDocument {
     private(set) var fileNode: FileNode?
     private(set) weak var currentDocument: Document?
     
+    weak var fileBrowserViewController: FileBrowserViewController?
+    
     
     // MARK: Private Properties
     
@@ -77,14 +79,22 @@ final class DirectoryDocument: NSDocument {
         
         super.restoreState(with: coder)
         
+        // restore opened documents
         if let fileURL, let fileData = coder.decodeArrayOfObjects(ofClass: NSData.self, forKey: SerializationKey.documents) as? [Data] {
-            let urls = fileData.compactMap {
-                var isStale = false
-                return try? URL(resolvingBookmarkData: $0, options: .withSecurityScope, bookmarkDataIsStale: &isStale)
-            }
-            Task {
-                for url in urls where url.isReachable && fileURL.isAncestor(of: url) {
-                    await self.openDocument(at: url)
+            let urls = fileData
+                .compactMap {
+                    var isStale = false
+                    return try? URL(resolvingBookmarkData: $0, options: .withSecurityScope, bookmarkDataIsStale: &isStale)
+                }
+                .filter { $0.isAncestor(of: fileURL) }
+                .filter(\.isReachable)
+            
+            if !urls.isEmpty {
+                Task {
+                    for url in urls {
+                        await self.openDocument(at: url)
+                    }
+                    self.fileBrowserViewController?.selectCurrentDocument()
                 }
             }
         }

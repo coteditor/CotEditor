@@ -55,6 +55,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.document = document
         
         super.init(nibName: nil, bundle: nil)
+        
+        document.fileBrowserViewController = self
     }
     
     
@@ -171,6 +173,20 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.treeObservationTask = nil
         
         self.defaultObservers.removeAll()
+    }
+    
+    
+    // MARK: Public Methods
+    
+    /// Selects the current document in the outline view.
+    func selectCurrentDocument() {
+        
+        guard
+            let fileURL = self.document.currentDocument?.fileURL,
+            let node = self.document.fileNode?.node(at: fileURL)
+        else { return }
+        
+        self.select(node: node)
     }
     
     

@@ -25,6 +25,7 @@
 
 import Foundation
 import UniformTypeIdentifiers
+import URLUtils
 
 final class FileNode {
     
@@ -147,6 +148,35 @@ extension FileNode: Identifiable {
 
 extension FileNode {
     
+    /// Finds the node at the given `fileURL` in the node tree.
+    ///
+    ///  - Note: This method recursively reads child directories on storage during fining the node if the `inCache` flag is `true`.
+    ///
+    /// - Parameters:
+    ///   - fileURL: The file URL to find.
+    ///   - inCache: If `true`,
+    /// - Returns: The file node found.
+    func node(at fileURL: URL, inCache: Bool = false) -> FileNode? {
+        
+        let fileURL = fileURL.standardizedFileURL
+        
+        if fileURL == self.fileURL { return self }
+        
+        guard
+            let children = inCache ? self._children : self.children,
+            self.fileURL.isAncestor(of: fileURL)
+        else { return nil }
+        
+        if let node = children.first(where: { $0.fileURL == fileURL }) {
+            return node
+        }
+        
+        guard let child = children.first(where: { $0.fileURL.isAncestor(of: fileURL) }) else { return nil }
+        
+        return child.node(at: fileURL)
+    }
+    
+    
     /// Invalidates file node tree.
     ///
     /// - Parameter fileURL: The URL of the file changed.
@@ -161,7 +191,7 @@ extension FileNode {
         if fileURL.deletingLastPathComponent() == self.fileURL {
             // -> The given fileURL is in this node.
             if let index = children.firstIndex(where: { $0.fileURL == fileURL }) {
-                if (try? fileURL.checkResourceIsReachable()) == true {
+                if fileURL.isReachable {
                     return false
                 } else {
                     // -> The file is deleted.
