@@ -606,9 +606,6 @@ extension FileBrowserViewController: NSTextFieldDelegate {
         
         let row = self.outlineView.row(for: control)
         
-        // start editing only when the row has already been selected
-        guard self.outlineView.isRowSelected(row) else { return false }
-        
         guard let node = self.outlineView.item(atRow: row) as? FileNode else { return false }
         
         // avoid renaming unsaved document
