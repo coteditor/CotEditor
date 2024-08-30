@@ -140,6 +140,15 @@ extension FileNode: Hashable {
 }
 
 
+extension FileNode: CustomDebugStringConvertible {
+    
+    var debugDescription: String {
+        
+        "\(type(of: self))(name: \(self.name), isDirectory: \(self.isDirectory))"
+    }
+}
+
+
 extension FileNode {
     
     /// Finds the node at the given `fileURL` in the node tree.
