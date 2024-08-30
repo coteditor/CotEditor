@@ -296,19 +296,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         guard let node = self.clickedNode else { return }
         
-        do {
-            try self.document.trashItem(node)
-        } catch {
-            return self.presentErrorAsSheet(error)
-        }
-        
-        let parent = self.outlineView.parent(forItem: node)
-        let index = self.outlineView.childIndex(forItem: node)
-        
-        guard index >= 0 else { return assertionFailure() }
-        
-        self.outlineView.removeItems(at: [index], inParent: parent, withAnimation: .effectGap)
-        AudioServicesPlaySystemSound(.moveToTrash)
+        self.trashNodes([node])
     }
     
     
@@ -379,8 +367,38 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             self.outlineView.editColumn(0, row: row, with: nil, select: false)
         }
     }
+    
+    
+    /// Moves the given nodes to the Trash.
+    ///
+    /// - Parameter nodes: The file nodes to move to the Trash.
+    private func trashNodes(_ nodes: [FileNode]) {
+        
+        guard !nodes.isEmpty else { return }
+        
+        self.outlineView.beginUpdates()
+        for node in nodes {
+            do {
+                try self.document.trashItem(node)
+            } catch {
+                self.presentErrorAsSheet(error)
+                continue
+            }
+            
+            let parent = self.outlineView.parent(forItem: node)
+            let index = self.outlineView.childIndex(forItem: node)
+            
+            guard index >= 0 else { continue }
+            
+            self.outlineView.removeItems(at: [index], inParent: parent, withAnimation: .slideUp)
+        }
+        self.outlineView.endUpdates()
+        AudioServicesPlaySystemSound(.moveToTrash)
+    }
 }
 
+
+// MARK: Outline View Data Source
 
 extension FileBrowserViewController: NSOutlineViewDataSource {
     
@@ -414,6 +432,8 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
 }
 
 
+// MARK: Outline View Delegate
+
 extension FileBrowserViewController: NSOutlineViewDelegate {
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
@@ -434,9 +454,11 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
     func outlineViewSelectionDidChange(_ notification: Notification) {
         
         let outlineView = notification.object as! NSOutlineView
-        let node = outlineView.item(atRow: outlineView.selectedRow) as? FileNode
         
-        guard let node, !node.isDirectory else { return }
+        guard
+            let node = outlineView.item(atRow: outlineView.selectedRow) as? FileNode,
+            !node.isDirectory
+        else { return }
         
         Task {
             await self.document.openDocument(at: node.fileURL)
@@ -482,6 +504,8 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
 }
 
 
+// MARK: Text Field Delegate
+
 extension FileBrowserViewController: NSTextFieldDelegate {
     
     func control(_ control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
@@ -516,6 +540,8 @@ extension FileBrowserViewController: NSTextFieldDelegate {
     }
 }
 
+
+// MARK: - Extensions
 
 private extension FileNode {
     
