@@ -437,12 +437,20 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
             node.isWritable
         else { return [] }
         
+        let isLocal = info.draggingSource as? NSOutlineView == outlineView
+        
+        // cannot drop to descendants
+        if isLocal,
+           let fileURLs = info.draggingPasteboard.readObjects(forClasses: [NSURL.self]) as? [URL],
+           fileURLs.contains(where: { $0.isAncestor(of: node.fileURL) })
+        {
+            return []
+        }
+        
         if !node.isDirectory {  // avoid dropping on a leaf
             let parent = outlineView.parent(forItem: node)
             outlineView.setDropItem(parent, dropChildIndex: NSOutlineViewDropOnItemIndex)
         }
-        
-        let isLocal = info.draggingSource as? NSOutlineView == outlineView
         
         return isLocal ? .move : .copy
     }
