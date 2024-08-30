@@ -233,6 +233,24 @@ extension FileNode {
     }
     
     
+    /// Moves to a new node.
+    ///
+    /// - Parameters:
+    ///   - parent: The new parent node.
+    func move(to parent: FileNode) {
+        
+        assert(parent.isDirectory)
+        
+        self.parent?._children?.removeFirst(self)
+        
+        parent.addNode(self)
+        self.parent = parent
+        
+        self.fileURL = parent.fileURL.appending(component: self.name).standardizedFileURL
+        self._children = nil
+    }
+    
+    
     /// Adds a node at the receiver.
     ///
     /// - Parameter node: The file node to add.

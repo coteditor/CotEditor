@@ -366,6 +366,58 @@ final class DirectoryDocument: NSDocument {
     }
     
     
+    /// Moves the file node to another file node.
+    ///
+    /// - Parameters:
+    ///   - node: The node to move.
+    ///   - destinationNode: The new parent node.
+    func moveItem(at node: FileNode, to destinationNode: FileNode) throws {
+        
+        assert(destinationNode.isDirectory)
+        
+        let destinationURL = destinationNode.fileURL.appending(component: node.name)
+            .appendingUniqueNumber()
+        try self.moveFile(from: node.fileURL, to: destinationURL)
+        
+        node.move(to: destinationNode)
+    }
+    
+    
+    /// Copies the file at the given `fileURL` to the given node.
+    ///
+    /// - Parameters:
+    ///   - fileURL: The URL of the source file.
+    ///   - destinationNode: The destination parent node.
+    /// - Returns: The file node created.
+    func copyItem(at fileURL: URL, to destinationNode: FileNode) throws -> FileNode {
+        
+        assert(destinationNode.isDirectory)
+        
+        let destinationURL = destinationNode.fileURL.appending(component: fileURL.lastPathComponent)
+            .appendingUniqueNumber()
+        
+        var coordinationError: NSError?
+        var copyingError: (any Error)?
+        let coordinator = NSFileCoordinator(filePresenter: self)
+        coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, writingItemAt: destinationURL, error: &coordinationError) { (newSourceURL, newDestinationURL) in
+            do {
+                try FileManager.default.copyItem(at: newSourceURL, to: newDestinationURL)
+            } catch {
+                copyingError = error
+            }
+        }
+        
+        if let error = coordinationError ?? copyingError {
+            throw error
+        }
+        
+        let node = try FileNode(at: destinationURL, parent: destinationNode)
+        destinationNode.addNode(node)
+        
+        return node
+    }
+    
+    
     /// Properly moves the item to the trash.
     ///
     /// - Parameters:

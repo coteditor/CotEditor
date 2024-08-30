@@ -109,6 +109,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.outlineView.dataSource = self
         self.outlineView.delegate = self
         
+        self.outlineView.registerForDraggedTypes([.fileURL])
+        self.outlineView.setDraggingSourceOperationMask([.copy, .delete], forLocal: false)
+        
         let contextMenu = NSMenu()
         contextMenu.items = [
             NSMenuItem(title: String(localized: "Show in Finder", table: "Document", comment: "menu item label"),
@@ -264,7 +267,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         }
         
         // update UI
-        if let index = folderNode.children?.firstIndex(of: node) {
+        if let index = self.children(of: folderNode)?.firstIndex(of: node) {
             let parent = (folderNode == self.document.fileNode) ? nil : folderNode
             self.outlineView.insertItems(at: [index], inParent: parent, withAnimation: .effectGap)
         }
@@ -284,7 +287,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         }
         
         // update UI
-        if let index = folderNode.children?.firstIndex(of: node) {
+        if let index = self.children(of: folderNode)?.firstIndex(of: node) {
             let parent = (folderNode == self.document.fileNode) ? nil : folderNode
             self.outlineView.insertItems(at: [index], inParent: parent, withAnimation: .effectGap)
         }
@@ -417,6 +420,97 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
         self.children(of: item)![index]
+    }
+    
+    
+    func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> (any NSPasteboardWriting)? {
+        
+        (item as? FileNode)?.fileURL as? NSURL
+    }
+    
+    
+    func outlineView(_ outlineView: NSOutlineView, validateDrop info: any NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
+        
+        guard
+            index == NSOutlineViewDropOnItemIndex,
+            let node = item as? FileNode ?? self.document.fileNode,
+            node.isWritable
+        else { return [] }
+        
+        if !node.isDirectory {  // avoid dropping on a leaf
+            let parent = outlineView.parent(forItem: node)
+            outlineView.setDropItem(parent, dropChildIndex: NSOutlineViewDropOnItemIndex)
+        }
+        
+        let isLocal = info.draggingSource as? NSOutlineView == outlineView
+        
+        return isLocal ? .move : .copy
+    }
+    
+    
+    func outlineView(_ outlineView: NSOutlineView, acceptDrop info: any NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
+        
+        guard
+            let fileURLs = info.draggingPasteboard.readObjects(forClasses: [NSURL.self]) as? [URL],
+            let destinationNode = item as? FileNode ?? self.document.fileNode
+        else { return false }
+        
+        let isLocal = info.draggingSource as? NSOutlineView == outlineView
+        var didMove = false
+        
+        self.outlineView.beginUpdates()
+        for fileURL in fileURLs {
+            if isLocal {
+                guard
+                    let node = self.document.fileNode?.node(at: fileURL),
+                    node.parent != destinationNode  // ignore same location
+                else { continue }
+                
+                do {
+                    try self.document.moveItem(at: node, to: destinationNode)
+                } catch {
+                    self.presentErrorAsSheet(error)
+                    continue
+                }
+                
+                let oldIndex = self.outlineView.childIndex(forItem: node)
+                let oldParent = self.outlineView.parent(forItem: node)
+                let childIndex = self.children(of: destinationNode)?.firstIndex(of: node)
+                self.outlineView.moveItem(at: oldIndex, inParent: oldParent, to: childIndex ?? 0, inParent: item)
+                
+            } else {
+                let node: FileNode
+                do {
+                    node = try self.document.copyItem(at: fileURL, to: destinationNode)
+                } catch {
+                    self.presentErrorAsSheet(error)
+                    continue
+                }
+                
+                let childIndex = self.children(of: destinationNode)?.firstIndex(of: node)
+                self.outlineView.insertItems(at: [childIndex ?? 0], inParent: item, withAnimation: .slideDown)
+            }
+            
+            didMove = true
+        }
+        self.outlineView.endUpdates()
+        
+        return didMove
+    }
+    
+    
+    func outlineView(_ outlineView: NSOutlineView, draggingSession session: NSDraggingSession, endedAt screenPoint: NSPoint, operation: NSDragOperation) {
+        
+        switch operation {
+            case .delete:  // ended at the Trash
+                guard let fileURLs = session.draggingPasteboard.readObjects(forClasses: [NSURL.self]) as? [URL] else { return }
+                
+                let nodes = fileURLs.compactMap { self.document.fileNode?.node(at: $0) }
+                self.trashNodes(nodes)
+                
+            default:
+                break
+        }
     }
     
     
