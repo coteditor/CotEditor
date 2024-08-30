@@ -604,12 +604,15 @@ extension FileBrowserViewController: NSTextFieldDelegate {
     
     func control(_ control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
         
-        // start editing only when the row has already been selected
-        guard self.outlineView.row(for: control) == self.outlineView.selectedRow else { return false }
-        
         let row = self.outlineView.row(for: control)
         
+        // start editing only when the row has already been selected
+        guard self.outlineView.isRowSelected(row) else { return false }
+        
         guard let node = self.outlineView.item(atRow: row) as? FileNode else { return false }
+        
+        // avoid renaming unsaved document
+        guard self.document.openedDocument(at: node)?.isDocumentEdited != true else { return false }
         
         return node.isWritable
     }

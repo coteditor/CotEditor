@@ -216,6 +216,16 @@ final class DirectoryDocument: NSDocument {
     
     // MARK: Public Methods
     
+    /// Returns the opened document at the given file node.
+    ///
+    /// - Parameter node: The file node to find.
+    /// - Returns: A Document if found.
+    func openedDocument(at node: FileNode) -> Document? {
+        
+        self.documents.first { $0.fileURL == node.fileURL }
+    }
+    
+    
     /// Opens a document as a member.
     ///
     /// - Parameter fileURL: The file URL of the document to open.
