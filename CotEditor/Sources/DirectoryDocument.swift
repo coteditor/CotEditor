@@ -355,7 +355,7 @@ final class DirectoryDocument: NSDocument {
         let newURL = node.fileURL.deletingLastPathComponent().appending(component: name)
         
         do {
-            try self.moveItem(from: node.fileURL, to: newURL)
+            try self.moveFile(from: node.fileURL, to: newURL)
         } catch let error as CocoaError where error.errorCode == CocoaError.fileWriteFileExists.rawValue {
             throw InvalidNameError.duplicated(name: name)
         } catch {
@@ -363,32 +363,6 @@ final class DirectoryDocument: NSDocument {
         }
         
         node.rename(with: name)
-    }
-    
-    
-    /// Move the file to a new destination inside the directory.
-    ///
-    /// - Note: This method doesn't update the file node.
-    ///
-    /// - Parameters:
-    ///   - sourceURL: The current file URL.
-    ///   - destinationURL: The destination.
-    private func moveItem(from sourceURL: URL, to destinationURL: URL) throws {
-        
-        var coordinationError: NSError?
-        var movingError: (any Error)?
-        let coordinator = NSFileCoordinator(filePresenter: self)
-        coordinator.coordinate(writingItemAt: sourceURL, options: .forMoving, writingItemAt: destinationURL, options: .forMoving, error: &coordinationError) { (newSourceURL, newDestinationURL) in
-            do {
-                try FileManager.default.moveItem(at: newSourceURL, to: newDestinationURL)
-            } catch {
-                movingError = error
-            }
-        }
-        
-        if let error = coordinationError ?? movingError {
-            throw error
-        }
     }
     
     
@@ -497,6 +471,32 @@ final class DirectoryDocument: NSDocument {
             self.documents.removeFirst(document)
         }
         self.invalidateRestorableState()
+    }
+    
+    
+    /// Moves the file to a new destination inside the directory.
+    ///
+    /// - Note: This method doesn't update the file node.
+    ///
+    /// - Parameters:
+    ///   - sourceURL: The current file URL.
+    ///   - destinationURL: The destination.
+    private func moveFile(from sourceURL: URL, to destinationURL: URL) throws {
+        
+        var coordinationError: NSError?
+        var movingError: (any Error)?
+        let coordinator = NSFileCoordinator(filePresenter: self)
+        coordinator.coordinate(writingItemAt: sourceURL, options: .forMoving, writingItemAt: destinationURL, options: .forMoving, error: &coordinationError) { (newSourceURL, newDestinationURL) in
+            do {
+                try FileManager.default.moveItem(at: newSourceURL, to: newDestinationURL)
+            } catch {
+                movingError = error
+            }
+        }
+        
+        if let error = coordinationError ?? movingError {
+            throw error
+        }
     }
 }
 
