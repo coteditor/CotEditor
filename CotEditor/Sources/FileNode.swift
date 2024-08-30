@@ -248,12 +248,7 @@ extension FileNode {
     /// Deletes the receiver from the node tree.
     func delete() {
         
-        guard
-            let parent,
-            let index = parent.children?.firstIndex(of: self)
-        else { return assertionFailure() }
-        
-        parent._children?.remove(at: index)
+        self.parent?._children?.removeFirst(self)
     }
 }
 
