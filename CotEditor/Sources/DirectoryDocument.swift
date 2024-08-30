@@ -86,7 +86,7 @@ final class DirectoryDocument: NSDocument {
                     var isStale = false
                     return try? URL(resolvingBookmarkData: $0, options: .withSecurityScope, bookmarkDataIsStale: &isStale)
                 }
-                .filter { $0.isAncestor(of: fileURL) }
+                .filter(fileURL.isAncestor(of:))
                 .filter(\.isReachable)
             
             if !urls.isEmpty {
