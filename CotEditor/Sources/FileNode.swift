@@ -87,6 +87,17 @@ final class FileNode {
     }
     
     
+    /// The chain of the parents to the root node from the nearest.
+    var parents: [FileNode] {
+        
+        if let parent {
+            Array(sequence(first: parent, next: \.parent))
+        } else {
+            []
+        }
+    }
+    
+    
     /// Reads the contents of the directory at the receiver's `fileURL`.
     ///
     /// - Returns: The child nodes, or `nil` if the receiver is not a directory.
@@ -133,27 +144,6 @@ extension FileNode: Identifiable {
 
 extension FileNode {
     
-    /// The chain of the parents to the root node from the nearest.
-    private var parents: [FileNode] {
-        
-        if let parent {
-            Array(sequence(first: parent, next: \.parent))
-        } else {
-            []
-        }
-    }
-    
-    
-    func move(to fileURL: URL) {
-        
-        self.name = fileURL.lastPathComponent
-        self.kind = Kind(filename: self.name, isDirectory: self.isDirectory)
-        self.fileURL = fileURL
-        
-        self._children = nil
-    }
-    
-    
     /// Invalidates file node tree.
     ///
     /// - Parameter fileURL: The URL of the file changed.
@@ -187,6 +177,19 @@ extension FileNode {
         }
     }
 
+    
+    /// Updates the related properties by assuming the receiver is moved to the given `fileURL`.
+    ///
+    /// - Parameter fileURL: The new file URL.
+    func move(to fileURL: URL) {
+        
+        self.name = fileURL.lastPathComponent
+        self.kind = Kind(filename: self.name, isDirectory: self.isDirectory)
+        self.fileURL = fileURL
+        
+        self._children = nil
+    }
+    
     
     /// Renames and updates related properties.
     ///
