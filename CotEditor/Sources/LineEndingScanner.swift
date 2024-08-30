@@ -32,7 +32,7 @@ import ValueRange
 
 @Observable final class LineEndingScanner: LineRangeCalculating {
     
-    var baseLineEnding: LineEnding
+    var baseLineEnding: LineEnding  { didSet { self.invalidateLineEnding() } }
     
     private(set) var lineEndings: [ValueRange<LineEnding>]
     private(set) var inconsistentLineEndings: [ValueRange<LineEnding>]
@@ -99,5 +99,12 @@ import ValueRange
         
         self.lineEndings.replace(items: insertedLineEndings, in: scanRange, changeInLength: delta)
         self.inconsistentLineEndings.replace(items: inconsistentLineEndings, in: scanRange, changeInLength: delta)
+    }
+    
+    
+    /// Updates `inconsistentLineEndings` with the current base line ending.
+    private func invalidateLineEnding() {
+        
+        self.inconsistentLineEndings = self.lineEndings.filter { $0.value != self.baseLineEnding }
     }
 }
