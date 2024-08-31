@@ -124,7 +124,6 @@ struct CommandBarView: View {
             self.move(down: true) ? .handled : .ignored
         }
         .frame(width: 500)
-        .ignoresSafeArea()
     }
     
     

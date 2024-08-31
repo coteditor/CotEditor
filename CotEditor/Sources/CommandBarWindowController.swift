@@ -44,8 +44,11 @@ final class CommandBarWindowController: NSWindowController {
     init() {
         
         let panel = CommandBarPanel(contentRect: .zero, styleMask: [.titled, .fullSizeContentView], backing: .buffered, defer: false)
+        let hostingView = NSHostingView(rootView: CommandBarView(model: self.model, parent: panel))
+        hostingView.safeAreaRegions = []
+        
+        panel.contentView = hostingView
         panel.title = String(localized: "Quick Actions", table: "CommandBar")  // for VoiceOver
-        panel.contentView = HostingViewSuppressingSafeArea(rootView: CommandBarView(model: self.model, parent: panel))
         panel.animationBehavior = .utilityWindow
         panel.collectionBehavior.insert(.fullScreenAuxiliary)
         panel.isFloatingPanel = true
@@ -55,6 +58,8 @@ final class CommandBarWindowController: NSWindowController {
         panel.standardWindowButton(.closeButton)?.isHidden = true
         panel.standardWindowButton(.zoomButton)?.isHidden = true
         panel.standardWindowButton(.miniaturizeButton)?.isHidden = true
+        
+        panel.setContentSize(hostingView.intrinsicContentSize)
         panel.center()
         
         super.init(window: panel)
@@ -98,62 +103,4 @@ private final class CommandBarPanel: NSPanel {
         
         self.close()
     }
-}
-
-
-/// Workaround for the issue that a window still keeps content height for the title bar even with `.ignoresSafeArea()`.
-private final class HostingViewSuppressingSafeArea<T: View>: NSHostingView<T> {
-    
-    private lazy var layoutGuide = NSLayoutGuide()
-    
-    
-    required init(rootView: T) {
-        
-        super.init(rootView: rootView)
-        
-        self.addLayoutGuide(self.layoutGuide)
-        NSLayoutConstraint.activate([
-            self.leadingAnchor.constraint(equalTo: self.layoutGuide.leadingAnchor),
-            self.topAnchor.constraint(equalTo: self.layoutGuide.topAnchor),
-            self.trailingAnchor.constraint(equalTo: self.layoutGuide.trailingAnchor),
-            self.bottomAnchor.constraint(equalTo: self.layoutGuide.bottomAnchor),
-        ])
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override var safeAreaRect: NSRect {
-        
-        self.frame
-    }
-    
-    
-    override var safeAreaInsets: NSEdgeInsets {
-        
-        .zero
-    }
-    
-    
-    override var safeAreaLayoutGuide: NSLayoutGuide {
-        
-        self.layoutGuide
-    }
-    
-    
-    override var additionalSafeAreaInsets: NSEdgeInsets {
-        
-        get { .zero }
-        set { _ = newValue }
-    }
-}
-
-
-private extension NSEdgeInsets {
-    
-    static let zero = NSEdgeInsetsZero
 }
