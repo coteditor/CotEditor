@@ -83,7 +83,7 @@ struct AdvancedCharacterCounterView: View {
         .padding(.horizontal, 10)
         .padding(.vertical, 8)
         .background(.regularMaterial)
-        .cornerRadius(8)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
         .shadow(radius: 4, y: 2)
         .onTapGesture { }  // avoid clicking through
         .contextMenu {
