@@ -96,8 +96,8 @@ private enum BundleIdentifier {
     
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
-    private lazy var aboutPanel = NSPanel(contentViewController: NSHostingController(rootView: AboutView()))
-    private lazy var whatsNewPanel = NSPanel(contentViewController: NSHostingController(rootView: WhatsNewView()))
+    private lazy var aboutPanel = NSPanel(view: AboutView(), utility: true)
+    private lazy var whatsNewPanel = NSPanel(view: WhatsNewView())
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxesMenu: NSMenu?
@@ -381,30 +381,12 @@ private enum BundleIdentifier {
     /// Shows the about panel.
     @IBAction func showAboutPanel(_ sender: Any?) {
         
-        // initialize panel settings
-        if !self.aboutPanel.styleMask.contains(.utilityWindow) {
-            self.aboutPanel.styleMask = [.closable, .titled, .fullSizeContentView, .utilityWindow]
-            self.aboutPanel.titleVisibility = .hidden
-            self.aboutPanel.titlebarAppearsTransparent = true
-            self.aboutPanel.hidesOnDeactivate = false
-            self.aboutPanel.becomesKeyOnlyIfNeeded = true
-        }
-        
         self.aboutPanel.makeKeyAndOrderFront(sender)
     }
     
     
     /// Shows the What's New panel.
     @IBAction func showWhatsNew(_ sender: Any?) {
-        
-        // initialize panel settings
-        if !self.whatsNewPanel.styleMask.contains(.fullSizeContentView) {
-            self.whatsNewPanel.styleMask = [.closable, .titled, .fullSizeContentView]
-            self.whatsNewPanel.titleVisibility = .hidden
-            self.whatsNewPanel.titlebarAppearsTransparent = true
-            self.whatsNewPanel.hidesOnDeactivate = false
-            self.whatsNewPanel.becomesKeyOnlyIfNeeded = true
-        }
         
         self.whatsNewPanel.makeKeyAndOrderFront(sender)
     }
@@ -531,6 +513,36 @@ private enum BundleIdentifier {
         feedbackAlert.runModal()
         
         return true
+    }
+}
+
+
+private extension NSPanel {
+    
+    /// Instantiates a panel with a SwiftUI view.
+    ///
+    /// - Parameters:
+    ///   - view: The SwiftUI view.
+    ///   - utility: Whether the panel to create is an utility panel.
+    /// - Returns: A panel.
+    convenience init(view: any View, utility: Bool = false) {
+        
+        let viewController = NSHostingController(rootView: AnyView(view))
+        viewController.safeAreaRegions = []
+        
+        self.init(contentViewController: viewController)
+        
+        self.styleMask = [.closable, .titled, .fullSizeContentView]
+        self.titleVisibility = .hidden
+        self.titlebarAppearsTransparent = true
+        self.hidesOnDeactivate = false
+        self.becomesKeyOnlyIfNeeded = true
+        if utility {
+            self.styleMask.insert(.utilityWindow)
+        }
+        self.setContentSize(viewController.view.intrinsicContentSize)
+        
+        self.center()
     }
 }
 

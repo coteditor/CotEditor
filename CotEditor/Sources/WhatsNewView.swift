@@ -98,11 +98,9 @@ struct WhatsNewView: View {
             .keyboardShortcut(.cancelAction)
             .buttonStyle(.borderedProminent)
         }
-        .padding(.horizontal)
-        .padding(.top, 30)  // for balancing with window titlebar space
+        .padding()
         .scenePadding()
         .frame(width: 580)
-        .ignoresSafeArea(edges: .top)
         .background {
             Image(systemName: "gearshape.2")
                 .font(.system(size: 750, weight: .ultraLight))

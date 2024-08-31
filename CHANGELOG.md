@@ -3,6 +3,10 @@
 5.0.0-beta.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta][trivial] Adjust layout of About and What's New panels.
+
 
 
 5.0.0-beta (661)

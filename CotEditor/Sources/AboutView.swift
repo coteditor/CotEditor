@@ -102,8 +102,7 @@ struct AboutView: View {
         }
         .accessibilityLabel(String(localized: "About \(Bundle.main.bundleName)", table: "About", comment: "accessibility label (%@ is app name)"))
         .controlSize(.small)
-        .ignoresSafeArea()
-        .frame(width: 540, height: 300)
+        .frame(width: 540, height: 320)
     }
 }
 
