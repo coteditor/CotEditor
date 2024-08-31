@@ -11,7 +11,7 @@
 ### New Features
 
 - Support __macOS 15 Sequoia__.
-- Open folders in CotEditor and browse the folder contents from the new sidebar to switch documents.
+- Folder Navigation: Open folders in CotEditor and browse its contents from the new sidebar to switch documents.
 - [AppStore ver.] Now, the user can donate to the CotEditor project via in-app purchase in the new Donate settings pane.
 - Add new “Select Enclosing Symbols” and “Split Selection by Lines” commands to the Edit > Select menu.
 - Add new “Show in Finder” command to the File menu.
