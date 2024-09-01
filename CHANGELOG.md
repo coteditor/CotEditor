@@ -6,7 +6,7 @@
 ### Improvements
 
 - [trivial] Better numbering when adding a new setting whose name is same as an existing one.
-- [beta] Add the Duplicate action to the context menu for the sidebar.
+- [beta] Add the Duplicate and Share actions to the context menu for the sidebar.
 - [bata] Make items in the sidebar copyable.
 - [beta] Improve alias file handling in the sidebar.
 - [beta][trivial] Adjust layout of About and What's New panels.

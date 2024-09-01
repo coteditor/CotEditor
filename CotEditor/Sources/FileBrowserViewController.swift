@@ -136,6 +136,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                        action: #selector(addFolder), keyEquivalent: ""),
             .separator(),
             
+            NSMenuItem(title: String(localized: "Share…", table: "Document", comment: "menu item label"),
+                       action: #selector(share), keyEquivalent: ""),
+            .separator(),
+            
             NSMenuItem(title: String(localized: "Show Hidden Files", table: "Document", comment: "menu item label"),
                        action: #selector(toggleHiddenFileVisibility), keyEquivalent: ""),
         ]
@@ -241,6 +245,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             case #selector(moveToTrash):
                 menuItem.isHidden = self.clickedNode == nil
                 return self.clickedNode?.isWritable == true
+                
+            case #selector(share):
+                menuItem.isHidden = self.clickedNode == nil
                 
             case #selector(toggleHiddenFileVisibility):
                 menuItem.state = self.showsHiddenFiles ? .on : .off
@@ -354,6 +361,18 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         guard let node = self.clickedNode else { return }
         
         self.trashNodes([node])
+    }
+    
+    
+    @IBAction func share(_ menuItem: NSMenuItem) {
+        
+        guard
+            let node = self.clickedNode,
+            let view = self.outlineView.rowView(atRow: self.outlineView.clickedRow, makeIfNecessary: false)
+        else { return }
+        
+        let picker = NSSharingServicePicker(items: [node.fileURL])
+        picker.show(relativeTo: .zero, of: view, preferredEdge: .minX)
     }
     
     
