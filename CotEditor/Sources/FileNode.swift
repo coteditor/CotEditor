@@ -73,11 +73,16 @@ final class FileNode {
         
         self.isDirectory = resourceValues.isDirectory ?? false
         self.name = fileURL.lastPathComponent
-        self.kind = Kind(filename: self.name, isDirectory: self.isDirectory)
         self.isWritable = resourceValues.isWritable ?? true
         self.isAlias = resourceValues.isAliasFile ?? false
         self.fileURL = fileURL.standardizedFileURL
         self.parent = parent
+        
+        self.kind = if self.isAlias, try URL(resolvingAliasFileAt: fileURL).resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true {
+            .folder
+        } else {
+            Kind(filename: self.name, isDirectory: self.isDirectory)
+        }
     }
     
     
@@ -102,6 +107,15 @@ final class FileNode {
     }
     
     
+    /// Whether the receiver's `kind` is `.folder`.
+    ///
+    /// Unlike `.isDirectory` property, this property also returns `true` when the receiver is an alias linking  to a folder.
+    private var isFolder: Bool {
+        
+        self.kind == .folder
+    }
+    
+    
     /// Reads the contents of the directory at the receiver's `fileURL`.
     ///
     /// - Returns: The child nodes, or `nil` if the receiver is not a directory.
@@ -114,7 +128,16 @@ final class FileNode {
             .filter { $0.lastPathComponent != ".DS_Store" }
             .map { try FileNode(at: $0, parent: self) }
             .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
-            .sorted(using: SortDescriptor(\.isDirectory))
+            .sorted(using: SortDescriptor(\.isFolder))
+    }
+    
+    
+    /// Updates `.kind` with current file name.
+    private func invalidateKind() {
+        
+        guard !(self.isAlias && self.kind == .folder) else { return }
+        
+        self.kind = Kind(filename: self.name, isDirectory: self.isDirectory)
     }
 }
 
@@ -220,8 +243,8 @@ extension FileNode {
     func move(to fileURL: URL) {
         
         self.name = fileURL.lastPathComponent
-        self.kind = Kind(filename: self.name, isDirectory: self.isDirectory)
         self.fileURL = fileURL.standardizedFileURL
+        self.invalidateKind()
         
         self._children = nil
     }
@@ -235,8 +258,8 @@ extension FileNode {
         assert(!newName.isEmpty)
         
         self.name = newName
-        self.kind = Kind(filename: newName, isDirectory: self.isDirectory)
         self.fileURL = self.fileURL.deletingLastPathComponent().appending(path: newName)
+        self.invalidateKind()
         
         self.parent?._children?.sort()
     }
