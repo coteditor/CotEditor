@@ -116,6 +116,17 @@ final class FileNode {
     }
     
     
+    /// The file URL by resolving any link and alias.
+    var resolvedFileURL: URL {
+        
+        get throws {
+            guard self.isAlias else { return self.fileURL }
+            
+            return try URL(resolvingAliasFileAt: self.fileURL)
+        }
+    }
+    
+    
     /// Reads the contents of the directory at the receiver's `fileURL`.
     ///
     /// - Returns: The child nodes, or `nil` if the receiver is not a directory.

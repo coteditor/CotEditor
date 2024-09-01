@@ -5,7 +5,7 @@
 
 ### Improvements
 
-- [beta] Draw the alias symbol on alias files in the sidebar.
+- [beta] Improve alias file handling in the sidebar.
 - [beta][trivial] Adjust layout of About and What's New panels.
 
 
