@@ -197,9 +197,25 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     // MARK: Actions
     
+    override func responds(to aSelector: Selector!) -> Bool {
+        
+        switch aSelector {
+            case #selector(copy(_:)):
+                MainActor.assumeIsolated {
+                    !self.outlineView.selectedRowIndexes.isEmpty
+                }
+            default:
+                super.responds(to: aSelector)
+        }
+    }
+    
+    
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         switch menuItem.action {
+            case #selector(copy(_:)):
+                return self.targetNode(for: menuItem) != nil
+                
             case #selector(showInFinder):
                 menuItem.isHidden = self.clickedNode == nil
                 
@@ -233,6 +249,15 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         }
         
         return true
+    }
+    
+    
+    @IBAction func copy(_ sender: Any?) {
+        
+        guard let node = self.targetNode(for: sender) else { return }
+        
+        NSPasteboard.general.clearContents()
+        NSPasteboard.general.writeObjects([node.fileURL as NSURL])
     }
     
     
@@ -355,9 +380,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     ///
     /// - Parameter menuItem: The sender of the action.
     /// - Returns: A file node.
-    private func targetNode(for menuItem: NSMenuItem) -> FileNode? {
+    private func targetNode(for sender: Any?) -> FileNode? {
         
-        let isContextMenu = (menuItem.menu == self.outlineView.menu)
+        let isContextMenu = ((sender as? NSMenuItem)?.menu == self.outlineView.menu)
         let row = isContextMenu ? self.outlineView.clickedRow : self.outlineView.selectedRow
         
         return self.outlineView.item(atRow: row) as? FileNode ?? self.document.fileNode
