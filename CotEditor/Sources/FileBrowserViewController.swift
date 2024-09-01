@@ -202,7 +202,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                 menuItem.isHidden = self.clickedNode == nil
                 
             case #selector(openWithExternalEditor):
-                menuItem.isHidden = self.clickedNode?.isDirectory != false
+                menuItem.isHidden = self.clickedNode?.isFolder != false
                 
             case #selector(openInNewWindow):
                 menuItem.isHidden = self.clickedNode == nil

@@ -110,7 +110,7 @@ final class FileNode {
     /// Whether the receiver's `kind` is `.folder`.
     ///
     /// Unlike `.isDirectory` property, this property also returns `true` when the receiver is an alias linking  to a folder.
-    private var isFolder: Bool {
+    var isFolder: Bool {
         
         self.kind == .folder
     }
