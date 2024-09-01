@@ -43,7 +43,6 @@ struct StringFilename {
     
     @Test func pathExtension() {
         
-        let aa = "test.txt".firstMatch(of: /.\.([^ .]+)$/)?.output.1
         #expect("test".pathExtension == nil)
         #expect("test.".pathExtension == nil)
         #expect("test.txt".pathExtension == "txt")
@@ -51,6 +50,29 @@ struct StringFilename {
         #expect("test.txt.txt".pathExtension == "txt")
         #expect(".htaccess".pathExtension == nil)
         #expect("1.2 file".pathExtension == nil)
+    }
+    
+    
+    @Test func numberingComponents() {
+        
+        #expect(" ".numberingComponents() == (" ", nil))
+        #expect("1".numberingComponents() == ("1", nil))
+        #expect(" 1".numberingComponents() == (" 1", nil))
+        #expect("test".numberingComponents() == ("test", nil))
+        #expect("test 5".numberingComponents() == ("test", 5))
+        #expect("test copy".numberingComponents() == ("test copy", nil))
+        #expect("test copy 5".numberingComponents() == ("test copy", 5))
+        
+        #expect(" ".numberingComponents(suffix: "copy") == (" ", nil))
+        #expect("1".numberingComponents(suffix: "copy") == ("1", nil))
+        #expect(" 1".numberingComponents(suffix: "copy") == (" 1", nil))
+        #expect("test".numberingComponents(suffix: "copy") == ("test", nil))
+        #expect("test 5".numberingComponents(suffix: "copy") == ("test 5", nil))
+        #expect("test copy".numberingComponents(suffix: "copy") == ("test", 1))
+        #expect("test copy 5".numberingComponents(suffix: "copy") == ("test", 5))
+        #expect(" copy".numberingComponents(suffix: "copy") == (" copy", nil))
+        #expect("  copy".numberingComponents(suffix: "copy") == (" ", 1))
+        #expect("copy 5".numberingComponents(suffix: "copy") == ("copy 5", nil))
     }
     
     

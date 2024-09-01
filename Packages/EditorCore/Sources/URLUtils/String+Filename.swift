@@ -45,6 +45,48 @@ public extension String {
 }
 
 
+extension String {
+    
+    /// Splits the receiver into parts of filename for unique numbering.
+    ///
+    /// - Parameter suffix: The suffix for filename numbering, such as "copy".
+    /// - Returns: The components.
+    func numberingComponents(suffix: String? = nil) -> (base: Substring, count: Int?) {
+        
+        assert(!self.isEmpty)
+        assert(suffix?.isEmpty != true)
+        
+        let base: Substring
+        let number: Substring?
+        let hasSuffix: Bool
+        if let suffix {
+            let regex = try! Regex("(?<base>.+?)(?<suffix> \(suffix)(?: (?<number>[0-9]+))?)?",
+                                   as: (Substring, base: Substring, suffix: Substring?, number: Substring?).self)
+            let match = self.wholeMatch(of: regex)!
+            base = match.base
+            number = match.number
+            hasSuffix = match.suffix != nil
+            
+        } else {
+            let match = self.wholeMatch(of: /(?<base>.+?)(?: (?<number>[0-9]+))?/)!
+            base = match.base
+            number = match.number
+            hasSuffix = false
+        }
+        
+        let count: Int? = if let number {
+            Int(number)
+        } else if hasSuffix {
+            1
+        } else {
+            nil
+        }
+        
+        return (base, count)
+    }
+}
+
+
 public extension Collection<String> {
     
     /// Creates a unique name from the receiver's elements by adding the suffix and also a number if needed.
@@ -55,31 +97,13 @@ public extension Collection<String> {
     /// - Returns: An unique name.
     func createAvailableName(for proposedName: String, suffix: String? = nil) -> String {
         
-        let spaceSuffix = suffix.flatMap { " " + $0 } ?? ""
+        let components = proposedName.numberingComponents(suffix: suffix)
+        let baseName = String(components.base) + (suffix.flatMap { " " + $0 } ?? "")
         
-        let (rootName, baseCount): (String, Int?) = {
-            let suffixPattern = NSRegularExpression.escapedPattern(for: spaceSuffix)
-            let regex = try! NSRegularExpression(pattern: suffixPattern + "(?: ([0-9]+))?$")
-            let range = NSRange(location: 0, length: proposedName.utf16.count)
-            
-            guard let result = regex.firstMatch(in: proposedName, range: range) else { return (proposedName, nil) }
-            
-            let root = (proposedName as NSString).substring(to: result.range.location)
-            let numberRange = result.range(at: 1)
-            
-            guard numberRange.location != NSNotFound else { return (root, nil) }
-            
-            let number = Int((proposedName as NSString).substring(with: numberRange))
-            
-            return (root, number)
-        }()
+        guard components.count != nil || self.contains(baseName) else { return baseName }
         
-        let baseName = rootName + spaceSuffix
-        
-        guard baseCount != nil || self.contains(baseName) else { return baseName }
-        
-        return ((baseCount ?? 2)...).lazy
-            .map { baseName + " " + String($0) }
+        return ((components.count ?? 2)...).lazy
+            .map { "\(baseName) \($0)" }
             .first { !self.contains($0) }!
     }
 }
