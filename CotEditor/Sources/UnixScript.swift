@@ -194,13 +194,10 @@ private extension ScriptToken where Self: RawRepresentable, Self.RawValue == Str
     /// Reads type from script
     init?(scanning script: String) {
         
-        let pattern = "%%%\\{" + Self.token + "=" + "(.+)" + "\\}%%%"
-        let regex = try! NSRegularExpression(pattern: pattern)
+        let regex = try! Regex("%%%\\{\(Self.token)=(?<value>.+)\\}%%%", as: (Substring, value: Substring).self)
         
-        guard let result = regex.firstMatch(in: script, range: script.nsRange) else { return nil }
+        guard let result = script.firstMatch(of: regex) else { return nil }
         
-        let type = (script as NSString).substring(with: result.range(at: 1))
-        
-        self.init(rawValue: type)
+        self.init(rawValue: String(result.value))
     }
 }
