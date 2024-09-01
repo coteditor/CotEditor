@@ -251,7 +251,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         guard let node = self.clickedNode else { return }
         
-        self.document.openInWindow(fileURL: node.fileURL)
+        self.openInWindow(at: node)
     }
     
     
@@ -369,6 +369,23 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         if edit {
             self.outlineView.editColumn(0, row: row, with: nil, select: false)
         }
+    }
+    
+    
+    /// Open in a separate window by resolving any file link.
+    ///
+    /// - Parameter node: The file node to open.
+    private func openInWindow(at node: FileNode) {
+        
+        let fileURL: URL
+        do {
+            fileURL = try node.resolvedFileURL
+        } catch {
+            self.presentError(error)
+            return
+        }
+        
+        self.document.openInWindow(fileURL: fileURL)
     }
     
     
@@ -538,10 +555,12 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
         let node = item as! FileNode
-        let cellView = outlineView.makeView(withIdentifier: .node, owner: self) as? NSTableCellView ?? self.createCellView()
+        let cellView = outlineView.makeView(withIdentifier: .node, owner: self) as? FileBrowserTableCellView ?? .init()
+        cellView.textField?.delegate = self
         
-        cellView.imageView!.image = node.image
+        cellView.imageView!.image = node.kind.image
         cellView.imageView!.alphaValue = node.isHidden ? 0.5 : 1
+        cellView.isAlias = node.isAlias
         
         cellView.textField!.stringValue = node.name
         cellView.textField!.textColor = node.isHidden ? .disabledControlTextColor : .labelColor
@@ -556,49 +575,13 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         
         guard
             let node = outlineView.item(atRow: outlineView.selectedRow) as? FileNode,
-            !node.isDirectory
+            !node.isDirectory,
+            !node.isAlias
         else { return }
         
         Task {
             await self.document.openDocument(at: node.fileURL)
         }
-    }
-    
-    
-    /// Create a new cell view template for the outline view.
-    ///
-    /// - Returns: A table cell view.
-    private func createCellView() -> NSTableCellView {
-        
-        let imageView = NSImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.alignment = .center
-        
-        let textField = FilenameTextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.drawsBackground = false
-        textField.isBordered = false
-        textField.lineBreakMode = .byTruncatingMiddle
-        textField.isEditable = true
-        textField.delegate = self
-        
-        let cellView = NSTableCellView()
-        cellView.identifier = .node
-        cellView.addSubview(textField)
-        cellView.addSubview(imageView)
-        cellView.textField = textField
-        cellView.imageView = imageView
-        
-        NSLayoutConstraint.activate([
-            imageView.firstBaselineAnchor.constraint(equalTo: textField.firstBaselineAnchor),
-            textField.centerYAnchor.constraint(equalTo: cellView.centerYAnchor),
-            imageView.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 2),
-            imageView.widthAnchor.constraint(equalToConstant: 17),  // the value used in a sample code by Apple
-            textField.leadingAnchor.constraint(equalToSystemSpacingAfter: imageView.trailingAnchor, multiplier: 1),
-            textField.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -2),
-        ])
-        
-        return cellView
     }
 }
 
@@ -640,17 +623,66 @@ extension FileBrowserViewController: NSTextFieldDelegate {
 }
 
 
-// MARK: - Extensions
+// MARK: -
 
-private extension FileNode {
+final class FileBrowserTableCellView: NSTableCellView {
     
-    /// The symbol image in `NSImage`.
-    var image: NSImage {
+    var isAlias: Bool = false { didSet { self.aliasArrowView?.isHidden = !isAlias } }
+    
+    private var aliasArrowView: NSImageView?
+    
+    
+    override init(frame frameRect: NSRect) {
         
-        self.kind.image
+        let imageView = NSImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.alignment = .center
+        
+        let textField = FilenameTextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.drawsBackground = false
+        textField.isBordered = false
+        textField.lineBreakMode = .byTruncatingMiddle
+        textField.isEditable = true
+        
+        let aliasArrowView = NSImageView()
+        aliasArrowView.translatesAutoresizingMaskIntoConstraints = false
+        aliasArrowView.alignment = .center
+        aliasArrowView.image = .arrowAliasFill
+        aliasArrowView.symbolConfiguration = .init(paletteColors: [.labelColor, .controlBackgroundColor])
+        aliasArrowView.setAccessibilityHidden(true)
+        
+        super.init(frame: frameRect)
+        
+        self.identifier = .node
+        self.addSubview(textField)
+        self.addSubview(imageView)
+        self.addSubview(aliasArrowView)
+        self.textField = textField
+        self.imageView = imageView
+        self.aliasArrowView = aliasArrowView
+        
+        NSLayoutConstraint.activate([
+            imageView.firstBaselineAnchor.constraint(equalTo: textField.firstBaselineAnchor),
+            aliasArrowView.firstBaselineAnchor.constraint(equalTo: textField.firstBaselineAnchor),
+            textField.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 2),
+            imageView.widthAnchor.constraint(equalToConstant: 17),  // the value used in a sample code by Apple
+            aliasArrowView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+            textField.leadingAnchor.constraint(equalToSystemSpacingAfter: imageView.trailingAnchor, multiplier: 1),
+            textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -2),
+        ])
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
+
+// MARK: - Extensions
 
 private extension FileNode.Kind {
     
