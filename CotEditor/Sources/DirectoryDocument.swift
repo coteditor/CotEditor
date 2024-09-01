@@ -428,6 +428,36 @@ final class DirectoryDocument: NSDocument {
     }
     
     
+    /// Duplicates the file/folder at the given `fileURL`.
+    ///
+    /// - Parameters:
+    ///   - node: The file node to duplicate.
+    /// - Returns: The file node created.
+    func duplicateItem(at node: FileNode) throws -> FileNode {
+        
+        let duplicatedURL = node.fileURL.appendingUniqueNumber(suffix: String(localized: "copy", comment: "suffix for copied setting file"))
+        
+        var coordinationError: NSError?
+        var copyError: (any Error)?
+        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: node.fileURL, options: .withoutChanges, writingItemAt: duplicatedURL, error: &coordinationError) { (newSourceURL, newDestinationURL) in
+            do {
+                try FileManager.default.copyItem(at: newSourceURL, to: newDestinationURL)
+            } catch {
+                copyError = error
+            }
+        }
+        
+        if let error = coordinationError ?? copyError {
+            throw error
+        }
+        
+        let duplicatedNode = try FileNode(at: duplicatedURL, parent: node.parent)
+        node.parent?.addNode(duplicatedNode)
+        
+        return duplicatedNode
+    }
+    
+    
     /// Properly moves the item to the trash.
     ///
     /// - Parameters:

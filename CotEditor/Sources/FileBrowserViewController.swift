@@ -126,6 +126,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                        action: #selector(addFile), keyEquivalent: ""),
             NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
                        action: #selector(addFolder), keyEquivalent: ""),
+            NSMenuItem(title: String(localized: "Duplicate", table: "Document", comment: "menu item label"),
+                       action: #selector(duplicate), keyEquivalent: ""),
             NSMenuItem(title: String(localized: "Move to Trash", table: "Document", comment: "menu item label"),
                        action: #selector(moveToTrash), keyEquivalent: ""),
             .separator(),
@@ -292,6 +294,26 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             self.outlineView.insertItems(at: [index], inParent: parent, withAnimation: .effectGap)
         }
         self.select(node: node, edit: true)
+    }
+    
+    
+    @IBAction func duplicate(_ sender: Any?) {
+        
+        guard let node = self.clickedNode else { return }
+        
+        let newNode: FileNode
+        do {
+            newNode = try self.document.duplicateItem(at: node)
+        } catch {
+            return self.presentErrorAsSheet(error)
+        }
+        
+        // update UI
+        if let index = self.children(of: newNode.parent)?.firstIndex(of: newNode) {
+            let parent = (newNode.parent == self.document.fileNode) ? nil : newNode.parent
+            self.outlineView.insertItems(at: [index], inParent: parent, withAnimation: .effectGap)
+        }
+        self.select(node: newNode)
     }
     
     

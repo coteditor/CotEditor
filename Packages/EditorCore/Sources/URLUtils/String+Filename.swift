@@ -66,7 +66,6 @@ extension String {
             base = match.base
             number = match.number
             hasSuffix = match.suffix != nil
-            
         } else {
             let match = self.wholeMatch(of: /(?<base>.+?)(?: (?<number>[0-9]+))?/)!
             base = match.base
