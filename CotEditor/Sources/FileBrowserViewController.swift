@@ -116,20 +116,24 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         contextMenu.items = [
             NSMenuItem(title: String(localized: "Show in Finder", table: "Document", comment: "menu item label"),
                        action: #selector(showInFinder), keyEquivalent: ""),
-            NSMenuItem(title: String(localized: "Open with External Editor", table: "Document", comment: "menu item label"),
-                       action: #selector(openWithExternalEditor), keyEquivalent: ""),
+            .separator(),
+            
             NSMenuItem(title: String(localized: "Open in New Window", table: "Document", comment: "menu item label"),
                        action: #selector(openInNewWindow), keyEquivalent: ""),
+            NSMenuItem(title: String(localized: "Open with External Editor", table: "Document", comment: "menu item label"),
+                       action: #selector(openWithExternalEditor), keyEquivalent: ""),
+            .separator(),
+            
+            NSMenuItem(title: String(localized: "Move to Trash", table: "Document", comment: "menu item label"),
+                       action: #selector(moveToTrash), keyEquivalent: ""),
+            NSMenuItem(title: String(localized: "Duplicate", table: "Document", comment: "menu item label"),
+                       action: #selector(duplicate), keyEquivalent: ""),
             .separator(),
             
             NSMenuItem(title: String(localized: "New File", table: "Document", comment: "menu item label"),
                        action: #selector(addFile), keyEquivalent: ""),
             NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
                        action: #selector(addFolder), keyEquivalent: ""),
-            NSMenuItem(title: String(localized: "Duplicate", table: "Document", comment: "menu item label"),
-                       action: #selector(duplicate), keyEquivalent: ""),
-            NSMenuItem(title: String(localized: "Move to Trash", table: "Document", comment: "menu item label"),
-                       action: #selector(moveToTrash), keyEquivalent: ""),
             .separator(),
             
             NSMenuItem(title: String(localized: "Show Hidden Files", table: "Document", comment: "menu item label"),
