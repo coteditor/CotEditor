@@ -291,8 +291,7 @@ final class DirectoryDocument: NSDocument {
         
         var coordinationError: NSError?
         var writingError: (any Error)?
-        let coordinator = NSFileCoordinator(filePresenter: self)
-        coordinator.coordinate(writingItemAt: fileURL, error: &coordinationError) { newURL in
+        NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, error: &coordinationError) { newURL in
             do {
                 try Data().write(to: newURL, options: .withoutOverwriting)
             } catch {
@@ -324,8 +323,7 @@ final class DirectoryDocument: NSDocument {
         
         var coordinationError: NSError?
         var writingError: (any Error)?
-        let coordinator = NSFileCoordinator(filePresenter: self)
-        coordinator.coordinate(writingItemAt: folderURL, error: &coordinationError) { newURL in
+        NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: folderURL, error: &coordinationError) { newURL in
             do {
                 try FileManager.default.createDirectory(at: newURL, withIntermediateDirectories: true)
             } catch {
@@ -408,8 +406,7 @@ final class DirectoryDocument: NSDocument {
         
         var coordinationError: NSError?
         var copyingError: (any Error)?
-        let coordinator = NSFileCoordinator(filePresenter: self)
-        coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, writingItemAt: destinationURL, error: &coordinationError) { (newSourceURL, newDestinationURL) in
+        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, writingItemAt: destinationURL, error: &coordinationError) { (newSourceURL, newDestinationURL) in
             do {
                 try FileManager.default.copyItem(at: newSourceURL, to: newDestinationURL)
             } catch {
@@ -577,8 +574,7 @@ final class DirectoryDocument: NSDocument {
         
         var coordinationError: NSError?
         var movingError: (any Error)?
-        let coordinator = NSFileCoordinator(filePresenter: self)
-        coordinator.coordinate(writingItemAt: sourceURL, options: .forMoving, writingItemAt: destinationURL, options: .forMoving, error: &coordinationError) { (newSourceURL, newDestinationURL) in
+        NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: sourceURL, options: .forMoving, writingItemAt: destinationURL, options: .forMoving, error: &coordinationError) { (newSourceURL, newDestinationURL) in
             do {
                 try FileManager.default.moveItem(at: newSourceURL, to: newDestinationURL)
             } catch {
