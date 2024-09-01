@@ -215,6 +215,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             case #selector(addFolder):
                 return self.targetFolderNode(for: menuItem)?.isWritable != false
                 
+            case #selector(duplicate):
+                menuItem.isHidden = self.clickedNode == nil
+                
             case #selector(moveToTrash):
                 menuItem.isHidden = self.clickedNode == nil
                 return self.clickedNode?.isWritable == true
