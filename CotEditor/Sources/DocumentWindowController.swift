@@ -181,7 +181,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         if self.directoryDocument != nil {
             // display current document title as window subtitle
-            self.window?.subtitle = self.fileDocument?.displayName ?? ""
+            self.window?.subtitle = self.fileDocument?.fileURL?.lastPathComponent ?? self.fileDocument?.displayName ?? ""
         }
     }
     
