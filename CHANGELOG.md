@@ -10,6 +10,7 @@
 - [bata] Make items in the sidebar copyable.
 - [beta] Improve alias file handling in the sidebar.
 - [beta] Enable opening directories from the `cot` command.
+- [beta] Change the subtitle of document windows with the sidebar from the relative file path to the filename.
 - [beta][trivial] Adjust layout of About and What's New panels.
 
 

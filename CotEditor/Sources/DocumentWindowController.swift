@@ -178,9 +178,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         super.synchronizeWindowTitleWithDocumentName()
         
-        if let directoryURL = self.directoryDocument?.fileURL, let fileDocument = self.fileDocument {
+        if self.directoryDocument != nil {
             // display current document title as window subtitle
-            self.window?.subtitle = fileDocument.fileURL?.path(relativeTo: directoryURL) ?? fileDocument.displayName
+            self.window?.subtitle = self.fileDocument?.displayName ?? ""
         }
     }
     
