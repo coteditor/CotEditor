@@ -69,6 +69,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     private var opacityObserver: AnyCancellable?
     private var appearanceModeObserver: AnyCancellable?
+    private var fileDocumentNameObserver: AnyCancellable?
     
     private var documentSyntaxObserver: AnyCancellable?
     private var syntaxListObserver: AnyCancellable?
@@ -231,6 +232,12 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         if let viewController = self.contentViewController as? WindowContentViewController, viewController.document != document {
             viewController.document = document
+        }
+        
+        self.fileDocumentNameObserver = nil
+        if self.directoryDocument != nil {
+            self.fileDocumentNameObserver = document?.publisher(for: \.fileURL, options: .initial)
+                .sink { [weak self] _ in self?.synchronizeWindowTitleWithDocumentName() }
         }
         
         self.synchronizeWindowTitleWithDocumentName()
