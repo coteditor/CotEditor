@@ -66,9 +66,9 @@ struct WindowSettingsView: View {
     var body: some View {
         
         Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 8) {
-            GridRow {
-                Text("Prefer tabs:", tableName: "WindowSettings")
-                    .gridColumnAlignment(.trailing)
+            GridRow(alignment: .lastTextBaseline) {
+                Text("Open documents in tabs:", tableName: "WindowSettings",
+                     comment: "Omit “documents” if label becomes too long.")
                     .accessibilityLabeledPair(role: .label, id: "windowTabbing", in: self.accessibility)
                 
                 Picker(selection: $windowTabbing) {
@@ -89,8 +89,8 @@ struct WindowSettingsView: View {
             
             GridRow {
                 Text("Window size:", tableName: "WindowSettings")
-                    .gridColumnAlignment(.trailing)
                     .accessibilityLabeledPair(role: .label, id: "windowSize", in: self.accessibility)
+                    .gridColumnAlignment(.trailing)
                 
                 HStack(alignment: .firstTextBaseline, spacing: 12) {
                     HStack(alignment: .firstTextBaseline, spacing: 6) {
