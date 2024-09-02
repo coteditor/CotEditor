@@ -251,7 +251,6 @@ private extension OutlineInspectorView.Model {
                 // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
                 //    You can ignore text selection change at this time point because the outline selection will be updated when the parse finished.
                 .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
-                .debounce(for: .seconds(0.05), scheduler: RunLoop.main)
                 .sink { [weak self] in self?.invalidateCurrentItem(in: $0) }
             
         } else {

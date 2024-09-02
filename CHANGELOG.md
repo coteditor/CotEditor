@@ -13,6 +13,11 @@
 - [beta][trivial] Adjust layout of About and What's New panels.
 
 
+### Fixes
+
+- [beta] Fix an issue that the editor unwontedly selects the nearest outline item when the Outline inspector is shown.
+
+
 
 5.0.0-beta (661)
 --------------------------
