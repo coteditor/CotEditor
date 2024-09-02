@@ -9,6 +9,7 @@
 - [beta] Add the Duplicate and Share actions to the context menu for the sidebar.
 - [bata] Make items in the sidebar copyable.
 - [beta] Improve alias file handling in the sidebar.
+- [beta] Enable opening directories from the `cot` command.
 - [beta][trivial] Adjust layout of About and What's New panels.
 
 
