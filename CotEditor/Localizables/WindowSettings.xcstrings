@@ -1565,6 +1565,7 @@
       }
     },
     "Open documents in tabs:" : {
+      "comment" : "Omit “documents” if label becomes too long.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
