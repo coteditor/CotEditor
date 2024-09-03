@@ -39,6 +39,12 @@ private extension NSUserInterfaceItemIdentifier {
 
 final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
+    private enum SerializationKey {
+        
+        static let expandedItems = "expandedItems"
+    }
+    
+    
     let document: DirectoryDocument
     
     @ViewLoading private var outlineView: NSOutlineView
@@ -56,6 +62,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         super.init(nibName: nil, bundle: nil)
         
+        // set identifier for state restoration
+        self.identifier = NSUserInterfaceItemIdentifier("FileBrowserViewController")
+        
         document.fileBrowserViewController = self
     }
     
@@ -71,8 +80,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let outlineView = NSOutlineView()
         outlineView.headerView = nil
         outlineView.addTableColumn(NSTableColumn())
-        outlineView.autosaveName = "File Browser Outline View"
-        outlineView.autosaveExpandedItems = true
         
         let scrollView = NSScrollView()
         scrollView.documentView = outlineView
@@ -189,6 +196,38 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.treeObservationTask = nil
         
         self.defaultObservers.removeAll()
+    }
+    
+    
+    override func encodeRestorableState(with coder: NSCoder) {
+        
+        super.encodeRestorableState(with: coder)
+        
+        // store expanded items
+        let expandedItems = (0..<self.outlineView.numberOfRows)
+            .compactMap { self.outlineView.item(atRow: $0) as? FileNode }
+            .filter { self.outlineView.isItemExpanded($0) }
+            .map { $0.fileURL.path(percentEncoded: false) }
+        if !expandedItems.isEmpty {
+            coder.encode(expandedItems, forKey: SerializationKey.expandedItems)
+        }
+    }
+    
+    
+    override func restoreState(with coder: NSCoder) {
+        
+        super.restoreState(with: coder)
+        
+        // restore expanded items
+        if let paths = coder.decodeArrayOfObjects(ofClass: NSString.self, forKey: SerializationKey.expandedItems) as? [String] {
+            let nodes = paths
+                .map { URL(filePath: $0) }
+                .compactMap { self.document.fileNode?.node(at: $0) }
+            
+            for node in nodes {
+                self.outlineView.expandItem(node)
+            }
+        }
     }
     
     
@@ -659,6 +698,18 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         Task {
             await self.document.openDocument(at: node.fileURL)
         }
+    }
+    
+    
+    func outlineViewItemDidExpand(_ notification: Notification) {
+        
+        self.invalidateRestorableState()
+    }
+    
+    
+    func outlineViewItemDidCollapse(_ notification: Notification) {
+        
+        self.invalidateRestorableState()
     }
 }
 
