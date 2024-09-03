@@ -188,11 +188,11 @@ extension FileNode {
     
     /// Finds the node at the given `fileURL` in the node tree.
     ///
-    ///  - Note: This method recursively reads child directories on storage during fining the node if the `inCache` flag is `true`.
+    ///  - Note: This method recursively reads child directories on storage during fining the node if the `inCache` flag is `false`.
     ///
     /// - Parameters:
     ///   - fileURL: The file URL to find.
-    ///   - inCache: If `true`,
+    ///   - inCache: If `true`, checks only cached children.
     /// - Returns: The file node found.
     func node(at fileURL: URL, inCache: Bool = false) -> FileNode? {
         
@@ -211,7 +211,7 @@ extension FileNode {
         
         guard let child = children.first(where: { $0.fileURL.isAncestor(of: fileURL) }) else { return nil }
         
-        return child.node(at: fileURL)
+        return child.node(at: fileURL, inCache: inCache)
     }
     
     
