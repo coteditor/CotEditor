@@ -204,12 +204,16 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         super.encodeRestorableState(with: coder)
         
         // store expanded items
-        let expandedItems = (0..<self.outlineView.numberOfRows)
-            .compactMap { self.outlineView.item(atRow: $0) as? FileNode }
-            .filter { self.outlineView.isItemExpanded($0) }
-            .map { $0.fileURL.path(percentEncoded: false) }
-        if !expandedItems.isEmpty {
-            coder.encode(expandedItems, forKey: SerializationKey.expandedItems)
+        if let rootURL = self.document.fileURL {
+            let expandedItems = (0..<self.outlineView.numberOfRows)
+                .compactMap { self.outlineView.item(atRow: $0) }
+                .filter { self.outlineView.isItemExpanded($0) }
+                .compactMap { $0 as? FileNode }
+                .map { $0.fileURL.path(relativeTo: rootURL) }
+            
+            if !expandedItems.isEmpty {
+                coder.encode(expandedItems, forKey: SerializationKey.expandedItems)
+            }
         }
     }
     
@@ -219,9 +223,11 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         super.restoreState(with: coder)
         
         // restore expanded items
-        if let paths = coder.decodeArrayOfObjects(ofClass: NSString.self, forKey: SerializationKey.expandedItems) as? [String] {
+        if let rootURL = self.document.fileURL,
+           let paths = coder.decodeArrayOfObjects(ofClass: NSString.self, forKey: SerializationKey.expandedItems) as? [String]
+        {
             let nodes = paths
-                .map { URL(filePath: $0) }
+                .map { URL(filePath: $0, relativeTo: rootURL) }
                 .compactMap { self.document.fileNode?.node(at: $0) }
             
             for node in nodes {
