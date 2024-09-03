@@ -3,6 +3,12 @@
 5.0.0-beta.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Improve C++ syntax (Thanks to LeoNatan!).
+
+
+
 5.0.0-beta.2 (663)
 --------------------------
 
