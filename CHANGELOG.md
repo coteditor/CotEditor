@@ -8,6 +8,7 @@
 - [trivial] Better numbering when adding a new setting whose name is same as an existing one.
 - [beta] Add the Duplicate and Share actions to the context menu for the sidebar.
 - [bata] Make items in the sidebar copyable.
+- [beta] Improve hidden file handling in the sidebar.
 - [beta] Improve alias file handling in the sidebar.
 - [beta] Enable opening directories from the `cot` command.
 - [beta] Change the subtitle of document windows with the sidebar from the relative file path to the filename.

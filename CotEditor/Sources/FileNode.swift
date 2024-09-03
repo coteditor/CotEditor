@@ -43,12 +43,11 @@ final class FileNode {
     let isDirectory: Bool
     private(set) var name: String
     private(set) var kind: Kind
+    private(set) var isHidden: Bool
     private(set) var isWritable: Bool
     private(set) var isAlias: Bool
     private(set) var fileURL: URL
     private(set) weak var parent: FileNode?
-    
-    var isHidden: Bool  { self.name.starts(with: ".") }
     
     private var _children: [FileNode]?
     
@@ -59,6 +58,7 @@ final class FileNode {
         self.isDirectory = isDirectory
         self.name = fileURL.lastPathComponent
         self.kind = Kind(filename: self.name, isDirectory: isDirectory)
+        self.isHidden = fileURL.lastPathComponent.starts(with: ".")
         self.isWritable = isWritable
         self.isAlias = false
         self.fileURL = fileURL.standardizedFileURL
@@ -69,10 +69,11 @@ final class FileNode {
     /// Initializes a file node instance by reading the information from the actual file.
     init(at fileURL: URL, parent: FileNode? = nil) throws {
         
-        let resourceValues = try fileURL.resourceValues(forKeys: [.isDirectoryKey, .isWritableKey, .isAliasFileKey])
+        let resourceValues = try fileURL.resourceValues(forKeys: [.isDirectoryKey, .isWritableKey, .isAliasFileKey, .isHiddenKey])
         
         self.isDirectory = resourceValues.isDirectory ?? false
         self.name = fileURL.lastPathComponent
+        self.isHidden = resourceValues.isHidden ?? false
         self.isWritable = resourceValues.isWritable ?? true
         self.isAlias = resourceValues.isAliasFile ?? false
         self.fileURL = fileURL.standardizedFileURL
@@ -135,7 +136,7 @@ final class FileNode {
         assert(self.isDirectory)
         
         return try FileManager.default
-            .contentsOfDirectory(at: self.fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey, .isAliasFileKey])
+            .contentsOfDirectory(at: self.fileURL, includingPropertiesForKeys: [.isDirectoryKey, .isWritableKey, .isAliasFileKey, .isHiddenKey])
             .filter { $0.lastPathComponent != ".DS_Store" }
             .map { try FileNode(at: $0, parent: self) }
             .sorted(using: SortDescriptor(\.name, comparator: .localizedStandard))
@@ -253,9 +254,14 @@ extension FileNode {
     /// - Parameter fileURL: The new file URL.
     func move(to fileURL: URL) {
         
+        let keepsHidden = self.isHidden && !self.name.starts(with: ".")
+        
         self.name = fileURL.lastPathComponent
         self.fileURL = fileURL.standardizedFileURL
         self.invalidateKind()
+        if !keepsHidden {
+            self.isHidden = self.name.starts(with: ".")
+        }
         
         self._children = nil
     }
@@ -268,9 +274,14 @@ extension FileNode {
         
         assert(!newName.isEmpty)
         
+        let keepsHidden = self.isHidden && !self.name.starts(with: ".")
+        
         self.name = newName
         self.fileURL = self.fileURL.deletingLastPathComponent().appending(path: newName)
         self.invalidateKind()
+        if !keepsHidden {
+            self.isHidden = newName.starts(with: ".")
+        }
         
         self.parent?._children?.sort()
     }
