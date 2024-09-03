@@ -1,11 +1,14 @@
 # Change Log
 
+5.0.0-beta.3 (unreleased)
+--------------------------
+
 5.0.0-beta.2 (663)
 --------------------------
 
 ### Improvements
 
-- [trivial] Better numbering when adding a new setting whose name is same as an existing one.
+- [trivial] Better numbering when adding a new setting whose name is the same as an existing one.
 - [beta] Add the Duplicate and Share actions to the context menu for the sidebar.
 - [bata] Make items in the sidebar copyable.
 - [beta] Restore the expansion state of folders in the sidebar from the last session.
