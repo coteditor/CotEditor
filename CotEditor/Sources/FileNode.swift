@@ -222,29 +222,29 @@ extension FileNode {
     func invalidateChildren(at fileURL: URL) -> Bool {
         
         guard
+            fileURL.lastPathComponent != ".DS_Store",
             self.isDirectory,
             let children = self._children
         else { return false }
         
-        if fileURL.deletingLastPathComponent() == self.fileURL {
-            // -> The given fileURL is in this node.
-            if let index = children.firstIndex(where: { $0.fileURL == fileURL }) {
-                if fileURL.isReachable {
-                    return false
-                } else {
-                    // -> The file is deleted.
-                    self._children?.remove(at: index)
-                    return true
-                }
-                
+        guard fileURL.deletingLastPathComponent() == self.fileURL else {
+            return children.contains { $0.invalidateChildren(at: fileURL) }
+        }
+        
+        // -> The given fileURL is in this node.
+        if let index = children.firstIndex(where: { $0.fileURL == fileURL }) {
+            if fileURL.isReachable {
+                return false
             } else {
-                // just invalidate all children
-                self._children = nil
+                // -> The file is deleted.
+                self._children?.remove(at: index)
                 return true
             }
             
-        } else {
-            return children.contains { $0.invalidateChildren(at: fileURL) }
+        } else {  // -> fileURL is added
+            // just invalidate all children
+            self._children = nil
+            return true
         }
     }
 

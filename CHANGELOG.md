@@ -19,6 +19,7 @@
 
 - [beta] Fix an issue that the editor unwontedly selects the nearest outline item when the Outline inspector is shown.
 - [beta] Fix an issue that the window subtitle did not update when the document is renamed.
+- [beta] Improve an issue that the folder tree unwontedly closed when user changed the folder structure.
 
 
 
