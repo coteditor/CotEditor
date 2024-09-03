@@ -13,14 +13,14 @@
 - [beta] Improve alias file handling in the sidebar.
 - [beta] Enable opening directories from the `cot` command.
 - [beta] Change the subtitle of document windows with the sidebar from the relative file path to the filename.
-- [beta][trivial] Adjust layout of About and What's New panels.
+- [beta][trivial] Adjust layout of the About and What's New panels.
 
 
 ### Fixes
 
 - [beta] Fix an issue that the editor unwontedly selects the nearest outline item when the Outline inspector is shown.
-- [beta] Fix an issue that the window subtitle did not update when the document is renamed.
-- [beta] Improve an issue that the folder tree unwontedly closed when user changed the folder structure.
+- [beta] Fix an issue that the window subtitle did not update when the document was renamed.
+- [beta] Address an issue on macOS 14 that the folder tree unwontedly closed when the user changed the folder structure.
 
 
 
