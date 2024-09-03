@@ -205,14 +205,14 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         // store expanded items
         if let rootURL = self.document.fileURL {
-            let expandedItems = (0..<self.outlineView.numberOfRows)
+            let paths = (0..<self.outlineView.numberOfRows)
                 .compactMap { self.outlineView.item(atRow: $0) }
                 .filter { self.outlineView.isItemExpanded($0) }
                 .compactMap { $0 as? FileNode }
                 .map { $0.fileURL.path(relativeTo: rootURL) }
             
-            if !expandedItems.isEmpty {
-                coder.encode(expandedItems, forKey: SerializationKey.expandedItems)
+            if !paths.isEmpty {
+                coder.encode(paths, forKey: SerializationKey.expandedItems)
             }
         }
     }
