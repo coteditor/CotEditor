@@ -599,7 +599,7 @@ private enum DirectoryDocumentError: LocalizedError {
         switch self {
             case .alreadyOpen(let fileURL):
                 String(localized: "DirectoryDocumentError.alreadyOpen.description",
-                       defaultValue: "The file “\(fileURL.lastPathComponent)” is already open in a different window.")
+                       defaultValue: "The file “\(fileURL.lastPathComponent)” is already open in another window.")
                 
         }
     }
