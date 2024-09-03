@@ -71,6 +71,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let outlineView = NSOutlineView()
         outlineView.headerView = nil
         outlineView.addTableColumn(NSTableColumn())
+        outlineView.autosaveName = "File Browser Outline View"
+        outlineView.autosaveExpandedItems = true
         
         let scrollView = NSScrollView()
         scrollView.documentView = outlineView
