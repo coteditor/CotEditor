@@ -1,6 +1,6 @@
 # Change Log
 
-5.0.0-beta.2 (unreleased)
+5.0.0-beta.2 (663)
 --------------------------
 
 ### Improvements
