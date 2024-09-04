@@ -331,7 +331,7 @@ private extension [FileNode] {
     mutating func sort() {
         
         self.sort(using: SortDescriptor(\.name, comparator: .localizedStandard))
-        self.sort(using: SortDescriptor(\.isDirectory))
+        self.sort(using: SortDescriptor(\.isFolder))
     }
 }
 
