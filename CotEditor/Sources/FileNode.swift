@@ -242,8 +242,13 @@ extension FileNode {
             }
             
         } else {  // -> fileURL is added
-            // just invalidate all children
-            self._children = nil
+            if let node = try? FileNode(at: fileURL, parent: self) {
+                self.addNode(node)
+            } else {
+                assertionFailure()
+                // just invalidate all children
+                self._children = nil
+            }
             return true
         }
     }
