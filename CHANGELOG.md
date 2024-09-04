@@ -5,7 +5,7 @@
 
 ### Improvements
 
-- Improve C++ syntax (Thanks to LeoNatan!).
+- Improve C++ syntax (Thanks to Léo Natan!).
 - [beta] Restore the filename to the original one when the filename edited in the sidebar is invalid.
 - [beta] Copy dropped file when pressing the Option key while drag & drop in the sidebar.
 - [beta] Improve the file drop validation in the sidebar.
