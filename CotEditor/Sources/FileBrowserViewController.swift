@@ -119,7 +119,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.outlineView.delegate = self
         
         self.outlineView.registerForDraggedTypes([.fileURL])
-        self.outlineView.setDraggingSourceOperationMask([.copy, .delete], forLocal: false)
+        self.outlineView.setDraggingSourceOperationMask([.copy, .move, .delete], forLocal: false)
         
         let contextMenu = NSMenu()
         contextMenu.items = [
@@ -587,16 +587,18 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
         
         guard !fileURLs.contains(destNode.fileURL) else { return [] }
         
-        let isLocal = info.draggingSource as? NSOutlineView == outlineView
+        let isInternal = info.draggingSource as? NSOutlineView == outlineView
         
         // cannot drop to descendants
-        if isLocal {
+        if isInternal {
             info.numberOfValidItemsForDrop = fileURLs.count { !$0.isAncestor(of: destNode.fileURL) }
         }
         
         guard info.numberOfValidItemsForDrop > 0 else { return [] }
         
-        return isLocal ? .move : .copy
+        if info.draggingSourceOperationMask == .copy { return .copy }
+        
+        return isInternal ? .move : .copy
     }
     
     
@@ -607,12 +609,13 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
             let destNode = item as? FileNode ?? self.document.fileNode
         else { return false }
         
-        let isLocal = info.draggingSource as? NSOutlineView == outlineView
+        let isInternal = info.draggingSource as? NSOutlineView == outlineView
+        let operation: NSDragOperation = (info.draggingSourceOperationMask == .copy || !isInternal) ? .copy : .move
         var didMove = false
         
         self.outlineView.beginUpdates()
         for fileURL in fileURLs {
-            if isLocal {
+            if operation == .move {
                 guard
                     let node = self.document.fileNode?.node(at: fileURL),
                     node.parent != destNode  // ignore same location
