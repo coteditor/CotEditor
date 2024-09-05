@@ -7,6 +7,7 @@
 
 - Improve C++ syntax (Thanks to LeoNatan!).
 - [beta] Restore the filename to the original one when the filename edited in the sidebar is invalid.
+- [beta] Improve the file drop validation in the sidebar.
 
 
 

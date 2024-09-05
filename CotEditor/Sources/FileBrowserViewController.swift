@@ -571,21 +571,30 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
         
         guard
             index == NSOutlineViewDropOnItemIndex,
-            let node = item as? FileNode ?? self.document.fileNode,
-            node.isWritable
+            let fileURLs = info.draggingPasteboard.readObjects(forClasses: [NSURL.self]) as? [URL],
+            let rootNode = self.document.fileNode
         else { return [] }
+        
+        var destNode = item as? FileNode ?? rootNode
+        
+        if !destNode.isDirectory {  // avoid dropping on a leaf
+            let parent = outlineView.parent(forItem: item)
+            outlineView.setDropItem(parent, dropChildIndex: NSOutlineViewDropOnItemIndex)
+            destNode = parent as? FileNode ?? rootNode
+        }
+        
+        guard destNode.isWritable else { return [] }
+        
+        guard !fileURLs.contains(destNode.fileURL) else { return [] }
         
         let isLocal = info.draggingSource as? NSOutlineView == outlineView
         
         // cannot drop to descendants
-        if isLocal, let fileURLs = info.draggingPasteboard.readObjects(forClasses: [NSURL.self]) as? [URL] {
-            info.numberOfValidItemsForDrop = fileURLs.count { !$0.isAncestor(of: node.fileURL) }
+        if isLocal {
+            info.numberOfValidItemsForDrop = fileURLs.count { !$0.isAncestor(of: destNode.fileURL) }
         }
         
-        if !node.isDirectory {  // avoid dropping on a leaf
-            let parent = outlineView.parent(forItem: node)
-            outlineView.setDropItem(parent, dropChildIndex: NSOutlineViewDropOnItemIndex)
-        }
+        guard info.numberOfValidItemsForDrop > 0 else { return [] }
         
         return isLocal ? .move : .copy
     }
@@ -595,7 +604,7 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
         
         guard
             let fileURLs = info.draggingPasteboard.readObjects(forClasses: [NSURL.self]) as? [URL],
-            let destinationNode = item as? FileNode ?? self.document.fileNode
+            let destNode = item as? FileNode ?? self.document.fileNode
         else { return false }
         
         let isLocal = info.draggingSource as? NSOutlineView == outlineView
@@ -606,11 +615,11 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
             if isLocal {
                 guard
                     let node = self.document.fileNode?.node(at: fileURL),
-                    node.parent != destinationNode  // ignore same location
+                    node.parent != destNode  // ignore same location
                 else { continue }
                 
                 do {
-                    try self.document.moveItem(at: node, to: destinationNode)
+                    try self.document.moveItem(at: node, to: destNode)
                 } catch {
                     self.presentErrorAsSheet(error)
                     continue
@@ -618,19 +627,19 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
                 
                 let oldIndex = self.outlineView.childIndex(forItem: node)
                 let oldParent = self.outlineView.parent(forItem: node)
-                let childIndex = self.children(of: destinationNode)?.firstIndex(of: node)
+                let childIndex = self.children(of: destNode)?.firstIndex(of: node)
                 self.outlineView.moveItem(at: oldIndex, inParent: oldParent, to: childIndex ?? 0, inParent: item)
                 
             } else {
                 let node: FileNode
                 do {
-                    node = try self.document.copyItem(at: fileURL, to: destinationNode)
+                    node = try self.document.copyItem(at: fileURL, to: destNode)
                 } catch {
                     self.presentErrorAsSheet(error)
                     continue
                 }
                 
-                let childIndex = self.children(of: destinationNode)?.firstIndex(of: node)
+                let childIndex = self.children(of: destNode)?.firstIndex(of: node)
                 self.outlineView.insertItems(at: [childIndex ?? 0], inParent: item, withAnimation: .slideDown)
             }
             

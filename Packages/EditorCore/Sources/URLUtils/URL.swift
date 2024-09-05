@@ -102,8 +102,9 @@ public extension URL {
         let ancestorComponents = self.standardizedFileURL.resolvingSymlinksInPath().pathComponents
         let childComponents = url.standardizedFileURL.resolvingSymlinksInPath().pathComponents
         
-        return ancestorComponents.count < childComponents.count
-            && !zip(ancestorComponents, childComponents).contains(where: !=)
+        guard ancestorComponents.count < childComponents.count else { return false }
+        
+        return zip(ancestorComponents, childComponents).allSatisfy(==)
     }
 }
 
