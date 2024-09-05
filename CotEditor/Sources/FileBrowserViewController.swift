@@ -358,7 +358,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         // update UI
         if let index = self.children(of: folderNode)?.firstIndex(of: node) {
             let parent = (folderNode == self.document.fileNode) ? nil : folderNode
-            self.outlineView.insertItems(at: [index], inParent: parent, withAnimation: .effectGap)
+            self.outlineView.insertItems(at: [index], inParent: parent, withAnimation: .slideDown)
         }
         self.select(node: node, edit: true)
     }
@@ -378,7 +378,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         // update UI
         if let index = self.children(of: folderNode)?.firstIndex(of: node) {
             let parent = (folderNode == self.document.fileNode) ? nil : folderNode
-            self.outlineView.insertItems(at: [index], inParent: parent, withAnimation: .effectGap)
+            self.outlineView.insertItems(at: [index], inParent: parent, withAnimation: .slideDown)
         }
         self.select(node: node, edit: true)
     }
@@ -398,7 +398,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         // update UI
         if let index = self.children(of: newNode.parent)?.firstIndex(of: newNode) {
             let parent = (newNode.parent == self.document.fileNode) ? nil : newNode.parent
-            self.outlineView.insertItems(at: [index], inParent: parent, withAnimation: .effectGap)
+            self.outlineView.insertItems(at: [index], inParent: parent, withAnimation: .slideDown)
         }
         self.select(node: newNode)
     }
