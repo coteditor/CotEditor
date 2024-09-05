@@ -231,25 +231,30 @@ extension FileNode {
             return children.contains { $0.invalidateChildren(at: fileURL) }
         }
         
-        // -> The given fileURL is in this node.
-        if let index = children.firstIndex(where: { $0.fileURL == fileURL }) {
-            if fileURL.isReachable {
+        if fileURL.isReachable {
+            if children.contains(where: { $0.fileURL == fileURL }) {
+                // -> The file structure is not changed.
                 return false
+                
             } else {
-                // -> The file is deleted.
-                self._children?.remove(at: index)
+                // -> The fileURL is added.
+                guard let node = try? FileNode(at: fileURL, parent: self) else {
+                    assertionFailure(); return true
+                }
+                self.addNode(node)
                 return true
             }
             
-        } else {  // -> fileURL is added
-            if let node = try? FileNode(at: fileURL, parent: self) {
-                self.addNode(node)
+        } else {
+            if let index = children.firstIndex(where: { $0.fileURL == fileURL }) {
+                // -> The file is deleted.
+                self._children?.remove(at: index)
+                return true
+                
             } else {
-                assertionFailure()
-                // just invalidate all children
-                self._children = nil
+                // -> The change has probably been already processed by this app.
+                return false
             }
-            return true
         }
     }
 
