@@ -748,6 +748,7 @@ extension FileBrowserViewController: NSTextFieldDelegate {
         do {
             try self.document.renameItem(at: node, with: fieldEditor.string)
         } catch {
+            fieldEditor.string = node.name
             self.presentErrorAsSheet(error)
             return false
         }
