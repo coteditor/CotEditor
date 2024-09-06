@@ -115,6 +115,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         super.viewDidLoad()
         
+        self.outlineView.allowsMultipleSelection = true
         self.outlineView.dataSource = self
         self.outlineView.delegate = self
         
@@ -270,32 +271,33 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         switch menuItem.action {
             case #selector(copy(_:)):
-                return self.targetNode(for: menuItem) != nil
+                return !self.targetRows(for: menuItem).isEmpty
                 
             case #selector(showInFinder):
-                menuItem.isHidden = self.clickedNode == nil
+                menuItem.isHidden = self.targetRows(for: menuItem).isEmpty
                 
             case #selector(openWithExternalEditor):
-                menuItem.isHidden = self.clickedNode?.isFolder != false
+                menuItem.isHidden = !self.targetNodes(for: menuItem).contains { !$0.isFolder }
                 
             case #selector(openInNewWindow):
-                menuItem.isHidden = self.clickedNode == nil
+                menuItem.isHidden = self.targetRows(for: menuItem).isEmpty
                 
             case #selector(addFile):
-                return self.targetFolderNode(for: menuItem)?.isWritable != false
+                return self.targetFolderNode(for: menuItem)?.isWritable == true
                 
             case #selector(addFolder):
-                return self.targetFolderNode(for: menuItem)?.isWritable != false
+                return self.targetFolderNode(for: menuItem)?.isWritable == true
                 
             case #selector(duplicate):
-                menuItem.isHidden = self.clickedNode == nil
+                menuItem.isHidden = self.targetRows(for: menuItem).count != 1
                 
             case #selector(moveToTrash):
-                menuItem.isHidden = self.clickedNode == nil
-                return self.clickedNode?.isWritable == true
+                let targetNodes = self.targetNodes(for: menuItem)
+                menuItem.isHidden = targetNodes.isEmpty
+                return targetNodes.contains(where: \.isWritable)
                 
             case #selector(share):
-                menuItem.isHidden = self.clickedNode == nil
+                menuItem.isHidden = self.targetRows(for: menuItem).isEmpty
                 
             case #selector(toggleHiddenFileVisibility):
                 menuItem.state = self.showsHiddenFiles ? .on : .off
@@ -313,34 +315,42 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     @IBAction func copy(_ sender: Any?) {
         
-        guard let node = self.targetNode(for: sender) else { return }
+        let fileURLs = self.targetNodes(for: sender).map(\.fileURL)
+        
+        guard !fileURLs.isEmpty else { return }
         
         NSPasteboard.general.clearContents()
-        NSPasteboard.general.writeObjects([node.fileURL as NSURL])
+        NSPasteboard.general.writeObjects(fileURLs as [NSURL])
     }
     
     
     @IBAction func showInFinder(_ sender: Any?) {
         
-        guard let node = self.clickedNode else { return }
+        let fileURLs = self.targetNodes(for: sender).map(\.fileURL)
         
-        NSWorkspace.shared.activateFileViewerSelecting([node.fileURL])
+        guard !fileURLs.isEmpty else { return }
+        
+        NSWorkspace.shared.activateFileViewerSelecting(fileURLs)
     }
     
     
     @IBAction func openWithExternalEditor(_ sender: Any?) {
         
-        guard let node = self.clickedNode else { return }
+        let fileURLs = self.targetNodes(for: sender).map(\.fileURL)
         
-        NSWorkspace.shared.open(node.fileURL)
+        for fileURL in fileURLs {
+            NSWorkspace.shared.open(fileURL)
+        }
     }
     
     
     @IBAction func openInNewWindow(_ sender: Any?) {
         
-        guard let node = self.clickedNode else { return }
+        let nodes = self.targetNodes(for: sender)
         
-        self.openInWindow(at: node)
+        for node in nodes {
+            self.openInWindow(at: node)
+        }
     }
     
     
@@ -386,7 +396,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     @IBAction func duplicate(_ sender: Any?) {
         
-        guard let node = self.clickedNode else { return }
+        let nodes = self.targetNodes(for: sender)
+        
+        // accept only single item
+        guard nodes.count == 1, let node = nodes.first else { return }
         
         let newNode: FileNode
         do {
@@ -406,20 +419,22 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     @IBAction func moveToTrash(_ sender: Any?) {
         
-        guard let node = self.clickedNode else { return }
+        let nodes = self.targetNodes(for: sender)
         
-        self.trashNodes([node])
+        self.trashNodes(nodes)
     }
     
     
     @IBAction func share(_ menuItem: NSMenuItem) {
         
+        let fileURLs = self.targetNodes(for: menuItem).map(\.fileURL)
+        
         guard
-            let node = self.clickedNode,
+            !fileURLs.isEmpty,
             let view = self.outlineView.rowView(atRow: self.outlineView.clickedRow, makeIfNecessary: false)
         else { return }
         
-        let picker = NSSharingServicePicker(items: [node.fileURL])
+        let picker = NSSharingServicePicker(items: fileURLs)
         picker.show(relativeTo: .zero, of: view, preferredEdge: .minX)
     }
     
@@ -440,10 +455,21 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
-    /// The outline item currently clicked.
-    private var clickedNode: FileNode? {
+    /// Returns the target outline rows for the menu action.
+    ///
+    /// - Parameter menuItem: The sender of the action.
+    /// - Returns: The outline row indexes.
+    private func targetRows(for sender: Any?) -> IndexSet {
         
-        self.outlineView.item(atRow: self.outlineView.clickedRow) as? FileNode
+        let isContextMenu = ((sender as? NSMenuItem)?.menu == self.outlineView.menu)
+        let clickedRow = self.outlineView.clickedRow
+        let selectedRows = self.outlineView.selectedRowIndexes
+        
+        return if isContextMenu {
+            selectedRows.contains(clickedRow) ? selectedRows : [clickedRow]
+        } else {
+            selectedRows
+        }
     }
     
     
@@ -451,22 +477,24 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     ///
     /// - Parameter menuItem: The sender of the action.
     /// - Returns: A file node.
-    private func targetNode(for sender: Any?) -> FileNode? {
+    private func targetNodes(for sender: Any?) -> [FileNode] {
         
-        let isContextMenu = ((sender as? NSMenuItem)?.menu == self.outlineView.menu)
-        let row = isContextMenu ? self.outlineView.clickedRow : self.outlineView.selectedRow
-        
-        return self.outlineView.item(atRow: row) as? FileNode ?? self.document.fileNode
+        self.targetRows(for: sender)
+            .compactMap { self.outlineView.item(atRow: $0) as? FileNode ?? self.document.fileNode }
     }
     
     
-    /// Returns the folder node to perform action of the menu item.
+    /// Returns the folder node to perform the menu item action.
     ///
     /// - Parameter menuItem: The sender of the action.
-    /// - Returns: A file node.
+    /// - Returns: A file node, or `nil` if the target is multiple nodes.
     private func targetFolderNode(for sender: NSMenuItem) -> FileNode? {
         
-        guard let targetNode = self.targetNode(for: sender) else { return nil }
+        let targetNodes = self.targetNodes(for: sender)
+        
+        guard targetNodes.count == 1 else { return nil }
+        
+        let targetNode = targetNodes[0]
         
         return targetNode.isDirectory ? targetNode : targetNode.parent
     }
