@@ -11,6 +11,11 @@
 - [beta] Improve the file drop validation in the sidebar.
 
 
+### Fixes
+
+- [beta.2] Address an issue on macOS 14 that the folder tree unwontedly closed when the user changed the folder structure.
+
+
 
 5.0.0-beta.2 (663)
 --------------------------

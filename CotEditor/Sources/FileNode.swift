@@ -273,7 +273,7 @@ extension FileNode {
             self.isHidden = self.name.starts(with: ".")
         }
         
-        self._children = nil
+        self.moveChildren(to: self.fileURL)
     }
     
     
@@ -311,7 +311,8 @@ extension FileNode {
         self.parent = parent
         
         self.fileURL = parent.fileURL.appending(component: self.name).standardizedFileURL
-        self._children = nil
+        
+        self.moveChildren(to: self.fileURL)
     }
     
     
@@ -331,6 +332,20 @@ extension FileNode {
     func delete() {
         
         self.parent?._children?.removeFirst(self)
+    }
+    
+    
+    /// Recursively moves cached children to the file URL by just changing `fileURL`.
+    ///
+    /// - Parameter fileURL: The file URL where the children are placed.
+    private func moveChildren(to fileURL: URL) {
+        
+        guard let children = self._children else { return }
+        
+        for child in children {
+            child.fileURL = fileURL.appending(component: child.name)
+            child.moveChildren(to: self.fileURL)
+        }
     }
 }
 
