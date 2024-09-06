@@ -577,26 +577,22 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
         
         var destNode = item as? FileNode ?? rootNode
         
-        if !destNode.isDirectory {  // avoid dropping on a leaf
+        // avoid dropping on a leaf
+        if !destNode.isDirectory {
             let parent = outlineView.parent(forItem: item)
             outlineView.setDropItem(parent, dropChildIndex: NSOutlineViewDropOnItemIndex)
             destNode = parent as? FileNode ?? rootNode
         }
         
-        guard destNode.isWritable else { return [] }
-        
-        guard !fileURLs.contains(destNode.fileURL) else { return [] }
-        
-        let isInternal = info.draggingSource as? NSOutlineView == outlineView
-        
-        // cannot drop to descendants
-        if isInternal {
-            info.numberOfValidItemsForDrop = fileURLs.count { !$0.isAncestor(of: destNode.fileURL) }
-        }
-        
-        guard info.numberOfValidItemsForDrop > 0 else { return [] }
+        guard
+            destNode.isWritable,
+            !fileURLs.contains(destNode.fileURL),
+            !fileURLs.contains(where: { $0.isAncestor(of: destNode.fileURL) })
+        else { return [] }
         
         if info.draggingSourceOperationMask == .copy { return .copy }
+        
+        let isInternal = info.draggingSource as? NSOutlineView == outlineView
         
         return isInternal ? .move : .copy
     }
@@ -611,7 +607,8 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
         
         let isInternal = info.draggingSource as? NSOutlineView == outlineView
         let operation: NSDragOperation = (info.draggingSourceOperationMask == .copy || !isInternal) ? .copy : .move
-        var didMove = false
+        
+        var didProcess = false
         
         self.outlineView.beginUpdates()
         for fileURL in fileURLs {
@@ -646,11 +643,11 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
                 self.outlineView.insertItems(at: [childIndex ?? 0], inParent: item, withAnimation: .slideDown)
             }
             
-            didMove = true
+            didProcess = true
         }
         self.outlineView.endUpdates()
         
-        return didMove
+        return didProcess
     }
     
     
