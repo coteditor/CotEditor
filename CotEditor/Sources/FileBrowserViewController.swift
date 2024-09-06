@@ -338,8 +338,18 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         let fileURLs = self.targetNodes(for: sender).map(\.fileURL)
         
+        guard !fileURLs.isEmpty else { return }
+        
+        let bundleIdentifier = Bundle.main.bundleIdentifier!
+        let configuration = NSWorkspace.OpenConfiguration()
+        
         for fileURL in fileURLs {
-            NSWorkspace.shared.open(fileURL)
+            guard
+                let appURL = NSWorkspace.shared.urlsForApplications(toOpen: fileURL)
+                    .first(where: { Bundle(url: $0)?.bundleIdentifier != bundleIdentifier })
+            else { continue }
+            
+            NSWorkspace.shared.open([fileURL], withApplicationAt: appURL, configuration: configuration)
         }
     }
     
