@@ -80,6 +80,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let outlineView = NSOutlineView()
         outlineView.headerView = nil
         outlineView.addTableColumn(NSTableColumn())
+        outlineView.setAccessibilityLabel(String(localized: "File Browser", table: "Document", comment: "accessibility label"))
         
         let scrollView = NSScrollView()
         scrollView.documentView = outlineView
@@ -89,7 +90,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         addButton.pullsDown = true
         addButton.isBordered = false
         addButton.addItem(withTitle: "")
-        addButton.item(at: 0)!.image = NSImage(systemSymbolName: "plus", accessibilityDescription: String(localized: "Add", table: "Document"))
+        addButton.item(at: 0)!.image = NSImage(systemSymbolName: "plus",
+                                               accessibilityDescription: String(localized: "Add", table: "Document"))
+        addButton.setAccessibilityLabel(String(localized: "Add", table: "Document"))
         
         self.view = NSVisualEffectView()
         self.view.addSubview(scrollView)
@@ -161,6 +164,11 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
                        action: #selector(addFolder), keyEquivalent: ""),
         ]
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+        self.view.setAccessibilityLabel(String(localized: "Sidebar", table: "Document", comment: "accessibility label"))
     }
     
     
@@ -727,6 +735,7 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         cellView.textField?.delegate = self
         
         cellView.imageView!.image = node.kind.image
+        cellView.imageView!.setAccessibilityLabel(node.kind.label)
         cellView.imageView!.alphaValue = node.isHidden ? 0.5 : 1
         cellView.isAlias = node.isAlias
         
@@ -819,6 +828,7 @@ final class FileBrowserTableCellView: NSTableCellView {
         let imageView = NSImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.alignment = .center
+        imageView.setAccessibilityRoleDescription(nil)  // omit "image" automatically added after the label utterance
         
         let textField = FilenameTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -832,7 +842,8 @@ final class FileBrowserTableCellView: NSTableCellView {
         aliasArrowView.alignment = .center
         aliasArrowView.image = .arrowAliasFill
         aliasArrowView.symbolConfiguration = .init(paletteColors: [.labelColor, .controlBackgroundColor])
-        aliasArrowView.setAccessibilityHidden(true)
+        aliasArrowView.setAccessibilityLabel(String(localized: "Alias", table: "Document", comment: "accessibility label"))
+        aliasArrowView.setAccessibilityRoleDescription(nil)
         
         super.init(frame: frameRect)
         
