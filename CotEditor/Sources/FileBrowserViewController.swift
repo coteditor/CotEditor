@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import QuickLookUI
 import Combine
 import AudioToolbox
 import Defaults
@@ -47,7 +48,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     let document: DirectoryDocument
     
-    @ViewLoading private var outlineView: NSOutlineView
+    @ViewLoading private(set) var outlineView: NSOutlineView
     @ViewLoading private var addButton: NSPopUpButton
     
     private var defaultObservers: Set<AnyCancellable> = []
@@ -747,6 +748,12 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
     
     
     func outlineViewSelectionDidChange(_ notification: Notification) {
+        
+        if QLPreviewPanel.sharedPreviewPanelExists(),
+           QLPreviewPanel.shared().delegate is FileBrowserViewController
+        {
+            QLPreviewPanel.shared().reloadData()
+        }
         
         let outlineView = notification.object as! NSOutlineView
         

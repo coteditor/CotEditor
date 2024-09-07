@@ -94,6 +94,8 @@
 		2A1893AB1FFF422D00AD244F /* SortPatternError+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1893A91FFF422D00AD244F /* SortPatternError+Localization.swift */; };
 		2A19AF862AE0D15300EFFDCB /* FormPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19AF852AE0D15300EFFDCB /* FormPopUpButton.swift */; };
 		2A19AF872AE0D15300EFFDCB /* FormPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19AF852AE0D15300EFFDCB /* FormPopUpButton.swift */; };
+		2A19BDD32C8BE2BC008D37A6 /* FileBrowserViewController+QuickLook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19BDD02C8BE2B7008D37A6 /* FileBrowserViewController+QuickLook.swift */; };
+		2A19BDD42C8BE2BC008D37A6 /* FileBrowserViewController+QuickLook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19BDD02C8BE2B7008D37A6 /* FileBrowserViewController+QuickLook.swift */; };
 		2A1A4EB024FB9D9300B50AA0 /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */; };
 		2A1A4EB124FB9D9300B50AA0 /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */; };
 		2A1ABCA827F07CED0054795D /* NSScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ABCA727F07CED0054795D /* NSScroller.swift */; };
@@ -804,6 +806,7 @@
 		2A1893A91FFF422D00AD244F /* SortPatternError+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SortPatternError+Localization.swift"; sourceTree = "<group>"; };
 		2A18A5BC1C4A730D00BAD817 /* EncodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingTests.swift; sourceTree = "<group>"; };
 		2A19AF852AE0D15300EFFDCB /* FormPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormPopUpButton.swift; sourceTree = "<group>"; };
+		2A19BDD02C8BE2B7008D37A6 /* FileBrowserViewController+QuickLook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileBrowserViewController+QuickLook.swift"; sourceTree = "<group>"; };
 		2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
 		2A1ABCA727F07CED0054795D /* NSScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSScroller.swift; sourceTree = "<group>"; };
 		2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedScrollView.swift; sourceTree = "<group>"; };
@@ -1359,6 +1362,15 @@
 			name = TextKit;
 			sourceTree = "<group>";
 		};
+		2A19BDD52C8BE32F008D37A6 /* File Browser */ = {
+			isa = PBXGroup;
+			children = (
+				2AA71A3D2BE25FB30084EC0A /* FileBrowserViewController.swift */,
+				2A19BDD02C8BE2B7008D37A6 /* FileBrowserViewController+QuickLook.swift */,
+			);
+			name = "File Browser";
+			sourceTree = "<group>";
+		};
 		2A1A4EB224FBA28100B50AA0 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
@@ -1652,7 +1664,7 @@
 				2AA749C21D3C263300850802 /* DocumentWindowController.swift */,
 				2A17A3151D2D4319001DD717 /* DocumentWindow.swift */,
 				2A17A3121D2D16F1001DD717 /* WindowContentViewController.swift */,
-				2AA71A3D2BE25FB30084EC0A /* FileBrowserViewController.swift */,
+				2A19BDD52C8BE32F008D37A6 /* File Browser */,
 				2ADD36941CFCAD4200F3175D /* Inspector */,
 				2A2184221D043D7E00522EF5 /* Content View */,
 				2A6602EB1D05E04E003E8D87 /* Accessory Views */,
@@ -2639,6 +2651,7 @@
 				2A4257A81D22E0660086DAAD /* EncodingManager.swift in Sources */,
 				2A50AA63204D513500D10A10 /* FileAttributes.swift in Sources */,
 				2AA71A3E2BE25FB30084EC0A /* FileBrowserViewController.swift in Sources */,
+				2A19BDD42C8BE2BC008D37A6 /* FileBrowserViewController+QuickLook.swift in Sources */,
 				2A4682B31D2F6B580005410E /* FileDropItem.swift in Sources */,
 				2AA71A442BE278880084EC0A /* FileNode.swift in Sources */,
 				2A0A602B27ABD74500725B70 /* FilterField.swift in Sources */,
@@ -2932,6 +2945,7 @@
 				2A4257A71D22E0660086DAAD /* EncodingManager.swift in Sources */,
 				2A50AA62204D513500D10A10 /* FileAttributes.swift in Sources */,
 				2AA71A3F2BE25FB30084EC0A /* FileBrowserViewController.swift in Sources */,
+				2A19BDD32C8BE2BC008D37A6 /* FileBrowserViewController+QuickLook.swift in Sources */,
 				2A4682B21D2F6B580005410E /* FileDropItem.swift in Sources */,
 				2AA71A452BE278880084EC0A /* FileNode.swift in Sources */,
 				2A0A602C27ABD74500725B70 /* FilterField.swift in Sources */,
