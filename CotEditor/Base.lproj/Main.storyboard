@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23086.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23091" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23086.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23091"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -606,19 +606,19 @@ Gw
                                                     <menuItem title="Document Inspector" id="564">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <action selector="getInfo:" target="Ady-hI-5gd" id="MP6-vd-LwJ"/>
+                                                            <action selector="showDocumentInspector:" target="Ady-hI-5gd" id="Asb-Bw-W0C"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Outline" id="Gch-XD-tRl">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <action selector="toggleOutlineMenu:" target="Ady-hI-5gd" id="YG2-ee-mqD"/>
+                                                            <action selector="showOutlineInspector:" target="Ady-hI-5gd" id="HtH-vV-miv"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Warnings" id="679">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <action selector="toggleWarningsPane:" target="Ady-hI-5gd" id="dD7-j1-urx"/>
+                                                            <action selector="showWarningsInspector:" target="Ady-hI-5gd" id="tsP-25-icL"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="XF7-Qo-Y5g"/>

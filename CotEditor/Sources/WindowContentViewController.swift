@@ -187,17 +187,17 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
                 return self.sidebarStateCache == nil
                 
             case #selector(toggleInspector):
-                (item as? NSMenuItem)?.title = self.isInspectorShown
+                (item as? NSMenuItem)?.title = self.inspectorViewItem.isCollapsed == false
                     ? String(localized: "Hide Inspector", table: "MainMenu")
                     : String(localized: "Show Inspector", table: "MainMenu")
                 
-            case #selector(getInfo):
+            case #selector(showDocumentInspector):
                 (item as? NSMenuItem)?.state = self.isInspectorShown(pane: .document) ? .on : .off
                 
-            case #selector(toggleOutlineMenu):
+            case #selector(showOutlineInspector):
                 (item as? NSMenuItem)?.state = self.isInspectorShown(pane: .outline) ? .on : .off
                 
-            case #selector(toggleWarningsPane):
+            case #selector(showWarningsInspector):
                 (item as? NSMenuItem)?.state = self.isInspectorShown(pane: .warnings) ? .on : .off
                 
             default: break
@@ -215,31 +215,32 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     /// - Parameter pane: The inspector pane to open.
     func showInspector(pane: InspectorPane) {
         
-        self.setInspectorShown(true, pane: pane)
+        self.inspectorViewItem.animator().isCollapsed = false
+        self.inspectorViewController.selectedTabViewItemIndex = pane.rawValue
     }
     
     
     
     // MARK: Action Messages
     
-    /// Toggles visibility of the document inspector pane.
-    @IBAction func getInfo(_ sender: Any?) {
+    /// Shows the document inspector pane.
+    @IBAction func showDocumentInspector(_ sender: Any?) {
         
-        self.toggleVisibilityOfInspector(pane: .document)
+        self.showInspector(pane: .document)
     }
     
     
-    /// Toggles visibility of the outline pane.
-    @IBAction func toggleOutlineMenu(_ sender: Any?) {
+    /// Shows the outline pane.
+    @IBAction func showOutlineInspector(_ sender: Any?) {
         
-        self.toggleVisibilityOfInspector(pane: .outline)
+        self.showInspector(pane: .outline)
     }
     
     
-    /// Toggles visibility of warnings pane.
-    @IBAction func toggleWarningsPane(_ sender: Any?) {
+    /// Shows the warnings pane.
+    @IBAction func showWarningsInspector(_ sender: Any?) {
         
-        self.toggleVisibilityOfInspector(pane: .warnings)
+        self.showInspector(pane: .warnings)
     }
     
     
@@ -260,41 +261,13 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     }
     
     
-    /// Whether the inspector is opened.
-    private var isInspectorShown: Bool {
-        
-        self.inspectorViewItem.isCollapsed == false
-    }
-    
-    
-    /// Sets the visibility of the inspector and switch pane with animation.
-    ///
-    /// - Parameters:
-    ///   - shown: The boolean flag whether to open or close the pane.
-    ///   - pane: The inspector pane to change visibility.
-    private func setInspectorShown(_ shown: Bool, pane: InspectorPane) {
-        
-        self.inspectorViewItem.animator().isCollapsed = !shown
-        self.inspectorViewController.selectedTabViewItemIndex = pane.rawValue
-    }
-    
-    
     /// Returns whether the given pane in the inspector is currently shown.
     ///
     /// - Parameter pane: The inspector pane to check.
     /// - Returns: `true` when the pane is currently visible.
     private func isInspectorShown(pane: InspectorPane) -> Bool {
         
-        self.isInspectorShown && (self.inspectorViewController.selectedPane == pane)
-    }
-    
-    
-    /// Toggles visibility of pane in the inspector.
-    ///
-    /// - Parameter pane: The inspector pane to toggle visibility.
-    private func toggleVisibilityOfInspector(pane: InspectorPane) {
-        
-        self.setInspectorShown(!self.isInspectorShown(pane: pane), pane: pane)
+        !self.inspectorViewItem.isCollapsed && (self.inspectorViewController.selectedPane == pane)
     }
     
     
