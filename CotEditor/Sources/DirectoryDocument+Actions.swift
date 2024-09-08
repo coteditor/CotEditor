@@ -125,7 +125,7 @@ extension DirectoryDocument {
     }
     
     
-    // MARK: Document actions
+    // MARK: Document Actions
     
     @objc func changeEncoding(_ sender: NSMenuItem) {
         

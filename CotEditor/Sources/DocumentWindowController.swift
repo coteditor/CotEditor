@@ -181,7 +181,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         if self.directoryDocument != nil {
             // display current document title as window subtitle
-            self.window?.subtitle = self.fileDocument?.fileURL?.lastPathComponent ?? self.fileDocument?.displayName ?? ""
+            self.window?.subtitle = self.fileDocument?.fileURL?.lastPathComponent
+                ?? self.fileDocument?.displayName
+                ?? ""
         }
     }
     
@@ -297,8 +299,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             return item
         }
         
-        if let syntaxName = self.fileDocument?.syntaxParser.name {
-            self.selectSyntaxPopUpItem(with: syntaxName)
+        if let document = self.fileDocument {
+            self.selectSyntaxPopUpItem(with: document.syntaxParser.name)
         }
     }
     

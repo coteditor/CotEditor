@@ -220,7 +220,7 @@ final class DirectoryDocument: NSDocument {
     ///
     /// - Parameter node: The file node to find.
     /// - Returns: A Document if found.
-    func openedDocument(at node: FileNode) -> Document? {
+    func openedDocument(at node: FileNode) -> NSDocument? {
         
         self.documents.first { $0.fileURL == node.fileURL }
     }
