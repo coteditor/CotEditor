@@ -183,7 +183,14 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
+            case #selector(showFileBrowser):
+                (item as? NSMenuItem)?.state = (self.sidebarViewItem?.isCollapsed == true) ? .on : .off
+                return self.sidebarViewItem != nil
+                
             case #selector(toggleSidebar):
+                (item as? NSMenuItem)?.title = self.sidebarViewItem?.isCollapsed == false
+                    ? String(localized: "Hide Sidebar", table: "MainMenu")
+                    : String(localized: "Show Sidebar", table: "MainMenu")
                 return self.sidebarStateCache == nil
                 
             case #selector(toggleInspector):
@@ -222,6 +229,19 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     
     
     // MARK: Action Messages
+    
+    /// Focuses on the file browser.
+    @IBAction func showFileBrowser(_ sender: Any?) {
+        
+        guard
+            let sidebarViewItem,
+            let viewController = sidebarViewItem.viewController as? FileBrowserViewController
+        else { return assertionFailure() }
+        
+        sidebarViewItem.animator().isCollapsed = false
+        self.view.window?.makeFirstResponder(viewController.outlineView)
+    }
+    
     
     /// Shows the document inspector pane.
     @IBAction func showDocumentInspector(_ sender: Any?) {

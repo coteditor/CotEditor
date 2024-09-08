@@ -598,7 +598,33 @@ Gw
                                                 <action selector="runToolbarCustomizationPalette:" target="Ady-hI-5gd" id="TD8-6D-Wfe"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="WNT-nz-Qhz"/>
+                                        <menuItem title="Show Quick Actions…" keyEquivalent="k" id="7Su-OV-TgR">
+                                            <connections>
+                                                <action selector="showQuickActions:" target="Ady-hI-5gd" id="6AA-OS-m64"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="93A-bv-3Qn"/>
+                                        <menuItem title="Sidebar" id="rQb-cr-Q3F">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Sidebar" id="OgF-mf-7xU">
+                                                <items>
+                                                    <menuItem title="File Browser" keyEquivalent="1" id="VdN-vm-gXF">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="showFileBrowser:" target="Ady-hI-5gd" id="Wsz-tN-aQt"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="S3l-cD-Qfr"/>
+                                                    <menuItem title="Show Sidebar" keyEquivalent="s" id="hEz-VA-6G5">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="toggleSidebar:" target="Ady-hI-5gd" id="laQ-KE-rd4"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
                                         <menuItem title="Inspector" id="sYa-2o-iPk">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Inspector" id="10j-rd-fWr">
@@ -630,6 +656,7 @@ Gw
                                                 </items>
                                             </menu>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="hFL-Ed-JMj"/>
                                         <menuItem title="Show Navigation Bar" id="681">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -646,12 +673,6 @@ Gw
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleStatusBar:" target="Ady-hI-5gd" id="pjH-8E-CJp"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="WNT-nz-Qhz"/>
-                                        <menuItem title="Show Quick Actions…" keyEquivalent="k" id="7Su-OV-TgR">
-                                            <connections>
-                                                <action selector="showQuickActions:" target="Ady-hI-5gd" id="6AA-OS-m64"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="366"/>

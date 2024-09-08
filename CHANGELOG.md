@@ -6,6 +6,7 @@
 ### Improvements
 
 - Improve C++ syntax (Thanks to Léo Natan!).
+- [beta] Add the Sidebar submenu to the View menu.
 - [beta] Improve the VoiceOver support in the sidebar.
 - [beta] Enable selecting multiple items in the sidebar.
 - [beta] Restore the filename to the original one when the filename edited in the sidebar is invalid.
