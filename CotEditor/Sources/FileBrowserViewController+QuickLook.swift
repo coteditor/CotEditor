@@ -33,7 +33,7 @@ extension FileBrowserViewController {
         if event.modifierFlags.isDisjoint(with: .deviceIndependentFlagsMask),
            event.charactersIgnoringModifiers == " "
         {
-            // open the QuickLook panel by pressing the Space key
+            // open the Quick Look panel by pressing the Space key
             self.quickLook(with: event)
             
         } else {
