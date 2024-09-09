@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "%lld commands found" : {
-      "comment" : "VoiceOver announcement when incrementally updated the command search result.",
+      "comment" : "VoiceOver announcement for when incrementally updating the command search result.",
       "localizations" : {
         "de" : {
           "variations" : {

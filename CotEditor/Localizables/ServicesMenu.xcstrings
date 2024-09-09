@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "New CotEditor Window Containing Selection" : {
-      "comment" : "Refer how Apple translates “New TextEdit Window Containing Selection”",
+      "comment" : "Refer to how Apple translates “New TextEdit Window Containing Selection”",
       "extractionState" : "manual",
       "localizations" : {
         "cs" : {

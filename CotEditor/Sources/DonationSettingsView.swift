@@ -82,7 +82,7 @@ struct DonationSettingsView: View {
                                 }
                             }.fixedSize()
                             
-                            Text("As a proof of your kind support, a coffee badge appears on the status bar during continuous support.", tableName: "DonationSettings")
+                            Text("As proof of your kind support, a coffee badge appears on the status bar during continuous support.", tableName: "DonationSettings")
                                 .foregroundStyle(.secondary)
                                 .controlSize(.small)
                         }.disabled(!self.hasDonated)
@@ -111,7 +111,8 @@ struct DonationSettingsView: View {
                         VStack {
                             let description = switch error {
                                 case StoreKitError.networkError:
-                                    String(localized: "An internet connection is required to donate.", table: "DonationSettings")
+                                    String(localized: "An internet connection is required to donate.", table: "DonationSettings",
+                                           comment: "error message")
                                 default:
                                     error.localizedDescription
                             }
@@ -149,7 +150,7 @@ struct DonationSettingsView: View {
                         Link(String(localized: "Open in App Store", table: "DonationSettings"), destination: url)
                     }
                     if let url = URL(string: "https://github.com/sponsors/1024jp/") {
-                        Link(String(localized: "Open GitHub Sponsors", table: "DonationSettings", comment: "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization if exists."), destination: url)
+                        Link(String(localized: "Open GitHub Sponsors", table: "DonationSettings", comment: "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization to see whether it exists."), destination: url)
                     }
                 }
                 .buttonStyle(.capsule)

@@ -168,6 +168,7 @@
       }
     },
     "An internet connection is required to donate." : {
+      "comment" : "error message",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -195,7 +196,7 @@
         }
       }
     },
-    "As a proof of your kind support, a coffee badge appears on the status bar during continuous support." : {
+    "As proof of your kind support, a coffee badge appears on the status bar during continuous support." : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -206,7 +207,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "As a proof of your kind support, a coffee badge appears on the status bar during continuous support."
+            "value" : "As proof of your kind support, a coffee badge appears on the status bar during continuous support."
           }
         },
         "ja" : {
@@ -446,7 +447,7 @@
       }
     },
     "Open GitHub Sponsors" : {
-      "comment" : "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization if exists.",
+      "comment" : "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization to see whether it exists.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
