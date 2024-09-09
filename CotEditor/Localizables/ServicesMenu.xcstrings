@@ -49,8 +49,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "선택한 내용으로 새로운 CotEditor 문서 생성"
+            "state" : "translated",
+            "value" : "새로운 CotEditor 윈도우에서 선택 부분 열기"
           }
         },
         "nl" : {
