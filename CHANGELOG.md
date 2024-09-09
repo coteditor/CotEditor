@@ -3,23 +3,27 @@
 5.0.0-beta.3 (unreleased)
 --------------------------
 
+### New Features
+
+- [beta] Preview non-plain-text files.
+- [beta] Support Quick Look in the file browser.
+
+
 ### Improvements
 
-- Improve C++ syntax (Thanks to Léo Natan!).
-- [beta] Support previewing non plain text files.
-- [beta] Support the Quick Look in the file browser.
+- Improve C++ syntax (Thanks to Léo Natan!).
 - [beta] Add the Sidebar submenu to the View menu.
 - [beta] Improve the VoiceOver support in the sidebar.
-- [beta] Enable selecting multiple items in the sidebar.
+- [beta] Enable selecting multiple items in the file browser.
 - [beta] Restore the filename to the original one when the filename edited in the sidebar is invalid.
-- [beta] Avoid opening with CotEditor itself when performing the “Open with External Editor” command in the sidebar.
-- [beta] Copy dropped file when pressing the Option key while drag & drop in the sidebar.
-- [beta] Improve the file drop validation in the sidebar.
+- [beta] Avoid opening with CotEditor itself when performing the “Open with External Editor” command in the file browser.
+- [beta] Copy dropped files when pressing the Option key while dragging files to the file browser.
+- [beta] Improve the file drop validation in the file browser.
 
 
 ### Fixes
 
-- [beta.2] Address an issue on macOS 14 that the folder tree unwontedly closed when the user changed the folder structure.
+- [beta.2] Address an issue on macOS 14 that folders in the file browser unwontedly closed when the user changed the folder structure.
 
 
 
