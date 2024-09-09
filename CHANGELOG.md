@@ -11,7 +11,7 @@
 
 ### Improvements
 
-- Improve C++ syntax (Thanks to Léo Natan!).
+- Update C++ syntax (Thanks to Léo Natan!).
 - [beta] Add the Sidebar submenu to the View menu.
 - [beta] Improve the VoiceOver support in the sidebar.
 - [beta] Enable selecting multiple items in the file browser.
