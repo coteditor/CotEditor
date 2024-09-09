@@ -33,6 +33,12 @@
             "state" : "translated",
             "value" : "일일 개발을 위한 커피"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日常开发的咖啡"
+          }
         }
       }
     },
@@ -156,6 +162,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "커피 한 잔"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一杯美味的咖啡"
           }
         }
       }

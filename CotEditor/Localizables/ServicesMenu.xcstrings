@@ -73,8 +73,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "使用选中内容创建新的CotEditor文稿"
+            "state" : "translated",
+            "value" : "使用选中内容创建新的CotEditor 窗口"
           }
         },
         "zh-Hant" : {

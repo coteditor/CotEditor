@@ -14692,6 +14692,12 @@
             "state" : "translated",
             "value" : "상위 기호 선택"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择包含的符号"
+          }
         }
       }
     },
@@ -15357,6 +15363,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "선택된 부분을 줄로 분할"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按行分割选区"
           }
         }
       }
@@ -16204,6 +16216,12 @@
             "state" : "translated",
             "value" : "아래 열 선택"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择下一列"
+          }
         }
       }
     },
@@ -17005,7 +17023,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "多重替换…"
           }
         },
@@ -21639,6 +21657,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "위 열 선택"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择上一列"
           }
         }
       }

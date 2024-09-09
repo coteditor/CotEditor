@@ -4600,6 +4600,12 @@
             "state" : "translated",
             "value" : "다음 개요 항목"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下一个大纲项"
+          }
         }
       }
     },
@@ -4627,6 +4633,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "선택된 문서 없음"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无选中文档"
           }
         }
       }
@@ -4988,6 +5000,12 @@
             "state" : "translated",
             "value" : "외부 편집기에서 열기"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在外部编辑器中打开"
+          }
         }
       }
     },
@@ -5099,6 +5117,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "개요 메뉴"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "大纲菜单"
           }
         }
       }
@@ -5294,6 +5318,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이전 개요 항목"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前一个大纲项"
           }
         }
       }
@@ -5571,6 +5601,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "숨긴 파일 보기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示隐藏文件"
           }
         }
       }
@@ -6264,6 +6300,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "후원에 감사드립니다!"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "感谢您的支持！"
           }
         }
       }

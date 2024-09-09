@@ -632,6 +632,12 @@
             "state" : "translated",
             "value" : "파일 ‘%@’은(는) 이미 다른 윈도우에 열려 있습니다."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文件“%@”已在另一个窗口中打开。"
+          }
         }
       }
     },
@@ -667,6 +673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이 윈도우에서 열려면, 존재하는 윈도우를 먼저 닫으십시오."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要在此窗口中打开，请先关闭已有的窗口。"
           }
         }
       }
