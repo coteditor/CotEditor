@@ -28,7 +28,7 @@ import QuickLookUI
 
 struct FilePreviewView: View {
     
-    @State var item: PreviewItem
+    @State var item: PreviewDocument
     
     
     var body: some View {
@@ -92,7 +92,7 @@ private struct QuickLookView: NSViewRepresentable {
 
 #Preview {
     let url = Bundle.main.url(forResource: "AppIcon", withExtension: "icns")!
-    let item = try! PreviewItem(contentsOf: url)
+    let item = try! PreviewDocument(contentsOf: url, ofType: UTType.icns.identifier)
     
     return FilePreviewView(item: item)
 }

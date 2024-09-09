@@ -45,7 +45,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
-    weak var fileDocument: Document? {
+    weak var fileDocument: NSDocument? {
         
         didSet {
             self.updateDocument(fileDocument)
@@ -79,7 +79,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Lifecycle
     
-    required init(document: Document? = nil, directoryDocument: DirectoryDocument? = nil) {
+    required init(document: NSDocument? = nil, directoryDocument: DirectoryDocument? = nil) {
         
         self.fileDocument = document
         self.directoryDocument = directoryDocument
@@ -160,7 +160,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         didSet {
             self.documentSyntaxObserver = nil
-            if let document = document as? Document {
+            if let document = document as? NSDocument, !(document is DirectoryDocument) {
                 self.updateDocument(document)
             }
         }
@@ -230,7 +230,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     /// Updates document by passing it to the content view controller and updating the observation.
     ///
     /// - Parameter document: The new document.
-    private func updateDocument(_ document: Document?) {
+    private func updateDocument(_ document: NSDocument?) {
         
         if let viewController = self.contentViewController as? WindowContentViewController, viewController.document != document {
             viewController.document = document
@@ -244,11 +244,11 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         self.synchronizeWindowTitleWithDocumentName()
         
-        self.syntaxPopUpButton?.isEnabled = (document != nil)
+        self.syntaxPopUpButton?.isEnabled = (document is Document)
         
         // observe document's syntax change for toolbar
         self.documentSyntaxObserver = nil
-        if let document {
+        if let document = document as? Document {
             self.documentSyntaxObserver = document.didChangeSyntax
                 .merge(with: Just(document.syntaxParser.name))
                 .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
@@ -299,7 +299,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             return item
         }
         
-        if let document = self.fileDocument {
+        if let document = self.fileDocument as? Document {
             self.selectSyntaxPopUpItem(with: document.syntaxParser.name)
         }
     }

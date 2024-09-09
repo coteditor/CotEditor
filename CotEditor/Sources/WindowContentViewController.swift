@@ -30,7 +30,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     
     // MARK: Public Properties
     
-    var document: Document?  { didSet { self.updateDocument() } }
+    var document: NSDocument?  { didSet { self.updateDocument() } }
     var directoryDocument: DirectoryDocument?
     
     var documentViewController: DocumentViewController? { self.contentViewController.documentViewController }
@@ -52,7 +52,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     
     // MARK: Split View Controller Methods
     
-    init(document: Document?, directoryDocument: DirectoryDocument?) {
+    init(document: NSDocument?, directoryDocument: DirectoryDocument?) {
         
         self.document = document
         self.directoryDocument = directoryDocument
@@ -97,7 +97,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         self.contentViewItem = NSSplitViewItem(viewController: contentViewController)
         self.addSplitViewItem(self.contentViewItem)
         
-        let inspectorViewController = InspectorViewController(document: self.document)
+        let inspectorViewController = InspectorViewController(document: self.document as? Document)
         self.inspectorViewItem = NSSplitViewItem(inspectorWithViewController: inspectorViewController)
         self.inspectorViewItem.minimumThickness = NSSplitViewItem.unspecifiedDimension
         self.inspectorViewItem.maximumThickness = NSSplitViewItem.unspecifiedDimension
@@ -295,6 +295,6 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     private func updateDocument() {
         
         self.contentViewController.document = self.document
-        self.inspectorViewController.document = self.document
+        self.inspectorViewController.document = self.document as? Document
     }
 }

@@ -33,8 +33,10 @@ extension DirectoryDocument {
         switch menuItem.action {
             case #selector(changeEncoding),
                  #selector(changeLineEnding),
-                 #selector(changeSyntax),
-                 #selector(showInFinder):
+                 #selector(changeSyntax):
+                return (self.currentDocument as? Document)?.validateMenuItem(menuItem) ?? false
+                
+            case #selector(showInFinder):
                 return self.currentDocument?.validateMenuItem(menuItem) ?? false
                 
             default:
@@ -58,8 +60,11 @@ extension DirectoryDocument {
                  #selector(lock(_:)),
                  #selector(unlock(_:)),
                  #selector(runPageLayout),
-                 #selector(printDocument),
-                 #selector(showInFinder),
+                 #selector(printDocument):
+                // -> PreviewDocument doesn't support file manipulation.
+                return (self.currentDocument as? Document)?.validateUserInterfaceItem(item) ?? false
+                
+            case #selector(showInFinder),
                  #selector(shareDocument):
                 return self.currentDocument?.validateUserInterfaceItem(item) ?? false
                 
@@ -127,32 +132,32 @@ extension DirectoryDocument {
     
     // MARK: Document Actions
     
-    @objc func changeEncoding(_ sender: NSMenuItem) {
-        
-        self.currentDocument?.changeEncoding(sender)
-    }
-    
-    
-    @objc func changeLineEnding(_ sender: NSMenuItem) {
-        
-        self.currentDocument?.changeLineEnding(sender)
-    }
-    
-    
-    @objc func changeSyntax(_ sender: NSMenuItem) {
-        
-        self.currentDocument?.changeSyntax(sender)
-    }
-    
-    
     @objc func showInFinder(_ sender: Any?) {
         
-        self.currentDocument?.showInFinder(sender)
+        (self.currentDocument as? Document)?.showInFinder(sender)
     }
     
     
     @objc func shareDocument(_ sender: NSMenuItem) {
         
-        self.currentDocument?.shareDocument(sender)
+        (self.currentDocument as? Document)?.shareDocument(sender)
+    }
+    
+    
+    @objc func changeEncoding(_ sender: NSMenuItem) {
+        
+        (self.currentDocument as? Document)?.changeEncoding(sender)
+    }
+    
+    
+    @objc func changeLineEnding(_ sender: NSMenuItem) {
+        
+        (self.currentDocument as? Document)?.changeLineEnding(sender)
+    }
+    
+    
+    @objc func changeSyntax(_ sender: NSMenuItem) {
+        
+        (self.currentDocument as? Document)?.changeSyntax(sender)
     }
 }

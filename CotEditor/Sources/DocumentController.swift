@@ -66,7 +66,7 @@ final class DocumentController: NSDocumentController {
         self.mainWindowObserver = NSApp.publisher(for: \.mainWindow)
             .debounce(for: .seconds(0.1), scheduler: RunLoop.main)
             .map { $0?.windowController as? DocumentWindowController }
-            .map { $0?.fileDocument }
+            .map { $0?.fileDocument as? Document }
             .sink { [unowned self] in
                 self.currentSyntaxName = $0?.syntaxParser.name
                 self.syntaxObserver = $0?.didChangeSyntax
@@ -225,6 +225,14 @@ final class DocumentController: NSDocumentController {
         }
         
         super.openDocument(sender)
+    }
+    
+    
+    override func noteNewRecentDocument(_ document: NSDocument) {
+        
+        guard !(document is PreviewDocument) else { return }
+        
+        super.noteNewRecentDocument(document)
     }
     
     

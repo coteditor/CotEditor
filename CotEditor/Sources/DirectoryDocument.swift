@@ -42,14 +42,14 @@ final class DirectoryDocument: NSDocument {
     // MARK: Public Properties
     
     private(set) var fileNode: FileNode?
-    private(set) weak var currentDocument: Document?
+    private(set) weak var currentDocument: NSDocument?
     
     weak var fileBrowserViewController: FileBrowserViewController?
     
     
     // MARK: Private Properties
     
-    private var documents: [Document] = []
+    private var documents: [NSDocument] = []
     private var windowController: DocumentWindowController?  { self.windowControllers.first as? DocumentWindowController }
     
     private var documentObserver: (any NSObjectProtocol)?
@@ -252,21 +252,18 @@ final class DirectoryDocument: NSDocument {
             }
         }
         
-        let contentType = try? fileURL.resourceValues(forKeys: [.contentTypeKey]).contentType
-        
-        // ignore (possibly) unsupported files
-        guard contentType?.conforms(to: .text) == true || fileURL.pathExtension.isEmpty else { return true }
+        let contentType = (try? fileURL.resourceValues(forKeys: [.contentTypeKey]).contentType) ?? .data
         
         // make document
         let document: NSDocument
         do {
-            document = try NSDocumentController.shared.makeDocument(withContentsOf: fileURL, ofType: (contentType ?? .data).identifier)
+            document = (contentType.conforms(to: .text) || fileURL.pathExtension.isEmpty)
+                ? try NSDocumentController.shared.makeDocument(withContentsOf: fileURL, ofType: contentType.identifier)
+                : try PreviewDocument(contentsOf: fileURL, ofType: contentType.identifier)
         } catch {
             self.presentErrorAsSheet(error)
             return false
         }
-        
-        guard let document = document as? Document else { return false }
         
         self.documents.append(document)
         NSDocumentController.shared.addDocument(document)
@@ -500,7 +497,7 @@ final class DirectoryDocument: NSDocument {
     /// - Parameter fileURL: The fileURL to open.
     func openInWindow(fileURL: URL) {
         
-        if let document = self.currentDocument, fileURL == document.fileURL {
+        if let document = self.currentDocument as? Document, fileURL == document.fileURL {
             // remove from the current window
             self.windowController?.fileDocument = nil
             self.documents.removeFirst(document)
@@ -534,14 +531,14 @@ final class DirectoryDocument: NSDocument {
     /// Changes the frontmost document.
     ///
     /// - Parameter document: The document to bring frontmost.
-    private func changeFrontmostDocument(to document: Document) {
+    private func changeFrontmostDocument(to document: NSDocument) {
         
         assert(self.documents.contains(document))
         
         // remove window controller from current document
-        self.windowController?.fileDocument?.windowController = nil
+        (self.windowController?.fileDocument as? Document)?.windowController = nil
         
-        document.windowController = self.windowController
+        (document as? Document)?.windowController = self.windowController
         self.windowController?.fileDocument = document
         self.currentDocument = document
         document.makeWindowControllers()

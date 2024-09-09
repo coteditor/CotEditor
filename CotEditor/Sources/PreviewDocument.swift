@@ -1,5 +1,5 @@
 //
-//  PreviewItem.swift
+//  PreviewDocument.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,36 +23,32 @@
 //  limitations under the License.
 //
 
-import Foundation
+import AppKit
 import QuickLookUI
 
-@Observable final class PreviewItem: NSObject {
+@Observable final class PreviewDocument: NSDocument {
     
-    private(set) var fileURL: URL
     private(set) var previewSize: CGSize?
     
     
-    init(contentsOf url: URL) throws {
+    override nonisolated static var autosavesInPlace: Bool {
         
-        self.fileURL = url
+        true
+    }
+    
+    
+    override nonisolated func read(from url: URL, ofType typeName: String) throws {
         
-        var size: CGSize?
-        var error: NSError?
-        NSFileCoordinator().coordinate(readingItemAt: url, options: [.withoutChanges, .resolvesSymbolicLink], error: &error) { newURL in
-            // -> Use NSImageRep because NSImage's `size` returns a DPI applied size.
-            let imageRep = NSImageRep(contentsOf: newURL)
-            size = imageRep?.size
+        let previewSize = NSImageRep(contentsOf: url)?.size
+        
+        Task { @MainActor in
+            self.previewSize = previewSize
         }
-        if let error {
-            throw error
-        }
-        
-        self.previewSize = size
     }
 }
 
 
-extension PreviewItem: QLPreviewItem {
+extension PreviewDocument: @preconcurrency QLPreviewItem {
     
     var previewItemURL: URL! {
         
@@ -62,6 +58,6 @@ extension PreviewItem: QLPreviewItem {
     
     var previewItemTitle: String! {
         
-        self.fileURL.lastPathComponent
+        self.fileURL?.lastPathComponent
     }
 }

@@ -6,6 +6,7 @@
 ### Improvements
 
 - Improve C++ syntax (Thanks to Léo Natan!).
+- [beta] Support previewing non plain text files.
 - [beta] Support the Quick Look in the file browser.
 - [beta] Add the Sidebar submenu to the View menu.
 - [beta] Improve the VoiceOver support in the sidebar.

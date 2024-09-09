@@ -32,7 +32,7 @@ final class ContentViewController: NSSplitViewController {
     
     // MARK: Public Properties
     
-    var document: Document?  { didSet { self.updateDocument(from: oldValue) } }
+    var document: NSDocument?  { didSet { self.updateDocument(from: oldValue) } }
     
     var documentViewController: DocumentViewController? {
         
@@ -44,14 +44,14 @@ final class ContentViewController: NSSplitViewController {
     
     @ViewLoading private var documentViewItem: NSSplitViewItem
     @ViewLoading private var statusBarItem: NSSplitViewItem
-    private lazy var statusBarModel = StatusBar.Model(document: self.document)
+    private lazy var statusBarModel = StatusBar.Model(document: self.document as? Document)
     
     private var defaultsObserver: AnyCancellable?
     
     
     // MARK: Lifecycle
     
-    init(document: Document?) {
+    init(document: NSDocument?) {
         
         self.document = document
         
@@ -135,7 +135,7 @@ final class ContentViewController: NSSplitViewController {
     // MARK: Private Methods
     
     /// Updates the document in children.
-    private func updateDocument(from oldDocument: Document?) {
+    private func updateDocument(from oldDocument: NSDocument?) {
         
         guard oldDocument != self.document else { return }
         
@@ -143,17 +143,22 @@ final class ContentViewController: NSSplitViewController {
         self.documentViewItem = NSSplitViewItem(viewController: self.createDocumentViewController())
         self.insertSplitViewItem(self.documentViewItem, at: 1)
         
-        self.statusBarModel.updateDocument(to: self.document)
+        self.statusBarModel.updateDocument(to: self.document as? Document)
     }
     
     
     /// Creates a new view controller with the current document.
     private func createDocumentViewController() -> NSViewController {
         
-        if let document {
-            DocumentViewController(document: document)
-        } else {
-            NSHostingController(rootView: NoDocumentView())
+        switch self.document {
+            case let document as Document:
+                DocumentViewController(document: document)
+            case let document as PreviewDocument:
+                NSHostingController(rootView: FilePreviewView(item: document))
+            case .none:
+                NSHostingController(rootView: NoDocumentView())
+            default:
+                preconditionFailure()
         }
     }
 }
