@@ -193,6 +193,12 @@
         "tr" : {
           "variations" : {
             "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "*%lld* byte"
+                }
+              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -420,6 +426,12 @@
         "tr" : {
           "variations" : {
             "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "*%lld* character"
+                }
+              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",

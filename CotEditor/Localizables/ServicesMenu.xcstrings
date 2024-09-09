@@ -67,8 +67,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Seçimden Yeni CotEditor Belgesi"
+            "state" : "translated",
+            "value" : "Seçimi İçeren Yeni CotEditor Belgesi"
           }
         },
         "zh-Hans" : {

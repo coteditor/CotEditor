@@ -123,6 +123,12 @@
             "value" : "후원"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağış"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",

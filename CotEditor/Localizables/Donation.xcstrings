@@ -34,6 +34,12 @@
             "value" : "투명 커피"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Görünmez Kahve"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",

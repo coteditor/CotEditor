@@ -46,6 +46,14 @@
             ]
           }
         },
+        "tr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} ile belge oluştur"
+            ]
+          }
+        },
         "zh-Hans" : {
           "stringSet" : {
             "state" : "translated",

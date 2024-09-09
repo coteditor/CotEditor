@@ -148,7 +148,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Arka Plan:"
+            "value" : "Arka plan:"
           }
         },
         "zh-Hans" : {
@@ -230,7 +230,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geçerli Satır:"
+            "value" : "Geçerli satır:"
           }
         },
         "zh-Hans" : {
@@ -475,7 +475,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Vurgu:"
           }
         },
@@ -558,7 +558,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Görünmez Karakterler:"
+            "value" : "Görünmez karakterler:"
           }
         },
         "zh-Hans" : {

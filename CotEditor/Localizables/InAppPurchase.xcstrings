@@ -34,6 +34,12 @@
             "value" : "일일 개발을 위한 커피"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Günlük geliştirme için kahve"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -168,6 +174,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "커피 한 잔"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lezzetli bir kupa"
           }
         },
         "zh-Hans" : {

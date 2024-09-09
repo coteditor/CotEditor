@@ -232,7 +232,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yazım ve Dilbilgisi Denetimi Yap"
+            "value" : "Yazım ve dilbilgisi denetimi yap"
           }
         },
         "zh-Hans" : {
@@ -562,7 +562,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yazım Hatalarını Otomatik Düzelt"
+            "value" : "Yazım hatalarını otomatik düzelt"
           }
         },
         "zh-Hans" : {
@@ -1236,7 +1236,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Akıllı Tireler"
+            "value" : "Akıllı tireler"
           }
         },
         "zh-Hans" : {
@@ -1319,7 +1319,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Akıllı Tırnaklar"
+            "value" : "Akıllı tırnaklar"
           }
         },
         "zh-Hans" : {
@@ -1401,7 +1401,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yazım Denetimi:"
+            "value" : "Yazım denetimi:"
           }
         },
         "zh-Hans" : {

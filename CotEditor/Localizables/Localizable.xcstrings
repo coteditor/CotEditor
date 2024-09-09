@@ -633,6 +633,12 @@
             "value" : "파일 ‘%@’은(는) 이미 다른 윈도우에 열려 있습니다."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” dosyası halihazırda başka bir pencerede açık."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -679,6 +685,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이 윈도우에서 열려면, 존재하는 윈도우를 먼저 닫으십시오."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onu bu pencerede açmak için önce var olan pencereyi kapatın."
           }
         },
         "zh-Hans" : {

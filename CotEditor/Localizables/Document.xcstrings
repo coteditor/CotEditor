@@ -4601,6 +4601,12 @@
             "value" : "다음 개요 항목"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonraki Ana Hat Öğesi"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4639,6 +4645,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "선택된 문서 없음"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçili belge yok"
           }
         },
         "zh-Hans" : {
@@ -5013,6 +5025,12 @@
             "value" : "외부 편집기에서 열기"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dış Düzenleyici ile Aç"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5135,6 +5153,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "개요 메뉴"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ana Hat Menüsü"
           }
         },
         "zh-Hans" : {
@@ -5342,6 +5366,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이전 개요 항목"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Önceki Ana Hat Öğesi"
           }
         },
         "zh-Hans" : {
@@ -5631,6 +5661,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "숨긴 파일 보기"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gizli Dosyaları Göster"
           }
         },
         "zh-Hans" : {
@@ -6336,6 +6372,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "후원에 감사드립니다!"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazik desteğiniz için çok teşekkürler!"
           }
         },
         "zh-Hans" : {

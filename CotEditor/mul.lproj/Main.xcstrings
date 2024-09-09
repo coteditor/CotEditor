@@ -14693,6 +14693,12 @@
             "value" : "상위 기호 선택"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saran Sembolleri Seç"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15363,6 +15369,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "선택된 부분을 줄로 분할"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçimi Satırlarla Böl"
           }
         },
         "zh-Hans" : {
@@ -16217,6 +16229,12 @@
             "value" : "아래 열 선택"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aşağıdaki Sütunu Seç"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17017,8 +17035,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Çoklu Değiştir…"
+            "state" : "translated",
+            "value" : "Çoklu Değiştirmeyi Yönet…"
           }
         },
         "zh-Hans" : {
@@ -21657,6 +21675,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "위 열 선택"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yukarıdaki Sütunu Seç"
           }
         },
         "zh-Hans" : {

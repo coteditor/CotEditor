@@ -1629,8 +1629,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sekmeleri tercih et:"
+            "state" : "translated",
+            "value" : "Belgeleri sekmede aç:"
           }
         },
         "zh-Hans" : {
@@ -2785,7 +2785,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pencere Büyüklüğü:"
+            "value" : "Pencere büyüklüğü:"
           }
         },
         "zh-Hans" : {

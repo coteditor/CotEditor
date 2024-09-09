@@ -82,6 +82,24 @@
             }
           }
         },
+        "tr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld cup"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld cups"
+                }
+              }
+            }
+          }
+        },
         "zh-Hans" : {
           "variations" : {
             "plural" : {
@@ -218,6 +236,12 @@
             "value" : "후원하려면 인터넷 연결이 필요합니다."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağış yapmak için bir internet bağlantısı gereklidir."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -256,6 +280,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "후원에 보답하는 마음으로, 지속 후원을 해주시는 동안 상태 바에 커피 뱃지가 나타납니다."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazik desteğinizin bir kanıtı olarak, sürekli destekte bulunursanız bir kahve rozeti durum çubuğunda görünür."
           }
         },
         "zh-Hans" : {
@@ -298,6 +328,12 @@
             "value" : "뱃지 타입:"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozet türü:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -336,6 +372,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "지속 후원"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sürekli destek"
           }
         },
         "zh-Hans" : {
@@ -378,6 +420,12 @@
             "value" : "CotEditor는 모든 기능을 무료로 제공합니다. 커피를 사주시면 프로젝트를 후원할 수 있습니다."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor tüm özelliklerini herkese ücretsiz olarak sunar. Bir kahve ısmarlayarak bu projeyi destekleyebilirsiniz."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -416,6 +464,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "현재 후원 기능을 사용할 수 없습니다."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şu anda bağış yapılamıyor."
           }
         },
         "zh-Hans" : {
@@ -540,6 +594,12 @@
             "value" : "일회성 후원"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tek kerelik bağış"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -579,6 +639,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "GitHub Sponsors 열기"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Github Sponsors’u Aç"
           }
         },
         "zh-Hans" : {
@@ -704,6 +770,12 @@
             "value" : "수량"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sayı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -742,6 +814,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "후원 기능은 App Store에서 배포된 CotEditor에서만 사용할 수 있습니다."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağış özelliği, yalnızca App Store üzerinden dağıtılan CotEditor üzerinde kullanılabilir."
           }
         },
         "zh-Hans" : {

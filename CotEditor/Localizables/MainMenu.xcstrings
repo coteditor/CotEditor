@@ -2420,6 +2420,12 @@
             "value" : "아래 행 선택"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aşağıdaki Sütunu Seç"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2459,6 +2465,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "왼쪽 행 선택"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Soldaki Sütunu Seç"
           }
         },
         "zh-Hans" : {
@@ -2502,6 +2514,12 @@
             "value" : "오른쪽 행 선택"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sağdaki Sütunu Seç"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2540,6 +2558,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "위 행 선택"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yukarıdaki Sütunu Seç"
           }
         },
         "zh-Hans" : {

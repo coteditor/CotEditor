@@ -163,6 +163,12 @@
         "tr" : {
           "variations" : {
             "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld found"
+                }
+              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -360,6 +366,12 @@
         "tr" : {
           "variations" : {
             "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld replaced"
+                }
+              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",

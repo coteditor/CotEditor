@@ -27,6 +27,12 @@
             "value" : "(App Store 버전에서만 가능)"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Yalnızca App Store sürümünde kullanılabilir)"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -148,6 +154,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "전체 릴리즈 노트"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tam yayım notları"
           }
         },
         "zh-Hans" : {
@@ -279,6 +291,12 @@
             "value" : "CotEditor"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geliştiricisine bir kahve ısmarlayarak CotEditor projesini destekleyin."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -324,6 +342,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "후원"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağış"
           }
         },
         "zh-Hans" : {
@@ -373,6 +397,12 @@
             "value" : "CotEditor에서 폴더를 열고 내용을 새 사이드바에서 탐색할 수 있습니다."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yeni kenar çubuğunda içeriğine gitmek için bir klasörü CotEditor ile açın."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -418,6 +448,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "폴더 탐색"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klasör Dolaşımı"
           }
         },
         "zh-Hans" : {
@@ -467,6 +503,12 @@
             "value" : "새 macOS 15에서 완벽하게 작동합니다."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yeni macOS 15 ile sorunsuzca çalışır."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -514,6 +556,12 @@
             "value" : "macOS 15 Sequoia 지원"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS 15 Sequoia Desteği"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -552,6 +600,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "후원 설정 열기"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağış Ayarlarını Aç"
           }
         },
         "zh-Hans" : {
@@ -593,6 +647,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "**CotEditor %@**의 새로운 기능"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**CotEditor %@** sürümünde neler yeni"
           }
         },
         "zh-Hans" : {

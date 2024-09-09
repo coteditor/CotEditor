@@ -34,6 +34,12 @@
             "value" : "CotEditor에서 지정된 텍스트로 새로운 문서를 생성합니다."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belirtilen metin ile CotEditor’da yeni bir belge oluşturun."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -79,6 +85,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "내용"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İçerik"
           }
         },
         "zh-Hans" : {
@@ -128,6 +140,12 @@
             "value" : "새로운 문서"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belge Oluştur"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -173,6 +191,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "새로운 문서"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belge Oluştur"
           }
         },
         "zh-Hans" : {
