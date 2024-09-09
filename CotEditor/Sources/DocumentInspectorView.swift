@@ -31,7 +31,7 @@ import FilePermissions
 import LineEnding
 import Syntax
 
-final class DocumentInspectorViewController: NSHostingController<DocumentInspectorView>, DocumentOwner {
+final class DocumentInspectorViewController: NSHostingController<DocumentInspectorView> {
     
     // MARK: Public Properties
     

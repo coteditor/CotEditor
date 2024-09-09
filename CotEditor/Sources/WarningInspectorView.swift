@@ -26,7 +26,7 @@
 import SwiftUI
 import Observation
 
-final class WarningInspectorViewController: NSHostingController<WarningInspectorView>, DocumentOwner {
+final class WarningInspectorViewController: NSHostingController<WarningInspectorView> {
     
     // MARK: Public Properties
     

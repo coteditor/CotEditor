@@ -30,7 +30,7 @@ import Defaults
 import Syntax
 import StringUtils
 
-final class OutlineInspectorViewController: NSHostingController<OutlineInspectorView>, DocumentOwner {
+final class OutlineInspectorViewController: NSHostingController<OutlineInspectorView> {
     
     // MARK: Public Properties
     

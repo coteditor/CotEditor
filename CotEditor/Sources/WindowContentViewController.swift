@@ -97,7 +97,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         self.contentViewItem = NSSplitViewItem(viewController: contentViewController)
         self.addSplitViewItem(self.contentViewItem)
         
-        let inspectorViewController = InspectorViewController(document: self.document as? Document)
+        let inspectorViewController = InspectorViewController(document: self.document)
         self.inspectorViewItem = NSSplitViewItem(inspectorWithViewController: inspectorViewController)
         self.inspectorViewItem.minimumThickness = NSSplitViewItem.unspecifiedDimension
         self.inspectorViewItem.maximumThickness = NSSplitViewItem.unspecifiedDimension
@@ -295,6 +295,6 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     private func updateDocument() {
         
         self.contentViewController.document = self.document
-        self.inspectorViewController.document = self.document as? Document
+        self.inspectorViewController.document = self.document
     }
 }

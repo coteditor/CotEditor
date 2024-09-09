@@ -36,24 +36,18 @@ enum InspectorPane: Int, CaseIterable {
 }
 
 
-protocol DocumentOwner: NSViewController {
-    
-    @MainActor var document: Document? { get set }
-}
-
-
 final class InspectorViewController: NSTabViewController {
     
     // MARK: Public Properties
     
-    var document: Document?  { didSet { self.updateDocument() } }
+    var document: NSDocument?  { didSet { self.updateDocument() } }
     var selectedPane: InspectorPane { InspectorPane(rawValue: self.selectedTabViewItemIndex) ?? .document }
     
     
     
     // MARK: Lifecycle
     
-    init(document: Document? = nil) {
+    init(document: NSDocument? = nil) {
         
         self.document = document
         
@@ -150,7 +144,16 @@ final class InspectorViewController: NSTabViewController {
     private func updateDocument() {
         
         for item in self.tabViewItems {
-            (item.viewController as? any DocumentOwner)?.document = self.document
+            switch item.viewController {
+                case let viewController as DocumentInspectorViewController:
+                    viewController.document = self.document as? Document
+                case let viewController as OutlineInspectorViewController:
+                    viewController.document = self.document as? Document
+                case let viewController as WarningInspectorViewController:
+                    viewController.document = self.document as? Document
+                default:
+                    preconditionFailure()
+            }
         }
     }
 }
@@ -180,15 +183,15 @@ private extension InspectorPane {
     }
     
     
-    @MainActor func viewController(document: Document?) -> NSViewController {
+    @MainActor func viewController(document: NSDocument?) -> NSViewController {
         
         switch self {
             case .document:
-                DocumentInspectorViewController(document: document)
+                DocumentInspectorViewController(document: document as? Document)
             case .outline:
-                OutlineInspectorViewController(document: document)
+                OutlineInspectorViewController(document: document as? Document)
             case .warnings:
-                WarningInspectorViewController(document: document)
+                WarningInspectorViewController(document: document as? Document)
         }
     }
     
