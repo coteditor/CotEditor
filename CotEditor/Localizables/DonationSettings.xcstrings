@@ -117,8 +117,8 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "%lld cups"
+                  "state" : "translated",
+                  "value" : "%lld杯"
                 }
               }
             }
@@ -429,13 +429,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor 向所有人免费提供所有功能。您可以通过赠送咖啡来支持这个项目。"
+            "value" : "CotEditor向所有人免费提供所有功能。您可以通过赠送咖啡来支持这个项目。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor 向所有人免費提供所有功能。您可以藉由捐贈咖啡費用的方式來聲援該專案。"
+            "value" : "CotEditor向所有人免費提供所有功能。您可以藉由捐贈咖啡費用的方式來聲援該專案。"
           }
         }
       }
@@ -650,7 +650,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打开 GitHub Sponsos"
+            "value" : "打开GitHub Sponsos"
           }
         },
         "zh-Hant" : {

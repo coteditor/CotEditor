@@ -43,13 +43,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在 CotEditor 中使用指定的文本创建新文档。"
+            "value" : "在CotEditor中使用指定的文本创建新文档。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在 CotEditor 內以指定的文字創建新文件。"
+            "value" : "在CotEditor內以指定的文字創建新文件。"
           }
         }
       }
