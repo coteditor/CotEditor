@@ -15,10 +15,10 @@
 - [beta] Add the Sidebar submenu to the View menu.
 - [beta] Improve the VoiceOver support in the sidebar.
 - [beta] Enable selecting multiple items in the file browser.
-- [beta] Restore the filename to the original one when the filename edited in the sidebar is invalid.
+- [beta] Restore the filename to the original one when the filename edited in the file browser is invalid.
 - [beta] Avoid opening with CotEditor itself when performing the “Open with External Editor” command in the file browser.
 - [beta] Copy dropped files when pressing the Option key while dragging files to the file browser.
-- [beta] Improve the file drop validation in the file browser.
+- [beta] Improve the file drop feedback animation of the file browser.
 
 
 ### Fixes
