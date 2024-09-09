@@ -28,8 +28,12 @@ import QuickLookUI
 
 @Observable final class PreviewDocument: NSDocument {
     
+    // MARK: Public Properties
+    
     private(set) var previewSize: CGSize?
     
+    
+    // MARK: Document Methods
     
     override nonisolated static var autosavesInPlace: Bool {
         
@@ -47,6 +51,8 @@ import QuickLookUI
     }
 }
 
+
+// MARK: QLPreviewItem Protocol
 
 extension PreviewDocument: @preconcurrency QLPreviewItem {
     
