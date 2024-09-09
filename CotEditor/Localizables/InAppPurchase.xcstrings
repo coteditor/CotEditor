@@ -39,6 +39,12 @@
             "state" : "translated",
             "value" : "日常开发的咖啡"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以咖啡資助軟體研發"
+          }
         }
       }
     },
@@ -165,6 +171,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一杯美味的咖啡"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "一杯美味的咖啡"

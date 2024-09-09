@@ -79,8 +79,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "使用選中內容創建新的CotEditor文件"
+            "state" : "translated",
+            "value" : "使用選中的內容創建新的CotEditor文件"
           }
         }
       }

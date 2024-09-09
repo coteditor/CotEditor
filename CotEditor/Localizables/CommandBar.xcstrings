@@ -129,6 +129,24 @@
               }
             }
           }
+        },
+        "zh-Hant" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld commands found"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "No commands found"
+                }
+              }
+            }
+          }
         }
       }
     },

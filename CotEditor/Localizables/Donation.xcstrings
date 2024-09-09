@@ -39,6 +39,12 @@
             "state" : "translated",
             "value" : "透明咖啡"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不可見的咖啡"
+          }
         }
       }
     },

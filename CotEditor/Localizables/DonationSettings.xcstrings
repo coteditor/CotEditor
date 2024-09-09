@@ -93,6 +93,18 @@
               }
             }
           }
+        },
+        "zh-Hant" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld cups"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -211,6 +223,12 @@
             "state" : "translated",
             "value" : "捐赠需要互联网连接。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "捐贈功能需要可用的網際網路連線。"
+          }
         }
       }
     },
@@ -244,6 +262,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "作为您慷慨支持的证明，在持续支持期间，状态栏中会显示咖啡徽章。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "作為您熱心支援的證明，軟體的狀態列會在整個在持續支援期間顯示一個咖啡徽章。"
           }
         }
       }
@@ -279,6 +303,12 @@
             "state" : "translated",
             "value" : "徽章类型："
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "徽章類型:"
+          }
         }
       }
     },
@@ -312,6 +342,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "持续支持"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "持續支援"
           }
         }
       }
@@ -347,6 +383,12 @@
             "state" : "translated",
             "value" : "CotEditor 向所有人免费提供所有功能。您可以通过赠送咖啡来支持这个项目。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor 向所有人免費提供所有功能。您可以藉由捐贈咖啡費用的方式來聲援該專案。"
+          }
         }
       }
     },
@@ -380,6 +422,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "捐赠目前不可用。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "捐贈功能目前不可用。"
           }
         }
       }
@@ -497,6 +545,12 @@
             "state" : "translated",
             "value" : "一次性捐赠"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一次性捐贈"
+          }
         }
       }
     },
@@ -531,6 +585,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "打开 GitHub Sponsos"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "點此開啟「GitHub Sponsors」捐贈服務"
           }
         }
       }
@@ -649,6 +709,12 @@
             "state" : "translated",
             "value" : "数量"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "份量"
+          }
         }
       }
     },
@@ -682,6 +748,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "捐赠功能仅在App Store分发的CotEditor中可用。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "該捐贈功能僅可用於藉由 App Store 安裝的 CotEditor。"
           }
         }
       }

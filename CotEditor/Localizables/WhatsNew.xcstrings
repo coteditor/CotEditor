@@ -32,6 +32,12 @@
             "state" : "translated",
             "value" : "（仅在App Store版本中可用）"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "（僅可用於敝軟體的 App Store 發行版）"
+          }
         }
       }
     },
@@ -148,6 +154,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "完整的发布说明"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "發行說明（完整記錄版）"
           }
         }
       }
@@ -272,6 +284,12 @@
             "state" : "translated",
             "value" : "支持CotEditor项目，为开发者提供咖啡。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以捐贈咖啡費用的方式支援開發者"
+          }
         }
       }
     },
@@ -312,6 +330,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "捐赠"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "捐贈"
           }
         }
       }
@@ -354,6 +378,12 @@
             "state" : "translated",
             "value" : "在 CotEditor 中打开文件夹，在新的侧边栏中对其内容进行导航。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用 CotEditor 直接開啟一個檔案夾、以在視窗邊欄內導覽該檔案夾的內容。"
+          }
         }
       }
     },
@@ -394,6 +424,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文件夹导航"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案夾導覽"
           }
         }
       }
@@ -436,6 +472,12 @@
             "state" : "translated",
             "value" : "完美兼容全新的 macOS 15"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可完美運作於 macOS 15 系統平台。"
+          }
         }
       }
     },
@@ -477,6 +519,12 @@
             "state" : "translated",
             "value" : "支持 macOS 15 Sequoia"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "對 macOS 15 Sequoia 的支援"
+          }
         }
       }
     },
@@ -511,6 +559,12 @@
             "state" : "translated",
             "value" : "打开捐赠设定"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟捐贈設定"
+          }
         }
       }
     },
@@ -542,6 +596,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**CotEditor %@** 的新功能"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "**CotEditor %@** 的新功能"

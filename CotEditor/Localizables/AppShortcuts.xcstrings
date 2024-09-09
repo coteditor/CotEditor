@@ -53,6 +53,14 @@
               "在 ${applicationName} 中创建文档"
             ]
           }
+        },
+        "zh-Hant" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "使用 ${applicationName} 創建新的文件"
+            ]
+          }
         }
       }
     }

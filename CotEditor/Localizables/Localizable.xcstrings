@@ -638,6 +638,12 @@
             "state" : "translated",
             "value" : "文件“%@”已在另一个窗口中打开。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案「%@」已被其它視窗所開啟。"
+          }
         }
       }
     },
@@ -679,6 +685,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "要在此窗口中打开，请先关闭已有的窗口。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請先將其它開啟了該檔案的視窗關閉、再嘗試用當前視窗開啟該檔案。"
           }
         }
       }

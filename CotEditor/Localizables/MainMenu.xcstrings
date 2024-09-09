@@ -2425,6 +2425,12 @@
             "state" : "translated",
             "value" : "选择下方列"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇下方欄"
+          }
         }
       }
     },
@@ -2459,6 +2465,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "选择左侧列"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇左側欄"
           }
         }
       }
@@ -2495,6 +2507,12 @@
             "state" : "translated",
             "value" : "选择右侧列"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇右側欄"
+          }
         }
       }
     },
@@ -2528,6 +2546,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "选择上方列"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇上方欄"
           }
         }
       }

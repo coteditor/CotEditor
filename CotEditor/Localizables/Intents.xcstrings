@@ -39,6 +39,12 @@
             "state" : "translated",
             "value" : "在 CotEditor 中使用指定的文本创建新文档。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 CotEditor 內以指定的文字創建新文件。"
+          }
         }
       }
     },
@@ -79,6 +85,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "内容"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "內容"
           }
         }
       }
@@ -121,6 +133,12 @@
             "state" : "translated",
             "value" : "创建文档"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "創建文件"
+          }
         }
       }
     },
@@ -161,6 +179,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "创建文档"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "創建文件"
           }
         }
       }
