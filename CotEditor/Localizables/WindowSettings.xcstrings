@@ -1611,7 +1611,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "문서를 열 때 탭 사용:"
           }
         },
