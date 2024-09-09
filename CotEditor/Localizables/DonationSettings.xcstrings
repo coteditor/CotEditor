@@ -81,6 +81,18 @@
               }
             }
           }
+        },
+        "zh-Hans" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld杯"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -193,6 +205,12 @@
             "state" : "translated",
             "value" : "후원하려면 인터넷 연결이 필요합니다."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "捐赠需要互联网连接。"
+          }
         }
       }
     },
@@ -220,6 +238,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "후원에 보답하는 마음으로, 지속 후원을 해주시는 동안 상태 바에 커피 뱃지가 나타납니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "作为您慷慨支持的证明，在持续支持期间，状态栏中会显示咖啡徽章。"
           }
         }
       }
@@ -249,6 +273,12 @@
             "state" : "translated",
             "value" : "뱃지 타입:"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "徽章类型："
+          }
         }
       }
     },
@@ -276,6 +306,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "지속 후원"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "持续支持"
           }
         }
       }
@@ -305,6 +341,12 @@
             "state" : "translated",
             "value" : "CotEditor는 모든 기능을 무료로 제공합니다. 커피를 사주시면 프로젝트를 후원할 수 있습니다."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor 向所有人免费提供所有功能。您可以通过赠送咖啡来支持这个项目。"
+          }
         }
       }
     },
@@ -332,6 +374,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "현재 후원 기능을 사용할 수 없습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "捐赠目前不可用。"
           }
         }
       }
@@ -443,6 +491,12 @@
             "state" : "translated",
             "value" : "일회성 후원"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一次性捐赠"
+          }
         }
       }
     },
@@ -471,6 +525,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "GitHub Sponsors 열기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开 GitHub Sponsos"
           }
         }
       }
@@ -583,6 +643,12 @@
             "state" : "translated",
             "value" : "수량"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数量"
+          }
         }
       }
     },
@@ -610,6 +676,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "후원 기능은 App Store에서 배포된 CotEditor에서만 사용할 수 있습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "捐赠功能仅在App Store分发的CotEditor中可用。"
           }
         }
       }

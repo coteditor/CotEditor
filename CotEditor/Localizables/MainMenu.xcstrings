@@ -2419,6 +2419,12 @@
             "state" : "translated",
             "value" : "아래 행 선택"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择下方列"
+          }
         }
       }
     },
@@ -2447,6 +2453,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "왼쪽 행 선택"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择左侧列"
           }
         }
       }
@@ -2477,6 +2489,12 @@
             "state" : "translated",
             "value" : "오른쪽 행 선택"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择右侧列"
+          }
         }
       }
     },
@@ -2504,6 +2522,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "위 행 선택"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择上方列"
           }
         }
       }

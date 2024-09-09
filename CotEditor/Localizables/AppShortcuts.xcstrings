@@ -45,6 +45,14 @@
               "${applicationName}에서 새로운 문서 생성"
             ]
           }
+        },
+        "zh-Hans" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "在 ${applicationName} 中创建文档"
+            ]
+          }
         }
       }
     }

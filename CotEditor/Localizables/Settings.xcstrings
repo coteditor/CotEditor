@@ -122,6 +122,12 @@
             "state" : "translated",
             "value" : "후원"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "捐赠"
+          }
         }
       }
     },

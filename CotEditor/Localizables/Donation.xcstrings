@@ -33,6 +33,12 @@
             "state" : "translated",
             "value" : "투명 커피"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "透明咖啡"
+          }
         }
       }
     },
