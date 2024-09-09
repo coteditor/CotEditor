@@ -19,6 +19,7 @@
 - [beta] Avoid opening with CotEditor itself when performing the “Open with External Editor” command in the file browser.
 - [beta] Copy dropped files when pressing the Option key while dragging files to the file browser.
 - [beta] Improve the file drop feedback animation of the file browser.
+- [beta] Add the Simplified Chinese and Korean localizations for strings newly added in CotEditor 5.0.0.
 
 
 ### Fixes
