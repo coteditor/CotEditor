@@ -26,7 +26,7 @@
 import AppKit
 import QuickLookUI
 
-@Observable final class PreviewDocument: NSDocument {
+@Observable final class PreviewDocument: DataDocument {
     
     // MARK: Public Properties
     
@@ -43,9 +43,13 @@ import QuickLookUI
     
     override nonisolated func read(from url: URL, ofType typeName: String) throws {
         
+        let attributes = try FileManager.default.attributesOfItem(atPath: url.path)
+        let fileAttributes = FileAttributes(dictionary: attributes)
+        
         let previewSize = NSImageRep(contentsOf: url)?.size
         
         Task { @MainActor in
+            self.fileAttributes = fileAttributes
             self.previewSize = previewSize
         }
     }

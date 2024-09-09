@@ -40,14 +40,14 @@ final class InspectorViewController: NSTabViewController {
     
     // MARK: Public Properties
     
-    var document: NSDocument?  { didSet { self.updateDocument() } }
+    var document: DataDocument?  { didSet { self.updateDocument() } }
     var selectedPane: InspectorPane { InspectorPane(rawValue: self.selectedTabViewItemIndex) ?? .document }
     
     
     
     // MARK: Lifecycle
     
-    init(document: NSDocument? = nil) {
+    init(document: DataDocument? = nil) {
         
         self.document = document
         
@@ -146,7 +146,7 @@ final class InspectorViewController: NSTabViewController {
         for item in self.tabViewItems {
             switch item.viewController {
                 case let viewController as DocumentInspectorViewController:
-                    viewController.document = self.document as? Document
+                    viewController.document = self.document
                 case let viewController as OutlineInspectorViewController:
                     viewController.document = self.document as? Document
                 case let viewController as WarningInspectorViewController:
@@ -183,11 +183,11 @@ private extension InspectorPane {
     }
     
     
-    @MainActor func viewController(document: NSDocument?) -> NSViewController {
+    @MainActor func viewController(document: DataDocument?) -> NSViewController {
         
         switch self {
             case .document:
-                DocumentInspectorViewController(document: document as? Document)
+                DocumentInspectorViewController(document: document)
             case .outline:
                 OutlineInspectorViewController(document: document as? Document)
             case .warnings:

@@ -30,7 +30,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     
     // MARK: Public Properties
     
-    var document: NSDocument?  { didSet { self.updateDocument() } }
+    var document: DataDocument?  { didSet { self.updateDocument() } }
     var directoryDocument: DirectoryDocument?
     
     var documentViewController: DocumentViewController? { self.contentViewController.documentViewController }
@@ -52,7 +52,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     
     // MARK: Split View Controller Methods
     
-    init(document: NSDocument?, directoryDocument: DirectoryDocument?) {
+    init(document: DataDocument?, directoryDocument: DirectoryDocument?) {
         
         self.document = document
         self.directoryDocument = directoryDocument

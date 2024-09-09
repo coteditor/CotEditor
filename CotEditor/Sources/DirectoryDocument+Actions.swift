@@ -130,19 +130,21 @@ extension DirectoryDocument {
     }
     
     
-    // MARK: Document Actions
+    // MARK: DataDocument Actions
     
     @objc func showInFinder(_ sender: Any?) {
         
-        (self.currentDocument as? Document)?.showInFinder(sender)
+        self.currentDocument?.showInFinder(sender)
     }
     
     
     @objc func shareDocument(_ sender: NSMenuItem) {
         
-        (self.currentDocument as? Document)?.shareDocument(sender)
+        self.currentDocument?.shareDocument(sender)
     }
     
+    
+    // MARK: Document Actions
     
     @objc func changeEncoding(_ sender: NSMenuItem) {
         

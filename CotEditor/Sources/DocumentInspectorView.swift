@@ -35,7 +35,7 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
     
     // MARK: Public Properties
     
-    var document: Document? {
+    var document: DataDocument? {
         
         didSet {
             if self.isViewShown {
@@ -53,7 +53,7 @@ final class DocumentInspectorViewController: NSHostingController<DocumentInspect
     
     // MARK: Lifecycle
     
-    required init(document: Document?) {
+    required init(document: DataDocument?) {
         
         self.document = document
         
@@ -109,12 +109,12 @@ struct DocumentInspectorView: View {
         fileprivate var textSettings: TextSettings?
         fileprivate var countResult: EditorCounter.Result?
         
-        private(set) var document: Document?
+        private(set) var document: DataDocument?
         
         private var observers: Set<AnyCancellable> = []
         
         
-        func updateDocument(to document: Document?) {
+        func updateDocument(to document: DataDocument?) {
             
             self.invalidateObservation(document: document)
             self.document = document
@@ -381,18 +381,17 @@ private struct InspectorLabeledContentStyle: LabeledContentStyle {
 
 private extension DocumentInspectorView.Model {
     
-    func invalidateObservation(document: Document?) {
+    func invalidateObservation(document: DataDocument?) {
         
-        self.document?.counter.updatesAll = false
-        self.countResult = document?.counter.result
+        (self.document as? Document)?.counter.updatesAll = false
+        self.countResult = (document as? Document)?.counter.result
         
-        if let document {
+        if let document = document as? Document {
             document.counter.updatesAll = true
             
             self.textSettings = TextSettings(encoding: document.fileEncoding,
                                              lineEnding: document.lineEnding,
                                              mode: .kind(.general))
-            
             self.observers = [
                 document.publisher(for: \.fileURL, options: .initial)
                     .receive(on: DispatchQueue.main)
@@ -407,10 +406,19 @@ private extension DocumentInspectorView.Model {
                     .receive(on: DispatchQueue.main)
                     .sink { [weak self] in self?.textSettings?.mode = $0 },
             ]
+            
+        } else if let document {
+            self.textSettings = nil
+            self.observers = [
+                document.publisher(for: \.fileURL, options: .initial)
+                    .receive(on: DispatchQueue.main)
+                    .sink { [weak self] in self?.fileURL = $0 },
+            ]
+            
         } else {
+            self.textSettings = nil
             self.observers.removeAll()
             self.fileURL = nil
-            self.textSettings = nil
         }
     }
 }

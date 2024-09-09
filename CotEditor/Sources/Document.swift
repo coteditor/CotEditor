@@ -44,7 +44,7 @@ extension Document: EditorSource {
 }
 
 
-@Observable final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging {
+@Observable final class Document: DataDocument, AdditionalDocumentPreparing, EncodingChanging {
     
     nonisolated static let didUpdateChange = Notification.Name("didUpdateChange")
     
@@ -66,8 +66,6 @@ extension Document: EditorSource {
     var isTransient = false  // untitled & empty document that was created automatically
     nonisolated(unsafe) var isVerticalText = false
     
-    weak var windowController: DocumentWindowController?
-    
     
     // MARK: Readonly Properties
     
@@ -76,7 +74,6 @@ extension Document: EditorSource {
     @ObservationIgnored @Published private(set) var fileEncoding: FileEncoding
     @ObservationIgnored @Published private(set) var lineEnding: LineEnding  { didSet { self.lineEndingScanner.baseLineEnding = lineEnding } }
     @ObservationIgnored @Published private(set) var mode: Mode
-    private(set) nonisolated(unsafe) var fileAttributes: FileAttributes?
     
     let lineEndingScanner: LineEndingScanner
     let counter = EditorCounter()
@@ -851,9 +848,6 @@ extension Document: EditorSource {
             case #selector(changeSyntax(_:)):
                 menuItem.state = (menuItem.representedObject as? String == self.syntaxParser.name) ? .on : .off
                 
-            case #selector(showInFinder):
-                return self.fileURL != nil
-                
             default: break
         }
         
@@ -1062,28 +1056,6 @@ extension Document: EditorSource {
         guard let name = sender.representedObject as? String else { return assertionFailure() }
         
         self.setSyntax(name: name)
-    }
-    
-    
-    /// Opens the document file in the Finder.
-    @IBAction func showInFinder(_ sender: Any?) {
-        
-        guard let fileURL else { return }
-        
-        NSWorkspace.shared.activateFileViewerSelecting([fileURL])
-    }
-    
-    
-    /// Shows the sharing picker interface.
-    @IBAction func shareDocument(_ sender: Any?) {
-        
-        guard let contentView = self.viewController?.view else { return assertionFailure() }
-        
-        // -> Get titlebar view to mimic the behavior in iWork apps... (macOS 14 on 2023-12)
-        let view = contentView.window?.standardWindowButton(.closeButton)?.superview ?? contentView
-        
-        NSSharingServicePicker(items: [self])
-            .show(relativeTo: .zero, of: view, preferredEdge: .minY)
     }
     
     

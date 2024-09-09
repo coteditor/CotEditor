@@ -42,14 +42,14 @@ final class DirectoryDocument: NSDocument {
     // MARK: Public Properties
     
     private(set) var fileNode: FileNode?
-    private(set) weak var currentDocument: NSDocument?
+    private(set) weak var currentDocument: DataDocument?
     
     weak var fileBrowserViewController: FileBrowserViewController?
     
     
     // MARK: Private Properties
     
-    private var documents: [NSDocument] = []
+    private var documents: [DataDocument] = []
     private var windowController: DocumentWindowController?  { self.windowControllers.first as? DocumentWindowController }
     
     private var documentObserver: (any NSObjectProtocol)?
@@ -220,7 +220,7 @@ final class DirectoryDocument: NSDocument {
     ///
     /// - Parameter node: The file node to find.
     /// - Returns: A Document if found.
-    func openedDocument(at node: FileNode) -> NSDocument? {
+    func openedDocument(at node: FileNode) -> DataDocument? {
         
         self.documents.first { $0.fileURL == node.fileURL }
     }
@@ -264,6 +264,8 @@ final class DirectoryDocument: NSDocument {
             self.presentErrorAsSheet(error)
             return false
         }
+        
+        guard let document = document as? DataDocument else { return false }
         
         self.documents.append(document)
         NSDocumentController.shared.addDocument(document)
@@ -497,7 +499,7 @@ final class DirectoryDocument: NSDocument {
     /// - Parameter fileURL: The fileURL to open.
     func openInWindow(fileURL: URL) {
         
-        if let document = self.currentDocument as? Document, fileURL == document.fileURL {
+        if let document = self.currentDocument, fileURL == document.fileURL {
             // remove from the current window
             self.windowController?.fileDocument = nil
             self.documents.removeFirst(document)
@@ -531,14 +533,14 @@ final class DirectoryDocument: NSDocument {
     /// Changes the frontmost document.
     ///
     /// - Parameter document: The document to bring frontmost.
-    private func changeFrontmostDocument(to document: NSDocument) {
+    private func changeFrontmostDocument(to document: DataDocument) {
         
         assert(self.documents.contains(document))
         
         // remove window controller from current document
-        (self.windowController?.fileDocument as? Document)?.windowController = nil
+        self.windowController?.fileDocument?.windowController = nil
         
-        (document as? Document)?.windowController = self.windowController
+        document.windowController = self.windowController
         self.windowController?.fileDocument = document
         self.currentDocument = document
         document.makeWindowControllers()

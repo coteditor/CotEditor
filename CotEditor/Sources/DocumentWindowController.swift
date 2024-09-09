@@ -45,7 +45,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
-    weak var fileDocument: NSDocument? {
+    weak var fileDocument: DataDocument? {
         
         didSet {
             self.updateDocument(fileDocument)
@@ -79,7 +79,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Lifecycle
     
-    required init(document: NSDocument? = nil, directoryDocument: DirectoryDocument? = nil) {
+    required init(document: DataDocument? = nil, directoryDocument: DirectoryDocument? = nil) {
         
         self.fileDocument = document
         self.directoryDocument = directoryDocument
@@ -160,7 +160,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         didSet {
             self.documentSyntaxObserver = nil
-            if let document = document as? NSDocument, !(document is DirectoryDocument) {
+            if let document = document as? DataDocument {
                 self.updateDocument(document)
             }
         }
@@ -230,7 +230,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     /// Updates document by passing it to the content view controller and updating the observation.
     ///
     /// - Parameter document: The new document.
-    private func updateDocument(_ document: NSDocument?) {
+    private func updateDocument(_ document: DataDocument?) {
         
         if let viewController = self.contentViewController as? WindowContentViewController, viewController.document != document {
             viewController.document = document

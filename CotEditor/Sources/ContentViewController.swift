@@ -32,7 +32,7 @@ final class ContentViewController: NSSplitViewController {
     
     // MARK: Public Properties
     
-    var document: NSDocument?  { didSet { self.updateDocument(from: oldValue) } }
+    var document: DataDocument?  { didSet { self.updateDocument(from: oldValue) } }
     
     var documentViewController: DocumentViewController? {
         
@@ -51,7 +51,7 @@ final class ContentViewController: NSSplitViewController {
     
     // MARK: Lifecycle
     
-    init(document: NSDocument?) {
+    init(document: DataDocument?) {
         
         self.document = document
         
@@ -135,7 +135,7 @@ final class ContentViewController: NSSplitViewController {
     // MARK: Private Methods
     
     /// Updates the document in children.
-    private func updateDocument(from oldDocument: NSDocument?) {
+    private func updateDocument(from oldDocument: DataDocument?) {
         
         guard oldDocument != self.document else { return }
         
