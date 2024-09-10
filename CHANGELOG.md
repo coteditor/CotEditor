@@ -1,6 +1,6 @@
 # Change Log
 
-5.0.0-beta.3 (unreleased)
+5.0.0-beta.3 (664)
 --------------------------
 
 ### New Features
@@ -29,11 +29,11 @@
 - [beta.2] Address an issue on macOS 14 that folders in the file browser unwontedly closed when the user changed the folder structure.
 
 
-### TODO
+### Known Issues
 
-- Localize strings added.
+- Strings newly added are not yet localized in Czech, Dutch, French, and Portuguese.
 
- Czech, Dutch, French, and Portuguese
+ 
 
 
 
