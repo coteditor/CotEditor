@@ -95,7 +95,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                                                accessibilityDescription: String(localized: "Add", table: "Document"))
         addButton.setAccessibilityLabel(String(localized: "Add", table: "Document"))
         
-        self.view = NSVisualEffectView()
+        self.view = NSView()
         self.view.addSubview(scrollView)
         self.view.addSubview(addButton)
         
@@ -105,12 +105,12 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            addButton.topAnchor.constraint(equalToSystemSpacingBelow: scrollView.bottomAnchor, multiplier: 1),
-            addButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -6),
-            addButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 6),
+            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            addButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 6),
+            addButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -6),
+            addButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 6),
         ])
     }
     
