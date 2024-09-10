@@ -14705,6 +14705,12 @@
             "value" : "상위 기호 선택"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer ingesloten symbolen"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15393,6 +15399,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "선택된 부분을 줄로 분할"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Splits selectie door lijnen"
           }
         },
         "tr" : {
@@ -16265,6 +16277,12 @@
             "value" : "아래 열 선택"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer kolom omlaag"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17059,8 +17077,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Verplaats meerdere…"
+            "state" : "translated",
+            "value" : "Beheer Verplaats meerdere…"
           }
         },
         "pt" : {
@@ -21723,6 +21741,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "위 열 선택"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer colom omhoog"
           }
         },
         "tr" : {

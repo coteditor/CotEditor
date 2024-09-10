@@ -62,6 +62,14 @@
             ]
           }
         },
+        "nl" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Maak een document in ${applicationName}"
+            ]
+          }
+        },
         "tr" : {
           "stringSet" : {
             "state" : "translated",

@@ -645,6 +645,12 @@
             "value" : "파일 ‘%@’은(는) 이미 다른 윈도우에 열려 있습니다."
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het bestand '%@' is al geopend in een ander venster."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -709,6 +715,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이 윈도우에서 열려면, 존재하는 윈도우를 먼저 닫으십시오."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Om het in dit venster te openen, sluit je eerst het bestaande venster."
           }
         },
         "tr" : {

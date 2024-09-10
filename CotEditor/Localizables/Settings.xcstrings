@@ -135,6 +135,12 @@
             "value" : "후원"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Donatie"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",

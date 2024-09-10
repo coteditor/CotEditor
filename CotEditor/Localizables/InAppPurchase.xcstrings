@@ -46,6 +46,12 @@
             "value" : "커피 한 잔"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Een lekker kopje"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -198,6 +204,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "일일 개발을 위한 커피"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koffie voor dagelijkse ontwikkeling"
           }
         },
         "tr" : {

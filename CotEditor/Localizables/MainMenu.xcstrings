@@ -2432,6 +2432,12 @@
             "value" : "아래 행 선택"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer kolom omlaag"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2489,6 +2495,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "왼쪽 행 선택"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer kolom links"
           }
         },
         "tr" : {
@@ -2550,6 +2562,12 @@
             "value" : "오른쪽 행 선택"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer kolom rechts"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2606,6 +2624,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "위 행 선택"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer kolom omhoog"
           }
         },
         "tr" : {

@@ -118,6 +118,24 @@
             }
           }
         },
+        "nl" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld kop"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld kopjes"
+                }
+              }
+            }
+          }
+        },
         "tr" : {
           "variations" : {
             "plural" : {
@@ -284,6 +302,12 @@
             "value" : "후원하려면 인터넷 연결이 필요합니다."
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Een internetverbinding is vereist om te doneren."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -340,6 +364,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "후원에 보답하는 마음으로, 지속 후원을 해주시는 동안 상태 바에 커피 뱃지가 나타납니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Als bewijs van je steun verschijnt er een koffiebadge op de statusbalk tijdens voortdurende steun."
           }
         },
         "tr" : {
@@ -400,6 +430,12 @@
             "value" : "뱃지 타입:"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type badge:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -456,6 +492,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "지속 후원"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voortdurende steun"
           }
         },
         "tr" : {
@@ -516,6 +558,12 @@
             "value" : "CotEditor는 모든 기능을 무료로 제공합니다. 커피를 사주시면 프로젝트를 후원할 수 있습니다."
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor biedt alle functies gratis aan iedereen. Je kunt dit project steunen door koffie aan te bieden."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -572,6 +620,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "현재 후원 기능을 사용할 수 없습니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Donatie is momenteel niet beschikbaar."
           }
         },
         "tr" : {
@@ -714,6 +768,12 @@
             "value" : "일회성 후원"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eenmalige donatie"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -771,6 +831,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "GitHub Sponsors 열기"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open GitHub Sponsors"
           }
         },
         "tr" : {
@@ -914,6 +980,12 @@
             "value" : "수량"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aantal"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -970,6 +1042,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "후원 기능은 App Store에서 배포된 CotEditor에서만 사용할 수 있습니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De donatiefunctie is alleen beschikbaar in CotEditor gedistribueerd in de App Store."
           }
         },
         "tr" : {

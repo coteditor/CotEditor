@@ -46,6 +46,12 @@
             "value" : "CotEditor에서 지정된 텍스트로 새로운 문서를 생성합니다."
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maak een nieuw document met de opgegeven tekst in CotEditor."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -109,6 +115,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "내용"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inhoud"
           }
         },
         "tr" : {
@@ -176,6 +188,12 @@
             "value" : "새로운 문서"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maak document"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -239,6 +257,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "새로운 문서"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maak document"
           }
         },
         "tr" : {

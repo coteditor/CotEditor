@@ -46,6 +46,12 @@
             "value" : "투명 커피"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onzichtbare koffie"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",

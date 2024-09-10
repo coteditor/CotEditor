@@ -4613,6 +4613,12 @@
             "value" : "다음 개요 항목"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volgende contouritem"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4669,6 +4675,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "선택된 문서 없음"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen document geselecteerd"
           }
         },
         "tr" : {
@@ -5061,6 +5073,12 @@
             "value" : "외부 편집기에서 열기"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open met externe bewerker"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5201,6 +5219,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "개요 메뉴"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contourmenu"
           }
         },
         "tr" : {
@@ -5426,6 +5450,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이전 개요 항목"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorige contouritem"
           }
         },
         "tr" : {
@@ -5733,6 +5763,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "숨긴 파일 보기"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toon verborgen bestanden"
           }
         },
         "tr" : {
@@ -6456,6 +6492,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "후원에 감사드립니다!"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bedankt voor je steun!"
           }
         },
         "tr" : {
