@@ -142,7 +142,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "找到 %lld 个命令"
+                  "value" : "找到%lld个命令"
                 }
               },
               "zero" : {
@@ -159,14 +159,14 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "%lld commands found"
+                  "state" : "translated",
+                  "value" : "發現了%lld條指令"
                 }
               },
               "zero" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "No commands found"
+                  "state" : "translated",
+                  "value" : "尚未發現指令"
                 }
               }
             }
