@@ -25,6 +25,7 @@
 
 ### Fixes
 
+- [beta] Fix an issue that dropping files to the editor inserted nothing.
 - [beta.2] Address an issue on macOS 14 that folders in the file browser unwontedly closed when the user changed the folder structure.
 
 

@@ -488,7 +488,7 @@ extension EditorTextViewController: EditorTextView.Delegate {
             string += url.isFileURL ? url.path : url.absoluteString
         }
         
-        guard replacementString.isEmpty else { return true }
+        guard !replacementString.isEmpty else { return true }
         
         // insert snippets to view
         guard textView.shouldChangeText(in: textView.rangeForUserTextChange, replacementString: replacementString) else { return false }
