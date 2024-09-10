@@ -20,6 +20,7 @@
 - [beta] Copy dropped files when pressing the Option key while dragging files to the file browser.
 - [beta] Improve the file drop feedback animation of the file browser.
 - [beta] Add the Simplified Chinese, Traditional Chinese, Korean, and Turkish localizations for strings newly added in CotEditor 5.0.0.
+- [beta][dev] Update the build environment to Xcode 16.0 RC.
 
 
 ### Fixes
