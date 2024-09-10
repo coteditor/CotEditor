@@ -1,5 +1,14 @@
 # Change Log
 
+5.0.0-beta.4 (unreleased)
+--------------------------
+
+### Known Issues
+
+- Strings newly added are not yet localized in Czech, Dutch, French, and Portuguese.
+
+
+
 5.0.0-beta.3 (664)
 --------------------------
 
@@ -32,8 +41,6 @@
 ### Known Issues
 
 - Strings newly added are not yet localized in Czech, Dutch, French, and Portuguese.
-
- 
 
 
 
