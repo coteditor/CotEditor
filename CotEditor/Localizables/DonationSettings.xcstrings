@@ -76,6 +76,24 @@
             }
           }
         },
+        "it" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld tazza"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld tazze"
+                }
+              }
+            }
+          }
+        },
         "ja" : {
           "variations" : {
             "plural" : {
@@ -248,6 +266,12 @@
             "value" : "Para donar se requiere conexión a internet."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per donare è necessaria una connessione ad Internet."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -298,6 +322,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Como prueba de su amable ayuda, aparece una tarjeta de café en la barra de estado durante la ayuda continua."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Come prova del tuo sostegno permanente, un badge del caffè apparirà sulla barra di stato."
           }
         },
         "ja" : {
@@ -352,6 +382,12 @@
             "value" : "Tipo de tarjeta:"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo Badge:"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -402,6 +438,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ayuda continua"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sostegno permanente"
           }
         },
         "ja" : {
@@ -456,6 +498,12 @@
             "value" : "CotEditor ofrece todas las funciones de forma gratuita para todo el mundo. Puedes ayudar a este proyecto ofreciendo café."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor è completamente gratuito per chiunque. Puoi sostenere questo progetto offrendoci un caffè."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -506,6 +554,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "La donación no está disponible actualmente."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La donazione non è al momento disponibile."
           }
         },
         "ja" : {
@@ -642,6 +696,12 @@
             "value" : "Donación única"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Donazione singola"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -693,6 +753,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Abrir GitHub Sponsors"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri GitHub Sponsors"
           }
         },
         "ja" : {
@@ -830,6 +896,12 @@
             "value" : "Cantidad"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quantità"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -880,6 +952,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "La función de donación sólo está disponible en CotEditor distribuido en la App Store."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si può donare solo tramite il CotEditor distribuito dall'App Store."
           }
         },
         "ja" : {

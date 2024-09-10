@@ -28,6 +28,12 @@
             "value" : "Crea un nuevo documento con el texto especificado en CotEditor."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea un nuovo documento con il testo specificato in CotEditor."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -85,6 +91,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Contenido"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contenuti"
           }
         },
         "ja" : {
@@ -146,6 +158,12 @@
             "value" : "Créer un document"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea documento"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -203,6 +221,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Créer un document"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea documento"
           }
         },
         "ja" : {

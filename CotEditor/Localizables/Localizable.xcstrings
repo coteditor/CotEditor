@@ -627,6 +627,12 @@
             "value" : "El archivo “%@” ya está abierto en otra ventana."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il file “%@” è già aperto in un'altra finestra."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -685,6 +691,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Para abrirla en esta ventana, cierre primero la ventana existente."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per aprirlo in questa finestra, chiudere prima l'altra."
           }
         },
         "ja" : {

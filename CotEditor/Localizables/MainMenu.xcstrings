@@ -2414,6 +2414,12 @@
             "value" : "Seleccionar columna abajo"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select la colonna inferiore"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2465,6 +2471,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Seleccionar columna izquierda"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleziona la colonna a sinistra"
           }
         },
         "ja" : {
@@ -2520,6 +2532,12 @@
             "value" : "Seleccionar columna derecha"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleziona la colonna a destra"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2570,6 +2588,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Seleccionar columna arriba"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleziona la colonna superiore"
           }
         },
         "ja" : {

@@ -48,6 +48,11 @@
           "description" : "Lezzetli bir kupa",
           "displayName" : "Espresso",
           "locale" : "tr"
+        },
+        {
+          "description" : "Una gustosa tazza",
+          "displayName" : "Espresso",
+          "locale" : "it"
         }
       ],
       "productID" : "com.coteditor.CotEditor.donation.onetime",
@@ -59,7 +64,7 @@
     "_applicationInternalID" : "1024640650",
     "_developerTeamID" : "HT3Z3A72WZ",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 747635029.52764297,
+    "_lastSynchronizedDate" : 747659192.89756,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [
@@ -165,6 +170,11 @@
               "description" : "Coffee for daily development",
               "displayName" : "Coffee Beans",
               "locale" : "en_US"
+            },
+            {
+              "description" : "Caffà per lo sviluppo quotidiano",
+              "displayName" : "Chicchi di caffè",
+              "locale" : "it"
             }
           ],
           "productID" : "com.coteditor.CotEditor.donation.subscription.yearly",

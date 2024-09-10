@@ -4595,6 +4595,12 @@
             "value" : "Siguiente elemento del esquema"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elemento successivo della struttura"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4645,6 +4651,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ningún documento seleccionado"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nessun documento selezionato"
           }
         },
         "ja" : {
@@ -5031,6 +5043,12 @@
             "value" : "Abrir con editor externo"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri con un editor esterno"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5165,6 +5183,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Menu del esquema"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu Struttura"
           }
         },
         "ja" : {
@@ -5384,6 +5408,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Anterior elemento del esquema"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elemento precedente della struttura"
           }
         },
         "ja" : {
@@ -5685,6 +5715,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Mostrar archivos ocultos"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra file nascosti"
           }
         },
         "ja" : {
@@ -6402,6 +6438,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "¡Gracias por su amable apoyo!"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grazie per il tuo gentile sostegno!"
           }
         },
         "ja" : {

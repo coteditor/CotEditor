@@ -28,6 +28,12 @@
             "value" : "Una sabrosa taza"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Una gustosa tazza"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -174,6 +180,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Café para el desarrollo diario"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caffà per lo sviluppo quotidiano"
           }
         },
         "ja" : {

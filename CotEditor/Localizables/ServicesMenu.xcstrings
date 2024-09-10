@@ -37,8 +37,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Nuovo documento CotEditor dalla selezione"
+            "state" : "translated",
+            "value" : "Nuova finestra TextEdit contenente selezione"
           }
         },
         "ja" : {

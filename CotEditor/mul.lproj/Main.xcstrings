@@ -14687,6 +14687,12 @@
             "value" : "Seleccionar símbolos adjuntos"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleziona simboli di chiusura"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15369,6 +15375,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Dividir selección por líneas"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dividi la selezione per righe"
           }
         },
         "ja" : {
@@ -16235,6 +16247,12 @@
             "value" : "Seleccionar columna abajo"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select la colonna inferiore"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17023,8 +17041,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sostituzione multipla…"
+            "state" : "translated",
+            "value" : "Gestisci sostituzioni multiple…"
           }
         },
         "ja" : {
@@ -21687,6 +21705,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Seleccionar columna arriba"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleziona la colonna superiore"
           }
         },
         "ja" : {

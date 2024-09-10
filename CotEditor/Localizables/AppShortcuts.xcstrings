@@ -37,6 +37,14 @@
             ]
           }
         },
+        "it" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Crea un documento in ${applicationName}"
+            ]
+          }
+        },
         "ja" : {
           "stringSet" : {
             "state" : "translated",

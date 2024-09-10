@@ -28,6 +28,12 @@
             "value" : "Café invisible"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caffè non visibile"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",

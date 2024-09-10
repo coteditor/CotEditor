@@ -19,7 +19,7 @@
 - [beta] Avoid opening with CotEditor itself when performing the “Open with External Editor” command in the file browser.
 - [beta] Copy dropped files when pressing the Option key while dragging files to the file browser.
 - [beta] Improve the file drop feedback animation of the file browser.
-- [beta] Add the Simplified Chinese, Traditional Chinese, Korean, Spanish, and Turkish localizations for strings newly added in CotEditor 5.0.0.
+- [beta] Add the Simplified Chinese, Traditional Chinese, Italian, Korean, Spanish, and Turkish localizations for strings newly added in CotEditor 5.0.0.
 - [beta][dev] Update the build environment to Xcode 16.0 RC.
 
 
@@ -27,6 +27,13 @@
 
 - [beta] Fix an issue that dropping files to the editor inserted nothing.
 - [beta.2] Address an issue on macOS 14 that folders in the file browser unwontedly closed when the user changed the folder structure.
+
+
+### TODO
+
+- Localize strings added.
+
+ Czech, Dutch, French, and Portuguese
 
 
 
