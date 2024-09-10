@@ -111,6 +111,12 @@
             "value" : "Donation"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Donación"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",

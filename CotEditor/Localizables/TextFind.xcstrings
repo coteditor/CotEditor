@@ -165,8 +165,8 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "%lld found"
+                  "state" : "translated",
+                  "value" : "%lld bulundu"
                 }
               },
               "other" : {
@@ -368,8 +368,8 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "%lld replaced"
+                  "state" : "translated",
+                  "value" : "%lld değiştirildi"
                 }
               },
               "other" : {

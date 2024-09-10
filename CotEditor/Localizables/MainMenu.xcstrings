@@ -2408,6 +2408,12 @@
             "value" : "Select Column down"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seleccionar columna abajo"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2453,6 +2459,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Select Column Left"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seleccionar columna izquierda"
           }
         },
         "ja" : {
@@ -2502,6 +2514,12 @@
             "value" : "Select Column Right"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seleccionar columna derecha"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2546,6 +2564,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Select Column Up"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seleccionar columna arriba"
           }
         },
         "ja" : {

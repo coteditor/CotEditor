@@ -29,6 +29,14 @@
             ]
           }
         },
+        "es" : {
+          "stringSet" : {
+            "state" : "needs_review",
+            "values" : [
+              "Crear un documento en ${applicationName}"
+            ]
+          }
+        },
         "ja" : {
           "stringSet" : {
             "state" : "translated",

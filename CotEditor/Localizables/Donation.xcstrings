@@ -22,6 +22,12 @@
             "value" : "Invisible Coffee"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Café invisible"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",

@@ -22,6 +22,12 @@
             "value" : "A tasty cup"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Una sabrosa taza"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -162,6 +168,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Coffee for daily development"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Café para el desarrollo diario"
           }
         },
         "ja" : {

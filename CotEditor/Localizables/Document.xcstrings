@@ -4589,6 +4589,12 @@
             "value" : "Next Outline Item"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Siguiente elemento del esquema"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4633,6 +4639,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No document selected"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ningún documento seleccionado"
           }
         },
         "ja" : {
@@ -5013,6 +5025,12 @@
             "value" : "Open with External Editor"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Abrir con editor externo"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5141,6 +5159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Outline Menu"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Menu del esquema"
           }
         },
         "ja" : {
@@ -5354,6 +5378,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Previous Outline Item"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Anterior elemento del esquema"
           }
         },
         "ja" : {
@@ -5649,6 +5679,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Show Hidden Files"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mostrar archivos ocultos"
           }
         },
         "ja" : {
@@ -6360,6 +6396,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thank you for your kind support!"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "¡Gracias por su amable apoyo!"
           }
         },
         "ja" : {

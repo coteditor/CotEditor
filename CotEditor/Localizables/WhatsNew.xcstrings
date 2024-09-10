@@ -15,6 +15,12 @@
             "value" : "(Available only in the App Store version)"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "(Disponible sólo en la versión para App Store)"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -142,6 +148,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Complete release notes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Notas de la versión completa"
           }
         },
         "ja" : {
@@ -279,6 +291,12 @@
             "value" : "Support the CotEditor project by offering coffee to the developer."
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Apoye el proyecto CotEditor ofreciendo café al desarrollador."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -330,6 +348,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Donation"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Donación"
           }
         },
         "ja" : {
@@ -385,6 +409,12 @@
             "value" : "Open a folder in CotEditor to navigate its contents in the new sidebar."
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Abra una carpeta en CotEditor para navegar por su contenido en la nueva barra lateral."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -436,6 +466,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Folder Navigation"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Navegación por carpetas"
           }
         },
         "ja" : {
@@ -491,6 +527,12 @@
             "value" : "Work perfectly with new macOS 15."
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Funciona perfectamente con el nuevo macOS 15."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -544,6 +586,12 @@
             "value" : "macOS 15 Sequoia Support"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Compatibilidad con macOS 15 Sequoia"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -588,6 +636,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open Donation Settings"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Abrir ajustes de la donación"
           }
         },
         "ja" : {
@@ -635,6 +689,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "What’s New in **CotEditor %@**"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Novedades de **CotEditor %@**"
           }
         },
         "ja" : {
