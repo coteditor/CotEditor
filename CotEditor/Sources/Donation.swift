@@ -32,7 +32,7 @@ enum Donation {
         static let allCases = [Self.onetime, Self.continuous]
         
         static let onetime = "com.coteditor.CotEditor.donation.onetime"
-        static let continuous = "com.coteditor.CotEditor.donation.continuous.yearly"
+        static let continuous = "com.coteditor.CotEditor.donation.subscription.yearly"
     }
 }
 

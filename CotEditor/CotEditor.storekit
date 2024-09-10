@@ -33,6 +33,21 @@
           "description" : "A tasty cup",
           "displayName" : "Espresso",
           "locale" : "en_US"
+        },
+        {
+          "description" : "커피 한 잔",
+          "displayName" : "에스프레소",
+          "locale" : "ko"
+        },
+        {
+          "description" : "一杯美味的咖啡",
+          "displayName" : "濃縮咖啡",
+          "locale" : "zh_CN"
+        },
+        {
+          "description" : "Lezzetli bir kupa",
+          "displayName" : "Espresso",
+          "locale" : "tr"
         }
       ],
       "productID" : "com.coteditor.CotEditor.donation.onetime",
@@ -44,7 +59,7 @@
     "_applicationInternalID" : "1024640650",
     "_developerTeamID" : "HT3Z3A72WZ",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 736106884.83175504,
+    "_lastSynchronizedDate" : 747635029.52764297,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [
@@ -110,29 +125,49 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "14.99",
+          "displayPrice" : "19.99",
           "familyShareable" : false,
           "groupNumber" : 1,
-          "internalID" : "6499540684",
+          "internalID" : "6670775074",
           "introductoryOffer" : null,
           "localizations" : [
+            {
+              "description" : "일일 개발을 위한 커피",
+              "displayName" : "커피 원두",
+              "locale" : "ko"
+            },
+            {
+              "description" : "Günlük geliştirme için kahve",
+              "displayName" : "Kahve Çekirdekleri",
+              "locale" : "tr"
+            },
             {
               "description" : "Kaffee für die tägliche Entwicklung",
               "displayName" : "Kaffeebohnen",
               "locale" : "de"
             },
             {
-              "description" : "Coffee for daily development",
-              "displayName" : "Coffee Beans",
-              "locale" : "en_US"
+              "description" : "以咖啡資助軟體研發",
+              "displayName" : "咖啡豆",
+              "locale" : "zh_CN"
             },
             {
               "description" : "日々の開発のためのコーヒー",
               "displayName" : "コーヒー豆",
               "locale" : "ja"
+            },
+            {
+              "description" : "日常开发的咖啡",
+              "displayName" : "咖啡豆",
+              "locale" : "zh_CN"
+            },
+            {
+              "description" : "Coffee for daily development",
+              "displayName" : "Coffee Beans",
+              "locale" : "en_US"
             }
           ],
-          "productID" : "com.coteditor.CotEditor.donation.continuous.yearly",
+          "productID" : "com.coteditor.CotEditor.donation.subscription.yearly",
           "recurringSubscriptionPeriod" : "P1Y",
           "referenceName" : "Continuous support",
           "subscriptionGroupID" : "21481959",

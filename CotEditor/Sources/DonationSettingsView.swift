@@ -57,7 +57,7 @@ struct DonationSettingsView: View {
                             .accessibilityAddTraits(.isHeader)
                         
                         ProductView(id: Donation.ProductID.continuous, prefersPromotionalIcon: true) {
-                            Label(String(localized: "donation.continuous.yearly.displayName", table: "InAppPurchase"), image: .bagCoffee)
+                            Label(String(localized: "donation.subscription.yearly.displayName", table: "InAppPurchase"), image: .bagCoffee)
                                 .labelStyle(.iconOnly)
                                 .font(.system(size: 40))
                                 .foregroundStyle(.secondary)
