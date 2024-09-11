@@ -4577,6 +4577,12 @@
     "Next Outline Item" : {
       "comment" : "accessibility label for button",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Další položka osnovy"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4641,6 +4647,12 @@
     },
     "No document selected" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Není vybrán žádný dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5037,6 +5049,12 @@
     "Open with External Editor" : {
       "comment" : "menu item label",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít v externím editoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5185,6 +5203,12 @@
     "Outline Menu" : {
       "comment" : "accessibility label",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nabídka osnovy"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5416,6 +5440,12 @@
     "Previous Outline Item" : {
       "comment" : "accessibility label for button",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Předchozí položka osnovy"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5729,6 +5759,12 @@
     "Show Hidden Files" : {
       "comment" : "menu item label",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit skryté soubory"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6458,6 +6494,12 @@
     "Thank you for your kind support!" : {
       "comment" : "message for users who made a donation",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Děkujeme vám za vaši laskavou podporu!"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

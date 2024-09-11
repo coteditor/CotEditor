@@ -3,6 +3,12 @@
   "strings" : {
     "(Available only in the App Store version)" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(K dispozici pouze ve verzi pro App Store)"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -150,6 +156,12 @@
     },
     "Complete release notes" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Úplné poznámky k vydání"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -297,6 +309,12 @@
     "NewFeature.donation.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podpořte projekt CotEditor tím, že vývojáři nabídnete kávu."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -368,6 +386,12 @@
     "NewFeature.donation.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darování"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -439,6 +463,12 @@
     "NewFeature.folderNavigation.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřete složku v CotEditoru a procházejte její obsah v novém bočním panelu."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -510,6 +540,12 @@
     "NewFeature.folderNavigation.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navigace ve složce"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -581,6 +617,12 @@
     "NewFeature.macOSSupport.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perfektní práce s novým systémem macOS 15."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -652,6 +694,12 @@
     "NewFeature.macOSSupport.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podpora systému macOS 15 Sequoia"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -722,6 +770,12 @@
     },
     "Open Donation Settings" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít nastavení Darování"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -787,6 +841,12 @@
     "What’s New in **CotEditor %@**" : {
       "comment" : "%@ is version number",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Co je nového v aplikaci **CotEditor %@**"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

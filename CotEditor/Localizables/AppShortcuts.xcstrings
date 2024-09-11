@@ -4,6 +4,14 @@
     "Create a document in ${applicationName}" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Vytvořit dokument v aplikaci ${applicationName}"
+            ]
+          }
+        },
         "de" : {
           "stringSet" : {
             "state" : "translated",

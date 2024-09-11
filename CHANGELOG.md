@@ -5,12 +5,12 @@
 
 ### Improvements
 
-- [beta] Add the Dutch localization for strings newly added in CotEditor 5.0.0.
+- [beta] Add the Czech and Dutch localizations for strings newly added in CotEditor 5.0.0.
 
 
 ### Known Issues
 
-- Strings newly added are not yet localized in Czech, French, and Portuguese.
+- Strings newly added are not yet localized in French and Portuguese.
 
 
 

@@ -2396,6 +2396,12 @@
     },
     "Select Column down" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat sloupec dolů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2461,6 +2467,12 @@
     "Select Column Left" : {
       "comment" : "vertical orientation version of the Select Column Down command",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat sloupec vlevo"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2526,6 +2538,12 @@
     "Select Column Right" : {
       "comment" : "vertical orientation version of the Select Column Up command",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat sloupec vpravo"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2590,6 +2608,12 @@
     },
     "Select Column Up" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat sloupec nahoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

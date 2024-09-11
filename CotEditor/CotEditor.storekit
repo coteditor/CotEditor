@@ -30,11 +30,6 @@
           "locale" : "de"
         },
         {
-          "description" : "Una gustosa tazza",
-          "displayName" : "Espresso",
-          "locale" : "it"
-        },
-        {
           "description" : "A tasty cup",
           "displayName" : "Espresso",
           "locale" : "en_US"
@@ -55,9 +50,19 @@
           "locale" : "nl"
         },
         {
+          "description" : "Chutný šálek",
+          "displayName" : "Espresso",
+          "locale" : "cs"
+        },
+        {
           "description" : "Lezzetli bir kupa",
           "displayName" : "Espresso",
           "locale" : "tr"
+        },
+        {
+          "description" : "Una gustosa tazza",
+          "displayName" : "Espresso",
+          "locale" : "it"
         }
       ],
       "productID" : "com.coteditor.CotEditor.donation.onetime",
@@ -69,7 +74,7 @@
     "_applicationInternalID" : "1024640650",
     "_developerTeamID" : "HT3Z3A72WZ",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 747707272.31538296,
+    "_lastSynchronizedDate" : 747751612.776667,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [
@@ -157,24 +162,24 @@
               "locale" : "nl"
             },
             {
-              "description" : "以咖啡資助軟體研發",
-              "displayName" : "咖啡豆",
-              "locale" : "zh_CN"
-            },
-            {
-              "description" : "Caffà per lo sviluppo quotidiano",
-              "displayName" : "Chicchi di caffè",
-              "locale" : "it"
-            },
-            {
               "description" : "Kaffee für die tägliche Entwicklung",
               "displayName" : "Kaffeebohnen",
               "locale" : "de"
             },
             {
+              "description" : "以咖啡資助軟體研發",
+              "displayName" : "咖啡豆",
+              "locale" : "zh_CN"
+            },
+            {
               "description" : "日々の開発のためのコーヒー",
               "displayName" : "コーヒー豆",
               "locale" : "ja"
+            },
+            {
+              "description" : "Káva pro každodenní vývoj",
+              "displayName" : "Kávové boby",
+              "locale" : "cs"
             },
             {
               "description" : "日常开发的咖啡",
@@ -185,6 +190,11 @@
               "description" : "Coffee for daily development",
               "displayName" : "Coffee Beans",
               "locale" : "en_US"
+            },
+            {
+              "description" : "Caffà per lo sviluppo quotidiano",
+              "displayName" : "Chicchi di caffè",
+              "locale" : "it"
             }
           ],
           "productID" : "com.coteditor.CotEditor.donation.subscription.yearly",

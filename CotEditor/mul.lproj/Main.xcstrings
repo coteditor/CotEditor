@@ -1445,6 +1445,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select\"; ObjectID = \"6fK-Zl-wdN\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3062,7 +3068,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O aplikaci CotEditoru"
+            "value" : "O aplikaci CotEditor"
           }
         },
         "de" : {
@@ -11249,6 +11255,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Select\"; ObjectID = \"Bm6-Jh-1mk\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14663,6 +14675,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select Enclosing Symbols\"; ObjectID = \"hYd-RY-2dc\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat uzavírací symboly"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15359,6 +15377,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Split Selection by Lines\"; ObjectID = \"jkL-Tg-nug\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozdělit výběr podle řádků"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16235,6 +16259,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select Column Down\"; ObjectID = \"m1A-zz-piF\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat sloupec dolů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21701,6 +21731,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select Column Up\"; ObjectID = \"yVo-uW-dls\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat sloupec nahoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

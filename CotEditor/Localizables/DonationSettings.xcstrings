@@ -4,6 +4,36 @@
     "%lld cups" : {
       "comment" : "accessibility label for item quantity",
       "localizations" : {
+        "cs" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld šálky"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld šálku"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld šálek"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld šálků"
+                }
+              }
+            }
+          }
+        },
         "de" : {
           "variations" : {
             "plural" : {
@@ -266,6 +296,12 @@
     "An internet connection is required to donate." : {
       "comment" : "error message",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro darování je vyžadováno připojení k internetu."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -330,6 +366,12 @@
     },
     "As proof of your kind support, a coffee badge appears on the status bar during continuous support." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jako důkaz vaší laskavosti se během kontinuální podpory zobrazí ve stavovém řádku odznak s kávou."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -394,6 +436,12 @@
     },
     "Badge type:" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typ odznaku:"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -458,6 +506,12 @@
     },
     "Continuous support" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontinuální podpora"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -522,6 +576,12 @@
     },
     "CotEditor provides all features for free to everyone. You can support this project by offering coffee." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor poskytuje veškeré funkce zdarma. Tento projekt můžete podpořit nabídkou kávy."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -586,6 +646,12 @@
     },
     "Donation is currently not available." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darování není v současné době k dispozici."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -732,6 +798,12 @@
     },
     "One-time donation" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jednorázový dar"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -797,6 +869,12 @@
     "Open GitHub Sponsors" : {
       "comment" : "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization to see whether it exists.",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít GitHub Sponsors"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -944,6 +1022,12 @@
     "Quantity" : {
       "comment" : "accessibility label for item quantity stepper",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Množství"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1008,6 +1092,12 @@
     },
     "The donation feature is available only in CotEditor distributed in the App Store." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funkce darování je k dispozici pouze v CotEditoru distribuovaném v App Store."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

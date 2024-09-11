@@ -4,6 +4,12 @@
     "donation.onetime.description" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chutný šálek"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -164,6 +170,12 @@
     "donation.subscription.yearly.description" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Káva pro každodenní vývoj"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

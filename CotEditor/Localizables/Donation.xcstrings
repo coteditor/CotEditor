@@ -4,6 +4,12 @@
     "BadgeType.invisible.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neviditelná káva"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

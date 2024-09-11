@@ -603,6 +603,12 @@
     "DirectoryDocumentError.alreadyOpen.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Soubor „%@“ je již otevřen v jiném okně."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -675,6 +681,12 @@
       "comment" : "“it” is the file in description.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chcete-li soubor otevřít v tomto okně, nejprve zavřete stávající okno."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

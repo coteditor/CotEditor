@@ -1569,8 +1569,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Preferovat panely:"
+            "state" : "translated",
+            "value" : "Otevírat na panelech:"
           }
         },
         "de" : {

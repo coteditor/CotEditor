@@ -4,6 +4,12 @@
     "CreateDocumentIntent.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vytvořit nový dokument se zadaným textem v aplikaci CotEditor."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -75,6 +81,12 @@
     "CreateDocumentIntent.Parameter.contents" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obsah"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -146,6 +158,12 @@
     "CreateDocumentIntent.shortTitle" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vytvořit dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -217,6 +235,12 @@
     "CreateDocumentIntent.title" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vytvořit dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

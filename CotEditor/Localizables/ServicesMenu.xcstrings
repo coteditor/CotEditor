@@ -7,8 +7,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Nový dokument CotEditoru s výběrem"
+            "state" : "translated",
+            "value" : "Nové okno CotEditoru s výběrem"
           }
         },
         "de" : {
