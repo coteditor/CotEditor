@@ -86,6 +86,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         let window = DocumentWindow(contentViewController: WindowContentViewController(document: document, directoryDocument: directoryDocument))
         window.styleMask.update(with: .fullSizeContentView)
+        window.animationBehavior = .documentWindow
         window.setFrameAutosaveName((directoryDocument == nil) ? "Document" : "DirectoryDocument")
         
         if directoryDocument != nil {
