@@ -7,6 +7,18 @@
         "cs" : {
           "variations" : {
             "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* bajty"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* bajtu"
+                }
+              },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -240,6 +252,18 @@
         "cs" : {
           "variations" : {
             "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* znaky"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* znaku"
+                }
+              },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",

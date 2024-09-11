@@ -255,6 +255,18 @@
         "cs" : {
           "variations" : {
             "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Byly nalezeny %lld chyby."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Bylo nalezeno %lld chyby."
+                }
+              },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -264,7 +276,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Byly nalezeny chyby (celkem %lld)."
+                  "value" : "Bylo nalezeno %lld chyb."
                 }
               }
             }

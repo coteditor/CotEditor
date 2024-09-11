@@ -2371,6 +2371,18 @@
         "cs" : {
           "variations" : {
             "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nalezeny %lld nekompatibilní znaky."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nalezeno %lld nekompatibilního znaku."
+                }
+              },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -2380,7 +2392,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Nalezeny nekompatibilní znaky (celkem %lld)."
+                  "value" : "Nalezeno %lld nekompatibilních znaků."
                 }
               }
             }
@@ -2604,6 +2616,18 @@
         "cs" : {
           "variations" : {
             "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nalezeny %1$lld jiné konce řádku než %2$@."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nalezeno %1$lld jiného konce řádku než %2$@."
+                }
+              },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -2613,7 +2637,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Nalezeny jiné konce řádků (celkem %1$lld) než %2$@."
+                  "value" : "Nalezeno %1$lld jiných konců řádků než %2$@."
                 }
               }
             }

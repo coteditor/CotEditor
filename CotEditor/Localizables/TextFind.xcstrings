@@ -7,6 +7,24 @@
         "cs" : {
           "variations" : {
             "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nalezeny: %lld"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nalezeno: %lld"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nalezen: %lld"
+                }
+              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -210,6 +228,24 @@
         "cs" : {
           "variations" : {
             "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nahrazeny: %lld"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nahrazeno: %lld"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nahrazen: %lld"
+                }
+              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -413,6 +449,18 @@
         "cs" : {
           "variations" : {
             "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld řetězce nalezeny."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld řetězce nalezeno."
+                }
+              },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -422,7 +470,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld řetězce nalezeny."
+                  "value" : "%lld řetězců nalezeno."
                 }
               }
             }
@@ -646,6 +694,18 @@
         "cs" : {
           "variations" : {
             "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld řetězce nahrazeny."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld řetězce nahrazeno."
+                }
+              },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -655,7 +715,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld řetězce nahrazeny."
+                  "value" : "%lld řetězců nahrazeno."
                 }
               }
             }
