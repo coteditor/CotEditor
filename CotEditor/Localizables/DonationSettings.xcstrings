@@ -824,7 +824,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "GitHub Sponsosを開く"
+            "value" : "GitHub Sponsorsを開く"
           }
         },
         "ko" : {
@@ -848,7 +848,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打开GitHub Sponsos"
+            "value" : "打开GitHub Sponsors"
           }
         },
         "zh-Hant" : {
