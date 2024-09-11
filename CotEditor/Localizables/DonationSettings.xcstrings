@@ -171,14 +171,14 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "%lld cup"
+                  "state" : "translated",
+                  "value" : "%lld fincan"
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "%lld cups"
+                  "state" : "translated",
+                  "value" : "%lld fincan"
                 }
               }
             }
