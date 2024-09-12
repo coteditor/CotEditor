@@ -49,10 +49,12 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     let document: DirectoryDocument
     
     @ViewLoading private(set) var outlineView: NSOutlineView
+    @ViewLoading private var bottomSeparator: NSView
     @ViewLoading private var addButton: NSPopUpButton
     
     private var defaultObservers: Set<AnyCancellable> = []
     private var treeObservationTask: Task<Void, Never>?
+    private var scrollObserver: (any NSObjectProtocol)?
     
     
     // MARK: Lifecycle
@@ -86,6 +88,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let scrollView = NSScrollView()
         scrollView.documentView = outlineView
         
+        let bottomSeparator = NSBox()
+        bottomSeparator.boxType = .separator
+        
         let addButton = NSPopUpButton()
         (addButton.cell as! NSPopUpButtonCell).arrowPosition = .noArrow
         addButton.pullsDown = true
@@ -97,17 +102,23 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         self.view = NSView()
         self.view.addSubview(scrollView)
+        self.view.addSubview(bottomSeparator)
         self.view.addSubview(addButton)
         
         self.outlineView = outlineView
+        self.bottomSeparator = bottomSeparator
         self.addButton = addButton
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        bottomSeparator.translatesAutoresizingMaskIntoConstraints = false
         addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            bottomSeparator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            bottomSeparator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            bottomSeparator.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 1),
             addButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 6),
             addButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -6),
             addButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 6),
@@ -178,6 +189,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         super.viewWillAppear()
         
         self.outlineView.reloadData()
+        self.invalidateBottomSeparatorVisibility()
         
         self.treeObservationTask = Task {
             for await _ in NotificationCenter.default.notifications(named: DirectoryDocument.didUpdateFileNodeNotification, object: self.document).map(\.name) {
@@ -195,6 +207,12 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             UserDefaults.standard.publisher(for: .fileBrowserShowsHiddenFiles)
                 .sink { [unowned self] _ in self.outlineView.reloadData() },
         ]
+        
+        self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: self.outlineView.enclosingScrollView?.contentView, queue: .main) { [weak self] _ in
+            MainActor.assumeIsolated {
+                self?.invalidateBottomSeparatorVisibility()
+            }
+        }
     }
     
     
@@ -206,6 +224,11 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.treeObservationTask = nil
         
         self.defaultObservers.removeAll()
+        
+        if let scrollObserver {
+            NotificationCenter.default.removeObserver(scrollObserver)
+            self.scrollObserver = nil
+        }
     }
     
     
@@ -583,6 +606,18 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.outlineView.endUpdates()
         AudioServicesPlaySystemSound(.moveToTrash)
     }
+    
+    
+    /// Updates the visibility of the bottom separator by considering the outline scroll state.
+    private func invalidateBottomSeparatorVisibility() {
+        
+        guard let clipView = self.outlineView.enclosingScrollView?.contentView else { return assertionFailure() }
+        
+        let visibleRect = clipView.documentVisibleRect
+        let didReachBottom = (visibleRect.minY...visibleRect.maxY).contains(clipView.documentRect.maxY)
+        
+        self.bottomSeparator.animator().alphaValue = didReachBottom ? 0 : 1
+    }
 }
 
 
@@ -773,12 +808,20 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
     func outlineViewItemDidExpand(_ notification: Notification) {
         
         self.invalidateRestorableState()
+        
+        Task {
+            self.invalidateBottomSeparatorVisibility()
+        }
     }
     
     
     func outlineViewItemDidCollapse(_ notification: Notification) {
         
         self.invalidateRestorableState()
+        
+        Task {
+            self.invalidateBottomSeparatorVisibility()
+        }
     }
 }
 
