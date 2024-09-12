@@ -49,6 +49,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     let document: DirectoryDocument
     
     @ViewLoading private(set) var outlineView: NSOutlineView
+    @ViewLoading private var topSeparator: NSView
     @ViewLoading private var bottomSeparator: NSView
     @ViewLoading private var addButton: NSPopUpButton
     
@@ -88,6 +89,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let scrollView = NSScrollView()
         scrollView.documentView = outlineView
         
+        let topSeparator = NSBox()
+        topSeparator.boxType = .separator
+        
         let bottomSeparator = NSBox()
         bottomSeparator.boxType = .separator
         
@@ -102,17 +106,23 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         self.view = NSView()
         self.view.addSubview(scrollView)
+        self.view.addSubview(topSeparator)
         self.view.addSubview(bottomSeparator)
         self.view.addSubview(addButton)
         
         self.outlineView = outlineView
+        self.topSeparator = topSeparator
         self.bottomSeparator = bottomSeparator
         self.addButton = addButton
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        topSeparator.translatesAutoresizingMaskIntoConstraints = false
         bottomSeparator.translatesAutoresizingMaskIntoConstraints = false
         addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            topSeparator.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            topSeparator.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            topSeparator.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
@@ -189,7 +199,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         super.viewWillAppear()
         
         self.outlineView.reloadData()
-        self.invalidateBottomSeparatorVisibility()
+        self.invalidateSeparatorVisibility()
         
         self.treeObservationTask = Task {
             for await _ in NotificationCenter.default.notifications(named: DirectoryDocument.didUpdateFileNodeNotification, object: self.document).map(\.name) {
@@ -210,7 +220,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: self.outlineView.enclosingScrollView?.contentView, queue: .main) { [weak self] _ in
             MainActor.assumeIsolated {
-                self?.invalidateBottomSeparatorVisibility()
+                self?.invalidateSeparatorVisibility()
             }
         }
     }
@@ -608,15 +618,15 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
-    /// Updates the visibility of the bottom separator by considering the outline scroll state.
-    private func invalidateBottomSeparatorVisibility() {
+    /// Updates the visibility of the separators by considering the outline scroll state.
+    private func invalidateSeparatorVisibility() {
         
         guard let clipView = self.outlineView.enclosingScrollView?.contentView else { return assertionFailure() }
         
         let visibleRect = clipView.documentVisibleRect
-        let didReachBottom = (visibleRect.minY...visibleRect.maxY).contains(clipView.documentRect.maxY)
         
-        self.bottomSeparator.animator().alphaValue = didReachBottom ? 0 : 1
+        self.topSeparator.animator().alphaValue = (0 < visibleRect.minY) ? 1 : 0
+        self.bottomSeparator.animator().alphaValue = (visibleRect.maxY < clipView.documentRect.maxY) ? 1 : 0
     }
 }
 
@@ -810,7 +820,7 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         self.invalidateRestorableState()
         
         Task {
-            self.invalidateBottomSeparatorVisibility()
+            self.invalidateSeparatorVisibility()
         }
     }
     
@@ -820,7 +830,7 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         self.invalidateRestorableState()
         
         Task {
-            self.invalidateBottomSeparatorVisibility()
+            self.invalidateSeparatorVisibility()
         }
     }
 }
