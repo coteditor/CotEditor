@@ -9,6 +9,11 @@
 - [beta] Add the Czech and Dutch localizations for strings newly added in CotEditor 5.0.0.
 
 
+### Fixes
+
+- [beta] Fix an issue that UNIX scripts could not get the document object displayed in a folder.
+
+
 ### Known Issues
 
 - Strings newly added are not yet localized in French and Portuguese.

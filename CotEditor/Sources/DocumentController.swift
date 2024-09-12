@@ -252,6 +252,20 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Public Methods
     
+    /// The current `Document`.
+    var currentPlainTextDocument: Document? {
+        
+        switch self.currentDocument {
+            case let document as Document:
+                document
+            case let document as DirectoryDocument:
+                document.currentDocument as? Document
+            default:
+                nil
+        }
+    }
+    
+    
     /// Opens an untitled document with the given contents or recycles the transient document if available.
     ///
     /// - Parameters:
