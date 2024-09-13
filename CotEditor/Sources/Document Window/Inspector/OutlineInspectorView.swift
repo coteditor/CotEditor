@@ -274,8 +274,9 @@ private extension OutlineInspectorView.Model {
         
         self.isOwnSelectionChange = true
         self.selection = item.id
-        // adjust the timing to restore flag
+        // adjust the timing to restore flag for selectItem(id:)
         Task {
+            await Task.yield()
             self.isOwnSelectionChange = false
         }
     }

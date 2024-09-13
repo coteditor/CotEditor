@@ -12,6 +12,7 @@
 ### Fixes
 
 - [beta] Fix an issue that UNIX scripts could not get the document object displayed in a folder.
+- [beta.3] Fix an issue that the editor unwontedly selects the nearest outline item when the Outline inspector is shown.
 
 
 ### Known Issues
