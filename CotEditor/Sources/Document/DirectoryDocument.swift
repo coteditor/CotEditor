@@ -257,7 +257,7 @@ final class DirectoryDocument: NSDocument {
         // make document
         let document: NSDocument
         do {
-            document = (contentType.conforms(to: .text) || fileURL.pathExtension.isEmpty)
+            document = (contentType.conforms(to: .text) || fileURL.pathExtension.isEmpty && !contentType.conforms(to: .aliasFile))
                 ? try NSDocumentController.shared.makeDocument(withContentsOf: fileURL, ofType: contentType.identifier)
                 : try PreviewDocument(contentsOf: fileURL, ofType: contentType.identifier)
         } catch {

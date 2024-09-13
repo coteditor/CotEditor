@@ -805,8 +805,7 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         guard
             outlineView.numberOfSelectedRows == 1,
             let node = outlineView.item(atRow: outlineView.selectedRow) as? FileNode,
-            !node.isDirectory,
-            !node.isAlias
+            !node.isDirectory
         else { return }
         
         Task {

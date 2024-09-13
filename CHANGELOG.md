@@ -7,6 +7,7 @@
 
 - Support upcoming Writing Tools with Apple Intelligence on macOS Sequoia.
 - [beta] Adjust the window's appearance.
+- [beta] Show icon image for alias files selected in the file browser.
 - [beta] Add the Czech, Dutch, and Portuguese localizations for strings newly added in CotEditor 5.0.0.
 
 
