@@ -56,7 +56,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "내보내기..."
+            "value" : "내보내기…"
           }
         },
         "nl" : {
@@ -506,7 +506,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "가져오기..."
+            "value" : "가져오기…"
           }
         },
         "nl" : {
@@ -686,7 +686,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "가져오기..."
+            "value" : "가져오기…"
           }
         },
         "nl" : {
@@ -956,7 +956,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "공유..."
+            "value" : "공유…"
           }
         },
         "nl" : {
@@ -1317,7 +1317,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "내보내기..."
+            "value" : "내보내기…"
           }
         },
         "nl" : {
@@ -1587,7 +1587,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "공유..."
+            "value" : "공유…"
           }
         },
         "nl" : {

@@ -848,6 +848,12 @@
             "state" : "translated",
             "value" : "きたるApple Intelligenceの作文ツールもしっかり動作します。"
           }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공개 예정인 Apple Intelligence 글쓰기 도구가 잘 작동합니다."
+          }
         }
       }
     },
@@ -886,8 +892,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Apple Intelligence 지원"
+            "state" : "translated",
+            "value" : "Apple Intelligence 대응"
           }
         },
         "zh-Hans" : {

@@ -1397,7 +1397,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "더 알아보기..."
+            "value" : "더 알아보기…"
           }
         },
         "nl" : {
@@ -1479,7 +1479,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "경고 관리..."
+            "value" : "경고 관리…"
           }
         },
         "nl" : {

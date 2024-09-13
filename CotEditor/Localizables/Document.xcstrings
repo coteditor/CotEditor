@@ -1541,7 +1541,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "개요 추출..."
+            "value" : "개요 추출…"
           }
         },
         "nl" : {
@@ -5609,7 +5609,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "호환 불가능한 문자를 검색하는 중..."
+            "value" : "호환 불가능한 문자를 검색하는 중…"
           }
         },
         "nl" : {
@@ -5775,7 +5775,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "공유..."
+            "value" : "공유…"
           }
         },
         "nl" : {
@@ -10246,7 +10246,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "사용자 설정..."
+            "value" : "사용자 설정…"
           }
         },
         "nl" : {
