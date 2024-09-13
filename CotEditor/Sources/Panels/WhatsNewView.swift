@@ -178,10 +178,6 @@ private enum NewFeature: CaseIterable {
     @MainActor @ViewBuilder var supplementalView: some View {
         
         switch self {
-            case .writingTools:
-                Text("(only in eligible conditions)", tableName: "WhatsNew")
-                    .foregroundStyle(.secondary)
-                
             case .donation:
                 #if SPARKLE
                 Text("(Available only in the App Store version)", tableName: "WhatsNew")

@@ -77,34 +77,6 @@
         }
       }
     },
-    "(only in eligible conditions)" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(nur unter förderfähigen Bedingungen)"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(only in eligible conditions)"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(sólo en condiciones elegibles)"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "（対象となる条件でのみ）"
-          }
-        }
-      }
-    },
     "Beta" : {
       "comment" : "label for when the app is a prerelease version",
       "localizations" : {
