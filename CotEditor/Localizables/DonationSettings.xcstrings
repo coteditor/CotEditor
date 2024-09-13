@@ -166,6 +166,24 @@
             }
           }
         },
+        "pt" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld xícara"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld xícaras"
+                }
+              }
+            }
+          }
+        },
         "tr" : {
           "variations" : {
             "plural" : {
@@ -344,6 +362,12 @@
             "value" : "Een internetverbinding is vereist om te doneren."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "É necessária uma conexão com a internet para doar."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -412,6 +436,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Als bewijs van je steun verschijnt er een koffiebadge op de statusbalk tijdens voortdurende steun."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Como prova do seu apoio, um emblema de café aparece na barra de status durante o apoio contínuo."
           }
         },
         "tr" : {
@@ -484,6 +514,12 @@
             "value" : "Type badge:"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo de emblema:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -552,6 +588,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Voortdurende steun"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apoio contínuo"
           }
         },
         "tr" : {
@@ -624,6 +666,12 @@
             "value" : "CotEditor biedt alle functies gratis aan iedereen. Je kunt dit project steunen door koffie aan te bieden."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor fornece todos os recursos gratuitamente para todos. Você pode apoiar este projeto pagando um cafézinho."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -692,6 +740,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Donatie is momenteel niet beschikbaar."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A doação não está disponível no momento."
           }
         },
         "tr" : {
@@ -846,6 +900,12 @@
             "value" : "Eenmalige donatie"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doação única"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -915,6 +975,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open GitHub Sponsors"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir GitHub Sponsors"
           }
         },
         "tr" : {
@@ -1070,6 +1136,12 @@
             "value" : "Aantal"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quantidade"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1138,6 +1210,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De donatiefunctie is alleen beschikbaar in CotEditor gedistribueerd in de App Store."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O recurso de doação está disponível apenas no CotEditor distribuído na App Store."
           }
         },
         "tr" : {

@@ -6,7 +6,7 @@
 ### Improvements
 
 - [beta][trivial] Improve sidebar visual.
-- [beta] Add the Czech and Dutch localizations for strings newly added in CotEditor 5.0.0.
+- [beta] Add the Czech, Dutch, and Portuguese localizations for strings newly added in CotEditor 5.0.0.
 
 
 ### Fixes
@@ -17,7 +17,7 @@
 
 ### Known Issues
 
-- Strings newly added are not yet localized in French and Portuguese.
+- Strings newly added are not yet localized in French.
 
 
 

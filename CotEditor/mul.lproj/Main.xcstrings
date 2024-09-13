@@ -14729,6 +14729,12 @@
             "value" : "Selecteer ingesloten symbolen"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecionar Símbolos Envolventes"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15429,6 +15435,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Splits selectie door lijnen"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dividir Seleção por Linhas"
           }
         },
         "tr" : {
@@ -16313,6 +16325,12 @@
             "value" : "Selecteer kolom omlaag"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecionar Coluna Abaixo"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17113,8 +17131,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Substituição Múltipla…"
+            "state" : "translated",
+            "value" : "Gerenciar Múltiplas Substituições…"
           }
         },
         "tr" : {
@@ -21783,6 +21801,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecteer colom omhoog"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecionar Coluna Acima"
           }
         },
         "tr" : {

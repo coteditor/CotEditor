@@ -4649,6 +4649,12 @@
             "value" : "Volgende contouritem"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Item do Próximo Esboço"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4717,6 +4723,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geen document geselecteerd"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhum documento selecionado"
           }
         },
         "tr" : {
@@ -5121,6 +5133,12 @@
             "value" : "Open met externe bewerker"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir com Editor Externo"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5273,6 +5291,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Contourmenu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu de Esboço"
           }
         },
         "tr" : {
@@ -5510,6 +5534,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vorige contouritem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Item de Esboço Anterior"
           }
         },
         "tr" : {
@@ -5829,6 +5859,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toon verborgen bestanden"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar Arquivos Escondidos"
           }
         },
         "tr" : {
@@ -6564,6 +6600,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bedankt voor je steun!"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obrigado pelo seu gentil apoio!"
           }
         },
         "tr" : {

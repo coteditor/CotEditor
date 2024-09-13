@@ -61,8 +61,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Novo Documento do CotEditor com Seleção"
+            "state" : "translated",
+            "value" : "Nova Janela do CotEditor Contendo Seleção"
           }
         },
         "tr" : {

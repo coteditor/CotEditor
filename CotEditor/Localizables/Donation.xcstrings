@@ -58,6 +58,12 @@
             "value" : "Onzichtbare koffie"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Café Invisível"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",

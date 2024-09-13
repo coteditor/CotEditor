@@ -147,6 +147,12 @@
             "value" : "Donatie"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doação"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",

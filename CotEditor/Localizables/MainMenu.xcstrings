@@ -2444,6 +2444,12 @@
             "value" : "Selecteer kolom omlaag"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecionar Coluna Abaixo"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2513,6 +2519,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecteer kolom links"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecionar Coluna a Esquerda"
           }
         },
         "tr" : {
@@ -2586,6 +2598,12 @@
             "value" : "Selecteer kolom rechts"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecionar Coluna a Direita"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2654,6 +2672,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecteer kolom omhoog"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecionar Coluna Acima"
           }
         },
         "tr" : {

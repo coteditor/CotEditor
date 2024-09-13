@@ -58,6 +58,12 @@
             "value" : "Een lekker kopje"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uma saborosa xícara"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -222,6 +228,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Koffie voor dagelijkse ontwikkeling"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Café para desenvolvimento diário"
           }
         },
         "tr" : {

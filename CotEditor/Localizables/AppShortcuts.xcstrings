@@ -78,6 +78,14 @@
             ]
           }
         },
+        "pt" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Criar documento em ${applicationName}"
+            ]
+          }
+        },
         "tr" : {
           "stringSet" : {
             "state" : "translated",

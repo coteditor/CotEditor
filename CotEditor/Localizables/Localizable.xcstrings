@@ -657,6 +657,12 @@
             "value" : "Het bestand '%@' is al geopend in een ander venster."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O arquivo “%@” já está aberto em outra janela."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -733,6 +739,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Om het in dit venster te openen, sluit je eerst het bestaande venster."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para abrir esta janela, feche a atual primeiro."
           }
         },
         "tr" : {

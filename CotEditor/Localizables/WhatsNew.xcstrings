@@ -51,6 +51,12 @@
             "value" : "(Alleen beschikbaar in de App Store-versie)"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Disponível apenas na versão da AppStore)"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -202,6 +208,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Complete versienotities"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notas de versão completas"
           }
         },
         "tr" : {
@@ -363,6 +375,12 @@
             "value" : "Steun het CotEditor-project door koffie aan te bieden aan de ontwikkelaar."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apoie o projeto CotEditor pagando um cafézinho ao desenvolvedor."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -438,6 +456,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Donatie"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doação"
           }
         },
         "tr" : {
@@ -517,6 +541,12 @@
             "value" : "Open een map in CotEditor om door de inhoud ervan te navigeren in de nieuwe zijbalk."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abra uma pasta no CotEditor para navegar em seu conteúdo na nova barra lateral."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -592,6 +622,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mapnavigatie"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navegação de Pastas"
           }
         },
         "tr" : {
@@ -671,6 +707,12 @@
             "value" : "Werkt perfect met de nieuwe macOS 15."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funciona perfeitamente no novo macOS 15."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -748,6 +790,12 @@
             "value" : "Ondersteuning voor macOS 15 Sequoia"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suporte ao macOS 15 Sequoia"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -816,6 +864,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open donatie-instellingen"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir Configurações de Doação"
           }
         },
         "tr" : {
@@ -887,6 +941,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wat is er nieuw in **CotEditor %@**?"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Novidades no **CotEditor %@**"
           }
         },
         "tr" : {

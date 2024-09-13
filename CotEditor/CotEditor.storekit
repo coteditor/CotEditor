@@ -20,19 +20,14 @@
       "internalID" : "6499507688",
       "localizations" : [
         {
-          "description" : "おいしい1杯",
-          "displayName" : "エスプレッソ",
-          "locale" : "ja"
-        },
-        {
-          "description" : "Eine köstliche Tasse",
-          "displayName" : "Espresso",
-          "locale" : "de"
-        },
-        {
           "description" : "A tasty cup",
           "displayName" : "Espresso",
           "locale" : "en_US"
+        },
+        {
+          "description" : "おいしい1杯",
+          "displayName" : "エスプレッソ",
+          "locale" : "ja"
         },
         {
           "description" : "커피 한 잔",
@@ -40,9 +35,24 @@
           "locale" : "ko"
         },
         {
+          "description" : "Chutný šálek",
+          "displayName" : "Espresso",
+          "locale" : "cs"
+        },
+        {
+          "description" : "Uma saborosa xícara",
+          "displayName" : "Espresso",
+          "locale" : "pt_BR"
+        },
+        {
           "description" : "一杯美味的咖啡",
           "displayName" : "濃縮咖啡",
           "locale" : "zh_CN"
+        },
+        {
+          "description" : "Lezzetli bir kupa",
+          "displayName" : "Espresso",
+          "locale" : "tr"
         },
         {
           "description" : "Een lekker kopje",
@@ -50,14 +60,9 @@
           "locale" : "nl"
         },
         {
-          "description" : "Chutný šálek",
+          "description" : "Eine köstliche Tasse",
           "displayName" : "Espresso",
-          "locale" : "cs"
-        },
-        {
-          "description" : "Lezzetli bir kupa",
-          "displayName" : "Espresso",
-          "locale" : "tr"
+          "locale" : "de"
         },
         {
           "description" : "Una gustosa tazza",
@@ -74,7 +79,7 @@
     "_applicationInternalID" : "1024640650",
     "_developerTeamID" : "HT3Z3A72WZ",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 747751612.776667,
+    "_lastSynchronizedDate" : 747930364.21637595,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [
@@ -160,6 +165,11 @@
               "description" : "Koffie voor dagelijkse ontwikkeling",
               "displayName" : "Koffiebonen",
               "locale" : "nl"
+            },
+            {
+              "description" : "Café para desenvolvimento diário",
+              "displayName" : "Grãos de Café",
+              "locale" : "pt_BR"
             },
             {
               "description" : "Kaffee für die tägliche Entwicklung",
