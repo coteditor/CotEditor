@@ -257,7 +257,7 @@ struct StatusBar: View {
         .buttonStyle(.borderless)
         .controlSize(.small)
         .padding(.leading, 10)
-        .frame(height: 21)
+        .frame(height: 23)
         .background(.windowBackground)
     }
 }

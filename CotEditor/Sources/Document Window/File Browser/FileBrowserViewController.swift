@@ -129,8 +129,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             bottomSeparator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             bottomSeparator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             bottomSeparator.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 1),
-            addButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 6),
-            addButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -6),
+            addButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 5),
+            addButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -5),
             addButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 6),
         ])
     }
