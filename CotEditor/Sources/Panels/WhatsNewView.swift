@@ -56,7 +56,7 @@ struct WhatsNewView: View {
                 ForEach(NewFeature.allCases, id: \.self) { feature in
                     HStack {
                         feature.image
-                            .font(.system(size: 48, weight: .thin))
+                            .font(.system(size: 44, weight: .thin))
                             .foregroundStyle(.tint)
                             .frame(width: 64, alignment: .center)
                         
@@ -118,6 +118,7 @@ private enum NewFeature: CaseIterable {
     
     case folderNavigation
     case macOSSupport
+    case writingTools
     case donation
     
     
@@ -128,6 +129,8 @@ private enum NewFeature: CaseIterable {
                 Image(systemName: "folder")
             case .macOSSupport:
                 Image(systemName: "sparkles")
+            case .writingTools:
+                Image(systemName: "bubble.and.pencil")
             case .donation:
                 Image(.bagCoffee)
         }
@@ -143,6 +146,9 @@ private enum NewFeature: CaseIterable {
             case .macOSSupport:
                 String(localized: "NewFeature.macOSSupport.label",
                        defaultValue: "macOS 15 Sequoia Support", table: "WhatsNew")
+            case .writingTools:
+                String(localized: "NewFeature.writingTools.label",
+                       defaultValue: "Apple Intelligence Ready", table: "WhatsNew")
             case .donation:
                 String(localized: "NewFeature.donation.label",
                        defaultValue: "Donation", table: "WhatsNew")
@@ -159,6 +165,9 @@ private enum NewFeature: CaseIterable {
             case .macOSSupport:
                 String(localized: "NewFeature.macOSSupport.description",
                        defaultValue: "Work perfectly with new macOS 15.", table: "WhatsNew")
+            case .writingTools:
+                String(localized: "NewFeature.writingTools.description",
+                       defaultValue: "The upcoming Writing Tools by Apple Intelligence on macOS 15.1 will work properly.", table: "WhatsNew")
             case .donation:
                 String(localized: "NewFeature.donation.description",
                        defaultValue: "Support the CotEditor project by offering coffee to the developer.", table: "WhatsNew")
@@ -169,6 +178,10 @@ private enum NewFeature: CaseIterable {
     @MainActor @ViewBuilder var supplementalView: some View {
         
         switch self {
+            case .writingTools:
+                Text("(only in supported regions)", tableName: "WhatsNew")
+                    .foregroundStyle(.secondary)
+                
             case .donation:
                 #if SPARKLE
                 Text("(Available only in the App Store version)", tableName: "WhatsNew")

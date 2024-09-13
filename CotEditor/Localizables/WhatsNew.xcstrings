@@ -77,6 +77,34 @@
         }
       }
     },
+    "(only in supported regions)" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(nur in unterstützten Regionen)"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(only in supported regions)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "(sólo en las regiones admitidas)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "（対応している地域のみ）"
+          }
+        }
+      }
+    },
     "Beta" : {
       "comment" : "label for when the app is a prerelease version",
       "localizations" : {
@@ -812,6 +840,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "對macOS 15 Sequoia的支援"
+          }
+        }
+      }
+    },
+    "NewFeature.writingTools.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die kommenden Schreibwerkzeuge von Apple Intelligence unter macOS 15.1 werden ordnungsgemäß funktionieren."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The upcoming Writing Tools by Apple Intelligence on macOS 15.1 will work properly."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The upcoming Writing Tools by Apple Intelligence on macOS 15.1 will work properly."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Las próximas Herramientas de Escritura de Apple Intelligence en macOS 15.1 funcionarán correctamente."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS 15.1でやってくるApple Intelligenceの作文ツールもしっかり動作します。"
+          }
+        }
+      }
+    },
+    "NewFeature.writingTools.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence bereit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Apple Intelligence Ready"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence Ready"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Listo para Apple Intelligence"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence対応"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Apple Intelligence 지원"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "支持Apple Intelligence"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "對Apple Intelligence的支援"
           }
         }
       }
