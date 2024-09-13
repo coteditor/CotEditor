@@ -121,17 +121,17 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         addButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             topSeparator.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            topSeparator.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            topSeparator.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            topSeparator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            topSeparator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             bottomSeparator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             bottomSeparator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            bottomSeparator.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 1),
+            bottomSeparator.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -23),
             addButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 5),
-            addButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -5),
-            addButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 6),
+            addButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -5),
+            addButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 6),
         ])
     }
     
