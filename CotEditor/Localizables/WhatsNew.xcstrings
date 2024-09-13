@@ -77,30 +77,30 @@
         }
       }
     },
-    "(only in supported regions)" : {
+    "(only in eligible conditions)" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(nur in unterstützten Regionen)"
+            "value" : "(nur unter förderfähigen Bedingungen)"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(only in supported regions)"
+            "value" : "(only in eligible conditions)"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "(sólo en las regiones admitidas)"
+            "state" : "translated",
+            "value" : "(sólo en condiciones elegibles)"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "（対応している地域のみ）"
+            "value" : "（対象となる条件でのみ）"
           }
         }
       }
@@ -850,31 +850,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die kommenden Schreibwerkzeuge von Apple Intelligence unter macOS 15.1 werden ordnungsgemäß funktionieren."
+            "value" : "Die kommenden Schreibwerkzeuge von Apple Intelligence werden ordnungsgemäß funktionieren."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "The upcoming Writing Tools by Apple Intelligence on macOS 15.1 will work properly."
+            "value" : "The upcoming Writing Tools by Apple Intelligence will work properly."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The upcoming Writing Tools by Apple Intelligence on macOS 15.1 will work properly."
+            "value" : "The upcoming Writing Tools by Apple Intelligence will work properly."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Las próximas Herramientas de Escritura de Apple Intelligence en macOS 15.1 funcionarán correctamente."
+            "value" : "Las próximas Herramientas de Escritura de Apple Intelligence funcionarán correctamente."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "macOS 15.1でやってくるApple Intelligenceの作文ツールもしっかり動作します。"
+            "value" : "きたるApple Intelligenceの作文ツールもしっかり動作します。"
           }
         }
       }
