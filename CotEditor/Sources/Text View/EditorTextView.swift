@@ -168,6 +168,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.linkTextAttributes = [.cursor: NSCursor.pointingHand,
                                    .underlineStyle: NSUnderlineStyle.single.rawValue]
         
+        // writing tools behavior
+        if #available(macOS 15, *) {
+            // -> rewrite in place doesn't work well with TextKit 1 (macOS 15.1, 2024-09)
+            self.writingToolsBehavior = .limited
+            self.allowedWritingToolsResultOptions = .plainText
+        }
+        
         let defaults = UserDefaults.standard
         
         // set paragraph style values
