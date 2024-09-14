@@ -49,7 +49,7 @@ For those people who just want to build and play with CotEditor locally.
 
 ### Build for distribution
 
-1. Run the following commands to resolve dependencies.
+1. Run the following commands to resolve dependencies:
     - `git submodule update --init --recursive`
 1. Open `CotEditor.xcodeproj` in Xcode.
 1. Build "CotEditor" scheme in the workspace.

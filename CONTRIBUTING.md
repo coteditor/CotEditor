@@ -7,7 +7,7 @@ Create a new issue on our [Issues page](https://github.com/coteditor/CotEditor/i
 
 ### Issue reports
 
-Search for existing issues first. If you find your issue previously reported, post your case to that issue; otherwise, create a new one by filling up the “Bug report” template. Do not hesitate to post the same phenomenon as the existing issue as long as there are fewer than 10 cases. Multiple instances help a lot in finding the cause. In that situation, include your environment (versions of both CotEditor and macOS) in your post.
+Search for existing issues first. If you find your issue previously reported, post your case to that issue; otherwise, create a new one by filling out the “Bug report” template. Do not hesitate to post the same phenomenon as the existing issue as long as there are fewer than 10 cases. Multiple instances help a lot in finding the cause. In that situation, include your environment (versions of both CotEditor and macOS) in your post.
 
 If possible, attach screenshots or screencasts of the issue you face. It is also helpful to attach sample files that can reproduce the issue.
 
@@ -43,7 +43,7 @@ Currently, the CotEditor project only accepts new localizations whose provider c
 You have two options for adding a new localization to CotEditor.app. Choose one of them depending on your knowledge and preference:
 
 - Option 1: Add a new localization in Xcode by yourself and make a pull request (for those who get used to git and Xcode projects):
-    - Open CotEditor.xcodeproj in Xcode, go to Project > CotEditor > Info > Localizations, and then add your language to the table. In the Resources group in the project, you can find the most of strings files (.xcstrings) in both the Localizations and Storyboards subgroups. In addition to them, there are two .xcstrings files in Packages/EditorCore/Sources/CharacterInfo/Resources and .Packages/EditorCore/Sources/FileEncoding/Resources. The new language you added will automatically appear in the catalog list. Select your language and fill each cell of your language column in the table. Note that you don't need to localize the UnicodeBlock.strings file in Packages/Libraries/Sources/CharacterInfo/. It will be done by @1024jp based on Apple's localization data.
+    - Open CotEditor.xcodeproj in Xcode, go to Project > CotEditor > Info > Localizations, and then add your language to the table. In the Resources group in the project, you can find most of the strings files (.xcstrings) in both the Localizations and Storyboards subgroups. In addition to them, there are two .xcstrings files in Packages/EditorCore/Sources/CharacterInfo/Resources and .Packages/EditorCore/Sources/FileEncoding/Resources. The new language you added will automatically appear in the catalog list. Select your language and fill each cell of your language column in the table. Note that you don't need to localize the UnicodeBlock.strings file in Packages/Libraries/Sources/CharacterInfo/. It will be done by @1024jp based on Apple's localization data.
     - CotEditor currently uses the String Catalog format (.xcstrings), first introduced in Xcode 15, released in 2023. cf. [Localizing and varying text with a string catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog)
 - Option 2: Communicate with the maintainer personally and work with a provided localization template (.xcloc file):
     - Send a message to the maintainer (@1024jp) either by creating a new issue on GitHub or by e-mail to ask for the localization template (.xcloc file) for your language. When you receive the .xcloc file, open it in Xcode and fill each cell of your language column in the tables. When finished, send the template file back to the maintainer.
@@ -53,7 +53,7 @@ You have two options for adding a new localization to CotEditor.app. Choose one 
 A standard localization update proceeds as follows:
 
 1. When CotEditor has new strings to be localized, the CotEditor maintainer, @1024jp, creates a new ticket on GitHub Issues and mentions the localization maintainers in it so that they can keep all their localized strings up to date. The ticket includes all strings to be updated and their descriptions, sometimes with screenshots. e.g., [#1519](https://github.com/coteditor/CotEditor/issues/1519).
-2. The localizers either post the localized strings to the thread or make a pull request on GitHub. The maintainers should localize the updated strings within about one week (the shorter period is, of course, welcome, but not required). All the responses must be done on GitHub. Not par email.
+2. The localizers either post the localized strings to the thread or make a pull request on GitHub. The maintainers should localize the updated strings within about one week (the shorter period is, of course, welcome, but not required). All the responses must be done on GitHub. Not via email.
 3. The CotEditor maintainer reviews and merges the updates provided by the localizers.
 
 Localization updates may happen once per few months, in general. If a maintainer wants to decline further ongoing maintenance for some reason, it would be kind to express their intentions to the maintainer via email or something. In that case, I will contact the community to find a new maintainer.
@@ -80,7 +80,7 @@ We are now looking for a new maintainer for:
 
 #### Localization for the App Store
 
-The CotEditor project is also asking for localization of description on the Mac App Store. We have a separate repository for it at [coteditor/Documents-for-AppStore](https://github.com/coteditor/Documents-for-AppStore).
+The CotEditor project is also asking for localization of descriptions on the Mac App Store. We have a separate repository for it at [coteditor/Documents-for-AppStore](https://github.com/coteditor/Documents-for-AppStore).
 
 #### Hints on localization
 
@@ -134,7 +134,7 @@ Please follow the style of the existing codes in CotEditor.
         print("moof")
     }
     ```
-- Write the `guard` statement in one-line if just returning a simple value.
+- Write the `guard` statement in one line if just returning a simple value.
     ```Swift
     // prefer
     guard !foo.isEmpty else { return nil }
