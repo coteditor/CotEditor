@@ -855,6 +855,12 @@
             "value" : "공개 예정인 Apple Intelligence 글쓰기 도구가 잘 작동합니다."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Writing Tools do Apple Intelligence funcionará corretamente."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -906,6 +912,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apple Intelligence 대응"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pronto para o Apple Intelligence"
           }
         },
         "tr" : {
