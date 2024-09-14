@@ -867,6 +867,12 @@
     "NewFeature.writingTools.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nadcházející psací nástroje (Writing Tools) pro Apple Intelligence budou fungovat správně."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -932,6 +938,12 @@
     "NewFeature.writingTools.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Připraven na Apple Intelligence"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
