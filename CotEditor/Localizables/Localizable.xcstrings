@@ -2062,7 +2062,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "‘%@’ 내보내기..."
+            "value" : "‘%@’ 내보내기…"
           }
         },
         "nl" : {

@@ -686,7 +686,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "사용자 설정..."
+            "value" : "사용자 설정…"
           }
         },
         "nl" : {
@@ -1766,7 +1766,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "빠른 동작 보기..."
+            "value" : "빠른 동작 보기…"
           }
         },
         "nl" : {
@@ -3206,7 +3206,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "열기..."
+            "value" : "열기…"
           }
         },
         "nl" : {
@@ -3476,7 +3476,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "페이지 설정..."
+            "value" : "페이지 설정…"
           }
         },
         "nl" : {
@@ -3566,7 +3566,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "프린트..."
+            "value" : "프린트…"
           }
         },
         "nl" : {
@@ -3656,7 +3656,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "다음으로 저장..."
+            "value" : "다음으로 저장…"
           }
         },
         "nl" : {
@@ -4646,7 +4646,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "설정..."
+            "value" : "설정…"
           }
         },
         "nl" : {
@@ -7436,7 +7436,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "편집기 불투명도 변경..."
+            "value" : "편집기 불투명도 변경…"
           }
         },
         "nl" : {
@@ -9326,7 +9326,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "도구 막대 사용자화..."
+            "value" : "도구 막대 사용자화…"
           }
         },
         "nl" : {
@@ -9866,7 +9866,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "색상 코드 편집..."
+            "value" : "색상 코드 편집…"
           }
         },
         "nl" : {
@@ -12656,7 +12656,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "줄 번호로 이동..."
+            "value" : "줄 번호로 이동…"
           }
         },
         "nl" : {
@@ -12836,7 +12836,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "찾기..."
+            "value" : "찾기…"
           }
         },
         "nl" : {
@@ -13646,7 +13646,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "사용자 설정..."
+            "value" : "사용자 설정…"
           }
         },
         "nl" : {
@@ -16232,7 +16232,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "패턴으로 정렬..."
+            "value" : "패턴으로 정렬…"
           }
         },
         "nl" : {
@@ -17120,7 +17120,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "다중 대치 관리..."
+            "value" : "다중 대치 관리…"
           }
         },
         "nl" : {
@@ -17570,7 +17570,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "스니펫 편집..."
+            "value" : "상용구 편집…"
           }
         },
         "nl" : {
@@ -19280,7 +19280,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "고급 문자 개수..."
+            "value" : "고급 문자 개수…"
           }
         },
         "nl" : {
@@ -19820,7 +19820,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "공유..."
+            "value" : "공유…"
           }
         },
         "nl" : {
