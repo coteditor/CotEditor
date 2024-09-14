@@ -1,6 +1,6 @@
 # Change Log
 
-5.0.0-beta.4 (unreleased)
+5.0.0-rc (666)
 --------------------------
 
 ### New Features
@@ -12,18 +12,13 @@
 
 - [beta] Adjust the window's appearance.
 - [beta] Show icon image for alias files selected in the file browser.
-- [beta] Add the Czech, Dutch, and Portuguese localizations for strings newly added in CotEditor 5.0.0.
+- [beta] Add the Czech, Dutch, French, and Portuguese localizations for strings newly added in CotEditor 5.0.0.
 
 
 ### Fixes
 
-- [beta] Fix an issue that UNIX scripts could not get the document object displayed in a folder.
+- [beta] Fix an issue that UNIX scripts failed to get the document object displayed in a window with the folder browser.
 - [beta.3] Fix an issue that the editor unwontedly selects the nearest outline item when the Outline inspector is shown.
-
-
-### Known Issues
-
-- Strings newly added are not yet localized in French.
 
 
 
