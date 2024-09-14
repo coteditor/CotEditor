@@ -14705,6 +14705,12 @@
             "value" : "Seleccionar símbolos adjuntos"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sélectionner les symboles englobants"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15417,6 +15423,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Dividir selección por líneas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scinder la sélection par lignes"
           }
         },
         "it" : {
@@ -16313,6 +16325,12 @@
             "value" : "Seleccionar columna abajo"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sélectionner la colonne haut"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17120,7 +17138,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Remplacements multiples…"
+            "value" : "Gérer des remplacements multiples…"
           }
         },
         "it" : {
@@ -21795,6 +21813,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Seleccionar columna arriba"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sélectionner la colonne en bas"
           }
         },
         "it" : {

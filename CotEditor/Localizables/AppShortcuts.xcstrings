@@ -45,6 +45,14 @@
             ]
           }
         },
+        "fr" : {
+          "stringSet" : {
+            "state" : "needs_review",
+            "values" : [
+              "Créer un document dans ${applicationName}"
+            ]
+          }
+        },
         "it" : {
           "stringSet" : {
             "state" : "translated",

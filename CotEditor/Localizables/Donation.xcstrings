@@ -34,6 +34,12 @@
             "value" : "Café invisible"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Café invisible"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
