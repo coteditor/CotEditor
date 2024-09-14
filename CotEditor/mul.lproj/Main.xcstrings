@@ -14746,6 +14746,12 @@
             "state" : "translated",
             "value" : "选择包含的符号"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇被括引的內容"
+          }
         }
       }
     },
@@ -15453,6 +15459,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "按行分割选区"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按行分段"
           }
         }
       }
@@ -16341,6 +16353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "选择下一列"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇下方欄"
           }
         }
       }
@@ -21819,6 +21837,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "选择上一列"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇上方欄"
           }
         }
       }
