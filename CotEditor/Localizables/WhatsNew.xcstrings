@@ -854,6 +854,18 @@
             "state" : "translated",
             "value" : "공개 예정인 Apple Intelligence 글쓰기 도구가 잘 작동합니다."
           }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence’ın yakında kullanıma sunacağı Yazma Araçları düzgünce çalışacak."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即將由Apple推出的智能寫作工具（Writing Tools by Apple Intelligence）將可在敝App內正常工作。"
+          }
         }
       }
     },
@@ -896,6 +908,12 @@
             "value" : "Apple Intelligence 대응"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence’a Hazır"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -904,8 +922,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "對Apple Intelligence的支援"
+            "state" : "translated",
+            "value" : "已對Apple Intelligence就緒"
           }
         }
       }
