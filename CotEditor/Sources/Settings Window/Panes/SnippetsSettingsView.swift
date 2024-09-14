@@ -130,7 +130,7 @@ private struct CommandSnippetsView: View {
             }
             .padding(.bottom)
             
-            InsertionFormatView(text: $format, count: self.selection.count, insertionVariables: Snippet.Variable.allCases, tokenizer: Snippet.Variable.tokenizer)
+            InsertionFormatView(text: $format, count: self.selection.count, insertionVariables: Snippet.Variable.listCases, tokenizer: Snippet.Variable.tokenizer)
         }
         .onAppear {
             self.items = SnippetManager.shared.snippets
