@@ -237,6 +237,19 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
+    @available(macOS 15, *)
+    func textViewWritingToolsDidEnd(_ textView: NSTextView) {
+        
+        guard
+            textView.writingToolsBehavior != .limited,
+            let layoutManager = textView.layoutManager,
+            let theme = self.textView.theme
+        else { return }
+        
+        layoutManager.invalidateHighlight(theme: theme, in: textView.selectedRange)
+    }
+    
+    
     func textView(_ view: NSTextView, menu: NSMenu, for event: NSEvent, at charIndex: Int) -> NSMenu? {
         
         // append Script menu
