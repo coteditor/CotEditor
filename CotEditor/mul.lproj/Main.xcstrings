@@ -14750,13 +14750,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "选择包含的符号"
+            "value" : "选择被括住的上下文区段"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選擇被括引的內容"
+            "value" : "選擇被括住的上下文區段"
           }
         }
       }
