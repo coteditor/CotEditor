@@ -903,6 +903,12 @@
             "value" : "Les prochains outils d'écriture d'Apple Intelligence fonctionneront correctement."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Gli Strumenti di scrittura di Apple Intelligence funzioneranno correttamente."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -915,6 +921,12 @@
             "value" : "공개 예정인 Apple Intelligence 글쓰기 도구가 잘 작동합니다."
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "De aankomende Schrijfhulp van Apple Intelligence zullen goed werken."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -925,6 +937,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apple Intelligence’ın yakında kullanıma sunacağı Yazma Araçları düzgünce çalışacak."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "即将推出的Apple Intelligence的Writing Tools将正常工作。"
           }
         },
         "zh-Hant" : {
@@ -974,6 +992,12 @@
             "value" : "Prêt pour Apple Intelligence"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pronti per Apple Intelligence"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -984,6 +1008,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apple Intelligence 대응"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Klaar voor Apple Intelligentie"
           }
         },
         "pt" : {
