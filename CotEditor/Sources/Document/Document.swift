@@ -779,7 +779,9 @@ extension Document: EditorSource {
             case 0:  // == Save
                 self.allowsLossySaving = true
             case 1:  // == Show Incompatible Characters
-                self.showWarningInspector()
+                Task {
+                    await self.showWarningInspector()
+                }
             case 2:  // == Cancel
                 break
             default:

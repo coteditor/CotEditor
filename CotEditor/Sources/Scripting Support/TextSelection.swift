@@ -84,7 +84,7 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
     // MARK: Private Properties
     
     private weak var document: Document?  // weak to avoid cycle retain
-    
+    private let documentSpecifier: NSScriptObjectSpecifier
     
     
     // MARK: Lifecycle
@@ -92,15 +92,16 @@ private enum OSAUnicodeNormalizationType: FourCharCode {
     required init(document: Document) {
         
         self.document = document
+        self.documentSpecifier = document.objectSpecifier
         
         super.init()
     }
     
     
     /// Returns object name which is determined in the sdef file.
-    override var objectSpecifier: NSScriptObjectSpecifier? {
+     override var objectSpecifier: NSScriptObjectSpecifier? {
         
-        NSNameSpecifier(containerSpecifier: self.document!.objectSpecifier, key: "text selection")
+         NSNameSpecifier(containerSpecifier: self.documentSpecifier, key: "text selection")
     }
     
     

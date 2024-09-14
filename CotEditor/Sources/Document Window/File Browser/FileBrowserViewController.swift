@@ -203,9 +203,11 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         self.treeObservationTask = Task {
             for await _ in NotificationCenter.default.notifications(named: DirectoryDocument.didUpdateFileNodeNotification, object: self.document).map(\.name) {
-                let selectedNodes = self.outlineView.selectedRowIndexes.compactMap(self.outlineView.item(atRow:))
+                let selectedNodes = self.outlineView.selectedRowIndexes
+                    .compactMap { self.outlineView.item(atRow: $0) }
                 self.outlineView.reloadData()
-                let indexes = selectedNodes.compactMap(self.outlineView.row(forItem:))
+                let indexes = selectedNodes
+                    .compactMap { self.outlineView.row(forItem: $0) }
                     .reduce(into: IndexSet()) { $0.insert($1) }
                 if !indexes.isEmpty {
                     self.outlineView.selectRowIndexes(indexes, byExtendingSelection: false)
