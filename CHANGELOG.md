@@ -11,6 +11,7 @@
 ### Fixes
 
 - [rc] Fix an issue that variables in the Snippet settings are not highlighted.
+- [rc][trivial] Fix a service name.
 
 
 
