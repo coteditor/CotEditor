@@ -8,6 +8,11 @@
 - [rc][trivial] Tweak localization.
 
 
+### Fixes
+
+- [rc] Fix an issue that variables in the Snippet settings are not highlighted.
+
+
 
 5.0.0-rc (666)
 --------------------------

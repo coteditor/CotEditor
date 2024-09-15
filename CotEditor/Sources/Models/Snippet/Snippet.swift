@@ -82,7 +82,7 @@ extension Snippet {
         case cursor = "CURSOR"
         case selection = "SELECTION"
         
-        static let listCases: [Self?] = Self.allCases
+        static let listCases: [Self?] = [.cursor, .selection]
         
         
         var localizedDescription: String {

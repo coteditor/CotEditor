@@ -25,7 +25,7 @@
 
 import Foundation.NSRegularExpression
 
-protocol TokenRepresentable: CaseIterable {
+protocol TokenRepresentable: RawRepresentable where Self.RawValue == String {
     
     static var prefix: String { get }
     static var suffix: String { get }
@@ -36,7 +36,7 @@ protocol TokenRepresentable: CaseIterable {
 }
 
 
-extension TokenRepresentable where Self: RawRepresentable, Self.RawValue == String {
+extension TokenRepresentable {
     
     var token: String {
         
@@ -46,7 +46,7 @@ extension TokenRepresentable where Self: RawRepresentable, Self.RawValue == Stri
     
     static var tokenizer: Tokenizer {
         
-        Tokenizer(tokens: Self.allCases.map(\.rawValue), prefix: Self.prefix, suffix: Self.suffix)
+        Tokenizer(tokens: Self.listCases.compactMap(\.self).map(\.rawValue), prefix: Self.prefix, suffix: Self.suffix)
     }
 }
 
