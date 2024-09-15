@@ -1,5 +1,14 @@
 # Change Log
 
+5.0.0 (unreleased)
+--------------------------
+
+### Improvements
+
+- [rc][trivial] Tweak localization.
+
+
+
 5.0.0-rc (666)
 --------------------------
 

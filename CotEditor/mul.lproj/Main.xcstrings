@@ -14756,7 +14756,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選擇被括住的上下文區段"
+            "value" : "选择括号中的内容"
           }
         }
       }
