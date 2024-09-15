@@ -47,7 +47,7 @@ let package = Package(
         .library(name: "UnicodeNormalization", targets: ["UnicodeNormalization"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/realm/SwiftLint", from: Version(0, 56, 0)),
+        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 57, 0)),
     ],
     targets: [
         .target(name: "CharacterInfo", resources: [.process("Resources")]),
@@ -104,7 +104,7 @@ let package = Package(
 
 for target in package.targets {
     target.plugins = [
-        .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLint"),
+        .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins"),
     ]
     target.swiftSettings = [
         .enableUpcomingFeature("ExistentialAny"),
