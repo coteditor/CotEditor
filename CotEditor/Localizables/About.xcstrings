@@ -497,7 +497,7 @@
         }
       }
     },
-    "License" : {
+    "Licenses" : {
       "comment" : "button label",
       "localizations" : {
         "cs" : {
@@ -509,31 +509,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lizenz"
+            "value" : "Lizenzen"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licence"
+            "value" : "Licences"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licencia"
+            "value" : "Licencias"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licence"
+            "value" : "Licences"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licenza"
+            "value" : "Licenze"
           }
         },
         "ja" : {
@@ -551,19 +551,19 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licentie"
+            "value" : "Licenties"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licença"
+            "value" : "Licenças"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lisans"
+            "value" : "Lisanslar"
           }
         },
         "zh-Hans" : {
