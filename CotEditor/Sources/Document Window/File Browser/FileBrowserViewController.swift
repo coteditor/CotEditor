@@ -49,7 +49,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     let document: DirectoryDocument
     
     @ViewLoading private(set) var outlineView: NSOutlineView
-    @ViewLoading private var topSeparator: NSView
     @ViewLoading private var bottomSeparator: NSView
     @ViewLoading private var addButton: NSPopUpButton
     
@@ -81,6 +80,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     override func loadView() {
         
+        let footerHeight: CGFloat = 23
+        
         let outlineView = NSOutlineView()
         outlineView.headerView = nil
         outlineView.addTableColumn(NSTableColumn())
@@ -88,9 +89,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         let scrollView = NSScrollView()
         scrollView.documentView = outlineView
-        
-        let topSeparator = NSBox()
-        topSeparator.boxType = .separator
+        scrollView.contentView.automaticallyAdjustsContentInsets = false
+        scrollView.contentView.contentInsets.bottom = footerHeight
         
         let bottomSeparator = NSBox()
         bottomSeparator.boxType = .separator
@@ -104,34 +104,40 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                                                accessibilityDescription: String(localized: "Add", table: "Document"))
         addButton.setAccessibilityLabel(String(localized: "Add", table: "Document"))
         
+        let footerView = NSVisualEffectView()
+        footerView.material = .sidebar
+        footerView.addSubview(addButton)
+        
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            addButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
+            addButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 6),
+        ])
+        
         self.view = NSView()
         self.view.addSubview(scrollView)
-        self.view.addSubview(topSeparator)
         self.view.addSubview(bottomSeparator)
-        self.view.addSubview(addButton)
+        self.view.addSubview(footerView)
         
         self.outlineView = outlineView
-        self.topSeparator = topSeparator
         self.bottomSeparator = bottomSeparator
         self.addButton = addButton
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        topSeparator.translatesAutoresizingMaskIntoConstraints = false
         bottomSeparator.translatesAutoresizingMaskIntoConstraints = false
-        addButton.translatesAutoresizingMaskIntoConstraints = false
+        footerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            topSeparator.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            topSeparator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            topSeparator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             bottomSeparator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             bottomSeparator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            bottomSeparator.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -23),
-            addButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 5),
-            addButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -5),
-            addButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 6),
+            bottomSeparator.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -footerHeight),
+            footerView.heightAnchor.constraint(equalToConstant: footerHeight),
+            footerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            footerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            footerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
         ])
     }
     
@@ -627,7 +633,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         let visibleRect = clipView.documentVisibleRect
         
-        self.topSeparator.animator().alphaValue = (0 < visibleRect.minY) ? 1 : 0
         self.bottomSeparator.animator().alphaValue = (visibleRect.maxY < clipView.documentRect.maxY) ? 1 : 0
     }
 }
