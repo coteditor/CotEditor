@@ -413,6 +413,13 @@ private enum BundleIdentifier {
     }
     
     
+    /// Shows the Color panel with the color code control.
+    @IBAction func editColorCode(_ sender: Any?) {
+        
+        ColorCodePanelController.shared.showWindow()
+    }
+    
+    
     /// Shows console panel.
     @IBAction func showConsolePanel(_ sender: Any?) {
         

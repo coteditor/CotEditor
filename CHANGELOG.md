@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- [trivial] Enable opening the Color Code window even without any documents.
 - [rc][trivial] Tweak localization.
 
 

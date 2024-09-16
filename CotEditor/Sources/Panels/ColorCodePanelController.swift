@@ -66,7 +66,7 @@ import Defaults
     /// Shows the color panel with the color code accessory.
     ///
     /// - Parameter colorCode: The color code of the color to set to the panel.
-    func showWindow(colorCode: String?) {
+    func showWindow(colorCode: String? = nil) {
         
         // setup the shared color panel
         let panel = NSColorPanel.shared
