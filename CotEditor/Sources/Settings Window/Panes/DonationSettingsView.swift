@@ -29,7 +29,7 @@ import Defaults
 
 private enum SubscriptionInformationURL: String, CaseIterable {
     
-    case termsOfService = "https://coteditor.com/terms"
+    case termsOfService = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"  // Apple’s Standard License Agreement
     case privacyPolicy = "https://coteditor.com/privacy"
     
     
