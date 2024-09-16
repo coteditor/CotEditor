@@ -64,12 +64,25 @@ struct DonationSettingsView: View {
                                 .productIconBorder()
                         }
                         
-                        Link(String(localized: "Manage subscriptions", table: "DonationSettings"),
-                             destination: URL(string: "itms-apps://apps.apple.com/account/subscriptions")!)
+                        Group {
+                            if self.hasDonated {
+                                Link(String(localized: "Manage Subscriptions", table: "DonationSettings"),
+                                     destination: URL(string: "itms-apps://apps.apple.com/account/subscriptions")!)
+                            } else {
+                                Button(String(localized: "Restore Subscription", table: "DonationSettings")) {
+                                    Task {
+                                        do {
+                                            try await AppStore.sync()
+                                        } catch {
+                                            self.error = error
+                                        }
+                                    }
+                                }.buttonStyle(.link)
+                            }
+                        }
                         .textScale(.secondary)
                         .foregroundStyle(.tint)
                         .frame(maxWidth: .infinity)
-                        .opacity(self.hasDonated ? 1 : 0)
                         .padding(.bottom, 10)
                         
                         Form {
