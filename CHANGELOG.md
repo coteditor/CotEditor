@@ -12,7 +12,7 @@
 
 ### Fixes
 
-- Fix an issue that the English labels in the issue report template were unnecessary localized.
+- Fix an issue that the English labels in the issue report template were unnecessarily localized.
 - [rc] Fix an issue that variables in the Snippet settings are not highlighted.
 - [rc][trivial] Fix a service name.
 
