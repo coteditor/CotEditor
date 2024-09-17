@@ -260,7 +260,7 @@ private enum BundleIdentifier {
         NSTouchBar.isAutomaticCustomizeTouchBarMenuItemEnabled = true
         
         // Show What's New panel for CotEditor 5.0.0
-        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion <= 650 {
+        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion <= 666 {
             self.showWhatsNew(nil)
         }
     }
@@ -410,6 +410,13 @@ private enum BundleIdentifier {
     @IBAction func showSnippetEditor(_ sender: Any?) {
         
         SettingsWindowController.shared.openPane(.snippets)
+    }
+    
+    
+    /// Shows the Color panel with the color code control.
+    @IBAction func editColorCode(_ sender: Any?) {
+        
+        ColorCodePanelController.shared.showWindow()
     }
     
     

@@ -178,7 +178,7 @@ extension Document {
         }
         
         set {
-            self.setViewControllerValue(newValue, for: \.wrapsLines)
+            self.setViewControllerValue(.wrapsLines(newValue))
         }
     }
     
@@ -191,7 +191,7 @@ extension Document {
         }
         
         set {
-            self.setViewControllerValue(newValue, for: \.tabWidth)
+            self.setViewControllerValue(.tabWidth(newValue))
         }
     }
     
@@ -204,7 +204,7 @@ extension Document {
         }
         
         set {
-            self.setViewControllerValue(newValue, for: \.isAutoTabExpandEnabled)
+            self.setViewControllerValue(.expandsTab(newValue))
         }
     }
     
@@ -437,12 +437,11 @@ extension Document {
     ///     end tell
     ///
     /// - Parameters:
-    ///   - value: The value to set.
-    ///   - keyPath: The keyPath of the DocumentViewController to set the value.
-    private func setViewControllerValue<Value: Sendable>(_ value: Value, for keyPath: ReferenceWritableKeyPath<DocumentViewController, Value>) {
+    ///   - property: The value and property type to set.
+    private func setViewControllerValue(_ property: DocumentViewController.ScriptingProperty) {
         
         if let viewController = self.viewController {
-            viewController[keyPath: keyPath] = value
+            viewController.apply(scriptingProperty: property)
             return
         }
         
@@ -451,10 +450,34 @@ extension Document {
                 guard let viewController = await self?.viewController else { return }
                 
                 await MainActor.run {
-                    viewController[keyPath: keyPath] = value
+                    viewController.apply(scriptingProperty: property)
                 }
                 break
             }
+        }
+    }
+}
+
+
+private extension DocumentViewController {
+    
+    enum ScriptingProperty {
+        
+        case wrapsLines(Bool)
+        case tabWidth(Int)
+        case expandsTab(Bool)
+    }
+    
+    
+    func apply(scriptingProperty property: ScriptingProperty) {
+        
+        switch property {
+            case .wrapsLines(let value):
+                self.wrapsLines = value
+            case .tabWidth(let value):
+                self.tabWidth = value
+            case .expandsTab(let value):
+                self.isAutoTabExpandEnabled = value
         }
     }
 }

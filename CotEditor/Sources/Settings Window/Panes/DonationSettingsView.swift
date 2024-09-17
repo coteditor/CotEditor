@@ -27,6 +27,22 @@ import SwiftUI
 import StoreKit
 import Defaults
 
+private enum SubscriptionInformationURL: String, CaseIterable {
+    
+    case termsOfService = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"  // Apple’s Standard License Agreement
+    case privacyPolicy = "https://coteditor.com/privacy"
+    
+    
+    private var label: String {
+        
+        switch self {
+            case .termsOfService: String(localized: "Terms of Service", table: "DonationSettings")
+            case .privacyPolicy: String(localized: "Privacy Policy", table: "DonationSettings")
+        }
+    }
+}
+
+
 struct DonationSettingsView: View {
     
 #if SPARKLE
@@ -64,13 +80,30 @@ struct DonationSettingsView: View {
                                 .productIconBorder()
                         }
                         
-                        Link(String(localized: "Manage subscriptions", table: "DonationSettings"),
-                             destination: URL(string: "itms-apps://apps.apple.com/account/subscriptions")!)
+                        Group {
+                            if self.hasDonated {
+                                Link(String(localized: "Manage Subscriptions", table: "DonationSettings"),
+                                     destination: URL(string: "itms-apps://apps.apple.com/account/subscriptions")!)
+                            } else {
+                                Button(String(localized: "Restore Subscription", table: "DonationSettings")) {
+                                    Task {
+                                        do {
+                                            try await AppStore.sync()
+                                        } catch {
+                                            self.error = error
+                                        }
+                                    }
+                                }.buttonStyle(.link)
+                            }
+                        }
                         .textScale(.secondary)
                         .foregroundStyle(.tint)
-                        .frame(maxWidth: .infinity)
-                        .opacity(self.hasDonated ? 1 : 0)
-                        .padding(.bottom, 10)
+                        
+                        Text(SubscriptionInformationURL.markdown)
+                            .tint(.accentColor)
+                            .foregroundStyle(.secondary)
+                            .font(.footnote)
+                            .padding(.bottom, 10)
                         
                         Form {
                             Picker(String(localized: "Badge type:", table: "DonationSettings"), selection: $badgeType) {
@@ -233,6 +266,21 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
             .accessibilityElement(children: .contain)
         }
         .alert(error: $error)
+    }
+}
+
+
+private extension SubscriptionInformationURL {
+    
+    static var markdown: AttributedString {
+        
+        try! AttributedString(markdown: self.allCases.map(\.markdown).formatted(.list(type: .and)))
+    }
+    
+    
+    private var markdown: String {
+        
+        "[\(self.label)](\(self.rawValue))"
     }
 }
 

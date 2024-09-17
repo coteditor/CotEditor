@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2023 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,17 +25,18 @@
 
 import Foundation.NSRegularExpression
 
-protocol TokenRepresentable: CaseIterable {
+protocol TokenRepresentable: RawRepresentable where Self.RawValue == String {
     
     static var prefix: String { get }
     static var suffix: String { get }
     
     var token: String { get }
     var localizedDescription: String { get }
+    static var listCases: [Self?] { get }
 }
 
 
-extension TokenRepresentable where Self: RawRepresentable, Self.RawValue == String {
+extension TokenRepresentable {
     
     var token: String {
         
@@ -45,7 +46,7 @@ extension TokenRepresentable where Self: RawRepresentable, Self.RawValue == Stri
     
     static var tokenizer: Tokenizer {
         
-        Tokenizer(tokens: Self.allCases.map(\.rawValue), prefix: Self.prefix, suffix: Self.suffix)
+        Tokenizer(tokens: Self.listCases.compactMap(\.self).map(\.rawValue), prefix: Self.prefix, suffix: Self.suffix)
     }
 }
 

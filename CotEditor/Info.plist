@@ -144,7 +144,7 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>Open File in CotEditor</string>
+				<string>Open in CotEditor</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>openFile</string>

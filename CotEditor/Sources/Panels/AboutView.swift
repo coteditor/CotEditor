@@ -39,7 +39,7 @@ struct AboutView: View {
                 case .credits:
                     String(localized: "Credits", table: "About", comment: "button label")
                 case .license:
-                    String(localized: "License", table: "About", comment: "button label")
+                    String(localized: "Licenses", table: "About", comment: "button label")
             }
         }
     }

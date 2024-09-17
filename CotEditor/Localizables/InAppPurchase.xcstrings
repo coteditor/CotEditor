@@ -34,6 +34,12 @@
             "value" : "Una sabrosa taza"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Une tasse savoureuse"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -204,6 +210,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Café para el desarrollo diario"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Café pour le développement quotidien"
           }
         },
         "it" : {

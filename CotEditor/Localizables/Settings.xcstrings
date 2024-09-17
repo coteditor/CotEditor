@@ -123,6 +123,12 @@
             "value" : "Donación"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Donation"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",

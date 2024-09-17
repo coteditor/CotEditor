@@ -4625,6 +4625,12 @@
             "value" : "Siguiente elemento del esquema"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Élément de structure suivant"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4699,6 +4705,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ningún documento seleccionado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Aucun document sélectionné"
           }
         },
         "it" : {
@@ -5109,6 +5121,12 @@
             "value" : "Abrir con editor externo"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ouvrir avec un éditeur externe"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5267,6 +5285,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Menu del esquema"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu de structure"
           }
         },
         "it" : {
@@ -5510,6 +5534,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Anterior elemento del esquema"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Élément de structure précédent"
           }
         },
         "it" : {
@@ -5835,6 +5865,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Mostrar archivos ocultos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Afficher les fichiers cachés"
           }
         },
         "it" : {
@@ -6576,6 +6612,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "¡Gracias por su amable apoyo!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Merci pour votre soutien !"
           }
         },
         "it" : {

@@ -968,7 +968,7 @@
 				2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */,
 				2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */,
 				2AAAE6E326DB82F800C5F0AC /* XCRemoteSwiftPackageReference "Sparkle" */,
-				2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 				2ABB27CC2C3824DE00AFCD0B /* XCRemoteSwiftPackageReference "swift-numerics" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -1418,12 +1418,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 665;
+				CURRENT_PROJECT_VERSION = 675;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = CotEditor/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				MARKETING_VERSION = "5.0.0-beta.4";
+				MARKETING_VERSION = "5.0.1-alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -1448,12 +1448,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 665;
+				CURRENT_PROJECT_VERSION = 675;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = CotEditor/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				MARKETING_VERSION = "5.0.0-beta.4";
+				MARKETING_VERSION = "5.0.1-alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -1504,12 +1504,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 665;
+				CURRENT_PROJECT_VERSION = 675;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = CotEditor/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				MARKETING_VERSION = "5.0.0-beta.4";
+				MARKETING_VERSION = "5.0.1-alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SPARKLE";
@@ -1535,12 +1535,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 665;
+				CURRENT_PROJECT_VERSION = 675;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = CotEditor/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				MARKETING_VERSION = "5.0.0-beta.4";
+				MARKETING_VERSION = "5.0.1-alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SPARKLE";
@@ -1762,12 +1762,12 @@
 				minimumVersion = 2.6.0;
 			};
 		};
-		2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+		2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.56.0;
+				minimumVersion = 0.57.0;
 			};
 		};
 		2ABB27CC2C3824DE00AFCD0B /* XCRemoteSwiftPackageReference "swift-numerics" */ = {
@@ -1818,22 +1818,22 @@
 		};
 		2AB756B02C25BBB9005E04C3 /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			package = 2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
 			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 		2AB756B22C25BBCF005E04C3 /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			package = 2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
 			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 		2AB756B42C25BC18005E04C3 /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			package = 2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
 			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 		2ABB27CA2C3823AB00AFCD0B /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			package = 2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
 			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 		2ABB27CD2C3824DE00AFCD0B /* Numerics */ = {

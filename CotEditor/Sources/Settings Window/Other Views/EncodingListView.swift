@@ -28,6 +28,9 @@ import Observation
 import Defaults
 import FileEncoding
 
+extension UndoManager: @retroactive @unchecked Sendable { }
+
+
 private struct EncodingItem: Identifiable {
     
     /// Returns every time a new instance with a different id.

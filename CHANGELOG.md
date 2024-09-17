@@ -1,25 +1,46 @@
 # Change Log
 
-5.0.0-beta.4 (unreleased)
+5.0.1 (unreleased)
+--------------------------
+
+
+5.0.0 (674)
 --------------------------
 
 ### Improvements
 
-- Support upcoming Writing Tools with Apple Intelligence on macOS Sequoia.
-- [beta] Adjust the window's appearance.
-- [beta] Show icon image for alias files selected in the file browser.
-- [beta] Add the Czech, Dutch, and Portuguese localizations for strings newly added in CotEditor 5.0.0.
+- Enable opening the Color Code window even without any documents.
+- [rc][trivial] Adjust the window's appearance.
+- [rc][trivial] Tweak localization.
 
 
 ### Fixes
 
-- [beta] Fix an issue that UNIX scripts could not get the document object displayed in a folder.
+- Fix an issue that the English labels in the issue report template were unnecessarily localized.
+- [rc] Fix an issue that variables in the Snippet settings are not highlighted.
+- [rc][trivial] Fix a service name.
+
+
+
+5.0.0-rc (666)
+--------------------------
+
+### New Features
+
+- Support Writing Tools with Apple Intelligence.
+
+
+### Improvements
+
+- [beta] Adjust the window's appearance.
+- [beta] Show icon image for alias files selected in the file browser.
+- [beta] Add the Czech, Dutch, French, and Portuguese localizations for strings newly added in CotEditor 5.0.0.
+
+
+### Fixes
+
+- [beta] Fix an issue that UNIX scripts failed to get the document object displayed in a window with the folder browser.
 - [beta.3] Fix an issue that the editor unwontedly selects the nearest outline item when the Outline inspector is shown.
-
-
-### Known Issues
-
-- Strings newly added are not yet localized in French.
 
 
 

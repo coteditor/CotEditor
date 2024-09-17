@@ -85,31 +85,31 @@
         }
       }
     },
-    "Open File in CotEditor" : {
+    "Open in CotEditor" : {
       "extractionState" : "manual",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít soubor v CotEditoru"
+            "value" : "Otevřít v CotEditoru"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Datei in CotEditor öffnen"
+            "value" : "In CotEditor öffnen"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open File in CotEditor"
+            "value" : "Open in CotEditor"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir fichero en CotEdiotr"
+            "value" : "Abrir en CotEdiotr"
           }
         },
         "fr" : {
@@ -121,49 +121,49 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apri file in CotEditor"
+            "value" : "Apri in CotEditor"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ファイルをCotEditorで開く"
+            "value" : "CotEditorで開く"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor로 파일 열기"
+            "state" : "needs_review",
+            "value" : "CotEditor에서 열기"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open bestand in CotEditor"
+            "value" : "Open in CotEditor"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Arquivo no CotEditor"
+            "value" : "Abrir no CotEditor"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dosyayı CotEditor ile Aç"
+            "value" : "CotEditor ile Aç"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在CotEditor中打开文件"
+            "value" : "在CotEditor中打开"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在CotEditor中開啟檔案"
+            "value" : "在CotEditor中開啟"
           }
         }
       }

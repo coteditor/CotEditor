@@ -14705,6 +14705,12 @@
             "value" : "Seleccionar símbolos adjuntos"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sélectionner les symboles englobants"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14744,7 +14750,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "选择包含的符号"
+            "value" : "选择被括住的上下文区段"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择括号中的内容"
           }
         }
       }
@@ -15413,6 +15425,12 @@
             "value" : "Dividir selección por líneas"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scinder la sélection par lignes"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15453,6 +15471,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "按行分割选区"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按行分段"
           }
         }
       }
@@ -16301,6 +16325,12 @@
             "value" : "Seleccionar columna abajo"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sélectionner la colonne haut"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16341,6 +16371,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "选择下一列"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇下方欄"
           }
         }
       }
@@ -17102,7 +17138,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Remplacements multiples…"
+            "value" : "Gérer des remplacements multiples…"
           }
         },
         "it" : {
@@ -21779,6 +21815,12 @@
             "value" : "Seleccionar columna arriba"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sélectionner la colonne en bas"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21819,6 +21861,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "选择上一列"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇上方欄"
           }
         }
       }

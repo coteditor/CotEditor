@@ -27,6 +27,12 @@
             "value" : "(Disponible sólo en la versión para App Store)"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "(Disponible uniquement dans la version App Store)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -184,6 +190,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Notas de la versión completa"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Notes de mise à jour complètes"
           }
         },
         "it" : {
@@ -351,6 +363,12 @@
             "value" : "Apoye el proyecto CotEditor ofreciendo café al desarrollador."
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Soutenez le projet CotEditor en offrant du café au développeur."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -432,6 +450,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Donación"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Donation"
           }
         },
         "it" : {
@@ -517,6 +541,12 @@
             "value" : "Abra una carpeta en CotEditor para navegar por su contenido en la nueva barra lateral."
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ouvrez un dossier dans CotEditor pour naviguer dans son contenu dans la nouvelle barre latérale."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -598,6 +628,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Navegación por carpetas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Navigation des dossiers"
           }
         },
         "it" : {
@@ -683,6 +719,12 @@
             "value" : "Funciona perfectamente con el nuevo macOS 15."
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Fonctionne parfaitement avec le nouveau macOS 15."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -766,6 +808,12 @@
             "value" : "Compatibilidad con macOS 15 Sequoia"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prise en charge de macOS 15 Sequoia"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -816,100 +864,6 @@
         }
       }
     },
-    "NewFeature.writingTools.description" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die kommenden Schreibwerkzeuge von Apple Intelligence werden ordnungsgemäß funktionieren."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "The upcoming Writing Tools by Apple Intelligence will work properly."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The upcoming Writing Tools by Apple Intelligence will work properly."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Las próximas Herramientas de Escritura de Apple Intelligence funcionarán correctamente."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "きたるApple Intelligenceの作文ツールもしっかり動作します。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "공개 예정인 Apple Intelligence 글쓰기 도구가 잘 작동합니다."
-          }
-        }
-      }
-    },
-    "NewFeature.writingTools.label" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence bereit"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Apple Intelligence Ready"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence Ready"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Listo para Apple Intelligence"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence対応"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Intelligence 대응"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "支持Apple Intelligence"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "對Apple Intelligence的支援"
-          }
-        }
-      }
-    },
     "Open Donation Settings" : {
       "localizations" : {
         "cs" : {
@@ -934,6 +888,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Abrir ajustes de la donación"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ouvrir les paramètres de donation"
           }
         },
         "it" : {
@@ -1013,6 +973,12 @@
             "value" : "Novedades de **CotEditor %@**"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveautés de **CotEditor %@**"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1022,7 +988,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**CotEditor %@**の新機能"
+            "value" : "CotEditor %@の新機能"
           }
         },
         "ko" : {

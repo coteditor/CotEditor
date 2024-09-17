@@ -633,6 +633,12 @@
             "value" : "El archivo “%@” ya está abierto en otra ventana."
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Le fichier « %@ » est déjà ouvert dans une autre fenêtre."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -715,6 +721,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Para abrirla en esta ventana, cierre primero la ventana existente."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pour l'ouvrir dans cette fenêtre, il faut d'abord fermer la fenêtre existante."
           }
         },
         "it" : {

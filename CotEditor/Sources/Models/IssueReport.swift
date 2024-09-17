@@ -95,33 +95,42 @@ private extension IssueReport {
         case expectedResult
         
         
-        func display(for locale: Locale = .current) -> String {
+        func display() -> String {
             
-            (locale.language.languageCode == .english)
-                ? "## \(self.label(locale: locale))"
-                : "## \(self.label(locale: Locale(languageCode: .english))) (\(self.label(locale: locale)))"
+            (Locale.current.language.languageCode == .english)
+                ? "## \(self.label())"
+                : "## \(self.label(language: .english)) (\(self.label()))"
         }
         
         
-        private func label(locale: Locale = .current) -> String {
+        private func label(language: Locale.LanguageCode? = nil) -> String {
+            
+            var resource = self.labelResource
+            resource.locale = Locale(languageCode: language)
+            
+            return String(localized: resource)
+        }
+        
+        
+        private var labelResource: LocalizedStringResource {
             
             switch self {
                 case .environment:
-                    String(localized: "IssueReport.Heading.environment",
-                           defaultValue: "Environment",
-                           table: "IssueReport", locale: locale)
+                    LocalizedStringResource("IssueReport.Heading.environment",
+                                            defaultValue: "Environment",
+                                            table: "IssueReport")
                 case .shortDescription:
-                    String(localized: "IssueReport.Heading.shortDescription",
-                           defaultValue: "Short Description",
-                           table: "IssueReport", locale: locale)
+                    LocalizedStringResource("IssueReport.Heading.shortDescription",
+                                            defaultValue: "Short Description",
+                                            table: "IssueReport")
                 case .stepsToReproduce:
-                    String(localized: "IssueReport.Heading.stepsToReproduce",
-                           defaultValue: "Steps to Reproduce the Issue",
-                           table: "IssueReport", locale: locale)
+                    LocalizedStringResource("IssueReport.Heading.stepsToReproduce",
+                                            defaultValue: "Steps to Reproduce the Issue",
+                                            table: "IssueReport")
                 case .expectedResult:
-                    String(localized: "IssueReport.Heading.expectedResult",
-                           defaultValue: "Expected Result",
-                           table: "IssueReport", locale: locale)
+                    LocalizedStringResource("IssueReport.Heading.expectedResult",
+                                            defaultValue: "Expected Result",
+                                            table: "IssueReport")
             }
         }
     }

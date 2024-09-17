@@ -130,7 +130,7 @@ private struct CommandSnippetsView: View {
             }
             .padding(.bottom)
             
-            InsertionFormatView(text: $format, count: self.selection.count, insertionVariables: Snippet.Variable.allCases, tokenizer: Snippet.Variable.tokenizer)
+            InsertionFormatView<Snippet.Variable>(text: $format, count: self.selection.count)
         }
         .onAppear {
             self.items = SnippetManager.shared.snippets
@@ -212,7 +212,7 @@ private struct FileDropView: View {
             }
             .padding(.bottom)
             
-            InsertionFormatView(text: $format, count: self.selection.count, insertionVariables: FileDropItem.Variable.allCases, tokenizer: FileDropItem.Variable.tokenizer)
+            InsertionFormatView<FileDropItem.Variable>(text: $format, count: self.selection.count)
         }
         .onAppear {
             self.load()
@@ -288,12 +288,10 @@ private struct SyntaxPicker: View {
 }
 
 
-private struct InsertionFormatView: View {
+private struct InsertionFormatView<Variable: TokenRepresentable>: View {
     
     @Binding var text: String?
     var count: Int
-    var insertionVariables: [(any TokenRepresentable)?]
-    var tokenizer: Tokenizer
     
     @Namespace private var accessibility
     
@@ -306,7 +304,7 @@ private struct InsertionFormatView: View {
                     .accessibilityLabeledPair(role: .label, id: "insertionFormat", in: self.accessibility)
                 Spacer()
                 Menu(String(localized: "Insert Variable", table: "SnippetsSettings", comment: "button label")) {
-                    ForEach(Array(self.insertionVariables.enumerated()), id: \.offset) { (_, variable) in
+                    ForEach(Array(Variable.listCases.enumerated()), id: \.offset) { (_, variable) in
                         if let variable {
                             Button {
                                 let menuItem = NSMenuItem()
@@ -324,7 +322,7 @@ private struct InsertionFormatView: View {
                 .fixedSize()
             }
             
-            TokenTextEditor(text: $text, tokenizer: FileDropItem.Variable.tokenizer)
+            TokenTextEditor(text: $text, tokenizer: Variable.tokenizer)
                 .accessibilityLabeledPair(role: .content, id: "insertionFormat", in: self.accessibility)
                 .frame(height: 100)
                 .overlay {
