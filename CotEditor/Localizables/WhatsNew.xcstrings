@@ -384,7 +384,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor"
+            "value" : "개발자에게 커피를 사주시면 CotEditor 프로젝트를 후원할 수 있습니다."
           }
         },
         "nl" : {
@@ -994,7 +994,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**CotEditor %@**의 새로운 기능"
+            "value" : "CotEditor %@의 새로운 기능"
           }
         },
         "nl" : {
