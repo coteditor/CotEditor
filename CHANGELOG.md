@@ -3,6 +3,11 @@
 5.0.1 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue that the file/folder in the file browser was not removed even though when it was deleted in the actual file storage.
+
+
 
 5.0.0 (674)
 --------------------------

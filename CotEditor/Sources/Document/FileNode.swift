@@ -246,7 +246,7 @@ extension FileNode {
             }
             
         } else {
-            if let index = children.firstIndex(where: { $0.fileURL == fileURL }) {
+            if let index = children.firstIndex(where: { $0.fileURL.lastPathComponent == fileURL.lastPathComponent }) {
                 // -> The file is deleted.
                 self._children?.remove(at: index)
                 return true
