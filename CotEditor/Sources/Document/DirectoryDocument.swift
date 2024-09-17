@@ -30,9 +30,6 @@ import URLUtils
 
 final class DirectoryDocument: NSDocument {
     
-    nonisolated static let didUpdateFileNodeNotification = Notification.Name("DirectoryDocument.didUpdateFileNodeNotification")
-    
-    
     private enum SerializationKey {
         
         static let documents = "documents"
@@ -140,7 +137,7 @@ final class DirectoryDocument: NSDocument {
         
         // remake node tree
         self.fileNode?.move(to: url)
-        self.notifyNodeUpdate()
+        self.notifyNodeUpdate(at: self.fileNode)
     }
     
     
@@ -148,7 +145,7 @@ final class DirectoryDocument: NSDocument {
         
         try super.revert(toContentsOf: url, ofType: typeName)
         
-        self.notifyNodeUpdate()
+        self.notifyNodeUpdate(at: self.fileNode)
     }
     
     
@@ -194,9 +191,9 @@ final class DirectoryDocument: NSDocument {
         
         // remake node tree if needed
         Task { @MainActor in
-            guard self.fileNode?.invalidateChildren(at: url) == true else { return }
+            guard let node = self.fileNode?.invalidateChildren(at: url) else { return }
             
-            self.notifyNodeUpdate()
+            self.notifyNodeUpdate(at: node)
         }
     }
     
@@ -208,7 +205,7 @@ final class DirectoryDocument: NSDocument {
         // remake fileURLs with the new location
         Task { @MainActor in
             self.fileNode?.move(to: newURL)
-            self.notifyNodeUpdate()
+            self.notifyNodeUpdate(at: self.fileNode)
         }
     }
     
@@ -523,10 +520,14 @@ final class DirectoryDocument: NSDocument {
     
     // MARK: Private Methods
     
-    /// Notifies file node update.
-    private func notifyNodeUpdate() {
+    /// Notifies file node update to the UI.
+    ///
+    /// - Parameter node: The node whose children were changed.
+    private func notifyNodeUpdate(at node: FileNode?) {
         
-        NotificationCenter.default.post(name: Self.didUpdateFileNodeNotification, object: self)
+        guard let node else { return }
+        
+        self.fileBrowserViewController?.didUpdateNode(at: node)
     }
     
     

@@ -218,42 +218,44 @@ extension FileNode {
     /// Invalidates file node tree.
     ///
     /// - Parameter fileURL: The URL of the file changed.
-    /// - Returns: Whether the file tree actually updated.
-    func invalidateChildren(at fileURL: URL) -> Bool {
+    /// - Returns: The node updated, or `nil` if the tree did not change.
+    func invalidateChildren(at fileURL: URL) -> FileNode? {
         
         guard
             fileURL.lastPathComponent != ".DS_Store",
             self.isDirectory,
             let children = self._children
-        else { return false }
+        else { return nil }
         
         guard fileURL.deletingLastPathComponent() == self.fileURL else {
-            return children.contains { $0.invalidateChildren(at: fileURL) }
+            return children
+                .compactMap { $0.invalidateChildren(at: fileURL) }
+                .first
         }
         
         if fileURL.isReachable {
             if children.contains(where: { $0.fileURL == fileURL }) {
                 // -> The file structure is not changed.
-                return false
+                return nil
                 
             } else {
                 // -> The fileURL is added.
                 guard let node = try? FileNode(at: fileURL, parent: self) else {
-                    assertionFailure(); return true
+                    assertionFailure(); return self
                 }
                 self.addNode(node)
-                return true
+                return self
             }
             
         } else {
             if let index = children.firstIndex(where: { $0.fileURL.lastPathComponent == fileURL.lastPathComponent }) {
                 // -> The file is deleted.
                 self._children?.remove(at: index)
-                return true
+                return self
                 
             } else {
                 // -> The change has probably been already processed by this app.
-                return false
+                return nil
             }
         }
     }

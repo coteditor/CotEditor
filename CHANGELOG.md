@@ -3,6 +3,11 @@
 5.0.1 (unreleased)
 --------------------------
 
+### Improvements
+
+- Optimize the performance when the contents of the folder opened in CotEditor are externally updated.
+
+
 ### Fixes
 
 - Fix an issue that the file/folder in the file browser was not removed even though when it was deleted in the actual file storage.
