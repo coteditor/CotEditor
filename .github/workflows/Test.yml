@@ -17,16 +17,15 @@ jobs:
       uses: actions/checkout@v4
       with:
           submodules: true
-          fetch-depth: 0
     - name: Unit Test for EditorCore
       run: |
-        swift test --package-path Packages/EditorCore  --quiet
+        swift test --package-path Packages/EditorCore
     - name: Unit Test for MacUI
       run: |
-        swift test --package-path Packages/MacUI  --quiet
+        swift test --package-path Packages/MacUI
     - name: Unit Test for SyntaxMap
       run: |
-        swift test --package-path Packages/SyntaxMap  --quiet
+        swift test --package-path Packages/SyntaxMap
     - name: Unit Test for CotEditor
       run: |
         xcodebuild test -project CotEditor.xcodeproj -scheme CotEditor CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -skipPackagePluginValidation
