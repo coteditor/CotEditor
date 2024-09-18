@@ -861,7 +861,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// - Parameter otherViewController: The view controller of the reference editor located above the editor to add.
     /// - Returns: The editor view controller created.
     @discardableResult
-    private func addEditorView(below otherViewController: EditorViewController? = nil) -> EditorViewController {
+    private func addEditorView(below otherViewController: EditorViewController? = nil) -> sending EditorViewController {
         
         let viewController = EditorViewController(document: self.document, splitState: self.splitState)
         

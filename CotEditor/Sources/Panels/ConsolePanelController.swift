@@ -254,7 +254,7 @@ private extension Console.Log {
     }
     
     
-    func attributedString(fontSize: Double) -> NSAttributedString {
+    func attributedString(fontSize: Double) -> sending NSAttributedString {
         
         var string = NSMutableAttributedString()
         

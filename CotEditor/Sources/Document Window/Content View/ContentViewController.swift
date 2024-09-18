@@ -148,7 +148,7 @@ final class ContentViewController: NSSplitViewController {
     
     
     /// Creates a new view controller with the current document.
-    private func createDocumentViewController() -> NSViewController {
+    private func createDocumentViewController() -> sending NSViewController {
         
         switch self.document {
             case let document as Document:

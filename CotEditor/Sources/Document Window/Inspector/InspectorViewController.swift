@@ -183,7 +183,7 @@ private extension InspectorPane {
     }
     
     
-    @MainActor func viewController(document: DataDocument?) -> NSViewController {
+    @MainActor func viewController(document: DataDocument?) -> sending NSViewController {
         
         switch self {
             case .document:
@@ -196,7 +196,7 @@ private extension InspectorPane {
     }
     
     
-    func image(selected: Bool = false) -> NSImage? {
+    func image(selected: Bool = false) -> sending NSImage? {
         
         NSImage(systemSymbolName: selected ? self.selectedImageName : self.imageName, accessibilityDescription: self.name)?
             .withSymbolConfiguration(.init(pointSize: 0, weight: selected ? .semibold : .regular))

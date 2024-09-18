@@ -249,7 +249,7 @@ private struct ActionCommandView: View {
     ///   - ranges: The ranges for the given `string` to highlight.
     ///   - font: The base font.
     /// - Returns: An attributed string.
-    private func attributed(_ string: String, in ranges: [Range<String.Index>], font: Font) -> AttributedString {
+    private func attributed(_ string: String, in ranges: [Range<String.Index>], font: Font) -> sending AttributedString {
         
         let attributed = AttributedString(string)
         
