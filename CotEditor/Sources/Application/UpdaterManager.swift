@@ -27,16 +27,16 @@
 import AppKit
 import Sparkle
 
-final class UpdaterManager: NSObject, SPUUpdaterDelegate {
+@MainActor final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     
     // MARK: Public Properties
     
-    nonisolated(unsafe) static let shared = UpdaterManager()
+    static let shared = UpdaterManager()
     
     
     // MARK: Private Properties
     
-    private static let feedURLString = "https://coteditor.com/appcast.xml"
+    private nonisolated static let feedURLString = "https://coteditor.com/appcast.xml"
     
     private lazy var controller = SPUStandardUpdaterController(updaterDelegate: self, userDriverDelegate: nil)
     
@@ -56,7 +56,7 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     
     
     /// Sets Sparkle up.
-    @MainActor func setup() {
+    func setup() {
         
         // insert "Check for Updates…" menu item
         guard let applicationMenu = NSApp.mainMenu?.item(at: MainMenu.application.rawValue)?.submenu else {
@@ -73,16 +73,15 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     }
     
     
-    
     // MARK: Sparkle Updater Delegate
     
-    func feedURLString(for updater: SPUUpdater) -> String? {
+    nonisolated func feedURLString(for updater: SPUUpdater) -> String? {
         
         Self.feedURLString
     }
     
     
-    func allowedChannels(for updater: SPUUpdater) -> Set<String> {
+    nonisolated func allowedChannels(for updater: SPUUpdater) -> Set<String> {
         
         let checksBeta = (Bundle.main.isPrerelease || UserDefaults.standard[.checksUpdatesForBeta])
         
