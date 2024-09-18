@@ -67,6 +67,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     private weak var focusedChild: EditorViewController?
     
     private var observers: Set<AnyCancellable> = []
+    private var defaultsObservers: Set<AnyCancellable> = []
     
     private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.document.syntaxParser.invalidateOutline() }
     
@@ -144,21 +145,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                     self?.document.syntaxParser.highlightAll()
                 },
             
-            // observe user defaults
+            // observe theme change
             UserDefaults.standard.publisher(for: .theme, initial: false)
                 .sink { [weak self] in self?.setTheme(name: $0) },
-            UserDefaults.standard.publisher(for: .showInvisibles, initial: true)
-                .sink { [weak self] in self?.showsInvisibles = $0 },
-            UserDefaults.standard.publisher(for: .showLineNumbers, initial: true)
-                .sink { [weak self] in self?.showsLineNumber = $0 },
-            UserDefaults.standard.publisher(for: .wrapLines, initial: true)
-                .sink { [weak self] in self?.wrapsLines = $0 },
-            UserDefaults.standard.publisher(for: .showPageGuide, initial: true)
-                .sink { [weak self] in self?.showsPageGuide = $0 },
-            UserDefaults.standard.publisher(for: .showIndentGuides, initial: true)
-                .sink { [weak self] in self?.showsIndentGuides = $0 },
-            
-            // observe theme change
             NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: ThemeManager.shared)
                 .map { $0.userInfo!["change"] as! SettingChange }
                 .filter { [weak self] in $0.old == self?.theme?.name }
@@ -196,6 +185,28 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         // focus text view
         self.view.window?.makeFirstResponder(self.focusedTextView)
+        
+        // observe user defaults
+        self.defaultsObservers = [
+            UserDefaults.standard.publisher(for: .showInvisibles, initial: true)
+                .sink { [weak self] in self?.showsInvisibles = $0 },
+            UserDefaults.standard.publisher(for: .showLineNumbers, initial: true)
+                .sink { [weak self] in self?.showsLineNumber = $0 },
+            UserDefaults.standard.publisher(for: .wrapLines, initial: true)
+                .sink { [weak self] in self?.wrapsLines = $0 },
+            UserDefaults.standard.publisher(for: .showPageGuide, initial: true)
+                .sink { [weak self] in self?.showsPageGuide = $0 },
+            UserDefaults.standard.publisher(for: .showIndentGuides, initial: true)
+                .sink { [weak self] in self?.showsIndentGuides = $0 },
+        ]
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.defaultsObservers.removeAll()
     }
     
     

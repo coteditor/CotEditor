@@ -118,9 +118,9 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
-    override func viewDidLoad() {
+    override func viewWillAppear() {
         
-        super.viewDidLoad()
+        super.viewWillAppear()
         
         self.observers = [
             // observe text orientation for line number view
@@ -135,7 +135,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
                 },
             
             // let line number view position follow writing direction
-            self.textView.publisher(for: \.baseWritingDirection)
+            self.textView.publisher(for: \.baseWritingDirection, options: .initial)
                 .removeDuplicates()
                 .map { ($0 == .rightToLeft) ? NSUserInterfaceLayoutDirection.rightToLeft : .leftToRight }
                 .sink { [weak self] direction in
@@ -148,6 +148,14 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             UserDefaults.standard.publisher(for: .showLineNumberSeparator, initial: true)
                 .assign(to: \.drawsSeparator, on: self.lineNumberView),
         ]
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.observers.removeAll()
     }
     
     

@@ -91,10 +91,26 @@ final class ContentViewController: NSSplitViewController {
         let constraint = safeAreaView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: -1)
         constraint.priority = .defaultHigh
         constraint.isActive = true
+    }
+    
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
         
         // observe user defaults
+        self.statusBarItem.isCollapsed = !UserDefaults.standard[.showStatusBar]
         self.defaultsObserver = UserDefaults.standard.publisher(for: .showStatusBar, initial: false)
             .sink { [weak self] in self?.statusBarItem.animator().isCollapsed = !$0 }
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.defaultsObserver?.cancel()
+        self.defaultsObserver = nil
     }
     
     

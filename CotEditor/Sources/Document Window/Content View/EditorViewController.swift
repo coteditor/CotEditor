@@ -79,31 +79,51 @@ final class EditorViewController: NSSplitViewController {
         self.addSplitViewItem(self.navigationBarItem)
         
         // setup text view controller
-        self.applySyntax()
         self.addChild(self.textViewController)
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+        self.view.setAccessibilityLabel(String(localized: "Editor", table: "Document", comment: "accessibility label"))
+    }
+    
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        self.navigationBarItem.isCollapsed = UserDefaults.standard[.showNavigationBar]
+        
+        self.outlineNavigator.items = self.document.syntaxParser.outlineItems
+        self.textView?.lineEnding = self.document.lineEnding
+        self.textView?.mode = ModeManager.shared.setting(for: self.document.mode)
+        self.applySyntax()
         
         // observe document and defaults
         self.observers = [
+            self.document.syntaxParser.$outlineItems
+                .removeDuplicates()
+                .receive(on: RunLoop.main)
+                .sink { [weak self] in self?.outlineNavigator.items = $0 },
             self.document.$lineEnding
                 .receive(on: RunLoop.main)
                 .sink { [weak self] in self?.textView?.lineEnding = $0 },
             self.document.didChangeSyntax
                 .sink { [weak self] _ in self?.applySyntax() },
-            self.document.syntaxParser.$outlineItems
-                .removeDuplicates()
-                .receive(on: RunLoop.main)
-                .sink { [weak self] in self?.outlineNavigator.items = $0 },
             self.document.$mode
                 .removeDuplicates()
                 .sink { [weak self] in self?.textView?.mode = ModeManager.shared.setting(for: $0) },
             UserDefaults.standard.publisher(for: .showNavigationBar)
                 .sink { [weak self] in self?.navigationBarItem.animator().isCollapsed = !$0 },
         ]
+    }
+    
+    
+    override func viewDidDisappear() {
         
-        // set accessibility
-        self.view.setAccessibilityElement(true)
-        self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel(String(localized: "Editor", table: "Document", comment: "accessibility label"))
+        super.viewDidDisappear()
+        
+        self.observers.removeAll()
     }
     
     
