@@ -72,13 +72,6 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
     }
     
     
-    deinit {
-        if self.presentedItemURL != nil {
-            NSFileCoordinator.removeFilePresenter(self)
-        }
-    }
-    
-    
     
     // MARK: File Presenter Protocol
     
@@ -143,6 +136,15 @@ final class ScriptManager: NSObject, NSFilePresenter, @unchecked Sendable {
             }
             
             await self.buildScriptMenu()
+        }
+    }
+    
+    
+    /// Stops the observation on the user scripts directory.
+    func cancelScriptsDirectoryObservation() {
+        
+        if self.presentedItemURL != nil {
+            NSFileCoordinator.removeFilePresenter(self)
         }
     }
     

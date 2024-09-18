@@ -268,6 +268,8 @@ private enum BundleIdentifier {
     
     func applicationWillTerminate(_ notification: Notification) {
         
+        ScriptManager.shared.cancelScriptsDirectoryObservation()
+        
         // store the latest version before termination
         // -> The bundle version (build number) must be Int.
         let thisVersion = Bundle.main.bundleVersion
