@@ -52,6 +52,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     @ViewLoading private var bottomSeparator: NSView
     @ViewLoading private var addButton: NSPopUpButton
     
+    private var showsHiddenFiles: Bool
+    
     private var defaultObservers: Set<AnyCancellable> = []
     private var scrollObserver: (any NSObjectProtocol)?
     
@@ -61,6 +63,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     init(document: DirectoryDocument) {
         
         self.document = document
+        self.showsHiddenFiles = UserDefaults.standard[.fileBrowserShowsHiddenFiles]
         
         super.init(nibName: nil, bundle: nil)
         
@@ -208,7 +211,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         self.defaultObservers = [
             UserDefaults.standard.publisher(for: .fileBrowserShowsHiddenFiles)
-                .sink { [unowned self] _ in self.outlineView.reloadData() },
+                .sink { [unowned self] showsHiddenFiles in
+                    self.showsHiddenFiles = showsHiddenFiles
+                    self.outlineView.reloadData()
+                },
         ]
         
         self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: self.outlineView.enclosingScrollView?.contentView, queue: .main) { [weak self] _ in
@@ -505,19 +511,11 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     @IBAction func toggleHiddenFileVisibility(_ sender: Any?) {
         
-        self.showsHiddenFiles.toggle()
+        UserDefaults.standard[.fileBrowserShowsHiddenFiles].toggle()
     }
     
     
     // MARK: Private Methods
-    
-    /// Whether displaying hidden files.
-    private var showsHiddenFiles: Bool {
-        
-        get { UserDefaults.standard[.fileBrowserShowsHiddenFiles] }
-        set { UserDefaults.standard[.fileBrowserShowsHiddenFiles] = newValue }
-    }
-    
     
     /// Returns the target outline rows for the menu action.
     ///
