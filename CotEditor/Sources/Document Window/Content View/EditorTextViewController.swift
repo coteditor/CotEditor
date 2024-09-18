@@ -69,6 +69,9 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         self.document = document
         
         super.init(nibName: nil, bundle: nil)
+        
+        // set identifier for state restoration
+        self.identifier = NSUserInterfaceItemIdentifier("EditorTextViewController")
     }
     
     
@@ -118,9 +121,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        // set identifier for state restoration
-        self.identifier = NSUserInterfaceItemIdentifier("EditorTextViewController")
         
         self.observers = [
             // observe text orientation for line number view

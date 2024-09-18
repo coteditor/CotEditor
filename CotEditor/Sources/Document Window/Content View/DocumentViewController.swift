@@ -79,6 +79,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         self.document = document
         
         super.init(nibName: nil, bundle: nil)
+        
+        // set identifier for state restoration
+        self.identifier = NSUserInterfaceItemIdentifier("DocumentViewController")
     }
     
     
@@ -100,9 +103,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         self.splitView.isVertical = UserDefaults.standard[.splitViewVertical]
         self.splitState.isVertical = self.splitView.isVertical
-        
-        // set identifier for state restoration
-        self.identifier = NSUserInterfaceItemIdentifier("DocumentViewController")
         
         // detect indent style
         if UserDefaults.standard[.detectsIndentStyle],
