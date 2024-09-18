@@ -76,7 +76,7 @@ extension Document: EditorSource {
     @ObservationIgnored @Published private(set) var mode: Mode
     
     let lineEndingScanner: LineEndingScanner
-    let counter = EditorCounter()
+    let counter: EditorCounter
     @ObservationIgnored private(set) lazy var selection = TextSelection(document: self)
     
     let didChangeSyntax = PassthroughSubject<String, Never>()
@@ -128,6 +128,8 @@ extension Document: EditorSource {
         
         // observe for inconsistent line endings
         self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
+        
+        self.counter = EditorCounter()
         
         self.mode = .kind(.general)
         
