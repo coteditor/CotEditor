@@ -13,10 +13,11 @@ jobs:
       run: |
         xcodebuild -version
         swift --version
-    - uses: actions/checkout@v4
-    - name: Checkout submodules
-      run: |
-        git submodule update --init
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+          submodules: true
+          fetch-depth: 0
     - name: Unit Test for EditorCore
       run: |
         swift test --package-path Packages/EditorCore  --quiet
