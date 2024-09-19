@@ -153,7 +153,7 @@ private extension IncompatibleCharactersView.Model {
                     .filter { $0.editedMask.contains(.editedCharacters) }
                     .debounce(for: .seconds(0.3), scheduler: RunLoop.current)
                     .eraseToVoid(),
-                document.$fileEncoding
+                document.didChangeFileEncoding
                     .map(\.encoding)
                     .removeDuplicates()
                     .eraseToVoid()

@@ -109,8 +109,7 @@ private extension StatusBar.Model {
             document.counter.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
             
             self.documentObservers = [
-                document.$fileEncoding
-                    .receive(on: DispatchQueue.main)
+                document.didChangeFileEncoding
                     .sink { [weak self] in self?.fileEncoding = $0 },
                 document.$lineEnding
                     .receive(on: DispatchQueue.main)
