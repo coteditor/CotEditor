@@ -5,7 +5,7 @@
 
 ### Improvements
 
-- Optimize the performance when the contents of the folder opened in CotEditor are externally updated.
+- Optimize the performance of the folder browser.
 
 
 ### Fixes

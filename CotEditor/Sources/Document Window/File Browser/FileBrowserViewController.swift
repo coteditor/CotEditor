@@ -773,8 +773,11 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     /// - Returns: An array of file nodes, or `nil` if no data source is provided yet.
     private func children(of item: Any?) -> [FileNode]? {
         
-        (item as? FileNode ?? self.document.fileNode)?.children?
-            .filter { self.showsHiddenFiles || !$0.isHidden }
+        let children = (item as? FileNode ?? self.document.fileNode)?.children
+        
+        return self.showsHiddenFiles
+            ? children
+            : children?.filter { !$0.isHidden }
     }
 }
 
