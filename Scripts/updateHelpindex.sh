@@ -23,7 +23,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-cd CotEditor.help/Contents/Resources/
+cd ../CotEditor/CotEditor.help/Contents/Resources/
 
 for dir in *.lproj; do
     lang=$(basename $dir .lproj)

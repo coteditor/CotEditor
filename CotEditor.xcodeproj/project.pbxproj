@@ -79,7 +79,6 @@
 		2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
 		2A3D63FB1E769DDF00F538E1 /* MultipleReplaceView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* MultipleReplaceView.storyboard */; };
 		2A3DEAF21CEB23F0007B7621 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
-		2A3F18FA203270BE002F1CA7 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3F18F9203270BE002F1CA7 /* UITests.swift */; };
 		2A55D5D82B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A55D5D72B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings */; };
 		2A55D5D92B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2A55D5D72B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings */; };
 		2A5D13421D1FE34F00D38E6A /* FindPanelFieldView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D13401D1FE34F00D38E6A /* FindPanelFieldView.storyboard */; };
@@ -258,9 +257,7 @@
 		2A39ACFE2B8CEE2F00E216C9 /* AddRemoveButton.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AddRemoveButton.xcstrings; sourceTree = "<group>"; };
 		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
 		2A3D63FA1E769DDF00F538E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MultipleReplaceView.storyboard; sourceTree = "<group>"; };
-		2A3E84821D07331900070A54 /* updateHelpindex.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = updateHelpindex.sh; sourceTree = "<group>"; };
 		2A3F18F7203270BE002F1CA7 /* UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A3F18F9203270BE002F1CA7 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		2A55D5D72B7A728A0092DE48 /* AdvancedCharacterCount.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AdvancedCharacterCount.xcstrings; sourceTree = "<group>"; };
 		2A5D13411D1FE34F00D38E6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FindPanelFieldView.storyboard; sourceTree = "<group>"; };
 		2A5E6FC02A72342700E33EA7 /* UnicodeNormalization.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = UnicodeNormalization.xcstrings; sourceTree = "<group>"; };
@@ -271,18 +268,15 @@
 		2A65520A2BDF4D880082B7D6 /* InAppPurchase.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InAppPurchase.xcstrings; sourceTree = "<group>"; };
 		2A65520B2BE001A10082B7D6 /* CotEditor.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = CotEditor.storekit; sourceTree = "<group>"; };
 		2A65EC3A2B80C667008096C5 /* ThemeEditor.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = ThemeEditor.xcstrings; sourceTree = "<group>"; };
-		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
-		2A6E3F452C3F5BB400702039 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
+		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CotEditor.help; sourceTree = "<group>"; };
 		2A6F0E071B5500E100C2D03C /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6F0E091B55043800C2D03C /* CotEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CotEditor.entitlements; sourceTree = "<group>"; };
 		2A715E21261AC5960060CF84 /* CotEditor-Sparkle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CotEditor-Sparkle.entitlements"; sourceTree = "<group>"; };
 		2A75ACCA19E86DDB00444894 /* CotEditor.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CotEditor.sdef; sourceTree = "<group>"; };
 		2A7846DA18FE035E006BDF00 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
-		2A7E06E52C1A711B00E5396D /* EditorCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = EditorCore; sourceTree = "<group>"; };
 		2A7F4E012871F46D0029CE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PrintPanelAccessory.storyboard; sourceTree = "<group>"; };
 		2A7FEF0A2B90B05C0042BEFF /* FilterField.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = FilterField.xcstrings; sourceTree = "<group>"; };
 		2A836F7F1D572A5D0044E8EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2A8544E6267872E0006EF01A /* SyntaxMap */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SyntaxMap; sourceTree = "<group>"; };
 		2A8EAE3D2BA3B15D00448875 /* Credits.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Credits.json; sourceTree = "<group>"; };
 		2A8EAE552BA7E2BE00448875 /* Licenses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Licenses; sourceTree = "<group>"; };
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = cot/cot; sourceTree = SOURCE_ROOT; };
@@ -303,7 +297,6 @@
 		2AAFA7D42B7A2F5800A2B228 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/MultipleReplaceView.xcstrings; sourceTree = "<group>"; };
 		2AAFA7D52B7A2F6D00A2B228 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/MultipleReplaceListView.xcstrings; sourceTree = "<group>"; };
 		2AB9E4C22B830902004E5BDC /* FormatSettings.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = FormatSettings.xcstrings; sourceTree = "<group>"; };
-		2ABB27D32C382A7D00AFCD0B /* MacUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MacUI; sourceTree = "<group>"; };
 		2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC94B3A2B6EAAE90086F9F2 /* RegexReference.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = RegexReference.xcstrings; sourceTree = "<group>"; };
 		2ACDA2752B81D85700B2EBA8 /* PatternSort.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = PatternSort.xcstrings; sourceTree = "<group>"; };
@@ -330,8 +323,7 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2A1AFDC32C92990300BF2C32 /* Configurations */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			name = Configurations;
-			path = CotEditor/Configurations;
+			path = Configurations;
 			sourceTree = "<group>";
 		};
 		2A5A72FF2C92C63D0028C333 /* Application */ = {
@@ -417,6 +409,21 @@
 		2A5A781D2C92F3FE0028C333 /* Sources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		2AE44B462C9C7BD4003CB621 /* Packages */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		2AE45D322C9C8341003CB621 /* UI Tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "UI Tests";
+			sourceTree = "<group>";
+		};
+		2AE46EEA2C9C8B44003CB621 /* Scripts */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Scripts;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -516,14 +523,11 @@
 				2AF482DA279288CF00A86481 /* README.md */,
 				2AE4658627A5A7CE00D2904F /* CONTRIBUTING.md */,
 				2AF482D9279288CF00A86481 /* CHANGELOG.md */,
-				2A1AFDC32C92990300BF2C32 /* Configurations */,
-				2A37F4ABFDCFA73011CA2CEA /* Sources */,
-				2A37F4B8FDCFA73011CA2CEA /* Resources */,
-				2A3F187D202D8773002F1CA7 /* Supporting Files */,
-				2A37F4AFFDCFA73011CA2CEA /* Scripts */,
+				2AE459F42C9C82A2003CB621 /* CotEditor */,
 				2AC71DE01BF0BDBC002E1434 /* Tests */,
-				2A3F18F8203270BE002F1CA7 /* UI Tests */,
-				2A7E06EB2C1A79B600E5396D /* Packages */,
+				2AE45D322C9C8341003CB621 /* UI Tests */,
+				2AE46EEA2C9C8B44003CB621 /* Scripts */,
+				2AE44B462C9C7BD4003CB621 /* Packages */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
 			name = CotEditor;
@@ -548,17 +552,7 @@
 				2A5A741B2C92CA1B0028C333 /* Utilities */,
 				2A5A74532C92CA1D0028C333 /* Extensions */,
 			);
-			name = Sources;
-			path = CotEditor/Sources;
-			sourceTree = "<group>";
-		};
-		2A37F4AFFDCFA73011CA2CEA /* Scripts */ = {
-			isa = PBXGroup;
-			children = (
-				2A3E84821D07331900070A54 /* updateHelpindex.sh */,
-			);
-			name = Scripts;
-			path = CotEditor;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
@@ -567,15 +561,16 @@
 				2A1EB5C319AD469500C1E37E /* Assets.xcassets */,
 				2A149DC91902BC3900A9D6EF /* Storyboards */,
 				2AC94B262B6E2E110086F9F2 /* Localizables */,
-				2A8EAE3D2BA3B15D00448875 /* Credits.json */,
-				2A2179F51A07093B002C4AB1 /* SyntaxMap.json */,
 				2A3A758D19E77C84001DAB88 /* Syntaxes */,
 				2A7846DA18FE035E006BDF00 /* Themes */,
 				2A8EAE552BA7E2BE00448875 /* Licenses */,
+				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
+				2A8EAE3D2BA3B15D00448875 /* Credits.json */,
+				2A2179F51A07093B002C4AB1 /* SyntaxMap.json */,
+				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
 				2A94FC781BE2256F00B454A8 /* cot */,
 			);
 			name = Resources;
-			path = CotEditor;
 			sourceTree = "<group>";
 		};
 		2A39AC942B8CE43100E216C9 /* Accessory Views */ = {
@@ -604,21 +599,9 @@
 				2A6F0E091B55043800C2D03C /* CotEditor.entitlements */,
 				2A715E21261AC5960060CF84 /* CotEditor-Sparkle.entitlements */,
 				5454B933243C8271009275BC /* CotEditor-AdHoc.entitlements */,
-				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
 				2A65520B2BE001A10082B7D6 /* CotEditor.storekit */,
-				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
-				2A6E3F452C3F5BB400702039 /* .swiftlint.yml */,
 			);
 			name = "Supporting Files";
-			path = CotEditor;
-			sourceTree = "<group>";
-		};
-		2A3F18F8203270BE002F1CA7 /* UI Tests */ = {
-			isa = PBXGroup;
-			children = (
-				2A3F18F9203270BE002F1CA7 /* UITests.swift */,
-			);
-			path = "UI Tests";
 			sourceTree = "<group>";
 		};
 		2A436DDC1A426EAE00275FD4 /* Accessories */ = {
@@ -627,16 +610,6 @@
 				2A7F4E022871F46D0029CE66 /* PrintPanelAccessory.storyboard */,
 			);
 			name = Accessories;
-			sourceTree = "<group>";
-		};
-		2A7E06EB2C1A79B600E5396D /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				2ABB27D32C382A7D00AFCD0B /* MacUI */,
-				2A7E06E52C1A711B00E5396D /* EditorCore */,
-				2A8544E6267872E0006EF01A /* SyntaxMap */,
-			);
-			path = Packages;
 			sourceTree = "<group>";
 		};
 		2A7FEF0D2B90B1800042BEFF /* Views */ = {
@@ -746,6 +719,17 @@
 			path = Localizables;
 			sourceTree = "<group>";
 		};
+		2AE459F42C9C82A2003CB621 /* CotEditor */ = {
+			isa = PBXGroup;
+			children = (
+				2A1AFDC32C92990300BF2C32 /* Configurations */,
+				2A37F4ABFDCFA73011CA2CEA /* Sources */,
+				2A37F4B8FDCFA73011CA2CEA /* Resources */,
+				2A3F187D202D8773002F1CA7 /* Supporting Files */,
+			);
+			path = CotEditor;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -760,6 +744,9 @@
 			dependencies = (
 				2ABB27CB2C3823AB00AFCD0B /* PBXTargetDependency */,
 				2AA2C6F9243996EF0017D1EC /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2AE45D322C9C8341003CB621 /* UI Tests */,
 			);
 			name = "UI Tests";
 			productName = "UI Tests";
@@ -964,6 +951,7 @@
 				ko,
 			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* CotEditor */;
+			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */,
 				2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */,
@@ -1166,7 +1154,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd CotEditor\n./updateHelpindex.sh\n";
+			shellScript = "cd Scripts\n./updateHelpindex.sh\n";
 		};
 		2A53326126799AB4000DE73D /* Build Syntax Map */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1176,13 +1164,13 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(PROJECT_DIR)/CotEditor/Syntaxes",
+				"$(SRCROOT)/CotEditor/Syntaxes",
 			);
 			name = "Build Syntax Map";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(PROJECT_DIR)/CotEditor/SyntaxMap.json",
+				"$(SRCROOT)/CotEditor/SyntaxMap.json",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1196,13 +1184,13 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(PROJECT_DIR)/CotEditor/Syntaxes",
+				"$(SRCROOT)/CotEditor/Syntaxes",
 			);
 			name = "Build Syntax Map";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(PROJECT_DIR)/CotEditor/SyntaxMap.json",
+				"$(SRCROOT)/CotEditor/SyntaxMap.json",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1215,7 +1203,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A3F18FA203270BE002F1CA7 /* UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
