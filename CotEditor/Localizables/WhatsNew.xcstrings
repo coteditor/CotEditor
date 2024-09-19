@@ -1018,13 +1018,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**CotEditor %@**的新功能"
+            "value" : "CotEditor %@的新功能"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**CotEditor %@**的新功能"
+            "value" : "CotEditor %@的新功能"
           }
         }
       }

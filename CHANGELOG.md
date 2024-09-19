@@ -12,6 +12,7 @@
 
 - Fix an issue that the file/folder in the file browser was not removed even though when it was deleted in the actual file storage.
 - Fix an issue that the Donation settings pane displayed an unnecessary alert when the user cancels an action.
+- Fix the What’s New window in CJK localizations.
 
 
 
