@@ -54,6 +54,7 @@ struct DonationSettingsView: View {
     @AppStorage(.donationBadgeType) private var badgeType: BadgeType
     
     @State private var error: (any Error)?
+    @State private var storeKitError: StoreKitError?
     @State private var hasDonated = false
     
     
@@ -90,7 +91,7 @@ struct DonationSettingsView: View {
                                         do {
                                             try await AppStore.sync()
                                         } catch {
-                                            self.error = error
+                                            self.presentError(error)
                                         }
                                     }
                                 }.buttonStyle(.link)
@@ -140,10 +141,10 @@ struct DonationSettingsView: View {
                     .accessibilityElement(children: .contain)
                 }
                 .overlay(alignment: .top) {
-                    if let error = self.error {
+                    if let error = self.storeKitError {
                         VStack {
                             let description = switch error {
-                                case StoreKitError.networkError:
+                                case .networkError:
                                     String(localized: "An internet connection is required to donate.", table: "DonationSettings",
                                            comment: "error message")
                                 default:
@@ -164,11 +165,16 @@ struct DonationSettingsView: View {
                     }
                 }
                 .storeProductsTask(for: Donation.ProductID.allCases) { taskState in
-                    self.error = switch taskState {
-                        case .failure(let error): error
-                        default: nil
+                    switch taskState {
+                        case .loading, .success:
+                            break
+                        case .failure(let error):
+                            self.presentError(error)
+                        @unknown default:
+                            assertionFailure()
                     }
                 }
+                .alert(error: $error)
                 
             } else {
                 VStack(alignment: .center) {
@@ -197,6 +203,27 @@ struct DonationSettingsView: View {
         }
         .scenePadding()
         .frame(minWidth: 600, idealWidth: 600)
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Presents an alert in the proper way.
+    ///
+    /// - Parameter error: The error to present.
+    private func presentError(_ error: any Error) {
+        
+        switch error {
+            case let error as StoreKitError:
+                switch error {
+                    case .userCancelled:
+                        break
+                    default:
+                        self.storeKitError = error
+                }
+            default:
+                self.error = error
+        }
     }
 }
 
