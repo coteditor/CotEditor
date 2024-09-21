@@ -404,7 +404,7 @@ extension FileNode.Kind {
         switch self {
             case .folder: "folder"
             case .general: "doc"
-            case .archive: "zipper.page"
+            case .archive: if #available(macOS 15, *) { "zipper.page" } else { "doc.zipper" }
             case .image: "photo"
             case .movie: "film"
             case .audio: "music.note"
