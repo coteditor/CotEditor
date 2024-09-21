@@ -401,16 +401,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		2A5A78022C92F3A80028C333 /* Resources */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		2A5A781D2C92F3FE0028C333 /* Sources */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Sources;
-			sourceTree = "<group>";
-		};
 		2AE44B462C9C7BD4003CB621 /* Packages */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Packages;
@@ -424,6 +414,11 @@
 		2AE46EEA2C9C8B44003CB621 /* Scripts */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Scripts;
+			sourceTree = "<group>";
+		};
+		2AE51A132C9EBA8C0022ED0A /* Tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -524,7 +519,7 @@
 				2AE4658627A5A7CE00D2904F /* CONTRIBUTING.md */,
 				2AF482D9279288CF00A86481 /* CHANGELOG.md */,
 				2AE459F42C9C82A2003CB621 /* CotEditor */,
-				2AC71DE01BF0BDBC002E1434 /* Tests */,
+				2AE51A132C9EBA8C0022ED0A /* Tests */,
 				2AE45D322C9C8341003CB621 /* UI Tests */,
 				2AE46EEA2C9C8B44003CB621 /* Scripts */,
 				2AE44B462C9C7BD4003CB621 /* Packages */,
@@ -688,15 +683,6 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
-		2AC71DE01BF0BDBC002E1434 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				2A5A781D2C92F3FE0028C333 /* Sources */,
-				2A5A78022C92F3A80028C333 /* Resources */,
-			);
-			path = Tests;
-			sourceTree = SOURCE_ROOT;
-		};
 		2AC94B262B6E2E110086F9F2 /* Localizables */ = {
 			isa = PBXGroup;
 			children = (
@@ -816,8 +802,7 @@
 				2AA2C6F7243996EC0017D1EC /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				2A5A78022C92F3A80028C333 /* Resources */,
-				2A5A781D2C92F3FE0028C333 /* Sources */,
+				2AE51A132C9EBA8C0022ED0A /* Tests */,
 			);
 			name = Tests;
 			packageProductDependencies = (
