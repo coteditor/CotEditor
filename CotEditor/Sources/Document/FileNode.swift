@@ -49,7 +49,7 @@ final class FileNode {
     private(set) var fileURL: URL
     private(set) weak var parent: FileNode?
     
-    private var _children: [FileNode]?
+    private var cachedChildren: [FileNode]?
     
     
     /// Initializes a file node instance.
@@ -90,10 +90,10 @@ final class FileNode {
     /// The children of the node by reading them lazily.
     var children: [FileNode]? {
         
-        if self._children == nil, self.isDirectory {
-            self._children = try? self.readChildren()
+        if self.cachedChildren == nil, self.isDirectory {
+            self.cachedChildren = try? self.readChildren()
         }
-        return self._children
+        return self.cachedChildren
     }
     
     
@@ -201,7 +201,7 @@ extension FileNode {
         if fileURL == self.fileURL { return self }
         
         guard
-            let children = inCache ? self._children : self.children,
+            let children = inCache ? self.cachedChildren : self.children,
             self.fileURL.isAncestor(of: fileURL)
         else { return nil }
         
@@ -224,7 +224,7 @@ extension FileNode {
         guard
             fileURL.lastPathComponent != ".DS_Store",
             self.isDirectory,
-            let children = self._children
+            let children = self.cachedChildren
         else { return nil }
         
         guard fileURL.deletingLastPathComponent() == self.fileURL else {
@@ -250,7 +250,7 @@ extension FileNode {
         } else {
             if let index = children.firstIndex(where: { $0.fileURL.lastPathComponent == fileURL.lastPathComponent }) {
                 // -> The file is deleted.
-                self._children?.remove(at: index)
+                self.cachedChildren?.remove(at: index)
                 return self
                 
             } else {
@@ -295,7 +295,7 @@ extension FileNode {
             self.isHidden = newName.starts(with: ".")
         }
         
-        self.parent?._children?.sort()
+        self.parent?.cachedChildren?.sort()
     }
     
     
@@ -307,7 +307,7 @@ extension FileNode {
         
         assert(parent.isDirectory)
         
-        self.parent?._children?.removeFirst(self)
+        self.parent?.cachedChildren?.removeFirst(self)
         
         parent.addNode(self)
         self.parent = parent
@@ -325,15 +325,15 @@ extension FileNode {
         
         assert(self.isDirectory)
         
-        self._children?.append(node)
-        self._children?.sort()
+        self.cachedChildren?.append(node)
+        self.cachedChildren?.sort()
     }
     
     
     /// Deletes the receiver from the node tree.
     func delete() {
         
-        self.parent?._children?.removeFirst(self)
+        self.parent?.cachedChildren?.removeFirst(self)
     }
     
     
@@ -342,7 +342,7 @@ extension FileNode {
     /// - Parameter fileURL: The file URL where the children are placed.
     private func moveChildren(to fileURL: URL) {
         
-        guard let children = self._children else { return }
+        guard let children = self.cachedChildren else { return }
         
         for child in children {
             child.fileURL = fileURL.appending(component: child.name)

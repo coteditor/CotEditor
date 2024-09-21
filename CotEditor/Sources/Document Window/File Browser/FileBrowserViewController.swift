@@ -772,7 +772,7 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     }
     
     
-    /// Returns the casted children of the given item provided by an API of `NSOutlineViewDataSource`.
+    /// Returns the casted children of the given item.
     ///
     /// - Parameter item: An item in the data source, or `nil` for the root.
     /// - Returns: An array of file nodes, or `nil` if no data source is provided yet.
