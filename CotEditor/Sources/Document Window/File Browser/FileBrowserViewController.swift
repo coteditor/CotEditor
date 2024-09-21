@@ -896,6 +896,25 @@ final class FileBrowserTableCellView: NSTableCellView {
     
     override init(frame frameRect: NSRect) {
         
+        super.init(frame: frameRect)
+        
+        self.identifier = .node
+        self.setupSubviews()
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        super.init(coder: coder)
+        
+        self.identifier = .node
+        self.setupSubviews()
+    }
+    
+    
+    /// Setup subviews
+    private func setupSubviews() {
+        
         let imageView = NSImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.alignment = .center
@@ -916,9 +935,6 @@ final class FileBrowserTableCellView: NSTableCellView {
         aliasArrowView.setAccessibilityLabel(String(localized: "Alias", table: "Document", comment: "accessibility label"))
         aliasArrowView.setAccessibilityRoleDescription(nil)
         
-        super.init(frame: frameRect)
-        
-        self.identifier = .node
         self.addSubview(textField)
         self.addSubview(imageView)
         self.addSubview(aliasArrowView)
@@ -936,12 +952,6 @@ final class FileBrowserTableCellView: NSTableCellView {
             textField.leadingAnchor.constraint(equalToSystemSpacingAfter: imageView.trailingAnchor, multiplier: 1),
             textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -2),
         ])
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
     }
 }
 
